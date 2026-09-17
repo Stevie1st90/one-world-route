@@ -75,6 +75,10 @@
     return clamp(Number($('.speed-control button.active')?.dataset.speed||700),220,1600);
   }
 
+  function isAutoPlaying(){
+    return $('#playBtn')?.textContent?.trim()==='Ⅱ';
+  }
+
   function ensureStoryChrome(){
     const stage=$('.globe-stage');
     if(!stage)return;
@@ -135,15 +139,23 @@
     if(chapterProgress)chapterProgress.textContent=`${phaseIndex} / ${phaseTotal}`;
   }
 
+  function flagMarkup(country){
+    const code=String(country?.cca2||'').toLowerCase();
+    if(/^[a-z]{2}$/.test(code))return `<img class="arrival-flag-img" src="https://flagcdn.com/48x36/${code}.png" alt="${escapeHtml(country.name||'Country')} flag" width="32" height="24" loading="eager">`;
+    return '<span class="arrival-flag-fallback">◎</span>';
+  }
+
   function showArrival(seg){
-    if(!isStory()||runtime.restoringStory||activeSpeed()<500)return;
+    if(!isStory()||runtime.restoringStory)return;
+    // Automatic playback only shows arrivals at 1×. At 2×/5× the globe and route remain the focus.
+    if(isAutoPlaying()&&activeSpeed()<1200)return;
     const box=$('#arrivalMoment');if(!box)return;
     const country=runtime.countries.get(seg.to)||{};
     const day=dayFromStart(seg.planArrival||seg.planDeparture)||'—';
-    box.innerHTML=`<span class="arrival-flag">${country.flag||'◎'}</span><div><small>ARRIVAL · COUNTRY ${country.number||Math.min(195,seg.id+1)} / 195</small><strong>${escapeHtml(seg.to)}</strong><em>${escapeHtml(seg.mode||'Route')} · ${fmtDate(seg.planArrival||seg.planDeparture)} · Day ${day}</em></div>`;
+    box.innerHTML=`<span class="arrival-flag">${flagMarkup({...country,name:seg.to})}</span><div><small>ARRIVAL · COUNTRY ${country.number||Math.min(195,seg.id+1)} / 195</small><strong>${escapeHtml(seg.to)}</strong><em>${escapeHtml(seg.mode||'Route')} · ${fmtDate(seg.planArrival||seg.planDeparture)} · Day ${day}</em></div>`;
     box.classList.remove('show');void box.offsetWidth;box.classList.add('show');
     clearTimeout(runtime.arrivalTimer);
-    runtime.arrivalTimer=setTimeout(()=>box.classList.remove('show'),Math.min(980,Math.max(620,activeSpeed()*.72)));
+    runtime.arrivalTimer=setTimeout(()=>box.classList.remove('show'),Math.min(1200,Math.max(780,activeSpeed()*.72)));
   }
 
   function showChapterTransition(phase){
