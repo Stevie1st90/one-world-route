@@ -18,14 +18,18 @@
       #terrainMap{display:none;position:absolute;inset:0;z-index:2;background:#dfe7ec}
       body.terrain-view #terrainMap{display:block}
       body.terrain-view #globe{visibility:hidden}
+      body.terrain-view .globe-stage:before{display:none!important}
       body.terrain-view .journey-btn,body.terrain-view .floating-stats{opacity:0;pointer-events:none}
-      .terrain-badge{display:none;position:absolute;z-index:24;left:50%;bottom:24px;transform:translateX(-50%);padding:8px 12px;border:1px solid rgba(18,98,128,.25);border-radius:12px;background:rgba(246,250,252,.88);backdrop-filter:blur(14px);font-size:8px;letter-spacing:.06em;color:#52687a;white-space:nowrap;pointer-events:none;box-shadow:0 8px 28px rgba(0,0,0,.12)}
+      .terrain-badge{display:none;position:absolute;z-index:24;left:50%;bottom:24px;transform:translateX(-50%);padding:8px 12px;border:1px solid rgba(18,98,128,.25);border-radius:12px;background:rgba(246,250,252,.92);backdrop-filter:blur(14px);font-size:8px;letter-spacing:.06em;color:#52687a;white-space:nowrap;pointer-events:none;box-shadow:0 8px 28px rgba(0,0,0,.12)}
       body.terrain-view .terrain-badge{display:block}
       .terrain-badge b{color:#103a4a;margin-right:7px;letter-spacing:.12em}
-      body.terrain-view .maplibregl-ctrl-group{background:rgba(250,252,253,.94);border:1px solid rgba(25,55,75,.14);box-shadow:0 4px 18px rgba(0,0,0,.12)}
+      body.terrain-view .maplibregl-ctrl-group{background:rgba(250,252,253,.96);border:1px solid rgba(25,55,75,.14);box-shadow:0 4px 18px rgba(0,0,0,.12)}
       body.terrain-view .maplibregl-ctrl button{filter:none}
-      body.terrain-view .maplibregl-ctrl-attrib{background:rgba(255,255,255,.86);color:#516779;font-size:9px}
+      body.terrain-view .maplibregl-ctrl-attrib{background:rgba(255,255,255,.9);color:#516779;font-size:9px}
       body.terrain-view .maplibregl-ctrl-attrib a{color:#27556c}
+      body.terrain-view .phase-rail{background:rgba(246,250,252,.88);border-color:rgba(20,45,60,.14)}
+      body.terrain-view .phase-rail button{color:#5b7183}
+      body.terrain-view .phase-rail button.active{background:rgba(20,75,100,.1);color:#163b4d}
       @media(max-width:820px){.terrain-badge{bottom:70px;font-size:7px}.terrain-badge span{display:none}}
     `;
     document.head.appendChild(style);
@@ -35,12 +39,12 @@
     const stage=$('.globe-stage');
     if(stage&&!$('#terrainMap')){
       const map=document.createElement('div');map.id='terrainMap';stage.appendChild(map);
-      const badge=document.createElement('div');badge.className='terrain-badge';badge.innerHTML='<b>3D TERRAIN</b><span>Scroll to zoom · drag to rotate · Ctrl/right-drag to tilt</span>';stage.appendChild(badge);
+      const badge=document.createElement('div');badge.className='terrain-badge';badge.innerHTML='<b>3D TERRAIN</b><span>Scroll to zoom · drag to move · Ctrl/right-drag to tilt</span>';stage.appendChild(badge);
     }
     const settings=$('#settingsPopover');
     if(settings&&!$('#terrainView')){
       const label=document.createElement('label');
-      label.innerHTML='<span>Real 3D terrain</span><input id="terrainView" type="checkbox" title="Switch to a real elevation terrain view">';
+      label.innerHTML='<span>Real 3D terrain</span><input id="terrainView" type="checkbox" title="Switch to a bright regional 3D elevation view">';
       const high=$('#highDetailGlobe')?.closest('label');
       if(high)high.insertAdjacentElement('afterend',label);else settings.appendChild(label);
       $('#terrainView').addEventListener('change',e=>setTerrainMode(Boolean(e.target.checked)));
@@ -137,34 +141,30 @@
     Object.entries(PHASE_COLORS).forEach(([id,color])=>{expr.push(Number(id),color)});expr.push('#149fc4');return expr;
   }
 
-  function firstSymbolLayer(map){
-    return map.getStyle()?.layers?.find(l=>l.type==='symbol')?.id;
-  }
+  function firstSymbolLayer(map){return map.getStyle()?.layers?.find(l=>l.type==='symbol')?.id;}
 
   function installTerrainLayers(map){
     if(map.getSource('terrainSource'))return;
-
-    map.addSource('terrainSource',{type:'raster-dem',url:'https://tiles.mapterhorn.com/tilejson.json'});
-    map.addSource('hillshadeSource',{type:'raster-dem',url:'https://tiles.mapterhorn.com/tilejson.json'});
+    map.addSource('terrainSource',{type:'raster-dem',url:'https://demotiles.maplibre.org/terrain-tiles/tiles.json',tileSize:256});
+    map.addSource('hillshadeSource',{type:'raster-dem',url:'https://demotiles.maplibre.org/terrain-tiles/tiles.json',tileSize:256});
     map.addSource('routeSource',{type:'geojson',data:routeGeoJson()});
-
-    map.setTerrain({source:'terrainSource',exaggeration:1.7});
+    map.setTerrain({source:'terrainSource',exaggeration:1.85});
     const before=firstSymbolLayer(map);
 
     map.addLayer({
       id:'oneworld-hillshade',type:'hillshade',source:'hillshadeSource',
       paint:{
         'hillshade-method':'multidirectional',
-        'hillshade-exaggeration':.72,
-        'hillshade-shadow-color':'#33444d',
+        'hillshade-exaggeration':.62,
+        'hillshade-shadow-color':'#65727b',
         'hillshade-highlight-color':'#ffffff',
-        'hillshade-accent-color':'#6f8995'
+        'hillshade-accent-color':'#8da0aa'
       }
     },before);
 
-    map.addLayer({id:'oneworld-route-shadow',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(255,255,255,.82)','line-width':['interpolate',['linear'],['zoom'],3,3.2,8,6,13,9]}},before);
-    map.addLayer({id:'oneworld-routes',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.92,'line-width':['interpolate',['linear'],['zoom'],3,1.7,8,3.4,13,5.3]}},before);
-    map.addLayer({id:'oneworld-selected-route',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#08141b','line-width':['interpolate',['linear'],['zoom'],3,3,8,5.4,13,8]}},before);
+    map.addLayer({id:'oneworld-route-shadow',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(255,255,255,.9)','line-width':['interpolate',['linear'],['zoom'],3,3.4,8,6.2,13,9.2]}},before);
+    map.addLayer({id:'oneworld-routes',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.94,'line-width':['interpolate',['linear'],['zoom'],3,1.7,8,3.5,13,5.4]}},before);
+    map.addLayer({id:'oneworld-selected-route',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#09191f','line-width':['interpolate',['linear'],['zoom'],3,3,8,5.6,13,8.2]}},before);
   }
 
   function failTerrain(message){
@@ -182,8 +182,9 @@
 
     const map=new maplibregl.Map({
       container:'terrainMap',
-      style:'https://tiles.openfreemap.org/styles/bright',
-      center,zoom:7.4,pitch:72,bearing:-18,maxZoom:18,maxPitch:85,attributionControl:true,
+      style:'https://demotiles.maplibre.org/style.json',
+      center,zoom:8.2,pitch:72,bearing:-18,maxZoom:18,maxPitch:85,attributionControl:true,
+      renderWorldCopies:false,
       canvasContextAttributes:{antialias:true}
     });
 
@@ -192,8 +193,7 @@
       if(runtime.terrainActive&&!runtime.terrainBaseReady)failTerrain('3D terrain basemap did not finish loading; returning to standard globe.');
     },9000);
 
-    map.on('style.load',()=>{
-      try{map.setProjection({type:'globe'});}catch{}
+    map.on('load',()=>{
       try{
         installTerrainLayers(map);
         runtime.terrainBaseReady=true;
@@ -212,8 +212,7 @@
     });
 
     map.addControl(new maplibregl.NavigationControl({visualizePitch:true,showZoom:true,showCompass:true}),'top-right');
-    if(maplibregl.TerrainControl)map.addControl(new maplibregl.TerrainControl({source:'terrainSource',exaggeration:1.7}),'top-right');
-    if(maplibregl.GlobeControl)map.addControl(new maplibregl.GlobeControl(),'top-right');
+    if(maplibregl.TerrainControl)map.addControl(new maplibregl.TerrainControl({source:'terrainSource',exaggeration:1.85}),'top-right');
 
     runtime.terrainMap=map;
     runtime.terrainReady=true;
@@ -225,7 +224,7 @@
     if(map.getLayer?.('oneworld-selected-route'))map.setFilter('oneworld-selected-route',['==',['get','id'],runtime.selectedId]);
     if(!fly)return;
     const p=selectedPosition();
-    map.easeTo({center:p,zoom:Math.max(map.getZoom(),7.4),pitch:Math.max(map.getPitch(),72),bearing:-18,duration:1100,essential:true});
+    map.easeTo({center:p,zoom:Math.max(map.getZoom(),8.2),pitch:Math.max(map.getPitch(),72),bearing:-18,duration:1050,essential:true});
   }
 
   function syncTerrainPhase(){
@@ -238,7 +237,6 @@
 
   async function setTerrainMode(active){
     if(active&&document.body.classList.contains('story-mode')){const toggle=$('#terrainView');if(toggle)toggle.checked=false;return;}
-
     runtime.terrainActive=active;
     document.body.classList.toggle('terrain-view',active);
 
