@@ -25,10 +25,16 @@
       if(!material) return;
       if('bumpMap' in material) material.bumpMap = null;
       if('bumpScale' in material) material.bumpScale = 0;
-      material.color?.set?.(highDetailEnabled() ? '#8290a0' : '#ffffff');
-      material.specular?.set?.('#101722');
-      if('shininess' in material) material.shininess = highDetailEnabled() ? 2 : 4;
+
+      // Keep texture colours neutral. The previous #8290a0 tint multiplied the NASA
+      // texture down and made continents look almost black at close zoom.
+      material.color?.set?.('#ffffff');
+      material.specular?.set?.('#182532');
+      if('shininess' in material) material.shininess = highDetailEnabled() ? 1 : 3;
       material.needsUpdate = true;
+
+      globe.atmosphereColor?.(highDetailEnabled() ? '#78b7ff' : '#5f9cff');
+      globe.atmosphereAltitude?.(highDetailEnabled() ? .15 : .13);
     }catch(err){
       console.warn('Globe material tuning unavailable', err);
     }
