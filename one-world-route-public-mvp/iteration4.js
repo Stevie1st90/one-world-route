@@ -27,7 +27,6 @@
   const isStory = () => document.body.classList.contains('story-mode');
   const segmentId = () => clamp(Number($('#routeRange')?.value || 1),1,194);
   const isMobile = () => window.matchMedia('(max-width: 820px)').matches;
-  const reducedMotion = () => Boolean($('#reducedMotion')?.checked);
 
   function createStoryGlobeStub(){
     let stub;
@@ -59,9 +58,6 @@
         const current=nativeArcsData() || [];
         const currentIsChapter=current.length>0 && current.every(s=>Number(s?.id)>=phase.range[0] && Number(s?.id)<=phase.range[1]);
 
-        // During Story Mode the chapter route is mounted once and remains mounted.
-        // Canonical segment updates may call arcsData() on every tick; those writes are ignored
-        // until the journey actually crosses into a different chapter.
         if(currentIsChapter && runtime.lockedPhase===phase.id) return instance;
 
         const incoming=Array.isArray(value)?value:[];
@@ -75,9 +71,6 @@
       };
     }
 
-    // app.js refreshes all arc accessors for every selected segment. In Story Mode those
-    // refreshes caused a visible flash before Iteration 4 reapplied its hierarchy. Ignore
-    // them and only accept style writes made intentionally by applyRouteHierarchy().
     ['arcColor','arcStroke','arcDashLength','arcDashGap','arcDashAnimateTime','arcCurveResolution'].forEach(name=>{
       const method=instance[name];
       if(typeof method!=='function') return;
@@ -131,22 +124,22 @@
   function hierarchyColor(s,id){
     const delta = Number(s.id) - id;
     if(delta === 0) return ['rgba(255,255,255,.98)','rgba(89,221,255,1)'];
-    if(delta < 0) return 'rgba(89,221,255,.075)';
-    if(delta === 1) return ['rgba(89,221,255,.82)','rgba(146,118,255,.78)'];
-    if(delta === 2) return 'rgba(126,170,255,.48)';
-    if(delta === 3) return 'rgba(146,118,255,.30)';
-    return 'rgba(129,151,181,.085)';
+    if(delta < 0) return 'rgba(89,221,255,.055)';
+    if(delta === 1) return ['rgba(89,221,255,.74)','rgba(146,118,255,.68)'];
+    if(delta === 2) return 'rgba(126,170,255,.28)';
+    if(delta === 3) return 'rgba(146,118,255,.16)';
+    return 'rgba(129,151,181,.055)';
   }
 
   function hierarchyStroke(s,id){
     const delta = Number(s.id) - id;
     const mobileScale = isMobile() ? .86 : 1;
-    if(delta === 0) return 1.72 * mobileScale;
-    if(delta < 0) return .16;
-    if(delta === 1) return .70 * mobileScale;
-    if(delta === 2) return .48 * mobileScale;
-    if(delta === 3) return .34 * mobileScale;
-    return .14;
+    if(delta === 0) return 1.62 * mobileScale;
+    if(delta < 0) return .12;
+    if(delta === 1) return .58 * mobileScale;
+    if(delta === 2) return .30 * mobileScale;
+    if(delta === 3) return .20 * mobileScale;
+    return .11;
   }
 
   function applyRouteHierarchy(){
@@ -160,9 +153,9 @@
       globe
         .arcColor(s=>hierarchyColor(s,id))
         .arcStroke(s=>hierarchyStroke(s,id))
-        .arcDashLength(s=>Number(s.id)===id?.54:1)
-        .arcDashGap(s=>Number(s.id)===id?.16:0)
-        .arcDashAnimateTime(s=>Number(s.id)===id && !reducedMotion()?900:0)
+        .arcDashLength(()=>1)
+        .arcDashGap(()=>0)
+        .arcDashAnimateTime(()=>0)
         .arcCurveResolution(isMobile()?24:36);
     }catch{}
     finally{ runtime.applyingHierarchy=false; }
@@ -210,7 +203,7 @@
     let altitude=clamp(1.36+(distance/110)*.72,1.36,2.18);
     if(isMobile()) altitude+=.16;
     if(id===phase.range[0] || chapterChanged) altitude=Math.max(altitude,1.92);
-    const duration=reducedMotion()?0:clamp(Math.round(activeSpeed()*.68),180,920);
+    const duration=clamp(Math.round(activeSpeed()*.68),180,920);
 
     clearTimeout(runtime.focusTimer);
     try{ globe.pointOfView({lat:midpoint.lat,lng:midpoint.lng,altitude},duration); }catch{}
@@ -307,8 +300,6 @@
     try{ globe?.arcCurveResolution?.(48); }catch{}
     const preview=$('#storyPreview');
     if(preview) preview.innerHTML='';
-    // Iteration 2 restores the route controls immediately after story exit,
-    // which triggers the canonical renderer and returns normal arc styling/data.
   }
 
   function wire(){
