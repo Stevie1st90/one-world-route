@@ -5,7 +5,8 @@
   const normalize=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
   const runtime={
     globe:null,outlineReady:false,terrainMap:null,terrainReady:false,terrainBaseReady:false,
-    terrainActive:false,routeData:null,centroids:null,loadPromise:null,selectedId:1,terrainFailTimer:null
+    terrainActive:false,terrainRequested:false,routeData:null,centroids:null,loadPromise:null,
+    selectedId:1,terrainFailTimer:null
   };
 
   const PHASE_COLORS={1:'#149fc4',2:'#315eea',3:'#12a887',4:'#2f9f5e',5:'#6743d9',6:'#b84ad8',7:'#d39418',8:'#dc6d22',9:'#de4f37',10:'#d9324d',11:'#cf4c98',12:'#3e78db'};
@@ -15,24 +16,36 @@
     const style=document.createElement('style');
     style.id='iteration9Styles';
     style.textContent=`
-      #terrainMap{display:none;position:absolute;inset:0;z-index:2;background:#dfe7ec}
-      body.terrain-view #terrainMap{display:block}
+      #terrainMap{display:none;position:absolute;inset:0;z-index:3;background:#dfe7ec}
+      body.terrain-loading #terrainMap{display:block;opacity:0;pointer-events:none}
+      body.terrain-view #terrainMap{display:block;opacity:1}
       body.terrain-view #globe{visibility:hidden}
-      body.terrain-view .globe-stage:before{display:none!important}
+      body.terrain-view .globe-stage:before,body.terrain-view .globe-stage:after{display:none!important}
       body.terrain-view .journey-btn,body.terrain-view .floating-stats{opacity:0;pointer-events:none}
-      .terrain-badge{display:none;position:absolute;z-index:24;left:50%;bottom:24px;transform:translateX(-50%);padding:8px 12px;border:1px solid rgba(18,98,128,.25);border-radius:12px;background:rgba(246,250,252,.92);backdrop-filter:blur(14px);font-size:8px;letter-spacing:.06em;color:#52687a;white-space:nowrap;pointer-events:none;box-shadow:0 8px 28px rgba(0,0,0,.12)}
+      .terrain-badge{display:none;position:absolute;z-index:24;left:50%;bottom:24px;transform:translateX(-50%);padding:8px 12px;border:1px solid rgba(18,98,128,.25);border-radius:12px;background:rgba(246,250,252,.94);backdrop-filter:blur(14px);font-size:8px;letter-spacing:.06em;color:#52687a;white-space:nowrap;pointer-events:none;box-shadow:0 8px 28px rgba(0,0,0,.12)}
       body.terrain-view .terrain-badge{display:block}
       .terrain-badge b{color:#103a4a;margin-right:7px;letter-spacing:.12em}
-      body.terrain-view .maplibregl-ctrl-group{background:rgba(250,252,253,.96);border:1px solid rgba(25,55,75,.14);box-shadow:0 4px 18px rgba(0,0,0,.12)}
+      body.terrain-view .maplibregl-ctrl-group{background:rgba(250,252,253,.97);border:1px solid rgba(25,55,75,.14);box-shadow:0 4px 18px rgba(0,0,0,.12)}
       body.terrain-view .maplibregl-ctrl button{filter:none}
-      body.terrain-view .maplibregl-ctrl-attrib{background:rgba(255,255,255,.9);color:#516779;font-size:9px}
+      body.terrain-view .maplibregl-ctrl-attrib{background:rgba(255,255,255,.92);color:#516779;font-size:9px}
       body.terrain-view .maplibregl-ctrl-attrib a{color:#27556c}
-      body.terrain-view .phase-rail{background:rgba(246,250,252,.88);border-color:rgba(20,45,60,.14)}
+      body.terrain-view .phase-rail{background:rgba(246,250,252,.9);border-color:rgba(20,45,60,.14);box-shadow:0 8px 24px rgba(0,0,0,.08)}
       body.terrain-view .phase-rail button{color:#5b7183}
       body.terrain-view .phase-rail button.active{background:rgba(20,75,100,.1);color:#163b4d}
       @media(max-width:820px){.terrain-badge{bottom:70px;font-size:7px}.terrain-badge span{display:none}}
     `;
     document.head.appendChild(style);
+  }
+
+  function setToggleState(active){
+    const t=$('#terrainView');
+    if(t)t.checked=Boolean(active);
+  }
+
+  function updateViewUrl(active){
+    const p=new URLSearchParams(location.search);
+    if(active)p.set('view','terrain');else p.delete('view');
+    history.replaceState(null,'',`${location.pathname}${p.toString()?`?${p}`:''}`);
   }
 
   function ensureTerrainUi(){
@@ -47,7 +60,16 @@
       label.innerHTML='<span>Real 3D terrain</span><input id="terrainView" type="checkbox" title="Switch to a bright regional 3D elevation view">';
       const high=$('#highDetailGlobe')?.closest('label');
       if(high)high.insertAdjacentElement('afterend',label);else settings.appendChild(label);
-      $('#terrainView').addEventListener('change',e=>setTerrainMode(Boolean(e.target.checked)));
+    }
+    const toggle=$('#terrainView');
+    if(toggle&&!toggle.dataset.terrainWired){
+      toggle.dataset.terrainWired='1';
+      toggle.checked=false;
+      toggle.addEventListener('change',()=>{
+        const wants=toggle.checked;
+        toggle.checked=runtime.terrainActive;
+        setTerrainMode(wants);
+      });
     }
   }
 
@@ -76,8 +98,8 @@
       const geo=await response.json();
       const paths=(geo.features||[]).flatMap(geometryToPaths).filter(p=>p.points.length>1);
       globe.pathsData(paths).pathPoints('points').pathPointLat('lat').pathPointLng('lng')
-        .pathColor(()=>document.body.classList.contains('story-mode')?'rgba(133,159,190,.14)':'rgba(117,151,188,.27)')
-        .pathStroke(.14).pathAltitude(.0015).pathResolution(1.5).pathTransitionDuration(0);
+        .pathColor(()=>document.body.classList.contains('story-mode')?'rgba(166,192,221,.24)':'rgba(151,184,218,.62)')
+        .pathStroke(.24).pathAltitude(.0018).pathResolution(1.25).pathTransitionDuration(0);
     }catch(err){console.warn('Artifact-free country outlines unavailable',err);}
   }
 
@@ -141,37 +163,54 @@
     Object.entries(PHASE_COLORS).forEach(([id,color])=>{expr.push(Number(id),color)});expr.push('#149fc4');return expr;
   }
 
-  function firstSymbolLayer(map){return map.getStyle()?.layers?.find(l=>l.type==='symbol')?.id;}
+  function terrainStyle(){
+    return {
+      version:8,
+      sources:{
+        osm:{
+          type:'raster',
+          tiles:['https://a.tile.openstreetmap.org/{z}/{x}/{y}.png'],
+          tileSize:256,maxzoom:19,
+          attribution:'© OpenStreetMap contributors'
+        },
+        terrainSource:{type:'raster-dem',url:'https://tiles.mapterhorn.com/tilejson.json'},
+        hillshadeSource:{type:'raster-dem',url:'https://tiles.mapterhorn.com/tilejson.json'},
+        routeSource:{type:'geojson',data:routeGeoJson()}
+      },
+      terrain:{source:'terrainSource',exaggeration:1.55},
+      layers:[
+        {id:'background',type:'background',paint:{'background-color':'#dbe7ec'}},
+        {id:'osm',type:'raster',source:'osm',paint:{'raster-opacity':1,'raster-saturation':-.08,'raster-contrast':.06,'raster-brightness-min':.1,'raster-brightness-max':1}},
+        {id:'hills',type:'hillshade',source:'hillshadeSource',paint:{'hillshade-method':'multidirectional','hillshade-exaggeration':.52,'hillshade-shadow-color':'#68747b','hillshade-highlight-color':'#ffffff','hillshade-accent-color':'#87969e'}},
+        {id:'route-shadow',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(255,255,255,.92)','line-width':['interpolate',['linear'],['zoom'],4,3,10,6,14,9]}},
+        {id:'routes',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.9,'line-width':['interpolate',['linear'],['zoom'],4,1.5,10,3.2,14,5]}},
+        {id:'selected-route',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#0a2530','line-width':['interpolate',['linear'],['zoom'],4,2.8,10,5.2,14,7.5]}}
+      ]
+    };
+  }
 
-  function installTerrainLayers(map){
-    if(map.getSource('terrainSource'))return;
-    map.addSource('terrainSource',{type:'raster-dem',url:'https://demotiles.maplibre.org/terrain-tiles/tiles.json',tileSize:256});
-    map.addSource('hillshadeSource',{type:'raster-dem',url:'https://demotiles.maplibre.org/terrain-tiles/tiles.json',tileSize:256});
-    map.addSource('routeSource',{type:'geojson',data:routeGeoJson()});
-    map.setTerrain({source:'terrainSource',exaggeration:1.85});
-    const before=firstSymbolLayer(map);
+  function deactivateTerrain({updateUrl=true}={}){
+    runtime.terrainRequested=false;
+    runtime.terrainActive=false;
+    document.body.classList.remove('terrain-loading','terrain-view');
+    setToggleState(false);
+    const high=$('#highDetailGlobe');if(high)high.disabled=false;
+    if(updateUrl)updateViewUrl(false);
+  }
 
-    map.addLayer({
-      id:'oneworld-hillshade',type:'hillshade',source:'hillshadeSource',
-      paint:{
-        'hillshade-method':'multidirectional',
-        'hillshade-exaggeration':.62,
-        'hillshade-shadow-color':'#65727b',
-        'hillshade-highlight-color':'#ffffff',
-        'hillshade-accent-color':'#8da0aa'
-      }
-    },before);
-
-    map.addLayer({id:'oneworld-route-shadow',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(255,255,255,.9)','line-width':['interpolate',['linear'],['zoom'],3,3.4,8,6.2,13,9.2]}},before);
-    map.addLayer({id:'oneworld-routes',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.94,'line-width':['interpolate',['linear'],['zoom'],3,1.7,8,3.5,13,5.4]}},before);
-    map.addLayer({id:'oneworld-selected-route',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#09191f','line-width':['interpolate',['linear'],['zoom'],3,3,8,5.6,13,8.2]}},before);
+  function activateTerrain(){
+    runtime.terrainRequested=false;
+    runtime.terrainActive=true;
+    document.body.classList.remove('terrain-loading');
+    document.body.classList.add('terrain-view');
+    setToggleState(true);
+    const high=$('#highDetailGlobe');if(high)high.disabled=true;
+    updateViewUrl(true);
   }
 
   function failTerrain(message){
     console.warn(message);
-    runtime.terrainActive=false;
-    document.body.classList.remove('terrain-view');
-    const toggle=$('#terrainView');if(toggle)toggle.checked=false;
+    deactivateTerrain({updateUrl:true});
   }
 
   async function initTerrainMap(){
@@ -181,29 +220,22 @@
     const center=selectedPosition();
 
     const map=new maplibregl.Map({
-      container:'terrainMap',
-      style:'https://demotiles.maplibre.org/style.json',
-      center,zoom:8.2,pitch:72,bearing:-18,maxZoom:18,maxPitch:85,attributionControl:true,
-      renderWorldCopies:false,
+      container:'terrainMap',style:terrainStyle(),center,zoom:10.5,pitch:70,bearing:-14,
+      maxZoom:18,maxPitch:85,renderWorldCopies:false,attributionControl:true,
       canvasContextAttributes:{antialias:true}
     });
 
     clearTimeout(runtime.terrainFailTimer);
     runtime.terrainFailTimer=setTimeout(()=>{
-      if(runtime.terrainActive&&!runtime.terrainBaseReady)failTerrain('3D terrain basemap did not finish loading; returning to standard globe.');
-    },9000);
+      if(runtime.terrainRequested&&!runtime.terrainBaseReady)failTerrain('3D terrain did not finish loading; returned to standard globe.');
+    },10000);
 
     map.on('load',()=>{
-      try{
-        installTerrainLayers(map);
-        runtime.terrainBaseReady=true;
-        clearTimeout(runtime.terrainFailTimer);
-        syncTerrainSelection({fly:false});
-        syncTerrainPhase();
-      }catch(err){
-        console.error('Terrain layers could not be installed',err);
-        failTerrain('3D terrain layers failed; returning to standard globe.');
-      }
+      runtime.terrainBaseReady=true;
+      clearTimeout(runtime.terrainFailTimer);
+      syncTerrainSelection({fly:false});
+      syncTerrainPhase();
+      if(runtime.terrainRequested)activateTerrain();
     });
 
     map.on('error',e=>{
@@ -212,7 +244,7 @@
     });
 
     map.addControl(new maplibregl.NavigationControl({visualizePitch:true,showZoom:true,showCompass:true}),'top-right');
-    if(maplibregl.TerrainControl)map.addControl(new maplibregl.TerrainControl({source:'terrainSource',exaggeration:1.85}),'top-right');
+    if(maplibregl.TerrainControl)map.addControl(new maplibregl.TerrainControl({source:'terrainSource',exaggeration:1.55}),'top-right');
 
     runtime.terrainMap=map;
     runtime.terrainReady=true;
@@ -221,41 +253,34 @@
   function syncTerrainSelection({fly=false}={}){
     const map=runtime.terrainMap;if(!map)return;
     runtime.selectedId=Math.max(1,Math.min(194,Number($('#routeRange')?.value||1)));
-    if(map.getLayer?.('oneworld-selected-route'))map.setFilter('oneworld-selected-route',['==',['get','id'],runtime.selectedId]);
+    if(map.getLayer?.('selected-route'))map.setFilter('selected-route',['==',['get','id'],runtime.selectedId]);
     if(!fly)return;
     const p=selectedPosition();
-    map.easeTo({center:p,zoom:Math.max(map.getZoom(),8.2),pitch:Math.max(map.getPitch(),72),bearing:-18,duration:1050,essential:true});
+    map.easeTo({center:p,zoom:Math.max(map.getZoom(),10.5),pitch:Math.max(map.getPitch(),70),bearing:-14,duration:1000,essential:true});
   }
 
   function syncTerrainPhase(){
-    const map=runtime.terrainMap;if(!map||!map.getLayer?.('oneworld-routes'))return;
+    const map=runtime.terrainMap;if(!map||!map.getLayer?.('routes'))return;
     const phase=new URLSearchParams(location.search).get('phase');
     const filter=phase&&phase!=='all'?['==',['get','phaseId'],Number(phase)]:null;
-    map.setFilter('oneworld-routes',filter);
-    map.setFilter('oneworld-route-shadow',filter);
+    map.setFilter('routes',filter);map.setFilter('route-shadow',filter);
   }
 
   async function setTerrainMode(active){
-    if(active&&document.body.classList.contains('story-mode')){const toggle=$('#terrainView');if(toggle)toggle.checked=false;return;}
-    runtime.terrainActive=active;
-    document.body.classList.toggle('terrain-view',active);
+    if(active&&document.body.classList.contains('story-mode')){setToggleState(false);return;}
+    if(!active){deactivateTerrain({updateUrl:true});return;}
+    if(runtime.terrainActive){setToggleState(true);return;}
 
-    const high=$('#highDetailGlobe');
-    if(active&&high)high.disabled=true;
-    if(!active&&high)high.disabled=false;
-
-    if(!active){runtime.terrainMap?.resize?.();return;}
-
+    runtime.terrainRequested=true;
+    document.body.classList.add('terrain-loading');
+    setToggleState(false);
     try{
       await initTerrainMap();
       runtime.terrainMap.resize();
-      setTimeout(()=>{
-        runtime.terrainMap.resize();
-        if(runtime.terrainBaseReady){syncTerrainSelection({fly:true});syncTerrainPhase();}
-      },180);
+      if(runtime.terrainBaseReady){activateTerrain();syncTerrainSelection({fly:true});syncTerrainPhase();}
     }catch(err){
       console.error('3D terrain mode unavailable',err);
-      failTerrain('3D terrain initialization failed; returning to standard globe.');
+      failTerrain('3D terrain initialization failed; returned to standard globe.');
     }
   }
 
@@ -264,14 +289,21 @@
     runtime.globe=globe;installArtifactFreeBorders(globe);
   }
 
+  async function restoreViewState(){
+    const wantsTerrain=new URLSearchParams(location.search).get('view')==='terrain';
+    setToggleState(false);
+    if(wantsTerrain)await setTerrainMode(true);
+  }
+
   function wire(){
     ensureStyles();ensureTerrainUi();findGlobe();
     $('#routeRange')?.addEventListener('input',()=>{runtime.selectedId=Number($('#routeRange')?.value||1);if(runtime.terrainActive)setTimeout(()=>syncTerrainSelection({fly:true}),0)});
     $('#phaseRail')?.addEventListener('click',()=>{if(runtime.terrainActive)setTimeout(syncTerrainPhase,80)});
     new MutationObserver(()=>{
-      if(document.body.classList.contains('story-mode')&&runtime.terrainActive){const t=$('#terrainView');if(t)t.checked=false;setTerrainMode(false);}
+      if(document.body.classList.contains('story-mode')&&(runtime.terrainActive||runtime.terrainRequested))deactivateTerrain({updateUrl:true});
     }).observe(document.body,{attributes:true,attributeFilter:['class']});
     window.addEventListener('resize',()=>runtime.terrainMap?.resize?.(),{passive:true});
+    restoreViewState();
   }
 
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wire);else wire();
