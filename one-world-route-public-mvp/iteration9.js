@@ -23,7 +23,7 @@
       body.terrain-view .globe-stage:before,body.terrain-view .globe-stage:after{display:none!important}
       body.terrain-view .journey-btn,body.terrain-view .floating-stats{opacity:0;pointer-events:none}
       .terrain-badge{display:none;position:absolute;z-index:24;left:50%;bottom:24px;transform:translateX(-50%);padding:8px 12px;border:1px solid rgba(18,98,128,.25);border-radius:12px;background:rgba(246,250,252,.94);backdrop-filter:blur(14px);font-size:8px;letter-spacing:.06em;color:#52687a;white-space:nowrap;pointer-events:none;box-shadow:0 8px 28px rgba(0,0,0,.12)}
-      body.terrain-view .terrain-badge{display:block}
+      body.terrain-loading .terrain-badge,body.terrain-view .terrain-badge{display:block}
       .terrain-badge b{color:#103a4a;margin-right:7px;letter-spacing:.12em}
       body.terrain-view .maplibregl-ctrl-group{background:rgba(250,252,253,.97);border:1px solid rgba(25,55,75,.14);box-shadow:0 4px 18px rgba(0,0,0,.12)}
       body.terrain-view .maplibregl-ctrl button{filter:none}
@@ -42,6 +42,21 @@
     if(t)t.checked=Boolean(active);
   }
 
+  function setTerrainLabel(text){
+    const t=$('#terrainView');
+    const span=t?.closest('label')?.querySelector('span');
+    if(span)span.textContent=text;
+  }
+
+  function notify(message){
+    const toast=$('#toast');
+    if(!toast)return;
+    toast.textContent=message;
+    toast.classList.add('show');
+    clearTimeout(toast._terrainTimer);
+    toast._terrainTimer=setTimeout(()=>toast.classList.remove('show'),3200);
+  }
+
   function updateViewUrl(active){
     const p=new URLSearchParams(location.search);
     if(active)p.set('view','terrain');else p.delete('view');
@@ -52,7 +67,7 @@
     const stage=$('.globe-stage');
     if(stage&&!$('#terrainMap')){
       const map=document.createElement('div');map.id='terrainMap';stage.appendChild(map);
-      const badge=document.createElement('div');badge.className='terrain-badge';badge.innerHTML='<b>3D TERRAIN</b><span>Scroll to zoom · drag to move · Ctrl/right-drag to tilt</span>';stage.appendChild(badge);
+      const badge=document.createElement('div');badge.className='terrain-badge';badge.innerHTML='<b>3D TERRAIN</b><span>Loading terrain…</span>';stage.appendChild(badge);
     }
     const settings=$('#settingsPopover');
     if(settings&&!$('#terrainView')){
@@ -65,11 +80,7 @@
     if(toggle&&!toggle.dataset.terrainWired){
       toggle.dataset.terrainWired='1';
       toggle.checked=false;
-      toggle.addEventListener('change',()=>{
-        const wants=toggle.checked;
-        toggle.checked=runtime.terrainActive;
-        setTerrainMode(wants);
-      });
+      toggle.addEventListener('change',()=>setTerrainMode(toggle.checked));
     }
   }
 
@@ -194,6 +205,8 @@
     runtime.terrainActive=false;
     document.body.classList.remove('terrain-loading','terrain-view');
     setToggleState(false);
+    setTerrainLabel('Real 3D terrain');
+    const badge=$('.terrain-badge span');if(badge)badge.textContent='Scroll to zoom · drag to move · Ctrl/right-drag to tilt';
     const high=$('#highDetailGlobe');if(high)high.disabled=false;
     if(updateUrl)updateViewUrl(false);
   }
@@ -204,6 +217,8 @@
     document.body.classList.remove('terrain-loading');
     document.body.classList.add('terrain-view');
     setToggleState(true);
+    setTerrainLabel('Real 3D terrain');
+    const badge=$('.terrain-badge span');if(badge)badge.textContent='Scroll to zoom · drag to move · Ctrl/right-drag to tilt';
     const high=$('#highDetailGlobe');if(high)high.disabled=true;
     updateViewUrl(true);
   }
@@ -211,6 +226,7 @@
   function failTerrain(message){
     console.warn(message);
     deactivateTerrain({updateUrl:true});
+    notify(message);
   }
 
   async function initTerrainMap(){
@@ -227,7 +243,7 @@
 
     clearTimeout(runtime.terrainFailTimer);
     runtime.terrainFailTimer=setTimeout(()=>{
-      if(runtime.terrainRequested&&!runtime.terrainBaseReady)failTerrain('3D terrain did not finish loading; returned to standard globe.');
+      if(runtime.terrainRequested&&!runtime.terrainBaseReady)failTerrain('3D terrain could not be loaded. Standard globe restored.');
     },10000);
 
     map.on('load',()=>{
@@ -267,20 +283,26 @@
   }
 
   async function setTerrainMode(active){
-    if(active&&document.body.classList.contains('story-mode')){setToggleState(false);return;}
+    if(active&&document.body.classList.contains('story-mode')){
+      setToggleState(false);
+      notify('Exit Story before opening 3D terrain.');
+      return;
+    }
     if(!active){deactivateTerrain({updateUrl:true});return;}
     if(runtime.terrainActive){setToggleState(true);return;}
 
     runtime.terrainRequested=true;
     document.body.classList.add('terrain-loading');
-    setToggleState(false);
+    setToggleState(true);
+    setTerrainLabel('Loading 3D terrain…');
+    const badge=$('.terrain-badge span');if(badge)badge.textContent='Loading map and elevation data…';
     try{
       await initTerrainMap();
       runtime.terrainMap.resize();
       if(runtime.terrainBaseReady){activateTerrain();syncTerrainSelection({fly:true});syncTerrainPhase();}
     }catch(err){
       console.error('3D terrain mode unavailable',err);
-      failTerrain('3D terrain initialization failed; returned to standard globe.');
+      failTerrain('3D terrain could not be initialized. Standard globe restored.');
     }
   }
 
