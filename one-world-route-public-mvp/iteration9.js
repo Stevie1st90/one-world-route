@@ -3,6 +3,7 @@
 
   const $=(s,r=document)=>r.querySelector(s);
   const normalize=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+  const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
   const runtime={
     globe:null,outlineReady:false,terrainMap:null,terrainReady:false,terrainBaseReady:false,
     terrainActive:false,terrainRequested:false,routeData:null,centroids:null,loadPromise:null,
@@ -16,22 +17,24 @@
     const style=document.createElement('style');
     style.id='iteration9Styles';
     style.textContent=`
-      #terrainMap{display:none;position:absolute;inset:0;z-index:3;background:#dfe7ec}
+      #terrainMap{display:none;position:absolute;inset:0;z-index:3;background:#bfcbd2}
       body.terrain-loading #terrainMap{display:block;opacity:0;pointer-events:none}
       body.terrain-view #terrainMap{display:block;opacity:1}
       body.terrain-view #globe{visibility:hidden}
       body.terrain-view .globe-stage:before,body.terrain-view .globe-stage:after{display:none!important}
       body.terrain-view .journey-btn,body.terrain-view .floating-stats{opacity:0;pointer-events:none}
-      .terrain-badge{display:none;position:absolute;z-index:24;left:50%;bottom:24px;transform:translateX(-50%);padding:8px 12px;border:1px solid rgba(18,98,128,.25);border-radius:12px;background:rgba(246,250,252,.94);backdrop-filter:blur(14px);font-size:8px;letter-spacing:.06em;color:#52687a;white-space:nowrap;pointer-events:none;box-shadow:0 8px 28px rgba(0,0,0,.12)}
+      body.terrain-view .left-panel,body.terrain-view .right-panel{background:rgba(7,14,24,.88);border-color:rgba(145,179,211,.18);backdrop-filter:blur(22px)}
+      body.terrain-view .settings-popover{background:rgba(7,14,24,.94);border-color:rgba(145,179,211,.18)}
+      .terrain-badge{display:none;position:absolute;z-index:24;left:50%;bottom:24px;transform:translateX(-50%);padding:8px 12px;border:1px solid rgba(72,108,128,.28);border-radius:12px;background:rgba(236,242,245,.93);backdrop-filter:blur(14px);font-size:8px;letter-spacing:.06em;color:#435968;white-space:nowrap;pointer-events:none;box-shadow:0 8px 28px rgba(0,0,0,.14)}
       body.terrain-loading .terrain-badge,body.terrain-view .terrain-badge{display:block}
-      .terrain-badge b{color:#103a4a;margin-right:7px;letter-spacing:.12em}
-      body.terrain-view .maplibregl-ctrl-group{background:rgba(250,252,253,.97);border:1px solid rgba(25,55,75,.14);box-shadow:0 4px 18px rgba(0,0,0,.12)}
+      .terrain-badge b{color:#153846;margin-right:7px;letter-spacing:.12em}
+      body.terrain-view .maplibregl-ctrl-group{background:rgba(248,250,251,.97);border:1px solid rgba(25,55,75,.14);box-shadow:0 4px 18px rgba(0,0,0,.12)}
       body.terrain-view .maplibregl-ctrl button{filter:none}
-      body.terrain-view .maplibregl-ctrl-attrib{background:rgba(255,255,255,.92);color:#516779;font-size:9px}
+      body.terrain-view .maplibregl-ctrl-attrib{background:rgba(248,250,251,.92);color:#516779;font-size:9px}
       body.terrain-view .maplibregl-ctrl-attrib a{color:#27556c}
-      body.terrain-view .phase-rail{background:rgba(246,250,252,.9);border-color:rgba(20,45,60,.14);box-shadow:0 8px 24px rgba(0,0,0,.08)}
-      body.terrain-view .phase-rail button{color:#5b7183}
-      body.terrain-view .phase-rail button.active{background:rgba(20,75,100,.1);color:#163b4d}
+      body.terrain-view .phase-rail{background:rgba(7,14,24,.82);border-color:rgba(145,179,211,.16);box-shadow:0 8px 24px rgba(0,0,0,.16)}
+      body.terrain-view .phase-rail button{color:#8499af}
+      body.terrain-view .phase-rail button.active{background:rgba(255,255,255,.08);color:#eef8ff}
       @media(max-width:820px){.terrain-badge{bottom:70px;font-size:7px}.terrain-badge span{display:none}}
     `;
     document.head.appendChild(style);
@@ -63,6 +66,27 @@
     history.replaceState(null,'',`${location.pathname}${p.toString()?`?${p}`:''}`);
   }
 
+  function urlSegmentId(){
+    const raw=new URLSearchParams(location.search).get('segment');
+    if(raw===null)return null;
+    const n=Number(raw);
+    return Number.isFinite(n)?clamp(Math.round(n),1,194):null;
+  }
+
+  function currentSegmentId(){
+    const fromUrl=urlSegmentId();
+    if(fromUrl!==null)return fromUrl;
+    return clamp(Number($('#routeRange')?.value||1),1,194);
+  }
+
+  function syncSliderFromUrl(){
+    const id=urlSegmentId();
+    const range=$('#routeRange');
+    if(id===null||!range||Number(range.value)===id)return;
+    range.value=String(id);
+    range.dispatchEvent(new Event('input',{bubbles:true}));
+  }
+
   function ensureTerrainUi(){
     const stage=$('.globe-stage');
     if(stage&&!$('#terrainMap')){
@@ -72,7 +96,7 @@
     const settings=$('#settingsPopover');
     if(settings&&!$('#terrainView')){
       const label=document.createElement('label');
-      label.innerHTML='<span>Real 3D terrain</span><input id="terrainView" type="checkbox" title="Switch to a bright regional 3D elevation view">';
+      label.innerHTML='<span>Real 3D terrain</span><input id="terrainView" type="checkbox" title="Switch to a regional 3D elevation view">';
       const high=$('#highDetailGlobe')?.closest('label');
       if(high)high.insertAdjacentElement('afterend',label);else settings.appendChild(label);
     }
@@ -165,7 +189,7 @@
     const p=new URLSearchParams(location.search);
     const country=p.get('country');
     if(country){const c=runtime.centroids.get(normalize(country));if(c)return [Number(c.lng),Number(c.lat)];}
-    const id=Math.max(1,Math.min(194,Number($('#routeRange')?.value||p.get('segment')||1)));
+    const id=currentSegmentId();
     const s=runtime.routeData?.segments?.find(x=>Number(x.id)===id),b=s&&runtime.centroids.get(normalize(s.to));
     return b?[Number(b.lng),Number(b.lat)]:[12,20];
   }
@@ -191,12 +215,12 @@
       },
       terrain:{source:'terrainSource',exaggeration:1.55},
       layers:[
-        {id:'background',type:'background',paint:{'background-color':'#dbe7ec'}},
-        {id:'osm',type:'raster',source:'osm',paint:{'raster-opacity':1,'raster-saturation':-.08,'raster-contrast':.06,'raster-brightness-min':.1,'raster-brightness-max':1}},
-        {id:'hills',type:'hillshade',source:'hillshadeSource',paint:{'hillshade-method':'multidirectional','hillshade-exaggeration':.52,'hillshade-shadow-color':'#68747b','hillshade-highlight-color':'#ffffff','hillshade-accent-color':'#87969e'}},
-        {id:'route-shadow',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(255,255,255,.92)','line-width':['interpolate',['linear'],['zoom'],4,3,10,6,14,9]}},
-        {id:'routes',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.9,'line-width':['interpolate',['linear'],['zoom'],4,1.5,10,3.2,14,5]}},
-        {id:'selected-route',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#0a2530','line-width':['interpolate',['linear'],['zoom'],4,2.8,10,5.2,14,7.5]}}
+        {id:'background',type:'background',paint:{'background-color':'#bfcbd2'}},
+        {id:'osm',type:'raster',source:'osm',paint:{'raster-opacity':1,'raster-saturation':-.18,'raster-contrast':.16,'raster-brightness-min':.04,'raster-brightness-max':.9}},
+        {id:'hills',type:'hillshade',source:'hillshadeSource',paint:{'hillshade-method':'multidirectional','hillshade-exaggeration':.7,'hillshade-shadow-color':'#46545e','hillshade-highlight-color':'#f7fbfd','hillshade-accent-color':'#637887'}},
+        {id:'route-shadow',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(255,255,255,.9)','line-width':['interpolate',['linear'],['zoom'],4,3,10,6,14,9]}},
+        {id:'routes',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.92,'line-width':['interpolate',['linear'],['zoom'],4,1.5,10,3.2,14,5]}},
+        {id:'selected-route',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#0b2530','line-width':['interpolate',['linear'],['zoom'],4,2.8,10,5.2,14,7.5]}}
       ]
     };
   }
@@ -269,7 +293,7 @@
 
   function syncTerrainSelection({fly=false}={}){
     const map=runtime.terrainMap;if(!map)return;
-    runtime.selectedId=Math.max(1,Math.min(194,Number($('#routeRange')?.value||1)));
+    runtime.selectedId=currentSegmentId();
     if(map.getLayer?.('selected-route'))map.setFilter('selected-route',['==',['get','id'],runtime.selectedId]);
     if(!fly)return;
     const p=selectedPosition();
@@ -319,8 +343,14 @@
   }
 
   function wire(){
-    ensureStyles();ensureTerrainUi();findGlobe();
-    $('#routeRange')?.addEventListener('input',()=>{runtime.selectedId=Number($('#routeRange')?.value||1);if(runtime.terrainActive)setTimeout(()=>syncTerrainSelection({fly:true}),0)});
+    ensureStyles();
+    ensureTerrainUi();
+    syncSliderFromUrl();
+    findGlobe();
+    $('#routeRange')?.addEventListener('input',()=>{
+      runtime.selectedId=currentSegmentId();
+      if(runtime.terrainActive)setTimeout(()=>syncTerrainSelection({fly:true}),0);
+    });
     $('#phaseRail')?.addEventListener('click',()=>{if(runtime.terrainActive)setTimeout(syncTerrainPhase,80)});
     new MutationObserver(()=>{
       if(document.body.classList.contains('story-mode')&&(runtime.terrainActive||runtime.terrainRequested))deactivateTerrain({updateUrl:true});
