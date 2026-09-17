@@ -100,12 +100,13 @@
     const range=$('#routeRange');if(!range){decorateUi();return;}
     const contextId=clamp(Number(context.id)||1,1,194);
 
+    resetPhaseFilter();
+
     if(Number(range.value)===contextId){
       runtime.lastCountry=name;runtime.lastContextId=contextId;decorateUi();return;
     }
 
     runtime.syncing=true;
-    resetPhaseFilter();
     range.value=String(contextId);
     range.dispatchEvent(new Event('input',{bubbles:true}));
 
@@ -121,7 +122,9 @@
     const name=countryFromUrl();if(!name)return;
     const country=runtime.countryByName.get(name);if(!country)return;
     const title=$('#detailTitle');if(!title)return;
+    if(title.dataset.countryAssetFor===name&&title.querySelector('.country-title-wrap'))return;
     const url=flagUrl(country);
+    title.dataset.countryAssetFor=name;
     title.innerHTML=`<span class="country-title-wrap">${url?`<img class="country-title-flag" src="${url}" alt="" width="24" height="18">`:''}<span class="country-title-name">${esc(name)}</span></span>`;
   }
 
@@ -129,8 +132,11 @@
     const name=countryFromUrl();if(!name)return;
     const context=countryContext(name);if(!context)return;
     const card=$('#detailContent .journey-context');if(!card)return;
+    const key=`${name}:${context.id}`;
+    if(card.dataset.countryContextFor===key)return;
     const phase=phaseFor(Number(context.id));
     const pct=Math.max(0,Math.min(100,((Number(context.id)-1)/193)*100));
+    card.dataset.countryContextFor=key;
     card.innerHTML=`<div class="journey-context-top"><span>Route context</span><b>${context.id} / 194</b></div><div class="journey-context-track"><i style="width:${pct}%"></i></div><div class="journey-context-note"><span>Chapter</span><strong>${esc(phase.title)}</strong></div><div class="country-context-note"><b>${esc(context.from)} → ${esc(context.to)}</b> · route leg linked to ${esc(name)}</div>`;
   }
 
