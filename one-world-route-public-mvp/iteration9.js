@@ -40,23 +40,12 @@
     document.head.appendChild(style);
   }
 
-  function setToggleState(active){
-    const t=$('#terrainView');
-    if(t)t.checked=Boolean(active);
-  }
-
-  function setTerrainLabel(text){
-    const t=$('#terrainView');
-    const span=t?.closest('label')?.querySelector('span');
-    if(span)span.textContent=text;
-  }
+  function setToggleState(active){const t=$('#terrainView');if(t)t.checked=Boolean(active)}
+  function setTerrainLabel(text){const t=$('#terrainView');const span=t?.closest('label')?.querySelector('span');if(span)span.textContent=text}
 
   function notify(message){
-    const toast=$('#toast');
-    if(!toast)return;
-    toast.textContent=message;
-    toast.classList.add('show');
-    clearTimeout(toast._terrainTimer);
+    const toast=$('#toast');if(!toast)return;
+    toast.textContent=message;toast.classList.add('show');clearTimeout(toast._terrainTimer);
     toast._terrainTimer=setTimeout(()=>toast.classList.remove('show'),3200);
   }
 
@@ -69,8 +58,7 @@
   function urlSegmentId(){
     const raw=new URLSearchParams(location.search).get('segment');
     if(raw===null)return null;
-    const n=Number(raw);
-    return Number.isFinite(n)?clamp(Math.round(n),1,194):null;
+    const n=Number(raw);return Number.isFinite(n)?clamp(Math.round(n),1,194):null;
   }
 
   function currentSegmentId(){
@@ -80,11 +68,9 @@
   }
 
   function syncSliderFromUrl(){
-    const id=urlSegmentId();
-    const range=$('#routeRange');
+    const id=urlSegmentId(),range=$('#routeRange');
     if(id===null||!range||Number(range.value)===id)return;
-    range.value=String(id);
-    range.dispatchEvent(new Event('input',{bubbles:true}));
+    range.value=String(id);range.dispatchEvent(new Event('input',{bubbles:true}));
   }
 
   function ensureTerrainUi(){
@@ -102,8 +88,7 @@
     }
     const toggle=$('#terrainView');
     if(toggle&&!toggle.dataset.terrainWired){
-      toggle.dataset.terrainWired='1';
-      toggle.checked=false;
+      toggle.dataset.terrainWired='1';toggle.checked=false;
       toggle.addEventListener('change',()=>setTerrainMode(toggle.checked));
     }
   }
@@ -141,12 +126,8 @@
   function loadStyle(url){
     return new Promise((resolve,reject)=>{
       if(document.querySelector(`link[href="${url}"]`))return resolve();
-      const el=document.createElement('link');
-      el.rel='stylesheet';
-      el.href=url;
-      el.onload=resolve;
-      el.onerror=()=>reject(new Error('MapLibre stylesheet failed to load'));
-      document.head.appendChild(el);
+      const el=document.createElement('link');el.rel='stylesheet';el.href=url;el.onload=resolve;
+      el.onerror=()=>reject(new Error('MapLibre stylesheet failed to load'));document.head.appendChild(el);
     });
   }
 
@@ -177,17 +158,56 @@
     const i=ranges.findIndex(([a,b])=>id>=a&&id<=b);return i<0?1:i+1;
   }
 
+  function greatCirclePoints(a,b,steps=72){
+    const d2r=Math.PI/180,r2d=180/Math.PI;
+    const lat1=Number(a.lat)*d2r,lon1=Number(a.lng)*d2r,lat2=Number(b.lat)*d2r,lon2=Number(b.lng)*d2r;
+    const v1=[Math.cos(lat1)*Math.cos(lon1),Math.cos(lat1)*Math.sin(lon1),Math.sin(lat1)];
+    const v2=[Math.cos(lat2)*Math.cos(lon2),Math.cos(lat2)*Math.sin(lon2),Math.sin(lat2)];
+    const dot=clamp(v1[0]*v2[0]+v1[1]*v2[1]+v1[2]*v2[2],-1,1);
+    const omega=Math.acos(dot),sinOmega=Math.sin(omega);
+    if(omega<1e-6||Math.abs(sinOmega)<1e-6)return [[Number(a.lng),Number(a.lat)],[Number(b.lng),Number(b.lat)]];
+    const points=[];
+    for(let i=0;i<=steps;i++){
+      const t=i/steps,A=Math.sin((1-t)*omega)/sinOmega,B=Math.sin(t*omega)/sinOmega;
+      const x=A*v1[0]+B*v2[0],y=A*v1[1]+B*v2[1],z=A*v1[2]+B*v2[2];
+      const lat=Math.atan2(z,Math.hypot(x,y))*r2d,lng=Math.atan2(y,x)*r2d;
+      points.push([lng,lat]);
+    }
+    return points;
+  }
+
+  function splitDateline(points){
+    if(points.length<2)return [points];
+    const parts=[[points[0]]];
+    for(let i=1;i<points.length;i++){
+      const prev=points[i-1],cur=points[i];
+      if(Math.abs(cur[0]-prev[0])>180){
+        if(parts[parts.length-1].length<2)parts[parts.length-1].push(prev);
+        parts.push([cur]);
+      }else parts[parts.length-1].push(cur);
+    }
+    return parts.filter(p=>p.length>1);
+  }
+
   function segmentFeature(s){
     const a=runtime.centroids.get(normalize(s.from)),b=runtime.centroids.get(normalize(s.to));
     if(!a||!b)return null;
-    return {type:'Feature',properties:{id:Number(s.id),phaseId:phaseIdFor(Number(s.id))},geometry:{type:'LineString',coordinates:[[Number(a.lng),Number(a.lat)],[Number(b.lng),Number(b.lat)]]}};
+    const parts=splitDateline(greatCirclePoints(a,b));
+    return {
+      type:'Feature',
+      properties:{id:Number(s.id),phaseId:phaseIdFor(Number(s.id))},
+      geometry:parts.length>1?{type:'MultiLineString',coordinates:parts}:{type:'LineString',coordinates:parts[0]||[]}
+    };
   }
 
-  function routeGeoJson(){return {type:'FeatureCollection',features:(runtime.routeData?.segments||[]).map(segmentFeature).filter(Boolean)}}
+  function routeGeoJson(selectedId=currentSegmentId()){
+    const id=clamp(Number(selectedId)||1,1,194);
+    const local=(runtime.routeData?.segments||[]).filter(s=>Math.abs(Number(s.id)-id)<=1);
+    return {type:'FeatureCollection',features:local.map(segmentFeature).filter(Boolean)};
+  }
 
   function selectedPosition(){
-    const p=new URLSearchParams(location.search);
-    const country=p.get('country');
+    const p=new URLSearchParams(location.search),country=p.get('country');
     if(country){const c=runtime.centroids.get(normalize(country));if(c)return [Number(c.lng),Number(c.lat)];}
     const id=currentSegmentId();
     const s=runtime.routeData?.segments?.find(x=>Number(x.id)===id),b=s&&runtime.centroids.get(normalize(s.to));
@@ -204,15 +224,10 @@
       version:8,
       projection:{type:'globe'},
       sources:{
-        osm:{
-          type:'raster',
-          tiles:['https://a.tile.openstreetmap.org/{z}/{x}/{y}.png'],
-          tileSize:256,maxzoom:19,
-          attribution:'© OpenStreetMap contributors'
-        },
+        osm:{type:'raster',tiles:['https://a.tile.openstreetmap.org/{z}/{x}/{y}.png'],tileSize:256,maxzoom:19,attribution:'© OpenStreetMap contributors'},
         terrainSource:{type:'raster-dem',url:'https://tiles.mapterhorn.com/tilejson.json'},
         hillshadeSource:{type:'raster-dem',url:'https://tiles.mapterhorn.com/tilejson.json'},
-        routeSource:{type:'geojson',data:routeGeoJson()}
+        routeSource:{type:'geojson',data:routeGeoJson(runtime.selectedId||currentSegmentId())}
       },
       terrain:{source:'terrainSource',exaggeration:1.42},
       sky:{'atmosphere-blend':['interpolate',['linear'],['zoom'],0,.52,3.5,.16,7,0]},
@@ -220,48 +235,34 @@
         {id:'background',type:'background',paint:{'background-color':'#071019'}},
         {id:'osm',type:'raster',source:'osm',paint:{'raster-opacity':1,'raster-saturation':-.06,'raster-contrast':.08,'raster-brightness-min':.01,'raster-brightness-max':.76}},
         {id:'hills',type:'hillshade',source:'hillshadeSource',paint:{'hillshade-method':'multidirectional','hillshade-exaggeration':.42,'hillshade-shadow-color':'#6a7780','hillshade-highlight-color':'#f5f8fa','hillshade-accent-color':'#8c9ca6'}},
-        {id:'route-shadow',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(4,10,16,.48)','line-width':['interpolate',['linear'],['zoom'],2,2.1,6,3.8,12,6.2]}},
-        {id:'routes',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.86,'line-width':['interpolate',['linear'],['zoom'],2,1,6,2.15,12,3.8]}},
+        {id:'route-shadow',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(4,10,16,.38)','line-opacity':.55,'line-width':['interpolate',['linear'],['zoom'],2,1.6,6,3,12,5]}},
+        {id:'routes',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.4,'line-width':['interpolate',['linear'],['zoom'],2,.8,6,1.6,12,2.8]}},
         {id:'selected-route',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#dcfbff','line-opacity':.98,'line-width':['interpolate',['linear'],['zoom'],2,1.8,6,3.4,12,5.4]}}
       ]
     };
   }
 
   function deactivateTerrain({updateUrl=true}={}){
-    runtime.terrainRequested=false;
-    runtime.terrainActive=false;
-    document.body.classList.remove('terrain-loading','terrain-view');
-    setToggleState(false);
-    setTerrainLabel('Real 3D globe terrain');
+    runtime.terrainRequested=false;runtime.terrainActive=false;
+    document.body.classList.remove('terrain-loading','terrain-view');setToggleState(false);setTerrainLabel('Real 3D globe terrain');
     const badge=$('.terrain-badge span');if(badge)badge.textContent='Drag to rotate · scroll to zoom · relief appears as you move closer';
-    const high=$('#highDetailGlobe');if(high)high.disabled=false;
-    if(updateUrl)updateViewUrl(false);
+    const high=$('#highDetailGlobe');if(high)high.disabled=false;if(updateUrl)updateViewUrl(false);
   }
 
   function activateTerrain(){
-    runtime.terrainRequested=false;
-    runtime.terrainActive=true;
-    document.body.classList.remove('terrain-loading');
-    document.body.classList.add('terrain-view');
-    setToggleState(true);
-    setTerrainLabel('Real 3D globe terrain');
+    runtime.terrainRequested=false;runtime.terrainActive=true;
+    document.body.classList.remove('terrain-loading');document.body.classList.add('terrain-view');setToggleState(true);setTerrainLabel('Real 3D globe terrain');
     const badge=$('.terrain-badge span');if(badge)badge.textContent='Drag to rotate · scroll to zoom · relief appears as you move closer';
-    const high=$('#highDetailGlobe');if(high)high.disabled=true;
-    updateViewUrl(true);
+    const high=$('#highDetailGlobe');if(high)high.disabled=true;updateViewUrl(true);
   }
 
-  function failTerrain(message){
-    console.warn(message);
-    deactivateTerrain({updateUrl:true});
-    notify(message);
-  }
+  function failTerrain(message){console.warn(message);deactivateTerrain({updateUrl:true});notify(message)}
 
   async function initTerrainMap(){
     if(runtime.terrainReady)return;
     await loadRouteContext();
-    const maplibregl=await loadMapLibre();
-    const center=selectedPosition();
-
+    runtime.selectedId=currentSegmentId();
+    const maplibregl=await loadMapLibre(),center=selectedPosition();
     const map=new maplibregl.Map({
       container:'terrainMap',style:terrainStyle(),center,zoom:3.9,pitch:32,bearing:-6,
       minZoom:2.9,maxZoom:18,maxPitch:65,renderWorldCopies:false,attributionControl:true,
@@ -274,16 +275,13 @@
     },10000);
 
     map.on('style.load',()=>{
-      try{map.setProjection({type:'globe'});}catch(err){console.warn('Globe projection unavailable',err);}
-      try{map.setTerrain({source:'terrainSource',exaggeration:1.42});}catch(err){console.warn('Terrain could not be attached to globe projection',err);}
+      try{map.setProjection({type:'globe'});}catch(err){console.warn('Globe projection unavailable',err)}
+      try{map.setTerrain({source:'terrainSource',exaggeration:1.42});}catch(err){console.warn('Terrain could not be attached to globe projection',err)}
     });
 
     map.on('load',()=>{
-      runtime.terrainBaseReady=true;
-      clearTimeout(runtime.terrainFailTimer);
-      syncTerrainSelection({fly:false});
-      syncTerrainPhase();
-      if(runtime.terrainRequested)activateTerrain();
+      runtime.terrainBaseReady=true;clearTimeout(runtime.terrainFailTimer);
+      syncTerrainSelection({fly:false});syncTerrainPhase();if(runtime.terrainRequested)activateTerrain();
     });
 
     map.on('error',e=>{
@@ -294,15 +292,16 @@
     map.addControl(new maplibregl.NavigationControl({visualizePitch:true,showZoom:true,showCompass:true}),'top-right');
     if(maplibregl.TerrainControl)map.addControl(new maplibregl.TerrainControl({source:'terrainSource',exaggeration:1.42}),'top-right');
     if(maplibregl.GlobeControl)map.addControl(new maplibregl.GlobeControl(),'top-right');
-
-    runtime.terrainMap=map;
-    runtime.terrainReady=true;
+    runtime.terrainMap=map;runtime.terrainReady=true;
   }
 
   function syncTerrainSelection({fly=false}={}){
     const map=runtime.terrainMap;if(!map)return;
     runtime.selectedId=currentSegmentId();
+    const source=map.getSource?.('routeSource');
+    if(source?.setData)source.setData(routeGeoJson(runtime.selectedId));
     if(map.getLayer?.('selected-route'))map.setFilter('selected-route',['==',['get','id'],runtime.selectedId]);
+    syncTerrainPhase();
     if(!fly)return;
     const p=selectedPosition();
     map.easeTo({center:p,zoom:Math.max(map.getZoom(),4.5),pitch:Math.min(Math.max(map.getPitch(),32),55),bearing:-6,duration:900,essential:true});
@@ -316,27 +315,15 @@
   }
 
   async function setTerrainMode(active){
-    if(active&&document.body.classList.contains('story-mode')){
-      setToggleState(false);
-      notify('Exit Story before opening 3D globe terrain.');
-      return;
-    }
+    if(active&&document.body.classList.contains('story-mode')){setToggleState(false);notify('Exit Story before opening 3D globe terrain.');return;}
     if(!active){deactivateTerrain({updateUrl:true});return;}
     if(runtime.terrainActive){setToggleState(true);return;}
-
-    runtime.terrainRequested=true;
-    document.body.classList.add('terrain-loading');
-    setToggleState(true);
-    setTerrainLabel('Loading 3D globe terrain…');
+    runtime.terrainRequested=true;document.body.classList.add('terrain-loading');setToggleState(true);setTerrainLabel('Loading 3D globe terrain…');
     const badge=$('.terrain-badge span');if(badge)badge.textContent='Loading globe, map and elevation data…';
     try{
-      await initTerrainMap();
-      runtime.terrainMap.resize();
+      await initTerrainMap();runtime.terrainMap.resize();
       if(runtime.terrainBaseReady){activateTerrain();syncTerrainSelection({fly:false});syncTerrainPhase();}
-    }catch(err){
-      console.error('3D globe terrain mode unavailable',err);
-      failTerrain('3D globe terrain could not be initialized. Standard globe restored.');
-    }
+    }catch(err){console.error('3D globe terrain mode unavailable',err);failTerrain('3D globe terrain could not be initialized. Standard globe restored.');}
   }
 
   function findGlobe(){
@@ -345,26 +332,21 @@
   }
 
   async function restoreViewState(){
-    const wantsTerrain=new URLSearchParams(location.search).get('view')==='terrain';
-    setToggleState(false);
+    const wantsTerrain=new URLSearchParams(location.search).get('view')==='terrain';setToggleState(false);
     if(wantsTerrain)await setTerrainMode(true);
   }
 
   function wire(){
-    ensureStyles();
-    ensureTerrainUi();
-    syncSliderFromUrl();
-    findGlobe();
+    ensureStyles();ensureTerrainUi();syncSliderFromUrl();findGlobe();
     $('#routeRange')?.addEventListener('input',()=>{
       runtime.selectedId=currentSegmentId();
       if(runtime.terrainActive)setTimeout(()=>syncTerrainSelection({fly:true}),0);
     });
-    $('#phaseRail')?.addEventListener('click',()=>{if(runtime.terrainActive)setTimeout(syncTerrainPhase,80)});
+    $('#phaseRail')?.addEventListener('click',()=>{if(runtime.terrainActive)setTimeout(()=>{syncTerrainSelection({fly:false});syncTerrainPhase();},80)});
     new MutationObserver(()=>{
       if(document.body.classList.contains('story-mode')&&(runtime.terrainActive||runtime.terrainRequested))deactivateTerrain({updateUrl:true});
     }).observe(document.body,{attributes:true,attributeFilter:['class']});
-    window.addEventListener('resize',()=>runtime.terrainMap?.resize?.(),{passive:true});
-    restoreViewState();
+    window.addEventListener('resize',()=>runtime.terrainMap?.resize?.(),{passive:true});restoreViewState();
   }
 
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wire);else wire();
