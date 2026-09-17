@@ -114,25 +114,26 @@
     }catch(err){console.warn('Artifact-free country outlines unavailable',err);}
   }
 
-  function loadAsset(kind,url){
+  function loadStyle(url){
     return new Promise((resolve,reject)=>{
-      if(kind==='style'){
-        if(document.querySelector(`link[href="${url}"]`))return resolve();
-        const el=document.createElement('link');el.rel='stylesheet';el.href=url;el.onload=resolve;el.onerror=reject;document.head.appendChild(el);
-      }else{
-        if(document.querySelector(`script[src="${url}"]`))return resolve();
-        const el=document.createElement('script');el.src=url;el.onload=resolve;el.onerror=reject;document.head.appendChild(el);
-      }
+      if(document.querySelector(`link[href="${url}"]`))return resolve();
+      const el=document.createElement('link');
+      el.rel='stylesheet';
+      el.href=url;
+      el.onload=resolve;
+      el.onerror=()=>reject(new Error('MapLibre stylesheet failed to load'));
+      document.head.appendChild(el);
     });
   }
 
   async function loadMapLibre(){
-    if(window.maplibregl)return window.maplibregl;
     if(runtime.loadPromise)return runtime.loadPromise;
-    runtime.loadPromise=Promise.all([
-      loadAsset('style','https://unpkg.com/maplibre-gl@6.10.0/dist/maplibre-gl.css'),
-      loadAsset('script','https://unpkg.com/maplibre-gl@6.10.0/dist/maplibre-gl.js')
-    ]).then(()=>window.maplibregl);
+    runtime.loadPromise=(async()=>{
+      await loadStyle('https://unpkg.com/maplibre-gl@6.10.0/dist/maplibre-gl.css');
+      const module=await import('https://unpkg.com/maplibre-gl@6.10.0/dist/maplibre-gl.mjs');
+      if(typeof module?.Map!=='function')throw new Error('MapLibre ES module did not expose Map');
+      return module;
+    })();
     return runtime.loadPromise;
   }
 
