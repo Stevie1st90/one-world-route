@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#05070d" />
+  <meta name="description" content="195 countries. One continuous route. Explore every border, flight, visa, cost and constraint on an interactive 3D globe." />
+  <meta property="og:title" content="ONE WORLD ROUTE — 195 countries, one continuous journey" />
+  <meta property="og:description" content="An open, data-driven route across every sovereign state — visualized on an interactive 3D globe." />
+  <title>ONE WORLD ROUTE — 195 Countries</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://restcountries.com" crossorigin>
+  <link rel="stylesheet" href="./styles.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/globe.gl@2.46.2/dist/globe.gl.min.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div><div class="noise"></div>
+
+    <header class="topbar glass">
+      <button class="brand" id="brandBtn" aria-label="Reset view">
+        <span class="brand-orbit"><i></i></span>
+        <span><strong>ONE WORLD ROUTE</strong><small>195 countries · one continuous journey</small></span>
+      </button>
+      <div class="top-kpis" id="topKpis"></div>
+      <nav class="top-actions">
+        <button class="icon-btn" id="searchBtn" title="Search (⌘/Ctrl K)">⌕</button>
+        <button class="icon-btn" id="shareBtn" title="Share this view">↗</button>
+        <button class="icon-btn" id="infoBtn" title="Methodology">i</button>
+        <button class="icon-btn" id="settingsBtn" title="Settings">⚙</button>
+      </nav>
+    </header>
+
+    <aside class="left-panel glass panel" id="leftPanel">
+      <div class="panel-section hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span> PUBLIC PLAN · SNAPSHOT 17 SEP 2026</div>
+        <h1>Every country.<br><span>One route.</span></h1>
+        <p>A transparent experiment to connect all 195 sovereign states in one continuous journey — with every transport leg, visa, cost and constraint mapped openly.</p>
+      </div>
+
+      <div class="mode-switch" role="group" aria-label="Explorer mode">
+        <button data-mode="explore" class="active">Explore</button>
+        <button data-mode="operations">Operations</button>
+      </div>
+
+      <div class="panel-section">
+        <label class="search-box"><span>⌕</span><input id="inlineSearch" placeholder="Country, segment, route…" autocomplete="off"/><kbd>⌘K</kbd></label>
+        <div id="searchResults" class="search-results hidden"></div>
+      </div>
+
+      <div class="panel-section">
+        <div class="section-title"><span>Layer</span><button id="clearFilters" class="text-btn">Reset</button></div>
+        <div class="layer-grid" id="layerGrid">
+          <button data-layer="route" class="active"><b>⌁</b>Route</button>
+          <button data-layer="status"><b>◉</b>Status</button>
+          <button data-layer="visa"><b>◇</b>Visa</button>
+          <button data-layer="health"><b>✚</b>Health</button>
+          <button data-layer="cost"><b>€</b>Cost</button>
+          <button data-layer="risk"><b>△</b>Risk</button>
+          <button data-layer="progress"><b>✓</b>Progress</button>
+          <button data-layer="critical"><b>!</b>Critical</button>
+        </div>
+      </div>
+
+      <div class="panel-section filters" id="filters">
+        <div class="section-title"><span>Filters</span><span id="filterCount" class="pill">All 194</span></div>
+        <label>Transport<select id="modeFilter"><option value="all">All modes</option></select></label>
+        <label>Booking tier<select id="tierFilter"><option value="all">All tiers</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option></select></label>
+        <label>Feasibility<select id="feasibilityFilter"><option value="all">All</option></select></label>
+        <label>Alert<select id="alertFilter"><option value="all">All alerts</option><option>RED</option><option>ORANGE</option><option>WATCH</option><option>GREEN</option></select></label>
+      </div>
+
+      <div class="panel-section mini-legend" id="legend"></div>
+    </aside>
+
+    <main class="globe-stage">
+      <div id="globe"></div>
+      <div class="globe-loader" id="globeLoader"><div class="loader-orbit"></div><span>Building the world route…</span></div>
+      <div class="globe-fallback hidden" id="globeFallback">3D globe could not load. Route data remains available in the panels.</div>
+      <div class="phase-rail glass" id="phaseRail"></div>
+      <div class="floating-stats" id="floatingStats"></div>
+      <button class="mobile-panel-btn glass" id="mobileFilters">Filters</button>
+      <button class="mobile-panel-btn glass right" id="mobileDetails">Details</button>
+    </main>
+
+    <aside class="right-panel glass panel" id="rightPanel">
+      <div class="detail-header">
+        <div><div class="eyebrow" id="detailEyebrow">PROJECT OVERVIEW</div><h2 id="detailTitle">The route at a glance</h2></div>
+        <button class="close-mobile" id="closeDetails">×</button>
+      </div>
+      <div class="tabs" id="detailTabs">
+        <button data-tab="overview" class="active">Overview</button>
+        <button data-tab="details">Details</button>
+        <button data-tab="operations">Ops</button>
+        <button data-tab="sources">Sources</button>
+      </div>
+      <div class="detail-scroll" id="detailContent"></div>
+    </aside>
+
+    <footer class="timeline glass" id="timeline">
+      <div class="timeline-top">
+        <button class="play-btn" id="playBtn" aria-label="Play route">▶</button>
+        <div class="timeline-meta"><strong id="timelineTitle">Germany → Luxembourg</strong><span id="timelineMeta">Segment 1 · Day 1</span></div>
+        <div class="speed-control"><span>Speed</span><button data-speed="1400">1×</button><button data-speed="700" class="active">2×</button><button data-speed="280">5×</button></div>
+      </div>
+      <div class="range-wrap"><input id="routeRange" type="range" min="1" max="194" value="1" step="1"/><div class="range-labels"><span>Germany</span><span>Day 379</span><span>Germany</span></div></div>
+    </footer>
+
+    <div class="command-palette hidden" id="commandPalette" role="dialog" aria-modal="true">
+      <div class="command-box glass"><div class="command-input"><span>⌕</span><input id="commandInput" placeholder="Search a country, segment, visa, transport…"/><kbd>ESC</kbd></div><div id="commandResults"></div></div>
+    </div>
+
+    <div class="modal hidden" id="infoModal"><div class="modal-card glass"><button class="modal-close">×</button><div class="eyebrow">METHODOLOGY</div><h2>A public travel-operations experiment.</h2><p>This explorer is generated from a private operational master workbook. Only publication-safe fields are exported. Booking references, payment data, passport details, insurance identifiers, private document links and personal contacts never enter the public dataset.</p><div class="method-grid"><article><b>195</b><span>Sovereign states in scope</span></article><article><b>194</b><span>Currently schedulable</span></article><article><b>379</b><span>Planned days</span></article><article><b>€90.6k</b><span>Base planning envelope</span></article></div><h3>What “verified” means</h3><p>Segments may cite airlines, immigration authorities or government sources. A published transport corridor is not a safety recommendation. Volatile borders and high-risk states are intentionally surfaced as uncertainty rather than hidden.</p><h3>North Korea</h3><p>DPRK remains outside the executable 194-country calendar until legal tourism for the relevant passport is operationally available. It is never counted as completed without legal physical entry.</p></div></div>
+
+    <div class="settings-popover glass hidden" id="settingsPopover"><h3>Globe settings</h3><label><span>Auto rotate</span><input id="autoRotate" type="checkbox" checked></label><label><span>Country points</span><input id="showPoints" type="checkbox" checked></label><label><span>Route glow</span><input id="routeGlow" type="checkbox" checked></label><label><span>Arc thickness</span><input id="arcWidth" type="range" min="0.15" max="1.4" value="0.55" step="0.05"></label><label><span>Reduced motion</span><input id="reducedMotion" type="checkbox"></label></div>
+
+    <div class="toast" id="toast"></div>
+  </div>
+</body>
+</html>
