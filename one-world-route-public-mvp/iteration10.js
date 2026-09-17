@@ -59,6 +59,15 @@
     document.head.appendChild(style);
   }
 
+  function loadConsistencyLayer(){
+    if(document.querySelector('script[data-iteration11]'))return;
+    const script=document.createElement('script');
+    script.src='./iteration11.js';
+    script.defer=true;
+    script.dataset.iteration11='1';
+    document.head.appendChild(script);
+  }
+
   function repairUrl(){
     if(!terrainIsActive())return;
     const p=new URLSearchParams(location.search);
@@ -71,6 +80,7 @@
     wrapHistory();
     ensureStyles();
     ensureFocusButton();
+    loadConsistencyLayer();
 
     new MutationObserver(()=>{
       if(terrainIsActive())setTimeout(repairUrl,0);
