@@ -2,7 +2,7 @@
   'use strict';
 
   const $=(s,r=document)=>r.querySelector(s);
-  const runtime={launchSegment:null,launchTimer:null,exiting:false};
+  const runtime={launchSegment:null,launchTimer:null,exiting:false,cameraTimer:null};
 
   function phaseFor(id){
     const ranges=[[1,29],[30,39],[40,52],[53,64],[65,78],[79,95],[96,112],[113,120],[121,145],[146,169],[170,181],[182,194]];
@@ -67,6 +67,26 @@
     if(auto)auto.checked=false;
   }
 
+  function installCameraPacing(){
+    const globe=window.__ONE_WORLD_ROUTE_GLOBE__;
+    if(!globe||typeof globe.pointOfView!=='function'){
+      clearTimeout(runtime.cameraTimer);
+      runtime.cameraTimer=setTimeout(installCameraPacing,120);
+      return;
+    }
+    if(globe.__oneWorldIteration7Pacing)return;
+    const native=globe.pointOfView.bind(globe);
+    globe.pointOfView=function(view,duration,...rest){
+      if(document.body.classList.contains('story-mode')){
+        const speed=Number($('.speed-control button.active')?.dataset.speed||700);
+        if(speed>=2000)duration=1500;
+        else if(speed>=600)duration=Math.max(Number(duration)||0,520);
+      }
+      return native(view,duration,...rest);
+    };
+    globe.__oneWorldIteration7Pacing=true;
+  }
+
   function syncPlayMeaning(){
     const play=$('#playBtn');
     if(!play)return;
@@ -77,6 +97,7 @@
 
   function wire(){
     tunePlaybackControls();
+    installCameraPacing();
     document.addEventListener('click',stopPlaybackBeforeExit,true);
     document.addEventListener('click',launchStoryFromCurrent,true);
     document.addEventListener('input',preserveLaunchPosition,true);
