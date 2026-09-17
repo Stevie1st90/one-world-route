@@ -214,15 +214,15 @@
         hillshadeSource:{type:'raster-dem',url:'https://tiles.mapterhorn.com/tilejson.json'},
         routeSource:{type:'geojson',data:routeGeoJson()}
       },
-      terrain:{source:'terrainSource',exaggeration:1.95},
-      sky:{'atmosphere-blend':['interpolate',['linear'],['zoom'],0,.72,3.5,.24,7,0]},
+      terrain:{source:'terrainSource',exaggeration:1.42},
+      sky:{'atmosphere-blend':['interpolate',['linear'],['zoom'],0,.52,3.5,.16,7,0]},
       layers:[
         {id:'background',type:'background',paint:{'background-color':'#071019'}},
-        {id:'osm',type:'raster',source:'osm',paint:{'raster-opacity':1,'raster-saturation':-.18,'raster-contrast':.2,'raster-brightness-min':.02,'raster-brightness-max':.82}},
-        {id:'hills',type:'hillshade',source:'hillshadeSource',paint:{'hillshade-method':'multidirectional','hillshade-exaggeration':.95,'hillshade-shadow-color':'#1d2a33','hillshade-highlight-color':'#e6f1f6','hillshade-accent-color':'#4b6a7a'}},
-        {id:'route-shadow',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(4,10,16,.62)','line-width':['interpolate',['linear'],['zoom'],2,2.1,6,3.8,12,6.4]}},
-        {id:'routes',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.82,'line-width':['interpolate',['linear'],['zoom'],2,1,6,2.2,12,4]}},
-        {id:'selected-route',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#f3feff','line-opacity':.98,'line-width':['interpolate',['linear'],['zoom'],2,1.9,6,3.6,12,5.8]}}
+        {id:'osm',type:'raster',source:'osm',paint:{'raster-opacity':1,'raster-saturation':-.06,'raster-contrast':.08,'raster-brightness-min':.01,'raster-brightness-max':.76}},
+        {id:'hills',type:'hillshade',source:'hillshadeSource',paint:{'hillshade-method':'multidirectional','hillshade-exaggeration':.42,'hillshade-shadow-color':'#6a7780','hillshade-highlight-color':'#f5f8fa','hillshade-accent-color':'#8c9ca6'}},
+        {id:'route-shadow',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(4,10,16,.48)','line-width':['interpolate',['linear'],['zoom'],2,2.1,6,3.8,12,6.2]}},
+        {id:'routes',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.86,'line-width':['interpolate',['linear'],['zoom'],2,1,6,2.15,12,3.8]}},
+        {id:'selected-route',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#dcfbff','line-opacity':.98,'line-width':['interpolate',['linear'],['zoom'],2,1.8,6,3.4,12,5.4]}}
       ]
     };
   }
@@ -263,8 +263,8 @@
     const center=selectedPosition();
 
     const map=new maplibregl.Map({
-      container:'terrainMap',style:terrainStyle(),center,zoom:4.15,pitch:38,bearing:-8,
-      maxZoom:18,maxPitch:72,renderWorldCopies:false,attributionControl:true,
+      container:'terrainMap',style:terrainStyle(),center,zoom:3.9,pitch:32,bearing:-6,
+      minZoom:2.9,maxZoom:18,maxPitch:65,renderWorldCopies:false,attributionControl:true,
       canvasContextAttributes:{antialias:true}
     });
 
@@ -275,7 +275,7 @@
 
     map.on('style.load',()=>{
       try{map.setProjection({type:'globe'});}catch(err){console.warn('Globe projection unavailable',err);}
-      try{map.setTerrain({source:'terrainSource',exaggeration:1.95});}catch(err){console.warn('Terrain could not be attached to globe projection',err);}
+      try{map.setTerrain({source:'terrainSource',exaggeration:1.42});}catch(err){console.warn('Terrain could not be attached to globe projection',err);}
     });
 
     map.on('load',()=>{
@@ -292,7 +292,7 @@
     });
 
     map.addControl(new maplibregl.NavigationControl({visualizePitch:true,showZoom:true,showCompass:true}),'top-right');
-    if(maplibregl.TerrainControl)map.addControl(new maplibregl.TerrainControl({source:'terrainSource',exaggeration:1.95}),'top-right');
+    if(maplibregl.TerrainControl)map.addControl(new maplibregl.TerrainControl({source:'terrainSource',exaggeration:1.42}),'top-right');
     if(maplibregl.GlobeControl)map.addControl(new maplibregl.GlobeControl(),'top-right');
 
     runtime.terrainMap=map;
@@ -305,7 +305,7 @@
     if(map.getLayer?.('selected-route'))map.setFilter('selected-route',['==',['get','id'],runtime.selectedId]);
     if(!fly)return;
     const p=selectedPosition();
-    map.easeTo({center:p,zoom:Math.max(map.getZoom(),4.7),pitch:Math.min(Math.max(map.getPitch(),38),58),bearing:-8,duration:900,essential:true});
+    map.easeTo({center:p,zoom:Math.max(map.getZoom(),4.5),pitch:Math.min(Math.max(map.getPitch(),32),55),bearing:-6,duration:900,essential:true});
   }
 
   function syncTerrainPhase(){
