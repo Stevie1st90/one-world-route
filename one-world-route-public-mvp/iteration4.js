@@ -12,6 +12,9 @@
     globe:null,
     lastSegment:null,
     lastPhase:null,
+    lockedPhase:null,
+    normalArcTransition:null,
+    applyingHierarchy:false,
     focusTimer:null,
     syncFrame:null,
     chapterTimer:null,
@@ -40,6 +43,55 @@
     return stub;
   }
 
+  function installPersistentStoryRenderer(instance){
+    if(!instance || instance.__oneWorldPersistentStory) return;
+
+    const nativeArcsData = instance.arcsData?.bind(instance);
+    if(nativeArcsData){
+      instance.arcsData = function(value){
+        if(arguments.length === 0) return nativeArcsData();
+        if(!isStory()){
+          runtime.lockedPhase=null;
+          return nativeArcsData(value);
+        }
+
+        const phase=phaseFor(segmentId());
+        const current=nativeArcsData() || [];
+        const currentIsChapter=current.length>0 && current.every(s=>Number(s?.id)>=phase.range[0] && Number(s?.id)<=phase.range[1]);
+
+        // During Story Mode the chapter route is mounted once and remains mounted.
+        // Canonical segment updates may call arcsData() on every tick; those writes are ignored
+        // until the journey actually crosses into a different chapter.
+        if(currentIsChapter && runtime.lockedPhase===phase.id) return instance;
+
+        const incoming=Array.isArray(value)?value:[];
+        const chapter=incoming.filter(s=>Number(s?.id)>=phase.range[0] && Number(s?.id)<=phase.range[1]);
+        if(!chapter.length) return instance;
+
+        runtime.lockedPhase=phase.id;
+        const result=nativeArcsData(chapter);
+        setTimeout(()=>syncStoryScene({focus:true}),0);
+        return result;
+      };
+    }
+
+    // app.js refreshes all arc accessors for every selected segment. In Story Mode those
+    // refreshes caused a visible flash before Iteration 4 reapplied its hierarchy. Ignore
+    // them and only accept style writes made intentionally by applyRouteHierarchy().
+    ['arcColor','arcStroke','arcDashLength','arcDashGap','arcDashAnimateTime','arcCurveResolution'].forEach(name=>{
+      const method=instance[name];
+      if(typeof method!=='function') return;
+      const native=method.bind(instance);
+      instance[name]=function(...args){
+        if(!args.length) return native();
+        if(isStory() && !runtime.applyingHierarchy) return instance;
+        return native(...args);
+      };
+    });
+
+    instance.__oneWorldPersistentStory=true;
+  }
+
   function captureMainGlobe(){
     const NativeGlobe = window.Globe;
     if(typeof NativeGlobe !== 'function' || NativeGlobe.__oneWorldIteration4) return;
@@ -50,6 +102,7 @@
       if(el?.id === 'globe' || !runtime.globe){
         runtime.globe = instance;
         window.__ONE_WORLD_ROUTE_GLOBE__ = instance;
+        installPersistentStoryRenderer(instance);
       }
       return instance;
     }
@@ -101,13 +154,8 @@
     const globe=getGlobe();
     if(!globe) return;
     const id=segmentId();
-    const phase=phaseFor(id);
-    let data=[];
-    try{ data=globe.arcsData() || []; }catch{return}
-    const chapter=data.filter(s=>Number(s?.id)>=phase.range[0] && Number(s?.id)<=phase.range[1]);
-    if(chapter.length && chapter.length!==data.length){
-      try{ globe.arcsData(chapter); }catch{}
-    }
+
+    runtime.applyingHierarchy=true;
     try{
       globe
         .arcColor(s=>hierarchyColor(s,id))
@@ -117,6 +165,7 @@
         .arcDashAnimateTime(s=>Number(s.id)===id && !reducedMotion()?900:0)
         .arcCurveResolution(isMobile()?24:36);
     }catch{}
+    finally{ runtime.applyingHierarchy=false; }
   }
 
   function sphericalMidpoint(s){
@@ -230,8 +279,17 @@
     runtime.active=true;
     runtime.lastSegment=null;
     runtime.lastPhase=null;
+    runtime.lockedPhase=null;
     const globe=getGlobe();
+    if(globe && typeof globe.arcsTransitionDuration==='function'){
+      try{
+        if(runtime.normalArcTransition===null) runtime.normalArcTransition=globe.arcsTransitionDuration();
+        globe.arcsTransitionDuration(0);
+      }catch{}
+    }
+    runtime.applyingHierarchy=true;
     try{ globe?.arcCurveResolution?.(isMobile()?24:36); }catch{}
+    finally{ runtime.applyingHierarchy=false; }
     syncStoryScene({focus:true});
   }
 
@@ -239,14 +297,18 @@
     runtime.active=false;
     runtime.lastSegment=null;
     runtime.lastPhase=null;
+    runtime.lockedPhase=null;
     clearTimeout(runtime.focusTimer);
     clearTimeout(runtime.chapterTimer);
     const globe=getGlobe();
+    if(globe && typeof globe.arcsTransitionDuration==='function' && runtime.normalArcTransition!==null){
+      try{ globe.arcsTransitionDuration(runtime.normalArcTransition); }catch{}
+    }
     try{ globe?.arcCurveResolution?.(48); }catch{}
     const preview=$('#storyPreview');
     if(preview) preview.innerHTML='';
     // Iteration 2 restores the route controls immediately after story exit,
-    // which triggers the canonical renderer and returns normal arc styling.
+    // which triggers the canonical renderer and returns normal arc styling/data.
   }
 
   function wire(){
