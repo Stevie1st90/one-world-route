@@ -1,0 +1,9 @@
+/* Iteration 7 — Playback hardening */
+.timeline:before{display:none!important}
+body.story-launching #globe{transition:filter .18s ease,opacity .18s ease;opacity:.96}
+body.story-mode #storyExit{display:inline-flex!important;align-items:center;justify-content:center;min-height:30px;padding:7px 11px!important;border-radius:10px!important;border:1px solid rgba(255,255,255,.22)!important;background:rgba(255,255,255,.09)!important;color:#f6fbff!important;font-size:9px!important;font-weight:700!important;letter-spacing:.02em!important;box-shadow:0 8px 24px rgba(0,0,0,.18),inset 0 1px rgba(255,255,255,.08)!important;opacity:1!important}
+body.story-mode #storyExit:hover{background:rgba(255,255,255,.15)!important;border-color:rgba(255,255,255,.34)!important;transform:translateY(-1px)}
+body.story-mode #storyExit:before{content:'←';margin-right:6px;font-size:11px;color:#8fe9ff}
+body.story-mode .story-track{height:4px;background:rgba(255,255,255,.07)}
+body.story-mode .story-hud-foot strong{font-size:10px;color:#e6f1ff}
+@media(max-width:820px){body.story-mode #storyExit{min-height:28px;padding:6px 9px!important;font-size:8px!important}}
