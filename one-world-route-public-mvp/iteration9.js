@@ -3,26 +3,29 @@
 
   const $=(s,r=document)=>r.querySelector(s);
   const normalize=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
-  const runtime={globe:null,outlineReady:false,terrainMap:null,terrainReady:false,terrainActive:false,routeData:null,centroids:null,loadPromise:null,selectedId:1};
+  const runtime={
+    globe:null,outlineReady:false,terrainMap:null,terrainReady:false,terrainBaseReady:false,
+    terrainActive:false,routeData:null,centroids:null,loadPromise:null,selectedId:1,terrainFailTimer:null
+  };
 
-  const PHASE_COLORS={1:'#59ddff',2:'#4f7cff',3:'#42e6c4',4:'#7be495',5:'#9276ff',6:'#e47cff',7:'#ffcf62',8:'#ff9b55',9:'#ff704f',10:'#ff4d67',11:'#ff8acb',12:'#79a7ff'};
+  const PHASE_COLORS={1:'#149fc4',2:'#315eea',3:'#12a887',4:'#2f9f5e',5:'#6743d9',6:'#b84ad8',7:'#d39418',8:'#dc6d22',9:'#de4f37',10:'#d9324d',11:'#cf4c98',12:'#3e78db'};
 
   function ensureStyles(){
     if($('#iteration9Styles'))return;
     const style=document.createElement('style');
     style.id='iteration9Styles';
     style.textContent=`
-      #terrainMap{display:none;position:absolute;inset:0;z-index:2;background:#071019}
+      #terrainMap{display:none;position:absolute;inset:0;z-index:2;background:#dfe7ec}
       body.terrain-view #terrainMap{display:block}
       body.terrain-view #globe{visibility:hidden}
       body.terrain-view .journey-btn,body.terrain-view .floating-stats{opacity:0;pointer-events:none}
-      .terrain-badge{display:none;position:absolute;z-index:24;left:50%;bottom:24px;transform:translateX(-50%);padding:8px 12px;border:1px solid rgba(89,221,255,.22);border-radius:12px;background:rgba(6,12,21,.82);backdrop-filter:blur(14px);font-size:8px;letter-spacing:.06em;color:#91a6be;white-space:nowrap;pointer-events:none}
+      .terrain-badge{display:none;position:absolute;z-index:24;left:50%;bottom:24px;transform:translateX(-50%);padding:8px 12px;border:1px solid rgba(18,98,128,.25);border-radius:12px;background:rgba(246,250,252,.88);backdrop-filter:blur(14px);font-size:8px;letter-spacing:.06em;color:#52687a;white-space:nowrap;pointer-events:none;box-shadow:0 8px 28px rgba(0,0,0,.12)}
       body.terrain-view .terrain-badge{display:block}
-      .terrain-badge b{color:#dff8ff;margin-right:7px;letter-spacing:.12em}
-      body.terrain-view .maplibregl-ctrl-group{background:rgba(7,13,22,.86);border:1px solid rgba(255,255,255,.1);box-shadow:none}
-      body.terrain-view .maplibregl-ctrl button{filter:invert(1) brightness(1.35)}
-      body.terrain-view .maplibregl-ctrl-attrib{background:rgba(5,8,14,.76);color:#7d91a9;font-size:9px}
-      body.terrain-view .maplibregl-ctrl-attrib a{color:#a8bdd4}
+      .terrain-badge b{color:#103a4a;margin-right:7px;letter-spacing:.12em}
+      body.terrain-view .maplibregl-ctrl-group{background:rgba(250,252,253,.94);border:1px solid rgba(25,55,75,.14);box-shadow:0 4px 18px rgba(0,0,0,.12)}
+      body.terrain-view .maplibregl-ctrl button{filter:none}
+      body.terrain-view .maplibregl-ctrl-attrib{background:rgba(255,255,255,.86);color:#516779;font-size:9px}
+      body.terrain-view .maplibregl-ctrl-attrib a{color:#27556c}
       @media(max-width:820px){.terrain-badge{bottom:70px;font-size:7px}.terrain-badge span{display:none}}
     `;
     document.head.appendChild(style);
@@ -131,7 +134,44 @@
 
   function colorExpression(){
     const expr=['match',['get','phaseId']];
-    Object.entries(PHASE_COLORS).forEach(([id,color])=>{expr.push(Number(id),color)});expr.push('#59ddff');return expr;
+    Object.entries(PHASE_COLORS).forEach(([id,color])=>{expr.push(Number(id),color)});expr.push('#149fc4');return expr;
+  }
+
+  function firstSymbolLayer(map){
+    return map.getStyle()?.layers?.find(l=>l.type==='symbol')?.id;
+  }
+
+  function installTerrainLayers(map){
+    if(map.getSource('terrainSource'))return;
+
+    map.addSource('terrainSource',{type:'raster-dem',url:'https://tiles.mapterhorn.com/tilejson.json'});
+    map.addSource('hillshadeSource',{type:'raster-dem',url:'https://tiles.mapterhorn.com/tilejson.json'});
+    map.addSource('routeSource',{type:'geojson',data:routeGeoJson()});
+
+    map.setTerrain({source:'terrainSource',exaggeration:1.7});
+    const before=firstSymbolLayer(map);
+
+    map.addLayer({
+      id:'oneworld-hillshade',type:'hillshade',source:'hillshadeSource',
+      paint:{
+        'hillshade-method':'multidirectional',
+        'hillshade-exaggeration':.72,
+        'hillshade-shadow-color':'#33444d',
+        'hillshade-highlight-color':'#ffffff',
+        'hillshade-accent-color':'#6f8995'
+      }
+    },before);
+
+    map.addLayer({id:'oneworld-route-shadow',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(255,255,255,.82)','line-width':['interpolate',['linear'],['zoom'],3,3.2,8,6,13,9]}},before);
+    map.addLayer({id:'oneworld-routes',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.92,'line-width':['interpolate',['linear'],['zoom'],3,1.7,8,3.4,13,5.3]}},before);
+    map.addLayer({id:'oneworld-selected-route',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#08141b','line-width':['interpolate',['linear'],['zoom'],3,3,8,5.4,13,8]}},before);
+  }
+
+  function failTerrain(message){
+    console.warn(message);
+    runtime.terrainActive=false;
+    document.body.classList.remove('terrain-view');
+    const toggle=$('#terrainView');if(toggle)toggle.checked=false;
   }
 
   async function initTerrainMap(){
@@ -141,67 +181,83 @@
     const center=selectedPosition();
 
     const map=new maplibregl.Map({
-      container:'terrainMap',center,zoom:6.7,pitch:67,bearing:-12,maxZoom:18,maxPitch:85,attributionControl:true,
-      canvasContextAttributes:{antialias:true},
-      style:{
-        version:8,
-        projection:{type:'globe'},
-        sources:{
-          osm:{type:'raster',tiles:['https://a.tile.openstreetmap.org/{z}/{x}/{y}.png'],tileSize:256,maxzoom:19,attribution:'© OpenStreetMap contributors'},
-          terrainSource:{type:'raster-dem',url:'https://tiles.mapterhorn.com/tilejson.json'},
-          hillshadeSource:{type:'raster-dem',url:'https://tiles.mapterhorn.com/tilejson.json'},
-          routeSource:{type:'geojson',data:routeGeoJson()}
-        },
-        terrain:{source:'terrainSource',exaggeration:1.35},
-        sky:{},
-        layers:[
-          {id:'background',type:'background',paint:{'background-color':'#071019'}},
-          {id:'osm',type:'raster',source:'osm',paint:{'raster-opacity':.92,'raster-saturation':-.7,'raster-contrast':.16,'raster-brightness-min':.08,'raster-brightness-max':.64}},
-          {id:'hills',type:'hillshade',source:'hillshadeSource',layout:{visibility:'visible'},paint:{'hillshade-method':'multidirectional','hillshade-exaggeration':.58,'hillshade-shadow-color':'#050a10','hillshade-highlight-color':'#d6edf5','hillshade-accent-color':'#3c6578'}},
-          {id:'route-shadow',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(0,0,0,.72)','line-width':['interpolate',['linear'],['zoom'],3,2,8,5,13,8]}},
-          {id:'routes',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.72,'line-width':['interpolate',['linear'],['zoom'],3,1,8,2.2,13,3.8]}},
-          {id:'selected-route',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#ffffff','line-width':['interpolate',['linear'],['zoom'],3,2,8,4.2,13,6.5]}}
-        ]
-      }
+      container:'terrainMap',
+      style:'https://tiles.openfreemap.org/styles/bright',
+      center,zoom:7.4,pitch:72,bearing:-18,maxZoom:18,maxPitch:85,attributionControl:true,
+      canvasContextAttributes:{antialias:true}
     });
+
+    clearTimeout(runtime.terrainFailTimer);
+    runtime.terrainFailTimer=setTimeout(()=>{
+      if(runtime.terrainActive&&!runtime.terrainBaseReady)failTerrain('3D terrain basemap did not finish loading; returning to standard globe.');
+    },9000);
 
     map.on('style.load',()=>{
       try{map.setProjection({type:'globe'});}catch{}
-      try{map.setTerrain({source:'terrainSource',exaggeration:1.35});}catch{}
+      try{
+        installTerrainLayers(map);
+        runtime.terrainBaseReady=true;
+        clearTimeout(runtime.terrainFailTimer);
+        syncTerrainSelection({fly:false});
+        syncTerrainPhase();
+      }catch(err){
+        console.error('Terrain layers could not be installed',err);
+        failTerrain('3D terrain layers failed; returning to standard globe.');
+      }
     });
-    map.on('error',e=>{if(e?.error)console.warn('Terrain map resource error',e.error);});
+
+    map.on('error',e=>{
+      const msg=String(e?.error?.message||'');
+      if(/style|source|tile|terrain/i.test(msg))console.warn('Terrain map resource error',e.error);
+    });
+
     map.addControl(new maplibregl.NavigationControl({visualizePitch:true,showZoom:true,showCompass:true}),'top-right');
-    if(maplibregl.TerrainControl)map.addControl(new maplibregl.TerrainControl({source:'terrainSource',exaggeration:1.35}),'top-right');
+    if(maplibregl.TerrainControl)map.addControl(new maplibregl.TerrainControl({source:'terrainSource',exaggeration:1.7}),'top-right');
     if(maplibregl.GlobeControl)map.addControl(new maplibregl.GlobeControl(),'top-right');
-    runtime.terrainMap=map;runtime.terrainReady=true;
+
+    runtime.terrainMap=map;
+    runtime.terrainReady=true;
   }
 
   function syncTerrainSelection({fly=false}={}){
     const map=runtime.terrainMap;if(!map)return;
     runtime.selectedId=Math.max(1,Math.min(194,Number($('#routeRange')?.value||1)));
-    if(map.getLayer?.('selected-route'))map.setFilter('selected-route',['==',['get','id'],runtime.selectedId]);
+    if(map.getLayer?.('oneworld-selected-route'))map.setFilter('oneworld-selected-route',['==',['get','id'],runtime.selectedId]);
     if(!fly)return;
     const p=selectedPosition();
-    map.easeTo({center:p,zoom:Math.max(map.getZoom(),6.7),pitch:Math.max(map.getPitch(),67),bearing:-12,duration:1050,essential:true});
+    map.easeTo({center:p,zoom:Math.max(map.getZoom(),7.4),pitch:Math.max(map.getPitch(),72),bearing:-18,duration:1100,essential:true});
   }
 
   function syncTerrainPhase(){
-    const map=runtime.terrainMap;if(!map||!map.getLayer?.('routes'))return;
+    const map=runtime.terrainMap;if(!map||!map.getLayer?.('oneworld-routes'))return;
     const phase=new URLSearchParams(location.search).get('phase');
     const filter=phase&&phase!=='all'?['==',['get','phaseId'],Number(phase)]:null;
-    map.setFilter('routes',filter);map.setFilter('route-shadow',filter);
+    map.setFilter('oneworld-routes',filter);
+    map.setFilter('oneworld-route-shadow',filter);
   }
 
   async function setTerrainMode(active){
     if(active&&document.body.classList.contains('story-mode')){const toggle=$('#terrainView');if(toggle)toggle.checked=false;return;}
-    runtime.terrainActive=active;document.body.classList.toggle('terrain-view',active);
+
+    runtime.terrainActive=active;
+    document.body.classList.toggle('terrain-view',active);
+
+    const high=$('#highDetailGlobe');
+    if(active&&high)high.disabled=true;
+    if(!active&&high)high.disabled=false;
+
     if(!active){runtime.terrainMap?.resize?.();return;}
+
     try{
-      await initTerrainMap();runtime.terrainMap.resize();
-      setTimeout(()=>{runtime.terrainMap.resize();syncTerrainSelection({fly:true});syncTerrainPhase();},160);
+      await initTerrainMap();
+      runtime.terrainMap.resize();
+      setTimeout(()=>{
+        runtime.terrainMap.resize();
+        if(runtime.terrainBaseReady){syncTerrainSelection({fly:true});syncTerrainPhase();}
+      },180);
     }catch(err){
-      console.error('3D terrain mode unavailable',err);runtime.terrainActive=false;document.body.classList.remove('terrain-view');
-      const toggle=$('#terrainView');if(toggle)toggle.checked=false;
+      console.error('3D terrain mode unavailable',err);
+      failTerrain('3D terrain initialization failed; returning to standard globe.');
     }
   }
 
