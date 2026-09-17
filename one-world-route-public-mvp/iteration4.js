@@ -15,6 +15,8 @@
     lockedPhase:null,
     normalArcTransition:null,
     applyingHierarchy:false,
+    applyingCamera:false,
+    applyingSceneData:false,
     focusTimer:null,
     syncFrame:null,
     chapterTimer:null,
@@ -57,7 +59,6 @@
         const phase=phaseFor(segmentId());
         const current=nativeArcsData() || [];
         const currentIsChapter=current.length>0 && current.every(s=>Number(s?.id)>=phase.range[0] && Number(s?.id)<=phase.range[1]);
-
         if(currentIsChapter && runtime.lockedPhase===phase.id) return instance;
 
         const incoming=Array.isArray(value)?value:[];
@@ -81,6 +82,26 @@
         return native(...args);
       };
     });
+
+    ['pointsData','labelsData','ringsData','polygonsData'].forEach(name=>{
+      const method=instance[name];
+      if(typeof method!=='function') return;
+      const native=method.bind(instance);
+      instance[name]=function(...args){
+        if(!args.length) return native();
+        if(isStory() && !runtime.applyingSceneData) return instance;
+        return native(...args);
+      };
+    });
+
+    const pointOfView=instance.pointOfView;
+    if(typeof pointOfView==='function'){
+      const nativePointOfView=pointOfView.bind(instance);
+      instance.pointOfView=function(...args){
+        if(isStory() && !runtime.applyingCamera) return instance;
+        return nativePointOfView(...args);
+      };
+    }
 
     instance.__oneWorldPersistentStory=true;
   }
@@ -206,7 +227,9 @@
     const duration=clamp(Math.round(activeSpeed()*.68),180,920);
 
     clearTimeout(runtime.focusTimer);
+    runtime.applyingCamera=true;
     try{ globe.pointOfView({lat:midpoint.lat,lng:midpoint.lng,altitude},duration); }catch{}
+    finally{ runtime.applyingCamera=false; }
     runtime.lastSegment=id;
     if(runtime.lastPhase!==phase.id){
       runtime.lastPhase=phase.id;
@@ -280,6 +303,15 @@
         globe.arcsTransitionDuration(0);
       }catch{}
     }
+
+    runtime.applyingSceneData=true;
+    try{
+      globe?.pointsData?.([]);
+      globe?.labelsData?.([]);
+      globe?.ringsData?.([]);
+    }catch{}
+    finally{ runtime.applyingSceneData=false; }
+
     runtime.applyingHierarchy=true;
     try{ globe?.arcCurveResolution?.(isMobile()?24:36); }catch{}
     finally{ runtime.applyingHierarchy=false; }
@@ -291,6 +323,8 @@
     runtime.lastSegment=null;
     runtime.lastPhase=null;
     runtime.lockedPhase=null;
+    runtime.applyingCamera=false;
+    runtime.applyingSceneData=false;
     clearTimeout(runtime.focusTimer);
     clearTimeout(runtime.chapterTimer);
     const globe=getGlobe();
