@@ -39,7 +39,7 @@
     selectedSegmentId:1, selectedCountry:null, layer:'route', phase:'all', mode:'explore', activeTab:'overview',
     filters:{mode:'all', tier:'all', feasibility:'all', alert:'all'},
     playing:false, playTimer:null, speed:700, criticalIds:new Set(),
-    settings:{autoRotate:true, showPoints:true, routeGlow:true, arcWidth:.55, reducedMotion:false}
+    settings:{autoRotate:false, showPoints:true, routeGlow:true, arcWidth:.55, reducedMotion:false}
   };
 
   const normalize = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,' ').trim();
@@ -56,7 +56,7 @@
   const statusColor = a => ({RED:colors.red,ORANGE:colors.orange,WATCH:colors.amber,GREEN:colors.green}[a] || colors.muted);
   const readinessColor = r => r === 'READY' ? colors.green : r === 'BLOCKED' ? colors.red : colors.amber;
   const sourceList = s => String(s||'').split(/\s*;\s*/).filter(x=>/^https?:/.test(x));
-  const escapeHtml = s => String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  const escapeHtml = s => String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[m]));
   const trim = (s,n=84) => String(s||'').length>n ? String(s).slice(0,n-1)+'…' : String(s||'');
 
   function criticalScore(s){
@@ -146,7 +146,6 @@
       return true;
     });
   }
-
 
   async function loadPolygons(){
     try{
