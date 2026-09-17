@@ -46,7 +46,8 @@
     if(['RED','ORANGE'].includes(s.alertLevel))reasons.push(`${s.alertLevel} alert`);
     if(s.bookingTier==='A'||s.bookingTier==='B')reasons.push(`Booking tier ${s.bookingTier}`);
     if(!/verifiziert/i.test(s.dataQuality||''))reasons.push('Evidence needs review');
-    if(!s.planB)reasons.push('No specific fallback');
+    const routeRisk=['Kritisch','Bedingt'].includes(s.feasibility)||['RED','ORANGE'].includes(s.alertLevel)||['A','B'].includes(s.bookingTier);
+    if(!s.planB&&routeRisk)reasons.push('No specific fallback');
     if(/pending|block/i.test(s.visaStatusTarget||''))reasons.push('Visa dependency');
     if(Number(s.healthPriorityTarget)>=4)reasons.push('Health dependency');
     if(Number(s.transportBudgetEur||0)>=600)reasons.push('High-cost leg');
@@ -56,7 +57,6 @@
 
   function topCritical(){return [...runtime.segments].sort((a,b)=>score(b)-score(a)).slice(0,20)}
   function selected(){return runtime.segments.find(s=>Number(s.id)===runtime.selectedId)||runtime.segments[0]}
-
   function cumulativeBudget(id){return runtime.segments.filter(s=>Number(s.id)<=id).reduce((a,s)=>a+Number(s.transportBudgetEur||0),0)}
   function transportBudget(){return runtime.segments.reduce((a,s)=>a+Number(s.transportBudgetEur||0),0)}
 
@@ -67,11 +67,12 @@
   function breakCategories(){
     const cats={Border:0,Visa:0,Booking:0,Evidence:0,Fallback:0,Health:0,Cost:0};
     runtime.segments.forEach(s=>{
-      if(['Kritisch','Bedingt'].includes(s.feasibility))cats.Border++;
+      const operationalRisk=['Kritisch','Bedingt'].includes(s.feasibility)||['RED','ORANGE'].includes(s.alertLevel)||['A','B'].includes(s.bookingTier);
+      if(['Kritisch','Bedingt'].includes(s.feasibility)||['RED','ORANGE'].includes(s.alertLevel))cats.Border++;
       if(/pending|block/i.test(s.visaStatusTarget||''))cats.Visa++;
       if(['A','B'].includes(s.bookingTier))cats.Booking++;
-      if(!/verifiziert/i.test(s.dataQuality||''))cats.Evidence++;
-      if(!s.planB)cats.Fallback++;
+      if(!/verifiziert/i.test(s.dataQuality||'')&&operationalRisk)cats.Evidence++;
+      if(!s.planB&&operationalRisk)cats.Fallback++;
       if(Number(s.healthPriorityTarget)>=4)cats.Health++;
       if(Number(s.transportBudgetEur||0)>=600)cats.Cost++;
     });
@@ -113,11 +114,11 @@
         <div class="ops-score"><strong>${fresh.fresh}</strong><span>fresh ≤7d</span></div>
         <div class="ops-score"><strong>${fresh.unknown+fresh.stale}</strong><span>needs review</span></div>
       </div>
-      <button class="ops-primary" data-action="critical">View critical path <span>›</span></button>
-      <div class="ops-mini-title">What can break this route?</div>
+      <button class="ops-primary" data-action="critical">View global critical path <span>›</span></button>
+      <div class="ops-mini-title">Flagged route conditions</div>
       <div class="ops-break-grid">${cats.slice(0,4).map(([k,v])=>`<div><span>${esc(k)}</span><b>${v}</b></div>`).join('')}</div>
       <div class="ops-budget"><div><span>TRANSPORT MODEL</span><b>${euro(tb)}</b></div>${sparkline()}</div>
-      ${high?`<button class="ops-hotspot" data-segment="${high.id}"><span>HIGHEST CURRENT CONSTRAINT</span><b>#${high.id} ${esc(high.from)} → ${esc(high.to)}</b><small>${esc(riskReasons(high).slice(0,2).join(' · ')||'Review route')}</small></button>`:''}
+      ${high?`<button class="ops-hotspot" data-segment="${high.id}"><span>HIGHEST ROUTE CONSTRAINT</span><b>#${high.id} ${esc(high.from)} → ${esc(high.to)}</b><small>${esc(riskReasons(high).slice(0,2).join(' · ')||'Review route')}</small></button>`:''}
     `;
     bindBoardActions(board);
   }
@@ -144,10 +145,15 @@
     $$('[data-segment]',panel).forEach(b=>b.onclick=()=>jump(Number(b.dataset.segment)));
   }
 
+  function showGlobalCriticalPath(){
+    const reset=$('#clearFilters');
+    const critical=$('#layerGrid button[data-layer="critical"]');
+    if(reset)reset.click();
+    setTimeout(()=>critical?.click(),0);
+  }
+
   function bindBoardActions(board){
-    $$('[data-action="critical"]',board).forEach(b=>b.onclick=()=>{
-      const critical=$('#layerGrid button[data-layer="critical"]');critical?.click();
-    });
+    $$('[data-action="critical"]',board).forEach(b=>b.onclick=showGlobalCriticalPath);
     $$('[data-segment]',board).forEach(b=>b.onclick=()=>jump(Number(b.dataset.segment)));
   }
 
