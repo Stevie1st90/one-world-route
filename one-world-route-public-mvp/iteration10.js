@@ -3,32 +3,6 @@
 
   const $=(s,r=document)=>r.querySelector(s);
 
-  function terrainIsActive(){
-    return document.body.classList.contains('terrain-view') || document.body.classList.contains('terrain-loading') || $('#terrainView')?.checked === true;
-  }
-
-  function preserveTerrainView(nextUrl){
-    try{
-      const current=new URL(location.href);
-      const next=new URL(String(nextUrl||location.href),location.href);
-      if(terrainIsActive() && current.searchParams.get('view')==='terrain' && !next.searchParams.has('view')){
-        next.searchParams.set('view','terrain');
-      }
-      return `${next.pathname}${next.search}${next.hash}`;
-    }catch{
-      return nextUrl;
-    }
-  }
-
-  function wrapHistory(){
-    if(history.__oneWorldTerrainWrapped)return;
-    history.__oneWorldTerrainWrapped=true;
-    const nativeReplace=history.replaceState.bind(history);
-    history.replaceState=function(state,title,url){
-      return nativeReplace(state,title,url==null?url:preserveTerrainView(url));
-    };
-  }
-
   function ensureFocusButton(){
     const stage=$('.globe-stage');
     if(!stage||$('#terrainFocusBtn'))return;
@@ -59,25 +33,9 @@
     document.head.appendChild(style);
   }
 
-  function repairUrl(){
-    if(!terrainIsActive())return;
-    const p=new URLSearchParams(location.search);
-    if(p.get('view')==='terrain')return;
-    p.set('view','terrain');
-    history.replaceState(null,'',`${location.pathname}?${p.toString()}`);
-  }
-
   function wire(){
-    wrapHistory();
     ensureStyles();
     ensureFocusButton();
-
-    new MutationObserver(()=>{
-      if(terrainIsActive())setTimeout(repairUrl,0);
-    }).observe(document.body,{attributes:true,attributeFilter:['class']});
-
-    $('#routeRange')?.addEventListener('input',()=>setTimeout(repairUrl,0));
-    $('#phaseRail')?.addEventListener('click',()=>setTimeout(repairUrl,0));
   }
 
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wire);else wire();
