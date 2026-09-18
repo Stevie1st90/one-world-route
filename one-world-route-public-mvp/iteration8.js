@@ -11,7 +11,7 @@
     const saveData = navigator.connection?.saveData === true;
     const memory = Number(navigator.deviceMemory || 8);
     const mobile = window.matchMedia('(max-width: 820px)').matches;
-    return !saveData && !mobile && memory >= 4;
+    return !saveData && memory >= (mobile ? 6 : 4);
   }
 
   function highDetailEnabled(){
@@ -55,7 +55,8 @@
     try{
       const renderer = globe.renderer?.();
       if(!renderer) return;
-      const cap = highDetailEnabled() ? 2 : 1.35;
+      const mobile=window.matchMedia('(max-width: 820px)').matches;
+      const cap = highDetailEnabled() ? (mobile ? 1.5 : 2) : 1.35;
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, cap));
     }catch{}
   }
@@ -94,10 +95,15 @@
     const toggle=$('#highDetailGlobe');
     if(!toggle || toggle.dataset.iteration8Wired) return;
     toggle.dataset.iteration8Wired='1';
+    const label=toggle.closest('label')?.querySelector('span');
     if(!deviceSupportsHighDetail()){
       toggle.checked=false;
       toggle.disabled=true;
-      toggle.title='High detail is disabled on this device to protect performance';
+      toggle.title='High detail is unavailable on this device or connection';
+      if(label)label.textContent='High detail globe · unavailable';
+    }else{
+      toggle.disabled=false;
+      if(label)label.textContent='High detail globe';
     }
     toggle.addEventListener('change',()=>applyTexture(globe));
   }
