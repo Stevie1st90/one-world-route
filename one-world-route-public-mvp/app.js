@@ -60,6 +60,7 @@
   const trim = (s,n=84) => String(s||'').length>n ? String(s).slice(0,n-1)+'…' : String(s||'');
   const flagAssetUrl = c => /^[a-z]{2}$/i.test(String(c?.cca2||'')) ? `https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.5.0/flags/4x3/${String(c.cca2).toLowerCase()}.svg` : '';
   const flagMarkup = (c,w=24,h=18) => { const u=flagAssetUrl(c); return u ? `<img src="${u}" alt="" width="${w}" height="${h}" style="display:block;object-fit:cover;box-shadow:0 0 0 1px rgba(255,255,255,.10)">` : ''; };
+  const colorAlpha = (hex,alpha) => { const m=/^#([0-9a-f]{6})$/i.exec(String(hex||'')); if(!m)return hex; const n=parseInt(m[1],16); return `rgba(${(n>>16)&255},${(n>>8)&255},${n&255},${alpha})`; };
 
   function criticalScore(s){
     let x={A:30,B:20,C:10,D:5,E:4}[s.bookingTier]||5;
@@ -196,14 +197,21 @@
     state.globe
       .arcsData(segs)
       .arcColor(s=>{
-        const c=arcColor(s); return s.id===state.selectedSegmentId && state.settings.routeGlow ? [c,'#ffffff'] : c;
+        const c=arcColor(s);
+        if(s.id===state.selectedSegmentId)return state.settings.routeGlow?[c,'#ffffff']:c;
+        if(state.layer==='route'&&state.phase==='all')return colorAlpha(c,s.phaseId===phaseFor(state.selectedSegmentId).id?.78:.18);
+        return c;
       })
-      .arcStroke(s=>s.id===state.selectedSegmentId ? Math.max(1.05,state.settings.arcWidth*1.8) : state.settings.arcWidth)
+      .arcStroke(s=>{
+        if(s.id===state.selectedSegmentId)return Math.max(1.05,state.settings.arcWidth*1.8);
+        if(state.layer==='route'&&state.phase==='all')return s.phaseId===phaseFor(state.selectedSegmentId).id?Math.max(.22,state.settings.arcWidth*.9):Math.max(.10,state.settings.arcWidth*.34);
+        return state.settings.arcWidth;
+      })
       .arcDashLength(s => s.id === state.selectedSegmentId ? .65 : 1)
       .arcDashGap(s => s.id === state.selectedSegmentId ? .18 : 0)
       .arcDashAnimateTime(s=>s.id===state.selectedSegmentId && !state.settings.reducedMotion?1600:0)
       .pointsData(state.settings.showPoints ? state.countries : [])
-      .pointRadius(c => c.name === state.selectedCountry?.name ? .22 : .075)
+      .pointRadius(c => c.name === state.selectedCountry?.name ? .22 : .09)
       .pointColor(c=>c.name===state.selectedCountry?.name?colors.cyan:(c.readiness==='BLOCKED'?colors.red:'rgba(188,215,239,.62)'))
       .labelsData(state.selectedCountry ? [{lat:state.selectedCountry.lat,lng:state.selectedCountry.lng,text:state.selectedCountry.name}] : sel ? [{lat:sel.endLat,lng:sel.endLng,text:sel.to}] : [])
       .ringsData(state.selectedCountry ? [state.selectedCountry] : sel ? [{lat:sel.endLat,lng:sel.endLng}] : [])
