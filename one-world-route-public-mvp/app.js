@@ -263,6 +263,7 @@
     state.selectedCountry=c;
     state.activeTab=state.mode==='operations'?'operations':'overview';
     updateGlobe(); renderDetail(); updateUrl(); if(focus)focusCountry(c);
+    if(focus&&window.innerWidth<=820&&!document.body.classList.contains('story-mode'))openMobilePanel('details');
   }
 
   function updateUrl(){
@@ -393,7 +394,15 @@
     box.innerHTML=hits.slice(0,7).map((h,i)=>`<div class="search-hit" data-i="${i}">${escapeHtml(h.title)}<small>${escapeHtml(h.sub)}</small></div>`).join('');
     $$('.search-hit',box).forEach(x=>x.onclick=()=>activateHit(hits[Number(x.dataset.i)]));
   }
-  function activateHit(h){ if(!h)return; $('#searchResults').classList.add('hidden'); $('#commandPalette').classList.add('hidden'); if(h.type==='country')selectCountry(h.obj.name,true);else selectSegment(h.obj.id,true); }
+  function activateHit(h){
+    if(!h)return;
+    $('#searchResults').classList.add('hidden');closeCommand();closeMobilePanels();
+    if(h.type==='country')selectCountry(h.obj.name,true);
+    else{
+      selectSegment(h.obj.id,true);
+      if(window.innerWidth<=820&&!document.body.classList.contains('story-mode'))openMobilePanel('details');
+    }
+  }
   function renderCommand(q=''){
     const hits=q?search(q):state.segments.slice(0,8).map(s=>({type:'segment',title:`${s.from} → ${s.to}`,sub:`#${s.id} · ${s.phaseName}`,obj:s}));
     $('#commandResults').innerHTML=`<div class="command-group">${q?'Search results':'Jump to route'}</div>${hits.map((h,i)=>`<div class="command-item" data-i="${i}"><b>${escapeHtml(h.title)}</b><span>${escapeHtml(h.sub)}</span></div>`).join('')}`;
@@ -474,6 +483,7 @@
   window.__ONE_WORLD_ROUTE_APP__={
     selectSegment:(id,focus=true)=>selectSegment(Number(id),Boolean(focus)),
     selectCountry:(name,focus=true)=>selectCountry(String(name),Boolean(focus)),
+    openDetails:()=>openMobilePanel('details'),
     setPhase:(phase,{jump=false,focus=true}={})=>{
       const next=String(phase)==='all'?'all':String(Math.max(1,Math.min(12,Number(phase)||1)));
       state.phase=next;renderChrome();updateGlobe();renderDetail();updateUrl();
