@@ -10,15 +10,6 @@
     return i<0?1:i+1;
   }
 
-  function loadHighDetailGlobe(){
-    if(document.querySelector('script[data-iteration8]'))return;
-    const script=document.createElement('script');
-    script.src='./iteration8.js';
-    script.defer=true;
-    script.dataset.iteration8='1';
-    document.head.appendChild(script);
-  }
-
   function finishLaunch(){
     const id=runtime.launchSegment;
     runtime.launchSegment=null;
@@ -107,7 +98,6 @@
   function wire(){
     tunePlaybackControls();
     installCameraPacing();
-    loadHighDetailGlobe();
     document.addEventListener('click',stopPlaybackBeforeExit,true);
     document.addEventListener('click',launchStoryFromCurrent,true);
     document.addEventListener('input',preserveLaunchPosition,true);
