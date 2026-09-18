@@ -21,8 +21,12 @@
       range.value=String(id);
       range.dispatchEvent(new Event('input',{bubbles:true}));
     }
-    const phase=$(`#phaseRail button[data-phase="${phaseFor(id)}"]`);
-    if(phase&&!phase.classList.contains('active'))phase.click();
+    const phaseId=phaseFor(id);
+    if(window.__ONE_WORLD_ROUTE_APP__?.setPhase)window.__ONE_WORLD_ROUTE_APP__.setPhase(phaseId,{jump:false,focus:false});
+    else{
+      const phase=$(`#phaseRail button[data-phase="${phaseId}"]`);
+      if(phase&&!phase.classList.contains('active'))phase.click();
+    }
   }
 
   function launchStoryFromCurrent(e){
@@ -60,8 +64,8 @@
   function tunePlaybackControls(){
     const one=$('.speed-control button[data-speed="1400"], .speed-control button:nth-of-type(1)');
     if(one){
-      one.dataset.speed='2400';
-      one.title='Cinematic · 2.4 s per segment';
+      one.dataset.speed='3000';
+      one.title='Cinematic · 3.0 s per segment';
     }
     const auto=$('#autoRotate');
     if(auto)auto.checked=false;
@@ -82,7 +86,8 @@
         if(reduced)duration=0;
         else{
           const speed=Number($('.speed-control button.active')?.dataset.speed||700);
-          if(speed>=2000)duration=1500;
+          if(speed>=2800)duration=1900;
+          else if(speed>=2000)duration=1500;
           else if(speed>=600)duration=Math.max(Number(duration)||0,520);
         }
       }
