@@ -250,13 +250,17 @@
   }
 
   function updateUrl(){
-    const p=new URLSearchParams();
+    const current=new URLSearchParams(location.search),p=new URLSearchParams();
     if(state.selectedCountry) p.set('country',state.selectedCountry.name); else p.set('segment',state.selectedSegmentId);
     if(state.layer!=='route')p.set('layer',state.layer); if(state.phase!=='all')p.set('phase',state.phase); if(state.mode!=='explore')p.set('mode',state.mode);
+    if(state.filters.mode!=='all')p.set('fmode',state.filters.mode);if(state.filters.tier!=='all')p.set('tier',state.filters.tier);if(state.filters.feasibility!=='all')p.set('feasibility',state.filters.feasibility);if(state.filters.alert!=='all')p.set('alert',state.filters.alert);
+    if(document.body.classList.contains('terrain-view')||current.get('view')==='terrain')p.set('view','terrain');
+    if(document.body.classList.contains('story-mode')||current.get('story')==='1')p.set('story','1');
     history.replaceState(null,'',`${location.pathname}?${p.toString()}`);
   }
   function restoreUrl(){
     const p=new URLSearchParams(location.search); if(p.get('layer'))state.layer=p.get('layer'); if(p.get('phase'))state.phase=p.get('phase'); if(p.get('mode'))state.mode=p.get('mode');
+    if(p.get('fmode'))state.filters.mode=p.get('fmode');if(p.get('tier'))state.filters.tier=p.get('tier');if(p.get('feasibility'))state.filters.feasibility=p.get('feasibility');if(p.get('alert'))state.filters.alert=p.get('alert');
     if(p.get('country')){
       state.selectedCountry=state.countries.find(c=>c.name===p.get('country'))||null;
       const context=countryContextSegment(state.selectedCountry);
@@ -279,6 +283,7 @@
   function fillFilters(){
     const modes=[...new Set(state.segments.map(s=>s.mode))].sort(); $('#modeFilter').innerHTML='<option value="all">All modes</option>'+modes.map(x=>`<option>${escapeHtml(x)}</option>`).join('');
     const feas=[...new Set(state.segments.map(s=>s.feasibility))].filter(Boolean).sort(); $('#feasibilityFilter').innerHTML='<option value="all">All</option>'+feas.map(x=>`<option>${escapeHtml(x)}</option>`).join('');
+    for(const k of ['mode','tier','feasibility','alert']){const el=$(`#${k}Filter`);if(el&&[...el.options].some(o=>o.value===state.filters[k]))el.value=state.filters[k];}
   }
 
   function badge(label,color){return `<span class="status-badge" style="color:${color}">${escapeHtml(label||'Unknown')}</span>`}
