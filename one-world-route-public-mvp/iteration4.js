@@ -224,7 +224,7 @@
     let altitude=clamp(1.36+(distance/110)*.72,1.36,2.18);
     if(isMobile()) altitude+=.16;
     if(id===phase.range[0] || chapterChanged) altitude=Math.max(altitude,1.92);
-    const duration=clamp(Math.round(activeSpeed()*.68),180,920);
+    const duration=$('#reducedMotion')?.checked ? 0 : clamp(Math.round(activeSpeed()*.68),180,920);
 
     clearTimeout(runtime.focusTimer);
     runtime.applyingCamera=true;
@@ -272,6 +272,7 @@
   function animateChapterShift(){
     const hud=$('#storyHud');
     if(!hud) return;
+    if($('#reducedMotion')?.checked){hud.classList.remove('chapter-shift');return;}
     hud.classList.remove('chapter-shift');
     void hud.offsetWidth;
     hud.classList.add('chapter-shift');
