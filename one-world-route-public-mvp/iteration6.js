@@ -125,6 +125,7 @@
 
   function appendSelectedIntelligence(){
     const ops=$('.mode-switch button[data-mode="operations"]')?.classList.contains('active');if(!ops)return;
+    if(new URLSearchParams(location.search).has('country')){ $('#selectedOpsIntel')?.remove(); return; }
     const box=$('#detailContent');if(!box||$('#selectedOpsIntel',box))return;
     const s=selected();if(!s)return;
     const f=freshness(s),reasons=riskReasons(s),deps=dependencyWindow(s.id),cum=cumulativeBudget(s.id),total=transportBudget()||1;
