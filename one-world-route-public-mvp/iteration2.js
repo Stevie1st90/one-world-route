@@ -235,7 +235,12 @@
 
   function setPhaseFilter(phaseId){
     const button=$(`#phaseRail button[data-phase="${phaseId}"]`);
-    if(button && !button.classList.contains('active')) button.click();
+    if(button?.classList.contains('active'))return;
+    if(window.__ONE_WORLD_ROUTE_APP__?.setPhase){
+      window.__ONE_WORLD_ROUTE_APP__.setPhase(phaseId,{jump:false,focus:false});
+      return;
+    }
+    if(button) button.click();
   }
 
   function setControlValue(selector,value,eventName){
@@ -260,10 +265,9 @@
     setControlValue('#showPoints',false,'change');
     setControlValue('#autoRotate',false,'change');
 
-    const range=$('#routeRange');
-    if(range){range.value='1';range.dispatchEvent(new Event('input',{bubbles:true}));}
+    const startId=currentSegmentId();
     setTimeout(()=>{
-      setPhaseFilter(1);
+      setPhaseFilter(phaseFor(startId).id);
       syncProgress();
       const play=$('#playBtn');
       if(play && play.textContent.trim()==='▶')play.click();
