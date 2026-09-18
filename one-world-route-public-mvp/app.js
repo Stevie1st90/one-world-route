@@ -193,7 +193,8 @@
 
   function updateGlobe(){
     if(!state.globe) return;
-    const segs=visibleSegments(); const sel=state.segments.find(s=>s.id===state.selectedSegmentId);
+    const filtered=visibleSegments(); const sel=state.segments.find(s=>s.id===state.selectedSegmentId);
+    const segs=sel&&!filtered.some(s=>s.id===sel.id)?[...filtered,sel]:filtered;
     state.globe
       .arcsData(segs)
       .arcColor(s=>{
@@ -229,7 +230,7 @@
       .polygonStrokeColor(()=>state.globe.__oneWorldArtifactFreeBorders?'rgba(8,14,24,.001)':'rgba(135,166,201,.18)')
       .polygonAltitude(f=>state.globe.__oneWorldArtifactFreeBorders?(state.selectedCountry?.cca3===f.id?.003:.0005):(state.selectedCountry?.cca3===f.id?.012:.002));
     if(state.globe.controls()) state.globe.controls().autoRotate=state.settings.autoRotate && !state.playing;
-    updateLegend(); updateFloatingStats(); $('#filterCount').textContent=`${segs.length} / 194`;
+    updateLegend(); updateFloatingStats(); $('#filterCount').textContent=`${filtered.length} / 194`;
   }
 
   function focusSegment(s,duration=900){ if(state.globe) state.globe.pointOfView({lat:s.endLat,lng:s.endLng,altitude:1.65}, state.settings.reducedMotion?0:duration); }
@@ -238,6 +239,7 @@
   function selectSegment(id,focus=false){
     const s=state.segments.find(x=>x.id===Number(id)); if(!s)return;
     state.selectedSegmentId=s.id; state.selectedCountry=null; state.activeTab=state.mode==='operations'?'operations':'overview';
+    if(state.phase!=='all' && Number(state.phase)!==s.phaseId){state.phase=String(s.phaseId);renderChrome();}
     $('#routeRange').value=s.id; updateRange(); updateGlobe(); renderDetail(); updateTimeline(); updateUrl(); if(focus)focusSegment(s);
   }
   function countryContextSegment(c){
@@ -283,7 +285,11 @@
         if(state.phase!=='all' && Number(state.phase)!==context.phaseId)state.phase=String(context.phaseId);
       }
       state.activeTab=state.mode==='operations'?'operations':'overview';
-    } else if(p.get('segment')) state.selectedSegmentId=Math.min(194,Math.max(1,Number(p.get('segment'))||1));
+    } else if(p.get('segment')){
+      state.selectedSegmentId=Math.min(194,Math.max(1,Number(p.get('segment'))||1));
+      const selected=state.segments.find(s=>s.id===state.selectedSegmentId);
+      if(selected&&state.phase!=='all'&&Number(state.phase)!==selected.phaseId)state.phase=String(selected.phaseId);
+    }
   }
 
   function renderChrome(){
@@ -453,9 +459,14 @@
       const settings=$('#settingsPopover');
       if(settings&&!settings.classList.contains('hidden')&&!settings.contains(e.target)&&!e.target.closest?.('#settingsBtn'))settings.classList.add('hidden');
       const left=$('#leftPanel'),right=$('#rightPanel');
-      if(left?.classList.contains('mobile-open')&&!left.contains(e.target)&&!e.target.closest?.('#mobileFilters'))left.classList.remove('mobile-open');
-      if(right?.classList.contains('mobile-open')&&!right.contains(e.target)&&!e.target.closest?.('#mobileDetails'))right.classList.remove('mobile-open');
-    });
+      const closeLeft=left?.classList.contains('mobile-open')&&!left.contains(e.target)&&!e.target.closest?.('#mobileFilters');
+      const closeRight=right?.classList.contains('mobile-open')&&!right.contains(e.target)&&!e.target.closest?.('#mobileDetails');
+      if(closeLeft||closeRight){
+        if(closeLeft)left.classList.remove('mobile-open');
+        if(closeRight)right.classList.remove('mobile-open');
+        e.preventDefault();e.stopPropagation();
+      }
+    },true);
     document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openCommand()}else if(e.key==='Escape'){closeCommand();$('#infoModal').classList.add('hidden');$('#settingsPopover').classList.add('hidden');closeMobilePanels()}else if(e.code==='Space'&&!/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)){e.preventDefault();play()}else if(e.key==='ArrowRight')selectSegment(Math.min(194,state.selectedSegmentId+1),true);else if(e.key==='ArrowLeft')selectSegment(Math.max(1,state.selectedSegmentId-1),true)});
   }
 
