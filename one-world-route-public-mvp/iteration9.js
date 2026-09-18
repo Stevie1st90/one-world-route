@@ -291,11 +291,13 @@
         {id:'background',type:'background',paint:{'background-color':'#071019'}},
         {id:'osm',type:'raster',source:'osm',paint:{'raster-opacity':1,'raster-saturation':-.06,'raster-contrast':.08,'raster-brightness-min':.01,'raster-brightness-max':.76}},
         {id:'hills',type:'hillshade',source:'hillshadeSource',paint:{'hillshade-method':'multidirectional','hillshade-exaggeration':.42,'hillshade-shadow-color':'#6a7780','hillshade-highlight-color':'#f5f8fa','hillshade-accent-color':'#8c9ca6'}},
+        {id:'route-hit',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(0,0,0,.001)','line-opacity':.001,'line-width':['interpolate',['linear'],['zoom'],2,10,7,14,12,18]}},
         {id:'route-world',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.20,'line-width':widthExpr(.55,.9,1.4)}},
         {id:'route-phase-shadow',type:'line',source:'routeSource',filter:['==',['get','phaseId'],phase],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(4,10,16,.48)','line-opacity':$('#routeGlow')?.checked===false?.18:.58,'line-width':widthExpr(1.8,3.2,5.2)}},
         {id:'route-phase',type:'line',source:'routeSource',filter:['==',['get','phaseId'],phase],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.76,'line-width':widthExpr(1.15,2.1,3.3)}},
         {id:'selected-route-shadow',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(4,10,16,.72)','line-opacity':$('#routeGlow')?.checked===false?.22:.88,'line-width':widthExpr(3.2,5.4,7.6)}},
         {id:'selected-route',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#00c8f2','line-opacity':1,'line-width':widthExpr(2.15,3.9,5.9)}},
+        {id:'country-hit',type:'circle',source:'countrySource',layout:{visibility:$('#showPoints')?.checked===false?'none':'visible'},paint:{'circle-radius':['interpolate',['linear'],['zoom'],2,8,7,10,11,12],'circle-color':'rgba(0,0,0,.001)','circle-opacity':.001}},
         {id:'country-points',type:'circle',source:'countrySource',layout:{visibility:$('#showPoints')?.checked===false?'none':'visible'},paint:{'circle-radius':['interpolate',['linear'],['zoom'],2,2.2,7,3.3,11,4.6],'circle-color':'rgba(207,232,247,.82)','circle-stroke-color':'rgba(4,12,20,.86)','circle-stroke-width':1,'circle-opacity':.9}},
         {id:'country-selected',type:'circle',source:'countrySource',filter:['==',['get','name'],new URLSearchParams(location.search).get('country')||''],paint:{'circle-radius':['interpolate',['linear'],['zoom'],2,4.8,7,6.6,11,8.4],'circle-color':'#59ddff','circle-stroke-color':'#ffffff','circle-stroke-width':1.4,'circle-opacity':1}}
       ]
@@ -343,7 +345,7 @@
       runtime.terrainBaseReady=true;clearTimeout(runtime.terrainFailTimer);
       syncTerrainSelection({fly:false});syncTerrainSettings();if(runtime.terrainRequested)activateTerrain();
 
-      const routeLayers=['selected-route','route-phase','route-world'];
+      const routeLayers=['route-hit','selected-route','route-phase','route-world'];
       map.on('click',e=>{
         const hit=map.queryRenderedFeatures(e.point,{layers:routeLayers}).find(f=>Number.isFinite(Number(f.properties?.id)));
         if(!hit)return;
@@ -351,13 +353,14 @@
         window.__ONE_WORLD_ROUTE_APP__?.selectSegment?.(id,false);
         runtime.selectedId=id;syncTerrainData();syncTerrainSelection({fly:true});
       });
-      map.on('click','country-points',e=>{
+      map.on('click','country-hit',e=>{
         const name=e.features?.[0]?.properties?.name;if(!name)return;
         window.__ONE_WORLD_ROUTE_APP__?.selectCountry?.(name,false);
+        window.__ONE_WORLD_ROUTE_APP__?.openDetails?.();
         runtime.selectedId=currentSegmentId();syncTerrainSelection({fly:true});
       });
-      map.on('mouseenter','country-points',()=>{map.getCanvas().style.cursor='pointer'});
-      map.on('mouseleave','country-points',()=>{map.getCanvas().style.cursor=''});
+      map.on('mouseenter','country-hit',()=>{map.getCanvas().style.cursor='pointer'});
+      map.on('mouseleave','country-hit',()=>{map.getCanvas().style.cursor=''});
     });
 
     map.on('error',e=>{
@@ -388,6 +391,7 @@
     const map=runtime.terrainMap;if(!map)return;
     const points=$('#showPoints')?.checked===false?'none':'visible';
     if(map.getLayer?.('country-points'))map.setLayoutProperty('country-points','visibility',points);
+    if(map.getLayer?.('country-hit'))map.setLayoutProperty('country-hit','visibility',points);
     const glow=$('#routeGlow')?.checked!==false;
     if(map.getLayer?.('route-phase-shadow'))map.setPaintProperty('route-phase-shadow','line-opacity',glow?.58:.18);
     if(map.getLayer?.('selected-route-shadow'))map.setPaintProperty('selected-route-shadow','line-opacity',glow?.88:.22);
