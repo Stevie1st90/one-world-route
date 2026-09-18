@@ -249,7 +249,10 @@
   }
 
   function routeGeoJson(){
-    return {type:'FeatureCollection',features:terrainVisibleSegments().map(segmentFeature).filter(Boolean)};
+    const visible=terrainVisibleSegments();
+    const selected=(runtime.routeData?.segments||[]).find(s=>Number(s.id)===Number(runtime.selectedId));
+    const rows=selected&&!visible.some(s=>Number(s.id)===Number(selected.id))?[...visible,selected]:visible;
+    return {type:'FeatureCollection',features:rows.map(segmentFeature).filter(Boolean)};
   }
 
   function countryGeoJson(){
@@ -350,8 +353,8 @@
       });
       map.on('click','country-points',e=>{
         const name=e.features?.[0]?.properties?.name;if(!name)return;
-        window.__ONE_WORLD_ROUTE_APP__?.selectCountry?.(name,true);
-        runtime.selectedId=currentSegmentId();syncTerrainData();syncTerrainHierarchy();syncTerrainCountry();
+        window.__ONE_WORLD_ROUTE_APP__?.selectCountry?.(name,false);
+        runtime.selectedId=currentSegmentId();syncTerrainSelection({fly:true});
       });
       map.on('mouseenter','country-points',()=>{map.getCanvas().style.cursor='pointer'});
       map.on('mouseleave','country-points',()=>{map.getCanvas().style.cursor=''});
