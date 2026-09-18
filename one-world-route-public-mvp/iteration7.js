@@ -78,9 +78,13 @@
     const native=globe.pointOfView.bind(globe);
     globe.pointOfView=function(view,duration,...rest){
       if(document.body.classList.contains('story-mode')){
-        const speed=Number($('.speed-control button.active')?.dataset.speed||700);
-        if(speed>=2000)duration=1500;
-        else if(speed>=600)duration=Math.max(Number(duration)||0,520);
+        const reduced=$('#reducedMotion')?.checked||window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if(reduced)duration=0;
+        else{
+          const speed=Number($('.speed-control button.active')?.dataset.speed||700);
+          if(speed>=2000)duration=1500;
+          else if(speed>=600)duration=Math.max(Number(duration)||0,520);
+        }
       }
       return native(view,duration,...rest);
     };
