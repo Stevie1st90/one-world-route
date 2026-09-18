@@ -150,7 +150,10 @@
     const reset=$('#clearFilters');
     const critical=$('#layerGrid button[data-layer="critical"]');
     if(reset)reset.click();
-    setTimeout(()=>critical?.click(),0);
+    setTimeout(()=>{
+      critical?.click();
+      if(window.innerWidth<=820)$('#leftPanel')?.classList.remove('mobile-open');
+    },0);
   }
 
   function bindBoardActions(board){
