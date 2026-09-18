@@ -222,7 +222,8 @@
     let card=$('.journey-context',box);
     if(!card){card=document.createElement('div');card.className='journey-context';box.appendChild(card);}
     const phase=phaseFor(id);
-    card.innerHTML=`<div class="journey-context-top"><span>Journey position</span><b>${id} / 194</b></div><div class="journey-context-track"><i></i></div><div class="journey-context-note"><span>Current chapter</span><strong>${phase.title}</strong></div>`;
+    const country=new URLSearchParams(location.search).get('country');
+    card.innerHTML=`<div class="journey-context-top"><span>${country?'Route context':'Journey position'}</span><b>${id} / 194</b></div><div class="journey-context-track"><i></i></div><div class="journey-context-note"><span>Current chapter</span><strong>${phase.title}</strong></div>`;
   }
 
   function ensureExploreRoute(){
