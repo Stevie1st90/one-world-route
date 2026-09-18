@@ -217,11 +217,17 @@
       .ringsData(state.selectedCountry ? [state.selectedCountry] : sel ? [{lat:sel.endLat,lng:sel.endLng}] : [])
       .polygonsData(state.polygons)
       .polygonCapColor(f=>{
-        const c=state.countryByCca3.get(f.id); if(!c)return 'rgba(16,23,36,.16)';
+        const c=state.countryByCca3.get(f.id);
+        if(state.globe.__oneWorldArtifactFreeBorders){
+          return state.selectedCountry?.cca3===f.id?'rgba(89,221,255,.075)':'rgba(8,14,24,.001)';
+        }
+        if(!c)return 'rgba(16,23,36,.16)';
         if(state.selectedCountry?.cca3===f.id)return 'rgba(89,221,255,.34)';
         return c.readiness==='BLOCKED'?'rgba(255,77,103,.22)':'rgba(80,118,160,.18)';
       })
-      .polygonAltitude(f=>state.selectedCountry?.cca3 === f.id ? .012 : .002);
+      .polygonSideColor(()=>state.globe.__oneWorldArtifactFreeBorders?'rgba(8,14,24,.001)':'rgba(7,13,22,.12)')
+      .polygonStrokeColor(()=>state.globe.__oneWorldArtifactFreeBorders?'rgba(8,14,24,.001)':'rgba(135,166,201,.18)')
+      .polygonAltitude(f=>state.globe.__oneWorldArtifactFreeBorders?(state.selectedCountry?.cca3===f.id?.003:.0005):(state.selectedCountry?.cca3===f.id?.012:.002));
     if(state.globe.controls()) state.globe.controls().autoRotate=state.settings.autoRotate && !state.playing;
     updateLegend(); updateFloatingStats(); $('#filterCount').textContent=`${segs.length} / 194`;
   }
