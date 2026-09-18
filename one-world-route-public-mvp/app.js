@@ -295,9 +295,9 @@
   function renderChrome(){
     $('#topKpis').innerHTML=`<div class="kpi"><b>195</b><span>countries</span></div><div class="kpi"><b>379</b><span>planned days</span></div><div class="kpi"><b>194</b><span>executable</span></div><div class="kpi"><b>€90.6k</b><span>base model</span></div>`;
     $('#phaseRail').innerHTML=`<button data-phase="all" class="${state.phase==='all'?'active':''}">All route</button>`+PHASES.map(p=>`<button data-phase="${p.id}" class="${String(state.phase)===String(p.id)?'active':''}" title="${p.name}"><span class="phase-dot" style="background:${p.color}"></span>${String(p.id).padStart(2,'0')} ${p.short}</button>`).join('');
-    $('#phaseRail button').forEach(b=>b.onclick=()=>{state.phase=b.dataset.phase;renderChrome();updateGlobe();renderDetail();updateUrl();const p=PHASES.find(x=>String(x.id)===state.phase);if(p)selectSegment(p.range[0],true)});
+    $$('#phaseRail button').forEach(b=>b.onclick=()=>{state.phase=b.dataset.phase;renderChrome();updateGlobe();renderDetail();updateUrl();const p=PHASES.find(x=>String(x.id)===state.phase);if(p)selectSegment(p.range[0],true)});
     if(window.innerWidth<=820&&state.phase!=='all')requestAnimationFrame(()=>$('#phaseRail button.active')?.scrollIntoView({block:'nearest',inline:'center',behavior:state.settings.reducedMotion?'auto':'smooth'}));
-    $('#layerGrid button').forEach(b=>b.classList.toggle('active',b.dataset.layer===state.layer));
+    $$('#layerGrid button').forEach(b=>b.classList.toggle('active',b.dataset.layer===state.layer));
     $$('.mode-switch button').forEach(b=>b.classList.toggle('active',b.dataset.mode===state.mode));
   }
 
@@ -312,7 +312,7 @@
   function relatedSegments(country){return state.segments.filter(s=>s.from===country.name||s.to===country.name)}
 
   function renderDetail(){
-    const tabBtns=$('#detailTabs button'); tabBtns.forEach(b=>b.classList.toggle('active',b.dataset.tab===state.activeTab));
+    const tabBtns=$$('#detailTabs button'); tabBtns.forEach(b=>b.classList.toggle('active',b.dataset.tab===state.activeTab));
     const box=$('#detailContent');
     const resetScroll=()=>requestAnimationFrame(()=>{ if(box) box.scrollTop=0; });
     if(state.selectedCountry){ renderCountryDetail(box,state.selectedCountry); resetScroll(); return; }
@@ -442,7 +442,7 @@
     $$('.speed-control button').forEach(b=>b.onclick=()=>{$$('.speed-control button').forEach(x=>x.classList.remove('active'));b.classList.add('active');state.speed=Number(b.dataset.speed)});
     $$('#detailTabs button').forEach(b=>b.onclick=()=>{state.activeTab=b.dataset.tab;renderDetail()});
     $('#brandBtn').onclick=()=>{closeMobilePanels();closeCommand();$('#settingsPopover').classList.add('hidden');state.selectedCountry=null;state.selectedSegmentId=1;state.phase='all';state.layer='route';renderChrome();selectSegment(1,true)};
-    $('#infoBtn').onclick=()=>{closeMobilePanels();closeCommand();$('#settingsPopover').classList.add('hidden');$('#infoModal').classList.remove('hidden')}; $('.modal-close').forEach(x=>x.onclick=()=>x.closest('.modal').classList.add('hidden')); $('#infoModal').onclick=e=>{if(e.target.id==='infoModal')e.currentTarget.classList.add('hidden')};
+    $('#infoBtn').onclick=()=>{closeMobilePanels();closeCommand();$('#settingsPopover').classList.add('hidden');$('#infoModal').classList.remove('hidden')}; $$('.modal-close').forEach(x=>x.onclick=()=>x.closest('.modal').classList.add('hidden')); $('#infoModal').onclick=e=>{if(e.target.id==='infoModal')e.currentTarget.classList.add('hidden')};
     $('#settingsBtn').onclick=()=>{closeMobilePanels();closeCommand();$('#settingsPopover').classList.toggle('hidden')};
     $('#settingsClose')?.addEventListener('click',()=>$('#settingsPopover').classList.add('hidden'));
     $('#commandClose')?.addEventListener('click',closeCommand);
