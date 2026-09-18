@@ -58,6 +58,8 @@
   const sourceList = s => String(s||'').split(/\s*;\s*/).filter(x=>/^https?:/.test(x));
   const escapeHtml = s => String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[m]));
   const trim = (s,n=84) => String(s||'').length>n ? String(s).slice(0,n-1)+'…' : String(s||'');
+  const flagAssetUrl = c => /^[a-z]{2}$/i.test(String(c?.cca2||'')) ? `https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.5.0/flags/4x3/${String(c.cca2).toLowerCase()}.svg` : '';
+  const flagMarkup = (c,w=24,h=18) => { const u=flagAssetUrl(c); return u ? `<img src="${u}" alt="" width="${w}" height="${h}" style="display:block;object-fit:cover;box-shadow:0 0 0 1px rgba(255,255,255,.10)">` : ''; };
 
   function criticalScore(s){
     let x={A:30,B:20,C:10,D:5,E:4}[s.bookingTier]||5;
@@ -74,7 +76,7 @@
       if (!r.ok) throw new Error(r.status);
       const local = await r.json();
       if (Array.isArray(local) && local.length === 195) {
-        return local.map(x => ({name:{common:x.name},translations:{deu:{common:x.name}},latlng:[x.lat,x.lng],cca3:x.cca3,region:x.region,subregion:x.subregion,flag:x.flag,altSpellings:[x.cca2,x.cca3]}));
+        return local.map(x => ({name:{common:x.name},translations:{deu:{common:x.name}},latlng:[x.lat,x.lng],cca2:x.cca2,cca3:x.cca3,region:x.region,subregion:x.subregion,flag:x.flag,altSpellings:[x.cca2,x.cca3]}));
       }
     } catch(e) { console.warn('Local centroid dataset failed', e); }
     const urls=[
@@ -104,7 +106,7 @@
   function enrich(){
     state.countries=state.raw.countries.map(c=>{
       const g=findGeo(c.name); const latlng=g?.latlng || [0,0];
-      return {...c, lat:+latlng[0], lng:+latlng[1], flag:g?.flag||'', cca3:g?.cca3||'', region:g?.region||'', subregion:g?.subregion||''};
+      return {...c, lat:+latlng[0], lng:+latlng[1], flag:g?.flag||'', cca2:g?.cca2||'', cca3:g?.cca3||'', region:g?.region||'', subregion:g?.subregion||''};
     });
     const cMap=new Map(state.countries.map(c=>[c.name,c]));
     state.segments=state.raw.segments.map(s=>{
@@ -171,7 +173,7 @@
         .arcLabel(s=>`<b>#${s.id} ${escapeHtml(s.from)} → ${escapeHtml(s.to)}</b><br><span style="color:#8ba0b8">${escapeHtml(s.mode)} · ${escapeHtml(s.phaseName)}</span>`)
         .onArcClick(s=>selectSegment(s.id,true))
         .pointLat('lat').pointLng('lng').pointAltitude(.011)
-        .pointLabel(c=>`<b>${c.flag||''} ${escapeHtml(c.name)}</b><br><span style="color:#8ba0b8">Country ${c.number}/195 · ${escapeHtml(c.readiness)}</span>`)
+        .pointLabel(c=>`<div style="display:flex;align-items:center;gap:7px">${flagMarkup(c,22,16)}<div><b>${escapeHtml(c.name)}</b><br><span style="color:#8ba0b8">Country ${c.number}/195 · ${escapeHtml(c.readiness)}</span></div></div>`)
         .onPointClick(c=>selectCountry(c.name,true))
         .labelLat('lat').labelLng('lng').labelText('text').labelColor(()=> '#eafaff').labelSize(1.2).labelAltitude(.025)
         .ringLat('lat').ringLng('lng').ringColor(()=>[colors.cyan,'rgba(89,221,255,0)']).ringMaxRadius(2.8).ringPropagationSpeed(1.2).ringRepeatPeriod(900)
@@ -194,7 +196,7 @@
     state.globe
       .arcsData(segs)
       .arcColor(s=>{
-        const c=arcColor(s); return s.id===state.selectedSegmentId ? [c,'#ffffff'] : c;
+        const c=arcColor(s); return s.id===state.selectedSegmentId && state.settings.routeGlow ? [c,'#ffffff'] : c;
       })
       .arcStroke(s=>s.id===state.selectedSegmentId ? Math.max(1.05,state.settings.arcWidth*1.8) : state.settings.arcWidth)
       .arcDashLength(s => s.id === state.selectedSegmentId ? .65 : 1)
@@ -203,7 +205,7 @@
       .pointsData(state.settings.showPoints ? state.countries : [])
       .pointRadius(c => c.name === state.selectedCountry?.name ? .22 : .075)
       .pointColor(c=>c.name===state.selectedCountry?.name?colors.cyan:(c.readiness==='BLOCKED'?colors.red:'rgba(188,215,239,.62)'))
-      .labelsData(state.selectedCountry ? [{lat:state.selectedCountry.lat,lng:state.selectedCountry.lng,text:`${state.selectedCountry.flag||''} ${state.selectedCountry.name}`}] : sel ? [{lat:sel.endLat,lng:sel.endLng,text:sel.to}] : [])
+      .labelsData(state.selectedCountry ? [{lat:state.selectedCountry.lat,lng:state.selectedCountry.lng,text:state.selectedCountry.name}] : sel ? [{lat:sel.endLat,lng:sel.endLng,text:sel.to}] : [])
       .ringsData(state.selectedCountry ? [state.selectedCountry] : sel ? [{lat:sel.endLat,lng:sel.endLng}] : [])
       .polygonsData(state.polygons)
       .polygonCapColor(f=>{
@@ -224,9 +226,27 @@
     state.selectedSegmentId=s.id; state.selectedCountry=null; state.activeTab=state.mode==='operations'?'operations':'overview';
     $('#routeRange').value=s.id; updateRange(); updateGlobe(); renderDetail(); updateTimeline(); updateUrl(); if(focus)focusSegment(s);
   }
+  function countryContextSegment(c){
+    if(!c)return null;
+    const incoming=state.segments.find(s=>s.to===c.name);
+    const outgoing=state.segments.find(s=>s.from===c.name);
+    if(c.name==='Deutschland') return state.selectedSegmentId>120 ? (incoming||outgoing) : (outgoing||incoming);
+    return incoming||outgoing||null;
+  }
+
   function selectCountry(name,focus=false){
     const c=state.countries.find(x=>x.name===name); if(!c)return;
-    state.selectedCountry=c; state.activeTab='overview'; updateGlobe(); renderDetail(); updateUrl(); if(focus)focusCountry(c);
+    const context=countryContextSegment(c);
+    if(context){
+      state.selectedSegmentId=context.id;
+      $('#routeRange').value=context.id;
+      updateRange();
+      updateTimeline();
+      if(state.phase!=='all' && Number(state.phase)!==context.phaseId){state.phase=String(context.phaseId);renderChrome();}
+    }
+    state.selectedCountry=c;
+    state.activeTab=state.mode==='operations'?'operations':'overview';
+    updateGlobe(); renderDetail(); updateUrl(); if(focus)focusCountry(c);
   }
 
   function updateUrl(){
@@ -237,8 +257,15 @@
   }
   function restoreUrl(){
     const p=new URLSearchParams(location.search); if(p.get('layer'))state.layer=p.get('layer'); if(p.get('phase'))state.phase=p.get('phase'); if(p.get('mode'))state.mode=p.get('mode');
-    if(p.get('country')) state.selectedCountry=state.countries.find(c=>c.name===p.get('country'))||null;
-    else if(p.get('segment')) state.selectedSegmentId=Math.min(194,Math.max(1,Number(p.get('segment'))||1));
+    if(p.get('country')){
+      state.selectedCountry=state.countries.find(c=>c.name===p.get('country'))||null;
+      const context=countryContextSegment(state.selectedCountry);
+      if(context){
+        state.selectedSegmentId=context.id;
+        if(state.phase!=='all' && Number(state.phase)!==context.phaseId)state.phase=String(context.phaseId);
+      }
+      state.activeTab=state.mode==='operations'?'operations':'overview';
+    } else if(p.get('segment')) state.selectedSegmentId=Math.min(194,Math.max(1,Number(p.get('segment'))||1));
   }
 
   function renderChrome(){
@@ -286,7 +313,7 @@
   }
 
   function renderCountryDetail(box,c){
-    $('#detailEyebrow').textContent=`COUNTRY ${c.number} · ${c.region||'WORLD'}`; $('#detailTitle').textContent=`${c.flag||''} ${c.name}`;
+    $('#detailEyebrow').textContent=`COUNTRY ${c.number} · ${c.region||'WORLD'}`; $('#detailTitle').innerHTML=`<span style="display:inline-flex;align-items:center;gap:9px">${flagMarkup(c,24,18)}<span>${escapeHtml(c.name)}</span></span>`;
     const rel=relatedSegments(c); const incoming=rel.find(s=>s.to===c.name), outgoing=rel.find(s=>s.from===c.name);
     if(state.activeTab==='overview'){
       box.innerHTML=`<div class="overview-number">${c.number}<small>/195</small></div><p class="detail-copy">Planned entry ${fmtDate(c.planEntry)} · ${escapeHtml(c.subregion||c.region||'')}</p><div class="data-grid">${dataCard('Readiness',c.readiness)}${dataCard('Visa',c.visaType||'—',c.visaStatus||'')}${dataCard('Health',`Priority ${c.healthPriority??'—'}`,c.healthStatus||'')}${dataCard('Planned entry',fmtDate(c.planEntry))}</div><div style="display:flex;gap:6px">${badge(c.readiness,readinessColor(c.readiness))}</div>${incoming?`<h3>Arrival</h3><div class="route-row" data-segment="${incoming.id}"><span class="route-id">#${incoming.id}</span><div><div class="route-name">${incoming.from} → ${incoming.to}</div><div class="route-sub">${incoming.mode} · ${fmtDate(incoming.planDeparture)}</div></div><span>›</span></div>`:''}${outgoing?`<h3>Next</h3><div class="route-row" data-segment="${outgoing.id}"><span class="route-id">#${outgoing.id}</span><div><div class="route-name">${outgoing.from} → ${outgoing.to}</div><div class="route-sub">${outgoing.mode} · ${fmtDate(outgoing.planDeparture)}</div></div><span>›</span></div>`:''}`;
@@ -372,6 +399,12 @@
     $('#mobileFilters').onclick=()=>$('#leftPanel').classList.toggle('mobile-open'); $('#mobileDetails').onclick=()=>$('#rightPanel').classList.toggle('mobile-open'); $('#closeDetails').onclick=()=>$('#rightPanel').classList.remove('mobile-open');
     document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openCommand()}else if(e.key==='Escape'){$('#commandPalette').classList.add('hidden');$('#infoModal').classList.add('hidden');$('#settingsPopover').classList.add('hidden')}else if(e.code==='Space'&&!/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)){e.preventDefault();play()}else if(e.key==='ArrowRight')selectSegment(Math.min(194,state.selectedSegmentId+1),true);else if(e.key==='ArrowLeft')selectSegment(Math.max(1,state.selectedSegmentId-1),true)});
   }
+
+  window.__ONE_WORLD_ROUTE_APP__={
+    selectSegment:(id,focus=true)=>selectSegment(Number(id),Boolean(focus)),
+    selectCountry:(name,focus=true)=>selectCountry(String(name),Boolean(focus)),
+    getState:()=>({selectedSegmentId:state.selectedSegmentId,selectedCountry:state.selectedCountry?.name||null,layer:state.layer,phase:state.phase,mode:state.mode,filters:{...state.filters},settings:{...state.settings},playing:state.playing,speed:state.speed})
+  };
 
   async function init(){
     try{
