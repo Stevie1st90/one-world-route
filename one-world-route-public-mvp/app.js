@@ -153,15 +153,22 @@
   }
 
   function visibleSegments(){
+    const exploreAllRoute=state.mode==='explore' && state.layer==='route' && state.phase==='all';
     return state.segments.filter(s=>{
       if(state.phase!=='all' && s.phaseId!==Number(state.phase)) return false;
-      if(state.filters.mode!=='all' && s.mode!==state.filters.mode) return false;
-      if(state.filters.tier!=='all' && s.bookingTier!==state.filters.tier) return false;
-      if(state.filters.feasibility!=='all' && s.feasibility!==state.filters.feasibility) return false;
-      if(state.filters.alert!=='all' && s.alertLevel!==state.filters.alert) return false;
+      if(!exploreAllRoute){
+        if(state.filters.mode!=='all' && s.mode!==state.filters.mode) return false;
+        if(state.filters.tier!=='all' && s.bookingTier!==state.filters.tier) return false;
+        if(state.filters.feasibility!=='all' && s.feasibility!==state.filters.feasibility) return false;
+        if(state.filters.alert!=='all' && s.alertLevel!==state.filters.alert) return false;
+      }
       if(state.layer==='critical' && !state.criticalIds.has(s.id)) return false;
       return true;
     });
+  }
+
+  function storyLocksGlobeSelection(){
+    return document.body.classList.contains('story-mode') || document.body.classList.contains('story-launching');
   }
 
   async function loadPolygons(){
@@ -186,15 +193,15 @@
         .arcStartLat('startLat').arcStartLng('startLng').arcEndLat('endLat').arcEndLng('endLng')
         .arcAltitudeAutoScale(.28).arcCurveResolution(48)
         .arcLabel(s=>`<b>#${s.id} ${escapeHtml(s.from)} → ${escapeHtml(s.to)}</b><br><span style="color:#8ba0b8">${escapeHtml(s.mode)} · ${escapeHtml(s.phaseName)}</span>`)
-        .onArcClick(s=>selectSegment(s.id,true))
+        .onArcClick(s=>{if(!storyLocksGlobeSelection())selectSegment(s.id,true)})
         .pointLat('lat').pointLng('lng').pointAltitude(.011)
         .pointLabel(c=>`<div style="display:flex;align-items:center;gap:7px">${flagMarkup(c,22,16)}<div><b>${escapeHtml(c.name)}</b><br><span style="color:#8ba0b8">Country ${c.number}/195 · ${escapeHtml(c.readiness)}</span></div></div>`)
-        .onPointClick(c=>selectCountry(c.name,true))
+        .onPointClick(c=>{if(!storyLocksGlobeSelection())selectCountry(c.name,true)})
         .labelLat('lat').labelLng('lng').labelText('text').labelColor(()=> '#eafaff').labelSize(1.2).labelAltitude(.025)
         .ringLat('lat').ringLng('lng').ringColor(()=>[colors.cyan,'rgba(89,221,255,0)']).ringMaxRadius(2.8).ringPropagationSpeed(1.2).ringRepeatPeriod(900)
         .polygonGeoJsonGeometry(f=>f.geometry).polygonStrokeColor(()=> 'rgba(135,166,201,.18)')
         .polygonSideColor(()=> 'rgba(7,13,22,.12)').polygonLabel(f=>escapeHtml(f.properties?.name||''))
-        .onPolygonClick(f=>{const c=state.countryByCca3.get(f.id); if(c)selectCountry(c.name,true)});
+        .onPolygonClick(f=>{if(storyLocksGlobeSelection())return;const c=state.countryByCca3.get(f.id); if(c)selectCountry(c.name,true)});
       state.globe=globe;
       const ctl=globe.controls(); ctl.autoRotate=state.settings.autoRotate; ctl.autoRotateSpeed=.28; ctl.enableDamping=true; ctl.dampingFactor=.08; ctl.minDistance=170; ctl.maxDistance=520;
       updateGlobe();
@@ -217,12 +224,12 @@
       .arcColor(s=>{
         const c=arcColor(s);
         if(s.id===state.selectedSegmentId)return state.settings.routeGlow?[c,'#ffffff']:c;
-        if(state.layer==='route'&&state.phase==='all')return colorAlpha(c,s.phaseId===phaseFor(state.selectedSegmentId).id?.78:.18);
+        if(state.layer==='route'&&state.phase==='all')return colorAlpha(c,s.phaseId===phaseFor(state.selectedSegmentId).id?.96:.68);
         return c;
       })
       .arcStroke(s=>{
         if(s.id===state.selectedSegmentId)return Math.max(1.05,state.settings.arcWidth*1.8);
-        if(state.layer==='route'&&state.phase==='all')return s.phaseId===phaseFor(state.selectedSegmentId).id?Math.max(.22,state.settings.arcWidth*.9):Math.max(.10,state.settings.arcWidth*.34);
+        if(state.layer==='route'&&state.phase==='all')return s.phaseId===phaseFor(state.selectedSegmentId).id?Math.max(.42,state.settings.arcWidth*1.08):Math.max(.24,state.settings.arcWidth*.72);
         return state.settings.arcWidth;
       })
       .arcDashLength(s => s.id === state.selectedSegmentId ? .65 : 1)
@@ -258,6 +265,11 @@
 
   function focusSegment(s,duration=900){ if(state.globe) state.globe.pointOfView({lat:s.endLat,lng:s.endLng,altitude:1.65}, state.settings.reducedMotion?0:duration); }
   function focusCountry(c,duration=900){ if(state.globe) state.globe.pointOfView({lat:c.lat,lng:c.lng,altitude:1.45}, state.settings.reducedMotion?0:duration); }
+  function focusAllRoute(duration=850){
+    if(!state.globe)return;
+    const altitude=window.innerWidth<=820?2.62:2.42;
+    state.globe.pointOfView({lat:18,lng:12,altitude},state.settings.reducedMotion?0:duration);
+  }
 
   function selectSegment(id,focus=false){
     const s=state.segments.find(x=>x.id===Number(id)); if(!s)return;
@@ -319,7 +331,16 @@
   function renderChrome(){
     $('#topKpis').innerHTML=`<div class="kpi"><b>195</b><span>countries</span></div><div class="kpi"><b>379</b><span>planned days</span></div><div class="kpi"><b>194</b><span>executable</span></div><div class="kpi"><b>€90.6k</b><span>base model</span></div>`;
     $('#phaseRail').innerHTML=`<button data-phase="all" class="${state.phase==='all'?'active':''}">All route</button>`+PHASES.map(p=>`<button data-phase="${p.id}" class="${String(state.phase)===String(p.id)?'active':''}" title="${p.name}"><span class="phase-dot" style="background:${p.color}"></span>${String(p.id).padStart(2,'0')} ${p.short}</button>`).join('');
-    $$('#phaseRail button').forEach(b=>b.onclick=()=>{state.phase=b.dataset.phase;renderChrome();updateGlobe();renderDetail();updateUrl();const p=PHASES.find(x=>String(x.id)===state.phase);if(p)selectSegment(p.range[0],true)});
+    $$('#phaseRail button').forEach(b=>b.onclick=()=>{
+      state.phase=b.dataset.phase;
+      if(state.phase==='all'){
+        state.selectedCountry=null;
+        renderChrome();updateGlobe();renderDetail();updateUrl();focusAllRoute();
+        return;
+      }
+      renderChrome();updateGlobe();renderDetail();updateUrl();
+      const p=PHASES.find(x=>String(x.id)===state.phase);if(p)selectSegment(p.range[0],true);
+    });
     if(window.innerWidth<=820)requestAnimationFrame(()=>{
       const rail=$('#phaseRail'),active=rail?.querySelector('button.active');if(!rail||!active)return;
       const max=Math.max(0,rail.scrollWidth-rail.clientWidth);
