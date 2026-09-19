@@ -6,8 +6,9 @@
   const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
   const runtime={
     globe:null,outlineReady:false,terrainMap:null,terrainReady:false,terrainBaseReady:false,
-    terrainActive:false,terrainRequested:false,routeData:null,centroids:null,loadPromise:null,
-    selectedId:1,terrainFailTimer:null,criticalIds:new Set(),highDetailWasDisabled:null
+    terrainActive:false,terrainRequested:false,routeData:null,centroids:null,routeWaypoints:new Map(),loadPromise:null,
+    selectedId:1,terrainFailTimer:null,criticalIds:new Set(),highDetailWasDisabled:null,
+    phaseFocusTimer:null,pendingPhaseFocus:null
   };
 
   const PHASE_COLORS={1:'#149fc4',2:'#315eea',3:'#12a887',4:'#2f9f5e',5:'#6743d9',6:'#b84ad8',7:'#d39418',8:'#dc6d22',9:'#de4f37',10:'#d9324d',11:'#cf4c98',12:'#3e78db'};
@@ -147,12 +148,17 @@
 
   async function loadRouteContext(){
     if(runtime.routeData&&runtime.centroids)return;
-    const [routeRes,centroidRes]=await Promise.all([
+    const [routeRes,centroidRes,waypointRes]=await Promise.all([
       fetch('./data/public-route.json',{cache:'force-cache'}),
-      fetch('./data/country-centroids.json',{cache:'force-cache'})
+      fetch('./data/country-centroids.json',{cache:'force-cache'}),
+      fetch('./data/route-waypoints.json',{cache:'force-cache'}).catch(()=>null)
     ]);
     runtime.routeData=await routeRes.json();
     const centroids=await centroidRes.json();
+    if(waypointRes?.ok){
+      const rows=await waypointRes.json();
+      runtime.routeWaypoints=new Map(Object.entries(rows||{}).map(([id,points])=>[Number(id),points]));
+    }
     runtime.centroids=new Map((centroids||[]).map(c=>[normalize(c.name),c]));
     runtime.criticalIds=new Set([...(runtime.routeData.segments||[])].sort((a,b)=>criticalScore(b)-criticalScore(a)).slice(0,20).map(s=>Number(s.id)));
   }
@@ -244,10 +250,27 @@
     return parts.filter(p=>p.length>1);
   }
 
-  function segmentFeature(s){
+  function segmentPathPoints(s){
+    const id=Number(s.id),curated=runtime.routeWaypoints.get(id);
+    if(Array.isArray(curated)&&curated.length>=2){
+      const stitched=[];
+      for(let i=1;i<curated.length;i++){
+        const a={lng:Number(curated[i-1][0]),lat:Number(curated[i-1][1])};
+        const b={lng:Number(curated[i][0]),lat:Number(curated[i][1])};
+        const leg=greatCirclePoints(a,b,Math.max(10,Math.round(24/(curated.length-1))));
+        if(stitched.length)leg.shift();
+        stitched.push(...leg);
+      }
+      return stitched;
+    }
     const a=runtime.centroids.get(normalize(s.from)),b=runtime.centroids.get(normalize(s.to));
-    if(!a||!b)return null;
-    const parts=splitDateline(greatCirclePoints(a,b));
+    if(!a||!b)return[];
+    return greatCirclePoints(a,b);
+  }
+
+  function segmentFeature(s){
+    const points=segmentPathPoints(s);if(points.length<2)return null;
+    const parts=splitDateline(points);
     const id=Number(s.id),visible=terrainSegmentVisible(s)||id===Number(runtime.selectedId);
     return {
       type:'Feature',properties:{id,phaseId:phaseIdFor(id),color:terrainColor(s),visible:visible?1:0},
@@ -284,7 +307,7 @@
     return {
       version:8,projection:{type:'globe'},
       sources:{
-        osm:{type:'raster',tiles:['https://a.tile.openstreetmap.org/{z}/{x}/{y}.png'],tileSize:256,maxzoom:19,attribution:'© OpenStreetMap contributors'},
+        osm:{type:'raster',tiles:['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],tileSize:256,maxzoom:19,attribution:'© OpenStreetMap contributors'},
         terrainSource:{type:'raster-dem',url:'https://tiles.mapterhorn.com/tilejson.json'},
         hillshadeSource:{type:'raster-dem',url:'https://tiles.mapterhorn.com/tilejson.json'},
         routeSource:{type:'geojson',data:routeGeoJson()},
@@ -416,6 +439,49 @@
     if(map.getLayer?.('selected-route-shadow'))map.setFilter('selected-route-shadow',['==',['get','id'],runtime.selectedId]);
   }
 
+  function sphericalCenter(points){
+    if(!points.length)return [12,20];
+    let x=0,y=0,z=0;
+    for(const [lng,lat] of points){
+      const la=Number(lat)*Math.PI/180,lo=Number(lng)*Math.PI/180;
+      x+=Math.cos(la)*Math.cos(lo);y+=Math.cos(la)*Math.sin(lo);z+=Math.sin(la);
+    }
+    const lng=Math.atan2(y,x)*180/Math.PI,lat=Math.atan2(z,Math.hypot(x,y))*180/Math.PI;
+    return [lng,lat];
+  }
+
+  function angularDistance(a,b){
+    const d2r=Math.PI/180;
+    const la1=a[1]*d2r,la2=b[1]*d2r,dla=(b[1]-a[1])*d2r,dlo=(b[0]-a[0])*d2r;
+    const h=Math.sin(dla/2)**2+Math.cos(la1)*Math.cos(la2)*Math.sin(dlo/2)**2;
+    return 2*Math.atan2(Math.sqrt(h),Math.sqrt(Math.max(0,1-h)))*180/Math.PI;
+  }
+
+  function focusTerrainPhase(raw){
+    const map=runtime.terrainMap;if(!map||!runtime.terrainActive)return;
+    if(String(raw)==='all'){
+      map.easeTo({center:[12,18],zoom:2.35,pitch:8,bearing:0,duration:$('#reducedMotion')?.checked?0:950,essential:true});
+      return;
+    }
+    const phase=Number(raw);if(!Number.isFinite(phase))return;
+    const segments=(runtime.routeData?.segments||[]).filter(s=>phaseIdFor(Number(s.id))===phase);
+    const points=[];
+    for(const s of segments){
+      const curated=runtime.routeWaypoints.get(Number(s.id));
+      if(Array.isArray(curated))curated.forEach(p=>points.push([Number(p[0]),Number(p[1])]));
+      else{
+        const a=runtime.centroids.get(normalize(s.from)),b=runtime.centroids.get(normalize(s.to));
+        if(a)points.push([Number(a.lng),Number(a.lat)]);if(b)points.push([Number(b.lng),Number(b.lat)]);
+      }
+    }
+    if(!points.length)return;
+    const center=sphericalCenter(points);
+    const spread=Math.max(...points.map(p=>angularDistance(center,p)));
+    let zoom=spread>100?2.25:spread>65?2.55:spread>40?2.9:spread>25?3.25:spread>14?3.7:4.15;
+    if(window.innerWidth<=820)zoom-=.12;
+    map.easeTo({center,zoom,pitch:spread>55?8:24,bearing:0,duration:$('#reducedMotion')?.checked?0:1050,essential:true});
+  }
+
   function syncTerrainSelection({fly=false}={}){
     const map=runtime.terrainMap;if(!map)return;
     runtime.selectedId=currentSegmentId();
@@ -450,10 +516,17 @@
   function wire(){
     ensureStyles();ensureTerrainUi();syncSliderFromUrl();findGlobe();
     $('#routeRange')?.addEventListener('input',()=>{
-      if(runtime.terrainActive)setTimeout(()=>syncTerrainSelection({fly:true}),0);
+      if(runtime.terrainActive)setTimeout(()=>syncTerrainSelection({fly:!runtime.pendingPhaseFocus}),0);
     });
-    $('#phaseRail')?.addEventListener('click',()=>{
-      if(runtime.terrainActive)setTimeout(()=>{syncTerrainData();syncTerrainHierarchy();},80);
+    $('#phaseRail')?.addEventListener('click',e=>{
+      const btn=e.target.closest?.('button[data-phase]');if(!btn||!runtime.terrainActive)return;
+      runtime.pendingPhaseFocus=btn.dataset.phase;
+      clearTimeout(runtime.phaseFocusTimer);
+      runtime.phaseFocusTimer=setTimeout(()=>{
+        syncTerrainData();syncTerrainHierarchy();
+        const phase=runtime.pendingPhaseFocus;runtime.pendingPhaseFocus=null;
+        focusTerrainPhase(phase);
+      },260);
     });
     $('#layerGrid')?.addEventListener('click',()=>{if(runtime.terrainActive)setTimeout(()=>{syncTerrainData();syncTerrainHierarchy();},80)});
     $('.mode-switch')?.addEventListener('click',()=>{if(runtime.terrainActive)setTimeout(()=>{syncTerrainData();syncTerrainHierarchy();},80)});

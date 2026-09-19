@@ -5,10 +5,29 @@
     {
       "source": "/(.*)",
       "headers": [
-        {"key": "X-Content-Type-Options", "value": "nosniff"},
-        {"key": "Referrer-Policy", "value": "strict-origin-when-cross-origin"},
-        {"key": "Permissions-Policy", "value": "geolocation=(), camera=(), microphone=()"}
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(), camera=(), microphone=()"
+        }
       ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/route/:id",
+      "destination": "/api/share?type=route&id=:id"
+    },
+    {
+      "source": "/country/:slug",
+      "destination": "/api/share?type=country&slug=:slug"
     }
   ]
 }
