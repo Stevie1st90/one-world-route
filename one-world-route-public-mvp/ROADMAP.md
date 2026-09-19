@@ -1,30 +1,32 @@
-# Roadmap after public MVP
+# Roadmap
 
-## Release 1 — current
-- interactive globe
-- route/country selection
-- operational layers
-- filters/search
-- timeline playback
-- URL sharing
-- privacy-safe public dataset
+## Implemented Release 2 foundation
+- Runtime consolidation into core/features bundles
+- Automated desktop/mobile regression tests
+- Curated corridor geometry framework
+- Automated public-data validation and sanitizing
+- Changelog
+- SEO clean URLs and sitemap
+- Plan vs Actual foundation
+- Journal/media foundation
+- Journey statistics
+- Installable PWA shell
+- Terrain chapter camera navigation
 
-## Release 2
-- locally bundled globe texture/library for zero third-party runtime dependency
-- SEO share pages for countries and route segments
-- richer charts/statistics
-- route update changelog
-- automated public JSON generation from the master source
+## Continue before departure
+- Expand curated waypoints from Europe I across every non-flight ground/ferry corridor.
+- Reverify volatile borders, visas and transport sources.
+- Run the Playwright suite before each public release.
+- Move basemap/DEM delivery away from community tile infrastructure before sustained large traffic.
 
-## Release 3
-- public live progress once travel starts
-- photos/stories as optional layer
-- historical actual vs plan comparison
-- embeddable route view
+## During the journey
+- Update actual-progress from real check-ins.
+- Add journal photos/field notes.
+- Record plan changes instead of overwriting history.
+- Compare planned vs actual days, spend and route.
 
-## Do not add yet
-- user accounts
-- comments/community
-- hotel/flight affiliate booking
-- generic trip planner
-- public access to private operational documents
+## Deliberately excluded
+- Accounts/comments/community
+- Affiliate-booking funnels
+- Generic trip planner
+- Private operational documents

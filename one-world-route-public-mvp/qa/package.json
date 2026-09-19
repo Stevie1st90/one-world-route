@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "test:e2e": "playwright test",
+    "test:e2e:mobile": "playwright test --project=mobile"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0"
+  }
+}

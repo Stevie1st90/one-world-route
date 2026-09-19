@@ -1,0 +1,11 @@
+import {readFile,writeFile} from 'node:fs/promises';
+const input=process.argv[2];if(!input)throw new Error('Usage: node scripts/sanitize-public-route.mjs <master-export.json> [output.json]');
+const source=JSON.parse(await readFile(input,'utf8'));
+const segmentFields=['id','from','to','planDeparture','planArrival','mode','corridor','feasibility','dataQuality','bookingTier','planStatus','transportBudgetEur','visaTypeTarget','visaStatusTarget','healthPriorityTarget','healthStatusTarget','planB','lastVerified','source','alertLevel','alertMessage'];
+const countryFields=['number','name','readiness','visaType','visaAction','visaStatus','healthPriority','healthStatus','healthNote','entryDocs','entryConflict','plannedEntry'];
+const pick=(o,keys)=>Object.fromEntries(keys.filter(k=>o?.[k]!==undefined).map(k=>[k,o[k]]));
+const out={meta:{...(source.meta||{}),publicGeneratedAt:new Date().toISOString()},segments:(source.segments||[]).map(x=>pick(x,segmentFields)),countries:(source.countries||[]).map(x=>pick(x,countryFields))};
+if(out.segments.length!==194||out.countries.length!==195)throw new Error('Refusing publish: expected 194 segments and 195 countries');
+const dest=process.argv[3]||new URL('../data/public-route.json',import.meta.url);
+await writeFile(dest,JSON.stringify(out,null,2));
+console.log('Sanitized public route written to',String(dest));

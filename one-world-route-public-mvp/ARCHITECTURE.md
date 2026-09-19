@@ -1,32 +1,25 @@
-# Architecture
+# ONE WORLD ROUTE — Production architecture
 
-## MVP
+## Runtime
+The browser loads two local JavaScript bundles and two local CSS bundles:
+- `core.bundle.js` / `core.bundle.css`: explorer, globe, story and core mobile UI.
+- `features.bundle.js` / `features.bundle.css`: operations, high-detail globe, terrain and Release 2 features.
 
-The public release is intentionally static:
+Source modules remain separate for maintenance. Rebuild bundles with `node scripts/build-bundles.mjs`.
 
-- `index.html` — application shell
-- `styles.css` — glassmorphism design system and responsive layout
-- `app.js` — state, globe interaction, filters, search, timeline, playback and URL state
-- `data/public-route.json` — sanitized operational route data
-- `data/country-centroids.json` — local country coordinates/metadata
-- Globe.GL is loaded from jsDelivr at runtime
+## Data boundary
+`data/public-route.json` is the publication-safe plan. Never publish PNRs, booking/payment data, passport details, insurance identifiers, private documents, emergency contacts or liquidity/card data.
 
-There is no database, authentication layer or server-side API.
+Use `node scripts/sanitize-public-route.mjs <master-export.json>` and then `node scripts/release-build.mjs`.
 
-## State model
+## Geometry
+`data/route-waypoints.json` supplies curated corridor waypoints. Terrain follows these where available and uses geodesic fallback elsewhere. This avoids runtime dependence on public routing APIs.
 
-The application maintains:
+## Live and media
+`data/actual-progress.json` is independent from the plan and powers Plan vs Actual. `data/media.json` stores optional country/segment/day journal entries. `data/changelog.json` is the public route change history.
 
-- selected segment / selected country
-- Explore vs Operations mode
-- active visualization layer
-- active route phase
-- transport/tier/feasibility/alert filters
-- timeline playback position and speed
-- globe visualization preferences
+## SEO
+Vercel rewrites clean `/route/:id` and `/country/:slug` URLs to `api/share.js`, which emits crawlable metadata before opening the interactive explorer. Sitemap generation is automated.
 
-The important shareable state is persisted in the URL query string.
-
-## Production migration
-
-When the project needs SEO landing pages, automated data publishing, an admin workflow or server-side caching, migrate the same public JSON schema into Next.js. Keep the public/private export boundary unchanged.
+## PWA
+The service worker caches the shell and stable public planning data. Live progress, media and changelog are network-fresh. Third-party OSM and Mapterhorn tiles are intentionally excluded from offline caching.
