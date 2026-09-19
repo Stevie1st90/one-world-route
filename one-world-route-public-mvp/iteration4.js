@@ -289,7 +289,7 @@
       preview.innerHTML='<span class="story-preview-label">CHAPTER END</span><b>Next chapter incoming</b>';
       return;
     }
-    preview.innerHTML='<span class="story-preview-label">NEXT</span>'+next.map((s,i)=>`<span class="story-preview-leg ${i===0?'is-next':''}"><i>+${i+1}</i>${escapeText(s.from)} → ${escapeText(s.to)}</span>`).join('');
+    preview.innerHTML='<span class="story-preview-label">NEXT</span>'+next.map((s,i)=>`<span class="story-preview-leg ${i===0?'is-next':''}"><i>+${i+1}</i>${escapeText(s.displayFrom||window.ONE_WORLD_EN?.country?.(s.from)||s.from)} → ${escapeText(s.displayTo||window.ONE_WORLD_EN?.country?.(s.to)||s.to)}</span>`).join('');
   }
 
   function escapeText(value){

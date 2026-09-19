@@ -43,6 +43,13 @@
   };
   let inlineHits=[];
   let commandHits=[];
+  const EN=window.ONE_WORLD_EN||{registerCountries(){},country:s=>s,mode:s=>s,text:s=>s,value:s=>s};
+  const countryDisplay=c=>c?.displayName||EN.country(c?.name||'',c?.cca2||'');
+  const segmentFrom=s=>s?.displayFrom||EN.country(s?.from||'');
+  const segmentTo=s=>s?.displayTo||EN.country(s?.to||'');
+  const segmentMode=s=>s?.displayMode||EN.mode(s?.mode||'');
+  const englishValue=v=>EN.value(v);
+  const englishText=v=>EN.text(v);
 
   const normalize = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,' ').trim();
   const excelDate = v => {
@@ -123,10 +130,13 @@
       const g=findGeo(c.name); const latlng=g?.latlng || [0,0];
       return {...c, lat:+latlng[0], lng:+latlng[1], flag:g?.flag||'', cca2:g?.cca2||'', cca3:g?.cca3||'', region:g?.region||'', subregion:g?.subregion||''};
     });
+    EN.registerCountries(state.countries);
+    state.countries=state.countries.map(c=>({...c,displayName:EN.country(c.name,c.cca2)}));
     const cMap=new Map(state.countries.map(c=>[c.name,c]));
     state.segments=state.raw.segments.map(s=>{
       const a=cMap.get(s.from), b=cMap.get(s.to), p=phaseFor(s.id);
       return {...s, phaseId:p.id, phaseName:p.name, phaseColor:p.color,
+        displayFrom:a?.displayName||EN.country(s.from),displayTo:b?.displayName||EN.country(s.to),displayMode:EN.mode(s.mode),
         startLat:a?.lat||0,startLng:a?.lng||0,endLat:b?.lat||0,endLng:b?.lng||0,
         criticalScore:criticalScore(s), departureDate:excelDate(s.planDeparture), arrivalDate:excelDate(s.planArrival)};
     });
@@ -192,10 +202,10 @@
         .showGraticules(false)
         .arcStartLat('startLat').arcStartLng('startLng').arcEndLat('endLat').arcEndLng('endLng')
         .arcAltitudeAutoScale(.28).arcCurveResolution(48)
-        .arcLabel(s=>`<b>#${s.id} ${escapeHtml(s.from)} → ${escapeHtml(s.to)}</b><br><span style="color:#8ba0b8">${escapeHtml(s.mode)} · ${escapeHtml(s.phaseName)}</span>`)
+        .arcLabel(s=>`<b>#${s.id} ${escapeHtml(segmentFrom(s))} → ${escapeHtml(segmentTo(s))}</b><br><span style="color:#8ba0b8">${escapeHtml(segmentMode(s))} · ${escapeHtml(s.phaseName)}</span>`)
         .onArcClick(s=>{if(!storyLocksGlobeSelection())selectSegment(s.id,true)})
         .pointLat('lat').pointLng('lng').pointAltitude(.011)
-        .pointLabel(c=>`<div style="display:flex;align-items:center;gap:7px">${flagMarkup(c,22,16)}<div><b>${escapeHtml(c.name)}</b><br><span style="color:#8ba0b8">Country ${c.number}/195 · ${escapeHtml(c.readiness)}</span></div></div>`)
+        .pointLabel(c=>`<div style="display:flex;align-items:center;gap:7px">${flagMarkup(c,22,16)}<div><b>${escapeHtml(countryDisplay(c))}</b><br><span style="color:#8ba0b8">Country ${c.number}/195 · ${escapeHtml(c.readiness)}</span></div></div>`)
         .onPointClick(c=>{if(!storyLocksGlobeSelection())selectCountry(c.name,true)})
         .labelLat('lat').labelLng('lng').labelText('text').labelColor(()=> '#eafaff').labelSize(1.2).labelAltitude(.025)
         .ringLat('lat').ringLng('lng').ringColor(()=>[colors.cyan,'rgba(89,221,255,0)']).ringMaxRadius(2.8).ringPropagationSpeed(1.2).ringRepeatPeriod(900)
@@ -225,7 +235,7 @@
     const filtered=visibleSegments(); const sel=state.segments.find(s=>s.id===state.selectedSegmentId);
     const segs=sel&&!filtered.some(s=>s.id===sel.id)?[...filtered,sel]:filtered;
     const labelCountry=state.selectedCountry || (sel ? state.countries.find(c=>c.name===sel.to) : null);
-    const labelData=labelCountry ? [{lat:labelCountry.lat,lng:labelCountry.lng,text:labelCountry.name,country:labelCountry}] : [];
+    const labelData=labelCountry ? [{lat:labelCountry.lat,lng:labelCountry.lng,text:countryDisplay(labelCountry),country:labelCountry}] : [];
     const useHtmlLabels=typeof state.globe.htmlElementsData==='function';
     state.globe
       .arcsData(segs)
@@ -360,8 +370,8 @@
   }
 
   function fillFilters(){
-    const modes=[...new Set(state.segments.map(s=>s.mode))].sort(); $('#modeFilter').innerHTML='<option value="all">All modes</option>'+modes.map(x=>`<option>${escapeHtml(x)}</option>`).join('');
-    const feas=[...new Set(state.segments.map(s=>s.feasibility))].filter(Boolean).sort(); $('#feasibilityFilter').innerHTML='<option value="all">All</option>'+feas.map(x=>`<option>${escapeHtml(x)}</option>`).join('');
+    const modes=[...new Set(state.segments.map(s=>s.mode))].sort(); $('#modeFilter').innerHTML='<option value="all">All modes</option>'+modes.map(x=>`<option value="${escapeHtml(x)}">${escapeHtml(EN.mode(x))}</option>`).join('');
+    const feas=[...new Set(state.segments.map(s=>s.feasibility))].filter(Boolean).sort(); $('#feasibilityFilter').innerHTML='<option value="all">All</option>'+feas.map(x=>`<option value="${escapeHtml(x)}">${escapeHtml(EN.value(x))}</option>`).join('');
     for(const k of ['mode','tier','feasibility','alert']){const el=$(`#${k}Filter`);if(el&&[...el.options].some(o=>o.value===state.filters[k]))el.value=state.filters[k];}
   }
 
@@ -380,32 +390,32 @@
   }
 
   function renderSegmentDetail(box,s){
-    $('#detailEyebrow').textContent=`SEGMENT ${s.id} · ${s.phaseName}`; $('#detailTitle').textContent=`${s.from} → ${s.to}`;
+    $('#detailEyebrow').textContent=`SEGMENT ${s.id} · ${s.phaseName}`; $('#detailTitle').textContent=`${segmentFrom(s)} → ${segmentTo(s)}`;
     if(state.activeTab==='overview'){
-      box.innerHTML=`<div class="overview-number">${String(s.id).padStart(2,'0')}<small>/194</small></div><p class="detail-copy">${escapeHtml(s.corridor||'')}</p>
-      <div class="data-grid">${dataCard('Departure',fmtDate(s.planDeparture),`Day ${daysFromStart(s.planDeparture)||'—'}`)}${dataCard('Transport',s.mode)}${dataCard('Phase',s.phaseName)}${dataCard('Plan budget',eur(s.transportBudgetEur))}</div>
-      <div style="display:flex;gap:6px;flex-wrap:wrap">${badge(s.alertLevel,statusColor(s.alertLevel))}${badge(s.feasibility,s.feasibility==='Kritisch'?colors.red:s.feasibility==='Bedingt'?colors.orange:colors.green)}</div>
+      box.innerHTML=`<div class="overview-number">${String(s.id).padStart(2,'0')}<small>/194</small></div><p class="detail-copy">${escapeHtml(englishText(s.corridor||''))}</p>
+      <div class="data-grid">${dataCard('Departure',fmtDate(s.planDeparture),`Day ${daysFromStart(s.planDeparture)||'—'}`)}${dataCard('Transport',segmentMode(s))}${dataCard('Phase',s.phaseName)}${dataCard('Plan budget',eur(s.transportBudgetEur))}</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">${badge(s.alertLevel,statusColor(s.alertLevel))}${badge(englishValue(s.feasibility),s.feasibility==='Kritisch'?colors.red:s.feasibility==='Bedingt'?colors.orange:colors.green)}</div>
       <div class="op-callout"><b>Why this route?</b><br>${escapeHtml(s.planB ? `Primary corridor: ${s.corridor}. A documented fallback exists and is shown under Operations.` : `This is the current operational corridor in the public master plan.`)}</div>`;
     } else if(state.activeTab==='details'){
-      box.innerHTML=`<div class="data-grid">${dataCard('From',s.from)}${dataCard('To',s.to)}${dataCard('Plan depart',fmtDate(s.planDeparture))}${dataCard('Plan arrive',fmtDate(s.planArrival))}${dataCard('Booking tier',s.bookingTier||'—')}${dataCard('Data quality',s.dataQuality||'—')}${dataCard('Plan status',s.planStatus||'—')}${dataCard('Budget',eur(s.transportBudgetEur))}</div><h3>Corridor</h3><p class="detail-copy">${escapeHtml(s.corridor||'—')}</p>`;
+      box.innerHTML=`<div class="data-grid">${dataCard('From',segmentFrom(s))}${dataCard('To',segmentTo(s))}${dataCard('Plan depart',fmtDate(s.planDeparture))}${dataCard('Plan arrive',fmtDate(s.planArrival))}${dataCard('Booking tier',s.bookingTier||'—')}${dataCard('Data quality',englishValue(s.dataQuality)||'—')}${dataCard('Plan status',englishText(s.planStatus)||'—')}${dataCard('Budget',eur(s.transportBudgetEur))}</div><h3>Corridor</h3><p class="detail-copy">${escapeHtml(englishText(s.corridor||'—'))}</p>`;
     } else if(state.activeTab==='operations'){
       box.innerHTML=`<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">${badge(s.alertLevel,statusColor(s.alertLevel))}${badge(`Tier ${s.bookingTier||'—'}`,colors.blue)}${state.criticalIds.has(s.id)?badge('Critical path',colors.red):''}</div>
-      <div class="data-grid">${dataCard('Visa target',s.visaTypeTarget||'—',s.visaStatusTarget||'')}${dataCard('Health',`Priority ${s.healthPriorityTarget??'—'}`,s.healthStatusTarget||'')}${dataCard('Verified',fmtDate(s.lastVerified))}${dataCard('Criticality',`${s.criticalScore}/100-ish`)}</div>
-      ${s.alertMessage?`<div class="op-callout">${escapeHtml(s.alertMessage)}</div>`:''}<h3>Plan B</h3><p class="detail-copy">${escapeHtml(s.planB||'No specific fallback recorded; use surrounding hub/next published service logic.')}</p>`;
+      <div class="data-grid">${dataCard('Visa target',englishValue(s.visaTypeTarget)||'—',englishValue(s.visaStatusTarget)||'')}${dataCard('Health',`Priority ${s.healthPriorityTarget??'—'}`,englishValue(s.healthStatusTarget)||'')}${dataCard('Verified',fmtDate(s.lastVerified))}${dataCard('Criticality',`${s.criticalScore}/100-ish`)}</div>
+      ${s.alertMessage?`<div class="op-callout">${escapeHtml(englishText(s.alertMessage))}</div>`:''}<h3>Plan B</h3><p class="detail-copy">${escapeHtml(englishText(s.planB||'No specific fallback recorded; use surrounding hub/next published service logic.'))}</p>`;
     } else {
       const links=sourceList(s.source); box.innerHTML=links.length?`<p class="detail-copy">Source links attached to this segment. “Verified” refers to the planning snapshot date, not a guarantee that conditions remain unchanged.</p>${links.map((u,i)=>`<a class="source-link" target="_blank" rel="noopener" href="${escapeHtml(u)}">Source ${i+1} · ${escapeHtml(trim(u,62))}</a>`).join('')}`:`<p class="detail-copy">No public source URL is attached to this segment in the current snapshot.</p>`;
     }
   }
 
   function renderCountryDetail(box,c){
-    $('#detailEyebrow').textContent=`COUNTRY ${c.number} · ${c.region||'WORLD'}`; $('#detailTitle').innerHTML=`<span style="display:inline-flex;align-items:center;gap:9px">${flagMarkup(c,24,18)}<span>${escapeHtml(c.name)}</span></span>`;
+    $('#detailEyebrow').textContent=`COUNTRY ${c.number} · ${c.region||'WORLD'}`; $('#detailTitle').innerHTML=`<span style="display:inline-flex;align-items:center;gap:9px">${flagMarkup(c,24,18)}<span>${escapeHtml(countryDisplay(c))}</span></span>`;
     const rel=relatedSegments(c); const incoming=rel.find(s=>s.to===c.name), outgoing=rel.find(s=>s.from===c.name);
     if(state.activeTab==='overview'){
-      box.innerHTML=`<div class="overview-number">${c.number}<small>/195</small></div><p class="detail-copy">Planned entry ${fmtDate(c.planEntry)} · ${escapeHtml(c.subregion||c.region||'')}</p><div class="data-grid">${dataCard('Readiness',c.readiness)}${dataCard('Visa',c.visaType||'—',c.visaStatus||'')}${dataCard('Health',`Priority ${c.healthPriority??'—'}`,c.healthStatus||'')}${dataCard('Planned entry',fmtDate(c.planEntry))}</div><div style="display:flex;gap:6px">${badge(c.readiness,readinessColor(c.readiness))}</div>${incoming?`<h3>Arrival</h3><div class="route-row" data-segment="${incoming.id}"><span class="route-id">#${incoming.id}</span><div><div class="route-name">${incoming.from} → ${incoming.to}</div><div class="route-sub">${incoming.mode} · ${fmtDate(incoming.planDeparture)}</div></div><span>›</span></div>`:''}${outgoing?`<h3>Next</h3><div class="route-row" data-segment="${outgoing.id}"><span class="route-id">#${outgoing.id}</span><div><div class="route-name">${outgoing.from} → ${outgoing.to}</div><div class="route-sub">${outgoing.mode} · ${fmtDate(outgoing.planDeparture)}</div></div><span>›</span></div>`:''}`;
+      box.innerHTML=`<div class="overview-number">${c.number}<small>/195</small></div><p class="detail-copy">Planned entry ${fmtDate(c.planEntry)} · ${escapeHtml(c.subregion||c.region||'')}</p><div class="data-grid">${dataCard('Readiness',englishValue(c.readiness))}${dataCard('Visa',englishValue(c.visaType)||'—',englishValue(c.visaStatus)||'')}${dataCard('Health',`Priority ${c.healthPriority??'—'}`,englishValue(c.healthStatus)||'')}${dataCard('Planned entry',fmtDate(c.planEntry))}</div><div style="display:flex;gap:6px">${badge(englishValue(c.readiness),readinessColor(c.readiness))}</div>${incoming?`<h3>Arrival</h3><div class="route-row" data-segment="${incoming.id}"><span class="route-id">#${incoming.id}</span><div><div class="route-name">${segmentFrom(incoming)} → ${segmentTo(incoming)}</div><div class="route-sub">${segmentMode(incoming)} · ${fmtDate(incoming.planDeparture)}</div></div><span>›</span></div>`:''}${outgoing?`<h3>Next</h3><div class="route-row" data-segment="${outgoing.id}"><span class="route-id">#${outgoing.id}</span><div><div class="route-name">${segmentFrom(outgoing)} → ${segmentTo(outgoing)}</div><div class="route-sub">${segmentMode(outgoing)} · ${fmtDate(outgoing.planDeparture)}</div></div><span>›</span></div>`:''}`;
     } else if(state.activeTab==='details'){
-      box.innerHTML=`<h3>Entry planning</h3><p class="detail-copy">${escapeHtml(c.visaAction||'No public action recorded.')}</p><div class="data-grid">${dataCard('Visa priority',c.visaPriority??'—')}${dataCard('Health priority',c.healthPriority??'—')}${dataCard('Entry docs',c.entryDocs||'—')}${dataCard('Visited',c.visited||'No')}</div>${c.entryConflict?`<div class="op-callout">${escapeHtml(c.entryConflict)}</div>`:''}`;
+      box.innerHTML=`<h3>Entry planning</h3><p class="detail-copy">${escapeHtml(englishText(c.visaAction||'No public action recorded.'))}</p><div class="data-grid">${dataCard('Visa priority',c.visaPriority??'—')}${dataCard('Health priority',c.healthPriority??'—')}${dataCard('Entry docs',englishValue(c.entryDocs)||'—')}${dataCard('Visited',c.visited||'No')}</div>${c.entryConflict?`<div class="op-callout">${escapeHtml(englishText(c.entryConflict))}</div>`:''}`;
     } else if(state.activeTab==='operations'){
-      box.innerHTML=`<div class="data-grid">${dataCard('Readiness',c.readiness)}${dataCard('Visa status',c.visaStatus||'—')}${dataCard('Health status',c.healthStatus||'—')}${dataCard('Region',c.subregion||c.region||'—')}</div><h3>Health note</h3><p class="detail-copy">${escapeHtml(c.healthNote||'No special public route note.')}</p><h3>Related route</h3><div class="route-list">${rel.map(s=>`<div class="route-row" data-segment="${s.id}"><span class="route-id">#${s.id}</span><div><div class="route-name">${s.from} → ${s.to}</div><div class="route-sub">${s.mode} · ${s.alertLevel}</div></div><span>›</span></div>`).join('')}</div>`;
+      box.innerHTML=`<div class="data-grid">${dataCard('Readiness',c.readiness)}${dataCard('Visa status',englishValue(c.visaStatus)||'—')}${dataCard('Health status',englishValue(c.healthStatus)||'—')}${dataCard('Region',c.subregion||c.region||'—')}</div><h3>Health note</h3><p class="detail-copy">${escapeHtml(englishText(c.healthNote||'No special public route note.'))}</p><h3>Related route</h3><div class="route-list">${rel.map(s=>`<div class="route-row" data-segment="${s.id}"><span class="route-id">#${s.id}</span><div><div class="route-name">${segmentFrom(s)} → ${segmentTo(s)}</div><div class="route-sub">${segmentMode(s)} · ${s.alertLevel}</div></div><span>›</span></div>`).join('')}</div>`;
     } else {
       const urls=[...new Set(rel.flatMap(s=>sourceList(s.source)))]; box.innerHTML=urls.length?urls.map((u,i)=>`<a class="source-link" target="_blank" rel="noopener" href="${escapeHtml(u)}">Related source ${i+1} · ${escapeHtml(trim(u,62))}</a>`).join(''):`<p class="detail-copy">No related public URLs in this snapshot.</p>`;
     }
@@ -415,7 +425,7 @@
   function renderProjectOverview(box){
     $('#detailEyebrow').textContent='PROJECT OVERVIEW'; $('#detailTitle').textContent='The route at a glance';
     const segs=visibleSegments();
-    box.innerHTML=`<div class="overview-number">195<small> countries</small></div><p class="detail-copy">One continuous, data-driven route. The globe is the interface: select a route line or country to inspect the plan.</p><div class="data-grid">${dataCard('Route legs','194')}${dataCard('Planned days','379')}${dataCard('Base model','€90.6k')}${dataCard('Executable now','194 / 195')}</div><h3>Visible route</h3><div class="route-list">${segs.slice(0,14).map(s=>`<div class="route-row" data-segment="${s.id}"><span class="route-id">#${s.id}</span><div><div class="route-name">${s.from} → ${s.to}</div><div class="route-sub">${s.mode} · ${s.phaseName}</div></div><span>›</span></div>`).join('')}</div>`;
+    box.innerHTML=`<div class="overview-number">195<small> countries</small></div><p class="detail-copy">One continuous, data-driven route. The globe is the interface: select a route line or country to inspect the plan.</p><div class="data-grid">${dataCard('Route legs','194')}${dataCard('Planned days','379')}${dataCard('Base model','€90.6k')}${dataCard('Executable now','194 / 195')}</div><h3>Visible route</h3><div class="route-list">${segs.slice(0,14).map(s=>`<div class="route-row" data-segment="${s.id}"><span class="route-id">#${s.id}</span><div><div class="route-name">${s.from} → ${s.to}</div><div class="route-sub">${segmentMode(s)} · ${s.phaseName}</div></div><span>›</span></div>`).join('')}</div>`;
     $$('[data-segment]',box).forEach(x=>x.onclick=()=>selectSegment(Number(x.dataset.segment),true));
   }
 
@@ -423,7 +433,7 @@
     const sets={
       route:PHASES.slice(0,6).map(p=>[p.short,p.color]),status:[['Ready / green',colors.green],['Watch',colors.amber],['Action',colors.orange],['Blocked',colors.red]],
       visa:[['Clear / approved',colors.green],['Pending',colors.orange],['Review',colors.amber],['Blocked',colors.red]],health:[['Low',colors.green],['Medium',colors.amber],['High',colors.red]],
-      cost:[['< €150',colors.cyan],['€150–350',colors.blue],['€350–600',colors.violet],['> €600',colors.red]],risk:[['Planbar / verified',colors.green],['Review',colors.amber],['Conditional',colors.orange],['Critical',colors.red]],
+      cost:[['< €150',colors.cyan],['€150–350',colors.blue],['€350–600',colors.violet],['> €600',colors.red]],risk:[['Plannable / verified',colors.green],['Review',colors.amber],['Conditional',colors.orange],['Critical',colors.red]],
       progress:[['Planned',colors.blue],['Visited',colors.green]],critical:[['Top 20 constraint',colors.red],['Other hidden',colors.muted]]
     };
     $('#legend').innerHTML=(sets[state.layer]||sets.route).map(([l,c])=>`<div class="legend-item" style="color:${c}"><i class="legend-dot"></i><span style="color:var(--muted)">${l}</span></div>`).join('');
@@ -436,14 +446,14 @@
 
   function updateTimeline(){
     const s=state.segments.find(x=>x.id===state.selectedSegmentId)||state.segments[0]; if(!s)return;
-    $('#timelineTitle').textContent=`${s.from} → ${s.to}`; $('#timelineMeta').textContent=`Segment ${s.id} · Day ${daysFromStart(s.planDeparture)||'—'} · ${s.mode}`;
+    $('#timelineTitle').textContent=`${segmentFrom(s)} → ${segmentTo(s)}`; $('#timelineMeta').textContent=`Segment ${s.id} · Day ${daysFromStart(s.planDeparture)||'—'} · ${segmentMode(s)}`;
   }
   function updateRange(){const r=$('#routeRange'),p=((Number(r.value)-1)/193)*100;r.style.setProperty('--range-progress',`${p}%`);}
 
   function search(q){
     q=normalize(q); if(!q)return[];
-    const cs=state.countries.filter(c=>normalize(`${c.name} ${c.region} ${c.subregion} ${c.visaType}`).includes(q)).slice(0,8).map(c=>({type:'country',title:c.name,sub:`Country ${c.number} · ${c.readiness}`,obj:c}));
-    const ss=state.segments.filter(s=>normalize(`${s.from} ${s.to} ${s.mode} ${s.corridor} ${s.phaseName} ${s.alertLevel}`).includes(q)).slice(0,10).map(s=>({type:'segment',title:`${s.from} → ${s.to}`,sub:`#${s.id} · ${s.mode} · ${s.phaseName}`,obj:s}));
+    const cs=state.countries.filter(c=>normalize(`${c.name} ${countryDisplay(c)} ${c.region} ${c.subregion} ${englishValue(c.visaType)}`).includes(q)).slice(0,8).map(c=>({type:'country',title:countryDisplay(c),sub:`Country ${c.number} · ${englishValue(c.readiness)}`,obj:c}));
+    const ss=state.segments.filter(s=>normalize(`${s.from} ${s.to} ${segmentFrom(s)} ${segmentTo(s)} ${s.mode} ${segmentMode(s)} ${s.corridor} ${s.phaseName} ${s.alertLevel}`).includes(q)).slice(0,10).map(s=>({type:'segment',title:`${segmentFrom(s)} → ${segmentTo(s)}`,sub:`#${s.id} · ${segmentMode(s)} · ${s.phaseName}`,obj:s}));
     return [...cs,...ss].slice(0,14);
   }
   function showInlineResults(q){
@@ -463,7 +473,7 @@
     }
   }
   function renderCommand(q=''){
-    commandHits=q?search(q):state.segments.slice(0,8).map(s=>({type:'segment',title:`${s.from} → ${s.to}`,sub:`#${s.id} · ${s.phaseName}`,obj:s}));
+    commandHits=q?search(q):state.segments.slice(0,8).map(s=>({type:'segment',title:`${segmentFrom(s)} → ${segmentTo(s)}`,sub:`#${s.id} · ${s.phaseName}`,obj:s}));
     $('#commandResults').innerHTML=`<div class="command-group">${q?'Search results':'Jump to route'}</div>${commandHits.map((h,i)=>`<button type="button" class="command-item" data-i="${i}"><b>${escapeHtml(h.title)}</b><span>${escapeHtml(h.sub)}</span></button>`).join('')}`;
   }
   function closeCommand(){ $('#commandPalette')?.classList.add('hidden'); }

@@ -16,6 +16,7 @@
     {id:12,range:[182,194],title:'Europe II · Finish',note:'The closing run back to Germany.'}
   ];
 
+  const EN=window.ONE_WORLD_EN||{registerCountries(){},country:s=>s,mode:s=>s,text:s=>s,value:s=>s};
   const runtime={
     route:null,
     countries:new Map(),
@@ -57,8 +58,14 @@
       ]);
       const route=await routeRes.json();
       const countries=await countryRes.json();
+      EN.registerCountries(countries||[]);
+      const countryMap=new Map((countries||[]).map(c=>[c.name,c]));
+      route.segments=(route.segments||[]).map(s=>{
+        const a=countryMap.get(s.from),b=countryMap.get(s.to);
+        return {...s,displayFrom:EN.country(s.from,a?.cca2),displayTo:EN.country(s.to,b?.cca2),displayMode:EN.mode(s.mode)};
+      });
       runtime.route=route;
-      runtime.countries=new Map((countries||[]).map(c=>[c.name,c]));
+      runtime.countries=new Map((countries||[]).map(c=>[c.name,{...c,displayName:EN.country(c.name,c.cca2)}]));
       return route;
     }catch(err){
       console.warn('Iteration 5 story data unavailable',err);
@@ -131,7 +138,7 @@
     const phaseTotal=phase.range[1]-phase.range[0]+1;
 
     const meta=$('#storySegmentMeta');
-    if(meta)meta.innerHTML=`<span>${escapeHtml(seg.mode||'Route')}</span><i></i><span>${fmtDate(seg.planDeparture)}</span><i></i><span>Day ${day}</span>`;
+    if(meta)meta.innerHTML=`<span>${escapeHtml(seg.displayMode||EN.mode(seg.mode)||'Route')}</span><i></i><span>${fmtDate(seg.planDeparture)}</span><i></i><span>Day ${day}</span>`;
     const dayEl=$('#storyDayValue'),countryEl=$('#storyCountryValue'),chapterEl=$('#storyChapterValue'),chapterProgress=$('#storyChapterProgress');
     if(dayEl)dayEl.textContent=String(day);
     if(countryEl)countryEl.textContent=`${country?.number||Math.min(195,seg.id+1)} / 195`;
@@ -141,7 +148,7 @@
 
   function flagMarkup(country){
     const code=String(country?.cca2||'').toLowerCase();
-    if(/^[a-z]{2}$/.test(code))return `<img class="arrival-flag-img" src="https://flagcdn.com/48x36/${code}.png" alt="${escapeHtml(country.name||'Country')} flag" width="32" height="24" loading="eager">`;
+    if(/^[a-z]{2}$/.test(code))return `<img class="arrival-flag-img" src="https://flagcdn.com/48x36/${code}.png" alt="${escapeHtml(country.displayName||EN.country(country.name,country.cca2)||'Country')} flag" width="32" height="24" loading="eager">`;
     return '<span class="arrival-flag-fallback">◎</span>';
   }
 
@@ -152,7 +159,7 @@
     const box=$('#arrivalMoment');if(!box)return;
     const country=runtime.countries.get(seg.to)||{};
     const day=dayFromStart(seg.planArrival||seg.planDeparture)||'—';
-    box.innerHTML=`<span class="arrival-flag">${flagMarkup({...country,name:seg.to})}</span><div><small>ARRIVAL · COUNTRY ${country.number||Math.min(195,seg.id+1)} / 195</small><strong>${escapeHtml(seg.to)}</strong><em>${escapeHtml(seg.mode||'Route')} · ${fmtDate(seg.planArrival||seg.planDeparture)} · Day ${day}</em></div>`;
+    box.innerHTML=`<span class="arrival-flag">${flagMarkup({...country,name:seg.to})}</span><div><small>ARRIVAL · COUNTRY ${country.number||Math.min(195,seg.id+1)} / 195</small><strong>${escapeHtml(seg.displayTo||EN.country(seg.to,country.cca2))}</strong><em>${escapeHtml(seg.displayMode||EN.mode(seg.mode)||'Route')} · ${fmtDate(seg.planArrival||seg.planDeparture)} · Day ${day}</em></div>`;
     box.classList.remove('show');void box.offsetWidth;box.classList.add('show');
     clearTimeout(runtime.arrivalTimer);
     runtime.arrivalTimer=setTimeout(()=>box.classList.remove('show'),Math.min(1200,Math.max(780,activeSpeed()*.72)));

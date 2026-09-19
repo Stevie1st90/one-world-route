@@ -18,6 +18,7 @@
     {id:12, range:[182,194], title:'Europe II · Finish', note:'The closing run back to Germany.'}
   ];
 
+  const EN=window.ONE_WORLD_EN||{registerCountries(){},country:s=>s,mode:s=>s,text:s=>s,value:s=>s};
   const story = {
     active:false,
     phaseId:null,
@@ -72,7 +73,7 @@
           <div><span id="storyKicker">CHAPTER 01 / 12</span><b id="storyTitle">Europe I</b></div>
           <button id="storyExit" type="button">Exit story</button>
         </div>
-        <div id="storyRoute" class="story-route">Deutschland → Luxemburg</div>
+        <div id="storyRoute" class="story-route">Germany → Luxembourg</div>
         <div class="story-track"><i></i></div>
         <div class="story-hud-foot"><span id="storyNote">The journey begins across Europe.</span><strong id="storyPct">0%</strong></div>`;
       stage.appendChild(hud);
@@ -107,11 +108,12 @@
       if(!routeRes.ok||!geoRes.ok)throw new Error('story data unavailable');
       const route=await routeRes.json();
       const geo=await geoRes.json();
+      EN.registerCountries(geo);
       const geoMap=new Map(geo.map(c=>[normalize(c.name),c]));
       const segments=(route.segments||[]).map(s=>{
         const a=geoMap.get(normalize(s.from));
         const b=geoMap.get(normalize(s.to));
-        return {...s,startLat:a?.lat??0,startLng:a?.lng??0,endLat:b?.lat??0,endLng:b?.lng??0};
+        return {...s,displayFrom:EN.country(s.from,a?.cca2),displayTo:EN.country(s.to,b?.cca2),displayMode:EN.mode(s.mode),startLat:a?.lat??0,startLng:a?.lng??0,endLat:b?.lat??0,endLng:b?.lng??0};
       });
       story.routeData={segments};
       return story.routeData;
@@ -294,7 +296,7 @@
       setTimeout(()=>setPhaseFilter(phase.id),0);
     }
     const seg=story.routeData?.segments?.find(s=>s.id===id);
-    const route=seg?`${seg.from} → ${seg.to}`:($('#timelineTitle')?.textContent?.trim()||`Segment ${id}`);
+    const route=seg?`${seg.displayFrom||EN.country(seg.from)} → ${seg.displayTo||EN.country(seg.to)}`:($('#timelineTitle')?.textContent?.trim()||`Segment ${id}`);
     const kicker=$('#storyKicker'),title=$('#storyTitle'),routeEl=$('#storyRoute'),note=$('#storyNote'),pctEl=$('#storyPct');
     if(kicker)kicker.textContent=`CHAPTER ${String(phase.id).padStart(2,'0')} / 12`;
     if(title)title.textContent=phase.title;

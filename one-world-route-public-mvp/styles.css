@@ -79,3 +79,6 @@ body.story-mode .globe-selected-label{display:none!important}
   .brand strong{font-size:9px;letter-spacing:.16em}
   .top-actions .icon-btn{width:36px;height:36px}
 }
+
+/* Playback is controlled from the timeline. Keep the legacy journey trigger off-canvas. */
+#journeyBtn{display:none!important}
