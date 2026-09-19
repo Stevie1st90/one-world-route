@@ -20,7 +20,10 @@
     focusTimer:null,
     syncFrame:null,
     chapterTimer:null,
-    active:false
+    active:false,
+    userInteracting:false,
+    interactionTimer:null,
+    cancelCameraTween:null
   };
 
   const $ = (s, root=document) => root.querySelector(s);
@@ -97,8 +100,16 @@
     const pointOfView=instance.pointOfView;
     if(typeof pointOfView==='function'){
       const nativePointOfView=pointOfView.bind(instance);
+      runtime.cancelCameraTween=()=>{
+        try{
+          const pov=nativePointOfView();
+          if(pov&&Number.isFinite(pov.lat)&&Number.isFinite(pov.lng)&&Number.isFinite(pov.altitude)){
+            nativePointOfView({lat:pov.lat,lng:pov.lng,altitude:pov.altitude},0);
+          }
+        }catch{}
+      };
       instance.pointOfView=function(...args){
-        if(isStory() && !runtime.applyingCamera) return instance;
+        if(isStory() && !runtime.applyingCamera) return args.length?instance:nativePointOfView();
         return nativePointOfView(...args);
       };
     }
@@ -208,7 +219,7 @@
   }
 
   function focusCurrentSegment(force=false){
-    if(!isStory()) return;
+    if(!isStory() || runtime.userInteracting) return;
     const globe=getGlobe();
     if(!globe || typeof globe.pointOfView!=='function') return;
     const id=segmentId();
@@ -337,7 +348,47 @@
     if(preview) preview.innerHTML='';
   }
 
+  function bindStoryGlobeInteraction(){
+    const host=$('#globe');
+    const globe=getGlobe();
+    if(!host||!globe||host.dataset.storyInteractionBound)return;
+    host.dataset.storyInteractionBound='1';
+
+    try{
+      const ctl=globe.controls?.();
+      if(ctl){
+        ctl.enablePan=false;
+        ctl.screenSpacePanning=false;
+        ctl.enableRotate=true;
+        ctl.enableZoom=true;
+      }
+    }catch{}
+
+    const begin=()=>{
+      if(!isStory())return;
+      runtime.userInteracting=true;
+      clearTimeout(runtime.interactionTimer);
+      runtime.cancelCameraTween?.();
+    };
+    const end=()=>{
+      if(!isStory())return;
+      clearTimeout(runtime.interactionTimer);
+      runtime.interactionTimer=setTimeout(()=>{
+        runtime.userInteracting=false;
+        runtime.lastSegment=null;
+        syncStoryScene({focus:true});
+      },900);
+    };
+
+    host.addEventListener('pointerdown',begin,true);
+    host.addEventListener('pointerup',end,true);
+    host.addEventListener('pointercancel',end,true);
+    host.addEventListener('pointerleave',e=>{if(e.buttons)end();},true);
+  }
+
   function wire(){
+    bindStoryGlobeInteraction();
+
     const bodyObserver=new MutationObserver(()=>{
       const active=isStory();
       if(active && !runtime.active) enterStory();

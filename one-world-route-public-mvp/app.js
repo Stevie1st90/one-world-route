@@ -203,7 +203,12 @@
         .polygonSideColor(()=> 'rgba(7,13,22,.12)').polygonLabel(f=>escapeHtml(f.properties?.name||''))
         .onPolygonClick(f=>{if(storyLocksGlobeSelection())return;const c=state.countryByCca3.get(f.id); if(c)selectCountry(c.name,true)});
       state.globe=globe;
-      const ctl=globe.controls(); ctl.autoRotate=state.settings.autoRotate; ctl.autoRotateSpeed=.28; ctl.enableDamping=true; ctl.dampingFactor=.08; ctl.minDistance=170; ctl.maxDistance=520;
+      const ctl=globe.controls();
+      ctl.autoRotate=state.settings.autoRotate; ctl.autoRotateSpeed=.28;
+      ctl.enableDamping=true; ctl.dampingFactor=.08;
+      ctl.enablePan=false; ctl.screenSpacePanning=false;
+      ctl.enableRotate=true; ctl.enableZoom=true;
+      ctl.minDistance=170; ctl.maxDistance=520;
       updateGlobe();
       loadPolygons().then(features=>{state.polygons=features;updateGlobe()});
       globe.pointOfView({lat:20,lng:12,altitude:2.25},0);
