@@ -36,3 +36,10 @@ BASE_URL=https://one-world-route.vercel.app npm run test:e2e
 
 ## Map infrastructure
 MapLibre GL JS is open source. The current terrain basemap uses OpenStreetMap raster tiles and Mapterhorn DEM elevation. Before sustained high-volume traffic, move tiles to a production provider or self-hosted PMTiles/CDN.
+
+## Data maintenance
+```bash
+node scripts/audit-freshness.mjs
+node scripts/diff-public-route.mjs previous-public-route.json data/public-route.json route-diff.json
+```
+Freshness is evaluated against the real current date at runtime. The diff tool identifies operational changes before they are summarized in the public changelog.

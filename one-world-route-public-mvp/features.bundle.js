@@ -10,7 +10,8 @@
   const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   const excelDate=v=>v?new Date(Date.UTC(1899,11,30)+Number(v)*86400000):null;
   const euro=v=>new Intl.NumberFormat('en-GB',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(v||0));
-  const now=new Date(Date.UTC(2026,8,17));
+  const now=new Date();
+  now.setHours(0,0,0,0);
   const EN=window.ONE_WORLD_EN||{country:s=>s,mode:s=>s,text:s=>s,value:s=>s};
   const routeLabel=s=>`${s.displayFrom||EN.country(s.from)} → ${s.displayTo||EN.country(s.to)}`;
 
