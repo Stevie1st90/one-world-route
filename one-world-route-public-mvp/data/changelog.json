@@ -1,6 +1,16 @@
 [
   {
     "date": "2026-09-19",
+    "title": "Ground and ferry corridor geometry expanded",
+    "summary": "Terrain now uses curated corridor-level waypoints for 84 route legs, including North/Central America, South America, Asia, Africa, Gulf/Levant and Europe II.",
+    "tags": [
+      "terrain",
+      "route geometry",
+      "release 3"
+    ]
+  },
+  {
+    "date": "2026-09-19",
     "title": "Release 2 foundations",
     "summary": "Runtime hardening, English public UI, Story camera stabilization, Terrain globe and scalable journey intelligence foundations.",
     "tags": [
