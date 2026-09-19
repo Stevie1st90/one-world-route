@@ -760,37 +760,53 @@
   function colorExpression(){return ['get','color'];}
   function widthExpr(a,b,c0){const scale=clamp(Number($('#arcWidth')?.value||.55)/.55,.35,2.4);return ['interpolate',['linear'],['zoom'],2,a*scale,6,b*scale,12,c0*scale];}
 
-  function terrainStyle(){
+  async function terrainStyle(){
     const phase=activeTerrainPhase();
-    return {
-      version:8,projection:{type:'globe'},
-      sources:{
-        osm:{type:'raster',tiles:['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],tileSize:256,maxzoom:19,attribution:'© OpenStreetMap contributors'},
-        terrainSource:{type:'raster-dem',url:'https://tiles.mapterhorn.com/tilejson.json'},
-        hillshadeSource:{type:'raster-dem',url:'https://tiles.mapterhorn.com/tilejson.json'},
-        routeSource:{type:'geojson',data:routeGeoJson()},
-        countrySource:{type:'geojson',data:countryGeoJson()}
-      },
-      terrain:{source:'terrainSource',exaggeration:1.42},
-      sky:{'atmosphere-blend':['interpolate',['linear'],['zoom'],0,.52,3.5,.16,7,0]},
-      layers:[
-        {id:'background',type:'background',paint:{'background-color':'#071019'}},
-        {id:'osm',type:'raster',source:'osm',paint:{'raster-opacity':1,'raster-saturation':-.06,'raster-contrast':.08,'raster-brightness-min':.01,'raster-brightness-max':.76}},
-        {id:'hills',type:'hillshade',source:'hillshadeSource',paint:{'hillshade-method':'multidirectional','hillshade-exaggeration':.42,'hillshade-shadow-color':'#6a7780','hillshade-highlight-color':'#f5f8fa','hillshade-accent-color':'#8c9ca6'}},
-        {id:'route-hit',type:'line',source:'routeSource',filter:['==',['get','visible'],1],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(0,0,0,.001)','line-opacity':.001,'line-width':['interpolate',['linear'],['zoom'],2,12,7,16,12,20]}},
-        {id:'route-world-shadow',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(3,10,18,.72)','line-opacity':.30,'line-width':widthExpr(2.1,3.2,4.6)}},
-        {id:'route-world',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':['case',['==',['get','visible'],1],colorExpression(),'#6f8295'],'line-opacity':['case',['==',['get','visible'],1],.72,.18],'line-width':widthExpr(1.05,1.65,2.45)}},
-        {id:'route-phase-shadow',type:'line',source:'routeSource',filter:['all',['==',['get','phaseId'],phase],['==',['get','visible'],1]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(4,10,16,.66)','line-opacity':$('#routeGlow')?.checked===false?.28:.72,'line-width':widthExpr(2.5,4.0,6.0)}},
-        {id:'route-phase',type:'line',source:'routeSource',filter:['all',['==',['get','phaseId'],phase],['==',['get','visible'],1]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.96,'line-width':widthExpr(1.55,2.65,4.1)}},
-        {id:'selected-route-shadow',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(2,9,15,.82)','line-opacity':$('#routeGlow')?.checked===false?.38:.92,'line-width':widthExpr(4.0,6.4,9.0)}},
-        {id:'selected-route',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#00d8ff','line-opacity':1,'line-width':widthExpr(2.7,4.7,6.8)}},
-        {id:'country-hit',type:'circle',source:'countrySource',layout:{visibility:$('#showPoints')?.checked===false?'none':'visible'},paint:{'circle-radius':['interpolate',['linear'],['zoom'],2,8,7,10,11,12],'circle-color':'rgba(0,0,0,.001)','circle-opacity':.001}},
-        {id:'country-points',type:'circle',source:'countrySource',layout:{visibility:$('#showPoints')?.checked===false?'none':'visible'},paint:{'circle-radius':['interpolate',['linear'],['zoom'],2,1.55,7,2.7,11,4.1],'circle-color':'rgba(207,232,247,.76)','circle-stroke-color':'rgba(4,12,20,.82)','circle-stroke-width':1,'circle-opacity':['interpolate',['linear'],['zoom'],2,.46,5,.62,8,.82]}},
-        {id:'country-selected',type:'circle',source:'countrySource',filter:['==',['get','name'],new URLSearchParams(location.search).get('country')||''],paint:{'circle-radius':['interpolate',['linear'],['zoom'],2,4.8,7,6.6,11,8.4],'circle-color':'#59ddff','circle-stroke-color':'#ffffff','circle-stroke-width':1.4,'circle-opacity':1}}
-      ]
-    };
-  }
+    let base;
+    try{
+      const response=await fetch('https://tiles.openfreemap.org/styles/liberty',{cache:'force-cache'});
+      if(!response.ok)throw new Error('OpenFreeMap style '+response.status);
+      base=await response.json();
+    }catch(err){
+      console.warn('OpenFreeMap basemap unavailable; using terrain-only fallback',err);
+      base={version:8,sources:{},layers:[{id:'background',type:'background',paint:{'background-color':'#d9e5e8'}}]};
+    }
 
+    base.version=8;
+    base.projection={type:'globe'};
+    base.sources={...(base.sources||{}),
+      terrainSource:{type:'raster-dem',url:'https://tiles.mapterhorn.com/tilejson.json'},
+      hillshadeSource:{type:'raster-dem',url:'https://tiles.mapterhorn.com/tilejson.json'},
+      routeSource:{type:'geojson',data:routeGeoJson()},
+      countrySource:{type:'geojson',data:countryGeoJson()}
+    };
+    base.terrain={source:'terrainSource',exaggeration:1.34};
+    base.sky={'atmosphere-blend':['interpolate',['linear'],['zoom'],0,.42,3.5,.13,7,0]};
+
+    const hill={
+      id:'oneworld-hills',type:'hillshade',source:'hillshadeSource',
+      paint:{'hillshade-method':'multidirectional','hillshade-exaggeration':.32,'hillshade-shadow-color':'#66757d','hillshade-highlight-color':'#f6f8f7','hillshade-accent-color':'#82939d'}
+    };
+    const overlays=[
+      {id:'route-hit',type:'line',source:'routeSource',filter:['==',['get','visible'],1],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(0,0,0,.001)','line-opacity':.001,'line-width':['interpolate',['linear'],['zoom'],2,12,7,16,12,20]}},
+      {id:'route-world-shadow',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(3,10,18,.58)','line-opacity':.24,'line-width':widthExpr(2.1,3.2,4.6)}},
+      {id:'route-world',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':['case',['==',['get','visible'],1],colorExpression(),'#6f8295'],'line-opacity':['case',['==',['get','visible'],1],.68,.16],'line-width':widthExpr(1.05,1.65,2.45)}},
+      {id:'route-phase-shadow',type:'line',source:'routeSource',filter:['all',['==',['get','phaseId'],phase],['==',['get','visible'],1]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(4,10,16,.58)','line-opacity':$('#routeGlow')?.checked===false?.24:.64,'line-width':widthExpr(2.5,4.0,6.0)}},
+      {id:'route-phase',type:'line',source:'routeSource',filter:['all',['==',['get','phaseId'],phase],['==',['get','visible'],1]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.94,'line-width':widthExpr(1.55,2.65,4.1)}},
+      {id:'selected-route-shadow',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(2,9,15,.74)','line-opacity':$('#routeGlow')?.checked===false?.34:.82,'line-width':widthExpr(4.0,6.4,9.0)}},
+      {id:'selected-route',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#00ccef','line-opacity':1,'line-width':widthExpr(2.7,4.7,6.8)}},
+      {id:'country-hit',type:'circle',source:'countrySource',layout:{visibility:$('#showPoints')?.checked===false?'none':'visible'},paint:{'circle-radius':['interpolate',['linear'],['zoom'],2,8,7,10,11,12],'circle-color':'rgba(0,0,0,.001)','circle-opacity':.001}},
+      {id:'country-points',type:'circle',source:'countrySource',layout:{visibility:$('#showPoints')?.checked===false?'none':'visible'},paint:{'circle-radius':['interpolate',['linear'],['zoom'],2,1.55,7,2.7,11,4.1],'circle-color':'rgba(19,59,82,.82)','circle-stroke-color':'rgba(255,255,255,.92)','circle-stroke-width':1,'circle-opacity':['interpolate',['linear'],['zoom'],2,.52,5,.68,8,.88]}},
+      {id:'country-selected',type:'circle',source:'countrySource',filter:['==',['get','name'],new URLSearchParams(location.search).get('country')||''],paint:{'circle-radius':['interpolate',['linear'],['zoom'],2,4.8,7,6.6,11,8.4],'circle-color':'#17c9ed','circle-stroke-color':'#ffffff','circle-stroke-width':1.6,'circle-opacity':1}}
+    ];
+
+    const layers=Array.isArray(base.layers)?base.layers:[];
+    const firstSymbol=layers.findIndex(l=>l.type==='symbol');
+    if(firstSymbol>=0)layers.splice(firstSymbol,0,hill);else layers.push(hill);
+    layers.push(...overlays);
+    base.layers=layers;
+    return base;
+  }
   function deactivateTerrain({updateUrl=true}={}){
     runtime.terrainRequested=false;runtime.terrainActive=false;
     document.body.classList.remove('terrain-loading','terrain-view');setToggleState(false);setTerrainLabel('Real 3D globe terrain');
@@ -811,9 +827,9 @@
     if(runtime.terrainReady)return;
     await loadRouteContext();
     runtime.selectedId=currentSegmentId();
-    const maplibregl=await loadMapLibre(),center=selectedPosition();
+    const maplibregl=await loadMapLibre(),center=selectedPosition(),style=await terrainStyle();
     const map=new maplibregl.Map({
-      container:'terrainMap',style:terrainStyle(),center,zoom:3.9,pitch:32,bearing:-6,
+      container:'terrainMap',style,center,zoom:3.9,pitch:32,bearing:-6,
       minZoom:2.9,maxZoom:18,maxPitch:65,renderWorldCopies:false,attributionControl:true,
       canvasContextAttributes:{antialias:true}
     });
@@ -825,7 +841,7 @@
 
     map.on('style.load',()=>{
       try{map.setProjection({type:'globe'});}catch(err){console.warn('Globe projection unavailable',err)}
-      try{map.setTerrain({source:'terrainSource',exaggeration:1.42});}catch(err){console.warn('Terrain could not be attached to globe projection',err)}
+      try{map.setTerrain({source:'terrainSource',exaggeration:1.34});}catch(err){console.warn('Terrain could not be attached to globe projection',err)}
     });
 
     map.on('load',()=>{
@@ -857,7 +873,7 @@
 
     if(!window.matchMedia('(max-width: 820px)').matches){
       map.addControl(new maplibregl.NavigationControl({visualizePitch:true,showZoom:true,showCompass:true}),'top-right');
-      if(maplibregl.TerrainControl)map.addControl(new maplibregl.TerrainControl({source:'terrainSource',exaggeration:1.42}),'top-right');
+      if(maplibregl.TerrainControl)map.addControl(new maplibregl.TerrainControl({source:'terrainSource',exaggeration:1.34}),'top-right');
       if(maplibregl.GlobeControl)map.addControl(new maplibregl.GlobeControl(),'top-right');
     }
     runtime.terrainMap=map;runtime.terrainReady=true;window.__ONE_WORLD_TERRAIN__=map;
