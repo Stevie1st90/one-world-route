@@ -19,7 +19,15 @@
   async function loadData(){
     if(runtime.data)return runtime.data;
     try{
-      const r=await fetch('./data/public-route.json',{cache:'force-cache'});runtime.data=await r.json();runtime.segments=runtime.data.segments||[];return runtime.data;
+      const [r,c]=await Promise.all([
+        fetch('./data/public-route.json',{cache:'force-cache'}),
+        fetch('./data/country-centroids.json',{cache:'force-cache'})
+      ]);
+      runtime.data=await r.json();
+      const countries=await c.json();
+      EN.registerCountries?.(countries||[]);
+      runtime.segments=runtime.data.segments||[];
+      return runtime.data;
     }catch(err){console.warn('Iteration 6 operations data unavailable',err);runtime.data={segments:[]};return runtime.data;}
   }
 

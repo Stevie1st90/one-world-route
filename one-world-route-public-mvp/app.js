@@ -425,7 +425,7 @@
   function renderProjectOverview(box){
     $('#detailEyebrow').textContent='PROJECT OVERVIEW'; $('#detailTitle').textContent='The route at a glance';
     const segs=visibleSegments();
-    box.innerHTML=`<div class="overview-number">195<small> countries</small></div><p class="detail-copy">One continuous, data-driven route. The globe is the interface: select a route line or country to inspect the plan.</p><div class="data-grid">${dataCard('Route legs','194')}${dataCard('Planned days','379')}${dataCard('Base model','€90.6k')}${dataCard('Executable now','194 / 195')}</div><h3>Visible route</h3><div class="route-list">${segs.slice(0,14).map(s=>`<div class="route-row" data-segment="${s.id}"><span class="route-id">#${s.id}</span><div><div class="route-name">${s.from} → ${s.to}</div><div class="route-sub">${segmentMode(s)} · ${s.phaseName}</div></div><span>›</span></div>`).join('')}</div>`;
+    box.innerHTML=`<div class="overview-number">195<small> countries</small></div><p class="detail-copy">One continuous, data-driven route. The globe is the interface: select a route line or country to inspect the plan.</p><div class="data-grid">${dataCard('Route legs','194')}${dataCard('Planned days','379')}${dataCard('Base model','€90.6k')}${dataCard('Executable now','194 / 195')}</div><h3>Visible route</h3><div class="route-list">${segs.slice(0,14).map(s=>`<div class="route-row" data-segment="${s.id}"><span class="route-id">#${s.id}</span><div><div class="route-name">${segmentFrom(s)} → ${segmentTo(s)}</div><div class="route-sub">${segmentMode(s)} · ${s.phaseName}</div></div><span>›</span></div>`).join('')}</div>`;
     $$('[data-segment]',box).forEach(x=>x.onclick=()=>selectSegment(Number(x.dataset.segment),true));
   }
 
