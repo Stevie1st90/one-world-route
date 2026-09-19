@@ -43,7 +43,7 @@
   const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 
   function ensureStyles(){
-    if(document.querySelector('link[data-iteration5]'))return;
+    if(document.querySelector('#appBundleCss')||document.querySelector('link[data-iteration5]'))return;
     const link=document.createElement('link');
     link.rel='stylesheet';link.href='./iteration5.css';link.dataset.iteration5='1';
     document.head.appendChild(link);

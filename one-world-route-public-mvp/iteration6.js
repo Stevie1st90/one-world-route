@@ -12,7 +12,7 @@
   const routeLabel=s=>`${s.displayFrom||EN.country(s.from)} → ${s.displayTo||EN.country(s.to)}`;
 
   function ensureStyles(){
-    if(document.querySelector('link[data-iteration6]'))return;
+    if(document.querySelector('#appBundleCss')||document.querySelector('link[data-iteration6]'))return;
     const link=document.createElement('link');link.rel='stylesheet';link.href='./iteration6.css';link.dataset.iteration6='1';document.head.appendChild(link);
   }
 

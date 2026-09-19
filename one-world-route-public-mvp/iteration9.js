@@ -402,7 +402,7 @@
       if(maplibregl.TerrainControl)map.addControl(new maplibregl.TerrainControl({source:'terrainSource',exaggeration:1.42}),'top-right');
       if(maplibregl.GlobeControl)map.addControl(new maplibregl.GlobeControl(),'top-right');
     }
-    runtime.terrainMap=map;runtime.terrainReady=true;
+    runtime.terrainMap=map;runtime.terrainReady=true;window.__ONE_WORLD_TERRAIN__=map;
   }
 
   function syncTerrainData(){

@@ -43,7 +43,7 @@
   }
 
   function ensureStoryStyles(){
-    if(document.querySelector('link[data-story-route]'))return;
+    if(document.querySelector('#appBundleCss')||document.querySelector('link[data-story-route]'))return;
     const link=document.createElement('link');
     link.rel='stylesheet'; link.href='./story.css'; link.dataset.storyRoute='1';
     document.head.appendChild(link);
