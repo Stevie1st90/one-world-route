@@ -94,3 +94,5 @@ body.story-mode .range-labels{opacity:.32;font-size:7px}
 @media(prefers-reduced-motion:reduce){
   .story-hud,.story-hud.chapter-shift,.story-track i{animation:none!important;transition:none!important}
 }
+
+body.story-mode #globe,body.story-mode #globe canvas{touch-action:none!important;user-select:none;-webkit-user-select:none}

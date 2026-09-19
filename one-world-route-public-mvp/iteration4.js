@@ -23,7 +23,13 @@
     active:false,
     userInteracting:false,
     interactionTimer:null,
-    cancelCameraTween:null
+    cancelCameraTween:null,
+    readCameraPOV:null,
+    setCameraPOV:null,
+    controlsEnabledBeforeStory:true,
+    pointers:new Map(),
+    dragStart:null,
+    pinchStart:null
   };
 
   const $ = (s, root=document) => root.querySelector(s);
@@ -100,13 +106,20 @@
     const pointOfView=instance.pointOfView;
     if(typeof pointOfView==='function'){
       const nativePointOfView=pointOfView.bind(instance);
-      runtime.cancelCameraTween=()=>{
+      runtime.readCameraPOV=()=>{
         try{
           const pov=nativePointOfView();
-          if(pov&&Number.isFinite(pov.lat)&&Number.isFinite(pov.lng)&&Number.isFinite(pov.altitude)){
-            nativePointOfView({lat:pov.lat,lng:pov.lng,altitude:pov.altitude},0);
-          }
-        }catch{}
+          return pov&&Number.isFinite(pov.lat)&&Number.isFinite(pov.lng)&&Number.isFinite(pov.altitude)
+            ? {lat:Number(pov.lat),lng:Number(pov.lng),altitude:Number(pov.altitude)}
+            : null;
+        }catch{return null}
+      };
+      runtime.setCameraPOV=(view,duration=0)=>{
+        try{return nativePointOfView(view,Math.max(0,Number(duration)||0));}catch{return instance}
+      };
+      runtime.cancelCameraTween=()=>{
+        const pov=runtime.readCameraPOV?.();
+        if(pov)runtime.setCameraPOV?.(pov,0);
       };
       instance.pointOfView=function(...args){
         if(isStory() && !runtime.applyingCamera) return args.length?instance:nativePointOfView();
@@ -238,9 +251,11 @@
     const duration=$('#reducedMotion')?.checked ? 0 : clamp(Math.round(activeSpeed()*.68),180,920);
 
     clearTimeout(runtime.focusTimer);
-    normalizeStoryControls({resetTarget:true});
     runtime.applyingCamera=true;
-    try{ globe.pointOfView({lat:midpoint.lat,lng:midpoint.lng,altitude},duration); }catch{}
+    try{
+      const view=safePOV({lat:midpoint.lat,lng:midpoint.lng,altitude});
+      if(view)runtime.setCameraPOV?.(view,duration);
+    }catch{}
     finally{ runtime.applyingCamera=false; }
     runtime.lastSegment=id;
     if(runtime.lastPhase!==phase.id){
@@ -306,7 +321,10 @@
 
   function enterStory(){
     runtime.active=true;
-    normalizeStoryControls({resetTarget:true});
+    setNativeStoryControls(true);
+    runtime.pointers.clear();
+    runtime.dragStart=null;
+    runtime.pinchStart=null;
     runtime.lastSegment=null;
     runtime.lastPhase=null;
     runtime.lockedPhase=null;
@@ -334,6 +352,11 @@
 
   function exitStory(){
     runtime.active=false;
+    runtime.pointers.clear();
+    runtime.dragStart=null;
+    runtime.pinchStart=null;
+    runtime.userInteracting=false;
+    setNativeStoryControls(false);
     runtime.lastSegment=null;
     runtime.lastPhase=null;
     runtime.lockedPhase=null;
@@ -350,62 +373,126 @@
     if(preview) preview.innerHTML='';
   }
 
-  function normalizeStoryControls({resetTarget=false}={}){
-    const globe=getGlobe();
-    const ctl=globe?.controls?.();
+  function setNativeStoryControls(active){
+    const ctl=getGlobe()?.controls?.();
     if(!ctl)return;
     try{
-      ctl.enablePan=false;
-      ctl.noPan=true;
-      ctl.screenSpacePanning=false;
-      ctl.enableRotate=true;
-      ctl.noRotate=false;
-      ctl.enableZoom=true;
-      ctl.noZoom=false;
-      ctl.minDistance=170;
-      ctl.maxDistance=isMobile()?430:520;
-      if(resetTarget&&ctl.target?.set)ctl.target.set(0,0,0);
+      if(active){
+        runtime.controlsEnabledBeforeStory=ctl.enabled!==false;
+        ctl.autoRotate=false;
+        ctl.enablePan=false;ctl.noPan=true;ctl.screenSpacePanning=false;
+        if(ctl.target?.set)ctl.target.set(0,0,0);
+        ctl.enabled=false;
+      }else{
+        ctl.enabled=runtime.controlsEnabledBeforeStory;
+        ctl.enablePan=false;ctl.noPan=true;ctl.screenSpacePanning=false;
+        ctl.enableRotate=true;ctl.noRotate=false;
+        ctl.enableZoom=true;ctl.noZoom=false;
+        if(ctl.target?.set)ctl.target.set(0,0,0);
+      }
       ctl.update?.();
     }catch{}
   }
 
+  function safePOV(pov){
+    if(!pov)return null;
+    const lat=clamp(Number(pov.lat)||0,-84,84);
+    let lng=Number(pov.lng)||0;
+    lng=((lng+540)%360)-180;
+    const altitude=clamp(Number(pov.altitude)||1.65,isMobile()?.92:.78,isMobile()?3.15:3.4);
+    return {lat,lng,altitude};
+  }
+
+  function setStoryPOV(pov){
+    const safe=safePOV(pov);if(!safe)return;
+    runtime.setCameraPOV?.(safe,0);
+  }
+
   function bindStoryGlobeInteraction(){
     const host=$('#globe');
-    const globe=getGlobe();
-    if(!host||!globe||host.dataset.storyInteractionBound)return;
+    if(!host||host.dataset.storyInteractionBound)return;
     host.dataset.storyInteractionBound='1';
 
-    normalizeStoryControls({resetTarget:true});
+    const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+    const resetGesture=()=>{
+      runtime.dragStart=null;
+      runtime.pinchStart=null;
+      if(runtime.pointers.size===1){
+        const p=[...runtime.pointers.values()][0];
+        const pov=safePOV(runtime.readCameraPOV?.());
+        if(pov)runtime.dragStart={x:p.x,y:p.y,pov,moved:false};
+      }else if(runtime.pointers.size===2){
+        const [a,b]=[...runtime.pointers.values()];
+        const pov=safePOV(runtime.readCameraPOV?.());
+        if(pov)runtime.pinchStart={distance:Math.max(8,distance(a,b)),pov};
+      }
+    };
 
-    const begin=()=>{
+    const down=e=>{
       if(!isStory())return;
-      runtime.userInteracting=true;
-      clearTimeout(runtime.interactionTimer);
-      normalizeStoryControls({resetTarget:true});
       runtime.cancelCameraTween?.();
-      normalizeStoryControls({resetTarget:true});
-    };
-    const end=()=>{
-      if(!isStory())return;
-      normalizeStoryControls({resetTarget:true});
-      clearTimeout(runtime.interactionTimer);
-      runtime.interactionTimer=setTimeout(()=>{
-        normalizeStoryControls({resetTarget:true});
-        runtime.userInteracting=false;
-        runtime.lastSegment=null;
-        syncStoryScene({focus:true});
-      },900);
+      runtime.userInteracting=true;
+      runtime.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+      try{host.setPointerCapture?.(e.pointerId)}catch{}
+      resetGesture();
+      e.preventDefault();
     };
 
-    try{
-      const ctl=globe.controls?.();
-      ctl?.addEventListener?.('start',begin);
-      ctl?.addEventListener?.('end',end);
-    }catch{}
-    host.addEventListener('pointerdown',begin,true);
-    host.addEventListener('pointerup',end,true);
-    host.addEventListener('pointercancel',end,true);
-    host.addEventListener('pointerleave',e=>{if(e.buttons)end();},true);
+    const move=e=>{
+      if(!isStory()||!runtime.pointers.has(e.pointerId))return;
+      runtime.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+      if(runtime.pointers.size===1&&runtime.dragStart){
+        const p=[...runtime.pointers.values()][0];
+        const dx=p.x-runtime.dragStart.x,dy=p.y-runtime.dragStart.y;
+        if(Math.hypot(dx,dy)>3)runtime.dragStart.moved=true;
+        if(runtime.dragStart.moved){
+          const factor=isMobile()?.20:.16;
+          setStoryPOV({
+            lat:runtime.dragStart.pov.lat+dy*factor,
+            lng:runtime.dragStart.pov.lng-dx*factor,
+            altitude:runtime.dragStart.pov.altitude
+          });
+        }
+      }else if(runtime.pointers.size===2){
+        const [a,b]=[...runtime.pointers.values()];
+        if(!runtime.pinchStart)resetGesture();
+        if(runtime.pinchStart){
+          const ratio=runtime.pinchStart.distance/Math.max(8,distance(a,b));
+          setStoryPOV({...runtime.pinchStart.pov,altitude:runtime.pinchStart.pov.altitude*ratio});
+        }
+      }
+      e.preventDefault();
+    };
+
+    const up=e=>{
+      if(!runtime.pointers.has(e.pointerId))return;
+      runtime.pointers.delete(e.pointerId);
+      try{host.releasePointerCapture?.(e.pointerId)}catch{}
+      if(runtime.pointers.size){
+        resetGesture();
+      }else{
+        runtime.dragStart=null;
+        runtime.pinchStart=null;
+        runtime.userInteracting=false;
+      }
+      if(isStory())e.preventDefault();
+    };
+
+    const wheel=e=>{
+      if(!isStory())return;
+      const pov=safePOV(runtime.readCameraPOV?.());if(!pov)return;
+      runtime.cancelCameraTween?.();
+      const scale=Math.exp(clamp(e.deltaY,-180,180)*.0015);
+      setStoryPOV({...pov,altitude:pov.altitude*scale});
+      runtime.userInteracting=false;
+      e.preventDefault();
+    };
+
+    host.addEventListener('pointerdown',down,{capture:true,passive:false});
+    host.addEventListener('pointermove',move,{capture:true,passive:false});
+    host.addEventListener('pointerup',up,{capture:true,passive:false});
+    host.addEventListener('pointercancel',up,{capture:true,passive:false});
+    host.addEventListener('wheel',wheel,{capture:true,passive:false});
   }
 
   function wire(){

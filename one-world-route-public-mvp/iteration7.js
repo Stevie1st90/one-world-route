@@ -81,6 +81,7 @@
     if(globe.__oneWorldIteration7Pacing)return;
     const native=globe.pointOfView.bind(globe);
     globe.pointOfView=function(view,duration,...rest){
+      if(arguments.length===0)return native();
       if(document.body.classList.contains('story-mode')){
         const reduced=$('#reducedMotion')?.checked||window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if(reduced)duration=0;
