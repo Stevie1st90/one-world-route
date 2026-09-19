@@ -238,6 +238,7 @@
     const duration=$('#reducedMotion')?.checked ? 0 : clamp(Math.round(activeSpeed()*.68),180,920);
 
     clearTimeout(runtime.focusTimer);
+    normalizeStoryControls({resetTarget:true});
     runtime.applyingCamera=true;
     try{ globe.pointOfView({lat:midpoint.lat,lng:midpoint.lng,altitude},duration); }catch{}
     finally{ runtime.applyingCamera=false; }
@@ -305,6 +306,7 @@
 
   function enterStory(){
     runtime.active=true;
+    normalizeStoryControls({resetTarget:true});
     runtime.lastSegment=null;
     runtime.lastPhase=null;
     runtime.lockedPhase=null;
@@ -348,38 +350,58 @@
     if(preview) preview.innerHTML='';
   }
 
+  function normalizeStoryControls({resetTarget=false}={}){
+    const globe=getGlobe();
+    const ctl=globe?.controls?.();
+    if(!ctl)return;
+    try{
+      ctl.enablePan=false;
+      ctl.noPan=true;
+      ctl.screenSpacePanning=false;
+      ctl.enableRotate=true;
+      ctl.noRotate=false;
+      ctl.enableZoom=true;
+      ctl.noZoom=false;
+      ctl.minDistance=170;
+      ctl.maxDistance=isMobile()?430:520;
+      if(resetTarget&&ctl.target?.set)ctl.target.set(0,0,0);
+      ctl.update?.();
+    }catch{}
+  }
+
   function bindStoryGlobeInteraction(){
     const host=$('#globe');
     const globe=getGlobe();
     if(!host||!globe||host.dataset.storyInteractionBound)return;
     host.dataset.storyInteractionBound='1';
 
-    try{
-      const ctl=globe.controls?.();
-      if(ctl){
-        ctl.enablePan=false;
-        ctl.screenSpacePanning=false;
-        ctl.enableRotate=true;
-        ctl.enableZoom=true;
-      }
-    }catch{}
+    normalizeStoryControls({resetTarget:true});
 
     const begin=()=>{
       if(!isStory())return;
       runtime.userInteracting=true;
       clearTimeout(runtime.interactionTimer);
+      normalizeStoryControls({resetTarget:true});
       runtime.cancelCameraTween?.();
+      normalizeStoryControls({resetTarget:true});
     };
     const end=()=>{
       if(!isStory())return;
+      normalizeStoryControls({resetTarget:true});
       clearTimeout(runtime.interactionTimer);
       runtime.interactionTimer=setTimeout(()=>{
+        normalizeStoryControls({resetTarget:true});
         runtime.userInteracting=false;
         runtime.lastSegment=null;
         syncStoryScene({focus:true});
       },900);
     };
 
+    try{
+      const ctl=globe.controls?.();
+      ctl?.addEventListener?.('start',begin);
+      ctl?.addEventListener?.('end',end);
+    }catch{}
     host.addEventListener('pointerdown',begin,true);
     host.addEventListener('pointerup',end,true);
     host.addEventListener('pointercancel',end,true);

@@ -206,9 +206,12 @@
       const ctl=globe.controls();
       ctl.autoRotate=state.settings.autoRotate; ctl.autoRotateSpeed=.28;
       ctl.enableDamping=true; ctl.dampingFactor=.08;
-      ctl.enablePan=false; ctl.screenSpacePanning=false;
-      ctl.enableRotate=true; ctl.enableZoom=true;
+      ctl.enablePan=false; ctl.noPan=true; ctl.screenSpacePanning=false;
+      ctl.enableRotate=true; ctl.noRotate=false;
+      ctl.enableZoom=true; ctl.noZoom=false;
       ctl.minDistance=170; ctl.maxDistance=520;
+      if(ctl.target?.set)ctl.target.set(0,0,0);
+      ctl.update?.();
       updateGlobe();
       loadPolygons().then(features=>{state.polygons=features;updateGlobe()});
       globe.pointOfView({lat:20,lng:12,altitude:2.25},0);
