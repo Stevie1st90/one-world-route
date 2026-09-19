@@ -62,6 +62,18 @@
   const trim = (s,n=84) => String(s||'').length>n ? String(s).slice(0,n-1)+'…' : String(s||'');
   const flagAssetUrl = c => /^[a-z]{2}$/i.test(String(c?.cca2||'')) ? `https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.5.0/flags/4x3/${String(c.cca2).toLowerCase()}.svg` : '';
   const flagMarkup = (c,w=24,h=18) => { const u=flagAssetUrl(c); return u ? `<img src="${u}" alt="" width="${w}" height="${h}" style="display:block;object-fit:cover;box-shadow:0 0 0 1px rgba(255,255,255,.10)">` : ''; };
+  const safeGlobeText = s => String(s||'').replace(/Ä/g,'Ae').replace(/Ö/g,'Oe').replace(/Ü/g,'Ue').replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss');
+  function globeHtmlLabel(d){
+    const el=document.createElement('div');
+    el.className='globe-selected-label';
+    const country=d.country||state.countries.find(c=>c.name===d.text);
+    const flag=flagAssetUrl(country);
+    if(flag){
+      const img=document.createElement('img');img.src=flag;img.alt='';img.loading='eager';el.appendChild(img);
+    }
+    const text=document.createElement('span');text.textContent=d.text;el.appendChild(text);
+    return el;
+  }
   const colorAlpha = (hex,alpha) => { const m=/^#([0-9a-f]{6})$/i.exec(String(hex||'')); if(!m)return hex; const n=parseInt(m[1],16); return `rgba(${(n>>16)&255},${(n>>8)&255},${n&255},${alpha})`; };
 
   function criticalScore(s){
@@ -197,6 +209,9 @@
     if(!state.globe) return;
     const filtered=visibleSegments(); const sel=state.segments.find(s=>s.id===state.selectedSegmentId);
     const segs=sel&&!filtered.some(s=>s.id===sel.id)?[...filtered,sel]:filtered;
+    const labelCountry=state.selectedCountry || (sel ? state.countries.find(c=>c.name===sel.to) : null);
+    const labelData=labelCountry ? [{lat:labelCountry.lat,lng:labelCountry.lng,text:labelCountry.name,country:labelCountry}] : [];
+    const useHtmlLabels=typeof state.globe.htmlElementsData==='function';
     state.globe
       .arcsData(segs)
       .arcColor(s=>{
@@ -216,7 +231,7 @@
       .pointsData(state.settings.showPoints ? state.countries : [])
       .pointRadius(c => c.name === state.selectedCountry?.name ? .22 : .09)
       .pointColor(c=>c.name===state.selectedCountry?.name?colors.cyan:(c.readiness==='BLOCKED'?colors.red:'rgba(188,215,239,.62)'))
-      .labelsData(state.selectedCountry ? [{lat:state.selectedCountry.lat,lng:state.selectedCountry.lng,text:state.selectedCountry.name}] : sel ? [{lat:sel.endLat,lng:sel.endLng,text:sel.to}] : [])
+      .labelsData(useHtmlLabels || document.body.classList.contains('story-mode') ? [] : labelData.map(d=>({...d,text:safeGlobeText(d.text)})))
       .ringsData(state.selectedCountry ? [state.selectedCountry] : sel ? [{lat:sel.endLat,lng:sel.endLng}] : [])
       .polygonsData(state.polygons)
       .polygonCapColor(f=>{
@@ -231,6 +246,12 @@
       .polygonSideColor(()=>state.globe.__oneWorldArtifactFreeBorders?'rgba(8,14,24,.001)':'rgba(7,13,22,.12)')
       .polygonStrokeColor(()=>state.globe.__oneWorldArtifactFreeBorders?'rgba(8,14,24,.001)':'rgba(135,166,201,.18)')
       .polygonAltitude(f=>state.globe.__oneWorldArtifactFreeBorders?(state.selectedCountry?.cca3===f.id?.003:.0005):(state.selectedCountry?.cca3===f.id?.012:.002));
+    if(useHtmlLabels){
+      state.globe
+        .htmlElementsData(document.body.classList.contains('story-mode')?[]:labelData)
+        .htmlLat('lat').htmlLng('lng').htmlAltitude(.028)
+        .htmlElement(globeHtmlLabel).htmlTransitionDuration(0);
+    }
     if(state.globe.controls()) state.globe.controls().autoRotate=state.settings.autoRotate && !state.playing;
     updateLegend(); updateFloatingStats(); $('#filterCount').textContent=`${filtered.length} / 194`;
   }
@@ -299,7 +320,12 @@
     $('#topKpis').innerHTML=`<div class="kpi"><b>195</b><span>countries</span></div><div class="kpi"><b>379</b><span>planned days</span></div><div class="kpi"><b>194</b><span>executable</span></div><div class="kpi"><b>€90.6k</b><span>base model</span></div>`;
     $('#phaseRail').innerHTML=`<button data-phase="all" class="${state.phase==='all'?'active':''}">All route</button>`+PHASES.map(p=>`<button data-phase="${p.id}" class="${String(state.phase)===String(p.id)?'active':''}" title="${p.name}"><span class="phase-dot" style="background:${p.color}"></span>${String(p.id).padStart(2,'0')} ${p.short}</button>`).join('');
     $$('#phaseRail button').forEach(b=>b.onclick=()=>{state.phase=b.dataset.phase;renderChrome();updateGlobe();renderDetail();updateUrl();const p=PHASES.find(x=>String(x.id)===state.phase);if(p)selectSegment(p.range[0],true)});
-    if(window.innerWidth<=820&&state.phase!=='all')requestAnimationFrame(()=>$('#phaseRail button.active')?.scrollIntoView({block:'nearest',inline:'center',behavior:state.settings.reducedMotion?'auto':'smooth'}));
+    if(window.innerWidth<=820)requestAnimationFrame(()=>{
+      const rail=$('#phaseRail'),active=rail?.querySelector('button.active');if(!rail||!active)return;
+      const max=Math.max(0,rail.scrollWidth-rail.clientWidth);
+      const target=state.phase==='all'?0:Math.max(0,Math.min(max,active.offsetLeft-(rail.clientWidth-active.offsetWidth)/2));
+      rail.scrollTo({left:target,behavior:state.settings.reducedMotion?'auto':'smooth'});
+    });
     $$('#layerGrid button').forEach(b=>b.classList.toggle('active',b.dataset.layer===state.layer));
     $$('.mode-switch button').forEach(b=>b.classList.toggle('active',b.dataset.mode===state.mode));
   }

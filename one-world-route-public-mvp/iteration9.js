@@ -36,7 +36,11 @@
       body.terrain-view .phase-rail{background:rgba(7,14,24,.82);border-color:rgba(145,179,211,.16);box-shadow:0 8px 24px rgba(0,0,0,.16)}
       body.terrain-view .phase-rail button{color:#8499af}
       body.terrain-view .phase-rail button.active{background:rgba(255,255,255,.08);color:#eef8ff}
-      @media(max-width:820px){.terrain-badge{bottom:70px;font-size:7px}.terrain-badge span{display:none}}
+      @media(max-width:820px){
+        body.terrain-loading .terrain-badge,body.terrain-view .terrain-badge{display:none!important}
+        body.terrain-view .maplibregl-ctrl-top-right{display:none!important}
+        body.terrain-view .maplibregl-ctrl-bottom-right{bottom:4px}
+      }
     `;
     document.head.appendChild(style);
   }
@@ -300,7 +304,7 @@
         {id:'selected-route-shadow',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(2,9,15,.82)','line-opacity':$('#routeGlow')?.checked===false?.38:.92,'line-width':widthExpr(4.0,6.4,9.0)}},
         {id:'selected-route',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#00d8ff','line-opacity':1,'line-width':widthExpr(2.7,4.7,6.8)}},
         {id:'country-hit',type:'circle',source:'countrySource',layout:{visibility:$('#showPoints')?.checked===false?'none':'visible'},paint:{'circle-radius':['interpolate',['linear'],['zoom'],2,8,7,10,11,12],'circle-color':'rgba(0,0,0,.001)','circle-opacity':.001}},
-        {id:'country-points',type:'circle',source:'countrySource',layout:{visibility:$('#showPoints')?.checked===false?'none':'visible'},paint:{'circle-radius':['interpolate',['linear'],['zoom'],2,2.2,7,3.3,11,4.6],'circle-color':'rgba(207,232,247,.82)','circle-stroke-color':'rgba(4,12,20,.86)','circle-stroke-width':1,'circle-opacity':.9}},
+        {id:'country-points',type:'circle',source:'countrySource',layout:{visibility:$('#showPoints')?.checked===false?'none':'visible'},paint:{'circle-radius':['interpolate',['linear'],['zoom'],2,1.55,7,2.7,11,4.1],'circle-color':'rgba(207,232,247,.76)','circle-stroke-color':'rgba(4,12,20,.82)','circle-stroke-width':1,'circle-opacity':['interpolate',['linear'],['zoom'],2,.46,5,.62,8,.82]}},
         {id:'country-selected',type:'circle',source:'countrySource',filter:['==',['get','name'],new URLSearchParams(location.search).get('country')||''],paint:{'circle-radius':['interpolate',['linear'],['zoom'],2,4.8,7,6.6,11,8.4],'circle-color':'#59ddff','circle-stroke-color':'#ffffff','circle-stroke-width':1.4,'circle-opacity':1}}
       ]
     };
