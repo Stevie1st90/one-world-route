@@ -171,17 +171,19 @@
     return $('#layerGrid button.active')?.dataset.layer || new URLSearchParams(location.search).get('layer') || 'route';
   }
 
-  function terrainVisibleSegments(){
+  function terrainSegmentVisible(s){
     const layer=activeTerrainLayer();
     const mode=$('#modeFilter')?.value||'all',tier=$('#tierFilter')?.value||'all',feasibility=$('#feasibilityFilter')?.value||'all',alert=$('#alertFilter')?.value||'all';
-    return (runtime.routeData?.segments||[]).filter(s=>{
-      if(mode!=='all'&&s.mode!==mode)return false;
-      if(tier!=='all'&&s.bookingTier!==tier)return false;
-      if(feasibility!=='all'&&s.feasibility!==feasibility)return false;
-      if(alert!=='all'&&s.alertLevel!==alert)return false;
-      if(layer==='critical'&&!runtime.criticalIds.has(Number(s.id)))return false;
-      return true;
-    });
+    if(mode!=='all'&&s.mode!==mode)return false;
+    if(tier!=='all'&&s.bookingTier!==tier)return false;
+    if(feasibility!=='all'&&s.feasibility!==feasibility)return false;
+    if(alert!=='all'&&s.alertLevel!==alert)return false;
+    if(layer==='critical'&&!runtime.criticalIds.has(Number(s.id)))return false;
+    return true;
+  }
+
+  function terrainVisibleSegments(){
+    return (runtime.routeData?.segments||[]).filter(terrainSegmentVisible);
   }
 
   function terrainColor(s){
@@ -242,16 +244,15 @@
     const a=runtime.centroids.get(normalize(s.from)),b=runtime.centroids.get(normalize(s.to));
     if(!a||!b)return null;
     const parts=splitDateline(greatCirclePoints(a,b));
+    const id=Number(s.id),visible=terrainSegmentVisible(s)||id===Number(runtime.selectedId);
     return {
-      type:'Feature',properties:{id:Number(s.id),phaseId:phaseIdFor(Number(s.id)),color:terrainColor(s)},
+      type:'Feature',properties:{id,phaseId:phaseIdFor(id),color:terrainColor(s),visible:visible?1:0},
       geometry:parts.length>1?{type:'MultiLineString',coordinates:parts}:{type:'LineString',coordinates:parts[0]||[]}
     };
   }
 
   function routeGeoJson(){
-    const visible=terrainVisibleSegments();
-    const selected=(runtime.routeData?.segments||[]).find(s=>Number(s.id)===Number(runtime.selectedId));
-    const rows=selected&&!visible.some(s=>Number(s.id)===Number(selected.id))?[...visible,selected]:visible;
+    const rows=runtime.routeData?.segments||[];
     return {type:'FeatureCollection',features:rows.map(segmentFeature).filter(Boolean)};
   }
 
@@ -291,12 +292,13 @@
         {id:'background',type:'background',paint:{'background-color':'#071019'}},
         {id:'osm',type:'raster',source:'osm',paint:{'raster-opacity':1,'raster-saturation':-.06,'raster-contrast':.08,'raster-brightness-min':.01,'raster-brightness-max':.76}},
         {id:'hills',type:'hillshade',source:'hillshadeSource',paint:{'hillshade-method':'multidirectional','hillshade-exaggeration':.42,'hillshade-shadow-color':'#6a7780','hillshade-highlight-color':'#f5f8fa','hillshade-accent-color':'#8c9ca6'}},
-        {id:'route-hit',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(0,0,0,.001)','line-opacity':.001,'line-width':['interpolate',['linear'],['zoom'],2,10,7,14,12,18]}},
-        {id:'route-world',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.20,'line-width':widthExpr(.55,.9,1.4)}},
-        {id:'route-phase-shadow',type:'line',source:'routeSource',filter:['==',['get','phaseId'],phase],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(4,10,16,.48)','line-opacity':$('#routeGlow')?.checked===false?.18:.58,'line-width':widthExpr(1.8,3.2,5.2)}},
-        {id:'route-phase',type:'line',source:'routeSource',filter:['==',['get','phaseId'],phase],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.76,'line-width':widthExpr(1.15,2.1,3.3)}},
-        {id:'selected-route-shadow',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(4,10,16,.72)','line-opacity':$('#routeGlow')?.checked===false?.22:.88,'line-width':widthExpr(3.2,5.4,7.6)}},
-        {id:'selected-route',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#00c8f2','line-opacity':1,'line-width':widthExpr(2.15,3.9,5.9)}},
+        {id:'route-hit',type:'line',source:'routeSource',filter:['==',['get','visible'],1],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(0,0,0,.001)','line-opacity':.001,'line-width':['interpolate',['linear'],['zoom'],2,12,7,16,12,20]}},
+        {id:'route-world-shadow',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(3,10,18,.72)','line-opacity':.30,'line-width':widthExpr(2.1,3.2,4.6)}},
+        {id:'route-world',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':['case',['==',['get','visible'],1],colorExpression(),'#6f8295'],'line-opacity':['case',['==',['get','visible'],1],.72,.18],'line-width':widthExpr(1.05,1.65,2.45)}},
+        {id:'route-phase-shadow',type:'line',source:'routeSource',filter:['all',['==',['get','phaseId'],phase],['==',['get','visible'],1]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(4,10,16,.66)','line-opacity':$('#routeGlow')?.checked===false?.28:.72,'line-width':widthExpr(2.5,4.0,6.0)}},
+        {id:'route-phase',type:'line',source:'routeSource',filter:['all',['==',['get','phaseId'],phase],['==',['get','visible'],1]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.96,'line-width':widthExpr(1.55,2.65,4.1)}},
+        {id:'selected-route-shadow',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(2,9,15,.82)','line-opacity':$('#routeGlow')?.checked===false?.38:.92,'line-width':widthExpr(4.0,6.4,9.0)}},
+        {id:'selected-route',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#00d8ff','line-opacity':1,'line-width':widthExpr(2.7,4.7,6.8)}},
         {id:'country-hit',type:'circle',source:'countrySource',layout:{visibility:$('#showPoints')?.checked===false?'none':'visible'},paint:{'circle-radius':['interpolate',['linear'],['zoom'],2,8,7,10,11,12],'circle-color':'rgba(0,0,0,.001)','circle-opacity':.001}},
         {id:'country-points',type:'circle',source:'countrySource',layout:{visibility:$('#showPoints')?.checked===false?'none':'visible'},paint:{'circle-radius':['interpolate',['linear'],['zoom'],2,2.2,7,3.3,11,4.6],'circle-color':'rgba(207,232,247,.82)','circle-stroke-color':'rgba(4,12,20,.86)','circle-stroke-width':1,'circle-opacity':.9}},
         {id:'country-selected',type:'circle',source:'countrySource',filter:['==',['get','name'],new URLSearchParams(location.search).get('country')||''],paint:{'circle-radius':['interpolate',['linear'],['zoom'],2,4.8,7,6.6,11,8.4],'circle-color':'#59ddff','circle-stroke-color':'#ffffff','circle-stroke-width':1.4,'circle-opacity':1}}
@@ -395,7 +397,7 @@
     const glow=$('#routeGlow')?.checked!==false;
     if(map.getLayer?.('route-phase-shadow'))map.setPaintProperty('route-phase-shadow','line-opacity',glow?.58:.18);
     if(map.getLayer?.('selected-route-shadow'))map.setPaintProperty('selected-route-shadow','line-opacity',glow?.88:.22);
-    const widths={ 'route-world':widthExpr(.55,.9,1.4),'route-phase-shadow':widthExpr(1.8,3.2,5.2),'route-phase':widthExpr(1.15,2.1,3.3),'selected-route-shadow':widthExpr(3.2,5.4,7.6),'selected-route':widthExpr(2.15,3.9,5.9)};
+    const widths={'route-world-shadow':widthExpr(2.1,3.2,4.6),'route-world':widthExpr(1.05,1.65,2.45),'route-phase-shadow':widthExpr(2.5,4.0,6.0),'route-phase':widthExpr(1.55,2.65,4.1),'selected-route-shadow':widthExpr(4.0,6.4,9.0),'selected-route':widthExpr(2.7,4.7,6.8)};
     Object.entries(widths).forEach(([id,value])=>{if(map.getLayer?.(id))map.setPaintProperty(id,'line-width',value)});
     const auto=$('#autoRotate');if(auto)auto.disabled=runtime.terrainActive||runtime.terrainRequested;
   }
@@ -403,8 +405,9 @@
   function syncTerrainHierarchy(){
     const map=runtime.terrainMap;if(!map)return;
     const phase=activeTerrainPhase();
-    if(map.getLayer?.('route-phase'))map.setFilter('route-phase',['==',['get','phaseId'],phase]);
-    if(map.getLayer?.('route-phase-shadow'))map.setFilter('route-phase-shadow',['==',['get','phaseId'],phase]);
+    if(map.getLayer?.('route-hit'))map.setFilter('route-hit',['==',['get','visible'],1]);
+    if(map.getLayer?.('route-phase'))map.setFilter('route-phase',['all',['==',['get','phaseId'],phase],['==',['get','visible'],1]]);
+    if(map.getLayer?.('route-phase-shadow'))map.setFilter('route-phase-shadow',['all',['==',['get','phaseId'],phase],['==',['get','visible'],1]]);
     if(map.getLayer?.('selected-route'))map.setFilter('selected-route',['==',['get','id'],runtime.selectedId]);
     if(map.getLayer?.('selected-route-shadow'))map.setFilter('selected-route-shadow',['==',['get','id'],runtime.selectedId]);
   }

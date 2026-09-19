@@ -19,12 +19,15 @@ html{scrollbar-color:rgba(255,255,255,.16) transparent;scrollbar-width:thin}::-w
 .settings-head button,.command-close{width:30px;height:30px;border-radius:9px;border:1px solid var(--line2);background:rgba(255,255,255,.04);color:#cbd7e6;cursor:pointer;font-size:18px;line-height:1}
 .mobile-settings-actions{display:none}
 .command-close{display:none;flex:0 0 auto}
-.phase-rail{overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch}\nbutton{touch-action:manipulation}\n.close-filters{margin-left:auto;margin-bottom:6px;width:34px;height:34px;border-radius:10px;border:1px solid var(--line2);background:rgba(255,255,255,.045);color:#dce8f6;cursor:pointer}
+.phase-rail{overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch}
+button{touch-action:manipulation}
+.close-filters{margin-left:auto;margin-bottom:6px;width:34px;height:34px;border-radius:10px;border:1px solid var(--line2);background:rgba(255,255,255,.045);color:#dce8f6;cursor:pointer}
 .detail-scroll{overscroll-behavior:contain;min-height:0}
 body.story-mode .mobile-panel-btn{display:none!important}
 
 @media(max-width:820px){
-  .top-actions .icon-btn{width:38px;height:38px}\n  .left-panel.mobile-open,.right-panel.mobile-open{overflow:auto;overscroll-behavior:contain}
+  .top-actions .icon-btn{width:38px;height:38px}
+  .left-panel.mobile-open,.right-panel.mobile-open{overflow:auto;overscroll-behavior:contain}
   .close-filters{display:block;position:sticky;top:0;z-index:6}
   .right-panel.mobile-open .detail-scroll{padding-top:20px}
   .command-box{width:calc(100vw - 16px);border-radius:18px}
@@ -35,4 +38,15 @@ body.story-mode .mobile-panel-btn{display:none!important}
   .mobile-settings-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px;padding-top:10px;border-top:1px solid var(--line2)}
   .mobile-settings-actions button{min-height:36px;border-radius:10px;border:1px solid var(--line2);background:rgba(255,255,255,.04);color:#cbd7e6;font-size:9px;font-weight:650;cursor:pointer}
   .settings-popover{max-height:calc(100dvh - 92px);overflow:auto}
+}
+
+.range-labels b{font-size:6px;letter-spacing:.08em;color:#74859b}
+.search-hit,.command-item{width:100%;border:0;background:transparent;color:inherit;text-align:left;font:inherit}
+.search-hit{display:block}
+.command-item{align-items:center}
+.search-hit:active,.command-item:active{background:rgba(89,221,255,.10)}
+button{touch-action:manipulation}
+@media(max-width:520px){
+  .range-labels span:first-child,.range-labels span:last-child{white-space:nowrap}
+  .range-labels b{font-size:5.5px}
 }

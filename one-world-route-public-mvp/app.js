@@ -41,6 +41,8 @@
     playing:false, playTimer:null, speed:700, criticalIds:new Set(),
     settings:{autoRotate:false, showPoints:true, routeGlow:true, arcWidth:.55, reducedMotion:false}
   };
+  let inlineHits=[];
+  let commandHits=[];
 
   const normalize = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,' ').trim();
   const excelDate = v => {
@@ -390,9 +392,11 @@
     return [...cs,...ss].slice(0,14);
   }
   function showInlineResults(q){
-    const hits=search(q),box=$('#searchResults'); if(!q||!hits.length){box.classList.add('hidden');return} box.classList.remove('hidden');
-    box.innerHTML=hits.slice(0,7).map((h,i)=>`<div class="search-hit" data-i="${i}">${escapeHtml(h.title)}<small>${escapeHtml(h.sub)}</small></div>`).join('');
-    $$('.search-hit',box).forEach(x=>x.onclick=()=>activateHit(hits[Number(x.dataset.i)]));
+    const hits=search(q),box=$('#searchResults');
+    inlineHits=hits.slice(0,7);
+    if(!q||!inlineHits.length){box.classList.add('hidden');box.innerHTML='';return}
+    box.classList.remove('hidden');
+    box.innerHTML=inlineHits.map((h,i)=>`<button type="button" class="search-hit" data-i="${i}">${escapeHtml(h.title)}<small>${escapeHtml(h.sub)}</small></button>`).join('');
   }
   function activateHit(h){
     if(!h)return;
@@ -404,9 +408,8 @@
     }
   }
   function renderCommand(q=''){
-    const hits=q?search(q):state.segments.slice(0,8).map(s=>({type:'segment',title:`${s.from} → ${s.to}`,sub:`#${s.id} · ${s.phaseName}`,obj:s}));
-    $('#commandResults').innerHTML=`<div class="command-group">${q?'Search results':'Jump to route'}</div>${hits.map((h,i)=>`<div class="command-item" data-i="${i}"><b>${escapeHtml(h.title)}</b><span>${escapeHtml(h.sub)}</span></div>`).join('')}`;
-    $$('.command-item','#commandResults').forEach(x=>x.onclick=()=>activateHit(hits[Number(x.dataset.i)]));
+    commandHits=q?search(q):state.segments.slice(0,8).map(s=>({type:'segment',title:`${s.from} → ${s.to}`,sub:`#${s.id} · ${s.phaseName}`,obj:s}));
+    $('#commandResults').innerHTML=`<div class="command-group">${q?'Search results':'Jump to route'}</div>${commandHits.map((h,i)=>`<button type="button" class="command-item" data-i="${i}"><b>${escapeHtml(h.title)}</b><span>${escapeHtml(h.sub)}</span></button>`).join('')}`;
   }
   function closeCommand(){ $('#commandPalette')?.classList.add('hidden'); }
   function closeMobilePanels(){
@@ -446,7 +449,12 @@
     $$('#layerGrid button').forEach(b=>b.onclick=()=>{state.layer=b.dataset.layer;renderChrome();updateGlobe();renderDetail();updateUrl()});
     ['mode','tier','feasibility','alert'].forEach(k=>{$(`#${k}Filter`).onchange=e=>{state.filters[k]=e.target.value;updateGlobe();renderDetail()}});
     $('#clearFilters').onclick=()=>{state.filters={mode:'all',tier:'all',feasibility:'all',alert:'all'};['mode','tier','feasibility','alert'].forEach(k=>$(`#${k}Filter`).value='all');state.phase='all';renderChrome();updateGlobe();renderDetail();updateUrl()};
-    $('#inlineSearch').oninput=e=>showInlineResults(e.target.value); $('#searchBtn').onclick=openCommand; $('#commandInput').oninput=e=>renderCommand(e.target.value);
+    $('#inlineSearch').oninput=e=>showInlineResults(e.target.value);
+    $('#searchResults').onclick=e=>{const hit=e.target.closest?.('.search-hit');if(hit)activateHit(inlineHits[Number(hit.dataset.i)])};
+    $('#searchBtn').onclick=openCommand;
+    $('#commandInput').oninput=e=>renderCommand(e.target.value);
+    $('#commandInput').onkeydown=e=>{if(e.key==='Enter'&&commandHits[0]){e.preventDefault();activateHit(commandHits[0])}};
+    $('#commandResults').onclick=e=>{const hit=e.target.closest?.('.command-item');if(hit)activateHit(commandHits[Number(hit.dataset.i)])};
     $('#routeRange').oninput=e=>{selectSegment(Number(e.target.value),false);updateRange()}; $('#playBtn').onclick=play;
     $$('.speed-control button').forEach(b=>b.onclick=()=>{$$('.speed-control button').forEach(x=>x.classList.remove('active'));b.classList.add('active');state.speed=Number(b.dataset.speed)});
     $$('#detailTabs button').forEach(b=>b.onclick=()=>{state.activeTab=b.dataset.tab;renderDetail()});
