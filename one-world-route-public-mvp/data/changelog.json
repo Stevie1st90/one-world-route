@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-09-20",
+    "title": "Terrain camera and local-route context fixed",
+    "summary": "Terrain now refocuses the selected route whenever the view opens. At close zoom global and chapter route layers give way to viewport-local non-flight corridors, preventing unrelated long lines from crossing the map while preserving free navigation.",
+    "tags": [
+      "terrain",
+      "camera",
+      "mobile",
+      "route hierarchy"
+    ]
+  },
+  {
+    "date": "2026-09-20",
     "title": "Terrain route level-of-detail",
     "summary": "The complete route remains continuous at world and continent zoom. As the user zooms into local terrain, global backbone and unselected long-haul flights fade away so they no longer cut across the map; local corridors and the selected leg stay prominent.",
     "tags": [

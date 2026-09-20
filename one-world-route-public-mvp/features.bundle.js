@@ -795,12 +795,14 @@
       {id:'route-hit',type:'line',source:'routeSource',filter:['==',['get','visible'],1],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(0,0,0,.001)','line-opacity':.001,'line-width':['interpolate',['linear'],['zoom'],2,12,7,16,12,20]}},
       {id:'route-backbone-shadow',type:'line',source:'routeSource',filter:['==',['get','visible'],1],maxzoom:5.8,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(2,8,15,.68)','line-opacity':['interpolate',['linear'],['zoom'],2,.38,4.4,.30,5.3,.12,5.75,0],'line-width':['interpolate',['linear'],['zoom'],2,2.6,4.4,2.25,5.75,1.7]}},
       {id:'route-backbone',type:'line',source:'routeSource',filter:['==',['get','visible'],1],maxzoom:5.8,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':['interpolate',['linear'],['zoom'],2,.62,4.4,.56,5.3,.22,5.75,0],'line-width':['interpolate',['linear'],['zoom'],2,1.25,4.4,1.12,5.75,.82]}},
-      {id:'route-world-shadow',type:'line',source:'routeSource',filter:['==',['get','isFlight'],0],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(3,10,18,.58)','line-opacity':.24,'line-width':widthExpr(2.1,3.2,4.6)}},
-      {id:'route-world',type:'line',source:'routeSource',filter:['==',['get','isFlight'],0],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':['case',['==',['get','visible'],1],colorExpression(),'#6f8295'],'line-opacity':['case',['==',['get','visible'],1],.72,.16],'line-width':widthExpr(1.05,1.65,2.45)}},
+      {id:'route-world-shadow',type:'line',source:'routeSource',filter:['==',['get','isFlight'],0],maxzoom:5.8,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(3,10,18,.58)','line-opacity':.24,'line-width':widthExpr(2.1,3.2,4.6)}},
+      {id:'route-world',type:'line',source:'routeSource',filter:['==',['get','isFlight'],0],maxzoom:5.8,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':['case',['==',['get','visible'],1],colorExpression(),'#6f8295'],'line-opacity':['case',['==',['get','visible'],1],.72,.16],'line-width':widthExpr(1.05,1.65,2.45)}},
       {id:'route-flights-shadow',type:'line',source:'routeSource',filter:['all',['==',['get','isFlight'],1],['!=',['get','id'],runtime.selectedId]],maxzoom:5.45,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(3,10,18,.72)','line-opacity':['interpolate',['linear'],['zoom'],2,.28,4,.18,5.15,.07,5.4,0],'line-width':['interpolate',['linear'],['zoom'],2,1.5,4,1.1,5.4,.72]}},
       {id:'route-flights-world',type:'line',source:'routeSource',filter:['all',['==',['get','isFlight'],1],['!=',['get','id'],runtime.selectedId]],maxzoom:5.45,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':['case',['==',['get','visible'],1],colorExpression(),'#718399'],'line-opacity':['interpolate',['linear'],['zoom'],2,.52,4,.38,5.15,.15,5.4,0],'line-width':['interpolate',['linear'],['zoom'],2,1.0,4,.84,5.4,.58]}},
-      {id:'route-phase-shadow',type:'line',source:'routeSource',filter:['all',phaseFilter,['==',['get','visible'],1],['==',['get','isFlight'],0]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(4,10,16,.58)','line-opacity':$('#routeGlow')?.checked===false?.24:.64,'line-width':widthExpr(2.5,4.0,6.0)}},
-      {id:'route-phase',type:'line',source:'routeSource',filter:['all',phaseFilter,['==',['get','visible'],1],['==',['get','isFlight'],0]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.94,'line-width':widthExpr(1.55,2.65,4.1)}},
+      {id:'route-phase-shadow',type:'line',source:'routeSource',filter:['all',phaseFilter,['==',['get','visible'],1],['==',['get','isFlight'],0]],maxzoom:5.8,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(4,10,16,.58)','line-opacity':$('#routeGlow')?.checked===false?.24:.64,'line-width':widthExpr(2.5,4.0,6.0)}},
+      {id:'route-phase',type:'line',source:'routeSource',filter:['all',phaseFilter,['==',['get','visible'],1],['==',['get','isFlight'],0]],maxzoom:5.8,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.94,'line-width':widthExpr(1.55,2.65,4.1)}},
+      {id:'route-local-shadow',type:'line',source:'routeSource',filter:['==',['get','id'],-1],minzoom:5.35,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(3,10,18,.62)','line-opacity':.48,'line-width':widthExpr(2.35,3.45,5.0)}},
+      {id:'route-local',type:'line',source:'routeSource',filter:['==',['get','id'],-1],minzoom:5.35,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.84,'line-width':widthExpr(1.3,2.05,3.0)}},
       {id:'selected-route-shadow',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(2,9,15,.74)','line-opacity':$('#routeGlow')?.checked===false?.34:.82,'line-width':widthExpr(4.0,6.4,9.0)}},
       {id:'selected-route',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#00ccef','line-opacity':1,'line-width':widthExpr(2.7,4.7,6.8)}},
       {id:'country-hit',type:'circle',source:'countrySource',layout:{visibility:$('#showPoints')?.checked===false?'none':'visible'},paint:{'circle-radius':['interpolate',['linear'],['zoom'],2,8,7,10,11,12],'circle-color':'rgba(0,0,0,.001)','circle-opacity':.001}},
@@ -854,9 +856,9 @@
 
     map.on('load',()=>{
       runtime.terrainBaseReady=true;clearTimeout(runtime.terrainFailTimer);
-      syncTerrainSelection({fly:false});syncTerrainSettings();if(runtime.terrainRequested)activateTerrain();
+      syncTerrainSelection({fly:true});syncTerrainSettings();if(runtime.terrainRequested)activateTerrain();
 
-      const routeLayers=['route-hit','selected-route','route-phase','route-world'];
+      const routeLayers=['route-hit','selected-route','route-local','route-phase','route-world'];
       map.on('click',e=>{
         const hit=map.queryRenderedFeatures(e.point,{layers:routeLayers}).find(f=>Number.isFinite(Number(f.properties?.id)));
         if(!hit)return;
@@ -872,6 +874,9 @@
       });
       map.on('mouseenter','country-hit',()=>{map.getCanvas().style.cursor='pointer'});
       map.on('mouseleave','country-hit',()=>{map.getCanvas().style.cursor=''});
+      map.on('moveend',updateTerrainLocalContext);
+      map.on('zoomend',updateTerrainLocalContext);
+      updateTerrainLocalContext();
     });
 
     map.on('error',e=>{
@@ -906,7 +911,7 @@
     const glow=$('#routeGlow')?.checked!==false;
     if(map.getLayer?.('route-phase-shadow'))map.setPaintProperty('route-phase-shadow','line-opacity',glow?.58:.18);
     if(map.getLayer?.('selected-route-shadow'))map.setPaintProperty('selected-route-shadow','line-opacity',glow?.88:.22);
-    const widths={'route-world-shadow':widthExpr(2.1,3.2,4.6),'route-world':widthExpr(1.05,1.65,2.45),'route-phase-shadow':widthExpr(2.5,4.0,6.0),'route-phase':widthExpr(1.55,2.65,4.1),'selected-route-shadow':widthExpr(4.0,6.4,9.0),'selected-route':widthExpr(2.7,4.7,6.8)};
+    const widths={'route-world-shadow':widthExpr(2.1,3.2,4.6),'route-world':widthExpr(1.05,1.65,2.45),'route-phase-shadow':widthExpr(2.5,4.0,6.0),'route-phase':widthExpr(1.55,2.65,4.1),'route-local-shadow':widthExpr(2.35,3.45,5.0),'route-local':widthExpr(1.3,2.05,3.0),'selected-route-shadow':widthExpr(4.0,6.4,9.0),'selected-route':widthExpr(2.7,4.7,6.8)};
     Object.entries(widths).forEach(([id,value])=>{if(map.getLayer?.(id))map.setPaintProperty(id,'line-width',value)});
     const auto=$('#autoRotate');if(auto)auto.disabled=runtime.terrainActive||runtime.terrainRequested;
   }
@@ -919,6 +924,7 @@
     if(map.getLayer?.('route-phase'))map.setFilter('route-phase',['all',phaseFilter,['==',['get','visible'],1],['==',['get','isFlight'],0]]);
     if(map.getLayer?.('route-phase-shadow'))map.setFilter('route-phase-shadow',['all',phaseFilter,['==',['get','visible'],1],['==',['get','isFlight'],0]]);
     if(map.getLayer?.('route-flights-world'))map.setFilter('route-flights-world',['all',['==',['get','isFlight'],1],['!=',['get','id'],runtime.selectedId]]);
+    updateTerrainLocalContext();
     if(map.getLayer?.('selected-route'))map.setFilter('selected-route',['==',['get','id'],runtime.selectedId]);
     if(map.getLayer?.('selected-route-shadow'))map.setFilter('selected-route-shadow',['==',['get','id'],runtime.selectedId]);
   }
@@ -966,13 +972,52 @@
     map.easeTo({center,zoom,pitch:spread>55?8:24,bearing:0,duration:$('#reducedMotion')?.checked?0:1050,essential:true});
   }
 
+  function terrainLocalIds(){
+    const map=runtime.terrainMap;
+    if(!map||map.getZoom()<5.25)return[];
+    const bounds=map.getBounds?.();if(!bounds)return[];
+    const west=bounds.getWest(),east=bounds.getEast(),south=bounds.getSouth(),north=bounds.getNorth();
+    const padLng=Math.max(1,(east-west)*.22),padLat=Math.max(.8,(north-south)*.22);
+    const w=west-padLng,e=east+padLng,s=south-padLat,n=north+padLat;
+    const inBox=([lng,lat])=>Number.isFinite(lng)&&Number.isFinite(lat)&&lat>=s&&lat<=n&&(w<=-180||e>=180?true:lng>=w&&lng<=e);
+    const rows=runtime.routeData?.segments||[],ids=[];
+    for(const seg of rows){
+      if(/Flug/i.test(String(seg.mode||'')))continue;
+      const points=segmentPathPoints(seg);
+      if(points.some(inBox))ids.push(Number(seg.id));
+      if(ids.length>=36)break;
+    }
+    return ids;
+  }
+
+  function updateTerrainLocalContext(){
+    const map=runtime.terrainMap;if(!map)return;
+    const ids=terrainLocalIds();
+    const filter=ids.length?['in',['get','id'],['literal',ids]]:['==',['get','id'],-1];
+    if(map.getLayer?.('route-local'))map.setFilter('route-local',filter);
+    if(map.getLayer?.('route-local-shadow'))map.setFilter('route-local-shadow',filter);
+  }
+
+  function focusTerrainSegment(id,{duration=900}={}){
+    const map=runtime.terrainMap;if(!map)return;
+    const seg=runtime.routeData?.segments?.find(s=>Number(s.id)===Number(id));if(!seg)return;
+    const points=segmentPathPoints(seg);if(points.length<2)return;
+    const center=sphericalCenter(points);
+    const spread=Math.max(...points.map(p=>angularDistance(center,p)));
+    let zoom=spread<.35?8.0:spread<.8?7.25:spread<1.8?6.55:spread<4?5.8:spread<8?5.05:spread<18?4.25:spread<40?3.35:2.65;
+    if(window.innerWidth<=820)zoom-=.18;
+    const pitch=spread<4?42:spread<12?32:spread<35?20:8;
+    map.easeTo({center,zoom,pitch,bearing:0,duration:$('#reducedMotion')?.checked?0:duration,essential:true});
+    clearTimeout(runtime.localContextTimer);
+    runtime.localContextTimer=setTimeout(updateTerrainLocalContext,duration+80);
+  }
+
   function syncTerrainSelection({fly=false}={}){
     const map=runtime.terrainMap;if(!map)return;
     runtime.selectedId=currentSegmentId();
-    syncTerrainData();syncTerrainHierarchy();syncTerrainCountry();syncTerrainSettings();
+    syncTerrainData();syncTerrainHierarchy();syncTerrainCountry();syncTerrainSettings();updateTerrainLocalContext();
     if(!fly)return;
-    const p=selectedPosition();
-    map.easeTo({center:p,zoom:Math.max(map.getZoom(),4.5),pitch:Math.min(Math.max(map.getPitch(),32),55),bearing:-6,duration:$('#reducedMotion')?.checked?0:900,essential:true});
+    focusTerrainSegment(runtime.selectedId,{duration:900});
   }
 
   async function setTerrainMode(active){
@@ -983,7 +1028,7 @@
     const badge=$('.terrain-badge span');if(badge)badge.textContent='Loading globe, map and elevation data…';
     try{
       await initTerrainMap();runtime.terrainMap.resize();
-      if(runtime.terrainBaseReady){activateTerrain();syncTerrainSelection({fly:false});}
+      if(runtime.terrainBaseReady){activateTerrain();syncTerrainSelection({fly:true});}
     }catch(err){console.error('3D globe terrain mode unavailable',err);failTerrain('3D globe terrain could not be initialized. Standard globe restored.');}
   }
 
