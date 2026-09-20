@@ -96,3 +96,5 @@ body.story-mode .range-labels{opacity:.32;font-size:7px}
 }
 
 body.story-mode #globe,body.story-mode #globe canvas{touch-action:none!important;user-select:none;-webkit-user-select:none}
+
+.story-movement{display:grid;gap:5px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(190,209,229,.22);font-size:12px;line-height:1.4;overflow-wrap:anywhere}.story-movement small{color:#a9b8cc;font-size:10px}@media(max-width:820px){.story-movement{font-size:11px;margin-top:6px;padding-top:6px}}

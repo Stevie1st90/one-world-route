@@ -1,0 +1,1179 @@
+{
+  "source": "https://ourairports.com/data/",
+  "downloadUrl": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/main/airports.csv",
+  "license": "Public Domain",
+  "retrievedAt": "2026-09-20",
+  "sourceSha256": "1e81bd61ddafe0072539d6caf13698671e5aa7f24fab552afa40fc86546ad479",
+  "airports": {
+    "ADD": {
+      "name": "Addis Ababa Bole International Airport",
+      "coordinates": [
+        38.799301,
+        8.97789
+      ],
+      "countryCode": "ET",
+      "ident": "HAAB"
+    },
+    "ADE": {
+      "name": "Aden International Airport",
+      "coordinates": [
+        45.029976,
+        12.829564
+      ],
+      "countryCode": "YE",
+      "ident": "OYAA"
+    },
+    "AKL": {
+      "name": "Auckland International Airport",
+      "coordinates": [
+        174.786331,
+        -37.01199
+      ],
+      "countryCode": "NZ",
+      "ident": "NZAA"
+    },
+    "ALA": {
+      "name": "Almaty International Airport",
+      "coordinates": [
+        77.042828,
+        43.354267
+      ],
+      "countryCode": "KZ",
+      "ident": "UAAA"
+    },
+    "ALG": {
+      "name": "Houari Boumediene Airport",
+      "coordinates": [
+        3.214531,
+        36.693886
+      ],
+      "countryCode": "DZ",
+      "ident": "DAAG"
+    },
+    "AMM": {
+      "name": "Queen Alia International Airport",
+      "coordinates": [
+        35.9931983948,
+        31.7226009369
+      ],
+      "countryCode": "JO",
+      "ident": "OJAI"
+    },
+    "ANU": {
+      "name": "V. C. Bird International Airport",
+      "coordinates": [
+        -61.792702,
+        17.1367
+      ],
+      "countryCode": "AG",
+      "ident": "TAPA"
+    },
+    "APL": {
+      "name": "Nampula Airport",
+      "coordinates": [
+        39.281799,
+        -15.1056
+      ],
+      "countryCode": "MZ",
+      "ident": "FQNP"
+    },
+    "APW": {
+      "name": "Faleolo International Airport",
+      "coordinates": [
+        -172.007996,
+        -13.83
+      ],
+      "countryCode": "WS",
+      "ident": "NSFA"
+    },
+    "ASM": {
+      "name": "Asmara International Airport",
+      "coordinates": [
+        38.910702,
+        15.2919
+      ],
+      "countryCode": "ER",
+      "ident": "HHAS"
+    },
+    "ATH": {
+      "name": "Athens Eleftherios Venizelos International Airport",
+      "coordinates": [
+        23.9445,
+        37.936401
+      ],
+      "countryCode": "GR",
+      "ident": "LGAV"
+    },
+    "BAH": {
+      "name": "Bahrain International Airport",
+      "coordinates": [
+        50.63764,
+        26.267295
+      ],
+      "countryCode": "BH",
+      "ident": "OBBI"
+    },
+    "BEY": {
+      "name": "Beirut Rafic Hariri International Airport",
+      "coordinates": [
+        35.487443,
+        33.819833
+      ],
+      "countryCode": "LB",
+      "ident": "OLBA"
+    },
+    "BGF": {
+      "name": "Bangui M'Poko International Airport",
+      "coordinates": [
+        18.518801,
+        4.39848
+      ],
+      "countryCode": "CF",
+      "ident": "FEFF"
+    },
+    "BGI": {
+      "name": "Grantley Adams International Airport",
+      "coordinates": [
+        -59.491034,
+        13.074667
+      ],
+      "countryCode": "BB",
+      "ident": "TBPB"
+    },
+    "BGW": {
+      "name": "Baghdad International Airport / New Al Muthana Air Base",
+      "coordinates": [
+        44.2346,
+        33.262501
+      ],
+      "countryCode": "IQ",
+      "ident": "ORBI"
+    },
+    "BJM": {
+      "name": "Bujumbura Melchior Ndadaye International Airport",
+      "coordinates": [
+        29.318501,
+        -3.32402
+      ],
+      "countryCode": "BI",
+      "ident": "HBBA"
+    },
+    "BKK": {
+      "name": "Suvarnabhumi Airport",
+      "coordinates": [
+        100.747002,
+        13.6811
+      ],
+      "countryCode": "TH",
+      "ident": "VTBS"
+    },
+    "BKO": {
+      "name": "Modibo Keita International Airport",
+      "coordinates": [
+        -7.94994,
+        12.5335
+      ],
+      "countryCode": "ML",
+      "ident": "GABS"
+    },
+    "BNE": {
+      "name": "Brisbane International Airport",
+      "coordinates": [
+        153.11700439453125,
+        -27.384199142456055
+      ],
+      "countryCode": "AU",
+      "ident": "YBBN"
+    },
+    "BOG": {
+      "name": "El Dorado International Airport",
+      "coordinates": [
+        -74.1469,
+        4.70159
+      ],
+      "countryCode": "CO",
+      "ident": "SKBO"
+    },
+    "BWN": {
+      "name": "Brunei International Airport",
+      "coordinates": [
+        114.928001,
+        4.9442
+      ],
+      "countryCode": "BN",
+      "ident": "WBSB"
+    },
+    "BZV": {
+      "name": "Maya-Maya International Airport",
+      "coordinates": [
+        15.253,
+        -4.2517
+      ],
+      "countryCode": "CG",
+      "ident": "FCBB"
+    },
+    "CAI": {
+      "name": "Cairo International Airport",
+      "coordinates": [
+        31.396694,
+        30.111534
+      ],
+      "countryCode": "EG",
+      "ident": "HECA"
+    },
+    "CAP": {
+      "name": "Cap Haitien International Airport",
+      "coordinates": [
+        -72.20071,
+        19.725547
+      ],
+      "countryCode": "HT",
+      "ident": "MTCH"
+    },
+    "CCS": {
+      "name": "Maiquetía Simón Bolívar International Airport",
+      "coordinates": [
+        -66.991174,
+        10.602214
+      ],
+      "countryCode": "VE",
+      "ident": "SVMI"
+    },
+    "CCU": {
+      "name": "Netaji Subhash Chandra Bose International Airport",
+      "coordinates": [
+        88.44765,
+        22.654012
+      ],
+      "countryCode": "IN",
+      "ident": "VECC"
+    },
+    "CIA": {
+      "name": "Ciampino–G. B. Pastine International Airport",
+      "coordinates": [
+        12.595331,
+        41.798769
+      ],
+      "countryCode": "IT",
+      "ident": "LIRA"
+    },
+    "CKY": {
+      "name": "Ahmed Sékou Touré International Airport",
+      "coordinates": [
+        -13.612,
+        9.57689
+      ],
+      "countryCode": "GN",
+      "ident": "GUCY"
+    },
+    "CMB": {
+      "name": "Bandaranaike International Colombo Airport",
+      "coordinates": [
+        79.88410186767578,
+        7.180759906768799
+      ],
+      "countryCode": "LK",
+      "ident": "VCBI"
+    },
+    "CMN": {
+      "name": "Mohammed V International Airport",
+      "coordinates": [
+        -7.58997,
+        33.3675
+      ],
+      "countryCode": "MA",
+      "ident": "GMMN"
+    },
+    "DAC": {
+      "name": "Hazrat Shahjalal International Airport",
+      "coordinates": [
+        90.397783,
+        23.843347
+      ],
+      "countryCode": "BD",
+      "ident": "VGHS"
+    },
+    "DAM": {
+      "name": "Damascus International Airport",
+      "coordinates": [
+        36.51559829711914,
+        33.4114990234375
+      ],
+      "countryCode": "SY",
+      "ident": "OSDI"
+    },
+    "DAR": {
+      "name": "Julius Nyerere International Airport",
+      "coordinates": [
+        39.207288,
+        -6.873499
+      ],
+      "countryCode": "TZ",
+      "ident": "HTDA"
+    },
+    "DEL": {
+      "name": "Indira Gandhi International Airport",
+      "coordinates": [
+        77.09519,
+        28.55563
+      ],
+      "countryCode": "IN",
+      "ident": "VIDP"
+    },
+    "DIL": {
+      "name": "Presidente Nicolau Lobato International Airport",
+      "coordinates": [
+        125.524507,
+        -8.546562
+      ],
+      "countryCode": "TL",
+      "ident": "WPDL"
+    },
+    "DLA": {
+      "name": "Douala International Airport",
+      "coordinates": [
+        9.71948,
+        4.00608
+      ],
+      "countryCode": "CM",
+      "ident": "FKKD"
+    },
+    "DMK": {
+      "name": "Don Mueang International Airport",
+      "coordinates": [
+        100.607002,
+        13.9126
+      ],
+      "countryCode": "TH",
+      "ident": "VTBD"
+    },
+    "DOH": {
+      "name": "Hamad International Airport",
+      "coordinates": [
+        51.608056,
+        25.273056
+      ],
+      "countryCode": "QA",
+      "ident": "OTHH"
+    },
+    "DOM": {
+      "name": "Douglas-Charles Airport",
+      "coordinates": [
+        -61.301082,
+        15.546673
+      ],
+      "countryCode": "DM",
+      "ident": "TDPD"
+    },
+    "DSS": {
+      "name": "Blaise Diagne International Airport",
+      "coordinates": [
+        -17.072829,
+        14.670878
+      ],
+      "countryCode": "SN",
+      "ident": "GOBD"
+    },
+    "DUB": {
+      "name": "Dublin Airport",
+      "coordinates": [
+        -6.262121,
+        53.428713
+      ],
+      "countryCode": "IE",
+      "ident": "EIDW"
+    },
+    "EBB": {
+      "name": "Entebbe International Airport",
+      "coordinates": [
+        32.443501,
+        0.042386
+      ],
+      "countryCode": "UG",
+      "ident": "HUEN"
+    },
+    "EVN": {
+      "name": "Zvartnots International Airport",
+      "coordinates": [
+        44.397887,
+        40.148941
+      ],
+      "countryCode": "AM",
+      "ident": "UDYZ"
+    },
+    "FCO": {
+      "name": "Rome–Fiumicino Leonardo da Vinci International Airport",
+      "coordinates": [
+        12.251998,
+        41.804532
+      ],
+      "countryCode": "IT",
+      "ident": "LIRF"
+    },
+    "FIH": {
+      "name": "Ndjili International Airport",
+      "coordinates": [
+        15.4446,
+        -4.38575
+      ],
+      "countryCode": "CD",
+      "ident": "FZAA"
+    },
+    "FNA": {
+      "name": "Lungi International Airport",
+      "coordinates": [
+        -13.1955,
+        8.61644
+      ],
+      "countryCode": "SL",
+      "ident": "GFLL"
+    },
+    "FRA": {
+      "name": "Frankfurt Main Airport",
+      "coordinates": [
+        8.55835,
+        50.026706
+      ],
+      "countryCode": "DE",
+      "ident": "EDDF"
+    },
+    "FUN": {
+      "name": "Funafuti International Airport",
+      "coordinates": [
+        179.196976,
+        -8.523885
+      ],
+      "countryCode": "TV",
+      "ident": "NGFU"
+    },
+    "GND": {
+      "name": "Maurice Bishop International Airport",
+      "coordinates": [
+        -61.785302,
+        12.003996
+      ],
+      "countryCode": "GD",
+      "ident": "TGPY"
+    },
+    "GRU": {
+      "name": "São Paulo/Guarulhos–Governor André Franco Montoro International Airport",
+      "coordinates": [
+        -46.469954,
+        -23.431274
+      ],
+      "countryCode": "BR",
+      "ident": "SBGR"
+    },
+    "GUM": {
+      "name": "Antonio B. Won Pat International Airport",
+      "coordinates": [
+        144.797282,
+        13.485
+      ],
+      "countryCode": "GU",
+      "ident": "PGUM"
+    },
+    "GYD": {
+      "name": "Heydar Aliyev International Airport",
+      "coordinates": [
+        50.050931,
+        40.47278
+      ],
+      "countryCode": "AZ",
+      "ident": "UBBB"
+    },
+    "HAH": {
+      "name": "Prince Said Ibrahim International Airport",
+      "coordinates": [
+        43.2719,
+        -11.5337
+      ],
+      "countryCode": "KM",
+      "ident": "FMCH"
+    },
+    "HAN": {
+      "name": "Noi Bai International Airport",
+      "coordinates": [
+        105.806999,
+        21.221201
+      ],
+      "countryCode": "VN",
+      "ident": "VVNB"
+    },
+    "HAV": {
+      "name": "José Martí International Airport",
+      "coordinates": [
+        -82.40910339355469,
+        22.989200592041016
+      ],
+      "countryCode": "CU",
+      "ident": "MUHA"
+    },
+    "HIR": {
+      "name": "Honiara International Airport",
+      "coordinates": [
+        160.054993,
+        -9.428
+      ],
+      "countryCode": "SB",
+      "ident": "AGGH"
+    },
+    "ICN": {
+      "name": "Incheon International Airport",
+      "coordinates": [
+        126.450996,
+        37.469101
+      ],
+      "countryCode": "KR",
+      "ident": "RKSI"
+    },
+    "IKA": {
+      "name": "Imam Khomeini International Airport",
+      "coordinates": [
+        51.152198791503906,
+        35.416099548339844
+      ],
+      "countryCode": "IR",
+      "ident": "OIIE"
+    },
+    "IKT": {
+      "name": "Irkutsk International Airport",
+      "coordinates": [
+        104.395563,
+        52.266707
+      ],
+      "countryCode": "RU",
+      "ident": "UIII"
+    },
+    "INU": {
+      "name": "Nauru International Airport",
+      "coordinates": [
+        166.919525,
+        -0.547893
+      ],
+      "countryCode": "NR",
+      "ident": "ANYN"
+    },
+    "IST": {
+      "name": "İstanbul Airport",
+      "coordinates": [
+        28.732136,
+        41.274874
+      ],
+      "countryCode": "TR",
+      "ident": "LTFM"
+    },
+    "JED": {
+      "name": "King Abdulaziz International Airport",
+      "coordinates": [
+        39.157436,
+        21.680241
+      ],
+      "countryCode": "SA",
+      "ident": "OEJN"
+    },
+    "JIB": {
+      "name": "Djibouti-Ambouli Airport",
+      "coordinates": [
+        43.1595,
+        11.5473
+      ],
+      "countryCode": "DJ",
+      "ident": "HDAM"
+    },
+    "JNB": {
+      "name": "O.R. Tambo International Airport",
+      "coordinates": [
+        28.246801,
+        -26.140081
+      ],
+      "countryCode": "ZA",
+      "ident": "FAOR"
+    },
+    "JUB": {
+      "name": "Juba International Airport",
+      "coordinates": [
+        31.601101,
+        4.87201
+      ],
+      "countryCode": "SS",
+      "ident": "HJJJ"
+    },
+    "KEF": {
+      "name": "Keflavik International Airport",
+      "coordinates": [
+        -22.6056,
+        63.985001
+      ],
+      "countryCode": "IS",
+      "ident": "BIKF"
+    },
+    "KGL": {
+      "name": "Kigali International Airport",
+      "coordinates": [
+        30.1395,
+        -1.96863
+      ],
+      "countryCode": "RW",
+      "ident": "HRYR"
+    },
+    "KIN": {
+      "name": "Norman Manley International Airport",
+      "coordinates": [
+        -76.7874984741211,
+        17.935699462890625
+      ],
+      "countryCode": "JM",
+      "ident": "MKJP"
+    },
+    "KTM": {
+      "name": "Tribhuvan International Airport",
+      "coordinates": [
+        85.3591,
+        27.6966
+      ],
+      "countryCode": "NP",
+      "ident": "VNKT"
+    },
+    "KWI": {
+      "name": "Kuwait International Airport",
+      "coordinates": [
+        47.969813,
+        29.224487
+      ],
+      "countryCode": "KW",
+      "ident": "OKKK"
+    },
+    "LBV": {
+      "name": "Libreville Leon M'ba International Airport",
+      "coordinates": [
+        9.41214,
+        0.458951
+      ],
+      "countryCode": "GA",
+      "ident": "FOOL"
+    },
+    "LCA": {
+      "name": "Larnaca International Airport",
+      "coordinates": [
+        33.624901,
+        34.875099
+      ],
+      "countryCode": "CY",
+      "ident": "LCLK"
+    },
+    "LIS": {
+      "name": "Lisbon Humberto Delgado Airport",
+      "coordinates": [
+        -9.13592,
+        38.7813
+      ],
+      "countryCode": "PT",
+      "ident": "LPPT"
+    },
+    "LLW": {
+      "name": "Kamuzu International Airport",
+      "coordinates": [
+        33.780998,
+        -13.7894
+      ],
+      "countryCode": "MW",
+      "ident": "FWKI"
+    },
+    "LOS": {
+      "name": "Murtala Muhammed International Airport",
+      "coordinates": [
+        3.32116,
+        6.57737
+      ],
+      "countryCode": "NG",
+      "ident": "DNMM"
+    },
+    "MAJ": {
+      "name": "Marshall Islands International Airport",
+      "coordinates": [
+        171.271656,
+        7.06511
+      ],
+      "countryCode": "MH",
+      "ident": "PKMJ"
+    },
+    "MGQ": {
+      "name": "Aden Adde International Airport",
+      "coordinates": [
+        45.304699,
+        2.01444
+      ],
+      "countryCode": "SO",
+      "ident": "HCMM"
+    },
+    "MJI": {
+      "name": "Mitiga International Airport",
+      "coordinates": [
+        13.287878,
+        32.89177
+      ],
+      "countryCode": "LY",
+      "ident": "HLLM"
+    },
+    "MJN": {
+      "name": "Amborovy Airport",
+      "coordinates": [
+        46.351233,
+        -15.666842
+      ],
+      "countryCode": "MG",
+      "ident": "FMNM"
+    },
+    "MLA": {
+      "name": "Malta International Airport",
+      "coordinates": [
+        14.491546,
+        35.845932
+      ],
+      "countryCode": "MT",
+      "ident": "LMML"
+    },
+    "MLE": {
+      "name": "Velana International Airport",
+      "coordinates": [
+        73.529099,
+        4.19183
+      ],
+      "countryCode": "MV",
+      "ident": "VRMM"
+    },
+    "MNL": {
+      "name": "Ninoy Aquino International Airport",
+      "coordinates": [
+        121.019997,
+        14.5086
+      ],
+      "countryCode": "PH",
+      "ident": "RPLL"
+    },
+    "MPM": {
+      "name": "Maputo Airport",
+      "coordinates": [
+        32.572601,
+        -25.920799
+      ],
+      "countryCode": "MZ",
+      "ident": "FQMA"
+    },
+    "MRU": {
+      "name": "Sir Seewoosagur Ramgoolam International Airport",
+      "coordinates": [
+        57.683601,
+        -20.430201
+      ],
+      "countryCode": "MU",
+      "ident": "FIMP"
+    },
+    "MSU": {
+      "name": "Moshoeshoe I International Airport",
+      "coordinates": [
+        27.554456,
+        -29.456277
+      ],
+      "countryCode": "LS",
+      "ident": "FXMM"
+    },
+    "MVD": {
+      "name": "Carrasco General Cesáreo L. Berisso International Airport",
+      "coordinates": [
+        -56.026497,
+        -34.835647
+      ],
+      "countryCode": "UY",
+      "ident": "SUMU"
+    },
+    "NAN": {
+      "name": "Nadi International Airport",
+      "coordinates": [
+        177.437843,
+        -17.761822
+      ],
+      "countryCode": "FJ",
+      "ident": "NFFN"
+    },
+    "NAS": {
+      "name": "Lynden Pindling International Airport",
+      "coordinates": [
+        -77.466202,
+        25.039
+      ],
+      "countryCode": "BS",
+      "ident": "MYNN"
+    },
+    "NBJ": {
+      "name": "Dr. Antonio Agostinho Neto International Airport",
+      "coordinates": [
+        13.499078,
+        -9.050734
+      ],
+      "countryCode": "AO",
+      "ident": "FNBJ"
+    },
+    "NBO": {
+      "name": "Jomo Kenyatta International Airport",
+      "coordinates": [
+        36.928233,
+        -1.318886
+      ],
+      "countryCode": "KE",
+      "ident": "HKJK"
+    },
+    "NDJ": {
+      "name": "N'Djamena International Airport",
+      "coordinates": [
+        15.034,
+        12.1337
+      ],
+      "countryCode": "TD",
+      "ident": "FTTJ"
+    },
+    "NIM": {
+      "name": "Diori Hamani International Airport",
+      "coordinates": [
+        2.18361,
+        13.4815
+      ],
+      "countryCode": "NE",
+      "ident": "DRRN"
+    },
+    "NKC": {
+      "name": "Nouakchott–Oumtounsy International Airport",
+      "coordinates": [
+        -15.969722,
+        18.31
+      ],
+      "countryCode": "MR",
+      "ident": "GQNO"
+    },
+    "NSI": {
+      "name": "Yaoundé Nsimalen International Airport",
+      "coordinates": [
+        11.5533,
+        3.72256
+      ],
+      "countryCode": "CM",
+      "ident": "FKYS"
+    },
+    "OUA": {
+      "name": "Ouagadougou Thomas Sankara International Airport",
+      "coordinates": [
+        -1.51242,
+        12.3532
+      ],
+      "countryCode": "BF",
+      "ident": "DFFD"
+    },
+    "OXB": {
+      "name": "Osvaldo Vieira International Airport",
+      "coordinates": [
+        -15.653596,
+        11.894262
+      ],
+      "countryCode": "GW",
+      "ident": "GGOV"
+    },
+    "PBH": {
+      "name": "Paro International Airport",
+      "coordinates": [
+        89.424599,
+        27.4032
+      ],
+      "countryCode": "BT",
+      "ident": "VQPR"
+    },
+    "PBM": {
+      "name": "Johan Adolf Pengel International Airport",
+      "coordinates": [
+        -55.187801,
+        5.45283
+      ],
+      "countryCode": "SR",
+      "ident": "SMJP"
+    },
+    "PNH": {
+      "name": "Phnom Penh International Airport",
+      "coordinates": [
+        104.844699,
+        11.547155
+      ],
+      "countryCode": "KH",
+      "ident": "VDPP"
+    },
+    "PNI": {
+      "name": "Pohnpei International Airport",
+      "coordinates": [
+        158.20992,
+        6.985082
+      ],
+      "countryCode": "FM",
+      "ident": "PTPN"
+    },
+    "POM": {
+      "name": "Port Moresby Jacksons International Airport",
+      "coordinates": [
+        147.22000122070312,
+        -9.443380355834961
+      ],
+      "countryCode": "PG",
+      "ident": "AYPY"
+    },
+    "POS": {
+      "name": "Piarco International Airport",
+      "coordinates": [
+        -61.337568,
+        10.59535
+      ],
+      "countryCode": "TT",
+      "ident": "TTPP"
+    },
+    "PTY": {
+      "name": "Tocumen International Airport",
+      "coordinates": [
+        -79.383499,
+        9.07136
+      ],
+      "countryCode": "PA",
+      "ident": "MPTO"
+    },
+    "PVG": {
+      "name": "Shanghai Pudong International Airport",
+      "coordinates": [
+        121.805,
+        31.1434
+      ],
+      "countryCode": "CN",
+      "ident": "ZSPD"
+    },
+    "PZU": {
+      "name": "Port Sudan New International Airport",
+      "coordinates": [
+        37.234125,
+        19.434558
+      ],
+      "countryCode": "SD",
+      "ident": "HSPN"
+    },
+    "RAI": {
+      "name": "Nelson Mandela International Airport",
+      "coordinates": [
+        -23.484728,
+        14.941126
+      ],
+      "countryCode": "CV",
+      "ident": "GVNP"
+    },
+    "RGN": {
+      "name": "Yangon International Airport",
+      "coordinates": [
+        96.1332015991,
+        16.907300949099998
+      ],
+      "countryCode": "MM",
+      "ident": "VYYY"
+    },
+    "ROR": {
+      "name": "Roman Tmetuchl International Airport",
+      "coordinates": [
+        134.544085,
+        7.366965
+      ],
+      "countryCode": "PW",
+      "ident": "PTRO"
+    },
+    "RUH": {
+      "name": "King Khalid International Airport",
+      "coordinates": [
+        46.698799,
+        24.9576
+      ],
+      "countryCode": "SA",
+      "ident": "OERK"
+    },
+    "SAW": {
+      "name": "Istanbul Sabiha Gökçen International Airport",
+      "coordinates": [
+        29.3092,
+        40.898602
+      ],
+      "countryCode": "TR",
+      "ident": "LTFJ"
+    },
+    "SCL": {
+      "name": "Comodoro Arturo Merino Benítez International Airport",
+      "coordinates": [
+        -70.78579711914062,
+        -33.393001556396484
+      ],
+      "countryCode": "CL",
+      "ident": "SCEL"
+    },
+    "SDQ": {
+      "name": "Las Américas International Airport",
+      "coordinates": [
+        -69.668899536133,
+        18.42970085144
+      ],
+      "countryCode": "DO",
+      "ident": "MDSD"
+    },
+    "SEZ": {
+      "name": "Seychelles International Airport",
+      "coordinates": [
+        55.521801,
+        -4.67434
+      ],
+      "countryCode": "SC",
+      "ident": "FSIA"
+    },
+    "SKB": {
+      "name": "Robert L. Bradshaw International Airport",
+      "coordinates": [
+        -62.719117,
+        17.310845
+      ],
+      "countryCode": "KN",
+      "ident": "TKPK"
+    },
+    "SLU": {
+      "name": "George F. L. Charles Airport",
+      "coordinates": [
+        -60.992901,
+        14.0202
+      ],
+      "countryCode": "LC",
+      "ident": "TLPC"
+    },
+    "SSG": {
+      "name": "Malabo International Airport",
+      "coordinates": [
+        8.70872,
+        3.75527
+      ],
+      "countryCode": "GQ",
+      "ident": "FGSL"
+    },
+    "SVD": {
+      "name": "Argyle International Airport",
+      "coordinates": [
+        -61.148801,
+        13.159725
+      ],
+      "countryCode": "VC",
+      "ident": "TVSA"
+    },
+    "SVO": {
+      "name": "Sheremetyevo International Airport",
+      "coordinates": [
+        37.41121,
+        55.976858
+      ],
+      "countryCode": "RU",
+      "ident": "UUEE"
+    },
+    "TBS": {
+      "name": "Tbilisi International Airport",
+      "coordinates": [
+        44.9547,
+        41.669201
+      ],
+      "countryCode": "GE",
+      "ident": "UGTB"
+    },
+    "TBU": {
+      "name": "Fua'amotu International Airport",
+      "coordinates": [
+        -175.149164,
+        -21.241438
+      ],
+      "countryCode": "TO",
+      "ident": "NFTF"
+    },
+    "TER": {
+      "name": "Lajes Airport",
+      "coordinates": [
+        -27.090799,
+        38.761799
+      ],
+      "countryCode": "PT",
+      "ident": "LPLA"
+    },
+    "TMS": {
+      "name": "São Tomé International Airport",
+      "coordinates": [
+        6.71215,
+        0.378175
+      ],
+      "countryCode": "ST",
+      "ident": "FPST"
+    },
+    "TNR": {
+      "name": "Ivato International Airport",
+      "coordinates": [
+        47.478802,
+        -18.7969
+      ],
+      "countryCode": "MG",
+      "ident": "FMMI"
+    },
+    "TRW": {
+      "name": "Bonriki International Airport",
+      "coordinates": [
+        173.147003,
+        1.38164
+      ],
+      "countryCode": "KI",
+      "ident": "NGTA"
+    },
+    "TUN": {
+      "name": "Tunis Carthage International Airport",
+      "coordinates": [
+        10.2272,
+        36.851002
+      ],
+      "countryCode": "TN",
+      "ident": "DTTA"
+    },
+    "UBN": {
+      "name": "Ulaanbaatar Chinggis Khaan International Airport",
+      "coordinates": [
+        106.819833,
+        47.646916
+      ],
+      "countryCode": "MN",
+      "ident": "ZMCK"
+    },
+    "VLI": {
+      "name": "Bauerfield International Airport",
+      "coordinates": [
+        168.320007,
+        -17.699301
+      ],
+      "countryCode": "VU",
+      "ident": "NVVV"
+    },
+    "VTE": {
+      "name": "Wattay International Airport",
+      "coordinates": [
+        102.566692,
+        17.985052
+      ],
+      "countryCode": "LA",
+      "ident": "VLVT"
+    },
+    "WDH": {
+      "name": "Hosea Kutako International Airport",
+      "coordinates": [
+        17.4709,
+        -22.4799
+      ],
+      "countryCode": "NA",
+      "ident": "FYWH"
+    }
+  }
+}

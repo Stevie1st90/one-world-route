@@ -154,11 +154,14 @@
       fetch('./data/route-waypoints.json',{cache:'force-cache'}).catch(()=>null)
     ]);
     runtime.routeData=await routeRes.json();
+    const operational=await window.ONE_WORLD_MOVEMENTS.ready;
+    runtime.movements=operational.movements;
     const centroids=await centroidRes.json();
     if(waypointRes?.ok){
       const rows=await waypointRes.json();
       runtime.routeWaypoints=new Map(Object.entries(rows||{}).map(([id,points])=>[Number(id),points]));
     }
+    for(const [id,g] of Object.entries(operational.flights.geometries))runtime.routeWaypoints.set(Number(id),g.coordinates);
     runtime.centroids=new Map((centroids||[]).map(c=>[normalize(c.name),c]));
     runtime.criticalIds=new Set([...(runtime.routeData.segments||[])].sort((a,b)=>criticalScore(b)-criticalScore(a)).slice(0,20).map(s=>Number(s.id)));
   }
@@ -284,10 +287,17 @@
     if(!a||!b||normalize(a.to)!==normalize(b.from))return null;
     const ap=segmentPathPoints(a),bp=segmentPathPoints(b);
     if(ap.length<2||bp.length<2)return null;
+    const movement=runtime.movements?.find(m=>m.parentAfterLeg===Number(a.id)&&m.parentBeforeLeg===Number(b.id));
     const start=ap[ap.length-1],end=bp[0];
     const gap=angularDistance(start,end);
-    if(!Number.isFinite(gap)||gap<.03)return null;
-    const points=greatCirclePoints({lng:start[0],lat:start[1]},{lng:end[0],lat:end[1]},Math.max(10,Math.min(48,Math.round(gap*1.8))));
+    if(!Number.isFinite(gap)||gap<.0009)return null;
+    const corridor=movement?.coordinates?.length>=2?movement.coordinates:[start,end];
+    const points=[];
+    for(let i=1;i<corridor.length;i++){
+      const from=corridor[i-1],to=corridor[i];
+      const piece=greatCirclePoints({lng:from[0],lat:from[1]},{lng:to[0],lat:to[1]},Math.max(10,Math.min(48,Math.round(gap*1.8))));
+      if(points.length)piece.shift();points.push(...piece);
+    }
     const parts=splitDateline(points);
     const nextId=Number(b.id),visible=terrainSegmentVisible(a)||terrainSegmentVisible(b)||nextId===Number(runtime.selectedId);
     return {
@@ -297,11 +307,14 @@
         phaseId:phaseIdFor(nextId),
         color:terrainColor(b),
         visible:visible?1:0,
-        mode:'Transfer',
+        mode:movement?.mode||'Unreviewed transfer',
+        movementId:movement?.id||null,
+        reviewStatus:movement?.reviewStatus||'needs-review',
         isFlight:0,
         isConnector:1,
         connectorFrom:Number(a.id),
         connectorTo:nextId,
+        isActive:Number(runtime.selectedId)===Number(a.id)||Number(runtime.selectedId)===nextId?1:0,
         gapDeg:Math.round(gap*1000)/1000
       },
       geometry:parts.length>1?{type:'MultiLineString',coordinates:parts}:{type:'LineString',coordinates:parts[0]||[]}
@@ -375,8 +388,8 @@
       {id:'route-flights-world',type:'line',source:'routeSource',filter:['all',['==',['get','isFlight'],1],['!=',['get','id'],runtime.selectedId]],maxzoom:5.45,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':['case',['==',['get','visible'],1],colorExpression(),'#718399'],'line-opacity':['interpolate',['linear'],['zoom'],2,.52,4,.38,5.15,.15,5.4,0],'line-width':['interpolate',['linear'],['zoom'],2,1.0,4,.84,5.4,.58]}},
       {id:'route-phase-shadow',type:'line',source:'routeSource',filter:['all',phaseFilter,['==',['get','visible'],1],['==',['get','isFlight'],0]],maxzoom:5.8,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(4,10,16,.58)','line-opacity':$('#routeGlow')?.checked===false?.24:.64,'line-width':widthExpr(2.5,4.0,6.0)}},
       {id:'route-phase',type:'line',source:'routeSource',filter:['all',phaseFilter,['==',['get','visible'],1],['==',['get','isFlight'],0],['==',['get','isConnector'],0]],maxzoom:5.8,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.94,'line-width':widthExpr(1.55,2.65,4.1)}},
-      {id:'route-connectors-shadow',type:'line',source:'routeSource',filter:['all',['==',['get','isConnector'],1],['==',['get','visible'],1]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(3,10,18,.55)','line-opacity':['interpolate',['linear'],['zoom'],2,.28,6,.34,10,.30],'line-width':['interpolate',['linear'],['zoom'],2,1.7,6,2.3,10,3.0]}},
-      {id:'route-connectors',type:'line',source:'routeSource',filter:['all',['==',['get','isConnector'],1],['==',['get','visible'],1]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':['interpolate',['linear'],['zoom'],2,.48,6,.66,10,.62],'line-width':['interpolate',['linear'],['zoom'],2,.85,6,1.25,10,1.65]}},
+      {id:'route-connectors-shadow',type:'line',source:'routeSource',filter:['all',['==',['get','isConnector'],1],['==',['get','visible'],1]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(3,10,18,.55)','line-opacity':['case',['==',['get','isActive'],1],0.4,['interpolate',['linear'],['zoom'],2,.28,6,['case',['>', ['get','gapDeg'],5],.08,.34],10,['case',['>', ['get','gapDeg'],5],.02,.30]]],'line-width':['interpolate',['linear'],['zoom'],2,1.7,6,2.3,10,3.0]}},
+      {id:'route-connectors',type:'line',source:'routeSource',filter:['all',['==',['get','isConnector'],1],['==',['get','visible'],1]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':['case',['==',['get','isActive'],1],0.9,['interpolate',['linear'],['zoom'],2,.48,6,['case',['>', ['get','gapDeg'],5],.15,.66],10,['case',['>', ['get','gapDeg'],5],.03,.62]]],'line-width':['interpolate',['linear'],['zoom'],2,.85,6,1.25,10,1.65]}},
       {id:'route-local-shadow',type:'line',source:'routeSource',filter:['==',['get','id'],-1],minzoom:5.35,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(3,10,18,.62)','line-opacity':.48,'line-width':widthExpr(2.35,3.45,5.0)}},
       {id:'route-local',type:'line',source:'routeSource',filter:['==',['get','id'],-1],minzoom:5.35,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.84,'line-width':widthExpr(1.3,2.05,3.0)}},
       {id:'selected-route-shadow',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(2,9,15,.74)','line-opacity':$('#routeGlow')?.checked===false?.34:.82,'line-width':widthExpr(4.0,6.4,9.0)}},
@@ -395,6 +408,8 @@
   }
   function deactivateTerrain({updateUrl=true}={}){
     runtime.terrainRequested=false;runtime.terrainActive=false;
+    runtime.globe?.resumeAnimation?.();
+    runtime.terrainMap?.stop?.();
     document.body.classList.remove('terrain-loading','terrain-view');setToggleState(false);setTerrainLabel('Real 3D globe terrain');
     const badge=$('.terrain-badge span');if(badge)badge.textContent='Drag to rotate · scroll to zoom · relief appears as you move closer';
     const high=$('#highDetailGlobe');if(high&&runtime.highDetailWasDisabled!==null){high.disabled=runtime.highDetailWasDisabled;runtime.highDetailWasDisabled=null;}const auto=$('#autoRotate');if(auto)auto.disabled=false;if(updateUrl)updateViewUrl(false);
@@ -402,6 +417,7 @@
 
   function activateTerrain(){
     runtime.terrainRequested=false;runtime.terrainActive=true;
+    runtime.globe?.pauseAnimation?.();
     document.body.classList.remove('terrain-loading');document.body.classList.add('terrain-view');setToggleState(true);setTerrainLabel('Real 3D globe terrain');
     const badge=$('.terrain-badge span');if(badge)badge.textContent='Drag to rotate · scroll to zoom · relief appears as you move closer';
     const high=$('#highDetailGlobe');if(high){if(runtime.highDetailWasDisabled===null)runtime.highDetailWasDisabled=high.disabled;high.disabled=true;}const auto=$('#autoRotate');if(auto)auto.disabled=true;updateViewUrl(true);syncTerrainSettings();

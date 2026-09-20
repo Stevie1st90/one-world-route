@@ -1,0 +1,1747 @@
+{
+  "version": 1,
+  "method": "Airport coordinates only; no assertion of airline service, schedule or booking availability.",
+  "geometries": {
+    "29": {
+      "airportCodes": [
+        "DUB",
+        "KEF"
+      ],
+      "coordinates": [
+        [
+          -6.262121,
+          53.428713
+        ],
+        [
+          -22.6056,
+          63.985001
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "40": {
+      "airportCodes": [
+        "PTY",
+        "HAV"
+      ],
+      "coordinates": [
+        [
+          -79.383499,
+          9.07136
+        ],
+        [
+          -82.40910339355469,
+          22.989200592041016
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "41": {
+      "airportCodes": [
+        "HAV",
+        "NAS"
+      ],
+      "coordinates": [
+        [
+          -82.40910339355469,
+          22.989200592041016
+        ],
+        [
+          -77.466202,
+          25.039
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "42": {
+      "airportCodes": [
+        "NAS",
+        "KIN"
+      ],
+      "coordinates": [
+        [
+          -77.466202,
+          25.039
+        ],
+        [
+          -76.7874984741211,
+          17.935699462890625
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "43": {
+      "airportCodes": [
+        "KIN",
+        "CAP"
+      ],
+      "coordinates": [
+        [
+          -76.7874984741211,
+          17.935699462890625
+        ],
+        [
+          -72.20071,
+          19.725547
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "44": {
+      "airportCodes": [
+        "CAP",
+        "SDQ"
+      ],
+      "coordinates": [
+        [
+          -72.20071,
+          19.725547
+        ],
+        [
+          -69.668899536133,
+          18.42970085144
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "45": {
+      "airportCodes": [
+        "SDQ",
+        "SKB"
+      ],
+      "coordinates": [
+        [
+          -69.668899536133,
+          18.42970085144
+        ],
+        [
+          -62.719117,
+          17.310845
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "46": {
+      "airportCodes": [
+        "SKB",
+        "ANU"
+      ],
+      "coordinates": [
+        [
+          -62.719117,
+          17.310845
+        ],
+        [
+          -61.792702,
+          17.1367
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "47": {
+      "airportCodes": [
+        "ANU",
+        "DOM"
+      ],
+      "coordinates": [
+        [
+          -61.792702,
+          17.1367
+        ],
+        [
+          -61.301082,
+          15.546673
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "48": {
+      "airportCodes": [
+        "DOM",
+        "SLU"
+      ],
+      "coordinates": [
+        [
+          -61.301082,
+          15.546673
+        ],
+        [
+          -60.992901,
+          14.0202
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "49": {
+      "airportCodes": [
+        "SLU",
+        "BGI"
+      ],
+      "coordinates": [
+        [
+          -60.992901,
+          14.0202
+        ],
+        [
+          -59.491034,
+          13.074667
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "50": {
+      "airportCodes": [
+        "BGI",
+        "SVD"
+      ],
+      "coordinates": [
+        [
+          -59.491034,
+          13.074667
+        ],
+        [
+          -61.148801,
+          13.159725
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "51": {
+      "airportCodes": [
+        "SVD",
+        "GND"
+      ],
+      "coordinates": [
+        [
+          -61.148801,
+          13.159725
+        ],
+        [
+          -61.785302,
+          12.003996
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "52": {
+      "airportCodes": [
+        "GND",
+        "POS"
+      ],
+      "coordinates": [
+        [
+          -61.785302,
+          12.003996
+        ],
+        [
+          -61.337568,
+          10.59535
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "53": {
+      "airportCodes": [
+        "POS",
+        "CCS"
+      ],
+      "coordinates": [
+        [
+          -61.337568,
+          10.59535
+        ],
+        [
+          -66.991174,
+          10.602214
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "54": {
+      "airportCodes": [
+        "CCS",
+        "GRU"
+      ],
+      "coordinates": [
+        [
+          -66.991174,
+          10.602214
+        ],
+        [
+          -46.469954,
+          -23.431274
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "57": {
+      "airportCodes": [
+        "PBM",
+        "PTY",
+        "BOG"
+      ],
+      "coordinates": [
+        [
+          -55.187801,
+          5.45283
+        ],
+        [
+          -79.383499,
+          9.07136
+        ],
+        [
+          -74.1469,
+          4.70159
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "64": {
+      "airportCodes": [
+        "MVD",
+        "SCL"
+      ],
+      "coordinates": [
+        [
+          -56.026497,
+          -34.835647
+        ],
+        [
+          -70.78579711914062,
+          -33.393001556396484
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "65": {
+      "airportCodes": [
+        "SCL",
+        "AKL"
+      ],
+      "coordinates": [
+        [
+          -70.78579711914062,
+          -33.393001556396484
+        ],
+        [
+          174.786331,
+          -37.01199
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "66": {
+      "airportCodes": [
+        "AKL",
+        "TBU"
+      ],
+      "coordinates": [
+        [
+          174.786331,
+          -37.01199
+        ],
+        [
+          -175.149164,
+          -21.241438
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "67": {
+      "airportCodes": [
+        "TBU",
+        "NAN"
+      ],
+      "coordinates": [
+        [
+          -175.149164,
+          -21.241438
+        ],
+        [
+          177.437843,
+          -17.761822
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "68": {
+      "airportCodes": [
+        "NAN",
+        "APW"
+      ],
+      "coordinates": [
+        [
+          177.437843,
+          -17.761822
+        ],
+        [
+          -172.007996,
+          -13.83
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "69": {
+      "airportCodes": [
+        "APW",
+        "NAN",
+        "FUN"
+      ],
+      "coordinates": [
+        [
+          -172.007996,
+          -13.83
+        ],
+        [
+          177.437843,
+          -17.761822
+        ],
+        [
+          179.196976,
+          -8.523885
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "71": {
+      "airportCodes": [
+        "VLI",
+        "HIR"
+      ],
+      "coordinates": [
+        [
+          168.320007,
+          -17.699301
+        ],
+        [
+          160.054993,
+          -9.428
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "72": {
+      "airportCodes": [
+        "HIR",
+        "POM"
+      ],
+      "coordinates": [
+        [
+          160.054993,
+          -9.428
+        ],
+        [
+          147.22000122070312,
+          -9.443380355834961
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "73": {
+      "airportCodes": [
+        "POM",
+        "BNE"
+      ],
+      "coordinates": [
+        [
+          147.22000122070312,
+          -9.443380355834961
+        ],
+        [
+          153.11700439453125,
+          -27.384199142456055
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "74": {
+      "airportCodes": [
+        "BNE",
+        "INU"
+      ],
+      "coordinates": [
+        [
+          153.11700439453125,
+          -27.384199142456055
+        ],
+        [
+          166.919525,
+          -0.547893
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "75": {
+      "airportCodes": [
+        "INU",
+        "TRW"
+      ],
+      "coordinates": [
+        [
+          166.919525,
+          -0.547893
+        ],
+        [
+          173.147003,
+          1.38164
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "76": {
+      "airportCodes": [
+        "TRW",
+        "MAJ"
+      ],
+      "coordinates": [
+        [
+          173.147003,
+          1.38164
+        ],
+        [
+          171.271656,
+          7.06511
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "79": {
+      "airportCodes": [
+        "ROR",
+        "MNL"
+      ],
+      "coordinates": [
+        [
+          134.544085,
+          7.366965
+        ],
+        [
+          121.019997,
+          14.5086
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "80": {
+      "airportCodes": [
+        "MNL",
+        "BWN"
+      ],
+      "coordinates": [
+        [
+          121.019997,
+          14.5086
+        ],
+        [
+          114.928001,
+          4.9442
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "88": {
+      "airportCodes": [
+        "HAN",
+        "VTE"
+      ],
+      "coordinates": [
+        [
+          105.806999,
+          21.221201
+        ],
+        [
+          102.566692,
+          17.985052
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "90": {
+      "airportCodes": [
+        "RGN",
+        "BKK",
+        "DAC"
+      ],
+      "coordinates": [
+        [
+          96.1332015991,
+          16.907300949099998
+        ],
+        [
+          100.747002,
+          13.6811
+        ],
+        [
+          90.397783,
+          23.843347
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "92": {
+      "airportCodes": [
+        "CCU",
+        "KTM"
+      ],
+      "coordinates": [
+        [
+          88.44765,
+          22.654012
+        ],
+        [
+          85.3591,
+          27.6966
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "93": {
+      "airportCodes": [
+        "KTM",
+        "PBH"
+      ],
+      "coordinates": [
+        [
+          85.3591,
+          27.6966
+        ],
+        [
+          89.424599,
+          27.4032
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "94": {
+      "airportCodes": [
+        "PBH",
+        "DEL",
+        "CMB"
+      ],
+      "coordinates": [
+        [
+          89.424599,
+          27.4032
+        ],
+        [
+          77.09519,
+          28.55563
+        ],
+        [
+          79.88410186767578,
+          7.180759906768799
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "95": {
+      "airportCodes": [
+        "CMB",
+        "MLE"
+      ],
+      "coordinates": [
+        [
+          79.88410186767578,
+          7.180759906768799
+        ],
+        [
+          73.529099,
+          4.19183
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "96": {
+      "airportCodes": [
+        "MLE",
+        "PVG"
+      ],
+      "coordinates": [
+        [
+          73.529099,
+          4.19183
+        ],
+        [
+          121.805,
+          31.1434
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "100": {
+      "airportCodes": [
+        "UBN",
+        "IKT"
+      ],
+      "coordinates": [
+        [
+          106.819833,
+          47.646916
+        ],
+        [
+          104.395563,
+          52.266707
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "101": {
+      "airportCodes": [
+        "SVO",
+        "ALA"
+      ],
+      "coordinates": [
+        [
+          37.41121,
+          55.976858
+        ],
+        [
+          77.042828,
+          43.354267
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "109": {
+      "airportCodes": [
+        "IKA",
+        "GYD"
+      ],
+      "coordinates": [
+        [
+          51.152198791503906,
+          35.416099548339844
+        ],
+        [
+          50.050931,
+          40.47278
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "110": {
+      "airportCodes": [
+        "GYD",
+        "TBS"
+      ],
+      "coordinates": [
+        [
+          50.050931,
+          40.47278
+        ],
+        [
+          44.9547,
+          41.669201
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "114": {
+      "airportCodes": [
+        "BGW",
+        "DAM"
+      ],
+      "coordinates": [
+        [
+          44.2346,
+          33.262501
+        ],
+        [
+          36.51559829711914,
+          33.4114990234375
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "116": {
+      "airportCodes": [
+        "BEY",
+        "LCA"
+      ],
+      "coordinates": [
+        [
+          35.487443,
+          33.819833
+        ],
+        [
+          33.624901,
+          34.875099
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "118": {
+      "airportCodes": [
+        "MJI",
+        "TUN"
+      ],
+      "coordinates": [
+        [
+          13.287878,
+          32.89177
+        ],
+        [
+          10.2272,
+          36.851002
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "119": {
+      "airportCodes": [
+        "TUN",
+        "ALG"
+      ],
+      "coordinates": [
+        [
+          10.2272,
+          36.851002
+        ],
+        [
+          3.214531,
+          36.693886
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "122": {
+      "airportCodes": [
+        "NKC",
+        "BKO"
+      ],
+      "coordinates": [
+        [
+          -15.969722,
+          18.31
+        ],
+        [
+          -7.94994,
+          12.5335
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "123": {
+      "airportCodes": [
+        "BKO",
+        "OUA"
+      ],
+      "coordinates": [
+        [
+          -7.94994,
+          12.5335
+        ],
+        [
+          -1.51242,
+          12.3532
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "124": {
+      "airportCodes": [
+        "OUA",
+        "NIM"
+      ],
+      "coordinates": [
+        [
+          -1.51242,
+          12.3532
+        ],
+        [
+          2.18361,
+          13.4815
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "125": {
+      "airportCodes": [
+        "NIM",
+        "NDJ"
+      ],
+      "coordinates": [
+        [
+          2.18361,
+          13.4815
+        ],
+        [
+          15.034,
+          12.1337
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "127": {
+      "airportCodes": [
+        "BGF",
+        "DLA"
+      ],
+      "coordinates": [
+        [
+          18.518801,
+          4.39848
+        ],
+        [
+          9.71948,
+          4.00608
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "128": {
+      "airportCodes": [
+        "DLA",
+        "LOS"
+      ],
+      "coordinates": [
+        [
+          9.71948,
+          4.00608
+        ],
+        [
+          3.32116,
+          6.57737
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "135": {
+      "airportCodes": [
+        "FNA",
+        "CKY"
+      ],
+      "coordinates": [
+        [
+          -13.1955,
+          8.61644
+        ],
+        [
+          -13.612,
+          9.57689
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "136": {
+      "airportCodes": [
+        "CKY",
+        "DSS",
+        "OXB"
+      ],
+      "coordinates": [
+        [
+          -13.612,
+          9.57689
+        ],
+        [
+          -17.072829,
+          14.670878
+        ],
+        [
+          -15.653596,
+          11.894262
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "140": {
+      "airportCodes": [
+        "RAI",
+        "CMN",
+        "SSG"
+      ],
+      "coordinates": [
+        [
+          -23.484728,
+          14.941126
+        ],
+        [
+          -7.58997,
+          33.3675
+        ],
+        [
+          8.70872,
+          3.75527
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "141": {
+      "airportCodes": [
+        "SSG",
+        "LBV",
+        "TMS"
+      ],
+      "coordinates": [
+        [
+          8.70872,
+          3.75527
+        ],
+        [
+          9.41214,
+          0.458951
+        ],
+        [
+          6.71215,
+          0.378175
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "142": {
+      "airportCodes": [
+        "TMS",
+        "LBV"
+      ],
+      "coordinates": [
+        [
+          6.71215,
+          0.378175
+        ],
+        [
+          9.41214,
+          0.458951
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "143": {
+      "airportCodes": [
+        "LBV",
+        "BZV"
+      ],
+      "coordinates": [
+        [
+          9.41214,
+          0.458951
+        ],
+        [
+          15.253,
+          -4.2517
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "145": {
+      "airportCodes": [
+        "FIH",
+        "NBJ"
+      ],
+      "coordinates": [
+        [
+          15.4446,
+          -4.38575
+        ],
+        [
+          13.499078,
+          -9.050734
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "146": {
+      "airportCodes": [
+        "NBJ",
+        "WDH"
+      ],
+      "coordinates": [
+        [
+          13.499078,
+          -9.050734
+        ],
+        [
+          17.4709,
+          -22.4799
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "151": {
+      "airportCodes": [
+        "LLW",
+        "APL",
+        "MPM"
+      ],
+      "coordinates": [
+        [
+          33.780998,
+          -13.7894
+        ],
+        [
+          39.281799,
+          -15.1056
+        ],
+        [
+          32.572601,
+          -25.920799
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "154": {
+      "airportCodes": [
+        "JNB",
+        "MSU"
+      ],
+      "coordinates": [
+        [
+          28.246801,
+          -26.140081
+        ],
+        [
+          27.554456,
+          -29.456277
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "155": {
+      "airportCodes": [
+        "MSU",
+        "JNB",
+        "DAR"
+      ],
+      "coordinates": [
+        [
+          27.554456,
+          -29.456277
+        ],
+        [
+          28.246801,
+          -26.140081
+        ],
+        [
+          39.207288,
+          -6.873499
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "157": {
+      "airportCodes": [
+        "BJM",
+        "KGL"
+      ],
+      "coordinates": [
+        [
+          29.318501,
+          -3.32402
+        ],
+        [
+          30.1395,
+          -1.96863
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "159": {
+      "airportCodes": [
+        "EBB",
+        "JUB"
+      ],
+      "coordinates": [
+        [
+          32.443501,
+          0.042386
+        ],
+        [
+          31.601101,
+          4.87201
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "160": {
+      "airportCodes": [
+        "JUB",
+        "NBO"
+      ],
+      "coordinates": [
+        [
+          31.601101,
+          4.87201
+        ],
+        [
+          36.928233,
+          -1.318886
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "161": {
+      "airportCodes": [
+        "NBO",
+        "SEZ"
+      ],
+      "coordinates": [
+        [
+          36.928233,
+          -1.318886
+        ],
+        [
+          55.521801,
+          -4.67434
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "162": {
+      "airportCodes": [
+        "SEZ",
+        "MRU"
+      ],
+      "coordinates": [
+        [
+          55.521801,
+          -4.67434
+        ],
+        [
+          57.683601,
+          -20.430201
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "163": {
+      "airportCodes": [
+        "MRU",
+        "TNR"
+      ],
+      "coordinates": [
+        [
+          57.683601,
+          -20.430201
+        ],
+        [
+          47.478802,
+          -18.7969
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "164": {
+      "airportCodes": [
+        "TNR",
+        "MJN",
+        "HAH"
+      ],
+      "coordinates": [
+        [
+          47.478802,
+          -18.7969
+        ],
+        [
+          46.351233,
+          -15.666842
+        ],
+        [
+          43.2719,
+          -11.5337
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "165": {
+      "airportCodes": [
+        "HAH",
+        "ADD"
+      ],
+      "coordinates": [
+        [
+          43.2719,
+          -11.5337
+        ],
+        [
+          38.799301,
+          8.97789
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "166": {
+      "airportCodes": [
+        "ADD",
+        "MGQ"
+      ],
+      "coordinates": [
+        [
+          38.799301,
+          8.97789
+        ],
+        [
+          45.304699,
+          2.01444
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "167": {
+      "airportCodes": [
+        "MGQ",
+        "JIB"
+      ],
+      "coordinates": [
+        [
+          45.304699,
+          2.01444
+        ],
+        [
+          43.1595,
+          11.5473
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "168": {
+      "airportCodes": [
+        "JIB",
+        "JED",
+        "ASM"
+      ],
+      "coordinates": [
+        [
+          43.1595,
+          11.5473
+        ],
+        [
+          39.157436,
+          21.680241
+        ],
+        [
+          38.910702,
+          15.2919
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "169": {
+      "airportCodes": [
+        "ASM",
+        "PZU"
+      ],
+      "coordinates": [
+        [
+          38.910702,
+          15.2919
+        ],
+        [
+          37.234125,
+          19.434558
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "170": {
+      "airportCodes": [
+        "PZU",
+        "CAI"
+      ],
+      "coordinates": [
+        [
+          37.234125,
+          19.434558
+        ],
+        [
+          31.396694,
+          30.111534
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "171": {
+      "airportCodes": [
+        "CAI",
+        "RUH"
+      ],
+      "coordinates": [
+        [
+          31.396694,
+          30.111534
+        ],
+        [
+          46.698799,
+          24.9576
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "173": {
+      "airportCodes": [
+        "KWI",
+        "BAH"
+      ],
+      "coordinates": [
+        [
+          47.969813,
+          29.224487
+        ],
+        [
+          50.63764,
+          26.267295
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "174": {
+      "airportCodes": [
+        "BAH",
+        "DOH"
+      ],
+      "coordinates": [
+        [
+          50.63764,
+          26.267295
+        ],
+        [
+          51.608056,
+          25.273056
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "178": {
+      "airportCodes": [
+        "ADE",
+        "AMM"
+      ],
+      "coordinates": [
+        [
+          45.029976,
+          12.829564
+        ],
+        [
+          35.9931983948,
+          31.7226009369
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    },
+    "194": {
+      "airportCodes": [
+        "MLA",
+        "FRA"
+      ],
+      "coordinates": [
+        [
+          14.491546,
+          35.845932
+        ],
+        [
+          8.55835,
+          50.026706
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20",
+      "serviceVerified": null
+    }
+  },
+  "review": [
+    {
+      "legId": 27,
+      "corridor": "Lissabon (LIS) → London (LON)",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 30,
+      "corridor": "Keflavík (KEF) → Toronto/Montreal",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 32,
+      "corridor": "New York/US-Hub → Mexiko-Stadt/Cancún",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 58,
+      "corridor": "Bogotá/Quito-Korridor → Ipiales/Tulcán → Ecuador",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 59,
+      "corridor": "Quito/Guayaquil → Huaquillas/Tumbes → Peru",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 61,
+      "corridor": "Santa Cruz de la Sierra → Asunción",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 62,
+      "corridor": "Asunción → Buenos Aires",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 70,
+      "corridor": "Funafuti (FUN) → Suva/Nadi (Fidschi-Transit) → Port Vila (VLI)",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 77,
+      "corridor": "Majuro (MAJ) → Pohnpei (PNI), bevorzugt United sonntags; alternativ Nauru-Airlines-Freitag",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 78,
+      "corridor": "A: Pohnpei (PNI) → Chuuk → Guam (GUM) → Koror (ROR); B: Pohnpei → Majuro → Tarawa → Nauru → Brisbane (BNE) → Koror (ROR)",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 84,
+      "corridor": "Denpasar/Jakarta → Dili (DIL)",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 85,
+      "corridor": "Dili → Bali/Singapur (Transit) → Bangkok",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 86,
+      "corridor": "Bangkok (BKK/DMK) → Phnom Penh (PNH)",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 89,
+      "corridor": "Vientiane (VTE) → Bangkok (BKK/DMK) → Yangon (RGN)",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 97,
+      "corridor": "Peking/Shanghai → Seoul (ICN)",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 98,
+      "corridor": "Busan → Fukuoka; alternativ kurzer Flug",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 99,
+      "corridor": "Tokyo/Narita → Ulaanbaatar (UBN)",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 112,
+      "corridor": "Jerewan (EVN) → Istanbul (IST/SAW)",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 113,
+      "corridor": "Istanbul (IST/SAW) → Bagdad (BGW), nonstop",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 117,
+      "corridor": "Larnaka → Istanbul/Tunis (Transit) → Tripolis/Misrata",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 120,
+      "corridor": "Algier → Tunis/Europa (Transit) → Casablanca",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 126,
+      "corridor": "N'Djamena (NDJ) → Douala (DLA) oder Yaoundé (NSI) → Bangui (BGF)",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 139,
+      "corridor": "Banjul → Dakar (Transit Senegal) → Praia (RAI)",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 172,
+      "corridor": "Riad/Dammam → Kuwait City",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 175,
+      "corridor": "Doha (DOH) → Dubai/Abu Dhabi",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 176,
+      "corridor": "Dubai/Abu Dhabi → Muscat",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 177,
+      "corridor": "Muscat → Aden/Seiyun/Mukalla, ggf. via Jeddah/Cairo",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 181,
+      "corridor": "Westjordanland → Allenby/King Hussein Bridge → Amman (Transit) → Athen (ATH)",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    },
+    {
+      "legId": 193,
+      "corridor": "Rom (FCO/CIA) → Malta (MLA)",
+      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
+    }
+  ]
+}

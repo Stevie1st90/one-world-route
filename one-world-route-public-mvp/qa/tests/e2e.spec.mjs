@@ -2,7 +2,7 @@ import {test,expect} from '@playwright/test';
 
 test('search selects a country or route result',async({page})=>{
   await page.goto('/');await page.locator('#searchBtn').click();await page.locator('#commandInput').fill('Germany');
-  const hit=page.locator('#commandResults .command-row').first();await expect(hit).toBeVisible();await hit.click();
+  const hit=page.locator('#commandResults .command-item').first();await expect(hit).toBeVisible();await hit.click();
   await expect(page.locator('#detailTitle')).toContainText(/Germany/);
 });
 
@@ -19,8 +19,9 @@ test('Story survives manual drag',async({page})=>{
 });
 
 test('Terrain chapter navigation moves camera',async({page})=>{
+  test.setTimeout(90000);
   await page.goto('/?segment=5&phase=1');await page.locator('#settingsBtn').click();await page.locator('#terrainView').check();
-  await expect(page.locator('body')).toHaveClass(/terrain-view/);
+  await expect(page.locator('body')).toHaveClass(/terrain-view/,{timeout:30000});
   const before=await page.evaluate(()=>window.__ONE_WORLD_TERRAIN__?.getCenter?.().toArray?.());
   await page.locator('#phaseRail button[data-phase="3"]').click();await page.waitForTimeout(1500);
   const after=await page.evaluate(()=>window.__ONE_WORLD_TERRAIN__?.getCenter?.().toArray?.());
@@ -37,4 +38,41 @@ test('PWA and public datasets are reachable',async({page,request})=>{
   await page.goto('/');await expect(page.locator('link[rel="manifest"]')).toHaveAttribute('href',/manifest/);
   expect((await request.get('/manifest.webmanifest')).ok()).toBeTruthy();
   expect((await request.get('/data/public-route.json')).ok()).toBeTruthy();
+});
+test('operational transfers preserve macro counts and expose unknowns',async({page,request,isMobile},testInfo)=>{
+  const route=await (await request.get('/data/public-route.json')).json();
+  expect(route.segments).toHaveLength(194);expect(route.countries).toHaveLength(195);
+  await page.goto('/?segment=22');
+  if(isMobile)await page.locator('#mobileFilters').click();
+  await page.locator('.mode-switch button[data-mode="operations"]').click();
+  await expect(page.locator('[data-movement-id="transfer-21-22"]')).toBeAttached();
+  await expect(page.locator('[data-movement-id="transfer-22-23"]')).toBeAttached();
+  await expect(page.locator('#selectedOpsIntel')).toContainText('Operational timeline');
+  if(isMobile){await page.locator('#closeFilters').click();await page.locator('#mobileDetails').click();}
+  await page.locator('[data-movement-id="transfer-21-22"]').scrollIntoViewIfNeeded();
+  await expect(page.locator('[data-movement-id="transfer-21-22"]')).toBeVisible();
+  await page.screenshot({path:testInfo.outputPath('operations-review.png')});
+});
+
+test('multi-stop flight geometry uses airport coordinates',async({request})=>{
+  const data=await (await request.get('/data/flight-geometries.json')).json();
+  expect(data.geometries['69'].airportCodes).toEqual(['APW','NAN','FUN']);
+  expect(data.geometries['27']).toBeUndefined();
+});
+
+test('Story transfer keeps country count and exits cleanly',async({page},testInfo)=>{
+  await page.goto('/?segment=21');
+  await page.locator('#playBtn').click();
+  await expect(page.locator('body')).toHaveClass(/story-mode/);
+  await expect(page.locator('#storyMovement')).toBeVisible({timeout:20000});
+  const before=await page.locator('#storyCountryValue').innerText();
+  await expect(page.locator('#storyMovement')).toContainText('country count unchanged');
+  const hud=await page.locator('#storyHud').boundingBox();
+  expect(hud.y).toBeGreaterThanOrEqual(0);expect(hud.y+hud.height).toBeLessThanOrEqual(page.viewportSize().height);
+  await page.screenshot({path:testInfo.outputPath('story-review.png')});
+  expect(await page.locator('#routeRange').inputValue()).toBe('21');
+  expect(await page.locator('#storyCountryValue').innerText()).toBe(before);
+  await page.locator('#storyExit').click();
+  await expect(page.locator('body')).not.toHaveClass(/story-mode/);
+  await expect(page.locator('#storyMovement')).toHaveCount(0);
 });

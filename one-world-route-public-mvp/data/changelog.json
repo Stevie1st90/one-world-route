@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-09-20",
+    "title": "Operational movement foundation and airport geometry",
+    "summary": "Inventoried 193 connections with 93 transfer records; added explicit airport geometry for 81 flight legs. Operations exposes transfer planning and actual fields. Story pauses at transfers without advancing the country count. Unresolved routing and unpriced costs remain visible; Release 3 is not yet approved.",
+    "tags": [
+      "operations",
+      "airports",
+      "continuity",
+      "story"
+    ]
+  },
+  {
+    "date": "2026-09-20",
     "title": "Continuous journey transfer connectors",
     "summary": "Missing domestic movement between consecutive international legs is now rendered as a visual transfer connector. The official journey remains 194 executable international legs while the terrain route reads as one continuous path.",
     "tags": [

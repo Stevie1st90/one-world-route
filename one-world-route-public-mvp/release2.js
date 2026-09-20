@@ -27,6 +27,8 @@
     runtime.route=r;runtime.countries=c;EN.registerCountries?.(c);
     runtime.centroids=new Map(c.map(x=>[x.name,[Number(x.lng),Number(x.lat)]]));
     runtime.waypoints=new Map(Object.entries(w||{}).map(([id,p])=>[Number(id),p]));
+    const operational=await window.ONE_WORLD_MOVEMENTS.ready;
+    for(const [id,g] of Object.entries(operational.flights.geometries))runtime.waypoints.set(Number(id),g.coordinates);
     runtime.actual=a;runtime.media=m;runtime.changes=ch;
     return runtime;
   }

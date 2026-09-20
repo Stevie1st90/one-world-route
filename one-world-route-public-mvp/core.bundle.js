@@ -972,6 +972,7 @@
   }
 
   function selectSegment(id,focus=false){
+    window.ONE_WORLD_MOVEMENTS?.clear();
     const s=state.segments.find(x=>x.id===Number(id)); if(!s)return;
     state.selectedSegmentId=s.id; state.selectedCountry=null; state.activeTab=state.mode==='operations'?'operations':'overview';
     if(state.phase!=='all' && Number(state.phase)!==s.phaseId){state.phase=String(s.phaseId);renderChrome();}
@@ -1029,7 +1030,7 @@
   }
 
   function renderChrome(){
-    $('#topKpis').innerHTML=`<div class="kpi"><b>195</b><span>countries</span></div><div class="kpi"><b>379</b><span>planned days</span></div><div class="kpi"><b>194</b><span>executable</span></div><div class="kpi"><b>€90.6k</b><span>base model</span></div>`;
+    $('#topKpis').innerHTML=`<div class="kpi"><b>195</b><span>countries</span></div><div class="kpi"><b>379</b><span>planned days</span></div><div class="kpi"><b>194</b><span>intl. legs</span></div><div class="kpi"><b>€90.6k</b><span>base model</span></div>`;
     $('#phaseRail').innerHTML=`<button data-phase="all" class="${state.phase==='all'?'active':''}">All route</button>`+PHASES.map(p=>`<button data-phase="${p.id}" class="${String(state.phase)===String(p.id)?'active':''}" title="${p.name}"><span class="phase-dot" style="background:${p.color}"></span>${String(p.id).padStart(2,'0')} ${p.short}</button>`).join('');
     $$('#phaseRail button').forEach(b=>b.onclick=()=>{
       state.phase=b.dataset.phase;
@@ -1107,7 +1108,7 @@
   function renderProjectOverview(box){
     $('#detailEyebrow').textContent='PROJECT OVERVIEW'; $('#detailTitle').textContent='The route at a glance';
     const segs=visibleSegments();
-    box.innerHTML=`<div class="overview-number">195<small> countries</small></div><p class="detail-copy">One continuous, data-driven route. The globe is the interface: select a route line or country to inspect the plan.</p><div class="data-grid">${dataCard('Route legs','194')}${dataCard('Planned days','379')}${dataCard('Base model','€90.6k')}${dataCard('Executable now','194 / 195')}</div><h3>Visible route</h3><div class="route-list">${segs.slice(0,14).map(s=>`<div class="route-row" data-segment="${s.id}"><span class="route-id">#${s.id}</span><div><div class="route-name">${segmentFrom(s)} → ${segmentTo(s)}</div><div class="route-sub">${segmentMode(s)} · ${s.phaseName}</div></div><span>›</span></div>`).join('')}</div>`;
+    box.innerHTML=`<div class="overview-number">195<small> countries</small></div><p class="detail-copy">One continuous, data-driven route. The globe is the interface: select a route line or country to inspect the plan.</p><div class="data-grid">${dataCard('Route legs','194')}${dataCard('Planned days','379')}${dataCard('Base model','€90.6k')}${dataCard('Countries in legs','194 / 195')}</div><h3>Visible route</h3><div class="route-list">${segs.slice(0,14).map(s=>`<div class="route-row" data-segment="${s.id}"><span class="route-id">#${s.id}</span><div><div class="route-name">${segmentFrom(s)} → ${segmentTo(s)}</div><div class="route-sub">${segmentMode(s)} · ${s.phaseName}</div></div><span>›</span></div>`).join('')}</div>`;
     $$('[data-segment]',box).forEach(x=>x.onclick=()=>selectSegment(Number(x.dataset.segment),true));
   }
 
@@ -1185,9 +1186,20 @@
 
   function play(){
     if(state.playing){stopPlay();return} state.playing=true;$('#playBtn').textContent='Ⅱ'; if(state.globe?.controls())state.globe.controls().autoRotate=false;
-    const tick=()=>{if(!state.playing)return;let n=state.selectedSegmentId+1;if(n>194)n=1;selectSegment(n,true);state.playTimer=setTimeout(tick,state.speed)}; state.playTimer=setTimeout(tick,200);
+    let transferShownAfter=null;
+    const tick=()=>{
+      if(!state.playing)return;
+      const movements=window.ONE_WORLD_MOVEMENTS;
+      const transfer=movements?.data?.movements.find(m=>m.parentAfterLeg===state.selectedSegmentId&&m.status!=='cancelled');
+      if(document.body.classList.contains('story-mode')&&transfer&&transferShownAfter!==state.selectedSegmentId){
+        transferShownAfter=state.selectedSegmentId;movements.show(transfer);
+      }else{
+        transferShownAfter=null;let n=state.selectedSegmentId+1;if(n>194)n=1;selectSegment(n,true);
+      }
+      state.playTimer=setTimeout(tick,state.speed);
+    }; state.playTimer=setTimeout(tick,state.speed);
   }
-  function stopPlay(){state.playing=false;clearTimeout(state.playTimer);$('#playBtn').textContent='▶';if(state.globe?.controls())state.globe.controls().autoRotate=state.settings.autoRotate}
+  function stopPlay(){window.ONE_WORLD_MOVEMENTS?.clear();state.playing=false;clearTimeout(state.playTimer);$('#playBtn').textContent='▶';if(state.globe?.controls())state.globe.controls().autoRotate=state.settings.autoRotate}
 
   function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._to);t._to=setTimeout(()=>t.classList.remove('show'),2200)}
 

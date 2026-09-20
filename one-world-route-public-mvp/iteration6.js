@@ -25,6 +25,7 @@
         fetch('./data/country-centroids.json',{cache:'force-cache'})
       ]);
       runtime.data=await r.json();
+      runtime.operational=await window.ONE_WORLD_MOVEMENTS.ready;
       const countries=await c.json();
       EN.registerCountries?.(countries||[]);
       runtime.segments=runtime.data.segments||[];
@@ -110,6 +111,20 @@
     return board;
   }
 
+  function movementSummary(){
+    const data=runtime.operational;
+    if(!data||data.unavailable)return '<p class="ops-empty">Operational transfers unavailable. Continuity cannot be confirmed.</p>';
+    const items=data.movements;
+    return `<div class="ops-mini-title">Operational transfers</div><p class="ops-empty">194 international legs + ${items.length} transfer records · ${items.filter(m=>m.reviewStatus!=='reviewed').length} need review. Unpriced transfers are not included in the base budget.</p>`;
+  }
+
+  function movementTimeline(s){
+    const items=runtime.operational?.movements||[];
+    const card=m=>`<article class="ops-movement" data-movement-id="${esc(m.id)}"><small>TRANSFER · ${esc(m.reviewStatus)}</small><b>${esc(m.from)} → ${esc(m.to)}</b><span>${esc(m.mode||'Mode to confirm')} · ${m.distanceKm===null?'Distance unknown':`${m.distanceBasis==='geodesic-lower-bound'?'≥ ':''}${m.distanceKm} km (${m.distanceBasis==='geodesic-lower-bound'?'straight-line':'route estimate'})`}</span><span>Duration: ${m.plannedDuration===null?'unknown':m.plannedDuration+' min'} · Cost: ${m.estimatedCost===null?'unpriced':euro(m.estimatedCost)}</span><span>Window: ${esc(m.planningWindow.after||'unknown')} → ${esc(m.planningWindow.before||'unknown')}</span><span>Status: ${esc(m.status)} · Booking: ${esc(m.bookingStatus)}</span><details><summary>Planning evidence and actuals</summary><p>${esc(m.notes)}</p><p>Last verified: ${esc(m.lastVerified||'Not verified')}<br>Actual departure: ${esc(m.actualDeparture||'Not recorded')}<br>Actual arrival: ${esc(m.actualArrival||'Not recorded')}<br>Actual cost: ${m.actualCost===null?'Not recorded':euro(m.actualCost)}</p></details></article>`;
+    const before=items.filter(m=>m.parentBeforeLeg===Number(s.id)),after=items.filter(m=>m.parentAfterLeg===Number(s.id));
+    return `<div class="ops-mini-title">Operational timeline</div><div class="ops-movements">${before.map(card).join('')}<div class="ops-macro">International leg #${s.id} · ${esc(routeLabel(s))}</div>${after.map(card).join('')}</div>`;
+  }
+
   function renderBoard(){
     const board=ensureBoard();if(!board)return;
     const ops=$('.mode-switch button[data-mode="operations"]')?.classList.contains('active');
@@ -126,6 +141,7 @@
         <div class="ops-score"><strong>${fresh.unknown+fresh.stale}</strong><span>needs review</span></div>
       </div>
       <button class="ops-primary" data-action="critical">View global critical path <span>›</span></button>
+      ${movementSummary()}
       <div class="ops-mini-title">Flagged route conditions</div>
       <div class="ops-break-grid">${cats.slice(0,4).map(([k,v])=>`<div><span>${esc(k)}</span><b>${v}</b></div>`).join('')}</div>
       <div class="ops-budget"><div><span>TRANSPORT MODEL</span><b>${euro(tb)}</b></div>${sparkline()}</div>
@@ -150,6 +166,7 @@
       </div>
       <div class="ops-progress"><i style="width:${Math.min(100,cum/total*100)}%"></i></div>
       <div class="ops-reasons">${reasons.length?reasons.slice(0,5).map(r=>`<span>${esc(r)}</span>`).join(''):'<span class="positive">No major public constraint flag</span>'}</div>
+      ${movementTimeline(s)}
       <div class="ops-mini-title">Dependency window · ±2 legs</div>
       <div class="ops-dependencies">${deps.length?deps.map(({s:x,reasons:r})=>`<button data-segment="${x.id}"><b>#${x.id} ${esc(routeLabel(x))}</b><small>${esc(r.slice(0,2).join(' · '))}</small></button>`).join(''):'<div class="ops-empty">No adjacent flagged dependency in this window.</div>'}</div>
     `;
