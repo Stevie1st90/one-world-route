@@ -215,7 +215,9 @@
 
   function activeTerrainPhase(){
     const raw=new URLSearchParams(location.search).get('phase');
-    if(raw&&raw!=='all'&&Number.isFinite(Number(raw)))return Number(raw);
+    const allButton=$('#phaseRail button.active[data-phase="all"]');
+    if(raw==='all'||allButton)return null;
+    if(raw&&Number.isFinite(Number(raw)))return Number(raw);
     return phaseIdFor(runtime.selectedId||currentSegmentId());
   }
 
@@ -273,7 +275,7 @@
     const parts=splitDateline(points);
     const id=Number(s.id),visible=terrainSegmentVisible(s)||id===Number(runtime.selectedId);
     return {
-      type:'Feature',properties:{id,phaseId:phaseIdFor(id),color:terrainColor(s),visible:visible?1:0},
+      type:'Feature',properties:{id,phaseId:phaseIdFor(id),color:terrainColor(s),visible:visible?1:0,mode:String(s.mode||''),isFlight:/Flug/i.test(String(s.mode||''))?1:0},
       geometry:parts.length>1?{type:'MultiLineString',coordinates:parts}:{type:'LineString',coordinates:parts[0]||[]}
     };
   }
@@ -304,6 +306,7 @@
 
   async function terrainStyle(){
     const phase=activeTerrainPhase();
+    const phaseFilter=phase===null?['==',['get','phaseId'],-1]:['==',['get','phaseId'],phase];
     let base;
     try{
       const response=await fetch('https://tiles.openfreemap.org/styles/liberty',{cache:'force-cache'});
@@ -331,10 +334,11 @@
     };
     const overlays=[
       {id:'route-hit',type:'line',source:'routeSource',filter:['==',['get','visible'],1],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(0,0,0,.001)','line-opacity':.001,'line-width':['interpolate',['linear'],['zoom'],2,12,7,16,12,20]}},
-      {id:'route-world-shadow',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(3,10,18,.58)','line-opacity':.24,'line-width':widthExpr(2.1,3.2,4.6)}},
-      {id:'route-world',type:'line',source:'routeSource',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':['case',['==',['get','visible'],1],colorExpression(),'#6f8295'],'line-opacity':['case',['==',['get','visible'],1],.68,.16],'line-width':widthExpr(1.05,1.65,2.45)}},
-      {id:'route-phase-shadow',type:'line',source:'routeSource',filter:['all',['==',['get','phaseId'],phase],['==',['get','visible'],1]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(4,10,16,.58)','line-opacity':$('#routeGlow')?.checked===false?.24:.64,'line-width':widthExpr(2.5,4.0,6.0)}},
-      {id:'route-phase',type:'line',source:'routeSource',filter:['all',['==',['get','phaseId'],phase],['==',['get','visible'],1]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.94,'line-width':widthExpr(1.55,2.65,4.1)}},
+      {id:'route-world-shadow',type:'line',source:'routeSource',filter:['==',['get','isFlight'],0],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(3,10,18,.58)','line-opacity':.24,'line-width':widthExpr(2.1,3.2,4.6)}},
+      {id:'route-world',type:'line',source:'routeSource',filter:['==',['get','isFlight'],0],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':['case',['==',['get','visible'],1],colorExpression(),'#6f8295'],'line-opacity':['case',['==',['get','visible'],1],.72,.16],'line-width':widthExpr(1.05,1.65,2.45)}},
+      {id:'route-flights-world',type:'line',source:'routeSource',filter:['all',['==',['get','isFlight'],1],['!=',['get','id'],runtime.selectedId]],maxzoom:5.35,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':['case',['==',['get','visible'],1],colorExpression(),'#718399'],'line-opacity':['interpolate',['linear'],['zoom'],2,.42,4,.26,5.35,.05],'line-width':['interpolate',['linear'],['zoom'],2,.7,5.35,.45],'line-dasharray':[2.2,2.2]}},
+      {id:'route-phase-shadow',type:'line',source:'routeSource',filter:['all',phaseFilter,['==',['get','visible'],1],['==',['get','isFlight'],0]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(4,10,16,.58)','line-opacity':$('#routeGlow')?.checked===false?.24:.64,'line-width':widthExpr(2.5,4.0,6.0)}},
+      {id:'route-phase',type:'line',source:'routeSource',filter:['all',phaseFilter,['==',['get','visible'],1],['==',['get','isFlight'],0]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.94,'line-width':widthExpr(1.55,2.65,4.1)}},
       {id:'selected-route-shadow',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(2,9,15,.74)','line-opacity':$('#routeGlow')?.checked===false?.34:.82,'line-width':widthExpr(4.0,6.4,9.0)}},
       {id:'selected-route',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#00ccef','line-opacity':1,'line-width':widthExpr(2.7,4.7,6.8)}},
       {id:'country-hit',type:'circle',source:'countrySource',layout:{visibility:$('#showPoints')?.checked===false?'none':'visible'},paint:{'circle-radius':['interpolate',['linear'],['zoom'],2,8,7,10,11,12],'circle-color':'rgba(0,0,0,.001)','circle-opacity':.001}},
@@ -448,9 +452,11 @@
   function syncTerrainHierarchy(){
     const map=runtime.terrainMap;if(!map)return;
     const phase=activeTerrainPhase();
+    const phaseFilter=phase===null?['==',['get','phaseId'],-1]:['==',['get','phaseId'],phase];
     if(map.getLayer?.('route-hit'))map.setFilter('route-hit',['==',['get','visible'],1]);
-    if(map.getLayer?.('route-phase'))map.setFilter('route-phase',['all',['==',['get','phaseId'],phase],['==',['get','visible'],1]]);
-    if(map.getLayer?.('route-phase-shadow'))map.setFilter('route-phase-shadow',['all',['==',['get','phaseId'],phase],['==',['get','visible'],1]]);
+    if(map.getLayer?.('route-phase'))map.setFilter('route-phase',['all',phaseFilter,['==',['get','visible'],1],['==',['get','isFlight'],0]]);
+    if(map.getLayer?.('route-phase-shadow'))map.setFilter('route-phase-shadow',['all',phaseFilter,['==',['get','visible'],1],['==',['get','isFlight'],0]]);
+    if(map.getLayer?.('route-flights-world'))map.setFilter('route-flights-world',['all',['==',['get','isFlight'],1],['!=',['get','id'],runtime.selectedId]]);
     if(map.getLayer?.('selected-route'))map.setFilter('selected-route',['==',['get','id'],runtime.selectedId]);
     if(map.getLayer?.('selected-route-shadow'))map.setFilter('selected-route-shadow',['==',['get','id'],runtime.selectedId]);
   }

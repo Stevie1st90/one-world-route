@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026-09-20",
+    "title": "Terrain route hierarchy refined",
+    "summary": "All route now renders all chapters without an accidental selected-chapter emphasis. Long unselected flight connectors fade out at close terrain zoom while ground, rail and ferry corridors remain readable.",
+    "tags": [
+      "terrain",
+      "mobile",
+      "route hierarchy"
+    ]
+  },
+  {
     "date": "2026-09-19",
     "title": "Ground and ferry corridor geometry expanded",
     "summary": "Terrain now uses curated corridor-level waypoints for 84 route legs, including North/Central America, South America, Asia, Africa, Gulf/Levant and Europe II.",
