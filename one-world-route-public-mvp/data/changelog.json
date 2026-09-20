@@ -1,6 +1,16 @@
 [
   {
     "date": "2026-09-20",
+    "title": "Continuous terrain route backbone",
+    "summary": "Terrain now keeps a continuous chapter-colored route backbone visible across every active leg, with stronger local ground/ferry corridors and the selected leg layered above it.",
+    "tags": [
+      "terrain",
+      "route hierarchy",
+      "readability"
+    ]
+  },
+  {
+    "date": "2026-09-20",
     "title": "Continuous terrain route rendering",
     "summary": "Flight legs now remain continuous at every zoom level. Visual hierarchy uses opacity and stroke weight instead of dashed or disappearing connectors, preserving the impression of one uninterrupted world route.",
     "tags": [
