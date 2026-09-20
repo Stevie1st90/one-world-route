@@ -5,6 +5,7 @@
     "test:e2e:mobile": "playwright test --project=mobile"
   },
   "devDependencies": {
+    "@maplibre/maplibre-gl-style-spec": "^26.4.4",
     "@playwright/test": "^1.55.0"
   }
 }

@@ -613,7 +613,6 @@
   async function installArtifactFreeBorders(globe){
     if(runtime.outlineReady||!globe)return;
     runtime.outlineReady=true;
-    globe.__oneWorldArtifactFreeBorders=true;
     try{
       const response=await fetch('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson',{cache:'force-cache'});
       if(!response.ok)throw new Error(String(response.status));
@@ -621,8 +620,9 @@
       const paths=(geo.features||[]).flatMap(geometryToPaths).filter(p=>p.points.length>1);
       globe.pathsData(paths).pathPoints('points').pathPointLat('lat').pathPointLng('lng')
         .pathColor(()=>document.body.classList.contains('story-mode')?'rgba(166,192,221,.24)':'rgba(151,184,218,.62)')
-        .pathStroke(.24).pathAltitude(.0018).pathResolution(1.25).pathTransitionDuration(0);
-    }catch(err){console.warn('Artifact-free country outlines unavailable',err);}
+        .pathStroke(.24).pathPointAlt(.0018).pathResolution(1.25).pathTransitionDuration(0);
+      globe.__oneWorldArtifactFreeBorders=true;
+    }catch(err){runtime.outlineReady=false;console.warn('Artifact-free country outlines unavailable',err);}
   }
 
   function loadStyle(url){
@@ -636,8 +636,10 @@
   async function loadMapLibre(){
     if(runtime.loadPromise)return runtime.loadPromise;
     runtime.loadPromise=(async()=>{
-      await loadStyle('https://unpkg.com/maplibre-gl@6.10.0/dist/maplibre-gl.css');
-      const module=await import('https://unpkg.com/maplibre-gl@6.10.0/dist/maplibre-gl.mjs');
+      const [,module]=await Promise.all([
+        loadStyle('https://unpkg.com/maplibre-gl@6.10.0/dist/maplibre-gl.css'),
+        import('https://unpkg.com/maplibre-gl@6.10.0/dist/maplibre-gl.mjs')
+      ]);
       if(typeof module?.Map!=='function')throw new Error('MapLibre ES module did not expose Map');
       return module;
     })();
@@ -886,8 +888,8 @@
       {id:'route-flights-world',type:'line',source:'routeSource',filter:['all',['==',['get','isFlight'],1],['!=',['get','id'],runtime.selectedId]],maxzoom:5.45,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':['case',['==',['get','visible'],1],colorExpression(),'#718399'],'line-opacity':['interpolate',['linear'],['zoom'],2,.52,4,.38,5.15,.15,5.4,0],'line-width':['interpolate',['linear'],['zoom'],2,1.0,4,.84,5.4,.58]}},
       {id:'route-phase-shadow',type:'line',source:'routeSource',filter:['all',phaseFilter,['==',['get','visible'],1],['==',['get','isFlight'],0]],maxzoom:5.8,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(4,10,16,.58)','line-opacity':$('#routeGlow')?.checked===false?.24:.64,'line-width':widthExpr(2.5,4.0,6.0)}},
       {id:'route-phase',type:'line',source:'routeSource',filter:['all',phaseFilter,['==',['get','visible'],1],['==',['get','isFlight'],0],['==',['get','isConnector'],0]],maxzoom:5.8,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.94,'line-width':widthExpr(1.55,2.65,4.1)}},
-      {id:'route-connectors-shadow',type:'line',source:'routeSource',filter:['all',['==',['get','isConnector'],1],['==',['get','visible'],1]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(3,10,18,.55)','line-opacity':['case',['==',['get','isActive'],1],0.4,['interpolate',['linear'],['zoom'],2,.28,6,['case',['>', ['get','gapDeg'],5],.08,.34],10,['case',['>', ['get','gapDeg'],5],.02,.30]]],'line-width':['interpolate',['linear'],['zoom'],2,1.7,6,2.3,10,3.0]}},
-      {id:'route-connectors',type:'line',source:'routeSource',filter:['all',['==',['get','isConnector'],1],['==',['get','visible'],1]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':['case',['==',['get','isActive'],1],0.9,['interpolate',['linear'],['zoom'],2,.48,6,['case',['>', ['get','gapDeg'],5],.15,.66],10,['case',['>', ['get','gapDeg'],5],.03,.62]]],'line-width':['interpolate',['linear'],['zoom'],2,.85,6,1.25,10,1.65]}},
+      {id:'route-connectors-shadow',type:'line',source:'routeSource',filter:['all',['==',['get','isConnector'],1],['==',['get','visible'],1]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(3,10,18,.55)','line-opacity':['interpolate',['linear'],['zoom'],2,['case',['==',['get','isActive'],1],.4,.28],6,['case',['==',['get','isActive'],1],.4,['>', ['get','gapDeg'],5],.08,.34],10,['case',['==',['get','isActive'],1],.4,['>', ['get','gapDeg'],5],.02,.30]],'line-width':['interpolate',['linear'],['zoom'],2,1.7,6,2.3,10,3.0]}},
+      {id:'route-connectors',type:'line',source:'routeSource',filter:['all',['==',['get','isConnector'],1],['==',['get','visible'],1]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':['interpolate',['linear'],['zoom'],2,['case',['==',['get','isActive'],1],.9,.48],6,['case',['==',['get','isActive'],1],.9,['>', ['get','gapDeg'],5],.15,.66],10,['case',['==',['get','isActive'],1],.9,['>', ['get','gapDeg'],5],.03,.62]],'line-width':['interpolate',['linear'],['zoom'],2,.85,6,1.25,10,1.65]}},
       {id:'route-local-shadow',type:'line',source:'routeSource',filter:['==',['get','id'],-1],minzoom:5.35,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(3,10,18,.62)','line-opacity':.48,'line-width':widthExpr(2.35,3.45,5.0)}},
       {id:'route-local',type:'line',source:'routeSource',filter:['==',['get','id'],-1],minzoom:5.35,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.84,'line-width':widthExpr(1.3,2.05,3.0)}},
       {id:'selected-route-shadow',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(2,9,15,.74)','line-opacity':$('#routeGlow')?.checked===false?.34:.82,'line-width':widthExpr(4.0,6.4,9.0)}},
@@ -925,9 +927,14 @@
 
   async function initTerrainMap(){
     if(runtime.terrainReady)return;
-    await loadRouteContext();
+    if(!runtime.initPromise)runtime.initPromise=createTerrainMap().finally(()=>{runtime.initPromise=null});
+    return runtime.initPromise;
+  }
+
+  async function createTerrainMap(){
     runtime.selectedId=currentSegmentId();
-    const maplibregl=await loadMapLibre(),center=selectedPosition(),style=await terrainStyle();
+    const [maplibregl,style]=await Promise.all([loadMapLibre(),loadRouteContext().then(terrainStyle)]);
+    const center=selectedPosition();
     const map=new maplibregl.Map({
       container:'terrainMap',style,center,zoom:3.9,pitch:32,bearing:-6,
       minZoom:2.9,maxZoom:18,maxPitch:65,renderWorldCopies:false,attributionControl:true,
