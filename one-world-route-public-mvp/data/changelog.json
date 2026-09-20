@@ -1,6 +1,16 @@
 [
   {
     "date": "2026-09-20",
+    "title": "Continuous terrain route rendering",
+    "summary": "Flight legs now remain continuous at every zoom level. Visual hierarchy uses opacity and stroke weight instead of dashed or disappearing connectors, preserving the impression of one uninterrupted world route.",
+    "tags": [
+      "terrain",
+      "route hierarchy",
+      "mobile"
+    ]
+  },
+  {
+    "date": "2026-09-20",
     "title": "Terrain route hierarchy refined",
     "summary": "All route now renders all chapters without an accidental selected-chapter emphasis. Long unselected flight connectors fade out at close terrain zoom while ground, rail and ferry corridors remain readable.",
     "tags": [
