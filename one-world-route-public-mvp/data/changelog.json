@@ -1,6 +1,16 @@
 [
   {
     "date": "2026-09-20",
+    "title": "Terrain route level-of-detail",
+    "summary": "The complete route remains continuous at world and continent zoom. As the user zooms into local terrain, global backbone and unselected long-haul flights fade away so they no longer cut across the map; local corridors and the selected leg stay prominent.",
+    "tags": [
+      "terrain",
+      "mobile",
+      "level of detail"
+    ]
+  },
+  {
+    "date": "2026-09-20",
     "title": "Continuous terrain route backbone",
     "summary": "Terrain now keeps a continuous chapter-colored route backbone visible across every active leg, with stronger local ground/ferry corridors and the selected leg layered above it.",
     "tags": [
