@@ -275,14 +275,47 @@
     const parts=splitDateline(points);
     const id=Number(s.id),visible=terrainSegmentVisible(s)||id===Number(runtime.selectedId);
     return {
-      type:'Feature',properties:{id,phaseId:phaseIdFor(id),color:terrainColor(s),visible:visible?1:0,mode:String(s.mode||''),isFlight:/Flug/i.test(String(s.mode||''))?1:0},
+      type:'Feature',properties:{id,phaseId:phaseIdFor(id),color:terrainColor(s),visible:visible?1:0,mode:String(s.mode||''),isFlight:/Flug/i.test(String(s.mode||''))?1:0,isConnector:0},
+      geometry:parts.length>1?{type:'MultiLineString',coordinates:parts}:{type:'LineString',coordinates:parts[0]||[]}
+    };
+  }
+
+  function connectorFeature(a,b){
+    if(!a||!b||normalize(a.to)!==normalize(b.from))return null;
+    const ap=segmentPathPoints(a),bp=segmentPathPoints(b);
+    if(ap.length<2||bp.length<2)return null;
+    const start=ap[ap.length-1],end=bp[0];
+    const gap=angularDistance(start,end);
+    if(!Number.isFinite(gap)||gap<.03)return null;
+    const points=greatCirclePoints({lng:start[0],lat:start[1]},{lng:end[0],lat:end[1]},Math.max(10,Math.min(48,Math.round(gap*1.8))));
+    const parts=splitDateline(points);
+    const nextId=Number(b.id),visible=terrainSegmentVisible(a)||terrainSegmentVisible(b)||nextId===Number(runtime.selectedId);
+    return {
+      type:'Feature',
+      properties:{
+        id:-1000-Number(a.id),
+        phaseId:phaseIdFor(nextId),
+        color:terrainColor(b),
+        visible:visible?1:0,
+        mode:'Transfer',
+        isFlight:0,
+        isConnector:1,
+        connectorFrom:Number(a.id),
+        connectorTo:nextId,
+        gapDeg:Math.round(gap*1000)/1000
+      },
       geometry:parts.length>1?{type:'MultiLineString',coordinates:parts}:{type:'LineString',coordinates:parts[0]||[]}
     };
   }
 
   function routeGeoJson(){
     const rows=runtime.routeData?.segments||[];
-    return {type:'FeatureCollection',features:rows.map(segmentFeature).filter(Boolean)};
+    const features=rows.map(segmentFeature).filter(Boolean);
+    for(let i=0;i<rows.length-1;i++){
+      const connector=connectorFeature(rows[i],rows[i+1]);
+      if(connector)features.push(connector);
+    }
+    return {type:'FeatureCollection',features};
   }
 
   function countryGeoJson(){
@@ -333,7 +366,7 @@
       paint:{'hillshade-method':'multidirectional','hillshade-exaggeration':.32,'hillshade-shadow-color':'#66757d','hillshade-highlight-color':'#f6f8f7','hillshade-accent-color':'#82939d'}
     };
     const overlays=[
-      {id:'route-hit',type:'line',source:'routeSource',filter:['==',['get','visible'],1],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(0,0,0,.001)','line-opacity':.001,'line-width':['interpolate',['linear'],['zoom'],2,12,7,16,12,20]}},
+      {id:'route-hit',type:'line',source:'routeSource',filter:['all',['==',['get','visible'],1],['==',['get','isConnector'],0]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(0,0,0,.001)','line-opacity':.001,'line-width':['interpolate',['linear'],['zoom'],2,12,7,16,12,20]}},
       {id:'route-backbone-shadow',type:'line',source:'routeSource',filter:['==',['get','visible'],1],maxzoom:5.8,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(2,8,15,.68)','line-opacity':['interpolate',['linear'],['zoom'],2,.38,4.4,.30,5.3,.12,5.75,0],'line-width':['interpolate',['linear'],['zoom'],2,2.6,4.4,2.25,5.75,1.7]}},
       {id:'route-backbone',type:'line',source:'routeSource',filter:['==',['get','visible'],1],maxzoom:5.8,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':['interpolate',['linear'],['zoom'],2,.62,4.4,.56,5.3,.22,5.75,0],'line-width':['interpolate',['linear'],['zoom'],2,1.25,4.4,1.12,5.75,.82]}},
       {id:'route-world-shadow',type:'line',source:'routeSource',filter:['==',['get','isFlight'],0],maxzoom:5.8,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(3,10,18,.58)','line-opacity':.24,'line-width':widthExpr(2.1,3.2,4.6)}},
@@ -341,7 +374,9 @@
       {id:'route-flights-shadow',type:'line',source:'routeSource',filter:['all',['==',['get','isFlight'],1],['!=',['get','id'],runtime.selectedId]],maxzoom:5.45,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(3,10,18,.72)','line-opacity':['interpolate',['linear'],['zoom'],2,.28,4,.18,5.15,.07,5.4,0],'line-width':['interpolate',['linear'],['zoom'],2,1.5,4,1.1,5.4,.72]}},
       {id:'route-flights-world',type:'line',source:'routeSource',filter:['all',['==',['get','isFlight'],1],['!=',['get','id'],runtime.selectedId]],maxzoom:5.45,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':['case',['==',['get','visible'],1],colorExpression(),'#718399'],'line-opacity':['interpolate',['linear'],['zoom'],2,.52,4,.38,5.15,.15,5.4,0],'line-width':['interpolate',['linear'],['zoom'],2,1.0,4,.84,5.4,.58]}},
       {id:'route-phase-shadow',type:'line',source:'routeSource',filter:['all',phaseFilter,['==',['get','visible'],1],['==',['get','isFlight'],0]],maxzoom:5.8,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(4,10,16,.58)','line-opacity':$('#routeGlow')?.checked===false?.24:.64,'line-width':widthExpr(2.5,4.0,6.0)}},
-      {id:'route-phase',type:'line',source:'routeSource',filter:['all',phaseFilter,['==',['get','visible'],1],['==',['get','isFlight'],0]],maxzoom:5.8,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.94,'line-width':widthExpr(1.55,2.65,4.1)}},
+      {id:'route-phase',type:'line',source:'routeSource',filter:['all',phaseFilter,['==',['get','visible'],1],['==',['get','isFlight'],0],['==',['get','isConnector'],0]],maxzoom:5.8,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.94,'line-width':widthExpr(1.55,2.65,4.1)}},
+      {id:'route-connectors-shadow',type:'line',source:'routeSource',filter:['all',['==',['get','isConnector'],1],['==',['get','visible'],1]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(3,10,18,.55)','line-opacity':['interpolate',['linear'],['zoom'],2,.28,6,.34,10,.30],'line-width':['interpolate',['linear'],['zoom'],2,1.7,6,2.3,10,3.0]}},
+      {id:'route-connectors',type:'line',source:'routeSource',filter:['all',['==',['get','isConnector'],1],['==',['get','visible'],1]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':['interpolate',['linear'],['zoom'],2,.48,6,.66,10,.62],'line-width':['interpolate',['linear'],['zoom'],2,.85,6,1.25,10,1.65]}},
       {id:'route-local-shadow',type:'line',source:'routeSource',filter:['==',['get','id'],-1],minzoom:5.35,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(3,10,18,.62)','line-opacity':.48,'line-width':widthExpr(2.35,3.45,5.0)}},
       {id:'route-local',type:'line',source:'routeSource',filter:['==',['get','id'],-1],minzoom:5.35,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':colorExpression(),'line-opacity':.84,'line-width':widthExpr(1.3,2.05,3.0)}},
       {id:'selected-route-shadow',type:'line',source:'routeSource',filter:['==',['get','id'],runtime.selectedId],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(2,9,15,.74)','line-opacity':$('#routeGlow')?.checked===false?.34:.82,'line-width':widthExpr(4.0,6.4,9.0)}},
@@ -462,9 +497,11 @@
     const phase=activeTerrainPhase();
     const phaseFilter=phase===null?['==',['get','phaseId'],-1]:['==',['get','phaseId'],phase];
     if(map.getLayer?.('route-hit'))map.setFilter('route-hit',['==',['get','visible'],1]);
-    if(map.getLayer?.('route-phase'))map.setFilter('route-phase',['all',phaseFilter,['==',['get','visible'],1],['==',['get','isFlight'],0]]);
-    if(map.getLayer?.('route-phase-shadow'))map.setFilter('route-phase-shadow',['all',phaseFilter,['==',['get','visible'],1],['==',['get','isFlight'],0]]);
-    if(map.getLayer?.('route-flights-world'))map.setFilter('route-flights-world',['all',['==',['get','isFlight'],1],['!=',['get','id'],runtime.selectedId]]);
+    if(map.getLayer?.('route-phase'))map.setFilter('route-phase',['all',phaseFilter,['==',['get','visible'],1],['==',['get','isFlight'],0],['==',['get','isConnector'],0]]);
+    if(map.getLayer?.('route-phase-shadow'))map.setFilter('route-phase-shadow',['all',phaseFilter,['==',['get','visible'],1],['==',['get','isFlight'],0],['==',['get','isConnector'],0]]);
+    if(map.getLayer?.('route-flights-world'))map.setFilter('route-flights-world',['all',['==',['get','isFlight'],1],['==',['get','isConnector'],0],['!=',['get','id'],runtime.selectedId]]);
+    if(map.getLayer?.('route-connectors'))map.setFilter('route-connectors',['all',['==',['get','isConnector'],1],['==',['get','visible'],1]]);
+    if(map.getLayer?.('route-connectors-shadow'))map.setFilter('route-connectors-shadow',['all',['==',['get','isConnector'],1],['==',['get','visible'],1]]);
     updateTerrainLocalContext();
     if(map.getLayer?.('selected-route'))map.setFilter('selected-route',['==',['get','id'],runtime.selectedId]);
     if(map.getLayer?.('selected-route-shadow'))map.setFilter('selected-route-shadow',['==',['get','id'],runtime.selectedId]);

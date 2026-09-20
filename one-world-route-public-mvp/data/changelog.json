@@ -1,6 +1,16 @@
 [
   {
     "date": "2026-09-20",
+    "title": "Continuous journey transfer connectors",
+    "summary": "Missing domestic movement between consecutive international legs is now rendered as a visual transfer connector. The official journey remains 194 executable international legs while the terrain route reads as one continuous path.",
+    "tags": [
+      "terrain",
+      "route continuity",
+      "data model"
+    ]
+  },
+  {
+    "date": "2026-09-20",
     "title": "Terrain camera and local-route context fixed",
     "summary": "Terrain now refocuses the selected route whenever the view opens. At close zoom global and chapter route layers give way to viewport-local non-flight corridors, preventing unrelated long lines from crossing the map while preserving free navigation.",
     "tags": [

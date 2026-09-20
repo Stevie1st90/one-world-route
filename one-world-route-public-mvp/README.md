@@ -43,3 +43,10 @@ node scripts/audit-freshness.mjs
 node scripts/diff-public-route.mjs previous-public-route.json data/public-route.json route-diff.json
 ```
 Freshness is evaluated against the real current date at runtime. The diff tool identifies operational changes before they are summarized in the public changelog.
+
+## Route continuity
+The 194 official legs remain international country-to-country legs. Missing domestic movement between the arrival point of one leg and departure point of the next is rendered as a visual transfer connector and does not increase the official leg count.
+
+```bash
+node scripts/audit-route-continuity.mjs
+```
