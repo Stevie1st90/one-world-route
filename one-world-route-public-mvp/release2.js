@@ -128,7 +128,13 @@
     });
     window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();runtime.installPrompt=e;$('#pwaInstall')?.classList.remove('hidden')});
     $('#pwaInstall')?.addEventListener('click',async()=>{if(!runtime.installPrompt)return;runtime.installPrompt.prompt();await runtime.installPrompt.userChoice;runtime.installPrompt=null;$('#pwaInstall')?.classList.add('hidden')});
-    if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(err=>console.warn('Service worker unavailable',err));
+    if('serviceWorker'in navigator){
+      const localPreview=['127.0.0.1','localhost','::1'].includes(location.hostname);
+      if(localPreview){
+        navigator.serviceWorker.getRegistrations?.().then(rows=>Promise.all(rows.map(r=>r.unregister()))).catch(()=>{});
+        if('caches'in window)caches.keys().then(keys=>Promise.all(keys.map(k=>caches.delete(k)))).catch(()=>{});
+      }else navigator.serviceWorker.register('./sw.js').catch(err=>console.warn('Service worker unavailable',err));
+    }
   }
 
   async function init(){await load();wire();window.ONE_WORLD_RELEASE2={open,stats:computeStats,actual:()=>runtime.actual};}
