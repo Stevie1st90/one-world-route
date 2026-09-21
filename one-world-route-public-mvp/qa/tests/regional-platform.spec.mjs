@@ -182,15 +182,18 @@ for(const item of regional){
     await page.locator('#settingsBtn').click();
     await expect(page.locator('#settingsPopover')).toBeVisible();
     if(item.capabilities.includes('terrain'))await expect(page.locator('#terrainView')).toBeVisible();
-    await page.locator('#settingsBtn').click();
-    await expect(page.locator('#settingsPopover')).toBeHidden();
 
     if(item.capabilities.includes('story')){
-      await page.evaluate(()=>window.ONE_WORLD_PLATFORM.startStory());
+      await expect(page.locator('#regionalStorySettingsBtn')).toBeVisible();
+      await page.locator('#regionalStorySettingsBtn').click();
+      await expect(page.locator('#settingsPopover')).toBeHidden();
       await expect(page.locator('body')).toHaveClass(/platform-story-mode/);
       await expect(page.locator('#platformStoryHud')).toBeVisible();
       await page.evaluate(()=>window.ONE_WORLD_PLATFORM.stopStory());
       await expect(page.locator('body')).not.toHaveClass(/platform-story-mode/);
+    }else{
+      await page.locator('#settingsBtn').click();
+      await expect(page.locator('#settingsPopover')).toBeHidden();
     }
 
     expect(pageErrors,item.id+' runtime page errors').toEqual([]);
@@ -227,13 +230,20 @@ for(const item of regional){
 }
 
 test('regional methodology modal renders route evidence context',async({page,isMobile})=>{
-  test.skip(isMobile);
   test.setTimeout(90000);
   const pageErrors=capturePageErrors(page);
   const item=regional[0];
   await openRegional(page,item);
 
-  await page.locator('#infoBtn').click();
+  if(isMobile){
+    await page.locator('#settingsBtn').click();
+    await expect(page.locator('#settingsPopover')).toBeVisible();
+    await expect(page.locator('#mobileInfoBtn')).toBeVisible();
+    await page.locator('#mobileInfoBtn').click();
+  }else{
+    await page.locator('#infoBtn').click();
+  }
+
   await expect(page.locator('#infoModal')).toBeVisible();
   await expect(page.locator('#infoModal .method-grid article')).toHaveCount(4);
   await expect(page.locator('#infoModal')).toContainText(String(item.metrics.stops));
