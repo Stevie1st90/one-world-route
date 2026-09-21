@@ -66,6 +66,7 @@ jobs:
           node --check scripts/serve-local.mjs
           node --check scripts/test-preview-routes.mjs
           node --check scripts/test-regional-runtime.mjs
+          node --check scripts/test-platform-rail-validator.mjs
           node --check qa/tests/regional-platform.spec.mjs
       - name: Platform data validation
         run: node scripts/validate-platform-data.mjs
@@ -83,6 +84,8 @@ jobs:
         run: node --test scripts/test-platform-navigation.mjs
       - name: Regional runtime integration tests
         run: node --test scripts/test-regional-runtime.mjs
+      - name: Rail validator tests
+        run: node --test scripts/test-platform-rail-validator.mjs
       - name: Story controller tests
         run: node --test scripts/test-platform-story.mjs
       - name: Continuity unit tests
