@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','story.js','terrain.js','extensions.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','story.js','terrain.js','extensions.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -239,6 +239,7 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.match(source,/const RegionalDetail=PLATFORM_MODULES\.regionalDetail/);
   assert.match(source,/const RegionalGlobe=PLATFORM_MODULES\.regionalGlobe/);
   assert.match(source,/const RegionalTimeline=PLATFORM_MODULES\.regionalTimeline/);
+  assert.match(source,/const RegionalControls=PLATFORM_MODULES\.regionalControls/);
   assert.match(source,/const Story=PLATFORM_MODULES\.story/);
   assert.match(source,/const Terrain=PLATFORM_MODULES\.terrain/);
   assert.match(source,/RouteLibrary\.open\(/);
@@ -250,6 +251,8 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.match(source,/RegionalGlobe\.render\(/);
   assert.match(source,/RegionalTimeline\.configure\(/);
   assert.match(source,/RegionalTimeline\.update\(/);
+  assert.match(source,/RegionalControls\.configure\(/);
+  assert.match(source,/RegionalControls\.apply\(/);
   assert.match(source,/Story\.configure\(/);
   assert.match(source,/Ui\.ensureGlobalActions\(/);
   assert.match(source,/Navigation\.buildTripUrl\(/);
@@ -266,6 +269,16 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.doesNotMatch(source,/function ensureDialog|function platformToast|function regionalSettings/);
   assert.match(source,/Traveller\.load\(/);
   assert.match(source,/Model\.routeGeometry\(/);
+});
+
+test('regional controls own settings and methodology DOM without renderer coupling',()=>{
+  const controls=moduleSources['regional-controls.js'];
+  for(const token of ['function apply','function renderMethodology','regionalStorySettingsBtn','settingsPopover'])assert.match(controls,new RegExp(token));
+  assert.match(controls,/d\.hasCapability/);
+  assert.match(controls,/d\.onVisualChange/);
+  assert.match(controls,/d\.onAutoRotateChange/);
+  assert.doesNotMatch(controls,/currentTrip|selectedSegmentIndex|ONE_WORLD_ROUTE_GLOBE|Terrain\.|Story\./);
+  assert.doesNotMatch(source,/function configureRegionalMethodology|function configureRegionalSettings|regionalStorySettingsBtn/);
 });
 
 test('regional timeline owns playback state and stays trip-generic',()=>{
