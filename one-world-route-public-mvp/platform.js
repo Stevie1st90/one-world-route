@@ -460,7 +460,8 @@
 
   function buildTripUrl(id){
     const p = new URLSearchParams(location.search);
-    if(id === catalog.defaultTripId) p.delete('trip'); else p.set('trip',id);
+    const defaultTripId=catalog?.defaultTripId||'world-195';
+    if(id === defaultTripId) p.delete('trip'); else p.set('trip',id);
     p.delete('segment'); p.delete('country'); p.delete('phase'); p.delete('view');
     return `/${p.toString()?`?${p}`:''}`;
   }
