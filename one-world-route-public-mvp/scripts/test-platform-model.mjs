@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {getPlatformExtension,validatePlatformExtensions} from './platform-extension-validators.mjs';
+import {getPlatformExtension,validatePlatformExtensions,registerPlatformExtensionValidator,listPlatformExtensionValidators} from './platform-extension-validators.mjs';
 
 const read=async rel=>JSON.parse(await readFile(new URL('../'+rel,import.meta.url),'utf8'));
 
@@ -210,4 +210,28 @@ test('pilot specialized data uses namespaced extensions',async()=>{
   assert.ok(road.extensions?.roadTrip);
   assert.equal(road.roadTrip,undefined);
   assert.ok(road.segments.every(s=>s.extensions?.road));
+});
+
+
+test('extension validation registry can grow without changing the core validator',()=>{
+  const before=listPlatformExtensionValidators();
+  for(const id of ['cruise','roadTrip','border','cruiseCall','port'])assert.ok(before.includes(id),id);
+  let calls=0;
+  registerPlatformExtensionValidator('test-extension',ctx=>{
+    calls+=1;
+    assert.equal(ctx.item.id,'registry-test');
+  });
+  validatePlatformExtensions({
+    item:{id:'registry-test'},
+    trip:{places:[],stops:[],segments:[],sources:[]},
+    orderedStops:[],
+    segs:[],
+    stopById:new Map(),
+    placeById:new Map(),
+    sourceIds:new Set(),
+    fail:()=>assert.fail('no built-in validator should fail for an empty generic trip')
+  });
+  assert.equal(calls,1);
+  assert.ok(listPlatformExtensionValidators().includes('test-extension'));
+  assert.throws(()=>registerPlatformExtensionValidator('test-extension',()=>{}),/Duplicate platform extension validator/);
 });
