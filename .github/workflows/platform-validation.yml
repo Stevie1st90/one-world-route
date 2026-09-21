@@ -61,6 +61,7 @@ jobs:
           node --check scripts/serve-local.mjs
           node --check scripts/test-preview-routes.mjs
           node --check scripts/test-regional-runtime.mjs
+          node --check qa/tests/regional-platform.spec.mjs
       - name: Platform data validation
         run: node scripts/validate-platform-data.mjs
       - name: Existing public-data validation
@@ -83,6 +84,25 @@ jobs:
         run: node --test scripts/test-continuity.mjs
       - name: Release build
         run: node scripts/release-build.mjs
+      - name: Install browser QA dependencies
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+        run: npm ci --prefix qa
+      - name: Regional browser E2E
+        env:
+          OWR_QA_NO_VIDEO: '1'
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          test -n "$CHROME_BIN"
+          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/regional-platform.spec.mjs --project=desktop-1440 --project=mobile-390
+      - name: Upload regional browser QA artifacts
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: regional-browser-qa-${{ github.run_id }}
+          path: one-world-route-public-mvp/qa/test-results
+          if-no-files-found: ignore
+          retention-days: 7
       - name: Local preview smoke test
         run: |
           node scripts/serve-local.mjs > /tmp/owr-local.log 2>&1 &
