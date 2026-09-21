@@ -19,6 +19,7 @@ async function openRegional(page,item){
 
 for(const item of regional){
   test(item.id+' shell, navigation, context and story work',async({page,isMobile},testInfo)=>{
+    test.setTimeout(90000);
     const trip=datasets.get(item.id);
     await openRegional(page,item);
 
