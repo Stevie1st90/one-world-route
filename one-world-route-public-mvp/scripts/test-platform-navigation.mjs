@@ -170,6 +170,8 @@ test('regional copy is visually reduced without removing overview content',()=>{
 test('route library exposes transparent Route Fit controls',()=>{
   const routeLibrary=moduleSources['route-library.js'];
   for(const token of ['platformFitToggle','platformFitFilters','platformRoutePace','platformRouteSeason','platformRouteParty','platformRouteStart'])assert.match(routeLibrary,new RegExp(token));
+  assert.match(routeLibrary,/pluralLabel\(filtered\.length/);
+  assert.doesNotMatch(routeLibrary,/filtered\.length===1/);
   const discovery=moduleSources['discovery.js'];
   assert.match(discovery,/fit\.pace===filters\.pace/);
   assert.match(discovery,/fit\.seasons/);
@@ -190,6 +192,8 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.match(source,/const Story=PLATFORM_MODULES\.story/);
   assert.match(source,/RouteLibrary\.open\(/);
   assert.match(source,/Story\.configure\(/);
+  assert.match(source,/LocaleData\.regionName\(locale,code\)/);
+  assert.match(source,/LocaleData\.plural\(locale,count/);
   assert.match(routeLibrary,/Discovery\.facets\(catalog\)/);
   assert.match(routeLibrary,/Discovery\.filter\(catalog/);
   assert.match(source,/Traveller\.load\(/);
