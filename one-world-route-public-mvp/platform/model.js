@@ -39,6 +39,7 @@
     if(!segment)return null;
     return (trip.chapters||[]).find(ch=>(ch.stopIds||[]).includes(segment.fromStopId)||(ch.stopIds||[]).includes(segment.toStopId))||null;
   }
+  function hasCapability(meta,id){return Array.isArray(meta?.capabilities)&&meta.capabilities.includes(id)}
   function metrics(trip){
     return {
       days:trip?.planning?.days??null,
@@ -47,5 +48,5 @@
       countries:new Set((trip?.places||[]).map(p=>p.countryCode).filter(Boolean)).size
     };
   }
-  root.model={placeMap,stopMap,stopPlace,sourceMap,extension,routeGeometry,routeBounds,chapterForSegment,metrics};
+  root.model={placeMap,stopMap,stopPlace,sourceMap,extension,routeGeometry,routeBounds,chapterForSegment,hasCapability,metrics};
 })();
