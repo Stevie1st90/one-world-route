@@ -4,6 +4,7 @@ import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
 const source=await readFile(new URL('../platform/i18n.js',import.meta.url),'utf8');
+const legacySource=await readFile(new URL('../platform/legacy-localization.js',import.meta.url),'utf8');
 
 function loadI18n(){
   const window={ONE_WORLD_PLATFORM_MODULES:{}};
@@ -35,4 +36,22 @@ test('country formatter localizes ISO region codes without a manual country map'
   assert.equal(i18n.regionName('en','DE'),'Germany');
   assert.equal(i18n.regionName('de',null),'—');
   assert.doesNotMatch(source,/const\s+COUNTR(?:Y|IES)|countryNames\s*=/i);
+});
+
+
+test('legacy world translator is isolated and reuses platform locale data',()=>{
+  const window={ONE_WORLD_PLATFORM_MODULES:{}};
+  const context={window,Intl};
+  vm.createContext(context);
+  vm.runInContext(source,context);
+  vm.runInContext(legacySource,context);
+  const i18n=window.ONE_WORLD_PLATFORM_MODULES.i18n;
+  const legacy=window.ONE_WORLD_PLATFORM_MODULES.legacyLocalization;
+  legacy.configure({
+    getLocale:()=> 'de',
+    t:key=>i18n.messages.de[key]||i18n.messages.en[key]||key
+  });
+  assert.equal(legacy.translate('Country 3 / 195'),'Land 3/195');
+  assert.equal(legacy.translate('Day 5'),'Tag 5');
+  assert.equal(legacy.translate('CHAPTER 2 / 12'),'KAPITEL 2 / 12');
 });
