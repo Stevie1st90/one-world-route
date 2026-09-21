@@ -5,7 +5,14 @@
   "kind": "road-trip",
   "status": "sourced-beta",
   "defaultLocale": "en",
-  "supportedLocales": ["en","de","it","es","fr","pt"],
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
   "title": {
     "en": "Southern Europe Road Trip",
     "de": "Südeuropa-Roadtrip",
@@ -23,10 +30,20 @@
     "pt": "Um modelo de road trip transfronteiriço de 20 dias de Lisboa a Roma via Espanha e sul da França. Carta, aluguel, portagens e acessos urbanos têm fontes; estradas, tempos e custos dependem da data e do veículo."
   },
   "geography": {
-    "countries": ["PT","ES","FR","IT"],
+    "countries": [
+      "PT",
+      "ES",
+      "FR",
+      "IT"
+    ],
     "primaryCountry": null,
     "region": "Southern Europe",
-    "bounds": {"north":44.5,"south":37.0,"west":-9.2,"east":12.6}
+    "bounds": {
+      "north": 44.5,
+      "south": 37,
+      "west": -9.2,
+      "east": 12.6
+    }
   },
   "planning": {
     "days": 20,
@@ -35,77 +52,821 @@
     "distanceKm": null,
     "priceModel": "vehicle-and-date-dependent"
   },
-  "roadTrip": {
-    "vehicleContextRequired": true,
-    "rentalCrossBorderApprovalRequired": "operator-dependent",
-    "vehicleOwnershipModes": ["private","rental","camper","motorcycle","other"],
-    "rule": "Do not calculate toll, low-emission-zone eligibility, rental permissions or road access without the relevant vehicle and traveller context."
-  },
   "rendering": {
     "preferred": "standard-globe",
     "terrainOptional": true,
-    "camera": {"lat":41.1,"lng":2.5,"altitude":1.05}
+    "camera": {
+      "lat": 41.1,
+      "lng": 2.5,
+      "altitude": 1.05
+    }
   },
   "places": [
-    {"id":"lisbon","type":"city","countryCode":"PT","name":{"en":"Lisbon","de":"Lissabon","it":"Lisbona","es":"Lisboa","fr":"Lisbonne","pt":"Lisboa"},"coordinates":{"lat":38.7223,"lng":-9.1393}},
-    {"id":"seville","type":"city","countryCode":"ES","name":{"en":"Seville","de":"Sevilla","it":"Siviglia","es":"Sevilla","fr":"Séville","pt":"Sevilha"},"coordinates":{"lat":37.3891,"lng":-5.9845}},
-    {"id":"granada","type":"city","countryCode":"ES","name":{"en":"Granada","de":"Granada","it":"Granada","es":"Granada","fr":"Grenade","pt":"Granada"},"coordinates":{"lat":37.1773,"lng":-3.5986}},
-    {"id":"valencia","type":"city","countryCode":"ES","name":{"en":"Valencia","de":"Valencia","it":"Valencia","es":"Valencia","fr":"Valence","pt":"Valência"},"coordinates":{"lat":39.4699,"lng":-0.3763}},
-    {"id":"barcelona","type":"city","countryCode":"ES","name":{"en":"Barcelona","de":"Barcelona","it":"Barcellona","es":"Barcelona","fr":"Barcelone","pt":"Barcelona"},"coordinates":{"lat":41.3874,"lng":2.1686}},
-    {"id":"montpellier","type":"city","countryCode":"FR","name":{"en":"Montpellier","de":"Montpellier","it":"Montpellier","es":"Montpellier","fr":"Montpellier","pt":"Montpellier"},"coordinates":{"lat":43.6108,"lng":3.8767}},
-    {"id":"marseille","type":"city","countryCode":"FR","name":{"en":"Marseille","de":"Marseille","it":"Marsiglia","es":"Marsella","fr":"Marseille","pt":"Marselha"},"coordinates":{"lat":43.2965,"lng":5.3698}},
-    {"id":"nice","type":"city","countryCode":"FR","name":{"en":"Nice","de":"Nizza","it":"Nizza","es":"Niza","fr":"Nice","pt":"Nice"},"coordinates":{"lat":43.7102,"lng":7.2620}},
-    {"id":"genoa","type":"city","countryCode":"IT","name":{"en":"Genoa","de":"Genua","it":"Genova","es":"Génova","fr":"Gênes","pt":"Gênova"},"coordinates":{"lat":44.4056,"lng":8.9463}},
-    {"id":"florence","type":"city","countryCode":"IT","name":{"en":"Florence","de":"Florenz","it":"Firenze","es":"Florencia","fr":"Florence","pt":"Florença"},"coordinates":{"lat":43.7696,"lng":11.2558}},
-    {"id":"rome","type":"city","countryCode":"IT","name":{"en":"Rome","de":"Rom","it":"Roma","es":"Roma","fr":"Rome","pt":"Roma"},"coordinates":{"lat":41.9028,"lng":12.4964}}
+    {
+      "id": "lisbon",
+      "type": "city",
+      "countryCode": "PT",
+      "name": {
+        "en": "Lisbon",
+        "de": "Lissabon",
+        "it": "Lisbona",
+        "es": "Lisboa",
+        "fr": "Lisbonne",
+        "pt": "Lisboa"
+      },
+      "coordinates": {
+        "lat": 38.7223,
+        "lng": -9.1393
+      }
+    },
+    {
+      "id": "seville",
+      "type": "city",
+      "countryCode": "ES",
+      "name": {
+        "en": "Seville",
+        "de": "Sevilla",
+        "it": "Siviglia",
+        "es": "Sevilla",
+        "fr": "Séville",
+        "pt": "Sevilha"
+      },
+      "coordinates": {
+        "lat": 37.3891,
+        "lng": -5.9845
+      }
+    },
+    {
+      "id": "granada",
+      "type": "city",
+      "countryCode": "ES",
+      "name": {
+        "en": "Granada",
+        "de": "Granada",
+        "it": "Granada",
+        "es": "Granada",
+        "fr": "Grenade",
+        "pt": "Granada"
+      },
+      "coordinates": {
+        "lat": 37.1773,
+        "lng": -3.5986
+      }
+    },
+    {
+      "id": "valencia",
+      "type": "city",
+      "countryCode": "ES",
+      "name": {
+        "en": "Valencia",
+        "de": "Valencia",
+        "it": "Valencia",
+        "es": "Valencia",
+        "fr": "Valence",
+        "pt": "Valência"
+      },
+      "coordinates": {
+        "lat": 39.4699,
+        "lng": -0.3763
+      }
+    },
+    {
+      "id": "barcelona",
+      "type": "city",
+      "countryCode": "ES",
+      "name": {
+        "en": "Barcelona",
+        "de": "Barcelona",
+        "it": "Barcellona",
+        "es": "Barcelona",
+        "fr": "Barcelone",
+        "pt": "Barcelona"
+      },
+      "coordinates": {
+        "lat": 41.3874,
+        "lng": 2.1686
+      }
+    },
+    {
+      "id": "montpellier",
+      "type": "city",
+      "countryCode": "FR",
+      "name": {
+        "en": "Montpellier",
+        "de": "Montpellier",
+        "it": "Montpellier",
+        "es": "Montpellier",
+        "fr": "Montpellier",
+        "pt": "Montpellier"
+      },
+      "coordinates": {
+        "lat": 43.6108,
+        "lng": 3.8767
+      }
+    },
+    {
+      "id": "marseille",
+      "type": "city",
+      "countryCode": "FR",
+      "name": {
+        "en": "Marseille",
+        "de": "Marseille",
+        "it": "Marsiglia",
+        "es": "Marsella",
+        "fr": "Marseille",
+        "pt": "Marselha"
+      },
+      "coordinates": {
+        "lat": 43.2965,
+        "lng": 5.3698
+      }
+    },
+    {
+      "id": "nice",
+      "type": "city",
+      "countryCode": "FR",
+      "name": {
+        "en": "Nice",
+        "de": "Nizza",
+        "it": "Nizza",
+        "es": "Niza",
+        "fr": "Nice",
+        "pt": "Nice"
+      },
+      "coordinates": {
+        "lat": 43.7102,
+        "lng": 7.262
+      }
+    },
+    {
+      "id": "genoa",
+      "type": "city",
+      "countryCode": "IT",
+      "name": {
+        "en": "Genoa",
+        "de": "Genua",
+        "it": "Genova",
+        "es": "Génova",
+        "fr": "Gênes",
+        "pt": "Gênova"
+      },
+      "coordinates": {
+        "lat": 44.4056,
+        "lng": 8.9463
+      }
+    },
+    {
+      "id": "florence",
+      "type": "city",
+      "countryCode": "IT",
+      "name": {
+        "en": "Florence",
+        "de": "Florenz",
+        "it": "Firenze",
+        "es": "Florencia",
+        "fr": "Florence",
+        "pt": "Florença"
+      },
+      "coordinates": {
+        "lat": 43.7696,
+        "lng": 11.2558
+      }
+    },
+    {
+      "id": "rome",
+      "type": "city",
+      "countryCode": "IT",
+      "name": {
+        "en": "Rome",
+        "de": "Rom",
+        "it": "Roma",
+        "es": "Roma",
+        "fr": "Rome",
+        "pt": "Roma"
+      },
+      "coordinates": {
+        "lat": 41.9028,
+        "lng": 12.4964
+      }
+    }
   ],
   "stops": [
-    {"id":"se-road-stop-01","sequence":1,"placeId":"lisbon","dayStart":1,"dayEnd":2,"nights":2},
-    {"id":"se-road-stop-02","sequence":2,"placeId":"seville","dayStart":3,"dayEnd":4,"nights":2},
-    {"id":"se-road-stop-03","sequence":3,"placeId":"granada","dayStart":5,"dayEnd":5,"nights":1},
-    {"id":"se-road-stop-04","sequence":4,"placeId":"valencia","dayStart":6,"dayEnd":7,"nights":2},
-    {"id":"se-road-stop-05","sequence":5,"placeId":"barcelona","dayStart":8,"dayEnd":9,"nights":2},
-    {"id":"se-road-stop-06","sequence":6,"placeId":"montpellier","dayStart":10,"dayEnd":10,"nights":1},
-    {"id":"se-road-stop-07","sequence":7,"placeId":"marseille","dayStart":11,"dayEnd":11,"nights":1},
-    {"id":"se-road-stop-08","sequence":8,"placeId":"nice","dayStart":12,"dayEnd":13,"nights":2},
-    {"id":"se-road-stop-09","sequence":9,"placeId":"genoa","dayStart":14,"dayEnd":14,"nights":1},
-    {"id":"se-road-stop-10","sequence":10,"placeId":"florence","dayStart":15,"dayEnd":16,"nights":2},
-    {"id":"se-road-stop-11","sequence":11,"placeId":"rome","dayStart":17,"dayEnd":20,"nights":4}
+    {
+      "id": "se-road-stop-01",
+      "sequence": 1,
+      "placeId": "lisbon",
+      "dayStart": 1,
+      "dayEnd": 2,
+      "nights": 2
+    },
+    {
+      "id": "se-road-stop-02",
+      "sequence": 2,
+      "placeId": "seville",
+      "dayStart": 3,
+      "dayEnd": 4,
+      "nights": 2
+    },
+    {
+      "id": "se-road-stop-03",
+      "sequence": 3,
+      "placeId": "granada",
+      "dayStart": 5,
+      "dayEnd": 5,
+      "nights": 1
+    },
+    {
+      "id": "se-road-stop-04",
+      "sequence": 4,
+      "placeId": "valencia",
+      "dayStart": 6,
+      "dayEnd": 7,
+      "nights": 2
+    },
+    {
+      "id": "se-road-stop-05",
+      "sequence": 5,
+      "placeId": "barcelona",
+      "dayStart": 8,
+      "dayEnd": 9,
+      "nights": 2
+    },
+    {
+      "id": "se-road-stop-06",
+      "sequence": 6,
+      "placeId": "montpellier",
+      "dayStart": 10,
+      "dayEnd": 10,
+      "nights": 1
+    },
+    {
+      "id": "se-road-stop-07",
+      "sequence": 7,
+      "placeId": "marseille",
+      "dayStart": 11,
+      "dayEnd": 11,
+      "nights": 1
+    },
+    {
+      "id": "se-road-stop-08",
+      "sequence": 8,
+      "placeId": "nice",
+      "dayStart": 12,
+      "dayEnd": 13,
+      "nights": 2
+    },
+    {
+      "id": "se-road-stop-09",
+      "sequence": 9,
+      "placeId": "genoa",
+      "dayStart": 14,
+      "dayEnd": 14,
+      "nights": 1
+    },
+    {
+      "id": "se-road-stop-10",
+      "sequence": 10,
+      "placeId": "florence",
+      "dayStart": 15,
+      "dayEnd": 16,
+      "nights": 2
+    },
+    {
+      "id": "se-road-stop-11",
+      "sequence": 11,
+      "placeId": "rome",
+      "dayStart": 17,
+      "dayEnd": 20,
+      "nights": 4
+    }
   ],
   "segments": [
-    {"id":"se-road-leg-01","sequence":1,"fromStopId":"se-road-stop-01","toStopId":"se-road-stop-02","transport":{"mode":"car","stages":[]},"roadContext":{"fromCountry":"PT","toCountry":"ES","crossBorder":true,"tollSystems":["PT","ES"],"urbanAccessChecks":["Lisbon","Seville"],"rentalApprovalRequired":true},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":"2026-09-21","sourceIds":["eu-driving-2026","eu-rental-2026","pt-tolls-2026","es-urban-zbe-2026"],"notes":"Cross-border driving is feasible in principle, but exact route, tolls, rental permission and urban access depend on vehicle and booking context."}},
-    {"id":"se-road-leg-02","sequence":2,"fromStopId":"se-road-stop-02","toStopId":"se-road-stop-03","transport":{"mode":"car","stages":[]},"roadContext":{"fromCountry":"ES","toCountry":"ES","crossBorder":false,"tollSystems":["ES"],"urbanAccessChecks":["Seville","Granada"]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":"2026-09-21","sourceIds":["es-urban-zbe-2026"],"notes":"Spanish city access rules are locally regulated; low-emission-zone rules must be checked for the vehicle before entering urban areas."}},
-    {"id":"se-road-leg-03","sequence":3,"fromStopId":"se-road-stop-03","toStopId":"se-road-stop-04","transport":{"mode":"car","stages":[]},"roadContext":{"fromCountry":"ES","toCountry":"ES","crossBorder":false,"tollSystems":["ES"],"urbanAccessChecks":["Granada","Valencia"]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":"2026-09-21","sourceIds":["es-urban-zbe-2026"],"notes":"DGT explicitly advises checking city-specific rules such as ZBE before entering a destination city."}},
-    {"id":"se-road-leg-04","sequence":4,"fromStopId":"se-road-stop-04","toStopId":"se-road-stop-05","transport":{"mode":"car","stages":[]},"roadContext":{"fromCountry":"ES","toCountry":"ES","crossBorder":false,"tollSystems":["ES"],"urbanAccessChecks":["Valencia","Barcelona"]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":"2026-09-21","sourceIds":["es-urban-zbe-2026"],"notes":"Barcelona and Valencia are represented in Spain's low-emission-zone data; current vehicle restrictions require a date- and vehicle-specific check."}},
-    {"id":"se-road-leg-05","sequence":5,"fromStopId":"se-road-stop-05","toStopId":"se-road-stop-06","transport":{"mode":"car","stages":[]},"roadContext":{"fromCountry":"ES","toCountry":"FR","crossBorder":true,"tollSystems":["ES","FR"],"urbanAccessChecks":["Barcelona","Montpellier"],"rentalApprovalRequired":true},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":"2026-09-21","sourceIds":["eu-driving-2026","eu-rental-2026","es-urban-zbe-2026","fr-critair-2026"],"notes":"France may require a Crit'Air certificate in low-emission zones; cross-border rental use must be declared to and allowed by the rental company."}},
-    {"id":"se-road-leg-06","sequence":6,"fromStopId":"se-road-stop-06","toStopId":"se-road-stop-07","transport":{"mode":"car","stages":[]},"roadContext":{"fromCountry":"FR","toCountry":"FR","crossBorder":false,"tollSystems":["FR"],"urbanAccessChecks":["Montpellier","Marseille"]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":"2026-09-21","sourceIds":["fr-critair-2026"],"notes":"Crit'Air/ZFE requirements are vehicle-dependent and should be checked before entering regulated urban zones."}},
-    {"id":"se-road-leg-07","sequence":7,"fromStopId":"se-road-stop-07","toStopId":"se-road-stop-08","transport":{"mode":"car","stages":[]},"roadContext":{"fromCountry":"FR","toCountry":"FR","crossBorder":false,"tollSystems":["FR"],"urbanAccessChecks":["Marseille","Nice"]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":"2026-09-21","sourceIds":["fr-critair-2026"],"notes":"Urban environmental restrictions and motorway tolls must be resolved for the selected vehicle and date."}},
-    {"id":"se-road-leg-08","sequence":8,"fromStopId":"se-road-stop-08","toStopId":"se-road-stop-09","transport":{"mode":"car","stages":[]},"roadContext":{"fromCountry":"FR","toCountry":"IT","crossBorder":true,"tollSystems":["FR","IT"],"urbanAccessChecks":["Nice","Genoa"],"rentalApprovalRequired":true},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":"2026-09-21","sourceIds":["eu-driving-2026","eu-rental-2026","fr-critair-2026","it-tolls-2026"],"notes":"Rental cross-border permission and motorway tolls are not inferred. Italy's motorway toll depends on route kilometres and vehicle class."}},
-    {"id":"se-road-leg-09","sequence":9,"fromStopId":"se-road-stop-09","toStopId":"se-road-stop-10","transport":{"mode":"car","stages":[]},"roadContext":{"fromCountry":"IT","toCountry":"IT","crossBorder":false,"tollSystems":["IT"],"urbanAccessChecks":["Genoa","Florence"]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":"2026-09-21","sourceIds":["it-tolls-2026"],"notes":"Italian motorway tolls are class- and route-dependent; city-centre access must be checked locally before driving into Florence."}},
-    {"id":"se-road-leg-10","sequence":10,"fromStopId":"se-road-stop-10","toStopId":"se-road-stop-11","transport":{"mode":"car","stages":[]},"roadContext":{"fromCountry":"IT","toCountry":"IT","crossBorder":false,"tollSystems":["IT"],"urbanAccessChecks":["Florence","Rome"]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":"2026-09-21","sourceIds":["it-tolls-2026","rome-ztl-2026"],"notes":"Rome's central ZTL has time-based restrictions for unauthorised vehicles. Exact parking/arrival strategy should be selected before driving into the centre."}}
+    {
+      "id": "se-road-leg-01",
+      "sequence": 1,
+      "fromStopId": "se-road-stop-01",
+      "toStopId": "se-road-stop-02",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "eu-driving-2026",
+          "eu-rental-2026",
+          "pt-tolls-2026",
+          "es-urban-zbe-2026"
+        ],
+        "notes": "Cross-border driving is feasible in principle, but exact route, tolls, rental permission and urban access depend on vehicle and booking context."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "PT",
+          "toCountry": "ES",
+          "crossBorder": true,
+          "tollSystems": [
+            "PT",
+            "ES"
+          ],
+          "urbanAccessChecks": [
+            "Lisbon",
+            "Seville"
+          ],
+          "rentalApprovalRequired": true
+        }
+      }
+    },
+    {
+      "id": "se-road-leg-02",
+      "sequence": 2,
+      "fromStopId": "se-road-stop-02",
+      "toStopId": "se-road-stop-03",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "es-urban-zbe-2026"
+        ],
+        "notes": "Spanish city access rules are locally regulated; low-emission-zone rules must be checked for the vehicle before entering urban areas."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "ES",
+          "toCountry": "ES",
+          "crossBorder": false,
+          "tollSystems": [
+            "ES"
+          ],
+          "urbanAccessChecks": [
+            "Seville",
+            "Granada"
+          ]
+        }
+      }
+    },
+    {
+      "id": "se-road-leg-03",
+      "sequence": 3,
+      "fromStopId": "se-road-stop-03",
+      "toStopId": "se-road-stop-04",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "es-urban-zbe-2026"
+        ],
+        "notes": "DGT explicitly advises checking city-specific rules such as ZBE before entering a destination city."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "ES",
+          "toCountry": "ES",
+          "crossBorder": false,
+          "tollSystems": [
+            "ES"
+          ],
+          "urbanAccessChecks": [
+            "Granada",
+            "Valencia"
+          ]
+        }
+      }
+    },
+    {
+      "id": "se-road-leg-04",
+      "sequence": 4,
+      "fromStopId": "se-road-stop-04",
+      "toStopId": "se-road-stop-05",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "es-urban-zbe-2026"
+        ],
+        "notes": "Barcelona and Valencia are represented in Spain's low-emission-zone data; current vehicle restrictions require a date- and vehicle-specific check."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "ES",
+          "toCountry": "ES",
+          "crossBorder": false,
+          "tollSystems": [
+            "ES"
+          ],
+          "urbanAccessChecks": [
+            "Valencia",
+            "Barcelona"
+          ]
+        }
+      }
+    },
+    {
+      "id": "se-road-leg-05",
+      "sequence": 5,
+      "fromStopId": "se-road-stop-05",
+      "toStopId": "se-road-stop-06",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "eu-driving-2026",
+          "eu-rental-2026",
+          "es-urban-zbe-2026",
+          "fr-critair-2026"
+        ],
+        "notes": "France may require a Crit'Air certificate in low-emission zones; cross-border rental use must be declared to and allowed by the rental company."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "ES",
+          "toCountry": "FR",
+          "crossBorder": true,
+          "tollSystems": [
+            "ES",
+            "FR"
+          ],
+          "urbanAccessChecks": [
+            "Barcelona",
+            "Montpellier"
+          ],
+          "rentalApprovalRequired": true
+        }
+      }
+    },
+    {
+      "id": "se-road-leg-06",
+      "sequence": 6,
+      "fromStopId": "se-road-stop-06",
+      "toStopId": "se-road-stop-07",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "fr-critair-2026"
+        ],
+        "notes": "Crit'Air/ZFE requirements are vehicle-dependent and should be checked before entering regulated urban zones."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "FR",
+          "toCountry": "FR",
+          "crossBorder": false,
+          "tollSystems": [
+            "FR"
+          ],
+          "urbanAccessChecks": [
+            "Montpellier",
+            "Marseille"
+          ]
+        }
+      }
+    },
+    {
+      "id": "se-road-leg-07",
+      "sequence": 7,
+      "fromStopId": "se-road-stop-07",
+      "toStopId": "se-road-stop-08",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "fr-critair-2026"
+        ],
+        "notes": "Urban environmental restrictions and motorway tolls must be resolved for the selected vehicle and date."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "FR",
+          "toCountry": "FR",
+          "crossBorder": false,
+          "tollSystems": [
+            "FR"
+          ],
+          "urbanAccessChecks": [
+            "Marseille",
+            "Nice"
+          ]
+        }
+      }
+    },
+    {
+      "id": "se-road-leg-08",
+      "sequence": 8,
+      "fromStopId": "se-road-stop-08",
+      "toStopId": "se-road-stop-09",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "eu-driving-2026",
+          "eu-rental-2026",
+          "fr-critair-2026",
+          "it-tolls-2026"
+        ],
+        "notes": "Rental cross-border permission and motorway tolls are not inferred. Italy's motorway toll depends on route kilometres and vehicle class."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "FR",
+          "toCountry": "IT",
+          "crossBorder": true,
+          "tollSystems": [
+            "FR",
+            "IT"
+          ],
+          "urbanAccessChecks": [
+            "Nice",
+            "Genoa"
+          ],
+          "rentalApprovalRequired": true
+        }
+      }
+    },
+    {
+      "id": "se-road-leg-09",
+      "sequence": 9,
+      "fromStopId": "se-road-stop-09",
+      "toStopId": "se-road-stop-10",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "it-tolls-2026"
+        ],
+        "notes": "Italian motorway tolls are class- and route-dependent; city-centre access must be checked locally before driving into Florence."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "IT",
+          "toCountry": "IT",
+          "crossBorder": false,
+          "tollSystems": [
+            "IT"
+          ],
+          "urbanAccessChecks": [
+            "Genoa",
+            "Florence"
+          ]
+        }
+      }
+    },
+    {
+      "id": "se-road-leg-10",
+      "sequence": 10,
+      "fromStopId": "se-road-stop-10",
+      "toStopId": "se-road-stop-11",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "it-tolls-2026",
+          "rome-ztl-2026"
+        ],
+        "notes": "Rome's central ZTL has time-based restrictions for unauthorised vehicles. Exact parking/arrival strategy should be selected before driving into the centre."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "IT",
+          "toCountry": "IT",
+          "crossBorder": false,
+          "tollSystems": [
+            "IT"
+          ],
+          "urbanAccessChecks": [
+            "Florence",
+            "Rome"
+          ]
+        }
+      }
+    }
   ],
   "sources": [
-    {"id":"eu-driving-2026","title":"Driving licence and car insurance validity in the EU","issuer":"European Union — Your Europe","issuerType":"international-organization","url":"https://europa.eu/youreurope/citizens/travel/driving-abroad/driving-licence-and-insurance/index_en.htm","checkedAt":"2026-09-21","claims":["EU-issued driving licences are usable throughout the EU if valid","non-EU licence recognition must be checked with authorities of each visited country","home-country motor liability insurance covers third-party injury across the EU"]},
-    {"id":"eu-rental-2026","title":"Hiring and driving a car in another EU country","issuer":"European Union — Your Europe","issuerType":"international-organization","url":"https://europa.eu/youreurope/citizens/travel/driving-abroad/car-rental-abroad/index_en.htm","checkedAt":"2026-09-21","claims":["travellers planning to take a rental car into multiple countries should inform the rental company when booking","the rental company can then provide correct vehicle documents, insurance and breakdown cover"]},
-    {"id":"pt-tolls-2026","title":"Portugal road tolls and foreign registrations","issuer":"Infraestruturas de Portugal","issuerType":"government","url":"https://servicos.infraestruturasdeportugal.pt/portagens-ips","checkedAt":"2026-09-21","claims":["foreign-registered vehicles may need PortugalTolls services on electronic-toll motorways","2026 toll tariffs were updated by the concession authority"]},
-    {"id":"es-urban-zbe-2026","title":"Driving in Spanish cities and low-emission zones","issuer":"Dirección General de Tráfico","issuerType":"government","url":"https://www.dgt.es/muevete-con-seguridad/viaja-seguro/consejos-extranjeros/en-ciudad/","checkedAt":"2026-09-21","claims":["urban mobility rules are locally regulated","low-emission zones can have vehicle-specific restrictions","DGT advises checking destination-city rules before entry"]},
-    {"id":"fr-critair-2026","title":"Crit'Air vehicle air-quality certificate","issuer":"Ministère de la Transition écologique","issuerType":"government","url":"https://www.certificat-air.gouv.fr/","checkedAt":"2026-09-21","claims":["Crit'Air categorises road vehicles by pollutant emissions","the certificate is required in low-emission zones where applicable","foreign-registered vehicles can order through the official service"]},
-    {"id":"it-tolls-2026","title":"How Italian motorway tolls are calculated","issuer":"Autostrade per l'Italia","issuerType":"official-operator","url":"https://www.autostrade.it/en/servizi-al-cliente/pedaggio/come-si-calcola-il-pedaggio","checkedAt":"2026-09-21","claims":["toll depends on kilometres travelled and vehicle class","unit rates differ by road characteristics and concessionaire","published rates shown are updated from 1 January 2026"]},
-    {"id":"rome-ztl-2026","title":"Central Rome ZTL","issuer":"Roma Servizi per la Mobilità","issuerType":"government","url":"https://romamobilita.it/muoversi-a-roma/ztl-in-centro/","checkedAt":"2026-09-21","claims":["central Rome has multiple limited-traffic zones","the historic-centre ZTL is closed to unauthorised vehicles during published operating hours","rules were updated in 2026"]}
+    {
+      "id": "eu-driving-2026",
+      "title": "Driving licence and car insurance validity in the EU",
+      "issuer": "European Union — Your Europe",
+      "issuerType": "international-organization",
+      "url": "https://europa.eu/youreurope/citizens/travel/driving-abroad/driving-licence-and-insurance/index_en.htm",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "EU-issued driving licences are usable throughout the EU if valid",
+        "non-EU licence recognition must be checked with authorities of each visited country",
+        "home-country motor liability insurance covers third-party injury across the EU"
+      ]
+    },
+    {
+      "id": "eu-rental-2026",
+      "title": "Hiring and driving a car in another EU country",
+      "issuer": "European Union — Your Europe",
+      "issuerType": "international-organization",
+      "url": "https://europa.eu/youreurope/citizens/travel/driving-abroad/car-rental-abroad/index_en.htm",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "travellers planning to take a rental car into multiple countries should inform the rental company when booking",
+        "the rental company can then provide correct vehicle documents, insurance and breakdown cover"
+      ]
+    },
+    {
+      "id": "pt-tolls-2026",
+      "title": "Portugal road tolls and foreign registrations",
+      "issuer": "Infraestruturas de Portugal",
+      "issuerType": "government",
+      "url": "https://servicos.infraestruturasdeportugal.pt/portagens-ips",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "foreign-registered vehicles may need PortugalTolls services on electronic-toll motorways",
+        "2026 toll tariffs were updated by the concession authority"
+      ]
+    },
+    {
+      "id": "es-urban-zbe-2026",
+      "title": "Driving in Spanish cities and low-emission zones",
+      "issuer": "Dirección General de Tráfico",
+      "issuerType": "government",
+      "url": "https://www.dgt.es/muevete-con-seguridad/viaja-seguro/consejos-extranjeros/en-ciudad/",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "urban mobility rules are locally regulated",
+        "low-emission zones can have vehicle-specific restrictions",
+        "DGT advises checking destination-city rules before entry"
+      ]
+    },
+    {
+      "id": "fr-critair-2026",
+      "title": "Crit'Air vehicle air-quality certificate",
+      "issuer": "Ministère de la Transition écologique",
+      "issuerType": "government",
+      "url": "https://www.certificat-air.gouv.fr/",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "Crit'Air categorises road vehicles by pollutant emissions",
+        "the certificate is required in low-emission zones where applicable",
+        "foreign-registered vehicles can order through the official service"
+      ]
+    },
+    {
+      "id": "it-tolls-2026",
+      "title": "How Italian motorway tolls are calculated",
+      "issuer": "Autostrade per l'Italia",
+      "issuerType": "official-operator",
+      "url": "https://www.autostrade.it/en/servizi-al-cliente/pedaggio/come-si-calcola-il-pedaggio",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "toll depends on kilometres travelled and vehicle class",
+        "unit rates differ by road characteristics and concessionaire",
+        "published rates shown are updated from 1 January 2026"
+      ]
+    },
+    {
+      "id": "rome-ztl-2026",
+      "title": "Central Rome ZTL",
+      "issuer": "Roma Servizi per la Mobilità",
+      "issuerType": "government",
+      "url": "https://romamobilita.it/muoversi-a-roma/ztl-in-centro/",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "central Rome has multiple limited-traffic zones",
+        "the historic-centre ZTL is closed to unauthorised vehicles during published operating hours",
+        "rules were updated in 2026"
+      ]
+    }
   ],
   "entryGuidance": {
     "personalizationRequired": true,
-    "destinations": ["PT","ES","FR","IT"],
+    "destinations": [
+      "PT",
+      "ES",
+      "FR",
+      "IT"
+    ],
     "tripPurpose": "road-tourism",
     "message": {
       "en": "Driving eligibility is not inferred from nationality alone. Licence validity, rental permission, insurance, vehicle registration, urban access and low-emission rules must be resolved against the traveller and vehicle context.",
       "de": "Die Fahrberechtigung wird nicht allein aus der Nationalität abgeleitet. Führerscheingültigkeit, Mietwagenfreigabe, Versicherung, Zulassung, Stadtzufahrt und Umweltzonen müssen anhand von Traveller- und Vehicle Context geprüft werden."
     },
     "officialResolverSourceId": "eu-driving-2026",
-    "supportingSourceIds": ["eu-rental-2026","pt-tolls-2026","es-urban-zbe-2026","fr-critair-2026","it-tolls-2026","rome-ztl-2026"]
+    "supportingSourceIds": [
+      "eu-rental-2026",
+      "pt-tolls-2026",
+      "es-urban-zbe-2026",
+      "fr-critair-2026",
+      "it-tolls-2026",
+      "rome-ztl-2026"
+    ]
   },
   "travellerContext": {
-    "scope": ["passports","residenceCountry","language","currency","origin","party","accessibility","vehicle"],
+    "scope": [
+      "passports",
+      "residenceCountry",
+      "language",
+      "currency",
+      "origin",
+      "party",
+      "accessibility",
+      "vehicle"
+    ],
     "rule": "Road-trip advice must combine traveller context with vehicle context; do not infer licence or vehicle eligibility from locale, IP or route origin."
+  },
+  "extensions": {
+    "roadTrip": {
+      "vehicleContextRequired": true,
+      "rentalCrossBorderApprovalRequired": "operator-dependent",
+      "vehicleOwnershipModes": [
+        "private",
+        "rental",
+        "camper",
+        "motorcycle",
+        "other"
+      ],
+      "rule": "Do not calculate toll, low-emission-zone eligibility, rental permissions or road access without the relevant vehicle and traveller context."
+    }
   }
 }
