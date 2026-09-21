@@ -3287,8 +3287,39 @@
 (() => {
   'use strict';
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  const runtime=root.runtime;
+  if(!runtime)throw new Error('Platform runtime must load before extension composition');
+
+  function compose(method,ctx){
+    const result={cards:'',notices:'',panels:'',sourceIds:[]};
+    for(const extension of runtime.listExtensions()){
+      const fn=extension[method];
+      if(typeof fn!=='function')continue;
+      const part=fn(ctx);
+      if(!part)continue;
+      result.cards+=part.cards||'';
+      result.notices+=part.notices||'';
+      result.panels+=part.panels||'';
+      if(Array.isArray(part.sourceIds))result.sourceIds.push(...part.sourceIds);
+    }
+    result.sourceIds=[...new Set(result.sourceIds)];
+    return result;
+  }
+
+  root.extensions={
+    composeTripOverview:ctx=>compose('tripOverview',ctx),
+    composeStopDetail:ctx=>compose('stopDetail',ctx),
+    composeSegmentDetail:ctx=>compose('segmentDetail',ctx)
+  };
+})();
+
+
+/* ===== platform/extensions/cruise.js ===== */
+(() => {
+  'use strict';
+  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
   const runtime=root.runtime,model=root.model;
-  if(!runtime||!model)throw new Error('Platform runtime/model must load before extensions');
+  if(!runtime||!model)throw new Error('Platform runtime/model must load before cruise extension');
 
   runtime.registerExtension('cruise',{
     tripOverview(ctx){
@@ -3316,6 +3347,15 @@
       return {panels:`<div class="platform-cruise-leg"><div><span>${ctx.esc(ctx.t('onboardNights'))}</span><b>${cruise.onboardNights??0}</b></div><div><span>${ctx.esc(ctx.t('seaDays'))}</span><b>${(cruise.seaDayNumbers||[]).join(', ')||'—'}</b></div></div>`};
     }
   });
+})();
+
+
+/* ===== platform/extensions/road.js ===== */
+(() => {
+  'use strict';
+  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  const runtime=root.runtime,model=root.model;
+  if(!runtime||!model)throw new Error('Platform runtime/model must load before road extension');
 
   runtime.registerExtension('road',{
     tripOverview(ctx){
@@ -3329,6 +3369,15 @@
       return {panels:`<div class="platform-road-context"><div><span>${ctx.esc(ctx.t('roadRules'))}</span><b>${road.crossBorder?ctx.esc(ctx.t('crossBorder')):ctx.esc(road.fromCountry||'')}</b></div><div><span>${ctx.esc(ctx.t('urbanAccess'))}</span><b>${ctx.esc((road.urbanAccessChecks||[]).join(' · ')||'—')}</b></div>${!ctx.profile?.vehicle?`<p>${ctx.esc(ctx.t('vehicleNeeded'))}</p>`:''}</div>`};
     }
   });
+})();
+
+
+/* ===== platform/extensions/border.js ===== */
+(() => {
+  'use strict';
+  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  const runtime=root.runtime,model=root.model;
+  if(!runtime||!model)throw new Error('Platform runtime/model must load before border extension');
 
   runtime.registerExtension('border',{
     segmentDetail(ctx){
@@ -3338,27 +3387,6 @@
       return {panels:`<div class="platform-border ${border.personalizationRequired?'requires-context':''}"><b>${ctx.esc(ctx.t('border'))}</b><span>${ctx.esc(label||'—')} · ${ctx.esc(border.fromCountry)} → ${ctx.esc(border.toCountry)}</span></div>`};
     }
   });
-
-  function compose(method,ctx){
-    const result={cards:'',notices:'',panels:'',sourceIds:[]};
-    for(const extension of runtime.listExtensions()){
-      const fn=extension[method];
-      if(typeof fn!=='function')continue;
-      const part=fn(ctx);
-      if(!part)continue;
-      result.cards+=part.cards||'';
-      result.notices+=part.notices||'';
-      result.panels+=part.panels||'';
-      if(Array.isArray(part.sourceIds))result.sourceIds.push(...part.sourceIds);
-    }
-    result.sourceIds=[...new Set(result.sourceIds)];
-    return result;
-  }
-  root.extensions={
-    composeTripOverview:ctx=>compose('tripOverview',ctx),
-    composeStopDetail:ctx=>compose('stopDetail',ctx),
-    composeSegmentDetail:ctx=>compose('segmentDetail',ctx)
-  };
 })();
 
 
