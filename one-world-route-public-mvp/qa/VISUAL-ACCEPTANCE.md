@@ -32,7 +32,7 @@ The CI artifact should cover the normal route surfaces plus representative inter
 - Flagship world route — desktop + mobile
 - Each current regional route — desktop + mobile
 - Flagship → regional → flagship route switch — desktop + mobile
-- Regional terrain — desktop
+- Regional terrain — desktop + mobile
 
 ### Representative interaction states
 
