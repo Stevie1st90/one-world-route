@@ -70,3 +70,28 @@ body.platform-regional-trip .detail-copy{line-height:1.5}
 body.platform-regional-trip .platform-entry,
 body.platform-regional-trip .platform-cruise-note{margin-block:10px}
 
+@media(min-width:821px){
+  body.platform-regional-trip .hero-copy p{
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:4;
+    overflow:hidden;
+  }
+  body.platform-regional-trip .platform-template-note{
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    overflow:hidden;
+    padding:8px 9px;
+  }
+  body.platform-regional-trip.platform-detail-overview .detail-copy{
+    font-size:10px;
+    color:#8ea1b5;
+  }
+}
+body.platform-regional-trip.terrain-view .globe-stage:before{
+  background:
+    linear-gradient(90deg,rgba(5,10,17,.46),transparent 20%,transparent 80%,rgba(5,10,17,.46)),
+    linear-gradient(180deg,rgba(5,10,17,.18),transparent 16%,transparent 82%,rgba(5,10,17,.24));
+}
+
