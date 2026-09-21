@@ -42,6 +42,10 @@
       "destination": "/api/share?type=country&slug=:slug"
     },
     {
+      "source": "/:lang/trip/:slug",
+      "destination": "/api/share?type=trip&lang=:lang&slug=:slug"
+    },
+    {
       "source": "/trip/:slug",
       "destination": "/api/share?type=trip&slug=:slug"
     }
