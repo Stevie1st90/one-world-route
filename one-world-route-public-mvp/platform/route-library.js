@@ -3,7 +3,7 @@
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
 
   function open(deps){
-    const {catalog,currentTripMeta,Discovery,ensureDialog,t,local,esc,facetLabel,statusLabel,onOpenTrip}=deps;
+    const {catalog,currentTripMeta,Discovery,ensureDialog,t,local,esc,facetLabel,statusLabel,pluralLabel,onOpenTrip}=deps;
     const $=(s,r=document)=>r.querySelector(s);
     const modal=ensureDialog('platformRouteModal');
     const {kinds,regions,modes,themes,paces,seasons,parties,starts}=Discovery.facets(catalog);
@@ -11,7 +11,7 @@
       const metrics=[];
       if(r.metrics?.days)metrics.push(`${r.metrics.days} ${t('days')}`);
       if(r.metrics?.stops)metrics.push(`${r.metrics.stops} ${t('stops')}`);
-      if(r.metrics?.countries)metrics.push(`${r.metrics.countries} ${t(r.metrics.countries===1?'countryUnit':'countriesUnit')}`);
+      if(r.metrics?.countries)metrics.push(`${r.metrics.countries} ${pluralLabel(r.metrics.countries,'countryUnit','countriesUnit')}`);
       if(r.metrics?.nights)metrics.push(`${r.metrics.nights} ${t('onboardNights')}`);
       if(r.metrics?.seaDays)metrics.push(`${r.metrics.seaDays} ${t('seaDays')}`);
       return `<article class="platform-route-card ${r.id===currentTripMeta?.id?'active':''}"><div class="platform-route-top"><span>${esc(facetLabel(r.kind))}</span><b>${esc(statusLabel(r))}</b></div><h3>${esc(local(r.title))}</h3><p>${esc(local(r.subtitle))}</p><div class="platform-route-metrics">${metrics.map(x=>`<span>${esc(x)}</span>`).join('')}</div><button type="button" data-platform-trip="${esc(r.id)}">${esc(t('open'))} →</button></article>`;
@@ -37,7 +37,7 @@
       const filtered=Discovery.filter(catalog,filters,r=>[local(r.title),local(r.subtitle),r.kind,...(r.discovery?.regions||[]),...(r.discovery?.themes||[]),...(r.discovery?.modes||[])].join(' '));
       const host=$('#platformRouteResults',modal);
       host.innerHTML=filtered.length?filtered.map(card).join(''):`<div class="platform-no-routes">${esc(t('noRoutes'))}</div>`;
-      const count=$('#platformRouteCount',modal);if(count)count.textContent=filtered.length===1?`1 ${t('resultOne')}`:`${filtered.length} ${t('results')}`;
+      const count=$('#platformRouteCount',modal);if(count)count.textContent=`${filtered.length} ${pluralLabel(filtered.length,'resultOne','results')}`;
     };
 
     $('#platformFitToggle',modal)?.addEventListener('click',e=>{
