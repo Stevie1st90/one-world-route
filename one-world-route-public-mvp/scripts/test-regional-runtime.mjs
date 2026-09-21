@@ -36,7 +36,7 @@ test('regional runtime composes every current regional dataset without route-kin
   const catalog=await readJson('data/platform/trips.json');
   const {window}=await loadRuntime();
   const modules=window.ONE_WORLD_PLATFORM_MODULES;
-  assert.deepEqual(modules.runtime.listExtensions().map(extension=>extension.id),['cruise','road','border']);
+  assert.deepEqual(Array.from(modules.runtime.listExtensions(),extension=>extension.id),['cruise','road','border']);
 
   const regional=catalog.trips.filter(item=>item.renderer==='regional-globe');
   assert.equal(regional.length,3);
