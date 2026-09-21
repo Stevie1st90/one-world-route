@@ -117,7 +117,9 @@
         "regional-stops",
         "traveller-context",
         "source-evidence",
-        "entry-guidance"
+        "entry-guidance",
+        "story",
+        "terrain"
       ],
       "discovery": {
         "regions": [
@@ -197,7 +199,9 @@
         "cruise-calls",
         "sea-days",
         "border-context",
-        "source-evidence"
+        "source-evidence",
+        "story",
+        "terrain"
       ],
       "discovery": {
         "regions": [
@@ -269,7 +273,9 @@
         "traveller-context",
         "vehicle-context",
         "road-rules",
-        "source-evidence"
+        "source-evidence",
+        "story",
+        "terrain"
       ],
       "discovery": {
         "regions": [
