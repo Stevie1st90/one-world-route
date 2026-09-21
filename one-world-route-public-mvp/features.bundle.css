@@ -70,6 +70,8 @@ body.platform-regional-trip.terrain-view #highDetailGlobe:disabled,body.platform
 body.platform-regional-trip.terrain-view #highDetailGlobe:disabled+*,body.platform-regional-trip.terrain-view #autoRotate:disabled+*{opacity:.55}
 
 .platform-duration-number{display:flex;align-items:flex-end;gap:6px}
+body.platform-regional-trip .overview-number:not(.platform-duration-number){display:flex;align-items:baseline;gap:6px}
+body.platform-regional-trip .overview-number:not(.platform-duration-number) small{display:inline-block;background:none;background-clip:border-box;-webkit-background-clip:border-box;-webkit-text-fill-color:#8293a8;color:#8293a8;font-size:15px;line-height:1;font-weight:650;letter-spacing:0}
 .platform-duration-number small{display:inline-block!important;margin:0 0 5px!important;font-size:11px!important;line-height:1!important;letter-spacing:.02em!important;color:#8293a8!important}
 
 .platform-regional-trip .maplibregl-ctrl-bottom-left{left:316px;bottom:88px}
