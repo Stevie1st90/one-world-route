@@ -4,6 +4,12 @@
   const CATALOG_URL = './data/platform/trips.json';
   const PROFILE_KEY = 'one-world-route:traveller-context:v1';
   const SUPPORTED_LOCALES = ['en','de','it','es','fr','pt'];
+  const PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  const Model=PLATFORM_MODULES.model;
+  const Traveller=PLATFORM_MODULES.traveller;
+  const Discovery=PLATFORM_MODULES.discovery;
+  const Extensions=PLATFORM_MODULES.extensions;
+  if(!Model||!Traveller||!Discovery||!Extensions)throw new Error('ONE WORLD ROUTE platform modules unavailable');
   const I18N = {
     en:{routes:'Routes',traveller:'Traveller',flagship:'Flagship',template:'Template',open:'Open route',days:'days',stops:'stops',segments:'segments',global:'Global perspective',contextTitle:'Traveller context',contextLead:'Used to adapt entry rules, language, currency and departure assumptions. Stored only on this device.',passports:'Passport country',secondPassport:'Second passport (optional)',residence:'Residence',language:'Language',currency:'Currency',origin:'Starting city / airport',adults:'Adults',children:'Children',mobility:'Reduced mobility',save:'Save context',clear:'Clear',notSet:'Not set',currentCheck:'Current check required',routeLibrary:'Explore routes',routeLibraryLead:'One platform for world journeys, round trips, road trips, rail, cruises and more.',editorial:'Editorial template — verify transport, prices and entry requirements for your dates.',overview:'Route overview',day:'Day',nights:'nights',transport:'Transport',verification:'Verification',backWorld:'World route',private:'Private on this device. Passport numbers, booking references and payment details are never requested.',sourcedBeta:'Sourced beta',sources:'Sources',lastChecked:'Last checked',publishedFrom:'from',verified:'Verified',routeEvidence:'Route evidence',entryGuidance:'Entry guidance',officialCheck:'Official check',connectionRequired:'connection required',minimumTravel:'minimum travel',cruiseTemplate:'Cruise template',onboardNights:'onboard nights',seaDays:'sea days',portCall:'Port call',embarkation:'Embarkation',disembarkation:'Disembarkation',border:'Border context',schengenExit:'Schengen exit',schengenEntry:'Schengen re-entry',sailingNeeded:'Select a real sailing for ship, operator, times, berth and price.',illustrative:'Illustrative',searchRoutes:'Search routes',filterType:'Travel type',filterRegion:'Region',filterDuration:'Duration',all:'All',noRoutes:'No routes match these filters.',vehicleSection:'Vehicle context (optional)',vehicleType:'Vehicle',registrationCountry:'Registration country',fuelType:'Fuel / powertrain',euroClass:'Euro emissions class',rentalCrossBorder:'Rental approved for cross-border travel',privateCar:'Private car',rentalCar:'Rental car',camper:'Camper',motorcycle:'Motorcycle',otherVehicle:'Other',petrol:'Petrol',diesel:'Diesel',hybrid:'Hybrid',pluginHybrid:'Plug-in hybrid',electric:'Electric',hydrogen:'Hydrogen',unknown:'Unknown',roadRules:'Road context',crossBorder:'Cross-border',urbanAccess:'Urban access checks',vehicleNeeded:'Vehicle context required for toll, LEZ and access checks.',facet_world:'World',facet_round_trip:'Round trip',facet_road_trip:'Road trip',facet_cruise:'Cruise',facet_global:'Global',facet_europe:'Europe',facet_southern_europe:'Southern Europe',facet_italy:'Italy',facet_mediterranean:'Mediterranean',facet_north_africa:'North Africa',filterMode:'Transport',filterTheme:'Theme',results:'routes found',resetFilters:'Reset',details:'Details',start:'Start',finish:'Finish',previous:'Previous',next:'Next',type:'Type',country:'Country',duration:'Duration',cost:'Cost',segment:'Segment',stop:'Stop',currency:'Currency',facet_rail:'Rail',facet_bus:'Bus',facet_car:'Car',facet_ferry:'Ferry',facet_multimodal:'Multimodal',facet_road:'Road',facet_coach:'Coach',facet_ground_transfer:'Ground transfer',story:'Story',storyPlay:'Play story',storyExit:'Exit story',storyComplete:'Route complete',chapter:'Chapter',settings:'Settings',methodology:'Methodology',share:'Share',autoRotate:'Auto rotate',highDetail:'High detail globe',terrain:'Real 3D globe terrain',showPoints:'Stop points',routeGlow:'Route glow',arcThickness:'Route thickness',reducedMotion:'Reduced motion',terrainLoading:'Loading 3D terrain…',terrainHint:'Drag to rotate · scroll to zoom · real elevation appears as you move closer',routeMethodTitle:'Route methodology',routeMethodText:'This curated route uses publication-safe trip data and source-backed evidence where available. Volatile schedules, prices and traveller-specific rules remain explicitly unresolved until dates and context are known.',evidenceCoverage:'Evidence coverage',editorialStatus:'Editorial status',storyRoute:'Route story',routeFit:'Route Fit',showFit:'More fit filters',hideFit:'Hide fit filters',fitPace:'Pace',fitSeason:'Season',fitParty:'Travelling as',fitStart:'Route starts in',facet_relaxed:'Relaxed',facet_balanced:'Balanced',facet_active:'Active',facet_spring:'Spring',facet_summer:'Summer',facet_autumn:'Autumn',facet_winter:'Winter',facet_multi_season:'Multi-season',facet_solo:'Solo',facet_couples:'Couple',facet_friends:'Friends',facet_families:'Family'},
     de:{routes:'Routen',traveller:'Reisekontext',flagship:'Flagship',template:'Vorlage',open:'Route öffnen',days:'Tage',stops:'Stopps',segments:'Segmente',global:'Globale Perspektive',contextTitle:'Reisekontext',contextLead:'Passt Einreisehinweise, Sprache, Währung und Startannahmen an. Wird nur auf diesem Gerät gespeichert.',passports:'Passland',secondPassport:'Zweiter Pass (optional)',residence:'Wohnsitz',language:'Sprache',currency:'Währung',origin:'Startstadt / Flughafen',adults:'Erwachsene',children:'Kinder',mobility:'Eingeschränkte Mobilität',save:'Kontext speichern',clear:'Zurücksetzen',notSet:'Nicht gesetzt',currentCheck:'Aktuelle Prüfung erforderlich',routeLibrary:'Routen entdecken',routeLibraryLead:'Eine Plattform für Weltreisen, Rundreisen, Roadtrips, Bahnreisen, Kreuzfahrten und mehr.',editorial:'Redaktionelle Vorlage — Verkehr, Preise und Einreisebedingungen für die eigenen Daten prüfen.',overview:'Routenübersicht',day:'Tag',nights:'Nächte',transport:'Verkehr',verification:'Prüfstatus',backWorld:'Weltreise',private:'Privat auf diesem Gerät. Passnummern, Buchungsreferenzen und Zahlungsdaten werden niemals abgefragt.',sourcedBeta:'Quellen-Beta',sources:'Quellen',lastChecked:'Zuletzt geprüft',publishedFrom:'ab',verified:'Verifiziert',routeEvidence:'Routenbelege',entryGuidance:'Einreisehinweise',officialCheck:'Offiziell prüfen',connectionRequired:'Umstieg einplanen',minimumTravel:'Mindestfahrzeit',cruiseTemplate:'Kreuzfahrt-Vorlage',onboardNights:'Nächte an Bord',seaDays:'Seetage',portCall:'Hafenstopp',embarkation:'Einschiffung',disembarkation:'Ausschiffung',border:'Grenzkontext',schengenExit:'Schengen-Ausreise',schengenEntry:'Schengen-Wiedereinreise',sailingNeeded:'Für Schiff, Reederei, Zeiten, Liegeplatz und Preis muss eine konkrete Abfahrt gewählt werden.',illustrative:'Illustrativ',searchRoutes:'Routen suchen',filterType:'Reiseart',filterRegion:'Region',filterDuration:'Dauer',all:'Alle',noRoutes:'Keine Route passt zu diesen Filtern.',vehicleSection:'Fahrzeugkontext (optional)',vehicleType:'Fahrzeug',registrationCountry:'Zulassungsland',fuelType:'Kraftstoff / Antrieb',euroClass:'Euro-Abgasnorm',rentalCrossBorder:'Mietwagen für Grenzübertritte freigegeben',privateCar:'Privatwagen',rentalCar:'Mietwagen',camper:'Camper',motorcycle:'Motorrad',otherVehicle:'Anderes',petrol:'Benzin',diesel:'Diesel',hybrid:'Hybrid',pluginHybrid:'Plug-in-Hybrid',electric:'Elektro',hydrogen:'Wasserstoff',unknown:'Unbekannt',roadRules:'Straßenkontext',crossBorder:'Grenzübertritt',urbanAccess:'Stadtzufahrt prüfen',vehicleNeeded:'Für Maut-, Umweltzonen- und Zufahrtsprüfungen wird ein Fahrzeugkontext benötigt.',facet_world:'Weltreise',facet_round_trip:'Rundreise',facet_road_trip:'Roadtrip',facet_cruise:'Kreuzfahrt',facet_global:'Global',facet_europe:'Europa',facet_southern_europe:'Südeuropa',facet_italy:'Italien',facet_mediterranean:'Mittelmeer',facet_north_africa:'Nordafrika',filterMode:'Verkehrsmittel',filterTheme:'Reisethema',results:'Routen gefunden',resetFilters:'Filter zurücksetzen',details:'Details',start:'Start',finish:'Ziel',previous:'Zurück',next:'Weiter',type:'Typ',country:'Land',duration:'Dauer',cost:'Kosten',segment:'Segment',stop:'Stopp',currency:'Währung',facet_rail:'Bahn',facet_bus:'Bus',facet_car:'Auto',facet_ferry:'Fähre',facet_multimodal:'Multimodal',facet_road:'Straße',facet_coach:'Fernbus',facet_ground_transfer:'Bodentransfer',story:'Story',storyPlay:'Story starten',storyExit:'Story beenden',storyComplete:'Route abgeschlossen',chapter:'Kapitel',settings:'Einstellungen',methodology:'Methodik',share:'Teilen',autoRotate:'Automatisch drehen',highDetail:'Hochauflösender Globus',terrain:'Echtes 3D-Globus-Terrain',showPoints:'Stopppunkte',routeGlow:'Routenleuchten',arcThickness:'Linienstärke',reducedMotion:'Reduzierte Bewegung',terrainLoading:'3D-Terrain wird geladen…',terrainHint:'Ziehen zum Drehen · scrollen zum Zoomen · echtes Relief erscheint beim Annähern',routeMethodTitle:'Routenmethodik',routeMethodText:'Diese kuratierte Route verwendet veröffentlichungssichere Reisedaten und, wo verfügbar, quellenbasierte Belege. Veränderliche Fahrpläne, Preise und reisendenspezifische Regeln bleiben ausdrücklich offen, bis Datum und Kontext feststehen.',evidenceCoverage:'Quellenabdeckung',editorialStatus:'Redaktioneller Status',storyRoute:'Routen-Story',routeFit:'Route Fit',showFit:'Weitere passende Filter',hideFit:'Passende Filter ausblenden',fitPace:'Reisetempo',fitSeason:'Reisezeit',fitParty:'Reisekonstellation',fitStart:'Routenstart',facet_relaxed:'Entspannt',facet_balanced:'Ausgewogen',facet_active:'Aktiv',facet_spring:'Frühling',facet_summer:'Sommer',facet_autumn:'Herbst',facet_winter:'Winter',facet_multi_season:'Mehrere Jahreszeiten',facet_solo:'Allein',facet_couples:'Paar',facet_friends:'Freunde',facet_families:'Familie'},
@@ -413,7 +419,7 @@
     const panel=$('#rightPanel');if(panel)panel.scrollTop=0;
   }
 
-  const sourceMap = () => new Map((currentTrip?.sources||[]).map(s=>[s.id,s]));
+  const sourceMap = () => Model.sourceMap(currentTrip);
   const verificationLabel = s => s?.verification?.status==='verified'?t('verified'):(s?.verification?.status==='illustrative'?t('illustrative'):t('currentCheck'));
   const sourceLinks = ids => {
     const map=sourceMap(),seen=new Set();
@@ -429,13 +435,9 @@
   const regionalStory={active:false,playing:false,timer:null};
   const regionalTerrain={map:null,ready:false,loading:null,maplibre:null,highDetailWasDisabled:null,autoRotateWasDisabled:null};
 
-  function profileDefaults(){
-    return {passports:[],residenceCountry:null,language:locale,currency:'EUR',origin:null,party:{adults:1,children:0},accessibility:{reducedMobility:false},vehicle:null};
-  }
-  function loadProfile(){
-    try{return {...profileDefaults(),...JSON.parse(localStorage.getItem(PROFILE_KEY)||'{}')}}catch{return profileDefaults()}
-  }
-  function saveProfile(profile){localStorage.setItem(PROFILE_KEY,JSON.stringify(profile))}
+  function profileDefaults(){return Traveller.defaults(locale)}
+  function loadProfile(){return Traveller.load(localStorage,PROFILE_KEY,locale)}
+  function saveProfile(profile){return Traveller.save(localStorage,PROFILE_KEY,profile,locale)}
 
   async function waitForCore(max=70){
     for(let i=0;i<max;i++){
@@ -479,25 +481,15 @@
 
   function openRouteLibrary(){
     const modal=ensureDialog('platformRouteModal');
-    const kinds=[...new Set(catalog.trips.map(r=>r.kind))].sort();
-    const regions=[...new Set(catalog.trips.flatMap(r=>r.discovery?.regions||[]))].sort();
-    const modes=[...new Set(catalog.trips.flatMap(r=>r.discovery?.modes||[]))].sort();
-    const themes=[...new Set(catalog.trips.flatMap(r=>r.discovery?.themes||[]))].sort();
-    const paces=[...new Set(catalog.trips.map(r=>r.discovery?.fit?.pace).filter(Boolean))].sort();
-    const seasons=[...new Set(catalog.trips.flatMap(r=>r.discovery?.fit?.seasons||[]))].sort();
-    const parties=[...new Set(catalog.trips.flatMap(r=>r.discovery?.fit?.party||[]))].sort();
-    const starts=[...new Set(catalog.trips.map(r=>r.discovery?.fit?.startRegion).filter(Boolean))].sort();
+    const {kinds,regions,modes,themes,paces,seasons,parties,starts}=Discovery.facets(catalog);
     modal.innerHTML=`<div class="platform-modal-card route-library-card glass"><button class="platform-x" aria-label="Close">×</button><div class="platform-eyebrow">ONE WORLD ROUTE</div><h2>${esc(t('routeLibrary'))}</h2><p class="platform-lead">${esc(t('routeLibraryLead'))}</p><div class="platform-route-filters"><label class="route-search"><span>${esc(t('searchRoutes'))}</span><input id="platformRouteSearch" type="search" autocomplete="off" placeholder="${esc(t('searchRoutes'))}"></label><label><span>${esc(t('filterType'))}</span><select id="platformRouteKind"><option value="">${esc(t('all'))}</option>${kinds.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('filterRegion'))}</span><select id="platformRouteRegion"><option value="">${esc(t('all'))}</option>${regions.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('filterDuration'))}</span><select id="platformRouteDuration"><option value="">${esc(t('all'))}</option><option value="7-14">7–14 ${esc(t('days'))}</option><option value="15-30">15–30 ${esc(t('days'))}</option><option value="31-89">31–89 ${esc(t('days'))}</option><option value="90-plus">90+ ${esc(t('days'))}</option></select></label><label><span>${esc(t('filterMode'))}</span><select id="platformRouteMode"><option value="">${esc(t('all'))}</option>${modes.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('filterTheme'))}</span><select id="platformRouteTheme"><option value="">${esc(t('all'))}</option>${themes.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label></div><div class="platform-fit-head"><button id="platformFitToggle" type="button" aria-expanded="false">${esc(t('showFit'))}</button></div><div id="platformFitFilters" class="platform-fit-filters hidden"><div class="platform-fit-title">${esc(t('routeFit'))}</div><label><span>${esc(t('fitPace'))}</span><select id="platformRoutePace"><option value="">${esc(t('all'))}</option>${paces.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('fitSeason'))}</span><select id="platformRouteSeason"><option value="">${esc(t('all'))}</option>${seasons.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('fitParty'))}</span><select id="platformRouteParty"><option value="">${esc(t('all'))}</option>${parties.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('fitStart'))}</span><select id="platformRouteStart"><option value="">${esc(t('all'))}</option>${starts.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label></div><div class="platform-route-resultbar"><span id="platformRouteCount"></span><button id="platformRouteReset" type="button">${esc(t('resetFilters'))}</button></div><div id="platformRouteResults" class="platform-route-grid"></div></div>`;
     modal.classList.remove('hidden');
     $('.platform-x',modal).onclick=()=>modal.classList.add('hidden');
     const render=()=>{
       const q=String($('#platformRouteSearch',modal)?.value||'').trim().toLowerCase();
       const kind=$('#platformRouteKind',modal)?.value||'',region=$('#platformRouteRegion',modal)?.value||'',duration=$('#platformRouteDuration',modal)?.value||'',mode=$('#platformRouteMode',modal)?.value||'',theme=$('#platformRouteTheme',modal)?.value||'',pace=$('#platformRoutePace',modal)?.value||'',season=$('#platformRouteSeason',modal)?.value||'',party=$('#platformRouteParty',modal)?.value||'',start=$('#platformRouteStart',modal)?.value||'';
-      const filtered=catalog.trips.filter(r=>{
-        const hay=[local(r.title),local(r.subtitle),r.kind,...(r.discovery?.regions||[]),...(r.discovery?.themes||[]),...(r.discovery?.modes||[])].join(' ').toLowerCase();
-        const fit=r.discovery?.fit||{};
-        return (!q||hay.includes(q))&&(!kind||r.kind===kind)&&(!region||(r.discovery?.regions||[]).includes(region))&&(!duration||r.discovery?.durationBand===duration)&&(!mode||(r.discovery?.modes||[]).includes(mode))&&(!theme||(r.discovery?.themes||[]).includes(theme))&&(!pace||fit.pace===pace)&&(!season||(fit.seasons||[]).includes(season))&&(!party||(fit.party||[]).includes(party))&&(!start||fit.startRegion===start);
-      });
+      const filters={q,kind,region,duration,mode,theme,pace,season,party,start};
+      const filtered=Discovery.filter(catalog,filters,r=>[local(r.title),local(r.subtitle),r.kind,...(r.discovery?.regions||[]),...(r.discovery?.themes||[]),...(r.discovery?.modes||[])].join(' '));
       const host=$('#platformRouteResults',modal);
       host.innerHTML=filtered.length?filtered.map(routeCard).join(''):`<div class="platform-no-routes">${esc(t('noRoutes'))}</div>`;
       const count=$('#platformRouteCount',modal);if(count)count.textContent=`${filtered.length} ${t('results')}`;
@@ -560,9 +552,9 @@
     };
   }
 
-  function placeMap(trip){return new Map((trip.places||[]).map(p=>[p.id,p]))}
-  function stopMap(trip){return new Map((trip.stops||[]).map(s=>[s.id,s]))}
-  function stopPlace(trip,stop){return placeMap(trip).get(stop.placeId)}
+  const placeMap=trip=>Model.placeMap(trip);
+  const stopMap=trip=>Model.stopMap(trip);
+  const stopPlace=(trip,stop)=>Model.stopPlace(trip,stop);
 
   function syncRegionalUrl(){
     if(!currentTripMeta||currentTripMeta.renderer==='legacy-world')return;
@@ -602,10 +594,7 @@
     return {lat,lng,altitude};
   }
 
-  function regionalChapterForSegment(index){
-    const seg=currentTrip?.segments?.[index];if(!seg)return null;
-    return (currentTrip.chapters||[]).find(ch=>(ch.stopIds||[]).includes(seg.fromStopId)||(ch.stopIds||[]).includes(seg.toStopId))||null;
-  }
+  function regionalChapterForSegment(index){return Model.chapterForSegment(currentTrip,index)}
 
   function ensureRegionalStoryUi(){
     const stage=$('.globe-stage');if(!stage)return;
@@ -682,12 +671,7 @@
   function regionalStopGeoJson(){
     return {type:'FeatureCollection',features:[...placeMap(currentTrip).values()].filter(p=>p.coordinates).map(p=>({type:'Feature',properties:{id:p.id,name:local(p.name)},geometry:{type:'Point',coordinates:[Number(p.coordinates.lng),Number(p.coordinates.lat)]}}))};
   }
-  function regionalRouteBounds(){
-    const points=[...placeMap(currentTrip).values()].map(p=>p.coordinates).filter(p=>Number.isFinite(Number(p?.lat))&&Number.isFinite(Number(p?.lng)));
-    if(!points.length)return null;
-    const lngs=points.map(p=>Number(p.lng)),lats=points.map(p=>Number(p.lat));
-    return [[Math.min(...lngs),Math.min(...lats)],[Math.max(...lngs),Math.max(...lats)]];
-  }
+  function regionalRouteBounds(){return Model.routeBounds(currentTrip)}
 
   function focusRegionalTerrainRoute(){
     const map=regionalTerrain.map,bounds=regionalRouteBounds();if(!map||!bounds)return;
@@ -1017,7 +1001,7 @@
 
   function routeGeometry(){
     const stops=stopMap(currentTrip),places=placeMap(currentTrip);
-    return currentTrip.segments.map((s,i)=>{const a=places.get(stops.get(s.fromStopId)?.placeId),b=places.get(stops.get(s.toStopId)?.placeId);return {...s,_index:i,start:a?.coordinates,end:b?.coordinates,fromName:local(a?.name),toName:local(b?.name)}}).filter(x=>x.start&&x.end);
+    return Model.routeGeometry(currentTrip).map(s=>({...s,fromName:local(places.get(stops.get(s.fromStopId)?.placeId)?.name),toName:local(places.get(stops.get(s.toStopId)?.placeId)?.name)}));
   }
 
   function renderRegionalGlobe(){
