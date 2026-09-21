@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','route-library.js','regional-shell.js','regional-detail.js','story.js','terrain.js','extensions.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','story.js','terrain.js','extensions.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -232,6 +232,7 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.match(source,/const RouteLibrary=PLATFORM_MODULES\.routeLibrary/);
   assert.match(source,/const RegionalShell=PLATFORM_MODULES\.regionalShell/);
   assert.match(source,/const RegionalDetail=PLATFORM_MODULES\.regionalDetail/);
+  assert.match(source,/const RegionalGlobe=PLATFORM_MODULES\.regionalGlobe/);
   assert.match(source,/const Story=PLATFORM_MODULES\.story/);
   assert.match(source,/const Terrain=PLATFORM_MODULES\.terrain/);
   assert.match(source,/RouteLibrary\.open\(/);
@@ -239,6 +240,8 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.match(source,/RegionalShell\.apply\(/);
   assert.match(source,/RegionalDetail\.configure\(/);
   assert.match(source,/RegionalDetail\.renderTripOverview\(/);
+  assert.match(source,/RegionalGlobe\.configure\(/);
+  assert.match(source,/RegionalGlobe\.render\(/);
   assert.match(source,/Story\.configure\(/);
   assert.match(source,/Ui\.ensureGlobalActions\(/);
   assert.match(source,/Navigation\.buildTripUrl\(/);
@@ -255,6 +258,18 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.doesNotMatch(source,/function ensureDialog|function platformToast|function regionalSettings/);
   assert.match(source,/Traveller\.load\(/);
   assert.match(source,/Model\.routeGeometry\(/);
+});
+
+test('regional globe renderer owns Globe.gl interactions and stays trip-generic',()=>{
+  const globe=moduleSources['regional-globe.js'];
+  for(const token of ['function routeCamera','function isolate','function routeGeometry','function render','function focusRoute','function focusSegment'])assert.match(globe,new RegExp(token));
+  assert.match(globe,/__ONE_WORLD_ROUTE_GLOBE__/);
+  assert.match(globe,/d\.modelRouteGeometry\(trip\)/);
+  assert.match(globe,/d\.selectSegment/);
+  assert.match(globe,/d\.selectStop/);
+  assert.doesNotMatch(globe,/trip\.id\s*===|trip\.kind\s*===|currentTrip/);
+  assert.doesNotMatch(source,/function routeCamera|function isolateRegionalRuntime|function regionalHtmlLabel|function routeGeometry|function renderRegionalGlobe|function focusSegment/);
+  assert.equal((source.match(/__ONE_WORLD_ROUTE_GLOBE__/g)||[]).length,1);
 });
 
 test('regional shell stays data-driven and renderer-agnostic',()=>{
