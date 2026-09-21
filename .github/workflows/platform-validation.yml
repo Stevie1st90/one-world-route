@@ -27,6 +27,7 @@ jobs:
           node --check api/share.js
           node --check scripts/validate-platform-data.mjs
           node --check scripts/generate-seo.mjs
+          node --check scripts/serve-local.mjs
       - name: Platform data validation
         run: node scripts/validate-platform-data.mjs
       - name: Existing public-data validation
@@ -39,3 +40,12 @@ jobs:
         run: node --test scripts/test-continuity.mjs
       - name: Release build
         run: node scripts/release-build.mjs
+      - name: Local preview smoke test
+        run: |
+          node scripts/serve-local.mjs > /tmp/owr-local.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID 2>/dev/null || true' EXIT
+          sleep 1
+          curl -fsS http://127.0.0.1:4173/ | grep -q "ONE WORLD ROUTE"
+          curl -fsS http://127.0.0.1:4173/de/trip/italy-grand-tour | grep -q "Große Italien-Rundreise"
+          curl -fsS "http://127.0.0.1:4173/?trip=southern-europe-road-trip&lang=de" | grep -q "ONE WORLD ROUTE"
