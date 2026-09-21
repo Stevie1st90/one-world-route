@@ -5,7 +5,14 @@
   "kind": "cruise",
   "status": "illustrative-template",
   "defaultLocale": "en",
-  "supportedLocales": ["en","de","it","es","fr","pt"],
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
   "title": {
     "en": "Western Mediterranean Cruise Loop",
     "de": "Westliches Mittelmeer · Kreuzfahrt-Loop",
@@ -23,10 +30,20 @@
     "pt": "Um demonstrador do modelo de cruzeiro de 8 dias e 7 noites ligando Barcelona, Marselha, Civitavecchia, Nápoles, La Goulette e Palma. Os portos têm fontes; a navegação é ilustrativa até a escolha de operadora, navio e data."
   },
   "geography": {
-    "countries": ["ES","FR","IT","TN"],
+    "countries": [
+      "ES",
+      "FR",
+      "IT",
+      "TN"
+    ],
     "primaryCountry": null,
     "region": "Western Mediterranean",
-    "bounds": {"north":43.4,"south":36.8,"west":2.1,"east":14.4}
+    "bounds": {
+      "north": 43.4,
+      "south": 36.8,
+      "west": 2.1,
+      "east": 14.4
+    }
   },
   "planning": {
     "days": 8,
@@ -50,44 +67,598 @@
   "rendering": {
     "preferred": "standard-globe",
     "terrainOptional": false,
-    "camera": {"lat":40.5,"lng":8.4,"altitude":0.95}
+    "camera": {
+      "lat": 40.5,
+      "lng": 8.4,
+      "altitude": 0.95
+    }
   },
   "places": [
-    {"id":"port-barcelona","type":"cruise-port","countryCode":"ES","name":{"en":"Barcelona","de":"Barcelona","it":"Barcellona","es":"Barcelona","fr":"Barcelone","pt":"Barcelona"},"coordinates":{"lat":41.35,"lng":2.17},"port":{"sourceIds":["barcelona-port-cruise"]}},
-    {"id":"port-marseille","type":"cruise-port","countryCode":"FR","name":{"en":"Marseille","de":"Marseille","it":"Marsiglia","es":"Marsella","fr":"Marseille","pt":"Marselha"},"coordinates":{"lat":43.338916,"lng":5.348054},"port":{"sourceIds":["marseille-port-cruise"]}},
-    {"id":"port-civitavecchia","type":"cruise-port","countryCode":"IT","name":{"en":"Civitavecchia · Rome gateway","de":"Civitavecchia · Tor zu Rom","it":"Civitavecchia · porto di Roma","es":"Civitavecchia · puerta de Roma","fr":"Civitavecchia · porte de Rome","pt":"Civitavecchia · porta de Roma"},"coordinates":{"lat":42.096,"lng":11.79},"port":{"sourceIds":["civitavecchia-port-cruise"]}},
-    {"id":"port-naples","type":"cruise-port","countryCode":"IT","name":{"en":"Naples","de":"Neapel","it":"Napoli","es":"Nápoles","fr":"Naples","pt":"Nápoles"},"coordinates":{"lat":40.838,"lng":14.256},"port":{"sourceIds":["naples-terminal-cruise"]}},
-    {"id":"port-la-goulette","type":"cruise-port","countryCode":"TN","name":{"en":"La Goulette · Tunis","de":"La Goulette · Tunis","it":"La Goulette · Tunisi","es":"La Goulette · Túnez","fr":"La Goulette · Tunis","pt":"La Goulette · Túnis"},"coordinates":{"lat":36.818,"lng":10.305},"port":{"sourceIds":["la-goulette-port-cruise"]}},
-    {"id":"port-palma","type":"cruise-port","countryCode":"ES","name":{"en":"Palma de Mallorca","de":"Palma de Mallorca","it":"Palma di Maiorca","es":"Palma de Mallorca","fr":"Palma de Majorque","pt":"Palma de Maiorca"},"coordinates":{"lat":39.56,"lng":2.63},"port":{"sourceIds":["palma-port-cruise"]}}
+    {
+      "id": "port-barcelona",
+      "type": "cruise-port",
+      "countryCode": "ES",
+      "name": {
+        "en": "Barcelona",
+        "de": "Barcelona",
+        "it": "Barcellona",
+        "es": "Barcelona",
+        "fr": "Barcelone",
+        "pt": "Barcelona"
+      },
+      "coordinates": {
+        "lat": 41.35,
+        "lng": 2.17
+      },
+      "port": {
+        "sourceIds": [
+          "barcelona-port-cruise"
+        ]
+      }
+    },
+    {
+      "id": "port-marseille",
+      "type": "cruise-port",
+      "countryCode": "FR",
+      "name": {
+        "en": "Marseille",
+        "de": "Marseille",
+        "it": "Marsiglia",
+        "es": "Marsella",
+        "fr": "Marseille",
+        "pt": "Marselha"
+      },
+      "coordinates": {
+        "lat": 43.338916,
+        "lng": 5.348054
+      },
+      "port": {
+        "sourceIds": [
+          "marseille-port-cruise"
+        ]
+      }
+    },
+    {
+      "id": "port-civitavecchia",
+      "type": "cruise-port",
+      "countryCode": "IT",
+      "name": {
+        "en": "Civitavecchia · Rome gateway",
+        "de": "Civitavecchia · Tor zu Rom",
+        "it": "Civitavecchia · porto di Roma",
+        "es": "Civitavecchia · puerta de Roma",
+        "fr": "Civitavecchia · porte de Rome",
+        "pt": "Civitavecchia · porta de Roma"
+      },
+      "coordinates": {
+        "lat": 42.096,
+        "lng": 11.79
+      },
+      "port": {
+        "sourceIds": [
+          "civitavecchia-port-cruise"
+        ]
+      }
+    },
+    {
+      "id": "port-naples",
+      "type": "cruise-port",
+      "countryCode": "IT",
+      "name": {
+        "en": "Naples",
+        "de": "Neapel",
+        "it": "Napoli",
+        "es": "Nápoles",
+        "fr": "Naples",
+        "pt": "Nápoles"
+      },
+      "coordinates": {
+        "lat": 40.838,
+        "lng": 14.256
+      },
+      "port": {
+        "sourceIds": [
+          "naples-terminal-cruise"
+        ]
+      }
+    },
+    {
+      "id": "port-la-goulette",
+      "type": "cruise-port",
+      "countryCode": "TN",
+      "name": {
+        "en": "La Goulette · Tunis",
+        "de": "La Goulette · Tunis",
+        "it": "La Goulette · Tunisi",
+        "es": "La Goulette · Túnez",
+        "fr": "La Goulette · Tunis",
+        "pt": "La Goulette · Túnis"
+      },
+      "coordinates": {
+        "lat": 36.818,
+        "lng": 10.305
+      },
+      "port": {
+        "sourceIds": [
+          "la-goulette-port-cruise"
+        ]
+      }
+    },
+    {
+      "id": "port-palma",
+      "type": "cruise-port",
+      "countryCode": "ES",
+      "name": {
+        "en": "Palma de Mallorca",
+        "de": "Palma de Mallorca",
+        "it": "Palma di Maiorca",
+        "es": "Palma de Mallorca",
+        "fr": "Palma de Majorque",
+        "pt": "Palma de Maiorca"
+      },
+      "coordinates": {
+        "lat": 39.56,
+        "lng": 2.63
+      },
+      "port": {
+        "sourceIds": [
+          "palma-port-cruise"
+        ]
+      }
+    }
   ],
   "stops": [
-    {"id":"med-stop-01","sequence":1,"placeId":"port-barcelona","dayStart":1,"dayEnd":1,"nights":0,"call":{"kind":"embarkation","arrival":null,"departure":null,"berth":null,"tender":null}},
-    {"id":"med-stop-02","sequence":2,"placeId":"port-marseille","dayStart":2,"dayEnd":2,"nights":0,"call":{"kind":"port-call","arrival":null,"departure":null,"berth":null,"tender":null}},
-    {"id":"med-stop-03","sequence":3,"placeId":"port-civitavecchia","dayStart":3,"dayEnd":3,"nights":0,"call":{"kind":"port-call","arrival":null,"departure":null,"berth":null,"tender":null}},
-    {"id":"med-stop-04","sequence":4,"placeId":"port-naples","dayStart":4,"dayEnd":4,"nights":0,"call":{"kind":"port-call","arrival":null,"departure":null,"berth":null,"tender":null}},
-    {"id":"med-stop-05","sequence":5,"placeId":"port-la-goulette","dayStart":5,"dayEnd":5,"nights":0,"call":{"kind":"port-call","arrival":null,"departure":null,"berth":null,"tender":null}},
-    {"id":"med-stop-06","sequence":6,"placeId":"port-palma","dayStart":7,"dayEnd":7,"nights":0,"call":{"kind":"port-call","arrival":null,"departure":null,"berth":null,"tender":null}},
-    {"id":"med-stop-07","sequence":7,"placeId":"port-barcelona","dayStart":8,"dayEnd":8,"nights":0,"call":{"kind":"disembarkation","arrival":null,"departure":null,"berth":null,"tender":null}}
+    {
+      "id": "med-stop-01",
+      "sequence": 1,
+      "placeId": "port-barcelona",
+      "dayStart": 1,
+      "dayEnd": 1,
+      "nights": 0,
+      "call": {
+        "kind": "embarkation",
+        "arrival": null,
+        "departure": null,
+        "berth": null,
+        "tender": null
+      }
+    },
+    {
+      "id": "med-stop-02",
+      "sequence": 2,
+      "placeId": "port-marseille",
+      "dayStart": 2,
+      "dayEnd": 2,
+      "nights": 0,
+      "call": {
+        "kind": "port-call",
+        "arrival": null,
+        "departure": null,
+        "berth": null,
+        "tender": null
+      }
+    },
+    {
+      "id": "med-stop-03",
+      "sequence": 3,
+      "placeId": "port-civitavecchia",
+      "dayStart": 3,
+      "dayEnd": 3,
+      "nights": 0,
+      "call": {
+        "kind": "port-call",
+        "arrival": null,
+        "departure": null,
+        "berth": null,
+        "tender": null
+      }
+    },
+    {
+      "id": "med-stop-04",
+      "sequence": 4,
+      "placeId": "port-naples",
+      "dayStart": 4,
+      "dayEnd": 4,
+      "nights": 0,
+      "call": {
+        "kind": "port-call",
+        "arrival": null,
+        "departure": null,
+        "berth": null,
+        "tender": null
+      }
+    },
+    {
+      "id": "med-stop-05",
+      "sequence": 5,
+      "placeId": "port-la-goulette",
+      "dayStart": 5,
+      "dayEnd": 5,
+      "nights": 0,
+      "call": {
+        "kind": "port-call",
+        "arrival": null,
+        "departure": null,
+        "berth": null,
+        "tender": null
+      }
+    },
+    {
+      "id": "med-stop-06",
+      "sequence": 6,
+      "placeId": "port-palma",
+      "dayStart": 7,
+      "dayEnd": 7,
+      "nights": 0,
+      "call": {
+        "kind": "port-call",
+        "arrival": null,
+        "departure": null,
+        "berth": null,
+        "tender": null
+      }
+    },
+    {
+      "id": "med-stop-07",
+      "sequence": 7,
+      "placeId": "port-barcelona",
+      "dayStart": 8,
+      "dayEnd": 8,
+      "nights": 0,
+      "call": {
+        "kind": "disembarkation",
+        "arrival": null,
+        "departure": null,
+        "berth": null,
+        "tender": null
+      }
+    }
   ],
   "segments": [
-    {"id":"med-sea-01","sequence":1,"fromStopId":"med-stop-01","toStopId":"med-stop-02","transport":{"mode":"cruise","stages":[]},"cruise":{"onboardNights":1,"seaDayNumbers":[],"operator":null,"vessel":null,"serviceStatus":"illustrative"},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"illustrative","lastVerified":"2026-09-21","sourceIds":["barcelona-port-cruise","marseille-port-cruise"],"notes":"Endpoint cruise facilities are source-backed. No specific ship service or sailing time is asserted."},"borderContext":{"fromCountry":"ES","toCountry":"FR","zoneTransition":"schengen-internal","personalizationRequired":false}},
-    {"id":"med-sea-02","sequence":2,"fromStopId":"med-stop-02","toStopId":"med-stop-03","transport":{"mode":"cruise","stages":[]},"cruise":{"onboardNights":1,"seaDayNumbers":[],"operator":null,"vessel":null,"serviceStatus":"illustrative"},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"illustrative","lastVerified":"2026-09-21","sourceIds":["marseille-port-cruise","civitavecchia-port-cruise"],"notes":"Endpoint cruise facilities are source-backed. No specific ship service or sailing time is asserted."},"borderContext":{"fromCountry":"FR","toCountry":"IT","zoneTransition":"schengen-internal","personalizationRequired":false}},
-    {"id":"med-sea-03","sequence":3,"fromStopId":"med-stop-03","toStopId":"med-stop-04","transport":{"mode":"cruise","stages":[]},"cruise":{"onboardNights":1,"seaDayNumbers":[],"operator":null,"vessel":null,"serviceStatus":"illustrative"},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"illustrative","lastVerified":"2026-09-21","sourceIds":["civitavecchia-port-cruise","naples-terminal-cruise"],"notes":"Endpoint cruise facilities are source-backed. No specific ship service or sailing time is asserted."},"borderContext":{"fromCountry":"IT","toCountry":"IT","zoneTransition":"domestic","personalizationRequired":false}},
-    {"id":"med-sea-04","sequence":4,"fromStopId":"med-stop-04","toStopId":"med-stop-05","transport":{"mode":"cruise","stages":[]},"cruise":{"onboardNights":1,"seaDayNumbers":[],"operator":null,"vessel":null,"serviceStatus":"illustrative"},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"illustrative","lastVerified":"2026-09-21","sourceIds":["naples-terminal-cruise","la-goulette-port-cruise"],"notes":"This leg leaves the Schengen area. Endpoint ports are source-backed; the sailing itself is illustrative."},"borderContext":{"fromCountry":"IT","toCountry":"TN","zoneTransition":"schengen-exit","personalizationRequired":true}},
-    {"id":"med-sea-05","sequence":5,"fromStopId":"med-stop-05","toStopId":"med-stop-06","transport":{"mode":"cruise","stages":[]},"cruise":{"onboardNights":2,"seaDayNumbers":[6],"operator":null,"vessel":null,"serviceStatus":"illustrative"},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"illustrative","lastVerified":"2026-09-21","sourceIds":["la-goulette-port-cruise","palma-port-cruise"],"notes":"Includes one modelled sea day. This leg re-enters the Schengen area; actual immigration handling depends on the traveller and selected sailing."},"borderContext":{"fromCountry":"TN","toCountry":"ES","zoneTransition":"schengen-entry","personalizationRequired":true}},
-    {"id":"med-sea-06","sequence":6,"fromStopId":"med-stop-06","toStopId":"med-stop-07","transport":{"mode":"cruise","stages":[]},"cruise":{"onboardNights":1,"seaDayNumbers":[],"operator":null,"vessel":null,"serviceStatus":"illustrative"},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"illustrative","lastVerified":"2026-09-21","sourceIds":["palma-port-cruise","barcelona-port-cruise"],"notes":"Endpoint cruise facilities are source-backed. No specific ship service or sailing time is asserted."},"borderContext":{"fromCountry":"ES","toCountry":"ES","zoneTransition":"domestic","personalizationRequired":false}}
+    {
+      "id": "med-sea-01",
+      "sequence": 1,
+      "fromStopId": "med-stop-01",
+      "toStopId": "med-stop-02",
+      "transport": {
+        "mode": "cruise",
+        "stages": []
+      },
+      "cruise": {
+        "onboardNights": 1,
+        "seaDayNumbers": [],
+        "operator": null,
+        "vessel": null,
+        "serviceStatus": "illustrative"
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "illustrative",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "barcelona-port-cruise",
+          "marseille-port-cruise"
+        ],
+        "notes": "Endpoint cruise facilities are source-backed. No specific ship service or sailing time is asserted."
+      },
+      "borderContext": {
+        "fromCountry": "ES",
+        "toCountry": "FR",
+        "zoneTransition": "schengen-internal",
+        "personalizationRequired": false
+      }
+    },
+    {
+      "id": "med-sea-02",
+      "sequence": 2,
+      "fromStopId": "med-stop-02",
+      "toStopId": "med-stop-03",
+      "transport": {
+        "mode": "cruise",
+        "stages": []
+      },
+      "cruise": {
+        "onboardNights": 1,
+        "seaDayNumbers": [],
+        "operator": null,
+        "vessel": null,
+        "serviceStatus": "illustrative"
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "illustrative",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "marseille-port-cruise",
+          "civitavecchia-port-cruise"
+        ],
+        "notes": "Endpoint cruise facilities are source-backed. No specific ship service or sailing time is asserted."
+      },
+      "borderContext": {
+        "fromCountry": "FR",
+        "toCountry": "IT",
+        "zoneTransition": "schengen-internal",
+        "personalizationRequired": false
+      }
+    },
+    {
+      "id": "med-sea-03",
+      "sequence": 3,
+      "fromStopId": "med-stop-03",
+      "toStopId": "med-stop-04",
+      "transport": {
+        "mode": "cruise",
+        "stages": []
+      },
+      "cruise": {
+        "onboardNights": 1,
+        "seaDayNumbers": [],
+        "operator": null,
+        "vessel": null,
+        "serviceStatus": "illustrative"
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "illustrative",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "civitavecchia-port-cruise",
+          "naples-terminal-cruise"
+        ],
+        "notes": "Endpoint cruise facilities are source-backed. No specific ship service or sailing time is asserted."
+      },
+      "borderContext": {
+        "fromCountry": "IT",
+        "toCountry": "IT",
+        "zoneTransition": "domestic",
+        "personalizationRequired": false
+      }
+    },
+    {
+      "id": "med-sea-04",
+      "sequence": 4,
+      "fromStopId": "med-stop-04",
+      "toStopId": "med-stop-05",
+      "transport": {
+        "mode": "cruise",
+        "stages": []
+      },
+      "cruise": {
+        "onboardNights": 1,
+        "seaDayNumbers": [],
+        "operator": null,
+        "vessel": null,
+        "serviceStatus": "illustrative"
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "illustrative",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "naples-terminal-cruise",
+          "la-goulette-port-cruise"
+        ],
+        "notes": "This leg leaves the Schengen area. Endpoint ports are source-backed; the sailing itself is illustrative."
+      },
+      "borderContext": {
+        "fromCountry": "IT",
+        "toCountry": "TN",
+        "zoneTransition": "schengen-exit",
+        "personalizationRequired": true
+      }
+    },
+    {
+      "id": "med-sea-05",
+      "sequence": 5,
+      "fromStopId": "med-stop-05",
+      "toStopId": "med-stop-06",
+      "transport": {
+        "mode": "cruise",
+        "stages": []
+      },
+      "cruise": {
+        "onboardNights": 2,
+        "seaDayNumbers": [
+          6
+        ],
+        "operator": null,
+        "vessel": null,
+        "serviceStatus": "illustrative"
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "illustrative",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "la-goulette-port-cruise",
+          "palma-port-cruise"
+        ],
+        "notes": "Includes one modelled sea day. This leg re-enters the Schengen area; actual immigration handling depends on the traveller and selected sailing."
+      },
+      "borderContext": {
+        "fromCountry": "TN",
+        "toCountry": "ES",
+        "zoneTransition": "schengen-entry",
+        "personalizationRequired": true
+      }
+    },
+    {
+      "id": "med-sea-06",
+      "sequence": 6,
+      "fromStopId": "med-stop-06",
+      "toStopId": "med-stop-07",
+      "transport": {
+        "mode": "cruise",
+        "stages": []
+      },
+      "cruise": {
+        "onboardNights": 1,
+        "seaDayNumbers": [],
+        "operator": null,
+        "vessel": null,
+        "serviceStatus": "illustrative"
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "illustrative",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "palma-port-cruise",
+          "barcelona-port-cruise"
+        ],
+        "notes": "Endpoint cruise facilities are source-backed. No specific ship service or sailing time is asserted."
+      },
+      "borderContext": {
+        "fromCountry": "ES",
+        "toCountry": "ES",
+        "zoneTransition": "domestic",
+        "personalizationRequired": false
+      }
+    }
   ],
   "sources": [
-    {"id":"barcelona-port-cruise","title":"Cruise passenger information and terminals","issuer":"Port de Barcelona","issuerType":"government","url":"https://www.portdebarcelona.cat/en/business-and-services/cruise-ships/information-passenger","checkedAt":"2026-09-21","claims":["Barcelona has dedicated international cruise terminals and passenger services","terminal assignment is sailing-specific"]},
-    {"id":"marseille-port-cruise","title":"Cruise passengers — Marseille Provence Cruise Terminal","issuer":"Port of Marseille Fos","issuerType":"government","url":"https://www.marseille-port.fr/en/node/343","checkedAt":"2026-09-21","claims":["Marseille has secure cruise terminals","MPCT boarding uses Gate 4","terminal assignment is sailing-specific"]},
-    {"id":"civitavecchia-port-cruise","title":"Cruises — Port of Civitavecchia","issuer":"Porti di Roma e del Lazio","issuerType":"government","url":"https://www.portidiroma.it/crociere","checkedAt":"2026-09-21","claims":["Civitavecchia operates dedicated cruise terminals managed by Roma Cruise Terminal","the port supports both transit and turnaround cruise traffic"]},
-    {"id":"naples-terminal-cruise","title":"Terminal Crociere","issuer":"Terminal Napoli S.p.A.","issuerType":"official-operator","url":"https://www.terminalnapoli.it/?page_id=59","checkedAt":"2026-09-21","claims":["Naples Stazione Marittima is a cruise terminal","multiple cruise berths and passenger gangways are available"]},
-    {"id":"la-goulette-port-cruise","title":"Port of La Goulette","issuer":"Office de la Marine Marchande et des Ports","issuerType":"government","url":"https://www.ommp.nat.tn/ports/goulette/","checkedAt":"2026-09-21","claims":["La Goulette specialises in passenger and cruise traffic","two berths are dedicated to cruise ships"]},
-    {"id":"palma-port-cruise","title":"Port of Palma / cruise traffic evidence","issuer":"Autoritat Portuària de Balears","issuerType":"government","url":"https://www.portsdebalears.com/index.php/en/location-port-palma","checkedAt":"2026-09-21","claims":["Palma is managed by the Balearic Islands Port Authority","cruise calls are represented in the authority's traffic publications"]}
+    {
+      "id": "barcelona-port-cruise",
+      "title": "Cruise passenger information and terminals",
+      "issuer": "Port de Barcelona",
+      "issuerType": "government",
+      "url": "https://www.portdebarcelona.cat/en/business-and-services/cruise-ships/information-passenger",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "Barcelona has dedicated international cruise terminals and passenger services",
+        "terminal assignment is sailing-specific"
+      ]
+    },
+    {
+      "id": "marseille-port-cruise",
+      "title": "Cruise passengers — Marseille Provence Cruise Terminal",
+      "issuer": "Port of Marseille Fos",
+      "issuerType": "government",
+      "url": "https://www.marseille-port.fr/en/node/343",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "Marseille has secure cruise terminals",
+        "MPCT boarding uses Gate 4",
+        "terminal assignment is sailing-specific"
+      ]
+    },
+    {
+      "id": "civitavecchia-port-cruise",
+      "title": "Cruises — Port of Civitavecchia",
+      "issuer": "Porti di Roma e del Lazio",
+      "issuerType": "government",
+      "url": "https://www.portidiroma.it/crociere",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "Civitavecchia operates dedicated cruise terminals managed by Roma Cruise Terminal",
+        "the port supports both transit and turnaround cruise traffic"
+      ]
+    },
+    {
+      "id": "naples-terminal-cruise",
+      "title": "Terminal Crociere",
+      "issuer": "Terminal Napoli S.p.A.",
+      "issuerType": "official-operator",
+      "url": "https://www.terminalnapoli.it/?page_id=59",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "Naples Stazione Marittima is a cruise terminal",
+        "multiple cruise berths and passenger gangways are available"
+      ]
+    },
+    {
+      "id": "la-goulette-port-cruise",
+      "title": "Port of La Goulette",
+      "issuer": "Office de la Marine Marchande et des Ports",
+      "issuerType": "government",
+      "url": "https://www.ommp.nat.tn/ports/goulette/",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "La Goulette specialises in passenger and cruise traffic",
+        "two berths are dedicated to cruise ships"
+      ]
+    },
+    {
+      "id": "palma-port-cruise",
+      "title": "Port of Palma / cruise traffic evidence",
+      "issuer": "Autoritat Portuària de Balears",
+      "issuerType": "government",
+      "url": "https://www.portsdebalears.com/index.php/en/location-port-palma",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "Palma is managed by the Balearic Islands Port Authority",
+        "cruise calls are represented in the authority's traffic publications"
+      ]
+    },
+    {
+      "id": "eu-schengen-external-border",
+      "title": "Travel documents for non-EU nationals",
+      "issuer": "European Union — Your Europe",
+      "issuerType": "international-organization",
+      "url": "https://europa.eu/youreurope/citizens/travel/entry-exit/non-eu-nationals/index_en.htm",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "Schengen short-stay and external-border requirements depend on nationality and document/visa status",
+        "Spain, France and Italy are in the Schengen area"
+      ]
+    },
+    {
+      "id": "eu-entry-exit-system",
+      "title": "Entry/Exit System",
+      "issuer": "European Commission — Migration and Home Affairs",
+      "issuerType": "international-organization",
+      "url": "https://home-affairs.ec.europa.eu/policies/schengen/smart-borders/entry-exit-system_en",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "EES is fully operational from 10 April 2026",
+        "eligible non-EU short-stay travellers are registered at Schengen external borders"
+      ]
+    },
+    {
+      "id": "tunisia-econsulat-visa",
+      "title": "Visa application",
+      "issuer": "Tunisia E-CONSULAT — Ministry of Foreign Affairs, Migration and Tunisians Abroad",
+      "issuerType": "government",
+      "url": "https://www.econsulat.tn/fr/services-de-chancellerie/demande-visa",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "travellers subject to a Tunisian visa procedure must contact the Tunisian mission covering their place of residence",
+        "the official process requests passport and residence information"
+      ]
+    }
   ],
   "entryGuidance": {
     "personalizationRequired": true,
-    "destinations": ["ES","FR","IT","TN"],
+    "destinations": [
+      "ES",
+      "FR",
+      "IT",
+      "TN"
+    ],
     "tripPurpose": "cruise-tourism",
     "message": {
       "en": "This model leaves Schengen for Tunisia and later re-enters in Spain. Passport, visa, transit and shore-leave requirements must be resolved for every traveller and the selected sailing; shipboard handling does not remove national entry requirements.",
@@ -96,10 +667,23 @@
       "es": "El modelo sale de Schengen hacia Túnez y vuelve a entrar en España. Los requisitos de pasaporte, visado, tránsito y desembarque deben verificarse para cada viajero y salida concreta.",
       "fr": "Le modèle quitte Schengen pour la Tunisie puis y rentre en Espagne. Passeport, visa, transit et sortie à terre doivent être vérifiés pour chaque voyageur et départ choisi.",
       "pt": "O modelo sai do espaço Schengen para a Tunísia e volta a entrar na Espanha. Passaporte, visto, trânsito e desembarque devem ser verificados para cada viajante e partida escolhida."
-    }
+    },
+    "officialResolverSourceId": "tunisia-econsulat-visa",
+    "supportingSourceIds": [
+      "eu-schengen-external-border",
+      "eu-entry-exit-system"
+    ]
   },
   "travellerContext": {
-    "scope": ["passports","residenceCountry","language","currency","origin","party","accessibility"],
+    "scope": [
+      "passports",
+      "residenceCountry",
+      "language",
+      "currency",
+      "origin",
+      "party",
+      "accessibility"
+    ],
     "rule": "Do not treat a cruise as a border-free journey. Resolve entry and re-entry rules against the traveller context for each jurisdiction and sailing."
   }
 }
