@@ -91,6 +91,11 @@ for(const item of regional){
   datasets.set(item.id,await readJson(new URL('../../'+rel,import.meta.url)));
 }
 
+const railProof=regional.find(item=>{
+  const trip=datasets.get(item.id);
+  return item.discovery?.modes?.includes('rail')&&trip?.extensions?.rail?.scope==='rail-only';
+});
+
 async function captureViewport(page,testInfo,name){
   await page.screenshot({
     path:testInfo.outputPath(name),
@@ -151,6 +156,11 @@ for(const item of regional){
     const pageErrors=capturePageErrors(page);
     const trip=datasets.get(item.id);
     await openRegional(page,item);
+
+    if(item.id===railProof?.id){
+      expect(trip.segments.every(segment=>segment.transport?.mode==='rail')).toBe(true);
+      expect(trip.segments.every(segment=>(segment.transport?.stages||[]).length>0&&(segment.transport?.stages||[]).every(stage=>stage.mode==='rail'))).toBe(true);
+    }
 
     await expect(page.locator('#regionalRouteRange')).toHaveAttribute('max',String(item.metrics.segments));
     await expect(page.locator('#detailTitle')).toHaveText(item.title.en);
@@ -228,6 +238,9 @@ for(const item of regional){
     if(item.id===regional[0].id){
       await captureViewport(page,testInfo,'regional-settings-'+testInfo.project.name+'.png');
     }
+    if(item.id===railProof?.id){
+      await captureViewport(page,testInfo,'rail-proof-settings-'+testInfo.project.name+'.png');
+    }
 
     if(item.capabilities.includes('story')){
       if(isMobile){
@@ -245,6 +258,9 @@ for(const item of regional){
       await expect(page.locator('#platformStoryHud')).toBeVisible();
       if(item.id===regional[0].id){
         await captureViewport(page,testInfo,'regional-story-'+testInfo.project.name+'.png');
+      }
+      if(item.id===railProof?.id){
+        await captureViewport(page,testInfo,'rail-proof-story-'+testInfo.project.name+'.png');
       }
       await page.evaluate(()=>window.ONE_WORLD_PLATFORM.stopStory());
       await expect(page.locator('body')).not.toHaveClass(/platform-story-mode/);
@@ -324,4 +340,23 @@ test('regional terrain activates and exits on the shared engine',async({page,isM
   await page.evaluate(()=>window.ONE_WORLD_PLATFORM.setTerrain(false));
   await expect(page.locator('body')).not.toHaveClass(/terrain-view/);
   expect(pageErrors,'terrain runtime page errors').toEqual([]);
+});
+
+
+test('rail architecture proof uses the shared terrain engine',async({page,isMobile},testInfo)=>{
+  test.setTimeout(120000);
+  expect(railProof).toBeTruthy();
+  const pageErrors=capturePageErrors(page);
+  await openRegional(page,railProof);
+
+  await page.evaluate(()=>window.ONE_WORLD_PLATFORM.setTerrain(true));
+  await expect(page.locator('body')).toHaveClass(/terrain-view/,{timeout:45000});
+  await expect.poll(()=>page.evaluate(()=>Boolean(window.__ONE_WORLD_REGIONAL_TERRAIN__))).toBe(true);
+  await expect(page.locator('#terrainMap')).toBeVisible();
+  if(isMobile)await expectMobilePanelsClosed(page);
+  await captureViewport(page,testInfo,'rail-proof-terrain-'+testInfo.project.name+'.png');
+
+  await page.evaluate(()=>window.ONE_WORLD_PLATFORM.setTerrain(false));
+  await expect(page.locator('body')).not.toHaveClass(/terrain-view/);
+  expect(pageErrors,'rail terrain runtime page errors').toEqual([]);
 });
