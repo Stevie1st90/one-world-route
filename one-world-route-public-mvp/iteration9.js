@@ -356,6 +356,17 @@
   function colorExpression(){return ['get','color'];}
   function widthExpr(a,b,c0){const scale=clamp(Number($('#arcWidth')?.value||.55)/.55,.35,2.4);return ['interpolate',['linear'],['zoom'],2,a*scale,6,b*scale,12,c0*scale];}
 
+  function localizeTerrainStyle(style){
+    const raw=String(document.documentElement.lang||'en').toLowerCase().split('-')[0];
+    const lang=['en','de','it','es','fr','pt'].includes(raw)?raw:'en';
+    const nameExpr=['coalesce',['get',`name:${lang}`],['get',`name_${lang}`],['get','name:latin'],['get','name_en'],['get','name']];
+    for(const layer of style?.layers||[]){
+      if(layer?.type!=='symbol'||!layer.layout)continue;
+      if(/^(label_(country|city|state|other)|water_name)/.test(String(layer.id||'')))layer.layout['text-field']=nameExpr;
+    }
+    return style;
+  }
+
   async function terrainStyle(){
     const phase=activeTerrainPhase();
     const phaseFilter=phase===null?['==',['get','phaseId'],-1]:['==',['get','phaseId'],phase];
@@ -369,6 +380,7 @@
       base={version:8,sources:{},layers:[{id:'background',type:'background',paint:{'background-color':'#d9e5e8'}}]};
     }
 
+    base=localizeTerrainStyle(base);
     base.version=8;
     base.projection={type:'globe'};
     base.sources={...(base.sources||{}),
