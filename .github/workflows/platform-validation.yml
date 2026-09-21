@@ -59,6 +59,7 @@ jobs:
           node --check scripts/scaffold-trip.mjs
           node --check scripts/generate-seo.mjs
           node --check scripts/serve-local.mjs
+          node --check scripts/test-preview-routes.mjs
       - name: Platform data validation
         run: node scripts/validate-platform-data.mjs
       - name: Existing public-data validation
@@ -85,6 +86,4 @@ jobs:
           SERVER_PID=$!
           trap 'kill $SERVER_PID 2>/dev/null || true' EXIT
           sleep 1
-          curl -fsS http://127.0.0.1:4173/ | grep -q "ONE WORLD ROUTE"
-          curl -fsS http://127.0.0.1:4173/de/trip/italy-grand-tour | grep -q "Große Italien-Rundreise"
-          curl -fsS "http://127.0.0.1:4173/?trip=southern-europe-road-trip&lang=de" | grep -q "ONE WORLD ROUTE"
+          node scripts/test-preview-routes.mjs
