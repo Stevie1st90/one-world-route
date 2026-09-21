@@ -39,6 +39,7 @@ jobs:
           node --check platform/regional-globe.js
           node --check platform/regional-timeline.js
           node --check platform/regional-controls.js
+          node --check platform/regional-selection.js
           node --check platform/story.js
           node --check platform/extensions.js
           node --check features.bundle.js
