@@ -12,7 +12,8 @@
   const Discovery=PLATFORM_MODULES.discovery;
   const Extensions=PLATFORM_MODULES.extensions;
   const RouteLibrary=PLATFORM_MODULES.routeLibrary;
-  if(!LocaleData||!MapStyle||!Model||!Traveller||!TravellerUi||!Discovery||!Extensions||!RouteLibrary)throw new Error('ONE WORLD ROUTE platform modules unavailable');
+  const Story=PLATFORM_MODULES.story;
+  if(!LocaleData||!MapStyle||!Model||!Traveller||!TravellerUi||!Discovery||!Extensions||!RouteLibrary||!Story)throw new Error('ONE WORLD ROUTE platform modules unavailable');
   const SUPPORTED_LOCALES=LocaleData.supportedLocales;
   const I18N=LocaleData.messages;
   const LEGACY_WORLD_TEXT=LocaleData.legacyWorldText;
@@ -177,7 +178,6 @@
   let currentTripMeta = null;
   let selectedSegmentIndex = 0;
   let playTimer = null;
-  const regionalStory={active:false,playing:false,timer:null};
   const regionalTerrain={map:null,ready:false,loading:null,maplibre:null,highDetailWasDisabled:null,autoRotateWasDisabled:null};
 
   function loadProfile(){return Traveller.load(localStorage,PROFILE_KEY,locale)}
@@ -306,73 +306,30 @@
 
   function regionalChapterForSegment(index){return Model.chapterForSegment(currentTrip,index)}
 
-  function ensureRegionalStoryUi(){
-    const stage=$('.globe-stage');if(!stage)return;
-    if(!Model.hasCapability(currentTripMeta,'story')){$('#platformStoryBtn')?.remove();$('#platformStoryHud')?.remove();return}
-    if(!$('#platformStoryBtn')){
-      const b=document.createElement('button');b.id='platformStoryBtn';b.className='platform-story-btn glass';b.type='button';
-      stage.appendChild(b);b.addEventListener('click',startRegionalStory);
-    }
-    const storyButton=$('#platformStoryBtn');if(storyButton)storyButton.innerHTML=`<span class="platform-story-icon">▶</span><span><b>${esc(t('storyPlay'))}</b><small>${currentTrip.segments.length} ${esc(t('segments'))}</small></span>`;
-    if(!$('#platformStoryHud')){
-      const hud=document.createElement('section');hud.id='platformStoryHud';hud.className='platform-story-hud glass hidden';hud.setAttribute('aria-live','polite');
-      hud.innerHTML=`<div class="platform-story-head"><div><span id="platformStoryKicker"></span><b id="platformStoryChapter"></b></div><button id="platformStoryExit" type="button">${esc(t('storyExit'))}</button></div><div id="platformStoryRoute" class="platform-story-route"></div><div class="platform-story-controls"><button id="platformStoryPrev" type="button" aria-label="${esc(t('previous'))}">‹</button><button id="platformStoryPlay" type="button" aria-label="${esc(t('storyPlay'))}">Ⅱ</button><button id="platformStoryNext" type="button" aria-label="${esc(t('next'))}">›</button><div class="platform-story-track"><i></i></div><strong id="platformStoryPct">0%</strong></div>`;
-      stage.appendChild(hud);
-      $('#platformStoryExit',hud).addEventListener('click',stopRegionalStory);
-      $('#platformStoryPrev',hud).addEventListener('click',()=>storyStep(-1));
-      $('#platformStoryNext',hud).addEventListener('click',()=>storyStep(1));
-      $('#platformStoryPlay',hud).addEventListener('click',toggleRegionalStoryPlayback);
-    }
-  }
-
-  function updateRegionalStoryHud(){
-    if(!currentTrip)return;
-    const seg=currentTrip.segments[selectedSegmentIndex],sm=stopMap(currentTrip),pm=placeMap(currentTrip);
-    const a=pm.get(sm.get(seg?.fromStopId)?.placeId),b=pm.get(sm.get(seg?.toStopId)?.placeId);
-    const chapter=regionalChapterForSegment(selectedSegmentIndex);
-    const kicker=$('#platformStoryKicker'),title=$('#platformStoryChapter'),route=$('#platformStoryRoute'),pct=$('#platformStoryPct'),bar=$('#platformStoryHud .platform-story-track i');
-    const progress=currentTrip.segments.length<=1?100:Math.round(selectedSegmentIndex/(currentTrip.segments.length-1)*100);
-    if(kicker)kicker.textContent=chapter?`${t('chapter')} · ${local(chapter.title)}`:`${t('storyRoute')} · ${selectedSegmentIndex+1}/${currentTrip.segments.length}`;
-    if(title)title.textContent=chapter?local(chapter.title):local(currentTrip.title);
-    if(route)route.textContent=`${local(a?.name)} → ${local(b?.name)} · ${facetLabel(seg?.transport?.mode||'')}`;
-    if(pct)pct.textContent=`${progress}%`;if(bar)bar.style.width=`${progress}%`;
-  }
-
-  function storyStep(delta){
-    if(!regionalStory.active)return;
-    const next=Math.max(0,Math.min(currentTrip.segments.length-1,selectedSegmentIndex+delta));
-    if(next===selectedSegmentIndex&&delta>0){pauseRegionalStory();const title=$('#platformStoryChapter');if(title)title.textContent=t('storyComplete');return}
-    selectSegmentIndex(next,true);updateRegionalStoryHud();
-  }
-
-  function pauseRegionalStory(){
-    clearInterval(regionalStory.timer);regionalStory.timer=null;regionalStory.playing=false;
-    const b=$('#platformStoryPlay');if(b)b.textContent='▶';
-  }
-
-  function playRegionalStory(){
-    clearInterval(regionalStory.timer);regionalStory.playing=true;
-    const b=$('#platformStoryPlay');if(b)b.textContent='Ⅱ';
-    regionalStory.timer=setInterval(()=>{
-      if(selectedSegmentIndex>=currentTrip.segments.length-1){pauseRegionalStory();const title=$('#platformStoryChapter');if(title)title.textContent=t('storyComplete');return}
-      selectSegmentIndex(selectedSegmentIndex+1,true);updateRegionalStoryHud();
-    },2200);
-  }
-
-  function toggleRegionalStoryPlayback(){regionalStory.playing?pauseRegionalStory():playRegionalStory()}
-
-  async function startRegionalStory(){
-    if(!currentTrip||regionalStory.active||!Model.hasCapability(currentTripMeta,'story'))return;
-    if(document.body.classList.contains('terrain-view'))await setRegionalTerrain(false);
-    if(playTimer){clearInterval(playTimer);playTimer=null}
-    regionalStory.active=true;document.body.classList.add('platform-story-mode');
-    $('#platformStoryHud')?.classList.remove('hidden');
-    updateRegionalStoryHud();playRegionalStory();
-  }
-
-  function stopRegionalStory(){
-    pauseRegionalStory();regionalStory.active=false;document.body.classList.remove('platform-story-mode');
-    $('#platformStoryHud')?.classList.add('hidden');renderRegionalGlobe();
+  function configureRegionalStory(){
+    Story.configure({
+      getTrip:()=>currentTrip,
+      getTripMeta:()=>currentTripMeta,
+      getSelectedIndex:()=>selectedSegmentIndex,
+      placeMap,
+      stopMap,
+      chapterForSegment:regionalChapterForSegment,
+      hasCapability:(meta,id)=>Model.hasCapability(meta,id),
+      t,
+      local,
+      esc,
+      facetLabel,
+      selectSegment:selectSegmentIndex,
+      setTerrain:setRegionalTerrain,
+      stopRoutePlayback:()=>{
+        if(!playTimer)return;
+        clearInterval(playTimer);
+        playTimer=null;
+        const button=$('#regionalPlayBtn');
+        if(button)button.textContent='▶';
+      },
+      renderRoute:renderRegionalGlobe
+    });
   }
 
   function regionalRouteGeoJson(){
@@ -490,7 +447,7 @@
       const p=new URLSearchParams(location.search);p.delete('view');history.replaceState(null,'',`${location.pathname}?${p.toString()}`);
       renderRegionalGlobe();return;
     }
-    if(regionalStory.active)stopRegionalStory();
+    if(Story.isActive())Story.stop();
     const high=$('#highDetailGlobe'),auto=$('#autoRotate');
     if(high){if(regionalTerrain.highDetailWasDisabled===null)regionalTerrain.highDetailWasDisabled=high.disabled;high.disabled=true}
     if(auto){if(regionalTerrain.autoRotateWasDisabled===null)regionalTerrain.autoRotateWasDisabled=auto.disabled;auto.disabled=true}
@@ -532,10 +489,10 @@
     const share=$('#mobileShareBtn');if(share)share.textContent=t('share');
     const info=$('#mobileInfoBtn');if(info)info.textContent=t('methodology');
     let storyBtn=$('#regionalStorySettingsBtn');
-    if(!storyBtn){storyBtn=document.createElement('button');storyBtn.id='regionalStorySettingsBtn';storyBtn.type='button';storyBtn.addEventListener('click',()=>{$('#settingsPopover')?.classList.add('hidden');startRegionalStory()});$('#settingsPopover .mobile-settings-actions')?.appendChild(storyBtn)}
+    if(!storyBtn){storyBtn=document.createElement('button');storyBtn.id='regionalStorySettingsBtn';storyBtn.type='button';storyBtn.addEventListener('click',()=>{$('#settingsPopover')?.classList.add('hidden');Story.start()});$('#settingsPopover .mobile-settings-actions')?.appendChild(storyBtn)}
     if(storyBtn){storyBtn.textContent=t('storyPlay');storyBtn.hidden=!Model.hasCapability(currentTripMeta,'story')}
     const bind=(id,event,fn)=>{const el=$('#'+id);if(!el||el.dataset.platformRegionalWired)return;el.dataset.platformRegionalWired='1';el.addEventListener(event,fn)};
-    bind('autoRotate','change',()=>{const ctl=window.__ONE_WORLD_ROUTE_GLOBE__?.controls?.();if(ctl){ctl.autoRotate=$('#autoRotate').checked&&!regionalStory.active&&!document.body.classList.contains('terrain-view');ctl.autoRotateSpeed=.28}});
+    bind('autoRotate','change',()=>{const ctl=window.__ONE_WORLD_ROUTE_GLOBE__?.controls?.();if(ctl){ctl.autoRotate=$('#autoRotate').checked&&!Story.isActive()&&!document.body.classList.contains('terrain-view');ctl.autoRotateSpeed=.28}});
     bind('showPoints','change',()=>{renderRegionalGlobe();updateRegionalTerrain()});
     bind('routeGlow','change',()=>{renderRegionalGlobe();updateRegionalTerrain()});
     bind('arcWidth','input',()=>{renderRegionalGlobe();updateRegionalTerrain()});
@@ -589,7 +546,7 @@
     buildLeftNavigation();
     buildChapterRail();
     replaceTimeline();
-    ensureRegionalStoryUi();
+    Story.ensureUi();
     configureRegionalSettings();
     renderTripOverview();
   }
@@ -660,7 +617,7 @@
     const labelPlaces=places.filter(p=>activeIds.has(p.id));
     try{
       isolateRegionalRuntime();
-      const settings=regionalSettings(),story=regionalStory.active,scale=Math.max(.45,settings.arcWidth/.55);
+      const settings=regionalSettings(),story=Story.isActive(),scale=Math.max(.45,settings.arcWidth/.55);
       globe.arcsData(arcs)
         .arcStartLat(d=>d.start.lat).arcStartLng(d=>d.start.lng)
         .arcEndLat(d=>d.end.lat).arcEndLng(d=>d.end.lng)
@@ -669,7 +626,7 @@
         .arcColor(d=>d._index===selectedSegmentIndex?(settings.routeGlow?['#59ddff','#ffffff']:'#59ddff'):(story?'rgba(92,124,151,.18)':'rgba(113,151,190,.62)'))
         .arcLabel(()=> '')
         .arcDashLength(d=>d._index===selectedSegmentIndex&&story?.62:1).arcDashGap(d=>d._index===selectedSegmentIndex&&story?.16:0).arcDashAnimateTime(d=>d._index===selectedSegmentIndex&&story&&!settings.reducedMotion?1200:0)
-        .onArcClick(d=>{if(!regionalStory.active)selectSegmentIndex(d._index,true)});
+        .onArcClick(d=>{if(!Story.isActive())selectSegmentIndex(d._index,true)});
       globe.pointsData(settings.showPoints?places:[])
         .pointLat(d=>d.coordinates.lat).pointLng(d=>d.coordinates.lng)
         .pointAltitude(.012)
@@ -693,7 +650,7 @@
     selectedSegmentIndex=Math.max(0,Math.min(currentTrip.segments.length-1,index));
     $$('.platform-stop').forEach(x=>x.classList.remove('active'));
     renderRegionalGlobe();updateTimelineRegional();renderSegmentDetail(currentTrip.segments[selectedSegmentIndex]);updateRegionalTerrain();
-    if(regionalStory.active)updateRegionalStoryHud();
+    if(Story.isActive())Story.update();
     if(focus){if(document.body.classList.contains('terrain-view'))focusRegionalTerrain(selectedSegmentIndex);else focusSegment(currentTrip.segments[selectedSegmentIndex])}
   }
 
@@ -759,6 +716,7 @@
     selectedSegmentIndex=0;
     currentTrip=await fetch(meta.dataset,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Trip dataset '+r.status);return r.json()});
     await waitForCore();
+    configureRegionalStory();
     applyTripShell();
     renderRegionalGlobe();
     setTimeout(renderRegionalGlobe,500);
@@ -779,12 +737,12 @@
     }catch(e){console.warn('ONE WORLD ROUTE platform layer unavailable',e)}
   }
 
-  window.ONE_WORLD_PLATFORM={openRoutes:openRouteLibrary,openTraveller,getProfile:loadProfile,getTrip:()=>currentTripMeta,buildTripUrl,setTerrain:setRegionalTerrain,startStory:startRegionalStory,stopStory:stopRegionalStory,focusRoute:()=>{if(document.body.classList.contains('terrain-view'))focusRegionalTerrainRoute();else window.__ONE_WORLD_ROUTE_GLOBE__?.pointOfView(routeCamera(),regionalSettings().reducedMotion?0:650)}};
+  window.ONE_WORLD_PLATFORM={openRoutes:openRouteLibrary,openTraveller,getProfile:loadProfile,getTrip:()=>currentTripMeta,buildTripUrl,setTerrain:setRegionalTerrain,startStory:()=>Story.start(),stopStory:()=>Story.stop(),focusRoute:()=>{if(document.body.classList.contains('terrain-view'))focusRegionalTerrainRoute();else window.__ONE_WORLD_ROUTE_GLOBE__?.pointOfView(routeCamera(),regionalSettings().reducedMotion?0:650)}};
   document.addEventListener('keydown',e=>{
     if(!document.body.classList.contains('platform-regional-trip')||['INPUT','SELECT','TEXTAREA'].includes(document.activeElement?.tagName))return;
-    if(e.key==='Escape'&&regionalStory.active){e.preventDefault();stopRegionalStory()}
-    else if(e.key==='ArrowLeft'&&regionalStory.active){e.preventDefault();storyStep(-1)}
-    else if(e.key==='ArrowRight'&&regionalStory.active){e.preventDefault();storyStep(1)}
+    if(e.key==='Escape'&&Story.isActive()){e.preventDefault();Story.stop()}
+    else if(e.key==='ArrowLeft'&&Story.isActive()){e.preventDefault();Story.step(-1)}
+    else if(e.key==='ArrowRight'&&Story.isActive()){e.preventDefault();Story.step(1)}
   });
   window.addEventListener('DOMContentLoaded',init);
 })();
