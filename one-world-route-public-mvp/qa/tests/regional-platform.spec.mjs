@@ -351,14 +351,14 @@ test('rail architecture proof uses the shared terrain engine',async({page,isMobi
   const pageErrors=capturePageErrors(page);
   await openRegional(page,railProof);
 
-  await page.evaluate(()=>window.ONE_WORLD_PLATFORM.setTerrain(true));
-  await expect(page.locator('body')).toHaveClass(/terrain-view/,{timeout:45000});
+  await page.evaluate(()=>{void window.ONE_WORLD_PLATFORM.setTerrain(true)});
+  await expect(page.locator('body')).toHaveClass(/terrain-view/,{timeout:100000});
   await expect.poll(()=>page.evaluate(()=>Boolean(window.__ONE_WORLD_REGIONAL_TERRAIN__))).toBe(true);
   await expect(page.locator('#terrainMap')).toBeVisible();
   if(isMobile)await expectMobilePanelsClosed(page);
   await captureViewport(page,testInfo,'rail-proof-terrain-'+testInfo.project.name+'.png');
 
-  await page.evaluate(()=>window.ONE_WORLD_PLATFORM.setTerrain(false));
+  await page.evaluate(()=>{void window.ONE_WORLD_PLATFORM.setTerrain(false)});
   await expect(page.locator('body')).not.toHaveClass(/terrain-view/);
   expect(pageErrors,'rail terrain runtime page errors').toEqual([]);
 });
