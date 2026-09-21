@@ -12,7 +12,7 @@
       const box=document.createElement('div');box.id='storyMovement';box.className='story-movement';
       const title=document.createElement('b');title.textContent=m.mode?`Domestic ${m.mode.toLowerCase()} transfer`:'Transfer · route needs review';
       const route=document.createElement('span');route.textContent=`${m.from} → ${m.to}`;
-      const note=document.createElement('small');note.textContent='Between international legs · country count unchanged';
+      const note=document.createElement('small');note.textContent=`${m.reviewStatus==='reviewed'?'':'Plan needs review · '}Between international legs · country count unchanged`;
       box.append(title,route,note);hud.appendChild(box);
     }
   };

@@ -158,6 +158,7 @@
     runtime.routeData=await routeRes.json();
     const operational=await window.ONE_WORLD_MOVEMENTS.ready;
     runtime.movements=operational.movements;
+    runtime.flightEndpoints=operational.flights.endpoints||{};
     const centroids=await centroidRes.json();
     if(waypointRes?.ok){
       const rows=await waypointRes.json();
@@ -270,7 +271,10 @@
       }
       return stitched;
     }
-    const a=runtime.centroids.get(normalize(s.from)),b=runtime.centroids.get(normalize(s.to));
+    const endpoints=runtime.flightEndpoints?.[id];
+    const airportPoint=p=>p?{lng:p.coordinates[0],lat:p.coordinates[1]}:null;
+    const a=airportPoint(endpoints?.departure)||runtime.centroids.get(normalize(s.from));
+    const b=airportPoint(endpoints?.arrival)||runtime.centroids.get(normalize(s.to));
     if(!a||!b)return[];
     return greatCirclePoints(a,b);
   }
@@ -561,7 +565,10 @@
       const curated=runtime.routeWaypoints.get(Number(s.id));
       if(Array.isArray(curated))curated.forEach(p=>points.push([Number(p[0]),Number(p[1])]));
       else{
-        const a=runtime.centroids.get(normalize(s.from)),b=runtime.centroids.get(normalize(s.to));
+        const endpoints=runtime.flightEndpoints?.[Number(s.id)];
+        const airportPoint=p=>p?{lng:p.coordinates[0],lat:p.coordinates[1]}:null;
+        const a=airportPoint(endpoints?.departure)||runtime.centroids.get(normalize(s.from));
+        const b=airportPoint(endpoints?.arrival)||runtime.centroids.get(normalize(s.to));
         if(a)points.push([Number(a.lng),Number(a.lat)]);if(b)points.push([Number(b.lng),Number(b.lat)]);
       }
     }

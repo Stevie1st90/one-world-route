@@ -160,7 +160,7 @@
       "country": "Portugal",
       "from": "Lissabon (Direktbus)",
       "to": "Lissabon (LIS)",
-      "mode": null,
+      "mode": "Metro",
       "corridor": "Lissabon (Direktbus) → Lissabon (LIS)",
       "coordinates": null,
       "geometryKind": "unresolved",
@@ -169,29 +169,31 @@
         "after": "2026-11-30",
         "before": "2026-11-30"
       },
-      "plannedDuration": null,
+      "plannedDuration": 60,
       "distanceKm": null,
       "distanceBasis": null,
-      "estimatedCost": null,
+      "estimatedCost": 2.4,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
+      "bookingRequired": false,
+      "bookingStatus": "not-required",
       "feasibility": "needs-review",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.lisbonairport.pt/en/lis/access-parking/getting-to-and-from-the-airport/public-transportation",
+        "https://www.metrolisboa.pt/en/buy/"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-21",
+      "notes": "Provisional metro transfer to LIS. Airport operator describes about 20 minutes from Saldanha and about 10 minutes from Oriente; the arriving international bus terminal is not fixed, so neither station is asserted as the actual start. Planning allowance: 60 minutes, excluding airline check-in/security time. EUR 2.40 = published EUR 1.90 Carris/Metro ticket plus EUR 0.50 occasional card, assuming one metro journey and a new card. Confirm bus terminal, walking access, airport terminal and operating hours for the travel date. Geometry and distance remain unresolved; no route or booking verification.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "needs-review",
+      "durationBasis": "planning-allowance",
+      "costBasis": "published-fare-plus-card",
+      "evidenceScope": "Transport option and public fare only; exact itinerary unverified"
     },
     {
       "id": "transfer-27-28",
@@ -242,7 +244,7 @@
       "country": "Irland",
       "from": "Dublin",
       "to": "Dublin (DUB)",
-      "mode": null,
+      "mode": "Bus",
       "corridor": "Dublin → Dublin (DUB)",
       "coordinates": [
         [
@@ -260,7 +262,7 @@
         "after": "2026-12-04",
         "before": "2026-12-04"
       },
-      "plannedDuration": null,
+      "plannedDuration": 90,
       "distanceKm": 8.8,
       "distanceBasis": "geodesic-lower-bound",
       "estimatedCost": null,
@@ -270,19 +272,21 @@
       "bookingStatus": "unknown",
       "feasibility": "needs-review",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.dublinairport.com/to-from-the-airport/by-bus",
+        "https://www.dublinexpress.ie/"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-21",
+      "notes": "Airport and coach operator confirm buses between Dublin city and DUB, serving both airport terminals. Planning allowance: 90 minutes for local access, waiting and road traffic; not a published timetable duration and excludes airline check-in/security. The incoming ferry arrival and chosen city stop still need a linked port-to-stop connection. Do not equate the operator fastest city journey with a port-to-airport journey. Ticket price, departure, terminal, exact stops and booking requirement remain unknown. Existing geometry is only an endpoint connector.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "needs-review",
+      "durationBasis": "planning-allowance",
+      "costBasis": null,
+      "evidenceScope": "City-airport bus availability only; port connection unverified"
     },
     {
       "id": "transfer-29-30",

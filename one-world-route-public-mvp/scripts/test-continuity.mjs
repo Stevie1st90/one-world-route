@@ -35,3 +35,33 @@ test('playback inserts transfer without advancing macro selection and stop clear
   timer();assert.equal(selected,22);assert.equal(active,null);
   runInNewContext('stopPlay();',context);assert.equal(state.playing,false);assert.equal(buttons.textContent,'▶');assert.equal(active,null);
 });
+
+
+test('partial airport endpoints never select ambiguous airports or invent transit routing',async()=>{
+  const f=await read('flight-geometries.json');
+  assert.equal(f.endpoints['27'].departure.airportCode,'LIS');
+  assert.equal(f.endpoints['27'].arrival,null);
+  assert.equal(f.endpoints['86'].departure,null);
+  assert.equal(f.endpoints['86'].arrival.airportCode,'PNH');
+  assert.equal(f.endpoints['70'].departure.airportCode,'FUN');
+  assert.equal(f.endpoints['70'].arrival.airportCode,'VLI');
+  assert.equal(f.geometries['70'],undefined);
+  assert.equal(f.endpoints['78'].departure,null);
+  assert.equal(f.endpoints['78'].arrival,null);
+});
+
+
+test('Terrain fallback and chapter focus use known airports without requiring a full flight route',async()=>{
+  const {runInNewContext}=await import('node:vm');
+  const source=await readFile(new URL('../iteration9.js',import.meta.url),'utf8');
+  const path=source.slice(source.indexOf('  function segmentPathPoints('),source.indexOf('  function segmentFeature('));
+  const focus=source.slice(source.indexOf('  function focusTerrainPhase('),source.indexOf('  function terrainLocalIds('));
+  const segment={id:27,from:'Portugal',to:'UK'};
+  let centerPoints;
+  const runtime={routeWaypoints:new Map(),flightEndpoints:{27:{departure:{coordinates:[-9,38]}}},centroids:new Map([['Portugal',{lng:0,lat:0}],['UK',{lng:1,lat:2}]]),terrainMap:{easeTo:()=>{}},terrainActive:true,routeData:{segments:[segment]}};
+  const ctx={runtime,normalize:x=>x,greatCirclePoints:(a,b)=>[[a.lng,a.lat],[b.lng,b.lat]],phaseIdFor:()=>1,sphericalCenter:p=>{centerPoints=p;return [0,0]},angularDistance:()=>1,window:{innerWidth:1440},$:()=>null};
+  const points=runInNewContext(path+'\nsegmentPathPoints({id:27,from:"Portugal",to:"UK"})',ctx);
+  assert.equal(JSON.stringify(points),JSON.stringify([[-9,38],[1,2]]));
+  runInNewContext(focus+'\nfocusTerrainPhase(1)',ctx);
+  assert.equal(JSON.stringify(centerPoints),JSON.stringify([[-9,38],[1,2]]));
+});

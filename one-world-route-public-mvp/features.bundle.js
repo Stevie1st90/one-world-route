@@ -15,7 +15,7 @@
       const box=document.createElement('div');box.id='storyMovement';box.className='story-movement';
       const title=document.createElement('b');title.textContent=m.mode?`Domestic ${m.mode.toLowerCase()} transfer`:'Transfer · route needs review';
       const route=document.createElement('span');route.textContent=`${m.from} → ${m.to}`;
-      const note=document.createElement('small');note.textContent='Between international legs · country count unchanged';
+      const note=document.createElement('small');note.textContent=`${m.reviewStatus==='reviewed'?'':'Plan needs review · '}Between international legs · country count unchanged`;
       box.append(title,route,note);hud.appendChild(box);
     }
   };
@@ -145,7 +145,7 @@
 
   function movementTimeline(s){
     const items=runtime.operational?.movements||[];
-    const card=m=>`<article class="ops-movement" data-movement-id="${esc(m.id)}"><small>TRANSFER · ${esc(m.reviewStatus)}</small><b>${esc(m.from)} → ${esc(m.to)}</b><span>${esc(m.mode||'Mode to confirm')} · ${m.distanceKm===null?'Distance unknown':`${m.distanceBasis==='geodesic-lower-bound'?'≥ ':''}${m.distanceKm} km (${m.distanceBasis==='geodesic-lower-bound'?'straight-line':'route estimate'})`}</span><span>Duration: ${m.plannedDuration===null?'unknown':m.plannedDuration+' min'} · Cost: ${m.estimatedCost===null?'unpriced':euro(m.estimatedCost)}</span><span>Window: ${esc(m.planningWindow.after||'unknown')} → ${esc(m.planningWindow.before||'unknown')}</span><span>Status: ${esc(m.status)} · Booking: ${esc(m.bookingStatus)}</span><details><summary>Planning evidence and actuals</summary><p>${esc(m.notes)}</p><p>Last verified: ${esc(m.lastVerified||'Not verified')}<br>Actual departure: ${esc(m.actualDeparture||'Not recorded')}<br>Actual arrival: ${esc(m.actualArrival||'Not recorded')}<br>Actual cost: ${m.actualCost===null?'Not recorded':euro(m.actualCost)}</p></details></article>`;
+    const card=m=>`<article class="ops-movement" data-movement-id="${esc(m.id)}"><small>TRANSFER · ${esc(m.reviewStatus)}</small><b>${esc(m.from)} → ${esc(m.to)}</b><span>${esc(m.mode||'Mode to confirm')} · ${m.distanceKm===null?'Distance unknown':`${m.distanceBasis==='geodesic-lower-bound'?'≥ ':''}${m.distanceKm} km (${m.distanceBasis==='geodesic-lower-bound'?'straight-line':'route estimate'})`}</span><span>${m.durationBasis==='planning-allowance'?'Time allowance':'Duration'}: ${m.plannedDuration===null?'unknown':m.plannedDuration+' min'} · Estimated cost: ${m.estimatedCost===null?'unpriced':euro(m.estimatedCost)}</span><span>Window: ${esc(m.planningWindow.after||'unknown')} → ${esc(m.planningWindow.before||'unknown')}</span><span>Status: ${esc(m.status)} · Booking: ${esc(m.bookingStatus)}</span><details><summary>Planning evidence and actuals</summary><p>${esc(m.notes)}</p><p>Last verified: ${esc(m.lastVerified||'Not verified')}<br>Actual departure: ${esc(m.actualDeparture||'Not recorded')}<br>Actual arrival: ${esc(m.actualArrival||'Not recorded')}<br>Actual cost: ${m.actualCost===null?'Not recorded':euro(m.actualCost)}</p></details></article>`;
     const before=items.filter(m=>m.parentBeforeLeg===Number(s.id)),after=items.filter(m=>m.parentAfterLeg===Number(s.id));
     return `<div class="ops-mini-title">Operational timeline</div><div class="ops-movements">${before.map(card).join('')}<div class="ops-macro">International leg #${s.id} · ${esc(routeLabel(s))}</div>${after.map(card).join('')}</div>`;
   }
@@ -656,6 +656,7 @@
     runtime.routeData=await routeRes.json();
     const operational=await window.ONE_WORLD_MOVEMENTS.ready;
     runtime.movements=operational.movements;
+    runtime.flightEndpoints=operational.flights.endpoints||{};
     const centroids=await centroidRes.json();
     if(waypointRes?.ok){
       const rows=await waypointRes.json();
@@ -768,7 +769,10 @@
       }
       return stitched;
     }
-    const a=runtime.centroids.get(normalize(s.from)),b=runtime.centroids.get(normalize(s.to));
+    const endpoints=runtime.flightEndpoints?.[id];
+    const airportPoint=p=>p?{lng:p.coordinates[0],lat:p.coordinates[1]}:null;
+    const a=airportPoint(endpoints?.departure)||runtime.centroids.get(normalize(s.from));
+    const b=airportPoint(endpoints?.arrival)||runtime.centroids.get(normalize(s.to));
     if(!a||!b)return[];
     return greatCirclePoints(a,b);
   }
@@ -1059,7 +1063,10 @@
       const curated=runtime.routeWaypoints.get(Number(s.id));
       if(Array.isArray(curated))curated.forEach(p=>points.push([Number(p[0]),Number(p[1])]));
       else{
-        const a=runtime.centroids.get(normalize(s.from)),b=runtime.centroids.get(normalize(s.to));
+        const endpoints=runtime.flightEndpoints?.[Number(s.id)];
+        const airportPoint=p=>p?{lng:p.coordinates[0],lat:p.coordinates[1]}:null;
+        const a=airportPoint(endpoints?.departure)||runtime.centroids.get(normalize(s.from));
+        const b=airportPoint(endpoints?.arrival)||runtime.centroids.get(normalize(s.to));
         if(a)points.push([Number(a.lng),Number(a.lat)]);if(b)points.push([Number(b.lng),Number(b.lat)]);
       }
     }

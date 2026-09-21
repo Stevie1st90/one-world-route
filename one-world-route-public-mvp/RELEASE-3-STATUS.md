@@ -36,3 +36,11 @@ Release 3 ist **nicht freigegeben**. Ausschließlich Stevie1st90/one-world-route
 - 36c266006837265daf9c728941278b107ac498a0 — MapLibre- und Globe-API-Korrekturen; Vercel SUCCESS geprüft.
 
 Die Basisplanung von ca. 379 Tagen und EUR 90,6k wurde durch unbestätigte Transferannahmen nicht automatisch geändert.
+
+## Ergänzung: Flughafen-Endpunkte und Europe I
+
+182 von 220 Flug-Endpunkten besitzen jetzt separat gespeicherte eindeutige Flughafenkoordinaten. Davon gehören 20 zu noch unvollständigen Flugrouten. Terrain verwendet diese bekannten Endpunkte auch bei Fallback-Geometrien; unklare Transitwege bleiben ungeklärt und werden nicht als vollständige Flughafenroute ausgegeben. 81 vollständige Fluggeometrien, 29 offene Routings und die strengen Kontinuitätszahlen bleiben unverändert. Die neuen Endpunkte sind noch kein Nachweis einer durchgehenden operativen Verbindung.
+
+Lissabon–LIS enthält eine vorläufige Metro-Option, öffentlich belegte EUR 2,40 inklusive neuer Karte und einen ausdrücklich geschätzten Zeitpuffer. Dublin–DUB enthält eine Bus-Option und Zeitreserve; die Verbindung vom Fährhafen zur Abfahrtshaltestelle ist weiterhin offen. Quellen und Grenzen stehen direkt in den Movement-Datensätzen. Keine Buchungen und keine ungeprüfte Freigabe. Story kennzeichnet auch Transfers mit bekanntem Verkehrsmittel weiterhin als prüfbedürftig.
+
+Verifikation dieser Ergänzung: 11 Node-Tests und Release-Build erfolgreich; keine neue visuelle Browser-Abnahme.
