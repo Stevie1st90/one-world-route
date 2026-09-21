@@ -58,7 +58,7 @@ Examples:
 }
 ```
 
-The runtime extension registry currently supports cruise, road/vehicle and border context. Unknown extensions must be ignored safely until a presenter is registered. Validation follows the same pattern: `scripts/platform-extension-validators.mjs` loads independent validators from `scripts/platform-extension-validators/`, while the core validator remains limited to the universal place -> stop -> segment contract.
+The runtime extension registry currently supports cruise, road/vehicle and border context. Each presenter lives independently in `platform/extensions/` and registers itself with the runtime registry; `platform/extensions.js` only composes registered output. Unknown extensions must be ignored safely until a presenter is registered. Validation follows the same pattern: `scripts/platform-extension-validators.mjs` loads independent validators from `scripts/platform-extension-validators/`, while the core validator remains limited to the universal place -> stop -> segment contract.
 
 During migration the model adapter also understands the existing legacy fields:
 
