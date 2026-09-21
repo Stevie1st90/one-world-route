@@ -4,13 +4,110 @@
   "title": "ONE WORLD ROUTE Traveller Context",
   "type": "object",
   "properties": {
-    "passports": {"type":"array","items":{"type":"string","pattern":"^[A-Z]{2}$"},"maxItems":4},
-    "residenceCountry": {"type":["string","null"],"pattern":"^[A-Z]{2}$"},
-    "language": {"type":"string"},
-    "currency": {"type":"string","pattern":"^[A-Z]{3}$"},
-    "origin": {"type":["string","null"]},
-    "party": {"type":"object","properties":{"adults":{"type":"integer","minimum":1,"maximum":20},"children":{"type":"integer","minimum":0,"maximum":20}}},
-    "accessibility": {"type":"object","properties":{"reducedMobility":{"type":"boolean"}}}
+    "passports": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z]{2}$"
+      },
+      "maxItems": 4
+    },
+    "residenceCountry": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[A-Z]{2}$"
+    },
+    "language": {
+      "type": "string"
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "origin": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "party": {
+      "type": "object",
+      "properties": {
+        "adults": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        },
+        "children": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20
+        }
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "properties": {
+        "reducedMobility": {
+          "type": "boolean"
+        }
+      }
+    },
+    "vehicle": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "private-car",
+            "rental-car",
+            "camper",
+            "motorcycle",
+            "other"
+          ]
+        },
+        "registrationCountry": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[A-Z]{2}$"
+        },
+        "fuelType": {
+          "enum": [
+            "petrol",
+            "diesel",
+            "hybrid",
+            "plug-in-hybrid",
+            "electric",
+            "hydrogen",
+            "other",
+            "unknown"
+          ]
+        },
+        "euroClass": {
+          "enum": [
+            "Euro 1",
+            "Euro 2",
+            "Euro 3",
+            "Euro 4",
+            "Euro 5",
+            "Euro 6",
+            "unknown"
+          ]
+        },
+        "rentalCrossBorderApproved": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      }
+    }
   },
-  "description": "Store only non-secret planning context. Never store passport numbers, booking references, payment data, exact home address or other identity documents in the public dataset."
+  "description": "Store only non-secret planning context. Vehicle Context is optional and supports road-rule, toll and low-emission-zone checks. Never store passport numbers, booking references, payment data, exact home address, licence numbers, vehicle VINs or other identity documents in the public dataset."
 }
