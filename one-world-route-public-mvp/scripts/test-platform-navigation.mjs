@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','route-library.js','story.js','terrain.js','extensions.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','route-library.js','story.js','terrain.js','extensions.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -220,6 +220,7 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.match(source,/const TravellerUi=PLATFORM_MODULES\.travellerUi/);
   assert.match(source,/const Ui=PLATFORM_MODULES\.ui/);
   assert.match(source,/const Navigation=PLATFORM_MODULES\.navigation/);
+  assert.match(source,/const LegacyLocalization=PLATFORM_MODULES\.legacyLocalization/);
   assert.match(source,/const Discovery=PLATFORM_MODULES\.discovery/);
   assert.match(source,/const Extensions=PLATFORM_MODULES\.extensions/);
   assert.match(source,/const RouteLibrary=PLATFORM_MODULES\.routeLibrary/);
@@ -281,10 +282,15 @@ test('Traveller Context UI is isolated from storage policy',()=>{
 
 test('platform localization is isolated from bootstrap logic',()=>{
   const i18n=moduleSources['i18n.js'];
+  const legacyLocalization=moduleSources['legacy-localization.js'];
   assert.match(i18n,/legacyWorldText:LEGACY_WORLD_TEXT/);
   assert.match(i18n,/supportedLocales/);
+  assert.match(legacyLocalization,/function translate/);
+  assert.match(legacyLocalization,/function activate/);
+  assert.match(source,/LegacyLocalization\.configure/);
   assert.doesNotMatch(source,/const I18N = \{/);
   assert.doesNotMatch(source,/const LEGACY_WORLD_TEXT = \{/);
+  assert.doesNotMatch(source,/function legacyTranslate|function activateLegacyLocalization/);
 });
 
 
