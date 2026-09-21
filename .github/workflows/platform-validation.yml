@@ -60,6 +60,7 @@ jobs:
           node --check scripts/platform-extension-validators/border.mjs
           node --check scripts/platform-extension-validators/cruise-call.mjs
           node --check scripts/platform-extension-validators/port.mjs
+          node --check scripts/platform-extension-validators/rail.mjs
           node --check scripts/scaffold-trip.mjs
           node --check scripts/generate-seo.mjs
           node --check scripts/serve-local.mjs
