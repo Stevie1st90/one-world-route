@@ -198,6 +198,73 @@ for(const item of regional){
   });
 }
 
+
+for(const item of regional){
+  test(item.id+' timeline navigation and playback stay in sync',async({page},testInfo)=>{
+    test.setTimeout(90000);
+    const pageErrors=capturePageErrors(page);
+    await openRegional(page,item);
+
+    const range=page.locator('#regionalRouteRange');
+    await expect(range).toHaveValue('1');
+    await page.locator('#regionalNextBtn').click();
+    await expect(range).toHaveValue('2');
+    await expect(page.locator('#detailEyebrow')).toContainText('2 / '+item.metrics.segments);
+
+    await page.locator('#regionalPrevBtn').click();
+    await expect(range).toHaveValue('1');
+
+    await page.locator('#regionalPlayBtn').click();
+    await expect.poll(async()=>Number(await range.inputValue()),{timeout:5000}).toBeGreaterThan(1);
+    await page.locator('#regionalPlayBtn').click();
+    const stoppedAt=await range.inputValue();
+    await page.waitForTimeout(1700);
+    await expect(range).toHaveValue(stoppedAt);
+
+    expect(pageErrors,item.id+' timeline runtime page errors').toEqual([]);
+    await page.screenshot({path:testInfo.outputPath(item.id+'-timeline-'+testInfo.project.name+'.png'),fullPage:true});
+  });
+}
+
+test('regional methodology modal renders route evidence context',async({page,isMobile})=>{
+  test.skip(isMobile);
+  test.setTimeout(90000);
+  const pageErrors=capturePageErrors(page);
+  const item=regional[0];
+  await openRegional(page,item);
+
+  await page.locator('#infoBtn').click();
+  await expect(page.locator('#infoModal')).toBeVisible();
+  await expect(page.locator('#infoModal .method-grid article')).toHaveCount(4);
+  await expect(page.locator('#infoModal')).toContainText(String(item.metrics.stops));
+  await expect(page.locator('#infoModal')).toContainText(String(item.metrics.segments));
+  await page.locator('#infoModal .modal-close').click();
+  await expect(page.locator('#infoModal')).toBeHidden();
+
+  expect(pageErrors,'methodology runtime page errors').toEqual([]);
+});
+
+test('route fit filters and reset produce deterministic catalog results',async({page})=>{
+  test.setTimeout(90000);
+  const pageErrors=capturePageErrors(page);
+  await openFlagship(page);
+
+  await page.locator('#platformRouteBtn').click();
+  await expect(page.locator('#platformRouteModal')).toBeVisible();
+  await page.locator('#platformFitToggle').click();
+  await expect(page.locator('#platformFitFilters')).toBeVisible();
+
+  await page.locator('#platformRoutePace').selectOption('balanced');
+  await expect(page.locator('[data-platform-trip]')).toHaveCount(1);
+  await expect(page.locator('[data-platform-trip="italy-grand-tour"]')).toBeVisible();
+
+  await page.locator('#platformRouteReset').click();
+  await expect(page.locator('[data-platform-trip]')).toHaveCount(catalog.trips.length);
+  await expect(page.locator('#platformRoutePace')).toHaveValue('');
+
+  expect(pageErrors,'route fit runtime page errors').toEqual([]);
+});
+
 test('regional terrain activates and exits on the shared engine',async({page,isMobile},testInfo)=>{
   test.skip(isMobile);
   test.setTimeout(90000);
