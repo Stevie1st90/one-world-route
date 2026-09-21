@@ -95,6 +95,20 @@ async function openFlagship(page){
   await expect(page.locator('#platformTravellerBtn')).toBeVisible({timeout:10000});
 }
 
+async function expectActiveLabelsSeparated(page){
+  const labels=page.locator('.platform-globe-label');
+  await expect(labels).toHaveCount(2,{timeout:10000});
+  await page.waitForTimeout(750);
+  const boxes=await labels.evaluateAll(nodes=>nodes.map(node=>{
+    const rect=node.getBoundingClientRect();
+    return {left:rect.left,right:rect.right,top:rect.top,bottom:rect.bottom,width:rect.width,height:rect.height};
+  }));
+  const [a,b]=boxes;
+  const overlapWidth=Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left));
+  const overlapHeight=Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
+  expect(overlapWidth*overlapHeight,'active route labels overlap').toBe(0);
+}
+
 for(const item of regional){
   test(item.id+' shell, navigation, context and story work',async({page,isMobile},testInfo)=>{
     test.setTimeout(90000);
@@ -125,6 +139,7 @@ for(const item of regional){
     await page.locator('[data-stop-index="1"]').click();
     await expect(page.locator('[data-stop-index="1"]')).toHaveClass(/active/);
     await expect(page.locator('#detailTitle')).toHaveText(secondPlace.name.en);
+    await expectActiveLabelsSeparated(page);
     if(isMobile){
       await page.locator('#closeFilters').click();
       await expect(page.locator('#leftPanel')).not.toHaveClass(/mobile-open/);
