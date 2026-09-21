@@ -14,7 +14,8 @@
   const Story=PLATFORM_MODULES.story;
   const Terrain=PLATFORM_MODULES.terrain;
   const Ui=PLATFORM_MODULES.ui;
-  if(!LocaleData||!Model||!Traveller||!TravellerUi||!Discovery||!Extensions||!RouteLibrary||!Story||!Terrain||!Ui)throw new Error('ONE WORLD ROUTE platform modules unavailable');
+  const Navigation=PLATFORM_MODULES.navigation;
+  if(!LocaleData||!Model||!Traveller||!TravellerUi||!Discovery||!Extensions||!RouteLibrary||!Story||!Terrain||!Ui||!Navigation)throw new Error('ONE WORLD ROUTE platform modules unavailable');
   const SUPPORTED_LOCALES=LocaleData.supportedLocales;
   const I18N=LocaleData.messages;
   const LEGACY_WORLD_TEXT=LocaleData.legacyWorldText;
@@ -190,11 +191,11 @@
   }
 
   function buildTripUrl(id){
-    const p = new URLSearchParams(location.search);
-    const defaultTripId=catalog?.defaultTripId||'world-195';
-    if(id === defaultTripId) p.delete('trip'); else p.set('trip',id);
-    p.delete('segment'); p.delete('country'); p.delete('phase'); p.delete('view');
-    return `/${p.toString()?`?${p}`:''}`;
+    return Navigation.buildTripUrl({
+      id,
+      defaultTripId:catalog?.defaultTripId||'world-195',
+      search:location.search
+    });
   }
 
   function setQueryTrip(id){
@@ -247,11 +248,13 @@
 
   function syncRegionalUrl(){
     if(!currentTripMeta||currentTripMeta.renderer==='legacy-world')return;
-    const existing=new URLSearchParams(location.search),p=new URLSearchParams();
-    p.set('trip',currentTripMeta.id);
-    p.set('lang',locale);
-    if(existing.get('view')==='terrain'||document.body.classList.contains('terrain-view'))p.set('view','terrain');
-    history.replaceState(null,'',`${location.pathname}?${p.toString()}`);
+    history.replaceState(null,'',Navigation.regionalUrl({
+      tripId:currentTripMeta.id,
+      locale,
+      search:location.search,
+      pathname:location.pathname,
+      terrainActive:document.body.classList.contains('terrain-view')
+    }));
   }
 
 
