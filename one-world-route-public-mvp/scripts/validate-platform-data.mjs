@@ -21,6 +21,12 @@ for (const trip of catalog.trips || []) {
   if (!Array.isArray(discovery.themes)||!discovery.themes.length) fail(trip.id+': discovery.themes required');
   if (!Array.isArray(discovery.modes)||!discovery.modes.length) fail(trip.id+': discovery.modes required');
   if (!['7-14','15-30','31-89','90-plus'].includes(discovery.durationBand)) fail(trip.id+': invalid discovery.durationBand');
+  const fit=discovery.fit||{};
+  if (!['relaxed','balanced','active'].includes(fit.pace)) fail(trip.id+': invalid discovery.fit.pace');
+  if (!Array.isArray(fit.seasons)||!fit.seasons.length||fit.seasons.some(v=>!['spring','summer','autumn','winter','multi-season'].includes(v))) fail(trip.id+': invalid discovery.fit.seasons');
+  if (!Array.isArray(fit.party)||!fit.party.length||fit.party.some(v=>!['solo','couples','friends','families'].includes(v))) fail(trip.id+': invalid discovery.fit.party');
+  if (!fit.startRegion) fail(trip.id+': discovery.fit.startRegion required');
+  if (!['standard-check','operator-dependent','vehicle-dependent','complex-planning'].includes(fit.accessibility)) fail(trip.id+': invalid discovery.fit.accessibility');
   for (const lang of supportedLocales) {
     if (!String(trip.title?.[lang]||'').trim()) fail(trip.id+': missing title for '+lang);
     if (!String(trip.subtitle?.[lang]||'').trim()) fail(trip.id+': missing subtitle for '+lang);
