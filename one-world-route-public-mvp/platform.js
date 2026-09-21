@@ -690,6 +690,16 @@
     regionalTerrain.maplibre=module;return module;
   }
 
+  function localizeRegionalMapStyle(style){
+    const lang=SUPPORTED_LOCALES.includes(locale)?locale:'en';
+    const nameExpr=['coalesce',['get',`name:${lang}`],['get',`name_${lang}`],['get','name:latin'],['get','name_en'],['get','name']];
+    for(const layer of style?.layers||[]){
+      if(layer?.type!=='symbol'||!layer.layout)continue;
+      if(/^(label_(country|city|state|other)|water_name)/.test(String(layer.id||'')))layer.layout['text-field']=nameExpr;
+    }
+    return style;
+  }
+
   async function regionalTerrainStyle(){
     let base;
     try{
@@ -698,6 +708,7 @@
     }catch{
       base={version:8,sources:{},layers:[{id:'background',type:'background',paint:{'background-color':'#d9e5e8'}}]};
     }
+    base=localizeRegionalMapStyle(base);
     base.version=8;base.projection={type:'globe'};
     base.sources={...(base.sources||{}),
       terrainSource:{type:'raster-dem',url:'https://tiles.mapterhorn.com/tilejson.json'},
