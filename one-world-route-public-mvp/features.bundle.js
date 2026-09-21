@@ -3184,7 +3184,17 @@
   function focusRoute(){
     const d=context(),bounds=d.routeBounds();
     if(!state.map||!bounds)return;
-    const padding=innerWidth<=820?{top:90,right:26,bottom:132,left:26}:{top:78,right:380,bottom:90,left:330};
+    const mobile=innerWidth<=820;
+    const padding=mobile?{top:90,right:26,bottom:132,left:26}:{top:78,right:380,bottom:90,left:330};
+    const [[west,south],[east,north]]=bounds;
+    const midLat=(Number(south)+Number(north))/2;
+    const lngSpan=Math.abs(Number(east)-Number(west))*Math.max(.35,Math.cos((Number.isFinite(midLat)?midLat:0)*Math.PI/180));
+    const latSpan=Math.abs(Number(north)-Number(south));
+    const span=Math.max(Number.isFinite(lngSpan)?lngSpan:0,Number.isFinite(latSpan)?latSpan:0);
+    const pitch=mobile?(span>12?8:span>7?20:30):36;
+    const bearing=mobile&&span>12?0:-5;
+    state.map.setPitch?.(pitch);
+    state.map.setBearing?.(bearing);
     state.map.fitBounds(bounds,{padding,maxZoom:7.4,duration:d.settings().reducedMotion?0:750,essential:true});
   }
 
