@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','model.js','traveller.js','traveller-ui.js','ui.js','discovery.js','route-library.js','story.js','terrain.js','extensions.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','route-library.js','story.js','terrain.js','extensions.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -42,6 +42,31 @@ test('trip URL builder preserves language and clears route-specific state',()=>{
   assert.equal(parsed.searchParams.get('trip'),'southern-europe-road-trip');
   assert.equal(parsed.searchParams.get('lang'),'de');
   for(const key of ['segment','country','phase','view'])assert.equal(parsed.searchParams.has(key),false);
+});
+
+test('navigation module owns reusable regional URL state',()=>{
+  const window={ONE_WORLD_PLATFORM_MODULES:{}};
+  const context={window,URLSearchParams};
+  vm.createContext(context);
+  vm.runInContext(moduleSources['navigation.js'],context);
+  const navigation=window.ONE_WORLD_PLATFORM_MODULES.navigation;
+  assert.equal(
+    navigation.buildTripUrl({
+      id:'world-195',
+      defaultTripId:'world-195',
+      search:'?trip=italy-grand-tour&lang=de&segment=4&view=terrain'
+    }),
+    '/?lang=de'
+  );
+  assert.equal(
+    navigation.regionalUrl({
+      tripId:'italy-grand-tour',
+      locale:'de',
+      search:'?view=terrain&country=Italy',
+      pathname:'/de/trip/italy-grand-tour'
+    }),
+    '/de/trip/italy-grand-tour?trip=italy-grand-tour&lang=de&view=terrain'
+  );
 });
 
 test('switching to flagship removes trip parameter but keeps language',()=>{
@@ -194,6 +219,7 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.match(source,/const Traveller=PLATFORM_MODULES\.traveller/);
   assert.match(source,/const TravellerUi=PLATFORM_MODULES\.travellerUi/);
   assert.match(source,/const Ui=PLATFORM_MODULES\.ui/);
+  assert.match(source,/const Navigation=PLATFORM_MODULES\.navigation/);
   assert.match(source,/const Discovery=PLATFORM_MODULES\.discovery/);
   assert.match(source,/const Extensions=PLATFORM_MODULES\.extensions/);
   assert.match(source,/const RouteLibrary=PLATFORM_MODULES\.routeLibrary/);
@@ -202,6 +228,8 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.match(source,/RouteLibrary\.open\(/);
   assert.match(source,/Story\.configure\(/);
   assert.match(source,/Ui\.ensureGlobalActions\(/);
+  assert.match(source,/Navigation\.buildTripUrl\(/);
+  assert.match(source,/Navigation\.regionalUrl\(/);
   assert.match(source,/ensureDialog:Ui\.ensureDialog/);
   assert.match(source,/settings:Ui\.regionalSettings/);
   assert.match(source,/toast:Ui\.toast/);
