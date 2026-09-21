@@ -164,6 +164,21 @@ for(const item of regional){
       await expect(page.locator('#rightPanel')).not.toHaveClass(/mobile-open/);
     }
 
+    const range=page.locator('#regionalRouteRange');
+    await expect(range).toHaveValue('2');
+    await page.locator('#regionalNextBtn').click();
+    await expect(range).toHaveValue('3');
+    await expect(page.locator('#detailEyebrow')).toContainText('3 / '+item.metrics.segments);
+    await page.locator('#regionalPrevBtn').click();
+    await expect(range).toHaveValue('2');
+
+    await page.locator('#regionalPlayBtn').click();
+    await expect.poll(async()=>Number(await range.inputValue()),{timeout:5000}).toBeGreaterThan(2);
+    await page.locator('#regionalPlayBtn').click();
+    const stoppedAt=await range.inputValue();
+    await page.waitForTimeout(1700);
+    await expect(range).toHaveValue(stoppedAt);
+
     await page.locator('#platformTravellerBtn').click();
     await expect(page.locator('#platformTravellerModal')).toBeVisible();
     await expect(page.locator('#platformTravellerForm [name="passport"]')).toBeVisible();
@@ -209,33 +224,6 @@ for(const item of regional){
   });
 }
 
-
-for(const item of regional){
-  test(item.id+' timeline navigation and playback stay in sync',async({page},testInfo)=>{
-    test.setTimeout(90000);
-    const pageErrors=capturePageErrors(page);
-    await openRegional(page,item);
-
-    const range=page.locator('#regionalRouteRange');
-    await expect(range).toHaveValue('1');
-    await page.locator('#regionalNextBtn').click();
-    await expect(range).toHaveValue('2');
-    await expect(page.locator('#detailEyebrow')).toContainText('2 / '+item.metrics.segments);
-
-    await page.locator('#regionalPrevBtn').click();
-    await expect(range).toHaveValue('1');
-
-    await page.locator('#regionalPlayBtn').click();
-    await expect.poll(async()=>Number(await range.inputValue()),{timeout:5000}).toBeGreaterThan(1);
-    await page.locator('#regionalPlayBtn').click();
-    const stoppedAt=await range.inputValue();
-    await page.waitForTimeout(1700);
-    await expect(range).toHaveValue(stoppedAt);
-
-    expect(pageErrors,item.id+' timeline runtime page errors').toEqual([]);
-    await page.screenshot({path:testInfo.outputPath(item.id+'-timeline-'+testInfo.project.name+'.png'),fullPage:true});
-  });
-}
 
 test('regional methodology modal renders route evidence context',async({page,isMobile})=>{
   test.setTimeout(90000);
