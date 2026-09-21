@@ -629,6 +629,12 @@
   }
 
   async function setTerrainMode(active){
+    if(document.body.classList.contains('platform-regional-trip')||new URLSearchParams(location.search).has('trip')){
+      const api=window.ONE_WORLD_PLATFORM;
+      if(api?.setTerrain)return api.setTerrain(Boolean(active));
+      setTimeout(()=>window.ONE_WORLD_PLATFORM?.setTerrain?.(Boolean(active)),120);
+      return;
+    }
     if(active&&document.body.classList.contains('story-mode')){setToggleState(false);notify('Exit Story before opening 3D globe terrain.');return;}
     if(!active){deactivateTerrain({updateUrl:true});return;}
     if(runtime.terrainActive){setToggleState(true);return;}
@@ -646,7 +652,10 @@
   }
 
   async function restoreViewState(){
-    const wantsTerrain=new URLSearchParams(location.search).get('view')==='terrain';setToggleState(false);
+    const params=new URLSearchParams(location.search);
+    setToggleState(false);
+    if(params.has('trip'))return;
+    const wantsTerrain=params.get('view')==='terrain';
     if(wantsTerrain)await setTerrainMode(true);
   }
 
