@@ -78,6 +78,22 @@
     }));
   }
 
+  function arcAltitude(item,active=false){
+    const mode=String(item?.transport?.mode||'other');
+    const start=item?.start||{},end=item?.end||{};
+    const lat=(Number(start.lat)+Number(end.lat))/2;
+    const latSpan=Math.abs(Number(start.lat)-Number(end.lat));
+    const lngSpan=Math.abs(Number(start.lng)-Number(end.lng))*Math.max(.35,Math.cos((Number.isFinite(lat)?lat:0)*Math.PI/180));
+    const span=Math.max(Number.isFinite(latSpan)?latSpan:0,Number.isFinite(lngSpan)?lngSpan:0);
+    const air=new Set(['flight','helicopter']);
+    const water=new Set(['ferry','cruise']);
+    let altitude;
+    if(air.has(mode))altitude=Math.min(.09,.025+span*.0028);
+    else if(water.has(mode))altitude=Math.min(.032,.008+span*.0012);
+    else altitude=Math.min(.014,.004+span*.0007);
+    return active?altitude*1.35:altitude;
+  }
+
   function render(){
     const d=context(),trip=d.getTrip(),selected=d.getSelectedIndex();
     const globe=getGlobe();
@@ -104,7 +120,7 @@
       globe.arcsData(arcs)
         .arcStartLat(item=>item.start.lat).arcStartLng(item=>item.start.lng)
         .arcEndLat(item=>item.end.lat).arcEndLng(item=>item.end.lng)
-        .arcAltitude(item=>item._index===selected?.075:.045)
+        .arcAltitude(item=>arcAltitude(item,item._index===selected))
         .arcStroke(item=>(item._index===selected?.42:.18)*scale)
         .arcColor(item=>item._index===selected?(settings.routeGlow?['#59ddff','#ffffff']:'#59ddff'):(story?'rgba(92,124,151,.18)':'rgba(113,151,190,.62)'))
         .arcLabel(()=> '')
@@ -181,6 +197,6 @@
     if(globe)globe.pointOfView({lat,lng,altitude},d.settings().reducedMotion?0:650);
   }
 
-  const api={configure,routeCamera,isolate,routeGeometry,render,updateAutoRotate,focusRoute,focusPlace,focusSegment};
+  const api={configure,routeCamera,isolate,routeGeometry,arcAltitude,render,updateAutoRotate,focusRoute,focusPlace,focusSegment};
   root.regionalGlobe=api;
 })();
