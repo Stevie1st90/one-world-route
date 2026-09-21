@@ -24,6 +24,7 @@ test('flagship shell and route invariants work',async({page,isMobile},testInfo)=
     await expect(page.locator('#mobileInfoBtn')).toBeVisible();
     await page.locator('#settingsBtn').click();
     await expect(page.locator('#settingsPopover')).toBeHidden();
+    await expectMobilePanelsClosed(page);
   }else{
     await expect(page.locator('#infoBtn')).toBeVisible();
   }
@@ -42,17 +43,20 @@ test('flagship shell and route invariants work',async({page,isMobile},testInfo)=
     await expect(page.locator('#leftPanel')).toHaveClass(/mobile-open/);
     await page.locator('#closeFilters').click();
     await expect(page.locator('#leftPanel')).not.toHaveClass(/mobile-open/);
+    await expectMobilePanelsClosed(page);
   }
 
   await page.locator('#platformRouteBtn').click();
   await expect(page.locator('#platformRouteModal')).toBeVisible();
   await expect(page.locator('[data-platform-trip]')).toHaveCount(catalog.trips.length);
   await page.locator('#platformRouteModal .platform-x').click();
+  if(isMobile)await expectMobilePanelsClosed(page);
 
   await page.locator('#platformTravellerBtn').click();
   await expect(page.locator('#platformTravellerModal')).toBeVisible();
   await expect(page.locator('#platformTravellerForm [name="passportNumber"]')).toHaveCount(0);
   await page.locator('#platformTravellerModal .platform-x').click();
+  if(isMobile)await expectMobilePanelsClosed(page);
 
   expect(pageErrors,'flagship runtime page errors').toEqual([]);
   await page.screenshot({path:testInfo.outputPath('world-195-'+testInfo.project.name+'.png'),fullPage:true});
@@ -111,6 +115,7 @@ async function expectMobilePanelsClosed(page){
   const right=page.locator('#rightPanel');
   await expect(left).not.toHaveClass(/mobile-open/);
   await expect(right).not.toHaveClass(/mobile-open/);
+  await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
   await expect.poll(async()=>{
     const box=await left.boundingBox();
     return box?box.x+box.width:Infinity;
