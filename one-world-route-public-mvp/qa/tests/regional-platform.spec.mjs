@@ -8,7 +8,9 @@ const regional=catalog.trips.filter(item=>item.renderer==='regional-globe');
 
 const datasets=new Map();
 test('flagship shell and route invariants work',async({page,isMobile},testInfo)=>{
-  test.setTimeout(120000);
+  // The flagship globe can make CI viewport screenshots comparatively expensive on mobile.
+  // Assertions complete well inside this budget; leave headroom for three visual-QA captures.
+  test.setTimeout(180000);
   const pageErrors=capturePageErrors(page);
   await openFlagship(page);
 
