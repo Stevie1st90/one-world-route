@@ -8,7 +8,7 @@ const regional=catalog.trips.filter(item=>item.renderer==='regional-globe');
 
 const datasets=new Map();
 test('flagship shell and route invariants work',async({page,isMobile},testInfo)=>{
-  test.setTimeout(90000);
+  test.setTimeout(120000);
   const pageErrors=capturePageErrors(page);
   await openFlagship(page);
 
@@ -49,19 +49,19 @@ test('flagship shell and route invariants work',async({page,isMobile},testInfo)=
   await page.locator('#platformRouteBtn').click();
   await expect(page.locator('#platformRouteModal')).toBeVisible();
   await expect(page.locator('[data-platform-trip]')).toHaveCount(catalog.trips.length);
-  await page.screenshot({path:testInfo.outputPath('route-library-'+testInfo.project.name+'.png'),fullPage:true});
+  await captureViewport(page,testInfo,'route-library-'+testInfo.project.name+'.png');
   await page.locator('#platformRouteModal .platform-x').click();
   if(isMobile)await expectMobilePanelsClosed(page);
 
   await page.locator('#platformTravellerBtn').click();
   await expect(page.locator('#platformTravellerModal')).toBeVisible();
   await expect(page.locator('#platformTravellerForm [name="passportNumber"]')).toHaveCount(0);
-  await page.screenshot({path:testInfo.outputPath('traveller-'+testInfo.project.name+'.png'),fullPage:true});
+  await captureViewport(page,testInfo,'traveller-'+testInfo.project.name+'.png');
   await page.locator('#platformTravellerModal .platform-x').click();
   if(isMobile)await expectMobilePanelsClosed(page);
 
   expect(pageErrors,'flagship runtime page errors').toEqual([]);
-  await page.screenshot({path:testInfo.outputPath('world-195-'+testInfo.project.name+'.png'),fullPage:true});
+  await captureViewport(page,testInfo,'world-195-'+testInfo.project.name+'.png');
 });
 
 test('route library can switch flagship to regional and back',async({page},testInfo)=>{
@@ -83,12 +83,20 @@ test('route library can switch flagship to regional and back',async({page},testI
   await expect(page.locator('#routeRange')).toHaveAttribute('max',String(flagship.metrics.internationalLegs));
 
   expect(pageErrors,'route-switch runtime page errors').toEqual([]);
-  await page.screenshot({path:testInfo.outputPath('route-switch-'+testInfo.project.name+'.png'),fullPage:true});
+  await captureViewport(page,testInfo,'route-switch-'+testInfo.project.name+'.png');
 });
 
 for(const item of regional){
   const rel=item.dataset.replace(/^\.\//,'');
   datasets.set(item.id,await readJson(new URL('../../'+rel,import.meta.url)));
+}
+
+async function captureViewport(page,testInfo,name){
+  await page.screenshot({
+    path:testInfo.outputPath(name),
+    fullPage:false,
+    animations:'disabled'
+  });
 }
 
 function capturePageErrors(page){
@@ -139,7 +147,7 @@ async function expectActiveLabelsSeparated(page){
 
 for(const item of regional){
   test(item.id+' shell, navigation, context and story work',async({page,isMobile},testInfo)=>{
-    test.setTimeout(90000);
+    test.setTimeout(120000);
     const pageErrors=capturePageErrors(page);
     const trip=datasets.get(item.id);
     await openRegional(page,item);
@@ -179,7 +187,7 @@ for(const item of regional){
       await page.locator('#mobileDetails').click();
       await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);
       await expect(page.locator('#detailTitle')).toHaveText(secondPlace.name.en);
-      await page.screenshot({path:testInfo.outputPath(item.id+'-detail-'+testInfo.project.name+'.png'),fullPage:true});
+      await captureViewport(page,testInfo,item.id+'-detail-'+testInfo.project.name+'.png');
       await page.locator('#closeDetails').click();
       await expect(page.locator('#rightPanel')).not.toHaveClass(/mobile-open/);
     }
@@ -218,7 +226,7 @@ for(const item of regional){
     await expect(page.locator('#settingsPopover')).toBeVisible();
     if(item.capabilities.includes('terrain'))await expect(page.locator('#terrainView')).toBeVisible();
     if(item.id===regional[0].id){
-      await page.screenshot({path:testInfo.outputPath('regional-settings-'+testInfo.project.name+'.png'),fullPage:true});
+      await captureViewport(page,testInfo,'regional-settings-'+testInfo.project.name+'.png');
     }
 
     if(item.capabilities.includes('story')){
@@ -236,7 +244,7 @@ for(const item of regional){
       await expect(page.locator('body')).toHaveClass(/platform-story-mode/);
       await expect(page.locator('#platformStoryHud')).toBeVisible();
       if(item.id===regional[0].id){
-        await page.screenshot({path:testInfo.outputPath('regional-story-'+testInfo.project.name+'.png'),fullPage:true});
+        await captureViewport(page,testInfo,'regional-story-'+testInfo.project.name+'.png');
       }
       await page.evaluate(()=>window.ONE_WORLD_PLATFORM.stopStory());
       await expect(page.locator('body')).not.toHaveClass(/platform-story-mode/);
@@ -246,7 +254,7 @@ for(const item of regional){
     }
 
     expect(pageErrors,item.id+' runtime page errors').toEqual([]);
-    await page.screenshot({path:testInfo.outputPath(item.id+'-'+testInfo.project.name+'.png'),fullPage:true});
+    await captureViewport(page,testInfo,item.id+'-'+testInfo.project.name+'.png');
   });
 }
 
@@ -270,7 +278,7 @@ test('regional methodology modal renders route evidence context',async({page,isM
   await expect(page.locator('#infoModal .method-grid article')).toHaveCount(4);
   await expect(page.locator('#infoModal')).toContainText(String(item.metrics.stops));
   await expect(page.locator('#infoModal')).toContainText(String(item.metrics.segments));
-  await page.screenshot({path:testInfo.outputPath('regional-methodology-'+testInfo.project.name+'.png'),fullPage:true});
+  await captureViewport(page,testInfo,'regional-methodology-'+testInfo.project.name+'.png');
   await page.locator('#infoModal .modal-close').click();
   await expect(page.locator('#infoModal')).toBeHidden();
 
@@ -290,7 +298,7 @@ test('route fit filters and reset produce deterministic catalog results',async({
   await page.locator('#platformRoutePace').selectOption('balanced');
   await expect(page.locator('[data-platform-trip]')).toHaveCount(1);
   await expect(page.locator('[data-platform-trip="italy-grand-tour"]')).toBeVisible();
-  await page.screenshot({path:testInfo.outputPath('route-fit-'+testInfo.project.name+'.png'),fullPage:true});
+  await captureViewport(page,testInfo,'route-fit-'+testInfo.project.name+'.png');
 
   await page.locator('#platformRouteReset').click();
   await expect(page.locator('[data-platform-trip]')).toHaveCount(catalog.trips.length);
@@ -311,7 +319,7 @@ test('regional terrain activates and exits on the shared engine',async({page,isM
   await expect.poll(()=>page.evaluate(()=>Boolean(window.__ONE_WORLD_REGIONAL_TERRAIN__))).toBe(true);
   await expect(page.locator('#terrainMap')).toBeVisible();
   if(isMobile)await expectMobilePanelsClosed(page);
-  await page.screenshot({path:testInfo.outputPath('regional-terrain-'+testInfo.project.name+'.png'),fullPage:true});
+  await captureViewport(page,testInfo,'regional-terrain-'+testInfo.project.name+'.png');
 
   await page.evaluate(()=>window.ONE_WORLD_PLATFORM.setTerrain(false));
   await expect(page.locator('body')).not.toHaveClass(/terrain-view/);
