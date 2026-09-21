@@ -568,7 +568,13 @@
         e.preventDefault();e.stopPropagation();
       }
     },true);
-    document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openCommand()}else if(e.key==='Escape'){closeCommand();$('#infoModal').classList.add('hidden');$('#settingsPopover').classList.add('hidden');closeMobilePanels()}else if(e.code==='Space'&&!/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)){e.preventDefault();play()}else if(e.key==='ArrowRight')selectSegment(Math.min(194,state.selectedSegmentId+1),true);else if(e.key==='ArrowLeft')selectSegment(Math.max(1,state.selectedSegmentId-1),true)});
+    document.addEventListener('keydown',e=>{
+      if(platformOwnsRoute()){
+        if(e.key==='Escape'){closeCommand();$('#infoModal').classList.add('hidden');$('#settingsPopover').classList.add('hidden');closeMobilePanels()}
+        return;
+      }
+      if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openCommand()}else if(e.key==='Escape'){closeCommand();$('#infoModal').classList.add('hidden');$('#settingsPopover').classList.add('hidden');closeMobilePanels()}else if(e.code==='Space'&&!/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)){e.preventDefault();play()}else if(e.key==='ArrowRight')selectSegment(Math.min(194,state.selectedSegmentId+1),true);else if(e.key==='ArrowLeft')selectSegment(Math.max(1,state.selectedSegmentId-1),true)
+    });
   }
 
   window.__ONE_WORLD_ROUTE_APP__={
