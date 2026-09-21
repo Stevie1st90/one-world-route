@@ -16,12 +16,13 @@
   const RegionalGlobe=PLATFORM_MODULES.regionalGlobe;
   const RegionalTimeline=PLATFORM_MODULES.regionalTimeline;
   const RegionalControls=PLATFORM_MODULES.regionalControls;
+  const RegionalSelection=PLATFORM_MODULES.regionalSelection;
   const Story=PLATFORM_MODULES.story;
   const Terrain=PLATFORM_MODULES.terrain;
   const Ui=PLATFORM_MODULES.ui;
   const Navigation=PLATFORM_MODULES.navigation;
   const LegacyLocalization=PLATFORM_MODULES.legacyLocalization;
-  if(!LocaleData||!Model||!Traveller||!TravellerUi||!Discovery||!Extensions||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
+  if(!LocaleData||!Model||!Traveller||!TravellerUi||!Discovery||!Extensions||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!RegionalSelection||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
   const SUPPORTED_LOCALES=LocaleData.supportedLocales;
   const I18N=LocaleData.messages;
   const $ = (s, r=document) => r.querySelector(s);
@@ -108,7 +109,6 @@
   let catalog = null;
   let currentTrip = null;
   let currentTripMeta = null;
-  let selectedSegmentIndex = 0;
 
   function loadProfile(){return Traveller.load(localStorage,PROFILE_KEY,locale)}
   function saveProfile(profile){return Traveller.save(localStorage,PROFILE_KEY,profile,locale)}
@@ -193,17 +193,35 @@
 
   function regionalChapterForSegment(index){return Model.chapterForSegment(currentTrip,index)}
 
+  function configureRegionalSelection(){
+    RegionalSelection.configure({
+      getTrip:()=>currentTrip,
+      stopPlace,
+      renderGlobe:()=>RegionalGlobe.render(),
+      updateTimeline:()=>RegionalTimeline.update(),
+      renderSegmentDetail:segment=>RegionalDetail.renderSegmentDetail(segment),
+      renderStopDetail:(stop,place)=>RegionalDetail.renderStopDetail(stop,place),
+      updateTerrain:()=>Terrain.update(),
+      isStoryActive:()=>Story.isActive(),
+      updateStory:()=>Story.update(),
+      isTerrainActive:()=>document.body.classList.contains('terrain-view'),
+      focusTerrainSegment:index=>Terrain.focusSegment(index),
+      focusGlobeSegment:segment=>RegionalGlobe.focusSegment(segment),
+      focusGlobePlace:place=>RegionalGlobe.focusPlace(place)
+    });
+  }
+
   function configureRegionalGlobe(){
     RegionalGlobe.configure({
       getTrip:()=>currentTrip,
-      getSelectedIndex:()=>selectedSegmentIndex,
+      getSelectedIndex:()=>RegionalSelection.getIndex(),
       placeMap,
       stopMap,
       modelRouteGeometry:trip=>Model.routeGeometry(trip),
       local,
       settings:Ui.regionalSettings,
       isStoryActive:()=>Story.isActive(),
-      selectSegment:selectSegmentIndex,
+      selectSegment:(index,focus)=>RegionalSelection.selectSegment(index,focus),
       selectStop
     });
   }
@@ -211,7 +229,7 @@
   function configureRegionalTimeline(){
     RegionalTimeline.configure({
       getTrip:()=>currentTrip,
-      getSelectedIndex:()=>selectedSegmentIndex,
+      getSelectedIndex:()=>RegionalSelection.getIndex(),
       t,
       local,
       esc,
@@ -219,7 +237,7 @@
       stopMap,
       placeMap,
       stopPlace,
-      selectSegment:selectSegmentIndex
+      selectSegment:(index,focus)=>RegionalSelection.selectSegment(index,focus)
     });
   }
 
@@ -227,7 +245,7 @@
     Story.configure({
       getTrip:()=>currentTrip,
       getTripMeta:()=>currentTripMeta,
-      getSelectedIndex:()=>selectedSegmentIndex,
+      getSelectedIndex:()=>RegionalSelection.getIndex(),
       placeMap,
       stopMap,
       chapterForSegment:regionalChapterForSegment,
@@ -236,7 +254,7 @@
       local,
       esc,
       facetLabel,
-      selectSegment:selectSegmentIndex,
+      selectSegment:(index,focus)=>RegionalSelection.selectSegment(index,focus),
       setTerrain:active=>Terrain.setActive(active),
       stopRoutePlayback:()=>RegionalTimeline.stopPlayback(),
       renderRoute:()=>RegionalGlobe.render()
@@ -273,7 +291,7 @@
       esc,
       hasCapability:(meta,id)=>Model.hasCapability(meta,id),
       onHome:()=>{
-        selectedSegmentIndex=0;
+        RegionalSelection.reset(0);
         RegionalDetail.renderTripOverview();
         RegionalGlobe.render();
         if(document.body.classList.contains('terrain-view'))Terrain.focusSegment(0);
@@ -297,7 +315,7 @@
       esc,
       facetLabel,
       stopPlace,
-      selectStop,
+      selectStop:(index,focus)=>RegionalSelection.selectStop(index,focus),
       isolateRegionalRuntime:()=>RegionalGlobe.isolate(),
       syncRegionalUrl,
       replaceTimeline:()=>RegionalTimeline.replace(),
@@ -312,7 +330,7 @@
       locale:()=>locale,
       getTrip:()=>currentTrip,
       getTripMeta:()=>currentTripMeta,
-      getSelectedIndex:()=>selectedSegmentIndex,
+      getSelectedIndex:()=>RegionalSelection.getIndex(),
       hasCapability:(meta,id)=>Model.hasCapability(meta,id),
       routeGeometry:()=>RegionalGlobe.routeGeometry(),
       placeMap,
@@ -320,7 +338,7 @@
       routeBounds:()=>Model.routeBounds(currentTrip),
       routeCamera:()=>RegionalGlobe.routeCamera(),
       settings:Ui.regionalSettings,
-      selectSegment:selectSegmentIndex,
+      selectSegment:(index,focus)=>RegionalSelection.selectSegment(index,focus),
       renderRoute:()=>RegionalGlobe.render(),
       isStoryActive:()=>Story.isActive(),
       stopStory:()=>Story.stop(),
@@ -335,27 +353,12 @@
     });
   }
 
-  function selectSegmentIndex(index,focus=false){
-    selectedSegmentIndex=Math.max(0,Math.min(currentTrip.segments.length-1,index));
-    $$('.platform-stop').forEach(x=>x.classList.remove('active'));
-    RegionalGlobe.render();RegionalTimeline.update();RegionalDetail.renderSegmentDetail(currentTrip.segments[selectedSegmentIndex]);Terrain.update();
-    if(Story.isActive())Story.update();
-    if(focus){if(document.body.classList.contains('terrain-view'))Terrain.focusSegment(selectedSegmentIndex);else RegionalGlobe.focusSegment(currentTrip.segments[selectedSegmentIndex])}
-  }
-
-  function selectStop(index,focus=false){
-    const stop=currentTrip.stops[index],p=stopPlace(currentTrip,stop);if(!stop||!p)return;
-    $$('.platform-stop').forEach((x,i)=>x.classList.toggle('active',i===index));
-    RegionalDetail.renderStopDetail(stop,p);
-    if(index<currentTrip.segments.length){selectedSegmentIndex=index;RegionalTimeline.update();RegionalGlobe.render();Terrain.update()}
-    if(focus){if(document.body.classList.contains('terrain-view'))Terrain.focusSegment(Math.min(index,currentTrip.segments.length-1));else RegionalGlobe.focusPlace(p)}
-  }
-
   async function activateRegionalTrip(meta){
     currentTripMeta=meta;
-    selectedSegmentIndex=0;
     currentTrip=await fetch(meta.dataset,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Trip dataset '+r.status);return r.json()});
     await waitForCore();
+    configureRegionalSelection();
+    RegionalSelection.reset(0);
     configureRegionalGlobe();
     configureRegionalTimeline();
     configureRegionalTerrain();
