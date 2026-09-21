@@ -63,5 +63,6 @@ server.listen(port,host,()=>{
   console.log(`ONE WORLD ROUTE local preview: http://${host}:${port}/`);
   console.log(`Italy: http://${host}:${port}/?trip=italy-grand-tour&lang=de`);
   console.log(`Road trip: http://${host}:${port}/?trip=southern-europe-road-trip&lang=de`);
+  console.log(`Road trip share: http://${host}:${port}/de/trip/southern-europe-road-trip`);
   console.log(`Cruise: http://${host}:${port}/?trip=western-mediterranean-cruise-loop&lang=de`);
 });
