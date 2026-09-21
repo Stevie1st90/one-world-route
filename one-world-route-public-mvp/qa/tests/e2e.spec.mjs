@@ -125,7 +125,7 @@ test('regional mobile header exposes routes and traveller',async({page,isMobile}
   await open(page,'/?trip=italy-grand-tour&lang=de');
   await expect(page.locator('#platformRouteBtn')).toBeVisible();
   await expect(page.locator('#platformTravellerBtn')).toBeVisible();
-  await expect(page.locator('#phaseRail')).not.toBeVisible({visible:false}).catch(()=>{});
+  await expect(page.locator('#phaseRail')).toBeVisible();
 });
 
 test('cruise without chapters hides empty chapter rail and keeps regional timeline',async({page})=>{
