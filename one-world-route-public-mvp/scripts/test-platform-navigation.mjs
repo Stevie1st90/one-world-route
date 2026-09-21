@@ -3,6 +3,9 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
+const moduleFiles=['runtime.js','model.js','traveller.js','discovery.js','extensions.js'];
+const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
+const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
 const appSource=await readFile(new URL('../app.js',import.meta.url),'utf8');
 const iteration2Source=await readFile(new URL('../iteration2.js',import.meta.url),'utf8');
@@ -26,6 +29,7 @@ function loadPlatform(search=''){
     fetch(){throw new Error('fetch should not run in navigation unit test')}
   };
   vm.createContext(context);
+  vm.runInContext(modularSource,context);
   vm.runInContext(source,context);
   return context.window.ONE_WORLD_PLATFORM;
 }
@@ -158,9 +162,46 @@ test('regional copy is visually reduced without removing overview content',()=>{
 
 test('route library exposes transparent Route Fit controls',()=>{
   for(const token of ['platformFitToggle','platformFitFilters','platformRoutePace','platformRouteSeason','platformRouteParty','platformRouteStart'])assert.match(source,new RegExp(token));
-  assert.match(source,/fit\.pace===pace/);
-  assert.match(source,/fit\.seasons/);
-  assert.match(source,/fit\.party/);
-  assert.match(source,/fit\.startRegion===start/);
+  const discovery=moduleSources['discovery.js'];
+  assert.match(discovery,/fit\.pace===filters\.pace/);
+  assert.match(discovery,/fit\.seasons/);
+  assert.match(discovery,/fit\.party/);
+  assert.match(discovery,/fit\.startRegion===filters\.start/);
   assert.match(cssSource,/\.platform-fit-filters/);
+});
+
+
+test('platform core delegates reusable concerns to modules',()=>{
+  assert.match(source,/const Model=PLATFORM_MODULES\.model/);
+  assert.match(source,/const Traveller=PLATFORM_MODULES\.traveller/);
+  assert.match(source,/const Discovery=PLATFORM_MODULES\.discovery/);
+  assert.match(source,/const Extensions=PLATFORM_MODULES\.extensions/);
+  assert.match(source,/Discovery\.facets\(catalog\)/);
+  assert.match(source,/Discovery\.filter\(catalog/);
+  assert.match(source,/Traveller\.load\(/);
+  assert.match(source,/Model\.routeGeometry\(/);
+});
+
+test('trip specialization lives in registered extensions rather than trip-kind branches',()=>{
+  const extensions=moduleSources['extensions.js'];
+  assert.match(extensions,/registerExtension\('cruise'/);
+  assert.match(extensions,/registerExtension\('road'/);
+  assert.match(extensions,/registerExtension\('border'/);
+  assert.match(source,/Extensions\.composeTripOverview/);
+  assert.match(source,/Extensions\.composeStopDetail/);
+  assert.match(source,/Extensions\.composeSegmentDetail/);
+  assert.doesNotMatch(source,/currentTrip\.kind\s*===\s*['"]cruise['"]/);
+  assert.doesNotMatch(source,/currentTrip\.kind\s*===\s*['"]road-trip['"]/);
+});
+
+test('model extension adapter prefers namespaced extensions and supports migration aliases',()=>{
+  const model=moduleSources['model.js'];
+  assert.match(model,/node\.extensions/);
+  for(const token of ['cruiseCall','roadContext','borderContext'])assert.match(model,new RegExp(token));
+});
+
+test('traveller storage service allowlists non-secret planning fields',()=>{
+  const traveller=moduleSources['traveller.js'];
+  assert.match(traveller,/const ALLOWED=/);
+  assert.doesNotMatch(traveller,/passportNumber|payment|bookingReference/i);
 });
