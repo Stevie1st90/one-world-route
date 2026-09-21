@@ -142,10 +142,10 @@ test('regional overview duration uses a dedicated non-overlapping unit style',()
 
 test('regional UX detail modes keep sparse panels compact',()=>{
   assert.match(source,/function setRegionalDetailMode/);
+  assert.match(source,/\['overview','stop','segment'\]/);
   assert.match(source,/platform-detail-'\+key/);
   assert.match(cssSource,/platform-detail-overview \.right-panel/);
   assert.match(cssSource,/platform-detail-stop \.right-panel/);
-  assert.match(cssSource,/platform-detail-segment \.right-panel/);
 });
 
 test('regional terrain uses branded dark map styling',()=>{
