@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','i18n.js','model.js','traveller.js','discovery.js','extensions.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','model.js','traveller.js','discovery.js','extensions.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -213,4 +213,14 @@ test('platform localization is isolated from bootstrap logic',()=>{
   assert.match(i18n,/supportedLocales/);
   assert.doesNotMatch(source,/const I18N = \{/);
   assert.doesNotMatch(source,/const LEGACY_WORLD_TEXT = \{/);
+});
+
+
+test('terrain branding is shared by world and regional renderers',()=>{
+  const mapStyle=moduleSources['map-style.js'];
+  assert.match(mapStyle,/function brandDark/);
+  assert.match(mapStyle,/function localize/);
+  assert.match(source,/MapStyle\.brandDark/);
+  assert.match(source,/MapStyle\.localize/);
+  assert.match((iteration2Source+appSource+mapStyle),/ONE_WORLD_PLATFORM_MODULES|brandDark/);
 });
