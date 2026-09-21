@@ -28,5 +28,22 @@
 ## Deliberately excluded
 - Accounts/comments/community
 - Affiliate-booking funnels
-- Generic trip planner
 - Private operational documents
+
+
+## Multi-trip platform
+
+Implemented foundation:
+- generic trip catalog and route URLs
+- reusable place / visit / segment schema
+- Traveller Context without a German-default assumption
+- regional standard-globe rendering
+- Italy Grand Tour editorial template
+- cruise/ferry/rail/road/flight-ready transport taxonomy
+
+Next product layers:
+- source-backed nationality/passport and residence rule engine
+- route discovery by region, duration, travel style and origin market
+- sourced cost bands and seasonal variants
+- cruise port-call and overnight-at-sea UI
+- route builder, saved trips and collaboration only after the public read-only model is proven

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://one-world-route.vercel.app/data/platform/trip-schema.json",
+  "title": "ONE WORLD ROUTE Trip",
+  "type": "object",
+  "required": ["schemaVersion", "id", "slug", "kind", "places", "stops", "segments"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "id": {"type": "string", "minLength": 1},
+    "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "kind": {"enum": ["world", "round-trip", "road-trip", "rail", "cruise", "island-hopping", "city-break", "expedition", "custom"]},
+    "places": {"type": "array"},
+    "stops": {"type": "array"},
+    "segments": {"type": "array"}
+  },
+  "x-oneWorldRoute": {
+    "model": "place -> visit(stop) -> segment",
+    "transportModes": ["walk", "bicycle", "road", "car", "motorcycle", "bus", "coach", "rail", "metro", "tram", "ground-transfer", "rideshare", "taxi", "ferry", "cruise", "flight", "helicopter", "rail+ground", "multimodal", "other"],
+    "notes": "Cruises use the same segment model. Each port call is a stop; sea legs use mode cruise, may carry onboardNights/service metadata, and can revisit the same place through distinct stop IDs."
+  }
+}

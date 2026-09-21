@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://one-world-route.vercel.app/data/platform/traveller-context-schema.json",
+  "title": "ONE WORLD ROUTE Traveller Context",
+  "type": "object",
+  "properties": {
+    "passports": {"type":"array","items":{"type":"string","pattern":"^[A-Z]{2}$"},"maxItems":4},
+    "residenceCountry": {"type":["string","null"],"pattern":"^[A-Z]{2}$"},
+    "language": {"type":"string"},
+    "currency": {"type":"string","pattern":"^[A-Z]{3}$"},
+    "origin": {"type":["string","null"]},
+    "party": {"type":"object","properties":{"adults":{"type":"integer","minimum":1,"maximum":20},"children":{"type":"integer","minimum":0,"maximum":20}}},
+    "accessibility": {"type":"object","properties":{"reducedMobility":{"type":"boolean"}}}
+  },
+  "description": "Store only non-secret planning context. Never store passport numbers, booking references, payment data, exact home address or other identity documents in the public dataset."
+}

@@ -1,7 +1,7 @@
 {
   "name": "ONE WORLD ROUTE",
-  "short_name": "World Route",
-  "description": "195 countries. One continuous journey.",
+  "short_name": "One World Route",
+  "description": "World journeys, round trips, road trips, rail routes, cruises and more.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

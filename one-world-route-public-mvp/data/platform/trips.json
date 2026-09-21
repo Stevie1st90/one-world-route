@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-21",
+  "defaultTripId": "world-195",
+  "trips": [
+    {
+      "id": "world-195",
+      "slug": "world-195",
+      "kind": "world",
+      "status": "planned",
+      "renderer": "legacy-world",
+      "dataset": "./data/public-route.json",
+      "title": {
+        "en": "One World · 195 Countries",
+        "de": "Eine Welt · 195 Länder",
+        "it": "Un mondo · 195 paesi",
+        "es": "Un mundo · 195 países",
+        "fr": "Un monde · 195 pays",
+        "pt": "Um mundo · 195 países"
+      },
+      "subtitle": {
+        "en": "The flagship continuous world journey",
+        "de": "Die zusammenhängende Weltreise als Flagship-Route",
+        "it": "Il viaggio continuo intorno al mondo",
+        "es": "El viaje continuo alrededor del mundo",
+        "fr": "Le voyage continu autour du monde",
+        "pt": "A viagem contínua pelo mundo"
+      },
+      "metrics": {
+        "days": 379,
+        "countries": 195,
+        "internationalLegs": 194,
+        "budget": {
+          "amount": 90600,
+          "currency": "EUR"
+        }
+      },
+      "capabilities": [
+        "globe",
+        "terrain",
+        "operations",
+        "story",
+        "plan-vs-actual"
+      ]
+    },
+    {
+      "id": "italy-grand-tour",
+      "slug": "italy-grand-tour",
+      "kind": "round-trip",
+      "status": "editorial-template",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/italy-grand-tour.json",
+      "title": {
+        "en": "Italy Grand Tour",
+        "de": "Große Italien-Rundreise",
+        "it": "Gran Tour d'Italia",
+        "es": "Gran ruta por Italia",
+        "fr": "Grand tour d'Italie",
+        "pt": "Grande volta pela Itália"
+      },
+      "subtitle": {
+        "en": "18 days · rail, road and coast",
+        "de": "18 Tage · Bahn, Straße und Küste",
+        "it": "18 giorni · treno, strada e costa",
+        "es": "18 días · tren, carretera y costa",
+        "fr": "18 jours · train, route et côte",
+        "pt": "18 dias · trem, estrada e costa"
+      },
+      "metrics": {
+        "days": 18,
+        "countries": 1,
+        "stops": 11,
+        "segments": 10,
+        "budget": null
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context"
+      ]
+    }
+  ]
+}

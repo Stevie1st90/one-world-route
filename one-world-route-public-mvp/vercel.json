@@ -40,6 +40,10 @@
     {
       "source": "/country/:slug",
       "destination": "/api/share?type=country&slug=:slug"
+    },
+    {
+      "source": "/trip/:slug",
+      "destination": "/api/share?type=trip&slug=:slug"
     }
   ]
 }

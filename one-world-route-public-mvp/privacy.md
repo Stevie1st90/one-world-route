@@ -22,3 +22,10 @@ The website is a public representation of a private travel-operations project. I
 - card/bank limits and liquidity
 
 The public data file must be regenerated from a sanitized export, never copied wholesale from the private operations workbook.
+
+
+## Traveller Context
+
+The optional Traveller Context stores only planning preferences needed to avoid a one-country viewpoint: passport country, residence country, interface language, preferred currency, origin, party counts and a reduced-mobility preference. The current static implementation stores this only in the browser's local storage and does not publish it in route data.
+
+Never request or persist passport numbers, exact home addresses, booking references, payment details, identity-document scans or similar secrets in Traveller Context.

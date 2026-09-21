@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "id": "italy-grand-tour",
+  "slug": "italy-grand-tour",
+  "kind": "round-trip",
+  "status": "editorial-template",
+  "defaultLocale": "en",
+  "supportedLocales": ["en", "de", "it", "es", "fr", "pt"],
+  "title": {
+    "en": "Italy Grand Tour",
+    "de": "Große Italien-Rundreise",
+    "it": "Gran Tour d'Italia",
+    "es": "Gran ruta por Italia",
+    "fr": "Grand tour d'Italie",
+    "pt": "Grande volta pela Itália"
+  },
+  "summary": {
+    "en": "An 18-day editorial template combining major cities, the south, the Adriatic, Venice, the Dolomites and Tuscany. Transport details, prices and entry requirements must be checked for the traveller's own dates and context.",
+    "de": "Eine redaktionelle 18-Tage-Vorlage mit großen Städten, Süditalien, Adria, Venedig, Dolomiten und Toskana. Verkehr, Preise und Einreisebedingungen müssen für die eigenen Reisedaten und den Traveller Context geprüft werden.",
+    "it": "Un itinerario editoriale di 18 giorni tra grandi città, sud, Adriatico, Venezia, Dolomiti e Toscana. Trasporti, prezzi e requisiti d'ingresso vanno verificati per date e profilo del viaggiatore.",
+    "es": "Una plantilla editorial de 18 días por grandes ciudades, el sur, el Adriático, Venecia, los Dolomitas y la Toscana. Transporte, precios y requisitos de entrada deben verificarse según las fechas y el perfil del viajero.",
+    "fr": "Un modèle éditorial de 18 jours entre grandes villes, sud, Adriatique, Venise, Dolomites et Toscane. Transports, prix et formalités doivent être vérifiés selon les dates et le profil du voyageur.",
+    "pt": "Um roteiro editorial de 18 dias por grandes cidades, sul, Adriático, Veneza, Dolomitas e Toscana. Transporte, preços e requisitos de entrada devem ser verificados para as datas e o perfil do viajante."
+  },
+  "geography": {
+    "countries": ["IT"],
+    "primaryCountry": "IT",
+    "bounds": {"north": 46.7, "south": 40.4, "west": 10.8, "east": 17.2}
+  },
+  "planning": {
+    "days": 18,
+    "currency": "EUR",
+    "pace": "balanced",
+    "distanceKm": null,
+    "priceModel": "not-yet-sourced"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {"lat": 43.5, "lng": 13.5, "altitude": 0.72}
+  },
+  "places": [
+    {"id":"rome","type":"city","countryCode":"IT","name":{"en":"Rome","de":"Rom","it":"Roma","es":"Roma","fr":"Rome","pt":"Roma"},"coordinates":{"lat":41.9028,"lng":12.4964}},
+    {"id":"naples","type":"city","countryCode":"IT","name":{"en":"Naples","de":"Neapel","it":"Napoli","es":"Nápoles","fr":"Naples","pt":"Nápoles"},"coordinates":{"lat":40.8518,"lng":14.2681}},
+    {"id":"amalfi","type":"town","countryCode":"IT","name":{"en":"Amalfi Coast","de":"Amalfiküste","it":"Costiera Amalfitana","es":"Costa Amalfitana","fr":"Côte amalfitaine","pt":"Costa Amalfitana"},"coordinates":{"lat":40.6340,"lng":14.6027}},
+    {"id":"matera","type":"city","countryCode":"IT","name":{"en":"Matera","de":"Matera","it":"Matera","es":"Matera","fr":"Matera","pt":"Matera"},"coordinates":{"lat":40.6663,"lng":16.6043}},
+    {"id":"bari","type":"city","countryCode":"IT","name":{"en":"Bari","de":"Bari","it":"Bari","es":"Bari","fr":"Bari","pt":"Bari"},"coordinates":{"lat":41.1171,"lng":16.8719}},
+    {"id":"bologna","type":"city","countryCode":"IT","name":{"en":"Bologna","de":"Bologna","it":"Bologna","es":"Bolonia","fr":"Bologne","pt":"Bolonha"},"coordinates":{"lat":44.4949,"lng":11.3426}},
+    {"id":"venice","type":"city","countryCode":"IT","name":{"en":"Venice","de":"Venedig","it":"Venezia","es":"Venecia","fr":"Venise","pt":"Veneza"},"coordinates":{"lat":45.4408,"lng":12.3155}},
+    {"id":"cortina","type":"mountain-town","countryCode":"IT","name":{"en":"Dolomites · Cortina","de":"Dolomiten · Cortina","it":"Dolomiti · Cortina","es":"Dolomitas · Cortina","fr":"Dolomites · Cortina","pt":"Dolomitas · Cortina"},"coordinates":{"lat":46.5405,"lng":12.1357}},
+    {"id":"florence","type":"city","countryCode":"IT","name":{"en":"Florence","de":"Florenz","it":"Firenze","es":"Florencia","fr":"Florence","pt":"Florença"},"coordinates":{"lat":43.7696,"lng":11.2558}},
+    {"id":"siena","type":"city","countryCode":"IT","name":{"en":"Siena","de":"Siena","it":"Siena","es":"Siena","fr":"Sienne","pt":"Siena"},"coordinates":{"lat":43.3188,"lng":11.3308}}
+  ],
+  "stops": [
+    {"id":"it-stop-01","sequence":1,"placeId":"rome","dayStart":1,"dayEnd":2,"nights":2},
+    {"id":"it-stop-02","sequence":2,"placeId":"naples","dayStart":3,"dayEnd":4,"nights":2},
+    {"id":"it-stop-03","sequence":3,"placeId":"amalfi","dayStart":5,"dayEnd":6,"nights":2},
+    {"id":"it-stop-04","sequence":4,"placeId":"matera","dayStart":7,"dayEnd":7,"nights":1},
+    {"id":"it-stop-05","sequence":5,"placeId":"bari","dayStart":8,"dayEnd":8,"nights":1},
+    {"id":"it-stop-06","sequence":6,"placeId":"bologna","dayStart":9,"dayEnd":9,"nights":1},
+    {"id":"it-stop-07","sequence":7,"placeId":"venice","dayStart":10,"dayEnd":11,"nights":2},
+    {"id":"it-stop-08","sequence":8,"placeId":"cortina","dayStart":12,"dayEnd":13,"nights":2},
+    {"id":"it-stop-09","sequence":9,"placeId":"florence","dayStart":14,"dayEnd":15,"nights":2},
+    {"id":"it-stop-10","sequence":10,"placeId":"siena","dayStart":16,"dayEnd":16,"nights":1},
+    {"id":"it-stop-11","sequence":11,"placeId":"rome","dayStart":17,"dayEnd":18,"nights":2}
+  ],
+  "segments": [
+    {"id":"it-leg-01","sequence":1,"fromStopId":"it-stop-01","toStopId":"it-stop-02","transport":{"mode":"rail","stages":[]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":null,"sources":[]}},
+    {"id":"it-leg-02","sequence":2,"fromStopId":"it-stop-02","toStopId":"it-stop-03","transport":{"mode":"ground-transfer","stages":[]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":null,"sources":[]}},
+    {"id":"it-leg-03","sequence":3,"fromStopId":"it-stop-03","toStopId":"it-stop-04","transport":{"mode":"road","stages":[]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":null,"sources":[]}},
+    {"id":"it-leg-04","sequence":4,"fromStopId":"it-stop-04","toStopId":"it-stop-05","transport":{"mode":"rail","stages":[]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":null,"sources":[]}},
+    {"id":"it-leg-05","sequence":5,"fromStopId":"it-stop-05","toStopId":"it-stop-06","transport":{"mode":"rail","stages":[]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":null,"sources":[]}},
+    {"id":"it-leg-06","sequence":6,"fromStopId":"it-stop-06","toStopId":"it-stop-07","transport":{"mode":"rail","stages":[]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":null,"sources":[]}},
+    {"id":"it-leg-07","sequence":7,"fromStopId":"it-stop-07","toStopId":"it-stop-08","transport":{"mode":"road","stages":[]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":null,"sources":[]}},
+    {"id":"it-leg-08","sequence":8,"fromStopId":"it-stop-08","toStopId":"it-stop-09","transport":{"mode":"rail+ground","stages":[]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":null,"sources":[]}},
+    {"id":"it-leg-09","sequence":9,"fromStopId":"it-stop-09","toStopId":"it-stop-10","transport":{"mode":"road","stages":[]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":null,"sources":[]}},
+    {"id":"it-leg-10","sequence":10,"fromStopId":"it-stop-10","toStopId":"it-stop-11","transport":{"mode":"road","stages":[]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":null,"sources":[]}}
+  ],
+  "chapters": [
+    {"id":"south","title":{"en":"Rome & the South","de":"Rom & Süditalien","it":"Roma e il Sud"},"stopIds":["it-stop-01","it-stop-02","it-stop-03","it-stop-04","it-stop-05"]},
+    {"id":"north","title":{"en":"North & Dolomites","de":"Norden & Dolomiten","it":"Nord e Dolomiti"},"stopIds":["it-stop-06","it-stop-07","it-stop-08"]},
+    {"id":"tuscany","title":{"en":"Tuscany & return","de":"Toskana & Rückkehr","it":"Toscana e rientro"},"stopIds":["it-stop-09","it-stop-10","it-stop-11"]}
+  ],
+  "travellerContext": {
+    "scope": ["passports", "residenceCountry", "language", "currency", "origin", "party", "accessibility"],
+    "rule": "Do not infer entry eligibility, prices or advice from a German departure perspective. Personalised claims require traveller context plus current, jurisdiction-appropriate sources."
+  }
+}
