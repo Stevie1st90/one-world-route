@@ -1,4 +1,5 @@
 import {readFile} from 'node:fs/promises';
+import {validatePlatformExtensions} from './platform-extension-validators.mjs';
 
 const root = new URL('../', import.meta.url);
 const readJson = async rel => JSON.parse(await readFile(new URL(rel, root), 'utf8'));
@@ -80,35 +81,7 @@ for (const item of catalog.trips || []) {
       if (!/^\d{4}-\d{2}-\d{2}$/.test(String(s.verification?.lastVerified||''))) fail(item.id+': verified segment '+s.id+' requires lastVerified');
     }
   }
-  if (trip.kind === 'cruise') {
-    if (!trip.cruise) fail(item.id+': cruise trip requires cruise metadata');
-    if (!orderedStops.length || trip.cruise?.embarkationStopId !== orderedStops[0]?.id) fail(item.id+': cruise embarkation must be first stop');
-    if (!orderedStops.length || trip.cruise?.disembarkationStopId !== orderedStops.at(-1)?.id) fail(item.id+': cruise disembarkation must be final stop');
-    if (orderedStops[0]?.placeId !== orderedStops.at(-1)?.placeId) fail(item.id+': loop cruise demonstrator must return to the same home port place');
-    const onboardNights=segs.reduce((n,s)=>n+Number(s.cruise?.onboardNights||0),0);
-    const seaDayNumbers=segs.flatMap(s=>s.cruise?.seaDayNumbers||[]);
-    if (onboardNights !== Number(trip.cruise?.nights||0)) fail(item.id+': cruise onboard night total mismatch');
-    if (new Set(seaDayNumbers).size !== seaDayNumbers.length) fail(item.id+': duplicate cruise sea day');
-    if (seaDayNumbers.length !== Number(trip.cruise?.seaDays||0)) fail(item.id+': cruise sea day total mismatch');
-    for (const s of segs) {
-      if (s.transport?.mode !== 'cruise') fail(item.id+': cruise segment '+s.id+' must use cruise mode');
-      if (!s.cruise || s.cruise.serviceStatus !== 'illustrative') fail(item.id+': unselected cruise sailing must remain illustrative');
-      const fromStop=stopById.get(s.fromStopId),toStop=stopById.get(s.toStopId);
-      const fromCountry=placeById.get(fromStop?.placeId)?.countryCode,toCountry=placeById.get(toStop?.placeId)?.countryCode;
-      if (s.borderContext?.fromCountry!==fromCountry || s.borderContext?.toCountry!==toCountry) fail(item.id+': border context mismatch on '+s.id);
-      if (['schengen-exit','schengen-entry'].includes(s.borderContext?.zoneTransition) && s.borderContext?.personalizationRequired!==true) fail(item.id+': external Schengen transition must require traveller personalization on '+s.id);
-    }
-  }
-  if (trip.kind === 'road-trip') {
-    if (trip.roadTrip?.vehicleContextRequired !== true) fail(item.id+': road-trip must require Vehicle Context');
-    if (!trip.travellerContext?.scope?.includes('vehicle')) fail(item.id+': road-trip traveller scope must include vehicle');
-    for (const s of segs) {
-      if (s.transport?.mode !== 'car') fail(item.id+': road-trip segment '+s.id+' must use car mode');
-      if (!s.roadContext) fail(item.id+': road-trip segment '+s.id+' requires roadContext');
-      if (s.roadContext?.crossBorder && s.roadContext?.rentalApprovalRequired !== true) fail(item.id+': cross-border road segment '+s.id+' must flag rental approval');
-      if (!(s.verification?.sourceIds||[]).length) fail(item.id+': road-trip segment '+s.id+' requires source evidence');
-    }
-  }
+  validatePlatformExtensions({item,trip,orderedStops,segs,stopById,placeById,sourceIds,fail});
   const entry = trip.entryGuidance;
   if (entry) {
     for (const id of [entry.officialResolverSourceId,...(entry.supportingSourceIds||[])].filter(Boolean)) if (!sourceIds.has(id)) fail(item.id+': entry guidance references missing source '+id);
