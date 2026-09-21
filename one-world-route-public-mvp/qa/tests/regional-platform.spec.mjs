@@ -107,6 +107,11 @@ async function expectActiveLabelsSeparated(page){
   const overlapWidth=Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left));
   const overlapHeight=Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
   expect(overlapWidth*overlapHeight,'active route labels overlap').toBe(0);
+  const viewport=page.viewportSize();
+  for(const [index,box] of boxes.entries()){
+    expect(box.left,`active label ${index} left overflow`).toBeGreaterThanOrEqual(-1);
+    expect(box.right,`active label ${index} right overflow`).toBeLessThanOrEqual(viewport.width+1);
+  }
 }
 
 for(const item of regional){
