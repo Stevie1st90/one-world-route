@@ -201,6 +201,10 @@
   }
 
   function syncProgress(){
+    if(document.body.classList.contains('platform-regional-trip')){
+      document.querySelector('#detailContent .journey-context')?.remove();
+      return;
+    }
     const id=currentSegmentId();
     const pct=progressPct(id);
     document.documentElement.style.setProperty('--journey-progress',`${pct}%`);
@@ -220,6 +224,7 @@
   }
 
   function updateJourneyContext(id,pct){
+    if(document.body.classList.contains('platform-regional-trip'))return;
     const box=$('#detailContent'); if(!box)return;
     let card=$('.journey-context',box);
     if(!card){card=document.createElement('div');card.className='journey-context';box.appendChild(card);}
@@ -326,6 +331,7 @@
     const detail=$('#detailContent');if(detail)new MutationObserver(()=>setTimeout(syncProgress,0)).observe(detail,{childList:true});
 
     document.addEventListener('keydown',e=>{
+      if(document.body.classList.contains('platform-regional-trip'))return;
       if(['INPUT','SELECT','TEXTAREA'].includes(document.activeElement?.tagName))return;
       if(e.key==='ArrowLeft'){e.preventDefault();$('#prevBtn')?.click();}
       if(e.key==='ArrowRight'){e.preventDefault();$('#nextBtn')?.click();}
