@@ -30,13 +30,40 @@
       "description": "Open normalized trip-kind slug. New trip kinds must not require renderer changes."
     },
     "places": {
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "extensions": {
+            "$ref": "#/$defs/extensions"
+          }
+        },
+        "additionalProperties": true
+      }
     },
     "stops": {
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "extensions": {
+            "$ref": "#/$defs/extensions"
+          }
+        },
+        "additionalProperties": true
+      }
     },
     "segments": {
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "extensions": {
+            "$ref": "#/$defs/extensions"
+          }
+        },
+        "additionalProperties": true
+      }
     },
     "sources": {
       "type": "array",
@@ -197,9 +224,7 @@
       }
     },
     "extensions": {
-      "type": "object",
-      "description": "Optional namespaced trip extensions. Core rendering must ignore unknown extensions safely.",
-      "additionalProperties": true
+      "$ref": "#/$defs/extensions"
     }
   },
   "x-oneWorldRoute": {
@@ -333,11 +358,25 @@
         "road",
         "border",
         "cruiseCall"
-      ]
+      ],
+      "nodeScopes": [
+        "trip",
+        "place",
+        "stop",
+        "segment"
+      ],
+      "schemaRule": "Every model layer may carry a namespaced extensions object; the core schema remains open to extension namespaces."
     },
     "capabilities": {
       "rule": "Catalog capabilities declare available experiences (for example terrain, story, traveller-context, source-evidence). UI must inspect capabilities/registered extensions rather than hard-code a trip ID.",
       "rendererRule": "All normal curated trips use the generic regional renderer unless a deliberately separate renderer is registered."
+    }
+  },
+  "$defs": {
+    "extensions": {
+      "type": "object",
+      "description": "Namespaced extension payloads. Unknown namespaces are allowed and must be ignored safely by the core runtime.",
+      "additionalProperties": true
     }
   }
 }
