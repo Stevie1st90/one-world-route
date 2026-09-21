@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','model.js','traveller.js','traveller-ui.js','discovery.js','route-library.js','story.js','extensions.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','model.js','traveller.js','traveller-ui.js','ui.js','discovery.js','route-library.js','story.js','terrain.js','extensions.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -74,9 +74,11 @@ test('regional routes own timeline and block legacy world mutation paths',()=>{
 });
 
 test('mobile platform keeps Traveller available',()=>{
+  const ui=moduleSources['ui.js'];
   assert.match(cssSource,/platform-pill\.secondary\{display:flex\}/);
-  assert.match(source,/id="platformTravellerBtn"/);
-  assert.match(source,/platform-pill-icon/);
+  assert.match(ui,/id="platformTravellerBtn"/);
+  assert.match(ui,/platform-pill-icon/);
+  assert.match(source,/Ui\.ensureGlobalActions/);
 });
 
 test('localhost service worker cannot keep stale QA bundles',()=>{
@@ -88,9 +90,10 @@ test('localhost service worker cannot keep stale QA bundles',()=>{
 
 test('regional routes expose generic story and terrain APIs',()=>{
   const story=moduleSources['story.js'];
+  const terrain=moduleSources['terrain.js'];
   for(const token of ['platformStoryBtn','platformStoryHud','function start','function stop'])assert.match(story,new RegExp(token));
-  for(const token of ['setRegionalTerrain','regionalTerrainStyle','regionalRouteGeoJson','focusRoute'])assert.match(source,new RegExp(token));
-  assert.match(source,/setTerrain:setRegionalTerrain/);
+  for(const token of ['function setActive','function focusRoute','function focusSegment','function routeGeoJson'])assert.match(terrain,new RegExp(token));
+  assert.match(source,/setTerrain:active=>Terrain\.setActive\(active\)/);
   assert.match(source,/startStory:\(\)=>Story\.start\(\)/);
   assert.match(source,/stopStory:\(\)=>Story\.stop\(\)/);
 });
@@ -118,10 +121,11 @@ test('regional story does not reuse the legacy 194-leg range',()=>{
 
 test('regional route focus fits the whole trip and terrain labels localize',()=>{
   const mapStyle=moduleSources['map-style.js'];
-  assert.match(source,/function focusRegionalTerrainRoute/);
-  assert.match(source,/fitBounds\(bounds/);
-  assert.match(source,/focusRoute:\(\)=>\{if\(document\.body\.classList\.contains\('terrain-view'\)\)focusRegionalTerrainRoute/);
-  assert.match(source,/MapStyle\.localize/);
+  const terrain=moduleSources['terrain.js'];
+  assert.match(terrain,/function focusRoute/);
+  assert.match(terrain,/fitBounds\(bounds/);
+  assert.match(source,/focusRoute:\(\)=>\{if\(document\.body\.classList\.contains\('terrain-view'\)\)Terrain\.focusRoute\(\)/);
+  assert.match(terrain,/mapStyle\.localize/);
   assert.match(mapStyle,/name:\$\{lang\}/);
 });
 
@@ -132,8 +136,9 @@ test('regional Story control is not hidden behind desktop side panels',()=>{
 
 
 test('regional terrain attribution stays compact and clear of mobile controls',()=>{
-  assert.match(source,/attributionControl:false/);
-  assert.match(source,/AttributionControl\(\{compact:true\}\)/);
+  const terrain=moduleSources['terrain.js'];
+  assert.match(terrain,/attributionControl:false/);
+  assert.match(terrain,/AttributionControl\(\{compact:true\}\)/);
   assert.match(cssSource,/maplibregl-ctrl-bottom-left\{left:316px;bottom:88px\}/);
   assert.match(cssSource,/@media\(max-width:820px\)[\s\S]*maplibregl-ctrl-bottom-left\{left:8px;bottom:56px\}/);
 });
@@ -154,7 +159,8 @@ test('regional UX detail modes keep sparse panels compact',()=>{
 
 test('regional terrain uses branded dark map styling',()=>{
   const mapStyle=moduleSources['map-style.js'];
-  assert.match(source,/MapStyle\.brandDark/);
+  const terrain=moduleSources['terrain.js'];
+  assert.match(terrain,/mapStyle\.brandDark\(mapStyle\.localize/);
   assert.match(mapStyle,/background-color'\]='#071019'/);
   assert.match(mapStyle,/fill-color'\]='#071b2a'/);
   assert.match(mapStyle,/text-halo-color'\]='#071019'/);
@@ -183,19 +189,29 @@ test('route library exposes transparent Route Fit controls',()=>{
 
 test('platform core delegates reusable concerns to modules',()=>{
   const routeLibrary=moduleSources['route-library.js'];
+  const ui=moduleSources['ui.js'];
   assert.match(source,/const Model=PLATFORM_MODULES\.model/);
   assert.match(source,/const Traveller=PLATFORM_MODULES\.traveller/);
   assert.match(source,/const TravellerUi=PLATFORM_MODULES\.travellerUi/);
+  assert.match(source,/const Ui=PLATFORM_MODULES\.ui/);
   assert.match(source,/const Discovery=PLATFORM_MODULES\.discovery/);
   assert.match(source,/const Extensions=PLATFORM_MODULES\.extensions/);
   assert.match(source,/const RouteLibrary=PLATFORM_MODULES\.routeLibrary/);
   assert.match(source,/const Story=PLATFORM_MODULES\.story/);
+  assert.match(source,/const Terrain=PLATFORM_MODULES\.terrain/);
   assert.match(source,/RouteLibrary\.open\(/);
   assert.match(source,/Story\.configure\(/);
+  assert.match(source,/Ui\.ensureGlobalActions\(/);
+  assert.match(source,/ensureDialog:Ui\.ensureDialog/);
+  assert.match(source,/settings:Ui\.regionalSettings/);
+  assert.match(source,/toast:Ui\.toast/);
   assert.match(source,/LocaleData\.regionName\(locale,code\)/);
   assert.match(source,/LocaleData\.plural\(locale,count/);
   assert.match(routeLibrary,/Discovery\.facets\(catalog\)/);
   assert.match(routeLibrary,/Discovery\.filter\(catalog/);
+  assert.match(ui,/function ensureDialog/);
+  assert.match(ui,/function regionalSettings/);
+  assert.doesNotMatch(source,/function ensureDialog|function platformToast|function regionalSettings/);
   assert.match(source,/Traveller\.load\(/);
   assert.match(source,/Model\.routeGeometry\(/);
 });
@@ -246,9 +262,10 @@ test('platform localization is isolated from bootstrap logic',()=>{
 
 test('terrain branding is shared by world and regional renderers',()=>{
   const mapStyle=moduleSources['map-style.js'];
+  const terrain=moduleSources['terrain.js'];
   assert.match(mapStyle,/function brandDark/);
   assert.match(mapStyle,/function localize/);
-  assert.match(source,/MapStyle\.brandDark/);
-  assert.match(source,/MapStyle\.localize/);
-  assert.match((iteration2Source+appSource+mapStyle),/ONE_WORLD_PLATFORM_MODULES|brandDark/);
+  assert.match(terrain,/root\.mapStyle/);
+  assert.match(terrain,/mapStyle\.brandDark\(mapStyle\.localize/);
+  assert.match((iteration2Source+appSource+mapStyle+terrain),/ONE_WORLD_PLATFORM_MODULES|brandDark/);
 });
