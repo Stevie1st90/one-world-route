@@ -159,6 +159,16 @@ for(const item of regional){
     const trip=datasets.get(item.id);
     await openRegional(page,item);
 
+    const pointTooltip=await page.evaluate(()=>{
+      const globe=window.__ONE_WORLD_ROUTE_GLOBE__;
+      const points=globe?.pointsData?.()||[];
+      const accessor=globe?.pointLabel?.();
+      return points.length&&typeof accessor==='function'?String(accessor(points[0])):'';
+    });
+    expect(pointTooltip).not.toContain('[object Object]');
+    expect(pointTooltip).not.toContain('undefined/195');
+    expect(pointTooltip).toContain(trip.places[0].name.en);
+
     if(item.id===railProof?.id){
       expect(trip.segments.every(segment=>segment.transport?.mode==='rail')).toBe(true);
       expect(trip.segments.every(segment=>(segment.transport?.stages||[]).length>0&&(segment.transport?.stages||[]).every(stage=>stage.mode==='rail'))).toBe(true);
