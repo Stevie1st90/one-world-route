@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','story.js','terrain.js','extensions.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','story.js','terrain.js','extensions.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -93,7 +93,11 @@ test('regional chapter controls bind NodeLists rather than a single element',()=
 });
 
 test('regional routes own timeline and block legacy world mutation paths',()=>{
-  for(const token of ['regionalRouteRange','regionalTimelineTitle','syncRegionalUrl','isolateRegionalRuntime'])assert.match(source,new RegExp(token));
+  const timeline=moduleSources['regional-timeline.js'];
+  const globe=moduleSources['regional-globe.js'];
+  for(const token of ['regionalRouteRange','regionalTimelineTitle'])assert.match(timeline,new RegExp(token));
+  assert.match(source,/syncRegionalUrl/);
+  assert.match(globe,/function isolate/);
   assert.match(appSource,/platformOwnsRoute/);
   assert.match(appSource,/if\(!state\.globe \|\| platformOwnsRoute\(\)\) return/);
   assert.match(iteration2Source,/platform-regional-trip/);
@@ -140,7 +144,8 @@ test('legacy terrain delegates trip URLs to platform terrain',async()=>{
 
 test('regional story does not reuse the legacy 194-leg range',()=>{
   const story=moduleSources['story.js'];
-  assert.match(source,/id="regionalRouteRange"/);
+  const timeline=moduleSources['regional-timeline.js'];
+  assert.match(timeline,/id="regionalRouteRange"/);
   assert.doesNotMatch(story,/routeRange|194-leg|194/);
   assert.match(story,/trip\.segments\.length/);
 });
@@ -233,6 +238,7 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.match(source,/const RegionalShell=PLATFORM_MODULES\.regionalShell/);
   assert.match(source,/const RegionalDetail=PLATFORM_MODULES\.regionalDetail/);
   assert.match(source,/const RegionalGlobe=PLATFORM_MODULES\.regionalGlobe/);
+  assert.match(source,/const RegionalTimeline=PLATFORM_MODULES\.regionalTimeline/);
   assert.match(source,/const Story=PLATFORM_MODULES\.story/);
   assert.match(source,/const Terrain=PLATFORM_MODULES\.terrain/);
   assert.match(source,/RouteLibrary\.open\(/);
@@ -242,6 +248,8 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.match(source,/RegionalDetail\.renderTripOverview\(/);
   assert.match(source,/RegionalGlobe\.configure\(/);
   assert.match(source,/RegionalGlobe\.render\(/);
+  assert.match(source,/RegionalTimeline\.configure\(/);
+  assert.match(source,/RegionalTimeline\.update\(/);
   assert.match(source,/Story\.configure\(/);
   assert.match(source,/Ui\.ensureGlobalActions\(/);
   assert.match(source,/Navigation\.buildTripUrl\(/);
@@ -258,6 +266,16 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.doesNotMatch(source,/function ensureDialog|function platformToast|function regionalSettings/);
   assert.match(source,/Traveller\.load\(/);
   assert.match(source,/Model\.routeGeometry\(/);
+});
+
+test('regional timeline owns playback state and stays trip-generic',()=>{
+  const timeline=moduleSources['regional-timeline.js'];
+  for(const token of ['function replace','function update','function togglePlayback','function stopPlayback'])assert.match(timeline,new RegExp(token));
+  assert.match(timeline,/let playTimer=null/);
+  assert.match(timeline,/d\.selectSegment/);
+  assert.match(timeline,/d\.getSelectedIndex\(\)/);
+  assert.doesNotMatch(timeline,/trip\.id\s*===|trip\.kind\s*===|currentTrip|ONE_WORLD_ROUTE_GLOBE/);
+  assert.doesNotMatch(source,/playTimer|function replaceTimeline|function updateTimelineRegional|function togglePlayback/);
 });
 
 test('regional globe renderer owns Globe.gl interactions and stays trip-generic',()=>{
