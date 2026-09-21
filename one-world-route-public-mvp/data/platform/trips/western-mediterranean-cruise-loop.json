@@ -52,18 +52,6 @@
     "distanceKm": null,
     "priceModel": "not-applicable-until-sailing-selected"
   },
-  "cruise": {
-    "nights": 7,
-    "seaDays": 1,
-    "embarkationStopId": "med-stop-01",
-    "disembarkationStopId": "med-stop-07",
-    "operator": null,
-    "vessel": null,
-    "sailingDate": null,
-    "bookingState": "illustrative-template",
-    "requiresSailingSelection": true,
-    "rule": "Port capability is evidence-backed. Sea legs, call times, berth assignments, ship, operator and price are not asserted until a concrete sailing is selected."
-  },
   "rendering": {
     "preferred": "standard-globe",
     "terrainOptional": false,
@@ -90,10 +78,12 @@
         "lat": 41.35,
         "lng": 2.17
       },
-      "port": {
-        "sourceIds": [
-          "barcelona-port-cruise"
-        ]
+      "extensions": {
+        "port": {
+          "sourceIds": [
+            "barcelona-port-cruise"
+          ]
+        }
       }
     },
     {
@@ -112,10 +102,12 @@
         "lat": 43.338916,
         "lng": 5.348054
       },
-      "port": {
-        "sourceIds": [
-          "marseille-port-cruise"
-        ]
+      "extensions": {
+        "port": {
+          "sourceIds": [
+            "marseille-port-cruise"
+          ]
+        }
       }
     },
     {
@@ -134,10 +126,12 @@
         "lat": 42.096,
         "lng": 11.79
       },
-      "port": {
-        "sourceIds": [
-          "civitavecchia-port-cruise"
-        ]
+      "extensions": {
+        "port": {
+          "sourceIds": [
+            "civitavecchia-port-cruise"
+          ]
+        }
       }
     },
     {
@@ -156,10 +150,12 @@
         "lat": 40.838,
         "lng": 14.256
       },
-      "port": {
-        "sourceIds": [
-          "naples-terminal-cruise"
-        ]
+      "extensions": {
+        "port": {
+          "sourceIds": [
+            "naples-terminal-cruise"
+          ]
+        }
       }
     },
     {
@@ -178,10 +174,12 @@
         "lat": 36.818,
         "lng": 10.305
       },
-      "port": {
-        "sourceIds": [
-          "la-goulette-port-cruise"
-        ]
+      "extensions": {
+        "port": {
+          "sourceIds": [
+            "la-goulette-port-cruise"
+          ]
+        }
       }
     },
     {
@@ -200,10 +198,12 @@
         "lat": 39.56,
         "lng": 2.63
       },
-      "port": {
-        "sourceIds": [
-          "palma-port-cruise"
-        ]
+      "extensions": {
+        "port": {
+          "sourceIds": [
+            "palma-port-cruise"
+          ]
+        }
       }
     }
   ],
@@ -215,12 +215,14 @@
       "dayStart": 1,
       "dayEnd": 1,
       "nights": 0,
-      "call": {
-        "kind": "embarkation",
-        "arrival": null,
-        "departure": null,
-        "berth": null,
-        "tender": null
+      "extensions": {
+        "cruiseCall": {
+          "kind": "embarkation",
+          "arrival": null,
+          "departure": null,
+          "berth": null,
+          "tender": null
+        }
       }
     },
     {
@@ -230,12 +232,14 @@
       "dayStart": 2,
       "dayEnd": 2,
       "nights": 0,
-      "call": {
-        "kind": "port-call",
-        "arrival": null,
-        "departure": null,
-        "berth": null,
-        "tender": null
+      "extensions": {
+        "cruiseCall": {
+          "kind": "port-call",
+          "arrival": null,
+          "departure": null,
+          "berth": null,
+          "tender": null
+        }
       }
     },
     {
@@ -245,12 +249,14 @@
       "dayStart": 3,
       "dayEnd": 3,
       "nights": 0,
-      "call": {
-        "kind": "port-call",
-        "arrival": null,
-        "departure": null,
-        "berth": null,
-        "tender": null
+      "extensions": {
+        "cruiseCall": {
+          "kind": "port-call",
+          "arrival": null,
+          "departure": null,
+          "berth": null,
+          "tender": null
+        }
       }
     },
     {
@@ -260,12 +266,14 @@
       "dayStart": 4,
       "dayEnd": 4,
       "nights": 0,
-      "call": {
-        "kind": "port-call",
-        "arrival": null,
-        "departure": null,
-        "berth": null,
-        "tender": null
+      "extensions": {
+        "cruiseCall": {
+          "kind": "port-call",
+          "arrival": null,
+          "departure": null,
+          "berth": null,
+          "tender": null
+        }
       }
     },
     {
@@ -275,12 +283,14 @@
       "dayStart": 5,
       "dayEnd": 5,
       "nights": 0,
-      "call": {
-        "kind": "port-call",
-        "arrival": null,
-        "departure": null,
-        "berth": null,
-        "tender": null
+      "extensions": {
+        "cruiseCall": {
+          "kind": "port-call",
+          "arrival": null,
+          "departure": null,
+          "berth": null,
+          "tender": null
+        }
       }
     },
     {
@@ -290,12 +300,14 @@
       "dayStart": 7,
       "dayEnd": 7,
       "nights": 0,
-      "call": {
-        "kind": "port-call",
-        "arrival": null,
-        "departure": null,
-        "berth": null,
-        "tender": null
+      "extensions": {
+        "cruiseCall": {
+          "kind": "port-call",
+          "arrival": null,
+          "departure": null,
+          "berth": null,
+          "tender": null
+        }
       }
     },
     {
@@ -305,12 +317,14 @@
       "dayStart": 8,
       "dayEnd": 8,
       "nights": 0,
-      "call": {
-        "kind": "disembarkation",
-        "arrival": null,
-        "departure": null,
-        "berth": null,
-        "tender": null
+      "extensions": {
+        "cruiseCall": {
+          "kind": "disembarkation",
+          "arrival": null,
+          "departure": null,
+          "berth": null,
+          "tender": null
+        }
       }
     }
   ],
@@ -323,13 +337,6 @@
       "transport": {
         "mode": "cruise",
         "stages": []
-      },
-      "cruise": {
-        "onboardNights": 1,
-        "seaDayNumbers": [],
-        "operator": null,
-        "vessel": null,
-        "serviceStatus": "illustrative"
       },
       "planning": {
         "durationMinutes": null,
@@ -345,11 +352,20 @@
         ],
         "notes": "Endpoint cruise facilities are source-backed. No specific ship service or sailing time is asserted."
       },
-      "borderContext": {
-        "fromCountry": "ES",
-        "toCountry": "FR",
-        "zoneTransition": "schengen-internal",
-        "personalizationRequired": false
+      "extensions": {
+        "cruise": {
+          "onboardNights": 1,
+          "seaDayNumbers": [],
+          "operator": null,
+          "vessel": null,
+          "serviceStatus": "illustrative"
+        },
+        "border": {
+          "fromCountry": "ES",
+          "toCountry": "FR",
+          "zoneTransition": "schengen-internal",
+          "personalizationRequired": false
+        }
       }
     },
     {
@@ -360,13 +376,6 @@
       "transport": {
         "mode": "cruise",
         "stages": []
-      },
-      "cruise": {
-        "onboardNights": 1,
-        "seaDayNumbers": [],
-        "operator": null,
-        "vessel": null,
-        "serviceStatus": "illustrative"
       },
       "planning": {
         "durationMinutes": null,
@@ -382,11 +391,20 @@
         ],
         "notes": "Endpoint cruise facilities are source-backed. No specific ship service or sailing time is asserted."
       },
-      "borderContext": {
-        "fromCountry": "FR",
-        "toCountry": "IT",
-        "zoneTransition": "schengen-internal",
-        "personalizationRequired": false
+      "extensions": {
+        "cruise": {
+          "onboardNights": 1,
+          "seaDayNumbers": [],
+          "operator": null,
+          "vessel": null,
+          "serviceStatus": "illustrative"
+        },
+        "border": {
+          "fromCountry": "FR",
+          "toCountry": "IT",
+          "zoneTransition": "schengen-internal",
+          "personalizationRequired": false
+        }
       }
     },
     {
@@ -397,13 +415,6 @@
       "transport": {
         "mode": "cruise",
         "stages": []
-      },
-      "cruise": {
-        "onboardNights": 1,
-        "seaDayNumbers": [],
-        "operator": null,
-        "vessel": null,
-        "serviceStatus": "illustrative"
       },
       "planning": {
         "durationMinutes": null,
@@ -419,11 +430,20 @@
         ],
         "notes": "Endpoint cruise facilities are source-backed. No specific ship service or sailing time is asserted."
       },
-      "borderContext": {
-        "fromCountry": "IT",
-        "toCountry": "IT",
-        "zoneTransition": "domestic",
-        "personalizationRequired": false
+      "extensions": {
+        "cruise": {
+          "onboardNights": 1,
+          "seaDayNumbers": [],
+          "operator": null,
+          "vessel": null,
+          "serviceStatus": "illustrative"
+        },
+        "border": {
+          "fromCountry": "IT",
+          "toCountry": "IT",
+          "zoneTransition": "domestic",
+          "personalizationRequired": false
+        }
       }
     },
     {
@@ -434,13 +454,6 @@
       "transport": {
         "mode": "cruise",
         "stages": []
-      },
-      "cruise": {
-        "onboardNights": 1,
-        "seaDayNumbers": [],
-        "operator": null,
-        "vessel": null,
-        "serviceStatus": "illustrative"
       },
       "planning": {
         "durationMinutes": null,
@@ -456,11 +469,20 @@
         ],
         "notes": "This leg leaves the Schengen area. Endpoint ports are source-backed; the sailing itself is illustrative."
       },
-      "borderContext": {
-        "fromCountry": "IT",
-        "toCountry": "TN",
-        "zoneTransition": "schengen-exit",
-        "personalizationRequired": true
+      "extensions": {
+        "cruise": {
+          "onboardNights": 1,
+          "seaDayNumbers": [],
+          "operator": null,
+          "vessel": null,
+          "serviceStatus": "illustrative"
+        },
+        "border": {
+          "fromCountry": "IT",
+          "toCountry": "TN",
+          "zoneTransition": "schengen-exit",
+          "personalizationRequired": true
+        }
       }
     },
     {
@@ -471,15 +493,6 @@
       "transport": {
         "mode": "cruise",
         "stages": []
-      },
-      "cruise": {
-        "onboardNights": 2,
-        "seaDayNumbers": [
-          6
-        ],
-        "operator": null,
-        "vessel": null,
-        "serviceStatus": "illustrative"
       },
       "planning": {
         "durationMinutes": null,
@@ -495,11 +508,22 @@
         ],
         "notes": "Includes one modelled sea day. This leg re-enters the Schengen area; actual immigration handling depends on the traveller and selected sailing."
       },
-      "borderContext": {
-        "fromCountry": "TN",
-        "toCountry": "ES",
-        "zoneTransition": "schengen-entry",
-        "personalizationRequired": true
+      "extensions": {
+        "cruise": {
+          "onboardNights": 2,
+          "seaDayNumbers": [
+            6
+          ],
+          "operator": null,
+          "vessel": null,
+          "serviceStatus": "illustrative"
+        },
+        "border": {
+          "fromCountry": "TN",
+          "toCountry": "ES",
+          "zoneTransition": "schengen-entry",
+          "personalizationRequired": true
+        }
       }
     },
     {
@@ -510,13 +534,6 @@
       "transport": {
         "mode": "cruise",
         "stages": []
-      },
-      "cruise": {
-        "onboardNights": 1,
-        "seaDayNumbers": [],
-        "operator": null,
-        "vessel": null,
-        "serviceStatus": "illustrative"
       },
       "planning": {
         "durationMinutes": null,
@@ -532,11 +549,20 @@
         ],
         "notes": "Endpoint cruise facilities are source-backed. No specific ship service or sailing time is asserted."
       },
-      "borderContext": {
-        "fromCountry": "ES",
-        "toCountry": "ES",
-        "zoneTransition": "domestic",
-        "personalizationRequired": false
+      "extensions": {
+        "cruise": {
+          "onboardNights": 1,
+          "seaDayNumbers": [],
+          "operator": null,
+          "vessel": null,
+          "serviceStatus": "illustrative"
+        },
+        "border": {
+          "fromCountry": "ES",
+          "toCountry": "ES",
+          "zoneTransition": "domestic",
+          "personalizationRequired": false
+        }
       }
     }
   ],
@@ -685,5 +711,19 @@
       "accessibility"
     ],
     "rule": "Do not treat a cruise as a border-free journey. Resolve entry and re-entry rules against the traveller context for each jurisdiction and sailing."
+  },
+  "extensions": {
+    "cruise": {
+      "nights": 7,
+      "seaDays": 1,
+      "embarkationStopId": "med-stop-01",
+      "disembarkationStopId": "med-stop-07",
+      "operator": null,
+      "vessel": null,
+      "sailingDate": null,
+      "bookingState": "illustrative-template",
+      "requiresSailingSelection": true,
+      "rule": "Port capability is evidence-backed. Sea legs, call times, berth assignments, ship, operator and price are not asserted until a concrete sailing is selected."
+    }
   }
 }
