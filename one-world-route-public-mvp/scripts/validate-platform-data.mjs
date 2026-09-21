@@ -1,5 +1,5 @@
 import {readFile} from 'node:fs/promises';
-import {validatePlatformExtensions} from './platform-extension-validators.mjs';
+import {validatePlatformExtensions,getPlatformExtension} from './platform-extension-validators.mjs';
 
 const root = new URL('../', import.meta.url);
 const readJson = async rel => JSON.parse(await readFile(new URL(rel, root), 'utf8'));
@@ -56,7 +56,7 @@ for (const item of catalog.trips || []) {
     if (!p.id || placeIds.has(p.id)) fail(item.id+': duplicate place '+p.id); else placeIds.add(p.id);
     placeById.set(p.id,p);
     if (!Number.isFinite(p.coordinates?.lat) || !Number.isFinite(p.coordinates?.lng)) fail(item.id+': place '+p.id+' requires coordinates');
-    for (const id of p.port?.sourceIds || []) if (!sourceIds.has(id)) fail(item.id+': port '+p.id+' references missing source '+id);
+    for (const id of getPlatformExtension(p,'port')?.sourceIds || []) if (!sourceIds.has(id)) fail(item.id+': port '+p.id+' references missing source '+id);
   }
   const stopIds = new Set();
   const stopById = new Map();
