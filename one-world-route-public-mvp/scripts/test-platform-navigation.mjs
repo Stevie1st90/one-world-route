@@ -257,6 +257,7 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.match(source,/RegionalControls\.apply\(/);
   assert.match(source,/RegionalSelection\.configure\(/);
   assert.match(source,/RegionalSelection\.getIndex\(/);
+  assert.match(source,/selectStop:\(index,focus\)=>RegionalSelection\.selectStop\(index,focus\)/);
   assert.match(source,/Story\.configure\(/);
   assert.match(source,/Ui\.ensureGlobalActions\(/);
   assert.match(source,/Navigation\.buildTripUrl\(/);
