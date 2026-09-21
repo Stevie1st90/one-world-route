@@ -1,4 +1,5 @@
 import {readFile} from 'node:fs/promises';
+import {validatePlatformExtensions} from './platform-extension-validators.mjs';
 
 const root = new URL('../', import.meta.url);
 const readJson = async rel => JSON.parse(await readFile(new URL(rel, root), 'utf8'));
@@ -16,6 +17,29 @@ if (!Array.isArray(catalog.trips) || catalog.trips.length < 2) fail('Trip catalo
 for (const trip of catalog.trips || []) {
   if (!trip.id || ids.has(trip.id)) fail('Trip IDs must be unique: '+trip.id); else ids.add(trip.id);
   if (!trip.slug || slugs.has(trip.slug)) fail('Trip slugs must be unique: '+trip.slug); else slugs.add(trip.slug);
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(String(trip.kind||''))) fail(trip.id+': kind must be a normalized slug');
+  if (!['legacy-world','regional-globe'].includes(trip.renderer)) fail(trip.id+': unsupported renderer '+trip.renderer);
+  if (!Array.isArray(trip.capabilities)||!trip.capabilities.length) fail(trip.id+': capabilities required');
+  else {
+    const seenCapabilities=new Set();
+    for (const capability of trip.capabilities) {
+      if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(String(capability||''))) fail(trip.id+': invalid capability '+capability);
+      if (seenCapabilities.has(capability)) fail(trip.id+': duplicate capability '+capability);
+      seenCapabilities.add(capability);
+    }
+    if (trip.renderer==='regional-globe'&&!seenCapabilities.has('globe')) fail(trip.id+': regional renderer requires globe capability');
+  }
+  const discovery=trip.discovery||{};
+  if (!Array.isArray(discovery.regions)||!discovery.regions.length) fail(trip.id+': discovery.regions required');
+  if (!Array.isArray(discovery.themes)||!discovery.themes.length) fail(trip.id+': discovery.themes required');
+  if (!Array.isArray(discovery.modes)||!discovery.modes.length) fail(trip.id+': discovery.modes required');
+  if (!['7-14','15-30','31-89','90-plus'].includes(discovery.durationBand)) fail(trip.id+': invalid discovery.durationBand');
+  const fit=discovery.fit||{};
+  if (!['relaxed','balanced','active'].includes(fit.pace)) fail(trip.id+': invalid discovery.fit.pace');
+  if (!Array.isArray(fit.seasons)||!fit.seasons.length||fit.seasons.some(v=>!['spring','summer','autumn','winter','multi-season'].includes(v))) fail(trip.id+': invalid discovery.fit.seasons');
+  if (!Array.isArray(fit.party)||!fit.party.length||fit.party.some(v=>!['solo','couples','friends','families'].includes(v))) fail(trip.id+': invalid discovery.fit.party');
+  if (!fit.startRegion) fail(trip.id+': discovery.fit.startRegion required');
+  if (!['standard-check','operator-dependent','vehicle-dependent','complex-planning'].includes(fit.accessibility)) fail(trip.id+': invalid discovery.fit.accessibility');
   for (const lang of supportedLocales) {
     if (!String(trip.title?.[lang]||'').trim()) fail(trip.id+': missing title for '+lang);
     if (!String(trip.subtitle?.[lang]||'').trim()) fail(trip.id+': missing subtitle for '+lang);
@@ -44,7 +68,6 @@ for (const item of catalog.trips || []) {
     if (!p.id || placeIds.has(p.id)) fail(item.id+': duplicate place '+p.id); else placeIds.add(p.id);
     placeById.set(p.id,p);
     if (!Number.isFinite(p.coordinates?.lat) || !Number.isFinite(p.coordinates?.lng)) fail(item.id+': place '+p.id+' requires coordinates');
-    for (const id of p.port?.sourceIds || []) if (!sourceIds.has(id)) fail(item.id+': port '+p.id+' references missing source '+id);
   }
   const stopIds = new Set();
   const stopById = new Map();
@@ -69,25 +92,7 @@ for (const item of catalog.trips || []) {
       if (!/^\d{4}-\d{2}-\d{2}$/.test(String(s.verification?.lastVerified||''))) fail(item.id+': verified segment '+s.id+' requires lastVerified');
     }
   }
-  if (trip.kind === 'cruise') {
-    if (!trip.cruise) fail(item.id+': cruise trip requires cruise metadata');
-    if (!orderedStops.length || trip.cruise?.embarkationStopId !== orderedStops[0]?.id) fail(item.id+': cruise embarkation must be first stop');
-    if (!orderedStops.length || trip.cruise?.disembarkationStopId !== orderedStops.at(-1)?.id) fail(item.id+': cruise disembarkation must be final stop');
-    if (orderedStops[0]?.placeId !== orderedStops.at(-1)?.placeId) fail(item.id+': loop cruise demonstrator must return to the same home port place');
-    const onboardNights=segs.reduce((n,s)=>n+Number(s.cruise?.onboardNights||0),0);
-    const seaDayNumbers=segs.flatMap(s=>s.cruise?.seaDayNumbers||[]);
-    if (onboardNights !== Number(trip.cruise?.nights||0)) fail(item.id+': cruise onboard night total mismatch');
-    if (new Set(seaDayNumbers).size !== seaDayNumbers.length) fail(item.id+': duplicate cruise sea day');
-    if (seaDayNumbers.length !== Number(trip.cruise?.seaDays||0)) fail(item.id+': cruise sea day total mismatch');
-    for (const s of segs) {
-      if (s.transport?.mode !== 'cruise') fail(item.id+': cruise segment '+s.id+' must use cruise mode');
-      if (!s.cruise || s.cruise.serviceStatus !== 'illustrative') fail(item.id+': unselected cruise sailing must remain illustrative');
-      const fromStop=stopById.get(s.fromStopId),toStop=stopById.get(s.toStopId);
-      const fromCountry=placeById.get(fromStop?.placeId)?.countryCode,toCountry=placeById.get(toStop?.placeId)?.countryCode;
-      if (s.borderContext?.fromCountry!==fromCountry || s.borderContext?.toCountry!==toCountry) fail(item.id+': border context mismatch on '+s.id);
-      if (['schengen-exit','schengen-entry'].includes(s.borderContext?.zoneTransition) && s.borderContext?.personalizationRequired!==true) fail(item.id+': external Schengen transition must require traveller personalization on '+s.id);
-    }
-  }
+  validatePlatformExtensions({item,trip,orderedStops,segs,stopById,placeById,sourceIds,fail});
   const entry = trip.entryGuidance;
   if (entry) {
     for (const id of [entry.officialResolverSourceId,...(entry.supportingSourceIds||[])].filter(Boolean)) if (!sourceIds.has(id)) fail(item.id+': entry guidance references missing source '+id);

@@ -58,7 +58,10 @@ The platform layer is additive and does not reinterpret the flagship macro itine
 - `data/platform/trips/*.json` contains generic regional or thematic routes.
 - `data/platform/trip-schema.json` documents the reusable trip contract.
 - `data/platform/traveller-context-schema.json` documents non-secret traveller planning context.
-- `platform.js` / `platform.css` provide route discovery, Traveller Context and the regional Globe.gl renderer. They are compiled into the feature bundles.
+- `platform/*.js` contains reusable runtime services: registry, localization, model helpers, Traveller Context, discovery, extensions and map styling.
+- `platform.js` is the orchestration/bootstrap layer for regional UI and rendering.
+- `platform.css` contains the shared platform presentation layer.
+- These sources are compiled into the feature bundles.
 
 The core abstraction is **place → visit/stop → segment**. A place is a geographic entity; a stop is a specific visit to that place; a segment connects two visits. This intentionally supports returning to Rome, repeated cruise port calls, loops, open-jaw itineraries and future user-created routes without duplicating place identity.
 
@@ -69,6 +72,45 @@ Transport is extensible rather than tied to international borders. Cruise itiner
 No route should infer eligibility or advice from a German departure perspective. Traveller-specific logic is keyed by relevant planning dimensions such as passport country/countries, country of residence, preferred language and currency, origin, party composition and accessibility context. The first implementation stores that context only in browser local storage. It must never contain passport numbers, booking/payment data or private identity documents.
 
 Global editorial defaults remain neutral and generic. Visa/entry, price, insurance, health and legal claims require current sources appropriate to the traveller context. Unknown values remain unknown.
+
+### Runtime module boundaries
+
+The generic platform is split by responsibility:
+
+- **runtime registry** — extension registration and discovery
+- **model** — place/stop/segment graph helpers, route geometry, bounds and capability queries
+- **traveller** — allowlisted local-storage planning context
+- **UI primitives** — shared dialogs, global route/traveller actions, toasts and regional settings snapshots
+- **navigation** — reusable trip URL construction and regional URL state
+- **discovery** — catalog facets and transparent Route Fit predicates
+- **regional shell** — trip chrome, stop navigation and chapter rail
+- **regional detail** — generic trip/stop/segment detail rendering
+- **regional globe** — Globe.gl isolation, route geometry, camera and focus behavior
+- **regional timeline** — timeline DOM, selected-segment playback and playback timer
+- **regional controls** — settings wiring and methodology UI
+- **regional selection** — selected segment/stop interaction coordination across detail, globe, timeline, terrain and story
+- **extensions composer** — combines registered presenter output without knowing concrete trip kinds
+- **extension presenters** — independent `platform/extensions/*.js` modules such as cruise, road and border
+- **i18n** — platform and legacy-world message data
+- **formatters** — stateless duration, cost/currency and localized editorial-note formatting
+- **legacy localization** — DOM translation compatibility for the Flagship world renderer only
+- **map style** — shared terrain localization/branding for world and regional renderers
+- **platform bootstrap** — catalog/profile bootstrap and dependency wiring; regional rendering behavior lives in dedicated modules
+
+Core route rendering must not branch on a specific trip ID or trip kind. A normal new route is data-only. Specialized behavior must be introduced as a namespaced extension and registered presenter/validator. Runtime presenters live in independent `platform/extensions/` modules and are composed generically by `platform/extensions.js`. Extension validation is split into `scripts/platform-extension-validators/` modules loaded through a registry. Adding a new specialization therefore does not require editing either the core renderer or the core platform-data validator.
+
+Current pilot data has been migrated to namespaced extensions:
+- `extensions.cruise`
+- `extensions.roadTrip`
+- stop `extensions.cruiseCall`
+- segment `extensions.cruise`
+- segment `extensions.road`
+- segment `extensions.border`
+- place `extensions.port`
+
+The model adapter still reads the previous field names for backward compatibility.
+
+Trip kinds are open normalized slugs. Capabilities determine product behavior. This allows, for example, `camper`, `cycling`, `hiking`, `rail` or `expedition` routes to use the same renderer without expanding a closed enum.
 
 ### Compatibility
 
@@ -103,4 +145,25 @@ Port infrastructure and a commercial sailing are separate claims. Port authority
 Each localized trip page includes its own canonical URL, all supported `hreflang` alternates, an `x-default` route and Schema.org `TouristTrip` JSON-LD. The interactive target preserves `lang` in the query string. An explicit URL language takes precedence over a previously stored browser-language preference.
 
 Sitemap generation uses the same catalog locale list, avoiding a separate hard-coded SEO language matrix.
+
+### Route Discovery
+
+Trip discovery is catalog-driven. Every public catalog item carries normalized `regions`, `themes`, `modes` and a duration band. The browser derives filters from those fields instead of maintaining a separate route-category list. Catalog validation rejects routes without discovery metadata.
+
+### Vehicle Context and road trips
+
+Road trips reuse the normal place → visit/stop → segment model. Vehicle-specific metadata lives in the road extension (currently `segment.extensions.road`) for cross-border status, toll systems, urban-access checks and rental approval requirements.
+
+Traveller Context optionally carries a non-secret Vehicle Context:
+- vehicle type
+- registration country
+- fuel/powertrain
+- Euro emissions class
+- whether a rental is approved for cross-border use
+
+The platform must not infer road eligibility from nationality or language. Cross-border rental approval is contract-specific; non-EU licence recognition can be country-specific; toll and low-emission-zone outcomes can depend on the exact vehicle. Therefore unresolved road segments remain `current-check-required` until those inputs are known.
+
+### Local preview server
+
+`scripts/serve-local.mjs` serves static assets and mirrors the production share rewrites for `/trip/:slug`, `/:lang/trip/:slug`, `/route/:id` and `/country/:slug`. This allows manual and CI verification without consuming a Vercel deployment. CI smoke-tests the local root and localized trip pages after the release build.
 

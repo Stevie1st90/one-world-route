@@ -49,5 +49,11 @@
       "source": "/trip/:slug",
       "destination": "/api/share?type=trip&slug=:slug"
     }
-  ]
+  ],
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "git": {
+    "deploymentEnabled": {
+      "route-discovery-roadtrip-v1": false
+    }
+  }
 }

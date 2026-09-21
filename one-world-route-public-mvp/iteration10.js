@@ -12,6 +12,10 @@
     btn.className='terrain-focus-btn';
     btn.innerHTML='<span>◎</span><b>Focus route</b>';
     btn.addEventListener('click',()=>{
+      if(document.body.classList.contains('platform-regional-trip')){
+        window.ONE_WORLD_PLATFORM?.focusRoute?.();
+        return;
+      }
       const range=$('#routeRange');
       if(!range)return;
       range.dispatchEvent(new Event('input',{bubbles:true}));

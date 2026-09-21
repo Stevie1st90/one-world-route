@@ -43,3 +43,12 @@ test('unsupported share language cannot create a bogus canonical',()=>{
   assert.doesNotMatch(body,/\/zz\/trip\//);
   assert.match(body,/href="https:\/\/one-world-route\.vercel\.app\/trip\/italy-grand-tour"/);
 });
+
+test('road-trip share page is localized and identified as a road trip',()=>{
+  const {headers,body}=render({type:'trip',slug:'southern-europe-road-trip',lang:'fr'});
+  assert.equal(headers['Content-Language'],'fr');
+  assert.match(body,/Road trip en Europe du Sud — ONE WORLD ROUTE/);
+  assert.match(body,/\/fr\/trip\/southern-europe-road-trip/);
+  assert.match(body,/"touristType":"Road trip"/);
+});
+

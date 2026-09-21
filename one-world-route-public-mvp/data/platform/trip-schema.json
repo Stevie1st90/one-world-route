@@ -25,26 +25,45 @@
       "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
     },
     "kind": {
-      "enum": [
-        "world",
-        "round-trip",
-        "road-trip",
-        "rail",
-        "cruise",
-        "island-hopping",
-        "city-break",
-        "expedition",
-        "custom"
-      ]
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "description": "Open normalized trip-kind slug. New trip kinds must not require renderer changes."
     },
     "places": {
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "extensions": {
+            "$ref": "#/$defs/extensions"
+          }
+        },
+        "additionalProperties": true
+      }
     },
     "stops": {
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "extensions": {
+            "$ref": "#/$defs/extensions"
+          }
+        },
+        "additionalProperties": true
+      }
     },
     "segments": {
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "extensions": {
+            "$ref": "#/$defs/extensions"
+          }
+        },
+        "additionalProperties": true
+      }
     },
     "sources": {
       "type": "array",
@@ -170,6 +189,42 @@
           "type": "boolean"
         }
       }
+    },
+    "roadTrip": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "vehicleContextRequired": {
+          "type": "boolean"
+        },
+        "rentalCrossBorderApprovalRequired": {
+          "enum": [
+            "operator-dependent",
+            true,
+            false
+          ]
+        },
+        "vehicleOwnershipModes": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "private",
+              "rental",
+              "camper",
+              "motorcycle",
+              "other"
+            ]
+          }
+        },
+        "rule": {
+          "type": "string"
+        }
+      }
+    },
+    "extensions": {
+      "$ref": "#/$defs/extensions"
     }
   },
   "x-oneWorldRoute": {
@@ -237,6 +292,91 @@
         "international"
       ],
       "rule": "Sea days belong to cruise segments, not fictional geographic places. Port calls are visit/stop records. Repeated home ports use distinct stop IDs linked to one place."
+    },
+    "discovery": {
+      "regions": "array of normalized filter slugs",
+      "themes": "array of normalized filter slugs",
+      "modes": "array of normalized mode slugs",
+      "durationBand": "7-14 | 15-30 | 31-89 | 90-plus",
+      "rule": "Discovery metadata is catalog metadata; trip detail remains authoritative."
+    },
+    "roadTrip": {
+      "vehicleContextFields": [
+        "type",
+        "registrationCountry",
+        "fuelType",
+        "euroClass",
+        "rentalCrossBorderApproved"
+      ],
+      "rule": "Tolls, low-emission zones, rental permissions and urban access must not be resolved without the relevant vehicle and traveller context."
+    },
+    "discoveryFit": {
+      "pace": [
+        "relaxed",
+        "balanced",
+        "active"
+      ],
+      "seasons": [
+        "spring",
+        "summer",
+        "autumn",
+        "winter",
+        "multi-season"
+      ],
+      "party": [
+        "solo",
+        "couples",
+        "friends",
+        "families"
+      ],
+      "startRegion": "normalized region slug",
+      "accessibility": [
+        "standard-check",
+        "operator-dependent",
+        "vehicle-dependent",
+        "complex-planning"
+      ],
+      "rule": "Route Fit is transparent editorial discovery metadata. It filters routes; it must not be presented as a safety, medical, legal or accessibility guarantee."
+    },
+    "knownTripKinds": [
+      "world",
+      "round-trip",
+      "road-trip",
+      "rail",
+      "cruise",
+      "island-hopping",
+      "city-break",
+      "expedition",
+      "custom"
+    ],
+    "extensionContract": {
+      "rule": "Core route rendering depends only on place -> stop -> segment. Specialized behavior belongs in namespaced extensions and registered presenters/validators, never trip-id branches.",
+      "compatibility": "Runtime reads node.extensions first and can adapt legacy cruise, roadTrip, call, roadContext and borderContext fields during migration.",
+      "examples": [
+        "cruise",
+        "roadTrip",
+        "road",
+        "border",
+        "cruiseCall"
+      ],
+      "nodeScopes": [
+        "trip",
+        "place",
+        "stop",
+        "segment"
+      ],
+      "schemaRule": "Every model layer may carry a namespaced extensions object; the core schema remains open to extension namespaces."
+    },
+    "capabilities": {
+      "rule": "Catalog capabilities declare available experiences (for example terrain, story, traveller-context, source-evidence). UI must inspect capabilities/registered extensions rather than hard-code a trip ID.",
+      "rendererRule": "All normal curated trips use the generic regional renderer unless a deliberately separate renderer is registered."
+    }
+  },
+  "$defs": {
+    "extensions": {
+      "type": "object",
+      "description": "Namespaced extension payloads. Unknown namespaces are allowed and must be ignored safely by the core runtime.",
+      "additionalProperties": true
     }
   }
 }

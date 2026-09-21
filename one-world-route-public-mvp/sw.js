@@ -1,9 +1,10 @@
-const CACHE='one-world-route-global-discovery-v1-20260921a';
-const CORE=['/','/index.html','/core.bundle.css','/features.bundle.css','/core.bundle.js','/features.bundle.js','/manifest.webmanifest','/icon.svg','/data/public-route.json','/data/country-centroids.json','/data/route-waypoints.json','/data/flight-geometries.json','/data/operational-movements.json','/data/platform/trips.json','/data/platform/trips/italy-grand-tour.json','/data/platform/trips/western-mediterranean-cruise-loop.json','/data/platform/trip-schema.json','/data/platform/traveller-context-schema.json','/data/platform/traveller-rule-schema.json'];
-self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
-self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
+const LOCAL_PREVIEW=['127.0.0.1','localhost','::1'].includes(self.location.hostname);
+const CACHE='one-world-route-regional-hardening-20260921b';
+const CORE=['/','/index.html','/core.bundle.css','/features.bundle.css','/core.bundle.js','/features.bundle.js','/manifest.webmanifest','/icon.svg','/data/public-route.json','/data/country-centroids.json','/data/route-waypoints.json','/data/flight-geometries.json','/data/operational-movements.json','/data/platform/trips.json','/data/platform/trips/italy-grand-tour.json','/data/platform/trips/western-mediterranean-cruise-loop.json','/data/platform/trips/southern-europe-road-trip.json','/data/platform/trip-schema.json','/data/platform/traveller-context-schema.json','/data/platform/traveller-rule-schema.json'];
+self.addEventListener('install',e=>e.waitUntil((LOCAL_PREVIEW?Promise.resolve():caches.open(CACHE).then(c=>c.addAll(CORE))).then(()=>self.skipWaiting())));
+self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>LOCAL_PREVIEW||k!==CACHE).map(k=>caches.delete(k)))).then(()=>LOCAL_PREVIEW?self.registration.unregister():true).then(()=>self.clients.claim())));
 self.addEventListener('fetch',e=>{
-  if(e.request.method!=='GET')return;
+  if(LOCAL_PREVIEW||e.request.method!=='GET')return;
   const u=new URL(e.request.url);
   if(/tile\.openstreetmap\.org|tiles\.mapterhorn\.com|download\.mapterhorn\.com/.test(u.hostname))return;
   if(u.origin!==location.origin)return;

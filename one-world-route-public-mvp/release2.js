@@ -2,9 +2,10 @@
   'use strict';
   const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
   const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-  const euro=v=>new Intl.NumberFormat('en-GB',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(v||0));
-  const km=v=>new Intl.NumberFormat('en-GB',{maximumFractionDigits:0}).format(Math.round(v||0))+' km';
-  const EN=window.ONE_WORLD_EN||{country:s=>s,mode:s=>s};
+  const EN=window.ONE_WORLD_EN||{locale:'en',country:s=>s,mode:s=>s};
+  const UI_LOCALE=EN.locale||'en';
+  const euro=v=>new Intl.NumberFormat(UI_LOCALE,{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(v||0));
+  const km=v=>new Intl.NumberFormat(UI_LOCALE,{maximumFractionDigits:0}).format(Math.round(v||0))+' km';
   const runtime={route:null,countries:[],centroids:new Map(),waypoints:new Map(),actual:null,media:null,changes:null,installPrompt:null,stats:null};
 
   const hav=(a,b)=>{
@@ -127,7 +128,13 @@
     });
     window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();runtime.installPrompt=e;$('#pwaInstall')?.classList.remove('hidden')});
     $('#pwaInstall')?.addEventListener('click',async()=>{if(!runtime.installPrompt)return;runtime.installPrompt.prompt();await runtime.installPrompt.userChoice;runtime.installPrompt=null;$('#pwaInstall')?.classList.add('hidden')});
-    if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(err=>console.warn('Service worker unavailable',err));
+    if('serviceWorker'in navigator){
+      const localPreview=['127.0.0.1','localhost','::1'].includes(location.hostname);
+      if(localPreview){
+        navigator.serviceWorker.getRegistrations?.().then(rows=>Promise.all(rows.map(r=>r.unregister()))).catch(()=>{});
+        if('caches'in window)caches.keys().then(keys=>Promise.all(keys.map(k=>caches.delete(k)))).catch(()=>{});
+      }else navigator.serviceWorker.register('./sw.js').catch(err=>console.warn('Service worker unavailable',err));
+    }
   }
 
   async function init(){await load();wire();window.ONE_WORLD_RELEASE2={open,stats:computeStats,actual:()=>runtime.actual};}

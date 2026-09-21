@@ -4,8 +4,19 @@
 (() => {
   'use strict';
   const names=new Map();
+  const SUPPORTED=['en','de','it','es','fr','pt'];
+  const locale=(()=>{
+    const query=new URLSearchParams(location.search).get('lang');
+    if(SUPPORTED.includes(String(query||'').toLowerCase()))return String(query).toLowerCase();
+    try{
+      const saved=JSON.parse(localStorage.getItem('one-world-route:traveller-context:v1')||'{}')?.language;
+      if(SUPPORTED.includes(String(saved||'').toLowerCase()))return String(saved).toLowerCase();
+    }catch{}
+    const browser=String(navigator.language||'en').toLowerCase().split('-')[0];
+    return SUPPORTED.includes(browser)?browser:'en';
+  })();
   let regionNames=null;
-  try{regionNames=new Intl.DisplayNames(['en'],{type:'region'});}catch{}
+  try{regionNames=new Intl.DisplayNames([locale],{type:'region'});}catch{}
 
   const MODE=new Map(Object.entries({
     'Zug':'Train','Flug':'Flight','Bus':'Bus','Fähre':'Ferry','Land':'Overland',
@@ -122,11 +133,25 @@
     return names.get(raw)||raw;
   }
 
-  function mode(v){return MODE.get(String(v||''))||String(v||'');}
+  const MODE_WORDS={
+    it:[['Train','Treno'],['Flight','Volo'],['Ferry','Traghetto'],['Overland','Via terra'],['Car','Auto'],['Walk','A piedi'],['Shared taxi','Taxi condiviso'],['Shuttle','Navetta'],['stop','scalo'],['dual strategy','strategia doppia'],['via Fiji','via Figi']],
+    es:[['Train','Tren'],['Flight','Vuelo'],['Ferry','Ferry'],['Overland','Por tierra'],['Car','Coche'],['Walk','A pie'],['Shared taxi','Taxi compartido'],['Shuttle','Lanzadera'],['stop','escala'],['dual strategy','estrategia dual'],['via Fiji','vía Fiyi']],
+    fr:[['Train','Train'],['Flight','Vol'],['Ferry','Ferry'],['Overland','Par voie terrestre'],['Car','Voiture'],['Walk','À pied'],['Shared taxi','Taxi collectif'],['Shuttle','Navette'],['stop','escale'],['dual strategy','double stratégie'],['via Fiji','via Fidji']],
+    pt:[['Train','Trem'],['Flight','Voo'],['Ferry','Balsa'],['Overland','Por terra'],['Car','Carro'],['Walk','A pé'],['Shared taxi','Táxi compartilhado'],['Shuttle','Transfer'],['stop','escala'],['dual strategy','estratégia dupla'],['via Fiji','via Fiji']]
+  };
+  function mode(v){
+    const raw=String(v||'');
+    if(locale==='de')return raw;
+    let out=MODE.get(raw)||raw;
+    if(locale==='en')return out;
+    for(const [a,b] of MODE_WORDS[locale]||[])out=out.replaceAll(a,b);
+    return out;
+  }
 
   function text(v){
     if(v===null||v===undefined)return v;
     let s=String(v);
+    if(locale==='de')return s;
     if(EXACT.has(s))return EXACT.get(s);
     s=s
       .replace(/^WARTEN bis /,'WAIT until ')
@@ -142,10 +167,11 @@
   function value(v){
     if(v===null||v===undefined)return v;
     const s=String(v);
-    return EXACT.get(s)||MODE.get(s)||text(s);
+    if(locale==='de')return MODE.has(s)?mode(s):s;
+    return EXACT.get(s)||mode(s)||text(s);
   }
 
-  window.ONE_WORLD_EN={registerCountries,country,mode,text,value};
+  window.ONE_WORLD_EN={locale,registerCountries,country,mode,text,value};
 })();
 
 /* ===== iteration4.js ===== */
@@ -725,7 +751,9 @@
   };
   let inlineHits=[];
   let commandHits=[];
-  const EN=window.ONE_WORLD_EN||{registerCountries(){},country:s=>s,mode:s=>s,text:s=>s,value:s=>s};
+  const platformOwnsRoute=()=>document.body.classList.contains('platform-regional-trip')||new URLSearchParams(location.search).has('trip');
+  const EN=window.ONE_WORLD_EN||{locale:'en',registerCountries(){},country:s=>s,mode:s=>s,text:s=>s,value:s=>s};
+  const UI_LOCALE=EN.locale||'en';
   const countryDisplay=c=>c?.displayName||EN.country(c?.name||'',c?.cca2||'');
   const segmentFrom=s=>s?.displayFrom||EN.country(s?.from||'');
   const segmentTo=s=>s?.displayTo||EN.country(s?.to||'');
@@ -740,8 +768,8 @@
     if (typeof v === 'number') return new Date(Date.UTC(1899,11,30) + v*86400000);
     return null;
   };
-  const fmtDate = v => { const d = v instanceof Date ? v : excelDate(v); return d ? new Intl.DateTimeFormat('en-GB',{day:'2-digit',month:'short',year:'numeric',timeZone:'UTC'}).format(d) : '—'; };
-  const eur = v => Number.isFinite(Number(v)) ? new Intl.NumberFormat('en-GB',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(v)) : '—';
+  const fmtDate = v => { const d = v instanceof Date ? v : excelDate(v); return d ? new Intl.DateTimeFormat(UI_LOCALE,{day:'2-digit',month:'short',year:'numeric',timeZone:'UTC'}).format(d) : '—'; };
+  const eur = v => Number.isFinite(Number(v)) ? new Intl.NumberFormat(UI_LOCALE,{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(v)) : '—';
   const phaseFor = id => PHASES.find(p => id >= p.range[0] && id <= p.range[1]) || PHASES[0];
   const daysFromStart = v => { const d=excelDate(v), s=new Date(Date.UTC(2026,9,21)); return d ? Math.max(1,Math.round((d-s)/86400000)+1) : null; };
   const statusColor = a => ({RED:colors.red,ORANGE:colors.orange,WATCH:colors.amber,GREEN:colors.green}[a] || colors.muted);
@@ -913,7 +941,7 @@
   }
 
   function updateGlobe(){
-    if(!state.globe) return;
+    if(!state.globe || platformOwnsRoute()) return;
     const filtered=visibleSegments(); const sel=state.segments.find(s=>s.id===state.selectedSegmentId);
     const segs=sel&&!filtered.some(s=>s.id===sel.id)?[...filtered,sel]:filtered;
     const labelCountry=state.selectedCountry || (sel ? state.countries.find(c=>c.name===sel.to) : null);
@@ -972,6 +1000,7 @@
   }
 
   function selectSegment(id,focus=false){
+    if(platformOwnsRoute())return;
     window.ONE_WORLD_MOVEMENTS?.clear();
     const s=state.segments.find(x=>x.id===Number(id)); if(!s)return;
     state.selectedSegmentId=s.id; state.selectedCountry=null; state.activeTab=state.mode==='operations'?'operations':'overview';
@@ -987,6 +1016,7 @@
   }
 
   function selectCountry(name,focus=false){
+    if(platformOwnsRoute())return;
     const c=state.countries.find(x=>x.name===name); if(!c)return;
     const context=countryContextSegment(c);
     if(context){
@@ -1003,6 +1033,7 @@
   }
 
   function updateUrl(){
+    if(platformOwnsRoute())return;
     const current=new URLSearchParams(location.search),p=new URLSearchParams();
     if(state.selectedCountry) p.set('country',state.selectedCountry.name); else p.set('segment',state.selectedSegmentId);
     if(state.layer!=='route')p.set('layer',state.layer); if(state.phase!=='all')p.set('phase',state.phase); if(state.mode!=='explore')p.set('mode',state.mode);
@@ -1012,7 +1043,7 @@
     history.replaceState(null,'',`${location.pathname}?${p.toString()}`);
   }
   function restoreUrl(){
-    const p=new URLSearchParams(location.search); if(p.get('layer'))state.layer=p.get('layer'); if(p.get('phase'))state.phase=p.get('phase'); if(p.get('mode'))state.mode=p.get('mode');
+    const p=new URLSearchParams(location.search); if(p.get('trip'))return; if(p.get('layer'))state.layer=p.get('layer'); if(p.get('phase'))state.phase=p.get('phase'); if(p.get('mode'))state.mode=p.get('mode');
     if(p.get('fmode'))state.filters.mode=p.get('fmode');if(p.get('tier'))state.filters.tier=p.get('tier');if(p.get('feasibility'))state.filters.feasibility=p.get('feasibility');if(p.get('alert'))state.filters.alert=p.get('alert');
     if(p.get('country')){
       state.selectedCountry=state.countries.find(c=>c.name===p.get('country'))||null;
@@ -1128,6 +1159,7 @@
   }
 
   function updateTimeline(){
+    if(platformOwnsRoute())return;
     const s=state.segments.find(x=>x.id===state.selectedSegmentId)||state.segments[0]; if(!s)return;
     $('#timelineTitle').textContent=`${segmentFrom(s)} → ${segmentTo(s)}`; $('#timelineMeta').textContent=`Segment ${s.id} · Day ${daysFromStart(s.planDeparture)||'—'} · ${segmentMode(s)}`;
   }
@@ -1244,7 +1276,13 @@
         e.preventDefault();e.stopPropagation();
       }
     },true);
-    document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openCommand()}else if(e.key==='Escape'){closeCommand();$('#infoModal').classList.add('hidden');$('#settingsPopover').classList.add('hidden');closeMobilePanels()}else if(e.code==='Space'&&!/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)){e.preventDefault();play()}else if(e.key==='ArrowRight')selectSegment(Math.min(194,state.selectedSegmentId+1),true);else if(e.key==='ArrowLeft')selectSegment(Math.max(1,state.selectedSegmentId-1),true)});
+    document.addEventListener('keydown',e=>{
+      if(platformOwnsRoute()){
+        if(e.key==='Escape'){closeCommand();$('#infoModal').classList.add('hidden');$('#settingsPopover').classList.add('hidden');closeMobilePanels()}
+        return;
+      }
+      if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openCommand()}else if(e.key==='Escape'){closeCommand();$('#infoModal').classList.add('hidden');$('#settingsPopover').classList.add('hidden');closeMobilePanels()}else if(e.code==='Space'&&!/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)){e.preventDefault();play()}else if(e.key==='ArrowRight')selectSegment(Math.min(194,state.selectedSegmentId+1),true);else if(e.key==='ArrowLeft')selectSegment(Math.max(1,state.selectedSegmentId-1),true)
+    });
   }
 
   window.__ONE_WORLD_ROUTE_APP__={
@@ -1475,6 +1513,10 @@
   }
 
   function syncProgress(){
+    if(document.body.classList.contains('platform-regional-trip')){
+      document.querySelector('#detailContent .journey-context')?.remove();
+      return;
+    }
     const id=currentSegmentId();
     const pct=progressPct(id);
     document.documentElement.style.setProperty('--journey-progress',`${pct}%`);
@@ -1494,6 +1536,7 @@
   }
 
   function updateJourneyContext(id,pct){
+    if(document.body.classList.contains('platform-regional-trip'))return;
     const box=$('#detailContent'); if(!box)return;
     let card=$('.journey-context',box);
     if(!card){card=document.createElement('div');card.className='journey-context';box.appendChild(card);}
@@ -1600,6 +1643,7 @@
     const detail=$('#detailContent');if(detail)new MutationObserver(()=>setTimeout(syncProgress,0)).observe(detail,{childList:true});
 
     document.addEventListener('keydown',e=>{
+      if(document.body.classList.contains('platform-regional-trip'))return;
       if(['INPUT','SELECT','TEXTAREA'].includes(document.activeElement?.tagName))return;
       if(e.key==='ArrowLeft'){e.preventDefault();$('#prevBtn')?.click();}
       if(e.key==='ArrowRight'){e.preventDefault();$('#nextBtn')?.click();}

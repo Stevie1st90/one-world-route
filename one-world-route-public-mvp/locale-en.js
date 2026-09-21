@@ -1,8 +1,19 @@
 (() => {
   'use strict';
   const names=new Map();
+  const SUPPORTED=['en','de','it','es','fr','pt'];
+  const locale=(()=>{
+    const query=new URLSearchParams(location.search).get('lang');
+    if(SUPPORTED.includes(String(query||'').toLowerCase()))return String(query).toLowerCase();
+    try{
+      const saved=JSON.parse(localStorage.getItem('one-world-route:traveller-context:v1')||'{}')?.language;
+      if(SUPPORTED.includes(String(saved||'').toLowerCase()))return String(saved).toLowerCase();
+    }catch{}
+    const browser=String(navigator.language||'en').toLowerCase().split('-')[0];
+    return SUPPORTED.includes(browser)?browser:'en';
+  })();
   let regionNames=null;
-  try{regionNames=new Intl.DisplayNames(['en'],{type:'region'});}catch{}
+  try{regionNames=new Intl.DisplayNames([locale],{type:'region'});}catch{}
 
   const MODE=new Map(Object.entries({
     'Zug':'Train','Flug':'Flight','Bus':'Bus','Fähre':'Ferry','Land':'Overland',
@@ -119,11 +130,25 @@
     return names.get(raw)||raw;
   }
 
-  function mode(v){return MODE.get(String(v||''))||String(v||'');}
+  const MODE_WORDS={
+    it:[['Train','Treno'],['Flight','Volo'],['Ferry','Traghetto'],['Overland','Via terra'],['Car','Auto'],['Walk','A piedi'],['Shared taxi','Taxi condiviso'],['Shuttle','Navetta'],['stop','scalo'],['dual strategy','strategia doppia'],['via Fiji','via Figi']],
+    es:[['Train','Tren'],['Flight','Vuelo'],['Ferry','Ferry'],['Overland','Por tierra'],['Car','Coche'],['Walk','A pie'],['Shared taxi','Taxi compartido'],['Shuttle','Lanzadera'],['stop','escala'],['dual strategy','estrategia dual'],['via Fiji','vía Fiyi']],
+    fr:[['Train','Train'],['Flight','Vol'],['Ferry','Ferry'],['Overland','Par voie terrestre'],['Car','Voiture'],['Walk','À pied'],['Shared taxi','Taxi collectif'],['Shuttle','Navette'],['stop','escale'],['dual strategy','double stratégie'],['via Fiji','via Fidji']],
+    pt:[['Train','Trem'],['Flight','Voo'],['Ferry','Balsa'],['Overland','Por terra'],['Car','Carro'],['Walk','A pé'],['Shared taxi','Táxi compartilhado'],['Shuttle','Transfer'],['stop','escala'],['dual strategy','estratégia dupla'],['via Fiji','via Fiji']]
+  };
+  function mode(v){
+    const raw=String(v||'');
+    if(locale==='de')return raw;
+    let out=MODE.get(raw)||raw;
+    if(locale==='en')return out;
+    for(const [a,b] of MODE_WORDS[locale]||[])out=out.replaceAll(a,b);
+    return out;
+  }
 
   function text(v){
     if(v===null||v===undefined)return v;
     let s=String(v);
+    if(locale==='de')return s;
     if(EXACT.has(s))return EXACT.get(s);
     s=s
       .replace(/^WARTEN bis /,'WAIT until ')
@@ -139,8 +164,9 @@
   function value(v){
     if(v===null||v===undefined)return v;
     const s=String(v);
-    return EXACT.get(s)||MODE.get(s)||text(s);
+    if(locale==='de')return MODE.has(s)?mode(s):s;
+    return EXACT.get(s)||mode(s)||text(s);
   }
 
-  window.ONE_WORLD_EN={registerCountries,country,mode,text,value};
+  window.ONE_WORLD_EN={locale,registerCountries,country,mode,text,value};
 })();

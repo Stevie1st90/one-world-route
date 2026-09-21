@@ -356,6 +356,9 @@
   function colorExpression(){return ['get','color'];}
   function widthExpr(a,b,c0){const scale=clamp(Number($('#arcWidth')?.value||.55)/.55,.35,2.4);return ['interpolate',['linear'],['zoom'],2,a*scale,6,b*scale,12,c0*scale];}
 
+  const localizeTerrainStyle=style=>window.ONE_WORLD_PLATFORM_MODULES?.mapStyle?.localize(style,String(document.documentElement.lang||'en').toLowerCase().split('-')[0])||style;
+  const brandTerrainStyle=style=>window.ONE_WORLD_PLATFORM_MODULES?.mapStyle?.brandDark(style)||style;
+
   async function terrainStyle(){
     const phase=activeTerrainPhase();
     const phaseFilter=phase===null?['==',['get','phaseId'],-1]:['==',['get','phaseId'],phase];
@@ -369,6 +372,7 @@
       base={version:8,sources:{},layers:[{id:'background',type:'background',paint:{'background-color':'#d9e5e8'}}]};
     }
 
+    base=brandTerrainStyle(localizeTerrainStyle(base));
     base.version=8;
     base.projection={type:'globe'};
     base.sources={...(base.sources||{}),
@@ -629,6 +633,12 @@
   }
 
   async function setTerrainMode(active){
+    if(document.body.classList.contains('platform-regional-trip')||new URLSearchParams(location.search).has('trip')){
+      const api=window.ONE_WORLD_PLATFORM;
+      if(api?.setTerrain)return api.setTerrain(Boolean(active));
+      setTimeout(()=>window.ONE_WORLD_PLATFORM?.setTerrain?.(Boolean(active)),120);
+      return;
+    }
     if(active&&document.body.classList.contains('story-mode')){setToggleState(false);notify('Exit Story before opening 3D globe terrain.');return;}
     if(!active){deactivateTerrain({updateUrl:true});return;}
     if(runtime.terrainActive){setToggleState(true);return;}
@@ -646,7 +656,10 @@
   }
 
   async function restoreViewState(){
-    const wantsTerrain=new URLSearchParams(location.search).get('view')==='terrain';setToggleState(false);
+    const params=new URLSearchParams(location.search);
+    setToggleState(false);
+    if(params.has('trip'))return;
+    const wantsTerrain=params.get('view')==='terrain';
     if(wantsTerrain)await setTerrainMode(true);
   }
 
