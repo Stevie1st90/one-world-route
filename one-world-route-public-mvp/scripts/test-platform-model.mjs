@@ -87,3 +87,43 @@ test('cruise border context detects Schengen exit and re-entry and requires trav
   assert.ok(trip.sources.some(s=>s.id==='eu-entry-exit-system'));
 });
 
+test('route discovery catalog has normalized filters for every public trip',async()=>{
+  const catalog=await read('data/platform/trips.json');
+  for(const trip of catalog.trips){
+    assert.ok(trip.discovery);
+    assert.ok(Array.isArray(trip.discovery.regions)&&trip.discovery.regions.length>0,trip.id);
+    assert.ok(Array.isArray(trip.discovery.themes)&&trip.discovery.themes.length>0,trip.id);
+    assert.ok(Array.isArray(trip.discovery.modes)&&trip.discovery.modes.length>0,trip.id);
+    assert.ok(['7-14','15-30','31-89','90-plus'].includes(trip.discovery.durationBand),trip.id);
+  }
+  assert.equal(catalog.trips.find(t=>t.id==='southern-europe-road-trip').discovery.durationBand,'15-30');
+});
+
+test('Southern Europe road trip requires vehicle context and flags cross-border rental approval',async()=>{
+  const trip=await read('data/platform/trips/southern-europe-road-trip.json');
+  assert.equal(trip.kind,'road-trip');
+  assert.equal(trip.roadTrip.vehicleContextRequired,true);
+  assert.ok(trip.travellerContext.scope.includes('vehicle'));
+  assert.equal(trip.geography.countries.length,4);
+  assert.equal(trip.stops.length,11);
+  assert.equal(trip.segments.length,10);
+  assert.ok(trip.segments.every(s=>s.transport.mode==='car'));
+  assert.ok(trip.segments.every(s=>s.roadContext));
+  assert.ok(trip.segments.every(s=>(s.verification?.sourceIds||[]).length>0));
+  const cross=trip.segments.filter(s=>s.roadContext.crossBorder);
+  assert.equal(cross.length,3);
+  assert.ok(cross.every(s=>s.roadContext.rentalApprovalRequired===true));
+});
+
+test('Vehicle Context schema avoids secret identifiers and supports road-rule inputs',async()=>{
+  const schema=await read('data/platform/traveller-context-schema.json');
+  const vehicle=schema.properties.vehicle;
+  assert.ok(vehicle);
+  assert.ok(vehicle.properties.registrationCountry);
+  assert.ok(vehicle.properties.fuelType);
+  assert.ok(vehicle.properties.euroClass);
+  assert.ok(vehicle.properties.rentalCrossBorderApproved);
+  assert.match(schema.description,/Never store passport numbers/i);
+  assert.match(schema.description,/vehicle VINs/i);
+});
+
