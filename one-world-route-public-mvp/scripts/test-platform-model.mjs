@@ -127,3 +127,22 @@ test('Vehicle Context schema avoids secret identifiers and supports road-rule in
   assert.match(schema.description,/vehicle VINs/i);
 });
 
+
+
+test('Route Fit metadata stays transparent and complete',async()=>{
+  const catalog=await read('data/platform/trips.json');
+  const pace=new Set(['relaxed','balanced','active']);
+  const seasons=new Set(['spring','summer','autumn','winter','multi-season']);
+  const party=new Set(['solo','couples','friends','families']);
+  for(const trip of catalog.trips){
+    const fit=trip.discovery?.fit;
+    assert.ok(fit,trip.id);
+    assert.ok(pace.has(fit.pace),trip.id);
+    assert.ok(fit.seasons.every(v=>seasons.has(v)),trip.id);
+    assert.ok(fit.party.every(v=>party.has(v)),trip.id);
+    assert.ok(fit.startRegion,trip.id);
+    assert.ok(fit.accessibility,trip.id);
+  }
+  assert.equal(catalog.trips.find(t=>t.id==='italy-grand-tour').discovery.fit.pace,'balanced');
+  assert.ok(catalog.trips.find(t=>t.id==='southern-europe-road-trip').discovery.fit.party.includes('families'));
+});
