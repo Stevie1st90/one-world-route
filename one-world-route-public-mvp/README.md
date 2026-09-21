@@ -59,12 +59,16 @@ ONE WORLD ROUTE is no longer architected as a single hard-coded world itinerary.
 Current platform features:
 - trip catalog with clean `/trip/:slug` share URLs
 - generic **place → visit/stop → segment** data model
+- open trip-kind slugs rather than a closed list of product types
+- namespaced trip/stop/segment extensions for specialized metadata
+- capability-driven Story and Terrain features
 - regional routes with repeat visits to the same place
 - transport taxonomy for road, rail, ferry, cruise, flight and multimodal travel
 - browser-local Traveller Context for passport country, residence, language, currency, origin, party and reduced-mobility context
+- catalog-driven Route Discovery and transparent Route Fit filters
 - six initial UI languages: English, German, Italian, Spanish, French and Portuguese
 - Italy Grand Tour as the first regional editorial template
-- platform validation in the release pipeline
+- modular platform validation in the release pipeline
 
 Traveller Context is planning context, not an identity profile. The public app never asks for passport numbers, booking references, payment data or exact home addresses. Entry, visa and safety claims must remain source-backed and traveller-specific rather than assuming a German traveller.
 
@@ -141,3 +145,29 @@ Examples:
 
 Set `$env:OWR_PORT` before starting if port 4173 is occupied. The GitHub validation workflow also starts this server and smoke-tests local routes, so local-preview regressions are caught without a Vercel deployment.
 
+
+
+### Platform runtime modules
+
+The multi-trip platform is intentionally split into small browser modules that are bundled before the platform bootstrap:
+
+- `platform/runtime.js` — extension registry
+- `platform/i18n.js` — platform and legacy-world localization data
+- `platform/model.js` — reusable place/stop/segment helpers, geometry and capability checks
+- `platform/traveller.js` — privacy-limited Traveller Context storage/normalization
+- `platform/discovery.js` — catalog facets and Route Fit filtering
+- `platform/extensions.js` — registered cruise, road and border presenters
+- `platform/map-style.js` — shared terrain label localization and ONE WORLD ROUTE dark map styling
+- `platform.js` — UI/bootstrap orchestration only
+
+Normal new trips use the generic regional renderer. A new trip kind must not require a new branch in `platform.js`.
+
+See `data/platform/TRIP-AUTHORING.md` for the authoring contract.
+
+Create a safe unpublished starter draft with:
+
+```bash
+node scripts/scaffold-trip.mjs japan-by-rail rail --days=16 --write
+```
+
+The scaffolder writes only to `data/platform/drafts/`; it never publishes or edits the public trip catalog automatically.
