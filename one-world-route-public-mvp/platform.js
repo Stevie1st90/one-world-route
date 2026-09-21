@@ -1,0 +1,270 @@
+(() => {
+  'use strict';
+
+  const CATALOG_URL = './data/platform/trips.json';
+  const PROFILE_KEY = 'one-world-route:traveller-context:v1';
+  const SUPPORTED_LOCALES = ['en','de','it','es','fr','pt'];
+  const I18N = {
+    en:{routes:'Routes',traveller:'Traveller',flagship:'Flagship',template:'Template',open:'Open route',days:'days',stops:'stops',segments:'segments',global:'Global perspective',contextTitle:'Traveller context',contextLead:'Used to adapt entry rules, language, currency and departure assumptions. Stored only on this device.',passports:'Passport country',residence:'Residence',language:'Language',currency:'Currency',origin:'Starting city / airport',adults:'Adults',children:'Children',mobility:'Reduced mobility',save:'Save context',clear:'Clear',notSet:'Not set',currentCheck:'Current check required',routeLibrary:'Explore routes',routeLibraryLead:'One platform for world journeys, round trips, road trips, rail, cruises and more.',editorial:'Editorial template — verify transport, prices and entry requirements for your dates.',overview:'Route overview',day:'Day',nights:'nights',transport:'Transport',verification:'Verification',backWorld:'World route',private:'Private on this device. Passport numbers, booking references and payment details are never requested.'},
+    de:{routes:'Routen',traveller:'Traveller',flagship:'Flagship',template:'Vorlage',open:'Route öffnen',days:'Tage',stops:'Stopps',segments:'Segmente',global:'Globale Perspektive',contextTitle:'Traveller Context',contextLead:'Passt Einreisehinweise, Sprache, Währung und Startannahmen an. Wird nur auf diesem Gerät gespeichert.',passports:'Passland',residence:'Wohnsitz',language:'Sprache',currency:'Währung',origin:'Startstadt / Flughafen',adults:'Erwachsene',children:'Kinder',mobility:'Eingeschränkte Mobilität',save:'Kontext speichern',clear:'Zurücksetzen',notSet:'Nicht gesetzt',currentCheck:'Aktuelle Prüfung erforderlich',routeLibrary:'Routen entdecken',routeLibraryLead:'Eine Plattform für Weltreisen, Rundreisen, Roadtrips, Bahnreisen, Kreuzfahrten und mehr.',editorial:'Redaktionelle Vorlage — Verkehr, Preise und Einreisebedingungen für die eigenen Daten prüfen.',overview:'Routenübersicht',day:'Tag',nights:'Nächte',transport:'Verkehr',verification:'Prüfstatus',backWorld:'Weltreise',private:'Privat auf diesem Gerät. Passnummern, Buchungsreferenzen und Zahlungsdaten werden niemals abgefragt.'},
+    it:{routes:'Itinerari',traveller:'Viaggiatore',flagship:'Flagship',template:'Modello',open:'Apri itinerario',days:'giorni',stops:'tappe',segments:'tratte',global:'Prospettiva globale',contextTitle:'Profilo viaggiatore',contextLead:'Adatta requisiti d’ingresso, lingua, valuta e partenza. Salvato solo su questo dispositivo.',passports:'Paese del passaporto',residence:'Residenza',language:'Lingua',currency:'Valuta',origin:'Città / aeroporto di partenza',adults:'Adulti',children:'Bambini',mobility:'Mobilità ridotta',save:'Salva',clear:'Cancella',notSet:'Non impostato',currentCheck:'Verifica attuale richiesta',routeLibrary:'Esplora itinerari',routeLibraryLead:'Una piattaforma per giri del mondo, road trip, treni, crociere e altro.',editorial:'Modello editoriale — verifica trasporti, prezzi e requisiti per le tue date.',overview:'Panoramica',day:'Giorno',nights:'notti',transport:'Trasporto',verification:'Verifica',backWorld:'Giro del mondo',private:'Privato su questo dispositivo. Non chiediamo numeri di passaporto, prenotazioni o dati di pagamento.'},
+    es:{routes:'Rutas',traveller:'Viajero',flagship:'Flagship',template:'Plantilla',open:'Abrir ruta',days:'días',stops:'paradas',segments:'tramos',global:'Perspectiva global',contextTitle:'Contexto del viajero',contextLead:'Adapta requisitos de entrada, idioma, moneda y origen. Solo se guarda en este dispositivo.',passports:'País del pasaporte',residence:'Residencia',language:'Idioma',currency:'Moneda',origin:'Ciudad / aeropuerto de salida',adults:'Adultos',children:'Niños',mobility:'Movilidad reducida',save:'Guardar',clear:'Borrar',notSet:'Sin definir',currentCheck:'Revisión actual necesaria',routeLibrary:'Explorar rutas',routeLibraryLead:'Una plataforma para vueltas al mundo, road trips, trenes, cruceros y más.',editorial:'Plantilla editorial — verifica transporte, precios y requisitos para tus fechas.',overview:'Resumen de ruta',day:'Día',nights:'noches',transport:'Transporte',verification:'Verificación',backWorld:'Ruta mundial',private:'Privado en este dispositivo. Nunca pedimos números de pasaporte, reservas ni pagos.'},
+    fr:{routes:'Itinéraires',traveller:'Voyageur',flagship:'Flagship',template:'Modèle',open:'Ouvrir',days:'jours',stops:'étapes',segments:'segments',global:'Perspective globale',contextTitle:'Contexte voyageur',contextLead:'Adapte formalités, langue, devise et départ. Stocké uniquement sur cet appareil.',passports:'Pays du passeport',residence:'Résidence',language:'Langue',currency:'Devise',origin:'Ville / aéroport de départ',adults:'Adultes',children:'Enfants',mobility:'Mobilité réduite',save:'Enregistrer',clear:'Effacer',notSet:'Non défini',currentCheck:'Vérification actuelle requise',routeLibrary:'Explorer les itinéraires',routeLibraryLead:'Une plateforme pour tours du monde, road trips, train, croisières et plus.',editorial:'Modèle éditorial — vérifiez transports, prix et formalités pour vos dates.',overview:'Aperçu',day:'Jour',nights:'nuits',transport:'Transport',verification:'Vérification',backWorld:'Tour du monde',private:'Privé sur cet appareil. Aucun numéro de passeport, référence de réservation ou paiement n’est demandé.'},
+    pt:{routes:'Rotas',traveller:'Viajante',flagship:'Flagship',template:'Modelo',open:'Abrir rota',days:'dias',stops:'paradas',segments:'trechos',global:'Perspectiva global',contextTitle:'Contexto do viajante',contextLead:'Adapta entrada, idioma, moeda e origem. Guardado apenas neste dispositivo.',passports:'País do passaporte',residence:'Residência',language:'Idioma',currency:'Moeda',origin:'Cidade / aeroporto de partida',adults:'Adultos',children:'Crianças',mobility:'Mobilidade reduzida',save:'Salvar',clear:'Limpar',notSet:'Não definido',currentCheck:'Verificação atual necessária',routeLibrary:'Explorar rotas',routeLibraryLead:'Uma plataforma para voltas ao mundo, road trips, trem, cruzeiros e mais.',editorial:'Modelo editorial — verifique transporte, preços e entrada para suas datas.',overview:'Visão geral',day:'Dia',nights:'noites',transport:'Transporte',verification:'Verificação',backWorld:'Rota mundial',private:'Privado neste dispositivo. Nunca pedimos número de passaporte, referência de reserva ou pagamento.'}
+  };
+
+  const $ = (s, r=document) => r.querySelector(s);
+  const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  const initialLocale = (() => {
+    const q = new URLSearchParams(location.search).get('lang');
+    const b = String(q || navigator.language || 'en').toLowerCase().split('-')[0];
+    return SUPPORTED_LOCALES.includes(b) ? b : 'en';
+  })();
+  let locale = initialLocale;
+  const t = key => I18N[locale]?.[key] || I18N.en[key] || key;
+  const local = value => typeof value === 'string' ? value : value?.[locale] || value?.en || Object.values(value || {})[0] || '';
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  const money = (v,c='EUR') => Number.isFinite(Number(v)) ? new Intl.NumberFormat(locale,{style:'currency',currency:c,maximumFractionDigits:0}).format(Number(v)) : '—';
+
+  let catalog = null;
+  let currentTrip = null;
+  let currentTripMeta = null;
+  let selectedSegmentIndex = 0;
+  let playTimer = null;
+  let countries = [];
+
+  function profileDefaults(){
+    return {passports:[],residenceCountry:null,language:locale,currency:'EUR',origin:null,party:{adults:1,children:0},accessibility:{reducedMobility:false}};
+  }
+  function loadProfile(){
+    try{return {...profileDefaults(),...JSON.parse(localStorage.getItem(PROFILE_KEY)||'{}')}}catch{return profileDefaults()}
+  }
+  function saveProfile(profile){localStorage.setItem(PROFILE_KEY,JSON.stringify(profile))}
+
+  async function waitForCore(max=70){
+    for(let i=0;i<max;i++){
+      if(window.__ONE_WORLD_ROUTE_APP__ && window.__ONE_WORLD_ROUTE_GLOBE__) return true;
+      await sleep(80);
+    }
+    return false;
+  }
+
+  function setQueryTrip(id){
+    const p = new URLSearchParams(location.search);
+    if(id === catalog.defaultTripId) p.delete('trip'); else p.set('trip',id);
+    p.delete('segment'); p.delete('country'); p.delete('phase'); p.delete('view');
+    location.assign(`${location.pathname}${p.toString()?`?${p}`:''}`);
+  }
+
+  function ensureGlobalUi(){
+    const top = $('.topbar');
+    if(!top || $('#platformRouteBtn')) return;
+    const actions = $('.top-actions',top);
+    const wrap = document.createElement('div');
+    wrap.className='platform-actions';
+    wrap.innerHTML=`<button id="platformRouteBtn" class="platform-pill" type="button"><span class="platform-pill-dot"></span><span>${esc(t('routes'))}</span></button><button id="platformTravellerBtn" class="platform-pill secondary" type="button">${esc(t('traveller'))}</button>`;
+    top.insertBefore(wrap, actions || null);
+    $('#platformRouteBtn').onclick=openRouteLibrary;
+    $('#platformTravellerBtn').onclick=openTraveller;
+  }
+
+  function ensureDialog(id, cls='platform-modal'){
+    let modal=$('#'+id);
+    if(modal) return modal;
+    modal=document.createElement('div');modal.id=id;modal.className=`${cls} hidden`;modal.setAttribute('role','dialog');modal.setAttribute('aria-modal','true');
+    modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.add('hidden')});
+    document.body.appendChild(modal);return modal;
+  }
+
+  function openRouteLibrary(){
+    const modal=ensureDialog('platformRouteModal');
+    modal.innerHTML=`<div class="platform-modal-card glass"><button class="platform-x" aria-label="Close">×</button><div class="platform-eyebrow">ONE WORLD ROUTE</div><h2>${esc(t('routeLibrary'))}</h2><p class="platform-lead">${esc(t('routeLibraryLead'))}</p><div class="platform-route-grid">${catalog.trips.map(routeCard).join('')}</div></div>`;
+    modal.classList.remove('hidden');
+    $('.platform-x',modal).onclick=()=>modal.classList.add('hidden');
+    $$('[data-platform-trip]',modal).forEach(b=>b.onclick=()=>setQueryTrip(b.dataset.platformTrip));
+  }
+
+  function routeCard(r){
+    const metrics=[];
+    if(r.metrics?.days)metrics.push(`${r.metrics.days} ${t('days')}`);
+    if(r.metrics?.stops)metrics.push(`${r.metrics.stops} ${t('stops')}`);
+    if(r.metrics?.countries)metrics.push(`${r.metrics.countries} ${r.metrics.countries===1?'country':'countries'}`);
+    return `<article class="platform-route-card ${r.id===currentTripMeta?.id?'active':''}"><div class="platform-route-top"><span>${esc(r.kind)}</span><b>${esc(r.kind==='flagship'?t('flagship'):t('template'))}</b></div><h3>${esc(local(r.title))}</h3><p>${esc(local(r.subtitle))}</p><div class="platform-route-metrics">${metrics.map(x=>`<span>${esc(x)}</span>`).join('')}</div><button type="button" data-platform-trip="${esc(r.id)}">${esc(t('open'))} →</button></article>`;
+  }
+
+  async function loadCountries(){
+    if(countries.length) return countries;
+    try{countries=await fetch('./data/country-centroids.json',{cache:'force-cache'}).then(r=>r.json())}catch{countries=[]}
+    return countries;
+  }
+
+  async function openTraveller(){
+    await loadCountries();
+    const profile=loadProfile();
+    const modal=ensureDialog('platformTravellerModal');
+    const display = (()=>{try{return new Intl.DisplayNames([locale],{type:'region'})}catch{return null}})();
+    const options=[...countries].filter(c=>c.cca2).map(c=>({code:c.cca2,name:display?.of(c.cca2)||c.name})).sort((a,b)=>a.name.localeCompare(b.name,locale));
+    const countryOptions=(selected,blank=true)=>`${blank?`<option value="">${esc(t('notSet'))}</option>`:''}${options.map(o=>`<option value="${o.code}" ${selected===o.code?'selected':''}>${esc(o.name)}</option>`).join('')}`;
+    const currencies = typeof Intl.supportedValuesOf==='function' ? Intl.supportedValuesOf('currency') : ['EUR','USD','GBP','CHF','JPY','CAD','AUD','NZD','CNY','INR','BRL','MXN','ZAR','SGD'];
+    modal.innerHTML=`<form id="platformTravellerForm" class="platform-modal-card traveller-card glass"><button class="platform-x" type="button" aria-label="Close">×</button><div class="platform-eyebrow">${esc(t('global'))}</div><h2>${esc(t('contextTitle'))}</h2><p class="platform-lead">${esc(t('contextLead'))}</p><div class="traveller-grid"><label>${esc(t('passports'))}<select name="passport">${countryOptions(profile.passports?.[0]||null)}</select></label><label>${esc(t('residence'))}<select name="residence">${countryOptions(profile.residenceCountry)}</select></label><label>${esc(t('language'))}<select name="language">${SUPPORTED_LOCALES.map(l=>`<option value="${l}" ${profile.language===l?'selected':''}>${l.toUpperCase()}</option>`).join('')}</select></label><label>${esc(t('currency'))}<select name="currency">${currencies.map(c=>`<option value="${c}" ${profile.currency===c?'selected':''}>${c}</option>`).join('')}</select></label><label class="span-2">${esc(t('origin'))}<input name="origin" value="${esc(profile.origin||'')}" autocomplete="off" placeholder="e.g. Toronto / YYZ"></label><label>${esc(t('adults'))}<input name="adults" type="number" min="1" max="20" value="${Number(profile.party?.adults||1)}"></label><label>${esc(t('children'))}<input name="children" type="number" min="0" max="20" value="${Number(profile.party?.children||0)}"></label><label class="check span-2"><input name="mobility" type="checkbox" ${profile.accessibility?.reducedMobility?'checked':''}><span>${esc(t('mobility'))}</span></label></div><p class="platform-privacy">${esc(t('private'))}</p><div class="platform-form-actions"><button class="ghost" type="button" id="platformClearTraveller">${esc(t('clear'))}</button><button class="primary" type="submit">${esc(t('save'))}</button></div></form>`;
+    modal.classList.remove('hidden');
+    $('.platform-x',modal).onclick=()=>modal.classList.add('hidden');
+    $('#platformClearTraveller').onclick=()=>{localStorage.removeItem(PROFILE_KEY);modal.classList.add('hidden');location.reload()};
+    $('#platformTravellerForm').onsubmit=e=>{
+      e.preventDefault();const f=new FormData(e.currentTarget);
+      const next={passports:f.get('passport')?[String(f.get('passport'))]:[],residenceCountry:f.get('residence')||null,language:String(f.get('language')||'en'),currency:String(f.get('currency')||'EUR'),origin:String(f.get('origin')||'').trim()||null,party:{adults:Number(f.get('adults')||1),children:Number(f.get('children')||0)},accessibility:{reducedMobility:f.get('mobility')==='on'}};
+      saveProfile(next);locale=SUPPORTED_LOCALES.includes(next.language)?next.language:locale;modal.classList.add('hidden');location.reload();
+    };
+  }
+
+  function placeMap(trip){return new Map((trip.places||[]).map(p=>[p.id,p]))}
+  function stopMap(trip){return new Map((trip.stops||[]).map(s=>[s.id,s]))}
+  function stopPlace(trip,stop){return placeMap(trip).get(stop.placeId)}
+
+  function applyTripShell(){
+    document.body.classList.add('platform-regional-trip');
+    document.documentElement.lang=locale;
+    document.title=`${local(currentTrip.title)} — ONE WORLD ROUTE`;
+    const meta=$('meta[name="description"]');if(meta)meta.content=local(currentTrip.summary);
+    const brandSmall=$('.brand small');if(brandSmall)brandSmall.textContent=local(currentTrip.title);
+    const hero=$('.hero-copy');
+    if(hero){
+      hero.innerHTML=`<div class="eyebrow"><span class="live-dot"></span>${esc(currentTrip.kind)} · ${currentTrip.planning?.days||''} ${esc(t('days'))}</div><h1>${esc(local(currentTrip.title))}</h1><p>${esc(local(currentTrip.summary))}</p><div class="platform-template-note">${esc(t('editorial'))}</div>`;
+    }
+    const kpis=$('#topKpis');
+    if(kpis)kpis.innerHTML=`<div class="kpi"><b>${currentTrip.planning?.days||'—'}</b><span>${esc(t('days'))}</span></div><div class="kpi"><b>${currentTrip.stops?.length||0}</b><span>${esc(t('stops'))}</span></div><div class="kpi"><b>${currentTrip.segments?.length||0}</b><span>${esc(t('segments'))}</span></div>`;
+    buildLeftNavigation();
+    buildChapterRail();
+    replaceTimeline();
+    renderTripOverview();
+  }
+
+  function buildLeftNavigation(){
+    const panel=$('#leftPanel');if(!panel)return;
+    $('.platform-regional-nav',panel)?.remove();
+    const nav=document.createElement('div');nav.className='platform-regional-nav';
+    nav.innerHTML=`<div class="section-title"><span>${esc(t('stops'))}</span><span class="pill">${currentTrip.stops.length}</span></div><div class="platform-stop-list">${currentTrip.stops.map((s,i)=>stopButton(s,i)).join('')}</div>`;
+    panel.appendChild(nav);
+    $$('[data-stop-index]',nav).forEach(b=>b.onclick=()=>selectStop(Number(b.dataset.stopIndex),true));
+  }
+
+  function stopButton(stop,index){
+    const p=stopPlace(currentTrip,stop);return `<button type="button" data-stop-index="${index}" class="platform-stop ${index===0?'active':''}"><span>${String(stop.sequence).padStart(2,'0')}</span><div><b>${esc(local(p?.name))}</b><small>${esc(t('day'))} ${stop.dayStart}${stop.dayEnd!==stop.dayStart?`–${stop.dayEnd}`:''} · ${stop.nights||0} ${esc(t('nights'))}</small></div></button>`;
+  }
+
+  function buildChapterRail(){
+    const rail=$('#phaseRail');if(!rail)return;
+    rail.innerHTML=(currentTrip.chapters||[]).map((c,i)=>`<button type="button" data-trip-chapter="${i}" class="${i===0?'active':''}"><span class="phase-dot"></span>${esc(local(c.title))}</button>`).join('');
+    $$('[data-trip-chapter]',rail).forEach(b=>b.onclick=()=>{
+      $$('[data-trip-chapter]',rail).forEach(x=>x.classList.toggle('active',x===b));
+      const c=currentTrip.chapters[Number(b.dataset.tripChapter)],idx=currentTrip.stops.findIndex(s=>s.id===c.stopIds?.[0]);if(idx>=0)selectStop(idx,true);
+    });
+  }
+
+  function replaceTimeline(){
+    const oldPlay=$('#playBtn');if(oldPlay){const n=oldPlay.cloneNode(true);n.id='playBtn';n.textContent='▶';oldPlay.replaceWith(n);n.onclick=togglePlayback}
+    const oldRange=$('#routeRange');if(oldRange){const n=oldRange.cloneNode(true);n.id='routeRange';n.min='1';n.max=String(Math.max(1,currentTrip.segments.length));n.value='1';n.style.setProperty('--range-progress','0%');oldRange.replaceWith(n);n.oninput=()=>selectSegmentIndex(Number(n.value)-1,true)}
+    const speed=$('.speed-control');if(speed)speed.style.display='none';
+    updateTimelineRegional();
+  }
+
+  function updateTimelineRegional(){
+    const s=currentTrip.segments[selectedSegmentIndex];if(!s)return;
+    const stops=stopMap(currentTrip),places=placeMap(currentTrip),a=places.get(stops.get(s.fromStopId)?.placeId),b=places.get(stops.get(s.toStopId)?.placeId);
+    const title=$('#timelineTitle');if(title)title.textContent=`${local(a?.name)} → ${local(b?.name)}`;
+    const meta=$('#timelineMeta');if(meta)meta.textContent=`${t('segments')} ${s.sequence} / ${currentTrip.segments.length} · ${String(s.transport?.mode||'').replaceAll('-',' ')}`;
+    const range=$('#routeRange');if(range){range.value=String(selectedSegmentIndex+1);range.style.setProperty('--range-progress',`${currentTrip.segments.length<=1?100:(selectedSegmentIndex/(currentTrip.segments.length-1))*100}%`)}
+    const labels=$$('.range-labels span');if(labels[0])labels[0].innerHTML=`<b>START</b> · ${esc(local(stopPlace(currentTrip,currentTrip.stops[0])?.name))}`;if(labels[1])labels[1].textContent=`${currentTrip.planning?.days||'—'} ${t('days')}`;if(labels[2])labels[2].innerHTML=`<b>FINISH</b> · ${esc(local(stopPlace(currentTrip,currentTrip.stops.at(-1))?.name))}`;
+  }
+
+  function togglePlayback(){
+    const btn=$('#playBtn');if(playTimer){clearInterval(playTimer);playTimer=null;if(btn)btn.textContent='▶';return}
+    if(btn)btn.textContent='Ⅱ';playTimer=setInterval(()=>{if(selectedSegmentIndex>=currentTrip.segments.length-1){clearInterval(playTimer);playTimer=null;if(btn)btn.textContent='▶';return}selectSegmentIndex(selectedSegmentIndex+1,true)},1400);
+  }
+
+  function routeGeometry(){
+    const stops=stopMap(currentTrip),places=placeMap(currentTrip);
+    return currentTrip.segments.map((s,i)=>{const a=places.get(stops.get(s.fromStopId)?.placeId),b=places.get(stops.get(s.toStopId)?.placeId);return {...s,_index:i,start:a?.coordinates,end:b?.coordinates,fromName:local(a?.name),toName:local(b?.name)}}).filter(x=>x.start&&x.end);
+  }
+
+  function renderRegionalGlobe(){
+    const globe=window.__ONE_WORLD_ROUTE_GLOBE__;if(!globe)return;
+    const arcs=routeGeometry();
+    try{
+      globe.arcsData(arcs).arcStartLat(d=>d.start.lat).arcStartLng(d=>d.start.lng).arcEndLat(d=>d.end.lat).arcEndLng(d=>d.end.lng).arcAltitude(0.06).arcStroke(d=>d._index===selectedSegmentIndex?0.75:0.35).arcColor(d=>d._index===selectedSegmentIndex?'#59ddff':'rgba(113,151,190,.75)').arcDashLength(1).arcDashGap(0).onArcClick(d=>selectSegmentIndex(d._index,true));
+      const places=[...placeMap(currentTrip).values()];
+      globe.pointsData(places).pointLat(d=>d.coordinates.lat).pointLng(d=>d.coordinates.lng).pointAltitude(0.016).pointRadius(0.13).pointColor(()=> '#dff8ff').onPointClick(p=>{const idx=currentTrip.stops.findIndex(s=>s.placeId===p.id);if(idx>=0)selectStop(idx,true)});
+      if(typeof globe.labelsData==='function')globe.labelsData(places).labelLat(d=>d.coordinates.lat).labelLng(d=>d.coordinates.lng).labelText(d=>local(d.name)).labelColor(()=> 'rgba(230,247,255,.94)').labelSize(1.15).labelDotRadius(0.15).labelAltitude(0.02);
+      if(globe.controls()){globe.controls().autoRotate=false;globe.controls().enableZoom=true}
+      const c=currentTrip.rendering?.camera||{lat:43.5,lng:13.5,altitude:.72};globe.pointOfView(c,900);
+    }catch(e){console.warn('Regional globe render failed',e)}
+  }
+
+  function selectSegmentIndex(index,focus=false){
+    selectedSegmentIndex=Math.max(0,Math.min(currentTrip.segments.length-1,index));
+    $$('.platform-stop').forEach(x=>x.classList.remove('active'));
+    renderRegionalGlobe();updateTimelineRegional();renderSegmentDetail(currentTrip.segments[selectedSegmentIndex]);
+    if(focus)focusSegment(currentTrip.segments[selectedSegmentIndex]);
+  }
+
+  function selectStop(index,focus=false){
+    const stop=currentTrip.stops[index],p=stopPlace(currentTrip,stop);if(!stop||!p)return;
+    $$('.platform-stop').forEach((x,i)=>x.classList.toggle('active',i===index));
+    renderStopDetail(stop,p);
+    if(index<currentTrip.segments.length){selectedSegmentIndex=index;updateTimelineRegional();renderRegionalGlobe()}
+    if(focus)window.__ONE_WORLD_ROUTE_GLOBE__?.pointOfView({lat:p.coordinates.lat,lng:p.coordinates.lng,altitude:.48},650);
+  }
+
+  function focusSegment(seg){
+    const sm=stopMap(currentTrip),pm=placeMap(currentTrip),a=pm.get(sm.get(seg.fromStopId)?.placeId),b=pm.get(sm.get(seg.toStopId)?.placeId);if(!a||!b)return;
+    let lng=(a.coordinates.lng+b.coordinates.lng)/2;let lat=(a.coordinates.lat+b.coordinates.lat)/2;window.__ONE_WORLD_ROUTE_GLOBE__?.pointOfView({lat,lng,altitude:.52},650);
+  }
+
+  function renderTripOverview(){
+    const title=$('#detailTitle');if(title)title.textContent=local(currentTrip.title);
+    const eye=$('#detailEyebrow');if(eye)eye.textContent=t('overview');
+    const tabs=$('#detailTabs');if(tabs)tabs.style.display='none';
+    const content=$('#detailContent');if(!content)return;
+    content.innerHTML=`<div class="overview-number">${currentTrip.planning?.days||'—'}<small> ${esc(t('days'))}</small></div><p class="detail-copy">${esc(local(currentTrip.summary))}</p><div class="data-grid"><div class="data-card"><span>${esc(t('stops'))}</span><b>${currentTrip.stops.length}</b></div><div class="data-card"><span>${esc(t('segments'))}</span><b>${currentTrip.segments.length}</b></div><div class="data-card"><span>Country</span><b>${esc(currentTrip.geography?.primaryCountry||'—')}</b></div><div class="data-card"><span>Currency</span><b>${esc(currentTrip.planning?.currency||'—')}</b></div></div><div class="op-callout">${esc(t('editorial'))}</div><button class="platform-context-inline" id="regionalTravellerBtn" type="button">${esc(t('traveller'))} →</button>`;
+    $('#regionalTravellerBtn')?.addEventListener('click',openTraveller);
+  }
+
+  function renderStopDetail(stop,p){
+    const title=$('#detailTitle');if(title)title.textContent=local(p.name);
+    const eye=$('#detailEyebrow');if(eye)eye.textContent=`STOP ${stop.sequence} · ${p.type}`;
+    const content=$('#detailContent');if(!content)return;
+    content.innerHTML=`<div class="overview-number">${stop.sequence}<small> / ${currentTrip.stops.length}</small></div><div class="data-grid"><div class="data-card"><span>${esc(t('day'))}</span><b>${stop.dayStart}${stop.dayEnd!==stop.dayStart?`–${stop.dayEnd}`:''}</b></div><div class="data-card"><span>${esc(t('nights'))}</span><b>${stop.nights||0}</b></div><div class="data-card"><span>Type</span><b>${esc(p.type)}</b></div><div class="data-card"><span>Country</span><b>${esc(p.countryCode||'—')}</b></div></div><p class="detail-copy">${esc(t('editorial'))}</p>`;
+  }
+
+  function renderSegmentDetail(s){
+    const sm=stopMap(currentTrip),pm=placeMap(currentTrip),a=pm.get(sm.get(s.fromStopId)?.placeId),b=pm.get(sm.get(s.toStopId)?.placeId);
+    const title=$('#detailTitle');if(title)title.textContent=`${local(a?.name)} → ${local(b?.name)}`;
+    const eye=$('#detailEyebrow');if(eye)eye.textContent=`SEGMENT ${s.sequence} / ${currentTrip.segments.length}`;
+    const content=$('#detailContent');if(!content)return;
+    content.innerHTML=`<div class="data-grid"><div class="data-card"><span>${esc(t('transport'))}</span><b>${esc(String(s.transport?.mode||'—').replaceAll('-',' '))}</b></div><div class="data-card"><span>${esc(t('verification'))}</span><b>${esc(t('currentCheck'))}</b></div><div class="data-card"><span>Duration</span><b>${s.planning?.durationMinutes??'—'}</b></div><div class="data-card"><span>Cost</span><b>${s.planning?.cost?.amount!=null?money(s.planning.cost.amount,s.planning.cost.currency||currentTrip.planning?.currency):'—'}</b></div></div><div class="op-callout">${esc(t('editorial'))}</div>`;
+  }
+
+  async function activateRegionalTrip(meta){
+    currentTripMeta=meta;
+    currentTrip=await fetch(meta.dataset,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Trip dataset '+r.status);return r.json()});
+    await waitForCore();
+    applyTripShell();
+    renderRegionalGlobe();
+    setTimeout(renderRegionalGlobe,500);
+  }
+
+  async function init(){
+    try{
+      catalog=await fetch(CATALOG_URL,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Trip catalog '+r.status);return r.json()});
+      const p=new URLSearchParams(location.search),wanted=p.get('trip')||catalog.defaultTripId;
+      currentTripMeta=catalog.trips.find(x=>x.id===wanted||x.slug===wanted)||catalog.trips.find(x=>x.id===catalog.defaultTripId);
+      const profile=loadProfile();if(profile.language&&SUPPORTED_LOCALES.includes(profile.language))locale=profile.language;
+      ensureGlobalUi();
+      if(currentTripMeta.renderer!=='legacy-world') await activateRegionalTrip(currentTripMeta);
+    }catch(e){console.warn('ONE WORLD ROUTE platform layer unavailable',e)}
+  }
+
+  window.ONE_WORLD_PLATFORM={openRoutes:openRouteLibrary,openTraveller,getProfile:loadProfile,getTrip:()=>currentTripMeta};
+  window.addEventListener('DOMContentLoaded',init);
+})();
