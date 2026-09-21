@@ -15,12 +15,13 @@
   const RegionalDetail=PLATFORM_MODULES.regionalDetail;
   const RegionalGlobe=PLATFORM_MODULES.regionalGlobe;
   const RegionalTimeline=PLATFORM_MODULES.regionalTimeline;
+  const RegionalControls=PLATFORM_MODULES.regionalControls;
   const Story=PLATFORM_MODULES.story;
   const Terrain=PLATFORM_MODULES.terrain;
   const Ui=PLATFORM_MODULES.ui;
   const Navigation=PLATFORM_MODULES.navigation;
   const LegacyLocalization=PLATFORM_MODULES.legacyLocalization;
-  if(!LocaleData||!Model||!Traveller||!TravellerUi||!Discovery||!Extensions||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
+  if(!LocaleData||!Model||!Traveller||!TravellerUi||!Discovery||!Extensions||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
   const SUPPORTED_LOCALES=LocaleData.supportedLocales;
   const I18N=LocaleData.messages;
   const $ = (s, r=document) => r.querySelector(s);
@@ -264,6 +265,29 @@
     });
   }
 
+  function configureRegionalControls(){
+    RegionalControls.configure({
+      getTrip:()=>currentTrip,
+      getTripMeta:()=>currentTripMeta,
+      t,
+      esc,
+      hasCapability:(meta,id)=>Model.hasCapability(meta,id),
+      onHome:()=>{
+        selectedSegmentIndex=0;
+        RegionalDetail.renderTripOverview();
+        RegionalGlobe.render();
+        if(document.body.classList.contains('terrain-view'))Terrain.focusSegment(0);
+        else RegionalGlobe.focusRoute();
+      },
+      onStoryStart:()=>Story.start(),
+      onAutoRotateChange:()=>RegionalGlobe.updateAutoRotate(),
+      onVisualChange:()=>{
+        RegionalGlobe.render();
+        Terrain.update();
+      }
+    });
+  }
+
   function configureRegionalShell(){
     RegionalShell.configure({
       getTrip:()=>currentTrip,
@@ -278,7 +302,7 @@
       syncRegionalUrl,
       replaceTimeline:()=>RegionalTimeline.replace(),
       ensureStoryUi:()=>Story.ensureUi(),
-      configureRegionalSettings,
+      configureRegionalSettings:()=>RegionalControls.apply(),
       renderTripOverview:()=>RegionalDetail.renderTripOverview()
     });
   }
@@ -311,39 +335,6 @@
     });
   }
 
-  function configureRegionalMethodology(){
-    const modal=$('#infoModal'),card=$('.modal-card',modal);if(!modal||!card)return;
-    const sourced=currentTrip.segments.filter(s=>(s.verification?.sourceIds||[]).length).length;
-    card.innerHTML=`<button class="modal-close" aria-label="Close">×</button><div class="eyebrow">${esc(t('methodology').toUpperCase())}</div><h2>${esc(t('routeMethodTitle'))}</h2><p>${esc(t('routeMethodText'))}</p><div class="method-grid"><article><b>${currentTrip.stops.length}</b><span>${esc(t('stops'))}</span></article><article><b>${currentTrip.segments.length}</b><span>${esc(t('segments'))}</span></article><article><b>${currentTrip.planning?.days||'—'}</b><span>${esc(t('days'))}</span></article><article><b>${sourced}/${currentTrip.segments.length}</b><span>${esc(t('evidenceCoverage'))}</span></article></div><h3>${esc(t('editorialStatus'))}</h3><p>${esc(t('editorial'))}</p>`;
-    $('.modal-close',card)?.addEventListener('click',()=>modal.classList.add('hidden'));
-  }
-
-  function configureRegionalSettings(){
-    const actions=$('.top-actions');if(actions)actions.classList.add('platform-regional-actions');
-    const brand=$('#brandBtn');if(brand)brand.onclick=()=>{selectedSegmentIndex=0;RegionalDetail.renderTripOverview();RegionalGlobe.render();if(document.body.classList.contains('terrain-view'))Terrain.focusSegment(0);else RegionalGlobe.focusRoute()};
-    const settingsButton=$('#settingsBtn');if(settingsButton){settingsButton.title=t('settings');settingsButton.setAttribute('aria-label',t('settings'))}
-    const infoButton=$('#infoBtn');if(infoButton){infoButton.title=t('methodology');infoButton.setAttribute('aria-label',t('methodology'))}
-    const shareButton=$('#shareBtn');if(shareButton){shareButton.title=t('share');shareButton.setAttribute('aria-label',t('share'))}
-    const search=$('#searchBtn');if(search)search.hidden=true;
-    const labels=[['autoRotate','autoRotate'],['highDetailGlobe','highDetail'],['terrainView','terrain'],['showPoints','showPoints'],['routeGlow','routeGlow'],['arcWidth','arcThickness'],['reducedMotion','reducedMotion']];
-    const terrainToggle=$('#terrainView'),terrainLabel=terrainToggle?.closest('label');
-    if(terrainLabel)terrainLabel.hidden=!Model.hasCapability(currentTripMeta,'terrain');
-    for(const [id,key] of labels){const span=$('#'+id)?.closest('label')?.querySelector('span');if(span)span.textContent=t(key)}
-    const title=$('#settingsPopover .settings-head h3');if(title)title.textContent=t('settings');
-    const share=$('#mobileShareBtn');if(share)share.textContent=t('share');
-    const info=$('#mobileInfoBtn');if(info)info.textContent=t('methodology');
-    let storyBtn=$('#regionalStorySettingsBtn');
-    if(!storyBtn){storyBtn=document.createElement('button');storyBtn.id='regionalStorySettingsBtn';storyBtn.type='button';storyBtn.addEventListener('click',()=>{$('#settingsPopover')?.classList.add('hidden');Story.start()});$('#settingsPopover .mobile-settings-actions')?.appendChild(storyBtn)}
-    if(storyBtn){storyBtn.textContent=t('storyPlay');storyBtn.hidden=!Model.hasCapability(currentTripMeta,'story')}
-    const bind=(id,event,fn)=>{const el=$('#'+id);if(!el||el.dataset.platformRegionalWired)return;el.dataset.platformRegionalWired='1';el.addEventListener(event,fn)};
-    bind('autoRotate','change',()=>RegionalGlobe.updateAutoRotate());
-    bind('showPoints','change',()=>{RegionalGlobe.render();Terrain.update()});
-    bind('routeGlow','change',()=>{RegionalGlobe.render();Terrain.update()});
-    bind('arcWidth','input',()=>{RegionalGlobe.render();Terrain.update()});
-    bind('reducedMotion','change',()=>{});
-    configureRegionalMethodology();
-  }
-
   function selectSegmentIndex(index,focus=false){
     selectedSegmentIndex=Math.max(0,Math.min(currentTrip.segments.length-1,index));
     $$('.platform-stop').forEach(x=>x.classList.remove('active'));
@@ -370,6 +361,7 @@
     configureRegionalTerrain();
     configureRegionalStory();
     configureRegionalDetail();
+    configureRegionalControls();
     configureRegionalShell();
     RegionalShell.apply();
     RegionalGlobe.render();
