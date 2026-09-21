@@ -300,7 +300,6 @@ test('route fit filters and reset produce deterministic catalog results',async({
 });
 
 test('regional terrain activates and exits on the shared engine',async({page,isMobile},testInfo)=>{
-  test.skip(isMobile);
   test.setTimeout(90000);
   const pageErrors=capturePageErrors(page);
   const item=regional.find(entry=>entry.capabilities.includes('terrain'));
@@ -311,6 +310,7 @@ test('regional terrain activates and exits on the shared engine',async({page,isM
   await expect(page.locator('body')).toHaveClass(/terrain-view/,{timeout:45000});
   await expect.poll(()=>page.evaluate(()=>Boolean(window.__ONE_WORLD_REGIONAL_TERRAIN__))).toBe(true);
   await expect(page.locator('#terrainMap')).toBeVisible();
+  if(isMobile)await expectMobilePanelsClosed(page);
   await page.screenshot({path:testInfo.outputPath('regional-terrain-'+testInfo.project.name+'.png'),fullPage:true});
 
   await page.evaluate(()=>window.ONE_WORLD_PLATFORM.setTerrain(false));
