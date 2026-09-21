@@ -1076,25 +1076,21 @@
     content.scrollTop=0;
     const sourced=currentTrip.segments.filter(s=>(s.verification?.sourceIds||[]).length).length,verified=currentTrip.segments.filter(s=>s.verification?.status==='verified').length;
     const entry=currentTrip.entryGuidance,entrySource=entry?sourceMap().get(entry.officialResolverSourceId):null;
-    const cruise=currentTrip.cruise;
-    const roadTrip=currentTrip.roadTrip;
     const profile=loadProfile();
-    const cruiseCards=cruise?`<div class="data-card"><span>${esc(t('onboardNights'))}</span><b>${cruise.nights??'—'}</b></div><div class="data-card"><span>${esc(t('seaDays'))}</span><b>${cruise.seaDays??0}</b></div>`:'';
-    const vehiclePrompt=roadTrip?.vehicleContextRequired&&!profile.vehicle?`<div class="platform-cruise-note">${esc(t('vehicleNeeded'))}</div>`:'';
-    content.innerHTML=`<div class="overview-number platform-duration-number">${currentTrip.planning?.days||'—'}<small>${esc(t('days'))}</small></div><p class="detail-copy">${esc(local(currentTrip.summary))}</p><div class="data-grid"><div class="data-card"><span>${esc(t('stops'))}</span><b>${currentTrip.stops.length}</b></div>${cruiseCards}<div class="data-card"><span>${esc(t('routeEvidence'))}</span><b>${sourced}/${currentTrip.segments.length}</b></div><div class="data-card"><span>${esc(t('verified'))}</span><b>${verified}/${currentTrip.segments.length}</b></div><div class="data-card"><span>${esc(t('currency'))}</span><b>${esc(currentTrip.planning?.currency||'—')}</b></div></div>${vehiclePrompt}${cruise?.requiresSailingSelection?`<div class="platform-cruise-note">${esc(t('sailingNeeded'))}</div>`:''}${entry?`<div class="platform-entry"><b>${esc(t('entryGuidance'))}</b><p>${esc(local(entry.message))}</p>${entrySource?`<a href="${esc(entrySource.url)}" target="_blank" rel="noopener noreferrer">${esc(t('officialCheck'))} →</a>`:''}</div>`:''}<button class="platform-context-inline" id="regionalTravellerBtn" type="button">${esc(t('traveller'))} →</button>`;
+    const extension=Extensions.composeTripOverview({trip:currentTrip,profile,t,esc,local});
+    content.innerHTML=`<div class="overview-number platform-duration-number">${currentTrip.planning?.days||'—'}<small>${esc(t('days'))}</small></div><p class="detail-copy">${esc(local(currentTrip.summary))}</p><div class="data-grid"><div class="data-card"><span>${esc(t('stops'))}</span><b>${currentTrip.stops.length}</b></div>${extension.cards}<div class="data-card"><span>${esc(t('routeEvidence'))}</span><b>${sourced}/${currentTrip.segments.length}</b></div><div class="data-card"><span>${esc(t('verified'))}</span><b>${verified}/${currentTrip.segments.length}</b></div><div class="data-card"><span>${esc(t('currency'))}</span><b>${esc(currentTrip.planning?.currency||'—')}</b></div></div>${extension.notices}${entry?`<div class="platform-entry"><b>${esc(t('entryGuidance'))}</b><p>${esc(local(entry.message))}</p>${entrySource?`<a href="${esc(entrySource.url)}" target="_blank" rel="noopener noreferrer">${esc(t('officialCheck'))} →</a>`:''}</div>`:''}<button class="platform-context-inline" id="regionalTravellerBtn" type="button">${esc(t('traveller'))} →</button>`;
     $('#regionalTravellerBtn')?.addEventListener('click',openTraveller);
   }
 
   function renderStopDetail(stop,p){
     setRegionalDetailMode('stop');
     const title=$('#detailTitle');if(title)title.textContent=local(p.name);
-    const eye=$('#detailEyebrow');if(eye)eye.textContent=`${t('stop').toUpperCase()} ${stop.sequence} · ${p.type}`;
+    const eye=$('#detailEyebrow');if(eye)eye.textContent=`${t('stop').toUpperCase()} ${stop.sequence} · ${facetLabel(p.type)}`;
     const content=$('#detailContent');if(!content)return;
     content.scrollTop=0;
-    const call=stop.call;
-    const callLabel=call?.kind==='embarkation'?t('embarkation'):(call?.kind==='disembarkation'?t('disembarkation'):(call?t('portCall'):null));
-    const portRefs=p.port?.sourceIds||[];
-    content.innerHTML=`<div class="overview-number">${stop.sequence}<small> / ${currentTrip.stops.length}</small></div><div class="data-grid"><div class="data-card"><span>${esc(t('day'))}</span><b>${stop.dayStart}${stop.dayEnd!==stop.dayStart?`–${stop.dayEnd}`:''}</b></div>${callLabel?`<div class="data-card"><span>${esc(t('portCall'))}</span><b>${esc(callLabel)}</b></div>`:''}<div class="data-card"><span>${esc(t('type'))}</span><b>${esc(p.type)}</b></div><div class="data-card"><span>${esc(t('country'))}</span><b>${esc(p.countryCode||'—')}</b></div></div>${currentTrip.kind==='cruise'?'<div class="platform-cruise-note">'+esc(t('sailingNeeded'))+'</div>':`<p class="detail-copy">${esc(t('editorial'))}</p>`}${portRefs.length?`<div class="platform-evidence"><div class="ops-mini-title">${esc(t('sources'))}</div>${sourceLinks(portRefs)}</div>`:''}`;
+    const extension=Extensions.composeStopDetail({trip:currentTrip,stop,place:p,profile:loadProfile(),t,esc,local});
+    const notices=extension.notices||`<p class="detail-copy">${esc(t('editorial'))}</p>`;
+    content.innerHTML=`<div class="overview-number">${stop.sequence}<small> / ${currentTrip.stops.length}</small></div><div class="data-grid"><div class="data-card"><span>${esc(t('day'))}</span><b>${stop.dayStart}${stop.dayEnd!==stop.dayStart?`–${stop.dayEnd}`:''}</b></div>${extension.cards}<div class="data-card"><span>${esc(t('type'))}</span><b>${esc(facetLabel(p.type))}</b></div><div class="data-card"><span>${esc(t('country'))}</span><b>${esc(countryDisplay(p.countryCode))}</b></div></div>${notices}${extension.sourceIds.length?`<div class="platform-evidence"><div class="ops-mini-title">${esc(t('sources'))}</div>${sourceLinks(extension.sourceIds)}</div>`:''}`;
   }
 
   function renderSegmentDetail(s){
@@ -1105,16 +1101,10 @@
     const content=$('#detailContent');if(!content)return;
     content.scrollTop=0;
     const stages=(s.transport?.stages||[]).map((stage,i)=>`<article class="platform-stage"><span>${String(i+1).padStart(2,'0')}</span><div><b>${esc(stage.operator||String(stage.mode||'').replaceAll('-',' '))}</b><small>${esc(stage.from||'')} → ${esc(stage.to||'')}</small><em>${esc(durationLabel(stage))} · ${esc(costLabel(stage))}</em></div></article>`).join('');
-    const refs=[...(s.verification?.sourceIds||[]),...(s.transport?.stages||[]).flatMap(x=>x.sourceIds||[])];
-    const road=s.roadContext;
-    const profile=loadProfile();
-    const roadPanel=road?`<div class="platform-road-context"><div><span>${esc(t('roadRules'))}</span><b>${road.crossBorder?esc(t('crossBorder')):esc(road.fromCountry||'')}</b></div><div><span>${esc(t('urbanAccess'))}</span><b>${esc((road.urbanAccessChecks||[]).join(' · ')||'—')}</b></div>${!profile.vehicle?`<p>${esc(t('vehicleNeeded'))}</p>`:''}</div>`:'';
-    const cruise=s.cruise;
-    const border=s.borderContext;
-    const borderLabel=border?.zoneTransition==='schengen-exit'?t('schengenExit'):(border?.zoneTransition==='schengen-entry'?t('schengenEntry'):border?.zoneTransition);
-    const cruisePanel=cruise?`<div class="platform-cruise-leg"><div><span>${esc(t('onboardNights'))}</span><b>${cruise.onboardNights??0}</b></div><div><span>${esc(t('seaDays'))}</span><b>${(cruise.seaDayNumbers||[]).join(', ')||'—'}</b></div></div>`:'';
-    const borderPanel=border&&border.zoneTransition!=='domestic'?`<div class="platform-border ${border.personalizationRequired?'requires-context':''}"><b>${esc(t('border'))}</b><span>${esc(borderLabel||'—')} · ${esc(border.fromCountry)} → ${esc(border.toCountry)}</span></div>`:'';
-    content.innerHTML=`<div class="data-grid"><div class="data-card"><span>${esc(t('transport'))}</span><b>${esc(facetLabel(String(s.transport?.mode||'—')))}</b></div><div class="data-card"><span>${esc(t('verification'))}</span><b class="${s.verification?.status==='verified'?'evidence-ok':(s.verification?.status==='illustrative'?'evidence-info':'evidence-watch')}">${esc(verificationLabel(s))}</b></div><div class="data-card"><span>${esc(t('duration'))}</span><b>${esc(durationLabel(s.planning))}</b></div><div class="data-card"><span>${esc(t('cost'))}</span><b>${esc(costLabel(s.planning))}</b></div></div>${cruisePanel}${borderPanel}${roadPanel}${stages?`<div class="platform-stages">${stages}</div>`:''}${s.verification?.notes?`<div class="op-callout">${esc(editorialNote(s.verification.notes))}</div>`:''}${refs.length?`<div class="platform-evidence"><div class="ops-mini-title">${esc(t('sources'))}</div>${sourceLinks(refs)}</div>`:''}`;
+    const baseRefs=[...(s.verification?.sourceIds||[]),...(s.transport?.stages||[]).flatMap(x=>x.sourceIds||[])];
+    const extension=Extensions.composeSegmentDetail({trip:currentTrip,segment:s,profile:loadProfile(),t,esc,local});
+    const refs=[...new Set([...baseRefs,...extension.sourceIds])];
+    content.innerHTML=`<div class="data-grid"><div class="data-card"><span>${esc(t('transport'))}</span><b>${esc(facetLabel(String(s.transport?.mode||'—')))}</b></div><div class="data-card"><span>${esc(t('verification'))}</span><b class="${s.verification?.status==='verified'?'evidence-ok':(s.verification?.status==='illustrative'?'evidence-info':'evidence-watch')}">${esc(verificationLabel(s))}</b></div><div class="data-card"><span>${esc(t('duration'))}</span><b>${esc(durationLabel(s.planning))}</b></div><div class="data-card"><span>${esc(t('cost'))}</span><b>${esc(costLabel(s.planning))}</b></div></div>${extension.panels}${stages?`<div class="platform-stages">${stages}</div>`:''}${s.verification?.notes?`<div class="op-callout">${esc(editorialNote(s.verification.notes))}</div>`:''}${refs.length?`<div class="platform-evidence"><div class="ops-mini-title">${esc(t('sources'))}</div>${sourceLinks(refs)}</div>`:''}`;
   }
 
   async function activateRegionalTrip(meta){
