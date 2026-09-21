@@ -96,3 +96,11 @@ A sea day belongs to the sailing segment. It must never be invented as a geograp
 
 Port infrastructure and a commercial sailing are separate claims. Port authority evidence can validate that a port accepts cruise traffic while the sailing remains illustrative. Only a selected real sailing may populate ship, operator, times, berth and price.
 
+### International SEO contract
+
+`data/platform/trips.json` is the source of truth for public locales. Localized trip share routes use `/:lang/trip/:slug` and are rendered by `api/share.js`. Unsupported language codes are never allowed to create canonical URLs.
+
+Each localized trip page includes its own canonical URL, all supported `hreflang` alternates, an `x-default` route and Schema.org `TouristTrip` JSON-LD. The interactive target preserves `lang` in the query string. An explicit URL language takes precedence over a previously stored browser-language preference.
+
+Sitemap generation uses the same catalog locale list, avoiding a separate hard-coded SEO language matrix.
+

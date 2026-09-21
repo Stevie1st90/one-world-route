@@ -35,6 +35,7 @@
 
 Implemented foundation:
 - generic trip catalog and route URLs
+- localized crawlable trip URLs with canonical/hreflang and TouristTrip structured data
 - reusable place / visit / segment schema
 - Traveller Context without a German-default assumption
 - regional standard-globe rendering
