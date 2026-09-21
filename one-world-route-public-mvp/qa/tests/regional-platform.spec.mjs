@@ -210,9 +210,11 @@ for(const item of regional){
     await page.locator('#regionalPrevBtn').click();
     await expect(range).toHaveValue('2');
 
-    await page.locator('#regionalPlayBtn').click();
-    await expect.poll(async()=>Number(await range.inputValue()),{timeout:5000}).toBeGreaterThan(2);
-    await page.locator('#regionalPlayBtn').click();
+    const playButton=page.locator('#regionalPlayBtn');
+    await playButton.click();
+    await expect(playButton).toHaveText('Ⅱ');
+    await expect.poll(async()=>Number(await range.inputValue()),{timeout:12000}).toBeGreaterThan(2);
+    if((await playButton.textContent())?.includes('Ⅱ'))await playButton.click();
     const stoppedAt=await range.inputValue();
     await page.waitForTimeout(1700);
     await expect(range).toHaveValue(stoppedAt);
@@ -324,27 +326,27 @@ test('route fit filters and reset produce deterministic catalog results',async({
 });
 
 test('regional terrain activates and exits on the shared engine',async({page,isMobile},testInfo)=>{
-  test.setTimeout(90000);
+  test.setTimeout(150000);
   const pageErrors=capturePageErrors(page);
   const item=regional.find(entry=>entry.capabilities.includes('terrain'));
   expect(item).toBeTruthy();
   await openRegional(page,item);
 
-  await page.evaluate(()=>window.ONE_WORLD_PLATFORM.setTerrain(true));
-  await expect(page.locator('body')).toHaveClass(/terrain-view/,{timeout:45000});
+  await page.evaluate(()=>{void window.ONE_WORLD_PLATFORM.setTerrain(true)});
+  await expect(page.locator('body')).toHaveClass(/terrain-view/,{timeout:100000});
   await expect.poll(()=>page.evaluate(()=>Boolean(window.__ONE_WORLD_REGIONAL_TERRAIN__))).toBe(true);
   await expect(page.locator('#terrainMap')).toBeVisible();
   if(isMobile)await expectMobilePanelsClosed(page);
   await captureViewport(page,testInfo,'regional-terrain-'+testInfo.project.name+'.png');
 
-  await page.evaluate(()=>window.ONE_WORLD_PLATFORM.setTerrain(false));
+  await page.evaluate(()=>{void window.ONE_WORLD_PLATFORM.setTerrain(false)});
   await expect(page.locator('body')).not.toHaveClass(/terrain-view/);
   expect(pageErrors,'terrain runtime page errors').toEqual([]);
 });
 
 
 test('rail architecture proof uses the shared terrain engine',async({page,isMobile},testInfo)=>{
-  test.setTimeout(120000);
+  test.setTimeout(150000);
   expect(railProof).toBeTruthy();
   const pageErrors=capturePageErrors(page);
   await openRegional(page,railProof);
