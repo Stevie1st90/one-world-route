@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','route-library.js','story.js','terrain.js','extensions.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','route-library.js','regional-shell.js','story.js','terrain.js','extensions.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -86,8 +86,10 @@ test('route library uses delegated click handling for dynamically filtered cards
 });
 
 test('regional chapter controls bind NodeLists rather than a single element',()=>{
-  assert.match(source,/\$\$\('\[data-trip-chapter\]'/);
-  assert.doesNotMatch(source,/(?<!\$)\$\('\[data-trip-chapter\]'[^\n]*\.forEach/);
+  const shell=moduleSources['regional-shell.js'];
+  assert.match(shell,/\$\$\('\[data-trip-chapter\]'/);
+  assert.doesNotMatch(shell,/(?<!\$)\$\('\[data-trip-chapter\]'[^\n]*\.forEach/);
+  assert.doesNotMatch(source,/function buildChapterRail|function buildLeftNavigation|function stopButton/);
 });
 
 test('regional routes own timeline and block legacy world mutation paths',()=>{
@@ -224,9 +226,12 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.match(source,/const Discovery=PLATFORM_MODULES\.discovery/);
   assert.match(source,/const Extensions=PLATFORM_MODULES\.extensions/);
   assert.match(source,/const RouteLibrary=PLATFORM_MODULES\.routeLibrary/);
+  assert.match(source,/const RegionalShell=PLATFORM_MODULES\.regionalShell/);
   assert.match(source,/const Story=PLATFORM_MODULES\.story/);
   assert.match(source,/const Terrain=PLATFORM_MODULES\.terrain/);
   assert.match(source,/RouteLibrary\.open\(/);
+  assert.match(source,/RegionalShell\.configure\(/);
+  assert.match(source,/RegionalShell\.apply\(/);
   assert.match(source,/Story\.configure\(/);
   assert.match(source,/Ui\.ensureGlobalActions\(/);
   assert.match(source,/Navigation\.buildTripUrl\(/);
@@ -243,6 +248,14 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.doesNotMatch(source,/function ensureDialog|function platformToast|function regionalSettings/);
   assert.match(source,/Traveller\.load\(/);
   assert.match(source,/Model\.routeGeometry\(/);
+});
+
+test('regional shell stays data-driven and renderer-agnostic',()=>{
+  const shell=moduleSources['regional-shell.js'];
+  for(const token of ['function apply','function buildLeftNavigation','function buildChapterRail'])assert.match(shell,new RegExp(token));
+  assert.match(shell,/d\.getTrip\(\)/);
+  assert.match(shell,/d\.selectStop/);
+  assert.doesNotMatch(shell,/trip\.id\s*===|trip\.kind\s*===|currentTrip|ONE_WORLD_ROUTE_GLOBE/);
 });
 
 test('trip specialization lives in registered extensions rather than trip-kind branches',()=>{
