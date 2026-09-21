@@ -15,7 +15,7 @@
     },
     stopDetail(ctx){
       const call=model.extension(ctx.stop,'cruiseCall');
-      const refs=ctx.place?.port?.sourceIds||[];
+      const refs=model.extension(ctx.place,'port')?.sourceIds||[];
       if(!call&&!refs)return null;
       const callLabel=call?.kind==='embarkation'?ctx.t('embarkation'):(call?.kind==='disembarkation'?ctx.t('disembarkation'):(call?ctx.t('portCall'):null));
       return {
