@@ -575,7 +575,8 @@
             "from": "Budapest-Nyugati",
             "to": "Praha",
             "sourceIds": [
-              "mav-budapest-prague"
+              "cd-budapest-prague-corridor",
+              "cd-budapest-prague-rj274"
             ]
           }
         ]
@@ -590,9 +591,10 @@
         "status": "current-check-required",
         "lastVerified": "2026-09-21",
         "sourceIds": [
-          "mav-budapest-prague"
+          "cd-budapest-prague-corridor",
+          "cd-budapest-prague-rj274"
         ],
-        "notes": "Official MÁV operational notices confirm Budapest–Prague Metropolitan services, but current-day routing and disruption status must be checked before travel."
+        "notes": "ČD documents the direct Metropolitan corridor between Prague and Budapest, and the 2026 timetable includes direct rj 274 from Budapest-Nyugati to Praha hl.n. Exact travel-date timing and disruption status still require a live operator check."
       }
     },
     {
@@ -605,28 +607,29 @@
         "stages": [
           {
             "mode": "rail",
-            "operator": "ČD / DB international long-distance",
+            "operator": "ČD / DB · EuroCity / railjet",
             "from": "Praha",
             "to": "Berlin Hbf",
             "sourceIds": [
-              "db-prague-berlin"
-            ]
+              "cd-prague-berlin"
+            ],
+            "durationMinutes": 249
           }
         ]
       },
       "planning": {
-        "durationMinutes": null,
-        "durationBasis": "live-timetable-required",
+        "durationMinutes": 249,
+        "durationBasis": "operator-published-current",
         "distanceKm": null,
         "cost": null
       },
       "verification": {
-        "status": "current-check-required",
+        "status": "verified",
         "lastVerified": "2026-09-21",
         "sourceIds": [
-          "db-prague-berlin"
+          "cd-prague-berlin"
         ],
-        "notes": "DB confirms multiple daily direct Berlin–Prague services in the current timetable. The Prague→Berlin direction must be checked live for the selected day and engineering works."
+        "notes": "ČD publishes direct Prague–Berlin trains about every two hours with a current journey time of about 4 h 09 min. Exact travel-date departure and engineering works must still be checked."
       }
     }
   ],
@@ -718,28 +721,49 @@
       ]
     },
     {
-      "id": "mav-budapest-prague",
-      "title": "Budapest → Prague Metropolitan service",
-      "issuer": "MÁV-csoport",
+      "id": "cd-budapest-prague-corridor",
+      "title": "Prague ↔ Budapest by EuroCity Metropolitan",
+      "issuer": "České dráhy",
       "issuerType": "official-operator",
-      "url": "https://www.mavcsoport.hu/mavinform/metropolitan-railjet-helyreall-menetrend",
+      "url": "https://www.cd.cz/trasy/trasy-madarsko/praha-budapest/-30120/",
       "checkedAt": "2026-09-21",
       "claims": [
-        "Metropolitan railjet operates between Budapest and Prague",
-        "operational state can change and requires live check"
+        "direct EuroCity Metropolitan corridor between Prague and Budapest",
+        "operator publishes regular direct service on the corridor"
       ]
     },
     {
-      "id": "db-prague-berlin",
-      "title": "Berlin ↔ Prague direct rail corridor",
-      "issuer": "Deutsche Bahn",
+      "id": "cd-budapest-prague-rj274",
+      "title": "2026 rj 274 Metropolitan · Budapest → Prague",
+      "issuer": "České dráhy",
       "issuerType": "official-operator",
-      "url": "https://www.bahn.de/reisen/view/verbindung/berlin/prag.shtml",
+      "url": "https://www.cd.cz/vlak/274/7.5.2026/5500728/13.30/5457076/20.23/",
       "checkedAt": "2026-09-21",
       "claims": [
-        "multiple direct Berlin–Prague services listed",
-        "reverse-direction journey must be checked live for selected date"
+        "2026 timetable evidence for direct Budapest-Nyugati → Praha hl.n. service",
+        "travel-date operation and disruptions require live confirmation"
+      ]
+    },
+    {
+      "id": "cd-prague-berlin",
+      "title": "Prague → Berlin by direct train",
+      "issuer": "České dráhy",
+      "issuerType": "official-operator",
+      "url": "https://www.cd.cz/trasy/nemecko/praha-berlin/-30009/",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "direct Prague–Berlin service",
+        "published journey about 4 h 09 min",
+        "direct trains published about every two hours"
       ]
     }
-  ]
+  ],
+  "extensions": {
+    "rail": {
+      "scope": "rail-only",
+      "timetablePolicy": "live-operator-check",
+      "sourcePolicy": "official-operator",
+      "crossBorder": true
+    }
+  }
 }
