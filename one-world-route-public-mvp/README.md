@@ -109,3 +109,35 @@ For every supported public locale (`en`, `de`, `it`, `es`, `fr`, `pt`), trips ha
 
 The trip catalog declares `defaultLocale` and `supportedLocales`. Validation fails if any public trip lacks a title or subtitle for a published locale.
 
+### Route Discovery and road-trip context
+
+The route library now supports client-side discovery by free-text search, travel type, region and duration band. Discovery facets live in the trip catalog and are validated for every public trip.
+
+The Southern Europe Road Trip is the first cross-border road-trip template:
+- Lisbon → Seville → Granada → Valencia → Barcelona → Montpellier → Marseille → Nice → Genoa → Florence → Rome
+- 20 days / 11 stops / 4 countries
+- official EU context for licence, insurance and cross-border rental handling
+- official national sources for Portugal tolls, Spanish urban/LEZ rules, French Crit'Air, Italian motorway tolls and Rome ZTL
+- no invented drive times, toll totals or fuel costs; those remain vehicle/date dependent
+
+Traveller Context now has an optional Vehicle Context containing vehicle type, registration country, fuel/powertrain, Euro emissions class and rental cross-border approval. It deliberately does not store licence numbers, VINs or booking data.
+
+### Local preview without Vercel
+
+A dependency-free local server mirrors the important clean URL behaviour:
+
+```powershell
+Set-Location ".\one-world-route-public-mvp"
+node .\scripts\serve-local.mjs
+```
+
+Then open `http://127.0.0.1:4173/`.
+
+Examples:
+- `http://127.0.0.1:4173/?trip=italy-grand-tour&lang=de`
+- `http://127.0.0.1:4173/?trip=southern-europe-road-trip&lang=de`
+- `http://127.0.0.1:4173/?trip=western-mediterranean-cruise-loop&lang=de`
+- `http://127.0.0.1:4173/de/trip/italy-grand-tour`
+
+Set `$env:OWR_PORT` before starting if port 4173 is occupied. The GitHub validation workflow also starts this server and smoke-tests local routes, so local-preview regressions are caught without a Vercel deployment.
+
