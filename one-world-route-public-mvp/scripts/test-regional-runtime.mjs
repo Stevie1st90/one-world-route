@@ -79,6 +79,11 @@ test('specialized presenter output is attached only when matching namespaced dat
   const italyOverview=modules.extensions.composeTripOverview({trip:italy,profile:{},t,esc,local});
   assert.equal(italyOverview.cards,'');
   assert.equal(italyOverview.notices,'');
+  const italyStop=italy.stops[0];
+  const italyPlace=modules.model.stopPlace(italy,italyStop);
+  const italyStopDetail=modules.extensions.composeStopDetail({trip:italy,stop:italyStop,place:italyPlace,profile:{},t,esc,local});
+  assert.equal(italyStopDetail.notices,'');
+  assert.equal(italyStopDetail.sourceIds.length,0);
 
   const cruiseOverview=modules.extensions.composeTripOverview({trip:cruise,profile:{},t,esc,local});
   assert.match(cruiseOverview.cards,/onboardNights/);
