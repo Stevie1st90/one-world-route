@@ -2,7 +2,7 @@ const route=require('../data/public-route.json');
 const geo=require('../data/country-centroids.json');
 const platform=require('../data/platform/trips.json');
 
-const SUPPORTED_LANGS=['en','de','it','es','fr','pt'];
+const SUPPORTED_LANGS=Array.isArray(platform.supportedLocales)&&platform.supportedLocales.length?platform.supportedLocales:['en'];
 const display=new Intl.DisplayNames(['en'],{type:'region'});
 const byName=new Map(geo.map(c=>[c.name,c]));
 const en=n=>{const c=byName.get(n);try{return c?.cca2?display.of(c.cca2):n}catch{return n}};
