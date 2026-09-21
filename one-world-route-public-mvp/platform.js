@@ -13,6 +13,134 @@
     pt:{routes:'Rotas',traveller:'Viajante',flagship:'Flagship',template:'Modelo',open:'Abrir rota',days:'dias',stops:'paradas',segments:'trechos',global:'Perspectiva global',contextTitle:'Contexto do viajante',contextLead:'Adapta entrada, idioma, moeda e origem. Guardado apenas neste dispositivo.',passports:'País do passaporte',secondPassport:'Segundo passaporte (opcional)',residence:'Residência',language:'Idioma',currency:'Moeda',origin:'Cidade / aeroporto de partida',adults:'Adultos',children:'Crianças',mobility:'Mobilidade reduzida',save:'Salvar',clear:'Limpar',notSet:'Não definido',currentCheck:'Verificação atual necessária',routeLibrary:'Explorar rotas',routeLibraryLead:'Uma plataforma para voltas ao mundo, road trips, trem, cruzeiros e mais.',editorial:'Modelo editorial — verifique transporte, preços e entrada para suas datas.',overview:'Visão geral',day:'Dia',nights:'noites',transport:'Transporte',verification:'Verificação',backWorld:'Rota mundial',private:'Privado neste dispositivo. Nunca pedimos número de passaporte, referência de reserva ou pagamento.',sourcedBeta:'Beta com fontes',sources:'Fontes',lastChecked:'Última verificação',publishedFrom:'a partir de',verified:'Verificado',routeEvidence:'Fontes da rota',entryGuidance:'Entrada',officialCheck:'Verificação oficial',connectionRequired:'conexão necessária',minimumTravel:'tempo mínimo',cruiseTemplate:'Modelo de cruzeiro',onboardNights:'noites a bordo',seaDays:'dias no mar',portCall:'Escala',embarkation:'Embarque',disembarkation:'Desembarque',border:'Contexto de fronteira',schengenExit:'Saída de Schengen',schengenEntry:'Reentrada em Schengen',sailingNeeded:'Selecione uma partida real para navio, operadora, horários, cais e preço.',illustrative:'Ilustrativo',searchRoutes:'Pesquisar rotas',filterType:'Tipo de viagem',filterRegion:'Região',filterDuration:'Duração',all:'Todas',noRoutes:'Nenhuma rota corresponde aos filtros.',vehicleSection:'Contexto do veículo (opcional)',vehicleType:'Veículo',registrationCountry:'País de matrícula',fuelType:'Combustível / motorização',euroClass:'Classe Euro',rentalCrossBorder:'Aluguel autorizado para cruzar fronteiras',privateCar:'Carro particular',rentalCar:'Carro alugado',camper:'Motorhome',motorcycle:'Moto',otherVehicle:'Outro',petrol:'Gasolina',diesel:'Diesel',hybrid:'Híbrido',pluginHybrid:'Híbrido plug-in',electric:'Elétrico',hydrogen:'Hidrogênio',unknown:'Desconhecido',roadRules:'Contexto rodoviário',crossBorder:'Transfronteiriço',urbanAccess:'Verificar acesso urbano',vehicleNeeded:'O contexto do veículo é necessário para portagens, ZBE e acessos.',facet_world:'Volta ao mundo',facet_round_trip:'Roteiro circular',facet_road_trip:'Road trip',facet_cruise:'Cruzeiro',facet_global:'Global',facet_europe:'Europa',facet_southern_europe:'Sul da Europa',facet_italy:'Itália',facet_mediterranean:'Mediterrâneo',facet_north_africa:'Norte da África',filterMode:'Transporte',filterTheme:'Tema',results:'rotas encontradas',resetFilters:'Redefinir',details:'Detalhes',start:'Início',finish:'Fim',previous:'Anterior',next:'Seguinte',type:'Tipo',country:'País',duration:'Duração',cost:'Custo'}
   };
 
+
+  const LEGACY_WORLD_TEXT = {
+    de:{
+      '195 countries · one continuous journey':'195 Länder · eine zusammenhängende Reise',
+      'PUBLIC PLAN · SNAPSHOT 17 SEP 2026':'ÖFFENTLICHER PLAN · STAND 17. SEP. 2026',
+      'Every country.':'Jedes Land.','One route.':'Eine Route.',
+      'A transparent experiment to connect all 195 sovereign states in one continuous journey — with every transport leg, visa, cost and constraint mapped openly.':'Ein transparentes Projekt, das alle 195 souveränen Staaten zu einer zusammenhängenden Reise verbindet – mit offen dargestellten Verkehrsetappen, Visa, Kosten und Einschränkungen.',
+      'Explore':'Erkunden','Operations':'Operationen','Country, segment, route…':'Land, Segment, Route…',
+      'Layer':'Ebene','Reset':'Zurücksetzen','Route':'Route','Status':'Status','Visa':'Visum','Health':'Gesundheit','Cost':'Kosten','Risk':'Risiko','Progress':'Fortschritt','Critical':'Kritisch',
+      'Filters':'Filter','Transport':'Verkehrsmittel','All modes':'Alle Verkehrsmittel','Booking tier':'Buchungsstufe','All tiers':'Alle Stufen','Feasibility':'Machbarkeit','All':'Alle','Alert':'Warnstufe','All alerts':'Alle Warnstufen',
+      'Journey intelligence':'Reiseanalyse','Install':'Installieren','Stats':'Statistik','Live':'Live','Journal':'Reisetagebuch','Changes':'Änderungen',
+      'Overview':'Übersicht','Details':'Details','Ops':'Betrieb','Sources':'Quellen','Speed':'Tempo','START':'START','FINISH':'ZIEL',
+      'Globe settings':'Globus-Einstellungen','Auto rotate':'Automatisch drehen','High detail globe':'Hochauflösender Globus','Real 3D globe terrain':'Echtes 3D-Terrain','Country points':'Länderpunkte','Route glow':'Routenleuchten','Arc thickness':'Linienstärke','Reduced motion':'Reduzierte Bewegung','Share view':'Ansicht teilen','Methodology':'Methodik',
+      'METHODOLOGY':'METHODIK','A public travel-operations experiment.':'Ein öffentliches Reiseplanungs-Experiment.',
+      'This explorer is generated from a private operational master workbook. Only publication-safe fields are exported. Booking references, payment data, passport details, insurance identifiers, private document links and personal contacts never enter the public dataset.':'Dieser Explorer wird aus einer privaten operativen Masterplanung erzeugt. Veröffentlicht werden nur unkritische Felder. Buchungsreferenzen, Zahlungsdaten, Passdaten, Versicherungskennungen, private Dokumentlinks und persönliche Kontakte gelangen niemals in den öffentlichen Datensatz.',
+      'Sovereign states in scope':'Souveräne Staaten im Umfang','International legs':'Internationale Legs','Planned days':'Geplante Tage','Base planning envelope':'Basis-Planungsrahmen',
+      'What “verified” means':'Was „verifiziert“ bedeutet','Segments may cite airlines, immigration authorities or government sources. A published transport corridor is not a safety recommendation. Volatile borders and high-risk states are intentionally surfaced as uncertainty rather than hidden.':'Segmente können Airlines, Einwanderungsbehörden oder Regierungsquellen zitieren. Eine veröffentlichte Verkehrsverbindung ist keine Sicherheitsempfehlung. Volatile Grenzen und Hochrisikostaaten werden bewusst als Unsicherheit sichtbar gemacht und nicht verborgen.',
+      'North Korea':'Nordkorea','DPRK remains outside the executable 194-country calendar until legal tourism for the relevant passport is operationally available. It is never counted as completed without legal physical entry.':'Nordkorea bleibt außerhalb des ausführbaren 194-Länder-Kalenders, bis legaler Tourismus für den jeweiligen Pass tatsächlich möglich ist. Ohne legale physische Einreise wird es niemals als abgeschlossen gezählt.',
+      'Search a country, segment, visa, transport…':'Land, Segment, Visum oder Verkehrsmittel suchen…','Search results':'Suchergebnisse','Jump to route':'Zur Route springen',
+      'Play the journey':'Reise abspielen','Follow all 194 route legs':'Allen 194 Etappen folgen','Exit story':'Story beenden','Current chapter':'Aktuelles Kapitel','Journey position':'Reiseposition','Route context':'Routenkontext',
+      'Country':'Land','Readiness':'Bereitschaft','Planned entry':'Geplante Einreise','Arrival':'Ankunft','Next':'Weiter','Departure':'Abfahrt','Phase':'Phase','Plan budget':'Planbudget','Why this route?':'Warum diese Route?',
+      'visible legs':'sichtbare Legs','transport model':'Verkehrsmodell','critical':'kritisch','countries':'Länder','planned days':'geplante Tage','intl. legs':'internationale Legs','base model':'Basismodell',
+      'Route legs':'Routen-Legs','Planned duration':'Geplante Dauer','Route distance':'Routendistanz','Transport model':'Verkehrsmodell','Chapters':'Kapitel','Transport mix':'Verkehrsmix','sovereign states':'souveräne Staaten','executable segments':'ausführbare Segmente','continuous route':'zusammenhängende Route','No actual journey events yet.':'Noch keine tatsächlichen Reiseereignisse.'
+    },
+    it:{
+      '195 countries · one continuous journey':'195 paesi · un unico viaggio continuo','PUBLIC PLAN · SNAPSHOT 17 SEP 2026':'PIANO PUBBLICO · AGGIORNATO 17 SET 2026','Every country.':'Ogni paese.','One route.':'Un solo itinerario.',
+      'A transparent experiment to connect all 195 sovereign states in one continuous journey — with every transport leg, visa, cost and constraint mapped openly.':'Un progetto trasparente per collegare tutti i 195 stati sovrani in un unico viaggio continuo, con trasporti, visti, costi e vincoli mostrati apertamente.',
+      'Explore':'Esplora','Operations':'Operazioni','Country, segment, route…':'Paese, segmento, itinerario…','Layer':'Livello','Reset':'Reimposta','Route':'Itinerario','Status':'Stato','Visa':'Visto','Health':'Salute','Cost':'Costo','Risk':'Rischio','Progress':'Progresso','Critical':'Critico',
+      'Filters':'Filtri','Transport':'Trasporto','All modes':'Tutti i mezzi','Booking tier':'Livello prenotazione','All tiers':'Tutti i livelli','Feasibility':'Fattibilità','All':'Tutti','Alert':'Avviso','All alerts':'Tutti gli avvisi',
+      'Journey intelligence':'Analisi del viaggio','Install':'Installa','Stats':'Statistiche','Live':'Live','Journal':'Diario','Changes':'Modifiche','Overview':'Panoramica','Details':'Dettagli','Ops':'Operazioni','Sources':'Fonti','Speed':'Velocità','START':'PARTENZA','FINISH':'ARRIVO',
+      'Globe settings':'Impostazioni globo','Auto rotate':'Rotazione automatica','High detail globe':'Globo ad alta definizione','Real 3D globe terrain':'Terreno 3D reale','Country points':'Punti dei paesi','Route glow':'Bagliore itinerario','Arc thickness':'Spessore linee','Reduced motion':'Movimento ridotto','Share view':'Condividi vista','Methodology':'Metodologia',
+      'METHODOLOGY':'METODOLOGIA','A public travel-operations experiment.':'Un esperimento pubblico di pianificazione dei viaggi.','Sovereign states in scope':'Stati sovrani inclusi','International legs':'Tratte internazionali','Planned days':'Giorni pianificati','Base planning envelope':'Budget base di pianificazione',
+      'What “verified” means':'Cosa significa “verificato”','North Korea':'Corea del Nord','Search a country, segment, visa, transport…':'Cerca paese, segmento, visto o trasporto…','Search results':'Risultati','Jump to route':'Vai all’itinerario',
+      'Play the journey':'Riproduci il viaggio','Follow all 194 route legs':'Segui tutte le 194 tratte','Exit story':'Esci dalla storia','Current chapter':'Capitolo attuale','Journey position':'Posizione nel viaggio','Route context':'Contesto itinerario','Country':'Paese','Readiness':'Prontezza','Planned entry':'Ingresso previsto','Arrival':'Arrivo','Next':'Successivo','Departure':'Partenza','Phase':'Fase','Plan budget':'Budget previsto','Why this route?':'Perché questo itinerario?','visible legs':'tratte visibili','transport model':'modello trasporti','critical':'critico','countries':'paesi','planned days':'giorni previsti','intl. legs':'tratte internazionali','base model':'modello base'
+    },
+    es:{
+      '195 countries · one continuous journey':'195 países · un viaje continuo','PUBLIC PLAN · SNAPSHOT 17 SEP 2026':'PLAN PÚBLICO · ACTUALIZADO 17 SEP 2026','Every country.':'Cada país.','One route.':'Una ruta.',
+      'A transparent experiment to connect all 195 sovereign states in one continuous journey — with every transport leg, visa, cost and constraint mapped openly.':'Un proyecto transparente para conectar los 195 estados soberanos en un único viaje continuo, mostrando transportes, visados, costes y restricciones.',
+      'Explore':'Explorar','Operations':'Operaciones','Country, segment, route…':'País, segmento, ruta…','Layer':'Capa','Reset':'Restablecer','Route':'Ruta','Status':'Estado','Visa':'Visado','Health':'Salud','Cost':'Coste','Risk':'Riesgo','Progress':'Progreso','Critical':'Crítico',
+      'Filters':'Filtros','Transport':'Transporte','All modes':'Todos los medios','Booking tier':'Nivel de reserva','All tiers':'Todos los niveles','Feasibility':'Viabilidad','All':'Todos','Alert':'Alerta','All alerts':'Todas las alertas','Journey intelligence':'Análisis del viaje','Install':'Instalar','Stats':'Estadísticas','Live':'En vivo','Journal':'Diario','Changes':'Cambios',
+      'Overview':'Resumen','Details':'Detalles','Ops':'Operaciones','Sources':'Fuentes','Speed':'Velocidad','START':'INICIO','FINISH':'FINAL','Globe settings':'Ajustes del globo','Auto rotate':'Rotación automática','High detail globe':'Globo de alta definición','Real 3D globe terrain':'Terreno 3D real','Country points':'Puntos de países','Route glow':'Brillo de ruta','Arc thickness':'Grosor de líneas','Reduced motion':'Movimiento reducido','Share view':'Compartir vista','Methodology':'Metodología',
+      'METHODOLOGY':'METODOLOGÍA','A public travel-operations experiment.':'Un experimento público de planificación de viajes.','Sovereign states in scope':'Estados soberanos incluidos','International legs':'Tramos internacionales','Planned days':'Días previstos','Base planning envelope':'Marco presupuestario base','What “verified” means':'Qué significa “verificado”','North Korea':'Corea del Norte',
+      'Search a country, segment, visa, transport…':'Buscar país, segmento, visado o transporte…','Search results':'Resultados','Jump to route':'Ir a la ruta','Play the journey':'Reproducir el viaje','Follow all 194 route legs':'Seguir los 194 tramos','Exit story':'Salir de la historia','Current chapter':'Capítulo actual','Journey position':'Posición del viaje','Route context':'Contexto de ruta','Country':'País','Readiness':'Preparación','Planned entry':'Entrada prevista','Arrival':'Llegada','Next':'Siguiente','Departure':'Salida','Phase':'Fase','Plan budget':'Presupuesto previsto','Why this route?':'¿Por qué esta ruta?','visible legs':'tramos visibles','transport model':'modelo de transporte','critical':'crítico','countries':'países','planned days':'días previstos','intl. legs':'tramos internacionales','base model':'modelo base'
+    },
+    fr:{
+      '195 countries · one continuous journey':'195 pays · un voyage continu','PUBLIC PLAN · SNAPSHOT 17 SEP 2026':'PLAN PUBLIC · MISE À JOUR 17 SEPT. 2026','Every country.':'Chaque pays.','One route.':'Un seul itinéraire.',
+      'A transparent experiment to connect all 195 sovereign states in one continuous journey — with every transport leg, visa, cost and constraint mapped openly.':'Un projet transparent pour relier les 195 États souverains en un seul voyage continu, avec transports, visas, coûts et contraintes affichés ouvertement.',
+      'Explore':'Explorer','Operations':'Opérations','Country, segment, route…':'Pays, segment, itinéraire…','Layer':'Couche','Reset':'Réinitialiser','Route':'Itinéraire','Status':'Statut','Visa':'Visa','Health':'Santé','Cost':'Coût','Risk':'Risque','Progress':'Progression','Critical':'Critique',
+      'Filters':'Filtres','Transport':'Transport','All modes':'Tous les modes','Booking tier':'Niveau de réservation','All tiers':'Tous les niveaux','Feasibility':'Faisabilité','All':'Tous','Alert':'Alerte','All alerts':'Toutes les alertes','Journey intelligence':'Analyse du voyage','Install':'Installer','Stats':'Statistiques','Live':'En direct','Journal':'Journal','Changes':'Modifications',
+      'Overview':'Aperçu','Details':'Détails','Ops':'Opérations','Sources':'Sources','Speed':'Vitesse','START':'DÉPART','FINISH':'ARRIVÉE','Globe settings':'Réglages du globe','Auto rotate':'Rotation automatique','High detail globe':'Globe haute définition','Real 3D globe terrain':'Relief 3D réel','Country points':'Points pays','Route glow':'Lueur de route','Arc thickness':'Épaisseur des lignes','Reduced motion':'Mouvement réduit','Share view':'Partager la vue','Methodology':'Méthodologie',
+      'METHODOLOGY':'MÉTHODOLOGIE','A public travel-operations experiment.':'Une expérimentation publique de planification de voyage.','Sovereign states in scope':'États souverains couverts','International legs':'Étapes internationales','Planned days':'Jours planifiés','Base planning envelope':'Budget de planification de base','What “verified” means':'Ce que signifie « vérifié »','North Korea':'Corée du Nord',
+      'Search a country, segment, visa, transport…':'Rechercher pays, segment, visa ou transport…','Search results':'Résultats','Jump to route':'Aller à l’itinéraire','Play the journey':'Lire le voyage','Follow all 194 route legs':'Suivre les 194 étapes','Exit story':'Quitter le récit','Current chapter':'Chapitre actuel','Journey position':'Position du voyage','Route context':'Contexte de route','Country':'Pays','Readiness':'Préparation','Planned entry':'Entrée prévue','Arrival':'Arrivée','Next':'Suivant','Departure':'Départ','Phase':'Phase','Plan budget':'Budget prévu','Why this route?':'Pourquoi cet itinéraire ?','visible legs':'étapes visibles','transport model':'modèle de transport','critical':'critique','countries':'pays','planned days':'jours planifiés','intl. legs':'étapes internationales','base model':'modèle de base'
+    },
+    pt:{
+      '195 countries · one continuous journey':'195 países · uma viagem contínua','PUBLIC PLAN · SNAPSHOT 17 SEP 2026':'PLANO PÚBLICO · ATUALIZADO 17 SET 2026','Every country.':'Cada país.','One route.':'Uma rota.',
+      'A transparent experiment to connect all 195 sovereign states in one continuous journey — with every transport leg, visa, cost and constraint mapped openly.':'Um projeto transparente para ligar os 195 estados soberanos numa única viagem contínua, mostrando transportes, vistos, custos e restrições.',
+      'Explore':'Explorar','Operations':'Operações','Country, segment, route…':'País, segmento, rota…','Layer':'Camada','Reset':'Redefinir','Route':'Rota','Status':'Estado','Visa':'Visto','Health':'Saúde','Cost':'Custo','Risk':'Risco','Progress':'Progresso','Critical':'Crítico',
+      'Filters':'Filtros','Transport':'Transporte','All modes':'Todos os meios','Booking tier':'Nível de reserva','All tiers':'Todos os níveis','Feasibility':'Viabilidade','All':'Todos','Alert':'Alerta','All alerts':'Todos os alertas','Journey intelligence':'Análise da viagem','Install':'Instalar','Stats':'Estatísticas','Live':'Ao vivo','Journal':'Diário','Changes':'Alterações',
+      'Overview':'Visão geral','Details':'Detalhes','Ops':'Operações','Sources':'Fontes','Speed':'Velocidade','START':'INÍCIO','FINISH':'FIM','Globe settings':'Definições do globo','Auto rotate':'Rotação automática','High detail globe':'Globo de alta definição','Real 3D globe terrain':'Terreno 3D real','Country points':'Pontos dos países','Route glow':'Brilho da rota','Arc thickness':'Espessura das linhas','Reduced motion':'Movimento reduzido','Share view':'Partilhar vista','Methodology':'Metodologia',
+      'METHODOLOGY':'METODOLOGIA','A public travel-operations experiment.':'Uma experiência pública de planeamento de viagem.','Sovereign states in scope':'Estados soberanos abrangidos','International legs':'Trechos internacionais','Planned days':'Dias planeados','Base planning envelope':'Orçamento base de planeamento','What “verified” means':'O que significa “verificado”','North Korea':'Coreia do Norte',
+      'Search a country, segment, visa, transport…':'Pesquisar país, segmento, visto ou transporte…','Search results':'Resultados','Jump to route':'Ir para a rota','Play the journey':'Reproduzir a viagem','Follow all 194 route legs':'Seguir os 194 trechos','Exit story':'Sair da história','Current chapter':'Capítulo atual','Journey position':'Posição na viagem','Route context':'Contexto da rota','Country':'País','Readiness':'Preparação','Planned entry':'Entrada planeada','Arrival':'Chegada','Next':'Seguinte','Departure':'Partida','Phase':'Fase','Plan budget':'Orçamento previsto','Why this route?':'Porquê esta rota?','visible legs':'trechos visíveis','transport model':'modelo de transporte','critical':'crítico','countries':'países','planned days':'dias planeados','intl. legs':'trechos internacionais','base model':'modelo base'
+    }
+  };
+
+  const LEGACY_PHASES={
+    de:{'Europe I':'Europa I','North & Central America':'Nord- & Mittelamerika','Caribbean':'Karibik','South America':'Südamerika','South Pacific':'Südpazifik','Southeast Asia & Indian Ocean':'Südostasien & Indischer Ozean','East & Central Asia':'Ost- & Zentralasien','Levant & North Africa':'Levante & Nordafrika','West & Central Africa':'West- & Zentralafrika','Southern & East Africa':'Süd- & Ostafrika','Gulf & Levant':'Golf & Levante','Europe II · Finish':'Europa II · Ziel'},
+    it:{'Europe I':'Europa I','North & Central America':'Nord e Centro America','Caribbean':'Caraibi','South America':'Sud America','South Pacific':'Pacifico meridionale','Southeast Asia & Indian Ocean':'Sud-est asiatico e Oceano Indiano','East & Central Asia':'Asia orientale e centrale','Levant & North Africa':'Levante e Nord Africa','West & Central Africa':'Africa occidentale e centrale','Southern & East Africa':'Africa meridionale e orientale','Gulf & Levant':'Golfo e Levante','Europe II · Finish':'Europa II · Arrivo'},
+    es:{'Europe I':'Europa I','North & Central America':'Norte y Centroamérica','Caribbean':'Caribe','South America':'Sudamérica','South Pacific':'Pacífico Sur','Southeast Asia & Indian Ocean':'Sudeste Asiático y Océano Índico','East & Central Asia':'Asia Oriental y Central','Levant & North Africa':'Levante y Norte de África','West & Central Africa':'África Occidental y Central','Southern & East Africa':'África Meridional y Oriental','Gulf & Levant':'Golfo y Levante','Europe II · Finish':'Europa II · Final'},
+    fr:{'Europe I':'Europe I','North & Central America':'Amérique du Nord et centrale','Caribbean':'Caraïbes','South America':'Amérique du Sud','South Pacific':'Pacifique Sud','Southeast Asia & Indian Ocean':'Asie du Sud-Est et océan Indien','East & Central Asia':'Asie de l’Est et centrale','Levant & North Africa':'Levant et Afrique du Nord','West & Central Africa':'Afrique de l’Ouest et centrale','Southern & East Africa':'Afrique australe et orientale','Gulf & Levant':'Golfe et Levant','Europe II · Finish':'Europe II · Arrivée'},
+    pt:{'Europe I':'Europa I','North & Central America':'América do Norte e Central','Caribbean':'Caraíbas','South America':'América do Sul','South Pacific':'Pacífico Sul','Southeast Asia & Indian Ocean':'Sudeste Asiático e Oceano Índico','East & Central Asia':'Ásia Oriental e Central','Levant & North Africa':'Levante e Norte de África','West & Central Africa':'África Ocidental e Central','Southern & East Africa':'África Austral e Oriental','Gulf & Levant':'Golfo e Levante','Europe II · Finish':'Europa II · Fim'}
+  };
+
+  let legacyLocaleObserver=null,legacyLocaleScheduled=false;
+  function legacyTranslate(raw){
+    const text=String(raw||'').trim();
+    if(!text||locale==='en')return text;
+    const dict=LEGACY_WORLD_TEXT[locale]||{};
+    if(dict[text])return dict[text];
+    if(LEGACY_PHASES[locale]?.[text])return LEGACY_PHASES[locale][text];
+    let m=text.match(/^Country\s+(\d+)\s*\/\s*195$/i);
+    if(m)return `${t('country')} ${m[1]}/195`;
+    m=text.match(/^Country\s+(\d+)\s*·\s*(.+)$/i);
+    if(m)return `${t('country')} ${m[1]} · ${m[2]}`;
+    m=text.match(/^Segment\s+(\d+)\s*·\s*Day\s+([^·]+)\s*·\s*(.+)$/i);
+    if(m)return `${t('segments')} ${m[1]} · ${t('day')} ${m[2].trim()} · ${m[3]}`;
+    m=text.match(/^Segment\s+(\d+)\s*\/\s*(\d+)$/i);
+    if(m)return `${t('segments')} ${m[1]} / ${m[2]}`;
+    return text;
+  }
+
+  function localizeLegacyNode(root=document){
+    if(locale==='en'||document.body.classList.contains('platform-regional-trip'))return;
+    const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+    const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+    for(const node of nodes){
+      const raw=node.nodeValue,trimmed=String(raw||'').trim();if(!trimmed)continue;
+      const translated=legacyTranslate(trimmed);
+      if(translated!==trimmed)node.nodeValue=raw.replace(trimmed,translated);
+    }
+    for(const el of root.querySelectorAll?.('[placeholder],[title],[aria-label]')||[]){
+      for(const attr of ['placeholder','title','aria-label']){
+        const raw=el.getAttribute(attr);if(!raw)continue;
+        const translated=legacyTranslate(raw);if(translated!==raw)el.setAttribute(attr,translated);
+      }
+    }
+  }
+
+  function activateLegacyLocalization(){
+    document.documentElement.lang=locale;
+    localizeLegacyNode(document.body);
+    if(legacyLocaleObserver)legacyLocaleObserver.disconnect();
+    legacyLocaleObserver=new MutationObserver(mutations=>{
+      if(legacyLocaleScheduled||document.body.classList.contains('platform-regional-trip'))return;
+      legacyLocaleScheduled=true;
+      requestAnimationFrame(()=>{
+        legacyLocaleScheduled=false;
+        for(const mutation of mutations){
+          for(const node of mutation.addedNodes){
+            if(node.nodeType===Node.ELEMENT_NODE)localizeLegacyNode(node);
+            else if(node.nodeType===Node.TEXT_NODE&&node.parentElement)localizeLegacyNode(node.parentElement);
+          }
+          if(mutation.type==='characterData'&&mutation.target.parentElement)localizeLegacyNode(mutation.target.parentElement);
+        }
+      });
+    });
+    legacyLocaleObserver.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['placeholder','title','aria-label']});
+  }
+
   const $ = (s, r=document) => r.querySelector(s);
   const $$ = (s, r=document) => [...r.querySelectorAll(s)];
   const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -413,6 +541,7 @@
       if(!SUPPORTED_LOCALES.includes(String(explicitLang||'').toLowerCase())&&profile.language&&SUPPORTED_LOCALES.includes(profile.language))locale=profile.language;
       ensureGlobalUi();
       if(currentTripMeta.renderer!=='legacy-world') await activateRegionalTrip(currentTripMeta);
+      else { await waitForCore(); activateLegacyLocalization(); }
     }catch(e){console.warn('ONE WORLD ROUTE platform layer unavailable',e)}
   }
 
