@@ -11,12 +11,13 @@
   const Discovery=PLATFORM_MODULES.discovery;
   const Extensions=PLATFORM_MODULES.extensions;
   const RouteLibrary=PLATFORM_MODULES.routeLibrary;
+  const RegionalShell=PLATFORM_MODULES.regionalShell;
   const Story=PLATFORM_MODULES.story;
   const Terrain=PLATFORM_MODULES.terrain;
   const Ui=PLATFORM_MODULES.ui;
   const Navigation=PLATFORM_MODULES.navigation;
   const LegacyLocalization=PLATFORM_MODULES.legacyLocalization;
-  if(!LocaleData||!Model||!Traveller||!TravellerUi||!Discovery||!Extensions||!RouteLibrary||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
+  if(!LocaleData||!Model||!Traveller||!TravellerUi||!Discovery||!Extensions||!RouteLibrary||!RegionalShell||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
   const SUPPORTED_LOCALES=LocaleData.supportedLocales;
   const I18N=LocaleData.messages;
   const $ = (s, r=document) => r.querySelector(s);
@@ -232,6 +233,25 @@
     });
   }
 
+  function configureRegionalShell(){
+    RegionalShell.configure({
+      getTrip:()=>currentTrip,
+      getLocale:()=>locale,
+      t,
+      local,
+      esc,
+      facetLabel,
+      stopPlace,
+      selectStop,
+      isolateRegionalRuntime,
+      syncRegionalUrl,
+      replaceTimeline,
+      ensureStoryUi:()=>Story.ensureUi(),
+      configureRegionalSettings,
+      renderTripOverview
+    });
+  }
+
   function configureRegionalTerrain(){
     Terrain.configure({
       locale:()=>locale,
@@ -319,54 +339,6 @@
     const dot=document.createElement('i');el.appendChild(dot);
     const text=document.createElement('span');text.textContent=local(place?.name);el.appendChild(text);
     return el;
-  }
-
-  function applyTripShell(){
-    isolateRegionalRuntime();
-    syncRegionalUrl();
-    document.documentElement.lang=locale;
-    document.title=`${local(currentTrip.title)} — ONE WORLD ROUTE`;
-    const meta=$('meta[name="description"]');if(meta)meta.content=local(currentTrip.summary);
-    const brandSmall=$('.brand small');if(brandSmall)brandSmall.textContent=local(currentTrip.title);
-    const hero=$('.hero-copy');
-    if(hero){
-      hero.innerHTML=`<div class="eyebrow"><span class="live-dot"></span>${esc(facetLabel(currentTrip.kind))} · ${currentTrip.planning?.days||''} ${esc(t('days'))}</div><h1>${esc(local(currentTrip.title))}</h1><p>${esc(local(currentTrip.summary))}</p><div class="platform-template-note">${esc(t('editorial'))}</div>`;
-    }
-    const kpis=$('#topKpis');
-    if(kpis)kpis.innerHTML=`<div class="kpi"><b>${currentTrip.planning?.days||'—'}</b><span>${esc(t('days'))}</span></div><div class="kpi"><b>${currentTrip.stops?.length||0}</b><span>${esc(t('stops'))}</span></div><div class="kpi"><b>${currentTrip.segments?.length||0}</b><span>${esc(t('segments'))}</span></div>`;
-    const mobileFilters=$('#mobileFilters');if(mobileFilters)mobileFilters.textContent=t('stops');
-    const mobileDetails=$('#mobileDetails');if(mobileDetails)mobileDetails.textContent=t('details');
-    buildLeftNavigation();
-    buildChapterRail();
-    replaceTimeline();
-    Story.ensureUi();
-    configureRegionalSettings();
-    renderTripOverview();
-  }
-
-  function buildLeftNavigation(){
-    const panel=$('#leftPanel');if(!panel)return;
-    panel.scrollTop=0;
-    $('.platform-regional-nav',panel)?.remove();
-    const nav=document.createElement('div');nav.className='platform-regional-nav';
-    nav.innerHTML=`<div class="section-title"><span>${esc(t('stops'))}</span><span class="pill">${currentTrip.stops.length}</span></div><div class="platform-stop-list">${currentTrip.stops.map((s,i)=>stopButton(s,i)).join('')}</div>`;
-    panel.appendChild(nav);
-    $$('[data-stop-index]',nav).forEach(b=>b.onclick=()=>selectStop(Number(b.dataset.stopIndex),true));
-  }
-
-  function stopButton(stop,index){
-    const p=stopPlace(currentTrip,stop);return `<button type="button" data-stop-index="${index}" class="platform-stop ${index===0?'active':''}"><span>${String(stop.sequence).padStart(2,'0')}</span><div><b>${esc(local(p?.name))}</b><small>${esc(t('day'))} ${stop.dayStart}${stop.dayEnd!==stop.dayStart?`–${stop.dayEnd}`:''} · ${stop.nights||0} ${esc(t('nights'))}</small></div></button>`;
-  }
-
-  function buildChapterRail(){
-    const rail=$('#phaseRail');if(!rail)return;
-    const chapters=currentTrip.chapters||[];
-    rail.classList.toggle('platform-empty-rail',chapters.length===0);
-    rail.innerHTML=chapters.map((c,i)=>`<button type="button" data-trip-chapter="${i}" class="${i===0?'active':''}"><span class="phase-dot"></span>${esc(local(c.title))}</button>`).join('');
-    $$('[data-trip-chapter]',rail).forEach(b=>b.onclick=()=>{
-      $$('[data-trip-chapter]',rail).forEach(x=>x.classList.toggle('active',x===b));
-      const c=currentTrip.chapters[Number(b.dataset.tripChapter)],idx=currentTrip.stops.findIndex(s=>s.id===c.stopIds?.[0]);if(idx>=0)selectStop(idx,true);
-    });
   }
 
   function replaceTimeline(){
@@ -511,7 +483,8 @@
     await waitForCore();
     configureRegionalTerrain();
     configureRegionalStory();
-    applyTripShell();
+    configureRegionalShell();
+    RegionalShell.apply();
     renderRegionalGlobe();
     setTimeout(renderRegionalGlobe,500);
     if(Model.hasCapability(currentTripMeta,'terrain')&&new URLSearchParams(location.search).get('view')==='terrain')setTimeout(()=>Terrain.setActive(true),650);
