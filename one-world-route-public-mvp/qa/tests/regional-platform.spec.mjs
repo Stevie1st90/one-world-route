@@ -17,6 +17,7 @@ test('flagship shell and route invariants work',async({page,isMobile},testInfo)=
   await expect(page.locator('.brand small')).toContainText('195 countries');
   await expect(page.locator('#settingsBtn')).toBeVisible();
   if(isMobile){
+    await expectMobilePanelsClosed(page);
     await expect(page.locator('#infoBtn')).toBeHidden();
     await page.locator('#settingsBtn').click();
     await expect(page.locator('#settingsPopover')).toBeVisible();
@@ -104,6 +105,22 @@ async function openFlagship(page){
   await expect(page.locator('#platformTravellerBtn')).toBeVisible({timeout:10000});
 }
 
+async function expectMobilePanelsClosed(page){
+  const viewport=page.viewportSize();
+  const left=page.locator('#leftPanel');
+  const right=page.locator('#rightPanel');
+  await expect(left).not.toHaveClass(/mobile-open/);
+  await expect(right).not.toHaveClass(/mobile-open/);
+  await expect.poll(async()=>{
+    const box=await left.boundingBox();
+    return box?box.x+box.width:Infinity;
+  }).toBeLessThanOrEqual(1);
+  await expect.poll(async()=>{
+    const box=await right.boundingBox();
+    return box?box.x:-Infinity;
+  }).toBeGreaterThanOrEqual(viewport.width-1);
+}
+
 async function expectActiveLabelsSeparated(page){
   const labels=page.locator('.platform-globe-label');
   await expect(labels).toHaveCount(2,{timeout:10000});
@@ -137,6 +154,7 @@ for(const item of regional){
     await expect(page.locator('#platformTravellerBtn')).toBeVisible();
 
     const viewport=page.viewportSize();
+    if(isMobile)await expectMobilePanelsClosed(page);
     for(const selector of ['.topbar','.globe-stage','#timeline']){
       const box=await page.locator(selector).boundingBox();
       expect(box,selector+' missing').toBeTruthy();
