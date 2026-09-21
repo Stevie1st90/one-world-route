@@ -48,3 +48,28 @@ Remaining Release 3 gates: operational verification of transfer candidates, expl
 
 ### Existing scope/coverage discrepancy
 The unchanged macro data lists 195 countries but only 194 distinct countries occur as leg endpoints. North Korea (`Nordkorea`, country number 98) has no leg; the final leg returns to Germany. Therefore the 194-leg closed itinerary must not be described as a complete 195-country traversal. Resolving this requires a deliberate macro-route decision, not silently adding a border crossing as a domestic subleg. The strict audit reports this as a release blocker.
+
+
+## Multi-trip platform foundation
+
+The platform layer is additive and does not reinterpret the flagship macro itinerary.
+
+- `data/platform/trips.json` is the public trip catalog.
+- `data/platform/trips/*.json` contains generic regional or thematic routes.
+- `data/platform/trip-schema.json` documents the reusable trip contract.
+- `data/platform/traveller-context-schema.json` documents non-secret traveller planning context.
+- `platform.js` / `platform.css` provide route discovery, Traveller Context and the regional Globe.gl renderer. They are compiled into the feature bundles.
+
+The core abstraction is **place → visit/stop → segment**. A place is a geographic entity; a stop is a specific visit to that place; a segment connects two visits. This intentionally supports returning to Rome, repeated cruise port calls, loops, open-jaw itineraries and future user-created routes without duplicating place identity.
+
+Transport is extensible rather than tied to international borders. Cruise itineraries use port visits as stops and sea movements as `cruise` segments; ferry, rail, road, flight and multimodal movements use the same segment contract. Route-specific attributes can be attached without changing the global country counter.
+
+### Global perspective
+
+No route should infer eligibility or advice from a German departure perspective. Traveller-specific logic is keyed by relevant planning dimensions such as passport country/countries, country of residence, preferred language and currency, origin, party composition and accessibility context. The first implementation stores that context only in browser local storage. It must never contain passport numbers, booking/payment data or private identity documents.
+
+Global editorial defaults remain neutral and generic. Visa/entry, price, insurance, health and legal claims require current sources appropriate to the traveller context. Unknown values remain unknown.
+
+### Compatibility
+
+The flagship world trip remains on the existing `legacy-world` renderer, including Operations, Story and Terrain. Regional trips can reuse the standard Globe.gl view without Terrain. The platform validator explicitly fails if the legacy world data ceases to contain 195 country entries or 194 macro legs.
