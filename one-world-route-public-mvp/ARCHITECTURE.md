@@ -92,6 +92,7 @@ The generic platform is split by responsibility:
 - **extensions composer** — combines registered presenter output without knowing concrete trip kinds
 - **extension presenters** — independent `platform/extensions/*.js` modules such as cruise, road and border
 - **i18n** — platform and legacy-world message data
+- **formatters** — stateless duration, cost/currency and localized editorial-note formatting
 - **legacy localization** — DOM translation compatibility for the Flagship world renderer only
 - **map style** — shared terrain localization/branding for world and regional renderers
 - **platform bootstrap** — catalog/profile bootstrap and dependency wiring; regional rendering behavior lives in dedicated modules
