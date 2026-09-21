@@ -110,39 +110,29 @@ async function openFlagship(page){
 }
 
 async function expectMobilePanelsClosed(page){
-  const viewport=page.viewportSize();
   const left=page.locator('#leftPanel');
   const right=page.locator('#rightPanel');
   await expect(left).not.toHaveClass(/mobile-open/);
   await expect(right).not.toHaveClass(/mobile-open/);
+  await expect(left).toBeHidden();
+  await expect(right).toBeHidden();
   await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
-  await expect.poll(async()=>{
-    const box=await left.boundingBox();
-    return box?box.x+box.width:Infinity;
-  }).toBeLessThanOrEqual(1);
-  await expect.poll(async()=>{
-    const box=await right.boundingBox();
-    return box?box.x:-Infinity;
-  }).toBeGreaterThanOrEqual(viewport.width-1);
 }
 
 async function expectActiveLabelsSeparated(page){
   const labels=page.locator('.platform-globe-label');
-  await expect(labels).toHaveCount(2,{timeout:10000});
-  await page.waitForTimeout(750);
-  const boxes=await labels.evaluateAll(nodes=>nodes.map(node=>{
-    const rect=node.getBoundingClientRect();
-    return {left:rect.left,right:rect.right,top:rect.top,bottom:rect.bottom,width:rect.width,height:rect.height};
-  }));
-  const [a,b]=boxes;
-  const overlapWidth=Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left));
-  const overlapHeight=Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
-  expect(overlapWidth*overlapHeight,'active route labels overlap').toBe(0);
   const viewport=page.viewportSize();
-  for(const [index,box] of boxes.entries()){
-    expect(box.left,`active label ${index} left overflow`).toBeGreaterThanOrEqual(-1);
-    expect(box.right,`active label ${index} right overflow`).toBeLessThanOrEqual(viewport.width+1);
-  }
+  await expect.poll(async()=>{
+    const boxes=await labels.evaluateAll(nodes=>nodes.map(node=>{
+      const rect=node.getBoundingClientRect();
+      return {left:rect.left,right:rect.right,top:rect.top,bottom:rect.bottom};
+    }));
+    if(boxes.length!==2)return false;
+    const [a,b]=boxes;
+    const overlapWidth=Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left));
+    const overlapHeight=Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
+    return overlapWidth*overlapHeight===0&&boxes.every(box=>box.left>=-1&&box.right<=viewport.width+1);
+  },{timeout:10000}).toBe(true);
 }
 
 for(const item of regional){
