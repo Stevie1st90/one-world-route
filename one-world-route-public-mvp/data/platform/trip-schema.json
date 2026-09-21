@@ -113,6 +113,63 @@
         "object",
         "null"
       ]
+    },
+    "cruise": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "nights": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "seaDays": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "embarkationStopId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "disembarkationStopId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "operator": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "vessel": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sailingDate": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "bookingState": {
+          "enum": [
+            "illustrative-template",
+            "planning",
+            "selected",
+            "booked"
+          ]
+        },
+        "requiresSailingSelection": {
+          "type": "boolean"
+        }
+      }
     }
   },
   "x-oneWorldRoute": {
@@ -157,6 +214,29 @@
         "published-stage-floor",
         "known-stage-floor"
       ]
+    },
+    "cruise": {
+      "stopCallKinds": [
+        "embarkation",
+        "port-call",
+        "disembarkation",
+        "overnight-port-call"
+      ],
+      "segmentFields": [
+        "onboardNights",
+        "seaDayNumbers",
+        "operator",
+        "vessel",
+        "serviceStatus"
+      ],
+      "borderTransitions": [
+        "domestic",
+        "schengen-internal",
+        "schengen-exit",
+        "schengen-entry",
+        "international"
+      ],
+      "rule": "Sea days belong to cruise segments, not fictional geographic places. Port calls are visit/stop records. Repeated home ports use distinct stop IDs linked to one place."
     }
   }
 }

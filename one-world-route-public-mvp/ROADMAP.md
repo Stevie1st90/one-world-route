@@ -40,10 +40,11 @@ Implemented foundation:
 - regional standard-globe rendering
 - Italy Grand Tour sourced beta with operator/government evidence
 - cruise/ferry/rail/road/flight-ready transport taxonomy
+- Western Mediterranean cruise demonstrator with port calls, sea days and Schengen border context
 
 Next product layers:
 - expand the source-backed nationality/passport and residence rule engine beyond the Italy official-resolver foundation
 - route discovery by region, duration, travel style and origin market
 - sourced cost bands and seasonal variants
-- cruise port-call and overnight-at-sea UI
+- connect the implemented cruise port-call / sea-day model to real operator sailings and cabin/pricing data
 - route builder, saved trips and collaboration only after the public read-only model is proven

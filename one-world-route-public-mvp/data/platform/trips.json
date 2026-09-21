@@ -82,6 +82,48 @@
         "source-evidence",
         "entry-guidance"
       ]
+    },
+    {
+      "id": "western-mediterranean-cruise-loop",
+      "slug": "western-mediterranean-cruise-loop",
+      "kind": "cruise",
+      "status": "illustrative-template",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/western-mediterranean-cruise-loop.json",
+      "title": {
+        "en": "Western Mediterranean Cruise Loop",
+        "de": "Westliches Mittelmeer · Kreuzfahrt-Loop",
+        "it": "Crociera nel Mediterraneo occidentale",
+        "es": "Crucero por el Mediterráneo occidental",
+        "fr": "Croisière en Méditerranée occidentale",
+        "pt": "Cruzeiro pelo Mediterrâneo Ocidental"
+      },
+      "subtitle": {
+        "en": "8 days · 7 nights · 4 countries · 1 sea day",
+        "de": "8 Tage · 7 Nächte · 4 Länder · 1 Seetag",
+        "it": "8 giorni · 7 notti · 4 paesi · 1 giorno in mare",
+        "es": "8 días · 7 noches · 4 países · 1 día de navegación",
+        "fr": "8 jours · 7 nuits · 4 pays · 1 journée en mer",
+        "pt": "8 dias · 7 noites · 4 países · 1 dia no mar"
+      },
+      "metrics": {
+        "days": 8,
+        "nights": 7,
+        "countries": 4,
+        "stops": 7,
+        "segments": 6,
+        "seaDays": 1,
+        "budget": null
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "cruise-calls",
+        "sea-days",
+        "border-context",
+        "source-evidence"
+      ]
     }
   ]
 }
