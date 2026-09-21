@@ -58,7 +58,10 @@ The platform layer is additive and does not reinterpret the flagship macro itine
 - `data/platform/trips/*.json` contains generic regional or thematic routes.
 - `data/platform/trip-schema.json` documents the reusable trip contract.
 - `data/platform/traveller-context-schema.json` documents non-secret traveller planning context.
-- `platform.js` / `platform.css` provide route discovery, Traveller Context and the regional Globe.gl renderer. They are compiled into the feature bundles.
+- `platform/*.js` contains reusable runtime services: registry, localization, model helpers, Traveller Context, discovery, extensions and map styling.
+- `platform.js` is the orchestration/bootstrap layer for regional UI and rendering.
+- `platform.css` contains the shared platform presentation layer.
+- These sources are compiled into the feature bundles.
 
 The core abstraction is **place → visit/stop → segment**. A place is a geographic entity; a stop is a specific visit to that place; a segment connects two visits. This intentionally supports returning to Rome, repeated cruise port calls, loops, open-jaw itineraries and future user-created routes without duplicating place identity.
 
@@ -69,6 +72,34 @@ Transport is extensible rather than tied to international borders. Cruise itiner
 No route should infer eligibility or advice from a German departure perspective. Traveller-specific logic is keyed by relevant planning dimensions such as passport country/countries, country of residence, preferred language and currency, origin, party composition and accessibility context. The first implementation stores that context only in browser local storage. It must never contain passport numbers, booking/payment data or private identity documents.
 
 Global editorial defaults remain neutral and generic. Visa/entry, price, insurance, health and legal claims require current sources appropriate to the traveller context. Unknown values remain unknown.
+
+### Runtime module boundaries
+
+The generic platform is split by responsibility:
+
+- **runtime registry** — extension registration and discovery
+- **model** — place/stop/segment graph helpers, route geometry, bounds and capability queries
+- **traveller** — allowlisted local-storage planning context
+- **discovery** — catalog facets and transparent Route Fit predicates
+- **extensions** — optional presenters for cruise, road/vehicle and border metadata
+- **i18n** — platform and legacy-world message data
+- **map style** — shared terrain localization/branding for world and regional renderers
+- **platform bootstrap** — DOM orchestration, Story/Terrain controllers and renderer integration
+
+Core route rendering must not branch on a specific trip ID or trip kind. A normal new route is data-only. Specialized behavior must be introduced as a namespaced extension and registered presenter/validator.
+
+Current pilot data has been migrated to namespaced extensions:
+- `extensions.cruise`
+- `extensions.roadTrip`
+- stop `extensions.cruiseCall`
+- segment `extensions.cruise`
+- segment `extensions.road`
+- segment `extensions.border`
+- place `extensions.port`
+
+The model adapter still reads the previous field names for backward compatibility.
+
+Trip kinds are open normalized slugs. Capabilities determine product behavior. This allows, for example, `camper`, `cycling`, `hiking`, `rail` or `expedition` routes to use the same renderer without expanding a closed enum.
 
 ### Compatibility
 
@@ -110,7 +141,7 @@ Trip discovery is catalog-driven. Every public catalog item carries normalized `
 
 ### Vehicle Context and road trips
 
-Road trips reuse the normal place → visit/stop → segment model. Each driving segment adds `roadContext` for cross-border status, toll systems, urban-access checks and rental approval requirements.
+Road trips reuse the normal place → visit/stop → segment model. Vehicle-specific metadata lives in the road extension (currently `segment.extensions.road`) for cross-border status, toll systems, urban-access checks and rental approval requirements.
 
 Traveller Context optionally carries a non-secret Vehicle Context:
 - vehicle type
