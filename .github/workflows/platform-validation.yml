@@ -1,0 +1,37 @@
+name: Platform validation
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [platform-foundation-v1]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: one-world-route-public-mvp
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax checks
+        run: |
+          node --check platform.js
+          node --check features.bundle.js
+          node --check api/share.js
+          node --check scripts/validate-platform-data.mjs
+          node --check scripts/generate-seo.mjs
+      - name: Platform data validation
+        run: node scripts/validate-platform-data.mjs
+      - name: Existing public-data validation
+        run: node scripts/validate-public-data.mjs
+      - name: Continuity unit tests
+        run: node --test scripts/test-continuity.mjs
+      - name: Release build
+        run: node scripts/release-build.mjs
