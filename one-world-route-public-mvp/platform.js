@@ -133,7 +133,7 @@
     $('#platformTravellerForm').onsubmit=e=>{
       e.preventDefault();const f=new FormData(e.currentTarget);
       const passports=[f.get('passport'),f.get('passport2')].filter(Boolean).map(String).filter((v,i,a)=>a.indexOf(v)===i);const next={passports,residenceCountry:f.get('residence')||null,language:String(f.get('language')||'en'),currency:String(f.get('currency')||'EUR'),origin:String(f.get('origin')||'').trim()||null,party:{adults:Number(f.get('adults')||1),children:Number(f.get('children')||0)},accessibility:{reducedMobility:f.get('mobility')==='on'}};
-      saveProfile(next);locale=SUPPORTED_LOCALES.includes(next.language)?next.language:locale;modal.classList.add('hidden');location.reload();
+      saveProfile(next);locale=SUPPORTED_LOCALES.includes(next.language)?next.language:locale;modal.classList.add('hidden');const p=new URLSearchParams(location.search);p.set('lang',locale);location.assign(`${location.pathname}?${p.toString()}`);
     };
   }
 
@@ -292,7 +292,9 @@
       catalog=await fetch(CATALOG_URL,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Trip catalog '+r.status);return r.json()});
       const p=new URLSearchParams(location.search),wanted=p.get('trip')||catalog.defaultTripId;
       currentTripMeta=catalog.trips.find(x=>x.id===wanted||x.slug===wanted)||catalog.trips.find(x=>x.id===catalog.defaultTripId);
-      const profile=loadProfile();if(profile.language&&SUPPORTED_LOCALES.includes(profile.language))locale=profile.language;
+      const profile=loadProfile();
+      const explicitLang=new URLSearchParams(location.search).get('lang');
+      if(!SUPPORTED_LOCALES.includes(String(explicitLang||'').toLowerCase())&&profile.language&&SUPPORTED_LOCALES.includes(profile.language))locale=profile.language;
       ensureGlobalUi();
       if(currentTripMeta.renderer!=='legacy-world') await activateRegionalTrip(currentTripMeta);
     }catch(e){console.warn('ONE WORLD ROUTE platform layer unavailable',e)}
