@@ -16,7 +16,16 @@ test('flagship shell and route invariants work',async({page,isMobile},testInfo)=
   await expect(page.locator('#filterCount')).toContainText(String(flagship.metrics.internationalLegs));
   await expect(page.locator('.brand small')).toContainText('195 countries');
   await expect(page.locator('#settingsBtn')).toBeVisible();
-  await expect(page.locator('#infoBtn')).toBeVisible();
+  if(isMobile){
+    await expect(page.locator('#infoBtn')).toBeHidden();
+    await page.locator('#settingsBtn').click();
+    await expect(page.locator('#settingsPopover')).toBeVisible();
+    await expect(page.locator('#mobileInfoBtn')).toBeVisible();
+    await page.locator('#settingsBtn').click();
+    await expect(page.locator('#settingsPopover')).toBeHidden();
+  }else{
+    await expect(page.locator('#infoBtn')).toBeVisible();
+  }
 
   const viewport=page.viewportSize();
   for(const selector of ['.topbar','.globe-stage','#timeline']){
