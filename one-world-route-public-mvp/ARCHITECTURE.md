@@ -104,3 +104,24 @@ Each localized trip page includes its own canonical URL, all supported `hreflang
 
 Sitemap generation uses the same catalog locale list, avoiding a separate hard-coded SEO language matrix.
 
+### Route Discovery
+
+Trip discovery is catalog-driven. Every public catalog item carries normalized `regions`, `themes`, `modes` and a duration band. The browser derives filters from those fields instead of maintaining a separate route-category list. Catalog validation rejects routes without discovery metadata.
+
+### Vehicle Context and road trips
+
+Road trips reuse the normal place → visit/stop → segment model. Each driving segment adds `roadContext` for cross-border status, toll systems, urban-access checks and rental approval requirements.
+
+Traveller Context optionally carries a non-secret Vehicle Context:
+- vehicle type
+- registration country
+- fuel/powertrain
+- Euro emissions class
+- whether a rental is approved for cross-border use
+
+The platform must not infer road eligibility from nationality or language. Cross-border rental approval is contract-specific; non-EU licence recognition can be country-specific; toll and low-emission-zone outcomes can depend on the exact vehicle. Therefore unresolved road segments remain `current-check-required` until those inputs are known.
+
+### Local preview server
+
+`scripts/serve-local.mjs` serves static assets and mirrors the production share rewrites for `/trip/:slug`, `/:lang/trip/:slug`, `/route/:id` and `/country/:slug`. This allows manual and CI verification without consuming a Vercel deployment. CI smoke-tests the local root and localized trip pages after the release build.
+
