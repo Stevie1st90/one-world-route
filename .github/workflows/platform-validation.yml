@@ -26,6 +26,7 @@ jobs:
           node --check platform/runtime.js
           node --check platform/map-style.js
           node --check platform/i18n.js
+          node --check platform/formatters.js
           node --check platform/legacy-localization.js
           node --check platform/model.js
           node --check platform/traveller.js
