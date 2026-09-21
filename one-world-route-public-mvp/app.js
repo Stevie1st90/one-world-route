@@ -44,7 +44,8 @@
   let inlineHits=[];
   let commandHits=[];
   const platformOwnsRoute=()=>document.body.classList.contains('platform-regional-trip')||new URLSearchParams(location.search).has('trip');
-  const EN=window.ONE_WORLD_EN||{registerCountries(){},country:s=>s,mode:s=>s,text:s=>s,value:s=>s};
+  const EN=window.ONE_WORLD_EN||{locale:'en',registerCountries(){},country:s=>s,mode:s=>s,text:s=>s,value:s=>s};
+  const UI_LOCALE=EN.locale||'en';
   const countryDisplay=c=>c?.displayName||EN.country(c?.name||'',c?.cca2||'');
   const segmentFrom=s=>s?.displayFrom||EN.country(s?.from||'');
   const segmentTo=s=>s?.displayTo||EN.country(s?.to||'');
@@ -59,8 +60,8 @@
     if (typeof v === 'number') return new Date(Date.UTC(1899,11,30) + v*86400000);
     return null;
   };
-  const fmtDate = v => { const d = v instanceof Date ? v : excelDate(v); return d ? new Intl.DateTimeFormat('en-GB',{day:'2-digit',month:'short',year:'numeric',timeZone:'UTC'}).format(d) : '—'; };
-  const eur = v => Number.isFinite(Number(v)) ? new Intl.NumberFormat('en-GB',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(v)) : '—';
+  const fmtDate = v => { const d = v instanceof Date ? v : excelDate(v); return d ? new Intl.DateTimeFormat(UI_LOCALE,{day:'2-digit',month:'short',year:'numeric',timeZone:'UTC'}).format(d) : '—'; };
+  const eur = v => Number.isFinite(Number(v)) ? new Intl.NumberFormat(UI_LOCALE,{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(v)) : '—';
   const phaseFor = id => PHASES.find(p => id >= p.range[0] && id <= p.range[1]) || PHASES[0];
   const daysFromStart = v => { const d=excelDate(v), s=new Date(Date.UTC(2026,9,21)); return d ? Math.max(1,Math.round((d-s)/86400000)+1) : null; };
   const statusColor = a => ({RED:colors.red,ORANGE:colors.orange,WATCH:colors.amber,GREEN:colors.green}[a] || colors.muted);
