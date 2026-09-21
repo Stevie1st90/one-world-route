@@ -18,6 +18,9 @@ test('duration formatter handles exact, range and minimum timings',()=>{
   assert.equal(f.durationLabel({durationMinutes:75}),'75 min');
   assert.equal(f.durationLabel({durationRangeMinutes:[80,110]}),'80–110 min');
   assert.equal(f.durationLabel({minimumInVehicleMinutes:45}),'≥ 45 min');
+  assert.equal(f.durationLabel({durationMinutes:null}),'—');
+  assert.equal(f.durationLabel({durationMinutes:null,minimumInVehicleMinutes:null}),'—');
+  assert.equal(f.durationLabel({durationRangeMinutes:[null,110]}),'—');
   assert.equal(f.durationLabel({}),'—');
 });
 
