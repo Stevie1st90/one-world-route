@@ -16,7 +16,7 @@ function loadPlatform(search=''){
   const window={addEventListener(){},ONE_WORLD_PLATFORM:null};
   const context={
     window,
-    document:{querySelector(){return null},querySelectorAll(){return []}},
+    document:{querySelector(){return null},querySelectorAll(){return []},addEventListener(){}},
     navigator:{language:'en'},
     location:{search,assign(){}},
     localStorage:{getItem(){return null},setItem(){},removeItem(){}},
@@ -113,11 +113,12 @@ test('regional story does not reuse the legacy 194-leg range',()=>{
 
 
 test('regional route focus fits the whole trip and terrain labels localize',()=>{
+  const mapStyle=moduleSources['map-style.js'];
   assert.match(source,/function focusRegionalTerrainRoute/);
   assert.match(source,/fitBounds\(bounds/);
   assert.match(source,/focusRoute:\(\)=>\{if\(document\.body\.classList\.contains\('terrain-view'\)\)focusRegionalTerrainRoute/);
-  assert.match(source,/function localizeRegionalMapStyle/);
-  assert.match(source,/name:\\?\$\{lang\}/);
+  assert.match(source,/MapStyle\.localize/);
+  assert.match(mapStyle,/name:\$\{lang\}/);
 });
 
 test('regional Story control is not hidden behind desktop side panels',()=>{
@@ -141,18 +142,18 @@ test('regional overview duration uses a dedicated non-overlapping unit style',()
 
 test('regional UX detail modes keep sparse panels compact',()=>{
   assert.match(source,/function setRegionalDetailMode/);
-  assert.match(source,/platform-detail-overview/);
-  assert.match(source,/platform-detail-stop/);
-  assert.match(source,/platform-detail-segment/);
+  assert.match(source,/platform-detail-'\+key/);
   assert.match(cssSource,/platform-detail-overview \.right-panel/);
   assert.match(cssSource,/platform-detail-stop \.right-panel/);
+  assert.match(cssSource,/platform-detail-segment \.right-panel/);
 });
 
 test('regional terrain uses branded dark map styling',()=>{
-  assert.match(source,/function brandRegionalTerrainStyle/);
-  assert.match(source,/background-color'\]='#071019'/);
-  assert.match(source,/fill-color'\]='#071b2a'/);
-  assert.match(source,/text-halo-color'\]='#071019'/);
+  const mapStyle=moduleSources['map-style.js'];
+  assert.match(source,/MapStyle\.brandDark/);
+  assert.match(mapStyle,/background-color'\]='#071019'/);
+  assert.match(mapStyle,/fill-color'\]='#071b2a'/);
+  assert.match(mapStyle,/text-halo-color'\]='#071019'/);
 });
 
 test('regional copy is visually reduced without removing overview content',()=>{
