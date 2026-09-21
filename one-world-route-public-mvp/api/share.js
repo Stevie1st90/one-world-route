@@ -7,7 +7,7 @@ const display=new Intl.DisplayNames(['en'],{type:'region'});
 const byName=new Map(geo.map(c=>[c.name,c]));
 const en=n=>{const c=byName.get(n);try{return c?.cca2?display.of(c.cca2):n}catch{return n}};
 const slug=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[m]));
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const localized=(v,lang='en')=>typeof v==='string'?v:(v?.[lang]||v?.en||Object.values(v||{})[0]||'');
 const safeLang=v=>SUPPORTED_LANGS.includes(String(v||'').toLowerCase())?String(v).toLowerCase():'en';
 const tripTarget=(trip,lang)=>{
