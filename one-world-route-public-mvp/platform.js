@@ -12,12 +12,13 @@
   const Extensions=PLATFORM_MODULES.extensions;
   const RouteLibrary=PLATFORM_MODULES.routeLibrary;
   const RegionalShell=PLATFORM_MODULES.regionalShell;
+  const RegionalDetail=PLATFORM_MODULES.regionalDetail;
   const Story=PLATFORM_MODULES.story;
   const Terrain=PLATFORM_MODULES.terrain;
   const Ui=PLATFORM_MODULES.ui;
   const Navigation=PLATFORM_MODULES.navigation;
   const LegacyLocalization=PLATFORM_MODULES.legacyLocalization;
-  if(!LocaleData||!Model||!Traveller||!TravellerUi||!Discovery||!Extensions||!RouteLibrary||!RegionalShell||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
+  if(!LocaleData||!Model||!Traveller||!TravellerUi||!Discovery||!Extensions||!RouteLibrary||!RegionalShell||!RegionalDetail||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
   const SUPPORTED_LOCALES=LocaleData.supportedLocales;
   const I18N=LocaleData.messages;
   const $ = (s, r=document) => r.querySelector(s);
@@ -93,11 +94,6 @@
     if(locale==='en')return String(value);
     return EDITORIAL_NOTES[String(value)]?.[locale]||String(value);
   };
-
-  function setRegionalDetailMode(mode){
-    for(const key of ['overview','stop','segment'])document.body.classList.toggle('platform-detail-'+key,key===mode);
-    const panel=$('#rightPanel');if(panel)panel.scrollTop=0;
-  }
 
   const sourceMap = () => Model.sourceMap(currentTrip);
   const verificationLabel = s => s?.verification?.status==='verified'?t('verified'):(s?.verification?.status==='illustrative'?t('illustrative'):t('currentCheck'));
@@ -233,6 +229,28 @@
     });
   }
 
+  function configureRegionalDetail(){
+    RegionalDetail.configure({
+      getTrip:()=>currentTrip,
+      t,
+      local,
+      esc,
+      facetLabel,
+      countryDisplay,
+      durationLabel,
+      costLabel,
+      editorialNote,
+      verificationLabel,
+      sourceLinks,
+      sourceMap,
+      loadProfile,
+      openTraveller,
+      extensions:Extensions,
+      stopMap,
+      placeMap
+    });
+  }
+
   function configureRegionalShell(){
     RegionalShell.configure({
       getTrip:()=>currentTrip,
@@ -248,7 +266,7 @@
       replaceTimeline,
       ensureStoryUi:()=>Story.ensureUi(),
       configureRegionalSettings,
-      renderTripOverview
+      renderTripOverview:()=>RegionalDetail.renderTripOverview()
     });
   }
 
@@ -289,7 +307,7 @@
 
   function configureRegionalSettings(){
     const actions=$('.top-actions');if(actions)actions.classList.add('platform-regional-actions');
-    const brand=$('#brandBtn');if(brand)brand.onclick=()=>{selectedSegmentIndex=0;renderTripOverview();renderRegionalGlobe();if(document.body.classList.contains('terrain-view'))Terrain.focusSegment(0);else window.__ONE_WORLD_ROUTE_GLOBE__?.pointOfView(routeCamera(),Ui.regionalSettings().reducedMotion?0:650)};
+    const brand=$('#brandBtn');if(brand)brand.onclick=()=>{selectedSegmentIndex=0;RegionalDetail.renderTripOverview();renderRegionalGlobe();if(document.body.classList.contains('terrain-view'))Terrain.focusSegment(0);else window.__ONE_WORLD_ROUTE_GLOBE__?.pointOfView(routeCamera(),Ui.regionalSettings().reducedMotion?0:650)};
     const settingsButton=$('#settingsBtn');if(settingsButton){settingsButton.title=t('settings');settingsButton.setAttribute('aria-label',t('settings'))}
     const infoButton=$('#infoBtn');if(infoButton){infoButton.title=t('methodology');infoButton.setAttribute('aria-label',t('methodology'))}
     const shareButton=$('#shareBtn');if(shareButton){shareButton.title=t('share');shareButton.setAttribute('aria-label',t('share'))}
@@ -414,7 +432,7 @@
   function selectSegmentIndex(index,focus=false){
     selectedSegmentIndex=Math.max(0,Math.min(currentTrip.segments.length-1,index));
     $$('.platform-stop').forEach(x=>x.classList.remove('active'));
-    renderRegionalGlobe();updateTimelineRegional();renderSegmentDetail(currentTrip.segments[selectedSegmentIndex]);Terrain.update();
+    renderRegionalGlobe();updateTimelineRegional();RegionalDetail.renderSegmentDetail(currentTrip.segments[selectedSegmentIndex]);Terrain.update();
     if(Story.isActive())Story.update();
     if(focus){if(document.body.classList.contains('terrain-view'))Terrain.focusSegment(selectedSegmentIndex);else focusSegment(currentTrip.segments[selectedSegmentIndex])}
   }
@@ -422,7 +440,7 @@
   function selectStop(index,focus=false){
     const stop=currentTrip.stops[index],p=stopPlace(currentTrip,stop);if(!stop||!p)return;
     $$('.platform-stop').forEach((x,i)=>x.classList.toggle('active',i===index));
-    renderStopDetail(stop,p);
+    RegionalDetail.renderStopDetail(stop,p);
     if(index<currentTrip.segments.length){selectedSegmentIndex=index;updateTimelineRegional();renderRegionalGlobe();Terrain.update()}
     if(focus){if(document.body.classList.contains('terrain-view'))Terrain.focusSegment(Math.min(index,currentTrip.segments.length-1));else window.__ONE_WORLD_ROUTE_GLOBE__?.pointOfView({lat:p.coordinates.lat,lng:p.coordinates.lng,altitude:.48},Ui.regionalSettings().reducedMotion?0:650)}
   }
@@ -436,46 +454,6 @@
     window.__ONE_WORLD_ROUTE_GLOBE__?.pointOfView({lat,lng,altitude},Ui.regionalSettings().reducedMotion?0:650);
   }
 
-  function renderTripOverview(){
-    setRegionalDetailMode('overview');
-    const title=$('#detailTitle');if(title)title.textContent=local(currentTrip.title);
-    const eye=$('#detailEyebrow');if(eye)eye.textContent=t('overview');
-    const tabs=$('#detailTabs');if(tabs)tabs.style.display='none';
-    const content=$('#detailContent');if(!content)return;
-    content.scrollTop=0;
-    const sourced=currentTrip.segments.filter(s=>(s.verification?.sourceIds||[]).length).length,verified=currentTrip.segments.filter(s=>s.verification?.status==='verified').length;
-    const entry=currentTrip.entryGuidance,entrySource=entry?sourceMap().get(entry.officialResolverSourceId):null;
-    const profile=loadProfile();
-    const extension=Extensions.composeTripOverview({trip:currentTrip,profile,t,esc,local});
-    content.innerHTML=`<div class="overview-number platform-duration-number">${currentTrip.planning?.days||'—'}<small>${esc(t('days'))}</small></div><p class="detail-copy">${esc(local(currentTrip.summary))}</p><div class="data-grid"><div class="data-card"><span>${esc(t('stops'))}</span><b>${currentTrip.stops.length}</b></div>${extension.cards}<div class="data-card"><span>${esc(t('routeEvidence'))}</span><b>${sourced}/${currentTrip.segments.length}</b></div><div class="data-card"><span>${esc(t('verified'))}</span><b>${verified}/${currentTrip.segments.length}</b></div><div class="data-card"><span>${esc(t('currency'))}</span><b>${esc(currentTrip.planning?.currency||'—')}</b></div></div>${extension.notices}${entry?`<div class="platform-entry"><b>${esc(t('entryGuidance'))}</b><p>${esc(local(entry.message))}</p>${entrySource?`<a href="${esc(entrySource.url)}" target="_blank" rel="noopener noreferrer">${esc(t('officialCheck'))} →</a>`:''}</div>`:''}<button class="platform-context-inline" id="regionalTravellerBtn" type="button">${esc(t('traveller'))} →</button>`;
-    $('#regionalTravellerBtn')?.addEventListener('click',openTraveller);
-  }
-
-  function renderStopDetail(stop,p){
-    setRegionalDetailMode('stop');
-    const title=$('#detailTitle');if(title)title.textContent=local(p.name);
-    const eye=$('#detailEyebrow');if(eye)eye.textContent=`${t('stop').toUpperCase()} ${stop.sequence} · ${facetLabel(p.type)}`;
-    const content=$('#detailContent');if(!content)return;
-    content.scrollTop=0;
-    const extension=Extensions.composeStopDetail({trip:currentTrip,stop,place:p,profile:loadProfile(),t,esc,local});
-    const notices=extension.notices||`<p class="detail-copy">${esc(t('editorial'))}</p>`;
-    content.innerHTML=`<div class="overview-number">${stop.sequence}<small> / ${currentTrip.stops.length}</small></div><div class="data-grid"><div class="data-card"><span>${esc(t('day'))}</span><b>${stop.dayStart}${stop.dayEnd!==stop.dayStart?`–${stop.dayEnd}`:''}</b></div>${extension.cards}<div class="data-card"><span>${esc(t('type'))}</span><b>${esc(facetLabel(p.type))}</b></div><div class="data-card"><span>${esc(t('country'))}</span><b>${esc(countryDisplay(p.countryCode))}</b></div></div>${notices}${extension.sourceIds.length?`<div class="platform-evidence"><div class="ops-mini-title">${esc(t('sources'))}</div>${sourceLinks(extension.sourceIds)}</div>`:''}`;
-  }
-
-  function renderSegmentDetail(s){
-    setRegionalDetailMode('segment');
-    const sm=stopMap(currentTrip),pm=placeMap(currentTrip),a=pm.get(sm.get(s.fromStopId)?.placeId),b=pm.get(sm.get(s.toStopId)?.placeId);
-    const title=$('#detailTitle');if(title)title.textContent=`${local(a?.name)} → ${local(b?.name)}`;
-    const eye=$('#detailEyebrow');if(eye)eye.textContent=`${t('segment').toUpperCase()} ${s.sequence} / ${currentTrip.segments.length}`;
-    const content=$('#detailContent');if(!content)return;
-    content.scrollTop=0;
-    const stages=(s.transport?.stages||[]).map((stage,i)=>`<article class="platform-stage"><span>${String(i+1).padStart(2,'0')}</span><div><b>${esc(stage.operator||String(stage.mode||'').replaceAll('-',' '))}</b><small>${esc(stage.from||'')} → ${esc(stage.to||'')}</small><em>${esc(durationLabel(stage))} · ${esc(costLabel(stage))}</em></div></article>`).join('');
-    const baseRefs=[...(s.verification?.sourceIds||[]),...(s.transport?.stages||[]).flatMap(x=>x.sourceIds||[])];
-    const extension=Extensions.composeSegmentDetail({trip:currentTrip,segment:s,profile:loadProfile(),t,esc,local});
-    const refs=[...new Set([...baseRefs,...extension.sourceIds])];
-    content.innerHTML=`<div class="data-grid"><div class="data-card"><span>${esc(t('transport'))}</span><b>${esc(facetLabel(String(s.transport?.mode||'—')))}</b></div><div class="data-card"><span>${esc(t('verification'))}</span><b class="${s.verification?.status==='verified'?'evidence-ok':(s.verification?.status==='illustrative'?'evidence-info':'evidence-watch')}">${esc(verificationLabel(s))}</b></div><div class="data-card"><span>${esc(t('duration'))}</span><b>${esc(durationLabel(s.planning))}</b></div><div class="data-card"><span>${esc(t('cost'))}</span><b>${esc(costLabel(s.planning))}</b></div></div>${extension.panels}${stages?`<div class="platform-stages">${stages}</div>`:''}${s.verification?.notes?`<div class="op-callout">${esc(editorialNote(s.verification.notes))}</div>`:''}${refs.length?`<div class="platform-evidence"><div class="ops-mini-title">${esc(t('sources'))}</div>${sourceLinks(refs)}</div>`:''}`;
-  }
-
   async function activateRegionalTrip(meta){
     currentTripMeta=meta;
     selectedSegmentIndex=0;
@@ -483,6 +461,7 @@
     await waitForCore();
     configureRegionalTerrain();
     configureRegionalStory();
+    configureRegionalDetail();
     configureRegionalShell();
     RegionalShell.apply();
     renderRegionalGlobe();
