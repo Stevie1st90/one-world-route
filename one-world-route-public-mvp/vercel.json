@@ -53,7 +53,8 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "git": {
     "deploymentEnabled": {
-      "route-discovery-roadtrip-v1": false
+      "route-discovery-roadtrip-v1": false,
+      "route-platform-expansion-v2": false
     }
   }
 }
