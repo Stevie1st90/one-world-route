@@ -16,6 +16,11 @@ if (!Array.isArray(catalog.trips) || catalog.trips.length < 2) fail('Trip catalo
 for (const trip of catalog.trips || []) {
   if (!trip.id || ids.has(trip.id)) fail('Trip IDs must be unique: '+trip.id); else ids.add(trip.id);
   if (!trip.slug || slugs.has(trip.slug)) fail('Trip slugs must be unique: '+trip.slug); else slugs.add(trip.slug);
+  const discovery=trip.discovery||{};
+  if (!Array.isArray(discovery.regions)||!discovery.regions.length) fail(trip.id+': discovery.regions required');
+  if (!Array.isArray(discovery.themes)||!discovery.themes.length) fail(trip.id+': discovery.themes required');
+  if (!Array.isArray(discovery.modes)||!discovery.modes.length) fail(trip.id+': discovery.modes required');
+  if (!['7-14','15-30','31-89','90-plus'].includes(discovery.durationBand)) fail(trip.id+': invalid discovery.durationBand');
   for (const lang of supportedLocales) {
     if (!String(trip.title?.[lang]||'').trim()) fail(trip.id+': missing title for '+lang);
     if (!String(trip.subtitle?.[lang]||'').trim()) fail(trip.id+': missing subtitle for '+lang);
@@ -86,6 +91,16 @@ for (const item of catalog.trips || []) {
       const fromCountry=placeById.get(fromStop?.placeId)?.countryCode,toCountry=placeById.get(toStop?.placeId)?.countryCode;
       if (s.borderContext?.fromCountry!==fromCountry || s.borderContext?.toCountry!==toCountry) fail(item.id+': border context mismatch on '+s.id);
       if (['schengen-exit','schengen-entry'].includes(s.borderContext?.zoneTransition) && s.borderContext?.personalizationRequired!==true) fail(item.id+': external Schengen transition must require traveller personalization on '+s.id);
+    }
+  }
+  if (trip.kind === 'road-trip') {
+    if (trip.roadTrip?.vehicleContextRequired !== true) fail(item.id+': road-trip must require Vehicle Context');
+    if (!trip.travellerContext?.scope?.includes('vehicle')) fail(item.id+': road-trip traveller scope must include vehicle');
+    for (const s of segs) {
+      if (s.transport?.mode !== 'car') fail(item.id+': road-trip segment '+s.id+' must use car mode');
+      if (!s.roadContext) fail(item.id+': road-trip segment '+s.id+' requires roadContext');
+      if (s.roadContext?.crossBorder && s.roadContext?.rentalApprovalRequired !== true) fail(item.id+': cross-border road segment '+s.id+' must flag rental approval');
+      if (!(s.verification?.sourceIds||[]).length) fail(item.id+': road-trip segment '+s.id+' requires source evidence');
     }
   }
   const entry = trip.entryGuidance;
