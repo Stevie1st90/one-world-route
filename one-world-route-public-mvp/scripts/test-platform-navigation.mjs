@@ -308,6 +308,16 @@ test('regional timeline owns playback state and stays trip-generic',()=>{
   assert.doesNotMatch(source,/playTimer|function replaceTimeline|function updateTimelineRegional|function togglePlayback/);
 });
 
+test('active globe labels carry directional collision roles',()=>{
+  const globe=moduleSources['regional-globe.js'];
+  assert.match(globe,/platform-globe-label-anchor/);
+  assert.match(globe,/_labelRole:'from'/);
+  assert.match(globe,/_labelRole:'to'/);
+  assert.match(globe,/toPlace\.id!==fromPlace\?\.id/);
+  assert.match(cssSource,/platform-globe-label-anchor\.label-from \.platform-globe-label\{right:8px;bottom:8px\}/);
+  assert.match(cssSource,/platform-globe-label-anchor\.label-to \.platform-globe-label\{left:8px;top:8px\}/);
+});
+
 test('regional globe renderer owns Globe.gl interactions and stays trip-generic',()=>{
   const globe=moduleSources['regional-globe.js'];
   for(const token of ['function routeCamera','function isolate','function routeGeometry','function render','function focusRoute','function focusSegment'])assert.match(globe,new RegExp(token));
