@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','model.js','traveller.js','traveller-ui.js','discovery.js','route-library.js','extensions.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','model.js','traveller.js','traveller-ui.js','discovery.js','route-library.js','story.js','extensions.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -87,9 +87,12 @@ test('localhost service worker cannot keep stale QA bundles',()=>{
 
 
 test('regional routes expose generic story and terrain APIs',()=>{
-  for(const token of ['platformStoryBtn','platformStoryHud','startRegionalStory','setRegionalTerrain','regionalTerrainStyle','regionalRouteGeoJson','focusRoute'])assert.match(source,new RegExp(token));
+  const story=moduleSources['story.js'];
+  for(const token of ['platformStoryBtn','platformStoryHud','function start','function stop'])assert.match(story,new RegExp(token));
+  for(const token of ['setRegionalTerrain','regionalTerrainStyle','regionalRouteGeoJson','focusRoute'])assert.match(source,new RegExp(token));
   assert.match(source,/setTerrain:setRegionalTerrain/);
-  assert.match(source,/startStory:startRegionalStory/);
+  assert.match(source,/startStory:\(\)=>Story\.start\(\)/);
+  assert.match(source,/stopStory:\(\)=>Story\.stop\(\)/);
 });
 
 test('regional settings remain visible while legacy world search stays hidden',()=>{
@@ -106,9 +109,10 @@ test('legacy terrain delegates trip URLs to platform terrain',async()=>{
 });
 
 test('regional story does not reuse the legacy 194-leg range',()=>{
+  const story=moduleSources['story.js'];
   assert.match(source,/id="regionalRouteRange"/);
-  assert.doesNotMatch(source,/id="routeRange"[^\n]*currentTrip/);
-  assert.match(source,/currentTrip\.segments\.length/);
+  assert.doesNotMatch(story,/routeRange|194-leg|194/);
+  assert.match(story,/trip\.segments\.length/);
 });
 
 
@@ -183,7 +187,9 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.match(source,/const Discovery=PLATFORM_MODULES\.discovery/);
   assert.match(source,/const Extensions=PLATFORM_MODULES\.extensions/);
   assert.match(source,/const RouteLibrary=PLATFORM_MODULES\.routeLibrary/);
+  assert.match(source,/const Story=PLATFORM_MODULES\.story/);
   assert.match(source,/RouteLibrary\.open\(/);
+  assert.match(source,/Story\.configure\(/);
   assert.match(routeLibrary,/Discovery\.facets\(catalog\)/);
   assert.match(routeLibrary,/Discovery\.filter\(catalog/);
   assert.match(source,/Traveller\.load\(/);
