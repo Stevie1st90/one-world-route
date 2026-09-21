@@ -50,3 +50,20 @@ The 194 official legs remain international country-to-country legs. Missing dome
 ```bash
 node scripts/audit-route-continuity.mjs
 ```
+
+
+## Multi-trip platform foundation
+
+ONE WORLD ROUTE is no longer architected as a single hard-coded world itinerary. The original world journey remains the flagship route and keeps its existing **195-country scope / 194 international macro-leg invariant**. A generic platform layer now supports additional routes without changing that macro model.
+
+Current platform features:
+- trip catalog with clean `/trip/:slug` share URLs
+- generic **place → visit/stop → segment** data model
+- regional routes with repeat visits to the same place
+- transport taxonomy for road, rail, ferry, cruise, flight and multimodal travel
+- browser-local Traveller Context for passport country, residence, language, currency, origin, party and reduced-mobility context
+- six initial UI languages: English, German, Italian, Spanish, French and Portuguese
+- Italy Grand Tour as the first regional editorial template
+- platform validation in the release pipeline
+
+Traveller Context is planning context, not an identity profile. The public app never asks for passport numbers, booking references, payment data or exact home addresses. Entry, visa and safety claims must remain source-backed and traveller-specific rather than assuming a German traveller.
