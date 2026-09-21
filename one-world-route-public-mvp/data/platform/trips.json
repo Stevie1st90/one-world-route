@@ -64,7 +64,20 @@
           "multimodal"
         ],
         "durationBand": "90-plus",
-        "featured": true
+        "featured": true,
+        "fit": {
+          "pace": "active",
+          "seasons": [
+            "multi-season"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends"
+          ],
+          "startRegion": "europe",
+          "accessibility": "complex-planning"
+        }
       }
     },
     {
@@ -126,7 +139,23 @@
           "bus"
         ],
         "durationBand": "15-30",
-        "featured": true
+        "featured": true,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "italy",
+          "accessibility": "standard-check"
+        }
       }
     },
     {
@@ -185,7 +214,23 @@
           "cruise"
         ],
         "durationBand": "7-14",
-        "featured": true
+        "featured": true,
+        "fit": {
+          "pace": "relaxed",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "mediterranean",
+          "accessibility": "operator-dependent"
+        }
       }
     },
     {
@@ -242,7 +287,22 @@
           "car"
         ],
         "durationBand": "15-30",
-        "featured": true
+        "featured": true,
+        "fit": {
+          "pace": "active",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "southern-europe",
+          "accessibility": "vehicle-dependent"
+        }
       }
     }
   ]
