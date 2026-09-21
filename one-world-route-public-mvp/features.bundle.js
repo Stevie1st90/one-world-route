@@ -3638,7 +3638,7 @@
       settings:Ui.regionalSettings,
       isStoryActive:()=>Story.isActive(),
       selectSegment:(index,focus)=>RegionalSelection.selectSegment(index,focus),
-      selectStop
+      selectStop:(index,focus)=>RegionalSelection.selectStop(index,focus)
     });
   }
 
