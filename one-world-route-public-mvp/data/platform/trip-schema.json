@@ -3,19 +3,160 @@
   "$id": "https://one-world-route.vercel.app/data/platform/trip-schema.json",
   "title": "ONE WORLD ROUTE Trip",
   "type": "object",
-  "required": ["schemaVersion", "id", "slug", "kind", "places", "stops", "segments"],
+  "required": [
+    "schemaVersion",
+    "id",
+    "slug",
+    "kind",
+    "places",
+    "stops",
+    "segments"
+  ],
   "properties": {
-    "schemaVersion": {"const": 1},
-    "id": {"type": "string", "minLength": 1},
-    "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
-    "kind": {"enum": ["world", "round-trip", "road-trip", "rail", "cruise", "island-hopping", "city-break", "expedition", "custom"]},
-    "places": {"type": "array"},
-    "stops": {"type": "array"},
-    "segments": {"type": "array"}
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "kind": {
+      "enum": [
+        "world",
+        "round-trip",
+        "road-trip",
+        "rail",
+        "cruise",
+        "island-hopping",
+        "city-break",
+        "expedition",
+        "custom"
+      ]
+    },
+    "places": {
+      "type": "array"
+    },
+    "stops": {
+      "type": "array"
+    },
+    "segments": {
+      "type": "array"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "issuer",
+          "issuerType",
+          "url",
+          "checkedAt"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "issuer": {
+            "type": "string"
+          },
+          "issuerType": {
+            "enum": [
+              "government",
+              "official-operator",
+              "international-organization",
+              "primary-source",
+              "secondary-source"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "checkedAt": {
+            "type": "string",
+            "format": "date"
+          },
+          "validFrom": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date"
+          },
+          "validUntil": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date"
+          },
+          "claims": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "entryGuidance": {
+      "type": [
+        "object",
+        "null"
+      ]
+    }
   },
   "x-oneWorldRoute": {
     "model": "place -> visit(stop) -> segment",
-    "transportModes": ["walk", "bicycle", "road", "car", "motorcycle", "bus", "coach", "rail", "metro", "tram", "ground-transfer", "rideshare", "taxi", "ferry", "cruise", "flight", "helicopter", "rail+ground", "multimodal", "other"],
-    "notes": "Cruises use the same segment model. Each port call is a stop; sea legs use mode cruise, may carry onboardNights/service metadata, and can revisit the same place through distinct stop IDs."
+    "transportModes": [
+      "walk",
+      "bicycle",
+      "road",
+      "car",
+      "motorcycle",
+      "bus",
+      "coach",
+      "rail",
+      "metro",
+      "tram",
+      "ground-transfer",
+      "rideshare",
+      "taxi",
+      "ferry",
+      "cruise",
+      "flight",
+      "helicopter",
+      "rail+ground",
+      "multimodal",
+      "other"
+    ],
+    "notes": "Cruises use the same segment model. Each port call is a stop; sea legs use mode cruise, may carry onboardNights/service metadata, and can revisit the same place through distinct stop IDs.",
+    "evidence": {
+      "rule": "Verified route facts must point to sourceIds that resolve in the trip source registry. Schedule-dependent facts remain current-check-required.",
+      "durationBases": [
+        "operator-published",
+        "operator-published-fastest",
+        "published-coach-stage-only",
+        "partial-published",
+        "connection-time-required",
+        "connection-time-excluded",
+        "live-timetable-required"
+      ],
+      "costBases": [
+        "published-fare",
+        "published-from",
+        "published-stage-floor",
+        "known-stage-floor"
+      ]
+    }
   }
 }
