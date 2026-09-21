@@ -1828,9 +1828,12 @@
   }
 
   function durationLabel(planning){
-    if(Number.isFinite(Number(planning?.durationMinutes)))return Number(planning.durationMinutes)+' min';
-    if(Array.isArray(planning?.durationRangeMinutes)&&planning.durationRangeMinutes.length===2)return planning.durationRangeMinutes[0]+'–'+planning.durationRangeMinutes[1]+' min';
-    if(Number.isFinite(Number(planning?.minimumInVehicleMinutes)))return '≥ '+Number(planning.minimumInVehicleMinutes)+' min';
+    const exact=planning?.durationMinutes;
+    if(exact!=null&&Number.isFinite(Number(exact)))return Number(exact)+' min';
+    const range=planning?.durationRangeMinutes;
+    if(Array.isArray(range)&&range.length===2&&range.every(value=>value!=null&&Number.isFinite(Number(value))))return Number(range[0])+'–'+Number(range[1])+' min';
+    const minimum=planning?.minimumInVehicleMinutes;
+    if(minimum!=null&&Number.isFinite(Number(minimum)))return '≥ '+Number(minimum)+' min';
     return '—';
   }
 
