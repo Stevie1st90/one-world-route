@@ -60,3 +60,30 @@ test('Italy transport model includes sourced multimodal stages rather than ficti
   assert.equal(byId.get('it-leg-10').transport.mode,'multimodal');
 });
 
+test('cruise demonstrator models repeated home port, onboard nights and sea days without fake places',async()=>{
+  const trip=await read('data/platform/trips/western-mediterranean-cruise-loop.json');
+  assert.equal(trip.kind,'cruise');
+  assert.equal(trip.cruise.nights,7);
+  assert.equal(trip.cruise.seaDays,1);
+  assert.equal(trip.stops[0].placeId,trip.stops.at(-1).placeId);
+  assert.notEqual(trip.stops[0].id,trip.stops.at(-1).id);
+  assert.equal(trip.places.some(p=>/sea.?day/i.test(p.id)||/sea.?day/i.test(String(p.name?.en||''))),false);
+  assert.equal(trip.segments.reduce((n,s)=>n+Number(s.cruise?.onboardNights||0),0),7);
+  assert.deepEqual(trip.segments.flatMap(s=>s.cruise?.seaDayNumbers||[]),[6]);
+  assert.ok(trip.segments.every(s=>s.transport.mode==='cruise'));
+  assert.ok(trip.segments.every(s=>s.verification.status==='illustrative'));
+});
+
+test('cruise border context detects Schengen exit and re-entry and requires traveller context',async()=>{
+  const trip=await read('data/platform/trips/western-mediterranean-cruise-loop.json');
+  const exit=trip.segments.find(s=>s.borderContext?.zoneTransition==='schengen-exit');
+  const entry=trip.segments.find(s=>s.borderContext?.zoneTransition==='schengen-entry');
+  assert.equal(exit.borderContext.toCountry,'TN');
+  assert.equal(entry.borderContext.fromCountry,'TN');
+  assert.equal(exit.borderContext.personalizationRequired,true);
+  assert.equal(entry.borderContext.personalizationRequired,true);
+  assert.equal(trip.entryGuidance.personalizationRequired,true);
+  assert.ok(trip.sources.some(s=>s.id===trip.entryGuidance.officialResolverSourceId));
+  assert.ok(trip.sources.some(s=>s.id==='eu-entry-exit-system'));
+});
+
