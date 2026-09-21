@@ -175,6 +175,11 @@ test('regional terrain attribution stays compact and clear of mobile controls',(
   assert.match(cssSource,/@media\(max-width:820px\)[\s\S]*maplibregl-ctrl-bottom-left\{left:8px;bottom:56px\}/);
 });
 
+test('regional stop counters override inherited gradient text styles',()=>{
+  assert.match(cssSource,/overview-number:not\(\.platform-duration-number\)\{display:flex;align-items:baseline;gap:6px\}/);
+  assert.match(cssSource,/overview-number:not\(\.platform-duration-number\) small\{[^}]*-webkit-text-fill-color:#8293a8[^}]*letter-spacing:0/);
+});
+
 test('regional overview duration uses a dedicated non-overlapping unit style',()=>{
   const detail=moduleSources['regional-detail.js'];
   assert.match(detail,/platform-duration-number/);
