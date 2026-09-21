@@ -2,9 +2,10 @@
   'use strict';
   const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
   const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-  const euro=v=>new Intl.NumberFormat('en-GB',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(v||0));
-  const km=v=>new Intl.NumberFormat('en-GB',{maximumFractionDigits:0}).format(Math.round(v||0))+' km';
-  const EN=window.ONE_WORLD_EN||{country:s=>s,mode:s=>s};
+  const EN=window.ONE_WORLD_EN||{locale:'en',country:s=>s,mode:s=>s};
+  const UI_LOCALE=EN.locale||'en';
+  const euro=v=>new Intl.NumberFormat(UI_LOCALE,{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(v||0));
+  const km=v=>new Intl.NumberFormat(UI_LOCALE,{maximumFractionDigits:0}).format(Math.round(v||0))+' km';
   const runtime={route:null,countries:[],centroids:new Map(),waypoints:new Map(),actual:null,media:null,changes:null,installPrompt:null,stats:null};
 
   const hav=(a,b)=>{
