@@ -50,7 +50,22 @@
         "operations",
         "story",
         "plan-vs-actual"
-      ]
+      ],
+      "discovery": {
+        "regions": [
+          "global"
+        ],
+        "themes": [
+          "world",
+          "expedition",
+          "long-term"
+        ],
+        "modes": [
+          "multimodal"
+        ],
+        "durationBand": "90-plus",
+        "featured": true
+      }
     },
     {
       "id": "italy-grand-tour",
@@ -90,7 +105,29 @@
         "traveller-context",
         "source-evidence",
         "entry-guidance"
-      ]
+      ],
+      "discovery": {
+        "regions": [
+          "europe",
+          "southern-europe",
+          "italy"
+        ],
+        "themes": [
+          "culture",
+          "cities",
+          "coast",
+          "mountains",
+          "round-trip"
+        ],
+        "modes": [
+          "rail",
+          "road",
+          "ferry",
+          "bus"
+        ],
+        "durationBand": "15-30",
+        "featured": true
+      }
     },
     {
       "id": "western-mediterranean-cruise-loop",
@@ -132,7 +169,81 @@
         "sea-days",
         "border-context",
         "source-evidence"
-      ]
+      ],
+      "discovery": {
+        "regions": [
+          "europe",
+          "mediterranean",
+          "north-africa"
+        ],
+        "themes": [
+          "cruise",
+          "coast",
+          "ports"
+        ],
+        "modes": [
+          "cruise"
+        ],
+        "durationBand": "7-14",
+        "featured": true
+      }
+    },
+    {
+      "id": "southern-europe-road-trip",
+      "slug": "southern-europe-road-trip",
+      "kind": "road-trip",
+      "status": "sourced-beta",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/southern-europe-road-trip.json",
+      "title": {
+        "en": "Southern Europe Road Trip",
+        "de": "Südeuropa-Roadtrip",
+        "it": "Road trip nell'Europa meridionale",
+        "es": "Road trip por el sur de Europa",
+        "fr": "Road trip en Europe du Sud",
+        "pt": "Road trip pelo sul da Europa"
+      },
+      "subtitle": {
+        "en": "20 days · Portugal, Spain, France and Italy",
+        "de": "20 Tage · Portugal, Spanien, Frankreich und Italien",
+        "it": "20 giorni · Portogallo, Spagna, Francia e Italia",
+        "es": "20 días · Portugal, España, Francia e Italia",
+        "fr": "20 jours · Portugal, Espagne, France et Italie",
+        "pt": "20 dias · Portugal, Espanha, França e Itália"
+      },
+      "metrics": {
+        "days": 20,
+        "countries": 4,
+        "stops": 11,
+        "segments": 10,
+        "budget": null
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "vehicle-context",
+        "road-rules",
+        "source-evidence"
+      ],
+      "discovery": {
+        "regions": [
+          "europe",
+          "southern-europe",
+          "mediterranean"
+        ],
+        "themes": [
+          "road-trip",
+          "cities",
+          "coast",
+          "culture"
+        ],
+        "modes": [
+          "car"
+        ],
+        "durationBand": "15-30",
+        "featured": true
+      }
     }
   ]
 }
