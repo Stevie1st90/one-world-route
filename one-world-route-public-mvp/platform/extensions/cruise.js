@@ -16,7 +16,7 @@
     stopDetail(ctx){
       const call=model.extension(ctx.stop,'cruiseCall');
       const refs=model.extension(ctx.place,'port')?.sourceIds||[];
-      if(!call&&!refs)return null;
+      if(!call&&!refs.length)return null;
       const callLabel=call?.kind==='embarkation'?ctx.t('embarkation'):(call?.kind==='disembarkation'?ctx.t('disembarkation'):(call?ctx.t('portCall'):null));
       return {
         cards:callLabel?`<div class="data-card"><span>${ctx.esc(ctx.t('portCall'))}</span><b>${ctx.esc(callLabel)}</b></div>`:'',
