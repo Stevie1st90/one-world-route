@@ -374,6 +374,8 @@
   let selectedSegmentIndex = 0;
   let playTimer = null;
   let countries = [];
+  const regionalStory={active:false,playing:false,timer:null};
+  const regionalTerrain={map:null,ready:false,loading:null,maplibre:null};
 
   function profileDefaults(){
     return {passports:[],residenceCountry:null,language:locale,currency:'EUR',origin:null,party:{adults:1,children:0},accessibility:{reducedMobility:false},vehicle:null};
@@ -501,10 +503,251 @@
 
   function syncRegionalUrl(){
     if(!currentTripMeta||currentTripMeta.renderer==='legacy-world')return;
-    const p=new URLSearchParams();
+    const existing=new URLSearchParams(location.search),p=new URLSearchParams();
     p.set('trip',currentTripMeta.id);
     p.set('lang',locale);
+    if(existing.get('view')==='terrain'||document.body.classList.contains('terrain-view'))p.set('view','terrain');
     history.replaceState(null,'',`${location.pathname}?${p.toString()}`);
+  }
+
+
+  function platformToast(message){
+    const toast=$('#toast');if(!toast)return;
+    toast.textContent=message;toast.classList.add('show');clearTimeout(toast._platformTimer);
+    toast._platformTimer=setTimeout(()=>toast.classList.remove('show'),2600);
+  }
+
+  function regionalSettings(){
+    return {
+      autoRotate:$('#autoRotate')?.checked===true,
+      showPoints:$('#showPoints')?.checked!==false,
+      routeGlow:$('#routeGlow')?.checked!==false,
+      arcWidth:Number($('#arcWidth')?.value||.55),
+      reducedMotion:$('#reducedMotion')?.checked===true
+    };
+  }
+
+  function routeCamera(){
+    const places=[...placeMap(currentTrip).values()].filter(p=>Number.isFinite(Number(p.coordinates?.lat))&&Number.isFinite(Number(p.coordinates?.lng)));
+    if(!places.length)return currentTrip.rendering?.camera||{lat:20,lng:12,altitude:.8};
+    const lats=places.map(p=>Number(p.coordinates.lat)),lngs=places.map(p=>Number(p.coordinates.lng));
+    const lat=(Math.min(...lats)+Math.max(...lats))/2,lng=(Math.min(...lngs)+Math.max(...lngs))/2;
+    const latSpan=Math.max(...lats)-Math.min(...lats),lngSpan=(Math.max(...lngs)-Math.min(...lngs))*Math.max(.35,Math.cos(lat*Math.PI/180));
+    const span=Math.max(latSpan,lngSpan);
+    let altitude=span<7?.34:span<13?.43:span<22?.53:span<34?.64:.78;
+    if(innerWidth<=820)altitude+=.10;
+    return {lat,lng,altitude};
+  }
+
+  function regionalChapterForSegment(index){
+    const seg=currentTrip?.segments?.[index];if(!seg)return null;
+    return (currentTrip.chapters||[]).find(ch=>(ch.stopIds||[]).includes(seg.fromStopId)||(ch.stopIds||[]).includes(seg.toStopId))||null;
+  }
+
+  function ensureRegionalStoryUi(){
+    const stage=$('.globe-stage');if(!stage)return;
+    if(!$('#platformStoryBtn')){
+      const b=document.createElement('button');b.id='platformStoryBtn';b.className='platform-story-btn glass';b.type='button';
+      b.innerHTML=`<span class="platform-story-icon">▶</span><span><b>${esc(t('storyPlay'))}</b><small>${currentTrip.segments.length} ${esc(t('segments'))}</small></span>`;
+      stage.appendChild(b);b.addEventListener('click',startRegionalStory);
+    }
+    if(!$('#platformStoryHud')){
+      const hud=document.createElement('section');hud.id='platformStoryHud';hud.className='platform-story-hud glass hidden';hud.setAttribute('aria-live','polite');
+      hud.innerHTML=`<div class="platform-story-head"><div><span id="platformStoryKicker"></span><b id="platformStoryChapter"></b></div><button id="platformStoryExit" type="button">${esc(t('storyExit'))}</button></div><div id="platformStoryRoute" class="platform-story-route"></div><div class="platform-story-controls"><button id="platformStoryPrev" type="button" aria-label="${esc(t('previous'))}">‹</button><button id="platformStoryPlay" type="button" aria-label="${esc(t('storyPlay'))}">Ⅱ</button><button id="platformStoryNext" type="button" aria-label="${esc(t('next'))}">›</button><div class="platform-story-track"><i></i></div><strong id="platformStoryPct">0%</strong></div>`;
+      stage.appendChild(hud);
+      $('#platformStoryExit',hud).addEventListener('click',stopRegionalStory);
+      $('#platformStoryPrev',hud).addEventListener('click',()=>storyStep(-1));
+      $('#platformStoryNext',hud).addEventListener('click',()=>storyStep(1));
+      $('#platformStoryPlay',hud).addEventListener('click',toggleRegionalStoryPlayback);
+    }
+  }
+
+  function updateRegionalStoryHud(){
+    if(!currentTrip)return;
+    const seg=currentTrip.segments[selectedSegmentIndex],sm=stopMap(currentTrip),pm=placeMap(currentTrip);
+    const a=pm.get(sm.get(seg?.fromStopId)?.placeId),b=pm.get(sm.get(seg?.toStopId)?.placeId);
+    const chapter=regionalChapterForSegment(selectedSegmentIndex);
+    const kicker=$('#platformStoryKicker'),title=$('#platformStoryChapter'),route=$('#platformStoryRoute'),pct=$('#platformStoryPct'),bar=$('#platformStoryHud .platform-story-track i');
+    const progress=currentTrip.segments.length<=1?100:Math.round(selectedSegmentIndex/(currentTrip.segments.length-1)*100);
+    if(kicker)kicker.textContent=chapter?`${t('chapter')} · ${local(chapter.title)}`:`${t('storyRoute')} · ${selectedSegmentIndex+1}/${currentTrip.segments.length}`;
+    if(title)title.textContent=chapter?local(chapter.title):local(currentTrip.title);
+    if(route)route.textContent=`${local(a?.name)} → ${local(b?.name)} · ${facetLabel(seg?.transport?.mode||'')}`;
+    if(pct)pct.textContent=`${progress}%`;if(bar)bar.style.width=`${progress}%`;
+  }
+
+  function storyStep(delta){
+    if(!regionalStory.active)return;
+    const next=Math.max(0,Math.min(currentTrip.segments.length-1,selectedSegmentIndex+delta));
+    if(next===selectedSegmentIndex&&delta>0){pauseRegionalStory();const title=$('#platformStoryChapter');if(title)title.textContent=t('storyComplete');return}
+    selectSegmentIndex(next,true);updateRegionalStoryHud();
+  }
+
+  function pauseRegionalStory(){
+    clearInterval(regionalStory.timer);regionalStory.timer=null;regionalStory.playing=false;
+    const b=$('#platformStoryPlay');if(b)b.textContent='▶';
+  }
+
+  function playRegionalStory(){
+    clearInterval(regionalStory.timer);regionalStory.playing=true;
+    const b=$('#platformStoryPlay');if(b)b.textContent='Ⅱ';
+    regionalStory.timer=setInterval(()=>{
+      if(selectedSegmentIndex>=currentTrip.segments.length-1){pauseRegionalStory();const title=$('#platformStoryChapter');if(title)title.textContent=t('storyComplete');return}
+      selectSegmentIndex(selectedSegmentIndex+1,true);updateRegionalStoryHud();
+    },2200);
+  }
+
+  function toggleRegionalStoryPlayback(){regionalStory.playing?pauseRegionalStory():playRegionalStory()}
+
+  async function startRegionalStory(){
+    if(!currentTrip||regionalStory.active)return;
+    if(document.body.classList.contains('terrain-view'))await setRegionalTerrain(false);
+    if(playTimer){clearInterval(playTimer);playTimer=null}
+    regionalStory.active=true;document.body.classList.add('platform-story-mode');
+    $('#platformStoryHud')?.classList.remove('hidden');
+    updateRegionalStoryHud();playRegionalStory();
+  }
+
+  function stopRegionalStory(){
+    pauseRegionalStory();regionalStory.active=false;document.body.classList.remove('platform-story-mode');
+    $('#platformStoryHud')?.classList.add('hidden');renderRegionalGlobe();
+  }
+
+  function regionalRouteGeoJson(){
+    return {type:'FeatureCollection',features:routeGeometry().map(d=>({type:'Feature',properties:{id:d._index+1,active:d._index===selectedSegmentIndex?1:0,mode:d.transport?.mode||''},geometry:{type:'LineString',coordinates:[[Number(d.start.lng),Number(d.start.lat)],[Number(d.end.lng),Number(d.end.lat)]]}}))};
+  }
+
+  function regionalStopGeoJson(){
+    return {type:'FeatureCollection',features:[...placeMap(currentTrip).values()].filter(p=>p.coordinates).map(p=>({type:'Feature',properties:{id:p.id,name:local(p.name)},geometry:{type:'Point',coordinates:[Number(p.coordinates.lng),Number(p.coordinates.lat)]}}))};
+  }
+
+  async function loadRegionalMapLibre(){
+    if(regionalTerrain.maplibre)return regionalTerrain.maplibre;
+    if(!document.querySelector('link[data-platform-maplibre]')){
+      const link=document.createElement('link');link.rel='stylesheet';link.href='https://unpkg.com/maplibre-gl@6.10.0/dist/maplibre-gl.css';link.dataset.platformMaplibre='1';document.head.appendChild(link);
+    }
+    const module=await import('https://unpkg.com/maplibre-gl@6.10.0/dist/maplibre-gl.mjs');
+    if(typeof module?.Map!=='function')throw new Error('MapLibre unavailable');
+    regionalTerrain.maplibre=module;return module;
+  }
+
+  async function regionalTerrainStyle(){
+    let base;
+    try{
+      const response=await fetch('https://tiles.openfreemap.org/styles/liberty',{cache:'force-cache'});
+      if(!response.ok)throw new Error(String(response.status));base=await response.json();
+    }catch{
+      base={version:8,sources:{},layers:[{id:'background',type:'background',paint:{'background-color':'#d9e5e8'}}]};
+    }
+    base.version=8;base.projection={type:'globe'};
+    base.sources={...(base.sources||{}),
+      terrainSource:{type:'raster-dem',url:'https://tiles.mapterhorn.com/tilejson.json'},
+      regionalRoute:{type:'geojson',data:regionalRouteGeoJson()},
+      regionalStops:{type:'geojson',data:regionalStopGeoJson()}
+    };
+    base.terrain={source:'terrainSource',exaggeration:1.34};
+    base.sky={'atmosphere-blend':['interpolate',['linear'],['zoom'],0,.42,3.5,.13,7,0]};
+    base.layers.push(
+      {id:'regional-route-shadow',type:'line',source:'regionalRoute',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(1,8,15,.68)','line-width':['interpolate',['linear'],['zoom'],2,3,7,6,12,9],'line-opacity':.58}},
+      {id:'regional-route',type:'line',source:'regionalRoute',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#6c8eaa','line-width':['interpolate',['linear'],['zoom'],2,1.4,7,2.8,12,4.2],'line-opacity':.78}},
+      {id:'regional-selected-shadow',type:'line',source:'regionalRoute',filter:['==',['get','id'],selectedSegmentIndex+1],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(2,8,14,.88)','line-width':['interpolate',['linear'],['zoom'],2,6,7,10,12,15]}},
+      {id:'regional-selected',type:'line',source:'regionalRoute',filter:['==',['get','id'],selectedSegmentIndex+1],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#59ddff','line-width':['interpolate',['linear'],['zoom'],2,2.8,7,5.2,12,7.5]}},
+      {id:'regional-route-hit',type:'line',source:'regionalRoute',paint:{'line-color':'rgba(0,0,0,.001)','line-width':18,'line-opacity':.001}},
+      {id:'regional-stop-points',type:'circle',source:'regionalStops',paint:{'circle-radius':['interpolate',['linear'],['zoom'],3,3,8,5,12,7],'circle-color':'#dff8ff','circle-stroke-width':2,'circle-stroke-color':'#1388a7'}}
+    );
+    return base;
+  }
+
+  async function ensureRegionalTerrain(){
+    if(regionalTerrain.ready&&regionalTerrain.map)return regionalTerrain.map;
+    if(regionalTerrain.loading)return regionalTerrain.loading;
+    regionalTerrain.loading=(async()=>{
+      let host=$('#terrainMap');
+      if(!host){host=document.createElement('div');host.id='terrainMap';$('.globe-stage')?.appendChild(host)}
+      let badge=$('.terrain-badge');
+      if(!badge){badge=document.createElement('div');badge.className='terrain-badge';badge.innerHTML='<b>3D GLOBE TERRAIN</b><span></span>';$('.globe-stage')?.appendChild(badge)}
+      const [maplibre,style]=await Promise.all([loadRegionalMapLibre(),regionalTerrainStyle()]);
+      const cam=routeCamera();
+      const map=new maplibre.Map({container:'terrainMap',style,center:[cam.lng,cam.lat],zoom:4.6,pitch:36,bearing:-5,minZoom:2.5,maxZoom:18,maxPitch:65,renderWorldCopies:false,attributionControl:true,canvasContextAttributes:{antialias:true}});
+      map.on('style.load',()=>{try{map.setProjection({type:'globe'});map.setTerrain({source:'terrainSource',exaggeration:1.34})}catch{}});
+      map.on('load',()=>{
+        map.on('click','regional-route-hit',e=>{const id=Number(e.features?.[0]?.properties?.id);if(Number.isFinite(id))selectSegmentIndex(id-1,true)});
+        map.on('mouseenter','regional-route-hit',()=>map.getCanvas().style.cursor='pointer');
+        map.on('mouseleave','regional-route-hit',()=>map.getCanvas().style.cursor='');
+      });
+      if(innerWidth>820){map.addControl(new maplibre.NavigationControl({visualizePitch:true,showZoom:true,showCompass:true}),'top-right');if(maplibre.TerrainControl)map.addControl(new maplibre.TerrainControl({source:'terrainSource',exaggeration:1.34}),'top-right');if(maplibre.GlobeControl)map.addControl(new maplibre.GlobeControl(),'top-right')}
+      regionalTerrain.map=map;regionalTerrain.ready=true;window.__ONE_WORLD_REGIONAL_TERRAIN__=map;
+      return map;
+    })().finally(()=>{regionalTerrain.loading=null});
+    return regionalTerrain.loading;
+  }
+
+  function updateRegionalTerrain(){
+    const map=regionalTerrain.map;if(!map)return;
+    map.getSource?.('regionalRoute')?.setData?.(regionalRouteGeoJson());
+    map.getSource?.('regionalStops')?.setData?.(regionalStopGeoJson());
+    for(const id of ['regional-selected','regional-selected-shadow'])if(map.getLayer?.(id))map.setFilter(id,['==',['get','id'],selectedSegmentIndex+1]);
+    const settings=regionalSettings();
+    if(map.getLayer?.('regional-stop-points'))map.setLayoutProperty('regional-stop-points','visibility',settings.showPoints?'visible':'none');
+    if(map.getLayer?.('regional-route'))map.setPaintProperty('regional-route','line-opacity',settings.routeGlow?.82:.48);
+  }
+
+  function focusRegionalTerrain(index=selectedSegmentIndex){
+    const map=regionalTerrain.map,seg=routeGeometry()[index];if(!map||!seg)return;
+    const a=[Number(seg.start.lng),Number(seg.start.lat)],b=[Number(seg.end.lng),Number(seg.end.lat)];
+    const lng=(a[0]+b[0])/2,lat=(a[1]+b[1])/2,spread=Math.max(Math.abs(a[0]-b[0])*Math.cos(lat*Math.PI/180),Math.abs(a[1]-b[1]));
+    const zoom=spread<.5?8.8:spread<1.5?7.4:spread<4?6.2:spread<9?5.1:4.2;
+    map.easeTo({center:[lng,lat],zoom:innerWidth<=820?zoom-.25:zoom,pitch:spread<4?46:34,bearing:0,duration:regionalSettings().reducedMotion?0:700,essential:true});
+  }
+
+  async function setRegionalTerrain(active){
+    if(!currentTrip||currentTripMeta?.renderer==='legacy-world')return;
+    const toggle=$('#terrainView');if(toggle)toggle.checked=Boolean(active);
+    if(!active){
+      document.body.classList.remove('terrain-loading','terrain-view');
+      const p=new URLSearchParams(location.search);p.delete('view');history.replaceState(null,'',`${location.pathname}?${p.toString()}`);
+      renderRegionalGlobe();return;
+    }
+    if(regionalStory.active)stopRegionalStory();
+    document.body.classList.add('terrain-loading');
+    const badge=$('.terrain-badge span');if(badge)badge.textContent=t('terrainLoading');
+    try{
+      const map=await ensureRegionalTerrain();map.resize();updateRegionalTerrain();focusRegionalTerrain();
+      document.body.classList.remove('terrain-loading');document.body.classList.add('terrain-view');
+      if(badge)badge.textContent=t('terrainHint');
+      const p=new URLSearchParams(location.search);p.set('view','terrain');history.replaceState(null,'',`${location.pathname}?${p.toString()}`);
+    }catch(e){
+      console.warn('Regional terrain unavailable',e);document.body.classList.remove('terrain-loading','terrain-view');if(toggle)toggle.checked=false;platformToast('3D terrain unavailable');
+    }
+  }
+
+  function configureRegionalMethodology(){
+    const modal=$('#infoModal'),card=$('.modal-card',modal);if(!modal||!card)return;
+    const sourced=currentTrip.segments.filter(s=>(s.verification?.sourceIds||[]).length).length;
+    card.innerHTML=`<button class="modal-close" aria-label="Close">×</button><div class="eyebrow">${esc(t('methodology').toUpperCase())}</div><h2>${esc(t('routeMethodTitle'))}</h2><p>${esc(t('routeMethodText'))}</p><div class="method-grid"><article><b>${currentTrip.stops.length}</b><span>${esc(t('stops'))}</span></article><article><b>${currentTrip.segments.length}</b><span>${esc(t('segments'))}</span></article><article><b>${currentTrip.planning?.days||'—'}</b><span>${esc(t('days'))}</span></article><article><b>${sourced}/${currentTrip.segments.length}</b><span>${esc(t('evidenceCoverage'))}</span></article></div><h3>${esc(t('editorialStatus'))}</h3><p>${esc(t('editorial'))}</p>`;
+    $('.modal-close',card)?.addEventListener('click',()=>modal.classList.add('hidden'));
+  }
+
+  function configureRegionalSettings(){
+    const actions=$('.top-actions');if(actions)actions.classList.add('platform-regional-actions');
+    const search=$('#searchBtn');if(search)search.hidden=true;
+    const labels=[['autoRotate','autoRotate'],['highDetailGlobe','highDetail'],['terrainView','terrain'],['showPoints','showPoints'],['routeGlow','routeGlow'],['arcWidth','arcThickness'],['reducedMotion','reducedMotion']];
+    for(const [id,key] of labels){const span=$('#'+id)?.closest('label')?.querySelector('span');if(span)span.textContent=t(key)}
+    const title=$('#settingsPopover .settings-head h3');if(title)title.textContent=t('settings');
+    const share=$('#mobileShareBtn');if(share)share.textContent=t('share');
+    const info=$('#mobileInfoBtn');if(info)info.textContent=t('methodology');
+    let storyBtn=$('#regionalStorySettingsBtn');
+    if(!storyBtn){storyBtn=document.createElement('button');storyBtn.id='regionalStorySettingsBtn';storyBtn.type='button';storyBtn.addEventListener('click',()=>{$('#settingsPopover')?.classList.add('hidden');startRegionalStory()});$('#settingsPopover .mobile-settings-actions')?.appendChild(storyBtn)}
+    if(storyBtn)storyBtn.textContent=t('storyPlay');
+    for(const id of ['autoRotate','showPoints','routeGlow','arcWidth','reducedMotion']){
+      const el=$('#'+id);if(!el||el.dataset.platformRegionalWired)return;
+    }
+    const bind=(id,event,fn)=>{const el=$('#'+id);if(!el||el.dataset.platformRegionalWired)return;el.dataset.platformRegionalWired='1';el.addEventListener(event,fn)};
+    bind('autoRotate','change',()=>{const ctl=window.__ONE_WORLD_ROUTE_GLOBE__?.controls?.();if(ctl){ctl.autoRotate=$('#autoRotate').checked&&!regionalStory.active&&!document.body.classList.contains('terrain-view');ctl.autoRotateSpeed=.28}});
+    bind('showPoints','change',()=>{renderRegionalGlobe();updateRegionalTerrain()});
+    bind('routeGlow','change',()=>{renderRegionalGlobe();updateRegionalTerrain()});
+    bind('arcWidth','input',()=>{renderRegionalGlobe();updateRegionalTerrain()});
+    bind('reducedMotion','change',()=>{});
+    configureRegionalMethodology();
   }
 
   function isolateRegionalRuntime(){
@@ -553,6 +796,8 @@
     buildLeftNavigation();
     buildChapterRail();
     replaceTimeline();
+    ensureRegionalStoryUi();
+    configureRegionalSettings();
     renderTripOverview();
   }
 
@@ -622,15 +867,16 @@
     const labelPlaces=places.filter(p=>activeIds.has(p.id));
     try{
       isolateRegionalRuntime();
+      const settings=regionalSettings(),story=regionalStory.active,scale=Math.max(.45,settings.arcWidth/.55);
       globe.arcsData(arcs)
         .arcStartLat(d=>d.start.lat).arcStartLng(d=>d.start.lng)
         .arcEndLat(d=>d.end.lat).arcEndLng(d=>d.end.lng)
         .arcAltitude(d=>d._index===selectedSegmentIndex?.075:.045)
-        .arcStroke(d=>d._index===selectedSegmentIndex?.78:.30)
-        .arcColor(d=>d._index===selectedSegmentIndex?'#59ddff':'rgba(113,151,190,.62)')
-        .arcDashLength(1).arcDashGap(0)
-        .onArcClick(d=>selectSegmentIndex(d._index,true));
-      globe.pointsData(places)
+        .arcStroke(d=>(d._index===selectedSegmentIndex?.78:.30)*scale)
+        .arcColor(d=>d._index===selectedSegmentIndex?(settings.routeGlow?['#59ddff','#ffffff']:'#59ddff'):(story?'rgba(92,124,151,.18)':'rgba(113,151,190,.62)'))
+        .arcDashLength(d=>d._index===selectedSegmentIndex&&story?.62:1).arcDashGap(d=>d._index===selectedSegmentIndex&&story?.16:0).arcDashAnimateTime(d=>d._index===selectedSegmentIndex&&story&&!settings.reducedMotion?1200:0)
+        .onArcClick(d=>{if(!regionalStory.active)selectSegmentIndex(d._index,true)});
+      globe.pointsData(settings.showPoints?places:[])
         .pointLat(d=>d.coordinates.lat).pointLng(d=>d.coordinates.lng)
         .pointAltitude(.012)
         .pointRadius(d=>activeIds.has(d.id)?.11:.065)
@@ -643,30 +889,31 @@
       }
       if(typeof globe.onPolygonClick==='function')globe.onPolygonClick(()=>{});
       if(typeof globe.polygonLabel==='function')globe.polygonLabel(()=> '');
-      if(globe.controls()){globe.controls().autoRotate=false;globe.controls().enableZoom=true}
-      const camera=currentTrip.rendering?.camera||{lat:43.5,lng:13.5,altitude:.72};
-      if(!document.body.dataset.regionalCameraReady){document.body.dataset.regionalCameraReady='1';globe.pointOfView(camera,700)}
+      if(globe.controls()){globe.controls().autoRotate=settings.autoRotate&&!story&&!document.body.classList.contains('terrain-view');globe.controls().autoRotateSpeed=.28;globe.controls().enableZoom=true}
+      const camera=routeCamera();
+      if(!document.body.dataset.regionalCameraReady){document.body.dataset.regionalCameraReady='1';globe.pointOfView(camera,settings.reducedMotion?0:700)}
     }catch(e){console.warn('Regional globe render failed',e)}
   }
 
   function selectSegmentIndex(index,focus=false){
     selectedSegmentIndex=Math.max(0,Math.min(currentTrip.segments.length-1,index));
     $$('.platform-stop').forEach(x=>x.classList.remove('active'));
-    renderRegionalGlobe();updateTimelineRegional();renderSegmentDetail(currentTrip.segments[selectedSegmentIndex]);
-    if(focus)focusSegment(currentTrip.segments[selectedSegmentIndex]);
+    renderRegionalGlobe();updateTimelineRegional();renderSegmentDetail(currentTrip.segments[selectedSegmentIndex]);updateRegionalTerrain();
+    if(regionalStory.active)updateRegionalStoryHud();
+    if(focus){if(document.body.classList.contains('terrain-view'))focusRegionalTerrain(selectedSegmentIndex);else focusSegment(currentTrip.segments[selectedSegmentIndex])}
   }
 
   function selectStop(index,focus=false){
     const stop=currentTrip.stops[index],p=stopPlace(currentTrip,stop);if(!stop||!p)return;
     $$('.platform-stop').forEach((x,i)=>x.classList.toggle('active',i===index));
     renderStopDetail(stop,p);
-    if(index<currentTrip.segments.length){selectedSegmentIndex=index;updateTimelineRegional();renderRegionalGlobe()}
-    if(focus)window.__ONE_WORLD_ROUTE_GLOBE__?.pointOfView({lat:p.coordinates.lat,lng:p.coordinates.lng,altitude:.48},650);
+    if(index<currentTrip.segments.length){selectedSegmentIndex=index;updateTimelineRegional();renderRegionalGlobe();updateRegionalTerrain()}
+    if(focus){if(document.body.classList.contains('terrain-view'))focusRegionalTerrain(Math.min(index,currentTrip.segments.length-1));else window.__ONE_WORLD_ROUTE_GLOBE__?.pointOfView({lat:p.coordinates.lat,lng:p.coordinates.lng,altitude:.48},regionalSettings().reducedMotion?0:650)}
   }
 
   function focusSegment(seg){
     const sm=stopMap(currentTrip),pm=placeMap(currentTrip),a=pm.get(sm.get(seg.fromStopId)?.placeId),b=pm.get(sm.get(seg.toStopId)?.placeId);if(!a||!b)return;
-    let lng=(a.coordinates.lng+b.coordinates.lng)/2;let lat=(a.coordinates.lat+b.coordinates.lat)/2;window.__ONE_WORLD_ROUTE_GLOBE__?.pointOfView({lat,lng,altitude:.52},650);
+    let lng=(a.coordinates.lng+b.coordinates.lng)/2;let lat=(a.coordinates.lat+b.coordinates.lat)/2;window.__ONE_WORLD_ROUTE_GLOBE__?.pointOfView({lat,lng,altitude:.52},regionalSettings().reducedMotion?0:650);
   }
 
   function renderTripOverview(){
@@ -724,6 +971,7 @@
     applyTripShell();
     renderRegionalGlobe();
     setTimeout(renderRegionalGlobe,500);
+    if(new URLSearchParams(location.search).get('view')==='terrain')setTimeout(()=>setRegionalTerrain(true),650);
   }
 
   async function init(){
@@ -740,6 +988,12 @@
     }catch(e){console.warn('ONE WORLD ROUTE platform layer unavailable',e)}
   }
 
-  window.ONE_WORLD_PLATFORM={openRoutes:openRouteLibrary,openTraveller,getProfile:loadProfile,getTrip:()=>currentTripMeta,buildTripUrl};
+  window.ONE_WORLD_PLATFORM={openRoutes:openRouteLibrary,openTraveller,getProfile:loadProfile,getTrip:()=>currentTripMeta,buildTripUrl,setTerrain:setRegionalTerrain,startStory:startRegionalStory,stopStory:stopRegionalStory};
+  document.addEventListener('keydown',e=>{
+    if(!document.body.classList.contains('platform-regional-trip')||['INPUT','SELECT','TEXTAREA'].includes(document.activeElement?.tagName))return;
+    if(e.key==='Escape'&&regionalStory.active){e.preventDefault();stopRegionalStory()}
+    else if(e.key==='ArrowLeft'&&regionalStory.active){e.preventDefault();storyStep(-1)}
+    else if(e.key==='ArrowRight'&&regionalStory.active){e.preventDefault();storyStep(1)}
+  });
   window.addEventListener('DOMContentLoaded',init);
 })();
