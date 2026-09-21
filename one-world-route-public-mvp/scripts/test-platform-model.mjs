@@ -32,3 +32,31 @@ test('traveller rules require evidence and never infer nationality from language
   assert.equal(schema.properties.evidence.minItems,1);
   assert.match(schema.description,/Never infer passport citizenship or residence from language/i);
 });
+
+test('Italy sourced beta keeps evidence separate from unresolved schedule assumptions',async()=>{
+  const trip=await read('data/platform/trips/italy-grand-tour.json');
+  const sources=new Map(trip.sources.map(s=>[s.id,s]));
+  assert.equal(trip.status,'sourced-beta');
+  assert.equal(trip.segments.length,10);
+  assert.equal(trip.segments.filter(s=>(s.verification?.sourceIds||[]).length>0).length,10);
+  assert.equal(trip.segments.filter(s=>s.verification?.status==='verified').length,4);
+  for(const s of trip.segments){
+    for(const id of s.verification?.sourceIds||[])assert.ok(sources.has(id),id);
+    if(s.verification?.status==='verified')assert.match(s.verification.lastVerified,/^\d{4}-\d{2}-\d{2}$/);
+  }
+  assert.equal(trip.entryGuidance.personalizationRequired,true);
+  assert.ok(sources.has(trip.entryGuidance.officialResolverSourceId));
+  assert.match(trip.entryGuidance.message.en,/passport citizenship, country of residence/i);
+});
+
+test('Italy transport model includes sourced multimodal stages rather than fictional direct legs',async()=>{
+  const trip=await read('data/platform/trips/italy-grand-tour.json');
+  const byId=new Map(trip.segments.map(s=>[s.id,s]));
+  assert.equal(byId.get('it-leg-02').transport.mode,'multimodal');
+  assert.deepEqual(byId.get('it-leg-02').transport.stages.map(s=>s.mode),['rail','ferry']);
+  assert.equal(byId.get('it-leg-03').verification.status,'current-check-required');
+  assert.equal(byId.get('it-leg-07').verification.status,'current-check-required');
+  assert.equal(byId.get('it-leg-09').transport.mode,'bus');
+  assert.equal(byId.get('it-leg-10').transport.mode,'multimodal');
+});
+
