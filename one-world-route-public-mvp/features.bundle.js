@@ -2261,8 +2261,9 @@
         .arcStartLat(d=>d.start.lat).arcStartLng(d=>d.start.lng)
         .arcEndLat(d=>d.end.lat).arcEndLng(d=>d.end.lng)
         .arcAltitude(d=>d._index===selectedSegmentIndex?.075:.045)
-        .arcStroke(d=>(d._index===selectedSegmentIndex?.78:.30)*scale)
+        .arcStroke(d=>(d._index===selectedSegmentIndex?.56:.22)*scale)
         .arcColor(d=>d._index===selectedSegmentIndex?(settings.routeGlow?['#59ddff','#ffffff']:'#59ddff'):(story?'rgba(92,124,151,.18)':'rgba(113,151,190,.62)'))
+        .arcLabel(()=> '')
         .arcDashLength(d=>d._index===selectedSegmentIndex&&story?.62:1).arcDashGap(d=>d._index===selectedSegmentIndex&&story?.16:0).arcDashAnimateTime(d=>d._index===selectedSegmentIndex&&story&&!settings.reducedMotion?1200:0)
         .onArcClick(d=>{if(!regionalStory.active)selectSegmentIndex(d._index,true)});
       globe.pointsData(settings.showPoints?places:[])
