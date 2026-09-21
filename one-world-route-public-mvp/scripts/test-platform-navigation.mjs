@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','model.js','traveller.js','discovery.js','route-library.js','extensions.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','model.js','traveller.js','traveller-ui.js','discovery.js','route-library.js','extensions.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -179,6 +179,7 @@ test('platform core delegates reusable concerns to modules',()=>{
   const routeLibrary=moduleSources['route-library.js'];
   assert.match(source,/const Model=PLATFORM_MODULES\.model/);
   assert.match(source,/const Traveller=PLATFORM_MODULES\.traveller/);
+  assert.match(source,/const TravellerUi=PLATFORM_MODULES\.travellerUi/);
   assert.match(source,/const Discovery=PLATFORM_MODULES\.discovery/);
   assert.match(source,/const Extensions=PLATFORM_MODULES\.extensions/);
   assert.match(source,/const RouteLibrary=PLATFORM_MODULES\.routeLibrary/);
@@ -211,6 +212,16 @@ test('traveller storage service allowlists non-secret planning fields',()=>{
   const traveller=moduleSources['traveller.js'];
   assert.match(traveller,/const ALLOWED=/);
   assert.doesNotMatch(traveller,/passportNumber|payment|bookingReference/i);
+});
+
+test('Traveller Context UI is isolated from storage policy',()=>{
+  const travellerUi=moduleSources['traveller-ui.js'];
+  assert.match(source,/TravellerUi\.open\(/);
+  assert.match(source,/Traveller\.clear\(/);
+  assert.match(travellerUi,/onSave\(next\)/);
+  assert.match(travellerUi,/onClear\(\)/);
+  assert.doesNotMatch(travellerUi,/localStorage|PROFILE_KEY|passportNumber|payment|bookingReference/i);
+  assert.doesNotMatch(source,/async function loadCountries\(/);
 });
 
 
