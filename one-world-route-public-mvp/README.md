@@ -96,3 +96,16 @@ The demonstrator models:
 
 The route is deliberately `illustrative-template`: official port sources prove that the ports support cruise traffic, but do not prove that one operator sells this exact sequence on a given date.
 
+### International trip discovery
+
+Public trip metadata is now language-addressable rather than being only an in-app translation layer.
+
+For every supported public locale (`en`, `de`, `it`, `es`, `fr`, `pt`), trips have clean crawlable URLs such as `/de/trip/italy-grand-tour`. These pages emit:
+- localized title and description
+- language-specific canonical URL
+- bidirectional `hreflang` alternates plus `x-default`
+- Schema.org `TouristTrip` JSON-LD
+- an interactive-app target that preserves the explicit language
+
+The trip catalog declares `defaultLocale` and `supportedLocales`. Validation fails if any public trip lacks a title or subtitle for a published locale.
+
