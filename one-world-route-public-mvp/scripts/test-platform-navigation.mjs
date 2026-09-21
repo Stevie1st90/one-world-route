@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','story.js','terrain.js','extensions.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','regional-selection.js','story.js','terrain.js','extensions.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -240,6 +240,7 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.match(source,/const RegionalGlobe=PLATFORM_MODULES\.regionalGlobe/);
   assert.match(source,/const RegionalTimeline=PLATFORM_MODULES\.regionalTimeline/);
   assert.match(source,/const RegionalControls=PLATFORM_MODULES\.regionalControls/);
+  assert.match(source,/const RegionalSelection=PLATFORM_MODULES\.regionalSelection/);
   assert.match(source,/const Story=PLATFORM_MODULES\.story/);
   assert.match(source,/const Terrain=PLATFORM_MODULES\.terrain/);
   assert.match(source,/RouteLibrary\.open\(/);
@@ -253,6 +254,8 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.match(source,/RegionalTimeline\.update\(/);
   assert.match(source,/RegionalControls\.configure\(/);
   assert.match(source,/RegionalControls\.apply\(/);
+  assert.match(source,/RegionalSelection\.configure\(/);
+  assert.match(source,/RegionalSelection\.getIndex\(/);
   assert.match(source,/Story\.configure\(/);
   assert.match(source,/Ui\.ensureGlobalActions\(/);
   assert.match(source,/Navigation\.buildTripUrl\(/);
@@ -269,6 +272,18 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.doesNotMatch(source,/function ensureDialog|function platformToast|function regionalSettings/);
   assert.match(source,/Traveller\.load\(/);
   assert.match(source,/Model\.routeGeometry\(/);
+});
+
+test('regional selection owns selected segment state and coordinates views generically',()=>{
+  const selection=moduleSources['regional-selection.js'];
+  for(const token of ['function reset','function getIndex','function selectSegment','function selectStop'])assert.match(selection,new RegExp(token));
+  assert.match(selection,/let selectedIndex=0/);
+  assert.match(selection,/d\.renderGlobe/);
+  assert.match(selection,/d\.updateTimeline/);
+  assert.match(selection,/d\.renderSegmentDetail/);
+  assert.match(selection,/d\.renderStopDetail/);
+  assert.doesNotMatch(selection,/trip\.id\s*===|trip\.kind\s*===|currentTrip|ONE_WORLD_ROUTE_GLOBE|Terrain\.|Story\./);
+  assert.doesNotMatch(source,/selectedSegmentIndex|function selectSegmentIndex|function selectStop\(/);
 });
 
 test('regional controls own settings and methodology DOM without renderer coupling',()=>{
