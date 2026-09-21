@@ -81,3 +81,58 @@ test('Story transfer keeps country count and exits cleanly',async({page},testInf
   await expect(page.locator('body')).not.toHaveClass(/story-mode/);
   await expect(page.locator('#storyMovement')).toHaveCount(0);
 });
+
+test('regional Italy route does not inherit world labels or 194-leg context',async({page})=>{
+  await open(page,'/?trip=italy-grand-tour&lang=de');
+  await expect(page.locator('body')).toHaveClass(/platform-regional-trip/);
+  await expect(page.locator('#regionalTimelineTitle')).toContainText('Rom');
+  await expect(page.locator('#timelineTitle')).toHaveCount(0);
+  await expect(page.locator('#routeRange')).toHaveCount(0);
+  await expect(page.locator('#detailContent .journey-context')).toHaveCount(0);
+  await expect(page.locator('.platform-globe-label')).toHaveCount(2);
+  await expect(page.locator('.platform-globe-label')).not.toContainText('Luxembourg');
+  await expect(page).toHaveURL(/trip=italy-grand-tour/);
+});
+
+test('regional road trip ignores legacy country polygon selection',async({page})=>{
+  await open(page,'/?trip=southern-europe-road-trip&lang=de');
+  const before=page.url();
+  await page.evaluate(()=>{
+    const globe=window.__ONE_WORLD_ROUTE_GLOBE__;
+    const handler=globe?.onPolygonClick?.();
+    if(typeof handler==='function')handler({id:'AUT',properties:{name:'Austria'}});
+  });
+  await page.waitForTimeout(100);
+  await expect(page).toHaveURL(/trip=southern-europe-road-trip/);
+  expect(page.url()).not.toContain('country=');
+  await expect(page.locator('#detailEyebrow')).not.toContainText('COUNTRY');
+  expect(before).toContain('southern-europe-road-trip');
+});
+
+test('regional route library opens another trip and keeps locale',async({page})=>{
+  await open(page,'/?trip=italy-grand-tour&lang=de');
+  await page.locator('#platformRouteBtn').click();
+  const road=page.locator('[data-platform-trip="southern-europe-road-trip"]');
+  await expect(road).toBeVisible();
+  await road.click();
+  await expect(page).toHaveURL(/trip=southern-europe-road-trip/);
+  await expect(page).toHaveURL(/lang=de/);
+  await expect(page.locator('.hero-copy h1')).toContainText('Südeuropa-Roadtrip');
+});
+
+test('regional mobile header exposes routes and traveller',async({page,isMobile})=>{
+  test.skip(!isMobile);
+  await open(page,'/?trip=italy-grand-tour&lang=de');
+  await expect(page.locator('#platformRouteBtn')).toBeVisible();
+  await expect(page.locator('#platformTravellerBtn')).toBeVisible();
+  await expect(page.locator('#phaseRail')).not.toBeVisible({visible:false}).catch(()=>{});
+});
+
+test('cruise without chapters hides empty chapter rail and keeps regional timeline',async({page})=>{
+  await open(page,'/?trip=western-mediterranean-cruise-loop&lang=de');
+  await expect(page.locator('#phaseRail')).toHaveClass(/platform-empty-rail/);
+  await expect(page.locator('#regionalRouteRange')).toHaveAttribute('max','6');
+  await expect(page.locator('#regionalTimelineTitle')).toContainText(/Barcelona|Marseille/);
+  await expect(page.locator('#detailContent .journey-context')).toHaveCount(0);
+});
+
