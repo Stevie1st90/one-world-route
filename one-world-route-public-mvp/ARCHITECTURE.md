@@ -82,3 +82,17 @@ Published starting fares are not converted into a full trip budget. Connection t
 
 Entry guidance is deliberately separate from transport evidence. The Italy pilot points to official government/EU sources and requires Traveller Context rather than deriving citizenship or residence from locale, IP, currency or departure city.
 
+### Cruise specialization
+
+Cruises do not introduce a second route engine. A cruise port is a place; an embarkation, transit call or disembarkation is a stop/visit; sailing between calls is a segment with `mode: cruise`.
+
+Cruise-specific metadata is attached to those existing layers:
+- trip: nights, sea-day count, embarkation/disembarkation stop IDs, optional operator/vessel/sailing
+- stop: call kind, optional arrival/departure, berth and tender state
+- segment: onboard nights, sea-day numbers and sailing service status
+- segment border context: origin/destination country, zone transition and whether Traveller Context is required
+
+A sea day belongs to the sailing segment. It must never be invented as a geographic place. A closed-loop cruise may reuse the same home-port place through two distinct stop IDs.
+
+Port infrastructure and a commercial sailing are separate claims. Port authority evidence can validate that a port accepts cruise traffic while the sailing remains illustrative. Only a selected real sailing may populate ship, operator, times, berth and price.
+
