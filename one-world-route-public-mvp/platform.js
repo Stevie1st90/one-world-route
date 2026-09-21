@@ -270,11 +270,19 @@
     }
   };
 
+  const LEGACY_SHORT={
+    de:{'All route':'Gesamtroute','N. America':'N. Amerika','S. America':'S. Amerika','Pacific':'Pazifik','SE Asia':'SO-Asien','C. Asia':'Zentralasien','Levant':'Levante','W. Africa':'W. Afrika','E. Africa':'O. Afrika','Gulf':'Golf','Finish':'Ziel','This is the current operational corridor in the public master plan.':'Dies ist der aktuelle operative Korridor im öffentlichen Masterplan.'},
+    it:{'All route':'Itinerario completo','N. America':'N. America','S. America':'S. America','Pacific':'Pacifico','SE Asia':'SE Asia','C. Asia':'Asia centrale','Levant':'Levante','W. Africa':'Africa occ.','E. Africa':'Africa or.','Gulf':'Golfo','Finish':'Arrivo','This is the current operational corridor in the public master plan.':'Questo è il corridoio operativo attuale nel piano pubblico principale.'},
+    es:{'All route':'Ruta completa','N. America':'N. América','S. America':'S. América','Pacific':'Pacífico','SE Asia':'SE Asia','C. Asia':'Asia central','Levant':'Levante','W. Africa':'África occ.','E. Africa':'África or.','Gulf':'Golfo','Finish':'Final','This is the current operational corridor in the public master plan.':'Este es el corredor operativo actual del plan maestro público.'},
+    fr:{'All route':'Itinéraire complet','N. America':'Amér. N.','S. America':'Amér. S.','Pacific':'Pacifique','SE Asia':'Asie SE','C. Asia':'Asie centrale','Levant':'Levant','W. Africa':'Afrique O.','E. Africa':'Afrique E.','Gulf':'Golfe','Finish':'Arrivée','This is the current operational corridor in the public master plan.':'Il s’agit du corridor opérationnel actuel dans le plan directeur public.'},
+    pt:{'All route':'Rota completa','N. America':'Amér. N.','S. America':'Amér. S.','Pacific':'Pacífico','SE Asia':'SE Ásia','C. Asia':'Ásia central','Levant':'Levante','W. Africa':'África O.','E. Africa':'África E.','Gulf':'Golfo','Finish':'Fim','This is the current operational corridor in the public master plan.':'Este é o corredor operacional atual no plano mestre público.'}
+  };
+
   let legacyLocaleObserver=null,legacyLocaleScheduled=false;
   function legacyTranslate(raw){
     const text=String(raw||'').trim();
     if(!text||locale==='en')return text;
-    const dict={...(LEGACY_WORLD_TEXT[locale]||{}),...(LEGACY_EXTRA[locale]||{})};
+    const dict={...(LEGACY_WORLD_TEXT[locale]||{}),...(LEGACY_EXTRA[locale]||{}),...(LEGACY_SHORT[locale]||{})};
     if(dict[text])return dict[text];
     const exactKey=Object.keys(dict).find(k=>k.toLocaleLowerCase('en')===text.toLocaleLowerCase('en'));
     if(exactKey)return dict[exactKey];
@@ -287,6 +295,8 @@
     if(m)return `${t('country')} ${m[1]}/195`;
     m=text.match(/^Country\s+(\d+)\s*·\s*(.+)$/i);
     if(m)return `${t('country')} ${m[1]} · ${legacyTranslate(m[2])}`;
+    m=text.match(/^Day\s+(\d+)$/i);
+    if(m)return `${t('day')} ${m[1]}`;
     m=text.match(/^Segment\s+(\d+)\s*·\s*Day\s+([^·]+)\s*·\s*(.+)$/i);
     if(m)return `${t('segment')} ${m[1]} · ${t('day')} ${m[2].trim()} · ${m[3]}`;
     m=text.match(/^Segment\s+(\d+)\s*\/\s*(\d+)$/i);
