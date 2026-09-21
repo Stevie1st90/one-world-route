@@ -78,3 +78,29 @@ test('localhost service worker cannot keep stale QA bundles',()=>{
   assert.match(swSource,/self\.registration\.unregister/);
 });
 
+
+
+test('regional routes expose generic story and terrain APIs',()=>{
+  for(const token of ['platformStoryBtn','platformStoryHud','startRegionalStory','setRegionalTerrain','regionalTerrainStyle','regionalRouteGeoJson','focusRoute'])assert.match(source,new RegExp(token));
+  assert.match(source,/setTerrain:setRegionalTerrain/);
+  assert.match(source,/startStory:startRegionalStory/);
+});
+
+test('regional settings remain visible while legacy world search stays hidden',()=>{
+  assert.match(cssSource,/platform-regional-trip #searchBtn/);
+  assert.match(cssSource,/platform-regional-trip #infoBtn/);
+  assert.match(cssSource,/platform-regional-trip #settingsBtn/);
+  assert.match(cssSource,/platform-regional-trip \.top-actions\{display:flex\}/);
+});
+
+test('legacy terrain delegates trip URLs to platform terrain',async()=>{
+  const terrain=await readFile(new URL('../iteration9.js',import.meta.url),'utf8');
+  assert.match(terrain,/ONE_WORLD_PLATFORM/);
+  assert.match(terrain,/params\.has\('trip'\)/);
+});
+
+test('regional story does not reuse the legacy 194-leg range',()=>{
+  assert.match(source,/id="regionalRouteRange"/);
+  assert.doesNotMatch(source,/id="routeRange"[^\n]*currentTrip/);
+  assert.match(source,/currentTrip\.segments\.length/);
+});
