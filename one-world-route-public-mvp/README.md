@@ -81,3 +81,18 @@ The UI shows:
 
 A sourced route is not a booking engine. Exact departures, inventory and fares remain date-dependent and must be checked before purchase.
 
+### Cruise model demonstrator
+
+The Western Mediterranean Cruise Loop proves that cruise travel fits the same place → visit/stop → segment architecture without pretending that a cruise is a ferry or a border-free journey.
+
+The demonstrator models:
+- embarkation, port-call and disembarkation visits
+- repeated Barcelona home-port visits with distinct stop IDs
+- seven onboard nights across cruise segments
+- a sea day attached to the sea segment rather than represented as a fictional place
+- port-facility evidence independently from any ship/operator schedule
+- null ship, operator, berth, call times and price until a concrete sailing is selected
+- Schengen exit to Tunisia and re-entry in Spain as traveller-context-dependent border transitions
+
+The route is deliberately `illustrative-template`: official port sources prove that the ports support cruise traffic, but do not prove that one operator sells this exact sequence on a given date.
+
