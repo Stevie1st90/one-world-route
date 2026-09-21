@@ -46,6 +46,8 @@ jobs:
         run: node scripts/validate-public-data.mjs
       - name: Platform model tests
         run: node --test scripts/test-platform-model.mjs
+      - name: Platform formatter tests
+        run: node --test scripts/test-platform-i18n.mjs
       - name: Share page tests
         run: node --test scripts/test-share-pages.mjs
       - name: Platform navigation tests
