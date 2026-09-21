@@ -85,6 +85,7 @@ The generic platform is split by responsibility:
 - **discovery** — catalog facets and transparent Route Fit predicates
 - **extensions** — optional presenters for cruise, road/vehicle and border metadata
 - **i18n** — platform and legacy-world message data
+- **legacy localization** — DOM translation compatibility for the Flagship world renderer only
 - **map style** — shared terrain localization/branding for world and regional renderers
 - **platform bootstrap** — DOM orchestration, Story/Terrain controllers and renderer integration
 
