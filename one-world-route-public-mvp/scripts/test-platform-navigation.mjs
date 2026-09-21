@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','model.js','traveller.js','discovery.js','extensions.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','model.js','traveller.js','discovery.js','route-library.js','extensions.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -54,8 +54,10 @@ test('switching to flagship removes trip parameter but keeps language',()=>{
 });
 
 test('route library uses delegated click handling for dynamically filtered cards',()=>{
-  assert.match(source,/results\.addEventListener\('click'/);
-  assert.doesNotMatch(source,/\$\('\[data-platform-trip\]'\s*,\s*host\)\.forEach/);
+  const routeLibrary=moduleSources['route-library.js'];
+  assert.match(routeLibrary,/results\.addEventListener\('click'/);
+  assert.doesNotMatch(routeLibrary,/\$\('\[data-platform-trip\]'\s*,\s*host\)\.forEach/);
+  assert.doesNotMatch(source,/function routeCard\(/);
 });
 
 test('regional chapter controls bind NodeLists rather than a single element',()=>{
@@ -161,7 +163,8 @@ test('regional copy is visually reduced without removing overview content',()=>{
 
 
 test('route library exposes transparent Route Fit controls',()=>{
-  for(const token of ['platformFitToggle','platformFitFilters','platformRoutePace','platformRouteSeason','platformRouteParty','platformRouteStart'])assert.match(source,new RegExp(token));
+  const routeLibrary=moduleSources['route-library.js'];
+  for(const token of ['platformFitToggle','platformFitFilters','platformRoutePace','platformRouteSeason','platformRouteParty','platformRouteStart'])assert.match(routeLibrary,new RegExp(token));
   const discovery=moduleSources['discovery.js'];
   assert.match(discovery,/fit\.pace===filters\.pace/);
   assert.match(discovery,/fit\.seasons/);
@@ -172,12 +175,15 @@ test('route library exposes transparent Route Fit controls',()=>{
 
 
 test('platform core delegates reusable concerns to modules',()=>{
+  const routeLibrary=moduleSources['route-library.js'];
   assert.match(source,/const Model=PLATFORM_MODULES\.model/);
   assert.match(source,/const Traveller=PLATFORM_MODULES\.traveller/);
   assert.match(source,/const Discovery=PLATFORM_MODULES\.discovery/);
   assert.match(source,/const Extensions=PLATFORM_MODULES\.extensions/);
-  assert.match(source,/Discovery\.facets\(catalog\)/);
-  assert.match(source,/Discovery\.filter\(catalog/);
+  assert.match(source,/const RouteLibrary=PLATFORM_MODULES\.routeLibrary/);
+  assert.match(source,/RouteLibrary\.open\(/);
+  assert.match(routeLibrary,/Discovery\.facets\(catalog\)/);
+  assert.match(routeLibrary,/Discovery\.filter\(catalog/);
   assert.match(source,/Traveller\.load\(/);
   assert.match(source,/Model\.routeGeometry\(/);
 });
