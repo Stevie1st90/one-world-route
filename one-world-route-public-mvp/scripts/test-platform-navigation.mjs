@@ -118,3 +118,16 @@ test('regional Story control is not hidden behind desktop side panels',()=>{
   assert.match(cssSource,/\.platform-story-btn\{[^}]*left:50%[^}]*bottom:18px/);
   assert.match(cssSource,/\.platform-story-mode \.mobile-panel-btn\{display:none!important\}/);
 });
+
+
+test('regional terrain attribution stays compact and clear of mobile controls',()=>{
+  assert.match(source,/attributionControl:false/);
+  assert.match(source,/AttributionControl\(\{compact:true\}\)/);
+  assert.match(cssSource,/maplibregl-ctrl-bottom-left\{left:316px;bottom:88px\}/);
+  assert.match(cssSource,/@media\(max-width:820px\)[\s\S]*maplibregl-ctrl-bottom-left\{left:8px;bottom:56px\}/);
+});
+
+test('regional overview duration uses a dedicated non-overlapping unit style',()=>{
+  assert.match(source,/platform-duration-number/);
+  assert.match(cssSource,/\.platform-duration-number\{display:flex/);
+});
