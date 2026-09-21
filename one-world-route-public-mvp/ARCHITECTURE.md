@@ -80,13 +80,15 @@ The generic platform is split by responsibility:
 - **runtime registry** — extension registration and discovery
 - **model** — place/stop/segment graph helpers, route geometry, bounds and capability queries
 - **traveller** — allowlisted local-storage planning context
+- **UI primitives** — shared dialogs, global route/traveller actions, toasts and regional settings snapshots
+- **navigation** — reusable trip URL construction and regional URL state
 - **discovery** — catalog facets and transparent Route Fit predicates
 - **extensions** — optional presenters for cruise, road/vehicle and border metadata
 - **i18n** — platform and legacy-world message data
 - **map style** — shared terrain localization/branding for world and regional renderers
 - **platform bootstrap** — DOM orchestration, Story/Terrain controllers and renderer integration
 
-Core route rendering must not branch on a specific trip ID or trip kind. A normal new route is data-only. Specialized behavior must be introduced as a namespaced extension and registered presenter/validator.
+Core route rendering must not branch on a specific trip ID or trip kind. A normal new route is data-only. Specialized behavior must be introduced as a namespaced extension and registered presenter/validator. Extension validation is split into `scripts/platform-extension-validators/` modules loaded through a registry, so adding a new specialization does not require editing the core platform-data validator.
 
 Current pilot data has been migrated to namespaced extensions:
 - `extensions.cruise`
