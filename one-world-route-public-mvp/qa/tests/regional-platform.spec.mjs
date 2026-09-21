@@ -3,12 +3,82 @@ import {readFile} from 'node:fs/promises';
 
 const readJson=async url=>JSON.parse(await readFile(url,'utf8'));
 const catalog=await readJson(new URL('../../data/platform/trips.json',import.meta.url));
+const flagship=catalog.trips.find(item=>item.id===catalog.defaultTripId);
 const regional=catalog.trips.filter(item=>item.renderer==='regional-globe');
 
 const datasets=new Map();
+test('flagship shell and route invariants work',async({page,isMobile},testInfo)=>{
+  test.setTimeout(90000);
+  const pageErrors=capturePageErrors(page);
+  await openFlagship(page);
+
+  await expect(page.locator('#routeRange')).toHaveValue('1');
+  await expect(page.locator('#filterCount')).toContainText(String(flagship.metrics.internationalLegs));
+  await expect(page.locator('.brand small')).toContainText('195 countries');
+  await expect(page.locator('#settingsBtn')).toBeVisible();
+  await expect(page.locator('#infoBtn')).toBeVisible();
+
+  const viewport=page.viewportSize();
+  for(const selector of ['.topbar','.globe-stage','#timeline']){
+    const box=await page.locator(selector).boundingBox();
+    expect(box,selector+' missing').toBeTruthy();
+    expect(box.x,selector+' left overflow').toBeGreaterThanOrEqual(-1);
+    expect(box.x+box.width,selector+' right overflow').toBeLessThanOrEqual(viewport.width+1);
+  }
+
+  if(isMobile){
+    await expect(page.locator('#mobileFilters')).toBeVisible();
+    await page.locator('#mobileFilters').click();
+    await expect(page.locator('#leftPanel')).toHaveClass(/mobile-open/);
+    await page.locator('#closeFilters').click();
+    await expect(page.locator('#leftPanel')).not.toHaveClass(/mobile-open/);
+  }
+
+  await page.locator('#platformRouteBtn').click();
+  await expect(page.locator('#platformRouteModal')).toBeVisible();
+  await expect(page.locator('[data-platform-trip]')).toHaveCount(catalog.trips.length);
+  await page.locator('#platformRouteModal .platform-x').click();
+
+  await page.locator('#platformTravellerBtn').click();
+  await expect(page.locator('#platformTravellerModal')).toBeVisible();
+  await expect(page.locator('#platformTravellerForm [name="passportNumber"]')).toHaveCount(0);
+  await page.locator('#platformTravellerModal .platform-x').click();
+
+  expect(pageErrors,'flagship runtime page errors').toEqual([]);
+  await page.screenshot({path:testInfo.outputPath('world-195-'+testInfo.project.name+'.png'),fullPage:true});
+});
+
+test('route library can switch flagship to regional and back',async({page},testInfo)=>{
+  test.setTimeout(90000);
+  const pageErrors=capturePageErrors(page);
+  const target=regional[0];
+  await openFlagship(page);
+
+  await page.locator('#platformRouteBtn').click();
+  await page.locator(`[data-platform-trip="${target.id}"]`).click();
+  await expect(page).toHaveURL(new RegExp('trip='+target.id));
+  await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:20000});
+  await expect(page.locator('.platform-stop')).toHaveCount(target.metrics.stops);
+
+  await page.locator('#platformRouteBtn').click();
+  await page.locator(`[data-platform-trip="${flagship.id}"]`).click();
+  await expect(page).not.toHaveURL(/trip=/);
+  await expect(page.locator('body')).not.toHaveClass(/platform-regional-trip/,{timeout:20000});
+  await expect(page.locator('#routeRange')).toHaveAttribute('max',String(flagship.metrics.internationalLegs));
+
+  expect(pageErrors,'route-switch runtime page errors').toEqual([]);
+  await page.screenshot({path:testInfo.outputPath('route-switch-'+testInfo.project.name+'.png'),fullPage:true});
+});
+
 for(const item of regional){
   const rel=item.dataset.replace(/^\.\//,'');
   datasets.set(item.id,await readJson(new URL('../../'+rel,import.meta.url)));
+}
+
+function capturePageErrors(page){
+  const errors=[];
+  page.on('pageerror',error=>errors.push(error.message));
+  return errors;
 }
 
 async function openRegional(page,item){
@@ -17,9 +87,18 @@ async function openRegional(page,item){
   await expect(page.locator('.platform-stop')).toHaveCount(item.metrics.stops,{timeout:10000});
 }
 
+async function openFlagship(page){
+  await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('body')).not.toHaveClass(/platform-regional-trip/,{timeout:20000});
+  await expect(page.locator('#routeRange')).toHaveAttribute('max',String(flagship.metrics.internationalLegs),{timeout:20000});
+  await expect(page.locator('#platformRouteBtn')).toBeVisible({timeout:10000});
+  await expect(page.locator('#platformTravellerBtn')).toBeVisible({timeout:10000});
+}
+
 for(const item of regional){
   test(item.id+' shell, navigation, context and story work',async({page,isMobile},testInfo)=>{
     test.setTimeout(90000);
+    const pageErrors=capturePageErrors(page);
     const trip=datasets.get(item.id);
     await openRegional(page,item);
 
@@ -85,6 +164,7 @@ for(const item of regional){
       await expect(page.locator('body')).not.toHaveClass(/platform-story-mode/);
     }
 
+    expect(pageErrors,item.id+' runtime page errors').toEqual([]);
     await page.screenshot({path:testInfo.outputPath(item.id+'-'+testInfo.project.name+'.png'),fullPage:true});
   });
 }
@@ -92,6 +172,7 @@ for(const item of regional){
 test('regional terrain activates and exits on the shared engine',async({page,isMobile},testInfo)=>{
   test.skip(isMobile);
   test.setTimeout(90000);
+  const pageErrors=capturePageErrors(page);
   const item=regional.find(entry=>entry.capabilities.includes('terrain'));
   expect(item).toBeTruthy();
   await openRegional(page,item);
@@ -104,4 +185,5 @@ test('regional terrain activates and exits on the shared engine',async({page,isM
 
   await page.evaluate(()=>window.ONE_WORLD_PLATFORM.setTerrain(false));
   await expect(page.locator('body')).not.toHaveClass(/terrain-view/);
+  expect(pageErrors,'terrain runtime page errors').toEqual([]);
 });
