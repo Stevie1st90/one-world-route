@@ -36,6 +36,7 @@ jobs:
           node --check platform/route-library.js
           node --check platform/regional-shell.js
           node --check platform/regional-detail.js
+          node --check platform/regional-globe.js
           node --check platform/story.js
           node --check platform/extensions.js
           node --check features.bundle.js
