@@ -29,6 +29,7 @@ jobs:
           node --check platform/model.js
           node --check platform/traveller.js
           node --check platform/traveller-ui.js
+          node --check platform/ui.js
           node --check platform/discovery.js
           node --check platform/route-library.js
           node --check platform/story.js
