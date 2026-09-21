@@ -139,6 +139,7 @@ async function expectMobileViewportShell(page){
     return {
       innerWidth:window.innerWidth,
       scrollX:window.scrollX,
+      appScrollLeft:document.querySelector('#app')?.scrollLeft||0,
       visualViewport:window.visualViewport?{
         width:window.visualViewport.width,
         offsetLeft:window.visualViewport.offsetLeft,
@@ -150,6 +151,7 @@ async function expectMobileViewportShell(page){
     };
   });
   expect(state.scrollX,'flagship mobile horizontal scroll').toBe(0);
+  expect(state.appScrollLeft,'flagship app internal horizontal scroll').toBe(0);
   expect(state.app?.left,'flagship app left edge').toBeGreaterThanOrEqual(-1);
   expect(state.app?.right,'flagship app must span viewport').toBeGreaterThanOrEqual(state.innerWidth-1);
   expect(state.topbar?.right,'flagship topbar must reach viewport edge').toBeGreaterThanOrEqual(state.innerWidth-9);
@@ -169,6 +171,7 @@ async function expectMobilePanelsClosed(page){
   await expect(left).toBeHidden();
   await expect(right).toBeHidden();
   await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
+  await expect.poll(()=>page.evaluate(()=>document.querySelector('#app')?.scrollLeft||0)).toBe(0);
 }
 
 async function expectActiveLabelsSeparated(page){
