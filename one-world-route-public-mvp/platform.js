@@ -85,21 +85,68 @@
     pt:{'Europe I':'Europa I','North & Central America':'América do Norte e Central','Caribbean':'Caraíbas','South America':'América do Sul','South Pacific':'Pacífico Sul','Southeast Asia & Indian Ocean':'Sudeste Asiático e Oceano Índico','East & Central Asia':'Ásia Oriental e Central','Levant & North Africa':'Levante e Norte de África','West & Central Africa':'África Ocidental e Central','Southern & East Africa':'África Austral e Oriental','Gulf & Levant':'Golfo e Levante','Europe II · Finish':'Europa II · Fim'}
   };
 
+  const LEGACY_EXTRA={
+    de:{
+      'Europe':'Europa','Western Europe':'Westeuropa','Eastern Europe':'Osteuropa','Northern Europe':'Nordeuropa','Southern Europe':'Südeuropa','Asia':'Asien','Africa':'Afrika','Americas':'Amerika','Oceania':'Ozeanien',
+      'Ready':'Bereit','READY':'BEREIT','Blocked':'Blockiert','BLOCKED':'BLOCKIERT','Pending':'Ausstehend','Conditional':'Bedingt','Critical':'Kritisch','Verified':'Verifiziert','Not verified':'Nicht verifiziert','Not recorded':'Nicht erfasst','Not started':'Nicht gestartet',
+      'Action':'Aktion','From':'Von','Duration':'Dauer','Distance unknown':'Distanz unbekannt','Mode to confirm':'Verkehrsmittel prüfen','Plan depart':'Plan-Abfahrt','Plan arrive':'Plan-Ankunft','Planned':'Geplant','Planned start':'Geplanter Start','Actual status':'Ist-Status','Actual spend':'Tatsächliche Ausgaben','Last update':'Letzte Aktualisierung',
+      'Clear / approved':'Frei / genehmigt','Conditional feasibility':'Bedingte Machbarkeit','Critical feasibility':'Kritische Machbarkeit','Plannable / verified':'Planbar / verifiziert','Countries in legs':'Länder in Legs','Countries without coordinates':'Länder ohne Koordinaten','Cumulative transport budget':'Kumuliertes Verkehrsbudget','Other hidden':'Weitere ausgeblendet',
+      'Next segment':'Nächstes Segment','Play / pause journey':'Reise starten / pausieren','Play journey from here':'Reise ab hier starten','Play or pause journey':'Reise starten oder pausieren','Close':'Schließen','Copy the URL from your browser':'URL aus dem Browser kopieren',
+      'Loading 3D globe terrain…':'3D-Globus-Terrain wird geladen…','Loading globe, map and elevation data…':'Globus, Karte und Höhendaten werden geladen…','Drag to rotate · scroll to zoom · relief appears as you move closer':'Ziehen zum Drehen · scrollen zum Zoomen · Relief erscheint beim Annähern',
+      '3D globe terrain mode unavailable':'3D-Globus-Terrain nicht verfügbar','3D globe terrain could not be initialized. Standard globe restored.':'3D-Terrain konnte nicht initialisiert werden. Standardglobus wiederhergestellt.','3D globe terrain could not be loaded. Standard globe restored.':'3D-Terrain konnte nicht geladen werden. Standardglobus wiederhergestellt.',
+      'The journey begins across Europe.':'Die Reise beginnt durch Europa.','Across the Atlantic into North America.':'Über den Atlantik nach Nordamerika.','Island connections and short regional hops.':'Inselverbindungen und kurze regionale Etappen.','A continuous line through South America.':'Eine zusammenhängende Route durch Südamerika.','The route opens into the Pacific.':'Die Route öffnet sich in den Pazifik.','Dense regional links and island crossings.':'Dichte Regionalverbindungen und Inselquerungen.','Long-distance transitions across Asia.':'Langstreckenübergänge durch Asien.','A compact but operationally complex chapter.':'Ein kompaktes, operativ anspruchsvolles Kapitel.','Overland and air corridors across West Africa.':'Land- und Flugkorridore durch Westafrika.','The route turns south, then back north-east.':'Die Route führt nach Süden und anschließend wieder nach Nordosten.','The final Middle East sequence.':'Die letzte Nahost-Sequenz.','The closing run back to Germany.':'Die abschließende Etappe zurück nach Deutschland.','The planned continuous route returns to Germany.':'Die geplante zusammenhängende Route kehrt nach Deutschland zurück.'
+    },
+    it:{
+      'Europe':'Europa','Western Europe':'Europa occidentale','Eastern Europe':'Europa orientale','Northern Europe':'Europa settentrionale','Southern Europe':'Europa meridionale','Asia':'Asia','Africa':'Africa','Americas':'Americhe','Oceania':'Oceania',
+      'Ready':'Pronto','READY':'PRONTO','Blocked':'Bloccato','BLOCKED':'BLOCCATO','Pending':'In sospeso','Conditional':'Condizionato','Critical':'Critico','Verified':'Verificato','Not verified':'Non verificato','Not recorded':'Non registrato','Not started':'Non iniziato',
+      'Action':'Azione','From':'Da','Duration':'Durata','Distance unknown':'Distanza sconosciuta','Mode to confirm':'Mezzo da confermare','Plan depart':'Partenza prevista','Plan arrive':'Arrivo previsto','Planned':'Pianificato','Planned start':'Partenza prevista','Actual status':'Stato reale','Actual spend':'Spesa reale','Last update':'Ultimo aggiornamento',
+      'Next segment':'Tratta successiva','Play / pause journey':'Avvia / pausa viaggio','Play journey from here':'Avvia il viaggio da qui','Close':'Chiudi','Copy the URL from your browser':'Copia l’URL dal browser',
+      'Loading 3D globe terrain…':'Caricamento terreno 3D…','Loading globe, map and elevation data…':'Caricamento globo, mappa e dati altimetrici…','Drag to rotate · scroll to zoom · relief appears as you move closer':'Trascina per ruotare · scorri per zoomare · il rilievo appare avvicinandoti'
+    },
+    es:{
+      'Europe':'Europa','Western Europe':'Europa occidental','Eastern Europe':'Europa oriental','Northern Europe':'Europa septentrional','Southern Europe':'Europa meridional','Asia':'Asia','Africa':'África','Americas':'América','Oceania':'Oceanía',
+      'Ready':'Listo','READY':'LISTO','Blocked':'Bloqueado','BLOCKED':'BLOQUEADO','Pending':'Pendiente','Conditional':'Condicional','Critical':'Crítico','Verified':'Verificado','Not verified':'No verificado','Not recorded':'No registrado','Not started':'No iniciado',
+      'Action':'Acción','From':'Desde','Duration':'Duración','Distance unknown':'Distancia desconocida','Mode to confirm':'Transporte por confirmar','Plan depart':'Salida prevista','Plan arrive':'Llegada prevista','Planned':'Planificado','Planned start':'Inicio previsto','Actual status':'Estado real','Actual spend':'Gasto real','Last update':'Última actualización',
+      'Next segment':'Siguiente tramo','Play / pause journey':'Reproducir / pausar viaje','Play journey from here':'Reproducir desde aquí','Close':'Cerrar','Copy the URL from your browser':'Copia la URL del navegador',
+      'Loading 3D globe terrain…':'Cargando terreno 3D…','Loading globe, map and elevation data…':'Cargando globo, mapa y elevación…','Drag to rotate · scroll to zoom · relief appears as you move closer':'Arrastra para girar · desplázate para acercar · el relieve aparece al aproximarte'
+    },
+    fr:{
+      'Europe':'Europe','Western Europe':'Europe occidentale','Eastern Europe':'Europe orientale','Northern Europe':'Europe du Nord','Southern Europe':'Europe du Sud','Asia':'Asie','Africa':'Afrique','Americas':'Amériques','Oceania':'Océanie',
+      'Ready':'Prêt','READY':'PRÊT','Blocked':'Bloqué','BLOCKED':'BLOQUÉ','Pending':'En attente','Conditional':'Conditionnel','Critical':'Critique','Verified':'Vérifié','Not verified':'Non vérifié','Not recorded':'Non enregistré','Not started':'Non commencé',
+      'Action':'Action','From':'Depuis','Duration':'Durée','Distance unknown':'Distance inconnue','Mode to confirm':'Transport à confirmer','Plan depart':'Départ prévu','Plan arrive':'Arrivée prévue','Planned':'Planifié','Planned start':'Départ prévu','Actual status':'État réel','Actual spend':'Dépenses réelles','Last update':'Dernière mise à jour',
+      'Next segment':'Segment suivant','Play / pause journey':'Lire / mettre en pause','Play journey from here':'Lire le voyage depuis ici','Close':'Fermer','Copy the URL from your browser':'Copiez l’URL du navigateur',
+      'Loading 3D globe terrain…':'Chargement du relief 3D…','Loading globe, map and elevation data…':'Chargement du globe, de la carte et du relief…','Drag to rotate · scroll to zoom · relief appears as you move closer':'Faites glisser pour tourner · faites défiler pour zoomer · le relief apparaît en vous rapprochant'
+    },
+    pt:{
+      'Europe':'Europa','Western Europe':'Europa Ocidental','Eastern Europe':'Europa Oriental','Northern Europe':'Europa do Norte','Southern Europe':'Europa do Sul','Asia':'Ásia','Africa':'África','Americas':'Américas','Oceania':'Oceania',
+      'Ready':'Pronto','READY':'PRONTO','Blocked':'Bloqueado','BLOCKED':'BLOQUEADO','Pending':'Pendente','Conditional':'Condicional','Critical':'Crítico','Verified':'Verificado','Not verified':'Não verificado','Not recorded':'Não registado','Not started':'Não iniciado',
+      'Action':'Ação','From':'De','Duration':'Duração','Distance unknown':'Distância desconhecida','Mode to confirm':'Transporte a confirmar','Plan depart':'Partida prevista','Plan arrive':'Chegada prevista','Planned':'Planeado','Planned start':'Início previsto','Actual status':'Estado real','Actual spend':'Despesa real','Last update':'Última atualização',
+      'Next segment':'Próximo trecho','Play / pause journey':'Reproduzir / pausar viagem','Play journey from here':'Reproduzir a partir daqui','Close':'Fechar','Copy the URL from your browser':'Copie o URL do navegador',
+      'Loading 3D globe terrain…':'A carregar terreno 3D…','Loading globe, map and elevation data…':'A carregar globo, mapa e elevação…','Drag to rotate · scroll to zoom · relief appears as you move closer':'Arraste para rodar · desloque para ampliar · o relevo aparece ao aproximar'
+    }
+  };
+
   let legacyLocaleObserver=null,legacyLocaleScheduled=false;
   function legacyTranslate(raw){
     const text=String(raw||'').trim();
     if(!text||locale==='en')return text;
-    const dict=LEGACY_WORLD_TEXT[locale]||{};
+    const dict={...(LEGACY_WORLD_TEXT[locale]||{}),...(LEGACY_EXTRA[locale]||{})};
     if(dict[text])return dict[text];
+    const exactKey=Object.keys(dict).find(k=>k.toLocaleLowerCase('en')===text.toLocaleLowerCase('en'));
+    if(exactKey)return dict[exactKey];
     if(LEGACY_PHASES[locale]?.[text])return LEGACY_PHASES[locale][text];
-    let m=text.match(/^Country\s+(\d+)\s*\/\s*195$/i);
+    let m=text.match(/^(\d{2})\s+(.+)$/);
+    if(m&&LEGACY_PHASES[locale]?.[m[2]])return `${m[1]} ${LEGACY_PHASES[locale][m[2]]}`;
+    m=text.match(/^CHAPTER\s+(\d+)\s*\/\s*(\d+)$/i);
+    if(m)return `${locale==='de'?'KAPITEL':locale==='it'?'CAPITOLO':locale==='es'?'CAPÍTULO':locale==='fr'?'CHAPITRE':locale==='pt'?'CAPÍTULO':'CHAPTER'} ${m[1]} / ${m[2]}`;
+    m=text.match(/^Country\s+(\d+)\s*\/\s*195$/i);
     if(m)return `${t('country')} ${m[1]}/195`;
     m=text.match(/^Country\s+(\d+)\s*·\s*(.+)$/i);
-    if(m)return `${t('country')} ${m[1]} · ${m[2]}`;
+    if(m)return `${t('country')} ${m[1]} · ${legacyTranslate(m[2])}`;
     m=text.match(/^Segment\s+(\d+)\s*·\s*Day\s+([^·]+)\s*·\s*(.+)$/i);
-    if(m)return `${t('segments')} ${m[1]} · ${t('day')} ${m[2].trim()} · ${m[3]}`;
+    if(m)return `${t('segment')} ${m[1]} · ${t('day')} ${m[2].trim()} · ${m[3]}`;
     m=text.match(/^Segment\s+(\d+)\s*\/\s*(\d+)$/i);
-    if(m)return `${t('segments')} ${m[1]} / ${m[2]}`;
+    if(m)return `${t('segment')} ${m[1]} / ${m[2]}`;
     return text;
   }
 
