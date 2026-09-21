@@ -9,10 +9,17 @@ let failed = false;
 const fail = m => { failed = true; console.error('PLATFORM VALIDATION:', m); };
 const ids = new Set();
 const slugs = new Set();
+const supportedLocales = Array.isArray(catalog.supportedLocales)?catalog.supportedLocales:[];
+if (!supportedLocales.length) fail('Catalog must declare supportedLocales');
+if (!supportedLocales.includes(catalog.defaultLocale)) fail('defaultLocale must be included in supportedLocales');
 if (!Array.isArray(catalog.trips) || catalog.trips.length < 2) fail('Trip catalog must contain the flagship and at least one reusable trip');
 for (const trip of catalog.trips || []) {
   if (!trip.id || ids.has(trip.id)) fail('Trip IDs must be unique: '+trip.id); else ids.add(trip.id);
   if (!trip.slug || slugs.has(trip.slug)) fail('Trip slugs must be unique: '+trip.slug); else slugs.add(trip.slug);
+  for (const lang of supportedLocales) {
+    if (!String(trip.title?.[lang]||'').trim()) fail(trip.id+': missing title for '+lang);
+    if (!String(trip.subtitle?.[lang]||'').trim()) fail(trip.id+': missing subtitle for '+lang);
+  }
 }
 if (!ids.has(catalog.defaultTripId)) fail('defaultTripId must resolve to a catalog trip');
 const flagship = (catalog.trips || []).find(t => t.id === 'world-195');
