@@ -132,4 +132,8 @@ body.platform-regional-trip.terrain-view .globe-stage:before{
     linear-gradient(180deg,rgba(5,10,17,.18),transparent 16%,transparent 82%,rgba(5,10,17,.24));
 }
 
+.platform-fit-head{display:flex;justify-content:flex-end;margin:-2px 0 8px}.platform-fit-head button{border:0;background:transparent;color:#82dff5;font-size:8px;font-weight:700;cursor:pointer;padding:4px 0}.platform-fit-filters{display:grid;grid-template-columns:auto repeat(4,minmax(120px,1fr));gap:8px;align-items:end;padding:10px 12px;margin:0 0 10px;border:1px solid rgba(89,221,255,.1);border-radius:13px;background:linear-gradient(145deg,rgba(89,221,255,.035),rgba(255,255,255,.012))}.platform-fit-title{align-self:center;font-size:8px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#9adff0;padding-right:4px}.platform-fit-filters label{display:grid;gap:5px}.platform-fit-filters label>span{font-size:7px;text-transform:uppercase;letter-spacing:.09em;color:#71849a}.platform-fit-filters select{height:36px;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:#101a29;color:#dce8f6;padding:0 9px;font-size:9px}.platform-fit-filters select:focus{outline:none;border-color:rgba(89,221,255,.32)}
+@media(max-width:820px){.platform-fit-filters{grid-template-columns:1fr 1fr}.platform-fit-title{grid-column:1/-1}.platform-fit-head{justify-content:flex-start}}
+@media(max-width:520px){.platform-fit-filters{grid-template-columns:1fr}.platform-fit-title{grid-column:1}.platform-fit-head button{font-size:9px}}
+
 
