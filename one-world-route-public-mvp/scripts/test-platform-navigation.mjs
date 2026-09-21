@@ -154,3 +154,13 @@ test('regional copy is visually reduced without removing overview content',()=>{
   assert.match(cssSource,/-webkit-line-clamp:2/);
   assert.match(source,/detail-copy/);
 });
+
+
+test('route library exposes transparent Route Fit controls',()=>{
+  for(const token of ['platformFitToggle','platformFitFilters','platformRoutePace','platformRouteSeason','platformRouteParty','platformRouteStart'])assert.match(source,new RegExp(token));
+  assert.match(source,/fit\.pace===pace/);
+  assert.match(source,/fit\.seasons/);
+  assert.match(source,/fit\.party/);
+  assert.match(source,/fit\.startRegion===start/);
+  assert.match(cssSource,/\.platform-fit-filters/);
+});
