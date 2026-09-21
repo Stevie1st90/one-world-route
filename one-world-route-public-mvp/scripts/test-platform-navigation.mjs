@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','model.js','traveller.js','discovery.js','extensions.js'];
+const moduleFiles=['runtime.js','i18n.js','model.js','traveller.js','discovery.js','extensions.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -204,4 +204,13 @@ test('traveller storage service allowlists non-secret planning fields',()=>{
   const traveller=moduleSources['traveller.js'];
   assert.match(traveller,/const ALLOWED=/);
   assert.doesNotMatch(traveller,/passportNumber|payment|bookingReference/i);
+});
+
+
+test('platform localization is isolated from bootstrap logic',()=>{
+  const i18n=moduleSources['i18n.js'];
+  assert.match(i18n,/legacyWorldText:LEGACY_WORLD_TEXT/);
+  assert.match(i18n,/supportedLocales/);
+  assert.doesNotMatch(source,/const I18N = \{/);
+  assert.doesNotMatch(source,/const LEGACY_WORLD_TEXT = \{/);
 });
