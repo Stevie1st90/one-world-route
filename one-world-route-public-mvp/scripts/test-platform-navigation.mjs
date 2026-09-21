@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','regional-selection.js','story.js','terrain.js','extensions.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','regional-selection.js','story.js','terrain.js','extensions.js','extensions/cruise.js','extensions/road.js','extensions/border.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -336,17 +336,30 @@ test('regional detail renderer stays generic and extension-driven',()=>{
   assert.doesNotMatch(source,/function renderTripOverview|function renderStopDetail|function renderSegmentDetail/);
 });
 
-test('trip specialization lives in registered extensions rather than trip-kind branches',()=>{
+test('trip specialization lives in registered extension presenter modules',()=>{
   const extensions=moduleSources['extensions.js'];
+  const cruise=moduleSources['extensions/cruise.js'];
+  const road=moduleSources['extensions/road.js'];
+  const border=moduleSources['extensions/border.js'];
   const detail=moduleSources['regional-detail.js'];
-  assert.match(extensions,/registerExtension\('cruise'/);
-  assert.match(extensions,/registerExtension\('road'/);
-  assert.match(extensions,/registerExtension\('border'/);
+  assert.match(cruise,/registerExtension\('cruise'/);
+  assert.match(road,/registerExtension\('road'/);
+  assert.match(border,/registerExtension\('border'/);
+  assert.doesNotMatch(extensions,/registerExtension\(/);
+  assert.match(extensions,/runtime\.listExtensions\(\)/);
   assert.match(detail,/composeTripOverview/);
   assert.match(detail,/composeStopDetail/);
   assert.match(detail,/composeSegmentDetail/);
   assert.doesNotMatch(source,/currentTrip\.kind\s*===\s*['"]cruise['"]/);
   assert.doesNotMatch(source,/currentTrip\.kind\s*===\s*['"]road-trip['"]/);
+});
+
+test('extension presenter modules depend only on runtime and model registries',()=>{
+  for(const name of ['extensions/cruise.js','extensions/road.js','extensions/border.js']){
+    const module=moduleSources[name];
+    assert.match(module,/const runtime=root\.runtime,model=root\.model/);
+    assert.doesNotMatch(module,/currentTrip|document\.|ONE_WORLD_ROUTE_GLOBE|trip\.kind\s*===|trip\.id\s*===/);
+  }
 });
 
 test('model extension adapter prefers namespaced extensions and supports migration aliases',()=>{
