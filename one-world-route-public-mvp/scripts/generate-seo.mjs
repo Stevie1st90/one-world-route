@@ -2,7 +2,7 @@ import {readFile,writeFile} from 'node:fs/promises';
 const route=JSON.parse(await readFile(new URL('../data/public-route.json',import.meta.url),'utf8'));
 const geo=JSON.parse(await readFile(new URL('../data/country-centroids.json',import.meta.url),'utf8'));
 const platform=JSON.parse(await readFile(new URL('../data/platform/trips.json',import.meta.url),'utf8'));
-const langs=['en','de','it','es','fr','pt'];
+const langs=Array.isArray(platform.supportedLocales)&&platform.supportedLocales.length?platform.supportedLocales:['en'];
 const display=new Intl.DisplayNames(['en'],{type:'region'}),gm=new Map(geo.map(c=>[c.name,c]));
 const en=n=>{const c=gm.get(n);try{return c?.cca2?display.of(c.cca2):n}catch{return n}};
 const slug=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
