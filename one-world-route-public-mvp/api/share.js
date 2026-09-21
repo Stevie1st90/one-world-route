@@ -26,7 +26,7 @@ const tripJsonLd=(trip,lang,url)=>JSON.stringify({
   name:localized(trip.title,lang),
   description:localized(trip.subtitle,lang),
   url,
-  touristType:trip.kind==='cruise'?'Cruise tourism':trip.kind==='world'?'Long-term world travel':trip.kind==='round-trip'?'Round trip':'Travel itinerary'
+  touristType:trip.kind==='cruise'?'Cruise tourism':trip.kind==='world'?'Long-term world travel':trip.kind==='round-trip'?'Round trip':trip.kind==='road-trip'?'Road trip':'Travel itinerary'
 }).replace(/</g,'\\u003c');
 
 module.exports=(req,res)=>{
