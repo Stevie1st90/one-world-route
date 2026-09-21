@@ -287,6 +287,34 @@
         "rentalCrossBorderApproved"
       ],
       "rule": "Tolls, low-emission zones, rental permissions and urban access must not be resolved without the relevant vehicle and traveller context."
+    },
+    "discoveryFit": {
+      "pace": [
+        "relaxed",
+        "balanced",
+        "active"
+      ],
+      "seasons": [
+        "spring",
+        "summer",
+        "autumn",
+        "winter",
+        "multi-season"
+      ],
+      "party": [
+        "solo",
+        "couples",
+        "friends",
+        "families"
+      ],
+      "startRegion": "normalized region slug",
+      "accessibility": [
+        "standard-check",
+        "operator-dependent",
+        "vehicle-dependent",
+        "complex-planning"
+      ],
+      "rule": "Route Fit is transparent editorial discovery metadata. It filters routes; it must not be presented as a safety, medical, legal or accessibility guarantee."
     }
   }
 }
