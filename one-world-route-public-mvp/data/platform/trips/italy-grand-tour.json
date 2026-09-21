@@ -3,9 +3,16 @@
   "id": "italy-grand-tour",
   "slug": "italy-grand-tour",
   "kind": "round-trip",
-  "status": "editorial-template",
+  "status": "sourced-beta",
   "defaultLocale": "en",
-  "supportedLocales": ["en", "de", "it", "es", "fr", "pt"],
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
   "title": {
     "en": "Italy Grand Tour",
     "de": "Große Italien-Rundreise",
@@ -15,74 +22,1068 @@
     "pt": "Grande volta pela Itália"
   },
   "summary": {
-    "en": "An 18-day editorial template combining major cities, the south, the Adriatic, Venice, the Dolomites and Tuscany. Transport details, prices and entry requirements must be checked for the traveller's own dates and context.",
-    "de": "Eine redaktionelle 18-Tage-Vorlage mit großen Städten, Süditalien, Adria, Venedig, Dolomiten und Toskana. Verkehr, Preise und Einreisebedingungen müssen für die eigenen Reisedaten und den Traveller Context geprüft werden.",
-    "it": "Un itinerario editoriale di 18 giorni tra grandi città, sud, Adriatico, Venezia, Dolomiti e Toscana. Trasporti, prezzi e requisiti d'ingresso vanno verificati per date e profilo del viaggiatore.",
-    "es": "Una plantilla editorial de 18 días por grandes ciudades, el sur, el Adriático, Venecia, los Dolomitas y la Toscana. Transporte, precios y requisitos de entrada deben verificarse según las fechas y el perfil del viajero.",
-    "fr": "Un modèle éditorial de 18 jours entre grandes villes, sud, Adriatique, Venise, Dolomites et Toscane. Transports, prix et formalités doivent être vérifiés selon les dates et le profil du voyageur.",
-    "pt": "Um roteiro editorial de 18 dias por grandes cidades, sul, Adriático, Veneza, Dolomitas e Toscana. Transporte, preços e requisitos de entrada devem ser verificados para as datas e o perfil do viajante."
+    "en": "An 18-day sourced planning route combining major cities, the south, the Adriatic, Venice, the Dolomites and Tuscany. Published operator data is separated from schedule-dependent or still-unresolved connections.",
+    "de": "Eine quellenbasierte 18-Tage-Planungsroute mit großen Städten, Süditalien, Adria, Venedig, Dolomiten und Toskana. Veröffentlichte Betreiberangaben werden klar von fahrplanabhängigen oder noch offenen Verbindungen getrennt.",
+    "it": "Un itinerario di pianificazione di 18 giorni con fonti, tra grandi città, sud, Adriatico, Venezia, Dolomiti e Toscana. I dati pubblicati dagli operatori sono separati dai collegamenti dipendenti dall'orario o ancora da verificare.",
+    "es": "Una ruta de planificación de 18 días con fuentes, entre grandes ciudades, el sur, el Adriático, Venecia, los Dolomitas y la Toscana. Los datos publicados por operadores se separan de las conexiones dependientes del horario o aún por verificar.",
+    "fr": "Un itinéraire de planification de 18 jours sourcé, entre grandes villes, sud, Adriatique, Venise, Dolomites et Toscane. Les données publiées par les opérateurs sont distinguées des correspondances dépendantes des horaires ou encore à vérifier.",
+    "pt": "Uma rota de planejamento de 18 dias com fontes, entre grandes cidades, sul, Adriático, Veneza, Dolomitas e Toscana. Dados publicados pelos operadores são separados de conexões dependentes de horário ou ainda não resolvidas."
   },
   "geography": {
-    "countries": ["IT"],
+    "countries": [
+      "IT"
+    ],
     "primaryCountry": "IT",
-    "bounds": {"north": 46.7, "south": 40.4, "west": 10.8, "east": 17.2}
+    "bounds": {
+      "north": 46.7,
+      "south": 40.4,
+      "west": 10.8,
+      "east": 17.2
+    }
   },
   "planning": {
     "days": 18,
     "currency": "EUR",
     "pace": "balanced",
     "distanceKm": null,
-    "priceModel": "not-yet-sourced"
+    "priceModel": "partial-operator-published",
+    "knownPublishedMinimumEur": 120.4,
+    "knownPublishedMinimumScope": "Only source-backed minimum fares for some transport stages; not a trip budget and excludes unresolved/local connections."
   },
   "rendering": {
     "preferred": "standard-globe",
     "terrainOptional": true,
-    "camera": {"lat": 43.5, "lng": 13.5, "altitude": 0.72}
+    "camera": {
+      "lat": 43.5,
+      "lng": 13.5,
+      "altitude": 0.72
+    }
   },
   "places": [
-    {"id":"rome","type":"city","countryCode":"IT","name":{"en":"Rome","de":"Rom","it":"Roma","es":"Roma","fr":"Rome","pt":"Roma"},"coordinates":{"lat":41.9028,"lng":12.4964}},
-    {"id":"naples","type":"city","countryCode":"IT","name":{"en":"Naples","de":"Neapel","it":"Napoli","es":"Nápoles","fr":"Naples","pt":"Nápoles"},"coordinates":{"lat":40.8518,"lng":14.2681}},
-    {"id":"amalfi","type":"town","countryCode":"IT","name":{"en":"Amalfi Coast","de":"Amalfiküste","it":"Costiera Amalfitana","es":"Costa Amalfitana","fr":"Côte amalfitaine","pt":"Costa Amalfitana"},"coordinates":{"lat":40.6340,"lng":14.6027}},
-    {"id":"matera","type":"city","countryCode":"IT","name":{"en":"Matera","de":"Matera","it":"Matera","es":"Matera","fr":"Matera","pt":"Matera"},"coordinates":{"lat":40.6663,"lng":16.6043}},
-    {"id":"bari","type":"city","countryCode":"IT","name":{"en":"Bari","de":"Bari","it":"Bari","es":"Bari","fr":"Bari","pt":"Bari"},"coordinates":{"lat":41.1171,"lng":16.8719}},
-    {"id":"bologna","type":"city","countryCode":"IT","name":{"en":"Bologna","de":"Bologna","it":"Bologna","es":"Bolonia","fr":"Bologne","pt":"Bolonha"},"coordinates":{"lat":44.4949,"lng":11.3426}},
-    {"id":"venice","type":"city","countryCode":"IT","name":{"en":"Venice","de":"Venedig","it":"Venezia","es":"Venecia","fr":"Venise","pt":"Veneza"},"coordinates":{"lat":45.4408,"lng":12.3155}},
-    {"id":"cortina","type":"mountain-town","countryCode":"IT","name":{"en":"Dolomites · Cortina","de":"Dolomiten · Cortina","it":"Dolomiti · Cortina","es":"Dolomitas · Cortina","fr":"Dolomites · Cortina","pt":"Dolomitas · Cortina"},"coordinates":{"lat":46.5405,"lng":12.1357}},
-    {"id":"florence","type":"city","countryCode":"IT","name":{"en":"Florence","de":"Florenz","it":"Firenze","es":"Florencia","fr":"Florence","pt":"Florença"},"coordinates":{"lat":43.7696,"lng":11.2558}},
-    {"id":"siena","type":"city","countryCode":"IT","name":{"en":"Siena","de":"Siena","it":"Siena","es":"Siena","fr":"Sienne","pt":"Siena"},"coordinates":{"lat":43.3188,"lng":11.3308}}
+    {
+      "id": "rome",
+      "type": "city",
+      "countryCode": "IT",
+      "name": {
+        "en": "Rome",
+        "de": "Rom",
+        "it": "Roma",
+        "es": "Roma",
+        "fr": "Rome",
+        "pt": "Roma"
+      },
+      "coordinates": {
+        "lat": 41.9028,
+        "lng": 12.4964
+      }
+    },
+    {
+      "id": "naples",
+      "type": "city",
+      "countryCode": "IT",
+      "name": {
+        "en": "Naples",
+        "de": "Neapel",
+        "it": "Napoli",
+        "es": "Nápoles",
+        "fr": "Naples",
+        "pt": "Nápoles"
+      },
+      "coordinates": {
+        "lat": 40.8518,
+        "lng": 14.2681
+      }
+    },
+    {
+      "id": "amalfi",
+      "type": "town",
+      "countryCode": "IT",
+      "name": {
+        "en": "Amalfi Coast",
+        "de": "Amalfiküste",
+        "it": "Costiera Amalfitana",
+        "es": "Costa Amalfitana",
+        "fr": "Côte amalfitaine",
+        "pt": "Costa Amalfitana"
+      },
+      "coordinates": {
+        "lat": 40.634,
+        "lng": 14.6027
+      }
+    },
+    {
+      "id": "matera",
+      "type": "city",
+      "countryCode": "IT",
+      "name": {
+        "en": "Matera",
+        "de": "Matera",
+        "it": "Matera",
+        "es": "Matera",
+        "fr": "Matera",
+        "pt": "Matera"
+      },
+      "coordinates": {
+        "lat": 40.6663,
+        "lng": 16.6043
+      }
+    },
+    {
+      "id": "bari",
+      "type": "city",
+      "countryCode": "IT",
+      "name": {
+        "en": "Bari",
+        "de": "Bari",
+        "it": "Bari",
+        "es": "Bari",
+        "fr": "Bari",
+        "pt": "Bari"
+      },
+      "coordinates": {
+        "lat": 41.1171,
+        "lng": 16.8719
+      }
+    },
+    {
+      "id": "bologna",
+      "type": "city",
+      "countryCode": "IT",
+      "name": {
+        "en": "Bologna",
+        "de": "Bologna",
+        "it": "Bologna",
+        "es": "Bolonia",
+        "fr": "Bologne",
+        "pt": "Bolonha"
+      },
+      "coordinates": {
+        "lat": 44.4949,
+        "lng": 11.3426
+      }
+    },
+    {
+      "id": "venice",
+      "type": "city",
+      "countryCode": "IT",
+      "name": {
+        "en": "Venice",
+        "de": "Venedig",
+        "it": "Venezia",
+        "es": "Venecia",
+        "fr": "Venise",
+        "pt": "Veneza"
+      },
+      "coordinates": {
+        "lat": 45.4408,
+        "lng": 12.3155
+      }
+    },
+    {
+      "id": "cortina",
+      "type": "mountain-town",
+      "countryCode": "IT",
+      "name": {
+        "en": "Dolomites · Cortina",
+        "de": "Dolomiten · Cortina",
+        "it": "Dolomiti · Cortina",
+        "es": "Dolomitas · Cortina",
+        "fr": "Dolomites · Cortina",
+        "pt": "Dolomitas · Cortina"
+      },
+      "coordinates": {
+        "lat": 46.5405,
+        "lng": 12.1357
+      }
+    },
+    {
+      "id": "florence",
+      "type": "city",
+      "countryCode": "IT",
+      "name": {
+        "en": "Florence",
+        "de": "Florenz",
+        "it": "Firenze",
+        "es": "Florencia",
+        "fr": "Florence",
+        "pt": "Florença"
+      },
+      "coordinates": {
+        "lat": 43.7696,
+        "lng": 11.2558
+      }
+    },
+    {
+      "id": "siena",
+      "type": "city",
+      "countryCode": "IT",
+      "name": {
+        "en": "Siena",
+        "de": "Siena",
+        "it": "Siena",
+        "es": "Siena",
+        "fr": "Sienne",
+        "pt": "Siena"
+      },
+      "coordinates": {
+        "lat": 43.3188,
+        "lng": 11.3308
+      }
+    }
   ],
   "stops": [
-    {"id":"it-stop-01","sequence":1,"placeId":"rome","dayStart":1,"dayEnd":2,"nights":2},
-    {"id":"it-stop-02","sequence":2,"placeId":"naples","dayStart":3,"dayEnd":4,"nights":2},
-    {"id":"it-stop-03","sequence":3,"placeId":"amalfi","dayStart":5,"dayEnd":6,"nights":2},
-    {"id":"it-stop-04","sequence":4,"placeId":"matera","dayStart":7,"dayEnd":7,"nights":1},
-    {"id":"it-stop-05","sequence":5,"placeId":"bari","dayStart":8,"dayEnd":8,"nights":1},
-    {"id":"it-stop-06","sequence":6,"placeId":"bologna","dayStart":9,"dayEnd":9,"nights":1},
-    {"id":"it-stop-07","sequence":7,"placeId":"venice","dayStart":10,"dayEnd":11,"nights":2},
-    {"id":"it-stop-08","sequence":8,"placeId":"cortina","dayStart":12,"dayEnd":13,"nights":2},
-    {"id":"it-stop-09","sequence":9,"placeId":"florence","dayStart":14,"dayEnd":15,"nights":2},
-    {"id":"it-stop-10","sequence":10,"placeId":"siena","dayStart":16,"dayEnd":16,"nights":1},
-    {"id":"it-stop-11","sequence":11,"placeId":"rome","dayStart":17,"dayEnd":18,"nights":2}
+    {
+      "id": "it-stop-01",
+      "sequence": 1,
+      "placeId": "rome",
+      "dayStart": 1,
+      "dayEnd": 2,
+      "nights": 2
+    },
+    {
+      "id": "it-stop-02",
+      "sequence": 2,
+      "placeId": "naples",
+      "dayStart": 3,
+      "dayEnd": 4,
+      "nights": 2
+    },
+    {
+      "id": "it-stop-03",
+      "sequence": 3,
+      "placeId": "amalfi",
+      "dayStart": 5,
+      "dayEnd": 6,
+      "nights": 2
+    },
+    {
+      "id": "it-stop-04",
+      "sequence": 4,
+      "placeId": "matera",
+      "dayStart": 7,
+      "dayEnd": 7,
+      "nights": 1
+    },
+    {
+      "id": "it-stop-05",
+      "sequence": 5,
+      "placeId": "bari",
+      "dayStart": 8,
+      "dayEnd": 8,
+      "nights": 1
+    },
+    {
+      "id": "it-stop-06",
+      "sequence": 6,
+      "placeId": "bologna",
+      "dayStart": 9,
+      "dayEnd": 9,
+      "nights": 1
+    },
+    {
+      "id": "it-stop-07",
+      "sequence": 7,
+      "placeId": "venice",
+      "dayStart": 10,
+      "dayEnd": 11,
+      "nights": 2
+    },
+    {
+      "id": "it-stop-08",
+      "sequence": 8,
+      "placeId": "cortina",
+      "dayStart": 12,
+      "dayEnd": 13,
+      "nights": 2
+    },
+    {
+      "id": "it-stop-09",
+      "sequence": 9,
+      "placeId": "florence",
+      "dayStart": 14,
+      "dayEnd": 15,
+      "nights": 2
+    },
+    {
+      "id": "it-stop-10",
+      "sequence": 10,
+      "placeId": "siena",
+      "dayStart": 16,
+      "dayEnd": 16,
+      "nights": 1
+    },
+    {
+      "id": "it-stop-11",
+      "sequence": 11,
+      "placeId": "rome",
+      "dayStart": 17,
+      "dayEnd": 18,
+      "nights": 2
+    }
   ],
   "segments": [
-    {"id":"it-leg-01","sequence":1,"fromStopId":"it-stop-01","toStopId":"it-stop-02","transport":{"mode":"rail","stages":[]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":null,"sources":[]}},
-    {"id":"it-leg-02","sequence":2,"fromStopId":"it-stop-02","toStopId":"it-stop-03","transport":{"mode":"ground-transfer","stages":[]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":null,"sources":[]}},
-    {"id":"it-leg-03","sequence":3,"fromStopId":"it-stop-03","toStopId":"it-stop-04","transport":{"mode":"road","stages":[]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":null,"sources":[]}},
-    {"id":"it-leg-04","sequence":4,"fromStopId":"it-stop-04","toStopId":"it-stop-05","transport":{"mode":"rail","stages":[]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":null,"sources":[]}},
-    {"id":"it-leg-05","sequence":5,"fromStopId":"it-stop-05","toStopId":"it-stop-06","transport":{"mode":"rail","stages":[]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":null,"sources":[]}},
-    {"id":"it-leg-06","sequence":6,"fromStopId":"it-stop-06","toStopId":"it-stop-07","transport":{"mode":"rail","stages":[]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":null,"sources":[]}},
-    {"id":"it-leg-07","sequence":7,"fromStopId":"it-stop-07","toStopId":"it-stop-08","transport":{"mode":"road","stages":[]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":null,"sources":[]}},
-    {"id":"it-leg-08","sequence":8,"fromStopId":"it-stop-08","toStopId":"it-stop-09","transport":{"mode":"rail+ground","stages":[]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":null,"sources":[]}},
-    {"id":"it-leg-09","sequence":9,"fromStopId":"it-stop-09","toStopId":"it-stop-10","transport":{"mode":"road","stages":[]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":null,"sources":[]}},
-    {"id":"it-leg-10","sequence":10,"fromStopId":"it-stop-10","toStopId":"it-stop-11","transport":{"mode":"road","stages":[]},"planning":{"durationMinutes":null,"distanceKm":null,"cost":null},"verification":{"status":"current-check-required","lastVerified":null,"sources":[]}}
+    {
+      "id": "it-leg-01",
+      "sequence": 1,
+      "fromStopId": "it-stop-01",
+      "toStopId": "it-stop-02",
+      "transport": {
+        "mode": "rail",
+        "stages": [
+          {
+            "mode": "rail",
+            "operator": "Italo",
+            "from": "Roma Termini / Roma Tiburtina",
+            "to": "Napoli Centrale",
+            "durationMinutes": 55,
+            "cost": {
+              "amount": 14.9,
+              "currency": "EUR",
+              "basis": "published-from"
+            },
+            "sourceIds": [
+              "italo-rome-naples"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": 55,
+        "durationBasis": "operator-published-fastest",
+        "distanceKm": 222,
+        "distanceBasis": "operator-published-route",
+        "cost": {
+          "amount": 14.9,
+          "currency": "EUR",
+          "basis": "published-from"
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "italo-rome-naples"
+        ],
+        "notes": "Exact fare and departure vary by date; 55 minutes is the operator-published fastest journey."
+      }
+    },
+    {
+      "id": "it-leg-02",
+      "sequence": 2,
+      "fromStopId": "it-stop-02",
+      "toStopId": "it-stop-03",
+      "transport": {
+        "mode": "multimodal",
+        "stages": [
+          {
+            "mode": "rail",
+            "operator": "Italo",
+            "from": "Napoli Centrale",
+            "to": "Salerno",
+            "durationMinutes": 35,
+            "cost": {
+              "amount": 8.9,
+              "currency": "EUR",
+              "basis": "published-from"
+            },
+            "sourceIds": [
+              "italo-naples-network"
+            ]
+          },
+          {
+            "mode": "ferry",
+            "operator": "Travelmar",
+            "from": "Salerno — Piazza Concordia / train station pier",
+            "to": "Amalfi",
+            "durationMinutes": 35,
+            "cost": {
+              "amount": 12,
+              "currency": "EUR",
+              "basis": "published-fare"
+            },
+            "sourceIds": [
+              "travelmar-2026"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "minimumInVehicleMinutes": 70,
+        "durationBasis": "connection-time-excluded",
+        "distanceKm": null,
+        "cost": {
+          "amount": 20.9,
+          "currency": "EUR",
+          "basis": "published-stage-floor"
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "italo-naples-network",
+          "travelmar-2026"
+        ],
+        "notes": "Both stages are source-backed; total elapsed time depends on the interchange in Salerno and ferry operating conditions."
+      }
+    },
+    {
+      "id": "it-leg-03",
+      "sequence": 3,
+      "fromStopId": "it-stop-03",
+      "toStopId": "it-stop-04",
+      "transport": {
+        "mode": "multimodal",
+        "stages": [
+          {
+            "mode": "ferry",
+            "operator": "Travelmar",
+            "from": "Amalfi",
+            "to": "Salerno — Piazza Concordia / train station pier",
+            "durationMinutes": 35,
+            "cost": {
+              "amount": 12,
+              "currency": "EUR",
+              "basis": "published-fare"
+            },
+            "sourceIds": [
+              "travelmar-2026"
+            ]
+          },
+          {
+            "mode": "coach",
+            "operator": "MarinoBus",
+            "from": "Salerno",
+            "to": "Matera",
+            "durationMinutes": null,
+            "cost": null,
+            "sourceIds": [
+              "marinobus-2026"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "minimumInVehicleMinutes": 35,
+        "durationBasis": "partial-published",
+        "distanceKm": null,
+        "cost": {
+          "amount": 12,
+          "currency": "EUR",
+          "basis": "known-stage-floor"
+        }
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "travelmar-2026",
+          "marinobus-2026"
+        ],
+        "notes": "The Salerno–Matera coach line is operator-authorised, but the exact travel-date schedule and workable ferry/coach connection are not yet locked."
+      }
+    },
+    {
+      "id": "it-leg-04",
+      "sequence": 4,
+      "fromStopId": "it-stop-04",
+      "toStopId": "it-stop-05",
+      "transport": {
+        "mode": "bus",
+        "stages": [
+          {
+            "mode": "bus",
+            "operator": "Ferrovie Appulo Lucane",
+            "from": "Matera",
+            "to": "Bari",
+            "durationMinutes": null,
+            "cost": null,
+            "sourceIds": [
+              "fal-current",
+              "fal-sep-2026"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "fal-current",
+          "fal-sep-2026"
+        ],
+        "notes": "FAL publishes current Bari–Matera rail/bus and replacement patterns; September 2026 service changes make a fixed duration inappropriate without a travel date."
+      }
+    },
+    {
+      "id": "it-leg-05",
+      "sequence": 5,
+      "fromStopId": "it-stop-05",
+      "toStopId": "it-stop-06",
+      "transport": {
+        "mode": "rail",
+        "stages": [
+          {
+            "mode": "rail",
+            "operator": "Italo",
+            "from": "Bari Centrale",
+            "to": "Bologna Centrale",
+            "durationMinutes": 423,
+            "cost": {
+              "amount": 26.9,
+              "currency": "EUR",
+              "basis": "published-from"
+            },
+            "sourceIds": [
+              "italo-bari-bologna"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": 423,
+        "durationBasis": "operator-published",
+        "distanceKm": 833,
+        "distanceBasis": "operator-published-route",
+        "cost": {
+          "amount": 26.9,
+          "currency": "EUR",
+          "basis": "published-from"
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "italo-bari-bologna"
+        ],
+        "notes": "This is one source-backed direct operator option, not a claim that no faster option exists on another operator/date."
+      }
+    },
+    {
+      "id": "it-leg-06",
+      "sequence": 6,
+      "fromStopId": "it-stop-06",
+      "toStopId": "it-stop-07",
+      "transport": {
+        "mode": "rail",
+        "stages": [
+          {
+            "mode": "rail",
+            "operator": "Italo",
+            "from": "Bologna Centrale",
+            "to": "Venezia",
+            "durationMinutes": 79,
+            "cost": {
+              "amount": 11.9,
+              "currency": "EUR",
+              "basis": "published-from"
+            },
+            "sourceIds": [
+              "italo-bologna-venice"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": 79,
+        "durationBasis": "operator-published",
+        "distanceKm": 130,
+        "distanceBasis": "operator-published-direct-distance",
+        "cost": {
+          "amount": 11.9,
+          "currency": "EUR",
+          "basis": "published-from"
+        }
+      },
+      "verification": {
+        "status": "verified",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "italo-bologna-venice"
+        ],
+        "notes": "Published operator journey time and starting fare; exact service depends on date."
+      }
+    },
+    {
+      "id": "it-leg-07",
+      "sequence": 7,
+      "fromStopId": "it-stop-07",
+      "toStopId": "it-stop-08",
+      "transport": {
+        "mode": "multimodal",
+        "stages": [
+          {
+            "mode": "ground-transfer",
+            "operator": null,
+            "from": "Venice",
+            "to": "Venezia Mestre",
+            "durationMinutes": null,
+            "cost": null,
+            "sourceIds": []
+          },
+          {
+            "mode": "coach",
+            "operator": "Cortina Express / Dolomiti Bus",
+            "from": "Venezia Mestre",
+            "to": "Cortina d’Ampezzo — Piazzale Revis",
+            "durationRangeMinutes": [
+              150,
+              170
+            ],
+            "cost": null,
+            "sourceIds": [
+              "cortina-express-winter-2026"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationRangeMinutes": [
+          150,
+          170
+        ],
+        "durationBasis": "published-coach-stage-only",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "cortina-express-winter-2026"
+        ],
+        "notes": "The published winter timetable starts 1 October 2026. Venice-to-Mestre access and exact seasonal timetable must be matched to the travel date."
+      }
+    },
+    {
+      "id": "it-leg-08",
+      "sequence": 8,
+      "fromStopId": "it-stop-08",
+      "toStopId": "it-stop-09",
+      "transport": {
+        "mode": "multimodal",
+        "stages": [
+          {
+            "mode": "coach",
+            "operator": "Cortina Express / Dolomiti Bus",
+            "from": "Cortina d’Ampezzo — Piazzale Revis",
+            "to": "Venezia Mestre",
+            "durationRangeMinutes": [
+              150,
+              165
+            ],
+            "cost": null,
+            "sourceIds": [
+              "cortina-express-winter-2026"
+            ]
+          },
+          {
+            "mode": "rail",
+            "operator": "Italo",
+            "from": "Venezia / Mestre corridor",
+            "to": "Firenze S.M.N.",
+            "durationMinutes": null,
+            "cost": {
+              "amount": 18.9,
+              "currency": "EUR",
+              "basis": "published-from-venice"
+            },
+            "sourceIds": [
+              "italo-venice-florence"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "connection-time-required",
+        "distanceKm": null,
+        "cost": {
+          "amount": 18.9,
+          "currency": "EUR",
+          "basis": "known-stage-floor"
+        }
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "cortina-express-winter-2026",
+          "italo-venice-florence"
+        ],
+        "notes": "Cortina–Mestre coach times are published. The rail fare/time reference is for Venice–Florence; exact Mestre connection must be selected for the travel date."
+      }
+    },
+    {
+      "id": "it-leg-09",
+      "sequence": 9,
+      "fromStopId": "it-stop-09",
+      "toStopId": "it-stop-10",
+      "transport": {
+        "mode": "bus",
+        "stages": [
+          {
+            "mode": "bus",
+            "operator": "Autolinee Toscane",
+            "from": "Firenze",
+            "to": "Siena",
+            "durationMinutes": null,
+            "cost": null,
+            "sourceIds": [
+              "at-131r"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "at-131r"
+        ],
+        "notes": "Line 131R is the official regional Siena–Florence corridor. Current stop changes and roadworks mean the exact trip should be resolved against the live timetable."
+      }
+    },
+    {
+      "id": "it-leg-10",
+      "sequence": 10,
+      "fromStopId": "it-stop-10",
+      "toStopId": "it-stop-11",
+      "transport": {
+        "mode": "multimodal",
+        "stages": [
+          {
+            "mode": "bus",
+            "operator": "Autolinee Toscane",
+            "from": "Siena",
+            "to": "Firenze",
+            "durationMinutes": null,
+            "cost": null,
+            "sourceIds": [
+              "at-131r"
+            ]
+          },
+          {
+            "mode": "rail",
+            "operator": "Italo",
+            "from": "Firenze S.M.N.",
+            "to": "Roma Termini / Roma Tiburtina",
+            "durationMinutes": 85,
+            "cost": {
+              "amount": 14.9,
+              "currency": "EUR",
+              "basis": "published-from"
+            },
+            "sourceIds": [
+              "italo-florence-rome"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "connection-time-required",
+        "distanceKm": null,
+        "cost": {
+          "amount": 14.9,
+          "currency": "EUR",
+          "basis": "known-stage-floor"
+        }
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "at-131r",
+          "italo-florence-rome"
+        ],
+        "notes": "The Florence–Rome rail stage is source-backed; total elapsed time depends on the Siena–Florence bus and interchange."
+      }
+    }
   ],
   "chapters": [
-    {"id":"south","title":{"en":"Rome & the South","de":"Rom & Süditalien","it":"Roma e il Sud"},"stopIds":["it-stop-01","it-stop-02","it-stop-03","it-stop-04","it-stop-05"]},
-    {"id":"north","title":{"en":"North & Dolomites","de":"Norden & Dolomiten","it":"Nord e Dolomiti"},"stopIds":["it-stop-06","it-stop-07","it-stop-08"]},
-    {"id":"tuscany","title":{"en":"Tuscany & return","de":"Toskana & Rückkehr","it":"Toscana e rientro"},"stopIds":["it-stop-09","it-stop-10","it-stop-11"]}
+    {
+      "id": "south",
+      "title": {
+        "en": "Rome & the South",
+        "de": "Rom & Süditalien",
+        "it": "Roma e il Sud"
+      },
+      "stopIds": [
+        "it-stop-01",
+        "it-stop-02",
+        "it-stop-03",
+        "it-stop-04",
+        "it-stop-05"
+      ]
+    },
+    {
+      "id": "north",
+      "title": {
+        "en": "North & Dolomites",
+        "de": "Norden & Dolomiten",
+        "it": "Nord e Dolomiti"
+      },
+      "stopIds": [
+        "it-stop-06",
+        "it-stop-07",
+        "it-stop-08"
+      ]
+    },
+    {
+      "id": "tuscany",
+      "title": {
+        "en": "Tuscany & return",
+        "de": "Toskana & Rückkehr",
+        "it": "Toscana e rientro"
+      },
+      "stopIds": [
+        "it-stop-09",
+        "it-stop-10",
+        "it-stop-11"
+      ]
+    }
   ],
   "travellerContext": {
-    "scope": ["passports", "residenceCountry", "language", "currency", "origin", "party", "accessibility"],
+    "scope": [
+      "passports",
+      "residenceCountry",
+      "language",
+      "currency",
+      "origin",
+      "party",
+      "accessibility"
+    ],
     "rule": "Do not infer entry eligibility, prices or advice from a German departure perspective. Personalised claims require traveller context plus current, jurisdiction-appropriate sources."
+  },
+  "dataVersion": "2026-09-21-v1",
+  "sourcePolicy": {
+    "checkedAt": "2026-09-21",
+    "preferredIssuerTypes": [
+      "official-operator",
+      "government",
+      "international-organization"
+    ],
+    "rule": "Published times and fares are planning evidence, not a booking guarantee. Re-check the exact travel date before purchase."
+  },
+  "sources": [
+    {
+      "id": "italo-rome-naples",
+      "title": "Rome → Naples high-speed train",
+      "issuer": "Italo",
+      "issuerType": "official-operator",
+      "url": "https://www.italotreno.com/en/destinations-timetable/rome-naples-tickets",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "55 min fastest published journey",
+        "fares from EUR 14.90",
+        "31 daily trains stated"
+      ]
+    },
+    {
+      "id": "italo-naples-network",
+      "title": "Naples high-speed train connections",
+      "issuer": "Italo",
+      "issuerType": "official-operator",
+      "url": "https://www.italotreno.com/en/destinations-timetable/naples-tickets",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "Naples–Salerno around 35 min",
+        "fares from EUR 8.90"
+      ]
+    },
+    {
+      "id": "travelmar-2026",
+      "title": "Travelmar Amalfi Coast ferries — timetable and fares from 6 June 2026",
+      "issuer": "Travelmar",
+      "issuerType": "official-operator",
+      "url": "https://www.travelmar.it/_download/orari-travelmar-dal-6-giugno-2026.pdf",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "Salerno–Amalfi 35 min, EUR 12",
+        "Amalfi–Salerno 35 min, EUR 12",
+        "service can change for sea/weather conditions"
+      ]
+    },
+    {
+      "id": "marinobus-2026",
+      "title": "MarinoBus 2026 mobility charter",
+      "issuer": "MarinoBus",
+      "issuerType": "official-operator",
+      "url": "https://marinobus.it/wp-content/uploads/2026/02/Marino-Carta-della-mobilita-ed.-2026-Soc.-Marino-s.r.l.pdf",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "Matera–Salerno is an authorised national coach line",
+        "exact departure must be checked for the travel date"
+      ]
+    },
+    {
+      "id": "fal-current",
+      "title": "FAL current timetables and fares",
+      "issuer": "Ferrovie Appulo Lucane",
+      "issuerType": "official-operator",
+      "url": "https://ferrovieappulolucane.it/tratta/orari/",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "Bari–Matera rail/bus corridor",
+        "current timetables and replacement services published here"
+      ]
+    },
+    {
+      "id": "fal-sep-2026",
+      "title": "FAL school-service programme from September 2026",
+      "issuer": "Ferrovie Appulo Lucane",
+      "issuerType": "official-operator",
+      "url": "https://ferrovieappulolucane.it/en/comunic-di-servizio/introduction-of-school-bus-schedule_11092026_0945/",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "service pattern changed from 16/17 September 2026",
+        "temporary September modifications apply"
+      ]
+    },
+    {
+      "id": "italo-bari-bologna",
+      "title": "Bari → Bologna high-speed train",
+      "issuer": "Italo",
+      "issuerType": "official-operator",
+      "url": "https://www.italotreno.com/en/destinations-timetable/bari-bologna-tickets",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "7 h 03 published journey",
+        "fares from EUR 26.90",
+        "2 daily trains stated"
+      ]
+    },
+    {
+      "id": "italo-bologna-venice",
+      "title": "Bologna → Venice high-speed train",
+      "issuer": "Italo",
+      "issuerType": "official-operator",
+      "url": "https://www.italotreno.com/en/destinations-timetable/bologna-venice-tickets",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "1 h 19 published journey",
+        "fares from EUR 11.90",
+        "11 daily trains stated"
+      ]
+    },
+    {
+      "id": "cortina-express-winter-2026",
+      "title": "Cortina Express Venice–Cortina timetable",
+      "issuer": "Cortina Express / Dolomiti Bus",
+      "issuerType": "official-operator",
+      "url": "https://www.cortinaexpress.it/en/timetable/timetable-cortina-treviso-venezia-1-october-2026-to-8-june-2027/",
+      "checkedAt": "2026-09-21",
+      "validFrom": "2026-10-01",
+      "validUntil": "2027-06-08",
+      "claims": [
+        "Mestre–Cortina direct buses published daily",
+        "typical listed journey 150–170 min",
+        "Venice Piazzale Roma service also appears on selected runs"
+      ]
+    },
+    {
+      "id": "italo-venice-florence",
+      "title": "Venice → Florence high-speed train",
+      "issuer": "Italo",
+      "issuerType": "official-operator",
+      "url": "https://www.italotreno.com/en/destinations-timetable/venice-florence-tickets",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "2 h published journey",
+        "fares from EUR 18.90",
+        "11 daily trains stated"
+      ]
+    },
+    {
+      "id": "at-131r",
+      "title": "Regional bus 131R Siena ↔ Florence",
+      "issuer": "Autolinee Toscane",
+      "issuerType": "official-operator",
+      "url": "https://www.at-bus.it/it/linee-e-orari/regionali-131r",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "131R links Siena and Florence",
+        "current stop changes/roadworks must be checked"
+      ]
+    },
+    {
+      "id": "italo-florence-rome",
+      "title": "Florence → Rome high-speed train",
+      "issuer": "Italo",
+      "issuerType": "official-operator",
+      "url": "https://www.italotreno.com/en/destinations-timetable/florence-rome-tickets",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "1 h 25 published journey",
+        "fares from EUR 14.90",
+        "32 daily trains stated"
+      ]
+    },
+    {
+      "id": "italy-visa-official",
+      "title": "Entry into Italy — official visa guidance",
+      "issuer": "Italian Ministry of Foreign Affairs and International Cooperation",
+      "issuerType": "government",
+      "url": "https://www.esteri.it/en/ministero/sportello_info/domandefrequenti/sezione_visti_entrare_in_italia/",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "visa need depends on citizenship, residence, stay length and purpose",
+        "Visa for Italy portal is the official resolver"
+      ]
+    },
+    {
+      "id": "visa-for-italy",
+      "title": "Visa for Italy",
+      "issuer": "Italian Ministry of Foreign Affairs and International Cooperation",
+      "issuerType": "government",
+      "url": "https://vistoperitalia.esteri.it/",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "guided visa check based on nationality, residence, duration and purpose"
+      ]
+    },
+    {
+      "id": "eu-travel-docs",
+      "title": "Travel documents for EU nationals",
+      "issuer": "European Union — Your Europe",
+      "issuerType": "international-organization",
+      "url": "https://europa.eu/youreurope/citizens/travel/entry-exit/eu-citizen/index_en.htm",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "EU nationals can travel in EU/Schengen with valid passport or national ID subject to applicable controls"
+      ]
+    }
+  ],
+  "entryGuidance": {
+    "personalizationRequired": true,
+    "destinationCountry": "IT",
+    "tripPurpose": "tourism",
+    "stayDays": 18,
+    "officialResolverSourceId": "visa-for-italy",
+    "supportingSourceIds": [
+      "italy-visa-official",
+      "eu-travel-docs"
+    ],
+    "message": {
+      "en": "Entry and visa requirements must be resolved from the traveller’s passport citizenship, country of residence, trip duration and purpose. ONE WORLD ROUTE does not infer these from language, IP address or departure country.",
+      "de": "Einreise- und Visabedingungen müssen aus Passstaatsangehörigkeit, Wohnsitzland, Reisedauer und Reisezweck bestimmt werden. ONE WORLD ROUTE leitet diese Angaben nicht aus Sprache, IP-Adresse oder Abreiseland ab."
+    }
   }
 }
