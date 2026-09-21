@@ -79,3 +79,57 @@ body.platform-regional-trip.terrain-view #highDetailGlobe:disabled+*,body.platfo
   .platform-regional-trip .maplibregl-ctrl-attrib{font-size:9px}
 }
 
+/* Regional UX design pass */
+@media(min-width:821px){
+  body.platform-regional-trip .left-panel{width:282px;padding:16px}
+  body.platform-regional-trip .right-panel{width:318px}
+  body.platform-regional-trip .phase-rail{max-width:calc(100vw - 690px)}
+  body.platform-regional-trip .hero-copy h1{font-size:24px}
+  body.platform-regional-trip .hero-copy p{font-size:10.5px;line-height:1.52;max-width:27ch}
+  body.platform-regional-trip .platform-template-note{font-size:8px;line-height:1.4}
+  body.platform-regional-trip .platform-stop{padding:7px}
+  body.platform-regional-trip.platform-detail-overview .right-panel,
+  body.platform-regional-trip.platform-detail-stop .right-panel{
+    bottom:auto;
+    max-height:calc(100dvh - 150px);
+  }
+  body.platform-regional-trip.platform-detail-overview .right-panel{height:auto}
+  body.platform-regional-trip.platform-detail-stop .right-panel{height:auto}
+  body.platform-regional-trip.platform-detail-stop .detail-scroll,
+  body.platform-regional-trip.platform-detail-overview .detail-scroll{overflow:visible}
+  body.platform-regional-trip.platform-detail-stop .detail-header,
+  body.platform-regional-trip.platform-detail-overview .detail-header{padding-bottom:8px}
+}
+body.platform-regional-trip .right-panel{transition:width .22s ease,max-height .22s ease}
+body.platform-regional-trip .detail-scroll{padding-bottom:18px}
+body.platform-regional-trip .data-card{min-height:64px}
+body.platform-regional-trip .detail-copy{line-height:1.5}
+body.platform-regional-trip .platform-entry,
+body.platform-regional-trip .platform-cruise-note{margin-block:10px}
+
+@media(min-width:821px){
+  body.platform-regional-trip .hero-copy p{
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:4;
+    overflow:hidden;
+  }
+  body.platform-regional-trip .platform-template-note{
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    overflow:hidden;
+    padding:8px 9px;
+  }
+  body.platform-regional-trip.platform-detail-overview .detail-copy{
+    font-size:10px;
+    color:#8ea1b5;
+  }
+}
+body.platform-regional-trip.terrain-view .globe-stage:before{
+  background:
+    linear-gradient(90deg,rgba(5,10,17,.46),transparent 20%,transparent 80%,rgba(5,10,17,.46)),
+    linear-gradient(180deg,rgba(5,10,17,.18),transparent 16%,transparent 82%,rgba(5,10,17,.24));
+}
+
+
