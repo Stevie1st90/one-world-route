@@ -83,13 +83,20 @@ The generic platform is split by responsibility:
 - **UI primitives** — shared dialogs, global route/traveller actions, toasts and regional settings snapshots
 - **navigation** — reusable trip URL construction and regional URL state
 - **discovery** — catalog facets and transparent Route Fit predicates
-- **extensions** — optional presenters for cruise, road/vehicle and border metadata
+- **regional shell** — trip chrome, stop navigation and chapter rail
+- **regional detail** — generic trip/stop/segment detail rendering
+- **regional globe** — Globe.gl isolation, route geometry, camera and focus behavior
+- **regional timeline** — timeline DOM, selected-segment playback and playback timer
+- **regional controls** — settings wiring and methodology UI
+- **regional selection** — selected segment/stop interaction coordination across detail, globe, timeline, terrain and story
+- **extensions composer** — combines registered presenter output without knowing concrete trip kinds
+- **extension presenters** — independent `platform/extensions/*.js` modules such as cruise, road and border
 - **i18n** — platform and legacy-world message data
 - **legacy localization** — DOM translation compatibility for the Flagship world renderer only
 - **map style** — shared terrain localization/branding for world and regional renderers
-- **platform bootstrap** — DOM orchestration, Story/Terrain controllers and renderer integration
+- **platform bootstrap** — catalog/profile bootstrap and dependency wiring; regional rendering behavior lives in dedicated modules
 
-Core route rendering must not branch on a specific trip ID or trip kind. A normal new route is data-only. Specialized behavior must be introduced as a namespaced extension and registered presenter/validator. Extension validation is split into `scripts/platform-extension-validators/` modules loaded through a registry, so adding a new specialization does not require editing the core platform-data validator.
+Core route rendering must not branch on a specific trip ID or trip kind. A normal new route is data-only. Specialized behavior must be introduced as a namespaced extension and registered presenter/validator. Runtime presenters live in independent `platform/extensions/` modules and are composed generically by `platform/extensions.js`. Extension validation is split into `scripts/platform-extension-validators/` modules loaded through a registry. Adding a new specialization therefore does not require editing either the core renderer or the core platform-data validator.
 
 Current pilot data has been migrated to namespaced extensions:
 - `extensions.cruise`
