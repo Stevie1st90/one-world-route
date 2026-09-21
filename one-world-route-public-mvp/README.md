@@ -67,3 +67,17 @@ Current platform features:
 - platform validation in the release pipeline
 
 Traveller Context is planning context, not an identity profile. The public app never asks for passport numbers, booking references, payment data or exact home addresses. Entry, visa and safety claims must remain source-backed and traveller-specific rather than assuming a German traveller.
+
+### Italy sourced beta
+
+The Italy Grand Tour is now the first route using the evidence layer end to end. All 10 route segments carry source references. Four segments have operator-published timing/fare data that can be represented as verified planning evidence; the remaining connections are explicitly marked `current-check-required` where timetable, interchange or seasonal assumptions are still unresolved.
+
+The UI shows:
+- individual transport stages for multimodal legs
+- published minimum fares separately from incomplete total-trip pricing
+- verification state and last-checked date
+- links to operator/government evidence
+- traveller-specific entry guidance that directs users to Italy's official visa resolver instead of assuming a German passport/residence
+
+A sourced route is not a booking engine. Exact departures, inventory and fares remain date-dependent and must be checked before purchase.
+

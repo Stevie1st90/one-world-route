@@ -47,7 +47,7 @@
       "id": "italy-grand-tour",
       "slug": "italy-grand-tour",
       "kind": "round-trip",
-      "status": "editorial-template",
+      "status": "sourced-beta",
       "renderer": "regional-globe",
       "dataset": "./data/platform/trips/italy-grand-tour.json",
       "title": {
@@ -59,24 +59,28 @@
         "pt": "Grande volta pela Itália"
       },
       "subtitle": {
-        "en": "18 days · rail, road and coast",
-        "de": "18 Tage · Bahn, Straße und Küste",
-        "it": "18 giorni · treno, strada e costa",
-        "es": "18 días · tren, carretera y costa",
-        "fr": "18 jours · train, route et côte",
-        "pt": "18 dias · trem, estrada e costa"
+        "en": "18 days · sourced rail, coach and coast planning",
+        "de": "18 Tage · quellenbasierte Bahn-, Bus- und Küstenplanung",
+        "it": "18 giorni · pianificazione con fonti tra treni, bus e costa",
+        "es": "18 días · planificación con fuentes de tren, bus y costa",
+        "fr": "18 jours · planification sourcée train, bus et côte",
+        "pt": "18 dias · planejamento com fontes de trem, ônibus e costa"
       },
       "metrics": {
         "days": 18,
         "countries": 1,
         "stops": 11,
         "segments": 10,
-        "budget": null
+        "budget": null,
+        "sourcedSegments": 10,
+        "verifiedSegments": 4
       },
       "capabilities": [
         "globe",
         "regional-stops",
-        "traveller-context"
+        "traveller-context",
+        "source-evidence",
+        "entry-guidance"
       ]
     }
   ]
