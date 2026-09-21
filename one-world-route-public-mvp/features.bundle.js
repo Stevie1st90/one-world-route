@@ -495,6 +495,95 @@
 })();
 
 
+/* ===== platform/runtime.js ===== */
+(() => {
+  'use strict';
+  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  const extensions=new Map();
+  root.runtime={
+    version:1,
+    registerExtension(id,extension){
+      if(!id||typeof extension!=='object')throw new Error('Invalid platform extension');
+      if(extensions.has(id))throw new Error('Duplicate platform extension: '+id);
+      extensions.set(id,Object.freeze({...extension,id}));
+      return extensions.get(id);
+    },
+    getExtension(id){return extensions.get(id)||null},
+    listExtensions(){return [...extensions.values()]}
+  };
+})();
+
+
+/* ===== platform/map-style.js ===== */
+(() => {
+  'use strict';
+  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+
+  function localize(style,locale='en'){
+    const supported=['en','de','it','es','fr','pt'];
+    const lang=supported.includes(String(locale||'').toLowerCase())?String(locale).toLowerCase():'en';
+    const nameExpr=['coalesce',['get',`name:${lang}`],['get',`name_${lang}`],['get','name:latin'],['get','name_en'],['get','name']];
+    for(const layer of style?.layers||[]){
+      if(layer?.type!=='symbol'||!layer.layout)continue;
+      if(/^(label_(country|city|state|other)|water_name)/.test(String(layer.id||'')))layer.layout['text-field']=nameExpr;
+    }
+    return style;
+  }
+
+  function brandDark(style){
+    for(const layer of style?.layers||[]){
+      const id=String(layer.id||'').toLowerCase(),type=layer.type;
+      layer.paint=layer.paint||{};
+      if(type==='background'){
+        layer.paint['background-color']='#071019';
+        continue;
+      }
+      if(type==='fill'){
+        if(/water|ocean|lake|river/.test(id)){
+          layer.paint['fill-color']='#071b2a';layer.paint['fill-opacity']=.98;
+        }else if(/park|wood|forest|grass|nature|landcover/.test(id)){
+          layer.paint['fill-color']='#102018';layer.paint['fill-opacity']=.72;
+        }else if(/building/.test(id)){
+          layer.paint['fill-color']='#16232d';layer.paint['fill-outline-color']='#20333e';layer.paint['fill-opacity']=.78;
+        }else{
+          layer.paint['fill-color']='#0d1720';
+          if(layer.paint['fill-opacity']===undefined)layer.paint['fill-opacity']=.94;
+        }
+      }else if(type==='line'){
+        if(/boundary|admin/.test(id)){
+          layer.paint['line-color']='#466076';layer.paint['line-opacity']=.5;
+        }else if(/motorway|trunk|primary/.test(id)){
+          layer.paint['line-color']='#5b6571';layer.paint['line-opacity']=.66;
+        }else if(/road|street|transport/.test(id)){
+          layer.paint['line-color']='#33424f';layer.paint['line-opacity']=.52;
+        }else if(/water|river/.test(id)){
+          layer.paint['line-color']='#234f65';layer.paint['line-opacity']=.7;
+        }else{
+          layer.paint['line-color']=layer.paint['line-color']||'#2e3d49';
+          if(layer.paint['line-opacity']===undefined)layer.paint['line-opacity']=.48;
+        }
+      }else if(type==='symbol'){
+        layer.paint['text-color']=/water|marine/.test(id)?'#7098ae':(/country/.test(id)?'#dfeaf2':'#aebfcb');
+        layer.paint['text-halo-color']='#071019';
+        layer.paint['text-halo-width']=1.2;
+        layer.paint['text-halo-blur']=.45;
+        if(layer.paint['icon-opacity']===undefined)layer.paint['icon-opacity']=.72;
+      }else if(type==='fill-extrusion'){
+        layer.paint['fill-extrusion-color']='#172630';layer.paint['fill-extrusion-opacity']=.72;
+      }else if(type==='hillshade'){
+        layer.paint['hillshade-shadow-color']='#02070b';
+        layer.paint['hillshade-highlight-color']='#50606b';
+        layer.paint['hillshade-accent-color']='#1f3440';
+        layer.paint['hillshade-exaggeration']=.42;
+      }
+    }
+    return style;
+  }
+
+  root.mapStyle={localize,brandDark};
+})();
+
+
 /* ===== iteration9.js ===== */
 (() => {
   'use strict';
@@ -854,45 +943,8 @@
   function colorExpression(){return ['get','color'];}
   function widthExpr(a,b,c0){const scale=clamp(Number($('#arcWidth')?.value||.55)/.55,.35,2.4);return ['interpolate',['linear'],['zoom'],2,a*scale,6,b*scale,12,c0*scale];}
 
-  function localizeTerrainStyle(style){
-    const raw=String(document.documentElement.lang||'en').toLowerCase().split('-')[0];
-    const lang=['en','de','it','es','fr','pt'].includes(raw)?raw:'en';
-    const nameExpr=['coalesce',['get',`name:${lang}`],['get',`name_${lang}`],['get','name:latin'],['get','name_en'],['get','name']];
-    for(const layer of style?.layers||[]){
-      if(layer?.type!=='symbol'||!layer.layout)continue;
-      if(/^(label_(country|city|state|other)|water_name)/.test(String(layer.id||'')))layer.layout['text-field']=nameExpr;
-    }
-    return style;
-  }
-
-  function brandTerrainStyle(style){
-    for(const layer of style?.layers||[]){
-      const id=String(layer.id||'').toLowerCase(),type=layer.type;
-      layer.paint=layer.paint||{};
-      if(type==='background'){
-        layer.paint['background-color']='#071019';
-      }else if(type==='fill'){
-        if(/water|ocean|lake|river/.test(id)){layer.paint['fill-color']='#071b2a';layer.paint['fill-opacity']=.98}
-        else if(/park|wood|forest|grass|nature|landcover/.test(id)){layer.paint['fill-color']='#102018';layer.paint['fill-opacity']=.72}
-        else if(/building/.test(id)){layer.paint['fill-color']='#16232d';layer.paint['fill-outline-color']='#20333e';layer.paint['fill-opacity']=.78}
-        else{layer.paint['fill-color']='#0d1720';if(layer.paint['fill-opacity']===undefined)layer.paint['fill-opacity']=.94}
-      }else if(type==='line'){
-        if(/boundary|admin/.test(id)){layer.paint['line-color']='#466076';layer.paint['line-opacity']=.5}
-        else if(/motorway|trunk|primary/.test(id)){layer.paint['line-color']='#5b6571';layer.paint['line-opacity']=.66}
-        else if(/road|street|transport/.test(id)){layer.paint['line-color']='#33424f';layer.paint['line-opacity']=.52}
-        else if(/water|river/.test(id)){layer.paint['line-color']='#234f65';layer.paint['line-opacity']=.7}
-      }else if(type==='symbol'){
-        layer.paint['text-color']=/water|marine/.test(id)?'#7098ae':(/country/.test(id)?'#dfeaf2':'#aebfcb');
-        layer.paint['text-halo-color']='#071019';layer.paint['text-halo-width']=1.2;layer.paint['text-halo-blur']=.45;
-        if(layer.paint['icon-opacity']===undefined)layer.paint['icon-opacity']=.72;
-      }else if(type==='fill-extrusion'){
-        layer.paint['fill-extrusion-color']='#172630';layer.paint['fill-extrusion-opacity']=.72;
-      }else if(type==='hillshade'){
-        layer.paint['hillshade-shadow-color']='#02070b';layer.paint['hillshade-highlight-color']='#50606b';layer.paint['hillshade-accent-color']='#1f3440';layer.paint['hillshade-exaggeration']=.42;
-      }
-    }
-    return style;
-  }
+  const localizeTerrainStyle=style=>window.ONE_WORLD_PLATFORM_MODULES?.mapStyle?.localize(style,String(document.documentElement.lang||'en').toLowerCase().split('-')[0])||style;
+  const brandTerrainStyle=style=>window.ONE_WORLD_PLATFORM_MODULES?.mapStyle?.brandDark(style)||style;
 
   async function terrainStyle(){
     const phase=activeTerrainPhase();
@@ -1422,20 +1474,18 @@
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
 
-/* ===== platform.js ===== */
+/* ===== platform/i18n.js ===== */
 (() => {
   'use strict';
-
-  const CATALOG_URL = './data/platform/trips.json';
-  const PROFILE_KEY = 'one-world-route:traveller-context:v1';
-  const SUPPORTED_LOCALES = ['en','de','it','es','fr','pt'];
+  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  const SUPPORTED_LOCALES=['en','de','it','es','fr','pt'];
   const I18N = {
-    en:{routes:'Routes',traveller:'Traveller',flagship:'Flagship',template:'Template',open:'Open route',days:'days',stops:'stops',segments:'segments',global:'Global perspective',contextTitle:'Traveller context',contextLead:'Used to adapt entry rules, language, currency and departure assumptions. Stored only on this device.',passports:'Passport country',secondPassport:'Second passport (optional)',residence:'Residence',language:'Language',currency:'Currency',origin:'Starting city / airport',adults:'Adults',children:'Children',mobility:'Reduced mobility',save:'Save context',clear:'Clear',notSet:'Not set',currentCheck:'Current check required',routeLibrary:'Explore routes',routeLibraryLead:'One platform for world journeys, round trips, road trips, rail, cruises and more.',editorial:'Editorial template — verify transport, prices and entry requirements for your dates.',overview:'Route overview',day:'Day',nights:'nights',transport:'Transport',verification:'Verification',backWorld:'World route',private:'Private on this device. Passport numbers, booking references and payment details are never requested.',sourcedBeta:'Sourced beta',sources:'Sources',lastChecked:'Last checked',publishedFrom:'from',verified:'Verified',routeEvidence:'Route evidence',entryGuidance:'Entry guidance',officialCheck:'Official check',connectionRequired:'connection required',minimumTravel:'minimum travel',cruiseTemplate:'Cruise template',onboardNights:'onboard nights',seaDays:'sea days',portCall:'Port call',embarkation:'Embarkation',disembarkation:'Disembarkation',border:'Border context',schengenExit:'Schengen exit',schengenEntry:'Schengen re-entry',sailingNeeded:'Select a real sailing for ship, operator, times, berth and price.',illustrative:'Illustrative',searchRoutes:'Search routes',filterType:'Travel type',filterRegion:'Region',filterDuration:'Duration',all:'All',noRoutes:'No routes match these filters.',vehicleSection:'Vehicle context (optional)',vehicleType:'Vehicle',registrationCountry:'Registration country',fuelType:'Fuel / powertrain',euroClass:'Euro emissions class',rentalCrossBorder:'Rental approved for cross-border travel',privateCar:'Private car',rentalCar:'Rental car',camper:'Camper',motorcycle:'Motorcycle',otherVehicle:'Other',petrol:'Petrol',diesel:'Diesel',hybrid:'Hybrid',pluginHybrid:'Plug-in hybrid',electric:'Electric',hydrogen:'Hydrogen',unknown:'Unknown',roadRules:'Road context',crossBorder:'Cross-border',urbanAccess:'Urban access checks',vehicleNeeded:'Vehicle context required for toll, LEZ and access checks.',facet_world:'World',facet_round_trip:'Round trip',facet_road_trip:'Road trip',facet_cruise:'Cruise',facet_global:'Global',facet_europe:'Europe',facet_southern_europe:'Southern Europe',facet_italy:'Italy',facet_mediterranean:'Mediterranean',facet_north_africa:'North Africa',filterMode:'Transport',filterTheme:'Theme',results:'routes found',resetFilters:'Reset',details:'Details',start:'Start',finish:'Finish',previous:'Previous',next:'Next',type:'Type',country:'Country',duration:'Duration',cost:'Cost',segment:'Segment',stop:'Stop',currency:'Currency',facet_rail:'Rail',facet_bus:'Bus',facet_car:'Car',facet_ferry:'Ferry',facet_multimodal:'Multimodal',facet_road:'Road',facet_coach:'Coach',facet_ground_transfer:'Ground transfer',story:'Story',storyPlay:'Play story',storyExit:'Exit story',storyComplete:'Route complete',chapter:'Chapter',settings:'Settings',methodology:'Methodology',share:'Share',autoRotate:'Auto rotate',highDetail:'High detail globe',terrain:'Real 3D globe terrain',showPoints:'Stop points',routeGlow:'Route glow',arcThickness:'Route thickness',reducedMotion:'Reduced motion',terrainLoading:'Loading 3D terrain…',terrainHint:'Drag to rotate · scroll to zoom · real elevation appears as you move closer',routeMethodTitle:'Route methodology',routeMethodText:'This curated route uses publication-safe trip data and source-backed evidence where available. Volatile schedules, prices and traveller-specific rules remain explicitly unresolved until dates and context are known.',evidenceCoverage:'Evidence coverage',editorialStatus:'Editorial status',storyRoute:'Route story',routeFit:'Route Fit',showFit:'More fit filters',hideFit:'Hide fit filters',fitPace:'Pace',fitSeason:'Season',fitParty:'Travelling as',fitStart:'Route starts in',facet_relaxed:'Relaxed',facet_balanced:'Balanced',facet_active:'Active',facet_spring:'Spring',facet_summer:'Summer',facet_autumn:'Autumn',facet_winter:'Winter',facet_multi_season:'Multi-season',facet_solo:'Solo',facet_couples:'Couple',facet_friends:'Friends',facet_families:'Family'},
-    de:{routes:'Routen',traveller:'Reisekontext',flagship:'Flagship',template:'Vorlage',open:'Route öffnen',days:'Tage',stops:'Stopps',segments:'Segmente',global:'Globale Perspektive',contextTitle:'Reisekontext',contextLead:'Passt Einreisehinweise, Sprache, Währung und Startannahmen an. Wird nur auf diesem Gerät gespeichert.',passports:'Passland',secondPassport:'Zweiter Pass (optional)',residence:'Wohnsitz',language:'Sprache',currency:'Währung',origin:'Startstadt / Flughafen',adults:'Erwachsene',children:'Kinder',mobility:'Eingeschränkte Mobilität',save:'Kontext speichern',clear:'Zurücksetzen',notSet:'Nicht gesetzt',currentCheck:'Aktuelle Prüfung erforderlich',routeLibrary:'Routen entdecken',routeLibraryLead:'Eine Plattform für Weltreisen, Rundreisen, Roadtrips, Bahnreisen, Kreuzfahrten und mehr.',editorial:'Redaktionelle Vorlage — Verkehr, Preise und Einreisebedingungen für die eigenen Daten prüfen.',overview:'Routenübersicht',day:'Tag',nights:'Nächte',transport:'Verkehr',verification:'Prüfstatus',backWorld:'Weltreise',private:'Privat auf diesem Gerät. Passnummern, Buchungsreferenzen und Zahlungsdaten werden niemals abgefragt.',sourcedBeta:'Quellen-Beta',sources:'Quellen',lastChecked:'Zuletzt geprüft',publishedFrom:'ab',verified:'Verifiziert',routeEvidence:'Routenbelege',entryGuidance:'Einreisehinweise',officialCheck:'Offiziell prüfen',connectionRequired:'Umstieg einplanen',minimumTravel:'Mindestfahrzeit',cruiseTemplate:'Kreuzfahrt-Vorlage',onboardNights:'Nächte an Bord',seaDays:'Seetage',portCall:'Hafenstopp',embarkation:'Einschiffung',disembarkation:'Ausschiffung',border:'Grenzkontext',schengenExit:'Schengen-Ausreise',schengenEntry:'Schengen-Wiedereinreise',sailingNeeded:'Für Schiff, Reederei, Zeiten, Liegeplatz und Preis muss eine konkrete Abfahrt gewählt werden.',illustrative:'Illustrativ',searchRoutes:'Routen suchen',filterType:'Reiseart',filterRegion:'Region',filterDuration:'Dauer',all:'Alle',noRoutes:'Keine Route passt zu diesen Filtern.',vehicleSection:'Fahrzeugkontext (optional)',vehicleType:'Fahrzeug',registrationCountry:'Zulassungsland',fuelType:'Kraftstoff / Antrieb',euroClass:'Euro-Abgasnorm',rentalCrossBorder:'Mietwagen für Grenzübertritte freigegeben',privateCar:'Privatwagen',rentalCar:'Mietwagen',camper:'Camper',motorcycle:'Motorrad',otherVehicle:'Anderes',petrol:'Benzin',diesel:'Diesel',hybrid:'Hybrid',pluginHybrid:'Plug-in-Hybrid',electric:'Elektro',hydrogen:'Wasserstoff',unknown:'Unbekannt',roadRules:'Straßenkontext',crossBorder:'Grenzübertritt',urbanAccess:'Stadtzufahrt prüfen',vehicleNeeded:'Für Maut-, Umweltzonen- und Zufahrtsprüfungen wird ein Fahrzeugkontext benötigt.',facet_world:'Weltreise',facet_round_trip:'Rundreise',facet_road_trip:'Roadtrip',facet_cruise:'Kreuzfahrt',facet_global:'Global',facet_europe:'Europa',facet_southern_europe:'Südeuropa',facet_italy:'Italien',facet_mediterranean:'Mittelmeer',facet_north_africa:'Nordafrika',filterMode:'Verkehrsmittel',filterTheme:'Reisethema',results:'Routen gefunden',resetFilters:'Filter zurücksetzen',details:'Details',start:'Start',finish:'Ziel',previous:'Zurück',next:'Weiter',type:'Typ',country:'Land',duration:'Dauer',cost:'Kosten',segment:'Segment',stop:'Stopp',currency:'Währung',facet_rail:'Bahn',facet_bus:'Bus',facet_car:'Auto',facet_ferry:'Fähre',facet_multimodal:'Multimodal',facet_road:'Straße',facet_coach:'Fernbus',facet_ground_transfer:'Bodentransfer',story:'Story',storyPlay:'Story starten',storyExit:'Story beenden',storyComplete:'Route abgeschlossen',chapter:'Kapitel',settings:'Einstellungen',methodology:'Methodik',share:'Teilen',autoRotate:'Automatisch drehen',highDetail:'Hochauflösender Globus',terrain:'Echtes 3D-Globus-Terrain',showPoints:'Stopppunkte',routeGlow:'Routenleuchten',arcThickness:'Linienstärke',reducedMotion:'Reduzierte Bewegung',terrainLoading:'3D-Terrain wird geladen…',terrainHint:'Ziehen zum Drehen · scrollen zum Zoomen · echtes Relief erscheint beim Annähern',routeMethodTitle:'Routenmethodik',routeMethodText:'Diese kuratierte Route verwendet veröffentlichungssichere Reisedaten und, wo verfügbar, quellenbasierte Belege. Veränderliche Fahrpläne, Preise und reisendenspezifische Regeln bleiben ausdrücklich offen, bis Datum und Kontext feststehen.',evidenceCoverage:'Quellenabdeckung',editorialStatus:'Redaktioneller Status',storyRoute:'Routen-Story',routeFit:'Route Fit',showFit:'Weitere passende Filter',hideFit:'Passende Filter ausblenden',fitPace:'Reisetempo',fitSeason:'Reisezeit',fitParty:'Reisekonstellation',fitStart:'Routenstart',facet_relaxed:'Entspannt',facet_balanced:'Ausgewogen',facet_active:'Aktiv',facet_spring:'Frühling',facet_summer:'Sommer',facet_autumn:'Herbst',facet_winter:'Winter',facet_multi_season:'Mehrere Jahreszeiten',facet_solo:'Allein',facet_couples:'Paar',facet_friends:'Freunde',facet_families:'Familie'},
-    it:{routes:'Itinerari',traveller:'Viaggiatore',flagship:'Flagship',template:'Modello',open:'Apri itinerario',days:'giorni',stops:'tappe',segments:'tratte',global:'Prospettiva globale',contextTitle:'Profilo viaggiatore',contextLead:'Adatta requisiti d’ingresso, lingua, valuta e partenza. Salvato solo su questo dispositivo.',passports:'Paese del passaporto',secondPassport:'Secondo passaporto (opzionale)',residence:'Residenza',language:'Lingua',currency:'Valuta',origin:'Città / aeroporto di partenza',adults:'Adulti',children:'Bambini',mobility:'Mobilità ridotta',save:'Salva',clear:'Cancella',notSet:'Non impostato',currentCheck:'Verifica attuale richiesta',routeLibrary:'Esplora itinerari',routeLibraryLead:'Una piattaforma per giri del mondo, road trip, treni, crociere e altro.',editorial:'Modello editoriale — verifica trasporti, prezzi e requisiti per le tue date.',overview:'Panoramica',day:'Giorno',nights:'notti',transport:'Trasporto',verification:'Verifica',backWorld:'Giro del mondo',private:'Privato su questo dispositivo. Non chiediamo numeri di passaporto, prenotazioni o dati di pagamento.',sourcedBeta:'Beta con fonti',sources:'Fonti',lastChecked:'Ultima verifica',publishedFrom:'da',verified:'Verificato',routeEvidence:'Fonti del percorso',entryGuidance:'Ingresso',officialCheck:'Verifica ufficiale',connectionRequired:'coincidenza necessaria',minimumTravel:'tempo minimo',cruiseTemplate:'Modello crociera',onboardNights:'notti a bordo',seaDays:'giorni in mare',portCall:'Scalo',embarkation:'Imbarco',disembarkation:'Sbarco',border:'Contesto di frontiera',schengenExit:'Uscita Schengen',schengenEntry:'Rientro Schengen',sailingNeeded:'Seleziona una partenza reale per nave, operatore, orari, ormeggio e prezzo.',illustrative:'Illustrativo',searchRoutes:'Cerca itinerari',filterType:'Tipo di viaggio',filterRegion:'Regione',filterDuration:'Durata',all:'Tutti',noRoutes:'Nessun itinerario corrisponde ai filtri.',vehicleSection:'Profilo veicolo (opzionale)',vehicleType:'Veicolo',registrationCountry:'Paese di immatricolazione',fuelType:'Carburante / propulsione',euroClass:'Classe Euro',rentalCrossBorder:'Noleggio autorizzato oltre confine',privateCar:'Auto privata',rentalCar:'Auto a noleggio',camper:'Camper',motorcycle:'Moto',otherVehicle:'Altro',petrol:'Benzina',diesel:'Diesel',hybrid:'Ibrido',pluginHybrid:'Ibrido plug-in',electric:'Elettrico',hydrogen:'Idrogeno',unknown:'Sconosciuto',roadRules:'Contesto stradale',crossBorder:'Transfrontaliero',urbanAccess:'Verifica accesso urbano',vehicleNeeded:'Il profilo veicolo è necessario per pedaggi, ZFE e accessi.',facet_world:'Giro del mondo',facet_round_trip:'Tour',facet_road_trip:'Road trip',facet_cruise:'Crociera',facet_global:'Globale',facet_europe:'Europa',facet_southern_europe:'Europa meridionale',facet_italy:'Italia',facet_mediterranean:'Mediterraneo',facet_north_africa:'Nord Africa',filterMode:'Trasporto',filterTheme:'Tema',results:'itinerari trovati',resetFilters:'Reimposta',details:'Dettagli',start:'Partenza',finish:'Arrivo',previous:'Indietro',next:'Avanti',type:'Tipo',country:'Paese',duration:'Durata',cost:'Costo',segment:'Tratta',stop:'Tappa',currency:'Valuta',facet_rail:'Treno',facet_bus:'Bus',facet_car:'Auto',facet_ferry:'Traghetto',facet_multimodal:'Multimodale',facet_road:'Strada',facet_coach:'Pullman',facet_ground_transfer:'Trasferimento terrestre',story:'Storia',storyPlay:'Avvia storia',storyExit:'Esci dalla storia',storyComplete:'Itinerario completato',chapter:'Capitolo',settings:'Impostazioni',methodology:'Metodologia',share:'Condividi',autoRotate:'Rotazione automatica',highDetail:'Globo ad alta definizione',terrain:'Terreno 3D reale',showPoints:'Punti delle tappe',routeGlow:'Bagliore itinerario',arcThickness:'Spessore linea',reducedMotion:'Movimento ridotto',terrainLoading:'Caricamento terreno 3D…',terrainHint:'Trascina per ruotare · scorri per zoomare · il rilievo reale appare avvicinandoti',routeMethodTitle:'Metodologia itinerario',routeMethodText:'Questo itinerario curato usa dati pubblicabili e fonti verificabili quando disponibili. Orari, prezzi e regole personali variabili restano aperti finché non sono noti date e contesto.',evidenceCoverage:'Copertura fonti',editorialStatus:'Stato editoriale',storyRoute:'Storia itinerario',routeFit:'Route Fit',showFit:'Altri filtri di compatibilità',hideFit:'Nascondi filtri',fitPace:'Ritmo',fitSeason:'Stagione',fitParty:'Compagnia',fitStart:'Partenza itinerario',facet_relaxed:'Rilassato',facet_balanced:'Equilibrato',facet_active:'Attivo',facet_spring:'Primavera',facet_summer:'Estate',facet_autumn:'Autunno',facet_winter:'Inverno',facet_multi_season:'Più stagioni',facet_solo:'Solo',facet_couples:'Coppia',facet_friends:'Amici',facet_families:'Famiglia'},
-    es:{routes:'Rutas',traveller:'Viajero',flagship:'Flagship',template:'Plantilla',open:'Abrir ruta',days:'días',stops:'paradas',segments:'tramos',global:'Perspectiva global',contextTitle:'Contexto del viajero',contextLead:'Adapta requisitos de entrada, idioma, moneda y origen. Solo se guarda en este dispositivo.',passports:'País del pasaporte',secondPassport:'Segundo pasaporte (opcional)',residence:'Residencia',language:'Idioma',currency:'Moneda',origin:'Ciudad / aeropuerto de salida',adults:'Adultos',children:'Niños',mobility:'Movilidad reducida',save:'Guardar',clear:'Borrar',notSet:'Sin definir',currentCheck:'Revisión actual necesaria',routeLibrary:'Explorar rutas',routeLibraryLead:'Una plataforma para vueltas al mundo, road trips, trenes, cruceros y más.',editorial:'Plantilla editorial — verifica transporte, precios y requisitos para tus fechas.',overview:'Resumen de ruta',day:'Día',nights:'noches',transport:'Transporte',verification:'Verificación',backWorld:'Ruta mundial',private:'Privado en este dispositivo. Nunca pedimos números de pasaporte, reservas ni pagos.',sourcedBeta:'Beta con fuentes',sources:'Fuentes',lastChecked:'Última revisión',publishedFrom:'desde',verified:'Verificado',routeEvidence:'Fuentes de ruta',entryGuidance:'Entrada',officialCheck:'Comprobación oficial',connectionRequired:'conexión necesaria',minimumTravel:'tiempo mínimo',cruiseTemplate:'Plantilla de crucero',onboardNights:'noches a bordo',seaDays:'días de navegación',portCall:'Escala',embarkation:'Embarque',disembarkation:'Desembarque',border:'Contexto fronterizo',schengenExit:'Salida de Schengen',schengenEntry:'Reentrada a Schengen',sailingNeeded:'Selecciona una salida real para barco, operador, horarios, atraque y precio.',illustrative:'Ilustrativo',searchRoutes:'Buscar rutas',filterType:'Tipo de viaje',filterRegion:'Región',filterDuration:'Duración',all:'Todas',noRoutes:'Ninguna ruta coincide con los filtros.',vehicleSection:'Contexto del vehículo (opcional)',vehicleType:'Vehículo',registrationCountry:'País de matriculación',fuelType:'Combustible / propulsión',euroClass:'Clase Euro',rentalCrossBorder:'Alquiler autorizado para cruzar fronteras',privateCar:'Coche privado',rentalCar:'Coche de alquiler',camper:'Camper',motorcycle:'Moto',otherVehicle:'Otro',petrol:'Gasolina',diesel:'Diésel',hybrid:'Híbrido',pluginHybrid:'Híbrido enchufable',electric:'Eléctrico',hydrogen:'Hidrógeno',unknown:'Desconocido',roadRules:'Contexto vial',crossBorder:'Transfronterizo',urbanAccess:'Comprobar acceso urbano',vehicleNeeded:'Se requiere contexto del vehículo para peajes, ZBE y accesos.',facet_world:'Vuelta al mundo',facet_round_trip:'Ruta circular',facet_road_trip:'Road trip',facet_cruise:'Crucero',facet_global:'Global',facet_europe:'Europa',facet_southern_europe:'Sur de Europa',facet_italy:'Italia',facet_mediterranean:'Mediterráneo',facet_north_africa:'Norte de África',filterMode:'Transporte',filterTheme:'Tema',results:'rutas encontradas',resetFilters:'Restablecer',details:'Detalles',start:'Inicio',finish:'Final',previous:'Anterior',next:'Siguiente',type:'Tipo',country:'País',duration:'Duración',cost:'Coste',segment:'Tramo',stop:'Parada',currency:'Moneda',facet_rail:'Tren',facet_bus:'Bus',facet_car:'Coche',facet_ferry:'Ferry',facet_multimodal:'Multimodal',facet_road:'Carretera',facet_coach:'Autocar',facet_ground_transfer:'Traslado terrestre',story:'Historia',storyPlay:'Reproducir historia',storyExit:'Salir de la historia',storyComplete:'Ruta completada',chapter:'Capítulo',settings:'Ajustes',methodology:'Metodología',share:'Compartir',autoRotate:'Rotación automática',highDetail:'Globo de alta definición',terrain:'Terreno 3D real',showPoints:'Puntos de parada',routeGlow:'Brillo de ruta',arcThickness:'Grosor de ruta',reducedMotion:'Movimiento reducido',terrainLoading:'Cargando terreno 3D…',terrainHint:'Arrastra para girar · desplázate para acercar · el relieve real aparece al aproximarte',routeMethodTitle:'Metodología de ruta',routeMethodText:'Esta ruta curada usa datos publicables y evidencia con fuentes cuando está disponible. Horarios, precios y reglas personales variables permanecen abiertos hasta conocer fechas y contexto.',evidenceCoverage:'Cobertura de fuentes',editorialStatus:'Estado editorial',storyRoute:'Historia de la ruta',routeFit:'Route Fit',showFit:'Más filtros de ajuste',hideFit:'Ocultar filtros',fitPace:'Ritmo',fitSeason:'Temporada',fitParty:'Compañía',fitStart:'Inicio de ruta',facet_relaxed:'Relajado',facet_balanced:'Equilibrado',facet_active:'Activo',facet_spring:'Primavera',facet_summer:'Verano',facet_autumn:'Otoño',facet_winter:'Invierno',facet_multi_season:'Varias estaciones',facet_solo:'Solo',facet_couples:'Pareja',facet_friends:'Amigos',facet_families:'Familia'},
-    fr:{routes:'Itinéraires',traveller:'Voyageur',flagship:'Flagship',template:'Modèle',open:'Ouvrir',days:'jours',stops:'étapes',segments:'segments',global:'Perspective globale',contextTitle:'Contexte voyageur',contextLead:'Adapte formalités, langue, devise et départ. Stocké uniquement sur cet appareil.',passports:'Pays du passeport',secondPassport:'Deuxième passeport (facultatif)',residence:'Résidence',language:'Langue',currency:'Devise',origin:'Ville / aéroport de départ',adults:'Adultes',children:'Enfants',mobility:'Mobilité réduite',save:'Enregistrer',clear:'Effacer',notSet:'Non défini',currentCheck:'Vérification actuelle requise',routeLibrary:'Explorer les itinéraires',routeLibraryLead:'Une plateforme pour tours du monde, road trips, train, croisières et plus.',editorial:'Modèle éditorial — vérifiez transports, prix et formalités pour vos dates.',overview:'Aperçu',day:'Jour',nights:'nuits',transport:'Transport',verification:'Vérification',backWorld:'Tour du monde',private:'Privé sur cet appareil. Aucun numéro de passeport, référence de réservation ou paiement n’est demandé.',sourcedBeta:'Bêta sourcée',sources:'Sources',lastChecked:'Dernière vérification',publishedFrom:'à partir de',verified:'Vérifié',routeEvidence:'Sources de l’itinéraire',entryGuidance:'Entrée',officialCheck:'Vérification officielle',connectionRequired:'correspondance nécessaire',minimumTravel:'temps minimum',cruiseTemplate:'Modèle croisière',onboardNights:'nuits à bord',seaDays:'jours en mer',portCall:'Escale',embarkation:'Embarquement',disembarkation:'Débarquement',border:'Contexte frontalier',schengenExit:'Sortie Schengen',schengenEntry:'Rentrée Schengen',sailingNeeded:'Sélectionnez un départ réel pour le navire, l’opérateur, les horaires, le quai et le prix.',illustrative:'Illustratif',searchRoutes:'Rechercher des itinéraires',filterType:'Type de voyage',filterRegion:'Région',filterDuration:'Durée',all:'Tous',noRoutes:'Aucun itinéraire ne correspond aux filtres.',vehicleSection:'Contexte véhicule (facultatif)',vehicleType:'Véhicule',registrationCountry:'Pays d’immatriculation',fuelType:'Carburant / motorisation',euroClass:'Classe Euro',rentalCrossBorder:'Location autorisée à franchir les frontières',privateCar:'Voiture privée',rentalCar:'Voiture de location',camper:'Camping-car',motorcycle:'Moto',otherVehicle:'Autre',petrol:'Essence',diesel:'Diesel',hybrid:'Hybride',pluginHybrid:'Hybride rechargeable',electric:'Électrique',hydrogen:'Hydrogène',unknown:'Inconnu',roadRules:'Contexte routier',crossBorder:'Transfrontalier',urbanAccess:'Vérifier l’accès urbain',vehicleNeeded:'Le contexte véhicule est requis pour péages, ZFE et accès.',facet_world:'Tour du monde',facet_round_trip:'Circuit',facet_road_trip:'Road trip',facet_cruise:'Croisière',facet_global:'Mondial',facet_europe:'Europe',facet_southern_europe:'Europe du Sud',facet_italy:'Italie',facet_mediterranean:'Méditerranée',facet_north_africa:'Afrique du Nord',filterMode:'Transport',filterTheme:'Thème',results:'itinéraires trouvés',resetFilters:'Réinitialiser',details:'Détails',start:'Départ',finish:'Arrivée',previous:'Précédent',next:'Suivant',type:'Type',country:'Pays',duration:'Durée',cost:'Coût',segment:'Segment',stop:'Étape',currency:'Devise',facet_rail:'Train',facet_bus:'Bus',facet_car:'Voiture',facet_ferry:'Ferry',facet_multimodal:'Multimodal',facet_road:'Route',facet_coach:'Autocar',facet_ground_transfer:'Transfert terrestre',story:'Récit',storyPlay:'Lire le récit',storyExit:'Quitter le récit',storyComplete:'Itinéraire terminé',chapter:'Chapitre',settings:'Réglages',methodology:'Méthodologie',share:'Partager',autoRotate:'Rotation automatique',highDetail:'Globe haute définition',terrain:'Relief 3D réel',showPoints:'Points d’étape',routeGlow:'Lueur de route',arcThickness:'Épaisseur de route',reducedMotion:'Mouvement réduit',terrainLoading:'Chargement du relief 3D…',terrainHint:'Faites glisser pour tourner · faites défiler pour zoomer · le relief réel apparaît en vous rapprochant',routeMethodTitle:'Méthodologie de l’itinéraire',routeMethodText:'Cet itinéraire éditorialisé utilise des données publiables et des preuves sourcées lorsque disponibles. Horaires, prix et règles personnelles variables restent ouverts jusqu’à connaître les dates et le contexte.',evidenceCoverage:'Couverture des sources',editorialStatus:'Statut éditorial',storyRoute:'Récit de l’itinéraire',routeFit:'Route Fit',showFit:'Plus de filtres adaptés',hideFit:'Masquer les filtres',fitPace:'Rythme',fitSeason:'Saison',fitParty:'Avec qui',fitStart:'Départ de l’itinéraire',facet_relaxed:'Détendu',facet_balanced:'Équilibré',facet_active:'Actif',facet_spring:'Printemps',facet_summer:'Été',facet_autumn:'Automne',facet_winter:'Hiver',facet_multi_season:'Plusieurs saisons',facet_solo:'Solo',facet_couples:'Couple',facet_friends:'Amis',facet_families:'Famille'},
-    pt:{routes:'Rotas',traveller:'Viajante',flagship:'Flagship',template:'Modelo',open:'Abrir rota',days:'dias',stops:'paradas',segments:'trechos',global:'Perspectiva global',contextTitle:'Contexto do viajante',contextLead:'Adapta entrada, idioma, moeda e origem. Guardado apenas neste dispositivo.',passports:'País do passaporte',secondPassport:'Segundo passaporte (opcional)',residence:'Residência',language:'Idioma',currency:'Moeda',origin:'Cidade / aeroporto de partida',adults:'Adultos',children:'Crianças',mobility:'Mobilidade reduzida',save:'Salvar',clear:'Limpar',notSet:'Não definido',currentCheck:'Verificação atual necessária',routeLibrary:'Explorar rotas',routeLibraryLead:'Uma plataforma para voltas ao mundo, road trips, trem, cruzeiros e mais.',editorial:'Modelo editorial — verifique transporte, preços e entrada para suas datas.',overview:'Visão geral',day:'Dia',nights:'noites',transport:'Transporte',verification:'Verificação',backWorld:'Rota mundial',private:'Privado neste dispositivo. Nunca pedimos número de passaporte, referência de reserva ou pagamento.',sourcedBeta:'Beta com fontes',sources:'Fontes',lastChecked:'Última verificação',publishedFrom:'a partir de',verified:'Verificado',routeEvidence:'Fontes da rota',entryGuidance:'Entrada',officialCheck:'Verificação oficial',connectionRequired:'conexão necessária',minimumTravel:'tempo mínimo',cruiseTemplate:'Modelo de cruzeiro',onboardNights:'noites a bordo',seaDays:'dias no mar',portCall:'Escala',embarkation:'Embarque',disembarkation:'Desembarque',border:'Contexto de fronteira',schengenExit:'Saída de Schengen',schengenEntry:'Reentrada em Schengen',sailingNeeded:'Selecione uma partida real para navio, operadora, horários, cais e preço.',illustrative:'Ilustrativo',searchRoutes:'Pesquisar rotas',filterType:'Tipo de viagem',filterRegion:'Região',filterDuration:'Duração',all:'Todas',noRoutes:'Nenhuma rota corresponde aos filtros.',vehicleSection:'Contexto do veículo (opcional)',vehicleType:'Veículo',registrationCountry:'País de matrícula',fuelType:'Combustível / motorização',euroClass:'Classe Euro',rentalCrossBorder:'Aluguel autorizado para cruzar fronteiras',privateCar:'Carro particular',rentalCar:'Carro alugado',camper:'Motorhome',motorcycle:'Moto',otherVehicle:'Outro',petrol:'Gasolina',diesel:'Diesel',hybrid:'Híbrido',pluginHybrid:'Híbrido plug-in',electric:'Elétrico',hydrogen:'Hidrogênio',unknown:'Desconhecido',roadRules:'Contexto rodoviário',crossBorder:'Transfronteiriço',urbanAccess:'Verificar acesso urbano',vehicleNeeded:'O contexto do veículo é necessário para portagens, ZBE e acessos.',facet_world:'Volta ao mundo',facet_round_trip:'Roteiro circular',facet_road_trip:'Road trip',facet_cruise:'Cruzeiro',facet_global:'Global',facet_europe:'Europa',facet_southern_europe:'Sul da Europa',facet_italy:'Itália',facet_mediterranean:'Mediterrâneo',facet_north_africa:'Norte da África',filterMode:'Transporte',filterTheme:'Tema',results:'rotas encontradas',resetFilters:'Redefinir',details:'Detalhes',start:'Início',finish:'Fim',previous:'Anterior',next:'Seguinte',type:'Tipo',country:'País',duration:'Duração',cost:'Custo',segment:'Trecho',stop:'Parada',currency:'Moeda',facet_rail:'Trem',facet_bus:'Ônibus',facet_car:'Carro',facet_ferry:'Balsa',facet_multimodal:'Multimodal',facet_road:'Estrada',facet_coach:'Ônibus rodoviário',facet_ground_transfer:'Transfer terrestre',story:'História',storyPlay:'Reproduzir história',storyExit:'Sair da história',storyComplete:'Rota concluída',chapter:'Capítulo',settings:'Definições',methodology:'Metodologia',share:'Partilhar',autoRotate:'Rotação automática',highDetail:'Globo de alta definição',terrain:'Terreno 3D real',showPoints:'Pontos de paragem',routeGlow:'Brilho da rota',arcThickness:'Espessura da rota',reducedMotion:'Movimento reduzido',terrainLoading:'A carregar terreno 3D…',terrainHint:'Arraste para rodar · desloque para ampliar · o relevo real aparece ao aproximar',routeMethodTitle:'Metodologia da rota',routeMethodText:'Esta rota curada usa dados publicáveis e evidência com fontes quando disponível. Horários, preços e regras pessoais variáveis permanecem em aberto até serem conhecidas as datas e o contexto.',evidenceCoverage:'Cobertura de fontes',editorialStatus:'Estado editorial',storyRoute:'História da rota',routeFit:'Route Fit',showFit:'Mais filtros de adequação',hideFit:'Ocultar filtros',fitPace:'Ritmo',fitSeason:'Estação',fitParty:'Com quem viaja',fitStart:'Início da rota',facet_relaxed:'Relaxado',facet_balanced:'Equilibrado',facet_active:'Ativo',facet_spring:'Primavera',facet_summer:'Verão',facet_autumn:'Outono',facet_winter:'Inverno',facet_multi_season:'Várias estações',facet_solo:'Solo',facet_couples:'Casal',facet_friends:'Amigos',facet_families:'Família'}
+    en:{routes:'Routes',traveller:'Traveller',flagship:'Flagship',template:'Template',open:'Open route',days:'days',stops:'stops',segments:'segments',global:'Global perspective',contextTitle:'Traveller context',contextLead:'Used to adapt entry rules, language, currency and departure assumptions. Stored only on this device.',passports:'Passport country',secondPassport:'Second passport (optional)',residence:'Residence',language:'Language',currency:'Currency',origin:'Starting city / airport',adults:'Adults',children:'Children',mobility:'Reduced mobility',save:'Save context',clear:'Clear',notSet:'Not set',currentCheck:'Current check required',routeLibrary:'Explore routes',routeLibraryLead:'One platform for world journeys, round trips, road trips, rail, cruises and more.',editorial:'Editorial template — verify transport, prices and entry requirements for your dates.',overview:'Route overview',day:'Day',nights:'nights',transport:'Transport',verification:'Verification',backWorld:'World route',private:'Private on this device. Passport numbers, booking references and payment details are never requested.',sourcedBeta:'Sourced beta',sources:'Sources',lastChecked:'Last checked',publishedFrom:'from',verified:'Verified',routeEvidence:'Route evidence',entryGuidance:'Entry guidance',officialCheck:'Official check',connectionRequired:'connection required',minimumTravel:'minimum travel',cruiseTemplate:'Cruise template',onboardNights:'onboard nights',seaDays:'sea days',portCall:'Port call',embarkation:'Embarkation',disembarkation:'Disembarkation',border:'Border context',schengenExit:'Schengen exit',schengenEntry:'Schengen re-entry',sailingNeeded:'Select a real sailing for ship, operator, times, berth and price.',illustrative:'Illustrative',searchRoutes:'Search routes',filterType:'Travel type',filterRegion:'Region',filterDuration:'Duration',all:'All',noRoutes:'No routes match these filters.',vehicleSection:'Vehicle context (optional)',vehicleType:'Vehicle',registrationCountry:'Registration country',fuelType:'Fuel / powertrain',euroClass:'Euro emissions class',rentalCrossBorder:'Rental approved for cross-border travel',privateCar:'Private car',rentalCar:'Rental car',camper:'Camper',motorcycle:'Motorcycle',otherVehicle:'Other',petrol:'Petrol',diesel:'Diesel',hybrid:'Hybrid',pluginHybrid:'Plug-in hybrid',electric:'Electric',hydrogen:'Hydrogen',unknown:'Unknown',roadRules:'Road context',crossBorder:'Cross-border',urbanAccess:'Urban access checks',vehicleNeeded:'Vehicle context required for toll, LEZ and access checks.',facet_world:'World',facet_round_trip:'Round trip',facet_road_trip:'Road trip',facet_cruise:'Cruise',facet_global:'Global',facet_europe:'Europe',facet_southern_europe:'Southern Europe',facet_italy:'Italy',facet_mediterranean:'Mediterranean',facet_north_africa:'North Africa',filterMode:'Transport',filterTheme:'Theme',results:'routes found',resetFilters:'Reset',details:'Details',start:'Start',finish:'Finish',previous:'Previous',next:'Next',type:'Type',country:'Country',duration:'Duration',cost:'Cost',segment:'Segment',stop:'Stop',currency:'Currency',facet_rail:'Rail',facet_bus:'Bus',facet_car:'Car',facet_ferry:'Ferry',facet_multimodal:'Multimodal',facet_road:'Road',facet_coach:'Coach',facet_ground_transfer:'Ground transfer',story:'Story',storyPlay:'Play story',storyExit:'Exit story',storyComplete:'Route complete',chapter:'Chapter',settings:'Settings',methodology:'Methodology',share:'Share',autoRotate:'Auto rotate',highDetail:'High detail globe',terrain:'Real 3D globe terrain',showPoints:'Stop points',routeGlow:'Route glow',arcThickness:'Route thickness',reducedMotion:'Reduced motion',terrainLoading:'Loading 3D terrain…',terrainHint:'Drag to rotate · scroll to zoom · real elevation appears as you move closer',routeMethodTitle:'Route methodology',routeMethodText:'This curated route uses publication-safe trip data and source-backed evidence where available. Volatile schedules, prices and traveller-specific rules remain explicitly unresolved until dates and context are known.',evidenceCoverage:'Evidence coverage',editorialStatus:'Editorial status',storyRoute:'Route story',routeFit:'Route Fit',showFit:'More fit filters',hideFit:'Hide fit filters',fitPace:'Pace',fitSeason:'Season',fitParty:'Travelling as',fitStart:'Route starts in',facet_relaxed:'Relaxed',facet_balanced:'Balanced',facet_active:'Active',facet_spring:'Spring',facet_summer:'Summer',facet_autumn:'Autumn',facet_winter:'Winter',facet_multi_season:'Multi-season',facet_solo:'Solo',facet_couples:'Couple',facet_friends:'Friends',facet_families:'Family',resultOne:'route found',countryUnit:'country',countriesUnit:'countries',facet_city:'City',facet_cruise_port:'Cruise port',facet_port:'Port',facet_rail_station:'Rail station',facet_airport:'Airport',facet_island:'Island',facet_park:'Park',status_planned:'Planned',status_sourced_beta:'Sourced beta',status_illustrative_template:'Illustrative template',status_draft:'Draft'},
+    de:{routes:'Routen',traveller:'Reisekontext',flagship:'Flagship',template:'Vorlage',open:'Route öffnen',days:'Tage',stops:'Stopps',segments:'Segmente',global:'Globale Perspektive',contextTitle:'Reisekontext',contextLead:'Passt Einreisehinweise, Sprache, Währung und Startannahmen an. Wird nur auf diesem Gerät gespeichert.',passports:'Passland',secondPassport:'Zweiter Pass (optional)',residence:'Wohnsitz',language:'Sprache',currency:'Währung',origin:'Startstadt / Flughafen',adults:'Erwachsene',children:'Kinder',mobility:'Eingeschränkte Mobilität',save:'Kontext speichern',clear:'Zurücksetzen',notSet:'Nicht gesetzt',currentCheck:'Aktuelle Prüfung erforderlich',routeLibrary:'Routen entdecken',routeLibraryLead:'Eine Plattform für Weltreisen, Rundreisen, Roadtrips, Bahnreisen, Kreuzfahrten und mehr.',editorial:'Redaktionelle Vorlage — Verkehr, Preise und Einreisebedingungen für die eigenen Daten prüfen.',overview:'Routenübersicht',day:'Tag',nights:'Nächte',transport:'Verkehr',verification:'Prüfstatus',backWorld:'Weltreise',private:'Privat auf diesem Gerät. Passnummern, Buchungsreferenzen und Zahlungsdaten werden niemals abgefragt.',sourcedBeta:'Quellen-Beta',sources:'Quellen',lastChecked:'Zuletzt geprüft',publishedFrom:'ab',verified:'Verifiziert',routeEvidence:'Routenbelege',entryGuidance:'Einreisehinweise',officialCheck:'Offiziell prüfen',connectionRequired:'Umstieg einplanen',minimumTravel:'Mindestfahrzeit',cruiseTemplate:'Kreuzfahrt-Vorlage',onboardNights:'Nächte an Bord',seaDays:'Seetage',portCall:'Hafenstopp',embarkation:'Einschiffung',disembarkation:'Ausschiffung',border:'Grenzkontext',schengenExit:'Schengen-Ausreise',schengenEntry:'Schengen-Wiedereinreise',sailingNeeded:'Für Schiff, Reederei, Zeiten, Liegeplatz und Preis muss eine konkrete Abfahrt gewählt werden.',illustrative:'Illustrativ',searchRoutes:'Routen suchen',filterType:'Reiseart',filterRegion:'Region',filterDuration:'Dauer',all:'Alle',noRoutes:'Keine Route passt zu diesen Filtern.',vehicleSection:'Fahrzeugkontext (optional)',vehicleType:'Fahrzeug',registrationCountry:'Zulassungsland',fuelType:'Kraftstoff / Antrieb',euroClass:'Euro-Abgasnorm',rentalCrossBorder:'Mietwagen für Grenzübertritte freigegeben',privateCar:'Privatwagen',rentalCar:'Mietwagen',camper:'Camper',motorcycle:'Motorrad',otherVehicle:'Anderes',petrol:'Benzin',diesel:'Diesel',hybrid:'Hybrid',pluginHybrid:'Plug-in-Hybrid',electric:'Elektro',hydrogen:'Wasserstoff',unknown:'Unbekannt',roadRules:'Straßenkontext',crossBorder:'Grenzübertritt',urbanAccess:'Stadtzufahrt prüfen',vehicleNeeded:'Für Maut-, Umweltzonen- und Zufahrtsprüfungen wird ein Fahrzeugkontext benötigt.',facet_world:'Weltreise',facet_round_trip:'Rundreise',facet_road_trip:'Roadtrip',facet_cruise:'Kreuzfahrt',facet_global:'Global',facet_europe:'Europa',facet_southern_europe:'Südeuropa',facet_italy:'Italien',facet_mediterranean:'Mittelmeer',facet_north_africa:'Nordafrika',filterMode:'Verkehrsmittel',filterTheme:'Reisethema',results:'Routen gefunden',resetFilters:'Filter zurücksetzen',details:'Details',start:'Start',finish:'Ziel',previous:'Zurück',next:'Weiter',type:'Typ',country:'Land',duration:'Dauer',cost:'Kosten',segment:'Segment',stop:'Stopp',currency:'Währung',facet_rail:'Bahn',facet_bus:'Bus',facet_car:'Auto',facet_ferry:'Fähre',facet_multimodal:'Multimodal',facet_road:'Straße',facet_coach:'Fernbus',facet_ground_transfer:'Bodentransfer',story:'Story',storyPlay:'Story starten',storyExit:'Story beenden',storyComplete:'Route abgeschlossen',chapter:'Kapitel',settings:'Einstellungen',methodology:'Methodik',share:'Teilen',autoRotate:'Automatisch drehen',highDetail:'Hochauflösender Globus',terrain:'Echtes 3D-Globus-Terrain',showPoints:'Stopppunkte',routeGlow:'Routenleuchten',arcThickness:'Linienstärke',reducedMotion:'Reduzierte Bewegung',terrainLoading:'3D-Terrain wird geladen…',terrainHint:'Ziehen zum Drehen · scrollen zum Zoomen · echtes Relief erscheint beim Annähern',routeMethodTitle:'Routenmethodik',routeMethodText:'Diese kuratierte Route verwendet veröffentlichungssichere Reisedaten und, wo verfügbar, quellenbasierte Belege. Veränderliche Fahrpläne, Preise und reisendenspezifische Regeln bleiben ausdrücklich offen, bis Datum und Kontext feststehen.',evidenceCoverage:'Quellenabdeckung',editorialStatus:'Redaktioneller Status',storyRoute:'Routen-Story',routeFit:'Route Fit',showFit:'Weitere passende Filter',hideFit:'Passende Filter ausblenden',fitPace:'Reisetempo',fitSeason:'Reisezeit',fitParty:'Reisekonstellation',fitStart:'Routenstart',facet_relaxed:'Entspannt',facet_balanced:'Ausgewogen',facet_active:'Aktiv',facet_spring:'Frühling',facet_summer:'Sommer',facet_autumn:'Herbst',facet_winter:'Winter',facet_multi_season:'Mehrere Jahreszeiten',facet_solo:'Allein',facet_couples:'Paar',facet_friends:'Freunde',facet_families:'Familie',resultOne:'Route gefunden',countryUnit:'Land',countriesUnit:'Länder',facet_city:'Stadt',facet_cruise_port:'Kreuzfahrthafen',facet_port:'Hafen',facet_rail_station:'Bahnhof',facet_airport:'Flughafen',facet_island:'Insel',facet_park:'Park',status_planned:'Geplant',status_sourced_beta:'Quellen-Beta',status_illustrative_template:'Illustrative Vorlage',status_draft:'Entwurf'},
+    it:{routes:'Itinerari',traveller:'Viaggiatore',flagship:'Flagship',template:'Modello',open:'Apri itinerario',days:'giorni',stops:'tappe',segments:'tratte',global:'Prospettiva globale',contextTitle:'Profilo viaggiatore',contextLead:'Adatta requisiti d’ingresso, lingua, valuta e partenza. Salvato solo su questo dispositivo.',passports:'Paese del passaporto',secondPassport:'Secondo passaporto (opzionale)',residence:'Residenza',language:'Lingua',currency:'Valuta',origin:'Città / aeroporto di partenza',adults:'Adulti',children:'Bambini',mobility:'Mobilità ridotta',save:'Salva',clear:'Cancella',notSet:'Non impostato',currentCheck:'Verifica attuale richiesta',routeLibrary:'Esplora itinerari',routeLibraryLead:'Una piattaforma per giri del mondo, road trip, treni, crociere e altro.',editorial:'Modello editoriale — verifica trasporti, prezzi e requisiti per le tue date.',overview:'Panoramica',day:'Giorno',nights:'notti',transport:'Trasporto',verification:'Verifica',backWorld:'Giro del mondo',private:'Privato su questo dispositivo. Non chiediamo numeri di passaporto, prenotazioni o dati di pagamento.',sourcedBeta:'Beta con fonti',sources:'Fonti',lastChecked:'Ultima verifica',publishedFrom:'da',verified:'Verificato',routeEvidence:'Fonti del percorso',entryGuidance:'Ingresso',officialCheck:'Verifica ufficiale',connectionRequired:'coincidenza necessaria',minimumTravel:'tempo minimo',cruiseTemplate:'Modello crociera',onboardNights:'notti a bordo',seaDays:'giorni in mare',portCall:'Scalo',embarkation:'Imbarco',disembarkation:'Sbarco',border:'Contesto di frontiera',schengenExit:'Uscita Schengen',schengenEntry:'Rientro Schengen',sailingNeeded:'Seleziona una partenza reale per nave, operatore, orari, ormeggio e prezzo.',illustrative:'Illustrativo',searchRoutes:'Cerca itinerari',filterType:'Tipo di viaggio',filterRegion:'Regione',filterDuration:'Durata',all:'Tutti',noRoutes:'Nessun itinerario corrisponde ai filtri.',vehicleSection:'Profilo veicolo (opzionale)',vehicleType:'Veicolo',registrationCountry:'Paese di immatricolazione',fuelType:'Carburante / propulsione',euroClass:'Classe Euro',rentalCrossBorder:'Noleggio autorizzato oltre confine',privateCar:'Auto privata',rentalCar:'Auto a noleggio',camper:'Camper',motorcycle:'Moto',otherVehicle:'Altro',petrol:'Benzina',diesel:'Diesel',hybrid:'Ibrido',pluginHybrid:'Ibrido plug-in',electric:'Elettrico',hydrogen:'Idrogeno',unknown:'Sconosciuto',roadRules:'Contesto stradale',crossBorder:'Transfrontaliero',urbanAccess:'Verifica accesso urbano',vehicleNeeded:'Il profilo veicolo è necessario per pedaggi, ZFE e accessi.',facet_world:'Giro del mondo',facet_round_trip:'Tour',facet_road_trip:'Road trip',facet_cruise:'Crociera',facet_global:'Globale',facet_europe:'Europa',facet_southern_europe:'Europa meridionale',facet_italy:'Italia',facet_mediterranean:'Mediterraneo',facet_north_africa:'Nord Africa',filterMode:'Trasporto',filterTheme:'Tema',results:'itinerari trovati',resetFilters:'Reimposta',details:'Dettagli',start:'Partenza',finish:'Arrivo',previous:'Indietro',next:'Avanti',type:'Tipo',country:'Paese',duration:'Durata',cost:'Costo',segment:'Tratta',stop:'Tappa',currency:'Valuta',facet_rail:'Treno',facet_bus:'Bus',facet_car:'Auto',facet_ferry:'Traghetto',facet_multimodal:'Multimodale',facet_road:'Strada',facet_coach:'Pullman',facet_ground_transfer:'Trasferimento terrestre',story:'Storia',storyPlay:'Avvia storia',storyExit:'Esci dalla storia',storyComplete:'Itinerario completato',chapter:'Capitolo',settings:'Impostazioni',methodology:'Metodologia',share:'Condividi',autoRotate:'Rotazione automatica',highDetail:'Globo ad alta definizione',terrain:'Terreno 3D reale',showPoints:'Punti delle tappe',routeGlow:'Bagliore itinerario',arcThickness:'Spessore linea',reducedMotion:'Movimento ridotto',terrainLoading:'Caricamento terreno 3D…',terrainHint:'Trascina per ruotare · scorri per zoomare · il rilievo reale appare avvicinandoti',routeMethodTitle:'Metodologia itinerario',routeMethodText:'Questo itinerario curato usa dati pubblicabili e fonti verificabili quando disponibili. Orari, prezzi e regole personali variabili restano aperti finché non sono noti date e contesto.',evidenceCoverage:'Copertura fonti',editorialStatus:'Stato editoriale',storyRoute:'Storia itinerario',routeFit:'Route Fit',showFit:'Altri filtri di compatibilità',hideFit:'Nascondi filtri',fitPace:'Ritmo',fitSeason:'Stagione',fitParty:'Compagnia',fitStart:'Partenza itinerario',facet_relaxed:'Rilassato',facet_balanced:'Equilibrato',facet_active:'Attivo',facet_spring:'Primavera',facet_summer:'Estate',facet_autumn:'Autunno',facet_winter:'Inverno',facet_multi_season:'Più stagioni',facet_solo:'Solo',facet_couples:'Coppia',facet_friends:'Amici',facet_families:'Famiglia',resultOne:'itinerario trovato',countryUnit:'paese',countriesUnit:'paesi',facet_city:'Città',facet_cruise_port:'Porto crocieristico',facet_port:'Porto',facet_rail_station:'Stazione ferroviaria',facet_airport:'Aeroporto',facet_island:'Isola',facet_park:'Parco',status_planned:'Pianificato',status_sourced_beta:'Beta con fonti',status_illustrative_template:'Modello illustrativo',status_draft:'Bozza'},
+    es:{routes:'Rutas',traveller:'Viajero',flagship:'Flagship',template:'Plantilla',open:'Abrir ruta',days:'días',stops:'paradas',segments:'tramos',global:'Perspectiva global',contextTitle:'Contexto del viajero',contextLead:'Adapta requisitos de entrada, idioma, moneda y origen. Solo se guarda en este dispositivo.',passports:'País del pasaporte',secondPassport:'Segundo pasaporte (opcional)',residence:'Residencia',language:'Idioma',currency:'Moneda',origin:'Ciudad / aeropuerto de salida',adults:'Adultos',children:'Niños',mobility:'Movilidad reducida',save:'Guardar',clear:'Borrar',notSet:'Sin definir',currentCheck:'Revisión actual necesaria',routeLibrary:'Explorar rutas',routeLibraryLead:'Una plataforma para vueltas al mundo, road trips, trenes, cruceros y más.',editorial:'Plantilla editorial — verifica transporte, precios y requisitos para tus fechas.',overview:'Resumen de ruta',day:'Día',nights:'noches',transport:'Transporte',verification:'Verificación',backWorld:'Ruta mundial',private:'Privado en este dispositivo. Nunca pedimos números de pasaporte, reservas ni pagos.',sourcedBeta:'Beta con fuentes',sources:'Fuentes',lastChecked:'Última revisión',publishedFrom:'desde',verified:'Verificado',routeEvidence:'Fuentes de ruta',entryGuidance:'Entrada',officialCheck:'Comprobación oficial',connectionRequired:'conexión necesaria',minimumTravel:'tiempo mínimo',cruiseTemplate:'Plantilla de crucero',onboardNights:'noches a bordo',seaDays:'días de navegación',portCall:'Escala',embarkation:'Embarque',disembarkation:'Desembarque',border:'Contexto fronterizo',schengenExit:'Salida de Schengen',schengenEntry:'Reentrada a Schengen',sailingNeeded:'Selecciona una salida real para barco, operador, horarios, atraque y precio.',illustrative:'Ilustrativo',searchRoutes:'Buscar rutas',filterType:'Tipo de viaje',filterRegion:'Región',filterDuration:'Duración',all:'Todas',noRoutes:'Ninguna ruta coincide con los filtros.',vehicleSection:'Contexto del vehículo (opcional)',vehicleType:'Vehículo',registrationCountry:'País de matriculación',fuelType:'Combustible / propulsión',euroClass:'Clase Euro',rentalCrossBorder:'Alquiler autorizado para cruzar fronteras',privateCar:'Coche privado',rentalCar:'Coche de alquiler',camper:'Camper',motorcycle:'Moto',otherVehicle:'Otro',petrol:'Gasolina',diesel:'Diésel',hybrid:'Híbrido',pluginHybrid:'Híbrido enchufable',electric:'Eléctrico',hydrogen:'Hidrógeno',unknown:'Desconocido',roadRules:'Contexto vial',crossBorder:'Transfronterizo',urbanAccess:'Comprobar acceso urbano',vehicleNeeded:'Se requiere contexto del vehículo para peajes, ZBE y accesos.',facet_world:'Vuelta al mundo',facet_round_trip:'Ruta circular',facet_road_trip:'Road trip',facet_cruise:'Crucero',facet_global:'Global',facet_europe:'Europa',facet_southern_europe:'Sur de Europa',facet_italy:'Italia',facet_mediterranean:'Mediterráneo',facet_north_africa:'Norte de África',filterMode:'Transporte',filterTheme:'Tema',results:'rutas encontradas',resetFilters:'Restablecer',details:'Detalles',start:'Inicio',finish:'Final',previous:'Anterior',next:'Siguiente',type:'Tipo',country:'País',duration:'Duración',cost:'Coste',segment:'Tramo',stop:'Parada',currency:'Moneda',facet_rail:'Tren',facet_bus:'Bus',facet_car:'Coche',facet_ferry:'Ferry',facet_multimodal:'Multimodal',facet_road:'Carretera',facet_coach:'Autocar',facet_ground_transfer:'Traslado terrestre',story:'Historia',storyPlay:'Reproducir historia',storyExit:'Salir de la historia',storyComplete:'Ruta completada',chapter:'Capítulo',settings:'Ajustes',methodology:'Metodología',share:'Compartir',autoRotate:'Rotación automática',highDetail:'Globo de alta definición',terrain:'Terreno 3D real',showPoints:'Puntos de parada',routeGlow:'Brillo de ruta',arcThickness:'Grosor de ruta',reducedMotion:'Movimiento reducido',terrainLoading:'Cargando terreno 3D…',terrainHint:'Arrastra para girar · desplázate para acercar · el relieve real aparece al aproximarte',routeMethodTitle:'Metodología de ruta',routeMethodText:'Esta ruta curada usa datos publicables y evidencia con fuentes cuando está disponible. Horarios, precios y reglas personales variables permanecen abiertos hasta conocer fechas y contexto.',evidenceCoverage:'Cobertura de fuentes',editorialStatus:'Estado editorial',storyRoute:'Historia de la ruta',routeFit:'Route Fit',showFit:'Más filtros de ajuste',hideFit:'Ocultar filtros',fitPace:'Ritmo',fitSeason:'Temporada',fitParty:'Compañía',fitStart:'Inicio de ruta',facet_relaxed:'Relajado',facet_balanced:'Equilibrado',facet_active:'Activo',facet_spring:'Primavera',facet_summer:'Verano',facet_autumn:'Otoño',facet_winter:'Invierno',facet_multi_season:'Varias estaciones',facet_solo:'Solo',facet_couples:'Pareja',facet_friends:'Amigos',facet_families:'Familia',resultOne:'ruta encontrada',countryUnit:'país',countriesUnit:'países',facet_city:'Ciudad',facet_cruise_port:'Puerto de cruceros',facet_port:'Puerto',facet_rail_station:'Estación de tren',facet_airport:'Aeropuerto',facet_island:'Isla',facet_park:'Parque',status_planned:'Planificado',status_sourced_beta:'Beta con fuentes',status_illustrative_template:'Plantilla ilustrativa',status_draft:'Borrador'},
+    fr:{routes:'Itinéraires',traveller:'Voyageur',flagship:'Flagship',template:'Modèle',open:'Ouvrir',days:'jours',stops:'étapes',segments:'segments',global:'Perspective globale',contextTitle:'Contexte voyageur',contextLead:'Adapte formalités, langue, devise et départ. Stocké uniquement sur cet appareil.',passports:'Pays du passeport',secondPassport:'Deuxième passeport (facultatif)',residence:'Résidence',language:'Langue',currency:'Devise',origin:'Ville / aéroport de départ',adults:'Adultes',children:'Enfants',mobility:'Mobilité réduite',save:'Enregistrer',clear:'Effacer',notSet:'Non défini',currentCheck:'Vérification actuelle requise',routeLibrary:'Explorer les itinéraires',routeLibraryLead:'Une plateforme pour tours du monde, road trips, train, croisières et plus.',editorial:'Modèle éditorial — vérifiez transports, prix et formalités pour vos dates.',overview:'Aperçu',day:'Jour',nights:'nuits',transport:'Transport',verification:'Vérification',backWorld:'Tour du monde',private:'Privé sur cet appareil. Aucun numéro de passeport, référence de réservation ou paiement n’est demandé.',sourcedBeta:'Bêta sourcée',sources:'Sources',lastChecked:'Dernière vérification',publishedFrom:'à partir de',verified:'Vérifié',routeEvidence:'Sources de l’itinéraire',entryGuidance:'Entrée',officialCheck:'Vérification officielle',connectionRequired:'correspondance nécessaire',minimumTravel:'temps minimum',cruiseTemplate:'Modèle croisière',onboardNights:'nuits à bord',seaDays:'jours en mer',portCall:'Escale',embarkation:'Embarquement',disembarkation:'Débarquement',border:'Contexte frontalier',schengenExit:'Sortie Schengen',schengenEntry:'Rentrée Schengen',sailingNeeded:'Sélectionnez un départ réel pour le navire, l’opérateur, les horaires, le quai et le prix.',illustrative:'Illustratif',searchRoutes:'Rechercher des itinéraires',filterType:'Type de voyage',filterRegion:'Région',filterDuration:'Durée',all:'Tous',noRoutes:'Aucun itinéraire ne correspond aux filtres.',vehicleSection:'Contexte véhicule (facultatif)',vehicleType:'Véhicule',registrationCountry:'Pays d’immatriculation',fuelType:'Carburant / motorisation',euroClass:'Classe Euro',rentalCrossBorder:'Location autorisée à franchir les frontières',privateCar:'Voiture privée',rentalCar:'Voiture de location',camper:'Camping-car',motorcycle:'Moto',otherVehicle:'Autre',petrol:'Essence',diesel:'Diesel',hybrid:'Hybride',pluginHybrid:'Hybride rechargeable',electric:'Électrique',hydrogen:'Hydrogène',unknown:'Inconnu',roadRules:'Contexte routier',crossBorder:'Transfrontalier',urbanAccess:'Vérifier l’accès urbain',vehicleNeeded:'Le contexte véhicule est requis pour péages, ZFE et accès.',facet_world:'Tour du monde',facet_round_trip:'Circuit',facet_road_trip:'Road trip',facet_cruise:'Croisière',facet_global:'Mondial',facet_europe:'Europe',facet_southern_europe:'Europe du Sud',facet_italy:'Italie',facet_mediterranean:'Méditerranée',facet_north_africa:'Afrique du Nord',filterMode:'Transport',filterTheme:'Thème',results:'itinéraires trouvés',resetFilters:'Réinitialiser',details:'Détails',start:'Départ',finish:'Arrivée',previous:'Précédent',next:'Suivant',type:'Type',country:'Pays',duration:'Durée',cost:'Coût',segment:'Segment',stop:'Étape',currency:'Devise',facet_rail:'Train',facet_bus:'Bus',facet_car:'Voiture',facet_ferry:'Ferry',facet_multimodal:'Multimodal',facet_road:'Route',facet_coach:'Autocar',facet_ground_transfer:'Transfert terrestre',story:'Récit',storyPlay:'Lire le récit',storyExit:'Quitter le récit',storyComplete:'Itinéraire terminé',chapter:'Chapitre',settings:'Réglages',methodology:'Méthodologie',share:'Partager',autoRotate:'Rotation automatique',highDetail:'Globe haute définition',terrain:'Relief 3D réel',showPoints:'Points d’étape',routeGlow:'Lueur de route',arcThickness:'Épaisseur de route',reducedMotion:'Mouvement réduit',terrainLoading:'Chargement du relief 3D…',terrainHint:'Faites glisser pour tourner · faites défiler pour zoomer · le relief réel apparaît en vous rapprochant',routeMethodTitle:'Méthodologie de l’itinéraire',routeMethodText:'Cet itinéraire éditorialisé utilise des données publiables et des preuves sourcées lorsque disponibles. Horaires, prix et règles personnelles variables restent ouverts jusqu’à connaître les dates et le contexte.',evidenceCoverage:'Couverture des sources',editorialStatus:'Statut éditorial',storyRoute:'Récit de l’itinéraire',routeFit:'Route Fit',showFit:'Plus de filtres adaptés',hideFit:'Masquer les filtres',fitPace:'Rythme',fitSeason:'Saison',fitParty:'Avec qui',fitStart:'Départ de l’itinéraire',facet_relaxed:'Détendu',facet_balanced:'Équilibré',facet_active:'Actif',facet_spring:'Printemps',facet_summer:'Été',facet_autumn:'Automne',facet_winter:'Hiver',facet_multi_season:'Plusieurs saisons',facet_solo:'Solo',facet_couples:'Couple',facet_friends:'Amis',facet_families:'Famille',resultOne:'itinéraire trouvé',countryUnit:'pays',countriesUnit:'pays',facet_city:'Ville',facet_cruise_port:'Port de croisière',facet_port:'Port',facet_rail_station:'Gare',facet_airport:'Aéroport',facet_island:'Île',facet_park:'Parc',status_planned:'Planifié',status_sourced_beta:'Bêta sourcée',status_illustrative_template:'Modèle illustratif',status_draft:'Brouillon'},
+    pt:{routes:'Rotas',traveller:'Viajante',flagship:'Flagship',template:'Modelo',open:'Abrir rota',days:'dias',stops:'paradas',segments:'trechos',global:'Perspectiva global',contextTitle:'Contexto do viajante',contextLead:'Adapta entrada, idioma, moeda e origem. Guardado apenas neste dispositivo.',passports:'País do passaporte',secondPassport:'Segundo passaporte (opcional)',residence:'Residência',language:'Idioma',currency:'Moeda',origin:'Cidade / aeroporto de partida',adults:'Adultos',children:'Crianças',mobility:'Mobilidade reduzida',save:'Salvar',clear:'Limpar',notSet:'Não definido',currentCheck:'Verificação atual necessária',routeLibrary:'Explorar rotas',routeLibraryLead:'Uma plataforma para voltas ao mundo, road trips, trem, cruzeiros e mais.',editorial:'Modelo editorial — verifique transporte, preços e entrada para suas datas.',overview:'Visão geral',day:'Dia',nights:'noites',transport:'Transporte',verification:'Verificação',backWorld:'Rota mundial',private:'Privado neste dispositivo. Nunca pedimos número de passaporte, referência de reserva ou pagamento.',sourcedBeta:'Beta com fontes',sources:'Fontes',lastChecked:'Última verificação',publishedFrom:'a partir de',verified:'Verificado',routeEvidence:'Fontes da rota',entryGuidance:'Entrada',officialCheck:'Verificação oficial',connectionRequired:'conexão necessária',minimumTravel:'tempo mínimo',cruiseTemplate:'Modelo de cruzeiro',onboardNights:'noites a bordo',seaDays:'dias no mar',portCall:'Escala',embarkation:'Embarque',disembarkation:'Desembarque',border:'Contexto de fronteira',schengenExit:'Saída de Schengen',schengenEntry:'Reentrada em Schengen',sailingNeeded:'Selecione uma partida real para navio, operadora, horários, cais e preço.',illustrative:'Ilustrativo',searchRoutes:'Pesquisar rotas',filterType:'Tipo de viagem',filterRegion:'Região',filterDuration:'Duração',all:'Todas',noRoutes:'Nenhuma rota corresponde aos filtros.',vehicleSection:'Contexto do veículo (opcional)',vehicleType:'Veículo',registrationCountry:'País de matrícula',fuelType:'Combustível / motorização',euroClass:'Classe Euro',rentalCrossBorder:'Aluguel autorizado para cruzar fronteiras',privateCar:'Carro particular',rentalCar:'Carro alugado',camper:'Motorhome',motorcycle:'Moto',otherVehicle:'Outro',petrol:'Gasolina',diesel:'Diesel',hybrid:'Híbrido',pluginHybrid:'Híbrido plug-in',electric:'Elétrico',hydrogen:'Hidrogênio',unknown:'Desconhecido',roadRules:'Contexto rodoviário',crossBorder:'Transfronteiriço',urbanAccess:'Verificar acesso urbano',vehicleNeeded:'O contexto do veículo é necessário para portagens, ZBE e acessos.',facet_world:'Volta ao mundo',facet_round_trip:'Roteiro circular',facet_road_trip:'Road trip',facet_cruise:'Cruzeiro',facet_global:'Global',facet_europe:'Europa',facet_southern_europe:'Sul da Europa',facet_italy:'Itália',facet_mediterranean:'Mediterrâneo',facet_north_africa:'Norte da África',filterMode:'Transporte',filterTheme:'Tema',results:'rotas encontradas',resetFilters:'Redefinir',details:'Detalhes',start:'Início',finish:'Fim',previous:'Anterior',next:'Seguinte',type:'Tipo',country:'País',duration:'Duração',cost:'Custo',segment:'Trecho',stop:'Parada',currency:'Moeda',facet_rail:'Trem',facet_bus:'Ônibus',facet_car:'Carro',facet_ferry:'Balsa',facet_multimodal:'Multimodal',facet_road:'Estrada',facet_coach:'Ônibus rodoviário',facet_ground_transfer:'Transfer terrestre',story:'História',storyPlay:'Reproduzir história',storyExit:'Sair da história',storyComplete:'Rota concluída',chapter:'Capítulo',settings:'Definições',methodology:'Metodologia',share:'Partilhar',autoRotate:'Rotação automática',highDetail:'Globo de alta definição',terrain:'Terreno 3D real',showPoints:'Pontos de paragem',routeGlow:'Brilho da rota',arcThickness:'Espessura da rota',reducedMotion:'Movimento reduzido',terrainLoading:'A carregar terreno 3D…',terrainHint:'Arraste para rodar · desloque para ampliar · o relevo real aparece ao aproximar',routeMethodTitle:'Metodologia da rota',routeMethodText:'Esta rota curada usa dados publicáveis e evidência com fontes quando disponível. Horários, preços e regras pessoais variáveis permanecem em aberto até serem conhecidas as datas e o contexto.',evidenceCoverage:'Cobertura de fontes',editorialStatus:'Estado editorial',storyRoute:'História da rota',routeFit:'Route Fit',showFit:'Mais filtros de adequação',hideFit:'Ocultar filtros',fitPace:'Ritmo',fitSeason:'Estação',fitParty:'Com quem viaja',fitStart:'Início da rota',facet_relaxed:'Relaxado',facet_balanced:'Equilibrado',facet_active:'Ativo',facet_spring:'Primavera',facet_summer:'Verão',facet_autumn:'Outono',facet_winter:'Inverno',facet_multi_season:'Várias estações',facet_solo:'Solo',facet_couples:'Casal',facet_friends:'Amigos',facet_families:'Família',resultOne:'rota encontrada',countryUnit:'país',countriesUnit:'países',facet_city:'Cidade',facet_cruise_port:'Porto de cruzeiros',facet_port:'Porto',facet_rail_station:'Estação ferroviária',facet_airport:'Aeroporto',facet_island:'Ilha',facet_park:'Parque',status_planned:'Planeado',status_sourced_beta:'Beta com fontes',status_illustrative_template:'Modelo ilustrativo',status_draft:'Rascunho'}
   };
 
 
@@ -1703,6 +1753,243 @@
     pt:{'All route':'Rota completa','N. America':'Amér. N.','S. America':'Amér. S.','Pacific':'Pacífico','SE Asia':'SE Ásia','C. Asia':'Ásia central','Levant':'Levante','W. Africa':'África O.','E. Africa':'África E.','Gulf':'Golfo','Finish':'Fim','This is the current operational corridor in the public master plan.':'Este é o corredor operacional atual no plano mestre público.'}
   };
 
+
+  root.i18n={
+    supportedLocales:[...SUPPORTED_LOCALES],
+    messages:I18N,
+    legacyWorldText:LEGACY_WORLD_TEXT,
+    legacyPhases:LEGACY_PHASES,
+    legacyExtra:LEGACY_EXTRA,
+    legacyShort:LEGACY_SHORT
+  };
+})();
+
+
+/* ===== platform/model.js ===== */
+(() => {
+  'use strict';
+  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  function placeMap(trip){return new Map((trip?.places||[]).map(p=>[p.id,p]))}
+  function stopMap(trip){return new Map((trip?.stops||[]).map(s=>[s.id,s]))}
+  function stopPlace(trip,stop){return placeMap(trip).get(stop?.placeId)||null}
+  function sourceMap(trip){return new Map((trip?.sources||[]).map(s=>[s.id,s]))}
+  function extension(node,id){
+    if(!node)return null;
+    if(node.extensions&&Object.prototype.hasOwnProperty.call(node.extensions,id))return node.extensions[id];
+    const legacy={
+      cruise:'cruise',
+      roadTrip:'roadTrip',
+      road:'roadContext',
+      border:'borderContext',
+      cruiseCall:'call',
+      port:'port'
+    };
+    const key=legacy[id];
+    return key&&Object.prototype.hasOwnProperty.call(node,key)?node[key]:null;
+  }
+  function routeGeometry(trip){
+    const sm=stopMap(trip),pm=placeMap(trip);
+    return (trip?.segments||[]).map((segment,index)=>{
+      const from=pm.get(sm.get(segment.fromStopId)?.placeId);
+      const to=pm.get(sm.get(segment.toStopId)?.placeId);
+      if(!from?.coordinates||!to?.coordinates)return null;
+      return {...segment,_index:index,start:from.coordinates,end:to.coordinates};
+    }).filter(Boolean);
+  }
+  function routeBounds(trip){
+    const points=(trip?.places||[]).map(p=>p.coordinates).filter(p=>Number.isFinite(Number(p?.lat))&&Number.isFinite(Number(p?.lng)));
+    if(!points.length)return null;
+    const lngs=points.map(p=>Number(p.lng)),lats=points.map(p=>Number(p.lat));
+    return [[Math.min(...lngs),Math.min(...lats)],[Math.max(...lngs),Math.max(...lats)]];
+  }
+  function chapterForSegment(trip,index){
+    const segment=trip?.segments?.[index];
+    if(!segment)return null;
+    return (trip.chapters||[]).find(ch=>(ch.stopIds||[]).includes(segment.fromStopId)||(ch.stopIds||[]).includes(segment.toStopId))||null;
+  }
+  function hasCapability(meta,id){return Array.isArray(meta?.capabilities)&&meta.capabilities.includes(id)}
+  function metrics(trip){
+    return {
+      days:trip?.planning?.days??null,
+      stops:trip?.stops?.length||0,
+      segments:trip?.segments?.length||0,
+      countries:new Set((trip?.places||[]).map(p=>p.countryCode).filter(Boolean)).size
+    };
+  }
+  root.model={placeMap,stopMap,stopPlace,sourceMap,extension,routeGeometry,routeBounds,chapterForSegment,hasCapability,metrics};
+})();
+
+
+/* ===== platform/traveller.js ===== */
+(() => {
+  'use strict';
+  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  const ALLOWED=['passports','residenceCountry','language','currency','origin','party','accessibility','vehicle'];
+  function defaults(locale='en'){
+    return {passports:[],residenceCountry:null,language:locale,currency:'EUR',origin:null,party:{adults:1,children:0},accessibility:{reducedMobility:false},vehicle:null};
+  }
+  function normalize(input,locale='en'){
+    const base=defaults(locale),raw=input&&typeof input==='object'?input:{},safe={};
+    for(const key of ALLOWED)if(Object.prototype.hasOwnProperty.call(raw,key))safe[key]=raw[key];
+    return {
+      ...base,
+      ...safe,
+      passports:Array.isArray(safe.passports)?safe.passports.filter(v=>typeof v==='string').slice(0,2):base.passports,
+      party:{...base.party,...(safe.party&&typeof safe.party==='object'?safe.party:{})},
+      accessibility:{...base.accessibility,...(safe.accessibility&&typeof safe.accessibility==='object'?safe.accessibility:{})},
+      vehicle:safe.vehicle&&typeof safe.vehicle==='object'?{...safe.vehicle}:null
+    };
+  }
+  function load(storage,key,locale='en'){
+    try{return normalize(JSON.parse(storage.getItem(key)||'{}'),locale)}catch{return defaults(locale)}
+  }
+  function save(storage,key,profile,locale='en'){
+    const normalized=normalize(profile,locale);
+    storage.setItem(key,JSON.stringify(normalized));
+    return normalized;
+  }
+  function clear(storage,key,locale='en'){storage.removeItem(key);return defaults(locale)}
+  root.traveller={defaults,normalize,load,save,clear,allowedKeys:[...ALLOWED]};
+})();
+
+
+/* ===== platform/discovery.js ===== */
+(() => {
+  'use strict';
+  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  const unique=values=>[...new Set(values.filter(Boolean))].sort();
+  function facets(catalog){
+    const trips=catalog?.trips||[];
+    return {
+      kinds:unique(trips.map(r=>r.kind)),
+      regions:unique(trips.flatMap(r=>r.discovery?.regions||[])),
+      modes:unique(trips.flatMap(r=>r.discovery?.modes||[])),
+      themes:unique(trips.flatMap(r=>r.discovery?.themes||[])),
+      paces:unique(trips.map(r=>r.discovery?.fit?.pace)),
+      seasons:unique(trips.flatMap(r=>r.discovery?.fit?.seasons||[])),
+      parties:unique(trips.flatMap(r=>r.discovery?.fit?.party||[])),
+      starts:unique(trips.map(r=>r.discovery?.fit?.startRegion))
+    };
+  }
+  function matches(trip,filters={},searchText=''){
+    const d=trip?.discovery||{},fit=d.fit||{},q=String(filters.q||'').trim().toLowerCase();
+    return (!q||String(searchText).toLowerCase().includes(q))
+      &&(!filters.kind||trip.kind===filters.kind)
+      &&(!filters.region||(d.regions||[]).includes(filters.region))
+      &&(!filters.duration||d.durationBand===filters.duration)
+      &&(!filters.mode||(d.modes||[]).includes(filters.mode))
+      &&(!filters.theme||(d.themes||[]).includes(filters.theme))
+      &&(!filters.pace||fit.pace===filters.pace)
+      &&(!filters.season||(fit.seasons||[]).includes(filters.season))
+      &&(!filters.party||(fit.party||[]).includes(filters.party))
+      &&(!filters.start||fit.startRegion===filters.start);
+  }
+  function filter(catalog,filters={},searchTextFor=()=> ''){
+    return (catalog?.trips||[]).filter(trip=>matches(trip,filters,searchTextFor(trip)));
+  }
+  root.discovery={facets,matches,filter};
+})();
+
+
+/* ===== platform/extensions.js ===== */
+(() => {
+  'use strict';
+  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  const runtime=root.runtime,model=root.model;
+  if(!runtime||!model)throw new Error('Platform runtime/model must load before extensions');
+
+  runtime.registerExtension('cruise',{
+    tripOverview(ctx){
+      const cruise=model.extension(ctx.trip,'cruise');
+      if(!cruise)return null;
+      return {
+        cards:`<div class="data-card"><span>${ctx.esc(ctx.t('onboardNights'))}</span><b>${cruise.nights??'—'}</b></div><div class="data-card"><span>${ctx.esc(ctx.t('seaDays'))}</span><b>${cruise.seaDays??0}</b></div>`,
+        notices:cruise.requiresSailingSelection?`<div class="platform-cruise-note">${ctx.esc(ctx.t('sailingNeeded'))}</div>`:''
+      };
+    },
+    stopDetail(ctx){
+      const call=model.extension(ctx.stop,'cruiseCall');
+      const refs=model.extension(ctx.place,'port')?.sourceIds||[];
+      if(!call&&!refs)return null;
+      const callLabel=call?.kind==='embarkation'?ctx.t('embarkation'):(call?.kind==='disembarkation'?ctx.t('disembarkation'):(call?ctx.t('portCall'):null));
+      return {
+        cards:callLabel?`<div class="data-card"><span>${ctx.esc(ctx.t('portCall'))}</span><b>${ctx.esc(callLabel)}</b></div>`:'',
+        notices:`<div class="platform-cruise-note">${ctx.esc(ctx.t('sailingNeeded'))}</div>`,
+        sourceIds:refs
+      };
+    },
+    segmentDetail(ctx){
+      const cruise=model.extension(ctx.segment,'cruise');
+      if(!cruise)return null;
+      return {panels:`<div class="platform-cruise-leg"><div><span>${ctx.esc(ctx.t('onboardNights'))}</span><b>${cruise.onboardNights??0}</b></div><div><span>${ctx.esc(ctx.t('seaDays'))}</span><b>${(cruise.seaDayNumbers||[]).join(', ')||'—'}</b></div></div>`};
+    }
+  });
+
+  runtime.registerExtension('road',{
+    tripOverview(ctx){
+      const road=model.extension(ctx.trip,'roadTrip');
+      if(!road)return null;
+      return {notices:road.vehicleContextRequired&&!ctx.profile?.vehicle?`<div class="platform-cruise-note">${ctx.esc(ctx.t('vehicleNeeded'))}</div>`:''};
+    },
+    segmentDetail(ctx){
+      const road=model.extension(ctx.segment,'road');
+      if(!road)return null;
+      return {panels:`<div class="platform-road-context"><div><span>${ctx.esc(ctx.t('roadRules'))}</span><b>${road.crossBorder?ctx.esc(ctx.t('crossBorder')):ctx.esc(road.fromCountry||'')}</b></div><div><span>${ctx.esc(ctx.t('urbanAccess'))}</span><b>${ctx.esc((road.urbanAccessChecks||[]).join(' · ')||'—')}</b></div>${!ctx.profile?.vehicle?`<p>${ctx.esc(ctx.t('vehicleNeeded'))}</p>`:''}</div>`};
+    }
+  });
+
+  runtime.registerExtension('border',{
+    segmentDetail(ctx){
+      const border=model.extension(ctx.segment,'border');
+      if(!border||border.zoneTransition==='domestic')return null;
+      const label=border.zoneTransition==='schengen-exit'?ctx.t('schengenExit'):(border.zoneTransition==='schengen-entry'?ctx.t('schengenEntry'):border.zoneTransition);
+      return {panels:`<div class="platform-border ${border.personalizationRequired?'requires-context':''}"><b>${ctx.esc(ctx.t('border'))}</b><span>${ctx.esc(label||'—')} · ${ctx.esc(border.fromCountry)} → ${ctx.esc(border.toCountry)}</span></div>`};
+    }
+  });
+
+  function compose(method,ctx){
+    const result={cards:'',notices:'',panels:'',sourceIds:[]};
+    for(const extension of runtime.listExtensions()){
+      const fn=extension[method];
+      if(typeof fn!=='function')continue;
+      const part=fn(ctx);
+      if(!part)continue;
+      result.cards+=part.cards||'';
+      result.notices+=part.notices||'';
+      result.panels+=part.panels||'';
+      if(Array.isArray(part.sourceIds))result.sourceIds.push(...part.sourceIds);
+    }
+    result.sourceIds=[...new Set(result.sourceIds)];
+    return result;
+  }
+  root.extensions={
+    composeTripOverview:ctx=>compose('tripOverview',ctx),
+    composeStopDetail:ctx=>compose('stopDetail',ctx),
+    composeSegmentDetail:ctx=>compose('segmentDetail',ctx)
+  };
+})();
+
+
+/* ===== platform.js ===== */
+(() => {
+  'use strict';
+
+  const CATALOG_URL = './data/platform/trips.json';
+  const PROFILE_KEY = 'one-world-route:traveller-context:v1';
+  const PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  const LocaleData=PLATFORM_MODULES.i18n;
+  const MapStyle=PLATFORM_MODULES.mapStyle;
+  const Model=PLATFORM_MODULES.model;
+  const Traveller=PLATFORM_MODULES.traveller;
+  const Discovery=PLATFORM_MODULES.discovery;
+  const Extensions=PLATFORM_MODULES.extensions;
+  if(!LocaleData||!MapStyle||!Model||!Traveller||!Discovery||!Extensions)throw new Error('ONE WORLD ROUTE platform modules unavailable');
+  const SUPPORTED_LOCALES=LocaleData.supportedLocales;
+  const I18N=LocaleData.messages;
+  const LEGACY_WORLD_TEXT=LocaleData.legacyWorldText;
+  const LEGACY_PHASES=LocaleData.legacyPhases;
+  const LEGACY_EXTRA=LocaleData.legacyExtra;
+  const LEGACY_SHORT=LocaleData.legacyShort;
   let legacyLocaleObserver=null,legacyLocaleScheduled=false;
   function legacyTranslate(raw){
     const text=String(raw||'').trim();
@@ -1783,6 +2070,17 @@
     const translated=t(key);
     return translated===key?String(value||'').replaceAll('-',' '):translated;
   };
+  const countryDisplay = code => {
+    if(!code)return '—';
+    try{return new Intl.DisplayNames([locale],{type:'region'}).of(String(code).toUpperCase())||String(code)}
+    catch{return String(code)}
+  };
+  const statusLabel = trip => {
+    if(trip.id===catalog?.defaultTripId)return t('flagship');
+    const key='status_'+String(trip.status||'draft').replaceAll('-','_');
+    const translated=t(key);
+    return translated===key?facetLabel(trip.status||'draft'):translated;
+  };
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const money = (v,c='EUR',digits=0) => Number.isFinite(Number(v)) ? new Intl.NumberFormat(locale,{style:'currency',currency:c,minimumFractionDigits:digits,maximumFractionDigits:digits}).format(Number(v)) : '—';
   const durationLabel = p => {
@@ -1838,7 +2136,7 @@
     const panel=$('#rightPanel');if(panel)panel.scrollTop=0;
   }
 
-  const sourceMap = () => new Map((currentTrip?.sources||[]).map(s=>[s.id,s]));
+  const sourceMap = () => Model.sourceMap(currentTrip);
   const verificationLabel = s => s?.verification?.status==='verified'?t('verified'):(s?.verification?.status==='illustrative'?t('illustrative'):t('currentCheck'));
   const sourceLinks = ids => {
     const map=sourceMap(),seen=new Set();
@@ -1854,13 +2152,9 @@
   const regionalStory={active:false,playing:false,timer:null};
   const regionalTerrain={map:null,ready:false,loading:null,maplibre:null,highDetailWasDisabled:null,autoRotateWasDisabled:null};
 
-  function profileDefaults(){
-    return {passports:[],residenceCountry:null,language:locale,currency:'EUR',origin:null,party:{adults:1,children:0},accessibility:{reducedMobility:false},vehicle:null};
-  }
-  function loadProfile(){
-    try{return {...profileDefaults(),...JSON.parse(localStorage.getItem(PROFILE_KEY)||'{}')}}catch{return profileDefaults()}
-  }
-  function saveProfile(profile){localStorage.setItem(PROFILE_KEY,JSON.stringify(profile))}
+  function profileDefaults(){return Traveller.defaults(locale)}
+  function loadProfile(){return Traveller.load(localStorage,PROFILE_KEY,locale)}
+  function saveProfile(profile){return Traveller.save(localStorage,PROFILE_KEY,profile,locale)}
 
   async function waitForCore(max=70){
     for(let i=0;i<max;i++){
@@ -1872,7 +2166,8 @@
 
   function buildTripUrl(id){
     const p = new URLSearchParams(location.search);
-    if(id === catalog.defaultTripId) p.delete('trip'); else p.set('trip',id);
+    const defaultTripId=catalog?.defaultTripId||'world-195';
+    if(id === defaultTripId) p.delete('trip'); else p.set('trip',id);
     p.delete('segment'); p.delete('country'); p.delete('phase'); p.delete('view');
     return `/${p.toString()?`?${p}`:''}`;
   }
@@ -1904,28 +2199,18 @@
 
   function openRouteLibrary(){
     const modal=ensureDialog('platformRouteModal');
-    const kinds=[...new Set(catalog.trips.map(r=>r.kind))].sort();
-    const regions=[...new Set(catalog.trips.flatMap(r=>r.discovery?.regions||[]))].sort();
-    const modes=[...new Set(catalog.trips.flatMap(r=>r.discovery?.modes||[]))].sort();
-    const themes=[...new Set(catalog.trips.flatMap(r=>r.discovery?.themes||[]))].sort();
-    const paces=[...new Set(catalog.trips.map(r=>r.discovery?.fit?.pace).filter(Boolean))].sort();
-    const seasons=[...new Set(catalog.trips.flatMap(r=>r.discovery?.fit?.seasons||[]))].sort();
-    const parties=[...new Set(catalog.trips.flatMap(r=>r.discovery?.fit?.party||[]))].sort();
-    const starts=[...new Set(catalog.trips.map(r=>r.discovery?.fit?.startRegion).filter(Boolean))].sort();
+    const {kinds,regions,modes,themes,paces,seasons,parties,starts}=Discovery.facets(catalog);
     modal.innerHTML=`<div class="platform-modal-card route-library-card glass"><button class="platform-x" aria-label="Close">×</button><div class="platform-eyebrow">ONE WORLD ROUTE</div><h2>${esc(t('routeLibrary'))}</h2><p class="platform-lead">${esc(t('routeLibraryLead'))}</p><div class="platform-route-filters"><label class="route-search"><span>${esc(t('searchRoutes'))}</span><input id="platformRouteSearch" type="search" autocomplete="off" placeholder="${esc(t('searchRoutes'))}"></label><label><span>${esc(t('filterType'))}</span><select id="platformRouteKind"><option value="">${esc(t('all'))}</option>${kinds.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('filterRegion'))}</span><select id="platformRouteRegion"><option value="">${esc(t('all'))}</option>${regions.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('filterDuration'))}</span><select id="platformRouteDuration"><option value="">${esc(t('all'))}</option><option value="7-14">7–14 ${esc(t('days'))}</option><option value="15-30">15–30 ${esc(t('days'))}</option><option value="31-89">31–89 ${esc(t('days'))}</option><option value="90-plus">90+ ${esc(t('days'))}</option></select></label><label><span>${esc(t('filterMode'))}</span><select id="platformRouteMode"><option value="">${esc(t('all'))}</option>${modes.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('filterTheme'))}</span><select id="platformRouteTheme"><option value="">${esc(t('all'))}</option>${themes.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label></div><div class="platform-fit-head"><button id="platformFitToggle" type="button" aria-expanded="false">${esc(t('showFit'))}</button></div><div id="platformFitFilters" class="platform-fit-filters hidden"><div class="platform-fit-title">${esc(t('routeFit'))}</div><label><span>${esc(t('fitPace'))}</span><select id="platformRoutePace"><option value="">${esc(t('all'))}</option>${paces.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('fitSeason'))}</span><select id="platformRouteSeason"><option value="">${esc(t('all'))}</option>${seasons.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('fitParty'))}</span><select id="platformRouteParty"><option value="">${esc(t('all'))}</option>${parties.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('fitStart'))}</span><select id="platformRouteStart"><option value="">${esc(t('all'))}</option>${starts.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label></div><div class="platform-route-resultbar"><span id="platformRouteCount"></span><button id="platformRouteReset" type="button">${esc(t('resetFilters'))}</button></div><div id="platformRouteResults" class="platform-route-grid"></div></div>`;
     modal.classList.remove('hidden');
     $('.platform-x',modal).onclick=()=>modal.classList.add('hidden');
     const render=()=>{
       const q=String($('#platformRouteSearch',modal)?.value||'').trim().toLowerCase();
       const kind=$('#platformRouteKind',modal)?.value||'',region=$('#platformRouteRegion',modal)?.value||'',duration=$('#platformRouteDuration',modal)?.value||'',mode=$('#platformRouteMode',modal)?.value||'',theme=$('#platformRouteTheme',modal)?.value||'',pace=$('#platformRoutePace',modal)?.value||'',season=$('#platformRouteSeason',modal)?.value||'',party=$('#platformRouteParty',modal)?.value||'',start=$('#platformRouteStart',modal)?.value||'';
-      const filtered=catalog.trips.filter(r=>{
-        const hay=[local(r.title),local(r.subtitle),r.kind,...(r.discovery?.regions||[]),...(r.discovery?.themes||[]),...(r.discovery?.modes||[])].join(' ').toLowerCase();
-        const fit=r.discovery?.fit||{};
-        return (!q||hay.includes(q))&&(!kind||r.kind===kind)&&(!region||(r.discovery?.regions||[]).includes(region))&&(!duration||r.discovery?.durationBand===duration)&&(!mode||(r.discovery?.modes||[]).includes(mode))&&(!theme||(r.discovery?.themes||[]).includes(theme))&&(!pace||fit.pace===pace)&&(!season||(fit.seasons||[]).includes(season))&&(!party||(fit.party||[]).includes(party))&&(!start||fit.startRegion===start);
-      });
+      const filters={q,kind,region,duration,mode,theme,pace,season,party,start};
+      const filtered=Discovery.filter(catalog,filters,r=>[local(r.title),local(r.subtitle),r.kind,...(r.discovery?.regions||[]),...(r.discovery?.themes||[]),...(r.discovery?.modes||[])].join(' '));
       const host=$('#platformRouteResults',modal);
       host.innerHTML=filtered.length?filtered.map(routeCard).join(''):`<div class="platform-no-routes">${esc(t('noRoutes'))}</div>`;
-      const count=$('#platformRouteCount',modal);if(count)count.textContent=`${filtered.length} ${t('results')}`;
+      const count=$('#platformRouteCount',modal);if(count)count.textContent=filtered.length===1?`1 ${t('resultOne')}`:`${filtered.length} ${t('results')}`;
       // Route buttons are handled by event delegation below so filtering/re-rendering stays reliable.
     };
     $('#platformFitToggle',modal)?.addEventListener('click',e=>{
@@ -1954,10 +2239,10 @@
     const metrics=[];
     if(r.metrics?.days)metrics.push(`${r.metrics.days} ${t('days')}`);
     if(r.metrics?.stops)metrics.push(`${r.metrics.stops} ${t('stops')}`);
-    if(r.metrics?.countries)metrics.push(`${r.metrics.countries} ${r.metrics.countries===1?'country':'countries'}`);
+    if(r.metrics?.countries)metrics.push(`${r.metrics.countries} ${t(r.metrics.countries===1?'countryUnit':'countriesUnit')}`);
     if(r.metrics?.nights)metrics.push(`${r.metrics.nights} ${t('onboardNights')}`);
     if(r.metrics?.seaDays)metrics.push(`${r.metrics.seaDays} ${t('seaDays')}`);
-    return `<article class="platform-route-card ${r.id===currentTripMeta?.id?'active':''}"><div class="platform-route-top"><span>${esc(facetLabel(r.kind))}</span><b>${esc(r.id===catalog.defaultTripId?t('flagship'):(r.status==='sourced-beta'?t('sourcedBeta'):(r.kind==='cruise'?t('cruiseTemplate'):t('template'))))}</b></div><h3>${esc(local(r.title))}</h3><p>${esc(local(r.subtitle))}</p><div class="platform-route-metrics">${metrics.map(x=>`<span>${esc(x)}</span>`).join('')}</div><button type="button" data-platform-trip="${esc(r.id)}">${esc(t('open'))} →</button></article>`;
+    return `<article class="platform-route-card ${r.id===currentTripMeta?.id?'active':''}"><div class="platform-route-top"><span>${esc(facetLabel(r.kind))}</span><b>${esc(statusLabel(r))}</b></div><h3>${esc(local(r.title))}</h3><p>${esc(local(r.subtitle))}</p><div class="platform-route-metrics">${metrics.map(x=>`<span>${esc(x)}</span>`).join('')}</div><button type="button" data-platform-trip="${esc(r.id)}">${esc(t('open'))} →</button></article>`;
   }
 
   async function loadCountries(){
@@ -1985,9 +2270,9 @@
     };
   }
 
-  function placeMap(trip){return new Map((trip.places||[]).map(p=>[p.id,p]))}
-  function stopMap(trip){return new Map((trip.stops||[]).map(s=>[s.id,s]))}
-  function stopPlace(trip,stop){return placeMap(trip).get(stop.placeId)}
+  const placeMap=trip=>Model.placeMap(trip);
+  const stopMap=trip=>Model.stopMap(trip);
+  const stopPlace=(trip,stop)=>Model.stopPlace(trip,stop);
 
   function syncRegionalUrl(){
     if(!currentTripMeta||currentTripMeta.renderer==='legacy-world')return;
@@ -2027,13 +2312,11 @@
     return {lat,lng,altitude};
   }
 
-  function regionalChapterForSegment(index){
-    const seg=currentTrip?.segments?.[index];if(!seg)return null;
-    return (currentTrip.chapters||[]).find(ch=>(ch.stopIds||[]).includes(seg.fromStopId)||(ch.stopIds||[]).includes(seg.toStopId))||null;
-  }
+  function regionalChapterForSegment(index){return Model.chapterForSegment(currentTrip,index)}
 
   function ensureRegionalStoryUi(){
     const stage=$('.globe-stage');if(!stage)return;
+    if(!Model.hasCapability(currentTripMeta,'story')){$('#platformStoryBtn')?.remove();$('#platformStoryHud')?.remove();return}
     if(!$('#platformStoryBtn')){
       const b=document.createElement('button');b.id='platformStoryBtn';b.className='platform-story-btn glass';b.type='button';
       stage.appendChild(b);b.addEventListener('click',startRegionalStory);
@@ -2087,7 +2370,7 @@
   function toggleRegionalStoryPlayback(){regionalStory.playing?pauseRegionalStory():playRegionalStory()}
 
   async function startRegionalStory(){
-    if(!currentTrip||regionalStory.active)return;
+    if(!currentTrip||regionalStory.active||!Model.hasCapability(currentTripMeta,'story'))return;
     if(document.body.classList.contains('terrain-view'))await setRegionalTerrain(false);
     if(playTimer){clearInterval(playTimer);playTimer=null}
     regionalStory.active=true;document.body.classList.add('platform-story-mode');
@@ -2107,12 +2390,7 @@
   function regionalStopGeoJson(){
     return {type:'FeatureCollection',features:[...placeMap(currentTrip).values()].filter(p=>p.coordinates).map(p=>({type:'Feature',properties:{id:p.id,name:local(p.name)},geometry:{type:'Point',coordinates:[Number(p.coordinates.lng),Number(p.coordinates.lat)]}}))};
   }
-  function regionalRouteBounds(){
-    const points=[...placeMap(currentTrip).values()].map(p=>p.coordinates).filter(p=>Number.isFinite(Number(p?.lat))&&Number.isFinite(Number(p?.lng)));
-    if(!points.length)return null;
-    const lngs=points.map(p=>Number(p.lng)),lats=points.map(p=>Number(p.lat));
-    return [[Math.min(...lngs),Math.min(...lats)],[Math.max(...lngs),Math.max(...lats)]];
-  }
+  function regionalRouteBounds(){return Model.routeBounds(currentTrip)}
 
   function focusRegionalTerrainRoute(){
     const map=regionalTerrain.map,bounds=regionalRouteBounds();if(!map||!bounds)return;
@@ -2131,74 +2409,8 @@
     regionalTerrain.maplibre=module;return module;
   }
 
-  function localizeRegionalMapStyle(style){
-    const lang=SUPPORTED_LOCALES.includes(locale)?locale:'en';
-    const nameExpr=['coalesce',['get',`name:${lang}`],['get',`name_${lang}`],['get','name:latin'],['get','name_en'],['get','name']];
-    for(const layer of style?.layers||[]){
-      if(layer?.type!=='symbol'||!layer.layout)continue;
-      if(/^(label_(country|city|state|other)|water_name)/.test(String(layer.id||'')))layer.layout['text-field']=nameExpr;
-    }
-    return style;
-  }
-
-  function brandRegionalTerrainStyle(style){
-    for(const layer of style?.layers||[]){
-      const id=String(layer.id||'').toLowerCase(),type=layer.type;
-      layer.paint=layer.paint||{};
-      if(type==='background'){
-        layer.paint['background-color']='#071019';
-        continue;
-      }
-      if(type==='fill'){
-        if(/water|ocean|lake|river/.test(id)){
-          layer.paint['fill-color']='#071b2a';
-          layer.paint['fill-opacity']=.98;
-        }else if(/park|wood|forest|grass|nature|landcover/.test(id)){
-          layer.paint['fill-color']='#102018';
-          layer.paint['fill-opacity']=.72;
-        }else if(/building/.test(id)){
-          layer.paint['fill-color']='#16232d';
-          layer.paint['fill-outline-color']='#20333e';
-          layer.paint['fill-opacity']=.78;
-        }else{
-          layer.paint['fill-color']='#0d1720';
-          if(layer.paint['fill-opacity']===undefined)layer.paint['fill-opacity']=.94;
-        }
-      }else if(type==='line'){
-        if(/boundary|admin/.test(id)){
-          layer.paint['line-color']='#466076';
-          layer.paint['line-opacity']=.5;
-        }else if(/motorway|trunk|primary/.test(id)){
-          layer.paint['line-color']='#5b6571';
-          layer.paint['line-opacity']=.66;
-        }else if(/road|street|transport/.test(id)){
-          layer.paint['line-color']='#33424f';
-          layer.paint['line-opacity']=.52;
-        }else if(/water|river/.test(id)){
-          layer.paint['line-color']='#234f65';
-          layer.paint['line-opacity']=.7;
-        }else{
-          layer.paint['line-color']=layer.paint['line-color']||'#2e3d49';
-          if(layer.paint['line-opacity']===undefined)layer.paint['line-opacity']=.48;
-        }
-      }else if(type==='symbol'){
-        layer.paint['text-color']=/water|marine/.test(id)?'#7098ae':(/country/.test(id)?'#dfeaf2':'#aebfcb');
-        layer.paint['text-halo-color']='#071019';
-        layer.paint['text-halo-width']=1.2;
-        layer.paint['text-halo-blur']=.45;
-        if(layer.paint['icon-opacity']===undefined)layer.paint['icon-opacity']=.72;
-      }else if(type==='fill-extrusion'){
-        layer.paint['fill-extrusion-color']='#172630';
-        layer.paint['fill-extrusion-opacity']=.72;
-      }else if(type==='hillshade'){
-        layer.paint['hillshade-shadow-color']='#02070b';
-        layer.paint['hillshade-highlight-color']='#50606b';
-        layer.paint['hillshade-accent-color']='#1f3440';
-        layer.paint['hillshade-exaggeration']=.42;
-      }
-    }
-    return style;
-  }
+  const localizeRegionalMapStyle=style=>MapStyle.localize(style,locale);
+  const brandRegionalTerrainStyle=style=>MapStyle.brandDark(style);
 
   async function regionalTerrainStyle(){
     let base;
@@ -2276,7 +2488,7 @@
   }
 
   async function setRegionalTerrain(active){
-    if(!currentTrip||currentTripMeta?.renderer==='legacy-world')return;
+    if(!currentTrip||currentTripMeta?.renderer==='legacy-world'||!Model.hasCapability(currentTripMeta,'terrain'))return;
     const toggle=$('#terrainView');if(toggle)toggle.checked=Boolean(active);
     if(!active){
       document.body.classList.remove('terrain-loading','terrain-view');
@@ -2321,13 +2533,15 @@
     const shareButton=$('#shareBtn');if(shareButton){shareButton.title=t('share');shareButton.setAttribute('aria-label',t('share'))}
     const search=$('#searchBtn');if(search)search.hidden=true;
     const labels=[['autoRotate','autoRotate'],['highDetailGlobe','highDetail'],['terrainView','terrain'],['showPoints','showPoints'],['routeGlow','routeGlow'],['arcWidth','arcThickness'],['reducedMotion','reducedMotion']];
+    const terrainToggle=$('#terrainView'),terrainLabel=terrainToggle?.closest('label');
+    if(terrainLabel)terrainLabel.hidden=!Model.hasCapability(currentTripMeta,'terrain');
     for(const [id,key] of labels){const span=$('#'+id)?.closest('label')?.querySelector('span');if(span)span.textContent=t(key)}
     const title=$('#settingsPopover .settings-head h3');if(title)title.textContent=t('settings');
     const share=$('#mobileShareBtn');if(share)share.textContent=t('share');
     const info=$('#mobileInfoBtn');if(info)info.textContent=t('methodology');
     let storyBtn=$('#regionalStorySettingsBtn');
     if(!storyBtn){storyBtn=document.createElement('button');storyBtn.id='regionalStorySettingsBtn';storyBtn.type='button';storyBtn.addEventListener('click',()=>{$('#settingsPopover')?.classList.add('hidden');startRegionalStory()});$('#settingsPopover .mobile-settings-actions')?.appendChild(storyBtn)}
-    if(storyBtn)storyBtn.textContent=t('storyPlay');
+    if(storyBtn){storyBtn.textContent=t('storyPlay');storyBtn.hidden=!Model.hasCapability(currentTripMeta,'story')}
     const bind=(id,event,fn)=>{const el=$('#'+id);if(!el||el.dataset.platformRegionalWired)return;el.dataset.platformRegionalWired='1';el.addEventListener(event,fn)};
     bind('autoRotate','change',()=>{const ctl=window.__ONE_WORLD_ROUTE_GLOBE__?.controls?.();if(ctl){ctl.autoRotate=$('#autoRotate').checked&&!regionalStory.active&&!document.body.classList.contains('terrain-view');ctl.autoRotateSpeed=.28}});
     bind('showPoints','change',()=>{renderRegionalGlobe();updateRegionalTerrain()});
@@ -2442,7 +2656,7 @@
 
   function routeGeometry(){
     const stops=stopMap(currentTrip),places=placeMap(currentTrip);
-    return currentTrip.segments.map((s,i)=>{const a=places.get(stops.get(s.fromStopId)?.placeId),b=places.get(stops.get(s.toStopId)?.placeId);return {...s,_index:i,start:a?.coordinates,end:b?.coordinates,fromName:local(a?.name),toName:local(b?.name)}}).filter(x=>x.start&&x.end);
+    return Model.routeGeometry(currentTrip).map(s=>({...s,fromName:local(places.get(stops.get(s.fromStopId)?.placeId)?.name),toName:local(places.get(stops.get(s.toStopId)?.placeId)?.name)}));
   }
 
   function renderRegionalGlobe(){
@@ -2517,25 +2731,21 @@
     content.scrollTop=0;
     const sourced=currentTrip.segments.filter(s=>(s.verification?.sourceIds||[]).length).length,verified=currentTrip.segments.filter(s=>s.verification?.status==='verified').length;
     const entry=currentTrip.entryGuidance,entrySource=entry?sourceMap().get(entry.officialResolverSourceId):null;
-    const cruise=currentTrip.cruise;
-    const roadTrip=currentTrip.roadTrip;
     const profile=loadProfile();
-    const cruiseCards=cruise?`<div class="data-card"><span>${esc(t('onboardNights'))}</span><b>${cruise.nights??'—'}</b></div><div class="data-card"><span>${esc(t('seaDays'))}</span><b>${cruise.seaDays??0}</b></div>`:'';
-    const vehiclePrompt=roadTrip?.vehicleContextRequired&&!profile.vehicle?`<div class="platform-cruise-note">${esc(t('vehicleNeeded'))}</div>`:'';
-    content.innerHTML=`<div class="overview-number platform-duration-number">${currentTrip.planning?.days||'—'}<small>${esc(t('days'))}</small></div><p class="detail-copy">${esc(local(currentTrip.summary))}</p><div class="data-grid"><div class="data-card"><span>${esc(t('stops'))}</span><b>${currentTrip.stops.length}</b></div>${cruiseCards}<div class="data-card"><span>${esc(t('routeEvidence'))}</span><b>${sourced}/${currentTrip.segments.length}</b></div><div class="data-card"><span>${esc(t('verified'))}</span><b>${verified}/${currentTrip.segments.length}</b></div><div class="data-card"><span>${esc(t('currency'))}</span><b>${esc(currentTrip.planning?.currency||'—')}</b></div></div>${vehiclePrompt}${cruise?.requiresSailingSelection?`<div class="platform-cruise-note">${esc(t('sailingNeeded'))}</div>`:''}${entry?`<div class="platform-entry"><b>${esc(t('entryGuidance'))}</b><p>${esc(local(entry.message))}</p>${entrySource?`<a href="${esc(entrySource.url)}" target="_blank" rel="noopener noreferrer">${esc(t('officialCheck'))} →</a>`:''}</div>`:''}<button class="platform-context-inline" id="regionalTravellerBtn" type="button">${esc(t('traveller'))} →</button>`;
+    const extension=Extensions.composeTripOverview({trip:currentTrip,profile,t,esc,local});
+    content.innerHTML=`<div class="overview-number platform-duration-number">${currentTrip.planning?.days||'—'}<small>${esc(t('days'))}</small></div><p class="detail-copy">${esc(local(currentTrip.summary))}</p><div class="data-grid"><div class="data-card"><span>${esc(t('stops'))}</span><b>${currentTrip.stops.length}</b></div>${extension.cards}<div class="data-card"><span>${esc(t('routeEvidence'))}</span><b>${sourced}/${currentTrip.segments.length}</b></div><div class="data-card"><span>${esc(t('verified'))}</span><b>${verified}/${currentTrip.segments.length}</b></div><div class="data-card"><span>${esc(t('currency'))}</span><b>${esc(currentTrip.planning?.currency||'—')}</b></div></div>${extension.notices}${entry?`<div class="platform-entry"><b>${esc(t('entryGuidance'))}</b><p>${esc(local(entry.message))}</p>${entrySource?`<a href="${esc(entrySource.url)}" target="_blank" rel="noopener noreferrer">${esc(t('officialCheck'))} →</a>`:''}</div>`:''}<button class="platform-context-inline" id="regionalTravellerBtn" type="button">${esc(t('traveller'))} →</button>`;
     $('#regionalTravellerBtn')?.addEventListener('click',openTraveller);
   }
 
   function renderStopDetail(stop,p){
     setRegionalDetailMode('stop');
     const title=$('#detailTitle');if(title)title.textContent=local(p.name);
-    const eye=$('#detailEyebrow');if(eye)eye.textContent=`${t('stop').toUpperCase()} ${stop.sequence} · ${p.type}`;
+    const eye=$('#detailEyebrow');if(eye)eye.textContent=`${t('stop').toUpperCase()} ${stop.sequence} · ${facetLabel(p.type)}`;
     const content=$('#detailContent');if(!content)return;
     content.scrollTop=0;
-    const call=stop.call;
-    const callLabel=call?.kind==='embarkation'?t('embarkation'):(call?.kind==='disembarkation'?t('disembarkation'):(call?t('portCall'):null));
-    const portRefs=p.port?.sourceIds||[];
-    content.innerHTML=`<div class="overview-number">${stop.sequence}<small> / ${currentTrip.stops.length}</small></div><div class="data-grid"><div class="data-card"><span>${esc(t('day'))}</span><b>${stop.dayStart}${stop.dayEnd!==stop.dayStart?`–${stop.dayEnd}`:''}</b></div>${callLabel?`<div class="data-card"><span>${esc(t('portCall'))}</span><b>${esc(callLabel)}</b></div>`:''}<div class="data-card"><span>${esc(t('type'))}</span><b>${esc(p.type)}</b></div><div class="data-card"><span>${esc(t('country'))}</span><b>${esc(p.countryCode||'—')}</b></div></div>${currentTrip.kind==='cruise'?'<div class="platform-cruise-note">'+esc(t('sailingNeeded'))+'</div>':`<p class="detail-copy">${esc(t('editorial'))}</p>`}${portRefs.length?`<div class="platform-evidence"><div class="ops-mini-title">${esc(t('sources'))}</div>${sourceLinks(portRefs)}</div>`:''}`;
+    const extension=Extensions.composeStopDetail({trip:currentTrip,stop,place:p,profile:loadProfile(),t,esc,local});
+    const notices=extension.notices||`<p class="detail-copy">${esc(t('editorial'))}</p>`;
+    content.innerHTML=`<div class="overview-number">${stop.sequence}<small> / ${currentTrip.stops.length}</small></div><div class="data-grid"><div class="data-card"><span>${esc(t('day'))}</span><b>${stop.dayStart}${stop.dayEnd!==stop.dayStart?`–${stop.dayEnd}`:''}</b></div>${extension.cards}<div class="data-card"><span>${esc(t('type'))}</span><b>${esc(facetLabel(p.type))}</b></div><div class="data-card"><span>${esc(t('country'))}</span><b>${esc(countryDisplay(p.countryCode))}</b></div></div>${notices}${extension.sourceIds.length?`<div class="platform-evidence"><div class="ops-mini-title">${esc(t('sources'))}</div>${sourceLinks(extension.sourceIds)}</div>`:''}`;
   }
 
   function renderSegmentDetail(s){
@@ -2546,16 +2756,10 @@
     const content=$('#detailContent');if(!content)return;
     content.scrollTop=0;
     const stages=(s.transport?.stages||[]).map((stage,i)=>`<article class="platform-stage"><span>${String(i+1).padStart(2,'0')}</span><div><b>${esc(stage.operator||String(stage.mode||'').replaceAll('-',' '))}</b><small>${esc(stage.from||'')} → ${esc(stage.to||'')}</small><em>${esc(durationLabel(stage))} · ${esc(costLabel(stage))}</em></div></article>`).join('');
-    const refs=[...(s.verification?.sourceIds||[]),...(s.transport?.stages||[]).flatMap(x=>x.sourceIds||[])];
-    const road=s.roadContext;
-    const profile=loadProfile();
-    const roadPanel=road?`<div class="platform-road-context"><div><span>${esc(t('roadRules'))}</span><b>${road.crossBorder?esc(t('crossBorder')):esc(road.fromCountry||'')}</b></div><div><span>${esc(t('urbanAccess'))}</span><b>${esc((road.urbanAccessChecks||[]).join(' · ')||'—')}</b></div>${!profile.vehicle?`<p>${esc(t('vehicleNeeded'))}</p>`:''}</div>`:'';
-    const cruise=s.cruise;
-    const border=s.borderContext;
-    const borderLabel=border?.zoneTransition==='schengen-exit'?t('schengenExit'):(border?.zoneTransition==='schengen-entry'?t('schengenEntry'):border?.zoneTransition);
-    const cruisePanel=cruise?`<div class="platform-cruise-leg"><div><span>${esc(t('onboardNights'))}</span><b>${cruise.onboardNights??0}</b></div><div><span>${esc(t('seaDays'))}</span><b>${(cruise.seaDayNumbers||[]).join(', ')||'—'}</b></div></div>`:'';
-    const borderPanel=border&&border.zoneTransition!=='domestic'?`<div class="platform-border ${border.personalizationRequired?'requires-context':''}"><b>${esc(t('border'))}</b><span>${esc(borderLabel||'—')} · ${esc(border.fromCountry)} → ${esc(border.toCountry)}</span></div>`:'';
-    content.innerHTML=`<div class="data-grid"><div class="data-card"><span>${esc(t('transport'))}</span><b>${esc(facetLabel(String(s.transport?.mode||'—')))}</b></div><div class="data-card"><span>${esc(t('verification'))}</span><b class="${s.verification?.status==='verified'?'evidence-ok':(s.verification?.status==='illustrative'?'evidence-info':'evidence-watch')}">${esc(verificationLabel(s))}</b></div><div class="data-card"><span>${esc(t('duration'))}</span><b>${esc(durationLabel(s.planning))}</b></div><div class="data-card"><span>${esc(t('cost'))}</span><b>${esc(costLabel(s.planning))}</b></div></div>${cruisePanel}${borderPanel}${roadPanel}${stages?`<div class="platform-stages">${stages}</div>`:''}${s.verification?.notes?`<div class="op-callout">${esc(editorialNote(s.verification.notes))}</div>`:''}${refs.length?`<div class="platform-evidence"><div class="ops-mini-title">${esc(t('sources'))}</div>${sourceLinks(refs)}</div>`:''}`;
+    const baseRefs=[...(s.verification?.sourceIds||[]),...(s.transport?.stages||[]).flatMap(x=>x.sourceIds||[])];
+    const extension=Extensions.composeSegmentDetail({trip:currentTrip,segment:s,profile:loadProfile(),t,esc,local});
+    const refs=[...new Set([...baseRefs,...extension.sourceIds])];
+    content.innerHTML=`<div class="data-grid"><div class="data-card"><span>${esc(t('transport'))}</span><b>${esc(facetLabel(String(s.transport?.mode||'—')))}</b></div><div class="data-card"><span>${esc(t('verification'))}</span><b class="${s.verification?.status==='verified'?'evidence-ok':(s.verification?.status==='illustrative'?'evidence-info':'evidence-watch')}">${esc(verificationLabel(s))}</b></div><div class="data-card"><span>${esc(t('duration'))}</span><b>${esc(durationLabel(s.planning))}</b></div><div class="data-card"><span>${esc(t('cost'))}</span><b>${esc(costLabel(s.planning))}</b></div></div>${extension.panels}${stages?`<div class="platform-stages">${stages}</div>`:''}${s.verification?.notes?`<div class="op-callout">${esc(editorialNote(s.verification.notes))}</div>`:''}${refs.length?`<div class="platform-evidence"><div class="ops-mini-title">${esc(t('sources'))}</div>${sourceLinks(refs)}</div>`:''}`;
   }
 
   async function activateRegionalTrip(meta){
@@ -2566,7 +2770,7 @@
     applyTripShell();
     renderRegionalGlobe();
     setTimeout(renderRegionalGlobe,500);
-    if(new URLSearchParams(location.search).get('view')==='terrain')setTimeout(()=>setRegionalTerrain(true),650);
+    if(Model.hasCapability(currentTripMeta,'terrain')&&new URLSearchParams(location.search).get('view')==='terrain')setTimeout(()=>setRegionalTerrain(true),650);
   }
 
   async function init(){
