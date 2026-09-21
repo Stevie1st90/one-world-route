@@ -58,7 +58,7 @@ Examples:
 }
 ```
 
-The runtime extension registry currently supports cruise, road/vehicle and border context. Unknown extensions must be ignored safely until a presenter is registered.
+The runtime extension registry currently supports cruise, road/vehicle and border context. Unknown extensions must be ignored safely until a presenter is registered. Validation follows the same pattern: extension-specific rules register through `scripts/platform-extension-validators.mjs`, while the core validator remains limited to the universal place -> stop -> segment contract.
 
 During migration the model adapter also understands the existing legacy fields:
 
@@ -69,7 +69,7 @@ During migration the model adapter also understands the existing legacy fields:
 - segment `roadContext` -> extension `road`
 - segment `borderContext` -> extension `border`
 
-New data should prefer the namespaced extension form once the migration is complete.
+New data should use the namespaced extension form. Compatibility aliases exist only to read older datasets during migration.
 
 ## Capabilities
 
