@@ -38,11 +38,11 @@ Implemented foundation:
 - reusable place / visit / segment schema
 - Traveller Context without a German-default assumption
 - regional standard-globe rendering
-- Italy Grand Tour editorial template
+- Italy Grand Tour sourced beta with operator/government evidence
 - cruise/ferry/rail/road/flight-ready transport taxonomy
 
 Next product layers:
-- source-backed nationality/passport and residence rule engine
+- expand the source-backed nationality/passport and residence rule engine beyond the Italy official-resolver foundation
 - route discovery by region, duration, travel style and origin market
 - sourced cost bands and seasonal variants
 - cruise port-call and overnight-at-sea UI
