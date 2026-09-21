@@ -131,3 +131,26 @@ test('regional overview duration uses a dedicated non-overlapping unit style',()
   assert.match(source,/platform-duration-number/);
   assert.match(cssSource,/\.platform-duration-number\{display:flex/);
 });
+
+
+test('regional UX detail modes keep sparse panels compact',()=>{
+  assert.match(source,/function setRegionalDetailMode/);
+  assert.match(source,/platform-detail-overview/);
+  assert.match(source,/platform-detail-stop/);
+  assert.match(source,/platform-detail-segment/);
+  assert.match(cssSource,/platform-detail-overview \.right-panel/);
+  assert.match(cssSource,/platform-detail-stop \.right-panel/);
+});
+
+test('regional terrain uses branded dark map styling',()=>{
+  assert.match(source,/function brandRegionalTerrainStyle/);
+  assert.match(source,/background-color'\]='#071019'/);
+  assert.match(source,/fill-color'\]='#071b2a'/);
+  assert.match(source,/text-halo-color'\]='#071019'/);
+});
+
+test('regional copy is visually reduced without removing overview content',()=>{
+  assert.match(cssSource,/-webkit-line-clamp:4/);
+  assert.match(cssSource,/-webkit-line-clamp:2/);
+  assert.match(source,/detail-copy/);
+});
