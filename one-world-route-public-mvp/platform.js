@@ -72,11 +72,16 @@
     return false;
   }
 
-  function setQueryTrip(id){
+  function buildTripUrl(id){
     const p = new URLSearchParams(location.search);
     if(id === catalog.defaultTripId) p.delete('trip'); else p.set('trip',id);
     p.delete('segment'); p.delete('country'); p.delete('phase'); p.delete('view');
-    location.assign(`${location.pathname}${p.toString()?`?${p}`:''}`);
+    return `/${p.toString()?`?${p}`:''}`;
+  }
+
+  function setQueryTrip(id){
+    if(!catalog?.trips?.some(t=>t.id===id||t.slug===id))return;
+    location.assign(buildTripUrl(id));
   }
 
   function ensureGlobalUi(){
@@ -115,8 +120,15 @@
       });
       const host=$('#platformRouteResults',modal);
       host.innerHTML=filtered.length?filtered.map(routeCard).join(''):`<div class="platform-no-routes">${esc(t('noRoutes'))}</div>`;
-      $('[data-platform-trip]',host).forEach(b=>b.onclick=()=>setQueryTrip(b.dataset.platformTrip));
+      // Route buttons are handled by event delegation below so filtering/re-rendering stays reliable.
     };
+    const results=$('#platformRouteResults',modal);
+    results.addEventListener('click',e=>{
+      const button=e.target.closest('[data-platform-trip]');
+      if(!button||!results.contains(button))return;
+      e.preventDefault();
+      setQueryTrip(button.dataset.platformTrip);
+    });
     ['platformRouteSearch','platformRouteKind','platformRouteRegion','platformRouteDuration'].forEach(id=>$('#'+id,modal)?.addEventListener(id==='platformRouteSearch'?'input':'change',render));
     render();
   }
@@ -325,6 +337,6 @@
     }catch(e){console.warn('ONE WORLD ROUTE platform layer unavailable',e)}
   }
 
-  window.ONE_WORLD_PLATFORM={openRoutes:openRouteLibrary,openTraveller,getProfile:loadProfile,getTrip:()=>currentTripMeta};
+  window.ONE_WORLD_PLATFORM={openRoutes:openRouteLibrary,openTraveller,getProfile:loadProfile,getTrip:()=>currentTripMeta,buildTripUrl};
   window.addEventListener('DOMContentLoaded',init);
 })();
