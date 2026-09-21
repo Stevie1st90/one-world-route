@@ -1977,8 +1977,8 @@
     const lat=(Math.min(...lats)+Math.max(...lats))/2,lng=(Math.min(...lngs)+Math.max(...lngs))/2;
     const latSpan=Math.max(...lats)-Math.min(...lats),lngSpan=(Math.max(...lngs)-Math.min(...lngs))*Math.max(.35,Math.cos(lat*Math.PI/180));
     const span=Math.max(latSpan,lngSpan);
-    let altitude=span<7?.22:span<13?.29:span<22?.39:span<34?.50:.64;
-    if(innerWidth<=820)altitude+=.08;
+    let altitude=span<7?.15:span<13?.21:span<22?.30:span<34?.40:.54;
+    if(innerWidth<=820)altitude+=.07;
     return {lat,lng,altitude};
   }
 
@@ -2134,13 +2134,14 @@
       if(!badge){badge=document.createElement('div');badge.className='terrain-badge';badge.innerHTML='<b>3D GLOBE TERRAIN</b><span></span>';$('.globe-stage')?.appendChild(badge)}
       const [maplibre,style]=await Promise.all([loadRegionalMapLibre(),regionalTerrainStyle()]);
       const cam=routeCamera();
-      const map=new maplibre.Map({container:'terrainMap',style,center:[cam.lng,cam.lat],zoom:4.6,pitch:36,bearing:-5,minZoom:2.5,maxZoom:18,maxPitch:65,renderWorldCopies:false,attributionControl:true,canvasContextAttributes:{antialias:true}});
+      const map=new maplibre.Map({container:'terrainMap',style,center:[cam.lng,cam.lat],zoom:4.6,pitch:36,bearing:-5,minZoom:2.5,maxZoom:18,maxPitch:65,renderWorldCopies:false,attributionControl:false,canvasContextAttributes:{antialias:true}});
       map.on('style.load',()=>{try{map.setProjection({type:'globe'});map.setTerrain({source:'terrainSource',exaggeration:1.34})}catch{}});
       map.on('load',()=>{
         map.on('click','regional-route-hit',e=>{const id=Number(e.features?.[0]?.properties?.id);if(Number.isFinite(id))selectSegmentIndex(id-1,true)});
         map.on('mouseenter','regional-route-hit',()=>map.getCanvas().style.cursor='pointer');
         map.on('mouseleave','regional-route-hit',()=>map.getCanvas().style.cursor='');
       });
+      map.addControl(new maplibre.AttributionControl({compact:true}),'bottom-left');
       if(innerWidth>820){map.addControl(new maplibre.NavigationControl({visualizePitch:true,showZoom:true,showCompass:true}),'top-right');if(maplibre.TerrainControl)map.addControl(new maplibre.TerrainControl({source:'terrainSource',exaggeration:1.34}),'top-right');if(maplibre.GlobeControl)map.addControl(new maplibre.GlobeControl(),'top-right')}
       await new Promise(resolve=>{
         if(map.loaded?.())resolve();
@@ -2354,7 +2355,7 @@
         .arcStartLat(d=>d.start.lat).arcStartLng(d=>d.start.lng)
         .arcEndLat(d=>d.end.lat).arcEndLng(d=>d.end.lng)
         .arcAltitude(d=>d._index===selectedSegmentIndex?.075:.045)
-        .arcStroke(d=>(d._index===selectedSegmentIndex?.56:.22)*scale)
+        .arcStroke(d=>(d._index===selectedSegmentIndex?.42:.18)*scale)
         .arcColor(d=>d._index===selectedSegmentIndex?(settings.routeGlow?['#59ddff','#ffffff']:'#59ddff'):(story?'rgba(92,124,151,.18)':'rgba(113,151,190,.62)'))
         .arcLabel(()=> '')
         .arcDashLength(d=>d._index===selectedSegmentIndex&&story?.62:1).arcDashGap(d=>d._index===selectedSegmentIndex&&story?.16:0).arcDashAnimateTime(d=>d._index===selectedSegmentIndex&&story&&!settings.reducedMotion?1200:0)
@@ -2398,8 +2399,8 @@
     const sm=stopMap(currentTrip),pm=placeMap(currentTrip),a=pm.get(sm.get(seg.fromStopId)?.placeId),b=pm.get(sm.get(seg.toStopId)?.placeId);if(!a||!b)return;
     let lng=(a.coordinates.lng+b.coordinates.lng)/2;let lat=(a.coordinates.lat+b.coordinates.lat)/2;
     const spread=Math.max(Math.abs(Number(a.coordinates.lat)-Number(b.coordinates.lat)),Math.abs(Number(a.coordinates.lng)-Number(b.coordinates.lng))*Math.max(.35,Math.cos(lat*Math.PI/180)));
-    let altitude=spread<1?.12:spread<2.5?.16:spread<5?.22:spread<10?.30:.40;
-    if(innerWidth<=820)altitude+=.06;
+    let altitude=spread<1?.09:spread<2.5?.13:spread<5?.18:spread<10?.25:.34;
+    if(innerWidth<=820)altitude+=.055;
     window.__ONE_WORLD_ROUTE_GLOBE__?.pointOfView({lat,lng,altitude},regionalSettings().reducedMotion?0:650);
   }
 
@@ -2416,7 +2417,7 @@
     const profile=loadProfile();
     const cruiseCards=cruise?`<div class="data-card"><span>${esc(t('onboardNights'))}</span><b>${cruise.nights??'—'}</b></div><div class="data-card"><span>${esc(t('seaDays'))}</span><b>${cruise.seaDays??0}</b></div>`:'';
     const vehiclePrompt=roadTrip?.vehicleContextRequired&&!profile.vehicle?`<div class="platform-cruise-note">${esc(t('vehicleNeeded'))}</div>`:'';
-    content.innerHTML=`<div class="overview-number">${currentTrip.planning?.days||'—'}<small> ${esc(t('days'))}</small></div><p class="detail-copy">${esc(local(currentTrip.summary))}</p><div class="data-grid"><div class="data-card"><span>${esc(t('stops'))}</span><b>${currentTrip.stops.length}</b></div>${cruiseCards}<div class="data-card"><span>${esc(t('routeEvidence'))}</span><b>${sourced}/${currentTrip.segments.length}</b></div><div class="data-card"><span>${esc(t('verified'))}</span><b>${verified}/${currentTrip.segments.length}</b></div><div class="data-card"><span>${esc(t('currency'))}</span><b>${esc(currentTrip.planning?.currency||'—')}</b></div></div>${vehiclePrompt}${cruise?.requiresSailingSelection?`<div class="platform-cruise-note">${esc(t('sailingNeeded'))}</div>`:''}${entry?`<div class="platform-entry"><b>${esc(t('entryGuidance'))}</b><p>${esc(local(entry.message))}</p>${entrySource?`<a href="${esc(entrySource.url)}" target="_blank" rel="noopener noreferrer">${esc(t('officialCheck'))} →</a>`:''}</div>`:''}<button class="platform-context-inline" id="regionalTravellerBtn" type="button">${esc(t('traveller'))} →</button>`;
+    content.innerHTML=`<div class="overview-number platform-duration-number">${currentTrip.planning?.days||'—'}<small>${esc(t('days'))}</small></div><p class="detail-copy">${esc(local(currentTrip.summary))}</p><div class="data-grid"><div class="data-card"><span>${esc(t('stops'))}</span><b>${currentTrip.stops.length}</b></div>${cruiseCards}<div class="data-card"><span>${esc(t('routeEvidence'))}</span><b>${sourced}/${currentTrip.segments.length}</b></div><div class="data-card"><span>${esc(t('verified'))}</span><b>${verified}/${currentTrip.segments.length}</b></div><div class="data-card"><span>${esc(t('currency'))}</span><b>${esc(currentTrip.planning?.currency||'—')}</b></div></div>${vehiclePrompt}${cruise?.requiresSailingSelection?`<div class="platform-cruise-note">${esc(t('sailingNeeded'))}</div>`:''}${entry?`<div class="platform-entry"><b>${esc(t('entryGuidance'))}</b><p>${esc(local(entry.message))}</p>${entrySource?`<a href="${esc(entrySource.url)}" target="_blank" rel="noopener noreferrer">${esc(t('officialCheck'))} →</a>`:''}</div>`:''}<button class="platform-context-inline" id="regionalTravellerBtn" type="button">${esc(t('traveller'))} →</button>`;
     $('#regionalTravellerBtn')?.addEventListener('click',openTraveller);
   }
 
