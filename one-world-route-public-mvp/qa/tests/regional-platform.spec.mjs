@@ -18,7 +18,7 @@ async function openRegional(page,item){
 }
 
 for(const item of regional){
-  test(item.id+' shell, navigation, context and story work',async({page},testInfo)=>{
+  test(item.id+' shell, navigation, context and story work',async({page,isMobile},testInfo)=>{
     const trip=datasets.get(item.id);
     await openRegional(page,item);
 
@@ -38,9 +38,22 @@ for(const item of regional){
 
     const secondStop=trip.stops[1];
     const secondPlace=trip.places.find(place=>place.id===secondStop.placeId);
+    if(isMobile){
+      await page.locator('#mobileFilters').click();
+      await expect(page.locator('#leftPanel')).toHaveClass(/mobile-open/);
+    }
     await page.locator('[data-stop-index="1"]').click();
     await expect(page.locator('[data-stop-index="1"]')).toHaveClass(/active/);
     await expect(page.locator('#detailTitle')).toHaveText(secondPlace.name.en);
+    if(isMobile){
+      await page.locator('#closeFilters').click();
+      await expect(page.locator('#leftPanel')).not.toHaveClass(/mobile-open/);
+      await page.locator('#mobileDetails').click();
+      await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);
+      await expect(page.locator('#detailTitle')).toHaveText(secondPlace.name.en);
+      await page.locator('#closeDetails').click();
+      await expect(page.locator('#rightPanel')).not.toHaveClass(/mobile-open/);
+    }
 
     await page.locator('#platformTravellerBtn').click();
     await expect(page.locator('#platformTravellerModal')).toBeVisible();
