@@ -6,7 +6,7 @@
     {
       "id": "world-195",
       "slug": "world-195",
-      "kind": "flagship",
+      "kind": "world",
       "status": "planned",
       "renderer": "legacy-world",
       "dataset": "./data/public-route.json",
@@ -30,9 +30,18 @@
         "days": 379,
         "countries": 195,
         "internationalLegs": 194,
-        "budget": {"amount": 90600, "currency": "EUR"}
+        "budget": {
+          "amount": 90600,
+          "currency": "EUR"
+        }
       },
-      "capabilities": ["globe", "terrain", "operations", "story", "plan-vs-actual"]
+      "capabilities": [
+        "globe",
+        "terrain",
+        "operations",
+        "story",
+        "plan-vs-actual"
+      ]
     },
     {
       "id": "italy-grand-tour",
@@ -64,7 +73,11 @@
         "segments": 10,
         "budget": null
       },
-      "capabilities": ["globe", "regional-stops", "traveller-context"]
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context"
+      ]
     }
   ]
 }
