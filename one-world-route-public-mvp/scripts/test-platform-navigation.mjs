@@ -129,6 +129,10 @@ test('regional routes expose generic story and terrain APIs',()=>{
   assert.match(source,/stopStory:\(\)=>Story\.stop\(\)/);
 });
 
+test('regional mobile header keeps the active trip title visible',()=>{
+  assert.match(cssSource,/body\.platform-regional-trip \.topbar \.brand small\{display:block/);
+});
+
 test('regional settings remain visible while legacy world search stays hidden',()=>{
   assert.match(cssSource,/platform-regional-trip #searchBtn/);
   assert.match(cssSource,/platform-regional-trip #infoBtn/);
@@ -321,6 +325,21 @@ test('active globe labels carry directional collision roles',()=>{
   assert.match(globe,/toPlace\.id!==fromPlace\?\.id/);
   assert.match(cssSource,/platform-globe-label-anchor\.label-from \.platform-globe-label\{left:8px;bottom:8px\}/);
   assert.match(cssSource,/platform-globe-label-anchor\.label-to \.platform-globe-label\{right:8px;top:8px\}/);
+});
+
+test('regional route arc height follows transport semantics without trip-kind branching',()=>{
+  const window={ONE_WORLD_PLATFORM_MODULES:{}};
+  const context={window,document:{},console,Math,Set};
+  vm.createContext(context);
+  vm.runInContext(moduleSources['regional-globe.js'],context);
+  const globe=window.ONE_WORLD_PLATFORM_MODULES.regionalGlobe;
+  const base={start:{lat:40,lng:0},end:{lat:43,lng:6}};
+  const ground=globe.arcAltitude({...base,transport:{mode:'car'}},false);
+  const water=globe.arcAltitude({...base,transport:{mode:'cruise'}},false);
+  const air=globe.arcAltitude({...base,transport:{mode:'flight'}},false);
+  assert.ok(ground<water);
+  assert.ok(water<air);
+  assert.ok(globe.arcAltitude({...base,transport:{mode:'rail'}},true)>globe.arcAltitude({...base,transport:{mode:'rail'}},false));
 });
 
 test('regional globe renderer owns Globe.gl interactions and stays trip-generic',()=>{
