@@ -100,11 +100,8 @@
     const translated=t(key);
     return translated===key?String(value||'').replaceAll('-',' '):translated;
   };
-  const countryDisplay = code => {
-    if(!code)return '—';
-    try{return new Intl.DisplayNames([locale],{type:'region'}).of(String(code).toUpperCase())||String(code)}
-    catch{return String(code)}
-  };
+  const countryDisplay = code => LocaleData.regionName(locale,code);
+  const pluralLabel = (count,oneKey,otherKey) => LocaleData.plural(locale,count,{one:t(oneKey),other:t(otherKey)});
   const statusLabel = trip => {
     if(trip.id===catalog?.defaultTripId)return t('flagship');
     const key='status_'+String(trip.status||'draft').replaceAll('-','_');
@@ -236,6 +233,7 @@
       esc,
       facetLabel,
       statusLabel,
+      pluralLabel,
       onOpenTrip:setQueryTrip
     });
   }
