@@ -17,6 +17,18 @@ if (!Array.isArray(catalog.trips) || catalog.trips.length < 2) fail('Trip catalo
 for (const trip of catalog.trips || []) {
   if (!trip.id || ids.has(trip.id)) fail('Trip IDs must be unique: '+trip.id); else ids.add(trip.id);
   if (!trip.slug || slugs.has(trip.slug)) fail('Trip slugs must be unique: '+trip.slug); else slugs.add(trip.slug);
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(String(trip.kind||''))) fail(trip.id+': kind must be a normalized slug');
+  if (!['legacy-world','regional-globe'].includes(trip.renderer)) fail(trip.id+': unsupported renderer '+trip.renderer);
+  if (!Array.isArray(trip.capabilities)||!trip.capabilities.length) fail(trip.id+': capabilities required');
+  else {
+    const seenCapabilities=new Set();
+    for (const capability of trip.capabilities) {
+      if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(String(capability||''))) fail(trip.id+': invalid capability '+capability);
+      if (seenCapabilities.has(capability)) fail(trip.id+': duplicate capability '+capability);
+      seenCapabilities.add(capability);
+    }
+    if (trip.renderer==='regional-globe'&&!seenCapabilities.has('globe')) fail(trip.id+': regional renderer requires globe capability');
+  }
   const discovery=trip.discovery||{};
   if (!Array.isArray(discovery.regions)||!discovery.regions.length) fail(trip.id+': discovery.regions required');
   if (!Array.isArray(discovery.themes)||!discovery.themes.length) fail(trip.id+': discovery.themes required');
