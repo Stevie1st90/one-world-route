@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','regional-selection.js','story.js','terrain.js','extensions.js','extensions/cruise.js','extensions/road.js','extensions/border.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','formatters.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','regional-selection.js','story.js','terrain.js','extensions.js','extensions/cruise.js','extensions/road.js','extensions/border.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -226,6 +226,7 @@ test('route library exposes transparent Route Fit controls',()=>{
 test('platform core delegates reusable concerns to modules',()=>{
   const routeLibrary=moduleSources['route-library.js'];
   const ui=moduleSources['ui.js'];
+  assert.match(source,/const Formatters=PLATFORM_MODULES\.formatters/);
   assert.match(source,/const Model=PLATFORM_MODULES\.model/);
   assert.match(source,/const Traveller=PLATFORM_MODULES\.traveller/);
   assert.match(source,/const TravellerUi=PLATFORM_MODULES\.travellerUi/);
@@ -384,6 +385,15 @@ test('Traveller Context UI is isolated from storage policy',()=>{
   assert.doesNotMatch(source,/async function loadCountries\(/);
 });
 
+
+test('platform formatting helpers are isolated from bootstrap logic',()=>{
+  const formatters=moduleSources['formatters.js'];
+  for(const token of ['function money','function durationLabel','function costLabel','function editorialNote'])assert.match(formatters,new RegExp(token));
+  assert.match(source,/Formatters\.durationLabel/);
+  assert.match(source,/Formatters\.costLabel/);
+  assert.match(source,/Formatters\.editorialNote/);
+  assert.doesNotMatch(source,/EDITORIAL_NOTES|const money =|const durationLabel =|const costLabel =|const editorialNote =/);
+});
 
 test('platform localization is isolated from bootstrap logic',()=>{
   const i18n=moduleSources['i18n.js'];
