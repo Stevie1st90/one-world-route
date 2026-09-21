@@ -4,6 +4,10 @@ import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
+const appSource=await readFile(new URL('../app.js',import.meta.url),'utf8');
+const iteration2Source=await readFile(new URL('../iteration2.js',import.meta.url),'utf8');
+const cssSource=await readFile(new URL('../platform.css',import.meta.url),'utf8');
+const swSource=await readFile(new URL('../sw.js',import.meta.url),'utf8');
 
 function loadPlatform(search=''){
   const window={addEventListener(){},ONE_WORLD_PLATFORM:null};
@@ -49,3 +53,28 @@ test('route library uses delegated click handling for dynamically filtered cards
   assert.match(source,/results\.addEventListener\('click'/);
   assert.doesNotMatch(source,/\$\('\[data-platform-trip\]'\s*,\s*host\)\.forEach/);
 });
+
+test('regional chapter controls bind NodeLists rather than a single element',()=>{
+  assert.match(source,/\$\$\('\[data-trip-chapter\]'/);
+  assert.doesNotMatch(source,/(?<!\$)\$\('\[data-trip-chapter\]'[^\n]*\.forEach/);
+});
+
+test('regional routes own timeline and block legacy world mutation paths',()=>{
+  for(const token of ['regionalRouteRange','regionalTimelineTitle','syncRegionalUrl','isolateRegionalRuntime'])assert.match(source,new RegExp(token));
+  assert.match(appSource,/platformOwnsRoute/);
+  assert.match(appSource,/if\(!state\.globe \|\| platformOwnsRoute\(\)\) return/);
+  assert.match(iteration2Source,/platform-regional-trip/);
+  assert.match(cssSource,/platform-regional-trip \.journey-context/);
+});
+
+test('mobile platform keeps Traveller available',()=>{
+  assert.match(cssSource,/platform-pill\.secondary\{display:flex\}/);
+  assert.match(source,/id="platformTravellerBtn"/);
+  assert.match(source,/platform-pill-icon/);
+});
+
+test('localhost service worker cannot keep stale QA bundles',()=>{
+  assert.match(swSource,/LOCAL_PREVIEW/);
+  assert.match(swSource,/self\.registration\.unregister/);
+});
+
