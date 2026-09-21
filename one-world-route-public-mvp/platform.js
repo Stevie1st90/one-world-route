@@ -252,8 +252,10 @@
 
   function buildChapterRail(){
     const rail=$('#phaseRail');if(!rail)return;
-    rail.innerHTML=(currentTrip.chapters||[]).map((c,i)=>`<button type="button" data-trip-chapter="${i}" class="${i===0?'active':''}"><span class="phase-dot"></span>${esc(local(c.title))}</button>`).join('');
-    $$('[data-trip-chapter]',rail).forEach(b=>b.onclick=()=>{
+    const chapters=currentTrip.chapters||[];
+    rail.classList.toggle('platform-empty-rail',chapters.length===0);
+    rail.innerHTML=chapters.map((c,i)=>`<button type="button" data-trip-chapter="${i}" class="${i===0?'active':''}"><span class="phase-dot"></span>${esc(local(c.title))}</button>`).join('');
+    $('[data-trip-chapter]',rail).forEach(b=>b.onclick=()=>{
       $$('[data-trip-chapter]',rail).forEach(x=>x.classList.toggle('active',x===b));
       const c=currentTrip.chapters[Number(b.dataset.tripChapter)],idx=currentTrip.stops.findIndex(s=>s.id===c.stopIds?.[0]);if(idx>=0)selectStop(idx,true);
     });
