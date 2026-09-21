@@ -609,6 +609,7 @@
 
   function ensureRegionalStoryUi(){
     const stage=$('.globe-stage');if(!stage)return;
+    if(!Model.hasCapability(currentTripMeta,'story')){$('#platformStoryBtn')?.remove();$('#platformStoryHud')?.remove();return}
     if(!$('#platformStoryBtn')){
       const b=document.createElement('button');b.id='platformStoryBtn';b.className='platform-story-btn glass';b.type='button';
       stage.appendChild(b);b.addEventListener('click',startRegionalStory);
@@ -662,7 +663,7 @@
   function toggleRegionalStoryPlayback(){regionalStory.playing?pauseRegionalStory():playRegionalStory()}
 
   async function startRegionalStory(){
-    if(!currentTrip||regionalStory.active)return;
+    if(!currentTrip||regionalStory.active||!Model.hasCapability(currentTripMeta,'story'))return;
     if(document.body.classList.contains('terrain-view'))await setRegionalTerrain(false);
     if(playTimer){clearInterval(playTimer);playTimer=null}
     regionalStory.active=true;document.body.classList.add('platform-story-mode');
@@ -846,7 +847,7 @@
   }
 
   async function setRegionalTerrain(active){
-    if(!currentTrip||currentTripMeta?.renderer==='legacy-world')return;
+    if(!currentTrip||currentTripMeta?.renderer==='legacy-world'||!Model.hasCapability(currentTripMeta,'terrain'))return;
     const toggle=$('#terrainView');if(toggle)toggle.checked=Boolean(active);
     if(!active){
       document.body.classList.remove('terrain-loading','terrain-view');
@@ -891,13 +892,15 @@
     const shareButton=$('#shareBtn');if(shareButton){shareButton.title=t('share');shareButton.setAttribute('aria-label',t('share'))}
     const search=$('#searchBtn');if(search)search.hidden=true;
     const labels=[['autoRotate','autoRotate'],['highDetailGlobe','highDetail'],['terrainView','terrain'],['showPoints','showPoints'],['routeGlow','routeGlow'],['arcWidth','arcThickness'],['reducedMotion','reducedMotion']];
+    const terrainToggle=$('#terrainView'),terrainLabel=terrainToggle?.closest('label');
+    if(terrainLabel)terrainLabel.hidden=!Model.hasCapability(currentTripMeta,'terrain');
     for(const [id,key] of labels){const span=$('#'+id)?.closest('label')?.querySelector('span');if(span)span.textContent=t(key)}
     const title=$('#settingsPopover .settings-head h3');if(title)title.textContent=t('settings');
     const share=$('#mobileShareBtn');if(share)share.textContent=t('share');
     const info=$('#mobileInfoBtn');if(info)info.textContent=t('methodology');
     let storyBtn=$('#regionalStorySettingsBtn');
     if(!storyBtn){storyBtn=document.createElement('button');storyBtn.id='regionalStorySettingsBtn';storyBtn.type='button';storyBtn.addEventListener('click',()=>{$('#settingsPopover')?.classList.add('hidden');startRegionalStory()});$('#settingsPopover .mobile-settings-actions')?.appendChild(storyBtn)}
-    if(storyBtn)storyBtn.textContent=t('storyPlay');
+    if(storyBtn){storyBtn.textContent=t('storyPlay');storyBtn.hidden=!Model.hasCapability(currentTripMeta,'story')}
     const bind=(id,event,fn)=>{const el=$('#'+id);if(!el||el.dataset.platformRegionalWired)return;el.dataset.platformRegionalWired='1';el.addEventListener(event,fn)};
     bind('autoRotate','change',()=>{const ctl=window.__ONE_WORLD_ROUTE_GLOBE__?.controls?.();if(ctl){ctl.autoRotate=$('#autoRotate').checked&&!regionalStory.active&&!document.body.classList.contains('terrain-view');ctl.autoRotateSpeed=.28}});
     bind('showPoints','change',()=>{renderRegionalGlobe();updateRegionalTerrain()});
@@ -1126,7 +1129,7 @@
     applyTripShell();
     renderRegionalGlobe();
     setTimeout(renderRegionalGlobe,500);
-    if(new URLSearchParams(location.search).get('view')==='terrain')setTimeout(()=>setRegionalTerrain(true),650);
+    if(Model.hasCapability(currentTripMeta,'terrain')&&new URLSearchParams(location.search).get('view')==='terrain')setTimeout(()=>setRegionalTerrain(true),650);
   }
 
   async function init(){
