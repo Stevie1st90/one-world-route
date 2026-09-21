@@ -55,6 +55,8 @@
 
   function htmlLabel(place){
     const d=context();
+    const anchor=document.createElement('div');
+    anchor.className=`platform-globe-label-anchor ${place?._labelRole==='from'?'label-from':'label-to'}`;
     const el=document.createElement('div');
     el.className='platform-globe-label';
     const dot=document.createElement('i');
@@ -62,7 +64,8 @@
     const text=document.createElement('span');
     text.textContent=d.local(place?.name);
     el.appendChild(text);
-    return el;
+    anchor.appendChild(el);
+    return anchor;
   }
 
   function routeGeometry(){
@@ -82,11 +85,16 @@
     const arcs=routeGeometry();
     const places=[...d.placeMap(trip).values()];
     const active=arcs[selected];
-    const activeIds=new Set([
-      active?.start&&trip.stops.find(stop=>stop.id===active.fromStopId)?.placeId,
-      active?.end&&trip.stops.find(stop=>stop.id===active.toStopId)?.placeId
-    ].filter(Boolean));
-    const labelPlaces=places.filter(place=>activeIds.has(place.id));
+    const fromPlaceId=active?.start&&trip.stops.find(stop=>stop.id===active.fromStopId)?.placeId;
+    const toPlaceId=active?.end&&trip.stops.find(stop=>stop.id===active.toStopId)?.placeId;
+    const activeIds=new Set([fromPlaceId,toPlaceId].filter(Boolean));
+    const byId=d.placeMap(trip);
+    const fromPlace=fromPlaceId?byId.get(fromPlaceId):null;
+    const toPlace=toPlaceId?byId.get(toPlaceId):null;
+    const labelPlaces=[
+      ...(fromPlace?[{...fromPlace,_labelRole:'from'}]:[]),
+      ...(toPlace&&toPlace.id!==fromPlace?.id?[{...toPlace,_labelRole:'to'}]:[])
+    ];
 
     try{
       isolate();
