@@ -314,8 +314,8 @@ test('active globe labels carry directional collision roles',()=>{
   assert.match(globe,/_labelRole:'from'/);
   assert.match(globe,/_labelRole:'to'/);
   assert.match(globe,/toPlace\.id!==fromPlace\?\.id/);
-  assert.match(cssSource,/platform-globe-label-anchor\.label-from \.platform-globe-label\{right:8px;bottom:8px\}/);
-  assert.match(cssSource,/platform-globe-label-anchor\.label-to \.platform-globe-label\{left:8px;top:8px\}/);
+  assert.match(cssSource,/platform-globe-label-anchor\.label-from \.platform-globe-label\{left:8px;bottom:8px\}/);
+  assert.match(cssSource,/platform-globe-label-anchor\.label-to \.platform-globe-label\{right:8px;top:8px\}/);
 });
 
 test('regional globe renderer owns Globe.gl interactions and stays trip-generic',()=>{
