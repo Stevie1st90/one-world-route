@@ -184,8 +184,16 @@ for(const item of regional){
     if(item.capabilities.includes('terrain'))await expect(page.locator('#terrainView')).toBeVisible();
 
     if(item.capabilities.includes('story')){
-      await expect(page.locator('#regionalStorySettingsBtn')).toBeVisible();
-      await page.locator('#regionalStorySettingsBtn').click();
+      if(isMobile){
+        await expect(page.locator('#regionalStorySettingsBtn')).toBeVisible();
+        await page.locator('#regionalStorySettingsBtn').click();
+      }else{
+        await expect(page.locator('#regionalStorySettingsBtn')).toBeHidden();
+        await page.locator('#settingsBtn').click();
+        await expect(page.locator('#settingsPopover')).toBeHidden();
+        await expect(page.locator('#platformStoryBtn')).toBeVisible();
+        await page.locator('#platformStoryBtn').click();
+      }
       await expect(page.locator('#settingsPopover')).toBeHidden();
       await expect(page.locator('body')).toHaveClass(/platform-story-mode/);
       await expect(page.locator('#platformStoryHud')).toBeVisible();
