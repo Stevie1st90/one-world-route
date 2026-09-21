@@ -136,3 +136,42 @@ test('cruise without chapters hides empty chapter rail and keeps regional timeli
   await expect(page.locator('#detailContent .journey-context')).toHaveCount(0);
 });
 
+
+
+test('regional Story mode uses trip segments and exits cleanly',async({page})=>{
+  await open(page,'/?trip=italy-grand-tour&lang=de');
+  await expect(page.locator('#platformStoryBtn')).toBeVisible();
+  const before=await page.locator('#regionalTimelineTitle').innerText();
+  await page.locator('#platformStoryBtn').click();
+  await expect(page.locator('body')).toHaveClass(/platform-story-mode/);
+  await expect(page.locator('#platformStoryHud')).toBeVisible();
+  await page.locator('#platformStoryNext').click();
+  await expect.poll(()=>page.locator('#regionalTimelineTitle').innerText()).not.toBe(before);
+  await expect(page.locator('#platformStoryRoute')).toContainText('→');
+  await page.locator('#platformStoryExit').click();
+  await expect(page.locator('body')).not.toHaveClass(/platform-story-mode/);
+  await expect(page.locator('#platformStoryHud')).toBeHidden();
+});
+
+test('regional desktop exposes settings, methodology and terrain control',async({page,isMobile})=>{
+  test.skip(isMobile);
+  await open(page,'/?trip=southern-europe-road-trip&lang=de');
+  await expect(page.locator('#settingsBtn')).toBeVisible();
+  await expect(page.locator('#infoBtn')).toBeVisible();
+  await expect(page.locator('#shareBtn')).toBeVisible();
+  await page.locator('#settingsBtn').click();
+  await expect(page.locator('#settingsPopover')).toBeVisible();
+  await expect(page.locator('#terrainView')).toBeVisible();
+  await expect(page.locator('#settingsPopover')).toContainText(/3D|Terrain/);
+});
+
+test('regional mobile exposes settings as a third top action',async({page,isMobile})=>{
+  test.skip(!isMobile);
+  await open(page,'/?trip=southern-europe-road-trip&lang=de');
+  await expect(page.locator('#platformRouteBtn')).toBeVisible();
+  await expect(page.locator('#platformTravellerBtn')).toBeVisible();
+  await expect(page.locator('#settingsBtn')).toBeVisible();
+  await page.locator('#settingsBtn').click();
+  await expect(page.locator('#settingsPopover')).toBeVisible();
+  await expect(page.locator('#regionalStorySettingsBtn')).toBeVisible();
+});
