@@ -235,3 +235,13 @@ test('extension validation registry can grow without changing the core validator
   assert.ok(listPlatformExtensionValidators().includes('test-extension'));
   assert.throws(()=>registerPlatformExtensionValidator('test-extension',()=>{}),/Duplicate platform extension validator/);
 });
+
+
+test('trip schema permits namespaced extensions on trip, place, stop and segment layers',async()=>{
+  const schema=await read('data/platform/trip-schema.json');
+  assert.equal(schema.properties.extensions.$ref,'#/$defs/extensions');
+  for(const key of ['places','stops','segments']){
+    assert.equal(schema.properties[key].items.properties.extensions.$ref,'#/$defs/extensions',key);
+  }
+  assert.deepEqual(schema['x-oneWorldRoute'].extensionContract.nodeScopes,['trip','place','stop','segment']);
+});
