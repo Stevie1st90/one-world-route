@@ -408,6 +408,11 @@
     return EDITORIAL_NOTES[String(value)]?.[locale]||String(value);
   };
 
+  function setRegionalDetailMode(mode){
+    for(const key of ['overview','stop','segment'])document.body.classList.toggle('platform-detail-'+key,key===mode);
+    const panel=$('#rightPanel');if(panel)panel.scrollTop=0;
+  }
+
   const sourceMap = () => new Map((currentTrip?.sources||[]).map(s=>[s.id,s]));
   const verificationLabel = s => s?.verification?.status==='verified'?t('verified'):(s?.verification?.status==='illustrative'?t('illustrative'):t('currentCheck'));
   const sourceLinks = ids => {
@@ -1009,6 +1014,7 @@
   }
 
   function renderTripOverview(){
+    setRegionalDetailMode('overview');
     const title=$('#detailTitle');if(title)title.textContent=local(currentTrip.title);
     const eye=$('#detailEyebrow');if(eye)eye.textContent=t('overview');
     const tabs=$('#detailTabs');if(tabs)tabs.style.display='none';
@@ -1026,6 +1032,7 @@
   }
 
   function renderStopDetail(stop,p){
+    setRegionalDetailMode('stop');
     const title=$('#detailTitle');if(title)title.textContent=local(p.name);
     const eye=$('#detailEyebrow');if(eye)eye.textContent=`${t('stop').toUpperCase()} ${stop.sequence} · ${p.type}`;
     const content=$('#detailContent');if(!content)return;
@@ -1037,6 +1044,7 @@
   }
 
   function renderSegmentDetail(s){
+    setRegionalDetailMode('segment');
     const sm=stopMap(currentTrip),pm=placeMap(currentTrip),a=pm.get(sm.get(s.fromStopId)?.placeId),b=pm.get(sm.get(s.toStopId)?.placeId);
     const title=$('#detailTitle');if(title)title.textContent=`${local(a?.name)} → ${local(b?.name)}`;
     const eye=$('#detailEyebrow');if(eye)eye.textContent=`${t('segment').toUpperCase()} ${s.sequence} / ${currentTrip.segments.length}`;
