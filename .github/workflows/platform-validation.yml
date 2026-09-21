@@ -60,6 +60,7 @@ jobs:
           node --check scripts/generate-seo.mjs
           node --check scripts/serve-local.mjs
           node --check scripts/test-preview-routes.mjs
+          node --check scripts/test-regional-runtime.mjs
       - name: Platform data validation
         run: node scripts/validate-platform-data.mjs
       - name: Existing public-data validation
@@ -74,6 +75,8 @@ jobs:
         run: node --test scripts/test-share-pages.mjs
       - name: Platform navigation tests
         run: node --test scripts/test-platform-navigation.mjs
+      - name: Regional runtime integration tests
+        run: node --test scripts/test-regional-runtime.mjs
       - name: Story controller tests
         run: node --test scripts/test-platform-story.mjs
       - name: Continuity unit tests
