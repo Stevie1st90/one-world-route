@@ -733,6 +733,10 @@
 
   function configureRegionalSettings(){
     const actions=$('.top-actions');if(actions)actions.classList.add('platform-regional-actions');
+    const brand=$('#brandBtn');if(brand)brand.onclick=()=>{selectedSegmentIndex=0;renderTripOverview();renderRegionalGlobe();if(document.body.classList.contains('terrain-view'))focusRegionalTerrain(0);else window.__ONE_WORLD_ROUTE_GLOBE__?.pointOfView(routeCamera(),regionalSettings().reducedMotion?0:650)};
+    const settingsButton=$('#settingsBtn');if(settingsButton){settingsButton.title=t('settings');settingsButton.setAttribute('aria-label',t('settings'))}
+    const infoButton=$('#infoBtn');if(infoButton){infoButton.title=t('methodology');infoButton.setAttribute('aria-label',t('methodology'))}
+    const shareButton=$('#shareBtn');if(shareButton){shareButton.title=t('share');shareButton.setAttribute('aria-label',t('share'))}
     const search=$('#searchBtn');if(search)search.hidden=true;
     const labels=[['autoRotate','autoRotate'],['highDetailGlobe','highDetail'],['terrainView','terrain'],['showPoints','showPoints'],['routeGlow','routeGlow'],['arcWidth','arcThickness'],['reducedMotion','reducedMotion']];
     for(const [id,key] of labels){const span=$('#'+id)?.closest('label')?.querySelector('span');if(span)span.textContent=t(key)}
