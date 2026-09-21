@@ -23,9 +23,18 @@ jobs:
       - name: Syntax checks
         run: |
           node --check platform.js
+          node --check platform/runtime.js
+          node --check platform/map-style.js
+          node --check platform/i18n.js
+          node --check platform/model.js
+          node --check platform/traveller.js
+          node --check platform/discovery.js
+          node --check platform/extensions.js
           node --check features.bundle.js
           node --check api/share.js
           node --check scripts/validate-platform-data.mjs
+          node --check scripts/platform-extension-validators.mjs
+          node --check scripts/scaffold-trip.mjs
           node --check scripts/generate-seo.mjs
           node --check scripts/serve-local.mjs
       - name: Platform data validation
