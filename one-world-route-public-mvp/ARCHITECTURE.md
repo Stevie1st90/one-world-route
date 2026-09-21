@@ -73,3 +73,12 @@ Global editorial defaults remain neutral and generic. Visa/entry, price, insuran
 ### Compatibility
 
 The flagship world trip remains on the existing `legacy-world` renderer, including Operations, Story and Terrain. Regional trips can reuse the standard Globe.gl view without Terrain. The platform validator explicitly fails if the legacy world data ceases to contain 195 country entries or 194 macro legs.
+
+### Route evidence model
+
+Regional trips may contain a `sources` registry. Segment and stage `sourceIds` resolve into that registry. Source records include issuer, issuer type, URL, check date and optionally a validity window. A segment may be marked `verified` only when it has evidence and a verification date; schedule-sensitive connections remain `current-check-required` even when the corridor itself is known to exist.
+
+Published starting fares are not converted into a full trip budget. Connection time is not silently added to operator travel time. For multimodal routes, each stage can carry its own timing, fare and evidence. This allows a route to state, for example, that a ferry stage is verified while the onward coach connection still requires a date-specific check.
+
+Entry guidance is deliberately separate from transport evidence. The Italy pilot points to official government/EU sources and requires Traveller Context rather than deriving citizenship or residence from locale, IP, currency or departure city.
+
