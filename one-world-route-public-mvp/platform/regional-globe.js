@@ -127,16 +127,20 @@
       }
       if(typeof globe.onPolygonClick==='function')globe.onPolygonClick(()=>{});
       if(typeof globe.polygonLabel==='function')globe.polygonLabel(()=> '');
-      if(globe.controls()){
-        globe.controls().autoRotate=settings.autoRotate&&!story&&!document.body.classList.contains('terrain-view');
-        globe.controls().autoRotateSpeed=.28;
-        globe.controls().enableZoom=true;
-      }
+      if(globe.controls())globe.controls().enableZoom=true;
+      updateAutoRotate();
       if(!document.body.dataset.regionalCameraReady){
         document.body.dataset.regionalCameraReady='1';
         globe.pointOfView(routeCamera(),settings.reducedMotion?0:700);
       }
     }catch(error){console.warn('Regional globe render failed',error)}
+  }
+
+  function updateAutoRotate(){
+    const d=context(),controls=getGlobe()?.controls?.();
+    if(!controls)return;
+    controls.autoRotate=d.settings().autoRotate&&!d.isStoryActive()&&!document.body.classList.contains('terrain-view');
+    controls.autoRotateSpeed=.28;
   }
 
   function focusRoute(){
@@ -169,6 +173,6 @@
     if(globe)globe.pointOfView({lat,lng,altitude},d.settings().reducedMotion?0:650);
   }
 
-  const api={configure,routeCamera,isolate,routeGeometry,render,focusRoute,focusPlace,focusSegment};
+  const api={configure,routeCamera,isolate,routeGeometry,render,updateAutoRotate,focusRoute,focusPlace,focusSegment};
   root.regionalGlobe=api;
 })();
