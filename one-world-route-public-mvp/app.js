@@ -43,6 +43,7 @@
   };
   let inlineHits=[];
   let commandHits=[];
+  const platformOwnsRoute=()=>document.body.classList.contains('platform-regional-trip')||new URLSearchParams(location.search).has('trip');
   const EN=window.ONE_WORLD_EN||{registerCountries(){},country:s=>s,mode:s=>s,text:s=>s,value:s=>s};
   const countryDisplay=c=>c?.displayName||EN.country(c?.name||'',c?.cca2||'');
   const segmentFrom=s=>s?.displayFrom||EN.country(s?.from||'');
@@ -231,7 +232,7 @@
   }
 
   function updateGlobe(){
-    if(!state.globe) return;
+    if(!state.globe || platformOwnsRoute()) return;
     const filtered=visibleSegments(); const sel=state.segments.find(s=>s.id===state.selectedSegmentId);
     const segs=sel&&!filtered.some(s=>s.id===sel.id)?[...filtered,sel]:filtered;
     const labelCountry=state.selectedCountry || (sel ? state.countries.find(c=>c.name===sel.to) : null);
@@ -290,6 +291,7 @@
   }
 
   function selectSegment(id,focus=false){
+    if(platformOwnsRoute())return;
     window.ONE_WORLD_MOVEMENTS?.clear();
     const s=state.segments.find(x=>x.id===Number(id)); if(!s)return;
     state.selectedSegmentId=s.id; state.selectedCountry=null; state.activeTab=state.mode==='operations'?'operations':'overview';
@@ -305,6 +307,7 @@
   }
 
   function selectCountry(name,focus=false){
+    if(platformOwnsRoute())return;
     const c=state.countries.find(x=>x.name===name); if(!c)return;
     const context=countryContextSegment(c);
     if(context){
@@ -321,6 +324,7 @@
   }
 
   function updateUrl(){
+    if(platformOwnsRoute())return;
     const current=new URLSearchParams(location.search),p=new URLSearchParams();
     if(state.selectedCountry) p.set('country',state.selectedCountry.name); else p.set('segment',state.selectedSegmentId);
     if(state.layer!=='route')p.set('layer',state.layer); if(state.phase!=='all')p.set('phase',state.phase); if(state.mode!=='explore')p.set('mode',state.mode);
@@ -330,7 +334,7 @@
     history.replaceState(null,'',`${location.pathname}?${p.toString()}`);
   }
   function restoreUrl(){
-    const p=new URLSearchParams(location.search); if(p.get('layer'))state.layer=p.get('layer'); if(p.get('phase'))state.phase=p.get('phase'); if(p.get('mode'))state.mode=p.get('mode');
+    const p=new URLSearchParams(location.search); if(p.get('trip'))return; if(p.get('layer'))state.layer=p.get('layer'); if(p.get('phase'))state.phase=p.get('phase'); if(p.get('mode'))state.mode=p.get('mode');
     if(p.get('fmode'))state.filters.mode=p.get('fmode');if(p.get('tier'))state.filters.tier=p.get('tier');if(p.get('feasibility'))state.filters.feasibility=p.get('feasibility');if(p.get('alert'))state.filters.alert=p.get('alert');
     if(p.get('country')){
       state.selectedCountry=state.countries.find(c=>c.name===p.get('country'))||null;
@@ -446,6 +450,7 @@
   }
 
   function updateTimeline(){
+    if(platformOwnsRoute())return;
     const s=state.segments.find(x=>x.id===state.selectedSegmentId)||state.segments[0]; if(!s)return;
     $('#timelineTitle').textContent=`${segmentFrom(s)} → ${segmentTo(s)}`; $('#timelineMeta').textContent=`Segment ${s.id} · Day ${daysFromStart(s.planDeparture)||'—'} · ${segmentMode(s)}`;
   }
