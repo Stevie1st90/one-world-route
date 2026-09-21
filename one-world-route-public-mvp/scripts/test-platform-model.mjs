@@ -188,3 +188,26 @@ test('road extension allows non-driving connector segments such as ferries',()=>
   validatePlatformExtensions({item:{id:'road-ferry'},trip,orderedStops:trip.stops,segs:trip.segments,stopById,placeById,sourceIds:new Set(['road-source','ferry-source']),fail:m=>errors.push(m)});
   assert.deepEqual(errors,[]);
 });
+
+
+test('trip kind schema stays open for future route types',async()=>{
+  const schema=await read('data/platform/trip-schema.json');
+  assert.equal(schema.properties.kind.type,'string');
+  assert.ok(schema.properties.kind.pattern);
+  assert.equal(schema.properties.kind.enum,undefined);
+  assert.ok(schema['x-oneWorldRoute'].extensionContract);
+});
+
+test('pilot specialized data uses namespaced extensions',async()=>{
+  const cruise=await read('data/platform/trips/western-mediterranean-cruise-loop.json');
+  const road=await read('data/platform/trips/southern-europe-road-trip.json');
+  assert.ok(cruise.extensions?.cruise);
+  assert.equal(cruise.cruise,undefined);
+  assert.ok(cruise.stops.some(s=>s.extensions?.cruiseCall));
+  assert.ok(cruise.segments.every(s=>s.extensions?.cruise));
+  assert.ok(cruise.segments.some(s=>s.extensions?.border));
+  assert.ok(cruise.places.some(p=>p.extensions?.port));
+  assert.ok(road.extensions?.roadTrip);
+  assert.equal(road.roadTrip,undefined);
+  assert.ok(road.segments.every(s=>s.extensions?.road));
+});
