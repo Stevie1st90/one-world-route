@@ -60,7 +60,10 @@ test('flagship shell and route invariants work',async({page,isMobile},testInfo)=
   await expect(page.locator('#platformTravellerForm [name="passportNumber"]')).toHaveCount(0);
   await captureViewport(page,testInfo,'traveller-'+testInfo.project.name+'.png');
   await page.locator('#platformTravellerModal .platform-x').click();
-  if(isMobile)await expectMobilePanelsClosed(page);
+  if(isMobile){
+    await expectMobilePanelsClosed(page);
+    await expectMobileViewportShell(page);
+  }
 
   expect(pageErrors,'flagship runtime page errors').toEqual([]);
   await captureViewport(page,testInfo,'world-195-'+testInfo.project.name+'.png');
@@ -124,6 +127,38 @@ async function openFlagship(page){
   await expect(page.locator('#routeRange')).toHaveAttribute('max',String(flagship.metrics.internationalLegs),{timeout:20000});
   await expect(page.locator('#platformRouteBtn')).toBeVisible({timeout:10000});
   await expect(page.locator('#platformTravellerBtn')).toBeVisible({timeout:10000});
+}
+
+async function expectMobileViewportShell(page){
+  const state=await page.evaluate(()=> {
+    const rect=selector=>{
+      const node=document.querySelector(selector);
+      const box=node?.getBoundingClientRect();
+      return box?{left:box.left,right:box.right,width:box.width}:null;
+    };
+    return {
+      innerWidth:window.innerWidth,
+      scrollX:window.scrollX,
+      visualViewport:window.visualViewport?{
+        width:window.visualViewport.width,
+        offsetLeft:window.visualViewport.offsetLeft,
+        scale:window.visualViewport.scale
+      }:null,
+      app:rect('#app'),
+      topbar:rect('.topbar'),
+      timeline:rect('#timeline')
+    };
+  });
+  expect(state.scrollX,'flagship mobile horizontal scroll').toBe(0);
+  expect(state.app?.left,'flagship app left edge').toBeGreaterThanOrEqual(-1);
+  expect(state.app?.right,'flagship app must span viewport').toBeGreaterThanOrEqual(state.innerWidth-1);
+  expect(state.topbar?.right,'flagship topbar must reach viewport edge').toBeGreaterThanOrEqual(state.innerWidth-9);
+  expect(state.timeline?.right,'flagship timeline must reach viewport edge').toBeGreaterThanOrEqual(state.innerWidth-17);
+  if(state.visualViewport){
+    expect(state.visualViewport.offsetLeft,'flagship visual viewport horizontal offset').toBeLessThanOrEqual(1);
+    expect(state.visualViewport.width,'flagship visual viewport width').toBeGreaterThanOrEqual(state.innerWidth-1);
+    expect(state.visualViewport.scale,'flagship visual viewport scale').toBeCloseTo(1,2);
+  }
 }
 
 async function expectMobilePanelsClosed(page){
