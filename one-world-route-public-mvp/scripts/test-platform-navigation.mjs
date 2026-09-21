@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','route-library.js','regional-shell.js','story.js','terrain.js','extensions.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','route-library.js','regional-shell.js','regional-detail.js','story.js','terrain.js','extensions.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -171,15 +171,18 @@ test('regional terrain attribution stays compact and clear of mobile controls',(
 });
 
 test('regional overview duration uses a dedicated non-overlapping unit style',()=>{
-  assert.match(source,/platform-duration-number/);
+  const detail=moduleSources['regional-detail.js'];
+  assert.match(detail,/platform-duration-number/);
   assert.match(cssSource,/\.platform-duration-number\{display:flex/);
 });
 
 
 test('regional UX detail modes keep sparse panels compact',()=>{
-  assert.match(source,/function setRegionalDetailMode/);
-  assert.match(source,/\['overview','stop','segment'\]/);
-  assert.match(source,/platform-detail-'\+key/);
+  const detail=moduleSources['regional-detail.js'];
+  assert.match(detail,/function setMode/);
+  assert.match(detail,/\['overview','stop','segment'\]/);
+  assert.match(detail,/platform-detail-'\+key/);
+  assert.doesNotMatch(source,/function setRegionalDetailMode/);
   assert.match(cssSource,/platform-detail-overview \.right-panel/);
   assert.match(cssSource,/platform-detail-stop \.right-panel/);
 });
@@ -194,9 +197,10 @@ test('regional terrain uses branded dark map styling',()=>{
 });
 
 test('regional copy is visually reduced without removing overview content',()=>{
+  const detail=moduleSources['regional-detail.js'];
   assert.match(cssSource,/-webkit-line-clamp:4/);
   assert.match(cssSource,/-webkit-line-clamp:2/);
-  assert.match(source,/detail-copy/);
+  assert.match(detail,/detail-copy/);
 });
 
 
@@ -227,11 +231,14 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.match(source,/const Extensions=PLATFORM_MODULES\.extensions/);
   assert.match(source,/const RouteLibrary=PLATFORM_MODULES\.routeLibrary/);
   assert.match(source,/const RegionalShell=PLATFORM_MODULES\.regionalShell/);
+  assert.match(source,/const RegionalDetail=PLATFORM_MODULES\.regionalDetail/);
   assert.match(source,/const Story=PLATFORM_MODULES\.story/);
   assert.match(source,/const Terrain=PLATFORM_MODULES\.terrain/);
   assert.match(source,/RouteLibrary\.open\(/);
   assert.match(source,/RegionalShell\.configure\(/);
   assert.match(source,/RegionalShell\.apply\(/);
+  assert.match(source,/RegionalDetail\.configure\(/);
+  assert.match(source,/RegionalDetail\.renderTripOverview\(/);
   assert.match(source,/Story\.configure\(/);
   assert.match(source,/Ui\.ensureGlobalActions\(/);
   assert.match(source,/Navigation\.buildTripUrl\(/);
@@ -258,14 +265,25 @@ test('regional shell stays data-driven and renderer-agnostic',()=>{
   assert.doesNotMatch(shell,/trip\.id\s*===|trip\.kind\s*===|currentTrip|ONE_WORLD_ROUTE_GLOBE/);
 });
 
+test('regional detail renderer stays generic and extension-driven',()=>{
+  const detail=moduleSources['regional-detail.js'];
+  for(const token of ['function renderTripOverview','function renderStopDetail','function renderSegmentDetail'])assert.match(detail,new RegExp(token));
+  assert.match(detail,/d\.extensions\.composeTripOverview/);
+  assert.match(detail,/d\.extensions\.composeStopDetail/);
+  assert.match(detail,/d\.extensions\.composeSegmentDetail/);
+  assert.doesNotMatch(detail,/trip\.id\s*===|trip\.kind\s*===|currentTrip|ONE_WORLD_ROUTE_GLOBE/);
+  assert.doesNotMatch(source,/function renderTripOverview|function renderStopDetail|function renderSegmentDetail/);
+});
+
 test('trip specialization lives in registered extensions rather than trip-kind branches',()=>{
   const extensions=moduleSources['extensions.js'];
+  const detail=moduleSources['regional-detail.js'];
   assert.match(extensions,/registerExtension\('cruise'/);
   assert.match(extensions,/registerExtension\('road'/);
   assert.match(extensions,/registerExtension\('border'/);
-  assert.match(source,/Extensions\.composeTripOverview/);
-  assert.match(source,/Extensions\.composeStopDetail/);
-  assert.match(source,/Extensions\.composeSegmentDetail/);
+  assert.match(detail,/composeTripOverview/);
+  assert.match(detail,/composeStopDetail/);
+  assert.match(detail,/composeSegmentDetail/);
   assert.doesNotMatch(source,/currentTrip\.kind\s*===\s*['"]cruise['"]/);
   assert.doesNotMatch(source,/currentTrip\.kind\s*===\s*['"]road-trip['"]/);
 });
