@@ -104,3 +104,17 @@ test('regional story does not reuse the legacy 194-leg range',()=>{
   assert.doesNotMatch(source,/id="routeRange"[^\n]*currentTrip/);
   assert.match(source,/currentTrip\.segments\.length/);
 });
+
+
+test('regional route focus fits the whole trip and terrain labels localize',()=>{
+  assert.match(source,/function focusRegionalTerrainRoute/);
+  assert.match(source,/fitBounds\(bounds/);
+  assert.match(source,/focusRoute:\(\)=>\{if\(document\.body\.classList\.contains\('terrain-view'\)\)focusRegionalTerrainRoute/);
+  assert.match(source,/function localizeRegionalMapStyle/);
+  assert.match(source,/name:\\?\$\{lang\}/);
+});
+
+test('regional Story control is not hidden behind desktop side panels',()=>{
+  assert.match(cssSource,/\.platform-story-btn\{[^}]*left:50%[^}]*bottom:18px/);
+  assert.match(cssSource,/\.platform-story-mode \.mobile-panel-btn\{display:none!important\}/);
+});
