@@ -157,6 +157,10 @@ for(const item of regional){
     await expect(page.locator('#settingsBtn')).toBeVisible();
     await expect(page.locator('#platformRouteBtn')).toBeVisible();
     await expect(page.locator('#platformTravellerBtn')).toBeVisible();
+    if(isMobile){
+      await expect(page.locator('.brand small')).toBeVisible();
+      await expect(page.locator('.brand small')).toHaveText(item.title.en);
+    }
 
     const viewport=page.viewportSize();
     if(isMobile)await expectMobilePanelsClosed(page);
