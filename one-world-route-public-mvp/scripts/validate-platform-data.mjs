@@ -32,14 +32,19 @@ for (const item of catalog.trips || []) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(String(src.checkedAt||''))) fail(item.id+': source '+src.id+' requires checkedAt date');
   }
   const placeIds = new Set();
+  const placeById = new Map();
   for (const p of trip.places || []) {
     if (!p.id || placeIds.has(p.id)) fail(item.id+': duplicate place '+p.id); else placeIds.add(p.id);
+    placeById.set(p.id,p);
     if (!Number.isFinite(p.coordinates?.lat) || !Number.isFinite(p.coordinates?.lng)) fail(item.id+': place '+p.id+' requires coordinates');
+    for (const id of p.port?.sourceIds || []) if (!sourceIds.has(id)) fail(item.id+': port '+p.id+' references missing source '+id);
   }
   const stopIds = new Set();
+  const stopById = new Map();
   const orderedStops = [...(trip.stops || [])].sort((a,b)=>a.sequence-b.sequence);
   for (const s of orderedStops) {
     if (!s.id || stopIds.has(s.id)) fail(item.id+': duplicate stop '+s.id); else stopIds.add(s.id);
+    stopById.set(s.id,s);
     if (!placeIds.has(s.placeId)) fail(item.id+': stop '+s.id+' references missing place '+s.placeId);
   }
   const segs = [...(trip.segments || [])].sort((a,b)=>a.sequence-b.sequence);
@@ -55,6 +60,25 @@ for (const item of catalog.trips || []) {
     if (s.verification?.status === 'verified') {
       if (!refs.length) fail(item.id+': verified segment '+s.id+' requires sourceIds');
       if (!/^\d{4}-\d{2}-\d{2}$/.test(String(s.verification?.lastVerified||''))) fail(item.id+': verified segment '+s.id+' requires lastVerified');
+    }
+  }
+  if (trip.kind === 'cruise') {
+    if (!trip.cruise) fail(item.id+': cruise trip requires cruise metadata');
+    if (!orderedStops.length || trip.cruise?.embarkationStopId !== orderedStops[0]?.id) fail(item.id+': cruise embarkation must be first stop');
+    if (!orderedStops.length || trip.cruise?.disembarkationStopId !== orderedStops.at(-1)?.id) fail(item.id+': cruise disembarkation must be final stop');
+    if (orderedStops[0]?.placeId !== orderedStops.at(-1)?.placeId) fail(item.id+': loop cruise demonstrator must return to the same home port place');
+    const onboardNights=segs.reduce((n,s)=>n+Number(s.cruise?.onboardNights||0),0);
+    const seaDayNumbers=segs.flatMap(s=>s.cruise?.seaDayNumbers||[]);
+    if (onboardNights !== Number(trip.cruise?.nights||0)) fail(item.id+': cruise onboard night total mismatch');
+    if (new Set(seaDayNumbers).size !== seaDayNumbers.length) fail(item.id+': duplicate cruise sea day');
+    if (seaDayNumbers.length !== Number(trip.cruise?.seaDays||0)) fail(item.id+': cruise sea day total mismatch');
+    for (const s of segs) {
+      if (s.transport?.mode !== 'cruise') fail(item.id+': cruise segment '+s.id+' must use cruise mode');
+      if (!s.cruise || s.cruise.serviceStatus !== 'illustrative') fail(item.id+': unselected cruise sailing must remain illustrative');
+      const fromStop=stopById.get(s.fromStopId),toStop=stopById.get(s.toStopId);
+      const fromCountry=placeById.get(fromStop?.placeId)?.countryCode,toCountry=placeById.get(toStop?.placeId)?.countryCode;
+      if (s.borderContext?.fromCountry!==fromCountry || s.borderContext?.toCountry!==toCountry) fail(item.id+': border context mismatch on '+s.id);
+      if (['schengen-exit','schengen-entry'].includes(s.borderContext?.zoneTransition) && s.borderContext?.personalizationRequired!==true) fail(item.id+': external Schengen transition must require traveller personalization on '+s.id);
     }
   }
   const entry = trip.entryGuidance;
