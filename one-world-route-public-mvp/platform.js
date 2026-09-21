@@ -15,77 +15,10 @@
   const Terrain=PLATFORM_MODULES.terrain;
   const Ui=PLATFORM_MODULES.ui;
   const Navigation=PLATFORM_MODULES.navigation;
-  if(!LocaleData||!Model||!Traveller||!TravellerUi||!Discovery||!Extensions||!RouteLibrary||!Story||!Terrain||!Ui||!Navigation)throw new Error('ONE WORLD ROUTE platform modules unavailable');
+  const LegacyLocalization=PLATFORM_MODULES.legacyLocalization;
+  if(!LocaleData||!Model||!Traveller||!TravellerUi||!Discovery||!Extensions||!RouteLibrary||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
   const SUPPORTED_LOCALES=LocaleData.supportedLocales;
   const I18N=LocaleData.messages;
-  const LEGACY_WORLD_TEXT=LocaleData.legacyWorldText;
-  const LEGACY_PHASES=LocaleData.legacyPhases;
-  const LEGACY_EXTRA=LocaleData.legacyExtra;
-  const LEGACY_SHORT=LocaleData.legacyShort;
-  let legacyLocaleObserver=null,legacyLocaleScheduled=false;
-  function legacyTranslate(raw){
-    const text=String(raw||'').trim();
-    if(!text||locale==='en')return text;
-    const dict={...(LEGACY_WORLD_TEXT[locale]||{}),...(LEGACY_EXTRA[locale]||{}),...(LEGACY_SHORT[locale]||{})};
-    if(dict[text])return dict[text];
-    const exactKey=Object.keys(dict).find(k=>k.toLocaleLowerCase('en')===text.toLocaleLowerCase('en'));
-    if(exactKey)return dict[exactKey];
-    if(LEGACY_PHASES[locale]?.[text])return LEGACY_PHASES[locale][text];
-    let m=text.match(/^(\d{2})\s+(.+)$/);
-    if(m&&LEGACY_PHASES[locale]?.[m[2]])return `${m[1]} ${LEGACY_PHASES[locale][m[2]]}`;
-    m=text.match(/^CHAPTER\s+(\d+)\s*\/\s*(\d+)$/i);
-    if(m)return `${locale==='de'?'KAPITEL':locale==='it'?'CAPITOLO':locale==='es'?'CAPÍTULO':locale==='fr'?'CHAPITRE':locale==='pt'?'CAPÍTULO':'CHAPTER'} ${m[1]} / ${m[2]}`;
-    m=text.match(/^Country\s+(\d+)\s*\/\s*195$/i);
-    if(m)return `${t('country')} ${m[1]}/195`;
-    m=text.match(/^Country\s+(\d+)\s*·\s*(.+)$/i);
-    if(m)return `${t('country')} ${m[1]} · ${legacyTranslate(m[2])}`;
-    m=text.match(/^Day\s+(\d+)$/i);
-    if(m)return `${t('day')} ${m[1]}`;
-    m=text.match(/^Segment\s+(\d+)\s*·\s*Day\s+([^·]+)\s*·\s*(.+)$/i);
-    if(m)return `${t('segment')} ${m[1]} · ${t('day')} ${m[2].trim()} · ${m[3]}`;
-    m=text.match(/^Segment\s+(\d+)\s*\/\s*(\d+)$/i);
-    if(m)return `${t('segment')} ${m[1]} / ${m[2]}`;
-    return text;
-  }
-
-  function localizeLegacyNode(root=document){
-    if(locale==='en'||document.body.classList.contains('platform-regional-trip'))return;
-    const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
-    const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
-    for(const node of nodes){
-      const raw=node.nodeValue,trimmed=String(raw||'').trim();if(!trimmed)continue;
-      const translated=legacyTranslate(trimmed);
-      if(translated!==trimmed)node.nodeValue=raw.replace(trimmed,translated);
-    }
-    for(const el of root.querySelectorAll?.('[placeholder],[title],[aria-label]')||[]){
-      for(const attr of ['placeholder','title','aria-label']){
-        const raw=el.getAttribute(attr);if(!raw)continue;
-        const translated=legacyTranslate(raw);if(translated!==raw)el.setAttribute(attr,translated);
-      }
-    }
-  }
-
-  function activateLegacyLocalization(){
-    document.documentElement.lang=locale;
-    localizeLegacyNode(document.body);
-    if(legacyLocaleObserver)legacyLocaleObserver.disconnect();
-    legacyLocaleObserver=new MutationObserver(mutations=>{
-      if(legacyLocaleScheduled||document.body.classList.contains('platform-regional-trip'))return;
-      legacyLocaleScheduled=true;
-      requestAnimationFrame(()=>{
-        legacyLocaleScheduled=false;
-        for(const mutation of mutations){
-          for(const node of mutation.addedNodes){
-            if(node.nodeType===Node.ELEMENT_NODE)localizeLegacyNode(node);
-            else if(node.nodeType===Node.TEXT_NODE&&node.parentElement)localizeLegacyNode(node.parentElement);
-          }
-          if(mutation.type==='characterData'&&mutation.target.parentElement)localizeLegacyNode(mutation.target.parentElement);
-        }
-      });
-    });
-    legacyLocaleObserver.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['placeholder','title','aria-label']});
-  }
-
   const $ = (s, r=document) => r.querySelector(s);
   const $$ = (s, r=document) => [...r.querySelectorAll(s)];
   const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -594,7 +527,7 @@
       if(!SUPPORTED_LOCALES.includes(String(explicitLang||'').toLowerCase())&&profile.language&&SUPPORTED_LOCALES.includes(profile.language))locale=profile.language;
       Ui.ensureGlobalActions({t,esc,onRoutes:openRouteLibrary,onTraveller:openTraveller});
       if(currentTripMeta.renderer!=='legacy-world') await activateRegionalTrip(currentTripMeta);
-      else { await waitForCore(); activateLegacyLocalization(); }
+      else { await waitForCore(); LegacyLocalization.configure({getLocale:()=>locale,t}).activate(); }
     }catch(e){console.warn('ONE WORLD ROUTE platform layer unavailable',e)}
   }
 
