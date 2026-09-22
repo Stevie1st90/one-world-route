@@ -126,6 +126,14 @@ jobs:
           CHROME_BIN="$(command -v google-chrome || command -v chromium)"
           test -n "$CHROME_BIN"
           OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-builder.mjs
+      - name: Upload builder browser QA artifacts
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: trip-builder-browser-qa-${{ github.run_id }}
+          path: one-world-route-public-mvp/qa/test-results
+          if-no-files-found: ignore
+          retention-days: 7
       - name: Regional browser E2E
         env:
           OWR_QA_NO_VIDEO: '1'
