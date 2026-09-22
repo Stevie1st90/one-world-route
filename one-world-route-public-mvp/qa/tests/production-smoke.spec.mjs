@@ -17,17 +17,35 @@ async function expectRegional(page){
 }
 
 async function expectRegionalTooltipIsolation(page){
-  const tooltip=await page.evaluate(()=>{
+  const labels=await page.evaluate(()=>{
     const globe=window.__ONE_WORLD_ROUTE_GLOBE__;
-    const points=globe?.pointsData?.()||[];
-    const accessor=globe?.pointLabel?.();
-    return points.length&&typeof accessor==='function'?String(accessor(points[0])):'';
+    const read=(dataGetter,accessorGetter,extract=value=>String(value??''))=>{
+      const data=typeof globe?.[dataGetter]==='function'?(globe[dataGetter]()||[]):[];
+      const accessor=typeof globe?.[accessorGetter]==='function'?globe[accessorGetter]():null;
+      if(typeof accessor!=='function')return [];
+      return data.map(item=>{
+        try{return extract(accessor(item))}
+        catch(error){return 'ACCESSOR_ERROR:'+String(error?.message||error)}
+      });
+    };
+    return {
+      points:read('pointsData','pointLabel'),
+      arcs:read('arcsData','arcLabel'),
+      html:read('htmlElementsData','htmlElement',node=>String(node?.textContent??'')),
+      text:read('labelsData','labelText')
+    };
   });
-  expect(tooltip).not.toContain('[object Object]');
-  expect(tooltip).not.toContain('undefined/195');
-  expect(tooltip.trim().length).toBeGreaterThan(0);
-  await expect(page.locator('body')).not.toContainText('[object Object]');
+  const all=Object.values(labels).flat();
+  expect(labels.points.length).toBeGreaterThan(0);
+  expect(all.some(value=>value.trim().length>0)).toBeTruthy();
+  for(const value of all){
+    expect(value).not.toContain('[object');
+    expect(value).not.toContain('undefined/195');
+    expect(value).not.toContain('ACCESSOR_ERROR:');
+  }
+  await expect(page.locator('body')).not.toContainText('[object');
   await expect(page.locator('body')).not.toContainText('undefined/195');
+  await expect(page.locator('body')).not.toContainText(/\bundefined\b/i);
 }
 
 async function expectMobileShellStable(page){
@@ -86,4 +104,22 @@ test('production rail architecture proof renders through the shared regional eng
   await expectRegionalTooltipIsolation(page);
   expect(errors).toEqual([]);
   await page.screenshot({path:testInfo.outputPath('production-rail.png'),fullPage:false,animations:'disabled'});
+});
+
+
+test('every published regional trip keeps localized labels object-safe',async({page,request},testInfo)=>{
+  test.setTimeout(180000);
+  const errors=capturePageErrors(page);
+  const response=await request.get('/data/platform/trips.json');
+  expect(response.ok()).toBeTruthy();
+  const catalog=await response.json();
+  const regional=catalog.trips.filter(item=>item.renderer==='regional-globe');
+  expect(regional.length).toBeGreaterThanOrEqual(4);
+  for(const item of regional){
+    await open(page,`/?trip=${encodeURIComponent(item.id)}&lang=de`);
+    await expectRegional(page);
+    await expectRegionalTooltipIsolation(page);
+    await page.screenshot({path:testInfo.outputPath(`regional-${item.id}.png`),fullPage:false,animations:'disabled'});
+  }
+  expect(errors).toEqual([]);
 });
