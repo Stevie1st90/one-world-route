@@ -72,11 +72,27 @@ async function expectMobileShellStable(page){
   expect(state.timeline?.right).toBeGreaterThanOrEqual(state.innerWidth-17);
 }
 
-test('production flagship preserves the 195/194 shell invariants',async({page,isMobile},testInfo)=>{
+test('production root is the public multi-trip homepage',async({page},testInfo)=>{
   test.setTimeout(120000);
   const errors=capturePageErrors(page);
   await open(page,'/?lang=en');
-  await expect(page.locator('body')).not.toHaveClass(/platform-regional-trip/);
+  await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:20000});
+  await expect(page.locator('#platformHome')).toBeVisible();
+  await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(5);
+  await expect(page.locator('#platformHome')).toContainText('Explore extraordinary journeys worldwide.');
+  await expect(page.locator('#platformHome')).not.toContainText('[object');
+  await expect(page.locator('#platformHome')).not.toContainText(/\bundefined\b/i);
+  const overflow=await page.evaluate(()=>({x:window.scrollX,app:document.querySelector('#app')?.scrollLeft||0}));
+  expect(overflow).toEqual({x:0,app:0});
+  expect(errors).toEqual([]);
+  await page.screenshot({path:testInfo.outputPath('production-home.png'),fullPage:false,animations:'disabled'});
+});
+
+test('production flagship preserves the 195/194 shell invariants at its explicit trip URL',async({page,isMobile},testInfo)=>{
+  test.setTimeout(120000);
+  const errors=capturePageErrors(page);
+  await open(page,'/?trip=world-195&lang=en');
+  await expect(page.locator('body')).not.toHaveClass(/platform-home|platform-regional-trip/);
   await expect(page.locator('#routeRange')).toHaveAttribute('max','194');
   await expect(page.locator('#filterCount')).toContainText('194');
   await expect(page.locator('.brand small')).toContainText('195 countries');
