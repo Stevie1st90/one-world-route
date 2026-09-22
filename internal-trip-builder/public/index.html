@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ONE WORLD ROUTE · Internal Trip Builder</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <div>
+          <strong>ONE WORLD ROUTE</strong>
+          <span>Internal Trip Builder · local only</span>
+        </div>
+      </div>
+      <div class="actions">
+        <button id="newDraftBtn" class="ghost">New draft</button>
+        <button id="saveBtn" disabled>Save</button>
+        <button id="validateBtn" disabled>Validate</button>
+        <button id="previewBtn" disabled>Preview</button>
+        <button id="publishBtn" class="danger" disabled>Publish to working tree</button>
+      </div>
+    </header>
+
+    <aside class="sidebar">
+      <div class="sidebar-head">
+        <div>
+          <span class="eyebrow">Draft workspace</span>
+          <h1>Trips</h1>
+        </div>
+        <button id="refreshBtn" class="icon" title="Refresh">↻</button>
+      </div>
+      <div id="draftList" class="draft-list"></div>
+      <div class="sidebar-foot">
+        <div class="safety-dot"></div>
+        <p>Builder files and drafts are outside the Vercel root. Publishing only changes your local working tree.</p>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <section id="emptyState" class="empty-state">
+        <div class="empty-orbit"></div>
+        <span class="eyebrow">Content pipeline</span>
+        <h2>Create or open a trip draft</h2>
+        <p>Author structured route data, validate it against the platform contract, preview it in the real engine, then pass the publish gate.</p>
+        <button id="emptyNewBtn">Create first draft</button>
+      </section>
+
+      <section id="editor" class="editor hidden">
+        <div class="editor-head">
+          <div>
+            <div class="editor-kicker">
+              <span id="statusBadge" class="badge">draft</span>
+              <span id="kindBadge" class="badge secondary">custom</span>
+              <span id="dirtyBadge" class="dirty hidden">unsaved</span>
+            </div>
+            <h2 id="editorTitle">Trip draft</h2>
+            <p id="editorSlug"></p>
+          </div>
+          <div id="metricStrip" class="metric-strip"></div>
+        </div>
+
+        <nav class="tabs" aria-label="Builder sections">
+          <button class="tab active" data-tab="route">Route</button>
+          <button class="tab" data-tab="content">Content & discovery</button>
+          <button class="tab" data-tab="sources">Sources</button>
+          <button class="tab" data-tab="advanced">Advanced JSON</button>
+          <button class="tab" data-tab="preview">Preview</button>
+        </nav>
+
+        <div class="tab-panel active" data-panel="route">
+          <section class="card">
+            <div class="card-head">
+              <div><span class="eyebrow">Core</span><h3>Trip basics</h3></div>
+            </div>
+            <div id="basicsForm" class="form-grid"></div>
+          </section>
+
+          <section class="card">
+            <div class="card-head">
+              <div><span class="eyebrow">Geography</span><h3>Places</h3></div>
+              <button id="addPlaceBtn" class="small">+ Place</button>
+            </div>
+            <p class="helper">Places are reusable geography. The order below is only an authoring convenience; the visit order is controlled by Stops.</p>
+            <div id="placesEditor" class="stack"></div>
+          </section>
+
+          <section class="card">
+            <div class="card-head">
+              <div><span class="eyebrow">Visits</span><h3>Stops</h3></div>
+              <div class="button-row">
+                <button id="routeFromPlacesBtn" class="small ghost">Build stops from places</button>
+                <button id="addStopBtn" class="small">+ Stop</button>
+              </div>
+            </div>
+            <p class="helper">A city can be visited more than once: create multiple stops that point to the same place.</p>
+            <div id="stopsEditor" class="stack"></div>
+          </section>
+
+          <section class="card">
+            <div class="card-head">
+              <div><span class="eyebrow">Movement</span><h3>Segments</h3></div>
+              <button id="rebuildSegmentsBtn" class="small ghost">Reconcile adjacency</button>
+            </div>
+            <p class="helper">Segments must connect adjacent stops. Reconcile preserves matching segment details and creates only missing legs.</p>
+            <div id="segmentsEditor" class="stack"></div>
+          </section>
+        </div>
+
+        <div class="tab-panel" data-panel="content">
+          <section class="card">
+            <div class="card-head"><div><span class="eyebrow">Editorial</span><h3>Localized content</h3></div></div>
+            <div id="localizedEditor" class="locale-grid"></div>
+          </section>
+
+          <section class="card">
+            <div class="card-head"><div><span class="eyebrow">Discovery</span><h3>Route library metadata</h3></div></div>
+            <div id="discoveryEditor" class="form-grid"></div>
+          </section>
+        </div>
+
+        <div class="tab-panel" data-panel="sources">
+          <section class="card">
+            <div class="card-head">
+              <div><span class="eyebrow">Evidence</span><h3>Source registry</h3></div>
+              <button id="addSourceBtn" class="small">+ Source</button>
+            </div>
+            <p class="helper">Verified route facts must resolve to source IDs. Date-sensitive information should remain current-check-required.</p>
+            <div id="sourcesEditor" class="stack"></div>
+          </section>
+        </div>
+
+        <div class="tab-panel" data-panel="advanced">
+          <section class="card">
+            <div class="card-head"><div><span class="eyebrow">Escape hatch</span><h3>Structured JSON</h3></div></div>
+            <p class="helper">Use this for extensions, chapters, entry guidance and fields not exposed by the visual editor. Applying JSON never bypasses validation.</p>
+            <div class="json-grid">
+              <label>Trip dataset<textarea id="tripJson" spellcheck="false"></textarea></label>
+              <label>Catalog entry<textarea id="catalogJson" spellcheck="false"></textarea></label>
+            </div>
+            <div class="button-row right"><button id="applyJsonBtn">Apply JSON</button></div>
+          </section>
+        </div>
+
+        <div class="tab-panel" data-panel="preview">
+          <section class="card preview-card">
+            <div class="card-head">
+              <div><span class="eyebrow">Real engine</span><h3>Draft preview</h3></div>
+              <div class="button-row">
+                <label class="inline-select">Locale <select id="previewLocale"></select></label>
+                <button id="reloadPreviewBtn" class="small">Reload</button>
+                <button id="openPreviewBtn" class="small ghost">Open tab ↗</button>
+              </div>
+            </div>
+            <div class="preview-frame-wrap">
+              <iframe id="previewFrame" title="Trip preview"></iframe>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <aside id="validationPanel" class="validation-panel">
+      <div class="validation-head">
+        <div><span class="eyebrow">Publish gate</span><h3>Validation</h3></div>
+        <span id="validationState" class="gate idle">not run</span>
+      </div>
+      <div id="validationBody" class="validation-body">
+        <p class="muted">Run validation to inspect contract errors, warnings and derived metrics.</p>
+      </div>
+    </aside>
+  </div>
+
+  <dialog id="newDraftDialog">
+    <form id="newDraftForm" method="dialog" class="dialog-card">
+      <span class="eyebrow">New route</span>
+      <h2>Create draft</h2>
+      <label>Slug<input name="slug" required pattern="[a-z0-9]+(?:-[a-z0-9]+)*" placeholder="alpine-summer-rail"></label>
+      <label>Trip kind<input name="kind" required value="custom" pattern="[a-z0-9]+(?:-[a-z0-9]+)*" list="kindOptions"></label>
+      <datalist id="kindOptions">
+        <option value="round-trip"><option value="rail"><option value="road-trip"><option value="cruise">
+        <option value="island-hopping"><option value="camper"><option value="cycling"><option value="hiking"><option value="expedition">
+      </datalist>
+      <label>Days<input name="days" type="number" min="1" value="10"></label>
+      <div class="dialog-actions"><button value="cancel" class="ghost">Cancel</button><button value="default">Create</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="publishDialog">
+    <form id="publishForm" method="dialog" class="dialog-card">
+      <span class="eyebrow">Working-tree publication</span>
+      <h2>Pass publish gate</h2>
+      <p>This writes the trip dataset and catalog entry into <code>one-world-route-public-mvp</code>. It does <strong>not</strong> commit, merge or deploy.</p>
+      <label>Type the exact slug to confirm<input id="publishConfirm" name="confirmSlug" autocomplete="off"></label>
+      <div class="dialog-actions"><button value="cancel" class="ghost">Cancel</button><button value="default" class="danger">Publish</button></div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast"></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
