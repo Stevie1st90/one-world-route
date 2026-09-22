@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-21",
+  "updatedAt": "2026-09-22",
   "defaultLocale": "en",
   "supportedLocales": [
     "en",
@@ -378,6 +378,297 @@
           ],
           "startRegion": "europe",
           "accessibility": "standard-check"
+        }
+      }
+    },
+    {
+      "id": "cyclades-island-hopping",
+      "slug": "cyclades-island-hopping",
+      "kind": "island-hopping",
+      "status": "sourced-beta",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/cyclades-island-hopping.json",
+      "title": {
+        "en": "Cyclades Island Hopping",
+        "de": "Kykladen · Inselhopping",
+        "it": "Isole Cicladi · Island hopping",
+        "es": "Islas Cícladas · Salto entre islas",
+        "fr": "Cyclades · D'île en île",
+        "pt": "Cíclades · Island hopping"
+      },
+      "subtitle": {
+        "en": "8 days · Piraeus, Paros, Naxos and Santorini",
+        "de": "8 Tage · Piräus, Paros, Naxos und Santorini",
+        "it": "8 giorni · Pireo, Paros, Naxos e Santorini",
+        "es": "8 días · El Pireo, Paros, Naxos y Santorini",
+        "fr": "8 jours · Le Pirée, Paros, Naxos et Santorin",
+        "pt": "8 dias · Pireu, Paros, Naxos e Santorini"
+      },
+      "metrics": {
+        "days": 8,
+        "countries": 1,
+        "stops": 4,
+        "segments": 3,
+        "budget": null,
+        "sourcedSegments": 3,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "source-evidence",
+        "story",
+        "terrain"
+      ],
+      "discovery": {
+        "regions": [
+          "europe",
+          "greece",
+          "aegean"
+        ],
+        "themes": [
+          "islands",
+          "ferry",
+          "coast"
+        ],
+        "modes": [
+          "ferry"
+        ],
+        "durationBand": "7-14",
+        "featured": true,
+        "fit": {
+          "pace": "relaxed",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "greece",
+          "accessibility": "operator-dependent"
+        }
+      }
+    },
+    {
+      "id": "iceland-ring-road-camper",
+      "slug": "iceland-ring-road-camper",
+      "kind": "camper",
+      "status": "sourced-beta",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/iceland-ring-road-camper.json",
+      "title": {
+        "en": "Iceland Ring Road Camper",
+        "de": "Island · Ringstraße mit dem Camper",
+        "it": "Islanda · Ring Road in camper",
+        "es": "Islandia · Ring Road en camper",
+        "fr": "Islande · Ring Road en van",
+        "pt": "Islândia · Ring Road de camper"
+      },
+      "subtitle": {
+        "en": "10 days · Reykjavík to Reykjavík on Route 1",
+        "de": "10 Tage · Reykjavík–Reykjavík auf der Route 1",
+        "it": "10 giorni · da Reykjavík a Reykjavík sulla Route 1",
+        "es": "10 días · de Reikiavik a Reikiavik por la Ruta 1",
+        "fr": "10 jours · Reykjavík à Reykjavík par la Route 1",
+        "pt": "10 dias · Reykjavík a Reykjavík pela Route 1"
+      },
+      "metrics": {
+        "days": 10,
+        "countries": 1,
+        "stops": 6,
+        "segments": 5,
+        "budget": null,
+        "sourcedSegments": 5,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "source-evidence",
+        "story",
+        "terrain"
+      ],
+      "discovery": {
+        "regions": [
+          "europe",
+          "iceland",
+          "north-atlantic"
+        ],
+        "themes": [
+          "camper",
+          "road-trip",
+          "nature"
+        ],
+        "modes": [
+          "road"
+        ],
+        "durationBand": "7-14",
+        "featured": true,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "iceland",
+          "accessibility": "vehicle-dependent"
+        }
+      }
+    },
+    {
+      "id": "danube-eurovelo-cycle",
+      "slug": "danube-eurovelo-cycle",
+      "kind": "cycling",
+      "status": "sourced-beta",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/danube-eurovelo-cycle.json",
+      "title": {
+        "en": "Danube EuroVelo Cycle Journey",
+        "de": "Donau · EuroVelo-Radreise",
+        "it": "Danubio · Viaggio EuroVelo in bici",
+        "es": "Danubio · Viaje EuroVelo en bicicleta",
+        "fr": "Danube · Voyage EuroVelo à vélo",
+        "pt": "Danúbio · Viagem EuroVelo de bicicleta"
+      },
+      "subtitle": {
+        "en": "9 days · Vienna, Bratislava and Budapest on EuroVelo 6",
+        "de": "9 Tage · Wien, Bratislava und Budapest auf EuroVelo 6",
+        "it": "9 giorni · Vienna, Bratislava e Budapest su EuroVelo 6",
+        "es": "9 días · Viena, Bratislava y Budapest por EuroVelo 6",
+        "fr": "9 jours · Vienne, Bratislava et Budapest sur EuroVelo 6",
+        "pt": "9 dias · Viena, Bratislava e Budapeste na EuroVelo 6"
+      },
+      "metrics": {
+        "days": 9,
+        "countries": 3,
+        "stops": 8,
+        "segments": 7,
+        "budget": null,
+        "sourcedSegments": 7,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "source-evidence",
+        "story",
+        "terrain"
+      ],
+      "discovery": {
+        "regions": [
+          "europe",
+          "central-europe",
+          "danube"
+        ],
+        "themes": [
+          "cycling",
+          "river",
+          "cities"
+        ],
+        "modes": [
+          "bicycle"
+        ],
+        "durationBand": "7-14",
+        "featured": true,
+        "fit": {
+          "pace": "active",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends"
+          ],
+          "startRegion": "central-europe",
+          "accessibility": "complex-planning"
+        }
+      }
+    },
+    {
+      "id": "swiss-via-alpina-hike",
+      "slug": "swiss-via-alpina-hike",
+      "kind": "hiking",
+      "status": "sourced-beta",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/swiss-via-alpina-hike.json",
+      "title": {
+        "en": "Swiss Via Alpina Hike",
+        "de": "Schweizer Via Alpina",
+        "it": "Via Alpina svizzera",
+        "es": "Via Alpina suiza",
+        "fr": "Via Alpina suisse",
+        "pt": "Via Alpina suíça"
+      },
+      "subtitle": {
+        "en": "8 days · Meiringen to Gstaad on Via Alpina",
+        "de": "8 Tage · Meiringen bis Gstaad auf der Via Alpina",
+        "it": "8 giorni · da Meiringen a Gstaad sulla Via Alpina",
+        "es": "8 días · de Meiringen a Gstaad por la Via Alpina",
+        "fr": "8 jours · de Meiringen à Gstaad sur la Via Alpina",
+        "pt": "8 dias · de Meiringen a Gstaad na Via Alpina"
+      },
+      "metrics": {
+        "days": 8,
+        "countries": 1,
+        "stops": 8,
+        "segments": 7,
+        "budget": null,
+        "sourcedSegments": 7,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "source-evidence",
+        "story",
+        "terrain"
+      ],
+      "discovery": {
+        "regions": [
+          "europe",
+          "switzerland",
+          "alps"
+        ],
+        "themes": [
+          "hiking",
+          "mountains",
+          "nature"
+        ],
+        "modes": [
+          "walk"
+        ],
+        "durationBand": "7-14",
+        "featured": true,
+        "fit": {
+          "pace": "active",
+          "seasons": [
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends"
+          ],
+          "startRegion": "switzerland",
+          "accessibility": "complex-planning"
         }
       }
     }
