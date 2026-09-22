@@ -35,7 +35,9 @@ The builder:
 - validates localization, graph continuity, transport modes, source evidence, discovery metadata and registered extensions,
 - previews the draft through the real production regional engine without adding it to the public catalog,
 - publishes only after the publication gate passes,
-- writes publication changes to the local working tree only; Git review, QA, commit and deployment remain separate steps.
+- runs the non-mutating platform quality suite before accepting publication,
+- rolls the trip/catalog write back if any quality check fails,
+- writes publication changes to the local working tree only; Git review, release bundle generation, browser QA, commit and deployment remain separate steps.
 
 Draft preview works by locally injecting the selected draft into the catalog response. No draft-only branch exists in `platform.js`, and no builder code is shipped from the Vercel root.
 
