@@ -1,0 +1,67 @@
+name: Production smoke
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  statuses: read
+
+concurrency:
+  group: production-smoke
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: one-world-route-public-mvp
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Wait for Vercel production deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 40); do
+            payload="$(curl -fsSL               -H "Authorization: Bearer $GH_TOKEN"               -H "Accept: application/vnd.github+json"               "https://api.github.com/repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/status")"
+            state="$(printf '%s' "$payload" | jq -r '[.statuses[] | select(.context=="Vercel")][0].state // "missing"')"
+            description="$(printf '%s' "$payload" | jq -r '[.statuses[] | select(.context=="Vercel")][0].description // ""')"
+            echo "Vercel status: $state $description"
+            if [ "$state" = "success" ]; then
+              exit 0
+            fi
+            if [ "$state" = "failure" ] || [ "$state" = "error" ]; then
+              exit 1
+            fi
+            sleep 15
+          done
+          echo "Timed out waiting for Vercel production deployment" >&2
+          exit 1
+      - name: Install browser QA dependencies
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+        run: npm ci --prefix qa
+      - name: Run live production smoke
+        env:
+          BASE_URL: https://one-world-route.vercel.app
+          OWR_QA_NO_VIDEO: '1'
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          test -n "$CHROME_BIN"
+          cd qa
+          OWR_CHROMIUM_PATH="$CHROME_BIN" ./node_modules/.bin/playwright test tests/production-smoke.spec.mjs --project=desktop-1440 --project=mobile-390 --output=production-smoke-results
+      - name: Upload production smoke artifacts
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: production-smoke-${{ github.run_id }}
+          path: one-world-route-public-mvp/qa/production-smoke-results
+          if-no-files-found: ignore
+          retention-days: 7
