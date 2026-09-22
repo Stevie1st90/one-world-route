@@ -15,6 +15,31 @@ Every trip uses the same graph:
 
 This supports round trips, rail journeys, road trips, cruises, island hopping, hiking routes, camper routes, city breaks, expeditions and future user-created trips without changing the core renderer.
 
+## Internal Trip Builder
+
+For normal curated trips, prefer the local-only builder instead of editing large JSON files by hand:
+
+```bash
+node internal-trip-builder/server.mjs
+```
+
+Open `http://127.0.0.1:4317/`.
+
+The builder lives outside the public Vercel root and provides:
+
+- structured editing for core metadata, localization, places, stops, segments and sources
+- an Advanced JSON view for chapters, traveller context and namespaced extensions
+- draft storage outside the public site
+- preview through the **actual Regional Engine**, with the local server injecting only draft catalog/dataset responses
+- automatic metric normalization
+- validation for continuity, transport modes, source references, localization, Route Fit and registered extension contracts
+- a publish gate that writes public files only after validation
+- authoritative post-write platform/model/navigation/runtime checks with rollback if a gate fails
+
+Builder v1 publishes new regional trips only. Updating an already-public trip remains a deliberate source-control edit.
+
+The CLI scaffolder remains available for script-first workflows. With `--write`, it now writes into `internal-trip-builder/drafts/`, not into the public Vercel root.
+
 ## Adding a normal curated trip
 
 1. Add `data/platform/trips/<slug>.json`.
