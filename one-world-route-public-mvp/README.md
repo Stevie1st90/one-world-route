@@ -1,9 +1,10 @@
 # ONE WORLD ROUTE — Public Explorer
 
-A production-oriented interactive explorer for one continuous journey through all 195 sovereign states.
+A production-oriented multi-trip discovery platform for extraordinary journeys worldwide. The original 195-country route remains the flagship journey.
 
 ## Implemented
-- 195 countries / 194 executable route legs / 12 chapters
+- Public multi-trip homepage with a shared world Globe and catalog-driven Journey Discovery
+- Flagship journey with 195 countries / 194 executable international route legs / 12 chapters
 - Interactive 3D Globe.gl route explorer
 - Cinematic Story Mode
 - Spherical MapLibre 3D terrain with DEM relief
@@ -65,7 +66,7 @@ Current platform features:
 - regional routes with repeat visits to the same place
 - transport taxonomy for road, rail, ferry, cruise, flight and multimodal travel
 - browser-local Traveller Context for passport country, residence, language, currency, origin, party and reduced-mobility context
-- catalog-driven Route Discovery and transparent Route Fit filters
+- catalog-driven Route Discovery and transparent Route Fit filters, including accessibility context
 - six initial UI languages: English, German, Italian, Spanish, French and Portuguese
 - Italy Grand Tour as the first regional editorial template
 - modular platform validation in the release pipeline
@@ -156,6 +157,7 @@ The multi-trip platform is intentionally split into small browser modules that a
 - `platform/model.js` — reusable place/stop/segment helpers, geometry and capability checks
 - `platform/traveller.js` — privacy-limited Traveller Context storage/normalization
 - `platform/discovery.js` — catalog facets and Route Fit filtering
+- `platform/home.js` — public catalog-driven homepage and multi-route Globe preview
 - `platform/extensions.js` — registered cruise, road and border presenters
 - `platform/map-style.js` — shared terrain label localization and ONE WORLD ROUTE dark map styling
 - `platform.js` — UI/bootstrap orchestration only
