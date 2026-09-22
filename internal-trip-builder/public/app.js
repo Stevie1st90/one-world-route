@@ -279,11 +279,16 @@ function bindStatic(){
   $('#newDraftForm').addEventListener('submit',async e=>{
     if(e.submitter?.value==='cancel')return;
     e.preventDefault();
-    const form=new FormData(e.currentTarget);
+    const formElement=e.currentTarget;
+    const form=new FormData(formElement);
     try{
       const draft=await api('/api/drafts',{method:'POST',body:JSON.stringify(Object.fromEntries(form))});
-      $('#newDraftDialog').close();e.currentTarget.reset();e.currentTarget.elements.kind.value='custom';
-      await refreshDrafts();await loadDraft(draft.trip.slug);toast('Draft created');
+      $('#newDraftDialog').close();
+      formElement.reset();
+      formElement.elements.kind.value='custom';
+      await refreshDrafts();
+      await loadDraft(draft.trip.slug);
+      toast('Draft created');
     }catch(error){toast(error.message,true);}
   });
   $('#saveBtn').onclick=()=>save().catch(()=>{});
