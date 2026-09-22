@@ -28,6 +28,17 @@ async function expectRegionalTooltipIsolation(page){
   expect(tooltip.trim().length).toBeGreaterThan(0);
   await expect(page.locator('body')).not.toContainText('[object Object]');
   await expect(page.locator('body')).not.toContainText('undefined/195');
+  const allLabels=await page.evaluate(()=>{
+    const globe=window.__ONE_WORLD_ROUTE_GLOBE__;
+    const checks=[
+      [globe?.pointsData?.()||[],globe?.pointLabel?.()],
+      [globe?.arcsData?.()||[],globe?.arcLabel?.()],
+      [globe?.polygonsData?.()||[],globe?.polygonLabel?.()]
+    ];
+    return checks.flatMap(([data,accessor])=>typeof accessor==='function'?data.slice(0,250).map(item=>String(accessor(item)??'')):[]);
+  });
+  expect(allLabels.join('\n')).not.toContain('[object Object]');
+  expect(allLabels.join('\n')).not.toContain('undefined/195');
 }
 
 async function expectMobileShellStable(page){
@@ -54,10 +65,23 @@ async function expectMobileShellStable(page){
   expect(state.timeline?.right).toBeGreaterThanOrEqual(state.innerWidth-17);
 }
 
+test('production home exposes the full trip catalog including rail',async({page},testInfo)=>{
+  test.setTimeout(120000);
+  const errors=capturePageErrors(page);
+  await open(page,'/?lang=de');
+  await expect(page.locator('#platformHome')).toBeVisible({timeout:20000});
+  const expected=await page.evaluate(()=>fetch('/data/platform/trips.json',{cache:'no-store'}).then(r=>r.json()).then(data=>data.trips.length));
+  await expect(page.locator('[data-home-trip]')).toHaveCount(expected);
+  await expect(page.locator('[data-home-trip="central-europe-rail-journey"]')).toBeVisible();
+  await expect(page.locator('[data-home-trip="world-195"]')).toBeVisible();
+  expect(errors).toEqual([]);
+  await page.screenshot({path:testInfo.outputPath('production-home.png'),fullPage:false,animations:'disabled'});
+});
+
 test('production flagship preserves the 195/194 shell invariants',async({page,isMobile},testInfo)=>{
   test.setTimeout(120000);
   const errors=capturePageErrors(page);
-  await open(page,'/?lang=en');
+  await open(page,'/?trip=world-195&lang=en');
   await expect(page.locator('body')).not.toHaveClass(/platform-regional-trip/);
   await expect(page.locator('#routeRange')).toHaveAttribute('max','194');
   await expect(page.locator('#filterCount')).toContainText('194');
@@ -86,4 +110,18 @@ test('production rail architecture proof renders through the shared regional eng
   await expectRegionalTooltipIsolation(page);
   expect(errors).toEqual([]);
   await page.screenshot({path:testInfo.outputPath('production-rail.png'),fullPage:false,animations:'disabled'});
+});
+
+test('production Italy has no object-string leakage',async({page},testInfo)=>{
+  test.setTimeout(120000);
+  const errors=capturePageErrors(page);
+  await open(page,'/?trip=italy-grand-tour&lang=de');
+  await expectRegional(page);
+  await expectRegionalTooltipIsolation(page);
+  await page.locator('#regionalRouteRange').fill('4');
+  await page.locator('#regionalRouteRange').dispatchEvent('input');
+  await expect(page.locator('#detailTitle')).toContainText('Matera');
+  await expect(page.locator('body')).not.toContainText('[object Object]');
+  expect(errors).toEqual([]);
+  await page.screenshot({path:testInfo.outputPath('production-italy.png'),fullPage:false,animations:'disabled'});
 });
