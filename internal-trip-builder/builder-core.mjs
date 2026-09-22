@@ -217,7 +217,7 @@ export async function runPublishGate({repoRoot,publicRoot,workspace,slug}){
   const sandbox=await mkdtemp(join(tmpdir(),'owr-trip-gate-'));
   const sandboxPublic=join(sandbox,'one-world-route-public-mvp');
   try{
-    await cp(publicRoot,sandboxPublic,{recursive:true,filter:src=>!/(?:^|\/)(?:node_modules|test-results|playwright-report|qa-artifacts-)/.test(src)});
+    await cp(publicRoot,sandboxPublic,{recursive:true,filter:src=>!/(?:^|[\\/])(?:node_modules|test-results|playwright-report|qa-artifacts-)(?:[\\/]|$)/.test(src)});
     const sandboxCatalog=await loadCatalog(sandboxPublic);
     await injectCandidate(sandboxPublic,candidate,sandboxCatalog);
     const commands=[
