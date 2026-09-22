@@ -1,0 +1,486 @@
+{
+  "schemaVersion": 1,
+  "id": "cyclades-island-hopping",
+  "slug": "cyclades-island-hopping",
+  "kind": "island-hopping",
+  "status": "sourced-beta",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Cyclades Island Hopping",
+    "de": "Kykladen-Inselhopping",
+    "it": "Island hopping nelle Cicladi",
+    "es": "Island hopping por las Cícladas",
+    "fr": "D'île en île dans les Cyclades",
+    "pt": "Island hopping nas Cíclades"
+  },
+  "summary": {
+    "en": "A 13-day island-hopping route from Piraeus through Syros, Mykonos, Paros, Naxos and Santorini before returning to Athens. Ferry corridors are source-backed while exact departures, vessel assignments and fares remain live checks for the selected travel date.",
+    "de": "Eine 13-tägige Inselhopping-Route ab Piräus über Syros, Mykonos, Paros, Naxos und Santorin zurück nach Athen. Die Fährkorridore sind quellenbasiert; konkrete Abfahrten, Schiffe und Preise müssen für das gewählte Reisedatum live geprüft werden.",
+    "it": "Un itinerario di 13 giorni dal Pireo attraverso Syros, Mykonos, Paros, Naxos e Santorini con ritorno ad Atene. I collegamenti in traghetto sono documentati, mentre partenze, navi e tariffe richiedono una verifica aggiornata per la data scelta.",
+    "es": "Una ruta de 13 días desde El Pireo por Syros, Mykonos, Paros, Naxos y Santorini antes de regresar a Atenas. Los corredores de ferry están documentados, mientras que salidas, barcos y tarifas deben comprobarse para la fecha elegida.",
+    "fr": "Un itinéraire de 13 jours au départ du Pirée via Syros, Mykonos, Paros, Naxos et Santorin avant le retour à Athènes. Les liaisons maritimes sont sourcées, mais horaires, navires et tarifs doivent être vérifiés pour la date choisie.",
+    "pt": "Uma rota de 13 dias a partir do Pireu por Syros, Mykonos, Paros, Naxos e Santorini antes do regresso a Atenas. Os corredores de ferry são documentados, enquanto horários, navios e tarifas exigem verificação para a data escolhida."
+  },
+  "geography": {
+    "countries": [
+      "GR"
+    ],
+    "primaryCountry": "GR",
+    "bounds": {
+      "north": 38.1,
+      "south": 36.2,
+      "west": 23.5,
+      "east": 26
+    }
+  },
+  "planning": {
+    "days": 13,
+    "currency": "EUR",
+    "pace": "balanced",
+    "distanceKm": null,
+    "priceModel": "live-operator-check"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 37.25,
+      "lng": 24.75,
+      "altitude": 0.55
+    }
+  },
+  "places": [
+    {
+      "id": "piraeus",
+      "type": "port-city",
+      "countryCode": "GR",
+      "name": {
+        "en": "Piraeus",
+        "de": "Piräus",
+        "it": "Pireo",
+        "es": "El Pireo",
+        "fr": "Le Pirée",
+        "pt": "Pireu"
+      },
+      "coordinates": {
+        "lat": 37.942,
+        "lng": 23.646
+      }
+    },
+    {
+      "id": "syros",
+      "type": "island",
+      "countryCode": "GR",
+      "name": {
+        "en": "Syros",
+        "de": "Syros",
+        "it": "Syros",
+        "es": "Syros",
+        "fr": "Syros",
+        "pt": "Syros"
+      },
+      "coordinates": {
+        "lat": 37.445,
+        "lng": 24.942
+      }
+    },
+    {
+      "id": "mykonos",
+      "type": "island",
+      "countryCode": "GR",
+      "name": {
+        "en": "Mykonos",
+        "de": "Mykonos",
+        "it": "Mykonos",
+        "es": "Miconos",
+        "fr": "Mykonos",
+        "pt": "Míconos"
+      },
+      "coordinates": {
+        "lat": 37.4467,
+        "lng": 25.3289
+      }
+    },
+    {
+      "id": "paros",
+      "type": "island",
+      "countryCode": "GR",
+      "name": {
+        "en": "Paros",
+        "de": "Paros",
+        "it": "Paros",
+        "es": "Paros",
+        "fr": "Paros",
+        "pt": "Paros"
+      },
+      "coordinates": {
+        "lat": 37.0856,
+        "lng": 25.1489
+      }
+    },
+    {
+      "id": "naxos",
+      "type": "island",
+      "countryCode": "GR",
+      "name": {
+        "en": "Naxos",
+        "de": "Naxos",
+        "it": "Naxos",
+        "es": "Naxos",
+        "fr": "Naxos",
+        "pt": "Naxos"
+      },
+      "coordinates": {
+        "lat": 37.1036,
+        "lng": 25.3764
+      }
+    },
+    {
+      "id": "santorini",
+      "type": "island",
+      "countryCode": "GR",
+      "name": {
+        "en": "Santorini",
+        "de": "Santorin",
+        "it": "Santorini",
+        "es": "Santorini",
+        "fr": "Santorin",
+        "pt": "Santorini"
+      },
+      "coordinates": {
+        "lat": 36.3932,
+        "lng": 25.4615
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "cih-stop-01",
+      "sequence": 1,
+      "placeId": "piraeus",
+      "dayStart": 1,
+      "dayEnd": 1,
+      "nights": 1
+    },
+    {
+      "id": "cih-stop-02",
+      "sequence": 2,
+      "placeId": "syros",
+      "dayStart": 2,
+      "dayEnd": 3,
+      "nights": 2
+    },
+    {
+      "id": "cih-stop-03",
+      "sequence": 3,
+      "placeId": "mykonos",
+      "dayStart": 4,
+      "dayEnd": 5,
+      "nights": 2
+    },
+    {
+      "id": "cih-stop-04",
+      "sequence": 4,
+      "placeId": "paros",
+      "dayStart": 6,
+      "dayEnd": 7,
+      "nights": 2
+    },
+    {
+      "id": "cih-stop-05",
+      "sequence": 5,
+      "placeId": "naxos",
+      "dayStart": 8,
+      "dayEnd": 9,
+      "nights": 2
+    },
+    {
+      "id": "cih-stop-06",
+      "sequence": 6,
+      "placeId": "santorini",
+      "dayStart": 10,
+      "dayEnd": 12,
+      "nights": 3
+    },
+    {
+      "id": "cih-stop-07",
+      "sequence": 7,
+      "placeId": "piraeus",
+      "dayStart": 13,
+      "dayEnd": 13,
+      "nights": 0
+    }
+  ],
+  "segments": [
+    {
+      "id": "cih-leg-01",
+      "sequence": 1,
+      "fromStopId": "cih-stop-01",
+      "toStopId": "cih-stop-02",
+      "transport": {
+        "mode": "ferry",
+        "stages": [
+          {
+            "mode": "ferry",
+            "operator": "SEAJETS / live operator selection",
+            "from": "Piraeus",
+            "to": "Syros",
+            "sourceIds": [
+              "seajets-syros-guide"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "seajets-syros-guide",
+          "seajets-island-hopping"
+        ],
+        "notes": "The corridor is source-backed, but the exact sailing, vessel and fare must be checked for the selected date."
+      }
+    },
+    {
+      "id": "cih-leg-02",
+      "sequence": 2,
+      "fromStopId": "cih-stop-02",
+      "toStopId": "cih-stop-03",
+      "transport": {
+        "mode": "ferry",
+        "stages": [
+          {
+            "mode": "ferry",
+            "operator": "SEAJETS / live operator selection",
+            "from": "Syros",
+            "to": "Mykonos",
+            "sourceIds": [
+              "seajets-syros-guide"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "seajets-syros-guide",
+          "seajets-island-hopping"
+        ],
+        "notes": "The corridor is source-backed, but the exact sailing, vessel and fare must be checked for the selected date."
+      }
+    },
+    {
+      "id": "cih-leg-03",
+      "sequence": 3,
+      "fromStopId": "cih-stop-03",
+      "toStopId": "cih-stop-04",
+      "transport": {
+        "mode": "ferry",
+        "stages": [
+          {
+            "mode": "ferry",
+            "operator": "SEAJETS / live operator selection",
+            "from": "Mykonos",
+            "to": "Paros",
+            "sourceIds": [
+              "seajets-summer-2026"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "seajets-summer-2026",
+          "seajets-island-hopping"
+        ],
+        "notes": "The corridor is source-backed, but the exact sailing, vessel and fare must be checked for the selected date."
+      }
+    },
+    {
+      "id": "cih-leg-04",
+      "sequence": 4,
+      "fromStopId": "cih-stop-04",
+      "toStopId": "cih-stop-05",
+      "transport": {
+        "mode": "ferry",
+        "stages": [
+          {
+            "mode": "ferry",
+            "operator": "SEAJETS / live operator selection",
+            "from": "Paros",
+            "to": "Naxos",
+            "sourceIds": [
+              "seajets-summer-2026"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "seajets-summer-2026",
+          "seajets-island-hopping"
+        ],
+        "notes": "The corridor is source-backed, but the exact sailing, vessel and fare must be checked for the selected date."
+      }
+    },
+    {
+      "id": "cih-leg-05",
+      "sequence": 5,
+      "fromStopId": "cih-stop-05",
+      "toStopId": "cih-stop-06",
+      "transport": {
+        "mode": "ferry",
+        "stages": [
+          {
+            "mode": "ferry",
+            "operator": "SEAJETS / live operator selection",
+            "from": "Naxos",
+            "to": "Santorini",
+            "sourceIds": [
+              "seajets-summer-2026"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "seajets-summer-2026",
+          "seajets-island-hopping"
+        ],
+        "notes": "The corridor is source-backed, but the exact sailing, vessel and fare must be checked for the selected date."
+      }
+    },
+    {
+      "id": "cih-leg-06",
+      "sequence": 6,
+      "fromStopId": "cih-stop-06",
+      "toStopId": "cih-stop-07",
+      "transport": {
+        "mode": "ferry",
+        "stages": [
+          {
+            "mode": "ferry",
+            "operator": "SEAJETS / live operator selection",
+            "from": "Santorini",
+            "to": "Piraeus",
+            "sourceIds": [
+              "seajets-santorini-guide"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "seajets-santorini-guide",
+          "seajets-island-hopping"
+        ],
+        "notes": "The corridor is source-backed, but the exact sailing, vessel and fare must be checked for the selected date."
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "seajets-syros-guide",
+      "title": "Syros ferry connections and island hopping",
+      "issuer": "SEAJETS",
+      "issuerType": "official-operator",
+      "url": "https://www.seajets.com/de/media-center/our-blog/syros-odigos-diakopon",
+      "checkedAt": "2026-09-22",
+      "claims": [
+        "daily ferry access to Syros from Piraeus",
+        "Syros connections include Mykonos and other Cyclades islands"
+      ]
+    },
+    {
+      "id": "seajets-summer-2026",
+      "title": "SEAJETS Summer 2026 inter-island routes",
+      "issuer": "SEAJETS",
+      "issuerType": "official-operator",
+      "url": "https://www.seajets.com/offers/ekptoseis-prosfores-kalokairi-2026",
+      "checkedAt": "2026-09-22",
+      "claims": [
+        "Mykonos–Paros route listed",
+        "Paros–Naxos route listed",
+        "Naxos–Santorini route listed"
+      ]
+    },
+    {
+      "id": "seajets-santorini-guide",
+      "title": "Santorini ferry connections",
+      "issuer": "SEAJETS",
+      "issuerType": "official-operator",
+      "url": "https://www.seajets.com/media-center/our-blog/santorini-taxidiotikos-odigos",
+      "checkedAt": "2026-09-22",
+      "claims": [
+        "Santorini has daily ferry connections with Piraeus and nearby Cyclades islands",
+        "exact services remain schedule-dependent"
+      ]
+    },
+    {
+      "id": "seajets-island-hopping",
+      "title": "SEAJETS island hopping network",
+      "issuer": "SEAJETS",
+      "issuerType": "official-operator",
+      "url": "https://www.seajets.com/",
+      "checkedAt": "2026-09-22",
+      "claims": [
+        "operator markets island hopping in the Cyclades",
+        "operator booking engine resolves current sailings"
+      ]
+    }
+  ],
+  "extensions": {}
+}
