@@ -261,7 +261,10 @@
         "partial-published",
         "connection-time-required",
         "connection-time-excluded",
-        "live-timetable-required"
+        "live-timetable-required",
+        "current-route-condition-required",
+        "official-trail-current-check",
+        "live-transfer-check"
       ],
       "costBases": [
         "published-fare",
@@ -347,6 +350,9 @@
       "island-hopping",
       "city-break",
       "expedition",
+      "camper",
+      "cycling",
+      "hiking",
       "custom"
     ],
     "extensionContract": {
