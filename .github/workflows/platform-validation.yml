@@ -68,6 +68,18 @@ jobs:
           node --check scripts/test-regional-runtime.mjs
           node --check scripts/test-platform-rail-validator.mjs
           node --check qa/tests/regional-platform.spec.mjs
+          node --check ../internal-trip-builder/builder-core.mjs
+          node --check ../internal-trip-builder/server.mjs
+          node --check ../internal-trip-builder/public/app.js
+      - name: Internal trip builder tests
+        run: node --test ../internal-trip-builder/test/*.test.mjs
+      - name: Internal trip builder smoke
+        run: |
+          node ../internal-trip-builder/server.mjs > /tmp/owr-builder.log 2>&1 &
+          BUILDER_PID=$!
+          trap 'kill $BUILDER_PID 2>/dev/null || true' EXIT
+          sleep 1
+          node -e "Promise.all([fetch('http://127.0.0.1:4177/api/health'),fetch('http://127.0.0.1:4177/builder/')]).then(async ([health,builder])=>{if(!health.ok||!builder.ok)process.exit(1);const json=await health.json();const html=await builder.text();if(!json.ok||!html.includes('Internal Trip Builder'))process.exit(1)})"
       - name: Platform data validation
         run: node scripts/validate-platform-data.mjs
       - name: Existing public-data validation
