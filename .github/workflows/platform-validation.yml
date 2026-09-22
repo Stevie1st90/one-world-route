@@ -69,6 +69,7 @@ jobs:
           node --check scripts/test-platform-rail-validator.mjs
           node --check scripts/trip-draft-contract.mjs
           node --check scripts/test-trip-draft-contract.mjs
+          node --check scripts/test-service-worker-cache.mjs
           node --check ../internal-trip-builder/server.mjs
           node --check ../internal-trip-builder/app.js
           node --check ../internal-trip-builder/test-builder.mjs
@@ -95,6 +96,8 @@ jobs:
         run: node --test scripts/test-platform-rail-validator.mjs
       - name: Trip draft publication contract tests
         run: node --test scripts/test-trip-draft-contract.mjs
+      - name: Service worker cache strategy tests
+        run: node --test scripts/test-service-worker-cache.mjs
       - name: Internal Trip Builder pipeline smoke
         run: node ../internal-trip-builder/test-builder.mjs
       - name: Story controller tests

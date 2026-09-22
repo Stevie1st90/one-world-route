@@ -55,7 +55,8 @@
     "deploymentEnabled": {
       "route-discovery-roadtrip-v1": false,
       "route-platform-expansion-v2": false,
-      "internal-trip-builder-v1": false
+      "internal-trip-builder-v1": false,
+      "route-library-expansion-v1": false
     }
   }
 }

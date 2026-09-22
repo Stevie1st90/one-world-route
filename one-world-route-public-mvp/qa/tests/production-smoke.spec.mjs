@@ -1,4 +1,7 @@
 import {test,expect} from '@playwright/test';
+import {readFile} from 'node:fs/promises';
+
+const catalog=JSON.parse(await readFile(new URL('../../data/platform/trips.json',import.meta.url),'utf8'));
 
 function capturePageErrors(page){
   const errors=[];
@@ -62,6 +65,12 @@ test('production flagship preserves the 195/194 shell invariants',async({page,is
   await expect(page.locator('#routeRange')).toHaveAttribute('max','194');
   await expect(page.locator('#filterCount')).toContainText('194');
   await expect(page.locator('.brand small')).toContainText('195 countries');
+  await page.locator('#platformRouteBtn').click();
+  await expect(page.locator('#platformRouteModal')).toBeVisible();
+  await expect(page.locator('[data-platform-trip]')).toHaveCount(catalog.trips.length);
+  await expect(page.locator('[data-platform-trip="central-europe-rail-journey"]')).toHaveCount(1);
+  await expect(page.locator('#platformRouteCount')).toContainText(String(catalog.trips.length));
+  await page.locator('#platformRouteModal .platform-x').click();
   if(isMobile)await expectMobileShellStable(page);
   expect(errors).toEqual([]);
   await page.screenshot({path:testInfo.outputPath('production-flagship.png'),fullPage:false,animations:'disabled'});
