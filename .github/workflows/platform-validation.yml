@@ -68,6 +68,14 @@ jobs:
           node --check scripts/test-regional-runtime.mjs
           node --check scripts/test-platform-rail-validator.mjs
           node --check qa/tests/regional-platform.spec.mjs
+      - name: Internal trip builder contract
+        working-directory: .
+        run: |
+          node --check internal-trip-builder/lib/draft-core.mjs
+          node --check internal-trip-builder/lib/repository.mjs
+          node --check internal-trip-builder/server.mjs
+          node --check internal-trip-builder/public/app.js
+          node --test internal-trip-builder/test-draft-core.mjs internal-trip-builder/test-server.mjs
       - name: Platform data validation
         run: node scripts/validate-platform-data.mjs
       - name: Existing public-data validation
