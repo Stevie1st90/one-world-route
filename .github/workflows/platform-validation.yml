@@ -67,6 +67,11 @@ jobs:
           node --check scripts/test-preview-routes.mjs
           node --check scripts/test-regional-runtime.mjs
           node --check scripts/test-platform-rail-validator.mjs
+          node --check scripts/test-production-smoke.mjs
+          node --check ../internal-trip-builder/lib.mjs
+          node --check ../internal-trip-builder/server.mjs
+          node --check ../internal-trip-builder/app.js
+          node --check ../internal-trip-builder/test-builder.mjs
           node --check qa/tests/regional-platform.spec.mjs
       - name: Platform data validation
         run: node scripts/validate-platform-data.mjs
@@ -86,12 +91,18 @@ jobs:
         run: node --test scripts/test-regional-runtime.mjs
       - name: Rail validator tests
         run: node --test scripts/test-platform-rail-validator.mjs
+      - name: Trip builder contract tests
+        run: node --test ../internal-trip-builder/test-builder.mjs
       - name: Story controller tests
         run: node --test scripts/test-platform-story.mjs
       - name: Continuity unit tests
         run: node --test scripts/test-continuity.mjs
       - name: Release build
         run: node scripts/release-build.mjs
+      - name: Production baseline smoke test
+        env:
+          OWR_PRODUCTION_URL: https://one-world-route.vercel.app
+        run: node scripts/test-production-smoke.mjs
       - name: Local preview smoke test
         run: |
           node scripts/serve-local.mjs > /tmp/owr-local.log 2>&1 &
