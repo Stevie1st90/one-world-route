@@ -66,6 +66,21 @@ test('regional runtime composes every current regional dataset without route-kin
   }
 });
 
+test('new route archetypes remain data-only and do not leak into core bootstrap',async()=>{
+  const bootstrap=await readText('platform.js');
+  const forbidden=[
+    'cyclades-island-hopping',
+    'iceland-ring-road-camper',
+    'danube-eurovelo-cycle',
+    'swiss-via-alpina-hike',
+    "kind==='island-hopping'",
+    "kind==='camper'",
+    "kind==='cycling'",
+    "kind==='hiking'"
+  ];
+  for(const token of forbidden)assert.equal(bootstrap.includes(token),false,'core bootstrap must not contain '+token);
+});
+
 test('specialized presenter output is attached only when matching namespaced data exists',async()=>{
   const catalog=await readJson('data/platform/trips.json');
   const {window}=await loadRuntime();
