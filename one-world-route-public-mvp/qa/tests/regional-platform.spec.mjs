@@ -7,6 +7,38 @@ const flagship=catalog.trips.find(item=>item.id===catalog.defaultTripId);
 const regional=catalog.trips.filter(item=>item.renderer==='regional-globe');
 
 const datasets=new Map();
+test('public homepage discovers all catalog journeys and keeps the globe object-safe',async({page,isMobile},testInfo)=>{
+  test.setTimeout(120000);
+  const pageErrors=capturePageErrors(page);
+  await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:20000});
+  await expect(page.locator('#platformHome')).toBeVisible();
+  await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(catalog.trips.length);
+  await expect(page.locator('#platformHome')).toContainText(flagship.title.en);
+  await expect(page.locator('#platformHome')).not.toContainText('[object');
+  await expect(page.locator('#platformHome')).not.toContainText(/\bundefined\b/i);
+  await expect.poll(()=>page.evaluate(()=>window.__ONE_WORLD_ROUTE_GLOBE__?.arcsData?.()?.length||0),{timeout:20000}).toBeGreaterThanOrEqual(flagship.metrics.internationalLegs);
+
+  const accessibility=regional.map(item=>item.discovery?.fit?.accessibility).find(Boolean);
+  const expected=catalog.trips.filter(item=>item.discovery?.fit?.accessibility===accessibility).length;
+  await page.locator('#homeRouteAccessibility').selectOption(accessibility);
+  await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(expected);
+  await page.locator('[data-home-reset]').click();
+  await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(catalog.trips.length);
+
+  const viewport=page.viewportSize();
+  const shell=await page.locator('#platformHome').boundingBox();
+  expect(shell?.x).toBeGreaterThanOrEqual(-1);
+  expect((shell?.x||0)+(shell?.width||0)).toBeLessThanOrEqual(viewport.width+1);
+  if(isMobile){
+    await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
+    await expect.poll(()=>page.evaluate(()=>document.querySelector('#app')?.scrollLeft||0)).toBe(0);
+  }
+
+  expect(pageErrors,'homepage runtime page errors').toEqual([]);
+  await captureViewport(page,testInfo,'public-home-'+testInfo.project.name+'.png');
+});
+
 test('flagship shell and route invariants work',async({page,isMobile},testInfo)=>{
   // The flagship globe can make CI viewport screenshots comparatively expensive on mobile.
   // Assertions complete well inside this budget; leave headroom for three visual-QA captures.
@@ -83,7 +115,7 @@ test('route library can switch flagship to regional and back',async({page},testI
 
   await page.locator('#platformRouteBtn').click();
   await page.locator(`[data-platform-trip="${flagship.id}"]`).click();
-  await expect(page).not.toHaveURL(/trip=/);
+  await expect(page).toHaveURL(new RegExp('trip='+flagship.id));
   await expect(page.locator('body')).not.toHaveClass(/platform-regional-trip/,{timeout:20000});
   await expect(page.locator('#routeRange')).toHaveAttribute('max',String(flagship.metrics.internationalLegs));
 
@@ -115,6 +147,27 @@ function capturePageErrors(page){
   return errors;
 }
 
+async function regionalLabels(page){
+  return page.evaluate(()=>{
+    const globe=window.__ONE_WORLD_ROUTE_GLOBE__;
+    const read=(dataGetter,accessorGetter,extract=value=>String(value??''))=>{
+      const data=typeof globe?.[dataGetter]==='function'?(globe[dataGetter]()||[]):[];
+      const accessor=typeof globe?.[accessorGetter]==='function'?globe[accessorGetter]():null;
+      if(typeof accessor!=='function')return [];
+      return data.map(item=>{
+        try{return extract(accessor(item))}
+        catch(error){return 'ACCESSOR_ERROR:'+String(error?.message||error)}
+      });
+    };
+    return {
+      points:read('pointsData','pointLabel'),
+      arcs:read('arcsData','arcLabel'),
+      html:read('htmlElementsData','htmlElement',node=>String(node?.textContent??'')),
+      text:read('labelsData','labelText')
+    };
+  });
+}
+
 async function openRegional(page,item){
   await page.goto('/?trip='+encodeURIComponent(item.id)+'&lang=en',{waitUntil:'domcontentloaded'});
   await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:20000});
@@ -122,7 +175,7 @@ async function openRegional(page,item){
 }
 
 async function openFlagship(page){
-  await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
+  await page.goto('/?trip='+encodeURIComponent(flagship.id)+'&lang=en',{waitUntil:'domcontentloaded'});
   await expect(page.locator('body')).not.toHaveClass(/platform-regional-trip/,{timeout:20000});
   await expect(page.locator('#routeRange')).toHaveAttribute('max',String(flagship.metrics.internationalLegs),{timeout:20000});
   await expect(page.locator('#platformRouteBtn')).toBeVisible({timeout:10000});
@@ -197,15 +250,15 @@ for(const item of regional){
     const trip=datasets.get(item.id);
     await openRegional(page,item);
 
-    const pointTooltip=await page.evaluate(()=>{
-      const globe=window.__ONE_WORLD_ROUTE_GLOBE__;
-      const points=globe?.pointsData?.()||[];
-      const accessor=globe?.pointLabel?.();
-      return points.length&&typeof accessor==='function'?String(accessor(points[0])):'';
-    });
-    expect(pointTooltip).not.toContain('[object Object]');
-    expect(pointTooltip).not.toContain('undefined/195');
-    expect(pointTooltip).toContain(trip.places[0].name.en);
+    const labels=await regionalLabels(page);
+    expect(labels.points[0]||'').toContain(trip.places[0].name.en);
+    for(const value of Object.values(labels).flat()){
+      expect(value).not.toContain('[object');
+      expect(value).not.toContain('undefined/195');
+      expect(value).not.toContain('ACCESSOR_ERROR:');
+    }
+    await expect(page.locator('body')).not.toContainText('[object');
+    await expect(page.locator('body')).not.toContainText(/\bundefined\b/i);
 
     if(item.id===railProof?.id){
       expect(trip.segments.every(segment=>segment.transport?.mode==='rail')).toBe(true);
