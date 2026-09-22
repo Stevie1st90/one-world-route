@@ -38,6 +38,7 @@ jobs:
           node --check platform/ui.js
           node --check platform/navigation.js
           node --check platform/discovery.js
+          node --check platform/home.js
           node --check platform/route-library.js
           node --check platform/regional-shell.js
           node --check platform/regional-detail.js
