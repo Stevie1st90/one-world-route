@@ -41,6 +41,7 @@ export function validateTripDraft({trip,catalogEntry,catalog}){
   const locales=Array.isArray(catalog?.supportedLocales)&&catalog.supportedLocales.length?catalog.supportedLocales:['en'];
   if(!trip||typeof trip!=='object')return {valid:false,errors:['Trip payload missing'],warnings,metrics:computeTripMetrics({}),catalogEntry};
   if(!catalogEntry||typeof catalogEntry!=='object')return {valid:false,errors:['Catalog entry missing'],warnings,metrics:computeTripMetrics(trip),catalogEntry};
+  if(Number(trip.schemaVersion)!==1)fail('trip.schemaVersion must be 1');
   if(!slugPattern.test(String(trip.id||'')))fail('trip.id must be a normalized slug');
   if(trip.slug!==trip.id)fail('trip.slug must equal trip.id');
   if(!slugPattern.test(String(trip.kind||'')))fail('trip.kind must be a normalized slug');
@@ -52,10 +53,12 @@ export function validateTripDraft({trip,catalogEntry,catalog}){
     const tripTitle=String(trip.title?.[lang]||'').trim();
     const catalogTitle=String(catalogEntry.title?.[lang]||'').trim();
     const subtitle=String(catalogEntry.subtitle?.[lang]||'').trim();
+    const summary=String(trip.summary?.[lang]||'').trim();
     if(!tripTitle)fail(`trip title missing for ${lang}`);
+    if(!summary)fail(`trip summary missing for ${lang}`);
     if(!catalogTitle)fail(`catalog title missing for ${lang}`);
     if(!subtitle)fail(`catalog subtitle missing for ${lang}`);
-    if(/^TODO\b/i.test(tripTitle)||/^TODO\b/i.test(catalogTitle)||/^TODO\b/i.test(subtitle))fail(`placeholder localization remains for ${lang}`);
+    if(/^TODO\b/i.test(tripTitle)||/^TODO\b/i.test(summary)||/^TODO\b/i.test(catalogTitle)||/^TODO\b/i.test(subtitle))fail(`placeholder localization remains for ${lang}`);
   }
 
   const sources=Array.isArray(trip.sources)?trip.sources:[];
@@ -71,8 +74,16 @@ export function validateTripDraft({trip,catalogEntry,catalog}){
   for(const p of places){
     if(!p.id||placeIds.has(p.id))fail('place IDs must be present and unique: '+p.id); else placeIds.add(p.id);
     placeById.set(p.id,p);
-    if(!Number.isFinite(Number(p.coordinates?.lat))||!Number.isFinite(Number(p.coordinates?.lng)))fail('place '+p.id+' requires numeric coordinates');
+    const lat=Number(p.coordinates?.lat),lng=Number(p.coordinates?.lng);
+    if(!Number.isFinite(lat)||!Number.isFinite(lng))fail('place '+p.id+' requires numeric coordinates');
+    else if(lat < -90 || lat > 90 || lng < -180 || lng > 180)fail('place '+p.id+' coordinates are out of range');
     if(!String(p.countryCode||'').trim())warn('place '+p.id+' has no countryCode');
+    else if(!/^[A-Z]{2}$/.test(String(p.countryCode)))fail('place '+p.id+' countryCode must be ISO alpha-2');
+    for(const lang of locales){
+      const name=String(p.name?.[lang]||'').trim();
+      if(!name)fail(`place ${p.id} name missing for ${lang}`);
+      if(/^TODO\b/i.test(name))fail(`place ${p.id} has placeholder name for ${lang}`);
+    }
   }
 
   const stops=[...(Array.isArray(trip.stops)?trip.stops:[])].sort((a,b)=>Number(a.sequence)-Number(b.sequence));
@@ -82,15 +93,18 @@ export function validateTripDraft({trip,catalogEntry,catalog}){
     if(!s.id||stopIds.has(s.id))fail('stop IDs must be present and unique: '+s.id); else stopIds.add(s.id);
     stopById.set(s.id,s);
     if(!placeIds.has(s.placeId))fail('stop '+s.id+' references missing place '+s.placeId);
-    if(Number(s.sequence)!==i+1)warn('stop '+s.id+' sequence is not contiguous from 1');
+    if(Number(s.sequence)!==i+1)fail('stop '+s.id+' sequence must be contiguous from 1');
   }
 
   const segs=[...(Array.isArray(trip.segments)?trip.segments:[])].sort((a,b)=>Number(a.sequence)-Number(b.sequence));
+  const segmentIds=new Set();
   if(segs.length!==Math.max(0,stops.length-1))fail('segments must connect every adjacent stop');
   for(let i=0;i<segs.length;i++){
     const s=segs[i],from=stops[i],to=stops[i+1];
     if(!s.id)fail('segment at index '+i+' requires id');
-    if(Number(s.sequence)!==i+1)warn('segment '+s.id+' sequence is not contiguous from 1');
+    else if(segmentIds.has(s.id))fail('segment IDs must be unique: '+s.id);
+    else segmentIds.add(s.id);
+    if(Number(s.sequence)!==i+1)fail('segment '+s.id+' sequence must be contiguous from 1');
     if(s.fromStopId!==from?.id||s.toStopId!==to?.id)fail('segment '+s.id+' must connect adjacent stops');
     if(!allowedModes.has(s.transport?.mode))fail('segment '+s.id+' uses unsupported mode '+s.transport?.mode);
     if(!verificationStates.has(s.verification?.status))fail('segment '+s.id+' has invalid verification status');
