@@ -67,6 +67,9 @@ jobs:
           node --check scripts/test-preview-routes.mjs
           node --check scripts/test-regional-runtime.mjs
           node --check scripts/test-platform-rail-validator.mjs
+          node --check scripts/trip-draft-contract.mjs
+          node --check scripts/test-trip-draft-contract.mjs
+          node --check ../internal-trip-builder/server.mjs
           node --check qa/tests/regional-platform.spec.mjs
       - name: Platform data validation
         run: node scripts/validate-platform-data.mjs
@@ -86,6 +89,8 @@ jobs:
         run: node --test scripts/test-regional-runtime.mjs
       - name: Rail validator tests
         run: node --test scripts/test-platform-rail-validator.mjs
+      - name: Trip draft publication contract tests
+        run: node --test scripts/test-trip-draft-contract.mjs
       - name: Story controller tests
         run: node --test scripts/test-platform-story.mjs
       - name: Continuity unit tests
