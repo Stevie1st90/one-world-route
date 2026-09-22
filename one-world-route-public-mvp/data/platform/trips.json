@@ -37,6 +37,7 @@
       },
       "metrics": {
         "days": 379,
+        "startDate": "2026-10-21",
         "countries": 195,
         "internationalLegs": 194,
         "budget": {
