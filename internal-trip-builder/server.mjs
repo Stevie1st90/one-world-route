@@ -75,6 +75,8 @@ async function handler(req,res){
   const u=new URL(req.url,'http://'+host+':'+port),pathname=decodeURIComponent(u.pathname);
   try{
     if(pathname==='/__builder'||pathname==='/__builder/')return void await file(res,join(here,'index.html'));
+    if(pathname==='/__builder/app.js')return void await file(res,join(here,'app.js'));
+    if(pathname==='/__builder/styles.css')return void await file(res,join(here,'styles.css'));
     if(pathname==='/__builder/api/state'&&req.method==='GET')return send(res,200,{ok:true,catalog:await json(catalogPath),drafts:await listDrafts()});
     if(pathname==='/__builder/api/scaffold'&&req.method==='POST')return send(res,201,{ok:true,...await scaffold(await readBody(req))});
     if(pathname==='/__builder/api/clone'&&req.method==='POST'){const b=await readBody(req);return send(res,201,{ok:true,...await clonePublic(b.slug)})}
