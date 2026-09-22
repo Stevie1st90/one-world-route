@@ -12,7 +12,7 @@ const localized=(v,lang='en')=>typeof v==='string'?v:(v?.[lang]||v?.en||Object.v
 const safeLang=v=>SUPPORTED_LANGS.includes(String(v||'').toLowerCase())?String(v).toLowerCase():'en';
 const tripTarget=(trip,lang)=>{
   const p=new URLSearchParams();
-  if(trip.id!==platform.defaultTripId)p.set('trip',trip.id);
+  p.set('trip',trip.id);
   p.set('lang',lang);
   return '/?'+p.toString();
 };
@@ -35,11 +35,11 @@ module.exports=(req,res)=>{
   let htmlLang='en',title='ONE WORLD ROUTE — routes without borders',desc='Explore world journeys, round trips, road trips, rail routes, cruises and more.',target='/',canonical=origin+'/',alternates='',jsonLd='';
   if(type==='route'){
     const id=parseInt(String(req.query.id||''),10),s=route.segments.find(x=>Number(x.id)===id);
-    if(s){const a=en(s.from),b=en(s.to);title=a+' → '+b+' — ONE WORLD ROUTE';desc='Route leg '+id+' of 194 · '+a+' to '+b+'. Explore the continuous 195-country journey.';target='/?segment='+id;canonical=origin+'/route/'+id+'-'+slug(a)+'-'+slug(b);}
+    if(s){const a=en(s.from),b=en(s.to);title=a+' → '+b+' — ONE WORLD ROUTE';desc='Route leg '+id+' of 194 · '+a+' to '+b+'. Explore the continuous 195-country journey.';target='/?trip='+encodeURIComponent(platform.defaultTripId)+'&segment='+id;canonical=origin+'/route/'+id+'-'+slug(a)+'-'+slug(b);}
   }else if(type==='country'){
     const wanted=slug(req.query.slug||'');
     const c=route.countries.find(x=>slug(en(x.name))===wanted||slug(x.name)===wanted);
-    if(c){const name=en(c.name);title=name+' — ONE WORLD ROUTE';desc='Country '+c.number+' of 195 on the flagship ONE WORLD ROUTE journey. Explore arrival, onward route and public planning context.';target='/?country='+encodeURIComponent(c.name);canonical=origin+'/country/'+slug(name);}
+    if(c){const name=en(c.name);title=name+' — ONE WORLD ROUTE';desc='Country '+c.number+' of 195 on the flagship ONE WORLD ROUTE journey. Explore arrival, onward route and public planning context.';target='/?trip='+encodeURIComponent(platform.defaultTripId)+'&country='+encodeURIComponent(c.name);canonical=origin+'/country/'+slug(name);}
   }else if(type==='trip'){
     const wanted=slug(req.query.slug||req.query.id||'');
     const trip=platform.trips.find(x=>slug(x.slug)===wanted||slug(x.id)===wanted);
