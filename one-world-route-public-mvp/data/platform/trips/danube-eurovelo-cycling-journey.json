@@ -1,0 +1,413 @@
+{
+  "schemaVersion": 1,
+  "id": "danube-eurovelo-cycling-journey",
+  "slug": "danube-eurovelo-cycling-journey",
+  "kind": "cycling",
+  "status": "sourced-beta",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Danube EuroVelo Cycling Journey",
+    "de": "Donau-EuroVelo-Radreise",
+    "it": "Viaggio in bici sul Danubio EuroVelo",
+    "es": "Viaje ciclista EuroVelo por el Danubio",
+    "fr": "Voyage à vélo EuroVelo le long du Danube",
+    "pt": "Viagem de bicicleta EuroVelo pelo Danúbio"
+  },
+  "summary": {
+    "en": "A 10-day cycling journey following the EuroVelo 6 Danube corridor from Passau through Linz, Melk and Vienna to Bratislava and Budapest. The corridor is documented by EuroVelo; riders should still check current development status, surfaces, detours and national traffic rules.",
+    "de": "Eine 10-tägige Radreise auf dem EuroVelo-6-Donauradweg von Passau über Linz, Melk und Wien nach Bratislava und Budapest. Der Korridor ist durch EuroVelo dokumentiert; aktueller Ausbauzustand, Oberflächen, Umleitungen und nationale Verkehrsregeln müssen dennoch geprüft werden.",
+    "it": "Un viaggio ciclistico di 10 giorni lungo il corridoio EuroVelo 6 del Danubio da Passau via Linz, Melk e Vienna fino a Bratislava e Budapest. Il corridoio è documentato da EuroVelo; vanno comunque controllati stato attuale, fondo, deviazioni e regole nazionali.",
+    "es": "Un viaje ciclista de 10 días por el corredor del Danubio EuroVelo 6 desde Passau, pasando por Linz, Melk y Viena, hasta Bratislava y Budapest. El corredor está documentado por EuroVelo; aun así deben revisarse estado actual, firme, desvíos y normas nacionales.",
+    "fr": "Un voyage cycliste de 10 jours sur le corridor danubien EuroVelo 6 de Passau via Linz, Melk et Vienne jusqu'à Bratislava et Budapest. Le corridor est documenté par EuroVelo ; il faut néanmoins vérifier l'état actuel, les revêtements, déviations et règles nationales.",
+    "pt": "Uma viagem de bicicleta de 10 dias pelo corredor do Danúbio EuroVelo 6 de Passau, via Linz, Melk e Viena, até Bratislava e Budapeste. O corredor é documentado pela EuroVelo; ainda assim é necessário verificar estado atual, piso, desvios e regras nacionais."
+  },
+  "geography": {
+    "regions": [
+      "europe",
+      "danube"
+    ],
+    "countries": [
+      "DE",
+      "AT",
+      "SK",
+      "HU"
+    ],
+    "primaryCountry": null,
+    "bounds": {
+      "north": 49,
+      "south": 47.3,
+      "west": 13.3,
+      "east": 19.2
+    }
+  },
+  "planning": {
+    "days": 10,
+    "currency": "EUR",
+    "pace": "active",
+    "distanceKm": null,
+    "priceModel": "self-guided"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 48.2,
+      "lng": 16,
+      "altitude": 0.65
+    }
+  },
+  "places": [
+    {
+      "id": "passau-cycle",
+      "type": "city",
+      "countryCode": "DE",
+      "name": {
+        "en": "Passau",
+        "de": "Passau",
+        "it": "Passavia",
+        "es": "Passau",
+        "fr": "Passau",
+        "pt": "Passau"
+      },
+      "coordinates": {
+        "lat": 48.5667,
+        "lng": 13.4319
+      }
+    },
+    {
+      "id": "linz-cycle",
+      "type": "city",
+      "countryCode": "AT",
+      "name": {
+        "en": "Linz",
+        "de": "Linz",
+        "it": "Linz",
+        "es": "Linz",
+        "fr": "Linz",
+        "pt": "Linz"
+      },
+      "coordinates": {
+        "lat": 48.3069,
+        "lng": 14.2858
+      }
+    },
+    {
+      "id": "melk-cycle",
+      "type": "town",
+      "countryCode": "AT",
+      "name": {
+        "en": "Melk",
+        "de": "Melk",
+        "it": "Melk",
+        "es": "Melk",
+        "fr": "Melk",
+        "pt": "Melk"
+      },
+      "coordinates": {
+        "lat": 48.2278,
+        "lng": 15.3319
+      }
+    },
+    {
+      "id": "vienna-cycle",
+      "type": "city",
+      "countryCode": "AT",
+      "name": {
+        "en": "Vienna",
+        "de": "Wien",
+        "it": "Vienna",
+        "es": "Viena",
+        "fr": "Vienne",
+        "pt": "Viena"
+      },
+      "coordinates": {
+        "lat": 48.2082,
+        "lng": 16.3738
+      }
+    },
+    {
+      "id": "bratislava-cycle",
+      "type": "city",
+      "countryCode": "SK",
+      "name": {
+        "en": "Bratislava",
+        "de": "Bratislava",
+        "it": "Bratislava",
+        "es": "Bratislava",
+        "fr": "Bratislava",
+        "pt": "Bratislava"
+      },
+      "coordinates": {
+        "lat": 48.1486,
+        "lng": 17.1077
+      }
+    },
+    {
+      "id": "budapest-cycle",
+      "type": "city",
+      "countryCode": "HU",
+      "name": {
+        "en": "Budapest",
+        "de": "Budapest",
+        "it": "Budapest",
+        "es": "Budapest",
+        "fr": "Budapest",
+        "pt": "Budapeste"
+      },
+      "coordinates": {
+        "lat": 47.4979,
+        "lng": 19.0402
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "dec-stop-01",
+      "sequence": 1,
+      "placeId": "passau-cycle",
+      "dayStart": 1,
+      "dayEnd": 1,
+      "nights": 1
+    },
+    {
+      "id": "dec-stop-02",
+      "sequence": 2,
+      "placeId": "linz-cycle",
+      "dayStart": 2,
+      "dayEnd": 3,
+      "nights": 2
+    },
+    {
+      "id": "dec-stop-03",
+      "sequence": 3,
+      "placeId": "melk-cycle",
+      "dayStart": 4,
+      "dayEnd": 4,
+      "nights": 1
+    },
+    {
+      "id": "dec-stop-04",
+      "sequence": 4,
+      "placeId": "vienna-cycle",
+      "dayStart": 5,
+      "dayEnd": 6,
+      "nights": 2
+    },
+    {
+      "id": "dec-stop-05",
+      "sequence": 5,
+      "placeId": "bratislava-cycle",
+      "dayStart": 7,
+      "dayEnd": 7,
+      "nights": 1
+    },
+    {
+      "id": "dec-stop-06",
+      "sequence": 6,
+      "placeId": "budapest-cycle",
+      "dayStart": 8,
+      "dayEnd": 10,
+      "nights": 3
+    }
+  ],
+  "segments": [
+    {
+      "id": "dec-leg-01",
+      "sequence": 1,
+      "fromStopId": "dec-stop-01",
+      "toStopId": "dec-stop-02",
+      "transport": {
+        "mode": "bicycle",
+        "stages": [
+          {
+            "mode": "bicycle",
+            "sourceIds": [
+              "ev6-passau-vienna"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "current-route-condition-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "verified",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "ev6-passau-vienna"
+        ],
+        "notes": "EuroVelo documents this corridor. Check the current development status, temporary detours, surface conditions and national traffic rules before riding."
+      }
+    },
+    {
+      "id": "dec-leg-02",
+      "sequence": 2,
+      "fromStopId": "dec-stop-02",
+      "toStopId": "dec-stop-03",
+      "transport": {
+        "mode": "bicycle",
+        "stages": [
+          {
+            "mode": "bicycle",
+            "sourceIds": [
+              "ev6-passau-vienna"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "current-route-condition-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "verified",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "ev6-passau-vienna"
+        ],
+        "notes": "EuroVelo documents this corridor. Check the current development status, temporary detours, surface conditions and national traffic rules before riding."
+      }
+    },
+    {
+      "id": "dec-leg-03",
+      "sequence": 3,
+      "fromStopId": "dec-stop-03",
+      "toStopId": "dec-stop-04",
+      "transport": {
+        "mode": "bicycle",
+        "stages": [
+          {
+            "mode": "bicycle",
+            "sourceIds": [
+              "ev6-passau-vienna"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "current-route-condition-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "verified",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "ev6-passau-vienna"
+        ],
+        "notes": "EuroVelo documents this corridor. Check the current development status, temporary detours, surface conditions and national traffic rules before riding."
+      }
+    },
+    {
+      "id": "dec-leg-04",
+      "sequence": 4,
+      "fromStopId": "dec-stop-04",
+      "toStopId": "dec-stop-05",
+      "transport": {
+        "mode": "bicycle",
+        "stages": [
+          {
+            "mode": "bicycle",
+            "sourceIds": [
+              "ev6-vienna-budapest"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "current-route-condition-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "verified",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "ev6-vienna-budapest"
+        ],
+        "notes": "EuroVelo documents this corridor. Check the current development status, temporary detours, surface conditions and national traffic rules before riding."
+      }
+    },
+    {
+      "id": "dec-leg-05",
+      "sequence": 5,
+      "fromStopId": "dec-stop-05",
+      "toStopId": "dec-stop-06",
+      "transport": {
+        "mode": "bicycle",
+        "stages": [
+          {
+            "mode": "bicycle",
+            "sourceIds": [
+              "ev6-vienna-budapest"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "current-route-condition-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "verified",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "ev6-vienna-budapest"
+        ],
+        "notes": "EuroVelo documents this corridor. Check the current development status, temporary detours, surface conditions and national traffic rules before riding."
+      }
+    }
+  ],
+  "travellerContext": {
+    "scope": [
+      "passport",
+      "residence",
+      "mobility"
+    ]
+  },
+  "sources": [
+    {
+      "id": "ev6-passau-vienna",
+      "title": "EuroVelo 6 — From Passau to Vienna",
+      "issuer": "European Cyclists' Federation / EuroVelo",
+      "issuerType": "primary-source",
+      "url": "https://en.eurovelo.com/ev6/from-passau-to-vienna",
+      "checkedAt": "2026-09-22",
+      "claims": [
+        "EuroVelo 6 corridor from Passau to Vienna",
+        "Linz and Melk/Wachau route context",
+        "official GPX and development-status information"
+      ]
+    },
+    {
+      "id": "ev6-vienna-budapest",
+      "title": "EuroVelo 6 — From Vienna to Budapest",
+      "issuer": "European Cyclists' Federation / EuroVelo",
+      "issuerType": "primary-source",
+      "url": "https://en.eurovelo.com/ev6/from-vienna-to-budapest",
+      "checkedAt": "2026-09-22",
+      "claims": [
+        "EuroVelo 6 corridor from Vienna through Bratislava to Budapest",
+        "official GPX and development-status information"
+      ]
+    }
+  ],
+  "extensions": {}
+}
