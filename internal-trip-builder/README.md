@@ -33,6 +33,12 @@ The server binds only to \`127.0.0.1\`. It is intentionally outside the Vercel R
 - Drafts live in \`one-world-route-public-mvp/data/platform/drafts/\` and are gitignored.
 - Publish does not commit or deploy.
 - Catalog metrics are recomputed from the trip graph.
-- A failed full platform validation rolls publication changes back.
-- Placeholder localization and missing required source evidence block publication.
+- Publication runs the non-mutating platform quality suite: public/platform validation, model, locale, formatter, share, navigation, regional runtime, rail, story and continuity tests.
+- A failed quality check rolls the catalog/trip publication back transactionally.
+- Placeholder or missing trip summaries, titles, place names and required source evidence block publication.
+- Duplicate segment IDs, broken graph sequences, invalid coordinates and malformed country codes block publication.
 - The flagship 195/194 invariants remain under the existing platform validator.
+
+## Production verification
+
+The public runtime has a separate post-deploy smoke workflow in `.github/workflows/production-smoke.yml`. After every push to `main`, it waits for the Vercel commit status to report a successful production deployment and then checks the live Flagship, Cruise and Rail routes on desktop and mobile. This catches deployment-only regressions such as stale bundles, regional tooltip leakage and mobile shell drift.
