@@ -90,12 +90,32 @@
   async function renderGlobe(){
     const d=context(),globe=window.__ONE_WORLD_ROUTE_GLOBE__;
     if(!globe)return;
-    const regional=(d.catalog.trips||[]).filter(item=>item.renderer==='regional-globe');
-    const loaded=await Promise.all(regional.map(async meta=>{
+    const metas=d.catalog.trips||[];
+    let centroids=[];
+    if(metas.some(meta=>meta.renderer==='legacy-world')){
+      try{
+        const response=await fetch('./data/country-centroids.json',{cache:'force-cache'});
+        if(response.ok)centroids=await response.json();
+      }catch(error){console.warn('Homepage flagship centroids unavailable',error)}
+    }
+    const centroidMap=new Map(centroids.map(country=>[country.name,country]));
+    const regionNames=(()=>{
+      try{return new Intl.DisplayNames([d.locale()],{type:'region'})}
+      catch{return null}
+    })();
+    const countryName=country=>{
+      if(!country)return '';
+      try{return country.cca2&&regionNames?regionNames.of(country.cca2):country.name}
+      catch{return country.name||''}
+    };
+    const loaded=await Promise.all(metas.map(async meta=>{
       try{
         const response=await fetch(meta.dataset,{cache:'no-cache'});
         if(!response.ok)throw new Error(String(response.status));
-        return {meta,trip:await response.json()};
+        const data=await response.json();
+        if(meta.renderer==='regional-globe')return {meta,type:'regional',trip:data};
+        if(meta.renderer==='legacy-world')return {meta,type:'legacy',trip:data};
+        return null;
       }catch(error){
         console.warn('Homepage route preview unavailable',meta.id,error);
         return null;
@@ -103,20 +123,50 @@
     }));
     const arcs=[],points=[];
     for(const entry of loaded.filter(Boolean)){
-      const pm=d.Model.placeMap(entry.trip),sm=d.Model.stopMap(entry.trip);
-      for(const segment of d.Model.routeGeometry(entry.trip)){
+      if(entry.type==='regional'){
+        const pm=d.Model.placeMap(entry.trip),sm=d.Model.stopMap(entry.trip);
+        for(const segment of d.Model.routeGeometry(entry.trip)){
+          arcs.push({
+            ...segment,
+            tripId:entry.meta.id,
+            tripTitle:d.local(entry.meta.title),
+            featured:entry.meta.discovery?.featured===true,
+            fromName:d.local(pm.get(sm.get(segment.fromStopId)?.placeId)?.name),
+            toName:d.local(pm.get(sm.get(segment.toStopId)?.placeId)?.name)
+          });
+        }
+        for(const place of entry.trip.places||[]){
+          if(!Number.isFinite(Number(place.coordinates?.lat))||!Number.isFinite(Number(place.coordinates?.lng)))continue;
+          points.push({...place,tripId:entry.meta.id,tripTitle:d.local(entry.meta.title),displayName:d.local(place.name),previewRole:'regional'});
+        }
+        continue;
+      }
+      const tripTitle=d.local(entry.meta.title);
+      for(const segment of entry.trip.segments||[]){
+        const from=centroidMap.get(segment.from),to=centroidMap.get(segment.to);
+        if(!from||!to)continue;
         arcs.push({
           ...segment,
           tripId:entry.meta.id,
-          tripTitle:d.local(entry.meta.title),
+          tripTitle,
           featured:entry.meta.discovery?.featured===true,
-          fromName:d.local(pm.get(sm.get(segment.fromStopId)?.placeId)?.name),
-          toName:d.local(pm.get(sm.get(segment.toStopId)?.placeId)?.name)
+          start:{lat:Number(from.lat),lng:Number(from.lng)},
+          end:{lat:Number(to.lat),lng:Number(to.lng)},
+          fromName:countryName(from),
+          toName:countryName(to),
+          previewRole:'flagship'
         });
       }
-      for(const place of entry.trip.places||[]){
-        if(!Number.isFinite(Number(place.coordinates?.lat))||!Number.isFinite(Number(place.coordinates?.lng)))continue;
-        points.push({...place,tripId:entry.meta.id,tripTitle:d.local(entry.meta.title),displayName:d.local(place.name)});
+      for(const country of centroids){
+        if(!Number.isFinite(Number(country.lat))||!Number.isFinite(Number(country.lng)))continue;
+        points.push({
+          id:'flagship-'+country.cca3,
+          tripId:entry.meta.id,
+          tripTitle,
+          displayName:countryName(country),
+          coordinates:{lat:Number(country.lat),lng:Number(country.lng)},
+          previewRole:'flagship'
+        });
       }
     }
     try{
@@ -126,16 +176,19 @@
       globe.arcsData(arcs)
         .arcStartLat(item=>item.start.lat).arcStartLng(item=>item.start.lng)
         .arcEndLat(item=>item.end.lat).arcEndLng(item=>item.end.lng)
-        .arcAltitude(item=>Math.min(.075,.012+Math.max(Math.abs(item.start.lat-item.end.lat),Math.abs(item.start.lng-item.end.lng))*.0015))
-        .arcStroke(item=>item.featured?.34:.22)
-        .arcColor(item=>item.featured?['#59ddff','#9276ff']:'rgba(124,166,205,.44)')
+        .arcAltitude(item=>{
+          const span=Math.max(Math.abs(item.start.lat-item.end.lat),Math.abs(item.start.lng-item.end.lng));
+          return item.previewRole==='flagship'?Math.min(.17,.025+span*.0022):Math.min(.075,.012+span*.0015);
+        })
+        .arcStroke(item=>item.previewRole==='flagship'?.16:(item.featured?.34:.22))
+        .arcColor(item=>item.previewRole==='flagship'?'rgba(89,221,255,.42)':(item.featured?['#59ddff','#9276ff']:'rgba(124,166,205,.44)'))
         .arcDashLength(1).arcDashGap(0).arcDashAnimateTime(0)
         .arcLabel(item=>'<b>'+d.esc(item.tripTitle)+'</b><br><span>'+d.esc(item.fromName)+' → '+d.esc(item.toName)+'</span>')
         .onArcClick(item=>d.onOpenTrip(item.tripId));
       globe.pointsData(points)
         .pointLat(place=>place.coordinates.lat).pointLng(place=>place.coordinates.lng)
-        .pointAltitude(.011).pointRadius(.055)
-        .pointColor(()=> 'rgba(207,243,255,.72)')
+        .pointAltitude(.011).pointRadius(place=>place.previewRole==='flagship'?.026:.055)
+        .pointColor(place=>place.previewRole==='flagship'?'rgba(172,222,240,.42)':'rgba(207,243,255,.72)')
         .pointLabel(place=>'<b>'+d.esc(place.displayName)+'</b><br><span>'+d.esc(place.tripTitle)+'</span>')
         .onPointClick(place=>d.onOpenTrip(place.tripId));
       if(typeof globe.polygonLabel==='function')globe.polygonLabel(()=> '');
@@ -144,7 +197,7 @@
         globe.controls().autoRotateSpeed=.18;
         globe.controls().enableZoom=true;
       }
-      globe.pointOfView({lat:35,lng:10,altitude:2.05},0);
+      globe.pointOfView({lat:22,lng:12,altitude:2.2},0);
     }catch(error){console.warn('Homepage globe render failed',error)}
   }
 
