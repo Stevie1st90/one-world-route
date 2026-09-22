@@ -151,7 +151,7 @@ const server=http.createServer(async(req,res)=>{
     const preview=await handlePreview(req,res,url);
     if(preview!==false)return;
 
-    if(url.pathname==='/'||url.pathname==='/builder')return send(res,302,'', 'text/plain');
+    if(url.pathname==='/'||url.pathname==='/builder'){res.writeHead(302,{location:'/builder/','cache-control':'no-store'});res.end();return;}
     if(url.pathname==='/builder/')return serveFile(res,uiRoot,'index.html');
     if(url.pathname.startsWith('/builder/')){
       const relative=url.pathname.slice('/builder/'.length);
