@@ -136,23 +136,6 @@
         "lat": 65.6885,
         "lng": -18.1262
       }
-    },
-    {
-      "id": "reykjavik-return",
-      "type": "city",
-      "countryCode": "IS",
-      "name": {
-        "en": "Reykjavík",
-        "de": "Reykjavík",
-        "it": "Reykjavík",
-        "es": "Reikiavik",
-        "fr": "Reykjavík",
-        "pt": "Reykjavík"
-      },
-      "coordinates": {
-        "lat": 64.1466,
-        "lng": -21.9426
-      }
     }
   ],
   "stops": [
@@ -199,7 +182,7 @@
     {
       "id": "iceland-ring-road-camper-stop-06",
       "sequence": 6,
-      "placeId": "reykjavik-return",
+      "placeId": "reykjavik",
       "dayStart": 10,
       "dayEnd": 10,
       "nights": 1
