@@ -1,0 +1,439 @@
+{
+  "schemaVersion": 1,
+  "id": "alps-garda-camper-loop",
+  "slug": "alps-garda-camper-loop",
+  "kind": "camper",
+  "status": "illustrative-template",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Alps & Garda Camper Loop",
+    "de": "Alpen & Gardasee Camper-Loop",
+    "it": "Anello camper Alpi e Garda",
+    "es": "Ruta camper Alpes y Garda",
+    "fr": "Boucle camping-car Alpes et Garda",
+    "pt": "Circuito de camper Alpes e Garda"
+  },
+  "summary": {
+    "en": "A 14-day camper template linking Munich, Innsbruck, South Tyrol, the Dolomites, Lake Garda and Salzburg. Vehicle weight, toll class, traffic restrictions, overnight rules and campsite availability must be checked for the actual vehicle and dates.",
+    "de": "Eine 14-tägige Camper-Vorlage über München, Innsbruck, Südtirol, die Dolomiten, den Gardasee und Salzburg. Fahrzeuggewicht, Mautklasse, Verkehrsbeschränkungen, Übernachtungsregeln und Stellplatzverfügbarkeit müssen für Fahrzeug und Reisedaten aktuell geprüft werden.",
+    "it": "Un modello di 14 giorni in camper tra Monaco, Innsbruck, Alto Adige, Dolomiti, Lago di Garda e Salisburgo. Peso del veicolo, classe di pedaggio, limitazioni al traffico, regole di sosta e disponibilità dei campeggi vanno verificati per mezzo e date reali.",
+    "es": "Una plantilla de 14 días en camper por Múnich, Innsbruck, Tirol del Sur, Dolomitas, Lago de Garda y Salzburgo. Deben comprobarse peso, peajes, restricciones, normas de pernocta y disponibilidad para el vehículo y las fechas reales.",
+    "fr": "Un modèle de 14 jours en camping-car via Munich, Innsbruck, le Tyrol du Sud, les Dolomites, le lac de Garde et Salzbourg. Poids, péages, restrictions, règles de nuitée et disponibilités doivent être vérifiés selon le véhicule et les dates.",
+    "pt": "Um modelo de 14 dias de camper por Munique, Innsbruck, Tirol do Sul, Dolomitas, Lago de Garda e Salzburgo. Peso, portagens, restrições, regras de pernoita e disponibilidade devem ser verificados para o veículo e as datas reais."
+  },
+  "geography": {
+    "regions": [
+      "europe",
+      "alps",
+      "southern-europe"
+    ],
+    "countries": [
+      "DE",
+      "AT",
+      "IT"
+    ],
+    "primaryCountry": null,
+    "bounds": {
+      "north": 48.2,
+      "south": 45.4,
+      "west": 10.8,
+      "east": 13.1
+    }
+  },
+  "planning": {
+    "days": 14,
+    "currency": "EUR",
+    "pace": "balanced",
+    "distanceKm": null,
+    "priceModel": "vehicle-and-date-dependent"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 46.9,
+      "lng": 11.8,
+      "altitude": 0.72
+    }
+  },
+  "places": [
+    {
+      "id": "munich-camper",
+      "type": "city",
+      "countryCode": "DE",
+      "name": {
+        "en": "Munich",
+        "de": "München",
+        "it": "Monaco di Baviera",
+        "es": "Múnich",
+        "fr": "Munich",
+        "pt": "Munique"
+      },
+      "coordinates": {
+        "lat": 48.1351,
+        "lng": 11.582
+      }
+    },
+    {
+      "id": "innsbruck-camper",
+      "type": "city",
+      "countryCode": "AT",
+      "name": {
+        "en": "Innsbruck",
+        "de": "Innsbruck",
+        "it": "Innsbruck",
+        "es": "Innsbruck",
+        "fr": "Innsbruck",
+        "pt": "Innsbruck"
+      },
+      "coordinates": {
+        "lat": 47.2692,
+        "lng": 11.4041
+      }
+    },
+    {
+      "id": "bolzano-camper",
+      "type": "city",
+      "countryCode": "IT",
+      "name": {
+        "en": "Bolzano",
+        "de": "Bozen",
+        "it": "Bolzano",
+        "es": "Bolzano",
+        "fr": "Bolzano",
+        "pt": "Bolzano"
+      },
+      "coordinates": {
+        "lat": 46.4983,
+        "lng": 11.3548
+      }
+    },
+    {
+      "id": "cortina-camper",
+      "type": "mountain-town",
+      "countryCode": "IT",
+      "name": {
+        "en": "Cortina d'Ampezzo",
+        "de": "Cortina d’Ampezzo",
+        "it": "Cortina d'Ampezzo",
+        "es": "Cortina d'Ampezzo",
+        "fr": "Cortina d'Ampezzo",
+        "pt": "Cortina d'Ampezzo"
+      },
+      "coordinates": {
+        "lat": 46.5405,
+        "lng": 12.1357
+      }
+    },
+    {
+      "id": "garda-camper",
+      "type": "lake",
+      "countryCode": "IT",
+      "name": {
+        "en": "Lake Garda",
+        "de": "Gardasee",
+        "it": "Lago di Garda",
+        "es": "Lago de Garda",
+        "fr": "Lac de Garde",
+        "pt": "Lago de Garda"
+      },
+      "coordinates": {
+        "lat": 45.6049,
+        "lng": 10.6357
+      }
+    },
+    {
+      "id": "salzburg-camper",
+      "type": "city",
+      "countryCode": "AT",
+      "name": {
+        "en": "Salzburg",
+        "de": "Salzburg",
+        "it": "Salisburgo",
+        "es": "Salzburgo",
+        "fr": "Salzbourg",
+        "pt": "Salzburgo"
+      },
+      "coordinates": {
+        "lat": 47.8095,
+        "lng": 13.055
+      }
+    },
+    {
+      "id": "munich-camper-return",
+      "type": "city",
+      "countryCode": "DE",
+      "name": {
+        "en": "Munich",
+        "de": "München",
+        "it": "Monaco di Baviera",
+        "es": "Múnich",
+        "fr": "Munich",
+        "pt": "Munique"
+      },
+      "coordinates": {
+        "lat": 48.1351,
+        "lng": 11.582
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "agc-stop-01",
+      "sequence": 1,
+      "placeId": "munich-camper",
+      "dayStart": 1,
+      "dayEnd": 1,
+      "nights": 1
+    },
+    {
+      "id": "agc-stop-02",
+      "sequence": 2,
+      "placeId": "innsbruck-camper",
+      "dayStart": 2,
+      "dayEnd": 3,
+      "nights": 2
+    },
+    {
+      "id": "agc-stop-03",
+      "sequence": 3,
+      "placeId": "bolzano-camper",
+      "dayStart": 4,
+      "dayEnd": 5,
+      "nights": 2
+    },
+    {
+      "id": "agc-stop-04",
+      "sequence": 4,
+      "placeId": "cortina-camper",
+      "dayStart": 6,
+      "dayEnd": 7,
+      "nights": 2
+    },
+    {
+      "id": "agc-stop-05",
+      "sequence": 5,
+      "placeId": "garda-camper",
+      "dayStart": 8,
+      "dayEnd": 10,
+      "nights": 3
+    },
+    {
+      "id": "agc-stop-06",
+      "sequence": 6,
+      "placeId": "salzburg-camper",
+      "dayStart": 11,
+      "dayEnd": 13,
+      "nights": 3
+    },
+    {
+      "id": "agc-stop-07",
+      "sequence": 7,
+      "placeId": "munich-camper-return",
+      "dayStart": 14,
+      "dayEnd": 14,
+      "nights": 0
+    }
+  ],
+  "segments": [
+    {
+      "id": "agc-leg-01",
+      "sequence": 1,
+      "fromStopId": "agc-stop-01",
+      "toStopId": "agc-stop-02",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": null,
+        "sourceIds": [
+          "asfinag-vignette"
+        ],
+        "notes": "Camper planning leg. Verify route, vehicle-specific toll regime, road restrictions, parking/overnight rules and campsite availability for the selected dates."
+      }
+    },
+    {
+      "id": "agc-leg-02",
+      "sequence": 2,
+      "fromStopId": "agc-stop-02",
+      "toStopId": "agc-stop-03",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": null,
+        "sourceIds": [
+          "asfinag-vignette",
+          "south-tyrol-camper"
+        ],
+        "notes": "Camper planning leg. Verify route, vehicle-specific toll regime, road restrictions, parking/overnight rules and campsite availability for the selected dates."
+      }
+    },
+    {
+      "id": "agc-leg-03",
+      "sequence": 3,
+      "fromStopId": "agc-stop-03",
+      "toStopId": "agc-stop-04",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": null,
+        "sourceIds": [
+          "south-tyrol-camper"
+        ],
+        "notes": "Camper planning leg. Verify route, vehicle-specific toll regime, road restrictions, parking/overnight rules and campsite availability for the selected dates."
+      }
+    },
+    {
+      "id": "agc-leg-04",
+      "sequence": 4,
+      "fromStopId": "agc-stop-04",
+      "toStopId": "agc-stop-05",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": null,
+        "sourceIds": [
+          "visitgarda"
+        ],
+        "notes": "Camper planning leg. Verify route, vehicle-specific toll regime, road restrictions, parking/overnight rules and campsite availability for the selected dates."
+      }
+    },
+    {
+      "id": "agc-leg-05",
+      "sequence": 5,
+      "fromStopId": "agc-stop-05",
+      "toStopId": "agc-stop-06",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": null,
+        "sourceIds": [
+          "asfinag-vignette"
+        ],
+        "notes": "Camper planning leg. Verify route, vehicle-specific toll regime, road restrictions, parking/overnight rules and campsite availability for the selected dates."
+      }
+    },
+    {
+      "id": "agc-leg-06",
+      "sequence": 6,
+      "fromStopId": "agc-stop-06",
+      "toStopId": "agc-stop-07",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": null,
+        "sourceIds": [
+          "asfinag-vignette"
+        ],
+        "notes": "Camper planning leg. Verify route, vehicle-specific toll regime, road restrictions, parking/overnight rules and campsite availability for the selected dates."
+      }
+    }
+  ],
+  "travellerContext": {
+    "scope": [
+      "passport",
+      "residence",
+      "vehicle",
+      "mobility"
+    ]
+  },
+  "sources": [
+    {
+      "id": "asfinag-vignette",
+      "title": "Vignette and section tolls",
+      "issuer": "ASFINAG",
+      "issuerType": "official-operator",
+      "url": "https://help.asfinag.at/en/vignette-and-section-tolls/",
+      "checkedAt": "2026-09-22",
+      "claims": [
+        "Austrian motorway toll regime depends on vehicle weight",
+        "some Alpine sections use additional section tolls"
+      ]
+    },
+    {
+      "id": "south-tyrol-camper",
+      "title": "Travelling by motorhome in South Tyrol",
+      "issuer": "Südtirol / Alto Adige tourism",
+      "issuerType": "primary-source",
+      "url": "https://www.suedtirol.info/en/en/information/mobility/by-motorhome",
+      "checkedAt": "2026-09-22",
+      "claims": [
+        "motorhome parking and campsite context in South Tyrol",
+        "current traffic restrictions should be checked"
+      ]
+    },
+    {
+      "id": "visitgarda",
+      "title": "Official Lake Garda tourism portal",
+      "issuer": "VisitGarda",
+      "issuerType": "primary-source",
+      "url": "https://www.visitgarda.com/en/garda-unico/",
+      "checkedAt": "2026-09-22",
+      "claims": [
+        "Lake Garda tourism and campsite context"
+      ]
+    }
+  ],
+  "extensions": {}
+}
