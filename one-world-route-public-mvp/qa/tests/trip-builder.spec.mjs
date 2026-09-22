@@ -5,6 +5,8 @@ import {resolve} from 'node:path';
 test('internal builder authors a draft and previews it with the regional engine',async({page,isMobile},testInfo)=>{
   test.setTimeout(90000);
   const slug=('ci-builder-ui-'+testInfo.project.name).toLowerCase().replace(/[^a-z0-9]+/g,'-');
+  const pageErrors=[];
+  page.on('pageerror',error=>pageErrors.push(error.message));
   const root=resolve(process.cwd(),'..');
   const draftBase=resolve(root,'data/platform/drafts',slug);
   try{
@@ -27,6 +29,7 @@ test('internal builder authors a draft and previews it with the regional engine'
     await expect(preview.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:30000});
     await expect(preview.locator('#platformRouteBtn')).toBeVisible();
     await preview.close();
+    expect(pageErrors,'trip builder runtime page errors').toEqual([]);
   }finally{
     await rm(draftBase+'.trip.json',{force:true});
     await rm(draftBase+'.catalog.json',{force:true});
