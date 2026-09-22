@@ -72,6 +72,7 @@ jobs:
           node --check ../internal-trip-builder/server.mjs
           node --check ../internal-trip-builder/test-builder.mjs
           node --check qa/tests/regional-platform.spec.mjs
+          node --check qa/tests/trip-builder.spec.mjs
       - name: Platform data validation
         run: node scripts/validate-platform-data.mjs
       - name: Existing public-data validation
@@ -111,6 +112,18 @@ jobs:
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
         run: npm ci --prefix qa
+      - name: Internal Trip Builder visual QA
+        env:
+          OWR_QA_NO_VIDEO: '1'
+        run: |
+          node ../internal-trip-builder/server.mjs > /tmp/owr-builder.log 2>&1 &
+          BUILDER_PID=$!
+          trap 'kill $BUILDER_PID 2>/dev/null || true' EXIT
+          sleep 1
+          CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          test -n "$CHROME_BIN"
+          cd qa
+          BASE_URL="http://127.0.0.1:4175" OWR_CHROMIUM_PATH="$CHROME_BIN" ./node_modules/.bin/playwright test tests/trip-builder.spec.mjs --project=desktop-1440 --project=mobile-390 --output=builder-test-results
       - name: Regional browser E2E
         env:
           OWR_QA_NO_VIDEO: '1'
@@ -123,6 +136,8 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: regional-browser-qa-${{ github.run_id }}
-          path: one-world-route-public-mvp/qa/test-results
+          path: |
+            one-world-route-public-mvp/qa/test-results
+            one-world-route-public-mvp/qa/builder-test-results
           if-no-files-found: ignore
           retention-days: 7
