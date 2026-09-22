@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "scripts": {
+    "builder": "node internal-trip-builder/server.mjs",
+    "release": "node one-world-route-public-mvp/scripts/release-build.mjs"
+  }
+}
