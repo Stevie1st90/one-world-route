@@ -24,6 +24,7 @@ assert.match(homeHtml,/features\.bundle\.js/);
 const bundle=await fetchOk('/features.bundle.js','feature bundle');
 const bundleText=await bundle.text();
 for(const marker of [
+  'platform/home.js',
   'platform/regional-shell.js',
   'platform/regional-detail.js',
   'platform/regional-globe.js',
