@@ -15,6 +15,30 @@ Every trip uses the same graph:
 
 This supports round trips, rail journeys, road trips, cruises, island hopping, hiking routes, camper routes, city breaks, expeditions and future user-created trips without changing the core renderer.
 
+## Internal Trip Builder
+
+The preferred authoring path for new reusable trips is the local-only builder in `../internal-trip-builder/`.
+
+Run it from the repository root:
+
+```
+node internal-trip-builder/server.mjs
+```
+
+Then open `http://127.0.0.1:4175/__builder/`.
+
+The builder:
+
+- creates drafts under `data/platform/drafts/` (gitignored),
+- can clone an existing reusable public trip into a draft,
+- computes catalog metrics from the actual trip graph,
+- validates localization, graph continuity, transport modes, source evidence, discovery metadata and registered extensions,
+- previews the draft through the real production regional engine without adding it to the public catalog,
+- publishes only after the publication gate passes,
+- writes publication changes to the local working tree only; Git review, QA, commit and deployment remain separate steps.
+
+Draft preview works by locally injecting the selected draft into the catalog response. No draft-only branch exists in `platform.js`, and no builder code is shipped from the Vercel root.
+
 ## Adding a normal curated trip
 
 1. Add `data/platform/trips/<slug>.json`.
