@@ -118,3 +118,30 @@ node scripts/release-build.mjs
 ```
 
 For browser QA also run the Playwright suite in `qa/`.
+
+
+## Internal Trip Builder
+
+For normal curated trips, prefer the repository-local authoring tool in `internal-trip-builder/` instead of editing the public JSON files by hand.
+
+Start it from the repository root on Windows:
+
+```powershell
+.\internal-trip-builder\Start-TripBuilder.ps1
+```
+
+The builder:
+
+- persists unfinished drafts outside the Vercel root,
+- edits the same place -> stop -> segment model documented above,
+- reuses the existing extension validators,
+- derives catalog metrics from the dataset,
+- previews unpublished drafts through the real regional engine,
+- validates localization, discovery metadata, sources and route continuity,
+- publishes only into the local working tree,
+- runs the full platform validator after publication,
+- rolls publication back if that validator fails.
+
+A builder publication is **not** a Git commit and **not** a Vercel deploy. Commit, review, merge and deployment remain explicit later steps.
+
+The visual editor intentionally keeps an Advanced JSON escape hatch for new extension namespaces and fields that do not yet have dedicated controls. Using that editor never bypasses validation.
