@@ -11,6 +11,8 @@ const all=value=>Object.fromEntries(catalog.supportedLocales.map(l=>[l,value]));
 
 function validCycling(){
   const draft=createDraft(catalog,{slug:'alpine-cycling-loop',kind:'cycling',days:8,title:'Alpine Cycling Loop'});
+  draft.trip.status='sourced-beta';
+  draft.catalogEntry.status='sourced-beta';
   draft.trip.title=all('Alpine Cycling Loop');
   draft.trip.summary=all('An illustrative cycling architecture proof with sourced route-ready data.');
   draft.catalogEntry.title=all('Alpine Cycling Loop');
