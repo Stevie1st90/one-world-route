@@ -11,6 +11,7 @@
   const TravellerUi=PLATFORM_MODULES.travellerUi;
   const Discovery=PLATFORM_MODULES.discovery;
   const Extensions=PLATFORM_MODULES.extensions;
+  const Home=PLATFORM_MODULES.home;
   const RouteLibrary=PLATFORM_MODULES.routeLibrary;
   const RegionalShell=PLATFORM_MODULES.regionalShell;
   const RegionalDetail=PLATFORM_MODULES.regionalDetail;
@@ -23,7 +24,9 @@
   const Ui=PLATFORM_MODULES.ui;
   const Navigation=PLATFORM_MODULES.navigation;
   const LegacyLocalization=PLATFORM_MODULES.legacyLocalization;
-  if(!LocaleData||!Formatters||!Model||!Traveller||!TravellerUi||!Discovery||!Extensions||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!RegionalSelection||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
+  if(!LocaleData||!Formatters||!Model||!Traveller||!TravellerUi||!Discovery||!Extensions||!Home||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!RegionalSelection||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
+  const HOME_REQUEST=location.pathname==='/'&&!new URLSearchParams(location.search).has('trip');
+  if(HOME_REQUEST)document.body?.classList?.add?.('platform-home');
   const SUPPORTED_LOCALES=LocaleData.supportedLocales;
   const I18N=LocaleData.messages;
   const $ = (s, r=document) => r.querySelector(s);
@@ -100,6 +103,11 @@
     location.assign(buildTripUrl(id));
   }
 
+  function goHome(){
+    const p=new URLSearchParams(location.search);
+    for(const key of ['trip','segment','country','phase','view'])p.delete(key);
+    location.assign(`/${p.toString()?`?${p.toString()}`:''}`);
+  }
 
   function openRouteLibrary(){
     return RouteLibrary.open({
@@ -340,18 +348,40 @@
   async function init(){
     try{
       catalog=await fetch(CATALOG_URL,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Trip catalog '+r.status);return r.json()});
-      const p=new URLSearchParams(location.search),wanted=p.get('trip')||catalog.defaultTripId;
-      currentTripMeta=catalog.trips.find(x=>x.id===wanted||x.slug===wanted)||catalog.trips.find(x=>x.id===catalog.defaultTripId);
+      const p=new URLSearchParams(location.search);
       const profile=loadProfile();
       const explicitLang=new URLSearchParams(location.search).get('lang');
       if(!SUPPORTED_LOCALES.includes(String(explicitLang||'').toLowerCase())&&profile.language&&SUPPORTED_LOCALES.includes(profile.language))locale=profile.language;
-      Ui.ensureGlobalActions({t,esc,onRoutes:openRouteLibrary,onTraveller:openTraveller});
+      Ui.ensureGlobalActions({t,esc,onHome:goHome,onRoutes:openRouteLibrary,onTraveller:openTraveller});
+      if(HOME_REQUEST){
+        currentTripMeta=null;
+        currentTrip=null;
+        await waitForCore();
+        Home.configure({
+          catalog,
+          Discovery,
+          Model,
+          t,
+          local,
+          esc,
+          facetLabel,
+          statusLabel,
+          pluralLabel,
+          locale:()=>locale,
+          onOpenTrip:setQueryTrip,
+          onTraveller:openTraveller
+        });
+        await Home.open();
+        return;
+      }
+      const wanted=p.get('trip')||catalog.defaultTripId;
+      currentTripMeta=catalog.trips.find(x=>x.id===wanted||x.slug===wanted)||catalog.trips.find(x=>x.id===catalog.defaultTripId);
       if(currentTripMeta.renderer!=='legacy-world') await activateRegionalTrip(currentTripMeta);
       else { await waitForCore(); LegacyLocalization.configure({getLocale:()=>locale,t}).activate(); }
     }catch(e){console.warn('ONE WORLD ROUTE platform layer unavailable',e)}
   }
 
-  window.ONE_WORLD_PLATFORM={openRoutes:openRouteLibrary,openTraveller,getProfile:loadProfile,getTrip:()=>currentTripMeta,buildTripUrl,setTerrain:active=>Terrain.setActive(active),startStory:()=>Story.start(),stopStory:()=>Story.stop(),focusRoute:()=>{if(document.body.classList.contains('terrain-view'))Terrain.focusRoute();else RegionalGlobe.focusRoute()}};
+  window.ONE_WORLD_PLATFORM={openHome:goHome,openRoutes:openRouteLibrary,openTraveller,getProfile:loadProfile,getTrip:()=>currentTripMeta,buildTripUrl,setTerrain:active=>Terrain.setActive(active),startStory:()=>Story.start(),stopStory:()=>Story.stop(),focusRoute:()=>{if(document.body.classList.contains('platform-home'))return Home.renderGlobe();if(document.body.classList.contains('terrain-view'))Terrain.focusRoute();else RegionalGlobe.focusRoute()}};
   document.addEventListener('keydown',e=>{
     if(!document.body.classList.contains('platform-regional-trip')||['INPUT','SELECT','TEXTAREA'].includes(document.activeElement?.tagName))return;
     if(e.key==='Escape'&&Story.isActive()){e.preventDefault();Story.stop()}
