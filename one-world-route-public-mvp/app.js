@@ -43,7 +43,7 @@
   };
   let inlineHits=[];
   let commandHits=[];
-  const platformOwnsRoute=()=>document.body.classList.contains('platform-regional-trip')||new URLSearchParams(location.search).has('trip');
+  const platformOwnsRoute=()=>document.body.classList.contains('platform-home')||document.body.classList.contains('platform-regional-trip')||new URLSearchParams(location.search).has('trip');
   const EN=window.ONE_WORLD_EN||{locale:'en',registerCountries(){},country:s=>s,mode:s=>s,text:s=>s,value:s=>s};
   const UI_LOCALE=EN.locale||'en';
   const countryDisplay=c=>c?.displayName||EN.country(c?.name||'',c?.cca2||'');
