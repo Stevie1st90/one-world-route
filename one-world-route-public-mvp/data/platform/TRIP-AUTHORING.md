@@ -22,6 +22,12 @@ The preferred authoring path for new reusable trips is the local-only builder in
 Run it from the repository root:
 
 ```
+npm run builder
+```
+
+Direct fallback:
+
+```
 node internal-trip-builder/server.mjs
 ```
 
