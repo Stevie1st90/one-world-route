@@ -229,7 +229,13 @@ function renderPlaces(){
 
   $$('[data-place-index]',root).forEach(row=>{
     const index=Number(row.dataset.placeIndex),place=trip.places[index];
-    $('[data-field="id"]',row).oninput=e=>{place.id=e.target.value.trim();markDirty();renderStops()};
+    $('[data-field="id"]',row).onchange=e=>{
+      const previous=place.id;
+      const next=e.target.value.trim();
+      place.id=next;
+      for(const stop of trip.stops||[])if(stop.placeId===previous)stop.placeId=next;
+      markDirty();renderStops();
+    };
     $('[data-field="type"]',row).oninput=e=>{place.type=e.target.value.trim();markDirty()};
     $('[data-field="countryCode"]',row).oninput=e=>{place.countryCode=e.target.value.trim().toUpperCase();markDirty();renderMetrics()};
     $('[data-field="lat"]',row).oninput=e=>{place.coordinates=place.coordinates||{};place.coordinates.lat=e.target.value===''?null:Number(e.target.value);markDirty()};
@@ -275,7 +281,16 @@ function renderStops(){
 
   $$('[data-stop-index]',root).forEach(row=>{
     const index=Number(row.dataset.stopIndex),stop=trip.stops[index];
-    $('[data-stop-field="id"]',row).oninput=e=>{stop.id=e.target.value.trim();markDirty()};
+    $('[data-stop-field="id"]',row).onchange=e=>{
+      const previous=stop.id;
+      const next=e.target.value.trim();
+      stop.id=next;
+      for(const segment of trip.segments||[]){
+        if(segment.fromStopId===previous)segment.fromStopId=next;
+        if(segment.toStopId===previous)segment.toStopId=next;
+      }
+      markDirty();renderSegments();
+    };
     $('[data-stop-field="placeId"]',row).onchange=e=>{stop.placeId=e.target.value;markDirty()};
     for(const field of ['dayStart','dayEnd','nights'])$('[data-stop-field="'+field+'"]',row).oninput=e=>{stop[field]=e.target.value===''?null:Number(e.target.value);markDirty()};
   });
