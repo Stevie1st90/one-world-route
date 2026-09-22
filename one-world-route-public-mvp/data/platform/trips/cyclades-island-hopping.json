@@ -1,0 +1,270 @@
+{
+  "schemaVersion": 1,
+  "id": "cyclades-island-hopping",
+  "slug": "cyclades-island-hopping",
+  "kind": "island-hopping",
+  "status": "sourced-beta",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Cyclades Island Hopping",
+    "de": "Kykladen · Inselhopping",
+    "it": "Isole Cicladi · Island hopping",
+    "es": "Islas Cícladas · Salto entre islas",
+    "fr": "Cyclades · D'île en île",
+    "pt": "Cíclades · Island hopping"
+  },
+  "summary": {
+    "en": "An eight-day Cyclades ferry journey linking Piraeus with Paros, Naxos and Santorini. The corridor is operator-sourced, while sailing times and fares remain date-sensitive.",
+    "de": "Eine achttägige Fährreise durch die Kykladen von Piräus über Paros und Naxos nach Santorini. Der Korridor ist durch Betreiberquellen belegt; Fahrzeiten und Preise bleiben datumsabhängig.",
+    "it": "Un viaggio di otto giorni in traghetto nelle Cicladi dal Pireo a Paros, Naxos e Santorini. Il corridoio è documentato dall'operatore, mentre orari e tariffe dipendono dalla data.",
+    "es": "Un viaje de ocho días en ferry por las Cícladas desde El Pireo hasta Paros, Naxos y Santorini. El corredor está respaldado por el operador; horarios y tarifas dependen de la fecha.",
+    "fr": "Un voyage de huit jours en ferry dans les Cyclades du Pirée à Paros, Naxos et Santorin. Le corridor est documenté par l'opérateur, mais horaires et tarifs dépendent de la date.",
+    "pt": "Uma viagem de oito dias de ferry pelas Cíclades, do Pireu a Paros, Naxos e Santorini. O corredor é documentado pelo operador; horários e tarifas dependem da data."
+  },
+  "geography": {
+    "countries": [
+      "GR"
+    ],
+    "primaryCountry": "GR"
+  },
+  "planning": {
+    "days": 8,
+    "currency": "EUR",
+    "pace": "relaxed",
+    "distanceKm": null,
+    "priceModel": "current-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 37,
+      "lng": 24.6,
+      "altitude": 0.42
+    }
+  },
+  "places": [
+    {
+      "id": "piraeus",
+      "type": "port",
+      "countryCode": "GR",
+      "name": {
+        "en": "Piraeus",
+        "de": "Piräus",
+        "it": "Pireo",
+        "es": "El Pireo",
+        "fr": "Le Pirée",
+        "pt": "Pireu"
+      },
+      "coordinates": {
+        "lat": 37.942,
+        "lng": 23.646
+      }
+    },
+    {
+      "id": "paros",
+      "type": "island",
+      "countryCode": "GR",
+      "name": {
+        "en": "Paros",
+        "de": "Paros",
+        "it": "Paros",
+        "es": "Paros",
+        "fr": "Paros",
+        "pt": "Paros"
+      },
+      "coordinates": {
+        "lat": 37.0856,
+        "lng": 25.1488
+      }
+    },
+    {
+      "id": "naxos",
+      "type": "island",
+      "countryCode": "GR",
+      "name": {
+        "en": "Naxos",
+        "de": "Naxos",
+        "it": "Naxos",
+        "es": "Naxos",
+        "fr": "Naxos",
+        "pt": "Naxos"
+      },
+      "coordinates": {
+        "lat": 37.1036,
+        "lng": 25.3764
+      }
+    },
+    {
+      "id": "santorini",
+      "type": "island",
+      "countryCode": "GR",
+      "name": {
+        "en": "Santorini",
+        "de": "Santorini",
+        "it": "Santorini",
+        "es": "Santorini",
+        "fr": "Santorin",
+        "pt": "Santorini"
+      },
+      "coordinates": {
+        "lat": 36.3932,
+        "lng": 25.4615
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "cyclades-island-hopping-stop-01",
+      "sequence": 1,
+      "placeId": "piraeus",
+      "dayStart": 1,
+      "dayEnd": 1,
+      "nights": 1
+    },
+    {
+      "id": "cyclades-island-hopping-stop-02",
+      "sequence": 2,
+      "placeId": "paros",
+      "dayStart": 2,
+      "dayEnd": 3,
+      "nights": 2
+    },
+    {
+      "id": "cyclades-island-hopping-stop-03",
+      "sequence": 3,
+      "placeId": "naxos",
+      "dayStart": 4,
+      "dayEnd": 5,
+      "nights": 2
+    },
+    {
+      "id": "cyclades-island-hopping-stop-04",
+      "sequence": 4,
+      "placeId": "santorini",
+      "dayStart": 6,
+      "dayEnd": 8,
+      "nights": 3
+    }
+  ],
+  "segments": [
+    {
+      "id": "cyclades-island-hopping-leg-01",
+      "sequence": 1,
+      "fromStopId": "cyclades-island-hopping-stop-01",
+      "toStopId": "cyclades-island-hopping-stop-02",
+      "transport": {
+        "mode": "ferry",
+        "stages": [
+          {
+            "mode": "ferry",
+            "sourceIds": [
+              "blue-star-cyclades"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "blue-star-cyclades"
+        ],
+        "notes": "Operator corridor evidence is stable; exact sailing, vessel, duration and fare require a live check for the selected date."
+      }
+    },
+    {
+      "id": "cyclades-island-hopping-leg-02",
+      "sequence": 2,
+      "fromStopId": "cyclades-island-hopping-stop-02",
+      "toStopId": "cyclades-island-hopping-stop-03",
+      "transport": {
+        "mode": "ferry",
+        "stages": [
+          {
+            "mode": "ferry",
+            "sourceIds": [
+              "blue-star-cyclades"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "blue-star-cyclades"
+        ],
+        "notes": "Operator corridor evidence is stable; exact sailing, vessel, duration and fare require a live check for the selected date."
+      }
+    },
+    {
+      "id": "cyclades-island-hopping-leg-03",
+      "sequence": 3,
+      "fromStopId": "cyclades-island-hopping-stop-03",
+      "toStopId": "cyclades-island-hopping-stop-04",
+      "transport": {
+        "mode": "ferry",
+        "stages": [
+          {
+            "mode": "ferry",
+            "sourceIds": [
+              "blue-star-cyclades"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "blue-star-cyclades"
+        ],
+        "notes": "Operator corridor evidence is stable; exact sailing, vessel, duration and fare require a live check for the selected date."
+      }
+    }
+  ],
+  "chapters": [],
+  "sources": [
+    {
+      "id": "blue-star-cyclades",
+      "title": "Piraeus Port Map · Cyclades ferry corridors",
+      "issuer": "Blue Star Ferries",
+      "issuerType": "official-operator",
+      "url": "https://www.bluestarferries.com/en-gb/piraeus-port-map",
+      "checkedAt": "2026-09-22",
+      "claims": [
+        "Piraeus services to Paros, Naxos and Santorini",
+        "Cyclades ferry corridor evidence",
+        "live timetable required for exact sailing"
+      ]
+    }
+  ],
+  "extensions": {}
+}
