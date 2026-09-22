@@ -1,13 +1,46 @@
 const LOCAL_PREVIEW=['127.0.0.1','localhost','::1'].includes(self.location.hostname);
-const CACHE='one-world-route-regional-hardening-20260921b';
-const CORE=['/','/index.html','/core.bundle.css','/features.bundle.css','/core.bundle.js','/features.bundle.js','/manifest.webmanifest','/icon.svg','/data/public-route.json','/data/country-centroids.json','/data/route-waypoints.json','/data/flight-geometries.json','/data/operational-movements.json','/data/platform/trips.json','/data/platform/trips/italy-grand-tour.json','/data/platform/trips/western-mediterranean-cruise-loop.json','/data/platform/trips/southern-europe-road-trip.json','/data/platform/trip-schema.json','/data/platform/traveller-context-schema.json','/data/platform/traveller-rule-schema.json'];
-self.addEventListener('install',e=>e.waitUntil((LOCAL_PREVIEW?Promise.resolve():caches.open(CACHE).then(c=>c.addAll(CORE))).then(()=>self.skipWaiting())));
-self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>LOCAL_PREVIEW||k!==CACHE).map(k=>caches.delete(k)))).then(()=>LOCAL_PREVIEW?self.registration.unregister():true).then(()=>self.clients.claim())));
-self.addEventListener('fetch',e=>{
-  if(LOCAL_PREVIEW||e.request.method!=='GET')return;
-  const u=new URL(e.request.url);
-  if(/tile\.openstreetmap\.org|tiles\.mapterhorn\.com|download\.mapterhorn\.com/.test(u.hostname))return;
-  if(u.origin!==location.origin)return;
-  if(/\/(actual-progress|media|changelog)\.json$/.test(u.pathname)){e.respondWith(fetch(e.request));return;}
-  e.respondWith(caches.match(e.request).then(hit=>hit||fetch(e.request).then(r=>{if(r.ok){const copy=r.clone();caches.open(CACHE).then(c=>c.put(e.request,copy));}return r;}).catch(()=>caches.match('/index.html'))));
+const CACHE='one-world-route-network-first-20260922';
+const SHELL=['/','/index.html','/core.bundle.css','/features.bundle.css','/core.bundle.js','/features.bundle.js','/manifest.webmanifest','/icon.svg'];
+
+async function remember(request,response){
+  if(response?.ok){
+    const cache=await caches.open(CACHE);
+    await cache.put(request,response.clone());
+  }
+  return response;
+}
+
+async function networkFirst(request){
+  try{
+    return await remember(request,await fetch(request));
+  }catch(error){
+    const cached=await caches.match(request);
+    if(cached)return cached;
+    if(request.mode==='navigate')return caches.match('/index.html');
+    throw error;
+  }
+}
+
+self.addEventListener('install',event=>{
+  event.waitUntil(
+    (LOCAL_PREVIEW?Promise.resolve():caches.open(CACHE).then(cache=>cache.addAll(SHELL)))
+      .then(()=>self.skipWaiting())
+  );
+});
+
+self.addEventListener('activate',event=>{
+  event.waitUntil(
+    caches.keys()
+      .then(keys=>Promise.all(keys.filter(key=>LOCAL_PREVIEW||key!==CACHE).map(key=>caches.delete(key))))
+      .then(()=>LOCAL_PREVIEW?self.registration.unregister():true)
+      .then(()=>self.clients.claim())
+  );
+});
+
+self.addEventListener('fetch',event=>{
+  if(LOCAL_PREVIEW||event.request.method!=='GET')return;
+  const url=new URL(event.request.url);
+  if(/tile\.openstreetmap\.org|tiles\.mapterhorn\.com|download\.mapterhorn\.com/.test(url.hostname))return;
+  if(url.origin!==location.origin)return;
+  event.respondWith(networkFirst(event.request));
 });
