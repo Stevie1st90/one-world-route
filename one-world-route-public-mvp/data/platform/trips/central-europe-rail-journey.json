@@ -1,0 +1,769 @@
+{
+  "schemaVersion": 1,
+  "id": "central-europe-rail-journey",
+  "slug": "central-europe-rail-journey",
+  "kind": "rail",
+  "status": "sourced-beta",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Central Europe Rail Journey",
+    "de": "Mitteleuropa mit der Bahn",
+    "it": "Viaggio ferroviario nell'Europa centrale",
+    "es": "Viaje ferroviario por Europa Central",
+    "fr": "Voyage ferroviaire en Europe centrale",
+    "pt": "Viagem ferroviária pela Europa Central"
+  },
+  "summary": {
+    "en": "An 18-day rail-only city journey from Paris to Berlin through Belgium, the Netherlands, Germany, Austria, Hungary and Czechia. Stable route evidence is separated from date-sensitive timetables, fares and engineering works.",
+    "de": "Eine 18-tägige reine Bahnreise von Paris nach Berlin über Belgien, die Niederlande, Deutschland, Österreich, Ungarn und Tschechien. Stabile Routenbelege werden klar von datumsabhängigen Fahrplänen, Preisen und Bauarbeiten getrennt.",
+    "it": "Un viaggio di 18 giorni solo in treno da Parigi a Berlino attraverso Belgio, Paesi Bassi, Germania, Austria, Ungheria e Cechia. Le prove stabili del percorso sono separate da orari, prezzi e lavori dipendenti dalla data.",
+    "es": "Un viaje de 18 días solo en tren de París a Berlín por Bélgica, Países Bajos, Alemania, Austria, Hungría y Chequia. La evidencia estable de la ruta se separa de horarios, precios y obras dependientes de la fecha.",
+    "fr": "Un voyage de 18 jours uniquement en train de Paris à Berlin via la Belgique, les Pays-Bas, l'Allemagne, l'Autriche, la Hongrie et la Tchéquie. Les preuves stables sont séparées des horaires, tarifs et travaux dépendant des dates.",
+    "pt": "Uma viagem de 18 dias apenas de trem de Paris a Berlim pela Bélgica, Países Baixos, Alemanha, Áustria, Hungria e Chéquia. Evidências estáveis da rota ficam separadas de horários, preços e obras dependentes da data."
+  },
+  "geography": {
+    "countries": [
+      "FR",
+      "BE",
+      "NL",
+      "DE",
+      "AT",
+      "HU",
+      "CZ"
+    ],
+    "primaryCountry": null,
+    "bounds": {
+      "north": 52.7,
+      "south": 47.3,
+      "west": 2.1,
+      "east": 19.3
+    }
+  },
+  "planning": {
+    "days": 18,
+    "currency": "EUR",
+    "pace": "active",
+    "distanceKm": null,
+    "priceModel": "live-operator-check"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 50,
+      "lng": 10.8,
+      "altitude": 0.52
+    }
+  },
+  "places": [
+    {
+      "id": "paris",
+      "type": "city",
+      "countryCode": "FR",
+      "name": {
+        "en": "Paris",
+        "de": "Paris",
+        "it": "Parigi",
+        "es": "París",
+        "fr": "Paris",
+        "pt": "Paris"
+      },
+      "coordinates": {
+        "lat": 48.8566,
+        "lng": 2.3522
+      }
+    },
+    {
+      "id": "brussels",
+      "type": "city",
+      "countryCode": "BE",
+      "name": {
+        "en": "Brussels",
+        "de": "Brüssel",
+        "it": "Bruxelles",
+        "es": "Bruselas",
+        "fr": "Bruxelles",
+        "pt": "Bruxelas"
+      },
+      "coordinates": {
+        "lat": 50.8503,
+        "lng": 4.3517
+      }
+    },
+    {
+      "id": "amsterdam",
+      "type": "city",
+      "countryCode": "NL",
+      "name": {
+        "en": "Amsterdam",
+        "de": "Amsterdam",
+        "it": "Amsterdam",
+        "es": "Ámsterdam",
+        "fr": "Amsterdam",
+        "pt": "Amesterdão"
+      },
+      "coordinates": {
+        "lat": 52.3676,
+        "lng": 4.9041
+      }
+    },
+    {
+      "id": "cologne",
+      "type": "city",
+      "countryCode": "DE",
+      "name": {
+        "en": "Cologne",
+        "de": "Köln",
+        "it": "Colonia",
+        "es": "Colonia",
+        "fr": "Cologne",
+        "pt": "Colónia"
+      },
+      "coordinates": {
+        "lat": 50.9375,
+        "lng": 6.9603
+      }
+    },
+    {
+      "id": "frankfurt",
+      "type": "city",
+      "countryCode": "DE",
+      "name": {
+        "en": "Frankfurt",
+        "de": "Frankfurt",
+        "it": "Francoforte",
+        "es": "Fráncfort",
+        "fr": "Francfort",
+        "pt": "Frankfurt"
+      },
+      "coordinates": {
+        "lat": 50.1109,
+        "lng": 8.6821
+      }
+    },
+    {
+      "id": "munich",
+      "type": "city",
+      "countryCode": "DE",
+      "name": {
+        "en": "Munich",
+        "de": "München",
+        "it": "Monaco di Baviera",
+        "es": "Múnich",
+        "fr": "Munich",
+        "pt": "Munique"
+      },
+      "coordinates": {
+        "lat": 48.1351,
+        "lng": 11.582
+      }
+    },
+    {
+      "id": "vienna",
+      "type": "city",
+      "countryCode": "AT",
+      "name": {
+        "en": "Vienna",
+        "de": "Wien",
+        "it": "Vienna",
+        "es": "Viena",
+        "fr": "Vienne",
+        "pt": "Viena"
+      },
+      "coordinates": {
+        "lat": 48.2082,
+        "lng": 16.3738
+      }
+    },
+    {
+      "id": "budapest",
+      "type": "city",
+      "countryCode": "HU",
+      "name": {
+        "en": "Budapest",
+        "de": "Budapest",
+        "it": "Budapest",
+        "es": "Budapest",
+        "fr": "Budapest",
+        "pt": "Budapeste"
+      },
+      "coordinates": {
+        "lat": 47.4979,
+        "lng": 19.0402
+      }
+    },
+    {
+      "id": "prague",
+      "type": "city",
+      "countryCode": "CZ",
+      "name": {
+        "en": "Prague",
+        "de": "Prag",
+        "it": "Praga",
+        "es": "Praga",
+        "fr": "Prague",
+        "pt": "Praga"
+      },
+      "coordinates": {
+        "lat": 50.0755,
+        "lng": 14.4378
+      }
+    },
+    {
+      "id": "berlin",
+      "type": "city",
+      "countryCode": "DE",
+      "name": {
+        "en": "Berlin",
+        "de": "Berlin",
+        "it": "Berlino",
+        "es": "Berlín",
+        "fr": "Berlin",
+        "pt": "Berlim"
+      },
+      "coordinates": {
+        "lat": 52.52,
+        "lng": 13.405
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "cer-stop-01",
+      "sequence": 1,
+      "placeId": "paris",
+      "dayStart": 1,
+      "dayEnd": 2,
+      "nights": 2
+    },
+    {
+      "id": "cer-stop-02",
+      "sequence": 2,
+      "placeId": "brussels",
+      "dayStart": 3,
+      "dayEnd": 3,
+      "nights": 1
+    },
+    {
+      "id": "cer-stop-03",
+      "sequence": 3,
+      "placeId": "amsterdam",
+      "dayStart": 4,
+      "dayEnd": 5,
+      "nights": 2
+    },
+    {
+      "id": "cer-stop-04",
+      "sequence": 4,
+      "placeId": "cologne",
+      "dayStart": 6,
+      "dayEnd": 6,
+      "nights": 1
+    },
+    {
+      "id": "cer-stop-05",
+      "sequence": 5,
+      "placeId": "frankfurt",
+      "dayStart": 7,
+      "dayEnd": 7,
+      "nights": 1
+    },
+    {
+      "id": "cer-stop-06",
+      "sequence": 6,
+      "placeId": "munich",
+      "dayStart": 8,
+      "dayEnd": 9,
+      "nights": 2
+    },
+    {
+      "id": "cer-stop-07",
+      "sequence": 7,
+      "placeId": "vienna",
+      "dayStart": 10,
+      "dayEnd": 11,
+      "nights": 2
+    },
+    {
+      "id": "cer-stop-08",
+      "sequence": 8,
+      "placeId": "budapest",
+      "dayStart": 12,
+      "dayEnd": 13,
+      "nights": 2
+    },
+    {
+      "id": "cer-stop-09",
+      "sequence": 9,
+      "placeId": "prague",
+      "dayStart": 14,
+      "dayEnd": 15,
+      "nights": 2
+    },
+    {
+      "id": "cer-stop-10",
+      "sequence": 10,
+      "placeId": "berlin",
+      "dayStart": 16,
+      "dayEnd": 18,
+      "nights": 3
+    }
+  ],
+  "segments": [
+    {
+      "id": "cer-leg-01",
+      "sequence": 1,
+      "fromStopId": "cer-stop-01",
+      "toStopId": "cer-stop-02",
+      "transport": {
+        "mode": "rail",
+        "stages": [
+          {
+            "mode": "rail",
+            "operator": "Eurostar",
+            "from": "Paris Gare du Nord",
+            "to": "Bruxelles-Midi / Brussel-Zuid",
+            "durationMinutes": 82,
+            "sourceIds": [
+              "eurostar-paris-brussels"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": 82,
+        "durationBasis": "operator-published-current",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "verified",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "eurostar-paris-brussels"
+        ],
+        "notes": "Eurostar publishes a direct Paris–Brussels journey of about 1 h 22 min. Departure time and fare must still be checked for the selected date."
+      }
+    },
+    {
+      "id": "cer-leg-02",
+      "sequence": 2,
+      "fromStopId": "cer-stop-02",
+      "toStopId": "cer-stop-03",
+      "transport": {
+        "mode": "rail",
+        "stages": [
+          {
+            "mode": "rail",
+            "operator": "Eurostar",
+            "from": "Bruxelles-Midi / Brussel-Zuid",
+            "to": "Amsterdam Centraal",
+            "durationMinutes": 112,
+            "sourceIds": [
+              "eurostar-brussels-amsterdam"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": 112,
+        "durationBasis": "operator-published-current",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "verified",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "eurostar-brussels-amsterdam"
+        ],
+        "notes": "Eurostar publishes a direct Brussels–Amsterdam journey of about 1 h 52 min. Live timetable and fare remain date-dependent."
+      }
+    },
+    {
+      "id": "cer-leg-03",
+      "sequence": 3,
+      "fromStopId": "cer-stop-03",
+      "toStopId": "cer-stop-04",
+      "transport": {
+        "mode": "rail",
+        "stages": [
+          {
+            "mode": "rail",
+            "operator": "ICE International",
+            "from": "Amsterdam Centraal",
+            "to": "Köln Hbf",
+            "durationMinutes": 157,
+            "sourceIds": [
+              "ns-amsterdam-cologne"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": 157,
+        "durationBasis": "operator-published-current",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "verified",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "ns-amsterdam-cologne"
+        ],
+        "notes": "NS International publishes a direct Amsterdam–Cologne ICE journey with a shortest travel time of about 2 h 37 min. Check engineering works before travel."
+      }
+    },
+    {
+      "id": "cer-leg-04",
+      "sequence": 4,
+      "fromStopId": "cer-stop-04",
+      "toStopId": "cer-stop-05",
+      "transport": {
+        "mode": "rail",
+        "stages": [
+          {
+            "mode": "rail",
+            "operator": "Deutsche Bahn · ICE",
+            "from": "Köln Hbf",
+            "to": "Frankfurt (Main) Hbf",
+            "durationMinutes": 67,
+            "sourceIds": [
+              "db-cologne-frankfurt"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": 67,
+        "durationBasis": "operator-published-current",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "verified",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "db-cologne-frankfurt"
+        ],
+        "notes": "DB currently lists direct ICE journeys, with the fastest published example around 1 h 07 min. Timings and fares vary by date."
+      }
+    },
+    {
+      "id": "cer-leg-05",
+      "sequence": 5,
+      "fromStopId": "cer-stop-05",
+      "toStopId": "cer-stop-06",
+      "transport": {
+        "mode": "rail",
+        "stages": [
+          {
+            "mode": "rail",
+            "operator": "Deutsche Bahn · ICE",
+            "from": "Frankfurt (Main) Hbf",
+            "to": "München Hbf",
+            "durationMinutes": 195,
+            "sourceIds": [
+              "db-frankfurt-munich"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": 195,
+        "durationBasis": "operator-published-current",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "verified",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "db-frankfurt-munich"
+        ],
+        "notes": "DB currently lists direct ICE journeys, with the fastest published example around 3 h 15 min. Timings and fares vary by date."
+      }
+    },
+    {
+      "id": "cer-leg-06",
+      "sequence": 6,
+      "fromStopId": "cer-stop-06",
+      "toStopId": "cer-stop-07",
+      "transport": {
+        "mode": "rail",
+        "stages": [
+          {
+            "mode": "rail",
+            "operator": "ÖBB · Railjet / international long-distance",
+            "from": "München Hbf",
+            "to": "Wien Hbf",
+            "sourceIds": [
+              "oebb-munich-vienna"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "verified",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "oebb-munich-vienna"
+        ],
+        "notes": "ÖBB confirms regular direct long-distance services between Vienna and Munich. Exact 2026 departure and arrival times must be checked in the live timetable, especially during engineering works."
+      }
+    },
+    {
+      "id": "cer-leg-07",
+      "sequence": 7,
+      "fromStopId": "cer-stop-07",
+      "toStopId": "cer-stop-08",
+      "transport": {
+        "mode": "rail",
+        "stages": [
+          {
+            "mode": "rail",
+            "operator": "ÖBB · Railjet",
+            "from": "Wien Hbf",
+            "to": "Budapest",
+            "sourceIds": [
+              "oebb-vienna-budapest"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "verified",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "oebb-vienna-budapest"
+        ],
+        "notes": "ÖBB states that Vienna–Budapest has a direct hourly train service. Exact station, departure time and fare must be resolved for the selected date."
+      }
+    },
+    {
+      "id": "cer-leg-08",
+      "sequence": 8,
+      "fromStopId": "cer-stop-08",
+      "toStopId": "cer-stop-09",
+      "transport": {
+        "mode": "rail",
+        "stages": [
+          {
+            "mode": "rail",
+            "operator": "MÁV / ČD · Metropolitan",
+            "from": "Budapest-Nyugati",
+            "to": "Praha",
+            "sourceIds": [
+              "cd-budapest-prague-corridor",
+              "cd-budapest-prague-rj274"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "cd-budapest-prague-corridor",
+          "cd-budapest-prague-rj274"
+        ],
+        "notes": "ČD documents the direct Metropolitan corridor between Prague and Budapest, and the 2026 timetable includes direct rj 274 from Budapest-Nyugati to Praha hl.n. Exact travel-date timing and disruption status still require a live operator check."
+      }
+    },
+    {
+      "id": "cer-leg-09",
+      "sequence": 9,
+      "fromStopId": "cer-stop-09",
+      "toStopId": "cer-stop-10",
+      "transport": {
+        "mode": "rail",
+        "stages": [
+          {
+            "mode": "rail",
+            "operator": "ČD / DB · EuroCity / railjet",
+            "from": "Praha",
+            "to": "Berlin Hbf",
+            "sourceIds": [
+              "cd-prague-berlin"
+            ],
+            "durationMinutes": 249
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": 249,
+        "durationBasis": "operator-published-current",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "verified",
+        "lastVerified": "2026-09-21",
+        "sourceIds": [
+          "cd-prague-berlin"
+        ],
+        "notes": "ČD publishes direct Prague–Berlin trains about every two hours with a current journey time of about 4 h 09 min. Exact travel-date departure and engineering works must still be checked."
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "eurostar-paris-brussels",
+      "title": "Paris → Brussels by Eurostar",
+      "issuer": "Eurostar",
+      "issuerType": "official-operator",
+      "url": "https://www.eurostar.com/de-de/zug/paris-bruessel",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "direct city-centre service",
+        "published journey about 1 h 22 min",
+        "live timetable and fares available"
+      ]
+    },
+    {
+      "id": "eurostar-brussels-amsterdam",
+      "title": "Brussels → Amsterdam by Eurostar",
+      "issuer": "Eurostar",
+      "issuerType": "official-operator",
+      "url": "https://www.eurostar.com/de-de/zug/bruessel-amsterdam",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "direct city-centre service",
+        "published journey about 1 h 52 min",
+        "live timetable and fares available"
+      ]
+    },
+    {
+      "id": "ns-amsterdam-cologne",
+      "title": "Amsterdam → Cologne by ICE International",
+      "issuer": "NS International",
+      "issuerType": "official-operator",
+      "url": "https://www.nsinternational.com/en/train/amsterdam-cologne",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "direct Amsterdam Centraal–Köln Hbf service",
+        "shortest published travel time about 2 h 37 min"
+      ]
+    },
+    {
+      "id": "db-cologne-frankfurt",
+      "title": "Cologne → Frankfurt by train",
+      "issuer": "Deutsche Bahn",
+      "issuerType": "official-operator",
+      "url": "https://www.bahn.de/reisen/view/verbindung/koeln/frankfurt.shtml",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "direct ICE services listed",
+        "fastest current published example about 1 h 07 min"
+      ]
+    },
+    {
+      "id": "db-frankfurt-munich",
+      "title": "Frankfurt → Munich by train",
+      "issuer": "Deutsche Bahn",
+      "issuerType": "official-operator",
+      "url": "https://www.bahn.de/reisen/view/verbindung/frankfurt/muenchen.shtml",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "direct ICE services listed",
+        "fastest current published example about 3 h 15 min"
+      ]
+    },
+    {
+      "id": "oebb-munich-vienna",
+      "title": "Munich international rail connections",
+      "issuer": "ÖBB",
+      "issuerType": "official-operator",
+      "url": "https://www.oebb.at/de/reiseplanung-services/oebb-zugverbindungen/zugverbindungen-europa/muenchen",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "direct long-distance services connect Vienna and Munich",
+        "live timetable required for exact 2026 timings"
+      ]
+    },
+    {
+      "id": "oebb-vienna-budapest",
+      "title": "Vienna → Budapest by train",
+      "issuer": "ÖBB",
+      "issuerType": "official-operator",
+      "url": "https://www.oebb.at/de/reiseplanung-services/oebb-zugverbindungen/zugverbindungen-europa/budapest",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "direct Vienna–Budapest service",
+        "hourly service stated by operator"
+      ]
+    },
+    {
+      "id": "cd-budapest-prague-corridor",
+      "title": "Prague ↔ Budapest by EuroCity Metropolitan",
+      "issuer": "České dráhy",
+      "issuerType": "official-operator",
+      "url": "https://www.cd.cz/trasy/trasy-madarsko/praha-budapest/-30120/",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "direct EuroCity Metropolitan corridor between Prague and Budapest",
+        "operator publishes regular direct service on the corridor"
+      ]
+    },
+    {
+      "id": "cd-budapest-prague-rj274",
+      "title": "2026 rj 274 Metropolitan · Budapest → Prague",
+      "issuer": "České dráhy",
+      "issuerType": "official-operator",
+      "url": "https://www.cd.cz/vlak/274/7.5.2026/5500728/13.30/5457076/20.23/",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "2026 timetable evidence for direct Budapest-Nyugati → Praha hl.n. service",
+        "travel-date operation and disruptions require live confirmation"
+      ]
+    },
+    {
+      "id": "cd-prague-berlin",
+      "title": "Prague → Berlin by direct train",
+      "issuer": "České dráhy",
+      "issuerType": "official-operator",
+      "url": "https://www.cd.cz/trasy/nemecko/praha-berlin/-30009/",
+      "checkedAt": "2026-09-21",
+      "claims": [
+        "direct Prague–Berlin service",
+        "published journey about 4 h 09 min",
+        "direct trains published about every two hours"
+      ]
+    }
+  ],
+  "extensions": {
+    "rail": {
+      "scope": "rail-only",
+      "timetablePolicy": "live-operator-check",
+      "sourcePolicy": "official-operator",
+      "crossBorder": true
+    }
+  }
+}

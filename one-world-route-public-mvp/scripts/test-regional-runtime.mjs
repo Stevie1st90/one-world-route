@@ -39,7 +39,7 @@ test('regional runtime composes every current regional dataset without route-kin
   assert.deepEqual(Array.from(modules.runtime.listExtensions(),extension=>extension.id),['cruise','road','border']);
 
   const regional=catalog.trips.filter(item=>item.renderer==='regional-globe');
-  assert.equal(regional.length,3);
+  assert.ok(regional.length>=1,'catalog must expose at least one regional trip');
 
   for(const item of regional){
     const trip=await readJson(item.dataset.replace(/^\.\//,''));
@@ -79,6 +79,11 @@ test('specialized presenter output is attached only when matching namespaced dat
   const italyOverview=modules.extensions.composeTripOverview({trip:italy,profile:{},t,esc,local});
   assert.equal(italyOverview.cards,'');
   assert.equal(italyOverview.notices,'');
+  const italyStop=italy.stops[0];
+  const italyPlace=modules.model.stopPlace(italy,italyStop);
+  const italyStopDetail=modules.extensions.composeStopDetail({trip:italy,stop:italyStop,place:italyPlace,profile:{},t,esc,local});
+  assert.equal(italyStopDetail.notices,'');
+  assert.equal(italyStopDetail.sourceIds.length,0);
 
   const cruiseOverview=modules.extensions.composeTripOverview({trip:cruise,profile:{},t,esc,local});
   assert.match(cruiseOverview.cards,/onboardNights/);

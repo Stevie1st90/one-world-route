@@ -79,6 +79,21 @@ for (const item of catalog.trips || []) {
   }
   const segs = [...(trip.segments || [])].sort((a,b)=>a.sequence-b.sequence);
   if (segs.length !== Math.max(0, orderedStops.length-1)) fail(item.id+': segments must connect each adjacent stop visit');
+
+  const actualCountries = new Set((trip.places || []).map(place=>place.countryCode).filter(Boolean)).size;
+  const actualSourcedSegments = segs.filter(segment=>(segment.verification?.sourceIds||[]).length).length;
+  const actualVerifiedSegments = segs.filter(segment=>segment.verification?.status==='verified').length;
+  const metricChecks = [
+    ['days', item.metrics?.days, trip.planning?.days],
+    ['stops', item.metrics?.stops, orderedStops.length],
+    ['segments', item.metrics?.segments, segs.length],
+    ['countries', item.metrics?.countries, actualCountries],
+    ['sourcedSegments', item.metrics?.sourcedSegments, actualSourcedSegments],
+    ['verifiedSegments', item.metrics?.verifiedSegments, actualVerifiedSegments]
+  ];
+  for (const [name, declared, actual] of metricChecks) {
+    if (declared != null && Number(declared) !== Number(actual)) fail(item.id+': catalog metric '+name+' mismatch (declared '+declared+', actual '+actual+')');
+  }
   for (let i=0;i<segs.length;i++) {
     const s=segs[i], from=orderedStops[i], to=orderedStops[i+1];
     if (s.fromStopId!==from?.id || s.toStopId!==to?.id) fail(item.id+': non-continuous segment '+s.id);

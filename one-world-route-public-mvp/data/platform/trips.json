@@ -310,6 +310,76 @@
           "accessibility": "vehicle-dependent"
         }
       }
+    },
+    {
+      "id": "central-europe-rail-journey",
+      "slug": "central-europe-rail-journey",
+      "kind": "rail",
+      "status": "sourced-beta",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/central-europe-rail-journey.json",
+      "title": {
+        "en": "Central Europe Rail Journey",
+        "de": "Mitteleuropa mit der Bahn",
+        "it": "Viaggio ferroviario nell'Europa centrale",
+        "es": "Viaje ferroviario por Europa Central",
+        "fr": "Voyage ferroviaire en Europe centrale",
+        "pt": "Viagem ferroviária pela Europa Central"
+      },
+      "subtitle": {
+        "en": "18 days · 10 cities · 7 countries · rail only",
+        "de": "18 Tage · 10 Städte · 7 Länder · nur Bahn",
+        "it": "18 giorni · 10 città · 7 paesi · solo treno",
+        "es": "18 días · 10 ciudades · 7 países · solo tren",
+        "fr": "18 jours · 10 villes · 7 pays · uniquement en train",
+        "pt": "18 dias · 10 cidades · 7 países · apenas trem"
+      },
+      "metrics": {
+        "days": 18,
+        "countries": 7,
+        "stops": 10,
+        "segments": 9,
+        "budget": null,
+        "sourcedSegments": 9,
+        "verifiedSegments": 8
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "source-evidence",
+        "story",
+        "terrain"
+      ],
+      "discovery": {
+        "regions": [
+          "europe"
+        ],
+        "themes": [
+          "rail",
+          "cities",
+          "culture"
+        ],
+        "modes": [
+          "rail"
+        ],
+        "durationBand": "15-30",
+        "featured": true,
+        "fit": {
+          "pace": "active",
+          "seasons": [
+            "multi-season"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "europe",
+          "accessibility": "standard-check"
+        }
+      }
     }
   ]
 }

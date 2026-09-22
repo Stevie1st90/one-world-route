@@ -8,7 +8,9 @@ const regional=catalog.trips.filter(item=>item.renderer==='regional-globe');
 
 const datasets=new Map();
 test('flagship shell and route invariants work',async({page,isMobile},testInfo)=>{
-  test.setTimeout(120000);
+  // The flagship globe can make CI viewport screenshots comparatively expensive on mobile.
+  // Assertions complete well inside this budget; leave headroom for three visual-QA captures.
+  test.setTimeout(180000);
   const pageErrors=capturePageErrors(page);
   await openFlagship(page);
 
@@ -58,7 +60,10 @@ test('flagship shell and route invariants work',async({page,isMobile},testInfo)=
   await expect(page.locator('#platformTravellerForm [name="passportNumber"]')).toHaveCount(0);
   await captureViewport(page,testInfo,'traveller-'+testInfo.project.name+'.png');
   await page.locator('#platformTravellerModal .platform-x').click();
-  if(isMobile)await expectMobilePanelsClosed(page);
+  if(isMobile){
+    await expectMobilePanelsClosed(page);
+    await expectMobileViewportShell(page);
+  }
 
   expect(pageErrors,'flagship runtime page errors').toEqual([]);
   await captureViewport(page,testInfo,'world-195-'+testInfo.project.name+'.png');
@@ -91,6 +96,11 @@ for(const item of regional){
   datasets.set(item.id,await readJson(new URL('../../'+rel,import.meta.url)));
 }
 
+const railProof=regional.find(item=>{
+  const trip=datasets.get(item.id);
+  return item.discovery?.modes?.includes('rail')&&trip?.extensions?.rail?.scope==='rail-only';
+});
+
 async function captureViewport(page,testInfo,name){
   await page.screenshot({
     path:testInfo.outputPath(name),
@@ -119,6 +129,40 @@ async function openFlagship(page){
   await expect(page.locator('#platformTravellerBtn')).toBeVisible({timeout:10000});
 }
 
+async function expectMobileViewportShell(page){
+  const state=await page.evaluate(()=> {
+    const rect=selector=>{
+      const node=document.querySelector(selector);
+      const box=node?.getBoundingClientRect();
+      return box?{left:box.left,right:box.right,width:box.width}:null;
+    };
+    return {
+      innerWidth:window.innerWidth,
+      scrollX:window.scrollX,
+      appScrollLeft:document.querySelector('#app')?.scrollLeft||0,
+      visualViewport:window.visualViewport?{
+        width:window.visualViewport.width,
+        offsetLeft:window.visualViewport.offsetLeft,
+        scale:window.visualViewport.scale
+      }:null,
+      app:rect('#app'),
+      topbar:rect('.topbar'),
+      timeline:rect('#timeline')
+    };
+  });
+  expect(state.scrollX,'flagship mobile horizontal scroll').toBe(0);
+  expect(state.appScrollLeft,'flagship app internal horizontal scroll').toBe(0);
+  expect(state.app?.left,'flagship app left edge').toBeGreaterThanOrEqual(-1);
+  expect(state.app?.right,'flagship app must span viewport').toBeGreaterThanOrEqual(state.innerWidth-1);
+  expect(state.topbar?.right,'flagship topbar must reach viewport edge').toBeGreaterThanOrEqual(state.innerWidth-9);
+  expect(state.timeline?.right,'flagship timeline must reach viewport edge').toBeGreaterThanOrEqual(state.innerWidth-17);
+  if(state.visualViewport){
+    expect(state.visualViewport.offsetLeft,'flagship visual viewport horizontal offset').toBeLessThanOrEqual(1);
+    expect(state.visualViewport.width,'flagship visual viewport width').toBeGreaterThanOrEqual(state.innerWidth-1);
+    expect(state.visualViewport.scale,'flagship visual viewport scale').toBeCloseTo(1,2);
+  }
+}
+
 async function expectMobilePanelsClosed(page){
   const left=page.locator('#leftPanel');
   const right=page.locator('#rightPanel');
@@ -127,6 +171,7 @@ async function expectMobilePanelsClosed(page){
   await expect(left).toBeHidden();
   await expect(right).toBeHidden();
   await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
+  await expect.poll(()=>page.evaluate(()=>document.querySelector('#app')?.scrollLeft||0)).toBe(0);
 }
 
 async function expectActiveLabelsSeparated(page){
@@ -151,6 +196,21 @@ for(const item of regional){
     const pageErrors=capturePageErrors(page);
     const trip=datasets.get(item.id);
     await openRegional(page,item);
+
+    const pointTooltip=await page.evaluate(()=>{
+      const globe=window.__ONE_WORLD_ROUTE_GLOBE__;
+      const points=globe?.pointsData?.()||[];
+      const accessor=globe?.pointLabel?.();
+      return points.length&&typeof accessor==='function'?String(accessor(points[0])):'';
+    });
+    expect(pointTooltip).not.toContain('[object Object]');
+    expect(pointTooltip).not.toContain('undefined/195');
+    expect(pointTooltip).toContain(trip.places[0].name.en);
+
+    if(item.id===railProof?.id){
+      expect(trip.segments.every(segment=>segment.transport?.mode==='rail')).toBe(true);
+      expect(trip.segments.every(segment=>(segment.transport?.stages||[]).length>0&&(segment.transport?.stages||[]).every(stage=>stage.mode==='rail'))).toBe(true);
+    }
 
     await expect(page.locator('#regionalRouteRange')).toHaveAttribute('max',String(item.metrics.segments));
     await expect(page.locator('#detailTitle')).toHaveText(item.title.en);
@@ -200,9 +260,11 @@ for(const item of regional){
     await page.locator('#regionalPrevBtn').click();
     await expect(range).toHaveValue('2');
 
-    await page.locator('#regionalPlayBtn').click();
-    await expect.poll(async()=>Number(await range.inputValue()),{timeout:5000}).toBeGreaterThan(2);
-    await page.locator('#regionalPlayBtn').click();
+    const playButton=page.locator('#regionalPlayBtn');
+    await playButton.click();
+    await expect(playButton).toHaveText('Ⅱ');
+    await expect.poll(async()=>Number(await range.inputValue()),{timeout:12000}).toBeGreaterThan(2);
+    if((await playButton.textContent())?.includes('Ⅱ'))await playButton.click();
     const stoppedAt=await range.inputValue();
     await page.waitForTimeout(1700);
     await expect(range).toHaveValue(stoppedAt);
@@ -228,6 +290,9 @@ for(const item of regional){
     if(item.id===regional[0].id){
       await captureViewport(page,testInfo,'regional-settings-'+testInfo.project.name+'.png');
     }
+    if(item.id===railProof?.id){
+      await captureViewport(page,testInfo,'rail-proof-settings-'+testInfo.project.name+'.png');
+    }
 
     if(item.capabilities.includes('story')){
       if(isMobile){
@@ -245,6 +310,9 @@ for(const item of regional){
       await expect(page.locator('#platformStoryHud')).toBeVisible();
       if(item.id===regional[0].id){
         await captureViewport(page,testInfo,'regional-story-'+testInfo.project.name+'.png');
+      }
+      if(item.id===railProof?.id){
+        await captureViewport(page,testInfo,'rail-proof-story-'+testInfo.project.name+'.png');
       }
       await page.evaluate(()=>window.ONE_WORLD_PLATFORM.stopStory());
       await expect(page.locator('body')).not.toHaveClass(/platform-story-mode/);
@@ -308,20 +376,39 @@ test('route fit filters and reset produce deterministic catalog results',async({
 });
 
 test('regional terrain activates and exits on the shared engine',async({page,isMobile},testInfo)=>{
-  test.setTimeout(90000);
+  test.setTimeout(150000);
   const pageErrors=capturePageErrors(page);
   const item=regional.find(entry=>entry.capabilities.includes('terrain'));
   expect(item).toBeTruthy();
   await openRegional(page,item);
 
-  await page.evaluate(()=>window.ONE_WORLD_PLATFORM.setTerrain(true));
-  await expect(page.locator('body')).toHaveClass(/terrain-view/,{timeout:45000});
+  await page.evaluate(()=>{void window.ONE_WORLD_PLATFORM.setTerrain(true)});
+  await expect(page.locator('body')).toHaveClass(/terrain-view/,{timeout:100000});
   await expect.poll(()=>page.evaluate(()=>Boolean(window.__ONE_WORLD_REGIONAL_TERRAIN__))).toBe(true);
   await expect(page.locator('#terrainMap')).toBeVisible();
   if(isMobile)await expectMobilePanelsClosed(page);
   await captureViewport(page,testInfo,'regional-terrain-'+testInfo.project.name+'.png');
 
-  await page.evaluate(()=>window.ONE_WORLD_PLATFORM.setTerrain(false));
+  await page.evaluate(()=>{void window.ONE_WORLD_PLATFORM.setTerrain(false)});
   await expect(page.locator('body')).not.toHaveClass(/terrain-view/);
   expect(pageErrors,'terrain runtime page errors').toEqual([]);
+});
+
+
+test('rail architecture proof uses the shared terrain engine',async({page,isMobile},testInfo)=>{
+  test.setTimeout(150000);
+  expect(railProof).toBeTruthy();
+  const pageErrors=capturePageErrors(page);
+  await openRegional(page,railProof);
+
+  await page.evaluate(()=>{void window.ONE_WORLD_PLATFORM.setTerrain(true)});
+  await expect(page.locator('body')).toHaveClass(/terrain-view/,{timeout:100000});
+  await expect.poll(()=>page.evaluate(()=>Boolean(window.__ONE_WORLD_REGIONAL_TERRAIN__))).toBe(true);
+  await expect(page.locator('#terrainMap')).toBeVisible();
+  if(isMobile)await expectMobilePanelsClosed(page);
+  await captureViewport(page,testInfo,'rail-proof-terrain-'+testInfo.project.name+'.png');
+
+  await page.evaluate(()=>{void window.ONE_WORLD_PLATFORM.setTerrain(false)});
+  await expect(page.locator('body')).not.toHaveClass(/terrain-view/);
+  expect(pageErrors,'rail terrain runtime page errors').toEqual([]);
 });

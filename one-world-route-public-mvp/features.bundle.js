@@ -2555,6 +2555,11 @@
     }catch(error){console.warn('Regional isolation failed',error)}
   }
 
+  function pointLabel(place){
+    const d=context();
+    return String(d.local(place?.name)||'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  }
+
   function htmlLabel(place){
     const d=context();
     const anchor=document.createElement('div');
@@ -2636,6 +2641,7 @@
         .pointAltitude(.012)
         .pointRadius(place=>activeIds.has(place.id)?.11:.065)
         .pointColor(place=>activeIds.has(place.id)?'#dff8ff':'rgba(130,185,214,.68)')
+        .pointLabel(pointLabel)
         .onPointClick(place=>{
           const index=trip.stops.findIndex(stop=>stop.placeId===place.id);
           if(index>=0)d.selectStop(index,true);
@@ -3184,7 +3190,17 @@
   function focusRoute(){
     const d=context(),bounds=d.routeBounds();
     if(!state.map||!bounds)return;
-    const padding=innerWidth<=820?{top:90,right:26,bottom:132,left:26}:{top:78,right:380,bottom:90,left:330};
+    const mobile=innerWidth<=820;
+    const padding=mobile?{top:90,right:26,bottom:132,left:26}:{top:78,right:380,bottom:90,left:330};
+    const [[west,south],[east,north]]=bounds;
+    const midLat=(Number(south)+Number(north))/2;
+    const lngSpan=Math.abs(Number(east)-Number(west))*Math.max(.35,Math.cos((Number.isFinite(midLat)?midLat:0)*Math.PI/180));
+    const latSpan=Math.abs(Number(north)-Number(south));
+    const span=Math.max(Number.isFinite(lngSpan)?lngSpan:0,Number.isFinite(latSpan)?latSpan:0);
+    const pitch=mobile?(span>12?8:span>7?20:30):36;
+    const bearing=mobile&&span>12?0:-5;
+    state.map.setPitch?.(pitch);
+    state.map.setBearing?.(bearing);
     state.map.fitBounds(bounds,{padding,maxZoom:7.4,duration:d.settings().reducedMotion?0:750,essential:true});
   }
 
@@ -3431,7 +3447,7 @@
     stopDetail(ctx){
       const call=model.extension(ctx.stop,'cruiseCall');
       const refs=model.extension(ctx.place,'port')?.sourceIds||[];
-      if(!call&&!refs)return null;
+      if(!call&&!refs.length)return null;
       const callLabel=call?.kind==='embarkation'?ctx.t('embarkation'):(call?.kind==='disembarkation'?ctx.t('disembarkation'):(call?ctx.t('portCall'):null));
       return {
         cards:callLabel?`<div class="data-card"><span>${ctx.esc(ctx.t('portCall'))}</span><b>${ctx.esc(callLabel)}</b></div>`:'',

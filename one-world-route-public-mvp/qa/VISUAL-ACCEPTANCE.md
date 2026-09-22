@@ -41,6 +41,7 @@ The CI artifact should cover the normal route surfaces plus representative inter
 - Regional mobile detail sheet for each current regional route
 - Regional Settings — desktop + mobile
 - Regional Story — desktop + mobile
+- Rail architecture proof: Settings, Story and Terrain — desktop + mobile
 - Regional Methodology — desktop + mobile
 - Route Fit filtering — desktop + mobile
 
@@ -79,6 +80,7 @@ These screenshots should be captured inside existing browser flows wherever poss
 
 - Unknown duration/cost values render as unavailable, not zero.
 - Extension-specific context (cruise, road, border) is understandable.
+- Rail-only journeys remain visibly ground-based and expose no non-rail transport stage.
 - Source cards are readable and do not dominate the route itself.
 
 ## Architecture rule

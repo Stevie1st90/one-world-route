@@ -53,6 +53,11 @@
     }catch(error){console.warn('Regional isolation failed',error)}
   }
 
+  function pointLabel(place){
+    const d=context();
+    return String(d.local(place?.name)||'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  }
+
   function htmlLabel(place){
     const d=context();
     const anchor=document.createElement('div');
@@ -134,6 +139,7 @@
         .pointAltitude(.012)
         .pointRadius(place=>activeIds.has(place.id)?.11:.065)
         .pointColor(place=>activeIds.has(place.id)?'#dff8ff':'rgba(130,185,214,.68)')
+        .pointLabel(pointLabel)
         .onPointClick(place=>{
           const index=trip.stops.findIndex(stop=>stop.placeId===place.id);
           if(index>=0)d.selectStop(index,true);
