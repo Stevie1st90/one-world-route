@@ -72,13 +72,16 @@ async function expectMobileShellStable(page){
   expect(state.timeline?.right).toBeGreaterThanOrEqual(state.innerWidth-17);
 }
 
-test('production root is the public multi-trip homepage',async({page},testInfo)=>{
+test('production root is the public multi-trip homepage',async({page,request},testInfo)=>{
   test.setTimeout(120000);
   const errors=capturePageErrors(page);
+  const catalogResponse=await request.get('/data/platform/trips.json');
+  expect(catalogResponse.ok()).toBeTruthy();
+  const catalog=await catalogResponse.json();
   await open(page,'/?lang=en');
   await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:20000});
   await expect(page.locator('#platformHome')).toBeVisible();
-  await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(5);
+  await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(catalog.trips.length);
   await expect(page.locator('#platformHome')).toContainText('Explore extraordinary journeys worldwide.');
   await expect(page.locator('#platformHome')).not.toContainText('[object');
   await expect(page.locator('#platformHome')).not.toContainText(/\bundefined\b/i);
