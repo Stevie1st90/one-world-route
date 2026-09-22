@@ -2,13 +2,14 @@ import {test,expect} from '@playwright/test';
 
 test('internal trip builder creates and edits a draft',async({page,isMobile},testInfo)=>{
   test.setTimeout(90000);
+  const slug='qa-builder-'+testInfo.project.name.replace(/[^a-z0-9]+/g,'-').toLowerCase();
   await page.goto('/builder/',{waitUntil:'domcontentloaded'});
   await expect(page.getByText('Internal Trip Builder')).toBeVisible();
   await expect(page.locator('#newDraftBtn')).toBeVisible();
 
   await page.locator('#newDraftBtn').click();
   await expect(page.locator('#newDraftDialog')).toBeVisible();
-  await page.locator('#newDraftDialog [name="slug"]').fill('qa-builder-proof');
+  await page.locator('#newDraftDialog [name="slug"]').fill(slug);
   await page.locator('#newDraftDialog [name="title"]').fill('QA Builder Proof');
   await page.locator('#newDraftDialog [name="kind"]').fill('rail');
   await page.locator('#newDraftDialog [name="days"]').fill('8');
@@ -16,7 +17,7 @@ test('internal trip builder creates and edits a draft',async({page,isMobile},tes
 
   await expect(page.locator('#editor')).toBeVisible();
   await expect(page.locator('#pageTitle')).toContainText('QA Builder Proof');
-  await expect(page.locator('#slug')).toHaveValue('qa-builder-proof');
+  await expect(page.locator('#slug')).toHaveValue(slug);
 
   await page.locator('[data-tab="places"]').click();
   await page.locator('[data-add="place"]').click();
@@ -47,11 +48,12 @@ test('internal trip builder creates and edits a draft',async({page,isMobile},tes
 
 test('internal trip builder preview uses the real regional engine',async({page,context},testInfo)=>{
   test.setTimeout(90000);
+  const slug='qa-preview-'+testInfo.project.name.replace(/[^a-z0-9]+/g,'-').toLowerCase();
   await page.goto('/builder/',{waitUntil:'domcontentloaded'});
-  const response=await page.request.post('/api/drafts',{data:{slug:'qa-preview-proof',title:'QA Preview Proof',kind:'custom',days:7}});
+  const response=await page.request.post('/api/drafts',{data:{slug,title:'QA Preview Proof',kind:'custom',days:7}});
   expect(response.ok()).toBeTruthy();
   await page.reload({waitUntil:'domcontentloaded'});
-  await page.locator('[data-draft="qa-preview-proof"]').click();
+  await page.locator('[data-draft="'+slug+'"]').click();
   await expect(page.locator('#previewBtn')).toBeEnabled();
 
   const [preview]=await Promise.all([
