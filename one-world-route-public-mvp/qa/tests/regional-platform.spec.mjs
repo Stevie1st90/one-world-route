@@ -113,6 +113,13 @@ const railProof=regional.find(item=>{
   const trip=datasets.get(item.id);
   return item.discovery?.modes?.includes('rail')&&trip?.extensions?.rail?.scope==='rail-only';
 });
+const deepRegionalIds=new Set([
+  'italy-grand-tour',
+  'western-mediterranean-cruise-loop',
+  'southern-europe-road-trip',
+  'central-europe-rail-journey'
+]);
+const deepRegional=regional.filter(item=>deepRegionalIds.has(item.id));
 
 async function captureViewport(page,testInfo,name){
   await page.screenshot({
@@ -227,7 +234,19 @@ async function expectActiveLabelsSeparated(page){
   },{timeout:10000}).toBe(true);
 }
 
-for(const item of regional){
+test('every regional catalog route boots and exposes safe globe labels',async({page,isMobile})=>{
+  test.skip(isMobile,'desktop catalog smoke plus selected mobile deep coverage is sufficient');
+  test.setTimeout(120000);
+  for(const item of regional){
+    const errors=capturePageErrors(page);
+    await openRegional(page,item);
+    await expect(page.locator('#detailTitle')).toHaveText(item.title.en);
+    await expectNoGlobeObjectLeaks(page);
+    expect(errors,item.id+' runtime page errors').toEqual([]);
+  }
+});
+
+for(const item of deepRegional){
   test(item.id+' shell, navigation, context and story work',async({page,isMobile},testInfo)=>{
     test.setTimeout(120000);
     const pageErrors=capturePageErrors(page);
