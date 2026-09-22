@@ -4,8 +4,8 @@
 
   function buildTripUrl({id,defaultTripId='world-195',search=''}) {
     const params=new URLSearchParams(search);
-    if(id===defaultTripId)params.delete('trip');
-    else params.set('trip',id);
+    if(id)params.set('trip',id);
+    else params.delete('trip');
     for(const key of ['segment','country','phase','view'])params.delete(key);
     return `/${params.toString()?`?${params}`:''}`;
   }
