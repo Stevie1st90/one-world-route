@@ -31,6 +31,9 @@
     if(trip.metrics?.internationalLegs)out.push(trip.metrics.internationalLegs+' '+d.t('homeLegs'));
     const modes=trip.discovery?.modes||[];
     if(modes.length)out.push(modes.slice(0,2).map(d.facetLabel).join(' · '));
+    const fit=trip.discovery?.fit||{};
+    if(fit.pace)out.push(d.facetLabel(fit.pace));
+    if(fit.accessibility)out.push(d.facetLabel(fit.accessibility));
     return out;
   }
 
