@@ -751,7 +751,11 @@
   };
   let inlineHits=[];
   let commandHits=[];
-  const platformOwnsRoute=()=>document.body.classList.contains('platform-home')||document.body.classList.contains('platform-regional-trip')||new URLSearchParams(location.search).has('trip');
+  const platformOwnsRoute=()=>{
+    const owner=window.ONE_WORLD_ROUTE_OWNERSHIP;
+    if(owner)return owner!=='legacy';
+    return document.body.classList.contains('platform-home')||document.body.classList.contains('platform-regional-trip')||new URLSearchParams(location.search).has('trip');
+  };
   const EN=window.ONE_WORLD_EN||{locale:'en',registerCountries(){},country:s=>s,mode:s=>s,text:s=>s,value:s=>s};
   const UI_LOCALE=EN.locale||'en';
   const countryDisplay=c=>c?.displayName||EN.country(c?.name||'',c?.cca2||'');
@@ -1289,6 +1293,7 @@
     selectSegment:(id,focus=true)=>selectSegment(Number(id),Boolean(focus)),
     selectCountry:(name,focus=true)=>selectCountry(String(name),Boolean(focus)),
     openDetails:()=>openMobilePanel('details'),
+    refreshGlobe:()=>updateGlobe(),
     setPhase:(phase,{jump=false,focus=true}={})=>{
       const next=String(phase)==='all'?'all':String(Math.max(1,Math.min(12,Number(phase)||1)));
       state.phase=next;renderChrome();updateGlobe();renderDetail();updateUrl();
