@@ -1,7 +1,7 @@
 const base=String(process.env.BASE_URL||'https://one-world-route.vercel.app').replace(/\/$/,'');
 const retries=Number(process.env.SMOKE_RETRIES||18);
 const interval=Number(process.env.SMOKE_INTERVAL_MS||10000);
-const expected=['world-195','italy-grand-tour','western-mediterranean-cruise-loop','central-europe-road-trip','central-europe-rail-journey'];
+const expected=['world-195','italy-grand-tour','western-mediterranean-cruise-loop','southern-europe-road-trip','central-europe-rail-journey'];
 
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 const fail=message=>{throw new Error(message)};
