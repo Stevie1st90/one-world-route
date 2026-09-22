@@ -56,10 +56,11 @@ test('builder rejects broken stop continuity and source references',()=>{
   assert.match(result.errors.join('\n'),/missing source/);
 });
 
-test('builder keeps publication on the shared regional renderer',()=>{
+test('builder normalizes publication onto the shared regional renderer',()=>{
   const candidate=validDraft();
   candidate.catalogEntry.renderer='special-rail-renderer';
-  const result=validateDraftCandidate(candidate,catalog);
-  assert.equal(result.ok,false);
-  assert.match(result.errors.join('\n'),/shared regional-globe renderer/);
+  const normalized=normalizeCandidate(candidate);
+  assert.equal(normalized.catalogEntry.renderer,'regional-globe');
+  const result=validateDraftCandidate(normalized,catalog);
+  assert.equal(result.ok,true,result.errors.join('\n'));
 });
