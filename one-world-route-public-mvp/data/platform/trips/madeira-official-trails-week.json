@@ -1,0 +1,619 @@
+{
+  "schemaVersion": 1,
+  "id": "madeira-official-trails-week",
+  "slug": "madeira-official-trails-week",
+  "kind": "hiking",
+  "status": "sourced-beta",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Madeira Official Trails Week",
+    "de": "Madeira · Woche auf offiziellen Wanderwegen",
+    "it": "Madeira · Settimana sui sentieri ufficiali",
+    "es": "Madeira · Semana de senderos oficiales",
+    "fr": "Madère · Semaine des sentiers officiels",
+    "pt": "Madeira · Semana de trilhos oficiais"
+  },
+  "summary": {
+    "en": "An 8-day hiking-focused route using official Madeira trailheads for Pico Ruivo, 25 Fontes and Ponta de São Lourenço. Trail status, mandatory booking, access fees, weather and closures must be checked immediately before each hike.",
+    "de": "Eine 8-tägige Wanderreise zu offiziellen Madeira-Wegen am Pico Ruivo, den 25 Fontes und der Ponta de São Lourenço. Wegestatus, Reservierungspflicht, Zugangsgebühren, Wetter und Sperrungen müssen unmittelbar vor jeder Wanderung geprüft werden.",
+    "it": "Un itinerario di 8 giorni dedicato ai sentieri ufficiali di Madeira tra Pico Ruivo, 25 Fontes e Ponta de São Lourenço. Stato dei sentieri, prenotazione, tariffe, meteo e chiusure vanno controllati subito prima di ogni escursione.",
+    "es": "Una ruta de 8 días centrada en senderos oficiales de Madeira en Pico Ruivo, 25 Fontes y Ponta de São Lourenço. Estado, reserva obligatoria, tasas, meteorología y cierres deben comprobarse justo antes de cada caminata.",
+    "fr": "Un itinéraire de 8 jours autour des sentiers officiels de Madère à Pico Ruivo, 25 Fontes et Ponta de São Lourenço. État, réservation, frais, météo et fermetures doivent être vérifiés juste avant chaque randonnée.",
+    "pt": "Uma rota de 8 dias focada nos trilhos oficiais da Madeira no Pico Ruivo, 25 Fontes e Ponta de São Lourenço. Estado, reserva obrigatória, taxas, meteorologia e encerramentos devem ser verificados imediatamente antes de cada caminhada."
+  },
+  "geography": {
+    "regions": [
+      "europe",
+      "portugal",
+      "madeira"
+    ],
+    "countries": [
+      "PT"
+    ],
+    "primaryCountry": "PT",
+    "bounds": {
+      "north": 32.86,
+      "south": 32.64,
+      "west": -17.2,
+      "east": -16.68
+    }
+  },
+  "planning": {
+    "days": 8,
+    "currency": "EUR",
+    "pace": "active",
+    "distanceKm": null,
+    "priceModel": "access-and-transfer-dependent"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 32.76,
+      "lng": -16.95,
+      "altitude": 0.62
+    }
+  },
+  "places": [
+    {
+      "id": "funchal-hike",
+      "type": "city",
+      "countryCode": "PT",
+      "name": {
+        "en": "Funchal",
+        "de": "Funchal",
+        "it": "Funchal",
+        "es": "Funchal",
+        "fr": "Funchal",
+        "pt": "Funchal"
+      },
+      "coordinates": {
+        "lat": 32.6507,
+        "lng": -16.9095
+      }
+    },
+    {
+      "id": "achada-teixeira",
+      "type": "trailhead",
+      "countryCode": "PT",
+      "name": {
+        "en": "Achada do Teixeira",
+        "de": "Achada do Teixeira",
+        "it": "Achada do Teixeira",
+        "es": "Achada do Teixeira",
+        "fr": "Achada do Teixeira",
+        "pt": "Achada do Teixeira"
+      },
+      "coordinates": {
+        "lat": 32.7659,
+        "lng": -16.9201
+      }
+    },
+    {
+      "id": "pico-ruivo",
+      "type": "peak",
+      "countryCode": "PT",
+      "name": {
+        "en": "Pico Ruivo",
+        "de": "Pico Ruivo",
+        "it": "Pico Ruivo",
+        "es": "Pico Ruivo",
+        "fr": "Pico Ruivo",
+        "pt": "Pico Ruivo"
+      },
+      "coordinates": {
+        "lat": 32.7583,
+        "lng": -16.942
+      }
+    },
+    {
+      "id": "rabacal",
+      "type": "trailhead",
+      "countryCode": "PT",
+      "name": {
+        "en": "Rabaçal",
+        "de": "Rabaçal",
+        "it": "Rabaçal",
+        "es": "Rabaçal",
+        "fr": "Rabaçal",
+        "pt": "Rabaçal"
+      },
+      "coordinates": {
+        "lat": 32.7548,
+        "lng": -17.1346
+      }
+    },
+    {
+      "id": "fontes-25",
+      "type": "natural-site",
+      "countryCode": "PT",
+      "name": {
+        "en": "25 Fontes",
+        "de": "25 Fontes",
+        "it": "25 Fontes",
+        "es": "25 Fontes",
+        "fr": "25 Fontes",
+        "pt": "25 Fontes"
+      },
+      "coordinates": {
+        "lat": 32.765,
+        "lng": -17.126
+      }
+    },
+    {
+      "id": "baia-abra",
+      "type": "trailhead",
+      "countryCode": "PT",
+      "name": {
+        "en": "Baía d'Abra",
+        "de": "Baía d'Abra",
+        "it": "Baía d'Abra",
+        "es": "Baía d'Abra",
+        "fr": "Baía d'Abra",
+        "pt": "Baía d'Abra"
+      },
+      "coordinates": {
+        "lat": 32.7447,
+        "lng": -16.7004
+      }
+    },
+    {
+      "id": "casa-sardinha",
+      "type": "trail-destination",
+      "countryCode": "PT",
+      "name": {
+        "en": "Casa do Sardinha",
+        "de": "Casa do Sardinha",
+        "it": "Casa do Sardinha",
+        "es": "Casa do Sardinha",
+        "fr": "Casa do Sardinha",
+        "pt": "Casa do Sardinha"
+      },
+      "coordinates": {
+        "lat": 32.7412,
+        "lng": -16.6796
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "mhw-stop-01",
+      "sequence": 1,
+      "placeId": "funchal-hike",
+      "dayStart": 1,
+      "dayEnd": 1,
+      "nights": 1
+    },
+    {
+      "id": "mhw-stop-02",
+      "sequence": 2,
+      "placeId": "achada-teixeira",
+      "dayStart": 2,
+      "dayEnd": 2,
+      "nights": 0
+    },
+    {
+      "id": "mhw-stop-03",
+      "sequence": 3,
+      "placeId": "pico-ruivo",
+      "dayStart": 2,
+      "dayEnd": 2,
+      "nights": 0
+    },
+    {
+      "id": "mhw-stop-04",
+      "sequence": 4,
+      "placeId": "achada-teixeira",
+      "dayStart": 2,
+      "dayEnd": 2,
+      "nights": 0
+    },
+    {
+      "id": "mhw-stop-05",
+      "sequence": 5,
+      "placeId": "rabacal",
+      "dayStart": 3,
+      "dayEnd": 4,
+      "nights": 2
+    },
+    {
+      "id": "mhw-stop-06",
+      "sequence": 6,
+      "placeId": "fontes-25",
+      "dayStart": 4,
+      "dayEnd": 4,
+      "nights": 0
+    },
+    {
+      "id": "mhw-stop-07",
+      "sequence": 7,
+      "placeId": "rabacal",
+      "dayStart": 4,
+      "dayEnd": 5,
+      "nights": 1
+    },
+    {
+      "id": "mhw-stop-08",
+      "sequence": 8,
+      "placeId": "baia-abra",
+      "dayStart": 6,
+      "dayEnd": 6,
+      "nights": 0
+    },
+    {
+      "id": "mhw-stop-09",
+      "sequence": 9,
+      "placeId": "casa-sardinha",
+      "dayStart": 6,
+      "dayEnd": 6,
+      "nights": 0
+    },
+    {
+      "id": "mhw-stop-10",
+      "sequence": 10,
+      "placeId": "baia-abra",
+      "dayStart": 6,
+      "dayEnd": 6,
+      "nights": 0
+    },
+    {
+      "id": "mhw-stop-11",
+      "sequence": 11,
+      "placeId": "funchal-hike",
+      "dayStart": 7,
+      "dayEnd": 8,
+      "nights": 2
+    }
+  ],
+  "segments": [
+    {
+      "id": "mhw-leg-01",
+      "sequence": 1,
+      "fromStopId": "mhw-stop-01",
+      "toStopId": "mhw-stop-02",
+      "transport": {
+        "mode": "ground-transfer",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-transfer-check",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": null,
+        "sourceIds": [
+          "madeira-hiking"
+        ],
+        "notes": "Transfer is intentionally not prescribed; confirm suitable local transport for the selected date and trail access point."
+      }
+    },
+    {
+      "id": "mhw-leg-02",
+      "sequence": 2,
+      "fromStopId": "mhw-stop-02",
+      "toStopId": "mhw-stop-03",
+      "transport": {
+        "mode": "walk",
+        "stages": [
+          {
+            "mode": "walk",
+            "sourceIds": [
+              "madeira-pr12"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "official-trail-current-check",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": null,
+        "sourceIds": [
+          "madeira-pr12"
+        ],
+        "notes": "Official trail evidence is available, but trail status, reservation, access conditions, weather and closures must be checked immediately before hiking."
+      }
+    },
+    {
+      "id": "mhw-leg-03",
+      "sequence": 3,
+      "fromStopId": "mhw-stop-03",
+      "toStopId": "mhw-stop-04",
+      "transport": {
+        "mode": "walk",
+        "stages": [
+          {
+            "mode": "walk",
+            "sourceIds": [
+              "madeira-pr12"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "official-trail-current-check",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": null,
+        "sourceIds": [
+          "madeira-pr12"
+        ],
+        "notes": "Official trail evidence is available, but trail status, reservation, access conditions, weather and closures must be checked immediately before hiking."
+      }
+    },
+    {
+      "id": "mhw-leg-04",
+      "sequence": 4,
+      "fromStopId": "mhw-stop-04",
+      "toStopId": "mhw-stop-05",
+      "transport": {
+        "mode": "ground-transfer",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-transfer-check",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": null,
+        "sourceIds": [
+          "madeira-hiking"
+        ],
+        "notes": "Transfer is intentionally not prescribed; confirm suitable local transport for the selected date and trail access point."
+      }
+    },
+    {
+      "id": "mhw-leg-05",
+      "sequence": 5,
+      "fromStopId": "mhw-stop-05",
+      "toStopId": "mhw-stop-06",
+      "transport": {
+        "mode": "walk",
+        "stages": [
+          {
+            "mode": "walk",
+            "sourceIds": [
+              "madeira-pr6"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "official-trail-current-check",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": null,
+        "sourceIds": [
+          "madeira-pr6"
+        ],
+        "notes": "Official trail evidence is available, but trail status, reservation, access conditions, weather and closures must be checked immediately before hiking."
+      }
+    },
+    {
+      "id": "mhw-leg-06",
+      "sequence": 6,
+      "fromStopId": "mhw-stop-06",
+      "toStopId": "mhw-stop-07",
+      "transport": {
+        "mode": "walk",
+        "stages": [
+          {
+            "mode": "walk",
+            "sourceIds": [
+              "madeira-pr6"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "official-trail-current-check",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": null,
+        "sourceIds": [
+          "madeira-pr6"
+        ],
+        "notes": "Official trail evidence is available, but trail status, reservation, access conditions, weather and closures must be checked immediately before hiking."
+      }
+    },
+    {
+      "id": "mhw-leg-07",
+      "sequence": 7,
+      "fromStopId": "mhw-stop-07",
+      "toStopId": "mhw-stop-08",
+      "transport": {
+        "mode": "ground-transfer",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-transfer-check",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": null,
+        "sourceIds": [
+          "madeira-hiking"
+        ],
+        "notes": "Transfer is intentionally not prescribed; confirm suitable local transport for the selected date and trail access point."
+      }
+    },
+    {
+      "id": "mhw-leg-08",
+      "sequence": 8,
+      "fromStopId": "mhw-stop-08",
+      "toStopId": "mhw-stop-09",
+      "transport": {
+        "mode": "walk",
+        "stages": [
+          {
+            "mode": "walk",
+            "sourceIds": [
+              "madeira-pr8"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "official-trail-current-check",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": null,
+        "sourceIds": [
+          "madeira-pr8"
+        ],
+        "notes": "Official trail evidence is available, but trail status, reservation, access conditions, weather and closures must be checked immediately before hiking."
+      }
+    },
+    {
+      "id": "mhw-leg-09",
+      "sequence": 9,
+      "fromStopId": "mhw-stop-09",
+      "toStopId": "mhw-stop-10",
+      "transport": {
+        "mode": "walk",
+        "stages": [
+          {
+            "mode": "walk",
+            "sourceIds": [
+              "madeira-pr8"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "official-trail-current-check",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": null,
+        "sourceIds": [
+          "madeira-pr8"
+        ],
+        "notes": "Official trail evidence is available, but trail status, reservation, access conditions, weather and closures must be checked immediately before hiking."
+      }
+    },
+    {
+      "id": "mhw-leg-10",
+      "sequence": 10,
+      "fromStopId": "mhw-stop-10",
+      "toStopId": "mhw-stop-11",
+      "transport": {
+        "mode": "ground-transfer",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-transfer-check",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": null,
+        "sourceIds": [
+          "madeira-hiking"
+        ],
+        "notes": "Transfer is intentionally not prescribed; confirm suitable local transport for the selected date and trail access point."
+      }
+    }
+  ],
+  "travellerContext": {
+    "scope": [
+      "passport",
+      "residence",
+      "mobility"
+    ]
+  },
+  "sources": [
+    {
+      "id": "madeira-hiking",
+      "title": "Madeira Hiking — current state of official trails",
+      "issuer": "Madeira Islands Tourism Board / IFCN",
+      "issuerType": "primary-source",
+      "url": "https://www.visitmadeira.com/en/what-to-do/nature-seekers/activities/hiking/",
+      "checkedAt": "2026-09-22",
+      "claims": [
+        "official hiking trail catalogue",
+        "live open/restricted/closed status",
+        "classified trail access and booking guidance"
+      ]
+    },
+    {
+      "id": "madeira-pr12",
+      "title": "PR 1.2 — Vereda do Pico Ruivo",
+      "issuer": "Madeira Islands Tourism Board / IFCN",
+      "issuerType": "primary-source",
+      "url": "https://visitmadeira.com/en/what-to-do/nature-seekers/activities/hiking/pr-12-vereda-do-pico-ruivo/",
+      "checkedAt": "2026-09-22",
+      "claims": [
+        "Achada do Teixeira to Pico Ruivo trail",
+        "official distance, difficulty and access conditions"
+      ]
+    },
+    {
+      "id": "madeira-pr6",
+      "title": "PR 6 — Levada das 25 Fontes",
+      "issuer": "Madeira Islands Tourism Board / IFCN",
+      "issuerType": "primary-source",
+      "url": "https://visitmadeira.com/en/what-to-do/nature-seekers/activities/hiking/pr-6-levada-das-25-fontes/",
+      "checkedAt": "2026-09-22",
+      "claims": [
+        "Rabaçal to 25 Fontes trail",
+        "official distance, difficulty and access conditions"
+      ]
+    },
+    {
+      "id": "madeira-pr8",
+      "title": "PR 8 — Vereda da Ponta de São Lourenço",
+      "issuer": "Madeira Islands Tourism Board / IFCN",
+      "issuerType": "primary-source",
+      "url": "https://visitmadeira.com/en/what-to-do/nature-seekers/activities/hiking/pr-8-vereda-da-ponta-de-sao-lourenco/",
+      "checkedAt": "2026-09-22",
+      "claims": [
+        "Baía d'Abra to Casa do Sardinha trail",
+        "official distance, difficulty and access conditions"
+      ]
+    }
+  ],
+  "extensions": {}
+}
