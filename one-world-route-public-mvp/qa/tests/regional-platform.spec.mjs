@@ -18,6 +18,13 @@ test('public homepage discovers all catalog journeys and keeps the globe object-
   await expect(page.locator('#platformHome')).not.toContainText('[object');
   await expect(page.locator('#platformHome')).not.toContainText(/\bundefined\b/i);
   await expect.poll(()=>page.evaluate(()=>window.__ONE_WORLD_ROUTE_GLOBE__?.arcsData?.()?.length||0),{timeout:20000}).toBeGreaterThanOrEqual(flagship.metrics.internationalLegs);
+  const homeLabels=await regionalLabels(page);
+  for(const value of Object.values(homeLabels).flat()){
+    expect(value).not.toContain('[object');
+    expect(value).not.toContain('undefined/195');
+    expect(value).not.toContain('ACCESSOR_ERROR:');
+  }
+  await captureViewport(page,testInfo,'public-home-'+testInfo.project.name+'.png');
 
   const accessibility=regional.map(item=>item.discovery?.fit?.accessibility).find(Boolean);
   const expected=catalog.trips.filter(item=>item.discovery?.fit?.accessibility===accessibility).length;
@@ -25,6 +32,8 @@ test('public homepage discovers all catalog journeys and keeps the globe object-
   await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(expected);
   await page.locator('[data-home-reset]').click();
   await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(catalog.trips.length);
+  await page.locator('#platformHomeExplore').scrollIntoViewIfNeeded();
+  await captureViewport(page,testInfo,'public-home-discovery-'+testInfo.project.name+'.png');
 
   const viewport=page.viewportSize();
   const shell=await page.locator('#platformHome').boundingBox();
@@ -36,7 +45,6 @@ test('public homepage discovers all catalog journeys and keeps the globe object-
   }
 
   expect(pageErrors,'homepage runtime page errors').toEqual([]);
-  await captureViewport(page,testInfo,'public-home-'+testInfo.project.name+'.png');
 });
 
 test('flagship shell and route invariants work',async({page,isMobile},testInfo)=>{
@@ -178,6 +186,7 @@ async function openFlagship(page){
   await page.goto('/?trip='+encodeURIComponent(flagship.id)+'&lang=en',{waitUntil:'domcontentloaded'});
   await expect(page.locator('body')).not.toHaveClass(/platform-regional-trip/,{timeout:20000});
   await expect(page.locator('#routeRange')).toHaveAttribute('max',String(flagship.metrics.internationalLegs),{timeout:20000});
+  await expect(page.locator('#platformHomeBtn')).toBeVisible({timeout:10000});
   await expect(page.locator('#platformRouteBtn')).toBeVisible({timeout:10000});
   await expect(page.locator('#platformTravellerBtn')).toBeVisible({timeout:10000});
 }
