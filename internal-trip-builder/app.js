@@ -58,7 +58,7 @@ async function openDraft(slug){
 }
 function renderEditor(){
   const t=draft.trip,c=draft.catalogEntry,d=c.discovery||{},fit=d.fit||{};
-  $('#slug').value=t.slug||'';$('#kind').value=t.kind||'';$('#days').value=t.planning?.days??'';
+  $('#slug').value=t.slug||'';$('#kind').value=t.kind||'';$('#status').value=t.status||'draft';$('#days').value=t.planning?.days??'';
   $('#regions').value=(d.regions||[]).join(', ');$('#themes').value=(d.themes||[]).join(', ');$('#modes').value=(d.modes||[]).join(', ');
   $('#pace').value=fit.pace||'balanced';$('#seasons').value=(fit.seasons||[]).join(', ');$('#party').value=(fit.party||[]).join(', ');
   $('#startRegion').value=fit.startRegion||'';$('#accessibility').value=fit.accessibility||'standard-check';$('#capabilities').value=(c.capabilities||[]).join(', ');
@@ -90,7 +90,7 @@ function collectRows(selector,current,mapper){
 }
 function collectStructured(){
   const t=draft.trip,c=draft.catalogEntry;
-  t.kind=$('#kind').value.trim();c.kind=t.kind;t.planning=t.planning||{};t.planning.days=Number($('#days').value)||null;
+  t.kind=$('#kind').value.trim();c.kind=t.kind;t.status=$('#status').value;c.status=t.status;t.planning=t.planning||{};t.planning.days=Number($('#days').value)||null;
   c.capabilities=csv($('#capabilities').value);
   c.discovery=c.discovery||{};c.discovery.regions=csv($('#regions').value);c.discovery.themes=csv($('#themes').value);c.discovery.modes=csv($('#modes').value);
   c.discovery.fit=c.discovery.fit||{};c.discovery.fit.pace=$('#pace').value;c.discovery.fit.seasons=csv($('#seasons').value);c.discovery.fit.party=csv($('#party').value);c.discovery.fit.startRegion=$('#startRegion').value.trim();c.discovery.fit.accessibility=$('#accessibility').value;
