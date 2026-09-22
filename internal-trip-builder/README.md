@@ -7,6 +7,12 @@ Local-only authoring environment for reusable regional trips.
 From the repository root:
 
 \`\`\`bash
+npm run builder
+\`\`\`
+
+Direct Node fallback:
+
+\`\`\`bash
 node internal-trip-builder/server.mjs
 \`\`\`
 
