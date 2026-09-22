@@ -160,7 +160,7 @@ test('regional route focus fits the whole trip and terrain labels localize',()=>
   const terrain=moduleSources['terrain.js'];
   assert.match(terrain,/function focusRoute/);
   assert.match(terrain,/fitBounds\(bounds/);
-  assert.match(source,/focusRoute:\(\)=>\{if\(document\.body\.classList\.contains\('terrain-view'\)\)Terrain\.focusRoute\(\)/);
+  assert.match(source,/focusRoute:\(\)=>\{if\(document\.body\.classList\.contains\('platform-home'\)\)return Home\.renderGlobe\(\);if\(document\.body\.classList\.contains\('terrain-view'\)\)Terrain\.focusRoute\(\)/);
   assert.match(terrain,/mapStyle\.localize/);
   assert.match(mapStyle,/name:\$\{lang\}/);
 });
