@@ -1,0 +1,494 @@
+{
+  "schemaVersion": 1,
+  "id": "swiss-via-alpina-hike",
+  "slug": "swiss-via-alpina-hike",
+  "kind": "hiking",
+  "status": "sourced-beta",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Swiss Via Alpina Hike",
+    "de": "Schweizer Via Alpina",
+    "it": "Via Alpina svizzera",
+    "es": "Via Alpina suiza",
+    "fr": "Via Alpina suisse",
+    "pt": "Via Alpina suíça"
+  },
+  "summary": {
+    "en": "An eight-day hiking traverse using consecutive SwitzerlandMobility Via Alpina stages from Meiringen through Grindelwald, Lauterbrunnen, Kandersteg and Lenk to Gstaad. Alpine weather, snow and trail closures require current checks.",
+    "de": "Eine achttägige Wanderquerung auf aufeinanderfolgenden SchweizMobil-Etappen der Via Alpina von Meiringen über Grindelwald, Lauterbrunnen, Kandersteg und Lenk nach Gstaad. Alpenwetter, Schnee und Sperrungen müssen aktuell geprüft werden.",
+    "it": "Una traversata escursionistica di otto giorni sulle tappe consecutive della Via Alpina di SvizzeraMobile da Meiringen a Gstaad via Grindelwald, Lauterbrunnen, Kandersteg e Lenk. Meteo alpino, neve e chiusure richiedono verifiche attuali.",
+    "es": "Una travesía de senderismo de ocho días por etapas consecutivas de la Via Alpina de SuizaMobile desde Meiringen hasta Gstaad pasando por Grindelwald, Lauterbrunnen, Kandersteg y Lenk. El tiempo alpino, la nieve y los cierres requieren comprobación.",
+    "fr": "Une traversée pédestre de huit jours sur des étapes consécutives de la Via Alpina de SuisseMobile, de Meiringen à Gstaad via Grindelwald, Lauterbrunnen, Kandersteg et Lenk. Météo alpine, neige et fermetures exigent des vérifications actuelles.",
+    "pt": "Uma travessia pedestre de oito dias por etapas consecutivas da Via Alpina da SwitzerlandMobility, de Meiringen a Gstaad via Grindelwald, Lauterbrunnen, Kandersteg e Lenk. Clima alpino, neve e encerramentos exigem verificação atual."
+  },
+  "geography": {
+    "countries": [
+      "CH"
+    ],
+    "primaryCountry": "CH"
+  },
+  "planning": {
+    "days": 8,
+    "currency": "EUR",
+    "pace": "active",
+    "distanceKm": null,
+    "priceModel": "current-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 46.56,
+      "lng": 7.73,
+      "altitude": 0.44
+    }
+  },
+  "places": [
+    {
+      "id": "meiringen",
+      "type": "town",
+      "countryCode": "CH",
+      "name": {
+        "en": "Meiringen",
+        "de": "Meiringen",
+        "it": "Meiringen",
+        "es": "Meiringen",
+        "fr": "Meiringen",
+        "pt": "Meiringen"
+      },
+      "coordinates": {
+        "lat": 46.7271,
+        "lng": 8.1872
+      }
+    },
+    {
+      "id": "grindelwald",
+      "type": "town",
+      "countryCode": "CH",
+      "name": {
+        "en": "Grindelwald",
+        "de": "Grindelwald",
+        "it": "Grindelwald",
+        "es": "Grindelwald",
+        "fr": "Grindelwald",
+        "pt": "Grindelwald"
+      },
+      "coordinates": {
+        "lat": 46.6242,
+        "lng": 8.0414
+      }
+    },
+    {
+      "id": "lauterbrunnen",
+      "type": "town",
+      "countryCode": "CH",
+      "name": {
+        "en": "Lauterbrunnen",
+        "de": "Lauterbrunnen",
+        "it": "Lauterbrunnen",
+        "es": "Lauterbrunnen",
+        "fr": "Lauterbrunnen",
+        "pt": "Lauterbrunnen"
+      },
+      "coordinates": {
+        "lat": 46.5935,
+        "lng": 7.9091
+      }
+    },
+    {
+      "id": "griesalp",
+      "type": "mountain-stop",
+      "countryCode": "CH",
+      "name": {
+        "en": "Griesalp",
+        "de": "Griesalp",
+        "it": "Griesalp",
+        "es": "Griesalp",
+        "fr": "Griesalp",
+        "pt": "Griesalp"
+      },
+      "coordinates": {
+        "lat": 46.5516,
+        "lng": 7.7755
+      }
+    },
+    {
+      "id": "kandersteg",
+      "type": "town",
+      "countryCode": "CH",
+      "name": {
+        "en": "Kandersteg",
+        "de": "Kandersteg",
+        "it": "Kandersteg",
+        "es": "Kandersteg",
+        "fr": "Kandersteg",
+        "pt": "Kandersteg"
+      },
+      "coordinates": {
+        "lat": 46.4947,
+        "lng": 7.6733
+      }
+    },
+    {
+      "id": "adelboden",
+      "type": "town",
+      "countryCode": "CH",
+      "name": {
+        "en": "Adelboden",
+        "de": "Adelboden",
+        "it": "Adelboden",
+        "es": "Adelboden",
+        "fr": "Adelboden",
+        "pt": "Adelboden"
+      },
+      "coordinates": {
+        "lat": 46.4917,
+        "lng": 7.5603
+      }
+    },
+    {
+      "id": "lenk",
+      "type": "town",
+      "countryCode": "CH",
+      "name": {
+        "en": "Lenk",
+        "de": "Lenk",
+        "it": "Lenk",
+        "es": "Lenk",
+        "fr": "Lenk",
+        "pt": "Lenk"
+      },
+      "coordinates": {
+        "lat": 46.4586,
+        "lng": 7.4422
+      }
+    },
+    {
+      "id": "gstaad",
+      "type": "town",
+      "countryCode": "CH",
+      "name": {
+        "en": "Gstaad",
+        "de": "Gstaad",
+        "it": "Gstaad",
+        "es": "Gstaad",
+        "fr": "Gstaad",
+        "pt": "Gstaad"
+      },
+      "coordinates": {
+        "lat": 46.4723,
+        "lng": 7.2861
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "swiss-via-alpina-hike-stop-01",
+      "sequence": 1,
+      "placeId": "meiringen",
+      "dayStart": 1,
+      "dayEnd": 1,
+      "nights": 1
+    },
+    {
+      "id": "swiss-via-alpina-hike-stop-02",
+      "sequence": 2,
+      "placeId": "grindelwald",
+      "dayStart": 2,
+      "dayEnd": 2,
+      "nights": 1
+    },
+    {
+      "id": "swiss-via-alpina-hike-stop-03",
+      "sequence": 3,
+      "placeId": "lauterbrunnen",
+      "dayStart": 3,
+      "dayEnd": 3,
+      "nights": 1
+    },
+    {
+      "id": "swiss-via-alpina-hike-stop-04",
+      "sequence": 4,
+      "placeId": "griesalp",
+      "dayStart": 4,
+      "dayEnd": 4,
+      "nights": 1
+    },
+    {
+      "id": "swiss-via-alpina-hike-stop-05",
+      "sequence": 5,
+      "placeId": "kandersteg",
+      "dayStart": 5,
+      "dayEnd": 5,
+      "nights": 1
+    },
+    {
+      "id": "swiss-via-alpina-hike-stop-06",
+      "sequence": 6,
+      "placeId": "adelboden",
+      "dayStart": 6,
+      "dayEnd": 6,
+      "nights": 1
+    },
+    {
+      "id": "swiss-via-alpina-hike-stop-07",
+      "sequence": 7,
+      "placeId": "lenk",
+      "dayStart": 7,
+      "dayEnd": 7,
+      "nights": 1
+    },
+    {
+      "id": "swiss-via-alpina-hike-stop-08",
+      "sequence": 8,
+      "placeId": "gstaad",
+      "dayStart": 8,
+      "dayEnd": 8,
+      "nights": 1
+    }
+  ],
+  "segments": [
+    {
+      "id": "swiss-via-alpina-hike-leg-01",
+      "sequence": 1,
+      "fromStopId": "swiss-via-alpina-hike-stop-01",
+      "toStopId": "swiss-via-alpina-hike-stop-02",
+      "transport": {
+        "mode": "walk",
+        "stages": [
+          {
+            "mode": "walk",
+            "sourceIds": [
+              "switzerland-mobility-via-alpina"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "switzerland-mobility-via-alpina"
+        ],
+        "notes": "SwitzerlandMobility lists these consecutive Via Alpina stages. Weather, snow, maintenance and closures must still be checked for the actual hiking date."
+      }
+    },
+    {
+      "id": "swiss-via-alpina-hike-leg-02",
+      "sequence": 2,
+      "fromStopId": "swiss-via-alpina-hike-stop-02",
+      "toStopId": "swiss-via-alpina-hike-stop-03",
+      "transport": {
+        "mode": "walk",
+        "stages": [
+          {
+            "mode": "walk",
+            "sourceIds": [
+              "switzerland-mobility-via-alpina"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "switzerland-mobility-via-alpina"
+        ],
+        "notes": "SwitzerlandMobility lists these consecutive Via Alpina stages. Weather, snow, maintenance and closures must still be checked for the actual hiking date."
+      }
+    },
+    {
+      "id": "swiss-via-alpina-hike-leg-03",
+      "sequence": 3,
+      "fromStopId": "swiss-via-alpina-hike-stop-03",
+      "toStopId": "swiss-via-alpina-hike-stop-04",
+      "transport": {
+        "mode": "walk",
+        "stages": [
+          {
+            "mode": "walk",
+            "sourceIds": [
+              "switzerland-mobility-via-alpina"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "switzerland-mobility-via-alpina"
+        ],
+        "notes": "SwitzerlandMobility lists these consecutive Via Alpina stages. Weather, snow, maintenance and closures must still be checked for the actual hiking date."
+      }
+    },
+    {
+      "id": "swiss-via-alpina-hike-leg-04",
+      "sequence": 4,
+      "fromStopId": "swiss-via-alpina-hike-stop-04",
+      "toStopId": "swiss-via-alpina-hike-stop-05",
+      "transport": {
+        "mode": "walk",
+        "stages": [
+          {
+            "mode": "walk",
+            "sourceIds": [
+              "switzerland-mobility-via-alpina"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "switzerland-mobility-via-alpina"
+        ],
+        "notes": "SwitzerlandMobility lists these consecutive Via Alpina stages. Weather, snow, maintenance and closures must still be checked for the actual hiking date."
+      }
+    },
+    {
+      "id": "swiss-via-alpina-hike-leg-05",
+      "sequence": 5,
+      "fromStopId": "swiss-via-alpina-hike-stop-05",
+      "toStopId": "swiss-via-alpina-hike-stop-06",
+      "transport": {
+        "mode": "walk",
+        "stages": [
+          {
+            "mode": "walk",
+            "sourceIds": [
+              "switzerland-mobility-via-alpina"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "switzerland-mobility-via-alpina"
+        ],
+        "notes": "SwitzerlandMobility lists these consecutive Via Alpina stages. Weather, snow, maintenance and closures must still be checked for the actual hiking date."
+      }
+    },
+    {
+      "id": "swiss-via-alpina-hike-leg-06",
+      "sequence": 6,
+      "fromStopId": "swiss-via-alpina-hike-stop-06",
+      "toStopId": "swiss-via-alpina-hike-stop-07",
+      "transport": {
+        "mode": "walk",
+        "stages": [
+          {
+            "mode": "walk",
+            "sourceIds": [
+              "switzerland-mobility-via-alpina"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "switzerland-mobility-via-alpina"
+        ],
+        "notes": "SwitzerlandMobility lists these consecutive Via Alpina stages. Weather, snow, maintenance and closures must still be checked for the actual hiking date."
+      }
+    },
+    {
+      "id": "swiss-via-alpina-hike-leg-07",
+      "sequence": 7,
+      "fromStopId": "swiss-via-alpina-hike-stop-07",
+      "toStopId": "swiss-via-alpina-hike-stop-08",
+      "transport": {
+        "mode": "walk",
+        "stages": [
+          {
+            "mode": "walk",
+            "sourceIds": [
+              "switzerland-mobility-via-alpina"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "switzerland-mobility-via-alpina"
+        ],
+        "notes": "SwitzerlandMobility lists these consecutive Via Alpina stages. Weather, snow, maintenance and closures must still be checked for the actual hiking date."
+      }
+    }
+  ],
+  "chapters": [],
+  "sources": [
+    {
+      "id": "switzerland-mobility-via-alpina",
+      "title": "Via Alpina · SwitzerlandMobility national route 1",
+      "issuer": "SwitzerlandMobility",
+      "issuerType": "primary-source",
+      "url": "https://www.schweizmobil.ch/de/suisse-a-pied/routen/nationale-routen/route-01.html",
+      "checkedAt": "2026-09-22",
+      "claims": [
+        "official Via Alpina stage sequence",
+        "Meiringen–Grindelwald, Grindelwald–Lauterbrunnen and onward stages listed",
+        "alpine route requires current condition checks"
+      ]
+    }
+  ],
+  "extensions": {}
+}
