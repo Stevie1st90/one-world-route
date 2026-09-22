@@ -5,12 +5,22 @@ It is for local/internal route authoring and is not part of the public deploymen
 
 ## Start
 
+### Windows / PowerShell
+
 From the repository root:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\internal-trip-builder\start-builder.ps1
+```
+
+### Cross-platform
 
 ```bash
 cd internal-trip-builder
 npm start
 ```
+
+No package install is required; the runtime uses Node.js built-ins only.
 
 Open:
 
