@@ -3602,7 +3602,7 @@
   const SUPPORTED_LOCALES=LocaleData.supportedLocales;
   const I18N=LocaleData.messages;
   const $ = (s, r=document) => r.querySelector(s);
-  const $ = (s, r=document) => [...r.querySelectorAll(s)];
+  const $$ = (s, r=document) => [...r.querySelectorAll(s)];
   const initialLocale = (() => {
     const q = new URLSearchParams(location.search).get('lang');
     const b = String(q || navigator.language || 'en').toLowerCase().split('-')[0];
