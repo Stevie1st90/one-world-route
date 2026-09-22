@@ -48,6 +48,7 @@
           <button data-tab="stops">Stops</button>
           <button data-tab="segments">Segments</button>
           <button data-tab="sources">Sources</button>
+          <button data-tab="chapters">Chapters</button>
           <button data-tab="extensions">Extensions</button>
           <button data-tab="raw">Raw JSON</button>
           <button data-tab="gate">Gate</button>
@@ -111,6 +112,11 @@
         <div class="tab" data-panel="sources">
           <div class="section-head"><div><h2>Sources</h2><p>Verified facts must resolve to source IDs. Date-sensitive facts stay current-check-required.</p></div><button data-add="source">+ Add source</button></div>
           <div id="sourcesTable" class="rows"></div>
+        </div>
+
+        <div class="tab" data-panel="chapters">
+          <div class="section-head"><div><h2>Story chapters</h2><p>Group ordered stops into reusable story chapters.</p></div><button data-add="chapter">+ Add chapter</button></div>
+          <div id="chaptersTable" class="rows"></div>
         </div>
 
         <div class="tab" data-panel="extensions">
