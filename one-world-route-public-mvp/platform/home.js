@@ -16,6 +16,7 @@
   function show({catalog,t,local,esc,facetLabel,statusLabel,onOpenTrip,locale}){
     const home=create();
     const trips=catalog?.trips||[];
+    const localBuilder=location.hostname==='127.0.0.1'&&location.port==='4175';
     const flagship=trips.find(item=>item.id===catalog.defaultTripId);
     const regional=trips.filter(item=>item.id!==catalog.defaultTripId);
     const card=item=>{
@@ -35,7 +36,7 @@
       <div class="platform-home-shell">
         <header class="platform-home-head">
           <div class="platform-home-brand"><span class="brand-orbit"><i></i></span><div><strong>ONE WORLD ROUTE</strong><small>${esc(t('routeLibraryLead'))}</small></div></div>
-          <button type="button" id="platformHomeTraveller">${esc(t('traveller'))}</button>
+          <div class="platform-home-head-actions">${localBuilder?'<a href="/__builder/">Internal Trip Builder</a>':''}<button type="button" id="platformHomeTraveller">${esc(t('traveller'))}</button></div>
         </header>
         <main class="platform-home-main">
           <div class="platform-home-hero">
