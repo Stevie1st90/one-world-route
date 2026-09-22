@@ -2,7 +2,7 @@ import {test,expect} from '@playwright/test';
 import {rm} from 'node:fs/promises';
 import {resolve} from 'node:path';
 
-test('internal builder authors a draft and previews it with the regional engine',async({page},testInfo)=>{
+test('internal builder authors a draft and previews it with the regional engine',async({page,isMobile},testInfo)=>{
   test.setTimeout(90000);
   const slug=('ci-builder-ui-'+testInfo.project.name).toLowerCase().replace(/[^a-z0-9]+/g,'-');
   const root=resolve(process.cwd(),'..');
@@ -12,7 +12,7 @@ test('internal builder authors a draft and previews it with the regional engine'
     await expect(page.locator('#heading')).toHaveText('Select or create a trip');
     await page.request.post('/__builder/api/scaffold',{data:{slug,kind:'island-hopping',days:8}});
     await page.reload({waitUntil:'domcontentloaded'});
-    await page.locator('[data-slug="'+slug+'"]').click();
+    if(isMobile){await page.locator('#mobileDraftSelect').selectOption(slug)}else{await page.locator('[data-slug="'+slug+'"]').click()}
     await expect(page.locator('#editor')).toBeVisible();
     await expect(page.locator('[data-tab="localization"]')).toBeVisible();
     await expect(page.locator('[data-tab="trip"]')).toBeVisible();
