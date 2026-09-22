@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ONE WORLD ROUTE · Internal Trip Builder</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><span class="orb"></span><div><b>ONE WORLD ROUTE</b><small>Internal Trip Builder</small></div></div>
+      <button id="newDraftBtn" class="primary wide">+ New draft</button>
+      <div class="section-title">Drafts</div>
+      <div id="draftList" class="draft-list"></div>
+      <div class="internal-note">Local-only authoring tool. Drafts are outside the public Vercel root until the publish gate passes.</div>
+    </aside>
+
+    <main class="workspace">
+      <header class="toolbar">
+        <div><span id="statusDot" class="status-dot"></span><b id="activeTitle">No draft selected</b><small id="activeMeta">Create or open a draft</small></div>
+        <div class="actions">
+          <button id="saveBtn" disabled>Save</button>
+          <button id="validateBtn" disabled>Validate</button>
+          <button id="previewBtn" disabled>Open preview</button>
+          <button id="publishBtn" class="primary" disabled>Publish</button>
+        </div>
+      </header>
+
+      <section id="emptyState" class="empty-state">
+        <h1>Data-first trip authoring</h1>
+        <p>Create a trip draft, add places → stops → segments, attach sources, preview it in the real Regional Engine, then publish only after the gate is green.</p>
+        <button id="emptyNewBtn" class="primary">Create first draft</button>
+      </section>
+
+      <section id="editor" class="editor hidden">
+        <nav class="tabs" id="tabs">
+          <button data-tab="core" class="active">Core</button>
+          <button data-tab="places">Places</button>
+          <button data-tab="stops">Stops</button>
+          <button data-tab="segments">Segments</button>
+          <button data-tab="sources">Sources</button>
+          <button data-tab="json">Advanced JSON</button>
+          <button data-tab="gate">Publish gate</button>
+        </nav>
+
+        <div class="tab-panel" data-panel="core">
+          <div class="grid cols-3">
+            <label>Slug<input id="slug" disabled></label>
+            <label>Kind<input id="kind"></label>
+            <label>Days<input id="days" type="number" min="1"></label>
+            <label>Regions<input id="regions" placeholder="europe, mediterranean"></label>
+            <label>Themes<input id="themes" placeholder="culture, coast"></label>
+            <label>Modes<input id="modes" placeholder="rail, ferry"></label>
+            <label>Pace<select id="pace"><option>relaxed</option><option selected>balanced</option><option>active</option></select></label>
+            <label>Seasons<input id="seasons" placeholder="spring, summer"></label>
+            <label>Party<input id="party" placeholder="solo, couples"></label>
+            <label>Start region<input id="startRegion"></label>
+            <label>Accessibility<select id="accessibility"><option>standard-check</option><option>operator-dependent</option><option>vehicle-dependent</option><option>complex-planning</option></select></label>
+            <label>Capabilities<input id="capabilities" placeholder="globe, story, terrain"></label>
+          </div>
+          <h2>Localization</h2>
+          <div id="locales" class="locale-grid"></div>
+        </div>
+
+        <div class="tab-panel hidden" data-panel="places">
+          <div class="panel-head"><div><h2>Places</h2><p>Reusable geography. Coordinates drive Globe and Terrain.</p></div><button data-add="place">+ Place</button></div>
+          <div id="placesTable" class="rows"></div>
+        </div>
+
+        <div class="tab-panel hidden" data-panel="stops">
+          <div class="panel-head"><div><h2>Stops / visits</h2><p>Ordered visits. Repeating a city uses a new stop ID pointing to the same place.</p></div><button data-add="stop">+ Stop</button></div>
+          <div id="stopsTable" class="rows"></div>
+        </div>
+
+        <div class="tab-panel hidden" data-panel="segments">
+          <div class="panel-head"><div><h2>Segments</h2><p>Every adjacent stop pair must have exactly one segment.</p></div><button data-action="build-segments">Build from stops</button></div>
+          <div id="segmentsTable" class="rows"></div>
+        </div>
+
+        <div class="tab-panel hidden" data-panel="sources">
+          <div class="panel-head"><div><h2>Sources</h2><p>Verified claims must resolve to source IDs. Volatile facts stay current-check-required.</p></div><button data-add="source">+ Source</button></div>
+          <div id="sourcesTable" class="rows"></div>
+        </div>
+
+        <div class="tab-panel hidden" data-panel="json">
+          <div class="json-grid">
+            <label><span>Trip JSON</span><textarea id="tripJson" spellcheck="false"></textarea></label>
+            <label><span>Catalog JSON</span><textarea id="catalogJson" spellcheck="false"></textarea></label>
+          </div>
+          <div class="inline-actions"><button id="applyJsonBtn">Apply JSON to editor</button><span>Use this for chapters, extensions, traveller context and advanced metadata.</span></div>
+        </div>
+
+        <div class="tab-panel hidden" data-panel="gate">
+          <div class="gate-summary">
+            <div class="score"><b id="gateState">Not validated</b><span id="gateMetrics">—</span></div>
+            <button id="gateValidateBtn">Run publish gate</button>
+          </div>
+          <div class="gate-columns">
+            <div><h3>Errors</h3><div id="gateErrors" class="messages"></div></div>
+            <div><h3>Warnings</h3><div id="gateWarnings" class="messages"></div></div>
+          </div>
+          <pre id="gateTechnical" class="technical"></pre>
+        </div>
+      </section>
+    </main>
+
+    <aside id="previewPane" class="preview-pane">
+      <div class="preview-head"><div><b>Live preview</b><small>Real Regional Engine</small></div><button id="refreshPreviewBtn" disabled>↻</button></div>
+      <iframe id="previewFrame" title="Trip preview"></iframe>
+      <div class="preview-empty" id="previewEmpty">Save a draft to preview it.</div>
+    </aside>
+  </div>
+
+  <dialog id="newDialog">
+    <form method="dialog" id="newForm">
+      <h2>New trip draft</h2>
+      <label>Slug<input name="slug" required pattern="[a-z0-9]+(?:-[a-z0-9]+)*" placeholder="alpine-cycling-loop"></label>
+      <label>Kind<input name="kind" required value="custom" placeholder="cycling"></label>
+      <label>Days<input name="days" type="number" min="1" value="10"></label>
+      <label>English title<input name="title" required placeholder="Alpine Cycling Loop"></label>
+      <div class="dialog-actions"><button value="cancel">Cancel</button><button class="primary" value="default">Create draft</button></div>
+    </form>
+  </dialog>
+  <div id="toast" class="toast"></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
