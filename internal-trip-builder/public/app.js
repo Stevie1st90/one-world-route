@@ -145,6 +145,15 @@ function renderSources(){
   $('#sourcesTable').innerHTML=rows||'<div class="empty-mini">No sources yet.</div>';
 }
 
+function renderChapters(){
+  const rows=(state.draft.trip.chapters||[]).map((chapter,i)=>rowShell(
+    chapter.title?.en||chapter.id||'Chapter '+(i+1),(chapter.stopIds||[]).join(' → '),
+    input('ID','id',chapter.id)+input('Title EN','title.en',chapter.title?.en)+input('Title DE','title.de',chapter.title?.de)+input('Stop IDs','stopIds',(chapter.stopIds||[]).join(', ')),
+    i,'chapter'
+  )).join('');
+  $('#chaptersTable').innerHTML=rows||'<div class="empty-mini">No story chapters yet.</div>';
+}
+
 function renderJson(){
   $('#tripJson').value=fmt(state.draft.trip);
   $('#catalogJson').value=fmt(state.draft.catalogEntry);
@@ -164,7 +173,7 @@ function renderEditor(){
   $('#emptyState').classList.add('hidden');$('#editor').classList.remove('hidden');
   $('#pageTitle').textContent=state.draft.trip.title?.en||state.slug;
   ['previewBtn','saveBtn','gateBtn','publishBtn'].forEach(id=>$('#'+id).disabled=false);
-  renderMetrics();renderOverview();renderPlaces();renderStops();renderSegments();renderSources();renderJson();renderGate();bindRows();
+  renderMetrics();renderOverview();renderPlaces();renderStops();renderSegments();renderSources();renderChapters();renderJson();renderGate();bindRows();
 }
 
 function syncOverview(){
@@ -196,7 +205,7 @@ function setDeep(object,path,value){
   const keys=path.split('.');let target=object;
   keys.slice(0,-1).forEach(key=>target=target[key]=target[key]??{});
   const key=keys.at(-1);
-  if(path.endsWith('sourceIds'))target[key]=arr(value);
+  if(path.endsWith('sourceIds')||path==='stopIds')target[key]=arr(value);
   else if(['sequence','dayStart','dayEnd','coordinates.lat','coordinates.lng'].includes(path))target[key]=num(value);
   else target[key]=value;
 }
@@ -205,13 +214,13 @@ function bindRows(){
   $$('.row-card').forEach(card=>{
     card.querySelectorAll('[data-key]').forEach(control=>control.oninput=()=>{
       const type=card.dataset.row,index=Number(card.dataset.index);
-      const collection=type==='place'?state.draft.trip.places:type==='stop'?state.draft.trip.stops:type==='segment'?state.draft.trip.segments:state.draft.trip.sources;
+      const collection=type==='place'?state.draft.trip.places:type==='stop'?state.draft.trip.stops:type==='segment'?state.draft.trip.segments:type==='source'?state.draft.trip.sources:state.draft.trip.chapters;
       setDeep(collection[index],control.dataset.key,control.value);markDirty();renderMetrics();renderJson();
     });
   });
   $$('[data-remove]').forEach(btn=>btn.onclick=()=>{
     const type=btn.dataset.remove,index=Number(btn.dataset.index);
-    const key=type==='place'?'places':type==='stop'?'stops':type==='segment'?'segments':'sources';
+    const key=type==='place'?'places':type==='stop'?'stops':type==='segment'?'segments':type==='source'?'sources':'chapters';
     state.draft.trip[key].splice(index,1);markDirty();renderEditor();
   });
 }
@@ -227,6 +236,8 @@ function addItem(type){
     t.segments.push({id:`${state.slug}-segment-${String(n).padStart(2,'0')}`,sequence:n,fromStopId:stops[n-1]?.id||'',toStopId:stops[n]?.id||'',transport:{mode:'other'},planning:{durationMinutes:null},verification:{status:'draft',sourceIds:[]}});
   }else if(type==='source'){
     const n=t.sources.length+1;t.sources.push({id:`source-${n}`,title:'',issuer:'',issuerType:'primary-source',url:'https://',checkedAt:new Date().toISOString().slice(0,10),claims:[]});
+  }else if(type==='chapter'){
+    const n=(t.chapters||[]).length+1;t.chapters=t.chapters||[];t.chapters.push({id:`chapter-${n}`,title:{en:`Chapter ${n}`,de:`Kapitel ${n}`},stopIds:[]});
   }
   markDirty();renderEditor();
 }
