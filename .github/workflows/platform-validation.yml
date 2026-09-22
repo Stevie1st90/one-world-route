@@ -73,6 +73,7 @@ jobs:
           node --check ../internal-trip-builder/app.js
           node --check ../internal-trip-builder/test-builder.mjs
           node --check qa/tests/regional-platform.spec.mjs
+          node --check qa/tests/production-smoke.spec.mjs
           node --check qa/tests/trip-builder.spec.mjs
       - name: Platform data validation
         run: node scripts/validate-platform-data.mjs
