@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-21",
+  "updatedAt": "2026-09-22",
   "defaultLocale": "en",
   "supportedLocales": [
     "en",
@@ -378,6 +378,301 @@
           ],
           "startRegion": "europe",
           "accessibility": "standard-check"
+        }
+      }
+    },
+    {
+      "id": "cyclades-island-hopping",
+      "slug": "cyclades-island-hopping",
+      "kind": "island-hopping",
+      "status": "illustrative-template",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/cyclades-island-hopping.json",
+      "title": {
+        "en": "Cyclades Island Hopping",
+        "de": "Kykladen-Inselhüpfen",
+        "it": "Island hopping nelle Cicladi",
+        "es": "Island hopping por las Cícladas",
+        "fr": "D'île en île dans les Cyclades",
+        "pt": "Island hopping nas Cíclades"
+      },
+      "subtitle": {
+        "en": "12 days · 5 stops · seasonal ferry planning",
+        "de": "12 Tage · 5 Stopps · saisonale Fährplanung",
+        "it": "12 giorni · 5 tappe · traghetti stagionali",
+        "es": "12 días · 5 paradas · ferris estacionales",
+        "fr": "12 jours · 5 étapes · ferries saisonniers",
+        "pt": "12 dias · 5 paragens · ferries sazonais"
+      },
+      "metrics": {
+        "days": 12,
+        "countries": 1,
+        "stops": 5,
+        "segments": 4,
+        "budget": null,
+        "sourcedSegments": 4,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "source-evidence",
+        "story",
+        "terrain"
+      ],
+      "discovery": {
+        "regions": [
+          "europe",
+          "greece",
+          "cyclades"
+        ],
+        "themes": [
+          "island-hopping",
+          "coast",
+          "culture"
+        ],
+        "modes": [
+          "ferry"
+        ],
+        "durationBand": "7-14",
+        "featured": true,
+        "fit": {
+          "pace": "relaxed",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "greece",
+          "accessibility": "operator-dependent"
+        }
+      }
+    },
+    {
+      "id": "alps-garda-camper-loop",
+      "slug": "alps-garda-camper-loop",
+      "kind": "camper",
+      "status": "illustrative-template",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/alps-garda-camper-loop.json",
+      "title": {
+        "en": "Alps & Garda Camper Loop",
+        "de": "Alpen & Gardasee Camper-Loop",
+        "it": "Anello camper Alpi e Garda",
+        "es": "Ruta camper Alpes y Garda",
+        "fr": "Boucle camping-car Alpes et Garda",
+        "pt": "Circuito de camper Alpes e Garda"
+      },
+      "subtitle": {
+        "en": "14 days · 3 countries · vehicle-aware planning",
+        "de": "14 Tage · 3 Länder · fahrzeugabhängige Planung",
+        "it": "14 giorni · 3 paesi · pianificazione in base al veicolo",
+        "es": "14 días · 3 países · planificación según el vehículo",
+        "fr": "14 jours · 3 pays · planification selon le véhicule",
+        "pt": "14 dias · 3 países · planeamento conforme o veículo"
+      },
+      "metrics": {
+        "days": 14,
+        "countries": 3,
+        "stops": 7,
+        "segments": 6,
+        "budget": null,
+        "sourcedSegments": 6,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "vehicle-context",
+        "source-evidence",
+        "story",
+        "terrain"
+      ],
+      "discovery": {
+        "regions": [
+          "europe",
+          "alps",
+          "southern-europe"
+        ],
+        "themes": [
+          "camper",
+          "mountains",
+          "lakes",
+          "road-trip"
+        ],
+        "modes": [
+          "car"
+        ],
+        "durationBand": "7-14",
+        "featured": true,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "europe",
+          "accessibility": "vehicle-dependent"
+        }
+      }
+    },
+    {
+      "id": "danube-eurovelo-cycling-journey",
+      "slug": "danube-eurovelo-cycling-journey",
+      "kind": "cycling",
+      "status": "sourced-beta",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/danube-eurovelo-cycling-journey.json",
+      "title": {
+        "en": "Danube EuroVelo Cycling Journey",
+        "de": "Donau-EuroVelo-Radreise",
+        "it": "Viaggio in bici sul Danubio EuroVelo",
+        "es": "Viaje ciclista EuroVelo por el Danubio",
+        "fr": "Voyage à vélo EuroVelo le long du Danube",
+        "pt": "Viagem de bicicleta EuroVelo pelo Danúbio"
+      },
+      "subtitle": {
+        "en": "10 days · 4 countries · EuroVelo 6 corridor",
+        "de": "10 Tage · 4 Länder · EuroVelo-6-Korridor",
+        "it": "10 giorni · 4 paesi · corridoio EuroVelo 6",
+        "es": "10 días · 4 países · corredor EuroVelo 6",
+        "fr": "10 jours · 4 pays · corridor EuroVelo 6",
+        "pt": "10 dias · 4 países · corredor EuroVelo 6"
+      },
+      "metrics": {
+        "days": 10,
+        "countries": 4,
+        "stops": 6,
+        "segments": 5,
+        "budget": null,
+        "sourcedSegments": 5,
+        "verifiedSegments": 5
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "source-evidence",
+        "story",
+        "terrain"
+      ],
+      "discovery": {
+        "regions": [
+          "europe",
+          "danube"
+        ],
+        "themes": [
+          "cycling",
+          "river",
+          "cities",
+          "culture"
+        ],
+        "modes": [
+          "bicycle"
+        ],
+        "durationBand": "7-14",
+        "featured": true,
+        "fit": {
+          "pace": "active",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends"
+          ],
+          "startRegion": "europe",
+          "accessibility": "standard-check"
+        }
+      }
+    },
+    {
+      "id": "madeira-official-trails-week",
+      "slug": "madeira-official-trails-week",
+      "kind": "hiking",
+      "status": "sourced-beta",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/madeira-official-trails-week.json",
+      "title": {
+        "en": "Madeira Official Trails Week",
+        "de": "Madeira · Woche auf offiziellen Wanderwegen",
+        "it": "Madeira · Settimana sui sentieri ufficiali",
+        "es": "Madeira · Semana de senderos oficiales",
+        "fr": "Madère · Semaine des sentiers officiels",
+        "pt": "Madeira · Semana de trilhos oficiais"
+      },
+      "subtitle": {
+        "en": "8 days · official trail sources · live status required",
+        "de": "8 Tage · offizielle Wegquellen · Live-Status erforderlich",
+        "it": "8 giorni · fonti ufficiali · stato da verificare",
+        "es": "8 días · fuentes oficiales · estado en directo obligatorio",
+        "fr": "8 jours · sources officielles · statut à vérifier",
+        "pt": "8 dias · fontes oficiais · estado em tempo real obrigatório"
+      },
+      "metrics": {
+        "days": 8,
+        "countries": 1,
+        "stops": 11,
+        "segments": 10,
+        "budget": null,
+        "sourcedSegments": 10,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "source-evidence",
+        "story",
+        "terrain"
+      ],
+      "discovery": {
+        "regions": [
+          "europe",
+          "portugal",
+          "madeira"
+        ],
+        "themes": [
+          "hiking",
+          "nature",
+          "mountains",
+          "coast"
+        ],
+        "modes": [
+          "walk",
+          "ground-transfer"
+        ],
+        "durationBand": "7-14",
+        "featured": true,
+        "fit": {
+          "pace": "active",
+          "seasons": [
+            "multi-season"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends"
+          ],
+          "startRegion": "madeira",
+          "accessibility": "complex-planning"
         }
       }
     }
