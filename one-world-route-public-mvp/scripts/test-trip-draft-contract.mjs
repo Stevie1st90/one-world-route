@@ -5,7 +5,7 @@ import {computeTripMetrics,normalizeCatalogEntry,validateTripDraft} from './trip
 const catalog={supportedLocales:['en','de']};
 function valid(){
   const title={en:'Test Rail',de:'Testbahn'};
-  const trip={schemaVersion:1,id:'test-rail',slug:'test-rail',kind:'rail',title,planning:{days:2},places:[
+  const trip={schemaVersion:1,id:'test-rail',slug:'test-rail',kind:'rail',title,summary:{...title},planning:{days:2},places:[
     {id:'a',countryCode:'DE',name:{en:'A',de:'A'},coordinates:{lat:50,lng:8}},
     {id:'b',countryCode:'FR',name:{en:'B',de:'B'},coordinates:{lat:49,lng:7}}
   ],stops:[{id:'s1',sequence:1,placeId:'a'},{id:'s2',sequence:2,placeId:'b'}],segments:[{
