@@ -73,6 +73,8 @@ jobs:
           node --check ../internal-trip-builder/app.js
           node --check ../internal-trip-builder/test-builder.mjs
           node --check ../internal-trip-builder/test-server.mjs
+          node --check qa/run-builder.mjs
+          node --check qa/tests/trip-builder.spec.mjs
           node --check qa/tests/regional-platform.spec.mjs
       - name: Platform data validation
         run: node scripts/validate-platform-data.mjs
@@ -117,6 +119,13 @@ jobs:
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
         run: npm ci --prefix qa
+      - name: Internal builder browser E2E
+        env:
+          OWR_QA_NO_VIDEO: '1'
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          test -n "$CHROME_BIN"
+          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-builder.mjs
       - name: Regional browser E2E
         env:
           OWR_QA_NO_VIDEO: '1'
