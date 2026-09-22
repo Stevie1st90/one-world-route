@@ -1,0 +1,3 @@
+drafts/*.json
+drafts/*.report.json
+!drafts/.gitkeep
