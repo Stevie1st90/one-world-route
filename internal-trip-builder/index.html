@@ -35,7 +35,7 @@
 <label>Capabilities<input id="capabilities"></label>
 </div></section>
 <section class="card"><h2>Trip graph & evidence</h2><p>Core invariant: place → stop/visit → segment. Specialized data belongs in namespaced extensions.</p>
-<div class="tabs"><button data-tab="places" class="active">Places</button><button data-tab="stops">Stops</button><button data-tab="segments">Segments</button><button data-tab="sources">Sources</button><button data-tab="chapters">Chapters</button><button data-tab="extensions">Extensions</button></div>
+<div class="tabs"><button data-tab="places" class="active">Places</button><button data-tab="stops">Stops</button><button data-tab="segments">Segments</button><button data-tab="sources">Sources</button><button data-tab="chapters">Chapters</button><button data-tab="extensions">Extensions</button><button data-tab="localization">Localization</button><button data-tab="trip">Full trip</button><button data-tab="catalog">Catalog</button></div>
 <textarea id="jsonEditor" spellcheck="false"></textarea><div class="tools"><button id="formatBtn">Format JSON</button><button id="applyBtn">Apply section</button></div>
 </section></div></section>
 </main></div>
@@ -53,9 +53,9 @@ function localized(obj,val){for(const l of state.catalog.supportedLocales||['en'
 function calc(){const t=state.trip||{},s=t.segments||[];return{days:t.planning?.days??'—',stops:(t.stops||[]).length,segments:s.length,countries:new Set((t.places||[]).map(p=>p.countryCode).filter(Boolean)).size,sourced:s.filter(x=>(x.verification?.sourceIds||[]).length).length,verified:s.filter(x=>x.verification?.status==='verified').length}}
 function renderMetrics(){$('#metrics').innerHTML=Object.entries(calc()).map(x=>'<div><b>'+x[1]+'</b><span>'+x[0]+'</span></div>').join('')}
 function renderDrafts(){$('#drafts').innerHTML=state.drafts.map(d=>'<button class="draft '+(d.slug===state.slug?'active':'')+'" data-slug="'+d.slug+'"><b>'+esc(d.title)+'</b><small>'+esc(d.kind)+' · '+esc(d.status)+'</small></button>').join('');$$('.draft').forEach(b=>b.onclick=()=>loadDraft(b.dataset.slug))}
-function sectionValue(){return state.tab==='extensions'?(state.trip.extensions||{}):(state.trip[state.tab]||[])}
+function sectionValue(){if(state.tab==='extensions')return state.trip.extensions||{};if(state.tab==='localization')return{title:state.trip.title||{},summary:state.trip.summary||{},subtitle:state.catalogEntry.subtitle||{}};if(state.tab==='trip')return state.trip;if(state.tab==='catalog')return state.catalogEntry;return state.trip[state.tab]||[]}
 function readSection(){try{return JSON.parse($('#jsonEditor').value)}catch(e){throw new Error('JSON: '+e.message)}}
-function syncSection(){if(!state.trip)return;const v=readSection();if(state.tab==='extensions')state.trip.extensions=v;else state.trip[state.tab]=v;renderMetrics()}
+function syncSection(){if(!state.trip)return;const v=readSection();if(state.tab==='extensions')state.trip.extensions=v;else if(state.tab==='localization'){state.trip.title=v.title||{};state.trip.summary=v.summary||{};state.catalogEntry.title=clone(state.trip.title);state.catalogEntry.subtitle=v.subtitle||{}}else if(state.tab==='trip')state.trip=v;else if(state.tab==='catalog')state.catalogEntry=v;else state.trip[state.tab]=v;renderMetrics()}
 function showTab(tab){state.tab=tab;$$('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));$('#jsonEditor').value=JSON.stringify(sectionValue(),null,2)}
 function bind(){
  const t=state.trip,e=state.catalogEntry,d=e.discovery||{},f=d.fit||{};
