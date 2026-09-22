@@ -25,6 +25,32 @@ async function loadDraft(s){const p=paths(s);return{trip:await json(p.trip),cata
 const localized=(locales,v)=>Object.fromEntries(locales.map(l=>[l,v]));
 const band=d=>d==null?'7-14':d<=14?'7-14':d<=30?'15-30':d<=89?'31-89':'90-plus';
 
+
+const publishChecks=[
+  ['Platform data validation',['scripts/validate-platform-data.mjs']],
+  ['Public data validation',['scripts/validate-public-data.mjs']],
+  ['Platform model tests',['--test','scripts/test-platform-model.mjs']],
+  ['Platform locale tests',['--test','scripts/test-platform-i18n.mjs']],
+  ['Platform formatter tests',['--test','scripts/test-platform-formatters.mjs']],
+  ['Share page tests',['--test','scripts/test-share-pages.mjs']],
+  ['Platform navigation tests',['--test','scripts/test-platform-navigation.mjs']],
+  ['Regional runtime integration',['--test','scripts/test-regional-runtime.mjs']],
+  ['Rail validator tests',['--test','scripts/test-platform-rail-validator.mjs']],
+  ['Story controller tests',['--test','scripts/test-platform-story.mjs']],
+  ['Continuity tests',['--test','scripts/test-continuity.mjs']]
+];
+
+function runPublishChecks(){
+  const results=[];
+  for(const [name,args] of publishChecks){
+    const r=spawnSync(process.execPath,args.map(arg=>arg.startsWith('scripts/')?join(publicRoot,arg):arg),{cwd:publicRoot,encoding:'utf8'});
+    const result={name,ok:r.status===0,output:String(r.status===0?r.stdout:(r.stderr||r.stdout||'')).trim().slice(-4000)};
+    results.push(result);
+    if(!result.ok)return{ok:false,results,failed:name};
+  }
+  return{ok:true,results};
+}
+
 async function scaffold(input){
   const slug=safeSlug(input.slug),kind=safeSlug(input.kind||'custom'),catalog=await json(catalogPath),p=paths(slug);
   if(await exists(p.trip)||(catalog.trips||[]).some(t=>t.id===slug))throw new Error('Draft or public trip already exists');
@@ -63,9 +89,12 @@ async function publish(slug){
   const oldCatalog=await readFile(catalogPath,'utf8'),had=await exists(target),oldTrip=had?await readFile(target,'utf8'):null;
   try{
     await atomic(target,trip);await atomic(catalogPath,next);
-    const r=spawnSync(process.execPath,[join(publicRoot,'scripts/validate-platform-data.mjs')],{cwd:publicRoot,encoding:'utf8'});
-    if(r.status!==0)throw new Error((r.stderr||r.stdout||'Platform validation failed').trim());
-    await atomic(paths(slug).trip,trip);await atomic(paths(slug).catalog,entry);return{published:true,validation:gate};
+    const quality=runPublishChecks();
+    if(!quality.ok){
+      const failed=quality.results.find(result=>!result.ok);
+      throw new Error((failed?.name||'Publish quality gate')+' failed'+(failed?.output?'\n'+failed.output:''));
+    }
+    await atomic(paths(slug).trip,trip);await atomic(paths(slug).catalog,entry);return{published:true,validation:gate,qualityChecks:quality.results};
   }catch(e){await writeFile(catalogPath,oldCatalog);if(had)await writeFile(target,oldTrip);else await rm(target,{force:true});throw e}
 }
 function cookieDraft(req){const m=String(req.headers.cookie||'').match(/(?:^|;\s*)owr_builder_draft=([^;]+)/);return m?decodeURIComponent(m[1]):null}
