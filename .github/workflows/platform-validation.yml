@@ -75,6 +75,7 @@ jobs:
           node --check internal-trip-builder/lib/repository.mjs
           node --check internal-trip-builder/server.mjs
           node --check internal-trip-builder/public/app.js
+          node --check one-world-route-public-mvp/qa/tests/trip-builder.spec.mjs
           node --test internal-trip-builder/test-draft-core.mjs internal-trip-builder/test-server.mjs
       - name: Platform data validation
         run: node scripts/validate-platform-data.mjs
@@ -111,6 +112,23 @@ jobs:
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
         run: npm ci --prefix qa
+      - name: Internal trip builder browser E2E
+        env:
+          OWR_QA_NO_VIDEO: '1'
+          OWR_BUILDER_DRAFTS: /tmp/owr-builder-drafts
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          test -n "$CHROME_BIN"
+          node ../internal-trip-builder/server.mjs > /tmp/owr-builder.log 2>&1 &
+          BUILDER_PID=$!
+          trap 'kill $BUILDER_PID 2>/dev/null || true' EXIT
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4180/api/bootstrap >/dev/null; then break; fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:4180/api/bootstrap >/dev/null
+          cd qa
+          BASE_URL="http://127.0.0.1:4180" OWR_CHROMIUM_PATH="$CHROME_BIN" node node_modules/@playwright/test/cli.js test tests/trip-builder.spec.mjs --project=desktop-1440 --project=mobile-390
       - name: Regional browser E2E
         env:
           OWR_QA_NO_VIDEO: '1'
