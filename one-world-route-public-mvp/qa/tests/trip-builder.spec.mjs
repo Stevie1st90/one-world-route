@@ -9,7 +9,7 @@ test('internal builder authors a draft and previews it with the regional engine'
   const draftBase=resolve(root,'data/platform/drafts',slug);
   try{
     await page.goto('/__builder/',{waitUntil:'domcontentloaded'});
-    await expect(page.getByText('Internal Trip Builder')).toBeVisible();
+    await expect(page.locator('#heading')).toHaveText('Select or create a trip');
     await page.request.post('/__builder/api/scaffold',{data:{slug,kind:'island-hopping',days:8}});
     await page.reload({waitUntil:'domcontentloaded'});
     await page.locator('[data-slug="'+slug+'"]').click();
@@ -18,7 +18,7 @@ test('internal builder authors a draft and previews it with the regional engine'
     await expect(page.locator('[data-tab="trip"]')).toBeVisible();
     await expect(page.locator('[data-tab="catalog"]')).toBeVisible();
     await page.locator('[data-tab="localization"]').click();
-    await expect(page.locator('#jsonEditor')).toContainText('"subtitle"');
+    await expect(page.locator('#jsonEditor')).toHaveValue(/"subtitle"/);
     await page.screenshot({path:testInfo.outputPath('trip-builder-'+testInfo.project.name+'.png'),fullPage:true,animations:'disabled'});
 
     const popupPromise=page.waitForEvent('popup');
