@@ -101,6 +101,8 @@ export function validateDraft({catalog,item,trip}){
   if(item.id!==trip.id||item.slug!==trip.slug)fail(prefix+': catalog/dataset identity mismatch');
   if(!slugPattern.test(String(trip.kind||'')))fail(prefix+': kind must be a normalized slug');
   if(item.kind!==trip.kind)fail(prefix+': catalog kind must match trip kind');
+  if(item.status!==trip.status)fail(prefix+': catalog status must match trip status');
+  if(!String(trip.status||'').trim()||trip.status==='draft')fail(prefix+': choose a publishable status before publishing');
   if(item.renderer!=='regional-globe')fail(prefix+': internal builder publishes only regional-globe trips');
   if(!Array.isArray(item.capabilities)||!item.capabilities.includes('globe'))fail(prefix+': globe capability required');
   if(hasTodo(trip)||hasTodo(item))fail(prefix+': TODO placeholders must be resolved before publishing');
