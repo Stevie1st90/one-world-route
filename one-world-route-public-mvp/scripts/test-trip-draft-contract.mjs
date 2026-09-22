@@ -46,3 +46,40 @@ test('publish gate rejects placeholder copy and missing evidence',()=>{
   assert.match(r.errors.join('\n'),/placeholder localization remains for de/);
   assert.match(r.errors.join('\n'),/requires source evidence/);
 });
+
+
+test('publish gate rejects duplicate segment IDs and broken sequence integrity',()=>{
+  const ctx=valid();
+  const secondStop={id:'s3',sequence:3,placeId:'a'};
+  ctx.trip.stops.push(secondStop);
+  ctx.trip.segments.push({
+    ...structuredClone(ctx.trip.segments[0]),
+    sequence:3,
+    fromStopId:'s2',
+    toStopId:'s3'
+  });
+  const r=validateTripDraft(ctx);
+  assert.equal(r.valid,false);
+  assert.match(r.errors.join('\n'),/segment IDs must be unique/);
+  assert.match(r.errors.join('\n'),/sequence must be contiguous/);
+});
+
+test('publish gate rejects incomplete localized summaries and place names',()=>{
+  const ctx=valid();
+  delete ctx.trip.summary.de;
+  delete ctx.trip.places[0].name.de;
+  const r=validateTripDraft(ctx);
+  assert.equal(r.valid,false);
+  assert.match(r.errors.join('\n'),/trip summary missing for de/);
+  assert.match(r.errors.join('\n'),/place a name missing for de/);
+});
+
+test('publish gate rejects out-of-range coordinates and malformed country codes',()=>{
+  const ctx=valid();
+  ctx.trip.places[0].coordinates.lat=120;
+  ctx.trip.places[0].countryCode='DEU';
+  const r=validateTripDraft(ctx);
+  assert.equal(r.valid,false);
+  assert.match(r.errors.join('\n'),/coordinates are out of range/);
+  assert.match(r.errors.join('\n'),/countryCode must be ISO alpha-2/);
+});
