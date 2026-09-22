@@ -133,8 +133,9 @@ test('selection controller coordinates real regional trips through callbacks',as
     });
 
     assert.equal(modules.regionalSelection.reset(0),0,item.id+' reset');
-    assert.equal(modules.regionalSelection.selectSegment(1,true),1,item.id+' select segment');
-    assert.equal(modules.regionalSelection.getIndex(),1,item.id+' selected index');
+    const segmentIndex=Math.min(1,trip.segments.length-1);
+    assert.equal(modules.regionalSelection.selectSegment(segmentIndex,true),segmentIndex,item.id+' select segment');
+    assert.equal(modules.regionalSelection.getIndex(),segmentIndex,item.id+' selected index');
     assert.equal(calls.globe,1,item.id+' globe render');
     assert.equal(calls.timeline,1,item.id+' timeline update');
     assert.equal(calls.segment,1,item.id+' segment detail');

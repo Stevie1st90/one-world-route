@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ONE WORLD ROUTE · Internal Trip Builder</title>
+<link rel="stylesheet" href="/__builder/styles.css">
+</head>
+<body>
+<div class="shell">
+<aside>
+<div class="brand"><span class="orb"></span><div><b>ONE WORLD ROUTE</b><small>Internal Trip Builder</small></div></div>
+<button id="newBtn" class="primary">+ New draft</button><button id="cloneBtn">Clone public trip</button>
+<div class="label">Drafts</div><div id="drafts" class="drafts"></div>
+<div class="aside-note">Local-only authoring. Drafts stay outside the public catalog until Publish passes the gate.</div>
+</aside>
+<main>
+<div class="mobile-tools"><select id="mobileDraftSelect"><option value="">Select draft…</option></select><button id="mobileNewBtn" class="primary">New</button><button id="mobileCloneBtn">Clone</button></div>
+<header><div><span class="eyebrow">CONTENT PIPELINE</span><h1 id="heading">Select or create a trip</h1><p id="subheading">Author → validate → preview with the real regional engine → publish locally → normal Git/QA/deploy workflow.</p></div>
+<div class="actions"><button id="previewBtn" disabled>Preview</button><button id="saveBtn" disabled>Save draft</button><button id="validateBtn" disabled>Validate</button><button id="publishBtn" class="primary" disabled>Publish</button></div></header>
+<section id="empty" class="empty">Create a draft or clone a reusable public trip to begin.</section>
+<section id="editor" class="hidden">
+<div class="metrics" id="metrics"></div><div id="gate" class="gate">Not validated yet.</div>
+<div class="grid">
+<section class="card"><h2>Identity & discovery</h2><div class="fields">
+<label>Slug<input id="slug" readonly></label><label>Kind<input id="kind"></label>
+<label>Status<select id="status"><option>draft</option><option>sourced-beta</option><option>published</option></select></label><label>Days<input id="days" type="number" min="1"></label>
+<label>Title EN<input id="titleEn"></label><label>Title DE<input id="titleDe"></label>
+<label>Subtitle EN<input id="subtitleEn"></label><label>Subtitle DE<input id="subtitleDe"></label>
+<label>Regions<input id="regions"></label><label>Themes<input id="themes"></label><label>Modes<input id="modes"></label>
+<label>Duration<select id="durationBand"><option>7-14</option><option>15-30</option><option>31-89</option><option>90-plus</option></select></label>
+<label>Pace<select id="pace"><option>relaxed</option><option>balanced</option><option>active</option></select></label>
+<label>Seasons<input id="seasons"></label><label>Party<input id="party"></label><label>Start region<input id="startRegion"></label>
+<label>Accessibility<select id="accessibility"><option>standard-check</option><option>operator-dependent</option><option>vehicle-dependent</option><option>complex-planning</option></select></label>
+<label>Capabilities<input id="capabilities"></label>
+</div></section>
+<section class="card"><h2>Trip graph & evidence</h2><p>Core invariant: place → stop/visit → segment. Specialized data belongs in namespaced extensions.</p>
+<div class="tabs"><button data-tab="places" class="active">Places</button><button data-tab="stops">Stops</button><button data-tab="segments">Segments</button><button data-tab="sources">Sources</button><button data-tab="chapters">Chapters</button><button data-tab="extensions">Extensions</button><button data-tab="localization">Localization</button><button data-tab="trip">Full trip</button><button data-tab="catalog">Catalog</button></div>
+<textarea id="jsonEditor" spellcheck="false"></textarea><div class="tools"><button id="formatBtn">Format JSON</button><button id="applyBtn">Apply section</button></div>
+</section></div></section>
+</main></div>
+
+<dialog id="newDialog"><form id="newForm"><h2>New trip draft</h2><label>Slug<input name="slug" required pattern="[a-z0-9]+(?:-[a-z0-9]+)*"></label><label>Kind<input name="kind" value="custom" required></label><label>Days<input name="days" type="number" min="1"></label><div class="dialog-actions"><button type="button" data-close="newDialog">Cancel</button><button class="primary">Create</button></div></form></dialog>
+<dialog id="cloneDialog"><form id="cloneForm"><h2>Clone public trip</h2><label>Trip<select id="cloneSelect" name="slug"></select></label><p>Creates a local draft copy. Publish replaces the catalog entry only after validation.</p><div class="dialog-actions"><button type="button" data-close="cloneDialog">Cancel</button><button class="primary">Clone</button></div></form></dialog>
+
+<script src="/__builder/app.js"></script>
+</body></html>

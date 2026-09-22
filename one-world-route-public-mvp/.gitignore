@@ -4,3 +4,6 @@ playwright-report/
 qa/artifacts/
 qa/*.log
 qa/qa-artifacts-*/
+data/platform/drafts/
+qa/builder-test-results/
+qa/production-smoke-results/
