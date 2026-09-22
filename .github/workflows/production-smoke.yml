@@ -1,0 +1,28 @@
+name: Production smoke
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-smoke
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Wait for and verify Vercel production
+        env:
+          BASE_URL: https://one-world-route.vercel.app
+          SMOKE_RETRIES: '18'
+          SMOKE_INTERVAL_MS: '10000'
+        run: node one-world-route-public-mvp/scripts/smoke-production.mjs
