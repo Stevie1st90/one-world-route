@@ -12,6 +12,7 @@
   const Discovery=PLATFORM_MODULES.discovery;
   const Extensions=PLATFORM_MODULES.extensions;
   const RouteLibrary=PLATFORM_MODULES.routeLibrary;
+  const Home=PLATFORM_MODULES.home;
   const RegionalShell=PLATFORM_MODULES.regionalShell;
   const RegionalDetail=PLATFORM_MODULES.regionalDetail;
   const RegionalGlobe=PLATFORM_MODULES.regionalGlobe;
@@ -23,12 +24,11 @@
   const Ui=PLATFORM_MODULES.ui;
   const Navigation=PLATFORM_MODULES.navigation;
   const LegacyLocalization=PLATFORM_MODULES.legacyLocalization;
-  if(!LocaleData||!Formatters||!Model||!Traveller||!TravellerUi||!Discovery||!Extensions||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!RegionalSelection||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
+  if(!LocaleData||!Formatters||!Model||!Traveller||!TravellerUi||!Discovery||!Extensions||!RouteLibrary||!Home||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!RegionalSelection||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
   const SUPPORTED_LOCALES=LocaleData.supportedLocales;
   const I18N=LocaleData.messages;
   const $ = (s, r=document) => r.querySelector(s);
   const $$ = (s, r=document) => [...r.querySelectorAll(s)];
-  const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   const initialLocale = (() => {
     const q = new URLSearchParams(location.search).get('lang');
     const b = String(q || navigator.language || 'en').toLowerCase().split('-')[0];
@@ -36,7 +36,18 @@
   })();
   let locale = initialLocale;
   const t = key => I18N[locale]?.[key] || I18N.en[key] || key;
-  const local = value => typeof value === 'string' ? value : value?.[locale] || value?.en || Object.values(value || {})[0] || '';
+  const local = value => {
+    if(value==null)return '';
+    if(['string','number','boolean'].includes(typeof value))return String(value);
+    if(Array.isArray(value))return value.map(local).filter(Boolean).join(' · ');
+    if(typeof value==='object'){
+      const values=Object.values(value);
+      const candidate=value?.[locale]??value?.en??values.find(item=>item!=null);
+      return candidate===value?'':local(candidate);
+    }
+    return String(value);
+  };
+  const esc = value => local(value).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   const facetLabel = value => {
     const key='facet_'+String(value||'').replaceAll('-','_');
     const translated=t(key);
@@ -55,7 +66,7 @@
   const verificationLabel = s => s?.verification?.status==='verified'?t('verified'):(s?.verification?.status==='illustrative'?t('illustrative'):t('currentCheck'));
   const sourceLinks = ids => {
     const map=sourceMap(),seen=new Set();
-    return (ids||[]).filter(id=>!seen.has(id)&&seen.add(id)).map(id=>map.get(id)).filter(Boolean).map(src=>`<a href="${esc(src.url)}" target="_blank" rel="noopener noreferrer"><b>${esc(src.issuer||src.title)}</b><span>${esc(src.title)}</span><small>${esc(t('lastChecked'))}: ${esc(src.checkedAt||'—')}</small></a>`).join('');
+    return (ids||[]).filter(id=>!seen.has(id)&&seen.add(id)).map(id=>map.get(id)).filter(Boolean).map(src=>`<a href="${esc(src.url)}" target="_blank" rel="noopener noreferrer"><b>${esc(local(src.issuer||src.title))}</b><span>${esc(local(src.title))}</span><small>${esc(t('lastChecked'))}: ${esc(src.checkedAt||'—')}</small></a>`).join('');
   };
 
   let catalog = null;
@@ -327,12 +338,20 @@
   async function init(){
     try{
       catalog=await fetch(CATALOG_URL,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Trip catalog '+r.status);return r.json()});
-      const p=new URLSearchParams(location.search),wanted=p.get('trip')||catalog.defaultTripId;
+      const p=new URLSearchParams(location.search),wanted=p.get('trip');
       currentTripMeta=catalog.trips.find(x=>x.id===wanted||x.slug===wanted)||catalog.trips.find(x=>x.id===catalog.defaultTripId);
       const profile=loadProfile();
       const explicitLang=new URLSearchParams(location.search).get('lang');
       if(!SUPPORTED_LOCALES.includes(String(explicitLang||'').toLowerCase())&&profile.language&&SUPPORTED_LOCALES.includes(profile.language))locale=profile.language;
       Ui.ensureGlobalActions({t,esc,onRoutes:openRouteLibrary,onTraveller:openTraveller});
+      if(!wanted){
+        await waitForCore();
+        LegacyLocalization.configure({getLocale:()=>locale,t}).activate();
+        Home.show({catalog,t,local,esc,facetLabel,statusLabel,locale,onOpenTrip:setQueryTrip});
+        document.querySelector('#platformHomeTraveller')?.addEventListener('click',openTraveller);
+        return;
+      }
+      Home.hide();
       if(currentTripMeta.renderer!=='legacy-world') await activateRegionalTrip(currentTripMeta);
       else { await waitForCore(); LegacyLocalization.configure({getLocale:()=>locale,t}).activate(); }
     }catch(e){console.warn('ONE WORLD ROUTE platform layer unavailable',e)}
