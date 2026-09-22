@@ -49,9 +49,13 @@ export function validateTripDraft({trip,catalogEntry,catalog}){
   if(catalogEntry.renderer&&catalogEntry.renderer!=='regional-globe')fail('draft trips must use regional-globe renderer');
 
   for(const lang of locales){
-    if(!String(trip.title?.[lang]||'').trim())fail(`trip title missing for ${lang}`);
-    if(!String(catalogEntry.title?.[lang]||'').trim())fail(`catalog title missing for ${lang}`);
-    if(!String(catalogEntry.subtitle?.[lang]||'').trim())fail(`catalog subtitle missing for ${lang}`);
+    const tripTitle=String(trip.title?.[lang]||'').trim();
+    const catalogTitle=String(catalogEntry.title?.[lang]||'').trim();
+    const subtitle=String(catalogEntry.subtitle?.[lang]||'').trim();
+    if(!tripTitle)fail(`trip title missing for ${lang}`);
+    if(!catalogTitle)fail(`catalog title missing for ${lang}`);
+    if(!subtitle)fail(`catalog subtitle missing for ${lang}`);
+    if(/^TODO\b/i.test(tripTitle)||/^TODO\b/i.test(catalogTitle)||/^TODO\b/i.test(subtitle))fail(`placeholder localization remains for ${lang}`);
   }
 
   const sources=Array.isArray(trip.sources)?trip.sources:[];
@@ -91,6 +95,7 @@ export function validateTripDraft({trip,catalogEntry,catalog}){
     if(!allowedModes.has(s.transport?.mode))fail('segment '+s.id+' uses unsupported mode '+s.transport?.mode);
     if(!verificationStates.has(s.verification?.status))fail('segment '+s.id+' has invalid verification status');
     const refs=s.verification?.sourceIds||[];
+    if(catalogEntry.capabilities?.includes('source-evidence')&&!refs.length)fail('segment '+s.id+' requires source evidence for source-evidence capability');
     for(const id of refs)if(!sourceIds.has(id))fail('segment '+s.id+' references missing source '+id);
     for(const stage of s.transport?.stages||[])for(const id of stage.sourceIds||[])if(!sourceIds.has(id))fail('stage on '+s.id+' references missing source '+id);
     if(s.verification?.status==='verified'){
