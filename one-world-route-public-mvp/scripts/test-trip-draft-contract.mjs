@@ -34,3 +34,15 @@ test('broken adjacency and localization fail publication gate',()=>{
   const ctx=valid(); delete ctx.catalogEntry.title.de; ctx.trip.segments[0].fromStopId='missing';
   const r=validateTripDraft(ctx); assert.equal(r.valid,false); assert.match(r.errors.join('\n'),/catalog title missing for de/); assert.match(r.errors.join('\n'),/must connect adjacent stops/);
 });
+
+
+test('publish gate rejects placeholder copy and missing evidence',()=>{
+  const ctx=valid();
+  ctx.catalogEntry.subtitle.de='TODO — subtitle';
+  ctx.catalogEntry.capabilities.push('source-evidence');
+  ctx.trip.segments[0].verification.sourceIds=[];
+  const r=validateTripDraft(ctx);
+  assert.equal(r.valid,false);
+  assert.match(r.errors.join('\n'),/placeholder localization remains for de/);
+  assert.match(r.errors.join('\n'),/requires source evidence/);
+});
