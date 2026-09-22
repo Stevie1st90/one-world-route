@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','formatters.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','regional-selection.js','story.js','terrain.js','extensions.js','extensions/cruise.js','extensions/road.js','extensions/border.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','formatters.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','home.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','regional-selection.js','story.js','terrain.js','extensions.js','extensions/cruise.js','extensions/road.js','extensions/border.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -18,7 +18,7 @@ function loadPlatform(search=''){
     window,
     document:{querySelector(){return null},querySelectorAll(){return []},addEventListener(){}},
     navigator:{language:'en'},
-    location:{search,assign(){}},
+    location:{search,pathname:'/app',assign(){}},
     localStorage:{getItem(){return null},setItem(){},removeItem(){}},
     URLSearchParams,
     Intl,
@@ -56,7 +56,7 @@ test('navigation module owns reusable regional URL state',()=>{
       defaultTripId:'world-195',
       search:'?trip=italy-grand-tour&lang=de&segment=4&view=terrain'
     }),
-    '/?lang=de'
+    '/?trip=world-195&lang=de'
   );
   assert.equal(
     navigation.regionalUrl({
@@ -69,12 +69,12 @@ test('navigation module owns reusable regional URL state',()=>{
   );
 });
 
-test('switching to flagship removes trip parameter but keeps language',()=>{
+test('switching to flagship keeps an explicit trip parameter because root is home',()=>{
   const platform=loadPlatform('?trip=western-mediterranean-cruise-loop&lang=fr');
   const url=platform.buildTripUrl('world-195');
   const parsed=new URL(url,'http://local.test');
   assert.equal(parsed.pathname,'/');
-  assert.equal(parsed.searchParams.has('trip'),false);
+  assert.equal(parsed.searchParams.get('trip'),'world-195');
   assert.equal(parsed.searchParams.get('lang'),'fr');
 });
 
@@ -244,6 +244,7 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.match(source,/const LegacyLocalization=PLATFORM_MODULES\.legacyLocalization/);
   assert.match(source,/const Discovery=PLATFORM_MODULES\.discovery/);
   assert.match(source,/const Extensions=PLATFORM_MODULES\.extensions/);
+  assert.match(source,/const Home=PLATFORM_MODULES\.home/);
   assert.match(source,/const RouteLibrary=PLATFORM_MODULES\.routeLibrary/);
   assert.match(source,/const RegionalShell=PLATFORM_MODULES\.regionalShell/);
   assert.match(source,/const RegionalDetail=PLATFORM_MODULES\.regionalDetail/);
@@ -253,6 +254,8 @@ test('platform core delegates reusable concerns to modules',()=>{
   assert.match(source,/const RegionalSelection=PLATFORM_MODULES\.regionalSelection/);
   assert.match(source,/const Story=PLATFORM_MODULES\.story/);
   assert.match(source,/const Terrain=PLATFORM_MODULES\.terrain/);
+  assert.match(source,/Home\.configure\(/);
+  assert.match(source,/Home\.open\(/);
   assert.match(source,/RouteLibrary\.open\(/);
   assert.match(source,/RegionalShell\.configure\(/);
   assert.match(source,/RegionalShell\.apply\(/);
@@ -452,4 +455,24 @@ test('terrain branding is shared by world and regional renderers',()=>{
   assert.match(terrain,/root\.mapStyle/);
   assert.match(terrain,/mapStyle\.brandDark\(mapStyle\.localize/);
   assert.match((iteration2Source+appSource+mapStyle+terrain),/ONE_WORLD_PLATFORM_MODULES|brandDark/);
+});
+
+
+test('homepage is catalog-driven and reuses shared Discovery and Route Fit',()=>{
+  const home=moduleSources['home.js'];
+  const discovery=moduleSources['discovery.js'];
+  assert.match(home,/Discovery\.facets\(d\.catalog\)/);
+  assert.match(home,/Discovery\.filter\(d\.catalog/);
+  assert.match(home,/d\.Model\.routeGeometry\(entry\.trip\)/);
+  assert.match(home,/d\.catalog\.defaultTripId/);
+  assert.doesNotMatch(home,/italy-grand-tour|western-mediterranean-cruise-loop|central-europe-rail-journey/);
+  assert.match(discovery,/fit\.accessibility===filters\.accessibility/);
+});
+
+test('root is homepage while every trip including flagship has an explicit trip URL',()=>{
+  assert.match(source,/HOME_REQUEST=location\.pathname==='\/'/);
+  assert.match(source,/!new URLSearchParams\(location\.search\)\.has\('trip'\)/);
+  assert.match(source,/Home\.open\(\)/);
+  const navigation=moduleSources['navigation.js'];
+  assert.match(navigation,/params\.set\('trip',id\)/);
 });
