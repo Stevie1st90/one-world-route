@@ -99,6 +99,10 @@ test('regional routes own timeline and block legacy world mutation paths',()=>{
   assert.match(source,/syncRegionalUrl/);
   assert.match(globe,/function isolate/);
   assert.match(appSource,/platformOwnsRoute/);
+  assert.match(appSource,/ONE_WORLD_ROUTE_OWNERSHIP/);
+  assert.match(appSource,/refreshGlobe:\(\)=>updateGlobe\(\)/);
+  assert.match(source,/ONE_WORLD_ROUTE_OWNERSHIP=currentTripMeta\.renderer==='legacy-world'\?'legacy':'regional'/);
+  assert.match(source,/__ONE_WORLD_ROUTE_APP__\?\.refreshGlobe\?\.\(\)/);
   assert.match(appSource,/if\(!state\.globe \|\| platformOwnsRoute\(\)\) return/);
   assert.match(iteration2Source,/platform-regional-trip/);
   assert.match(cssSource,/platform-regional-trip \.journey-context/);
