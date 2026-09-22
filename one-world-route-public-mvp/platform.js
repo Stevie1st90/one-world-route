@@ -36,7 +36,20 @@
   })();
   let locale = initialLocale;
   const t = key => I18N[locale]?.[key] || I18N.en[key] || key;
-  const local = value => typeof value === 'string' ? value : value?.[locale] || value?.en || Object.values(value || {})[0] || '';
+  const local = value => {
+    let current=value;
+    const seen=new Set();
+    while(current!==null&&current!==undefined&&typeof current==='object'){
+      if(seen.has(current))return '';
+      seen.add(current);
+      if(Array.isArray(current)){
+        current=current.find(item=>item!==null&&item!==undefined&&item!=='')??'';
+        continue;
+      }
+      current=current?.[locale]??current?.en??Object.values(current)[0]??'';
+    }
+    return current===null||current===undefined?'':String(current);
+  };
   const facetLabel = value => {
     const key='facet_'+String(value||'').replaceAll('-','_');
     const translated=t(key);
