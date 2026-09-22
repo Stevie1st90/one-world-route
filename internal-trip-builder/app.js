@@ -188,8 +188,9 @@ $('#newDraftBtn').onclick=openNew;$('#emptyNewBtn').onclick=openNew;
 $('#newForm [value="cancel"]').onclick=e=>{e.preventDefault();dialog.close()};
 $('#newForm').onsubmit=async e=>{
   e.preventDefault();
-  const f=new FormData(e.currentTarget),input={slug:String(f.get('slug')||'').trim(),kind:String(f.get('kind')||'custom').trim(),days:Number(f.get('days')||0)||null,title:String(f.get('title')||'').trim()};
-  try{await api('/api/drafts',{method:'POST',body:JSON.stringify(input)});dialog.close();e.currentTarget.reset();await refreshState();await openDraft(input.slug);toast('Draft created')}catch(err){toast(err.message)}
+  const form=e.currentTarget;
+  const f=new FormData(form),input={slug:String(f.get('slug')||'').trim(),kind:String(f.get('kind')||'custom').trim(),days:Number(f.get('days')||0)||null,title:String(f.get('title')||'').trim()};
+  try{await api('/api/drafts',{method:'POST',body:JSON.stringify(input)});dialog.close();form.reset();await refreshState();await openDraft(input.slug);toast('Draft created')}catch(err){toast(err.message)}
 };
 
 await refreshState();
