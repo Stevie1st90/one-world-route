@@ -1466,7 +1466,15 @@
       if(localPreview){
         navigator.serviceWorker.getRegistrations?.().then(rows=>Promise.all(rows.map(r=>r.unregister()))).catch(()=>{});
         if('caches'in window)caches.keys().then(keys=>Promise.all(keys.map(k=>caches.delete(k)))).catch(()=>{});
-      }else navigator.serviceWorker.register('./sw.js').catch(err=>console.warn('Service worker unavailable',err));
+      }else{
+        let reloadingForWorker=false;
+        navigator.serviceWorker.addEventListener('controllerchange',()=>{
+          if(reloadingForWorker)return;
+          reloadingForWorker=true;
+          location.reload();
+        });
+        navigator.serviceWorker.register('./sw.js').then(registration=>registration.update()).catch(err=>console.warn('Service worker unavailable',err));
+      }
     }
   }
 
