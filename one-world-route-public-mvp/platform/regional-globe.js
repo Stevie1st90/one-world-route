@@ -53,13 +53,16 @@
     }catch(error){console.warn('Regional isolation failed',error)}
   }
 
+  function localizedText(value){
+    const resolved=context().local(value);
+    return resolved===null||resolved===undefined?'':String(resolved);
+  }
+
   function pointLabel(place){
-    const d=context();
-    return String(d.local(place?.name)||'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+    return localizedText(place?.name).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   }
 
   function htmlLabel(place){
-    const d=context();
     const anchor=document.createElement('div');
     anchor.className=`platform-globe-label-anchor ${place?._labelRole==='from'?'label-from':'label-to'}`;
     const el=document.createElement('div');
@@ -67,7 +70,7 @@
     const dot=document.createElement('i');
     el.appendChild(dot);
     const text=document.createElement('span');
-    text.textContent=d.local(place?.name);
+    text.textContent=localizedText(place?.name);
     el.appendChild(text);
     anchor.appendChild(el);
     return anchor;
@@ -78,8 +81,8 @@
     const stops=d.stopMap(trip),places=d.placeMap(trip);
     return d.modelRouteGeometry(trip).map(segment=>({
       ...segment,
-      fromName:d.local(places.get(stops.get(segment.fromStopId)?.placeId)?.name),
-      toName:d.local(places.get(stops.get(segment.toStopId)?.placeId)?.name)
+      fromName:localizedText(places.get(stops.get(segment.fromStopId)?.placeId)?.name),
+      toName:localizedText(places.get(stops.get(segment.toStopId)?.placeId)?.name)
     }));
   }
 
