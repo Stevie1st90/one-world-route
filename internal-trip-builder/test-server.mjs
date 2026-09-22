@@ -48,6 +48,8 @@ test('local builder serves preview and publish gate end to end',async t=>{
   const catalog=JSON.parse(originalCatalog);
   const draft=createDraft(catalog,{slug,kind:'cycling',days:5,title:'Builder CI Proof'});
   const all=value=>Object.fromEntries(catalog.supportedLocales.map(l=>[l,value]));
+  draft.trip.status='sourced-beta';
+  draft.catalogEntry.status='sourced-beta';
   draft.trip.title=all('Builder CI Proof');
   draft.trip.summary=all('A local builder integration proof using the shared regional trip contract.');
   draft.catalogEntry.title=all('Builder CI Proof');
