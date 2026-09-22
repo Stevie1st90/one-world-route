@@ -67,6 +67,7 @@ jobs:
           node --check scripts/test-preview-routes.mjs
           node --check scripts/test-regional-runtime.mjs
           node --check scripts/test-platform-rail-validator.mjs
+          node --check scripts/smoke-production.mjs
           node --check qa/tests/regional-platform.spec.mjs
           node --check ../internal-trip-builder/builder-core.mjs
           node --check ../internal-trip-builder/server.mjs
