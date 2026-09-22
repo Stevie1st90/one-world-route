@@ -12,7 +12,8 @@
       paces:unique(trips.map(r=>r.discovery?.fit?.pace)),
       seasons:unique(trips.flatMap(r=>r.discovery?.fit?.seasons||[])),
       parties:unique(trips.flatMap(r=>r.discovery?.fit?.party||[])),
-      starts:unique(trips.map(r=>r.discovery?.fit?.startRegion))
+      starts:unique(trips.map(r=>r.discovery?.fit?.startRegion)),
+      accessibilities:unique(trips.map(r=>r.discovery?.fit?.accessibility))
     };
   }
   function matches(trip,filters={},searchText=''){
@@ -26,7 +27,8 @@
       &&(!filters.pace||fit.pace===filters.pace)
       &&(!filters.season||(fit.seasons||[]).includes(filters.season))
       &&(!filters.party||(fit.party||[]).includes(filters.party))
-      &&(!filters.start||fit.startRegion===filters.start);
+      &&(!filters.start||fit.startRegion===filters.start)
+      &&(!filters.accessibility||fit.accessibility===filters.accessibility);
   }
   function filter(catalog,filters={},searchTextFor=()=> ''){
     return (catalog?.trips||[]).filter(trip=>matches(trip,filters,searchTextFor(trip)));
