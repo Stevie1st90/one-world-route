@@ -167,3 +167,15 @@ The platform must not infer road eligibility from nationality or language. Cross
 
 `scripts/serve-local.mjs` serves static assets and mirrors the production share rewrites for `/trip/:slug`, `/:lang/trip/:slug`, `/route/:id` and `/country/:slug`. This allows manual and CI verification without consuming a Vercel deployment. CI smoke-tests the local root and localized trip pages after the release build.
 
+
+## Internal authoring plane
+
+Curated trip creation is separated from the public runtime. The local-only `internal-trip-builder/` tool is outside the Vercel Root Directory and binds to `127.0.0.1` only.
+
+Its pipeline is:
+
+**draft -> shared publication contract -> real regional-engine preview -> transactional local publish -> normal Git/CI/visual-QA/deploy flow**
+
+Drafts are stored under gitignored `data/platform/drafts/`. Preview does not modify the public catalog on disk: the local builder server injects the selected draft into the catalog response for the preview session and points its dataset at the draft file. The browser therefore exercises the same `platform.js` and regional modules used by production.
+
+Publication recomputes catalog metrics from the trip graph and runs the same extension validators used by the public platform. The builder then runs full platform data validation; a failure rolls back both `trips.json` and the target trip file. The authoring tool never commits, pushes or deploys.
