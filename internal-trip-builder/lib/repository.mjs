@@ -1,4 +1,5 @@
-import {mkdir,readFile,readdir,rename,writeFile} from 'node:fs/promises';
+import {mkdir,readFile,readdir,rename,writeFile,unlink} from 'node:fs/promises';
+import {spawnSync} from 'node:child_process';
 import {resolve,dirname,sep} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {SLUG_PATTERN,synchronizeDraft,validateDraft} from './draft-core.mjs';
@@ -111,8 +112,26 @@ export async function publishDraft(input,{root=mvpRoot,draftsRoot=defaultDraftsR
   nextCatalog.updatedAt=new Date().toISOString().slice(0,10);
   nextCatalog.trips.push(draft.catalogEntry);
 
+  const originalCatalog=await readFile(catalogPath,'utf8');
   await writeJsonAtomic(tripPath,draft.trip);
   await writeJsonAtomic(catalogPath,nextCatalog);
+
+  const validator=spawnSync(process.execPath,[resolve(root,'scripts/validate-platform-data.mjs')],{
+    cwd:root,encoding:'utf8'
+  });
+  if(validator.status!==0){
+    await writeFile(catalogPath,originalCatalog,'utf8');
+    await unlink(tripPath).catch(()=>{});
+    const error=new Error('Platform validation failed after publication; working-tree changes were rolled back.');
+    error.validation={
+      ok:false,
+      errors:[String(validator.stderr||validator.stdout||'Platform validator failed').trim()],
+      warnings:[],
+      metrics:draft.catalogEntry.metrics
+    };
+    throw error;
+  }
+
   await saveDraft(draft,{draftsRoot});
 
   return {
@@ -121,6 +140,7 @@ export async function publishDraft(input,{root=mvpRoot,draftsRoot=defaultDraftsR
     tripPath,
     catalogPath,
     metrics:draft.catalogEntry.metrics,
-    message:'Published into the working tree. Commit and deployment remain separate explicit steps.'
+    validatorOutput:String(validator.stdout||'').trim(),
+    message:'Published into the working tree and passed full platform validation. Commit and deployment remain separate explicit steps.'
   };
 }
