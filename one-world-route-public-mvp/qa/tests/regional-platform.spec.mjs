@@ -401,9 +401,10 @@ test('route fit filters and reset produce deterministic catalog results',async({
   await page.locator('#platformFitToggle').click();
   await expect(page.locator('#platformFitFilters')).toBeVisible();
 
+  const balanced=catalog.trips.filter(item=>item.discovery?.fit?.pace==='balanced');
   await page.locator('#platformRoutePace').selectOption('balanced');
-  await expect(page.locator('[data-platform-trip]')).toHaveCount(1);
-  await expect(page.locator('[data-platform-trip="italy-grand-tour"]')).toBeVisible();
+  await expect(page.locator('[data-platform-trip]')).toHaveCount(balanced.length);
+  for(const item of balanced)await expect(page.locator(`[data-platform-trip="${item.id}"]`)).toBeVisible();
   await captureViewport(page,testInfo,'route-fit-'+testInfo.project.name+'.png');
 
   await page.locator('#platformRouteReset').click();
