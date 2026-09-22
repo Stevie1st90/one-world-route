@@ -4,3 +4,4 @@ playwright-report/
 qa/artifacts/
 qa/*.log
 qa/qa-artifacts-*/
+data/platform/drafts/
