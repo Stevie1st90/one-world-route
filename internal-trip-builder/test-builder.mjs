@@ -39,6 +39,9 @@ try{
   const preview=await fetch(base+'/data/platform/trips.json',{headers:{cookie:cookie.split(';')[0]}}).then(r=>r.json());
   const injected=preview.trips.find(t=>t.id===slug);assert.ok(injected);assert.equal(injected.dataset,'./data/platform/drafts/'+slug+'.trip.json');
   const published=await request('/__builder/api/draft/'+slug+'/publish',{method:'POST'});assert.equal(published.published,true);
+  assert.equal(Array.isArray(published.qualityChecks),true);
+  assert.equal(published.qualityChecks.every(check=>check.ok===true),true);
+  assert.equal(published.qualityChecks.length>=10,true);
   const publicCatalog=JSON.parse(await readFile(catalogPath,'utf8'));assert.ok(publicCatalog.trips.some(t=>t.id===slug));
   console.log('Internal Trip Builder smoke complete: draft -> validate -> preview -> publish');
 }finally{
