@@ -164,7 +164,7 @@ function renderEditor(){
   $('#emptyState').classList.add('hidden');$('#editor').classList.remove('hidden');
   $('#pageTitle').textContent=state.draft.trip.title?.en||state.slug;
   ['previewBtn','saveBtn','gateBtn','publishBtn'].forEach(id=>$('#'+id).disabled=false);
-  renderMetrics();renderOverview();renderPlaces();renderStops();renderSegments();renderSources();renderJson();renderGate();
+  renderMetrics();renderOverview();renderPlaces();renderStops();renderSegments();renderSources();renderJson();renderGate();bindRows();
 }
 
 function syncOverview(){
@@ -283,8 +283,9 @@ function bindStatic(){
   };
   $('#applyRawBtn').onclick=()=>{
     try{
-      state.draft={trip:JSON.parse($('#tripJson').value),catalogEntry:JSON.parse($('#catalogJson').value)};
-      state.slug=state.draft.trip.slug;markDirty();renderEditor();toast('Raw JSON applied');
+      const next={trip:JSON.parse($('#tripJson').value),catalogEntry:JSON.parse($('#catalogJson').value)};
+      if(next.trip.slug!==state.slug||next.trip.id!==state.slug)throw new Error('Draft identity cannot be changed in Raw JSON. Create a new draft instead.');
+      state.draft=next;markDirty();renderEditor();toast('Raw JSON applied');
     }catch(error){toast('Invalid JSON: '+error.message,true);}
   };
   $('#tabs').onclick=e=>{
@@ -299,10 +300,8 @@ function bindStatic(){
   document.addEventListener('click',e=>{
     const add=e.target.closest('[data-add]');if(add)addItem(add.dataset.add);
   });
-  document.addEventListener('input',e=>{if(e.target.closest('.row-card'))bindRows();});
   window.addEventListener('beforeunload',e=>{if(state.dirty){e.preventDefault();e.returnValue='';}});
 }
 
 bindStatic();
 await refreshDrafts();
-setInterval(()=>{if(state.draft)bindRows()},500);
