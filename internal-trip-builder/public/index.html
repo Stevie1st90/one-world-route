@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ONE WORLD ROUTE · Internal Trip Builder</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="orb"></div>
+        <div><strong>ONE WORLD ROUTE</strong><span>Internal Trip Builder</span></div>
+      </div>
+      <button class="primary" id="newDraftBtn">+ New draft</button>
+      <div class="sidebar-head"><span>Drafts</span><button id="refreshBtn">↻</button></div>
+      <div id="draftList" class="draft-list"></div>
+      <div class="internal-note">Local authoring tool · not part of the Vercel public root</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">CONTENT PIPELINE</div>
+          <h1 id="pageTitle">Choose or create a draft</h1>
+        </div>
+        <div class="actions">
+          <button id="previewBtn" disabled>Preview in real engine</button>
+          <button id="saveBtn" disabled>Save draft</button>
+          <button id="gateBtn" disabled>Run publish gate</button>
+          <button class="primary" id="publishBtn" disabled>Publish to catalog</button>
+        </div>
+      </header>
+
+      <section id="emptyState" class="empty card">
+        <h2>Data-first trip authoring</h2>
+        <p>Create a draft, edit the real place → stop → segment model, preview it with the same Regional Engine used by Production, then pass the actual platform validators before publishing.</p>
+        <div class="pill-row"><span>Shared renderer</span><span>Real preview</span><span>Source evidence</span><span>Publish gate</span></div>
+      </section>
+
+      <section id="editor" class="editor hidden">
+        <div class="metrics" id="metrics"></div>
+
+        <nav class="tabs" id="tabs">
+          <button class="active" data-tab="overview">Overview</button>
+          <button data-tab="places">Places</button>
+          <button data-tab="stops">Stops</button>
+          <button data-tab="segments">Segments</button>
+          <button data-tab="sources">Sources</button>
+          <button data-tab="extensions">Extensions</button>
+          <button data-tab="raw">Raw JSON</button>
+          <button data-tab="gate">Gate</button>
+        </nav>
+
+        <div class="tab active" data-panel="overview">
+          <div class="grid two">
+            <div class="card">
+              <h2>Trip metadata</h2>
+              <div class="form-grid">
+                <label>Slug<input id="slug" disabled></label>
+                <label>Kind<input id="kind"></label>
+                <label>Status<select id="status"><option>draft</option><option>sourced-beta</option><option>ready</option></select></label>
+                <label>Days<input id="days" type="number" min="1"></label>
+                <label>Currency<input id="currency"></label>
+                <label>Pace<select id="pace"><option>relaxed</option><option>balanced</option><option>active</option></select></label>
+              </div>
+              <h3>Titles</h3>
+              <div id="tripTitles" class="locale-grid"></div>
+              <h3>Summary</h3>
+              <div id="tripSummaries" class="locale-grid"></div>
+            </div>
+
+            <div class="card">
+              <h2>Catalog & discovery</h2>
+              <div class="form-grid">
+                <label>Regions<input id="regions" placeholder="europe, mediterranean"></label>
+                <label>Themes<input id="themes" placeholder="rail, culture"></label>
+                <label>Modes<input id="modes" placeholder="rail"></label>
+                <label>Capabilities<input id="capabilities" placeholder="globe, story, terrain"></label>
+                <label>Duration band<select id="durationBand"><option>7-14</option><option>15-30</option><option>31-89</option><option>90-plus</option></select></label>
+                <label>Start region<input id="startRegion"></label>
+                <label>Accessibility<select id="accessibility"><option>standard-check</option><option>operator-dependent</option><option>vehicle-dependent</option><option>complex-planning</option></select></label>
+                <label>Fit pace<select id="fitPace"><option>relaxed</option><option>balanced</option><option>active</option></select></label>
+                <label>Seasons<input id="seasons" placeholder="multi-season"></label>
+                <label>Party<input id="party" placeholder="solo, couples"></label>
+              </div>
+              <h3>Catalog titles</h3>
+              <div id="catalogTitles" class="locale-grid"></div>
+              <h3>Catalog subtitles</h3>
+              <div id="catalogSubtitles" class="locale-grid"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab" data-panel="places">
+          <div class="section-head"><div><h2>Places</h2><p>Reusable geography. Coordinates are required.</p></div><button data-add="place">+ Add place</button></div>
+          <div id="placesTable" class="rows"></div>
+        </div>
+
+        <div class="tab" data-panel="stops">
+          <div class="section-head"><div><h2>Stops / visits</h2><p>Ordered visits referencing places. Repeated places use distinct stop IDs.</p></div><button data-add="stop">+ Add stop</button></div>
+          <div id="stopsTable" class="rows"></div>
+        </div>
+
+        <div class="tab" data-panel="segments">
+          <div class="section-head"><div><h2>Segments</h2><p>Each segment connects two adjacent ordered stops.</p></div><button data-add="segment">+ Add segment</button></div>
+          <div id="segmentsTable" class="rows"></div>
+        </div>
+
+        <div class="tab" data-panel="sources">
+          <div class="section-head"><div><h2>Sources</h2><p>Verified facts must resolve to source IDs. Date-sensitive facts stay current-check-required.</p></div><button data-add="source">+ Add source</button></div>
+          <div id="sourcesTable" class="rows"></div>
+        </div>
+
+        <div class="tab" data-panel="extensions">
+          <div class="card">
+            <h2>Namespaced extensions</h2>
+            <p>Specialized metadata belongs here. Unknown namespaces remain safe for the core renderer.</p>
+            <textarea id="extensionsJson" class="code" spellcheck="false"></textarea>
+          </div>
+        </div>
+
+        <div class="tab" data-panel="raw">
+          <div class="grid two">
+            <div class="card"><h2>Trip JSON</h2><textarea id="tripJson" class="code tall" spellcheck="false"></textarea></div>
+            <div class="card"><h2>Catalog JSON</h2><textarea id="catalogJson" class="code tall" spellcheck="false"></textarea></div>
+          </div>
+          <button id="applyRawBtn">Apply raw JSON to editor</button>
+        </div>
+
+        <div class="tab" data-panel="gate">
+          <div class="grid two">
+            <div class="card">
+              <h2>Publish readiness</h2>
+              <div id="validationBox" class="validation neutral">No gate run yet.</div>
+              <button id="gateInlineBtn">Run full publish gate</button>
+            </div>
+            <div class="card">
+              <h2>Gate contract</h2>
+              <ul>
+                <li>Draft model validation</li>
+                <li>Real platform data validator in a sandbox copy</li>
+                <li>Platform model tests</li>
+                <li>Navigation tests</li>
+                <li>Locale tests</li>
+                <li>No public files are touched until the gate is green</li>
+              </ul>
+            </div>
+          </div>
+          <pre id="gateOutput" class="gate-output"></pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="newDraftDialog">
+    <form method="dialog" id="newDraftForm" class="dialog-card">
+      <h2>Create draft</h2>
+      <label>Slug<input name="slug" required pattern="[a-z0-9]+(?:-[a-z0-9]+)*" placeholder="alpine-rail-loop"></label>
+      <label>Title<input name="title" required placeholder="Alpine Rail Loop"></label>
+      <label>Kind<input name="kind" value="custom" required></label>
+      <label>Days<input name="days" type="number" min="1" placeholder="12"></label>
+      <div class="dialog-actions"><button value="cancel">Cancel</button><button class="primary" value="default">Create</button></div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast"></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
