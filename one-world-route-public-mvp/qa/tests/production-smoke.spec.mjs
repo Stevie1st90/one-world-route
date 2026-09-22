@@ -54,10 +54,21 @@ async function expectMobileShellStable(page){
   expect(state.timeline?.right).toBeGreaterThanOrEqual(state.innerWidth-17);
 }
 
+test('production home exposes the trip catalog instead of auto-opening flagship',async({page},testInfo)=>{
+  test.setTimeout(120000);
+  const errors=capturePageErrors(page);
+  await open(page,'/?lang=de');
+  await expect(page.locator('#platformHome')).toBeVisible({timeout:20000});
+  await expect(page.locator('[data-home-trip]')).toHaveCount(5);
+  await expect(page.locator('#platformHome')).toContainText('Routen entdecken');
+  expect(errors).toEqual([]);
+  await page.screenshot({path:testInfo.outputPath('production-home.png'),fullPage:false,animations:'disabled'});
+});
+
 test('production flagship preserves the 195/194 shell invariants',async({page,isMobile},testInfo)=>{
   test.setTimeout(120000);
   const errors=capturePageErrors(page);
-  await open(page,'/?lang=en');
+  await open(page,'/?trip=world-195&lang=en');
   await expect(page.locator('body')).not.toHaveClass(/platform-regional-trip/);
   await expect(page.locator('#routeRange')).toHaveAttribute('max','194');
   await expect(page.locator('#filterCount')).toContainText('194');
@@ -75,6 +86,23 @@ test('production cruise uses isolated localized regional tooltips',async({page},
   await expectRegionalTooltipIsolation(page);
   expect(errors).toEqual([]);
   await page.screenshot({path:testInfo.outputPath('production-cruise.png'),fullPage:false,animations:'disabled'});
+});
+
+test('production Italy route never renders object-valued labels',async({page},testInfo)=>{
+  test.setTimeout(120000);
+  const errors=capturePageErrors(page);
+  await open(page,'/?trip=italy-grand-tour&lang=de');
+  await expectRegional(page);
+  await expectRegionalTooltipIsolation(page);
+  const stops=page.locator('[data-stop-index]');
+  const count=await stops.count();
+  for(let index=0;index<count;index++){
+    await stops.nth(index).click();
+    await expect(page.locator('body')).not.toContainText('[object Object]');
+    await expect(page.locator('body')).not.toContainText('undefined/195');
+  }
+  expect(errors).toEqual([]);
+  await page.screenshot({path:testInfo.outputPath('production-italy.png'),fullPage:false,animations:'disabled'});
 });
 
 test('production rail architecture proof renders through the shared regional engine',async({page},testInfo)=>{
