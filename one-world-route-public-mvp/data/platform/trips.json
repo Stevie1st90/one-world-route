@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-21",
+  "updatedAt": "2026-09-22",
   "defaultLocale": "en",
   "supportedLocales": [
     "en",
@@ -378,6 +378,82 @@
           ],
           "startRegion": "europe",
           "accessibility": "standard-check"
+        }
+      }
+    },
+    {
+      "id": "cyclades-island-hopping",
+      "slug": "cyclades-island-hopping",
+      "kind": "island-hopping",
+      "status": "sourced-beta",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/cyclades-island-hopping.json",
+      "title": {
+        "en": "Cyclades Island Hopping",
+        "de": "Kykladen-Inselhopping",
+        "it": "Island hopping nelle Cicladi",
+        "es": "Island hopping por las Cícladas",
+        "fr": "D'île en île dans les Cyclades",
+        "pt": "Island hopping nas Cíclades"
+      },
+      "subtitle": {
+        "en": "13 days · 5 islands · ferry-first Cyclades route",
+        "de": "13 Tage · 5 Inseln · Fährroute durch die Kykladen",
+        "it": "13 giorni · 5 isole · rotta in traghetto nelle Cicladi",
+        "es": "13 días · 5 islas · ruta en ferry por las Cícladas",
+        "fr": "13 jours · 5 îles · itinéraire en ferry dans les Cyclades",
+        "pt": "13 dias · 5 ilhas · rota de ferry pelas Cíclades"
+      },
+      "metrics": {
+        "days": 13,
+        "countries": 1,
+        "stops": 7,
+        "segments": 6,
+        "budget": null,
+        "sourcedSegments": 6,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "source-evidence",
+        "story",
+        "terrain"
+      ],
+      "discovery": {
+        "regions": [
+          "europe",
+          "mediterranean",
+          "greece",
+          "cyclades"
+        ],
+        "themes": [
+          "island-hopping",
+          "islands",
+          "coast",
+          "ferries"
+        ],
+        "modes": [
+          "ferry"
+        ],
+        "durationBand": "7-14",
+        "featured": true,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "mediterranean",
+          "accessibility": "operator-dependent"
         }
       }
     }
