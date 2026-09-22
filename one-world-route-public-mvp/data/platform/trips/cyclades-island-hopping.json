@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "id": "cyclades-island-hopping",
+  "slug": "cyclades-island-hopping",
+  "kind": "island-hopping",
+  "status": "illustrative-template",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Cyclades Island Hopping",
+    "de": "Kykladen-Inselhüpfen",
+    "it": "Island hopping nelle Cicladi",
+    "es": "Island hopping por las Cícladas",
+    "fr": "D'île en île dans les Cyclades",
+    "pt": "Island hopping nas Cíclades"
+  },
+  "summary": {
+    "en": "A 12-day island-hopping template from Piraeus through Serifos, Sifnos and Milos to Santorini. Ferry services are seasonal and date-dependent, so every sea leg must be confirmed against a live operator timetable before travel.",
+    "de": "Eine 12-tägige Inselhopping-Vorlage von Piräus über Serifos, Sifnos und Milos bis Santorin. Fährverbindungen sind saison- und datumsabhängig; deshalb muss jede Seestrecke vor der Reise anhand eines aktuellen Betreiberfahrplans geprüft werden.",
+    "it": "Un itinerario modello di 12 giorni dal Pireo a Santorini passando per Serifos, Sifnos e Milos. I traghetti sono stagionali e dipendono dalla data: ogni tratta va verificata su un orario operativo aggiornato.",
+    "es": "Una plantilla de 12 días desde El Pireo hasta Santorini pasando por Serifos, Sifnos y Milos. Los ferris son estacionales y dependen de la fecha, por lo que cada tramo debe confirmarse con un horario actual del operador.",
+    "fr": "Un modèle de 12 jours du Pirée à Santorin via Serifos, Sifnos et Milos. Les ferries sont saisonniers et dépendent de la date : chaque traversée doit être confirmée sur un horaire opérateur à jour.",
+    "pt": "Um modelo de 12 dias do Pireu a Santorini passando por Serifos, Sifnos e Milos. Os ferries são sazonais e dependem da data; cada travessia deve ser confirmada num horário atual do operador."
+  },
+  "geography": {
+    "regions": [
+      "europe",
+      "greece",
+      "cyclades"
+    ],
+    "countries": [
+      "GR"
+    ],
+    "primaryCountry": "GR",
+    "bounds": {
+      "north": 38.05,
+      "south": 36.3,
+      "west": 23.5,
+      "east": 25.6
+    }
+  },
+  "planning": {
+    "days": 12,
+    "currency": "EUR",
+    "pace": "relaxed",
+    "distanceKm": null,
+    "priceModel": "live-operator-check"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 37.2,
+      "lng": 24.5,
+      "altitude": 0.78
+    }
+  },
+  "places": [
+    {
+      "id": "piraeus",
+      "type": "port",
+      "countryCode": "GR",
+      "name": {
+        "en": "Piraeus",
+        "de": "Piräus",
+        "it": "Pireo",
+        "es": "El Pireo",
+        "fr": "Le Pirée",
+        "pt": "Pireu"
+      },
+      "coordinates": {
+        "lat": 37.942,
+        "lng": 23.646
+      }
+    },
+    {
+      "id": "serifos",
+      "type": "island",
+      "countryCode": "GR",
+      "name": {
+        "en": "Serifos",
+        "de": "Serifos",
+        "it": "Serifos",
+        "es": "Serifos",
+        "fr": "Serifos",
+        "pt": "Serifos"
+      },
+      "coordinates": {
+        "lat": 37.156,
+        "lng": 24.503
+      }
+    },
+    {
+      "id": "sifnos",
+      "type": "island",
+      "countryCode": "GR",
+      "name": {
+        "en": "Sifnos",
+        "de": "Sifnos",
+        "it": "Sifnos",
+        "es": "Sifnos",
+        "fr": "Sifnos",
+        "pt": "Sifnos"
+      },
+      "coordinates": {
+        "lat": 36.974,
+        "lng": 24.702
+      }
+    },
+    {
+      "id": "milos",
+      "type": "island",
+      "countryCode": "GR",
+      "name": {
+        "en": "Milos",
+        "de": "Milos",
+        "it": "Milos",
+        "es": "Milos",
+        "fr": "Milos",
+        "pt": "Milos"
+      },
+      "coordinates": {
+        "lat": 36.722,
+        "lng": 24.444
+      }
+    },
+    {
+      "id": "santorini",
+      "type": "island",
+      "countryCode": "GR",
+      "name": {
+        "en": "Santorini",
+        "de": "Santorin",
+        "it": "Santorini",
+        "es": "Santorini",
+        "fr": "Santorin",
+        "pt": "Santorini"
+      },
+      "coordinates": {
+        "lat": 36.3932,
+        "lng": 25.4615
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "cih-stop-01",
+      "sequence": 1,
+      "placeId": "piraeus",
+      "dayStart": 1,
+      "dayEnd": 1,
+      "nights": 1
+    },
+    {
+      "id": "cih-stop-02",
+      "sequence": 2,
+      "placeId": "serifos",
+      "dayStart": 2,
+      "dayEnd": 3,
+      "nights": 2
+    },
+    {
+      "id": "cih-stop-03",
+      "sequence": 3,
+      "placeId": "sifnos",
+      "dayStart": 4,
+      "dayEnd": 5,
+      "nights": 2
+    },
+    {
+      "id": "cih-stop-04",
+      "sequence": 4,
+      "placeId": "milos",
+      "dayStart": 6,
+      "dayEnd": 8,
+      "nights": 3
+    },
+    {
+      "id": "cih-stop-05",
+      "sequence": 5,
+      "placeId": "santorini",
+      "dayStart": 9,
+      "dayEnd": 12,
+      "nights": 4
+    }
+  ],
+  "segments": [
+    {
+      "id": "cih-leg-01",
+      "sequence": 1,
+      "fromStopId": "cih-stop-01",
+      "toStopId": "cih-stop-02",
+      "transport": {
+        "mode": "ferry",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": null,
+        "sourceIds": [
+          "visitgreece-cyclades",
+          "visitgreece-serifos"
+        ],
+        "notes": "Illustrative ferry leg. Confirm that a direct sailing operates on the selected date and verify operator, departure time, port and fare before booking."
+      }
+    },
+    {
+      "id": "cih-leg-02",
+      "sequence": 2,
+      "fromStopId": "cih-stop-02",
+      "toStopId": "cih-stop-03",
+      "transport": {
+        "mode": "ferry",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": null,
+        "sourceIds": [
+          "visitgreece-serifos",
+          "visitgreece-sifnos"
+        ],
+        "notes": "Illustrative ferry leg. Confirm that a direct sailing operates on the selected date and verify operator, departure time, port and fare before booking."
+      }
+    },
+    {
+      "id": "cih-leg-03",
+      "sequence": 3,
+      "fromStopId": "cih-stop-03",
+      "toStopId": "cih-stop-04",
+      "transport": {
+        "mode": "ferry",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": null,
+        "sourceIds": [
+          "visitgreece-cyclades"
+        ],
+        "notes": "Illustrative ferry leg. Confirm that a direct sailing operates on the selected date and verify operator, departure time, port and fare before booking."
+      }
+    },
+    {
+      "id": "cih-leg-04",
+      "sequence": 4,
+      "fromStopId": "cih-stop-04",
+      "toStopId": "cih-stop-05",
+      "transport": {
+        "mode": "ferry",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": null,
+        "sourceIds": [
+          "visitgreece-cyclades",
+          "visitgreece-santorini"
+        ],
+        "notes": "Illustrative ferry leg. Confirm that a direct sailing operates on the selected date and verify operator, departure time, port and fare before booking."
+      }
+    }
+  ],
+  "travellerContext": {
+    "scope": [
+      "passport",
+      "residence",
+      "mobility"
+    ]
+  },
+  "sources": [
+    {
+      "id": "visitgreece-cyclades",
+      "title": "Cyclades destination overview",
+      "issuer": "Greek National Tourism Organisation",
+      "issuerType": "government",
+      "url": "https://www.visitgreece.gr/islands/cyclades",
+      "checkedAt": "2026-09-22",
+      "claims": [
+        "Cyclades island group and destination context"
+      ]
+    },
+    {
+      "id": "visitgreece-serifos",
+      "title": "Serifos destination and sea access",
+      "issuer": "Greek National Tourism Organisation",
+      "issuerType": "government",
+      "url": "https://www.visitgreece.gr/en/islands/Cyclades/Serifos",
+      "checkedAt": "2026-09-22",
+      "claims": [
+        "Serifos destination context",
+        "sea access from Piraeus"
+      ]
+    },
+    {
+      "id": "visitgreece-sifnos",
+      "title": "Sifnos destination and sea access",
+      "issuer": "Greek National Tourism Organisation",
+      "issuerType": "government",
+      "url": "https://www.visitgreece.gr/islands/cyclades/sifnos",
+      "checkedAt": "2026-09-22",
+      "claims": [
+        "Sifnos destination context",
+        "sea access via Serifos"
+      ]
+    },
+    {
+      "id": "visitgreece-santorini",
+      "title": "Santorini destination overview",
+      "issuer": "Greek National Tourism Organisation",
+      "issuerType": "government",
+      "url": "https://www.visitgreece.gr/islands/cyclades/santorini",
+      "checkedAt": "2026-09-22",
+      "claims": [
+        "Santorini destination context"
+      ]
+    }
+  ],
+  "extensions": {}
+}
