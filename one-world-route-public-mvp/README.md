@@ -170,4 +170,12 @@ Create a safe unpublished starter draft with:
 node scripts/scaffold-trip.mjs japan-by-rail rail --days=16 --write
 ```
 
-The scaffolder writes only to `data/platform/drafts/`; it never publishes or edits the public trip catalog automatically.
+The scaffolder writes only to `../internal-trip-builder/drafts/`, outside the public Vercel root; it never publishes or edits the public trip catalog automatically.
+
+For structured authoring, start the local-only builder from the repository root:
+
+```bash
+node internal-trip-builder/server.mjs
+```
+
+Then open `http://127.0.0.1:4317/`. It provides structured editing, the real Regional Engine as a draft preview, validation, and an authoritative publish gate with rollback.
