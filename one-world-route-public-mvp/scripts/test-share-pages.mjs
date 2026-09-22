@@ -52,3 +52,15 @@ test('road-trip share page is localized and identified as a road trip',()=>{
   assert.match(body,/"touristType":"Road trip"/);
 });
 
+
+
+test('flagship trip and legacy share pages redirect to explicit flagship URLs',()=>{
+  const flagship=render({type:'trip',slug:'world-195',lang:'en'}).body;
+  assert.match(flagship,/trip=world-195&amp;lang=en|trip%3Dworld-195/);
+
+  const leg=render({type:'route',id:'1'}).body;
+  assert.match(leg,/trip=world-195&amp;segment=1|trip%3Dworld-195/);
+
+  const country=render({type:'country',slug:'germany'}).body;
+  assert.match(country,/trip=world-195&amp;country=Deutschland|trip%3Dworld-195/);
+});
