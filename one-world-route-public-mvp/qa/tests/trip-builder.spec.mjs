@@ -47,11 +47,14 @@ test('internal trip builder edits and previews a draft in the real engine',async
   expect(saved.ok()).toBeTruthy();
 
   await page.goto('/');
-  await expect(page.getByText('Internal Trip Builder')).toBeVisible();
+  await expect(page.locator('.brand strong')).toHaveText('ONE WORLD ROUTE');
+  await expect(page.locator('#newDraftBtn')).toBeVisible();
   await page.locator('[data-slug="'+slug+'"]').click();
   await expect(page.locator('#editor')).toBeVisible();
   await expect(page.locator('#editorTitle')).toContainText('QA Rail Draft');
 
+  await page.locator('.tab[data-tab="content"]').click();
+  await expect(page.locator('.tab-panel[data-panel="content"]')).toHaveClass(/active/);
   const enRow=page.locator('.locale-row[data-locale="en"]');
   await enRow.locator('[data-local="title"]').fill('QA Rail Draft Updated');
   await page.locator('#saveBtn').click();
