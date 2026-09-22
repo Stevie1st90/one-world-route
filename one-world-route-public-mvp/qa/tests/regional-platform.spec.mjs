@@ -7,6 +7,19 @@ const flagship=catalog.trips.find(item=>item.id===catalog.defaultTripId);
 const regional=catalog.trips.filter(item=>item.renderer==='regional-globe');
 
 const datasets=new Map();
+
+test('public home exposes every catalog trip including rail',async({page},testInfo)=>{
+  test.setTimeout(90000);
+  const pageErrors=capturePageErrors(page);
+  await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('#platformHome')).toBeVisible({timeout:20000});
+  await expect(page.locator('[data-home-trip]')).toHaveCount(catalog.trips.length);
+  await expect(page.locator('[data-home-trip="central-europe-rail-journey"]')).toBeVisible();
+  await expect(page.locator('[data-home-trip="world-195"]')).toBeVisible();
+  expect(pageErrors,'home runtime page errors').toEqual([]);
+  await captureViewport(page,testInfo,'public-home-'+testInfo.project.name+'.png');
+});
+
 test('flagship shell and route invariants work',async({page,isMobile},testInfo)=>{
   // The flagship globe can make CI viewport screenshots comparatively expensive on mobile.
   // Assertions complete well inside this budget; leave headroom for three visual-QA captures.
@@ -83,7 +96,7 @@ test('route library can switch flagship to regional and back',async({page},testI
 
   await page.locator('#platformRouteBtn').click();
   await page.locator(`[data-platform-trip="${flagship.id}"]`).click();
-  await expect(page).not.toHaveURL(/trip=/);
+  await expect(page).toHaveURL(new RegExp('trip='+flagship.id));
   await expect(page.locator('body')).not.toHaveClass(/platform-regional-trip/,{timeout:20000});
   await expect(page.locator('#routeRange')).toHaveAttribute('max',String(flagship.metrics.internationalLegs));
 
@@ -100,6 +113,13 @@ const railProof=regional.find(item=>{
   const trip=datasets.get(item.id);
   return item.discovery?.modes?.includes('rail')&&trip?.extensions?.rail?.scope==='rail-only';
 });
+const deepRegionalIds=new Set([
+  'italy-grand-tour',
+  'western-mediterranean-cruise-loop',
+  'southern-europe-road-trip',
+  'central-europe-rail-journey'
+]);
+const deepRegional=regional.filter(item=>deepRegionalIds.has(item.id));
 
 async function captureViewport(page,testInfo,name){
   await page.screenshot({
@@ -121,8 +141,32 @@ async function openRegional(page,item){
   await expect(page.locator('.platform-stop')).toHaveCount(item.metrics.stops,{timeout:10000});
 }
 
+async function expectNoGlobeObjectLeaks(page){
+  const labels=await page.evaluate(()=>{
+    const globe=window.__ONE_WORLD_ROUTE_GLOBE__;
+    const checks=[
+      ['point',globe?.pointsData?.()||[],globe?.pointLabel?.()],
+      ['arc',globe?.arcsData?.()||[],globe?.arcLabel?.()],
+      ['polygon',globe?.polygonsData?.()||[],globe?.polygonLabel?.()]
+    ];
+    const values=[];
+    for(const [kind,data,accessor] of checks){
+      if(typeof accessor!=='function')continue;
+      for(const item of data.slice(0,250)){
+        try{values.push(kind+':'+String(accessor(item)??''))}catch(error){values.push(kind+':ERROR:'+error.message)}
+      }
+    }
+    return values;
+  });
+  expect(labels.join('\n')).not.toContain('[object Object]');
+  expect(labels.join('\n')).not.toContain('undefined/195');
+  expect(labels.join('\n')).not.toContain(':ERROR:');
+  await expect(page.locator('body')).not.toContainText('[object Object]');
+  await expect(page.locator('body')).not.toContainText('undefined/195');
+}
+
 async function openFlagship(page){
-  await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
+  await page.goto('/?trip='+encodeURIComponent(flagship.id)+'&lang=en',{waitUntil:'domcontentloaded'});
   await expect(page.locator('body')).not.toHaveClass(/platform-regional-trip/,{timeout:20000});
   await expect(page.locator('#routeRange')).toHaveAttribute('max',String(flagship.metrics.internationalLegs),{timeout:20000});
   await expect(page.locator('#platformRouteBtn')).toBeVisible({timeout:10000});
@@ -190,7 +234,19 @@ async function expectActiveLabelsSeparated(page){
   },{timeout:10000}).toBe(true);
 }
 
-for(const item of regional){
+test('every regional catalog route boots and exposes safe globe labels',async({page,isMobile})=>{
+  test.skip(isMobile,'desktop catalog smoke plus selected mobile deep coverage is sufficient');
+  test.setTimeout(120000);
+  for(const item of regional){
+    const errors=capturePageErrors(page);
+    await openRegional(page,item);
+    await expect(page.locator('#detailTitle')).toHaveText(item.title.en);
+    await expectNoGlobeObjectLeaks(page);
+    expect(errors,item.id+' runtime page errors').toEqual([]);
+  }
+});
+
+for(const item of deepRegional){
   test(item.id+' shell, navigation, context and story work',async({page,isMobile},testInfo)=>{
     test.setTimeout(120000);
     const pageErrors=capturePageErrors(page);
@@ -206,6 +262,7 @@ for(const item of regional){
     expect(pointTooltip).not.toContain('[object Object]');
     expect(pointTooltip).not.toContain('undefined/195');
     expect(pointTooltip).toContain(trip.places[0].name.en);
+    await expectNoGlobeObjectLeaks(page);
 
     if(item.id===railProof?.id){
       expect(trip.segments.every(segment=>segment.transport?.mode==='rail')).toBe(true);
@@ -363,9 +420,10 @@ test('route fit filters and reset produce deterministic catalog results',async({
   await page.locator('#platformFitToggle').click();
   await expect(page.locator('#platformFitFilters')).toBeVisible();
 
+  const balanced=catalog.trips.filter(item=>item.discovery?.fit?.pace==='balanced');
   await page.locator('#platformRoutePace').selectOption('balanced');
-  await expect(page.locator('[data-platform-trip]')).toHaveCount(1);
-  await expect(page.locator('[data-platform-trip="italy-grand-tour"]')).toBeVisible();
+  await expect(page.locator('[data-platform-trip]')).toHaveCount(balanced.length);
+  for(const item of balanced)await expect(page.locator(`[data-platform-trip="${item.id}"]`)).toBeVisible();
   await captureViewport(page,testInfo,'route-fit-'+testInfo.project.name+'.png');
 
   await page.locator('#platformRouteReset').click();

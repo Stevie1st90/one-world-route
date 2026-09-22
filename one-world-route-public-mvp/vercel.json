@@ -3,6 +3,51 @@
   "trailingSlash": false,
   "headers": [
     {
+      "source": "/core.bundle.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/features.bundle.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/core.bundle.css",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/features.bundle.css",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/data/platform/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         {
@@ -55,7 +100,8 @@
     "deploymentEnabled": {
       "route-discovery-roadtrip-v1": false,
       "route-platform-expansion-v2": false,
-      "internal-trip-builder-v1": false
+      "internal-trip-builder-v1": false,
+      "public-home-object-hardening-v1": false
     }
   }
 }

@@ -1,0 +1,365 @@
+{
+  "schemaVersion": 1,
+  "id": "iceland-ring-road-camper",
+  "slug": "iceland-ring-road-camper",
+  "kind": "camper",
+  "status": "sourced-beta",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Iceland Ring Road Camper",
+    "de": "Island · Ringstraße mit dem Camper",
+    "it": "Islanda · Ring Road in camper",
+    "es": "Islandia · Ring Road en camper",
+    "fr": "Islande · Ring Road en van",
+    "pt": "Islândia · Ring Road de camper"
+  },
+  "summary": {
+    "en": "A ten-day camper loop around Iceland using the Ring Road as the planning spine. Road, weather and seasonal access must be checked live before each driving day.",
+    "de": "Eine zehntägige Camper-Runde um Island mit der Ringstraße als Planungsachse. Straßen-, Wetter- und saisonale Bedingungen müssen vor jedem Fahrtag aktuell geprüft werden.",
+    "it": "Un itinerario di dieci giorni in camper attorno all'Islanda con la Ring Road come asse principale. Strade, meteo e accessibilità stagionale vanno verificati ogni giorno.",
+    "es": "Una ruta de diez días en camper alrededor de Islandia usando la Ring Road como eje. Las condiciones de carretera, tiempo y acceso estacional deben comprobarse cada día.",
+    "fr": "Une boucle de dix jours en van autour de l'Islande, structurée par la Ring Road. Routes, météo et accès saisonniers doivent être vérifiés avant chaque journée.",
+    "pt": "Um circuito de dez dias de camper pela Islândia, usando a Ring Road como eixo. Estradas, clima e acessos sazonais devem ser verificados diariamente."
+  },
+  "geography": {
+    "countries": [
+      "IS"
+    ],
+    "primaryCountry": "IS"
+  },
+  "planning": {
+    "days": 10,
+    "currency": "EUR",
+    "pace": "balanced",
+    "distanceKm": null,
+    "priceModel": "current-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 64.8,
+      "lng": -18.5,
+      "altitude": 0.48
+    }
+  },
+  "places": [
+    {
+      "id": "reykjavik",
+      "type": "city",
+      "countryCode": "IS",
+      "name": {
+        "en": "Reykjavík",
+        "de": "Reykjavík",
+        "it": "Reykjavík",
+        "es": "Reikiavik",
+        "fr": "Reykjavík",
+        "pt": "Reykjavík"
+      },
+      "coordinates": {
+        "lat": 64.1466,
+        "lng": -21.9426
+      }
+    },
+    {
+      "id": "vik",
+      "type": "town",
+      "countryCode": "IS",
+      "name": {
+        "en": "Vík",
+        "de": "Vík",
+        "it": "Vík",
+        "es": "Vík",
+        "fr": "Vík",
+        "pt": "Vík"
+      },
+      "coordinates": {
+        "lat": 63.4186,
+        "lng": -19.006
+      }
+    },
+    {
+      "id": "hofn",
+      "type": "town",
+      "countryCode": "IS",
+      "name": {
+        "en": "Höfn",
+        "de": "Höfn",
+        "it": "Höfn",
+        "es": "Höfn",
+        "fr": "Höfn",
+        "pt": "Höfn"
+      },
+      "coordinates": {
+        "lat": 64.2539,
+        "lng": -15.2082
+      }
+    },
+    {
+      "id": "egilsstadir",
+      "type": "town",
+      "countryCode": "IS",
+      "name": {
+        "en": "Egilsstaðir",
+        "de": "Egilsstaðir",
+        "it": "Egilsstaðir",
+        "es": "Egilsstaðir",
+        "fr": "Egilsstaðir",
+        "pt": "Egilsstaðir"
+      },
+      "coordinates": {
+        "lat": 65.2669,
+        "lng": -14.3948
+      }
+    },
+    {
+      "id": "akureyri",
+      "type": "city",
+      "countryCode": "IS",
+      "name": {
+        "en": "Akureyri",
+        "de": "Akureyri",
+        "it": "Akureyri",
+        "es": "Akureyri",
+        "fr": "Akureyri",
+        "pt": "Akureyri"
+      },
+      "coordinates": {
+        "lat": 65.6885,
+        "lng": -18.1262
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "iceland-ring-road-camper-stop-01",
+      "sequence": 1,
+      "placeId": "reykjavik",
+      "dayStart": 1,
+      "dayEnd": 1,
+      "nights": 1
+    },
+    {
+      "id": "iceland-ring-road-camper-stop-02",
+      "sequence": 2,
+      "placeId": "vik",
+      "dayStart": 2,
+      "dayEnd": 3,
+      "nights": 2
+    },
+    {
+      "id": "iceland-ring-road-camper-stop-03",
+      "sequence": 3,
+      "placeId": "hofn",
+      "dayStart": 4,
+      "dayEnd": 5,
+      "nights": 2
+    },
+    {
+      "id": "iceland-ring-road-camper-stop-04",
+      "sequence": 4,
+      "placeId": "egilsstadir",
+      "dayStart": 6,
+      "dayEnd": 7,
+      "nights": 2
+    },
+    {
+      "id": "iceland-ring-road-camper-stop-05",
+      "sequence": 5,
+      "placeId": "akureyri",
+      "dayStart": 8,
+      "dayEnd": 9,
+      "nights": 2
+    },
+    {
+      "id": "iceland-ring-road-camper-stop-06",
+      "sequence": 6,
+      "placeId": "reykjavik",
+      "dayStart": 10,
+      "dayEnd": 10,
+      "nights": 1
+    }
+  ],
+  "segments": [
+    {
+      "id": "iceland-ring-road-camper-leg-01",
+      "sequence": 1,
+      "fromStopId": "iceland-ring-road-camper-stop-01",
+      "toStopId": "iceland-ring-road-camper-stop-02",
+      "transport": {
+        "mode": "road",
+        "stages": [
+          {
+            "mode": "road",
+            "sourceIds": [
+              "visit-iceland-ring-road"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "visit-iceland-ring-road"
+        ],
+        "notes": "The Ring Road corridor is established; exact driving conditions, closures, weather and access must be checked live before travel."
+      }
+    },
+    {
+      "id": "iceland-ring-road-camper-leg-02",
+      "sequence": 2,
+      "fromStopId": "iceland-ring-road-camper-stop-02",
+      "toStopId": "iceland-ring-road-camper-stop-03",
+      "transport": {
+        "mode": "road",
+        "stages": [
+          {
+            "mode": "road",
+            "sourceIds": [
+              "visit-iceland-ring-road"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "visit-iceland-ring-road"
+        ],
+        "notes": "The Ring Road corridor is established; exact driving conditions, closures, weather and access must be checked live before travel."
+      }
+    },
+    {
+      "id": "iceland-ring-road-camper-leg-03",
+      "sequence": 3,
+      "fromStopId": "iceland-ring-road-camper-stop-03",
+      "toStopId": "iceland-ring-road-camper-stop-04",
+      "transport": {
+        "mode": "road",
+        "stages": [
+          {
+            "mode": "road",
+            "sourceIds": [
+              "visit-iceland-ring-road"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "visit-iceland-ring-road"
+        ],
+        "notes": "The Ring Road corridor is established; exact driving conditions, closures, weather and access must be checked live before travel."
+      }
+    },
+    {
+      "id": "iceland-ring-road-camper-leg-04",
+      "sequence": 4,
+      "fromStopId": "iceland-ring-road-camper-stop-04",
+      "toStopId": "iceland-ring-road-camper-stop-05",
+      "transport": {
+        "mode": "road",
+        "stages": [
+          {
+            "mode": "road",
+            "sourceIds": [
+              "visit-iceland-ring-road"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "visit-iceland-ring-road"
+        ],
+        "notes": "The Ring Road corridor is established; exact driving conditions, closures, weather and access must be checked live before travel."
+      }
+    },
+    {
+      "id": "iceland-ring-road-camper-leg-05",
+      "sequence": 5,
+      "fromStopId": "iceland-ring-road-camper-stop-05",
+      "toStopId": "iceland-ring-road-camper-stop-06",
+      "transport": {
+        "mode": "road",
+        "stages": [
+          {
+            "mode": "road",
+            "sourceIds": [
+              "visit-iceland-ring-road"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "visit-iceland-ring-road"
+        ],
+        "notes": "The Ring Road corridor is established; exact driving conditions, closures, weather and access must be checked live before travel."
+      }
+    }
+  ],
+  "chapters": [],
+  "sources": [
+    {
+      "id": "visit-iceland-ring-road",
+      "title": "Iceland's Ring Road",
+      "issuer": "Visit Iceland · Business Iceland",
+      "issuerType": "primary-source",
+      "url": "https://www.visiticeland.com/article/the-ring-road/",
+      "checkedAt": "2026-09-22",
+      "claims": [
+        "Route 1 is the Ring Road around Iceland",
+        "official destination guidance for the road-trip corridor",
+        "conditions remain weather and season dependent"
+      ]
+    }
+  ],
+  "extensions": {}
+}

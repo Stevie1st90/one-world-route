@@ -1,0 +1,496 @@
+{
+  "schemaVersion": 1,
+  "id": "danube-eurovelo-cycle",
+  "slug": "danube-eurovelo-cycle",
+  "kind": "cycling",
+  "status": "sourced-beta",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Danube EuroVelo Cycle Journey",
+    "de": "Donau · EuroVelo-Radreise",
+    "it": "Danubio · Viaggio EuroVelo in bici",
+    "es": "Danubio · Viaje EuroVelo en bicicleta",
+    "fr": "Danube · Voyage EuroVelo à vélo",
+    "pt": "Danúbio · Viagem EuroVelo de bicicleta"
+  },
+  "summary": {
+    "en": "A nine-day cycling journey from Vienna to Budapest along the EuroVelo 6 Danube corridor, with intermediate stops in Slovakia and Hungary. Development status can vary by section and should be checked against current route information.",
+    "de": "Eine neuntägige Radreise von Wien nach Budapest entlang des EuroVelo-6-Donaukorridors mit Zwischenstopps in der Slowakei und Ungarn. Der Ausbauzustand kann abschnittsweise variieren und sollte aktuell geprüft werden.",
+    "it": "Un viaggio in bici di nove giorni da Vienna a Budapest lungo il corridoio danubiano EuroVelo 6, con tappe in Slovacchia e Ungheria. Lo stato di sviluppo può variare per sezione.",
+    "es": "Un viaje en bicicleta de nueve días de Viena a Budapest por el corredor del Danubio EuroVelo 6, con paradas en Eslovaquia y Hungría. El estado de desarrollo puede variar por tramo.",
+    "fr": "Un voyage à vélo de neuf jours de Vienne à Budapest le long du corridor danubien EuroVelo 6, avec des étapes en Slovaquie et en Hongrie. Le niveau d'aménagement varie selon les sections.",
+    "pt": "Uma viagem de bicicleta de nove dias de Viena a Budapeste pelo corredor do Danúbio EuroVelo 6, com paragens na Eslováquia e Hungria. O nível de desenvolvimento varia por troço."
+  },
+  "geography": {
+    "countries": [
+      "AT",
+      "SK",
+      "HU"
+    ],
+    "primaryCountry": null
+  },
+  "planning": {
+    "days": 9,
+    "currency": "EUR",
+    "pace": "active",
+    "distanceKm": null,
+    "priceModel": "current-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 47.9,
+      "lng": 17.7,
+      "altitude": 0.52
+    }
+  },
+  "places": [
+    {
+      "id": "vienna",
+      "type": "city",
+      "countryCode": "AT",
+      "name": {
+        "en": "Vienna",
+        "de": "Wien",
+        "it": "Vienna",
+        "es": "Viena",
+        "fr": "Vienne",
+        "pt": "Viena"
+      },
+      "coordinates": {
+        "lat": 48.2082,
+        "lng": 16.3738
+      }
+    },
+    {
+      "id": "bratislava",
+      "type": "city",
+      "countryCode": "SK",
+      "name": {
+        "en": "Bratislava",
+        "de": "Bratislava",
+        "it": "Bratislava",
+        "es": "Bratislava",
+        "fr": "Bratislava",
+        "pt": "Bratislava"
+      },
+      "coordinates": {
+        "lat": 48.1486,
+        "lng": 17.1077
+      }
+    },
+    {
+      "id": "mosonmagyarovar",
+      "type": "town",
+      "countryCode": "HU",
+      "name": {
+        "en": "Mosonmagyaróvár",
+        "de": "Mosonmagyaróvár",
+        "it": "Mosonmagyaróvár",
+        "es": "Mosonmagyaróvár",
+        "fr": "Mosonmagyaróvár",
+        "pt": "Mosonmagyaróvár"
+      },
+      "coordinates": {
+        "lat": 47.8682,
+        "lng": 17.2699
+      }
+    },
+    {
+      "id": "gyor",
+      "type": "city",
+      "countryCode": "HU",
+      "name": {
+        "en": "Győr",
+        "de": "Győr",
+        "it": "Győr",
+        "es": "Győr",
+        "fr": "Győr",
+        "pt": "Győr"
+      },
+      "coordinates": {
+        "lat": 47.6875,
+        "lng": 17.6504
+      }
+    },
+    {
+      "id": "komarom",
+      "type": "town",
+      "countryCode": "HU",
+      "name": {
+        "en": "Komárom",
+        "de": "Komárom",
+        "it": "Komárom",
+        "es": "Komárom",
+        "fr": "Komárom",
+        "pt": "Komárom"
+      },
+      "coordinates": {
+        "lat": 47.7432,
+        "lng": 18.1191
+      }
+    },
+    {
+      "id": "esztergom",
+      "type": "town",
+      "countryCode": "HU",
+      "name": {
+        "en": "Esztergom",
+        "de": "Esztergom",
+        "it": "Esztergom",
+        "es": "Esztergom",
+        "fr": "Esztergom",
+        "pt": "Esztergom"
+      },
+      "coordinates": {
+        "lat": 47.7856,
+        "lng": 18.7403
+      }
+    },
+    {
+      "id": "szentendre",
+      "type": "town",
+      "countryCode": "HU",
+      "name": {
+        "en": "Szentendre",
+        "de": "Szentendre",
+        "it": "Szentendre",
+        "es": "Szentendre",
+        "fr": "Szentendre",
+        "pt": "Szentendre"
+      },
+      "coordinates": {
+        "lat": 47.6694,
+        "lng": 19.0756
+      }
+    },
+    {
+      "id": "budapest",
+      "type": "city",
+      "countryCode": "HU",
+      "name": {
+        "en": "Budapest",
+        "de": "Budapest",
+        "it": "Budapest",
+        "es": "Budapest",
+        "fr": "Budapest",
+        "pt": "Budapeste"
+      },
+      "coordinates": {
+        "lat": 47.4979,
+        "lng": 19.0402
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "danube-eurovelo-cycle-stop-01",
+      "sequence": 1,
+      "placeId": "vienna",
+      "dayStart": 1,
+      "dayEnd": 1,
+      "nights": 1
+    },
+    {
+      "id": "danube-eurovelo-cycle-stop-02",
+      "sequence": 2,
+      "placeId": "bratislava",
+      "dayStart": 2,
+      "dayEnd": 2,
+      "nights": 1
+    },
+    {
+      "id": "danube-eurovelo-cycle-stop-03",
+      "sequence": 3,
+      "placeId": "mosonmagyarovar",
+      "dayStart": 3,
+      "dayEnd": 3,
+      "nights": 1
+    },
+    {
+      "id": "danube-eurovelo-cycle-stop-04",
+      "sequence": 4,
+      "placeId": "gyor",
+      "dayStart": 4,
+      "dayEnd": 4,
+      "nights": 1
+    },
+    {
+      "id": "danube-eurovelo-cycle-stop-05",
+      "sequence": 5,
+      "placeId": "komarom",
+      "dayStart": 5,
+      "dayEnd": 5,
+      "nights": 1
+    },
+    {
+      "id": "danube-eurovelo-cycle-stop-06",
+      "sequence": 6,
+      "placeId": "esztergom",
+      "dayStart": 6,
+      "dayEnd": 6,
+      "nights": 1
+    },
+    {
+      "id": "danube-eurovelo-cycle-stop-07",
+      "sequence": 7,
+      "placeId": "szentendre",
+      "dayStart": 7,
+      "dayEnd": 7,
+      "nights": 1
+    },
+    {
+      "id": "danube-eurovelo-cycle-stop-08",
+      "sequence": 8,
+      "placeId": "budapest",
+      "dayStart": 8,
+      "dayEnd": 9,
+      "nights": 2
+    }
+  ],
+  "segments": [
+    {
+      "id": "danube-eurovelo-cycle-leg-01",
+      "sequence": 1,
+      "fromStopId": "danube-eurovelo-cycle-stop-01",
+      "toStopId": "danube-eurovelo-cycle-stop-02",
+      "transport": {
+        "mode": "bicycle",
+        "stages": [
+          {
+            "mode": "bicycle",
+            "sourceIds": [
+              "eurovelo6-vienna-budapest"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "eurovelo6-vienna-budapest"
+        ],
+        "notes": "EuroVelo documents the corridor; surface, signage, construction and route-development status should be checked for the current trip date."
+      }
+    },
+    {
+      "id": "danube-eurovelo-cycle-leg-02",
+      "sequence": 2,
+      "fromStopId": "danube-eurovelo-cycle-stop-02",
+      "toStopId": "danube-eurovelo-cycle-stop-03",
+      "transport": {
+        "mode": "bicycle",
+        "stages": [
+          {
+            "mode": "bicycle",
+            "sourceIds": [
+              "eurovelo6-vienna-budapest"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "eurovelo6-vienna-budapest"
+        ],
+        "notes": "EuroVelo documents the corridor; surface, signage, construction and route-development status should be checked for the current trip date."
+      }
+    },
+    {
+      "id": "danube-eurovelo-cycle-leg-03",
+      "sequence": 3,
+      "fromStopId": "danube-eurovelo-cycle-stop-03",
+      "toStopId": "danube-eurovelo-cycle-stop-04",
+      "transport": {
+        "mode": "bicycle",
+        "stages": [
+          {
+            "mode": "bicycle",
+            "sourceIds": [
+              "eurovelo6-vienna-budapest"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "eurovelo6-vienna-budapest"
+        ],
+        "notes": "EuroVelo documents the corridor; surface, signage, construction and route-development status should be checked for the current trip date."
+      }
+    },
+    {
+      "id": "danube-eurovelo-cycle-leg-04",
+      "sequence": 4,
+      "fromStopId": "danube-eurovelo-cycle-stop-04",
+      "toStopId": "danube-eurovelo-cycle-stop-05",
+      "transport": {
+        "mode": "bicycle",
+        "stages": [
+          {
+            "mode": "bicycle",
+            "sourceIds": [
+              "eurovelo6-vienna-budapest"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "eurovelo6-vienna-budapest"
+        ],
+        "notes": "EuroVelo documents the corridor; surface, signage, construction and route-development status should be checked for the current trip date."
+      }
+    },
+    {
+      "id": "danube-eurovelo-cycle-leg-05",
+      "sequence": 5,
+      "fromStopId": "danube-eurovelo-cycle-stop-05",
+      "toStopId": "danube-eurovelo-cycle-stop-06",
+      "transport": {
+        "mode": "bicycle",
+        "stages": [
+          {
+            "mode": "bicycle",
+            "sourceIds": [
+              "eurovelo6-vienna-budapest"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "eurovelo6-vienna-budapest"
+        ],
+        "notes": "EuroVelo documents the corridor; surface, signage, construction and route-development status should be checked for the current trip date."
+      }
+    },
+    {
+      "id": "danube-eurovelo-cycle-leg-06",
+      "sequence": 6,
+      "fromStopId": "danube-eurovelo-cycle-stop-06",
+      "toStopId": "danube-eurovelo-cycle-stop-07",
+      "transport": {
+        "mode": "bicycle",
+        "stages": [
+          {
+            "mode": "bicycle",
+            "sourceIds": [
+              "eurovelo6-vienna-budapest"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "eurovelo6-vienna-budapest"
+        ],
+        "notes": "EuroVelo documents the corridor; surface, signage, construction and route-development status should be checked for the current trip date."
+      }
+    },
+    {
+      "id": "danube-eurovelo-cycle-leg-07",
+      "sequence": 7,
+      "fromStopId": "danube-eurovelo-cycle-stop-07",
+      "toStopId": "danube-eurovelo-cycle-stop-08",
+      "transport": {
+        "mode": "bicycle",
+        "stages": [
+          {
+            "mode": "bicycle",
+            "sourceIds": [
+              "eurovelo6-vienna-budapest"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-22",
+        "sourceIds": [
+          "eurovelo6-vienna-budapest"
+        ],
+        "notes": "EuroVelo documents the corridor; surface, signage, construction and route-development status should be checked for the current trip date."
+      }
+    }
+  ],
+  "chapters": [],
+  "sources": [
+    {
+      "id": "eurovelo6-vienna-budapest",
+      "title": "EuroVelo 6 · Vienna to Budapest",
+      "issuer": "European Cyclists' Federation · EuroVelo",
+      "issuerType": "international-organization",
+      "url": "https://en.eurovelo.com/ev6/from-vienna-to-budapest",
+      "checkedAt": "2026-09-22",
+      "claims": [
+        "official EuroVelo 6 stage from Vienna to Budapest",
+        "corridor passes Bratislava and towns in Hungary",
+        "route development status varies by section"
+      ]
+    }
+  ],
+  "extensions": {}
+}
