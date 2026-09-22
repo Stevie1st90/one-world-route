@@ -57,8 +57,13 @@ export function normalizeCandidate(candidate){
   catalogEntry.id=trip.id;
   catalogEntry.slug=trip.slug;
   catalogEntry.kind=trip.kind;
+  catalogEntry.status=trip.status;
   catalogEntry.dataset=`./data/platform/trips/${trip.slug}.json`;
   catalogEntry.renderer='regional-globe';
+  catalogEntry.discovery=catalogEntry.discovery||{};
+  catalogEntry.discovery.durationBand=durationBand(metrics.days);
+  trip.geography=trip.geography||{};
+  trip.geography.countries=[...new Set((trip.places||[]).map(place=>place.countryCode).filter(Boolean))];
   return {trip,catalogEntry};
 }
 
@@ -120,6 +125,21 @@ export function validateDraftCandidate(candidate,catalog={}){
     if(!['current-check-required','verified','draft','illustrative'].includes(status))fail('segment '+segment.id+' has invalid verification status');
     for(const sourceId of segment.verification?.sourceIds||[])if(!sourceIds.has(sourceId))fail('segment '+segment.id+' references missing source '+sourceId);
     if(status==='verified'&&!(segment.verification?.sourceIds||[]).length)fail('verified segment '+segment.id+' requires sourceIds');
+  }
+
+  const chapterIds=new Set();
+  let previousChapterStop=-1;
+  const orderedStopIndex=new Map(stops.map((stop,index)=>[stop.id,index]));
+  for(const chapter of trip.chapters||[]){
+    if(!chapter.id||chapterIds.has(chapter.id))fail('chapter IDs must be unique: '+chapter.id); else chapterIds.add(chapter.id);
+    if(!String(chapter.title?.en||'').trim())fail('chapter '+chapter.id+' requires title.en');
+    if(!(chapter.stopIds||[]).length)fail('chapter '+chapter.id+' requires at least one stopId');
+    for(const stopId of chapter.stopIds||[]){
+      if(!stopIds.has(stopId))fail('chapter '+chapter.id+' references missing stop '+stopId);
+      const index=orderedStopIndex.get(stopId);
+      if(Number.isInteger(index)&&index<previousChapterStop)warn('chapter '+chapter.id+' references a stop before the previous chapter boundary');
+      if(Number.isInteger(index))previousChapterStop=Math.max(previousChapterStop,index);
+    }
   }
 
   const discovery=catalogEntry.discovery||{};
