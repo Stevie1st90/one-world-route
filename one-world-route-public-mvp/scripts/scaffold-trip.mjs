@@ -69,7 +69,7 @@ const output={trip,catalogEntry,note:'Draft only. Complete metadata, sources and
 if(!write){
   process.stdout.write(JSON.stringify(output,null,2)+'\n');
 }else{
-  const dir=new URL('data/platform/drafts/',root);
+  const dir=new URL('../../internal-trip-builder/drafts/',import.meta.url);
   await mkdir(dir,{recursive:true});
   const tripUrl=new URL(slug+'.trip.json',dir);
   const catalogUrl=new URL(slug+'.catalog.json',dir);
@@ -78,5 +78,5 @@ if(!write){
   await writeFile(catalogUrl,JSON.stringify(catalogEntry,null,2)+'\n');
   console.log('Created draft trip:',tripUrl.pathname);
   console.log('Created catalog fragment:',catalogUrl.pathname);
-  console.log('Nothing was added to the public catalog.');
+  console.log('Draft is outside the public Vercel root. Nothing was added to the public catalog.');
 }
