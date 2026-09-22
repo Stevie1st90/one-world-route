@@ -3792,7 +3792,10 @@
   const LegacyLocalization=PLATFORM_MODULES.legacyLocalization;
   if(!LocaleData||!Formatters||!Model||!Traveller||!TravellerUi||!Discovery||!Extensions||!Home||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!RegionalSelection||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
   const HOME_REQUEST=location.pathname==='/'&&!new URLSearchParams(location.search).has('trip');
-  if(HOME_REQUEST)document.body?.classList?.add?.('platform-home');
+  if(HOME_REQUEST){
+    window.ONE_WORLD_ROUTE_OWNERSHIP='home';
+    document.body?.classList?.add?.('platform-home');
+  }
   const SUPPORTED_LOCALES=LocaleData.supportedLocales;
   const I18N=LocaleData.messages;
   const $ = (s, r=document) => r.querySelector(s);
@@ -4142,8 +4145,13 @@
       }
       const wanted=p.get('trip')||catalog.defaultTripId;
       currentTripMeta=catalog.trips.find(x=>x.id===wanted||x.slug===wanted)||catalog.trips.find(x=>x.id===catalog.defaultTripId);
+      window.ONE_WORLD_ROUTE_OWNERSHIP=currentTripMeta.renderer==='legacy-world'?'legacy':'regional';
       if(currentTripMeta.renderer!=='legacy-world') await activateRegionalTrip(currentTripMeta);
-      else { await waitForCore(); LegacyLocalization.configure({getLocale:()=>locale,t}).activate(); }
+      else {
+        await waitForCore();
+        LegacyLocalization.configure({getLocale:()=>locale,t}).activate();
+        window.__ONE_WORLD_ROUTE_APP__?.refreshGlobe?.();
+      }
     }catch(e){console.warn('ONE WORLD ROUTE platform layer unavailable',e)}
   }
 
