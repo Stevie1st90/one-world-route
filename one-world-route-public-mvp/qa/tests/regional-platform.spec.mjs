@@ -289,6 +289,13 @@ for(const item of regional){
 
     await expect(page.locator('#regionalRouteRange')).toHaveAttribute('max',String(item.metrics.segments));
     await expect(page.locator('#detailTitle')).toHaveText(item.title.en);
+    if(item.capabilities.includes('trip-planning')){
+      await expect(page.locator('.platform-planning-guide')).toBeVisible();
+      await expect(page.locator('.platform-plan-stop')).toHaveCount(item.metrics.stops);
+      await expect(page.locator('.platform-plan-metrics')).toContainText(String(item.metrics.segments));
+    }else{
+      await expect(page.locator('.platform-planning-guide')).toHaveCount(0);
+    }
     await expect(page.locator('#settingsBtn')).toBeVisible();
     await expect(page.locator('#platformRouteBtn')).toBeVisible();
     await expect(page.locator('#platformTravellerBtn')).toBeVisible();
