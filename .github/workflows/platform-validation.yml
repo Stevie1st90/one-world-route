@@ -3,18 +3,84 @@ name: Platform validation
 on:
   pull_request:
     branches: [main]
+    paths-ignore:
+      - '**/*.md'
   push:
-    branches-ignore: [main]
+    branches: [main]
+    paths-ignore:
+      - '**/*.md'
 
 permissions:
   contents: read
 
 concurrency:
-  group: platform-validation-${{ github.ref }}
+  group: platform-validation-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
-  validate:
+  changes:
+    name: Detect QA scope
+    runs-on: ubuntu-latest
+    outputs:
+      regional_browser: ${{ steps.scope.outputs.regional_browser }}
+      builder_browser: ${{ steps.scope.outputs.builder_browser }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Detect browser QA scope
+        id: scope
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ "${{ github.event_name }}" == "push" ]]; then
+            echo "regional_browser=true" >> "$GITHUB_OUTPUT"
+            echo "builder_browser=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git diff --name-only             "${{ github.event.pull_request.base.sha }}"             "${{ github.event.pull_request.head.sha }}"             > /tmp/owr-changed-files.txt
+
+          regional_browser=false
+          builder_browser=false
+
+          while IFS= read -r file; do
+            case "$file" in
+              .github/workflows/platform-validation.yml)
+                regional_browser=true
+                builder_browser=true
+                ;;
+              internal-trip-builder/*)
+                if [[ "$file" != "internal-trip-builder/README.md" ]]; then
+                  builder_browser=true
+                fi
+                ;;
+              one-world-route-public-mvp/data/platform/*)
+                regional_browser=true
+                builder_browser=true
+                ;;
+              one-world-route-public-mvp/qa/tests/trip-builder.spec.mjs|one-world-route-public-mvp/scripts/trip-draft-contract.mjs|one-world-route-public-mvp/scripts/test-trip-draft-contract.mjs|one-world-route-public-mvp/scripts/platform-extension-validators.mjs|one-world-route-public-mvp/scripts/platform-extension-validators/*)
+                builder_browser=true
+                ;;
+              one-world-route-public-mvp/README.md)
+                ;;
+              one-world-route-public-mvp/platform/*|one-world-route-public-mvp/data/*|one-world-route-public-mvp/api/*|one-world-route-public-mvp/qa/*|one-world-route-public-mvp/scripts/*|one-world-route-public-mvp/*.js|one-world-route-public-mvp/*.css|one-world-route-public-mvp/*.html|one-world-route-public-mvp/*.json|one-world-route-public-mvp/*.xml)
+                regional_browser=true
+                ;;
+            esac
+          done < /tmp/owr-changed-files.txt
+
+          echo "regional_browser=$regional_browser" >> "$GITHUB_OUTPUT"
+          echo "builder_browser=$builder_browser" >> "$GITHUB_OUTPUT"
+
+          echo "Changed files:"
+          cat /tmp/owr-changed-files.txt
+          echo "regional_browser=$regional_browser"
+          echo "builder_browser=$builder_browser"
+
+  core:
+    name: Core checks
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -102,6 +168,18 @@ jobs:
         run: node --test scripts/test-platform-story.mjs
       - name: Continuity unit tests
         run: node --test scripts/test-continuity.mjs
+
+  release:
+    name: Release build and preview
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: one-world-route-public-mvp
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
       - name: Release build
         run: node scripts/release-build.mjs
       - name: Local preview smoke test
@@ -111,6 +189,22 @@ jobs:
           trap 'kill $SERVER_PID 2>/dev/null || true' EXIT
           sleep 1
           node scripts/test-preview-routes.mjs
+
+  builder-browser:
+    name: Builder browser QA
+    needs: changes
+    if: needs.changes.outputs.builder_browser == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: one-world-route-public-mvp
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: one-world-route-public-mvp/qa/package-lock.json
       - name: Install browser QA dependencies
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
@@ -127,6 +221,34 @@ jobs:
           test -n "$CHROME_BIN"
           cd qa
           BASE_URL="http://127.0.0.1:4175" OWR_CHROMIUM_PATH="$CHROME_BIN" ./node_modules/.bin/playwright test tests/trip-builder.spec.mjs --project=desktop-1440 --project=mobile-390 --output=builder-test-results
+      - name: Upload builder browser QA artifacts
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: builder-browser-qa-${{ github.run_id }}
+          path: one-world-route-public-mvp/qa/builder-test-results
+          if-no-files-found: ignore
+          retention-days: 7
+
+  regional-browser:
+    name: Regional browser QA
+    needs: changes
+    if: needs.changes.outputs.regional_browser == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: one-world-route-public-mvp
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: one-world-route-public-mvp/qa/package-lock.json
+      - name: Install browser QA dependencies
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+        run: npm ci --prefix qa
       - name: Regional browser E2E
         env:
           OWR_QA_NO_VIDEO: '1'
@@ -139,8 +261,44 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: regional-browser-qa-${{ github.run_id }}
-          path: |
-            one-world-route-public-mvp/qa/test-results
-            one-world-route-public-mvp/qa/builder-test-results
+          path: one-world-route-public-mvp/qa/test-results
           if-no-files-found: ignore
           retention-days: 7
+
+  validate:
+    name: validate
+    if: always()
+    needs:
+      - changes
+      - core
+      - release
+      - builder-browser
+      - regional-browser
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require successful validation
+        shell: bash
+        env:
+          CHANGES_RESULT: ${{ needs.changes.result }}
+          CORE_RESULT: ${{ needs.core.result }}
+          RELEASE_RESULT: ${{ needs.release.result }}
+          BUILDER_RESULT: ${{ needs.builder-browser.result }}
+          REGIONAL_RESULT: ${{ needs.regional-browser.result }}
+        run: |
+          set -euo pipefail
+
+          test "$CHANGES_RESULT" = "success"
+          test "$CORE_RESULT" = "success"
+          test "$RELEASE_RESULT" = "success"
+
+          case "$BUILDER_RESULT" in
+            success|skipped) ;;
+            *) echo "Builder browser QA failed: $BUILDER_RESULT"; exit 1 ;;
+          esac
+
+          case "$REGIONAL_RESULT" in
+            success|skipped) ;;
+            *) echo "Regional browser QA failed: $REGIONAL_RESULT"; exit 1 ;;
+          esac
+
+          echo "All required platform validation checks passed."
