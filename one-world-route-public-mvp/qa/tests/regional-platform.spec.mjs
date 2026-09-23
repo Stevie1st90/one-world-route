@@ -17,6 +17,10 @@ test('public homepage discovers all catalog journeys and keeps the globe object-
   await expect(page.locator('#platformHome')).toContainText(flagship.title.en);
   await expect(page.locator('#platformHome')).not.toContainText('[object');
   await expect(page.locator('#platformHome')).not.toContainText(/\bundefined\b/i);
+  await expect(page.locator('.globe-stage>.phase-rail')).toBeHidden();
+  await expect(page.locator('.globe-stage>.mobile-panel-btn')).toHaveCount(2);
+  await expect(page.locator('.globe-stage>.mobile-panel-btn').first()).toBeHidden();
+  await expect(page.locator('.globe-stage>.floating-stats')).toBeHidden();
   await expect.poll(()=>page.evaluate(()=>window.__ONE_WORLD_ROUTE_GLOBE__?.arcsData?.()?.length||0),{timeout:20000}).toBeGreaterThanOrEqual(flagship.metrics.internationalLegs);
   const globeHitTarget=await page.evaluate(()=>{
     const x=Math.max(1,window.innerWidth-18),y=Math.max(96,Math.round(window.innerHeight*.2));
