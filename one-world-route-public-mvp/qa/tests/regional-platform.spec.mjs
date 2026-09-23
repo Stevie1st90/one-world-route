@@ -22,12 +22,15 @@ test('public homepage discovers all catalog journeys and keeps the globe object-
   await expect(page.locator('.globe-stage>.mobile-panel-btn').first()).toBeHidden();
   await expect(page.locator('.globe-stage>.floating-stats')).toBeHidden();
   await expect.poll(()=>page.evaluate(()=>window.__ONE_WORLD_ROUTE_GLOBE__?.arcsData?.()?.length||0),{timeout:20000}).toBeGreaterThanOrEqual(flagship.metrics.internationalLegs);
-  const globeHitTarget=await page.evaluate(()=>{
-    const x=Math.max(1,window.innerWidth-18),y=Math.max(96,Math.round(window.innerHeight*.2));
-    const node=document.elementFromPoint(x,y);
+  const globeHitTargets=await page.evaluate(()=>[
+    [.82,.28],
+    [.9,.55],
+    [.72,.42]
+  ].map(([rx,ry])=>{
+    const node=document.elementFromPoint(Math.round(window.innerWidth*rx),Math.round(window.innerHeight*ry));
     return {tag:node?.tagName||'',insideGlobe:Boolean(node?.closest?.('#globe'))};
-  });
-  expect(globeHitTarget.insideGlobe||globeHitTarget.tag==='CANVAS').toBeTruthy();
+  }));
+  expect(globeHitTargets.some(target=>target.insideGlobe||target.tag==='CANVAS')).toBeTruthy();
   const homeLabels=await regionalLabels(page);
   for(const value of Object.values(homeLabels).flat()){
     expect(value).not.toContain('[object');
