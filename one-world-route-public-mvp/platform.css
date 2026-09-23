@@ -149,10 +149,10 @@ body.platform-home #globeLoader,body.platform-home #globeFallback{display:none!i
 
 /* Practical trip-planning layer */
 .platform-planning-guide{margin-top:18px;padding:16px;border:1px solid rgba(151,215,255,.16);border-radius:18px;background:linear-gradient(180deg,rgba(10,25,39,.78),rgba(7,17,28,.72))}
-.platform-planning-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:6px}
+.platform-planning-head{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;margin-bottom:8px}
 .platform-planning-head span,.platform-plan-fit span,.platform-plan-metrics span{display:block;color:var(--muted);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
-.platform-planning-head h3{margin:3px 0 0;font-size:19px}
-.platform-plan-context{max-width:44%;padding:7px 9px;border-radius:999px;background:rgba(92,221,255,.09);font-size:11px!important;letter-spacing:0!important;text-transform:none!important}
+.platform-planning-head h3{margin:3px 0 0;font-size:17px;line-height:1.15;letter-spacing:-.02em}
+.platform-plan-context{display:inline-flex;width:max-content;max-width:100%;padding:6px 9px;border-radius:999px;background:rgba(92,221,255,.09);font-size:11px!important;letter-spacing:0!important;text-transform:none!important;overflow-wrap:anywhere}
 .platform-plan-context b{color:var(--text)}
 .platform-plan-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:13px 0}
 .platform-plan-metrics>div{padding:10px;border-radius:12px;background:rgba(255,255,255,.04);min-width:0}
@@ -167,4 +167,4 @@ body.platform-home #globeLoader,body.platform-home #globeFallback{display:none!i
 .platform-plan-stop div{min-width:0}
 .platform-plan-stop b{display:block;font-size:13px}
 .platform-plan-stop small{display:block;margin-top:2px;color:var(--muted);font-size:11px;line-height:1.35}
-@media(max-width:520px){.platform-plan-metrics{grid-template-columns:1fr}.platform-planning-head{display:block}.platform-plan-context{display:inline-block;max-width:100%;margin-top:8px}.platform-plan-fit{display:block}.platform-plan-fit b{display:block;text-align:left;margin-top:4px}}
+@media(max-width:520px){.platform-plan-metrics{grid-template-columns:1fr}.platform-plan-fit{display:block}.platform-plan-fit b{display:block;text-align:left;margin-top:4px}}
