@@ -10,6 +10,7 @@
   const Traveller=PLATFORM_MODULES.traveller;
   const TravellerUi=PLATFORM_MODULES.travellerUi;
   const Discovery=PLATFORM_MODULES.discovery;
+  const TripPlanning=PLATFORM_MODULES.tripPlanning;
   const Extensions=PLATFORM_MODULES.extensions;
   const Home=PLATFORM_MODULES.home;
   const RouteLibrary=PLATFORM_MODULES.routeLibrary;
@@ -24,7 +25,7 @@
   const Ui=PLATFORM_MODULES.ui;
   const Navigation=PLATFORM_MODULES.navigation;
   const LegacyLocalization=PLATFORM_MODULES.legacyLocalization;
-  if(!LocaleData||!Formatters||!Model||!Traveller||!TravellerUi||!Discovery||!Extensions||!Home||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!RegionalSelection||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
+  if(!LocaleData||!Formatters||!Model||!Traveller||!TravellerUi||!Discovery||!TripPlanning||!Extensions||!Home||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!RegionalSelection||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
   const HOME_REQUEST=location.pathname==='/'&&!new URLSearchParams(location.search).has('trip');
   if(HOME_REQUEST){
     window.ONE_WORLD_ROUTE_OWNERSHIP='home';
@@ -240,6 +241,7 @@
   function configureRegionalDetail(){
     RegionalDetail.configure({
       getTrip:()=>currentTrip,
+      getTripMeta:()=>currentTripMeta,
       t,
       local,
       esc,
@@ -253,6 +255,8 @@
       sourceMap,
       loadProfile,
       openTraveller,
+      locale:()=>locale,
+      tripPlanning:TripPlanning,
       extensions:Extensions,
       stopMap,
       placeMap
