@@ -61,7 +61,8 @@
       return '<article class="platform-plan-stop"><span>'+esc(t('day'))+' '+esc(day)+'</span><div><b>'+esc(local(place?.name))+'</b><small>'+esc(stop.nights||0)+' '+esc(t('nights'))+' · '+esc(mode)+'</small></div></article>';
     }).join('');
     const origin=profile?.origin?'<span class="platform-plan-context">'+esc(t('planningOrigin'))+': <b>'+esc(profile.origin)+'</b></span>':'';
-    const budgetScope=local(trip?.planning?.knownPublishedMinimumScope)||t('planningBudgetScope');
+    const rawBudgetScope=trip?.planning?.knownPublishedMinimumScope;
+    const budgetScope=rawBudgetScope&&typeof rawBudgetScope==='object'?local(rawBudgetScope):t('planningBudgetScope');
     return '<section class="platform-planning-guide">'+
       '<div class="platform-planning-head"><div><span>'+esc(t('planningGuide'))+'</span><h3>'+esc(t('planThisTrip'))+'</h3></div>'+origin+'</div>'+
       '<p class="detail-copy">'+esc(t('planningLead'))+'</p>'+
