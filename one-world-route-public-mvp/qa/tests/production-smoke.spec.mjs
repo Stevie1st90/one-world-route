@@ -142,3 +142,32 @@ test('every published regional trip keeps localized labels object-safe',async({p
   }
   expect(errors).toEqual([]);
 });
+
+
+test('production delivery policy revalidates the app shell and activates the service worker',async({page,request})=>{
+  test.setTimeout(120000);
+  const root=await request.get('/',{headers:{'Cache-Control':'no-cache'}});
+  const sw=await request.get('/sw.js',{headers:{'Cache-Control':'no-cache'}});
+  const bundle=await request.get('/features.bundle.js',{headers:{'Cache-Control':'no-cache'}});
+  expect(root.ok()).toBeTruthy();
+  expect(sw.ok()).toBeTruthy();
+  expect(bundle.ok()).toBeTruthy();
+
+  expect(root.headers()['cache-control']||'').toMatch(/no-store|no-cache|max-age=0/);
+  expect(sw.headers()['cache-control']||'').toMatch(/no-store/);
+  expect(bundle.headers()['cache-control']||'').toMatch(/max-age=0|no-cache|no-store/);
+
+  await open(page,'/?lang=en');
+  await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:20000});
+  const registration=await page.evaluate(async()=>{
+    if(!('serviceWorker' in navigator))return null;
+    const ready=await Promise.race([
+      navigator.serviceWorker.ready,
+      new Promise(resolve=>setTimeout(()=>resolve(null),20000))
+    ]);
+    return ready?{scope:ready.scope,active:ready.active?.scriptURL||''}:null;
+  });
+  expect(registration).not.toBeNull();
+  expect(registration.scope).toBe(new URL('/',page.url()).origin+'/');
+  expect(registration.active).toContain('/sw.js');
+});

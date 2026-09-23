@@ -94,6 +94,7 @@ jobs:
         run: |
           node --check platform.js
           node --check platform/runtime.js
+          node --check platform/service-worker.js
           node --check platform/map-style.js
           node --check platform/i18n.js
           node --check platform/formatters.js
@@ -146,6 +147,7 @@ jobs:
           node --check scripts/trip-index-model.mjs
           node --check scripts/build-trip-index.mjs
           node --check scripts/test-trip-index.mjs
+          node --check scripts/test-cache-policy.mjs
           node --check ../internal-trip-builder/server.mjs
           node --check ../internal-trip-builder/app.js
           node --check ../internal-trip-builder/test-builder.mjs
@@ -156,6 +158,8 @@ jobs:
         run: node scripts/validate-platform-data.mjs
       - name: Existing public-data validation
         run: node scripts/validate-public-data.mjs
+      - name: Delivery cache policy tests
+        run: node --test scripts/test-cache-policy.mjs
       - name: Platform model tests
         run: node --test scripts/test-platform-model.mjs
       - name: Platform locale tests

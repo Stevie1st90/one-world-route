@@ -23,6 +23,11 @@ A production-oriented multi-trip discovery platform for extraordinary journeys w
 - Public-data sanitizing and validation pipeline
 - Two-bundle production runtime
 
+## Delivery and cache policy
+The installable app uses a network-first policy for navigations, JavaScript/CSS bundles and route data. Cached copies are retained only as offline fallback. The service worker is registered with `updateViaCache: 'none'`, explicitly activates waiting versions, and migrates clients away from the older cache-first releases that could pin the flagship shell at `/` after a deployment.
+
+Vercel sends `no-store` for the root HTML and service worker, while mutable bundles/data require revalidation. Delivery rules are regression-tested in CI and verified again by the live Production Smoke workflow.
+
 ## Release
 ```bash
 node scripts/release-build.mjs
