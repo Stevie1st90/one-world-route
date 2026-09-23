@@ -1,0 +1,1399 @@
+{
+  "schemaVersion": 1,
+  "catalogUpdatedAt": "2026-09-23",
+  "trips": [
+    {
+      "id": "world-195",
+      "slug": "world-195",
+      "kind": "world",
+      "status": "planned",
+      "renderer": "legacy-world",
+      "title": {
+        "en": "One World · 195 Countries",
+        "de": "Eine Welt · 195 Länder",
+        "it": "Un mondo · 195 paesi",
+        "es": "Un mundo · 195 países",
+        "fr": "Un monde · 195 pays",
+        "pt": "Um mundo · 195 países"
+      },
+      "subtitle": {
+        "en": "The flagship continuous world journey",
+        "de": "Die zusammenhängende Weltreise als Flagship-Route",
+        "it": "Il viaggio continuo intorno al mondo",
+        "es": "El viaje continuo alrededor del mundo",
+        "fr": "Le voyage continu autour du monde",
+        "pt": "A viagem contínua pelo mundo"
+      },
+      "summary": {
+        "en": "The flagship continuous world journey",
+        "de": "Die zusammenhängende Weltreise als Flagship-Route",
+        "it": "Il viaggio continuo intorno al mondo",
+        "es": "El viaje continuo alrededor del mundo",
+        "fr": "Le voyage continu autour du monde",
+        "pt": "A viagem contínua pelo mundo"
+      },
+      "metrics": {
+        "days": 379,
+        "startDate": "2026-10-21",
+        "countries": 195,
+        "internationalLegs": 194,
+        "budget": {
+          "amount": 90600,
+          "currency": "EUR"
+        }
+      },
+      "discovery": {
+        "regions": [
+          "global"
+        ],
+        "themes": [
+          "world",
+          "expedition",
+          "long-term"
+        ],
+        "modes": [
+          "multimodal"
+        ],
+        "durationBand": "90-plus",
+        "featured": true,
+        "fit": {
+          "pace": "active",
+          "seasons": [
+            "multi-season"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends"
+          ],
+          "startRegion": "europe",
+          "accessibility": "complex-planning"
+        }
+      },
+      "planning": {
+        "days": 379,
+        "currency": "EUR",
+        "pace": "active",
+        "knownPublishedMinimumEur": null,
+        "knownPublishedMinimumScope": null
+      },
+      "itinerary": [],
+      "evidence": {
+        "segments": 194,
+        "sourcedSegments": 123,
+        "verifiedSegments": 32,
+        "latestEvidenceCheck": 46282
+      },
+      "sources": []
+    },
+    {
+      "id": "italy-grand-tour",
+      "slug": "italy-grand-tour",
+      "kind": "round-trip",
+      "status": "sourced-beta",
+      "renderer": "regional-globe",
+      "title": {
+        "en": "Italy Grand Tour",
+        "de": "Große Italien-Rundreise",
+        "it": "Gran Tour d'Italia",
+        "es": "Gran ruta por Italia",
+        "fr": "Grand tour d'Italie",
+        "pt": "Grande volta pela Itália"
+      },
+      "subtitle": {
+        "en": "18 days · sourced rail, coach and coast planning",
+        "de": "18 Tage · quellenbasierte Bahn-, Bus- und Küstenplanung",
+        "it": "18 giorni · pianificazione con fonti tra treni, bus e costa",
+        "es": "18 días · planificación con fuentes de tren, bus y costa",
+        "fr": "18 jours · planification sourcée train, bus et côte",
+        "pt": "18 dias · planejamento com fontes de trem, ônibus e costa"
+      },
+      "summary": {
+        "en": "An 18-day sourced planning route combining major cities, the south, the Adriatic, Venice, the Dolomites and Tuscany. Published operator data is separated from schedule-dependent or still-unresolved connections.",
+        "de": "Eine quellenbasierte 18-Tage-Planungsroute mit großen Städten, Süditalien, Adria, Venedig, Dolomiten und Toskana. Veröffentlichte Betreiberangaben werden klar von fahrplanabhängigen oder noch offenen Verbindungen getrennt.",
+        "it": "Un itinerario di pianificazione di 18 giorni con fonti, tra grandi città, sud, Adriatico, Venezia, Dolomiti e Toscana. I dati pubblicati dagli operatori sono separati dai collegamenti dipendenti dall'orario o ancora da verificare.",
+        "es": "Una ruta de planificación de 18 días con fuentes, entre grandes ciudades, el sur, el Adriático, Venecia, los Dolomitas y la Toscana. Los datos publicados por operadores se separan de las conexiones dependientes del horario o aún por verificar.",
+        "fr": "Un itinéraire de planification de 18 jours sourcé, entre grandes villes, sud, Adriatique, Venise, Dolomites et Toscane. Les données publiées par les opérateurs sont distinguées des correspondances dépendantes des horaires ou encore à vérifier.",
+        "pt": "Uma rota de planejamento de 18 dias com fontes, entre grandes cidades, sul, Adriático, Veneza, Dolomitas e Toscana. Dados publicados pelos operadores são separados de conexões dependentes de horário ou ainda não resolvidas."
+      },
+      "metrics": {
+        "days": 18,
+        "countries": 1,
+        "stops": 11,
+        "segments": 10,
+        "budget": null,
+        "sourcedSegments": 10,
+        "verifiedSegments": 4
+      },
+      "discovery": {
+        "regions": [
+          "europe",
+          "southern-europe",
+          "italy"
+        ],
+        "themes": [
+          "culture",
+          "cities",
+          "coast",
+          "mountains",
+          "round-trip"
+        ],
+        "modes": [
+          "rail",
+          "road",
+          "ferry",
+          "bus"
+        ],
+        "durationBand": "15-30",
+        "featured": true,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "italy",
+          "accessibility": "standard-check"
+        }
+      },
+      "planning": {
+        "days": 18,
+        "currency": "EUR",
+        "pace": "balanced",
+        "knownPublishedMinimumEur": 120.4,
+        "knownPublishedMinimumScope": "Only source-backed minimum fares for some transport stages; not a trip budget and excludes unresolved/local connections."
+      },
+      "itinerary": [
+        {
+          "id": "it-stop-01",
+          "sequence": 1,
+          "dayStart": 1,
+          "dayEnd": 2,
+          "nights": 2,
+          "name": {
+            "en": "Rome",
+            "de": "Rom",
+            "it": "Roma",
+            "es": "Roma",
+            "fr": "Rome",
+            "pt": "Roma"
+          },
+          "countryCode": "IT",
+          "type": "city"
+        },
+        {
+          "id": "it-stop-02",
+          "sequence": 2,
+          "dayStart": 3,
+          "dayEnd": 4,
+          "nights": 2,
+          "name": {
+            "en": "Naples",
+            "de": "Neapel",
+            "it": "Napoli",
+            "es": "Nápoles",
+            "fr": "Naples",
+            "pt": "Nápoles"
+          },
+          "countryCode": "IT",
+          "type": "city"
+        },
+        {
+          "id": "it-stop-03",
+          "sequence": 3,
+          "dayStart": 5,
+          "dayEnd": 6,
+          "nights": 2,
+          "name": {
+            "en": "Amalfi Coast",
+            "de": "Amalfiküste",
+            "it": "Costiera Amalfitana",
+            "es": "Costa Amalfitana",
+            "fr": "Côte amalfitaine",
+            "pt": "Costa Amalfitana"
+          },
+          "countryCode": "IT",
+          "type": "town"
+        },
+        {
+          "id": "it-stop-04",
+          "sequence": 4,
+          "dayStart": 7,
+          "dayEnd": 7,
+          "nights": 1,
+          "name": {
+            "en": "Matera",
+            "de": "Matera",
+            "it": "Matera",
+            "es": "Matera",
+            "fr": "Matera",
+            "pt": "Matera"
+          },
+          "countryCode": "IT",
+          "type": "city"
+        },
+        {
+          "id": "it-stop-05",
+          "sequence": 5,
+          "dayStart": 8,
+          "dayEnd": 8,
+          "nights": 1,
+          "name": {
+            "en": "Bari",
+            "de": "Bari",
+            "it": "Bari",
+            "es": "Bari",
+            "fr": "Bari",
+            "pt": "Bari"
+          },
+          "countryCode": "IT",
+          "type": "city"
+        },
+        {
+          "id": "it-stop-06",
+          "sequence": 6,
+          "dayStart": 9,
+          "dayEnd": 9,
+          "nights": 1,
+          "name": {
+            "en": "Bologna",
+            "de": "Bologna",
+            "it": "Bologna",
+            "es": "Bolonia",
+            "fr": "Bologne",
+            "pt": "Bolonha"
+          },
+          "countryCode": "IT",
+          "type": "city"
+        },
+        {
+          "id": "it-stop-07",
+          "sequence": 7,
+          "dayStart": 10,
+          "dayEnd": 11,
+          "nights": 2,
+          "name": {
+            "en": "Venice",
+            "de": "Venedig",
+            "it": "Venezia",
+            "es": "Venecia",
+            "fr": "Venise",
+            "pt": "Veneza"
+          },
+          "countryCode": "IT",
+          "type": "city"
+        },
+        {
+          "id": "it-stop-08",
+          "sequence": 8,
+          "dayStart": 12,
+          "dayEnd": 13,
+          "nights": 2,
+          "name": {
+            "en": "Dolomites · Cortina",
+            "de": "Dolomiten · Cortina",
+            "it": "Dolomiti · Cortina",
+            "es": "Dolomitas · Cortina",
+            "fr": "Dolomites · Cortina",
+            "pt": "Dolomitas · Cortina"
+          },
+          "countryCode": "IT",
+          "type": "mountain-town"
+        },
+        {
+          "id": "it-stop-09",
+          "sequence": 9,
+          "dayStart": 14,
+          "dayEnd": 15,
+          "nights": 2,
+          "name": {
+            "en": "Florence",
+            "de": "Florenz",
+            "it": "Firenze",
+            "es": "Florencia",
+            "fr": "Florence",
+            "pt": "Florença"
+          },
+          "countryCode": "IT",
+          "type": "city"
+        },
+        {
+          "id": "it-stop-10",
+          "sequence": 10,
+          "dayStart": 16,
+          "dayEnd": 16,
+          "nights": 1,
+          "name": {
+            "en": "Siena",
+            "de": "Siena",
+            "it": "Siena",
+            "es": "Siena",
+            "fr": "Sienne",
+            "pt": "Siena"
+          },
+          "countryCode": "IT",
+          "type": "city"
+        },
+        {
+          "id": "it-stop-11",
+          "sequence": 11,
+          "dayStart": 17,
+          "dayEnd": 18,
+          "nights": 2,
+          "name": {
+            "en": "Rome",
+            "de": "Rom",
+            "it": "Roma",
+            "es": "Roma",
+            "fr": "Rome",
+            "pt": "Roma"
+          },
+          "countryCode": "IT",
+          "type": "city"
+        }
+      ],
+      "evidence": {
+        "segments": 10,
+        "sourcedSegments": 10,
+        "verifiedSegments": 4,
+        "latestEvidenceCheck": "2026-09-21"
+      },
+      "sources": [
+        {
+          "id": "italo-rome-naples",
+          "issuer": "Italo",
+          "title": "Rome → Naples high-speed train",
+          "url": "https://www.italotreno.com/en/destinations-timetable/rome-naples-tickets",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "italo-naples-network",
+          "issuer": "Italo",
+          "title": "Naples high-speed train connections",
+          "url": "https://www.italotreno.com/en/destinations-timetable/naples-tickets",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "travelmar-2026",
+          "issuer": "Travelmar",
+          "title": "Travelmar Amalfi Coast ferries — timetable and fares from 6 June 2026",
+          "url": "https://www.travelmar.it/_download/orari-travelmar-dal-6-giugno-2026.pdf",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "marinobus-2026",
+          "issuer": "MarinoBus",
+          "title": "MarinoBus 2026 mobility charter",
+          "url": "https://marinobus.it/wp-content/uploads/2026/02/Marino-Carta-della-mobilita-ed.-2026-Soc.-Marino-s.r.l.pdf",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "fal-current",
+          "issuer": "Ferrovie Appulo Lucane",
+          "title": "FAL current timetables and fares",
+          "url": "https://ferrovieappulolucane.it/tratta/orari/",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "fal-sep-2026",
+          "issuer": "Ferrovie Appulo Lucane",
+          "title": "FAL school-service programme from September 2026",
+          "url": "https://ferrovieappulolucane.it/en/comunic-di-servizio/introduction-of-school-bus-schedule_11092026_0945/",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "italo-bari-bologna",
+          "issuer": "Italo",
+          "title": "Bari → Bologna high-speed train",
+          "url": "https://www.italotreno.com/en/destinations-timetable/bari-bologna-tickets",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "italo-bologna-venice",
+          "issuer": "Italo",
+          "title": "Bologna → Venice high-speed train",
+          "url": "https://www.italotreno.com/en/destinations-timetable/bologna-venice-tickets",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "cortina-express-winter-2026",
+          "issuer": "Cortina Express / Dolomiti Bus",
+          "title": "Cortina Express Venice–Cortina timetable",
+          "url": "https://www.cortinaexpress.it/en/timetable/timetable-cortina-treviso-venezia-1-october-2026-to-8-june-2027/",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "italo-venice-florence",
+          "issuer": "Italo",
+          "title": "Venice → Florence high-speed train",
+          "url": "https://www.italotreno.com/en/destinations-timetable/venice-florence-tickets",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "at-131r",
+          "issuer": "Autolinee Toscane",
+          "title": "Regional bus 131R Siena ↔ Florence",
+          "url": "https://www.at-bus.it/it/linee-e-orari/regionali-131r",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "italo-florence-rome",
+          "issuer": "Italo",
+          "title": "Florence → Rome high-speed train",
+          "url": "https://www.italotreno.com/en/destinations-timetable/florence-rome-tickets",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "italy-visa-official",
+          "issuer": "Italian Ministry of Foreign Affairs and International Cooperation",
+          "title": "Entry into Italy — official visa guidance",
+          "url": "https://www.esteri.it/en/ministero/sportello_info/domandefrequenti/sezione_visti_entrare_in_italia/",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "visa-for-italy",
+          "issuer": "Italian Ministry of Foreign Affairs and International Cooperation",
+          "title": "Visa for Italy",
+          "url": "https://vistoperitalia.esteri.it/",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "eu-travel-docs",
+          "issuer": "European Union — Your Europe",
+          "title": "Travel documents for EU nationals",
+          "url": "https://europa.eu/youreurope/citizens/travel/entry-exit/eu-citizen/index_en.htm",
+          "checkedAt": "2026-09-21"
+        }
+      ]
+    },
+    {
+      "id": "western-mediterranean-cruise-loop",
+      "slug": "western-mediterranean-cruise-loop",
+      "kind": "cruise",
+      "status": "illustrative-template",
+      "renderer": "regional-globe",
+      "title": {
+        "en": "Western Mediterranean Cruise Loop",
+        "de": "Westliches Mittelmeer · Kreuzfahrt-Loop",
+        "it": "Crociera nel Mediterraneo occidentale",
+        "es": "Crucero por el Mediterráneo occidental",
+        "fr": "Croisière en Méditerranée occidentale",
+        "pt": "Cruzeiro pelo Mediterrâneo Ocidental"
+      },
+      "subtitle": {
+        "en": "8 days · 7 nights · 4 countries · 1 sea day",
+        "de": "8 Tage · 7 Nächte · 4 Länder · 1 Seetag",
+        "it": "8 giorni · 7 notti · 4 paesi · 1 giorno in mare",
+        "es": "8 días · 7 noches · 4 países · 1 día de navegación",
+        "fr": "8 jours · 7 nuits · 4 pays · 1 journée en mer",
+        "pt": "8 dias · 7 noites · 4 países · 1 dia no mar"
+      },
+      "summary": {
+        "en": "An 8-day, 7-night cruise data-model demonstrator linking Barcelona, Marseille, Civitavecchia, Naples, La Goulette and Palma. Ports are source-backed; the sailing sequence is illustrative until a real operator, ship and departure date are selected.",
+        "de": "Ein 8-Tage-/7-Nächte-Demonstrator für das Kreuzfahrt-Datenmodell mit Barcelona, Marseille, Civitavecchia, Neapel, La Goulette und Palma. Die Häfen sind quellenbasiert; die Abfolge der Seestrecken bleibt illustrativ, bis Reederei, Schiff und Abfahrt ausgewählt sind.",
+        "it": "Un dimostratore del modello crociera di 8 giorni e 7 notti tra Barcellona, Marsiglia, Civitavecchia, Napoli, La Goulette e Palma. I porti sono documentati; la sequenza di navigazione resta illustrativa finché non vengono scelti operatore, nave e data.",
+        "es": "Un demostrador del modelo de crucero de 8 días y 7 noches entre Barcelona, Marsella, Civitavecchia, Nápoles, La Goulette y Palma. Los puertos están documentados; la navegación es ilustrativa hasta elegir operador, barco y fecha.",
+        "fr": "Un démonstrateur du modèle croisière de 8 jours et 7 nuits reliant Barcelone, Marseille, Civitavecchia, Naples, La Goulette et Palma. Les ports sont sourcés; la navigation reste illustrative jusqu’au choix d’un opérateur, d’un navire et d’une date.",
+        "pt": "Um demonstrador do modelo de cruzeiro de 8 dias e 7 noites ligando Barcelona, Marselha, Civitavecchia, Nápoles, La Goulette e Palma. Os portos têm fontes; a navegação é ilustrativa até a escolha de operadora, navio e data."
+      },
+      "metrics": {
+        "days": 8,
+        "nights": 7,
+        "countries": 4,
+        "stops": 7,
+        "segments": 6,
+        "seaDays": 1,
+        "budget": null
+      },
+      "discovery": {
+        "regions": [
+          "europe",
+          "mediterranean",
+          "north-africa"
+        ],
+        "themes": [
+          "cruise",
+          "coast",
+          "ports"
+        ],
+        "modes": [
+          "cruise"
+        ],
+        "durationBand": "7-14",
+        "featured": true,
+        "fit": {
+          "pace": "relaxed",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "mediterranean",
+          "accessibility": "operator-dependent"
+        }
+      },
+      "planning": {
+        "days": 8,
+        "currency": "EUR",
+        "pace": "cruise",
+        "knownPublishedMinimumEur": null,
+        "knownPublishedMinimumScope": null
+      },
+      "itinerary": [
+        {
+          "id": "med-stop-01",
+          "sequence": 1,
+          "dayStart": 1,
+          "dayEnd": 1,
+          "nights": 0,
+          "name": {
+            "en": "Barcelona",
+            "de": "Barcelona",
+            "it": "Barcellona",
+            "es": "Barcelona",
+            "fr": "Barcelone",
+            "pt": "Barcelona"
+          },
+          "countryCode": "ES",
+          "type": "cruise-port"
+        },
+        {
+          "id": "med-stop-02",
+          "sequence": 2,
+          "dayStart": 2,
+          "dayEnd": 2,
+          "nights": 0,
+          "name": {
+            "en": "Marseille",
+            "de": "Marseille",
+            "it": "Marsiglia",
+            "es": "Marsella",
+            "fr": "Marseille",
+            "pt": "Marselha"
+          },
+          "countryCode": "FR",
+          "type": "cruise-port"
+        },
+        {
+          "id": "med-stop-03",
+          "sequence": 3,
+          "dayStart": 3,
+          "dayEnd": 3,
+          "nights": 0,
+          "name": {
+            "en": "Civitavecchia · Rome gateway",
+            "de": "Civitavecchia · Tor zu Rom",
+            "it": "Civitavecchia · porto di Roma",
+            "es": "Civitavecchia · puerta de Roma",
+            "fr": "Civitavecchia · porte de Rome",
+            "pt": "Civitavecchia · porta de Roma"
+          },
+          "countryCode": "IT",
+          "type": "cruise-port"
+        },
+        {
+          "id": "med-stop-04",
+          "sequence": 4,
+          "dayStart": 4,
+          "dayEnd": 4,
+          "nights": 0,
+          "name": {
+            "en": "Naples",
+            "de": "Neapel",
+            "it": "Napoli",
+            "es": "Nápoles",
+            "fr": "Naples",
+            "pt": "Nápoles"
+          },
+          "countryCode": "IT",
+          "type": "cruise-port"
+        },
+        {
+          "id": "med-stop-05",
+          "sequence": 5,
+          "dayStart": 5,
+          "dayEnd": 5,
+          "nights": 0,
+          "name": {
+            "en": "La Goulette · Tunis",
+            "de": "La Goulette · Tunis",
+            "it": "La Goulette · Tunisi",
+            "es": "La Goulette · Túnez",
+            "fr": "La Goulette · Tunis",
+            "pt": "La Goulette · Túnis"
+          },
+          "countryCode": "TN",
+          "type": "cruise-port"
+        },
+        {
+          "id": "med-stop-06",
+          "sequence": 6,
+          "dayStart": 7,
+          "dayEnd": 7,
+          "nights": 0,
+          "name": {
+            "en": "Palma de Mallorca",
+            "de": "Palma de Mallorca",
+            "it": "Palma di Maiorca",
+            "es": "Palma de Mallorca",
+            "fr": "Palma de Majorque",
+            "pt": "Palma de Maiorca"
+          },
+          "countryCode": "ES",
+          "type": "cruise-port"
+        },
+        {
+          "id": "med-stop-07",
+          "sequence": 7,
+          "dayStart": 8,
+          "dayEnd": 8,
+          "nights": 0,
+          "name": {
+            "en": "Barcelona",
+            "de": "Barcelona",
+            "it": "Barcellona",
+            "es": "Barcelona",
+            "fr": "Barcelone",
+            "pt": "Barcelona"
+          },
+          "countryCode": "ES",
+          "type": "cruise-port"
+        }
+      ],
+      "evidence": {
+        "segments": 6,
+        "sourcedSegments": 6,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-09-21"
+      },
+      "sources": [
+        {
+          "id": "barcelona-port-cruise",
+          "issuer": "Port de Barcelona",
+          "title": "Cruise passenger information and terminals",
+          "url": "https://www.portdebarcelona.cat/en/business-and-services/cruise-ships/information-passenger",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "marseille-port-cruise",
+          "issuer": "Port of Marseille Fos",
+          "title": "Cruise passengers — Marseille Provence Cruise Terminal",
+          "url": "https://www.marseille-port.fr/en/node/343",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "civitavecchia-port-cruise",
+          "issuer": "Porti di Roma e del Lazio",
+          "title": "Cruises — Port of Civitavecchia",
+          "url": "https://www.portidiroma.it/crociere",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "naples-terminal-cruise",
+          "issuer": "Terminal Napoli S.p.A.",
+          "title": "Terminal Crociere",
+          "url": "https://www.terminalnapoli.it/?page_id=59",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "la-goulette-port-cruise",
+          "issuer": "Office de la Marine Marchande et des Ports",
+          "title": "Port of La Goulette",
+          "url": "https://www.ommp.nat.tn/ports/goulette/",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "palma-port-cruise",
+          "issuer": "Autoritat Portuària de Balears",
+          "title": "Port of Palma / cruise traffic evidence",
+          "url": "https://www.portsdebalears.com/index.php/en/location-port-palma",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "eu-schengen-external-border",
+          "issuer": "European Union — Your Europe",
+          "title": "Travel documents for non-EU nationals",
+          "url": "https://europa.eu/youreurope/citizens/travel/entry-exit/non-eu-nationals/index_en.htm",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "eu-entry-exit-system",
+          "issuer": "European Commission — Migration and Home Affairs",
+          "title": "Entry/Exit System",
+          "url": "https://home-affairs.ec.europa.eu/policies/schengen/smart-borders/entry-exit-system_en",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "tunisia-econsulat-visa",
+          "issuer": "Tunisia E-CONSULAT — Ministry of Foreign Affairs, Migration and Tunisians Abroad",
+          "title": "Visa application",
+          "url": "https://www.econsulat.tn/fr/services-de-chancellerie/demande-visa",
+          "checkedAt": "2026-09-21"
+        }
+      ]
+    },
+    {
+      "id": "southern-europe-road-trip",
+      "slug": "southern-europe-road-trip",
+      "kind": "road-trip",
+      "status": "sourced-beta",
+      "renderer": "regional-globe",
+      "title": {
+        "en": "Southern Europe Road Trip",
+        "de": "Südeuropa-Roadtrip",
+        "it": "Road trip nell'Europa meridionale",
+        "es": "Road trip por el sur de Europa",
+        "fr": "Road trip en Europe du Sud",
+        "pt": "Road trip pelo sul da Europa"
+      },
+      "subtitle": {
+        "en": "20 days · Portugal, Spain, France and Italy",
+        "de": "20 Tage · Portugal, Spanien, Frankreich und Italien",
+        "it": "20 giorni · Portogallo, Spagna, Francia e Italia",
+        "es": "20 días · Portugal, España, Francia e Italia",
+        "fr": "20 jours · Portugal, Espagne, France et Italie",
+        "pt": "20 dias · Portugal, Espanha, França e Itália"
+      },
+      "summary": {
+        "en": "A 20-day cross-border road-trip template from Lisbon to Rome via Spain and southern France. The route is source-backed for licence, rental, toll and urban-access context; exact roads, travel times, fuel and toll totals remain date- and vehicle-dependent.",
+        "de": "Eine 20-tägige grenzüberschreitende Roadtrip-Vorlage von Lissabon nach Rom über Spanien und Südfrankreich. Führerschein-, Mietwagen-, Maut- und Zufahrtskontext sind quellenbasiert; konkrete Straßen, Fahrzeiten, Kraftstoff- und Mautkosten bleiben datum- und fahrzeugabhängig.",
+        "it": "Un modello di road trip transfrontaliero di 20 giorni da Lisbona a Roma passando per Spagna e Francia meridionale. Patente, noleggio, pedaggi e accessi urbani sono documentati; strade, tempi e costi dipendono da data e veicolo.",
+        "es": "Una plantilla de road trip transfronterizo de 20 días desde Lisboa hasta Roma pasando por España y el sur de Francia. Licencia, alquiler, peajes y accesos urbanos están documentados; carreteras, tiempos y costes dependen de fecha y vehículo.",
+        "fr": "Un modèle de road trip transfrontalier de 20 jours de Lisbonne à Rome via l'Espagne et le sud de la France. Permis, location, péages et accès urbains sont sourcés; routes, temps et coûts dépendent de la date et du véhicule.",
+        "pt": "Um modelo de road trip transfronteiriço de 20 dias de Lisboa a Roma via Espanha e sul da França. Carta, aluguel, portagens e acessos urbanos têm fontes; estradas, tempos e custos dependem da data e do veículo."
+      },
+      "metrics": {
+        "days": 20,
+        "countries": 4,
+        "stops": 11,
+        "segments": 10,
+        "budget": null
+      },
+      "discovery": {
+        "regions": [
+          "europe",
+          "southern-europe",
+          "mediterranean"
+        ],
+        "themes": [
+          "road-trip",
+          "cities",
+          "coast",
+          "culture"
+        ],
+        "modes": [
+          "car"
+        ],
+        "durationBand": "15-30",
+        "featured": true,
+        "fit": {
+          "pace": "active",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "southern-europe",
+          "accessibility": "vehicle-dependent"
+        }
+      },
+      "planning": {
+        "days": 20,
+        "currency": "EUR",
+        "pace": "balanced-road-trip",
+        "knownPublishedMinimumEur": null,
+        "knownPublishedMinimumScope": null
+      },
+      "itinerary": [
+        {
+          "id": "se-road-stop-01",
+          "sequence": 1,
+          "dayStart": 1,
+          "dayEnd": 2,
+          "nights": 2,
+          "name": {
+            "en": "Lisbon",
+            "de": "Lissabon",
+            "it": "Lisbona",
+            "es": "Lisboa",
+            "fr": "Lisbonne",
+            "pt": "Lisboa"
+          },
+          "countryCode": "PT",
+          "type": "city"
+        },
+        {
+          "id": "se-road-stop-02",
+          "sequence": 2,
+          "dayStart": 3,
+          "dayEnd": 4,
+          "nights": 2,
+          "name": {
+            "en": "Seville",
+            "de": "Sevilla",
+            "it": "Siviglia",
+            "es": "Sevilla",
+            "fr": "Séville",
+            "pt": "Sevilha"
+          },
+          "countryCode": "ES",
+          "type": "city"
+        },
+        {
+          "id": "se-road-stop-03",
+          "sequence": 3,
+          "dayStart": 5,
+          "dayEnd": 5,
+          "nights": 1,
+          "name": {
+            "en": "Granada",
+            "de": "Granada",
+            "it": "Granada",
+            "es": "Granada",
+            "fr": "Grenade",
+            "pt": "Granada"
+          },
+          "countryCode": "ES",
+          "type": "city"
+        },
+        {
+          "id": "se-road-stop-04",
+          "sequence": 4,
+          "dayStart": 6,
+          "dayEnd": 7,
+          "nights": 2,
+          "name": {
+            "en": "Valencia",
+            "de": "Valencia",
+            "it": "Valencia",
+            "es": "Valencia",
+            "fr": "Valence",
+            "pt": "Valência"
+          },
+          "countryCode": "ES",
+          "type": "city"
+        },
+        {
+          "id": "se-road-stop-05",
+          "sequence": 5,
+          "dayStart": 8,
+          "dayEnd": 9,
+          "nights": 2,
+          "name": {
+            "en": "Barcelona",
+            "de": "Barcelona",
+            "it": "Barcellona",
+            "es": "Barcelona",
+            "fr": "Barcelone",
+            "pt": "Barcelona"
+          },
+          "countryCode": "ES",
+          "type": "city"
+        },
+        {
+          "id": "se-road-stop-06",
+          "sequence": 6,
+          "dayStart": 10,
+          "dayEnd": 10,
+          "nights": 1,
+          "name": {
+            "en": "Montpellier",
+            "de": "Montpellier",
+            "it": "Montpellier",
+            "es": "Montpellier",
+            "fr": "Montpellier",
+            "pt": "Montpellier"
+          },
+          "countryCode": "FR",
+          "type": "city"
+        },
+        {
+          "id": "se-road-stop-07",
+          "sequence": 7,
+          "dayStart": 11,
+          "dayEnd": 11,
+          "nights": 1,
+          "name": {
+            "en": "Marseille",
+            "de": "Marseille",
+            "it": "Marsiglia",
+            "es": "Marsella",
+            "fr": "Marseille",
+            "pt": "Marselha"
+          },
+          "countryCode": "FR",
+          "type": "city"
+        },
+        {
+          "id": "se-road-stop-08",
+          "sequence": 8,
+          "dayStart": 12,
+          "dayEnd": 13,
+          "nights": 2,
+          "name": {
+            "en": "Nice",
+            "de": "Nizza",
+            "it": "Nizza",
+            "es": "Niza",
+            "fr": "Nice",
+            "pt": "Nice"
+          },
+          "countryCode": "FR",
+          "type": "city"
+        },
+        {
+          "id": "se-road-stop-09",
+          "sequence": 9,
+          "dayStart": 14,
+          "dayEnd": 14,
+          "nights": 1,
+          "name": {
+            "en": "Genoa",
+            "de": "Genua",
+            "it": "Genova",
+            "es": "Génova",
+            "fr": "Gênes",
+            "pt": "Gênova"
+          },
+          "countryCode": "IT",
+          "type": "city"
+        },
+        {
+          "id": "se-road-stop-10",
+          "sequence": 10,
+          "dayStart": 15,
+          "dayEnd": 16,
+          "nights": 2,
+          "name": {
+            "en": "Florence",
+            "de": "Florenz",
+            "it": "Firenze",
+            "es": "Florencia",
+            "fr": "Florence",
+            "pt": "Florença"
+          },
+          "countryCode": "IT",
+          "type": "city"
+        },
+        {
+          "id": "se-road-stop-11",
+          "sequence": 11,
+          "dayStart": 17,
+          "dayEnd": 20,
+          "nights": 4,
+          "name": {
+            "en": "Rome",
+            "de": "Rom",
+            "it": "Roma",
+            "es": "Roma",
+            "fr": "Rome",
+            "pt": "Roma"
+          },
+          "countryCode": "IT",
+          "type": "city"
+        }
+      ],
+      "evidence": {
+        "segments": 10,
+        "sourcedSegments": 10,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-09-21"
+      },
+      "sources": [
+        {
+          "id": "eu-driving-2026",
+          "issuer": "European Union — Your Europe",
+          "title": "Driving licence and car insurance validity in the EU",
+          "url": "https://europa.eu/youreurope/citizens/travel/driving-abroad/driving-licence-and-insurance/index_en.htm",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "eu-rental-2026",
+          "issuer": "European Union — Your Europe",
+          "title": "Hiring and driving a car in another EU country",
+          "url": "https://europa.eu/youreurope/citizens/travel/driving-abroad/car-rental-abroad/index_en.htm",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "pt-tolls-2026",
+          "issuer": "Infraestruturas de Portugal",
+          "title": "Portugal road tolls and foreign registrations",
+          "url": "https://servicos.infraestruturasdeportugal.pt/portagens-ips",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "es-urban-zbe-2026",
+          "issuer": "Dirección General de Tráfico",
+          "title": "Driving in Spanish cities and low-emission zones",
+          "url": "https://www.dgt.es/muevete-con-seguridad/viaja-seguro/consejos-extranjeros/en-ciudad/",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "fr-critair-2026",
+          "issuer": "Ministère de la Transition écologique",
+          "title": "Crit'Air vehicle air-quality certificate",
+          "url": "https://www.certificat-air.gouv.fr/",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "it-tolls-2026",
+          "issuer": "Autostrade per l'Italia",
+          "title": "How Italian motorway tolls are calculated",
+          "url": "https://www.autostrade.it/en/servizi-al-cliente/pedaggio/come-si-calcola-il-pedaggio",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "rome-ztl-2026",
+          "issuer": "Roma Servizi per la Mobilità",
+          "title": "Central Rome ZTL",
+          "url": "https://romamobilita.it/muoversi-a-roma/ztl-in-centro/",
+          "checkedAt": "2026-09-21"
+        }
+      ]
+    },
+    {
+      "id": "central-europe-rail-journey",
+      "slug": "central-europe-rail-journey",
+      "kind": "rail",
+      "status": "sourced-beta",
+      "renderer": "regional-globe",
+      "title": {
+        "en": "Central Europe Rail Journey",
+        "de": "Mitteleuropa mit der Bahn",
+        "it": "Viaggio ferroviario nell'Europa centrale",
+        "es": "Viaje ferroviario por Europa Central",
+        "fr": "Voyage ferroviaire en Europe centrale",
+        "pt": "Viagem ferroviária pela Europa Central"
+      },
+      "subtitle": {
+        "en": "18 days · 10 cities · 7 countries · rail only",
+        "de": "18 Tage · 10 Städte · 7 Länder · nur Bahn",
+        "it": "18 giorni · 10 città · 7 paesi · solo treno",
+        "es": "18 días · 10 ciudades · 7 países · solo tren",
+        "fr": "18 jours · 10 villes · 7 pays · uniquement en train",
+        "pt": "18 dias · 10 cidades · 7 países · apenas trem"
+      },
+      "summary": {
+        "en": "An 18-day rail-only city journey from Paris to Berlin through Belgium, the Netherlands, Germany, Austria, Hungary and Czechia. Stable route evidence is separated from date-sensitive timetables, fares and engineering works.",
+        "de": "Eine 18-tägige reine Bahnreise von Paris nach Berlin über Belgien, die Niederlande, Deutschland, Österreich, Ungarn und Tschechien. Stabile Routenbelege werden klar von datumsabhängigen Fahrplänen, Preisen und Bauarbeiten getrennt.",
+        "it": "Un viaggio di 18 giorni solo in treno da Parigi a Berlino attraverso Belgio, Paesi Bassi, Germania, Austria, Ungheria e Cechia. Le prove stabili del percorso sono separate da orari, prezzi e lavori dipendenti dalla data.",
+        "es": "Un viaje de 18 días solo en tren de París a Berlín por Bélgica, Países Bajos, Alemania, Austria, Hungría y Chequia. La evidencia estable de la ruta se separa de horarios, precios y obras dependientes de la fecha.",
+        "fr": "Un voyage de 18 jours uniquement en train de Paris à Berlin via la Belgique, les Pays-Bas, l'Allemagne, l'Autriche, la Hongrie et la Tchéquie. Les preuves stables sont séparées des horaires, tarifs et travaux dépendant des dates.",
+        "pt": "Uma viagem de 18 dias apenas de trem de Paris a Berlim pela Bélgica, Países Baixos, Alemanha, Áustria, Hungria e Chéquia. Evidências estáveis da rota ficam separadas de horários, preços e obras dependentes da data."
+      },
+      "metrics": {
+        "days": 18,
+        "countries": 7,
+        "stops": 10,
+        "segments": 9,
+        "budget": null,
+        "sourcedSegments": 9,
+        "verifiedSegments": 8
+      },
+      "discovery": {
+        "regions": [
+          "europe"
+        ],
+        "themes": [
+          "rail",
+          "cities",
+          "culture"
+        ],
+        "modes": [
+          "rail"
+        ],
+        "durationBand": "15-30",
+        "featured": true,
+        "fit": {
+          "pace": "active",
+          "seasons": [
+            "multi-season"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "europe",
+          "accessibility": "standard-check"
+        }
+      },
+      "planning": {
+        "days": 18,
+        "currency": "EUR",
+        "pace": "active",
+        "knownPublishedMinimumEur": null,
+        "knownPublishedMinimumScope": null
+      },
+      "itinerary": [
+        {
+          "id": "cer-stop-01",
+          "sequence": 1,
+          "dayStart": 1,
+          "dayEnd": 2,
+          "nights": 2,
+          "name": {
+            "en": "Paris",
+            "de": "Paris",
+            "it": "Parigi",
+            "es": "París",
+            "fr": "Paris",
+            "pt": "Paris"
+          },
+          "countryCode": "FR",
+          "type": "city"
+        },
+        {
+          "id": "cer-stop-02",
+          "sequence": 2,
+          "dayStart": 3,
+          "dayEnd": 3,
+          "nights": 1,
+          "name": {
+            "en": "Brussels",
+            "de": "Brüssel",
+            "it": "Bruxelles",
+            "es": "Bruselas",
+            "fr": "Bruxelles",
+            "pt": "Bruxelas"
+          },
+          "countryCode": "BE",
+          "type": "city"
+        },
+        {
+          "id": "cer-stop-03",
+          "sequence": 3,
+          "dayStart": 4,
+          "dayEnd": 5,
+          "nights": 2,
+          "name": {
+            "en": "Amsterdam",
+            "de": "Amsterdam",
+            "it": "Amsterdam",
+            "es": "Ámsterdam",
+            "fr": "Amsterdam",
+            "pt": "Amesterdão"
+          },
+          "countryCode": "NL",
+          "type": "city"
+        },
+        {
+          "id": "cer-stop-04",
+          "sequence": 4,
+          "dayStart": 6,
+          "dayEnd": 6,
+          "nights": 1,
+          "name": {
+            "en": "Cologne",
+            "de": "Köln",
+            "it": "Colonia",
+            "es": "Colonia",
+            "fr": "Cologne",
+            "pt": "Colónia"
+          },
+          "countryCode": "DE",
+          "type": "city"
+        },
+        {
+          "id": "cer-stop-05",
+          "sequence": 5,
+          "dayStart": 7,
+          "dayEnd": 7,
+          "nights": 1,
+          "name": {
+            "en": "Frankfurt",
+            "de": "Frankfurt",
+            "it": "Francoforte",
+            "es": "Fráncfort",
+            "fr": "Francfort",
+            "pt": "Frankfurt"
+          },
+          "countryCode": "DE",
+          "type": "city"
+        },
+        {
+          "id": "cer-stop-06",
+          "sequence": 6,
+          "dayStart": 8,
+          "dayEnd": 9,
+          "nights": 2,
+          "name": {
+            "en": "Munich",
+            "de": "München",
+            "it": "Monaco di Baviera",
+            "es": "Múnich",
+            "fr": "Munich",
+            "pt": "Munique"
+          },
+          "countryCode": "DE",
+          "type": "city"
+        },
+        {
+          "id": "cer-stop-07",
+          "sequence": 7,
+          "dayStart": 10,
+          "dayEnd": 11,
+          "nights": 2,
+          "name": {
+            "en": "Vienna",
+            "de": "Wien",
+            "it": "Vienna",
+            "es": "Viena",
+            "fr": "Vienne",
+            "pt": "Viena"
+          },
+          "countryCode": "AT",
+          "type": "city"
+        },
+        {
+          "id": "cer-stop-08",
+          "sequence": 8,
+          "dayStart": 12,
+          "dayEnd": 13,
+          "nights": 2,
+          "name": {
+            "en": "Budapest",
+            "de": "Budapest",
+            "it": "Budapest",
+            "es": "Budapest",
+            "fr": "Budapest",
+            "pt": "Budapeste"
+          },
+          "countryCode": "HU",
+          "type": "city"
+        },
+        {
+          "id": "cer-stop-09",
+          "sequence": 9,
+          "dayStart": 14,
+          "dayEnd": 15,
+          "nights": 2,
+          "name": {
+            "en": "Prague",
+            "de": "Prag",
+            "it": "Praga",
+            "es": "Praga",
+            "fr": "Prague",
+            "pt": "Praga"
+          },
+          "countryCode": "CZ",
+          "type": "city"
+        },
+        {
+          "id": "cer-stop-10",
+          "sequence": 10,
+          "dayStart": 16,
+          "dayEnd": 18,
+          "nights": 3,
+          "name": {
+            "en": "Berlin",
+            "de": "Berlin",
+            "it": "Berlino",
+            "es": "Berlín",
+            "fr": "Berlin",
+            "pt": "Berlim"
+          },
+          "countryCode": "DE",
+          "type": "city"
+        }
+      ],
+      "evidence": {
+        "segments": 9,
+        "sourcedSegments": 9,
+        "verifiedSegments": 8,
+        "latestEvidenceCheck": "2026-09-21"
+      },
+      "sources": [
+        {
+          "id": "eurostar-paris-brussels",
+          "issuer": "Eurostar",
+          "title": "Paris → Brussels by Eurostar",
+          "url": "https://www.eurostar.com/de-de/zug/paris-bruessel",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "eurostar-brussels-amsterdam",
+          "issuer": "Eurostar",
+          "title": "Brussels → Amsterdam by Eurostar",
+          "url": "https://www.eurostar.com/de-de/zug/bruessel-amsterdam",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "ns-amsterdam-cologne",
+          "issuer": "NS International",
+          "title": "Amsterdam → Cologne by ICE International",
+          "url": "https://www.nsinternational.com/en/train/amsterdam-cologne",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "db-cologne-frankfurt",
+          "issuer": "Deutsche Bahn",
+          "title": "Cologne → Frankfurt by train",
+          "url": "https://www.bahn.de/reisen/view/verbindung/koeln/frankfurt.shtml",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "db-frankfurt-munich",
+          "issuer": "Deutsche Bahn",
+          "title": "Frankfurt → Munich by train",
+          "url": "https://www.bahn.de/reisen/view/verbindung/frankfurt/muenchen.shtml",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "oebb-munich-vienna",
+          "issuer": "ÖBB",
+          "title": "Munich international rail connections",
+          "url": "https://www.oebb.at/de/reiseplanung-services/oebb-zugverbindungen/zugverbindungen-europa/muenchen",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "oebb-vienna-budapest",
+          "issuer": "ÖBB",
+          "title": "Vienna → Budapest by train",
+          "url": "https://www.oebb.at/de/reiseplanung-services/oebb-zugverbindungen/zugverbindungen-europa/budapest",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "cd-budapest-prague-corridor",
+          "issuer": "České dráhy",
+          "title": "Prague ↔ Budapest by EuroCity Metropolitan",
+          "url": "https://www.cd.cz/trasy/trasy-madarsko/praha-budapest/-30120/",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "cd-budapest-prague-rj274",
+          "issuer": "České dráhy",
+          "title": "2026 rj 274 Metropolitan · Budapest → Prague",
+          "url": "https://www.cd.cz/vlak/274/7.5.2026/5500728/13.30/5457076/20.23/",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "cd-prague-berlin",
+          "issuer": "České dráhy",
+          "title": "Prague → Berlin by direct train",
+          "url": "https://www.cd.cz/trasy/nemecko/praha-berlin/-30009/",
+          "checkedAt": "2026-09-21"
+        }
+      ]
+    }
+  ]
+}

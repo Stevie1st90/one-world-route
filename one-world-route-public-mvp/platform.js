@@ -10,6 +10,8 @@
   const Traveller=PLATFORM_MODULES.traveller;
   const TravellerUi=PLATFORM_MODULES.travellerUi;
   const Discovery=PLATFORM_MODULES.discovery;
+  const TripTools=PLATFORM_MODULES.tripTools;
+  const TripCompare=PLATFORM_MODULES.tripCompare;
   const TripPlanning=PLATFORM_MODULES.tripPlanning;
   const Extensions=PLATFORM_MODULES.extensions;
   const Home=PLATFORM_MODULES.home;
@@ -25,7 +27,7 @@
   const Ui=PLATFORM_MODULES.ui;
   const Navigation=PLATFORM_MODULES.navigation;
   const LegacyLocalization=PLATFORM_MODULES.legacyLocalization;
-  if(!LocaleData||!Formatters||!Model||!Traveller||!TravellerUi||!Discovery||!TripPlanning||!Extensions||!Home||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!RegionalSelection||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
+  if(!LocaleData||!Formatters||!Model||!Traveller||!TravellerUi||!Discovery||!TripTools||!TripCompare||!TripPlanning||!Extensions||!Home||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!RegionalSelection||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
   const HOME_REQUEST=location.pathname==='/'&&!new URLSearchParams(location.search).has('trip');
   if(HOME_REQUEST){
     window.ONE_WORLD_ROUTE_OWNERSHIP='home';
@@ -257,6 +259,9 @@
       openTraveller,
       locale:()=>locale,
       tripPlanning:TripPlanning,
+      tripTools:TripTools,
+      storage:localStorage,
+      toast:Ui.toast,
       extensions:Extensions,
       stopMap,
       placeMap
@@ -376,7 +381,13 @@
           pluralLabel,
           locale:()=>locale,
           onOpenTrip:setQueryTrip,
-          onTraveller:openTraveller
+          onTraveller:openTraveller,
+          tripTools:TripTools,
+          tripCompare:TripCompare,
+          storage:localStorage,
+          ensureDialog:Ui.ensureDialog,
+          loadProfile,
+          toast:Ui.toast
         });
         await Home.open();
         return;

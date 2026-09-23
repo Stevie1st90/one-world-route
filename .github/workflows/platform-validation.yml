@@ -104,6 +104,8 @@ jobs:
           node --check platform/ui.js
           node --check platform/navigation.js
           node --check platform/discovery.js
+          node --check platform/trip-tools.js
+          node --check platform/trip-compare.js
           node --check platform/home.js
           node --check platform/route-library.js
           node --check platform/regional-shell.js
@@ -136,6 +138,14 @@ jobs:
           node --check scripts/test-platform-rail-validator.mjs
           node --check scripts/trip-draft-contract.mjs
           node --check scripts/test-trip-draft-contract.mjs
+          node --check scripts/flagship-readiness-model.mjs
+          node --check scripts/audit-flagship-readiness.mjs
+          node --check scripts/test-flagship-readiness.mjs
+          node --check scripts/test-trip-tools.mjs
+          node --check scripts/test-trip-compare.mjs
+          node --check scripts/trip-index-model.mjs
+          node --check scripts/build-trip-index.mjs
+          node --check scripts/test-trip-index.mjs
           node --check ../internal-trip-builder/server.mjs
           node --check ../internal-trip-builder/app.js
           node --check ../internal-trip-builder/test-builder.mjs
@@ -152,10 +162,16 @@ jobs:
         run: node --test scripts/test-platform-i18n.mjs
       - name: Platform formatter tests
         run: node --test scripts/test-platform-formatters.mjs
+      - name: Public trip index tests
+        run: node --test scripts/test-trip-index.mjs
       - name: Share page tests
         run: node --test scripts/test-share-pages.mjs
       - name: Platform navigation tests
         run: node --test scripts/test-platform-navigation.mjs
+      - name: Trip tools tests
+        run: node --test scripts/test-trip-tools.mjs
+      - name: Journey comparison tests
+        run: node --test scripts/test-trip-compare.mjs
       - name: Regional runtime integration tests
         run: node --test scripts/test-regional-runtime.mjs
       - name: Rail validator tests
@@ -168,6 +184,8 @@ jobs:
         run: node --test scripts/test-platform-story.mjs
       - name: Continuity unit tests
         run: node --test scripts/test-continuity.mjs
+      - name: Flagship readiness audit tests
+        run: node --test scripts/test-flagship-readiness.mjs
 
   release:
     name: Release build and preview

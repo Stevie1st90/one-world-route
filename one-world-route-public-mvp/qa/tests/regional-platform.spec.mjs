@@ -45,6 +45,23 @@ test('public homepage discovers all catalog journeys and keeps the globe object-
   await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(expected);
   await page.locator('[data-home-reset]').click();
   await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(catalog.trips.length);
+  await expect(page.locator('#homeRouteSavedOnly')).toHaveCount(1);
+  const savedId=catalog.trips[0].id;
+  await page.locator(`[data-home-save-trip="${savedId}"]`).click();
+  await page.locator('#homeRouteSavedOnly').check();
+  await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(1);
+  await page.locator('#homeRouteSavedOnly').uncheck();
+  await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(catalog.trips.length);
+  await page.locator(`[data-home-save-trip="${savedId}"]`).click();
+  await expect(page.locator('[data-home-compare-trip]')).toHaveCount(catalog.trips.length);
+  const firstTwo=catalog.trips.slice(0,2);
+  await page.locator(`[data-home-compare-trip="${firstTwo[0].id}"]`).click();
+  await page.locator(`[data-home-compare-trip="${firstTwo[1].id}"]`).click();
+  await expect(page.locator('#platformHomeCompare')).toBeEnabled();
+  await page.locator('#platformHomeCompare').click();
+  await expect(page.locator('#platformCompareModal')).toBeVisible();
+  await expect(page.locator('#platformCompareModal .platform-compare-trip')).toHaveCount(2);
+  await page.locator('#platformCompareModal .platform-x').click();
   await page.locator('#platformHomeExplore').scrollIntoViewIfNeeded();
   await captureViewport(page,testInfo,'public-home-discovery-'+testInfo.project.name+'.png');
 
@@ -293,6 +310,9 @@ for(const item of regional){
       await expect(page.locator('.platform-planning-guide')).toHaveCount(1);
       await expect(page.locator('.platform-plan-stop')).toHaveCount(item.metrics.stops);
       await expect(page.locator('.platform-plan-metrics')).toContainText(String(item.metrics.segments));
+      await expect(page.locator('.platform-budget-estimator')).toHaveCount(1);
+      await expect(page.locator('[data-trip-start-date]')).toHaveCount(1);
+      await expect(page.locator('[data-trip-export-calendar]')).toHaveCount(1);
       if(isMobile){
         await page.locator('#mobileDetails').click();
         await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);
@@ -308,6 +328,7 @@ for(const item of regional){
     await expect(page.locator('#settingsBtn')).toBeVisible();
     await expect(page.locator('#platformRouteBtn')).toBeVisible();
     await expect(page.locator('#platformTravellerBtn')).toBeVisible();
+    await expect(page.locator('.platform-save-trip')).toHaveCount(1);
     if(isMobile){
       await expect(page.locator('.brand small')).toBeVisible();
       await expect(page.locator('.brand small')).toHaveText(item.title.en);

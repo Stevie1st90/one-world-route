@@ -64,3 +64,21 @@ test('flagship trip and legacy share pages redirect to explicit flagship URLs',(
   const country=render({type:'country',slug:'germany'}).body;
   assert.match(country,/trip=world-195&amp;country=Deutschland|trip%3Dworld-195/);
 });
+
+
+test('trip share page is a real crawlable itinerary rather than an auto redirect',()=>{
+  const {body}=render({type:'trip',slug:'italy-grand-tour',lang:'de'});
+  assert.doesNotMatch(body,/location\.replace/);
+  assert.match(body,/Reiseplan/);
+  assert.match(body,/Rom|Rome/);
+  assert.match(body,/Florenz|Florence/);
+  assert.match(body,/Bekanntes veröffentlichtes Verkehrsminimum/);
+  assert.match(body,/120,40|120\.40|120,4|120\.4/);
+  assert.match(body,/Trenitalia|Italo|Trenord|official/i);
+  assert.match(body,/"itemListElement"/);
+});
+
+test('legacy route and country share pages keep their direct interactive redirect',()=>{
+  assert.match(render({type:'route',id:'1'}).body,/location\.replace/);
+  assert.match(render({type:'country',slug:'germany'}).body,/location\.replace/);
+});

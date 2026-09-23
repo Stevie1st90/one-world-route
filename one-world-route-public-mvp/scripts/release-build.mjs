@@ -6,6 +6,8 @@ for (const script of [
   'validate-public-data.mjs',
   'validate-platform-data.mjs',
   'audit-route-continuity.mjs',
+  'audit-flagship-readiness.mjs',
+  'build-trip-index.mjs',
   'build-bundles.mjs',
   'generate-seo.mjs',
 ]) {

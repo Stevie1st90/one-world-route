@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','formatters.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','trip-planning.js','home.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','regional-selection.js','story.js','terrain.js','extensions.js','extensions/cruise.js','extensions/road.js','extensions/border.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','formatters.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','trip-tools.js','trip-compare.js','trip-planning.js','home.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','regional-selection.js','story.js','terrain.js','extensions.js','extensions/cruise.js','extensions/road.js','extensions/border.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -236,9 +236,30 @@ test('route library exposes transparent Route Fit controls',()=>{
 });
 
 
+test('trip comparison stays neutral, transparent and trip-generic',()=>{
+  const compare=moduleSources['trip-compare.js'];
+  assert.match(compare,/function derivedParty/);
+  assert.match(compare,/function toggle/);
+  assert.match(compare,/function open/);
+  assert.match(compare,/statusLabel/);
+  assert.doesNotMatch(compare,/winner|scoreTrip|rankTrip|italy-grand-tour|world-195/);
+});
+
+test('trip tools keep saved trips and budget assumptions local and trip-generic',()=>{
+  const source=moduleSources['trip-tools.js'];
+  assert.match(source,/one-world-route:trip-tools:v1/);
+  assert.match(source,/function toggleSaved/);
+  assert.match(source,/function estimate/);
+  assert.match(source,/function csv/);
+  assert.match(source,/function jsonPack/);
+  assert.doesNotMatch(source,/italy-grand-tour|world-195|passportNumber|bookingReference|payment/i);
+});
+
 test('practical trip planning stays capability-driven and trip-generic',()=>{
   const planning=moduleSources['trip-planning.js'];
   const detail=moduleSources['regional-detail.js'];
+  assert.match(source,/const TripTools=PLATFORM_MODULES\.tripTools/);
+  assert.match(source,/const TripCompare=PLATFORM_MODULES\.tripCompare/);
   assert.match(source,/const TripPlanning=PLATFORM_MODULES\.tripPlanning/);
   assert.match(planning,/includes\('trip-planning'\)/);
   assert.match(planning,/function itinerary/);

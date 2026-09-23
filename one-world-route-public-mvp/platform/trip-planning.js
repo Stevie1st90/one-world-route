@@ -74,7 +74,7 @@
       '</div>'+
       '<div class="platform-plan-disclosure">'+esc(budgetScope)+'</div>'+
       (fitItems.length?'<div class="platform-plan-fit"><span>'+esc(t('routeFit'))+'</span><b>'+esc(fitItems.join(' · '))+'</b></div>':'')+
-      '<div class="platform-plan-itinerary"><div class="ops-mini-title">'+esc(t('dayByDay'))+'</div>'+rows+'</div>'+
+      '<details class="platform-plan-itinerary"><summary>'+esc(t('dayByDay'))+' <span>'+esc(s.stops)+' '+esc(t('stops'))+'</span></summary><div class="platform-plan-itinerary-body">'+rows+'</div></details>'+
     '</section>';
   }
 

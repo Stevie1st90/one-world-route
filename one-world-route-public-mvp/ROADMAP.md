@@ -14,6 +14,7 @@
 - Terrain chapter camera navigation
 
 ## Continue before departure
+- Use the machine-readable flagship readiness audit as the canonical departure-readiness source; clear its blockers instead of maintaining manual status counts.
 - Expand curated waypoints from Europe I across every non-flight ground/ferry corridor.
 - Reverify volatile borders, visas and transport sources.
 - Run the Playwright suite before each public release.
@@ -50,6 +51,9 @@ Next product layers:
 - expand the source-backed nationality/passport and residence rule engine beyond the Italy official-resolver foundation
 - extend implemented route discovery with origin-market relevance, seasonality and accessibility filters
 - practical trip-planning layer (implemented first on Italy): day-by-day itinerary, known transport minimum, fare/evidence coverage and Route Fit
+- browser-local save, saved-only discovery, JSON/CSV/ICS export and explicit-assumption budget estimator
+- neutral comparison of up to three journeys with Traveller Context-aware party/accessibility checks
+- crawlable localized trip pages with source-derived itinerary, planning and evidence content
 - sourced full-trip cost bands and seasonal variants
 - connect the implemented cruise port-call / sea-day model to real operator sailings and cabin/pricing data
-- route builder, saved trips and collaboration only after the public read-only model is proven
+- route builder and collaboration only after the public read-only model is proven

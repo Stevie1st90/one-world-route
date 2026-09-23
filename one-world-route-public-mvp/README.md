@@ -52,6 +52,17 @@ The 194 official legs remain international country-to-country legs. Missing dome
 node scripts/audit-route-continuity.mjs
 ```
 
+## Flagship readiness
+The current operational health of the 195-country flagship is generated from the route, movement and flight-geometry datasets. The canonical machine-readable snapshot is `data/flagship-readiness.json`.
+
+```bash
+node scripts/audit-flagship-readiness.mjs
+node scripts/audit-flagship-readiness.mjs --check
+node scripts/audit-flagship-readiness.mjs --strict
+```
+
+The normal release build refreshes the snapshot deterministically. `--check` fails when the committed report is stale. `--strict` is reserved for departure-readiness gating; the public site may remain publishable while operational blockers are still visible.
+
 
 ## Multi-trip platform foundation
 
@@ -70,7 +81,10 @@ Current platform features:
 - six initial UI languages: English, German, Italian, Spanish, French and Portuguese
 - Italy Grand Tour as the first regional editorial template
 - modular platform validation in the release pipeline
-- Practical trip-planning layer for capability-enabled regional routes: day-by-day itinerary, known transport minimums, fare/evidence coverage, Route Fit and Traveller-origin context
+- Practical trip-planning layer for capability-enabled regional routes: collapsible day-by-day itinerary, known transport minimums, fare/evidence coverage, Route Fit and Traveller-origin context
+- Browser-local trip utility layer: save a journey, filter saved journeys, export JSON/CSV/ICS and calculate a personal planning estimate from explicit user assumptions without accounts
+- Neutral side-by-side journey comparison for up to three routes, including duration, countries, transport, seasons, Route Fit, editorial status and Traveller Context checks
+- Crawlable localized trip pages with real itinerary, planning/evidence summaries and source links instead of metadata-only auto redirects
 
 Traveller Context is planning context, not an identity profile. The public app never asks for passport numbers, booking references, payment data or exact home addresses. Entry, visa and safety claims must remain source-backed and traveller-specific rather than assuming a German traveller.
 
@@ -113,7 +127,7 @@ For every supported public locale (`en`, `de`, `it`, `es`, `fr`, `pt`), trips ha
 - Schema.org `TouristTrip` JSON-LD
 - an interactive-app target that preserves the explicit language
 
-The trip catalog declares `defaultLocale` and `supportedLocales`. Validation fails if any public trip lacks a title or subtitle for a published locale.
+The trip catalog declares `defaultLocale` and `supportedLocales`. Validation fails if any public trip lacks a title or subtitle for a published locale. A deterministic `data/platform/trip-index.json` is generated from the published datasets and powers the crawlable localized trip pages without duplicating editorial facts by hand.
 
 ### Route Discovery and road-trip context
 
@@ -158,6 +172,7 @@ The multi-trip platform is intentionally split into small browser modules that a
 - `platform/model.js` — reusable place/stop/segment helpers, geometry and capability checks
 - `platform/traveller.js` — privacy-limited Traveller Context storage/normalization
 - `platform/discovery.js` — catalog facets and Route Fit filtering
+- `platform/trip-tools.js` — browser-local saved trips, personal budget assumptions and JSON/CSV exports
 - `platform/home.js` — public catalog-driven homepage and multi-route Globe preview
 - `platform/extensions.js` — registered cruise, road and border presenters
 - `platform/map-style.js` — shared terrain label localization and ONE WORLD ROUTE dark map styling

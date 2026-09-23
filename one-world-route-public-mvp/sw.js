@@ -1,5 +1,5 @@
 const LOCAL_PREVIEW=['127.0.0.1','localhost','::1'].includes(self.location.hostname);
-const CACHE='one-world-route-homepage-20260922a';
+const CACHE='one-world-route-compare-calendar-20260923b';
 const CORE=['/','/index.html','/core.bundle.css','/features.bundle.css','/core.bundle.js','/features.bundle.js','/manifest.webmanifest','/icon.svg','/data/public-route.json','/data/country-centroids.json','/data/route-waypoints.json','/data/flight-geometries.json','/data/operational-movements.json','/data/platform/trips.json','/data/platform/trips/italy-grand-tour.json','/data/platform/trips/western-mediterranean-cruise-loop.json','/data/platform/trips/southern-europe-road-trip.json','/data/platform/trips/central-europe-rail-journey.json','/data/platform/trip-schema.json','/data/platform/traveller-context-schema.json','/data/platform/traveller-rule-schema.json'];
 self.addEventListener('install',e=>e.waitUntil((LOCAL_PREVIEW?Promise.resolve():caches.open(CACHE).then(c=>c.addAll(CORE))).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>LOCAL_PREVIEW||k!==CACHE).map(k=>caches.delete(k)))).then(()=>LOCAL_PREVIEW?self.registration.unregister():true).then(()=>self.clients.claim())));
