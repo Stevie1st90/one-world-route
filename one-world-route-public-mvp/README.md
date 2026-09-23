@@ -70,6 +70,7 @@ Current platform features:
 - six initial UI languages: English, German, Italian, Spanish, French and Portuguese
 - Italy Grand Tour as the first regional editorial template
 - modular platform validation in the release pipeline
+- Practical trip-planning layer for capability-enabled regional routes: day-by-day itinerary, known transport minimums, fare/evidence coverage, Route Fit and Traveller-origin context
 
 Traveller Context is planning context, not an identity profile. The public app never asks for passport numbers, booking references, payment data or exact home addresses. Entry, visa and safety claims must remain source-backed and traveller-specific rather than assuming a German traveller.
 
