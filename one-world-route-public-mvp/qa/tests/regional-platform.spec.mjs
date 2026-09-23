@@ -290,9 +290,18 @@ for(const item of regional){
     await expect(page.locator('#regionalRouteRange')).toHaveAttribute('max',String(item.metrics.segments));
     await expect(page.locator('#detailTitle')).toHaveText(item.title.en);
     if(item.capabilities.includes('trip-planning')){
-      await expect(page.locator('.platform-planning-guide')).toBeVisible();
+      await expect(page.locator('.platform-planning-guide')).toHaveCount(1);
       await expect(page.locator('.platform-plan-stop')).toHaveCount(item.metrics.stops);
       await expect(page.locator('.platform-plan-metrics')).toContainText(String(item.metrics.segments));
+      if(isMobile){
+        await page.locator('#mobileDetails').click();
+        await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);
+        await expect(page.locator('.platform-planning-guide')).toBeVisible();
+        await page.locator('#closeDetails').click();
+        await expect(page.locator('#rightPanel')).not.toHaveClass(/mobile-open/);
+      }else{
+        await expect(page.locator('.platform-planning-guide')).toBeVisible();
+      }
     }else{
       await expect(page.locator('.platform-planning-guide')).toHaveCount(0);
     }
