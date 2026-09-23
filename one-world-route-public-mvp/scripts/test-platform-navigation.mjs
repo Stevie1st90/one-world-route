@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','formatters.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','home.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','regional-selection.js','story.js','terrain.js','extensions.js','extensions/cruise.js','extensions/road.js','extensions/border.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','formatters.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','trip-planning.js','home.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','regional-selection.js','story.js','terrain.js','extensions.js','extensions/cruise.js','extensions/road.js','extensions/border.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -235,6 +235,17 @@ test('route library exposes transparent Route Fit controls',()=>{
   assert.match(cssSource,/\.platform-fit-filters/);
 });
 
+
+test('practical trip planning stays capability-driven and trip-generic',()=>{
+  const planning=moduleSources['trip-planning.js'];
+  const detail=moduleSources['regional-detail.js'];
+  assert.match(source,/const TripPlanning=PLATFORM_MODULES\.tripPlanning/);
+  assert.match(planning,/includes\('trip-planning'\)/);
+  assert.match(planning,/function itinerary/);
+  assert.match(planning,/function snapshot/);
+  assert.match(detail,/d\.tripPlanning\.render/);
+  assert.doesNotMatch(planning,/italy-grand-tour|trip\.id\s*===|trip\.kind\s*===/);
+});
 
 test('platform core delegates reusable concerns to modules',()=>{
   const routeLibrary=moduleSources['route-library.js'];
