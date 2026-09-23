@@ -49,6 +49,7 @@ Implemented foundation:
 Next product layers:
 - expand the source-backed nationality/passport and residence rule engine beyond the Italy official-resolver foundation
 - extend implemented route discovery with origin-market relevance, seasonality and accessibility filters
-- sourced cost bands and seasonal variants
+- practical trip-planning layer (implemented first on Italy): day-by-day itinerary, known transport minimum, fare/evidence coverage and Route Fit
+- sourced full-trip cost bands and seasonal variants
 - connect the implemented cruise port-call / sea-day model to real operator sailings and cabin/pricing data
 - route builder, saved trips and collaboration only after the public read-only model is proven
