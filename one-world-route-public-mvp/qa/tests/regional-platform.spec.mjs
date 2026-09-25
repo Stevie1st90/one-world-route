@@ -50,6 +50,13 @@ test('public homepage discovers all catalog journeys and keeps the globe object-
   await page.locator(`[data-home-save-trip="${savedId}"]`).click();
   await page.locator('#homeRouteSavedOnly').check();
   await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(1);
+  await expect(page.locator('[data-home-mytrips]')).toBeVisible();
+  await page.locator('[data-home-mytrips]').click();
+  await expect(page.locator('#platformMyTripsModal')).toBeVisible();
+  await expect(page.locator('#platformMyTripsModal .platform-mytrip-card')).toHaveCount(1);
+  await expect(page.locator('#platformMyTripsModal [data-mytrips-export]')).toBeVisible();
+  await expect(page.locator('#platformMyTripsModal')).toContainText(catalog.trips[0].title.en);
+  await page.locator('#platformMyTripsModal .platform-x').click();
   await page.locator('#homeRouteSavedOnly').uncheck();
   await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(catalog.trips.length);
   await page.locator(`[data-home-save-trip="${savedId}"]`).click();
@@ -313,6 +320,8 @@ for(const item of regional){
       await expect(page.locator('.platform-budget-estimator')).toHaveCount(1);
       await expect(page.locator('[data-trip-start-date]')).toHaveCount(1);
       await expect(page.locator('[data-trip-export-calendar]')).toHaveCount(1);
+      await expect(page.locator('[data-trip-season]')).toHaveCount(1);
+      await expect(page.locator('.platform-plan-context-fit')).toHaveCount(1);
       if(isMobile){
         await page.locator('#mobileDetails').click();
         await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);
@@ -327,6 +336,7 @@ for(const item of regional){
     }
     await expect(page.locator('#settingsBtn')).toBeVisible();
     await expect(page.locator('#platformRouteBtn')).toBeVisible();
+    await expect(page.locator('#platformMyTripsBtn')).toBeVisible();
     await expect(page.locator('#platformTravellerBtn')).toBeVisible();
     await expect(page.locator('.platform-save-trip')).toHaveCount(1);
     if(isMobile){
@@ -523,4 +533,33 @@ test('rail architecture proof uses the shared terrain engine',async({page,isMobi
   await page.evaluate(()=>{void window.ONE_WORLD_PLATFORM.setTerrain(false)});
   await expect(page.locator('body')).not.toHaveClass(/terrain-view/);
   expect(pageErrors,'rail terrain runtime page errors').toEqual([]);
+});
+
+
+test('regional workspace can save a route into My Trips and retain planning preferences',async({page})=>{
+  test.setTimeout(90000);
+  const item=regional[0];
+  await openRegional(page,item);
+  if(page.viewportSize()?.width<=820){
+    await page.locator('#mobileDetails').click();
+    await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);
+  }
+  await page.locator('.platform-save-trip').scrollIntoViewIfNeeded();
+  await expect(page.locator('.platform-save-trip')).toBeVisible();
+  await page.locator('.platform-save-trip').click();
+  const tripTools=page.locator('.platform-trip-tools');
+  if(!(await tripTools.evaluate(node=>node.open)))await tripTools.locator('summary').click();
+  await expect(tripTools).toHaveJSProperty('open',true);
+  await page.locator('[data-trip-season]').scrollIntoViewIfNeeded();
+  await expect(page.locator('[data-trip-season]')).toBeVisible();
+  await page.locator('[data-trip-season]').selectOption('autumn');
+  await page.locator('[data-trip-start-date]').fill('2027-05-10');
+  await page.locator('[data-trip-start-date]').dispatchEvent('change');
+  await page.locator('#platformMyTripsBtn').click();
+  await expect(page.locator('#platformMyTripsModal')).toBeVisible();
+  await expect(page.locator('#platformMyTripsModal .platform-mytrip-card')).toHaveCount(1);
+  await expect(page.locator('#platformMyTripsModal [data-mytrips-export]')).toBeVisible();
+  await expect(page.locator('#platformMyTripsModal')).toContainText(item.title.en);
+  await expect(page.locator('#platformMyTripsModal')).toContainText('2027-05-10');
+  await expect(page.locator('#platformMyTripsModal')).toContainText('Autumn');
 });

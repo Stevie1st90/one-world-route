@@ -106,6 +106,7 @@ jobs:
           node --check platform/navigation.js
           node --check platform/discovery.js
           node --check platform/trip-tools.js
+          node --check platform/traveller-fit.js
           node --check platform/trip-compare.js
           node --check platform/home.js
           node --check platform/route-library.js
@@ -143,6 +144,8 @@ jobs:
           node --check scripts/audit-flagship-readiness.mjs
           node --check scripts/test-flagship-readiness.mjs
           node --check scripts/test-trip-tools.mjs
+          node --check scripts/test-trip-planning.mjs
+          node --check scripts/test-traveller-fit.mjs
           node --check scripts/test-trip-compare.mjs
           node --check scripts/trip-index-model.mjs
           node --check scripts/build-trip-index.mjs
@@ -174,6 +177,10 @@ jobs:
         run: node --test scripts/test-platform-navigation.mjs
       - name: Trip tools tests
         run: node --test scripts/test-trip-tools.mjs
+      - name: Practical planning tests
+        run: node --test scripts/test-trip-planning.mjs
+      - name: Traveller Fit tests
+        run: node --test scripts/test-traveller-fit.mjs
       - name: Journey comparison tests
         run: node --test scripts/test-trip-compare.mjs
       - name: Regional runtime integration tests

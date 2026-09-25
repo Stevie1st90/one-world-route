@@ -16,16 +16,17 @@
     return modal;
   }
 
-  function ensureGlobalActions({t,esc,onHome,onRoutes,onTraveller}){
+  function ensureGlobalActions({t,esc,onHome,onRoutes,onMyTrips,onTraveller}){
     const top=$('.topbar');
     if(!top||$('#platformRouteBtn'))return;
     const actions=$('.top-actions',top);
     const wrap=document.createElement('div');
     wrap.className='platform-actions';
-    wrap.innerHTML=`<button id="platformHomeBtn" class="platform-pill secondary" type="button" aria-label="${esc(t('home'))}" title="${esc(t('home'))}"><span class="platform-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 11.5 12 5l8 6.5"/><path d="M6.5 10v9h11v-9"/></svg></span><span class="platform-pill-label">${esc(t('home'))}</span></button><button id="platformRouteBtn" class="platform-pill" type="button" aria-label="${esc(t('routes'))}" title="${esc(t('routes'))}"><span class="platform-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6.5 9 4l6 2.5L20 4v13.5L15 20l-6-2.5L4 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg></span><span class="platform-pill-label">${esc(t('routes'))}</span></button><button id="platformTravellerBtn" class="platform-pill secondary" type="button" aria-label="${esc(t('traveller'))}" title="${esc(t('traveller'))}"><span class="platform-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20c.8-4.2 3-6.3 6.5-6.3s5.7 2.1 6.5 6.3"/></svg></span><span class="platform-pill-label">${esc(t('traveller'))}</span></button>`;
+    wrap.innerHTML=`<button id="platformHomeBtn" class="platform-pill secondary" type="button" aria-label="${esc(t('home'))}" title="${esc(t('home'))}"><span class="platform-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 11.5 12 5l8 6.5"/><path d="M6.5 10v9h11v-9"/></svg></span><span class="platform-pill-label">${esc(t('home'))}</span></button><button id="platformRouteBtn" class="platform-pill" type="button" aria-label="${esc(t('routes'))}" title="${esc(t('routes'))}"><span class="platform-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6.5 9 4l6 2.5L20 4v13.5L15 20l-6-2.5L4 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg></span><span class="platform-pill-label">${esc(t('routes'))}</span></button><button id="platformMyTripsBtn" class="platform-pill secondary" type="button" aria-label="${esc(t('myTrips'))}" title="${esc(t('myTrips'))}"><span class="platform-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 6.5h14v13H5z"/><path d="M8 6.5V4h8v2.5M8 11h8M8 15h5"/></svg></span><span class="platform-pill-label">${esc(t('myTrips'))}</span></button><button id="platformTravellerBtn" class="platform-pill secondary" type="button" aria-label="${esc(t('traveller'))}" title="${esc(t('traveller'))}"><span class="platform-pill-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20c.8-4.2 3-6.3 6.5-6.3s5.7 2.1 6.5 6.3"/></svg></span><span class="platform-pill-label">${esc(t('traveller'))}</span></button>`;
     top.insertBefore(wrap,actions||null);
     $('#platformHomeBtn').onclick=onHome;
     $('#platformRouteBtn').onclick=onRoutes;
+    $('#platformMyTripsBtn').onclick=onMyTrips;
     $('#platformTravellerBtn').onclick=onTraveller;
   }
 

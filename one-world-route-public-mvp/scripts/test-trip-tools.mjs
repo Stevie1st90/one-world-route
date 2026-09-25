@@ -29,3 +29,37 @@ test('calendar export uses the chosen trip start date without inventing transpor
   assert.match(ics,/DTSTART;VALUE=DATE:20260512/);
   assert.match(ics,/SUMMARY:Trip A · Beta/);
 });
+
+
+test('season preferences remain local and budget completeness stays explicit',()=>{
+  const tools=load(),s=storage();
+  assert.equal(tools.getSeason(s,'trip-a'),'');
+  assert.equal(tools.setSeason(s,'trip-a','autumn'),'autumn');
+  assert.equal(tools.getSeason(s,'trip-a'),'autumn');
+  assert.equal(tools.hasBudgetAssumptions(tools.getBudget(s,'trip-a')),false);
+  const unknown=tools.estimate({
+    snapshot:{days:5,nights:4,knownPublishedMinimum:null},
+    profile:{party:{adults:1,children:0}},
+    assumptions:{lodgingPerNight:50}
+  });
+  assert.equal(unknown.transportKnown,false);
+  assert.equal(unknown.transport,0);
+  assert.equal(unknown.total,200);
+});
+
+
+test('workspace export contains only planning state and no traveller identity fields',()=>{
+  const tools=load(),s=storage();
+  tools.toggleSaved(s,'trip-a');
+  tools.setStartDate(s,'trip-a','2027-05-10');
+  tools.setSeason(s,'trip-a','spring');
+  tools.setBudget(s,'trip-a',{lodgingPerNight:90});
+  const json=tools.workspaceJson(s);
+  const parsed=JSON.parse(json);
+  assert.equal(parsed.schemaVersion,1);
+  assert.deepEqual(parsed.workspace.savedTrips,['trip-a']);
+  assert.equal(parsed.workspace.startDates['trip-a'],'2027-05-10');
+  assert.equal(parsed.workspace.seasons['trip-a'],'spring');
+  assert.equal(parsed.workspace.budgets['trip-a'].lodgingPerNight,90);
+  assert.doesNotMatch(json,/passport|residenceCountry|bookingReference|payment/i);
+});

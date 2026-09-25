@@ -202,6 +202,7 @@
         "sea-days",
         "border-context",
         "source-evidence",
+        "trip-planning",
         "story",
         "terrain"
       ],
@@ -276,6 +277,7 @@
         "vehicle-context",
         "road-rules",
         "source-evidence",
+        "trip-planning",
         "story",
         "terrain"
       ],
@@ -350,6 +352,7 @@
         "regional-stops",
         "traveller-context",
         "source-evidence",
+        "trip-planning",
         "story",
         "terrain"
       ],

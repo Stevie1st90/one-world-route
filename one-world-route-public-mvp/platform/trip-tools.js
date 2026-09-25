@@ -7,23 +7,25 @@
     const parsed=Number(value);
     return Number.isFinite(parsed)?Math.min(max,Math.max(min,parsed)):0;
   };
-  function defaults(){return {savedTrips:[],budgets:{},startDates:{}}}
+  function defaults(){return {savedTrips:[],budgets:{},startDates:{},seasons:{}}}
   function load(storage){
     try{
       const raw=JSON.parse(storage.getItem(KEY)||'{}');
       return {
         savedTrips:Array.isArray(raw.savedTrips)?[...new Set(raw.savedTrips.filter(v=>typeof v==='string'))]:[],
         budgets:raw.budgets&&typeof raw.budgets==='object'?raw.budgets:{},
-        startDates:raw.startDates&&typeof raw.startDates==='object'?raw.startDates:{}
+        startDates:raw.startDates&&typeof raw.startDates==='object'?raw.startDates:{},
+        seasons:raw.seasons&&typeof raw.seasons==='object'?raw.seasons:{}
       };
     }catch{return defaults()}
   }
   function persist(storage,state){storage.setItem(KEY,JSON.stringify(state));return state}
+  function notify(tripId){if(typeof window?.dispatchEvent==='function'&&typeof CustomEvent==='function')window.dispatchEvent(new CustomEvent('one-world-route:trip-tools-changed',{detail:{tripId}}))}
   function isSaved(storage,tripId){return load(storage).savedTrips.includes(tripId)}
   function toggleSaved(storage,tripId){
     const state=load(storage),saved=new Set(state.savedTrips);
     if(saved.has(tripId))saved.delete(tripId);else saved.add(tripId);
-    state.savedTrips=[...saved];persist(storage,state);return saved.has(tripId);
+    state.savedTrips=[...saved];persist(storage,state);notify(tripId);return saved.has(tripId);
   }
   function normalizeBudget(input={}){
     return {
@@ -46,17 +48,28 @@
     if(date)state.startDates[tripId]=date;else delete state.startDates[tripId];
     persist(storage,state);return date;
   }
+  function getSeason(storage,tripId){return String(load(storage).seasons[tripId]||'')}
+  function setSeason(storage,tripId,value){
+    const state=load(storage),season=String(value||'').trim();
+    if(season)state.seasons[tripId]=season;else delete state.seasons[tripId];
+    persist(storage,state);return season;
+  }
+  function hasBudgetAssumptions(input){
+    const a=normalizeBudget(input);
+    return [a.lodgingPerNight,a.foodPerPersonDay,a.localPerPersonDay,a.extras,a.contingencyPercent].some(value=>Number(value)>0)||a.transportMultiplier!==null;
+  }
   function estimate({snapshot,profile,assumptions}){
     const a=normalizeBudget(assumptions);
     const travellers=Math.max(1,number(profile?.party?.adults,0,20)+number(profile?.party?.children,0,20));
     const transportMultiplier=a.transportMultiplier===null?travellers:a.transportMultiplier;
-    const transport=number(snapshot?.knownPublishedMinimum)*transportMultiplier;
+    const transportKnown=snapshot?.knownPublishedMinimum!==null&&snapshot?.knownPublishedMinimum!==undefined&&Number.isFinite(Number(snapshot.knownPublishedMinimum));
+    const transport=transportKnown?number(snapshot.knownPublishedMinimum)*transportMultiplier:0;
     const lodging=a.lodgingPerNight*number(snapshot?.nights);
     const food=a.foodPerPersonDay*number(snapshot?.days)*travellers;
     const local=a.localPerPersonDay*number(snapshot?.days)*travellers;
     const subtotal=transport+lodging+food+local+a.extras;
     const contingency=subtotal*(a.contingencyPercent/100);
-    return {travellers,transportMultiplier,transport,lodging,food,local,extras:a.extras,subtotal,contingency,total:subtotal+contingency};
+    return {travellers,transportMultiplier,transportKnown,transport,lodging,food,local,extras:a.extras,subtotal,contingency,total:subtotal+contingency};
   }
   function csvCell(value){return '"'+String(value??'').replaceAll('"','""')+'"'}
   function itineraryRows(trip,local,facetLabel){
@@ -102,14 +115,17 @@
     });
     return ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//ONE WORLD ROUTE//Trip itinerary//EN','CALSCALE:GREGORIAN',...events,'END:VCALENDAR',''].join('\r\n');
   }
-  function jsonPack({trip,meta,local,facetLabel,snapshot,assumptions,profile,startDate}){
+  function jsonPack({trip,meta,local,facetLabel,snapshot,assumptions,profile,startDate,season}){
     return JSON.stringify({
       schemaVersion:1,exportedAt:new Date().toISOString(),
-      trip:{id:meta?.id||trip?.id,title:local(trip?.title),summary:local(trip?.summary),planning:trip?.planning||null,startDate:validDate(startDate)||null},
+      trip:{id:meta?.id||trip?.id,title:local(trip?.title),summary:local(trip?.summary),planning:trip?.planning||null,startDate:validDate(startDate)||null,seasonPreference:String(season||'')||null},
       itinerary:itineraryRows(trip,local,facetLabel),
       budget:{currency:snapshot?.currency||trip?.planning?.currency||'EUR',assumptions:normalizeBudget(assumptions),estimate:estimate({snapshot,profile,assumptions}),scope:'Personal planning estimate. Published transport minimums plus user-entered assumptions; not a quote.'},
       sources:trip?.sources||[]
     },null,2)+'\n';
+  }
+  function workspaceJson(storage){
+    return JSON.stringify({schemaVersion:1,exportedAt:new Date().toISOString(),workspace:load(storage)},null,2)+'\n';
   }
   function download(name,text,type='text/plain'){
     const blob=new Blob([text],{type:type+';charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
@@ -121,7 +137,7 @@
   }
   function render({trip,meta,profile,storage,t,esc,local,facetLabel,planningSnapshot,locale}){
     const id=meta?.id||trip?.id,saved=isSaved(storage,id),a=getBudget(storage,id),hasPlanning=(meta?.capabilities||[]).includes('trip-planning');
-    const startDate=getStartDate(storage,id),e=estimate({snapshot:planningSnapshot,profile,assumptions:a}),currency=planningSnapshot?.currency||trip?.planning?.currency||'EUR';
+    const startDate=getStartDate(storage,id),season=getSeason(storage,id),e=estimate({snapshot:planningSnapshot,profile,assumptions:a}),currency=planningSnapshot?.currency||trip?.planning?.currency||'EUR';
     const breakdown='<div class="platform-budget-breakdown">'+
       '<span>'+esc(t('transportMinimum'))+'<b>'+esc(money(e.transport,currency,locale))+'</b></span>'+
       '<span>'+esc(t('lodging'))+'<b>'+esc(money(e.lodging,currency,locale))+'</b></span>'+
@@ -133,6 +149,7 @@
       '<details class="platform-trip-tools"><summary>'+esc(t('tripTools'))+' <span>+</span></summary>'+
         '<div class="platform-tool-actions"><button type="button" data-trip-export-json>'+esc(t('exportJson'))+'</button><button type="button" data-trip-export-csv>'+esc(t('exportCsv'))+'</button></div>'+
         '<div class="platform-calendar-tools"><label><span>'+esc(t('startDate'))+'</span><input type="date" data-trip-start-date value="'+esc(startDate)+'"></label><button type="button" data-trip-export-calendar '+(startDate?'':'disabled')+'>'+esc(t('exportCalendar'))+'</button></div>'+
+        '<label class="platform-season-pref"><span>'+esc(t('planningSeason'))+'</span><select data-trip-season><option value="">'+esc(t('notSet'))+'</option>'+['spring','summer','autumn','winter','multi-season'].map(value=>'<option value="'+esc(value)+'" '+(season===value?'selected':'')+'>'+esc(facetLabel(value))+'</option>').join('')+'</select><small>'+esc(t('planningSeasonLead'))+'</small></label>'+
         (hasPlanning?'<form class="platform-budget-estimator" data-trip-budget><div class="ops-mini-title">'+esc(t('budgetEstimate'))+'</div><p>'+esc(t('budgetLead'))+'</p><div class="platform-budget-grid">'+
           '<label><span>'+esc(t('lodgingNight'))+'</span><input name="lodging" type="number" min="0" step="1" value="'+esc(a.lodgingPerNight)+'"></label>'+
           '<label><span>'+esc(t('foodPersonDay'))+'</span><input name="food" type="number" min="0" step="1" value="'+esc(a.foodPerPersonDay)+'"></label>'+
@@ -142,17 +159,18 @@
           '<label><span>'+esc(t('transportMultiplier'))+'</span><input name="transportMultiplier" type="number" min="0" max="20" step="1" value="'+esc(a.transportMultiplier===null?e.travellers:a.transportMultiplier)+'"></label>'+
           '<button type="submit">'+esc(t('updateEstimate'))+'</button></div>'+
           '<p class="platform-budget-assumption">'+esc(t('transportAssumption'))+'</p>'+
-          '<div class="platform-budget-result"><span>'+esc(t('estimatedTripTotal'))+'</span><b data-budget-total>'+esc(money(e.total,currency,locale))+'</b><small>'+esc(e.travellers)+' '+esc(t('travellers'))+' · '+esc(t('budgetEstimateScope'))+'</small>'+breakdown+'</div></form>':'')+
+          '<div class="platform-budget-result"><span>'+esc(t('estimatedTripTotal'))+'</span><b data-budget-total>'+esc(money(e.total,currency,locale))+'</b><small>'+esc(e.travellers)+' '+esc(t('travellers'))+' · '+esc(t('budgetEstimateScope'))+'</small>'+(e.transportKnown?'':'<em>'+esc(t('transportUnknownBudget'))+'</em>')+breakdown+'</div></form>':'')+
       '</details></section>';
   }
   function bind({host,trip,meta,profile,storage,t,local,facetLabel,planningSnapshot,locale,toast}){
     const id=meta?.id||trip?.id;
     const save=host.querySelector('[data-trip-save]');
     if(save)save.onclick=()=>{const active=toggleSaved(storage,id);save.classList.toggle('active',active);save.textContent=active?t('removeSaved'):t('saveTrip');toast?.(active?t('savedLocally'):t('removedSaved'))};
-    host.querySelector('[data-trip-export-json]')?.addEventListener('click',()=>{const assumptions=getBudget(storage,id);download(id+'-trip-pack.json',jsonPack({trip,meta,local,facetLabel,snapshot:planningSnapshot,assumptions,profile,startDate:getStartDate(storage,id)}),'application/json')});
+    host.querySelector('[data-trip-export-json]')?.addEventListener('click',()=>{const assumptions=getBudget(storage,id);download(id+'-trip-pack.json',jsonPack({trip,meta,local,facetLabel,snapshot:planningSnapshot,assumptions,profile,startDate:getStartDate(storage,id),season:getSeason(storage,id)}),'application/json')});
     host.querySelector('[data-trip-export-csv]')?.addEventListener('click',()=>download(id+'-itinerary.csv',csv(trip,local,facetLabel),'text/csv'));
-    const dateInput=host.querySelector('[data-trip-start-date]'),calendarButton=host.querySelector('[data-trip-export-calendar]');
+    const dateInput=host.querySelector('[data-trip-start-date]'),calendarButton=host.querySelector('[data-trip-export-calendar]'),seasonSelect=host.querySelector('[data-trip-season]');
     if(dateInput)dateInput.onchange=()=>{const date=setStartDate(storage,id,dateInput.value);if(calendarButton)calendarButton.disabled=!date};
+    if(seasonSelect)seasonSelect.onchange=()=>{setSeason(storage,id,seasonSelect.value);toast?.(t('planningSeasonSaved'))};
     if(calendarButton)calendarButton.onclick=()=>{
       const date=getStartDate(storage,id);
       if(!date){toast?.(t('calendarNeedsStartDate'));return}
@@ -169,5 +187,5 @@
       toast?.(t('estimateUpdated'));
     };
   }
-  root.tripTools={load,isSaved,toggleSaved,normalizeBudget,getBudget,setBudget,getStartDate,setStartDate,estimate,itineraryRows,csv,calendar,jsonPack,render,bind};
+  root.tripTools={load,isSaved,toggleSaved,normalizeBudget,getBudget,setBudget,getStartDate,setStartDate,getSeason,setSeason,hasBudgetAssumptions,estimate,itineraryRows,csv,calendar,jsonPack,workspaceJson,download,render,bind};
 })();

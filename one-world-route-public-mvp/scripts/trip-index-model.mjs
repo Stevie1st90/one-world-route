@@ -38,8 +38,9 @@ export function buildTripIndex(catalog,datasets){
         ...segments.map(segment=>segment.lastVerified),
         ...sources.map(source=>source.checkedAt)
       ]);
-      const knownMinimum=Number.isFinite(Number(trip.planning?.knownPublishedMinimumEur))
-        ?Number(trip.planning.knownPublishedMinimumEur)
+      const rawKnownMinimum=trip.planning?.knownPublishedMinimumEur;
+      const knownMinimum=rawKnownMinimum!==null&&rawKnownMinimum!==undefined&&Number.isFinite(Number(rawKnownMinimum))
+        ?Number(rawKnownMinimum)
         :null;
       return {
         id:meta.id,

@@ -8,7 +8,7 @@
     const segments=trip?.segments||[];
     const stops=trip?.stops||[];
     const modes=unique(segments.map(segment=>segment.transport?.mode));
-    const knownCosts=segments.filter(segment=>Number.isFinite(Number(segment.planning?.cost?.amount)));
+    const knownCosts=segments.filter(segment=>segment.planning?.cost?.amount!==null&&segment.planning?.cost?.amount!==undefined&&Number.isFinite(Number(segment.planning.cost.amount)));
     const sourced=segments.filter(segment=>(segment.verification?.sourceIds||[]).length>0);
     const verified=segments.filter(segment=>segment.verification?.status==='verified');
     const checked=(trip?.sources||[]).map(source=>source.checkedAt).filter(Boolean).sort();
@@ -22,7 +22,7 @@
       verified:verified.length,
       totalSegments:segments.length,
       latestEvidenceCheck:checked.at(-1)||null,
-      knownPublishedMinimum:Number.isFinite(Number(trip?.planning?.knownPublishedMinimumEur))
+      knownPublishedMinimum:trip?.planning?.knownPublishedMinimumEur!==null&&trip?.planning?.knownPublishedMinimumEur!==undefined&&Number.isFinite(Number(trip.planning.knownPublishedMinimumEur))
         ?Number(trip.planning.knownPublishedMinimumEur)
         :null,
       currency:trip?.planning?.currency||'EUR',
@@ -46,7 +46,7 @@
     catch{return Number(value).toFixed(2)+' '+currency}
   }
 
-  function render({trip,meta,profile,locale,t,esc,local,facetLabel}){
+  function render({trip,meta,profile,travellerFit,locale,t,esc,local,facetLabel}){
     if(!(meta?.capabilities||[]).includes('trip-planning'))return '';
     const s=snapshot(trip,meta);
     const fit=s.fit||{};
@@ -63,6 +63,12 @@
     const origin=profile?.origin?'<span class="platform-plan-context">'+esc(t('planningOrigin'))+': <b>'+esc(profile.origin)+'</b></span>':'';
     const rawBudgetScope=trip?.planning?.knownPublishedMinimumScope;
     const budgetScope=rawBudgetScope&&typeof rawBudgetScope==='object'?local(rawBudgetScope):t('planningBudgetScope');
+    const context=travellerFit?.evaluate?.(meta,profile);
+    const contextItems=context?[
+      '<span class="'+(context.partyListed?'ok':'check')+'">'+esc(facetLabel(context.party))+' · '+esc(context.partyListed?t('contextListed'):t('contextCheckNeeded'))+'</span>',
+      context.reducedMobility?'<span class="check">'+esc(t('mobilityCheck'))+' · '+esc(facetLabel(context.accessibility||'standard-check'))+'</span>':'',
+      context.vehicleContextMissing?'<span class="check">'+esc(t('vehicleContextMissing'))+'</span>':''
+    ].filter(Boolean).join(''):'';
     return '<section class="platform-planning-guide">'+
       '<div class="platform-planning-head"><div><span>'+esc(t('planningGuide'))+'</span><h3>'+esc(t('planThisTrip'))+'</h3></div>'+origin+'</div>'+
       '<p class="detail-copy">'+esc(t('planningLead'))+'</p>'+
@@ -74,6 +80,7 @@
       '</div>'+
       '<div class="platform-plan-disclosure">'+esc(budgetScope)+'</div>'+
       (fitItems.length?'<div class="platform-plan-fit"><span>'+esc(t('routeFit'))+'</span><b>'+esc(fitItems.join(' · '))+'</b></div>':'')+
+      (contextItems?'<div class="platform-plan-context-fit"><span>'+esc(t('travellerFit'))+'</span><div>'+contextItems+'</div></div>':'')+
       '<details class="platform-plan-itinerary"><summary>'+esc(t('dayByDay'))+' <span>'+esc(s.stops)+' '+esc(t('stops'))+'</span></summary><div class="platform-plan-itinerary-body">'+rows+'</div></details>'+
     '</section>';
   }

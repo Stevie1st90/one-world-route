@@ -3,12 +3,14 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
+const fitSource=await readFile(new URL('../platform/traveller-fit.js',import.meta.url),'utf8');
 const source=await readFile(new URL('../platform/trip-compare.js',import.meta.url),'utf8');
 
 function load(){
   const window={ONE_WORLD_PLATFORM_MODULES:{}};
   const context={window,document:{},Intl,console};
   vm.createContext(context);
+  vm.runInContext(fitSource,context);
   vm.runInContext(source,context);
   return window.ONE_WORLD_PLATFORM_MODULES.tripCompare;
 }

@@ -42,7 +42,7 @@
     const extension=d.extensions.composeTripOverview({trip,profile,t:d.t,esc:d.esc,local:d.local});
     const meta=d.getTripMeta();
     const planningSnapshot=d.tripPlanning.snapshot(trip,meta);
-    const planning=d.tripPlanning.render({trip,meta,profile,locale:d.locale(),t:d.t,esc:d.esc,local:d.local,facetLabel:d.facetLabel});
+    const planning=d.tripPlanning.render({trip,meta,profile,travellerFit:d.travellerFit,locale:d.locale(),t:d.t,esc:d.esc,local:d.local,facetLabel:d.facetLabel});
     const tools=d.tripTools.render({trip,meta,profile,storage:d.storage,t:d.t,esc:d.esc,local:d.local,facetLabel:d.facetLabel,planningSnapshot,locale:d.locale()});
 
     content.innerHTML=`<div class="overview-number platform-duration-number">${trip.planning?.days||'—'}<small>${d.esc(d.t('days'))}</small></div><p class="detail-copy">${d.esc(d.local(trip.summary))}</p><div class="data-grid"><div class="data-card"><span>${d.esc(d.t('stops'))}</span><b>${trip.stops.length}</b></div>${extension.cards}<div class="data-card"><span>${d.esc(d.t('routeEvidence'))}</span><b>${sourced}/${trip.segments.length}</b></div><div class="data-card"><span>${d.esc(d.t('verified'))}</span><b>${verified}/${trip.segments.length}</b></div><div class="data-card"><span>${d.esc(d.t('currency'))}</span><b>${d.esc(trip.planning?.currency||'—')}</b></div></div>${extension.notices}${planning}${tools}${entry?`<div class="platform-entry"><b>${d.esc(d.t('entryGuidance'))}</b><p>${d.esc(d.local(entry.message))}</p>${entrySource?`<a href="${d.esc(entrySource.url)}" target="_blank" rel="noopener noreferrer">${d.esc(d.t('officialCheck'))} →</a>`:''}</div>`:''}<button class="platform-context-inline" id="regionalTravellerBtn" type="button">${d.esc(d.t('traveller'))} →</button>`;

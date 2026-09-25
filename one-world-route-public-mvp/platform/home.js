@@ -234,6 +234,7 @@
         return
       }
       if(event.target.closest('[data-home-explore]')){$('#platformHomeExplore')?.scrollIntoView({behavior:'smooth',block:'start'});return}
+      if(event.target.closest('[data-home-mytrips]')){d.onMyTrips();return}
       if(event.target.closest('[data-home-traveller]')){d.onTraveller();return}
       if(event.target.closest('[data-home-method]')){$('#platformHomeMethodology')?.scrollIntoView({behavior:'smooth',block:'start'});return}
       if(event.target.closest('[data-home-top]')){host.scrollTo({top:0,behavior:'smooth'});return}
@@ -261,7 +262,7 @@
     host.id='platformHome';
     host.className='platform-home-shell';
     host.innerHTML=
-      '<header class="platform-home-nav"><button class="platform-home-brand" data-home-top type="button"><span class="brand-orbit"><i></i></span><span><strong>ONE WORLD ROUTE</strong><small>'+d.esc(d.t('homeNavSub'))+'</small></span></button><nav><button data-home-explore type="button">'+d.esc(d.t('routes'))+'</button><button data-home-traveller type="button">'+d.esc(d.t('traveller'))+'</button><button data-home-method type="button">'+d.esc(d.t('methodology'))+'</button></nav></header>'+
+      '<header class="platform-home-nav"><button class="platform-home-brand" data-home-top type="button"><span class="brand-orbit"><i></i></span><span><strong>ONE WORLD ROUTE</strong><small>'+d.esc(d.t('homeNavSub'))+'</small></span></button><nav><button data-home-explore type="button">'+d.esc(d.t('routes'))+'</button><button data-home-mytrips type="button">'+d.esc(d.t('myTrips'))+'</button><button data-home-traveller type="button">'+d.esc(d.t('traveller'))+'</button><button data-home-method type="button">'+d.esc(d.t('methodology'))+'</button></nav></header>'+
       '<main>'+
         '<section class="platform-home-hero"><div class="platform-home-hero-copy"><div class="platform-home-kicker">ONE WORLD ROUTE · '+d.esc(d.t('homeEyebrow'))+'</div><h1>'+d.esc(d.t('homeTitle'))+'</h1><p>'+d.esc(d.t('homeLead'))+'</p><div class="platform-home-hero-actions"><button class="primary" data-home-explore type="button">'+d.esc(d.t('exploreJourneys'))+'</button><button type="button" data-open-home-trip="'+d.esc(flagship.id)+'">'+d.esc(d.t('openFlagship'))+'</button></div></div><div class="platform-home-globe-caption"><span>'+d.esc(d.t('homeGlobeLabel'))+'</span><b>'+d.esc(d.t('homeGlobeHint'))+'</b></div></section>'+
         '<section class="platform-home-flagship"><div><div class="platform-home-section-kicker">'+d.esc(d.t('flagshipJourney'))+'</div><h2>'+d.esc(d.local(flagship.title))+'</h2><p>'+d.esc(d.local(flagship.subtitle))+'</p><button type="button" data-open-home-trip="'+d.esc(flagship.id)+'">'+d.esc(d.t('openFlagship'))+' →</button></div><div class="platform-home-flagship-metrics"><article><b>'+d.esc(flagship.metrics?.countries??'—')+'</b><span>'+d.esc(d.t('homeStates'))+'</span></article><article><b>'+d.esc(flagship.metrics?.internationalLegs??'—')+'</b><span>'+d.esc(d.t('homeLegs'))+'</span></article><article><b>'+d.esc(flagship.metrics?.days??'—')+'</b><span>'+d.esc(d.t('homePlannedDays'))+'</span></article><article><b>'+d.esc(formatDate(flagship.metrics?.startDate))+'</b><span>'+d.esc(d.t('homeStart'))+'</span></article><article><b>'+d.esc(formatBudget(flagship.metrics?.budget))+'</b><span>'+d.esc(d.t('homeBaseModel'))+'</span></article></div></section>'+
@@ -270,6 +271,7 @@
       '</main><footer class="platform-home-footer"><strong>ONE WORLD ROUTE</strong><span>'+d.esc(d.t('homeFooter'))+'</span></footer>';
     document.querySelector('#app')?.appendChild(host);
     bind();
+    window.addEventListener('one-world-route:trip-tools-changed',renderCards);
     renderCards();
     await renderGlobe();
   }

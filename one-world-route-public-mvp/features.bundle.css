@@ -99,7 +99,7 @@ body.platform-regional-trip .overview-number:not(.platform-duration-number) smal
   body.platform-regional-trip.platform-detail-overview .right-panel{height:auto}
   body.platform-regional-trip.platform-detail-stop .right-panel{height:auto}
   body.platform-regional-trip.platform-detail-stop .detail-scroll,
-  body.platform-regional-trip.platform-detail-overview .detail-scroll{overflow:visible}
+  body.platform-regional-trip.platform-detail-overview .detail-scroll{overflow:auto;min-height:0}
   body.platform-regional-trip.platform-detail-stop .detail-header,
   body.platform-regional-trip.platform-detail-overview .detail-header{padding-bottom:8px}
 }
@@ -272,4 +272,44 @@ body.platform-home #globeLoader,body.platform-home #globeFallback{display:none!i
 }
 
 .platform-budget-assumption{margin:7px 0 0!important;padding:0!important;color:#70849a!important;font-size:7px!important;line-height:1.45!important}
+
+
+/* My Trips workspace and transparent Traveller Context */
+.platform-mytrips-card{width:min(980px,calc(100vw - 28px))}
+.platform-mytrips-card h2 span{color:#7e91a7;font-size:14px;font-weight:600}
+.platform-mytrip-card{display:grid;gap:12px;margin-top:10px;padding:16px;border:1px solid rgba(255,255,255,.08);border-radius:16px;background:rgba(255,255,255,.025)}
+.platform-mytrip-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.platform-mytrip-head>div>span{display:block;color:#70dff9;font-size:8px;font-weight:750;letter-spacing:.1em;text-transform:uppercase}
+.platform-mytrip-head h3{margin:5px 0 0;font-size:17px}
+.platform-mytrip-head>button{width:28px;height:28px;border:1px solid rgba(255,255,255,.09);border-radius:9px;background:rgba(255,255,255,.04);color:#7f93a8;cursor:pointer}
+.platform-mytrip-card>p{margin:0;color:#8193a8;font-size:10px;line-height:1.5}
+.platform-mytrip-setup{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.platform-mytrip-setup>span{display:grid;gap:3px;padding:9px;border-radius:10px;background:rgba(255,255,255,.035);color:#7e91a6;font-size:8px}
+.platform-mytrip-setup>span b{color:#c7d8e7;font-size:10px}
+.platform-mytrip-setup>span.ok{background:rgba(101,229,167,.055)}
+.platform-mytrip-fit{display:flex;flex-wrap:wrap;gap:6px}
+.platform-mytrip-fit span,.platform-plan-context-fit span{padding:6px 8px;border-radius:999px;background:rgba(255,255,255,.04);color:#8ca0b5;font-size:8px}
+.platform-mytrip-fit span.ok,.platform-plan-context-fit span.ok{background:rgba(101,229,167,.07);color:#9de8bf}
+.platform-mytrip-fit span.check,.platform-plan-context-fit span.check{background:rgba(255,202,84,.07);color:#e2c177}
+.platform-mytrip-actions{display:flex;justify-content:flex-end}
+.platform-mytrip-actions button{min-width:140px;height:34px;border:1px solid rgba(89,221,255,.18);border-radius:9px;background:rgba(89,221,255,.06);color:#dff8ff;font-size:9px;font-weight:750;cursor:pointer}
+.platform-mytrips-empty,.platform-mytrips-loading{display:grid;gap:6px;padding:22px;border:1px dashed rgba(255,255,255,.1);border-radius:14px;color:#7f92a7;font-size:10px}
+.platform-mytrips-empty b{color:#d6e4f0;font-size:13px}
+.platform-plan-context-fit{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:start;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.platform-plan-context-fit>span{padding:0;background:none!important;color:var(--muted)!important;text-transform:uppercase;letter-spacing:.08em}
+.platform-plan-context-fit>div{display:flex;flex-wrap:wrap;gap:5px}
+.platform-season-pref{display:grid;gap:5px;padding:10px 0;border-top:1px solid rgba(255,255,255,.07)}
+.platform-season-pref>span{color:#8295aa;font-size:8px;text-transform:uppercase;letter-spacing:.08em}
+.platform-season-pref select{height:34px;border:1px solid rgba(255,255,255,.09);border-radius:9px;background:#0d1826;color:#dce8f6;padding:0 8px;font-size:10px}
+.platform-season-pref small{color:#6f8499;font-size:7px;line-height:1.45}
+.platform-budget-result em{display:block;margin-top:5px;color:#d3ad62;font-size:7px;font-style:normal;line-height:1.4}
+@media(max-width:760px){
+  .platform-mytrip-setup{grid-template-columns:1fr}
+  .platform-plan-context-fit{grid-template-columns:1fr}
+}
+
+.platform-mytrips-title{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.platform-mytrips-title h2{margin-right:0}
+.platform-mytrips-title>button{height:34px;padding:0 11px;border:1px solid rgba(89,221,255,.18);border-radius:9px;background:rgba(89,221,255,.05);color:#dff8ff;font-size:8px;font-weight:750;cursor:pointer;white-space:nowrap}
+@media(max-width:520px){.platform-mytrips-title{align-items:flex-start;flex-direction:column}.platform-mytrips-title>button{width:100%}}
 

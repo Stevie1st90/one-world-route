@@ -88,6 +88,8 @@ Current platform features:
 - modular platform validation in the release pipeline
 - Practical trip-planning layer for capability-enabled regional routes: collapsible day-by-day itinerary, known transport minimums, fare/evidence coverage, Route Fit and Traveller-origin context
 - Browser-local trip utility layer: save a journey, filter saved journeys, export JSON/CSV/ICS and calculate a personal planning estimate from explicit user assumptions without accounts
+- My Trips planning workspace with saved-route status, start date, planning season, budget state, transparent Traveller Context checks and a portable planning-backup export
+- Practical planning capability across all published regional journeys; missing transport prices stay explicitly unknown rather than being inferred
 - Neutral side-by-side journey comparison for up to three routes, including duration, countries, transport, seasons, Route Fit, editorial status and Traveller Context checks
 - Crawlable localized trip pages with real itinerary, planning/evidence summaries and source links instead of metadata-only auto redirects
 
@@ -177,7 +179,9 @@ The multi-trip platform is intentionally split into small browser modules that a
 - `platform/model.js` — reusable place/stop/segment helpers, geometry and capability checks
 - `platform/traveller.js` — privacy-limited Traveller Context storage/normalization
 - `platform/discovery.js` — catalog facets and Route Fit filtering
-- `platform/trip-tools.js` — browser-local saved trips, personal budget assumptions and JSON/CSV exports
+- `platform/trip-tools.js` — browser-local saved trips, start dates, seasonal planning preferences, budget assumptions, workspace backup and JSON/CSV/ICS exports
+- `platform/traveller-fit.js` — transparent party/accessibility/vehicle context signals without hidden scores
+- `platform/my-trips.js` — browser-local planning workspace for saved journeys
 - `platform/home.js` — public catalog-driven homepage and multi-route Globe preview
 - `platform/extensions.js` — registered cruise, road and border presenters
 - `platform/map-style.js` — shared terrain label localization and ONE WORLD ROUTE dark map styling

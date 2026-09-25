@@ -23,3 +23,13 @@ test('trip index stays deterministic and source-derived',async()=>{
   assert.equal(italy.planning.knownPublishedMinimumEur,120.4);
   assert.ok(italy.sources.every(source=>/^https?:\/\//.test(source.url)));
 });
+
+
+test('all published regional journeys expose practical planning',async()=>{
+  const catalog=await readJson(new URL('data/platform/trips.json',root));
+  const regional=catalog.trips.filter(trip=>trip.renderer==='regional-globe');
+  assert.ok(regional.length>=4);
+  for(const trip of regional){
+    assert.ok(trip.capabilities.includes('trip-planning'),trip.id+' must expose practical planning');
+  }
+});

@@ -1,15 +1,10 @@
 (() => {
   'use strict';
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  const fitService=root.travellerFit;
+  if(!fitService)throw new Error('Traveller Fit service unavailable');
 
-  function derivedParty(profile){
-    const adults=Math.max(0,Number(profile?.party?.adults||0));
-    const children=Math.max(0,Number(profile?.party?.children||0));
-    if(children>0)return 'families';
-    if(adults<=1)return 'solo';
-    if(adults===2)return 'couples';
-    return 'friends';
-  }
+  function derivedParty(profile){return fitService.partyKey(profile)}
 
   function toggle(selection,id,max=3){
     if(selection.has(id)){selection.delete(id);return {selected:false,limit:false}}
@@ -29,12 +24,13 @@
     const columns=selected.map(trip=>'<article class="platform-compare-trip"><h3>'+esc(local(trip.title))+'</h3><p>'+esc(local(trip.subtitle))+'</p><button type="button" data-compare-open="'+esc(trip.id)+'">'+esc(t('open'))+' →</button></article>').join('');
     const values=fn=>selected.map(fn);
     const partyValues=values(trip=>{
-      const supported=trip.discovery?.fit?.party||[];
-      return facetLabel(party)+' · '+(supported.includes(party)?t('listedForContext'):t('contextCheckNeeded'));
+      const fit=fitService.evaluate(trip,profile);
+      return facetLabel(party)+' · '+(fit.partyListed?t('listedForContext'):t('contextCheckNeeded'));
     });
     const accessValues=values(trip=>{
-      const label=facetLabel(trip.discovery?.fit?.accessibility||'');
-      return profile?.accessibility?.reducedMobility?t('mobilityCheck')+': '+label:label;
+      const fit=fitService.evaluate(trip,profile);
+      const label=facetLabel(fit.accessibility||'');
+      return fit.reducedMobility?t('mobilityCheck')+': '+label:label;
     });
     modal.innerHTML='<div class="platform-modal-card platform-compare-card glass"><button class="platform-x" type="button" aria-label="'+esc(t('close'))+'">×</button>'+
       '<div class="platform-eyebrow">'+esc(t('compareTrips'))+'</div><h2>'+esc(t('compareTrips'))+'</h2><p class="platform-lead">'+esc(t('compareLead'))+'</p>'+

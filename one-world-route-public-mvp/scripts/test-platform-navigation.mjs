@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','formatters.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','trip-tools.js','trip-compare.js','trip-planning.js','home.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','regional-selection.js','story.js','terrain.js','extensions.js','extensions/cruise.js','extensions/road.js','extensions/border.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','formatters.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','trip-tools.js','traveller-fit.js','trip-compare.js','trip-planning.js','my-trips.js','home.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','regional-selection.js','story.js','terrain.js','extensions.js','extensions/cruise.js','extensions/road.js','extensions/border.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -108,10 +108,11 @@ test('regional routes own timeline and block legacy world mutation paths',()=>{
   assert.match(cssSource,/platform-regional-trip \.journey-context/);
 });
 
-test('mobile platform keeps Traveller available',()=>{
+test('mobile platform keeps Traveller and My Trips available',()=>{
   const ui=moduleSources['ui.js'];
   assert.match(cssSource,/platform-pill\.secondary\{display:flex\}/);
   assert.match(ui,/id="platformTravellerBtn"/);
+  assert.match(ui,/id="platformMyTripsBtn"/);
   assert.match(ui,/platform-pill-icon/);
   assert.match(source,/Ui\.ensureGlobalActions/);
 });
@@ -235,6 +236,26 @@ test('route library exposes transparent Route Fit controls',()=>{
   assert.match(cssSource,/\.platform-fit-filters/);
 });
 
+
+test('homepage exposes My Trips without the hidden legacy topbar',()=>{
+  const home=moduleSources['home.js'];
+  assert.match(home,/data-home-mytrips/);
+  assert.match(home,/d\.onMyTrips\(\)/);
+  assert.match(source,/onMyTrips:openMyTrips/);
+  assert.match(cssSource,/platform-detail-overview \.detail-scroll\{overflow:auto;min-height:0\}/);
+});
+
+test('My Trips remains browser-local, source-derived and trip-generic',()=>{
+  const workspace=moduleSources['my-trips.js'];
+  const fit=moduleSources['traveller-fit.js'];
+  assert.match(source,/const MyTrips=PLATFORM_MODULES\.myTrips/);
+  assert.match(source,/openMyTrips/);
+  assert.match(workspace,/TripTools\.load/);
+  assert.match(workspace,/TripPlanning\.snapshot/);
+  assert.match(workspace,/TravellerFit\.evaluate/);
+  assert.doesNotMatch(workspace,/italy-grand-tour|world-195|passportNumber|bookingReference|payment/i);
+  assert.doesNotMatch(fit,/score|rank|winner/i);
+});
 
 test('trip comparison stays neutral, transparent and trip-generic',()=>{
   const compare=moduleSources['trip-compare.js'];

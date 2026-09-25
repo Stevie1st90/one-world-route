@@ -82,6 +82,7 @@ test('production root is the public multi-trip homepage',async({page,request},te
   await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:20000});
   await expect(page.locator('#platformHome')).toBeVisible();
   await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(catalog.trips.length);
+  await expect(page.locator('[data-home-mytrips]')).toBeVisible();
   await expect(page.locator('#platformHome')).toContainText('Explore extraordinary journeys worldwide.');
   await expect(page.locator('#platformHome')).not.toContainText('[object');
   await expect(page.locator('#platformHome')).not.toContainText(/\bundefined\b/i);
@@ -120,6 +121,9 @@ test('production rail architecture proof renders through the shared regional eng
   await open(page,'/?trip=central-europe-rail-journey&lang=de');
   await expectRegional(page);
   await expect(page.locator('body')).toContainText('Mitteleuropa');
+  await expect(page.locator('.platform-planning-guide')).toHaveCount(1);
+  await expect(page.locator('[data-trip-season]')).toHaveCount(1);
+  await expect(page.locator('#platformMyTripsBtn')).toBeVisible();
   await expectRegionalTooltipIsolation(page);
   expect(errors).toEqual([]);
   await page.screenshot({path:testInfo.outputPath('production-rail.png'),fullPage:false,animations:'disabled'});

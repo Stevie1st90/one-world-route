@@ -52,6 +52,8 @@ Next product layers:
 - extend implemented route discovery with origin-market relevance, seasonality and accessibility filters
 - practical trip-planning layer (implemented first on Italy): day-by-day itinerary, known transport minimum, fare/evidence coverage and Route Fit
 - browser-local save, saved-only discovery, JSON/CSV/ICS export and explicit-assumption budget estimator
+- My Trips workspace with route planning status, start date, planning season, Traveller Context checks and portable browser-local backup
+- practical planning layer enabled across every published regional journey while unknown transport costs remain explicit
 - neutral comparison of up to three journeys with Traveller Context-aware party/accessibility checks
 - crawlable localized trip pages with source-derived itinerary, planning and evidence content
 - sourced full-trip cost bands and seasonal variants
