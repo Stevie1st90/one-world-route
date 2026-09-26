@@ -1836,8 +1836,8 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
-      "source": null,
+      "lastVerified": "2026-09-26",
+      "source": "https://www.flyroyalbrunei.com/en-ph/flights-from-manila-to-bandar-seri-begawan ; https://flights.philippineairlines.com/en/flights-from-manila-to-brunei",
       "alertLevel": "GREEN",
       "alertMessage": null
     },
