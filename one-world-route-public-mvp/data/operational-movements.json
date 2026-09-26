@@ -1887,7 +1887,7 @@
       "country": "Georgien",
       "from": "Tiflis (TBS)",
       "to": "Tiflis",
-      "mode": null,
+      "mode": "Municipal Bus 337",
       "corridor": "Tiflis (TBS) → Tiflis",
       "coordinates": [
         [
@@ -1905,29 +1905,31 @@
         "after": "2027-05-10",
         "before": "2027-05-10"
       },
-      "plannedDuration": null,
+      "plannedDuration": 60,
       "distanceKm": 14.4,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 0.34,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "walk-up",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.tbilisiairport.com/en-EN/to-from-the-airport/page/bus"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Tbilisi Airport documents municipal bus 337 between the airport and Tbilisi city centre, with a 1 GEL 90-minute fare product and service shown from 06:59 to 22:59. 60 minutes is a conservative planning allowance for airport-to-centre movement, not a published end-to-end running time. €0.34 is the rounded 2026-09-26 GEL/EUR planning conversion.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 1,
+        "currency": "GEL"
+      }
     },
     {
       "id": "transfer-112-113",
@@ -1937,7 +1939,7 @@
       "country": "Armenien",
       "from": "Jerewan",
       "to": "Jerewan (EVN)",
-      "mode": null,
+      "mode": "Airport Express Bus N201",
       "corridor": "Jerewan → Jerewan (EVN)",
       "coordinates": [
         [
@@ -1955,29 +1957,32 @@
         "after": "2027-05-12",
         "before": "2027-05-12"
       },
-      "plannedDuration": null,
+      "plannedDuration": 45,
       "distanceKm": 10.8,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 0.72,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "walk-up",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.zvartnots.aero/EN/Content/Transport",
+        "https://zvartnots.aero/EN/FAQ"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Zvartnots Airport documents Elitebus route N201 between Yerevan city centre and EVN every 30 minutes from 07:00 to 22:00 for 300 AMD cash. 45 minutes is a conservative planning allowance, not a published operator journey time. €0.72 is the rounded 2026-09-26 AMD/EUR planning conversion.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 300,
+        "currency": "AMD"
+      }
     },
     {
       "id": "transfer-115-116",
@@ -3415,7 +3420,7 @@
       "country": "San Marino",
       "from": "San Marino",
       "to": "Rimini",
-      "mode": null,
+      "mode": "Intercity Bus",
       "corridor": "San Marino → Rimini",
       "coordinates": [
         [
@@ -3433,29 +3438,29 @@
         "after": "2027-10-30",
         "before": "2027-10-30"
       },
-      "plannedDuration": null,
+      "plannedDuration": 55,
       "distanceKm": 16.5,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 7,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.visitsanmarino.com/pub2/VisitSM/de/contenuto/Pianifica-il-viaggio/COME-ARRIVARE.html",
+        "https://www.bonellibus.it/en/shuttle-rimini-san-marino-2/",
+        "https://www.benedettinispa.com/it/san-marino-rimini"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "The San Marino tourism authority and the operating companies document a daily year-round Rimini–San Marino service. The current timetable shows San Marino Centro Storico 08:10 to Rimini station 09:05 (55 minutes). One-way San Marino–Rimini fare is €7. Advance booking is recommended but tickets may be bought on board subject to availability.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed"
     },
     {
       "id": "transfer-193-194",
@@ -3464,9 +3469,9 @@
       "parentBeforeLeg": 194,
       "country": "Vatikanstadt",
       "from": "Rom; zu Fuß in Vatikanstadt",
-      "to": "Rom (FCO/CIA)",
-      "mode": null,
-      "corridor": "Rom; zu Fuß in Vatikanstadt → Rom (FCO/CIA)",
+      "to": "Rom (FCO)",
+      "mode": "Urban Transit + Leonardo Express",
+      "corridor": "Rom; zu Fuß in Vatikanstadt → Rom (FCO)",
       "coordinates": [
         [
           12.4534,
@@ -3483,29 +3488,29 @@
         "after": "2027-10-31",
         "before": "2027-10-31"
       },
-      "plannedDuration": null,
+      "plannedDuration": 75,
       "distanceKm": 19.9,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 15.5,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "walk-up",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.atac.roma.it/en/tickets-and-passes/bit",
+        "https://www.trenitalia.com/en/connections/leonardo-express.html",
+        "https://www.trenitalia.com/en/services/connections-to-and-from-rome-fiumicino-airport.html"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Plan uses normal Rome urban transit to Roma Termini followed by Leonardo Express to FCO. ATAC BIT is €1.50/100 minutes; Trenitalia publishes Leonardo Express at €14 and 32 minutes Termini–FCO. 75 minutes is a conservative combined planning allowance including the city transfer and interchange; it is not a guaranteed door-to-airport journey time.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed"
     }
   ],
   "routeEnd": "Malta",
