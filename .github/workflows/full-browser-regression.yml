@@ -1,0 +1,116 @@
+name: Full browser regression
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * 0'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: full-browser-regression
+  cancel-in-progress: true
+
+jobs:
+  regional-browser:
+    name: Regional regression (${{ matrix.project }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          - desktop-1440
+          - mobile-390
+    defaults:
+      run:
+        working-directory: one-world-route-public-mvp
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: one-world-route-public-mvp/qa/package-lock.json
+      - name: Install browser QA dependencies
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+        run: npm ci --prefix qa
+      - name: Full regional browser regression
+        env:
+          OWR_QA_NO_VIDEO: '1'
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          test -n "$CHROME_BIN"
+          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/regional-platform.spec.mjs --project="${{ matrix.project }}" --output="full-regression-${{ matrix.project }}"
+      - name: Upload regional regression artifacts
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: regional-full-${{ matrix.project }}-${{ github.run_id }}
+          path: one-world-route-public-mvp/qa/full-regression-${{ matrix.project }}
+          if-no-files-found: ignore
+          retention-days: 7
+
+  builder-browser:
+    name: Builder regression (${{ matrix.project }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          - desktop-1440
+          - mobile-390
+    defaults:
+      run:
+        working-directory: one-world-route-public-mvp
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: one-world-route-public-mvp/qa/package-lock.json
+      - name: Install browser QA dependencies
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+        run: npm ci --prefix qa
+      - name: Full builder browser regression
+        env:
+          OWR_QA_NO_VIDEO: '1'
+        run: |
+          node ../internal-trip-builder/server.mjs > /tmp/owr-builder.log 2>&1 &
+          BUILDER_PID=$!
+          trap 'kill $BUILDER_PID 2>/dev/null || true' EXIT
+          sleep 1
+          CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          test -n "$CHROME_BIN"
+          cd qa
+          BASE_URL="http://127.0.0.1:4175" OWR_CHROMIUM_PATH="$CHROME_BIN" ./node_modules/.bin/playwright test tests/trip-builder.spec.mjs --project="${{ matrix.project }}" --output="builder-full-${{ matrix.project }}"
+      - name: Upload builder regression artifacts
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: builder-full-${{ matrix.project }}-${{ github.run_id }}
+          path: one-world-route-public-mvp/qa/builder-full-${{ matrix.project }}
+          if-no-files-found: ignore
+          retention-days: 7
+
+  validate:
+    name: validate full regression
+    if: always()
+    needs:
+      - regional-browser
+      - builder-browser
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require successful full regression
+        shell: bash
+        env:
+          REGIONAL_RESULT: ${{ needs.regional-browser.result }}
+          BUILDER_RESULT: ${{ needs.builder-browser.result }}
+        run: |
+          set -euo pipefail
+          test "$REGIONAL_RESULT" = "success"
+          test "$BUILDER_RESULT" = "success"
+          echo "Full browser regression passed."

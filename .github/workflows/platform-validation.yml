@@ -22,6 +22,7 @@ jobs:
     name: Detect QA scope
     runs-on: ubuntu-latest
     outputs:
+      flagship_browser: ${{ steps.scope.outputs.flagship_browser }}
       regional_browser: ${{ steps.scope.outputs.regional_browser }}
       builder_browser: ${{ steps.scope.outputs.builder_browser }}
     steps:
@@ -34,20 +35,30 @@ jobs:
         run: |
           set -euo pipefail
 
+          # main only receives fast-forwarded, already validated PR commits in the
+          # normal delivery workflow. Re-running browser QA there duplicates the
+          # exact same commit. Production smoke remains the live deployment gate.
           if [[ "${{ github.event_name }}" == "push" ]]; then
-            echo "regional_browser=true" >> "$GITHUB_OUTPUT"
-            echo "builder_browser=true" >> "$GITHUB_OUTPUT"
+            echo "flagship_browser=false" >> "$GITHUB_OUTPUT"
+            echo "regional_browser=false" >> "$GITHUB_OUTPUT"
+            echo "builder_browser=false" >> "$GITHUB_OUTPUT"
+            echo "main push: fast gate only; browser regression is not duplicated"
             exit 0
           fi
 
-          git diff --name-only             "${{ github.event.pull_request.base.sha }}"             "${{ github.event.pull_request.head.sha }}"             > /tmp/owr-changed-files.txt
+          git diff --name-only \
+            "${{ github.event.pull_request.base.sha }}" \
+            "${{ github.event.pull_request.head.sha }}" \
+            > /tmp/owr-changed-files.txt
 
+          flagship_browser=false
           regional_browser=false
           builder_browser=false
 
           while IFS= read -r file; do
             case "$file" in
               .github/workflows/platform-validation.yml)
+                flagship_browser=true
                 regional_browser=true
                 builder_browser=true
                 ;;
@@ -63,19 +74,36 @@ jobs:
               one-world-route-public-mvp/qa/tests/trip-builder.spec.mjs|one-world-route-public-mvp/scripts/trip-draft-contract.mjs|one-world-route-public-mvp/scripts/test-trip-draft-contract.mjs|one-world-route-public-mvp/scripts/platform-extension-validators.mjs|one-world-route-public-mvp/scripts/platform-extension-validators/*)
                 builder_browser=true
                 ;;
+              one-world-route-public-mvp/qa/tests/platform-smoke.spec.mjs|one-world-route-public-mvp/qa/playwright.config.mjs|one-world-route-public-mvp/qa/run-local.mjs)
+                flagship_browser=true
+                regional_browser=true
+                ;;
               one-world-route-public-mvp/README.md)
                 ;;
-              one-world-route-public-mvp/platform/*|one-world-route-public-mvp/data/*|one-world-route-public-mvp/api/*|one-world-route-public-mvp/qa/*|one-world-route-public-mvp/scripts/*|one-world-route-public-mvp/*.js|one-world-route-public-mvp/*.css|one-world-route-public-mvp/*.html|one-world-route-public-mvp/*.json|one-world-route-public-mvp/*.xml)
+              one-world-route-public-mvp/platform/regional-*|one-world-route-public-mvp/platform/extensions.js|one-world-route-public-mvp/platform/extensions/*)
+                regional_browser=true
+                ;;
+              one-world-route-public-mvp/platform/*)
+                flagship_browser=true
+                regional_browser=true
+                ;;
+              one-world-route-public-mvp/data/*)
+                flagship_browser=true
+                ;;
+              one-world-route-public-mvp/*.js|one-world-route-public-mvp/*.css|one-world-route-public-mvp/*.html|one-world-route-public-mvp/*.json|one-world-route-public-mvp/*.xml)
+                flagship_browser=true
                 regional_browser=true
                 ;;
             esac
           done < /tmp/owr-changed-files.txt
 
+          echo "flagship_browser=$flagship_browser" >> "$GITHUB_OUTPUT"
           echo "regional_browser=$regional_browser" >> "$GITHUB_OUTPUT"
           echo "builder_browser=$builder_browser" >> "$GITHUB_OUTPUT"
 
           echo "Changed files:"
           cat /tmp/owr-changed-files.txt
+          echo "flagship_browser=$flagship_browser"
           echo "regional_browser=$regional_browser"
           echo "builder_browser=$builder_browser"
 
@@ -161,6 +189,7 @@ jobs:
           node --check ../internal-trip-builder/server.mjs
           node --check ../internal-trip-builder/app.js
           node --check ../internal-trip-builder/test-builder.mjs
+          node --check qa/tests/platform-smoke.spec.mjs
           node --check qa/tests/regional-platform.spec.mjs
           node --check qa/tests/production-smoke.spec.mjs
           node --check qa/tests/trip-builder.spec.mjs
@@ -241,7 +270,7 @@ jobs:
           node scripts/test-preview-routes.mjs
 
   builder-browser:
-    name: Builder browser QA
+    name: Builder browser smoke
     needs: changes
     if: needs.changes.outputs.builder_browser == 'true'
     runs-on: ubuntu-latest
@@ -259,7 +288,7 @@ jobs:
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
         run: npm ci --prefix qa
-      - name: Internal Trip Builder visual QA
+      - name: Internal Trip Builder browser smoke
         env:
           OWR_QA_NO_VIDEO: '1'
         run: |
@@ -270,18 +299,53 @@ jobs:
           CHROME_BIN="$(command -v google-chrome || command -v chromium)"
           test -n "$CHROME_BIN"
           cd qa
-          BASE_URL="http://127.0.0.1:4175" OWR_CHROMIUM_PATH="$CHROME_BIN" ./node_modules/.bin/playwright test tests/trip-builder.spec.mjs --project=desktop-1440 --project=mobile-390 --output=builder-test-results
+          BASE_URL="http://127.0.0.1:4175" OWR_CHROMIUM_PATH="$CHROME_BIN" ./node_modules/.bin/playwright test tests/trip-builder.spec.mjs --project=desktop-1440 --project=mobile-390 --workers=2 --output=builder-test-results
       - name: Upload builder browser QA artifacts
-        if: always()
+        if: failure()
         uses: actions/upload-artifact@v7
         with:
-          name: builder-browser-qa-${{ github.run_id }}
+          name: builder-browser-smoke-${{ github.run_id }}
           path: one-world-route-public-mvp/qa/builder-test-results
           if-no-files-found: ignore
           retention-days: 7
 
+  flagship-browser:
+    name: Flagship browser smoke
+    needs: changes
+    if: needs.changes.outputs.flagship_browser == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: one-world-route-public-mvp
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: one-world-route-public-mvp/qa/package-lock.json
+      - name: Install browser QA dependencies
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+        run: npm ci --prefix qa
+      - name: Run flagship browser smoke
+        env:
+          OWR_QA_NO_VIDEO: '1'
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          test -n "$CHROME_BIN"
+          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/platform-smoke.spec.mjs --grep="@flagship" --project=desktop-1440 --project=mobile-390 --workers=2
+      - name: Upload flagship browser smoke artifacts
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: flagship-browser-smoke-${{ github.run_id }}
+          path: one-world-route-public-mvp/qa/test-results
+          if-no-files-found: ignore
+          retention-days: 7
+
   regional-browser:
-    name: Regional browser QA
+    name: Regional browser smoke
     needs: changes
     if: needs.changes.outputs.regional_browser == 'true'
     runs-on: ubuntu-latest
@@ -299,18 +363,18 @@ jobs:
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
         run: npm ci --prefix qa
-      - name: Regional browser E2E
+      - name: Run regional browser smoke
         env:
           OWR_QA_NO_VIDEO: '1'
         run: |
           CHROME_BIN="$(command -v google-chrome || command -v chromium)"
           test -n "$CHROME_BIN"
-          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/regional-platform.spec.mjs --project=desktop-1440 --project=mobile-390
-      - name: Upload regional browser QA artifacts
-        if: always()
+          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/platform-smoke.spec.mjs --grep="@regional" --project=desktop-1440 --project=mobile-390 --workers=2
+      - name: Upload regional browser smoke artifacts
+        if: failure()
         uses: actions/upload-artifact@v7
         with:
-          name: regional-browser-qa-${{ github.run_id }}
+          name: regional-browser-smoke-${{ github.run_id }}
           path: one-world-route-public-mvp/qa/test-results
           if-no-files-found: ignore
           retention-days: 7
@@ -323,6 +387,7 @@ jobs:
       - core
       - release
       - builder-browser
+      - flagship-browser
       - regional-browser
     runs-on: ubuntu-latest
     steps:
@@ -333,6 +398,7 @@ jobs:
           CORE_RESULT: ${{ needs.core.result }}
           RELEASE_RESULT: ${{ needs.release.result }}
           BUILDER_RESULT: ${{ needs.builder-browser.result }}
+          FLAGSHIP_RESULT: ${{ needs.flagship-browser.result }}
           REGIONAL_RESULT: ${{ needs.regional-browser.result }}
         run: |
           set -euo pipefail
@@ -343,12 +409,17 @@ jobs:
 
           case "$BUILDER_RESULT" in
             success|skipped) ;;
-            *) echo "Builder browser QA failed: $BUILDER_RESULT"; exit 1 ;;
+            *) echo "Builder browser smoke failed: $BUILDER_RESULT"; exit 1 ;;
+          esac
+
+          case "$FLAGSHIP_RESULT" in
+            success|skipped) ;;
+            *) echo "Flagship browser smoke failed: $FLAGSHIP_RESULT"; exit 1 ;;
           esac
 
           case "$REGIONAL_RESULT" in
             success|skipped) ;;
-            *) echo "Regional browser QA failed: $REGIONAL_RESULT"; exit 1 ;;
+            *) echo "Regional browser smoke failed: $REGIONAL_RESULT"; exit 1 ;;
           esac
 
-          echo "All required platform validation checks passed."
+          echo "All required fast platform validation checks passed."
