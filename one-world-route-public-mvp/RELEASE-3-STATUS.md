@@ -44,3 +44,12 @@ Die Flagship-Reise behält **195 souveräne Staaten / 194 internationale Legs**.
 Die öffentliche Website kann technisch veröffentlichbar sein, obwohl die Reise operativ noch nicht abfahrtsbereit ist. Der Audit trennt deshalb strukturelle Modellgültigkeit von `departureReady`.
 
 Historische Aussagen aus dem Stand vom 21.09.2026 sollen nicht mehr manuell fortgeschrieben werden. Maßgeblich sind die aktuell aus den Daten berechneten Werte im Readiness-Report.
+
+
+## Kanonische Topologie
+
+Die 195/194-Regel ist jetzt zusätzlich strukturell definiert: Die offizielle Route ist ein offener Pfad durch alle 195 souveränen Staaten genau einmal. Sie beginnt in Deutschland und endet in Malta. Die Heimreise Malta → Deutschland bleibt als eigener `postTripReturn` erhalten und zählt nicht als zusätzliches internationales Leg.
+
+Damit ist die frühere Inkonsistenz beseitigt, bei der Deutschland sowohl Start- als auch Endknoten der 194 offiziellen Legs war und dadurch Nordkorea nur im Länderkatalog, nicht aber in der Leg-Kette vorkam.
+
+Die operative Ausführbarkeit einzelner Legs ist davon getrennt und bleibt über `data/flagship-readiness.json` sowie `data/flagship-operations-queue.json` nachweisbar offen, bis die jeweiligen Quellen, Endpunkte und Entscheidungen geprüft sind.

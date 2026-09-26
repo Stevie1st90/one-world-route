@@ -18,5 +18,5 @@ for(const s of route.segments){
   if(!clear){review.push({legId:s.id,corridor:s.corridor,reason:'Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing.'});continue;}
   geometries[s.id]={airportCodes:codes.map(c=>c[0]),coordinates:codes.map(c=>catalog.airports[c[0]].coordinates),source:catalog.source,coordinateVerified:catalog.retrievedAt,serviceVerified:null};
 }
-await writeFile(new URL('../data/flight-geometries.json',import.meta.url),JSON.stringify({version:1,method:'Airport coordinates only; no assertion of airline service, schedule or booking availability.',geometries,endpoints,review},null,2)+'\n');
+await writeFile(new URL('../data/flight-geometries.json',import.meta.url),JSON.stringify({version:2,method:'Airport coordinates only; no assertion of airline service, schedule or booking availability.',geometries,endpoints,review},null,2)+'\n');
 console.log('Flight geometry:',Object.keys(geometries).length,'explicit airport routes;',review.length,'require routing decisions');

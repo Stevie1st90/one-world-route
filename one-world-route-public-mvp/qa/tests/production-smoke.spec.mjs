@@ -92,7 +92,7 @@ test('production root is the public multi-trip homepage',async({page,request},te
   await page.screenshot({path:testInfo.outputPath('production-home.png'),fullPage:false,animations:'disabled'});
 });
 
-test('production flagship preserves the 195/194 shell invariants at its explicit trip URL',async({page,isMobile},testInfo)=>{
+test('production flagship preserves the 195/194 shell invariants at its explicit trip URL',async({page,isMobile,request},testInfo)=>{
   test.setTimeout(120000);
   const errors=capturePageErrors(page);
   await open(page,'/?trip=world-195&lang=en');
@@ -100,6 +100,24 @@ test('production flagship preserves the 195/194 shell invariants at its explicit
   await expect(page.locator('#routeRange')).toHaveAttribute('max','194');
   await expect(page.locator('#filterCount')).toContainText('194');
   await expect(page.locator('.brand small')).toContainText('195 countries');
+  const [routeResponse,readinessResponse,queueResponse]=await Promise.all([
+    request.get('/data/public-route.json'),
+    request.get('/data/flagship-readiness.json'),
+    request.get('/data/flagship-operations-queue.json')
+  ]);
+  expect(routeResponse.ok()).toBeTruthy();
+  expect(readinessResponse.ok()).toBeTruthy();
+  expect(queueResponse.ok()).toBeTruthy();
+  const route=await routeResponse.json(),readiness=await readinessResponse.json(),queue=await queueResponse.json();
+  expect(route.segments).toHaveLength(194);
+  expect(route.countries).toHaveLength(195);
+  expect(route.segments[96]).toMatchObject({id:97,from:'China',to:'Nordkorea'});
+  expect(route.segments[97]).toMatchObject({id:98,from:'Nordkorea',to:'Südkorea'});
+  expect(route.segments.at(-1)).toMatchObject({id:194,from:'Vatikanstadt',to:'Malta'});
+  expect(route.postTripReturn).toMatchObject({from:'Malta',to:'Deutschland',countedInInternationalLegs:false});
+  expect(readiness.topology.canonical).toBe(true);
+  expect(readiness.structural.countriesInLegEndpoints).toBe(195);
+  expect(queue.summary.total).toBeGreaterThan(0);
   if(isMobile)await expectMobileShellStable(page);
   expect(errors).toEqual([]);
   await page.screenshot({path:testInfo.outputPath('production-flagship.png'),fullPage:false,animations:'disabled'});

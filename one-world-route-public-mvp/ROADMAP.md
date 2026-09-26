@@ -14,7 +14,9 @@
 - Terrain chapter camera navigation
 
 ## Continue before departure
-- Use the machine-readable flagship readiness audit as the canonical departure-readiness source; clear its blockers instead of maintaining manual status counts.
+- The canonical country-path correction is implemented; the remaining work is operational verification, not macro-count repair.
+- Use the machine-readable flagship readiness audit and generated P0/P1/P2 operations queue as the canonical departure-readiness source; clear its blockers instead of maintaining manual status counts.
+- Keep the canonical topology invariant: Germany → … → Malta contains all 195 sovereign states exactly once across 194 official international legs; Malta → Germany is a separate post-trip return.
 - Expand curated waypoints from Europe I across every non-flight ground/ferry corridor.
 - Reverify volatile borders, visas and transport sources.
 - Run the Playwright suite before each public release.

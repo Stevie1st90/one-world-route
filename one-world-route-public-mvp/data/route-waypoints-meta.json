@@ -1,9 +1,9 @@
 {
-  "version": 2,
-  "updated": "2026-09-19",
+  "version": 3,
+  "updated": "2026-09-25",
   "coordinateOrder": "[longitude, latitude]",
   "method": "Corridor-level waypoints derived from the public route corridor description. These are visualization guides, not street-by-street navigation tracks.",
-  "nonFlightLegs": 84,
+  "nonFlightLegs": 86,
   "waypointLegs": 84,
-  "fallback": "Segments without curated waypoints use geodesic country-to-country geometry."
+  "fallback": "Segments without curated waypoints use geodesic country-to-country geometry; unresolved macro corridors remain visibly unresolved."
 }

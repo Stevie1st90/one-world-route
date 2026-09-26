@@ -28,6 +28,17 @@ The installable app uses a network-first policy for navigations, JavaScript/CSS 
 
 Vercel sends `no-store` for the root HTML and service worker, while mutable bundles/data require revalidation. Delivery rules are regression-tested in CI and verified again by the live Production Smoke workflow.
 
+## Canonical flagship topology and operations readiness
+The flagship is modeled as one canonical open path through all 195 sovereign states: 194 official international legs connect country 1 through country 195 exactly once. The official path starts in Germany and ends in Malta. The operational Malta → Germany return home is retained separately as `postTripReturn` and is explicitly excluded from the 194-leg invariant.
+
+The invariant is enforced by `scripts/flagship-topology-model.mjs`, public-data validation and browser/production smoke tests. North Korea is therefore no longer a country-catalog-only placeholder: it is represented in the official macro path, while its operational corridor remains intentionally unresolved until source-backed review.
+
+Operational readiness is generated into:
+- `data/flagship-readiness.json` — canonical topology, continuity, movement, flight-geometry, evidence and blocker summary.
+- `data/flagship-operations-queue.json` — deterministic P0/P1/P2 task queue with missing fields, evidence state, geometry state and departure-blocking status.
+
+Verification dates are ISO `YYYY-MM-DD` values. Legacy Excel serial dates are normalized by `scripts/verification-date-model.mjs`; invalid verification-date formats fail validation instead of being counted as fresh evidence.
+
 ## Release
 ```bash
 node scripts/release-build.mjs

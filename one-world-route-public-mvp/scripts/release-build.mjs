@@ -7,6 +7,7 @@ for (const script of [
   'validate-platform-data.mjs',
   'audit-route-continuity.mjs',
   'audit-flagship-readiness.mjs',
+  'build-flagship-operations-queue.mjs',
   'build-trip-index.mjs',
   'build-bundles.mjs',
   'generate-seo.mjs',

@@ -16,6 +16,10 @@ test('distance crosses antimeridian without going around the world',()=>assert.o
 test('route data preserves the macro contract and transit airports',async()=>{
   const r=await read('public-route.json'),f=await read('flight-geometries.json'),m=await read('operational-movements.json');
   assert.equal(r.segments.length,194);assert.equal(r.countries.length,195);
+  assert.equal(r.segments[96].from,'China');assert.equal(r.segments[96].to,'Nordkorea');
+  assert.equal(r.segments[97].from,'Nordkorea');assert.equal(r.segments[97].to,'Südkorea');
+  assert.equal(r.segments.at(-1).from,'Vatikanstadt');assert.equal(r.segments.at(-1).to,'Malta');
+  assert.equal(r.postTripReturn.from,'Malta');assert.equal(r.postTripReturn.to,'Deutschland');assert.equal(r.postTripReturn.countedInInternationalLegs,false);
   assert.deepEqual(f.geometries['69'].airportCodes,['APW','NAN','FUN']);
   assert.equal(f.geometries['27'],undefined);assert.equal(f.geometries['78'],undefined);
   assert.equal(m.movements.find(x=>x.id==='transfer-21-22').actualCost,null);

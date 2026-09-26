@@ -16,7 +16,7 @@
   try{regionNames=new Intl.DisplayNames([locale],{type:'region'});}catch{}
 
   const MODE=new Map(Object.entries({
-    'Zug':'Train','Flug':'Flight','Bus':'Bus','Fähre':'Ferry','Land':'Overland',
+    'Zug':'Train','Flug':'Flight','Bus':'Bus','Fähre':'Ferry','Land':'Overland','Noch offen':'To be confirmed',
     'Auto':'Car','Zu Fuß/Shuttle':'Walk / Shuttle','Bus+Flug':'Bus + Flight',
     'Bus/4x4':'Bus / 4x4','Bus/Auto':'Bus / Car','Bus/Flug':'Bus / Flight',
     'Bus/Sammeltaxi':'Bus / Shared taxi','Bus/Shuttle':'Bus / Shuttle',
@@ -29,9 +29,9 @@
 
   const EXACT=new Map(Object.entries({
     'Planbar':'Plannable','Bedingt':'Conditional','Kritisch':'Critical',
-    'Plausibel':'Plausible','Verifiziert':'Verified',
+    'Plausibel':'Plausible','Verifiziert':'Verified','Offen':'Open / unresolved',
     'JETZT BUCHEN':'BOOK NOW','JETZT BUCHEN / FLEX':'BOOK NOW / FLEX',
-    'NICHT LANGFRISTIG FIXIEREN':'DO NOT LOCK LONG-TERM',
+    'NICHT LANGFRISTIG FIXIEREN':'DO NOT LOCK LONG-TERM','HOLD – operativen Korridor verifizieren':'HOLD – verify operational corridor',
     'Visumfrei':'Visa-free','Visumfrei 30 Tage':'Visa-free 30 days',
     'Visumfrei bis 31.12.2026':'Visa-free until 31 Dec 2026',
     'Visum erforderlich':'Visa required','Pflichtformular':'Mandatory form',
@@ -55,6 +55,10 @@
     'Booking-Fenster offen – nicht dringend':'Booking window open – not urgent',
     'Spätere Visa-/Entry-Aktion beobachten':'Monitor later visa / entry action',
     'Späteres kritisches Segment beobachten':'Monitor later critical segment',
+    'Operativer Einreise- und Weiterreisekorridor bleibt bis zu einer neuen, quellenbasierten Prüfung offen.':'Operational entry and onward routing remains unresolved pending a fresh source-backed review.',
+    'Operativer Ausreise- und Einreisekorridor bleibt bis zu einer neuen, quellenbasierten Prüfung offen.':'Operational exit and onward entry routing remains unresolved pending a fresh source-backed review.',
+    'Makroabdeckung hergestellt; operative Route und Einreise vor Abfahrt neu verifizieren.':'Macro coverage restored; reverify the operational route and entry conditions before departure.',
+    'Operative Route und Grenz-/Einreisebedingungen vor Abfahrt neu verifizieren.':'Reverify the operational route and border/entry conditions before departure.',
     'Tier A/B Buchung jetzt bearbeiten':'Handle Tier A/B booking now',
     'Brisbane-Default früh/flexibel sichern; Guam nur optionale Visa-Optimierung':'Secure Brisbane default early/flexibly; Guam is only an optional visa optimisation',
     'ICVP mitführen; keine besondere Route-Pflicht identifiziert.':'Carry ICVP; no special route-specific requirement identified.',

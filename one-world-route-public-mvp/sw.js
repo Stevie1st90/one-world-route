@@ -1,5 +1,5 @@
 const LOCAL_PREVIEW=['127.0.0.1','localhost','::1'].includes(self.location.hostname);
-const CACHE='one-world-route-planning-workspace-20260925a';
+const CACHE='one-world-route-flagship-ops-20260925a';
 const MIGRATION_CACHE=/^one-world-route-(regional-hardening|homepage|utility-readiness|compare-calendar)-/;
 const SHELL=[
   '/index.html',

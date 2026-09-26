@@ -10,12 +10,12 @@
     {id:4, range:[53,64], title:'South America', note:'A continuous line through South America.'},
     {id:5, range:[65,78], title:'South Pacific', note:'The route opens into the Pacific.'},
     {id:6, range:[79,95], title:'Southeast Asia & Indian Ocean', note:'Dense regional links and island crossings.'},
-    {id:7, range:[96,112], title:'East & Central Asia', note:'Long-distance transitions across Asia.'},
-    {id:8, range:[113,120], title:'Levant & North Africa', note:'A compact but operationally complex chapter.'},
-    {id:9, range:[121,145], title:'West & Central Africa', note:'Overland and air corridors across West Africa.'},
-    {id:10, range:[146,169], title:'Southern & East Africa', note:'The route turns south, then back north-east.'},
-    {id:11, range:[170,181], title:'Gulf & Levant', note:'The final Middle East sequence.'},
-    {id:12, range:[182,194], title:'Europe II · Finish', note:'The closing run back to Germany.'}
+    {id:7, range:[96,113], title:'East & Central Asia', note:'Long-distance transitions across Asia.'},
+    {id:8, range:[114,121], title:'Levant & North Africa', note:'A compact but operationally complex chapter.'},
+    {id:9, range:[122,146], title:'West & Central Africa', note:'Overland and air corridors across West Africa.'},
+    {id:10, range:[147,170], title:'Southern & East Africa', note:'The route turns south, then back north-east.'},
+    {id:11, range:[171,182], title:'Gulf & Levant', note:'The final Middle East sequence.'},
+    {id:12, range:[183,194], title:'Europe II · Finish', note:'The closing run completes the official 195-country route in Malta.'}
   ];
 
   const EN=window.ONE_WORLD_EN||{registerCountries(){},country:s=>s,mode:s=>s,text:s=>s,value:s=>s};

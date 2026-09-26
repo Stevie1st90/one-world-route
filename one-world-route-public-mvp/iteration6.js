@@ -1,11 +1,15 @@
 (() => {
   'use strict';
 
-  const runtime={data:null,segments:[],selectedId:1,observer:null,renderFrame:null};
+  const runtime={data:null,readiness:null,queue:null,segments:[],selectedId:1,observer:null,renderFrame:null};
   const $=(s,r=document)=>r.querySelector(s);
   const $$=(s,r=document)=>[...r.querySelectorAll(s)];
   const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   const excelDate=v=>v?new Date(Date.UTC(1899,11,30)+Number(v)*86400000):null;
+  const verificationDate=v=>{
+    if(typeof v==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(v))return new Date(v+'T00:00:00Z');
+    return excelDate(v);
+  };
   const euro=v=>new Intl.NumberFormat('en-GB',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(v||0));
   const now=new Date();
   now.setHours(0,0,0,0);
@@ -20,11 +24,15 @@
   async function loadData(){
     if(runtime.data)return runtime.data;
     try{
-      const [r,c]=await Promise.all([
+      const [r,c,readiness,queue]=await Promise.all([
         fetch('./data/public-route.json',{cache:'force-cache'}),
-        fetch('./data/country-centroids.json',{cache:'force-cache'})
+        fetch('./data/country-centroids.json',{cache:'force-cache'}),
+        fetch('./data/flagship-readiness.json',{cache:'no-cache'}),
+        fetch('./data/flagship-operations-queue.json',{cache:'no-cache'})
       ]);
       runtime.data=await r.json();
+      runtime.readiness=await readiness.json();
+      runtime.queue=await queue.json();
       runtime.operational=await window.ONE_WORLD_MOVEMENTS.ready;
       const countries=await c.json();
       EN.registerCountries?.(countries||[]);
@@ -43,7 +51,7 @@
   }
 
   function freshness(s){
-    const d=excelDate(s.lastVerified);
+    const d=verificationDate(s.lastVerified);
     if(!d)return {key:'unknown',label:'Unverified date',age:null};
     const age=Math.max(0,Math.round((now-d)/86400000));
     if(age<=7)return {key:'fresh',label:`Verified ${age}d ago`,age};
@@ -115,14 +123,36 @@
     const data=runtime.operational;
     if(!data||data.unavailable)return '<p class="ops-empty">Operational transfers unavailable. Continuity cannot be confirmed.</p>';
     const items=data.movements;
-    return `<div class="ops-mini-title">Operational transfers</div><p class="ops-empty">194 international legs + ${items.length} transfer records · ${items.filter(m=>m.reviewStatus!=='reviewed').length} need review. Unpriced transfers are not included in the base budget.</p>`;
+    const home=runtime.data?.postTripReturn;
+    return `<div class="ops-mini-title">Operational transfers</div><p class="ops-empty">194 official international legs + ${items.length} transfer records · ${items.filter(m=>m.reviewStatus!=='reviewed').length} need review. Unpriced transfers are not included in the base budget.</p>`+
+      (home?`<div class="ops-return-note"><span>POST-TRIP RETURN · excluded from 194 legs</span><b>${esc(home.from)} → ${esc(home.to)}</b></div>`:'');
+  }
+
+  function readinessSummary(){
+    const r=runtime.readiness,q=runtime.queue;
+    if(!r||!q)return '';
+    const blockers=r.blockers||[];
+    const top=(q.tasks||[]).filter(task=>task.blocksDeparture).slice(0,5);
+    return `
+      <div class="ops-mini-title">Departure readiness</div>
+      <div class="ops-readiness-grid">
+        <div><span>Countries</span><b>${r.structural.countriesInLegEndpoints}/195</b></div>
+        <div><span>Continuity open</span><b>${r.continuity.unresolvedConnections}</b></div>
+        <div><span>Blocking tasks</span><b>${q.summary.blocking}</b></div>
+        <div><span>Critical legs</span><b>${r.evidence.feasibility.critical}</b></div>
+      </div>
+      <div class="ops-gate ${r.status.departureReady?'ready':'blocked'}"><span>${r.status.departureReady?'DEPARTURE READY':'DEPARTURE BLOCKED'}</span><b>${blockers.length} blocker categories · evidence as of ${esc(r.dataAsOf||'unknown')}</b></div>
+      ${top.length?'<div class="ops-queue">'+top.map(task=>`<button type="button" ${task.legId?`data-segment="${task.legId}"`:''}><span>${esc(task.priority)} · ${esc(task.category)}</span><b>${esc(task.title)}</b><small>${esc([...task.blockers,...task.missing].slice(0,3).join(' · '))}</small></button>`).join('')+'</div>':''}
+    `;
   }
 
   function movementTimeline(s){
     const items=runtime.operational?.movements||[];
     const card=m=>`<article class="ops-movement" data-movement-id="${esc(m.id)}"><small>TRANSFER · ${esc(m.reviewStatus)}</small><b>${esc(m.from)} → ${esc(m.to)}</b><span>${esc(m.mode||'Mode to confirm')} · ${m.distanceKm===null?'Distance unknown':`${m.distanceBasis==='geodesic-lower-bound'?'≥ ':''}${m.distanceKm} km (${m.distanceBasis==='geodesic-lower-bound'?'straight-line':'route estimate'})`}</span><span>${m.durationBasis==='planning-allowance'?'Time allowance':'Duration'}: ${m.plannedDuration===null?'unknown':m.plannedDuration+' min'} · Estimated cost: ${m.estimatedCost===null?'unpriced':euro(m.estimatedCost)}</span><span>Window: ${esc(m.planningWindow.after||'unknown')} → ${esc(m.planningWindow.before||'unknown')}</span><span>Status: ${esc(m.status)} · Booking: ${esc(m.bookingStatus)}</span><details><summary>Planning evidence and actuals</summary><p>${esc(m.notes)}</p><p>Last verified: ${esc(m.lastVerified||'Not verified')}<br>Actual departure: ${esc(m.actualDeparture||'Not recorded')}<br>Actual arrival: ${esc(m.actualArrival||'Not recorded')}<br>Actual cost: ${m.actualCost===null?'Not recorded':euro(m.actualCost)}</p></details></article>`;
     const before=items.filter(m=>m.parentBeforeLeg===Number(s.id)),after=items.filter(m=>m.parentAfterLeg===Number(s.id));
-    return `<div class="ops-mini-title">Operational timeline</div><div class="ops-movements">${before.map(card).join('')}<div class="ops-macro">International leg #${s.id} · ${esc(routeLabel(s))}</div>${after.map(card).join('')}</div>`;
+    const home=Number(s.id)===runtime.segments.length?runtime.data?.postTripReturn:null;
+    const returnCard=home?`<article class="ops-movement ops-return"><small>POST-TRIP RETURN · NOT AN OFFICIAL LEG</small><b>${esc(home.corridor)}</b><span>${esc(home.note||'')}</span></article>`:'';
+    return `<div class="ops-mini-title">Operational timeline</div><div class="ops-movements">${before.map(card).join('')}<div class="ops-macro">International leg #${s.id} · ${esc(routeLabel(s))}</div>${after.map(card).join('')}${returnCard}</div>`;
   }
 
   function renderBoard(){
@@ -132,15 +162,16 @@
     document.body.classList.toggle('operations-intelligence',Boolean(ops));
     if(!ops)return;
 
-    const top=topCritical();const fresh=freshnessSummary();const cats=breakCategories();const tb=transportBudget();const high=top[0];
+    const top=topCritical();const fresh=freshnessSummary();const cats=breakCategories();const tb=transportBudget();const high=top[0],readiness=runtime.readiness;
     board.innerHTML=`
       <div class="ops-head"><span>OPERATIONS INTELLIGENCE</span><b>Mission control</b></div>
       <div class="ops-score-row">
-        <button class="ops-score" data-action="critical"><strong>${top.length}</strong><span>critical path</span></button>
+        <button class="ops-score" data-action="critical"><strong>${readiness?.evidence?.feasibility?.critical??top.length}</strong><span>critical legs</span></button>
         <div class="ops-score"><strong>${fresh.fresh}</strong><span>fresh ≤7d</span></div>
-        <div class="ops-score"><strong>${fresh.unknown+fresh.stale}</strong><span>needs review</span></div>
+        <div class="ops-score"><strong>${fresh.unknown+fresh.stale}</strong><span>stale / unknown</span></div>
       </div>
       <button class="ops-primary" data-action="critical">View global critical path <span>›</span></button>
+      ${readinessSummary()}
       ${movementSummary()}
       <div class="ops-mini-title">Flagged route conditions</div>
       <div class="ops-break-grid">${cats.slice(0,4).map(([k,v])=>`<div><span>${esc(k)}</span><b>${v}</b></div>`).join('')}</div>

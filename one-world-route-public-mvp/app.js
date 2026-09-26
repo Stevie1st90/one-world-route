@@ -14,12 +14,12 @@
     {id:4, range:[53,64], name:'South America', short:'S. America', color:'#7be495'},
     {id:5, range:[65,78], name:'South Pacific', short:'Pacific', color:'#9276ff'},
     {id:6, range:[79,95], name:'Southeast Asia & Indian Ocean', short:'SE Asia', color:'#e47cff'},
-    {id:7, range:[96,112], name:'East & Central Asia', short:'C. Asia', color:'#ffcf62'},
-    {id:8, range:[113,120], name:'Levant & North Africa', short:'Levant', color:'#ff9b55'},
-    {id:9, range:[121,145], name:'West & Central Africa', short:'W. Africa', color:'#ff704f'},
-    {id:10, range:[146,169], name:'Southern & East Africa', short:'E. Africa', color:'#ff4d67'},
-    {id:11, range:[170,181], name:'Gulf & Levant', short:'Gulf', color:'#ff8acb'},
-    {id:12, range:[182,194], name:'Europe II · Finish', short:'Finish', color:'#79a7ff'}
+    {id:7, range:[96,113], name:'East & Central Asia', short:'C. Asia', color:'#ffcf62'},
+    {id:8, range:[114,121], name:'Levant & North Africa', short:'Levant', color:'#ff9b55'},
+    {id:9, range:[122,146], name:'West & Central Africa', short:'W. Africa', color:'#ff704f'},
+    {id:10, range:[147,170], name:'Southern & East Africa', short:'E. Africa', color:'#ff4d67'},
+    {id:11, range:[171,182], name:'Gulf & Levant', short:'Gulf', color:'#ff8acb'},
+    {id:12, range:[183,194], name:'Europe II · Finish', short:'Finish', color:'#79a7ff'}
   ];
 
   const COUNTRY_ALIASES = {

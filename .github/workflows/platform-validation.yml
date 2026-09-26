@@ -140,9 +140,16 @@ jobs:
           node --check scripts/test-platform-rail-validator.mjs
           node --check scripts/trip-draft-contract.mjs
           node --check scripts/test-trip-draft-contract.mjs
+          node --check scripts/flagship-topology-model.mjs
+          node --check scripts/verification-date-model.mjs
           node --check scripts/flagship-readiness-model.mjs
+          node --check scripts/flagship-operations-queue-model.mjs
           node --check scripts/audit-flagship-readiness.mjs
+          node --check scripts/build-flagship-operations-queue.mjs
+          node --check scripts/test-flagship-topology.mjs
+          node --check scripts/test-verification-dates.mjs
           node --check scripts/test-flagship-readiness.mjs
+          node --check scripts/test-flagship-operations-queue.mjs
           node --check scripts/test-trip-tools.mjs
           node --check scripts/test-trip-planning.mjs
           node --check scripts/test-traveller-fit.mjs
@@ -195,8 +202,18 @@ jobs:
         run: node --test scripts/test-platform-story.mjs
       - name: Continuity unit tests
         run: node --test scripts/test-continuity.mjs
+      - name: Flagship topology tests
+        run: node --test scripts/test-flagship-topology.mjs
+      - name: Verification date tests
+        run: node --test scripts/test-verification-dates.mjs
       - name: Flagship readiness audit tests
         run: node --test scripts/test-flagship-readiness.mjs
+      - name: Flagship generated artifacts current
+        run: |
+          node scripts/audit-flagship-readiness.mjs --check
+          node scripts/build-flagship-operations-queue.mjs --check
+      - name: Flagship operations queue tests
+        run: node --test scripts/test-flagship-operations-queue.mjs
 
   release:
     name: Release build and preview

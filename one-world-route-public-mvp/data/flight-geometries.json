@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "method": "Airport coordinates only; no assertion of airline service, schedule or booking availability.",
   "geometries": {
     "29": {
@@ -744,7 +744,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "100": {
+    "101": {
       "airportCodes": [
         "UBN",
         "IKT"
@@ -763,7 +763,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "101": {
+    "102": {
       "airportCodes": [
         "SVO",
         "ALA"
@@ -782,7 +782,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "109": {
+    "110": {
       "airportCodes": [
         "IKA",
         "GYD"
@@ -801,7 +801,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "110": {
+    "111": {
       "airportCodes": [
         "GYD",
         "TBS"
@@ -820,7 +820,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "114": {
+    "115": {
       "airportCodes": [
         "BGW",
         "DAM"
@@ -839,7 +839,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "116": {
+    "117": {
       "airportCodes": [
         "BEY",
         "LCA"
@@ -858,7 +858,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "118": {
+    "119": {
       "airportCodes": [
         "MJI",
         "TUN"
@@ -877,7 +877,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "119": {
+    "120": {
       "airportCodes": [
         "TUN",
         "ALG"
@@ -896,7 +896,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "122": {
+    "123": {
       "airportCodes": [
         "NKC",
         "BKO"
@@ -915,7 +915,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "123": {
+    "124": {
       "airportCodes": [
         "BKO",
         "OUA"
@@ -934,7 +934,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "124": {
+    "125": {
       "airportCodes": [
         "OUA",
         "NIM"
@@ -953,7 +953,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "125": {
+    "126": {
       "airportCodes": [
         "NIM",
         "NDJ"
@@ -972,7 +972,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "127": {
+    "128": {
       "airportCodes": [
         "BGF",
         "DLA"
@@ -991,7 +991,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "128": {
+    "129": {
       "airportCodes": [
         "DLA",
         "LOS"
@@ -1010,7 +1010,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "135": {
+    "136": {
       "airportCodes": [
         "FNA",
         "CKY"
@@ -1029,7 +1029,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "136": {
+    "137": {
       "airportCodes": [
         "CKY",
         "DSS",
@@ -1053,7 +1053,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "140": {
+    "141": {
       "airportCodes": [
         "RAI",
         "CMN",
@@ -1077,7 +1077,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "141": {
+    "142": {
       "airportCodes": [
         "SSG",
         "LBV",
@@ -1101,7 +1101,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "142": {
+    "143": {
       "airportCodes": [
         "TMS",
         "LBV"
@@ -1120,7 +1120,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "143": {
+    "144": {
       "airportCodes": [
         "LBV",
         "BZV"
@@ -1139,7 +1139,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "145": {
+    "146": {
       "airportCodes": [
         "FIH",
         "NBJ"
@@ -1158,7 +1158,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "146": {
+    "147": {
       "airportCodes": [
         "NBJ",
         "WDH"
@@ -1177,7 +1177,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "151": {
+    "152": {
       "airportCodes": [
         "LLW",
         "APL",
@@ -1201,7 +1201,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "154": {
+    "155": {
       "airportCodes": [
         "JNB",
         "MSU"
@@ -1220,7 +1220,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "155": {
+    "156": {
       "airportCodes": [
         "MSU",
         "JNB",
@@ -1244,7 +1244,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "157": {
+    "158": {
       "airportCodes": [
         "BJM",
         "KGL"
@@ -1263,7 +1263,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "159": {
+    "160": {
       "airportCodes": [
         "EBB",
         "JUB"
@@ -1282,7 +1282,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "160": {
+    "161": {
       "airportCodes": [
         "JUB",
         "NBO"
@@ -1301,7 +1301,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "161": {
+    "162": {
       "airportCodes": [
         "NBO",
         "SEZ"
@@ -1320,7 +1320,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "162": {
+    "163": {
       "airportCodes": [
         "SEZ",
         "MRU"
@@ -1339,7 +1339,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "163": {
+    "164": {
       "airportCodes": [
         "MRU",
         "TNR"
@@ -1358,7 +1358,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "164": {
+    "165": {
       "airportCodes": [
         "TNR",
         "MJN",
@@ -1382,7 +1382,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "165": {
+    "166": {
       "airportCodes": [
         "HAH",
         "ADD"
@@ -1401,7 +1401,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "166": {
+    "167": {
       "airportCodes": [
         "ADD",
         "MGQ"
@@ -1420,7 +1420,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "167": {
+    "168": {
       "airportCodes": [
         "MGQ",
         "JIB"
@@ -1439,7 +1439,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "168": {
+    "169": {
       "airportCodes": [
         "JIB",
         "JED",
@@ -1463,7 +1463,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "169": {
+    "170": {
       "airportCodes": [
         "ASM",
         "PZU"
@@ -1482,7 +1482,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "170": {
+    "171": {
       "airportCodes": [
         "PZU",
         "CAI"
@@ -1501,7 +1501,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "171": {
+    "172": {
       "airportCodes": [
         "CAI",
         "RUH"
@@ -1520,7 +1520,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "173": {
+    "174": {
       "airportCodes": [
         "KWI",
         "BAH"
@@ -1539,7 +1539,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "174": {
+    "175": {
       "airportCodes": [
         "BAH",
         "DOH"
@@ -1558,7 +1558,7 @@
       "coordinateVerified": "2026-09-20",
       "serviceVerified": null
     },
-    "178": {
+    "179": {
       "airportCodes": [
         "ADE",
         "AMM"
@@ -1571,25 +1571,6 @@
         [
           35.9931983948,
           31.7226009369
-        ]
-      ],
-      "source": "https://ourairports.com/data/",
-      "coordinateVerified": "2026-09-20",
-      "serviceVerified": null
-    },
-    "194": {
-      "airportCodes": [
-        "MLA",
-        "FRA"
-      ],
-      "coordinates": [
-        [
-          14.491546,
-          35.845932
-        ],
-        [
-          8.55835,
-          50.026706
         ]
       ],
       "source": "https://ourairports.com/data/",
@@ -2494,23 +2475,11 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "97": {
-      "departure": null,
-      "arrival": {
-        "airportCode": "ICN",
-        "coordinates": [
-          126.450996,
-          37.469101
-        ],
-        "source": "https://ourairports.com/data/",
-        "coordinateVerified": "2026-09-20"
-      }
-    },
-    "98": {
+    "99": {
       "departure": null,
       "arrival": null
     },
-    "99": {
+    "100": {
       "departure": null,
       "arrival": {
         "airportCode": "UBN",
@@ -2522,7 +2491,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "100": {
+    "101": {
       "departure": {
         "airportCode": "UBN",
         "coordinates": [
@@ -2542,7 +2511,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "101": {
+    "102": {
       "departure": {
         "airportCode": "SVO",
         "coordinates": [
@@ -2562,7 +2531,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "109": {
+    "110": {
       "departure": {
         "airportCode": "IKA",
         "coordinates": [
@@ -2582,7 +2551,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "110": {
+    "111": {
       "departure": {
         "airportCode": "GYD",
         "coordinates": [
@@ -2602,7 +2571,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "112": {
+    "113": {
       "departure": {
         "airportCode": "EVN",
         "coordinates": [
@@ -2614,7 +2583,7 @@
       },
       "arrival": null
     },
-    "113": {
+    "114": {
       "departure": null,
       "arrival": {
         "airportCode": "BGW",
@@ -2626,7 +2595,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "114": {
+    "115": {
       "departure": {
         "airportCode": "BGW",
         "coordinates": [
@@ -2646,7 +2615,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "116": {
+    "117": {
       "departure": {
         "airportCode": "BEY",
         "coordinates": [
@@ -2666,11 +2635,11 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "117": {
+    "118": {
       "departure": null,
       "arrival": null
     },
-    "118": {
+    "119": {
       "departure": {
         "airportCode": "MJI",
         "coordinates": [
@@ -2690,7 +2659,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "119": {
+    "120": {
       "departure": {
         "airportCode": "TUN",
         "coordinates": [
@@ -2710,11 +2679,11 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "120": {
+    "121": {
       "departure": null,
       "arrival": null
     },
-    "122": {
+    "123": {
       "departure": {
         "airportCode": "NKC",
         "coordinates": [
@@ -2734,7 +2703,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "123": {
+    "124": {
       "departure": {
         "airportCode": "BKO",
         "coordinates": [
@@ -2754,7 +2723,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "124": {
+    "125": {
       "departure": {
         "airportCode": "OUA",
         "coordinates": [
@@ -2774,7 +2743,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "125": {
+    "126": {
       "departure": {
         "airportCode": "NIM",
         "coordinates": [
@@ -2794,7 +2763,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "126": {
+    "127": {
       "departure": {
         "airportCode": "NDJ",
         "coordinates": [
@@ -2814,7 +2783,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "127": {
+    "128": {
       "departure": {
         "airportCode": "BGF",
         "coordinates": [
@@ -2834,7 +2803,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "128": {
+    "129": {
       "departure": {
         "airportCode": "DLA",
         "coordinates": [
@@ -2854,7 +2823,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "135": {
+    "136": {
       "departure": {
         "airportCode": "FNA",
         "coordinates": [
@@ -2874,7 +2843,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "136": {
+    "137": {
       "departure": {
         "airportCode": "CKY",
         "coordinates": [
@@ -2894,7 +2863,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "139": {
+    "140": {
       "departure": null,
       "arrival": {
         "airportCode": "RAI",
@@ -2906,7 +2875,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "140": {
+    "141": {
       "departure": {
         "airportCode": "RAI",
         "coordinates": [
@@ -2926,7 +2895,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "141": {
+    "142": {
       "departure": {
         "airportCode": "SSG",
         "coordinates": [
@@ -2946,7 +2915,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "142": {
+    "143": {
       "departure": {
         "airportCode": "TMS",
         "coordinates": [
@@ -2966,7 +2935,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "143": {
+    "144": {
       "departure": {
         "airportCode": "LBV",
         "coordinates": [
@@ -2986,7 +2955,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "145": {
+    "146": {
       "departure": {
         "airportCode": "FIH",
         "coordinates": [
@@ -3006,7 +2975,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "146": {
+    "147": {
       "departure": {
         "airportCode": "NBJ",
         "coordinates": [
@@ -3026,7 +2995,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "151": {
+    "152": {
       "departure": {
         "airportCode": "LLW",
         "coordinates": [
@@ -3046,7 +3015,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "154": {
+    "155": {
       "departure": {
         "airportCode": "JNB",
         "coordinates": [
@@ -3066,7 +3035,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "155": {
+    "156": {
       "departure": {
         "airportCode": "MSU",
         "coordinates": [
@@ -3086,7 +3055,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "157": {
+    "158": {
       "departure": {
         "airportCode": "BJM",
         "coordinates": [
@@ -3106,7 +3075,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "159": {
+    "160": {
       "departure": {
         "airportCode": "EBB",
         "coordinates": [
@@ -3126,7 +3095,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "160": {
+    "161": {
       "departure": {
         "airportCode": "JUB",
         "coordinates": [
@@ -3146,7 +3115,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "161": {
+    "162": {
       "departure": {
         "airportCode": "NBO",
         "coordinates": [
@@ -3166,7 +3135,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "162": {
+    "163": {
       "departure": {
         "airportCode": "SEZ",
         "coordinates": [
@@ -3186,7 +3155,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "163": {
+    "164": {
       "departure": {
         "airportCode": "MRU",
         "coordinates": [
@@ -3206,7 +3175,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "164": {
+    "165": {
       "departure": {
         "airportCode": "TNR",
         "coordinates": [
@@ -3226,7 +3195,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "165": {
+    "166": {
       "departure": {
         "airportCode": "HAH",
         "coordinates": [
@@ -3246,7 +3215,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "166": {
+    "167": {
       "departure": {
         "airportCode": "ADD",
         "coordinates": [
@@ -3266,7 +3235,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "167": {
+    "168": {
       "departure": {
         "airportCode": "MGQ",
         "coordinates": [
@@ -3286,7 +3255,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "168": {
+    "169": {
       "departure": {
         "airportCode": "JIB",
         "coordinates": [
@@ -3306,7 +3275,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "169": {
+    "170": {
       "departure": {
         "airportCode": "ASM",
         "coordinates": [
@@ -3326,7 +3295,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "170": {
+    "171": {
       "departure": {
         "airportCode": "PZU",
         "coordinates": [
@@ -3346,7 +3315,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "171": {
+    "172": {
       "departure": {
         "airportCode": "CAI",
         "coordinates": [
@@ -3366,11 +3335,11 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "172": {
+    "173": {
       "departure": null,
       "arrival": null
     },
-    "173": {
+    "174": {
       "departure": {
         "airportCode": "KWI",
         "coordinates": [
@@ -3390,7 +3359,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "174": {
+    "175": {
       "departure": {
         "airportCode": "BAH",
         "coordinates": [
@@ -3410,7 +3379,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "175": {
+    "176": {
       "departure": {
         "airportCode": "DOH",
         "coordinates": [
@@ -3422,15 +3391,15 @@
       },
       "arrival": null
     },
-    "176": {
-      "departure": null,
-      "arrival": null
-    },
     "177": {
       "departure": null,
       "arrival": null
     },
     "178": {
+      "departure": null,
+      "arrival": null
+    },
+    "179": {
       "departure": {
         "airportCode": "ADE",
         "coordinates": [
@@ -3450,7 +3419,7 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "181": {
+    "182": {
       "departure": null,
       "arrival": {
         "airportCode": "ATH",
@@ -3462,33 +3431,13 @@
         "coordinateVerified": "2026-09-20"
       }
     },
-    "193": {
+    "194": {
       "departure": null,
       "arrival": {
         "airportCode": "MLA",
         "coordinates": [
           14.491546,
           35.845932
-        ],
-        "source": "https://ourairports.com/data/",
-        "coordinateVerified": "2026-09-20"
-      }
-    },
-    "194": {
-      "departure": {
-        "airportCode": "MLA",
-        "coordinates": [
-          14.491546,
-          35.845932
-        ],
-        "source": "https://ourairports.com/data/",
-        "coordinateVerified": "2026-09-20"
-      },
-      "arrival": {
-        "airportCode": "FRA",
-        "coordinates": [
-          8.55835,
-          50.026706
         ],
         "source": "https://ourairports.com/data/",
         "coordinateVerified": "2026-09-20"
@@ -3567,77 +3516,72 @@
       "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
     },
     {
-      "legId": 97,
-      "corridor": "Peking/Shanghai → Seoul (ICN)",
-      "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
-    },
-    {
-      "legId": 98,
+      "legId": 99,
       "corridor": "Busan → Fukuoka; alternativ kurzer Flug",
       "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
     },
     {
-      "legId": 99,
+      "legId": 100,
       "corridor": "Tokyo/Narita → Ulaanbaatar (UBN)",
       "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
     },
     {
-      "legId": 112,
+      "legId": 113,
       "corridor": "Jerewan (EVN) → Istanbul (IST/SAW)",
       "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
     },
     {
-      "legId": 113,
+      "legId": 114,
       "corridor": "Istanbul (IST/SAW) → Bagdad (BGW), nonstop",
       "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
     },
     {
-      "legId": 117,
+      "legId": 118,
       "corridor": "Larnaka → Istanbul/Tunis (Transit) → Tripolis/Misrata",
       "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
     },
     {
-      "legId": 120,
+      "legId": 121,
       "corridor": "Algier → Tunis/Europa (Transit) → Casablanca",
       "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
     },
     {
-      "legId": 126,
+      "legId": 127,
       "corridor": "N'Djamena (NDJ) → Douala (DLA) oder Yaoundé (NSI) → Bangui (BGF)",
       "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
     },
     {
-      "legId": 139,
+      "legId": 140,
       "corridor": "Banjul → Dakar (Transit Senegal) → Praia (RAI)",
       "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
     },
     {
-      "legId": 172,
+      "legId": 173,
       "corridor": "Riad/Dammam → Kuwait City",
       "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
     },
     {
-      "legId": 175,
+      "legId": 176,
       "corridor": "Doha (DOH) → Dubai/Abu Dhabi",
       "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
     },
     {
-      "legId": 176,
+      "legId": 177,
       "corridor": "Dubai/Abu Dhabi → Muscat",
       "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
     },
     {
-      "legId": 177,
+      "legId": 178,
       "corridor": "Muscat → Aden/Seiyun/Mukalla, ggf. via Jeddah/Cairo",
       "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
     },
     {
-      "legId": 181,
+      "legId": 182,
       "corridor": "Westjordanland → Allenby/King Hussein Bridge → Amman (Transit) → Athen (ATH)",
       "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
     },
     {
-      "legId": 193,
+      "legId": 194,
       "corridor": "Rom (FCO/CIA) → Malta (MLA)",
       "reason": "Select an explicit airport at every endpoint and transit stop; alternatives are not a booked routing."
     }

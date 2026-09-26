@@ -1,0 +1,5406 @@
+{
+  "schemaVersion": 1,
+  "tripId": "world-195",
+  "dataAsOf": "2026-09-21",
+  "routeGeneratedAt": "2026-09-25",
+  "departureReady": false,
+  "summary": {
+    "total": 272,
+    "p0": 35,
+    "p1": 70,
+    "p2": 167,
+    "blocking": 150,
+    "byCategory": {
+      "international-leg": 179,
+      "operational-movement": 93
+    }
+  },
+  "tasks": [
+    {
+      "id": "leg-13",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 13,
+      "movementId": null,
+      "title": "Polen → Ukraine",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [],
+      "geometry": "not-flight",
+      "sourceCount": 2,
+      "lastVerified": "2026-09-17",
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-14",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 14,
+      "movementId": null,
+      "title": "Ukraine → Moldau",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [],
+      "geometry": "not-flight",
+      "sourceCount": 2,
+      "lastVerified": "2026-09-17",
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-54",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 54,
+      "movementId": null,
+      "title": "Venezuela → Brasilien",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-89",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 89,
+      "movementId": null,
+      "title": "Laos → Myanmar",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility",
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "partial",
+      "sourceCount": 2,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-90",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 90,
+      "movementId": null,
+      "title": "Myanmar → Bangladesch",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 2,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-97",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 97,
+      "movementId": null,
+      "title": "China → Nordkorea",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified",
+        "source",
+        "transportBudgetEur"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-98",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 98,
+      "movementId": null,
+      "title": "Nordkorea → Südkorea",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified",
+        "source",
+        "transportBudgetEur"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-101",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 101,
+      "movementId": null,
+      "title": "Mongolei → Russland",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-102",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 102,
+      "movementId": null,
+      "title": "Russland → Kasachstan",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-107",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 107,
+      "movementId": null,
+      "title": "Turkmenistan → Afghanistan",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-108",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 108,
+      "movementId": null,
+      "title": "Afghanistan → Pakistan",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-109",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 109,
+      "movementId": null,
+      "title": "Pakistan → Iran",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-114",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 114,
+      "movementId": null,
+      "title": "Türkei → Irak",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility",
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "partial",
+      "sourceCount": 2,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-115",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 115,
+      "movementId": null,
+      "title": "Irak → Syrien",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-116",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 116,
+      "movementId": null,
+      "title": "Syrien → Libanon",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-118",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 118,
+      "movementId": null,
+      "title": "Zypern → Libyen",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility",
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-119",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 119,
+      "movementId": null,
+      "title": "Libyen → Tunesien",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-122",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 122,
+      "movementId": null,
+      "title": "Marokko → Mauretanien",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-123",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 123,
+      "movementId": null,
+      "title": "Mauretanien → Mali",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-124",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 124,
+      "movementId": null,
+      "title": "Mali → Burkina Faso",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-125",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 125,
+      "movementId": null,
+      "title": "Burkina Faso → Niger",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-126",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 126,
+      "movementId": null,
+      "title": "Niger → Tschad",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-127",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 127,
+      "movementId": null,
+      "title": "Tschad → Zentralafrikanische Republik",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility",
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "partial",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-128",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 128,
+      "movementId": null,
+      "title": "Zentralafrikanische Republik → Kamerun",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-160",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 160,
+      "movementId": null,
+      "title": "Uganda → Südsudan",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-161",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 161,
+      "movementId": null,
+      "title": "Südsudan → Kenia",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-167",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 167,
+      "movementId": null,
+      "title": "Äthiopien → Somalia",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-168",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 168,
+      "movementId": null,
+      "title": "Somalia → Dschibuti",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-170",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 170,
+      "movementId": null,
+      "title": "Eritrea → Sudan",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-171",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 171,
+      "movementId": null,
+      "title": "Sudan → Ägypten",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-178",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 178,
+      "movementId": null,
+      "title": "Oman → Jemen",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility",
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-179",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 179,
+      "movementId": null,
+      "title": "Jemen → Jordanien",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-180",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 180,
+      "movementId": null,
+      "title": "Jordanien → Israel",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-181",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 181,
+      "movementId": null,
+      "title": "Israel → Staat Palästina",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-182",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 182,
+      "movementId": null,
+      "title": "Staat Palästina → Griechenland",
+      "status": "blocked",
+      "blockers": [
+        "critical-feasibility",
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "partial",
+      "sourceCount": 2,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-26-27",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 26,
+      "movementId": "transfer-26-27",
+      "title": "Lissabon (Direktbus) → Lissabon (LIS)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates"
+      ],
+      "geometry": "missing",
+      "sourceCount": 2,
+      "lastVerified": "2026-09-21",
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-27",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 27,
+      "movementId": null,
+      "title": "Portugal → Vereinigtes Königreich",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [],
+      "geometry": "partial",
+      "sourceCount": 2,
+      "lastVerified": "2026-09-17",
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-27-28",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 27,
+      "movementId": "transfer-27-28",
+      "title": "London (LON) → Holyhead",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-29-30",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 29,
+      "movementId": "transfer-29-30",
+      "title": "Keflavík (KEF) → Keflavík (KEF)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-30",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 30,
+      "movementId": null,
+      "title": "Island → Kanada",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [],
+      "geometry": "partial",
+      "sourceCount": 2,
+      "lastVerified": "2026-09-17",
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-30-31",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 30,
+      "movementId": "transfer-30-31",
+      "title": "Toronto/Montreal → Toronto",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-31-32",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 31,
+      "movementId": "transfer-31-32",
+      "title": "New York/US-Hub → New York/US-Hub",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-32",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 32,
+      "movementId": null,
+      "title": "USA → Mexiko",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "missing",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-32-33",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 32,
+      "movementId": "transfer-32-33",
+      "title": "Mexiko-Stadt/Cancún → Cancún/Chetumal",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-57-58",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 57,
+      "movementId": "transfer-57-58",
+      "title": "Bogotá (BOG) → Bogotá/Quito-Korridor",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-58",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 58,
+      "movementId": null,
+      "title": "Kolumbien → Ecuador",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "missing",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-58-59",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 58,
+      "movementId": "transfer-58-59",
+      "title": "Ecuador → Quito/Guayaquil",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-59",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 59,
+      "movementId": null,
+      "title": "Ecuador → Peru",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "missing",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-59-60",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 59,
+      "movementId": "transfer-59-60",
+      "title": "Peru → Puno",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-60-61",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 60,
+      "movementId": "transfer-60-61",
+      "title": "La Paz → Santa Cruz de la Sierra",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-61",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 61,
+      "movementId": null,
+      "title": "Bolivien → Paraguay",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "missing",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-61-62",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 61,
+      "movementId": "transfer-61-62",
+      "title": "Asunción → Asunción",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-62",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 62,
+      "movementId": null,
+      "title": "Paraguay → Argentinien",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "missing",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-62-63",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 62,
+      "movementId": "transfer-62-63",
+      "title": "Buenos Aires → Buenos Aires",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-69-70",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 69,
+      "movementId": "transfer-69-70",
+      "title": "Funafuti (FUN) → Funafuti (FUN)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-70",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 70,
+      "movementId": null,
+      "title": "Tuvalu → Vanuatu",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [],
+      "geometry": "partial",
+      "sourceCount": 2,
+      "lastVerified": "2026-09-17",
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-70-71",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 70,
+      "movementId": "transfer-70-71",
+      "title": "Port Vila (VLI) → Port Vila (VLI)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-76-77",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 76,
+      "movementId": "transfer-76-77",
+      "title": "Majuro (MAJ), Freitag → Majuro (MAJ)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-77",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 77,
+      "movementId": null,
+      "title": "Marshallinseln → Mikronesien",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [],
+      "geometry": "partial",
+      "sourceCount": 1,
+      "lastVerified": "2026-09-17",
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-77-78",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 77,
+      "movementId": "transfer-77-78",
+      "title": "Pohnpei (PNI), bevorzugt United sonntags; alternativ Nauru-Airlines-Freitag → A: Pohnpei (PNI)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-78",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 78,
+      "movementId": null,
+      "title": "Mikronesien → Palau",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": "2026-09-17",
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-78-79",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 78,
+      "movementId": "transfer-78-79",
+      "title": "Koror (ROR) → Koror (ROR)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-83-84",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 83,
+      "movementId": "transfer-83-84",
+      "title": "Batam/Bintan → Denpasar/Jakarta",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-84",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 84,
+      "movementId": null,
+      "title": "Indonesien → Timor-Leste",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "partial",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-84-85",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 84,
+      "movementId": "transfer-84-85",
+      "title": "Dili (DIL) → Dili",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-85",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 85,
+      "movementId": null,
+      "title": "Timor-Leste → Thailand",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "missing",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-85-86",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 85,
+      "movementId": "transfer-85-86",
+      "title": "Bangkok → Bangkok (BKK/DMK)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-86",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 86,
+      "movementId": null,
+      "title": "Thailand → Kambodscha",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "partial",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-86-87",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 86,
+      "movementId": "transfer-86-87",
+      "title": "Phnom Penh (PNH) → Phnom Penh",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-88-89",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 88,
+      "movementId": "transfer-88-89",
+      "title": "Vientiane (VTE), nonstop → Vientiane (VTE)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-89-90",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 89,
+      "movementId": "transfer-89-90",
+      "title": "Yangon (RGN) → Yangon (RGN)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-96-97",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 96,
+      "movementId": "transfer-96-97",
+      "title": "Shanghai (PVG), nonstop → China (Abfahrtspunkt offen)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 2,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-97-98",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 97,
+      "movementId": "transfer-97-98",
+      "title": "Nordkorea (Ankunftspunkt offen) → Nordkorea (Abfahrtspunkt offen)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-98-99",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 98,
+      "movementId": "transfer-98-99",
+      "title": "Seoul (ICN) → Busan",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-99",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 99,
+      "movementId": null,
+      "title": "Südkorea → Japan",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "missing",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-99-100",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 99,
+      "movementId": "transfer-99-100",
+      "title": "Fukuoka; alternativ kurzer Flug → Tokyo/Narita",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-100",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 100,
+      "movementId": null,
+      "title": "Japan → Mongolei",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "partial",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-100-101",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 100,
+      "movementId": "transfer-100-101",
+      "title": "Ulaanbaatar (UBN) → Ulaanbaatar (UBN)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-112-113",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 112,
+      "movementId": "transfer-112-113",
+      "title": "Jerewan → Jerewan (EVN)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-113",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 113,
+      "movementId": null,
+      "title": "Armenien → Türkei",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "partial",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-113-114",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 113,
+      "movementId": "transfer-113-114",
+      "title": "Istanbul (IST/SAW) → Istanbul (IST/SAW)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-114-115",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 114,
+      "movementId": "transfer-114-115",
+      "title": "Bagdad (BGW), nonstop → Bagdad (BGW)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-117-118",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 117,
+      "movementId": "transfer-117-118",
+      "title": "Larnaka (LCA) → Larnaka",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-118-119",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 118,
+      "movementId": "transfer-118-119",
+      "title": "Tripolis/Misrata → Tripoli-Mitiga (MJI)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-120-121",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 120,
+      "movementId": "transfer-120-121",
+      "title": "Algier (ALG), nonstop → Algier",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-121",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 121,
+      "movementId": null,
+      "title": "Algerien → Marokko",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-121-122",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 121,
+      "movementId": "transfer-121-122",
+      "title": "Casablanca → Dakhla",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-126-127",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 126,
+      "movementId": "transfer-126-127",
+      "title": "N'Djamena (NDJ), nonstop → N'Djamena (NDJ)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-127-128",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 127,
+      "movementId": "transfer-127-128",
+      "title": "Bangui (BGF) → Bangui (BGF)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-139-140",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 139,
+      "movementId": "transfer-139-140",
+      "title": "Banjul → Banjul",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-140",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 140,
+      "movementId": null,
+      "title": "Gambia → Cabo Verde",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "partial",
+      "sourceCount": 2,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-140-141",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 140,
+      "movementId": "transfer-140-141",
+      "title": "Praia (RAI) → Praia (RAI)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-172-173",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 172,
+      "movementId": "transfer-172-173",
+      "title": "Riad (RUH) → Riad/Dammam",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-173",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 173,
+      "movementId": null,
+      "title": "Saudi-Arabien → Kuwait",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "missing",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-173-174",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 173,
+      "movementId": "transfer-173-174",
+      "title": "Kuwait City → Kuwait (KWI)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-175-176",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 175,
+      "movementId": "transfer-175-176",
+      "title": "Doha (DOH) → Doha (DOH)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-176",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 176,
+      "movementId": null,
+      "title": "Katar → Vereinigte Arabische Emirate",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "partial",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-176-177",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 176,
+      "movementId": "transfer-176-177",
+      "title": "Dubai/Abu Dhabi → Dubai/Abu Dhabi",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-177",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 177,
+      "movementId": null,
+      "title": "Vereinigte Arabische Emirate → Oman",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "missing",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-177-178",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 177,
+      "movementId": "transfer-177-178",
+      "title": "Muscat → Muscat",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-178-179",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 178,
+      "movementId": "transfer-178-179",
+      "title": "Aden/Seiyun/Mukalla, ggf. via Jeddah/Cairo → Aden (ADE)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-181-182",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 181,
+      "movementId": "transfer-181-182",
+      "title": "Westjordanland (z. B. Bethlehem/Ramallah) → Westjordanland",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-182-183",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 182,
+      "movementId": "transfer-182-183",
+      "title": "Athen (ATH) → Thessaloniki",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-193-194",
+      "priority": "P1",
+      "category": "operational-movement",
+      "legId": 193,
+      "movementId": "transfer-193-194",
+      "title": "Rom; zu Fuß in Vatikanstadt → Rom (FCO/CIA)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "coordinates",
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "missing",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-194",
+      "priority": "P1",
+      "category": "international-leg",
+      "legId": 194,
+      "movementId": null,
+      "title": "Vatikanstadt → Malta",
+      "status": "blocked",
+      "blockers": [
+        "missing-flight-geometry"
+      ],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "partial",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-1",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 1,
+      "movementId": null,
+      "title": "Deutschland → Luxemburg",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": "2026-09-17",
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-2",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 2,
+      "movementId": null,
+      "title": "Luxemburg → Belgien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": "2026-09-17",
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-3",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 3,
+      "movementId": null,
+      "title": "Belgien → Niederlande",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": "2026-09-17",
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-4",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 4,
+      "movementId": null,
+      "title": "Niederlande → Dänemark",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": "2026-09-17",
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-5",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 5,
+      "movementId": null,
+      "title": "Dänemark → Norwegen",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": "2026-09-17",
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-6",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 6,
+      "movementId": null,
+      "title": "Norwegen → Schweden",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": "2026-09-17",
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-7",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 7,
+      "movementId": null,
+      "title": "Schweden → Finnland",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": "2026-09-17",
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-8",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 8,
+      "movementId": null,
+      "title": "Finnland → Estland",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": "2026-09-17",
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-9",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 9,
+      "movementId": null,
+      "title": "Estland → Lettland",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-10",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 10,
+      "movementId": null,
+      "title": "Lettland → Litauen",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-11",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 11,
+      "movementId": null,
+      "title": "Litauen → Belarus",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-12",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 12,
+      "movementId": null,
+      "title": "Belarus → Polen",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-15",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 15,
+      "movementId": null,
+      "title": "Moldau → Rumänien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": "2026-09-17",
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-16",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 16,
+      "movementId": null,
+      "title": "Rumänien → Ungarn",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": "2026-09-17",
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-17",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 17,
+      "movementId": null,
+      "title": "Ungarn → Slowakei",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-18",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 18,
+      "movementId": null,
+      "title": "Slowakei → Tschechien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-19",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 19,
+      "movementId": null,
+      "title": "Tschechien → Österreich",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-20",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 20,
+      "movementId": null,
+      "title": "Österreich → Liechtenstein",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-21",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 21,
+      "movementId": null,
+      "title": "Liechtenstein → Schweiz",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-21-22",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 21,
+      "movementId": "transfer-21-22",
+      "title": "Buchs SG oder Sargans (LIEmobil) → Genève-Cornavin",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-22",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 22,
+      "movementId": null,
+      "title": "Schweiz → Frankreich",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-22-23",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 22,
+      "movementId": "transfer-22-23",
+      "title": "Lyon Part-Dieu → Nice-Ville",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [],
+      "geometry": "known",
+      "sourceCount": 1,
+      "lastVerified": "2026-09-20",
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-23",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 23,
+      "movementId": null,
+      "title": "Frankreich → Monaco",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-24",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 24,
+      "movementId": null,
+      "title": "Monaco → Andorra",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-25",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 25,
+      "movementId": null,
+      "title": "Andorra → Spanien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-25-26",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 25,
+      "movementId": "transfer-25-26",
+      "title": "Barcelona → Madrid",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-26",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 26,
+      "movementId": null,
+      "title": "Spanien → Portugal",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-28",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 28,
+      "movementId": null,
+      "title": "Vereinigtes Königreich → Irland",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-28-29",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 28,
+      "movementId": "transfer-28-29",
+      "title": "Dublin → Dublin (DUB)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "estimatedCost",
+        "bookingRequired"
+      ],
+      "geometry": "known",
+      "sourceCount": 2,
+      "lastVerified": "2026-09-21",
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-29",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 29,
+      "movementId": null,
+      "title": "Irland → Island",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "full",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-33",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 33,
+      "movementId": null,
+      "title": "Mexiko → Belize",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-34",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 34,
+      "movementId": null,
+      "title": "Belize → Guatemala",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-34-35",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 34,
+      "movementId": "transfer-34-35",
+      "title": "Flores → Guatemala-Stadt",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-35",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 35,
+      "movementId": null,
+      "title": "Guatemala → El Salvador",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-36",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 36,
+      "movementId": null,
+      "title": "El Salvador → Honduras",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-37",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 37,
+      "movementId": null,
+      "title": "Honduras → Nicaragua",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-38",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 38,
+      "movementId": null,
+      "title": "Nicaragua → Costa Rica",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-39",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 39,
+      "movementId": null,
+      "title": "Costa Rica → Panama",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-39-40",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 39,
+      "movementId": "transfer-39-40",
+      "title": "Panama-Stadt → Panama-Stadt (PTY)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-40",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 40,
+      "movementId": null,
+      "title": "Panama → Kuba",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "full",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-41",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 41,
+      "movementId": null,
+      "title": "Kuba → Bahamas",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-46",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 46,
+      "movementId": null,
+      "title": "St. Kitts und Nevis → Antigua und Barbuda",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-47",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 47,
+      "movementId": null,
+      "title": "Antigua und Barbuda → Dominica",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-48",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 48,
+      "movementId": null,
+      "title": "Dominica → St. Lucia",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-49",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 49,
+      "movementId": null,
+      "title": "St. Lucia → Barbados",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-50",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 50,
+      "movementId": null,
+      "title": "Barbados → St. Vincent und die Grenadinen",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-51",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 51,
+      "movementId": null,
+      "title": "St. Vincent und die Grenadinen → Grenada",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-52",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 52,
+      "movementId": null,
+      "title": "Grenada → Trinidad und Tobago",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-54-55",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 54,
+      "movementId": "transfer-54-55",
+      "title": "São Paulo (GRU), nonstop → Boa Vista",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-55",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 55,
+      "movementId": null,
+      "title": "Brasilien → Guyana",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-55-56",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 55,
+      "movementId": "transfer-55-56",
+      "title": "Georgetown → Moleson Creek",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-56",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 56,
+      "movementId": null,
+      "title": "Guyana → Suriname",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-56-57",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 56,
+      "movementId": "transfer-56-57",
+      "title": "South Drain (MV Canawaima) → Paramaribo (PBM)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-57",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 57,
+      "movementId": null,
+      "title": "Suriname → Kolumbien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-60",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 60,
+      "movementId": null,
+      "title": "Peru → Bolivien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-63",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 63,
+      "movementId": null,
+      "title": "Argentinien → Uruguay",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-63-64",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 63,
+      "movementId": "transfer-63-64",
+      "title": "Colonia/Montevideo → Montevideo (MVD)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-64",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 64,
+      "movementId": null,
+      "title": "Uruguay → Chile",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-72",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 72,
+      "movementId": null,
+      "title": "Salomonen → Papua-Neuguinea",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-73",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 73,
+      "movementId": null,
+      "title": "Papua-Neuguinea → Australien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-79",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 79,
+      "movementId": null,
+      "title": "Palau → Philippinen",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-80",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 80,
+      "movementId": null,
+      "title": "Philippinen → Brunei",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "full",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-80-81",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 80,
+      "movementId": "transfer-80-81",
+      "title": "Bandar Seri Begawan (BWN) → Bandar Seri Begawan",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-81",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 81,
+      "movementId": null,
+      "title": "Brunei → Malaysia",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-81-82",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 81,
+      "movementId": "transfer-81-82",
+      "title": "Miri/Sarawak → Johor Bahru",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-82",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 82,
+      "movementId": null,
+      "title": "Malaysia → Singapur",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-83",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 83,
+      "movementId": null,
+      "title": "Singapur → Indonesien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-87",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 87,
+      "movementId": null,
+      "title": "Kambodscha → Vietnam",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-87-88",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 87,
+      "movementId": "transfer-87-88",
+      "title": "Ho-Chi-Minh-Stadt → Hanoi (HAN)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-88",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 88,
+      "movementId": null,
+      "title": "Vietnam → Laos",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-90-91",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 90,
+      "movementId": "transfer-90-91",
+      "title": "Dhaka (DAC) → Dhaka",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-91",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 91,
+      "movementId": null,
+      "title": "Bangladesch → Indien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-91-92",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 91,
+      "movementId": "transfer-91-92",
+      "title": "Kolkata → Kolkata (CCU)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-92",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 92,
+      "movementId": null,
+      "title": "Indien → Nepal",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-93",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 93,
+      "movementId": null,
+      "title": "Nepal → Bhutan",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 2,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-94",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 94,
+      "movementId": null,
+      "title": "Bhutan → Sri Lanka",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 2,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-95",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 95,
+      "movementId": null,
+      "title": "Sri Lanka → Malediven",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-96",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 96,
+      "movementId": null,
+      "title": "Malediven → China",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-101-102",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 101,
+      "movementId": "transfer-101-102",
+      "title": "Irkutsk (IKT), nonstop; anschließend Russland-Inlandsreise nach Bedarf → Moskau-Scheremetjewo (SVO)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-102-103",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 102,
+      "movementId": "transfer-102-103",
+      "title": "Almaty (ALA), nonstop → Almaty",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-103",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 103,
+      "movementId": null,
+      "title": "Kasachstan → Kirgisistan",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-104",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 104,
+      "movementId": null,
+      "title": "Kirgisistan → Tadschikistan",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-105",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 105,
+      "movementId": null,
+      "title": "Tadschikistan → Usbekistan",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-105-106",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 105,
+      "movementId": "transfer-105-106",
+      "title": "Taschkent → Buchara",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-106",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 106,
+      "movementId": null,
+      "title": "Usbekistan → Turkmenistan",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-106-107",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 106,
+      "movementId": "transfer-106-107",
+      "title": "Türkmenabat → Serhetabat",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-107-108",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 107,
+      "movementId": "transfer-107-108",
+      "title": "Torghundi, nur mit vorheriger Genehmigung → Kabul",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-108-109",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 108,
+      "movementId": "transfer-108-109",
+      "title": "Peshawar → Quetta",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-109-110",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 109,
+      "movementId": "transfer-109-110",
+      "title": "Zahedan → Teheran (IKA)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-110",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 110,
+      "movementId": null,
+      "title": "Iran → Aserbaidschan",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-111",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 111,
+      "movementId": null,
+      "title": "Aserbaidschan → Georgien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-111-112",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 111,
+      "movementId": "transfer-111-112",
+      "title": "Tiflis (TBS) → Tiflis",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-112",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 112,
+      "movementId": null,
+      "title": "Georgien → Armenien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-115-116",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 115,
+      "movementId": "transfer-115-116",
+      "title": "Damaskus (DAM), nonstop → Damaskus",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-116-117",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 116,
+      "movementId": "transfer-116-117",
+      "title": "Beirut → Beirut (BEY)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-117",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 117,
+      "movementId": null,
+      "title": "Libanon → Zypern",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "full",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-120",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 120,
+      "movementId": null,
+      "title": "Tunesien → Algerien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-122-123",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 122,
+      "movementId": "transfer-122-123",
+      "title": "Nouakchott → Nouakchott (NKC)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-129",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 129,
+      "movementId": null,
+      "title": "Kamerun → Nigeria",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-129-130",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 129,
+      "movementId": "transfer-129-130",
+      "title": "Lagos (LOS), nonstop → Lagos",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-130",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 130,
+      "movementId": null,
+      "title": "Nigeria → Benin",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-131",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 131,
+      "movementId": null,
+      "title": "Benin → Togo",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-132",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 132,
+      "movementId": null,
+      "title": "Togo → Ghana",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-133",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 133,
+      "movementId": null,
+      "title": "Ghana → Côte d’Ivoire",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-134",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 134,
+      "movementId": null,
+      "title": "Côte d’Ivoire → Liberia",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-135",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 135,
+      "movementId": null,
+      "title": "Liberia → Sierra Leone",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-135-136",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 135,
+      "movementId": "transfer-135-136",
+      "title": "Freetown → Freetown (FNA)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-136",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 136,
+      "movementId": null,
+      "title": "Sierra Leone → Guinea",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-137",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 137,
+      "movementId": null,
+      "title": "Guinea → Guinea-Bissau",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-137-138",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 137,
+      "movementId": "transfer-137-138",
+      "title": "Bissau (OXB) → Bissau",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-138",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 138,
+      "movementId": null,
+      "title": "Guinea-Bissau → Senegal",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-138-139",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 138,
+      "movementId": "transfer-138-139",
+      "title": "Senegal → Dakar",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-139",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 139,
+      "movementId": null,
+      "title": "Senegal → Gambia",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-141",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 141,
+      "movementId": null,
+      "title": "Cabo Verde → Äquatorialguinea",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-142",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 142,
+      "movementId": null,
+      "title": "Äquatorialguinea → São Tomé und Príncipe",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-143",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 143,
+      "movementId": null,
+      "title": "São Tomé und Príncipe → Gabun",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-144",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 144,
+      "movementId": null,
+      "title": "Gabun → Republik Kongo",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-144-145",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 144,
+      "movementId": "transfer-144-145",
+      "title": "Brazzaville (BZV), nonstop → Beach de Brazzaville",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-145",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 145,
+      "movementId": null,
+      "title": "Republik Kongo → Demokratische Republik Kongo",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-145-146",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 145,
+      "movementId": "transfer-145-146",
+      "title": "Beach Ngobila, Kinshasa → Kinshasa (FIH)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-146",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 146,
+      "movementId": null,
+      "title": "Demokratische Republik Kongo → Angola",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-147",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 147,
+      "movementId": null,
+      "title": "Angola → Namibia",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-147-148",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 147,
+      "movementId": "transfer-147-148",
+      "title": "Windhoek (WDH), nonstop → Windhoek",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-148",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 148,
+      "movementId": null,
+      "title": "Namibia → Botswana",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-149",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 149,
+      "movementId": null,
+      "title": "Botswana → Simbabwe",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-150",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 150,
+      "movementId": null,
+      "title": "Simbabwe → Sambia",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-150-151",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 150,
+      "movementId": "transfer-150-151",
+      "title": "Livingstone → Lusaka",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-151",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 151,
+      "movementId": null,
+      "title": "Sambia → Malawi",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-151-152",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 151,
+      "movementId": "transfer-151-152",
+      "title": "Lilongwe → Lilongwe (LLW)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-152",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 152,
+      "movementId": null,
+      "title": "Malawi → Mosambik",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-152-153",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 152,
+      "movementId": "transfer-152-153",
+      "title": "Maputo (MPM) → Maputo",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-153",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 153,
+      "movementId": null,
+      "title": "Mosambik → Eswatini",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-154",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 154,
+      "movementId": null,
+      "title": "Eswatini → Südafrika",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-154-155",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 154,
+      "movementId": "transfer-154-155",
+      "title": "Johannesburg → Johannesburg (JNB)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-155",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 155,
+      "movementId": null,
+      "title": "Südafrika → Lesotho",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-156",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 156,
+      "movementId": null,
+      "title": "Lesotho → Tansania",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "full",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-156-157",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 156,
+      "movementId": "transfer-156-157",
+      "title": "Dar es Salaam (DAR) → Dar es Salaam",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-157",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 157,
+      "movementId": null,
+      "title": "Tansania → Burundi",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-157-158",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 157,
+      "movementId": "transfer-157-158",
+      "title": "Bujumbura → Bujumbura (BJM)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-158",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 158,
+      "movementId": null,
+      "title": "Burundi → Ruanda",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 2,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-158-159",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 158,
+      "movementId": "transfer-158-159",
+      "title": "Kigali (KGL), nonstop → Kigali",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-159",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 159,
+      "movementId": null,
+      "title": "Ruanda → Uganda",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-159-160",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 159,
+      "movementId": "transfer-159-160",
+      "title": "Kampala → Entebbe (EBB)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-162",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 162,
+      "movementId": null,
+      "title": "Kenia → Seychellen",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-163",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 163,
+      "movementId": null,
+      "title": "Seychellen → Mauritius",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-164",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 164,
+      "movementId": null,
+      "title": "Mauritius → Madagaskar",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-165",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 165,
+      "movementId": null,
+      "title": "Madagaskar → Komoren",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-166",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 166,
+      "movementId": null,
+      "title": "Komoren → Äthiopien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-169",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 169,
+      "movementId": null,
+      "title": "Dschibuti → Eritrea",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-172",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 172,
+      "movementId": null,
+      "title": "Ägypten → Saudi-Arabien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-174",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 174,
+      "movementId": null,
+      "title": "Kuwait → Bahrain",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "full",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-175",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 175,
+      "movementId": null,
+      "title": "Bahrain → Katar",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "full",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-179-180",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 179,
+      "movementId": "transfer-179-180",
+      "title": "Amman (AMM) → Amman",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-183",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 183,
+      "movementId": null,
+      "title": "Griechenland → Bulgarien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-184",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 184,
+      "movementId": null,
+      "title": "Bulgarien → Nordmazedonien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-185",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 185,
+      "movementId": null,
+      "title": "Nordmazedonien → Albanien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-185-186",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 185,
+      "movementId": "transfer-185-186",
+      "title": "Tirana → Shkodër",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-186",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 186,
+      "movementId": null,
+      "title": "Albanien → Montenegro",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-187",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 187,
+      "movementId": null,
+      "title": "Montenegro → Bosnien und Herzegowina",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-188",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 188,
+      "movementId": null,
+      "title": "Bosnien und Herzegowina → Serbien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-189",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 189,
+      "movementId": null,
+      "title": "Serbien → Kroatien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-190",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 190,
+      "movementId": null,
+      "title": "Kroatien → Slowenien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-191",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 191,
+      "movementId": null,
+      "title": "Slowenien → Italien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-191-192",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 191,
+      "movementId": "transfer-191-192",
+      "title": "Venedig/Bologna → Rimini",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-192",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 192,
+      "movementId": null,
+      "title": "Italien → San Marino",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-192-193",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 192,
+      "movementId": "transfer-192-193",
+      "title": "San Marino → Rimini",
+      "status": "needs-review",
+      "blockers": [
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-193",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 193,
+      "movementId": null,
+      "title": "San Marino → Vatikanstadt",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": false
+    }
+  ]
+}

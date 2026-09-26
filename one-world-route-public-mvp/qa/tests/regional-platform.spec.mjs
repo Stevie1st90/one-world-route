@@ -132,6 +132,21 @@ test('flagship shell and route invariants work',async({page,isMobile},testInfo)=
   await page.locator('#platformRouteModal .platform-x').click();
   if(isMobile)await expectMobilePanelsClosed(page);
 
+  if(isMobile){
+    await page.locator('#mobileFilters').click();
+    await expect(page.locator('#leftPanel')).toHaveClass(/mobile-open/);
+  }
+  await page.locator('.mode-switch button[data-mode="operations"]').click();
+  await expect(page.locator('#opsIntelligence')).toHaveClass(/is-visible/);
+  await expect(page.locator('#opsIntelligence')).toContainText('195/195');
+  await expect(page.locator('#opsIntelligence')).toContainText('DEPARTURE BLOCKED');
+  await expect(page.locator('#opsIntelligence')).toContainText('POST-TRIP RETURN');
+  await captureViewport(page,testInfo,'flagship-operations-'+testInfo.project.name+'.png');
+  if(isMobile){
+    await page.locator('#closeFilters').click();
+    await expect(page.locator('#leftPanel')).not.toHaveClass(/mobile-open/);
+  }
+
   await page.locator('#platformTravellerBtn').click();
   await expect(page.locator('#platformTravellerModal')).toBeVisible();
   await expect(page.locator('#platformTravellerForm [name="passportNumber"]')).toHaveCount(0);

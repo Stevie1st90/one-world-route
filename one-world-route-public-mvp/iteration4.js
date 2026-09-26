@@ -4,8 +4,8 @@
   const PHASES = [
     {id:1, range:[1,29]}, {id:2, range:[30,39]}, {id:3, range:[40,52]},
     {id:4, range:[53,64]}, {id:5, range:[65,78]}, {id:6, range:[79,95]},
-    {id:7, range:[96,112]}, {id:8, range:[113,120]}, {id:9, range:[121,145]},
-    {id:10, range:[146,169]}, {id:11, range:[170,181]}, {id:12, range:[182,194]}
+    {id:7, range:[96,113]}, {id:8, range:[114,121]}, {id:9, range:[122,146]},
+    {id:10, range:[147,170]}, {id:11, range:[171,182]}, {id:12, range:[183,194]}
   ];
 
   const runtime = {

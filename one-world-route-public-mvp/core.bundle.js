@@ -1332,7 +1332,7 @@
     {id:9, range:[121,145], title:'West & Central Africa', note:'Overland and air corridors across West Africa.'},
     {id:10, range:[146,169], title:'Southern & East Africa', note:'The route turns south, then back north-east.'},
     {id:11, range:[170,181], title:'Gulf & Levant', note:'The final Middle East sequence.'},
-    {id:12, range:[182,194], title:'Europe II · Finish', note:'The closing run back to Germany.'}
+    {id:12, range:[182,194], title:'Europe II · Finish', note:'The closing run completes the official 195-country route in Malta.'}
   ];
 
   const EN=window.ONE_WORLD_EN||{registerCountries(){},country:s=>s,mode:s=>s,text:s=>s,value:s=>s};
@@ -1687,7 +1687,7 @@
     {id:9,range:[121,145],title:'West & Central Africa',note:'Overland and air corridors across West Africa.'},
     {id:10,range:[146,169],title:'Southern & East Africa',note:'The route turns south, then back north-east.'},
     {id:11,range:[170,181],title:'Gulf & Levant',note:'The final Middle East sequence.'},
-    {id:12,range:[182,194],title:'Europe II · Finish',note:'The closing run back to Germany.'}
+    {id:12,range:[182,194],title:'Europe II · Finish',note:'The closing run completes the official 195-country route in Malta.'}
   ];
 
   const EN=window.ONE_WORLD_EN||{registerCountries(){},country:s=>s,mode:s=>s,text:s=>s,value:s=>s};

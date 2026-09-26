@@ -1,10 +1,12 @@
+import {inspectFlagshipTopology} from './flagship-topology-model.mjs';
 import {readFile} from 'node:fs/promises';
 import {inventory,distanceKm} from './continuity-model.mjs';
 const read=async name=>JSON.parse(await readFile(new URL('../data/'+name,import.meta.url),'utf8'));
 const route=await read('public-route.json'),waypoints=await read('route-waypoints.json'),flights=await read('flight-geometries.json'),data=await read('operational-movements.json');
-const connections=inventory(route,waypoints,flights),errors=[],ids=new Set(),covered=new Set();
+const connections=inventory(route,waypoints,flights),topology=inspectFlagshipTopology(route),errors=[],ids=new Set(),covered=new Set();
 const fail=m=>errors.push(m);
 if(route.segments.length!==194||route.countries.length!==195)fail('Macro counts changed');
+if(!topology.canonical)fail('Canonical flagship topology changed');
 const statuses=['planned','booked','in progress','completed','changed','cancelled'];
 for(const m of data.movements){
   if(ids.has(m.id))fail('Duplicate movement '+m.id);ids.add(m.id);
@@ -27,5 +29,5 @@ for(const c of connections)if(c.classification!=='shared-endpoint'&&!covered.has
 const unresolved=connections.filter(c=>c.classification!=='shared-endpoint'&&!(data.movements.find(m=>m.parentAfterLeg===c.after&&m.parentBeforeLeg===c.before)?.reviewStatus==='reviewed'&&c.classification!=='unresolved-endpoint'&&c.classification!=='country-mismatch'));
 const countriesInLegs=new Set(route.segments.flatMap(s=>[s.from,s.to]));
 const countriesOutsideLegs=route.countries.filter(c=>!countriesInLegs.has(c.name)).map(c=>c.name);
-console.log(JSON.stringify({countriesInLegs:countriesInLegs.size,countriesOutsideLegs,knownFlightEndpoints:Object.values(flights.endpoints||{}).reduce((n,e)=>n+Number(!!e.departure)+Number(!!e.arrival),0),officialLegs:route.segments.length,countries:route.countries.length,connections:connections.length,sharedEndpoints:connections.filter(c=>c.classification==='shared-endpoint').length,operationalTransfers:data.movements.length,unresolvedConnections:unresolved.length,missingEndpointGeometry:connections.filter(c=>c.classification==='unresolved-endpoint').length,releaseReady:!errors.length&&!unresolved.length&&!countriesOutsideLegs.length,errors,unresolved},null,2));
+console.log(JSON.stringify({topology,countriesInLegs:countriesInLegs.size,countriesOutsideLegs,knownFlightEndpoints:Object.values(flights.endpoints||{}).reduce((n,e)=>n+Number(!!e.departure)+Number(!!e.arrival),0),officialLegs:route.segments.length,countries:route.countries.length,connections:connections.length,sharedEndpoints:connections.filter(c=>c.classification==='shared-endpoint').length,operationalTransfers:data.movements.length,unresolvedConnections:unresolved.length,missingEndpointGeometry:connections.filter(c=>c.classification==='unresolved-endpoint').length,releaseReady:!errors.length&&!unresolved.length&&!countriesOutsideLegs.length,errors,unresolved},null,2));
 if(errors.length||(process.argv.includes('--strict')&&(unresolved.length||countriesOutsideLegs.length)))process.exitCode=1;

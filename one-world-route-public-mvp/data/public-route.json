@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17",
+  "generatedAt": "2026-09-25",
   "segments": [
     {
       "id": 1,
@@ -19,7 +19,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": null,
       "alertLevel": "WATCH",
       "alertMessage": "Booking-Fenster offen – nicht dringend"
@@ -42,7 +42,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": null,
       "alertLevel": "WATCH",
       "alertMessage": "Booking-Fenster offen – nicht dringend"
@@ -65,7 +65,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": null,
       "alertLevel": "WATCH",
       "alertMessage": "Booking-Fenster offen – nicht dringend"
@@ -88,7 +88,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": null,
       "alertLevel": "WATCH",
       "alertMessage": "Booking-Fenster offen – nicht dringend"
@@ -111,7 +111,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": null,
       "alertLevel": "WATCH",
       "alertMessage": "Booking-Fenster offen – nicht dringend"
@@ -134,7 +134,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": null,
       "alertLevel": "WATCH",
       "alertMessage": "Booking-Fenster offen – nicht dringend"
@@ -157,7 +157,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": null,
       "alertLevel": "WATCH",
       "alertMessage": "Booking-Fenster offen – nicht dringend"
@@ -180,7 +180,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": null,
       "alertLevel": "WATCH",
       "alertMessage": "Booking-Fenster offen – nicht dringend"
@@ -295,7 +295,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": "17.09.2026: Polish official border portal reports active passenger traffic at multiple Ukraine crossings; Ukraine remains under travel warning. Recheck 7d/48h before crossing.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://granica.gov.pl/index_wait.php?c=t&k=w&p=u&v=en ; https://www.auswaertiges-amt.de/de/reiseundsicherheit/ukrainesicherheit-201946",
       "alertLevel": "GREEN",
       "alertMessage": null
@@ -318,7 +318,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": "17.09.2026: Moldovan Border Police says temporary security measures do not interrupt cross-border movement at affected Ukraine crossings; security situation remains volatile.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://border.gov.md/index.php/masuri-temporare-pentru-asigurarea-securitatii-personalului-autoritatilor-de-control-la-frontiera ; https://www.auswaertiges-amt.de/de/reiseundsicherheit/moldausicherheit-201932",
       "alertLevel": "GREEN",
       "alertMessage": null
@@ -341,7 +341,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": null,
       "alertLevel": "WATCH",
       "alertMessage": "Booking-Fenster offen – nicht dringend"
@@ -364,7 +364,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": null,
       "alertLevel": "WATCH",
       "alertMessage": "Booking-Fenster offen – nicht dringend"
@@ -617,7 +617,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": "V18 Phase 1 17.09.2026: UK ETA can be applied for now; £20, normally decision within a day, valid 2 years or passport expiry. Lisbon–London is a normal high-frequency market. Primary current action is ETA/document readiness, not scarce-seat risk.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://www.gov.uk/eta/apply ; https://www.easyjet.com/en/cheap-flights/Lisbon/London-Gatwick",
       "alertLevel": "ORANGE",
       "alertMessage": "Visa/Entry innerhalb 90 Tage"
@@ -686,7 +686,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": "V18 Phase 1 17.09.2026: Canada eTA costs CAD 7; most approvals arrive within minutes but some take several days. Official guidance recommends obtaining eTA before booking the Canada flight.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta/apply.html ; https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta/facts.html",
       "alertLevel": "ORANGE",
       "alertMessage": "Visa/Entry innerhalb 90 Tage"
@@ -709,7 +709,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": "V18 Phase 1 17.09.2026: First USA visit remains before Cuba. ESTA/VWP can therefore be used if all normal eligibility requirements are met. Later optional Guam after Cuba is separate and not the operational default.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://travel.state.gov/content/travel/en/us-visas/tourism-visit/visa-waiver-program.html ; https://www.cbp.gov/travel/international-visitors/esta",
       "alertLevel": "ORANGE",
       "alertMessage": "Visa/Entry innerhalb 90 Tage"
@@ -962,7 +962,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": "V18 Phase 1 17.09.2026: NAS→KIN is a thin Caribbean link, currently Mon/Wed/Fri. V16 date Fri 25.12.2026 matches the published weekly pattern; holiday operation still requires reconfirmation.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://www.directflights.com/NAS-KIN ; https://flights.caribbean-airlines.com/en/flights-from-nassau-to-jamaica",
       "alertLevel": "ORANGE",
       "alertMessage": "Tier A/B Buchung jetzt bearbeiten"
@@ -985,7 +985,7 @@
       "healthPriorityTarget": 4,
       "healthStatusTarget": "Pending",
       "planB": "V18 Phase 1 17.09.2026: KIN→CAP is currently twice weekly, Monday/Friday. Planned Mon 28.12.2026 matches. Keep early-booking priority because alternatives are weak.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://www.directflights.com/KIN-CAP ; https://www.flightconnections.com/flights-from-kin-to-cap",
       "alertLevel": "ORANGE",
       "alertMessage": "Tier A/B Buchung jetzt bearbeiten"
@@ -1008,7 +1008,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": "V18 Phase 1 17.09.2026: CAP→SDQ is currently twice weekly Monday/Friday. Planned Fri 01.01.2027 matches the pattern, but New Year operation must be reconfirmed.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://www.directflights.com/CAP-SDQ ; https://www.flightconnections.com/flights-from-cap-to-sdq",
       "alertLevel": "ORANGE",
       "alertMessage": "Tier A/B Buchung jetzt bearbeiten"
@@ -1031,7 +1031,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": "V18 Phase 1 17.09.2026: SDQ→SKB is currently a weekly Saturday service. Planned Sat 02.01.2027 matches; remains a genuine weekly-flight bottleneck.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://www.directflights.com/SDQ-SKB",
       "alertLevel": "ORANGE",
       "alertMessage": "Tier A/B Buchung jetzt bearbeiten"
@@ -1215,7 +1215,7 @@
       "healthPriorityTarget": 3,
       "healthStatusTarget": "Ready",
       "planB": "V18 Phase 1 17.09.2026: V16 reroute POS→PTY→CCS is not a scarce weekly bottleneck: POS→PTY is roughly daily/more and PTY→CCS roughly daily. Monitor fares and schedule; no need for Tier-A urgency.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://www.flightconnections.com/flights-from-pos-to-pty ; https://www.flightconnections.com/flights-from-pty-to-ccs",
       "alertLevel": "WATCH",
       "alertMessage": "Booking-Fenster offen – nicht dringend"
@@ -1491,7 +1491,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": "V18 Phase 1 17.09.2026: SCL→AKL nonstop remains published around 3x/week. It anchors the Pacific block and should remain an early-book item.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://www.latamairlines.com/cl/es/destinos/nueva-zelanda/vuelos-desde-santiago-a-auckland ; https://www.flightconnections.com/flights-from-scl-to-akl",
       "alertLevel": "ORANGE",
       "alertMessage": "Tier A/B Buchung jetzt bearbeiten"
@@ -1514,7 +1514,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": "V18 Phase 1 17.09.2026: AKL→TBU is currently bookable with Air New Zealand and operates around 6x/week. Important for sequence but not a rare-flight bottleneck; monitor rather than urgent Tier-A.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://www.airnewzealand.co.nz/flights/en-nz/flights-from-auckland-to-tonga ; https://www.flightconnections.com/flights-from-akl-to-tbu",
       "alertLevel": "WATCH",
       "alertMessage": "Booking-Fenster offen – nicht dringend"
@@ -1537,7 +1537,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": "V18 Phase 1 17.09.2026: FJ210 TBU→NAN is published for Sat 06.02.2027, 17:20→18:40. Exact planned day works.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://www.flight.info/FJ210",
       "alertLevel": "ORANGE",
       "alertMessage": "Tier A/B Buchung jetzt bearbeiten"
@@ -1560,7 +1560,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": "V18 Phase 1 17.09.2026: FJ253 NAN→APW is published for Sat 06.02.2027, supporting the same-day Fiji connection after FJ210.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://www.flight.info/FJ253",
       "alertLevel": "ORANGE",
       "alertMessage": "Tier A/B Buchung jetzt bearbeiten"
@@ -1583,7 +1583,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": "V18 Phase 1 17.09.2026: Mon 08.02.2027 chain APW→NAN then NAN→FUN remains consistent with the published Fiji Airways patterns.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://www.flight.info/FJ252 ; https://www.flight.info/FJ289",
       "alertLevel": "ORANGE",
       "alertMessage": "Tier A/B Buchung jetzt bearbeiten"
@@ -1606,7 +1606,7 @@
       "healthPriorityTarget": 4,
       "healthStatusTarget": "Pending",
       "planB": "V18 Phase 1 17.09.2026: FJ280 FUN→Fiji on Tue 09.02 and FJ261 Fiji→VLI on Fri 12.02 match the published patterns. Keep buffer for Fiji repositioning.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://www.flight.info/FJ280 ; https://www.flight.info/FJ261",
       "alertLevel": "ORANGE",
       "alertMessage": "Tier A/B Buchung jetzt bearbeiten"
@@ -1629,7 +1629,7 @@
       "healthPriorityTarget": 4,
       "healthStatusTarget": "Pending",
       "planB": "V18 Phase 1 17.09.2026: PX83 VLI→HIR operates on the Sunday pattern; Sun 14.02.2027 aligns with the plan.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://www.flight.info/PX83",
       "alertLevel": "ORANGE",
       "alertMessage": "Tier A/B Buchung jetzt bearbeiten"
@@ -1698,7 +1698,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": "17.09.2026: current official Nauru Airlines schedule remains published for 01.10.2026–02.04.2027; Naoero runway works may modify services. | V18 Phase 1 17.09.2026: Official Nauru Airlines 01.10.2026–02.04.2027 schedule remains published. BNE→Nauru on Mon 22.02.2027 remains in the current chain; runway works may cause modifications.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://www.nauruair.com/travel-info/flight-schedule",
       "alertLevel": "ORANGE",
       "alertMessage": "Tier A/B Buchung jetzt bearbeiten"
@@ -1721,7 +1721,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": "17.09.2026: current official Nauru Airlines schedule remains published; schedules are guide only and subject to change. | V18 Phase 1 17.09.2026: Official Nauru schedule remains published; Nauru→Tarawa on Wed 24.02.2027 remains part of the current connector. Schedules are guide-only.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://www.nauruair.com/travel-info/flight-schedule",
       "alertLevel": "ORANGE",
       "alertMessage": "Tier A/B Buchung jetzt bearbeiten"
@@ -1744,7 +1744,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": "17.09.2026: current official Nauru Airlines schedule remains published; schedules are guide only and subject to change. | V18 Phase 1 17.09.2026: Official Nauru schedule remains published; Tarawa→Majuro on Fri 26.02.2027 remains part of the current connector. Schedules are guide-only.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://www.nauruair.com/travel-info/flight-schedule",
       "alertLevel": "ORANGE",
       "alertMessage": "Tier A/B Buchung jetzt bearbeiten"
@@ -1767,7 +1767,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": "V18 Phase 1 17.09.2026: UA132 MAJ→PNI Sunday pattern supports Sun 28.02.2027. Keep early/flexible booking because this is part of the fixed Pacific chain.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://www.flight.info/UA132",
       "alertLevel": "ORANGE",
       "alertMessage": "Tier A/B Buchung jetzt bearbeiten"
@@ -1790,7 +1790,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": "DEFAULT/Plan B operational: PNI→MAJ→TRW→INU→BNE, danach Qantas BNE→ROR. OPTION A: PNI→GUM→ROR nur mit regulärem US-Visum nach Kuba. V18 Phase 1 17.09.2026: Brisbane route removes the US visa as a single point of failure.",
-      "lastVerified": 46282,
+      "lastVerified": "2026-09-17",
       "source": "https://www.nauruair.com/travel-info/flight-schedule ; https://www.pm.gov.au/media/soaring-new-heights-palau-paradise-express-expansion ; https://travel.state.gov/content/travel/en/us-visas/tourism-visit/visa-waiver-program.html",
       "alertLevel": "ORANGE",
       "alertMessage": "Brisbane-Default früh/flexibel sichern; Guam nur optionale Visa-Optimierung"
@@ -2212,28 +2212,51 @@
     {
       "id": 97,
       "from": "China",
-      "to": "Südkorea",
+      "to": "Nordkorea",
       "planDeparture": 46484,
+      "planArrival": null,
+      "mode": "Noch offen",
+      "corridor": "China → Nordkorea (operativer Korridor offen)",
+      "feasibility": "Kritisch",
+      "dataQuality": "Offen",
+      "bookingTier": "E",
+      "planStatus": "HOLD – operativen Korridor verifizieren",
+      "transportBudgetEur": null,
+      "visaTypeTarget": "BLOCKIERT",
+      "visaStatusTarget": "Blocked",
+      "healthPriorityTarget": 5,
+      "healthStatusTarget": "Pending",
+      "planB": "Operativer Einreise- und Weiterreisekorridor bleibt bis zu einer neuen, quellenbasierten Prüfung offen.",
+      "lastVerified": null,
+      "source": null,
+      "alertLevel": "ORANGE",
+      "alertMessage": "Makroabdeckung hergestellt; operative Route und Einreise vor Abfahrt neu verifizieren."
+    },
+    {
+      "id": 98,
+      "from": "Nordkorea",
+      "to": "Südkorea",
+      "planDeparture": null,
       "planArrival": 46486,
-      "mode": "Flug",
-      "corridor": "Peking/Shanghai → Seoul (ICN)",
-      "feasibility": "Planbar",
-      "dataQuality": "Plausibel",
-      "bookingTier": "B",
-      "planStatus": "WARTEN bis 22.01.2027",
-      "transportBudgetEur": 165,
+      "mode": "Noch offen",
+      "corridor": "Nordkorea → Südkorea (operativer Korridor offen)",
+      "feasibility": "Kritisch",
+      "dataQuality": "Offen",
+      "bookingTier": "E",
+      "planStatus": "HOLD – operativen Korridor verifizieren",
+      "transportBudgetEur": null,
       "visaTypeTarget": "K-ETA ab 2027 einplanen",
       "visaStatusTarget": "Pending",
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
-      "planB": null,
+      "planB": "Operativer Ausreise- und Einreisekorridor bleibt bis zu einer neuen, quellenbasierten Prüfung offen.",
       "lastVerified": null,
-      "source": "https://www.gov.uk/foreign-travel-advice/north-korea/warnings-and-insurance",
-      "alertLevel": "WATCH",
-      "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
+      "source": null,
+      "alertLevel": "ORANGE",
+      "alertMessage": "Operative Route und Grenz-/Einreisebedingungen vor Abfahrt neu verifizieren."
     },
     {
-      "id": 98,
+      "id": 99,
       "from": "Südkorea",
       "to": "Japan",
       "planDeparture": 46486,
@@ -2256,7 +2279,7 @@
       "alertMessage": null
     },
     {
-      "id": 99,
+      "id": 100,
       "from": "Japan",
       "to": "Mongolei",
       "planDeparture": 46488,
@@ -2279,7 +2302,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 100,
+      "id": 101,
       "from": "Mongolei",
       "to": "Russland",
       "planDeparture": 46490,
@@ -2302,7 +2325,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 101,
+      "id": 102,
       "from": "Russland",
       "to": "Kasachstan",
       "planDeparture": 46492,
@@ -2325,7 +2348,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 102,
+      "id": 103,
       "from": "Kasachstan",
       "to": "Kirgisistan",
       "planDeparture": 46493,
@@ -2348,7 +2371,7 @@
       "alertMessage": null
     },
     {
-      "id": 103,
+      "id": 104,
       "from": "Kirgisistan",
       "to": "Tadschikistan",
       "planDeparture": 46494,
@@ -2371,7 +2394,7 @@
       "alertMessage": null
     },
     {
-      "id": 104,
+      "id": 105,
       "from": "Tadschikistan",
       "to": "Usbekistan",
       "planDeparture": 46497,
@@ -2394,7 +2417,7 @@
       "alertMessage": null
     },
     {
-      "id": 105,
+      "id": 106,
       "from": "Usbekistan",
       "to": "Turkmenistan",
       "planDeparture": 46499,
@@ -2417,7 +2440,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 106,
+      "id": 107,
       "from": "Turkmenistan",
       "to": "Afghanistan",
       "planDeparture": 46501,
@@ -2440,7 +2463,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 107,
+      "id": 108,
       "from": "Afghanistan",
       "to": "Pakistan",
       "planDeparture": 46504,
@@ -2463,7 +2486,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 108,
+      "id": 109,
       "from": "Pakistan",
       "to": "Iran",
       "planDeparture": 46508,
@@ -2486,7 +2509,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 109,
+      "id": 110,
       "from": "Iran",
       "to": "Aserbaidschan",
       "planDeparture": 46512,
@@ -2509,7 +2532,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 110,
+      "id": 111,
       "from": "Aserbaidschan",
       "to": "Georgien",
       "planDeparture": 46514,
@@ -2532,7 +2555,7 @@
       "alertMessage": null
     },
     {
-      "id": 111,
+      "id": 112,
       "from": "Georgien",
       "to": "Armenien",
       "planDeparture": 46517,
@@ -2555,7 +2578,7 @@
       "alertMessage": null
     },
     {
-      "id": 112,
+      "id": 113,
       "from": "Armenien",
       "to": "Türkei",
       "planDeparture": 46519,
@@ -2578,7 +2601,7 @@
       "alertMessage": null
     },
     {
-      "id": 113,
+      "id": 114,
       "from": "Türkei",
       "to": "Irak",
       "planDeparture": 46522,
@@ -2601,7 +2624,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 114,
+      "id": 115,
       "from": "Irak",
       "to": "Syrien",
       "planDeparture": 46523,
@@ -2624,7 +2647,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 115,
+      "id": 116,
       "from": "Syrien",
       "to": "Libanon",
       "planDeparture": 46526,
@@ -2647,7 +2670,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 116,
+      "id": 117,
       "from": "Libanon",
       "to": "Zypern",
       "planDeparture": 46530,
@@ -2670,7 +2693,7 @@
       "alertMessage": null
     },
     {
-      "id": 117,
+      "id": 118,
       "from": "Zypern",
       "to": "Libyen",
       "planDeparture": 46532,
@@ -2693,7 +2716,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 118,
+      "id": 119,
       "from": "Libyen",
       "to": "Tunesien",
       "planDeparture": 46536,
@@ -2716,7 +2739,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 119,
+      "id": 120,
       "from": "Tunesien",
       "to": "Algerien",
       "planDeparture": 46537,
@@ -2739,7 +2762,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 120,
+      "id": 121,
       "from": "Algerien",
       "to": "Marokko",
       "planDeparture": 46540,
@@ -2762,7 +2785,7 @@
       "alertMessage": null
     },
     {
-      "id": 121,
+      "id": 122,
       "from": "Marokko",
       "to": "Mauretanien",
       "planDeparture": 46543,
@@ -2785,7 +2808,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 122,
+      "id": 123,
       "from": "Mauretanien",
       "to": "Mali",
       "planDeparture": 46547,
@@ -2808,7 +2831,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 123,
+      "id": 124,
       "from": "Mali",
       "to": "Burkina Faso",
       "planDeparture": 46550,
@@ -2831,7 +2854,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 124,
+      "id": 125,
       "from": "Burkina Faso",
       "to": "Niger",
       "planDeparture": 46552,
@@ -2854,7 +2877,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 125,
+      "id": 126,
       "from": "Niger",
       "to": "Tschad",
       "planDeparture": 46554,
@@ -2877,7 +2900,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 126,
+      "id": 127,
       "from": "Tschad",
       "to": "Zentralafrikanische Republik",
       "planDeparture": 46557,
@@ -2900,7 +2923,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 127,
+      "id": 128,
       "from": "Zentralafrikanische Republik",
       "to": "Kamerun",
       "planDeparture": 46562,
@@ -2923,7 +2946,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 128,
+      "id": 129,
       "from": "Kamerun",
       "to": "Nigeria",
       "planDeparture": 46564,
@@ -2946,7 +2969,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 129,
+      "id": 130,
       "from": "Nigeria",
       "to": "Benin",
       "planDeparture": 46567,
@@ -2969,7 +2992,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 130,
+      "id": 131,
       "from": "Benin",
       "to": "Togo",
       "planDeparture": 46569,
@@ -2992,7 +3015,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 131,
+      "id": 132,
       "from": "Togo",
       "to": "Ghana",
       "planDeparture": 46571,
@@ -3015,7 +3038,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 132,
+      "id": 133,
       "from": "Ghana",
       "to": "Côte d’Ivoire",
       "planDeparture": 46573,
@@ -3038,7 +3061,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 133,
+      "id": 134,
       "from": "Côte d’Ivoire",
       "to": "Liberia",
       "planDeparture": 46575,
@@ -3061,7 +3084,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 134,
+      "id": 135,
       "from": "Liberia",
       "to": "Sierra Leone",
       "planDeparture": 46577,
@@ -3084,7 +3107,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 135,
+      "id": 136,
       "from": "Sierra Leone",
       "to": "Guinea",
       "planDeparture": 46578,
@@ -3107,7 +3130,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 136,
+      "id": 137,
       "from": "Guinea",
       "to": "Guinea-Bissau",
       "planDeparture": 46580,
@@ -3130,7 +3153,7 @@
       "alertMessage": null
     },
     {
-      "id": 137,
+      "id": 138,
       "from": "Guinea-Bissau",
       "to": "Senegal",
       "planDeparture": 46582,
@@ -3153,7 +3176,7 @@
       "alertMessage": null
     },
     {
-      "id": 138,
+      "id": 139,
       "from": "Senegal",
       "to": "Gambia",
       "planDeparture": 46584,
@@ -3176,7 +3199,7 @@
       "alertMessage": null
     },
     {
-      "id": 139,
+      "id": 140,
       "from": "Gambia",
       "to": "Cabo Verde",
       "planDeparture": 46586,
@@ -3199,7 +3222,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 140,
+      "id": 141,
       "from": "Cabo Verde",
       "to": "Äquatorialguinea",
       "planDeparture": 46589,
@@ -3222,7 +3245,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 141,
+      "id": 142,
       "from": "Äquatorialguinea",
       "to": "São Tomé und Príncipe",
       "planDeparture": 46592,
@@ -3245,7 +3268,7 @@
       "alertMessage": null
     },
     {
-      "id": 142,
+      "id": 143,
       "from": "São Tomé und Príncipe",
       "to": "Gabun",
       "planDeparture": 46596,
@@ -3268,7 +3291,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 143,
+      "id": 144,
       "from": "Gabun",
       "to": "Republik Kongo",
       "planDeparture": 46597,
@@ -3291,7 +3314,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 144,
+      "id": 145,
       "from": "Republik Kongo",
       "to": "Demokratische Republik Kongo",
       "planDeparture": 46599,
@@ -3314,7 +3337,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 145,
+      "id": 146,
       "from": "Demokratische Republik Kongo",
       "to": "Angola",
       "planDeparture": 46602,
@@ -3337,7 +3360,7 @@
       "alertMessage": null
     },
     {
-      "id": 146,
+      "id": 147,
       "from": "Angola",
       "to": "Namibia",
       "planDeparture": 46605,
@@ -3360,7 +3383,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 147,
+      "id": 148,
       "from": "Namibia",
       "to": "Botswana",
       "planDeparture": 46607,
@@ -3383,7 +3406,7 @@
       "alertMessage": null
     },
     {
-      "id": 148,
+      "id": 149,
       "from": "Botswana",
       "to": "Simbabwe",
       "planDeparture": 46608,
@@ -3406,7 +3429,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 149,
+      "id": 150,
       "from": "Simbabwe",
       "to": "Sambia",
       "planDeparture": 46609,
@@ -3429,7 +3452,7 @@
       "alertMessage": null
     },
     {
-      "id": 150,
+      "id": 151,
       "from": "Sambia",
       "to": "Malawi",
       "planDeparture": 46611,
@@ -3452,7 +3475,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 151,
+      "id": 152,
       "from": "Malawi",
       "to": "Mosambik",
       "planDeparture": 46612,
@@ -3475,7 +3498,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 152,
+      "id": 153,
       "from": "Mosambik",
       "to": "Eswatini",
       "planDeparture": 46614,
@@ -3498,7 +3521,7 @@
       "alertMessage": null
     },
     {
-      "id": 153,
+      "id": 154,
       "from": "Eswatini",
       "to": "Südafrika",
       "planDeparture": 46615,
@@ -3521,7 +3544,7 @@
       "alertMessage": null
     },
     {
-      "id": 154,
+      "id": 155,
       "from": "Südafrika",
       "to": "Lesotho",
       "planDeparture": 46616,
@@ -3544,7 +3567,7 @@
       "alertMessage": null
     },
     {
-      "id": 155,
+      "id": 156,
       "from": "Lesotho",
       "to": "Tansania",
       "planDeparture": 46618,
@@ -3567,7 +3590,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 156,
+      "id": 157,
       "from": "Tansania",
       "to": "Burundi",
       "planDeparture": 46621,
@@ -3590,7 +3613,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 157,
+      "id": 158,
       "from": "Burundi",
       "to": "Ruanda",
       "planDeparture": 46623,
@@ -3613,7 +3636,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 158,
+      "id": 159,
       "from": "Ruanda",
       "to": "Uganda",
       "planDeparture": 46625,
@@ -3636,7 +3659,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 159,
+      "id": 160,
       "from": "Uganda",
       "to": "Südsudan",
       "planDeparture": 46627,
@@ -3659,7 +3682,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 160,
+      "id": 161,
       "from": "Südsudan",
       "to": "Kenia",
       "planDeparture": 46628,
@@ -3682,7 +3705,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 161,
+      "id": 162,
       "from": "Kenia",
       "to": "Seychellen",
       "planDeparture": 46630,
@@ -3705,7 +3728,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 162,
+      "id": 163,
       "from": "Seychellen",
       "to": "Mauritius",
       "planDeparture": 46632,
@@ -3728,7 +3751,7 @@
       "alertMessage": null
     },
     {
-      "id": 163,
+      "id": 164,
       "from": "Mauritius",
       "to": "Madagaskar",
       "planDeparture": 46634,
@@ -3751,7 +3774,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 164,
+      "id": 165,
       "from": "Madagaskar",
       "to": "Komoren",
       "planDeparture": 46636,
@@ -3774,7 +3797,7 @@
       "alertMessage": null
     },
     {
-      "id": 165,
+      "id": 166,
       "from": "Komoren",
       "to": "Äthiopien",
       "planDeparture": 46638,
@@ -3797,7 +3820,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 166,
+      "id": 167,
       "from": "Äthiopien",
       "to": "Somalia",
       "planDeparture": 46640,
@@ -3820,7 +3843,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 167,
+      "id": 168,
       "from": "Somalia",
       "to": "Dschibuti",
       "planDeparture": 46641,
@@ -3843,7 +3866,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 168,
+      "id": 169,
       "from": "Dschibuti",
       "to": "Eritrea",
       "planDeparture": 46642,
@@ -3866,7 +3889,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 169,
+      "id": 170,
       "from": "Eritrea",
       "to": "Sudan",
       "planDeparture": 46645,
@@ -3889,7 +3912,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 170,
+      "id": 171,
       "from": "Sudan",
       "to": "Ägypten",
       "planDeparture": 46646,
@@ -3912,7 +3935,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 171,
+      "id": 172,
       "from": "Ägypten",
       "to": "Saudi-Arabien",
       "planDeparture": 46647,
@@ -3935,7 +3958,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 172,
+      "id": 173,
       "from": "Saudi-Arabien",
       "to": "Kuwait",
       "planDeparture": 46649,
@@ -3958,7 +3981,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 173,
+      "id": 174,
       "from": "Kuwait",
       "to": "Bahrain",
       "planDeparture": 46651,
@@ -3981,7 +4004,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 174,
+      "id": 175,
       "from": "Bahrain",
       "to": "Katar",
       "planDeparture": 46653,
@@ -4004,7 +4027,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 175,
+      "id": 176,
       "from": "Katar",
       "to": "Vereinigte Arabische Emirate",
       "planDeparture": 46655,
@@ -4027,7 +4050,7 @@
       "alertMessage": null
     },
     {
-      "id": 176,
+      "id": 177,
       "from": "Vereinigte Arabische Emirate",
       "to": "Oman",
       "planDeparture": 46657,
@@ -4050,7 +4073,7 @@
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
     {
-      "id": 177,
+      "id": 178,
       "from": "Oman",
       "to": "Jemen",
       "planDeparture": 46659,
@@ -4073,7 +4096,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 178,
+      "id": 179,
       "from": "Jemen",
       "to": "Jordanien",
       "planDeparture": 46663,
@@ -4096,7 +4119,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 179,
+      "id": 180,
       "from": "Jordanien",
       "to": "Israel",
       "planDeparture": 46665,
@@ -4119,7 +4142,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 180,
+      "id": 181,
       "from": "Israel",
       "to": "Staat Palästina",
       "planDeparture": 46669,
@@ -4142,7 +4165,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 181,
+      "id": 182,
       "from": "Staat Palästina",
       "to": "Griechenland",
       "planDeparture": 46672,
@@ -4165,7 +4188,7 @@
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
     {
-      "id": 182,
+      "id": 183,
       "from": "Griechenland",
       "to": "Bulgarien",
       "planDeparture": 46677,
@@ -4188,7 +4211,7 @@
       "alertMessage": null
     },
     {
-      "id": 183,
+      "id": 184,
       "from": "Bulgarien",
       "to": "Nordmazedonien",
       "planDeparture": 46678,
@@ -4211,7 +4234,7 @@
       "alertMessage": null
     },
     {
-      "id": 184,
+      "id": 185,
       "from": "Nordmazedonien",
       "to": "Albanien",
       "planDeparture": 46680,
@@ -4234,7 +4257,7 @@
       "alertMessage": null
     },
     {
-      "id": 185,
+      "id": 186,
       "from": "Albanien",
       "to": "Montenegro",
       "planDeparture": 46681,
@@ -4257,7 +4280,7 @@
       "alertMessage": null
     },
     {
-      "id": 186,
+      "id": 187,
       "from": "Montenegro",
       "to": "Bosnien und Herzegowina",
       "planDeparture": 46682,
@@ -4280,7 +4303,7 @@
       "alertMessage": null
     },
     {
-      "id": 187,
+      "id": 188,
       "from": "Bosnien und Herzegowina",
       "to": "Serbien",
       "planDeparture": 46683,
@@ -4303,7 +4326,7 @@
       "alertMessage": null
     },
     {
-      "id": 188,
+      "id": 189,
       "from": "Serbien",
       "to": "Kroatien",
       "planDeparture": 46685,
@@ -4326,7 +4349,7 @@
       "alertMessage": null
     },
     {
-      "id": 189,
+      "id": 190,
       "from": "Kroatien",
       "to": "Slowenien",
       "planDeparture": 46686,
@@ -4349,7 +4372,7 @@
       "alertMessage": null
     },
     {
-      "id": 190,
+      "id": 191,
       "from": "Slowenien",
       "to": "Italien",
       "planDeparture": 46687,
@@ -4372,7 +4395,7 @@
       "alertMessage": null
     },
     {
-      "id": 191,
+      "id": 192,
       "from": "Italien",
       "to": "San Marino",
       "planDeparture": 46688,
@@ -4395,7 +4418,7 @@
       "alertMessage": null
     },
     {
-      "id": 192,
+      "id": 193,
       "from": "San Marino",
       "to": "Vatikanstadt",
       "planDeparture": 46690,
@@ -4418,7 +4441,7 @@
       "alertMessage": null
     },
     {
-      "id": 193,
+      "id": 194,
       "from": "Vatikanstadt",
       "to": "Malta",
       "planDeparture": 46691,
@@ -4434,29 +4457,6 @@
       "visaStatusTarget": "N/A",
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
-      "planB": null,
-      "lastVerified": null,
-      "source": null,
-      "alertLevel": "GREEN",
-      "alertMessage": null
-    },
-    {
-      "id": 194,
-      "from": "Malta",
-      "to": "Deutschland",
-      "planDeparture": 46693,
-      "planArrival": 46695,
-      "mode": "Flug",
-      "corridor": "Malta (MLA) → Frankfurt (FRA)",
-      "feasibility": "Planbar",
-      "dataQuality": "Plausibel",
-      "bookingTier": "B",
-      "planStatus": "WARTEN bis 19.08.2027",
-      "transportBudgetEur": 165,
-      "visaTypeTarget": "Start/Heimatland",
-      "visaStatusTarget": "N/A",
-      "healthPriorityTarget": 1,
-      "healthStatusTarget": "N/A",
       "planB": null,
       "lastVerified": null,
       "source": null,
@@ -7585,5 +7585,42 @@
       "entryDocs": "Ready",
       "readiness": "READY"
     }
-  ]
+  ],
+  "postTripReturn": {
+    "id": "return-home",
+    "kind": "return-home",
+    "countedInInternationalLegs": false,
+    "from": "Malta",
+    "to": "Deutschland",
+    "planDeparture": 46693,
+    "planArrival": 46695,
+    "mode": "Flug",
+    "corridor": "Malta (MLA) → Frankfurt (FRA)",
+    "feasibility": "Planbar",
+    "dataQuality": "Plausibel",
+    "bookingTier": "B",
+    "planStatus": "WARTEN bis 19.08.2027",
+    "transportBudgetEur": 165,
+    "source": null,
+    "lastVerified": null,
+    "note": "Operational return home after completion of the official 195-state route. Excluded from the 194 international-leg invariant.",
+    "geometry": {
+      "airportCodes": [
+        "MLA",
+        "FRA"
+      ],
+      "coordinates": [
+        [
+          14.491546,
+          35.845932
+        ],
+        [
+          8.55835,
+          50.026706
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-20"
+    }
+  }
 }

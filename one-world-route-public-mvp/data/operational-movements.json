@@ -1,8 +1,8 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "macroCountries": 195,
   "macroLegs": 194,
-  "description": "Operational transfers supplement international legs. Null means unknown, never zero or verified. Public data only.",
+  "description": "Operational transfers supplement the 194 official international legs. The separate Malta → Deutschland return-home movement is post-trip and does not increase the official leg count. Null means unknown, never zero or verified. Public data only.",
   "movements": [
     {
       "id": "transfer-21-22",
@@ -1706,9 +1706,9 @@
       "parentBeforeLeg": 97,
       "country": "China",
       "from": "Shanghai (PVG), nonstop",
-      "to": "Peking/Shanghai",
+      "to": "China (Abfahrtspunkt offen)",
       "mode": null,
-      "corridor": "Shanghai (PVG), nonstop → Peking/Shanghai",
+      "corridor": "Shanghai (PVG), nonstop → China (Abfahrtspunkt offen)",
       "coordinates": null,
       "geometryKind": "unresolved",
       "plannedDate": null,
@@ -1727,11 +1727,10 @@
       "feasibility": "needs-review",
       "source": [
         "data/public-route.json",
-        "data/route-waypoints.json",
         "data/flight-geometries.json"
       ],
       "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "notes": "The official macro path now continues from China to Nordkorea. Exact Chinese departure endpoint, mode, timing, cost and evidence remain unresolved.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
@@ -1745,6 +1744,45 @@
       "kind": "transfer",
       "parentAfterLeg": 97,
       "parentBeforeLeg": 98,
+      "country": "Nordkorea",
+      "from": "Nordkorea (Ankunftspunkt offen)",
+      "to": "Nordkorea (Abfahrtspunkt offen)",
+      "mode": null,
+      "corridor": "Nordkorea (Ankunftspunkt offen) → Nordkorea (Abfahrtspunkt offen)",
+      "coordinates": null,
+      "geometryKind": "unresolved",
+      "plannedDate": null,
+      "planningWindow": {
+        "after": null,
+        "before": null
+      },
+      "plannedDuration": null,
+      "distanceKm": null,
+      "distanceBasis": null,
+      "estimatedCost": null,
+      "currency": "EUR",
+      "budgetTreatment": "not-added-to-macro-budget",
+      "bookingRequired": null,
+      "bookingStatus": "unknown",
+      "feasibility": "needs-review",
+      "source": [
+        "data/public-route.json"
+      ],
+      "lastVerified": null,
+      "notes": "Structural continuity record for the canonical 195-country path. Exact endpoints, mode, timing, cost and permissions require fresh source-backed review.",
+      "status": "planned",
+      "plannedDeparture": null,
+      "actualDeparture": null,
+      "plannedArrival": null,
+      "actualArrival": null,
+      "actualCost": null,
+      "reviewStatus": "needs-review"
+    },
+    {
+      "id": "transfer-98-99",
+      "kind": "transfer",
+      "parentAfterLeg": 98,
+      "parentBeforeLeg": 99,
       "country": "Südkorea",
       "from": "Seoul (ICN)",
       "to": "Busan",
@@ -1782,10 +1820,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-98-99",
+      "id": "transfer-99-100",
       "kind": "transfer",
-      "parentAfterLeg": 98,
-      "parentBeforeLeg": 99,
+      "parentAfterLeg": 99,
+      "parentBeforeLeg": 100,
       "country": "Japan",
       "from": "Fukuoka; alternativ kurzer Flug",
       "to": "Tokyo/Narita",
@@ -1823,10 +1861,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-99-100",
+      "id": "transfer-100-101",
       "kind": "transfer",
-      "parentAfterLeg": 99,
-      "parentBeforeLeg": 100,
+      "parentAfterLeg": 100,
+      "parentBeforeLeg": 101,
       "country": "Mongolei",
       "from": "Ulaanbaatar (UBN)",
       "to": "Ulaanbaatar (UBN)",
@@ -1864,10 +1902,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-100-101",
+      "id": "transfer-101-102",
       "kind": "transfer",
-      "parentAfterLeg": 100,
-      "parentBeforeLeg": 101,
+      "parentAfterLeg": 101,
+      "parentBeforeLeg": 102,
       "country": "Russland",
       "from": "Irkutsk (IKT), nonstop; anschließend Russland-Inlandsreise nach Bedarf",
       "to": "Moskau-Scheremetjewo (SVO)",
@@ -1914,10 +1952,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-101-102",
+      "id": "transfer-102-103",
       "kind": "transfer",
-      "parentAfterLeg": 101,
-      "parentBeforeLeg": 102,
+      "parentAfterLeg": 102,
+      "parentBeforeLeg": 103,
       "country": "Kasachstan",
       "from": "Almaty (ALA), nonstop",
       "to": "Almaty",
@@ -1964,10 +2002,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-104-105",
+      "id": "transfer-105-106",
       "kind": "transfer",
-      "parentAfterLeg": 104,
-      "parentBeforeLeg": 105,
+      "parentAfterLeg": 105,
+      "parentBeforeLeg": 106,
       "country": "Usbekistan",
       "from": "Taschkent",
       "to": "Buchara",
@@ -2014,10 +2052,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-105-106",
+      "id": "transfer-106-107",
       "kind": "transfer",
-      "parentAfterLeg": 105,
-      "parentBeforeLeg": 106,
+      "parentAfterLeg": 106,
+      "parentBeforeLeg": 107,
       "country": "Turkmenistan",
       "from": "Türkmenabat",
       "to": "Serhetabat",
@@ -2064,10 +2102,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-106-107",
+      "id": "transfer-107-108",
       "kind": "transfer",
-      "parentAfterLeg": 106,
-      "parentBeforeLeg": 107,
+      "parentAfterLeg": 107,
+      "parentBeforeLeg": 108,
       "country": "Afghanistan",
       "from": "Torghundi, nur mit vorheriger Genehmigung",
       "to": "Kabul",
@@ -2114,10 +2152,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-107-108",
+      "id": "transfer-108-109",
       "kind": "transfer",
-      "parentAfterLeg": 107,
-      "parentBeforeLeg": 108,
+      "parentAfterLeg": 108,
+      "parentBeforeLeg": 109,
       "country": "Pakistan",
       "from": "Peshawar",
       "to": "Quetta",
@@ -2164,10 +2202,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-108-109",
+      "id": "transfer-109-110",
       "kind": "transfer",
-      "parentAfterLeg": 108,
-      "parentBeforeLeg": 109,
+      "parentAfterLeg": 109,
+      "parentBeforeLeg": 110,
       "country": "Iran",
       "from": "Zahedan",
       "to": "Teheran (IKA)",
@@ -2214,10 +2252,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-110-111",
+      "id": "transfer-111-112",
       "kind": "transfer",
-      "parentAfterLeg": 110,
-      "parentBeforeLeg": 111,
+      "parentAfterLeg": 111,
+      "parentBeforeLeg": 112,
       "country": "Georgien",
       "from": "Tiflis (TBS)",
       "to": "Tiflis",
@@ -2264,10 +2302,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-111-112",
+      "id": "transfer-112-113",
       "kind": "transfer",
-      "parentAfterLeg": 111,
-      "parentBeforeLeg": 112,
+      "parentAfterLeg": 112,
+      "parentBeforeLeg": 113,
       "country": "Armenien",
       "from": "Jerewan",
       "to": "Jerewan (EVN)",
@@ -2305,10 +2343,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-112-113",
+      "id": "transfer-113-114",
       "kind": "transfer",
-      "parentAfterLeg": 112,
-      "parentBeforeLeg": 113,
+      "parentAfterLeg": 113,
+      "parentBeforeLeg": 114,
       "country": "Türkei",
       "from": "Istanbul (IST/SAW)",
       "to": "Istanbul (IST/SAW)",
@@ -2346,10 +2384,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-113-114",
+      "id": "transfer-114-115",
       "kind": "transfer",
-      "parentAfterLeg": 113,
-      "parentBeforeLeg": 114,
+      "parentAfterLeg": 114,
+      "parentBeforeLeg": 115,
       "country": "Irak",
       "from": "Bagdad (BGW), nonstop",
       "to": "Bagdad (BGW)",
@@ -2387,10 +2425,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-114-115",
+      "id": "transfer-115-116",
       "kind": "transfer",
-      "parentAfterLeg": 114,
-      "parentBeforeLeg": 115,
+      "parentAfterLeg": 115,
+      "parentBeforeLeg": 116,
       "country": "Syrien",
       "from": "Damaskus (DAM), nonstop",
       "to": "Damaskus",
@@ -2437,10 +2475,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-115-116",
+      "id": "transfer-116-117",
       "kind": "transfer",
-      "parentAfterLeg": 115,
-      "parentBeforeLeg": 116,
+      "parentAfterLeg": 116,
+      "parentBeforeLeg": 117,
       "country": "Libanon",
       "from": "Beirut",
       "to": "Beirut (BEY)",
@@ -2487,10 +2525,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-116-117",
+      "id": "transfer-117-118",
       "kind": "transfer",
-      "parentAfterLeg": 116,
-      "parentBeforeLeg": 117,
+      "parentAfterLeg": 117,
+      "parentBeforeLeg": 118,
       "country": "Zypern",
       "from": "Larnaka (LCA)",
       "to": "Larnaka",
@@ -2528,10 +2566,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-117-118",
+      "id": "transfer-118-119",
       "kind": "transfer",
-      "parentAfterLeg": 117,
-      "parentBeforeLeg": 118,
+      "parentAfterLeg": 118,
+      "parentBeforeLeg": 119,
       "country": "Libyen",
       "from": "Tripolis/Misrata",
       "to": "Tripoli-Mitiga (MJI)",
@@ -2569,10 +2607,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-119-120",
+      "id": "transfer-120-121",
       "kind": "transfer",
-      "parentAfterLeg": 119,
-      "parentBeforeLeg": 120,
+      "parentAfterLeg": 120,
+      "parentBeforeLeg": 121,
       "country": "Algerien",
       "from": "Algier (ALG), nonstop",
       "to": "Algier",
@@ -2610,10 +2648,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-120-121",
+      "id": "transfer-121-122",
       "kind": "transfer",
-      "parentAfterLeg": 120,
-      "parentBeforeLeg": 121,
+      "parentAfterLeg": 121,
+      "parentBeforeLeg": 122,
       "country": "Marokko",
       "from": "Casablanca",
       "to": "Dakhla",
@@ -2651,10 +2689,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-121-122",
+      "id": "transfer-122-123",
       "kind": "transfer",
-      "parentAfterLeg": 121,
-      "parentBeforeLeg": 122,
+      "parentAfterLeg": 122,
+      "parentBeforeLeg": 123,
       "country": "Mauretanien",
       "from": "Nouakchott",
       "to": "Nouakchott (NKC)",
@@ -2701,10 +2739,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-125-126",
+      "id": "transfer-126-127",
       "kind": "transfer",
-      "parentAfterLeg": 125,
-      "parentBeforeLeg": 126,
+      "parentAfterLeg": 126,
+      "parentBeforeLeg": 127,
       "country": "Tschad",
       "from": "N'Djamena (NDJ), nonstop",
       "to": "N'Djamena (NDJ)",
@@ -2742,10 +2780,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-126-127",
+      "id": "transfer-127-128",
       "kind": "transfer",
-      "parentAfterLeg": 126,
-      "parentBeforeLeg": 127,
+      "parentAfterLeg": 127,
+      "parentBeforeLeg": 128,
       "country": "Zentralafrikanische Republik",
       "from": "Bangui (BGF)",
       "to": "Bangui (BGF)",
@@ -2783,10 +2821,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-128-129",
+      "id": "transfer-129-130",
       "kind": "transfer",
-      "parentAfterLeg": 128,
-      "parentBeforeLeg": 129,
+      "parentAfterLeg": 129,
+      "parentBeforeLeg": 130,
       "country": "Nigeria",
       "from": "Lagos (LOS), nonstop",
       "to": "Lagos",
@@ -2833,10 +2871,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-134-135",
+      "id": "transfer-135-136",
       "kind": "transfer",
-      "parentAfterLeg": 134,
-      "parentBeforeLeg": 135,
+      "parentAfterLeg": 135,
+      "parentBeforeLeg": 136,
       "country": "Sierra Leone",
       "from": "Freetown",
       "to": "Freetown (FNA)",
@@ -2883,10 +2921,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-136-137",
+      "id": "transfer-137-138",
       "kind": "transfer",
-      "parentAfterLeg": 136,
-      "parentBeforeLeg": 137,
+      "parentAfterLeg": 137,
+      "parentBeforeLeg": 138,
       "country": "Guinea-Bissau",
       "from": "Bissau (OXB)",
       "to": "Bissau",
@@ -2933,10 +2971,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-137-138",
+      "id": "transfer-138-139",
       "kind": "transfer",
-      "parentAfterLeg": 137,
-      "parentBeforeLeg": 138,
+      "parentAfterLeg": 138,
+      "parentBeforeLeg": 139,
       "country": "Senegal",
       "from": "Senegal",
       "to": "Dakar",
@@ -2983,10 +3021,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-138-139",
+      "id": "transfer-139-140",
       "kind": "transfer",
-      "parentAfterLeg": 138,
-      "parentBeforeLeg": 139,
+      "parentAfterLeg": 139,
+      "parentBeforeLeg": 140,
       "country": "Gambia",
       "from": "Banjul",
       "to": "Banjul",
@@ -3024,10 +3062,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-139-140",
+      "id": "transfer-140-141",
       "kind": "transfer",
-      "parentAfterLeg": 139,
-      "parentBeforeLeg": 140,
+      "parentAfterLeg": 140,
+      "parentBeforeLeg": 141,
       "country": "Cabo Verde",
       "from": "Praia (RAI)",
       "to": "Praia (RAI)",
@@ -3065,10 +3103,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-143-144",
+      "id": "transfer-144-145",
       "kind": "transfer",
-      "parentAfterLeg": 143,
-      "parentBeforeLeg": 144,
+      "parentAfterLeg": 144,
+      "parentBeforeLeg": 145,
       "country": "Republik Kongo",
       "from": "Brazzaville (BZV), nonstop",
       "to": "Beach de Brazzaville",
@@ -3115,10 +3153,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-144-145",
+      "id": "transfer-145-146",
       "kind": "transfer",
-      "parentAfterLeg": 144,
-      "parentBeforeLeg": 145,
+      "parentAfterLeg": 145,
+      "parentBeforeLeg": 146,
       "country": "Demokratische Republik Kongo",
       "from": "Beach Ngobila, Kinshasa",
       "to": "Kinshasa (FIH)",
@@ -3165,10 +3203,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-146-147",
+      "id": "transfer-147-148",
       "kind": "transfer",
-      "parentAfterLeg": 146,
-      "parentBeforeLeg": 147,
+      "parentAfterLeg": 147,
+      "parentBeforeLeg": 148,
       "country": "Namibia",
       "from": "Windhoek (WDH), nonstop",
       "to": "Windhoek",
@@ -3215,10 +3253,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-149-150",
+      "id": "transfer-150-151",
       "kind": "transfer",
-      "parentAfterLeg": 149,
-      "parentBeforeLeg": 150,
+      "parentAfterLeg": 150,
+      "parentBeforeLeg": 151,
       "country": "Sambia",
       "from": "Livingstone",
       "to": "Lusaka",
@@ -3265,10 +3303,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-150-151",
+      "id": "transfer-151-152",
       "kind": "transfer",
-      "parentAfterLeg": 150,
-      "parentBeforeLeg": 151,
+      "parentAfterLeg": 151,
+      "parentBeforeLeg": 152,
       "country": "Malawi",
       "from": "Lilongwe",
       "to": "Lilongwe (LLW)",
@@ -3315,10 +3353,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-151-152",
+      "id": "transfer-152-153",
       "kind": "transfer",
-      "parentAfterLeg": 151,
-      "parentBeforeLeg": 152,
+      "parentAfterLeg": 152,
+      "parentBeforeLeg": 153,
       "country": "Mosambik",
       "from": "Maputo (MPM)",
       "to": "Maputo",
@@ -3365,10 +3403,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-153-154",
+      "id": "transfer-154-155",
       "kind": "transfer",
-      "parentAfterLeg": 153,
-      "parentBeforeLeg": 154,
+      "parentAfterLeg": 154,
+      "parentBeforeLeg": 155,
       "country": "Südafrika",
       "from": "Johannesburg",
       "to": "Johannesburg (JNB)",
@@ -3415,10 +3453,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-155-156",
+      "id": "transfer-156-157",
       "kind": "transfer",
-      "parentAfterLeg": 155,
-      "parentBeforeLeg": 156,
+      "parentAfterLeg": 156,
+      "parentBeforeLeg": 157,
       "country": "Tansania",
       "from": "Dar es Salaam (DAR)",
       "to": "Dar es Salaam",
@@ -3465,10 +3503,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-156-157",
+      "id": "transfer-157-158",
       "kind": "transfer",
-      "parentAfterLeg": 156,
-      "parentBeforeLeg": 157,
+      "parentAfterLeg": 157,
+      "parentBeforeLeg": 158,
       "country": "Burundi",
       "from": "Bujumbura",
       "to": "Bujumbura (BJM)",
@@ -3515,10 +3553,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-157-158",
+      "id": "transfer-158-159",
       "kind": "transfer",
-      "parentAfterLeg": 157,
-      "parentBeforeLeg": 158,
+      "parentAfterLeg": 158,
+      "parentBeforeLeg": 159,
       "country": "Ruanda",
       "from": "Kigali (KGL), nonstop",
       "to": "Kigali",
@@ -3565,10 +3603,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-158-159",
+      "id": "transfer-159-160",
       "kind": "transfer",
-      "parentAfterLeg": 158,
-      "parentBeforeLeg": 159,
+      "parentAfterLeg": 159,
+      "parentBeforeLeg": 160,
       "country": "Uganda",
       "from": "Kampala",
       "to": "Entebbe (EBB)",
@@ -3615,10 +3653,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-171-172",
+      "id": "transfer-172-173",
       "kind": "transfer",
-      "parentAfterLeg": 171,
-      "parentBeforeLeg": 172,
+      "parentAfterLeg": 172,
+      "parentBeforeLeg": 173,
       "country": "Saudi-Arabien",
       "from": "Riad (RUH)",
       "to": "Riad/Dammam",
@@ -3656,10 +3694,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-172-173",
+      "id": "transfer-173-174",
       "kind": "transfer",
-      "parentAfterLeg": 172,
-      "parentBeforeLeg": 173,
+      "parentAfterLeg": 173,
+      "parentBeforeLeg": 174,
       "country": "Kuwait",
       "from": "Kuwait City",
       "to": "Kuwait (KWI)",
@@ -3697,10 +3735,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-174-175",
+      "id": "transfer-175-176",
       "kind": "transfer",
-      "parentAfterLeg": 174,
-      "parentBeforeLeg": 175,
+      "parentAfterLeg": 175,
+      "parentBeforeLeg": 176,
       "country": "Katar",
       "from": "Doha (DOH)",
       "to": "Doha (DOH)",
@@ -3738,10 +3776,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-175-176",
+      "id": "transfer-176-177",
       "kind": "transfer",
-      "parentAfterLeg": 175,
-      "parentBeforeLeg": 176,
+      "parentAfterLeg": 176,
+      "parentBeforeLeg": 177,
       "country": "Vereinigte Arabische Emirate",
       "from": "Dubai/Abu Dhabi",
       "to": "Dubai/Abu Dhabi",
@@ -3779,10 +3817,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-176-177",
+      "id": "transfer-177-178",
       "kind": "transfer",
-      "parentAfterLeg": 176,
-      "parentBeforeLeg": 177,
+      "parentAfterLeg": 177,
+      "parentBeforeLeg": 178,
       "country": "Oman",
       "from": "Muscat",
       "to": "Muscat",
@@ -3820,10 +3858,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-177-178",
+      "id": "transfer-178-179",
       "kind": "transfer",
-      "parentAfterLeg": 177,
-      "parentBeforeLeg": 178,
+      "parentAfterLeg": 178,
+      "parentBeforeLeg": 179,
       "country": "Jemen",
       "from": "Aden/Seiyun/Mukalla, ggf. via Jeddah/Cairo",
       "to": "Aden (ADE)",
@@ -3861,10 +3899,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-178-179",
+      "id": "transfer-179-180",
       "kind": "transfer",
-      "parentAfterLeg": 178,
-      "parentBeforeLeg": 179,
+      "parentAfterLeg": 179,
+      "parentBeforeLeg": 180,
       "country": "Jordanien",
       "from": "Amman (AMM)",
       "to": "Amman",
@@ -3911,10 +3949,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-180-181",
+      "id": "transfer-181-182",
       "kind": "transfer",
-      "parentAfterLeg": 180,
-      "parentBeforeLeg": 181,
+      "parentAfterLeg": 181,
+      "parentBeforeLeg": 182,
       "country": "Staat Palästina",
       "from": "Westjordanland (z. B. Bethlehem/Ramallah)",
       "to": "Westjordanland",
@@ -3952,10 +3990,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-181-182",
+      "id": "transfer-182-183",
       "kind": "transfer",
-      "parentAfterLeg": 181,
-      "parentBeforeLeg": 182,
+      "parentAfterLeg": 182,
+      "parentBeforeLeg": 183,
       "country": "Griechenland",
       "from": "Athen (ATH)",
       "to": "Thessaloniki",
@@ -3993,10 +4031,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-184-185",
+      "id": "transfer-185-186",
       "kind": "transfer",
-      "parentAfterLeg": 184,
-      "parentBeforeLeg": 185,
+      "parentAfterLeg": 185,
+      "parentBeforeLeg": 186,
       "country": "Albanien",
       "from": "Tirana",
       "to": "Shkodër",
@@ -4043,10 +4081,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-190-191",
+      "id": "transfer-191-192",
       "kind": "transfer",
-      "parentAfterLeg": 190,
-      "parentBeforeLeg": 191,
+      "parentAfterLeg": 191,
+      "parentBeforeLeg": 192,
       "country": "Italien",
       "from": "Venedig/Bologna",
       "to": "Rimini",
@@ -4093,10 +4131,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-191-192",
+      "id": "transfer-192-193",
       "kind": "transfer",
-      "parentAfterLeg": 191,
-      "parentBeforeLeg": 192,
+      "parentAfterLeg": 192,
+      "parentBeforeLeg": 193,
       "country": "San Marino",
       "from": "San Marino",
       "to": "Rimini",
@@ -4143,10 +4181,10 @@
       "reviewStatus": "needs-review"
     },
     {
-      "id": "transfer-192-193",
+      "id": "transfer-193-194",
       "kind": "transfer",
-      "parentAfterLeg": 192,
-      "parentBeforeLeg": 193,
+      "parentAfterLeg": 193,
+      "parentBeforeLeg": 194,
       "country": "Vatikanstadt",
       "from": "Rom; zu Fuß in Vatikanstadt",
       "to": "Rom (FCO/CIA)",
@@ -4182,47 +4220,8 @@
       "actualArrival": null,
       "actualCost": null,
       "reviewStatus": "needs-review"
-    },
-    {
-      "id": "transfer-193-194",
-      "kind": "transfer",
-      "parentAfterLeg": 193,
-      "parentBeforeLeg": 194,
-      "country": "Malta",
-      "from": "Malta (MLA)",
-      "to": "Malta (MLA)",
-      "mode": null,
-      "corridor": "Malta (MLA) → Malta (MLA)",
-      "coordinates": null,
-      "geometryKind": "unresolved",
-      "plannedDate": null,
-      "planningWindow": {
-        "after": "2027-11-02",
-        "before": "2027-11-02"
-      },
-      "plannedDuration": null,
-      "distanceKm": null,
-      "distanceBasis": null,
-      "estimatedCost": null,
-      "currency": "EUR",
-      "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
-      "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
-      ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
-      "status": "planned",
-      "plannedDeparture": null,
-      "actualDeparture": null,
-      "plannedArrival": null,
-      "actualArrival": null,
-      "actualCost": null,
-      "reviewStatus": "needs-review"
     }
-  ]
+  ],
+  "routeEnd": "Malta",
+  "postTripReturnCounted": false
 }

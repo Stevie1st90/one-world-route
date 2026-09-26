@@ -1,14 +1,17 @@
 import {inventory} from './continuity-model.mjs';
+import {inspectFlagshipTopology} from './flagship-topology-model.mjs';
+import {verificationDate} from './verification-date-model.mjs';
 
 const isFiniteNumber=value=>typeof value==='number'&&Number.isFinite(value);
 const isoDate=value=>typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)?value:null;
 const pct=(part,total)=>total?Math.round((part/total)*1000)/10:0;
 
 function latestDate(values){
-  return values.map(isoDate).filter(Boolean).sort().at(-1)||null;
+  return values.map(verificationDate).filter(Boolean).sort().at(-1)||null;
 }
 
 export function buildFlagshipReadiness({route,waypoints,flights,operations}){
+  const topology=inspectFlagshipTopology(route);
   const connections=inventory(route,waypoints,flights);
   const movementByConnection=new Map(
     (operations.movements||[]).map(movement=>[
@@ -43,7 +46,9 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations}){
     .reduce((count,endpoints)=>count+Number(Boolean(endpoints.departure))+Number(Boolean(endpoints.arrival)),0);
 
   const routeSources=(route.segments||[]).filter(segment=>Boolean(segment.source)).length;
-  const routeVerified=(route.segments||[]).filter(segment=>segment.lastVerified!==null&&segment.lastVerified!==undefined).length;
+  const validVerificationDates=(route.segments||[]).filter(segment=>Boolean(verificationDate(segment.lastVerified)));
+  const invalidVerificationDates=(route.segments||[]).filter(segment=>segment.lastVerified!==null&&segment.lastVerified!==undefined&&!verificationDate(segment.lastVerified));
+  const missingVerificationDates=(route.segments||[]).filter(segment=>segment.lastVerified===null||segment.lastVerified===undefined);
   const criticalFeasibility=(route.segments||[]).filter(segment=>segment.feasibility==='Kritisch').length;
   const conditionalFeasibility=(route.segments||[]).filter(segment=>segment.feasibility==='Bedingt').length;
   const plannableFeasibility=(route.segments||[]).filter(segment=>segment.feasibility==='Planbar').length;
@@ -59,6 +64,10 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations}){
     countriesInLegEndpoints:countriesInLegs.size,
     countriesOutsideLegs,
     invariantOk:(route.countries||[]).length===195&&(route.segments||[]).length===194,
+    canonicalPath:topology.canonical,
+    routeStart:topology.start,
+    routeEnd:topology.end,
+    postTripReturn:topology.postTripReturn,
   };
 
   const continuity={
@@ -80,7 +89,7 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations}){
     missingDuration:movements.filter(movement=>movement.plannedDuration===null).length,
     missingCost:movements.filter(movement=>movement.estimatedCost===null).length,
     missingBookingDecision:movements.filter(movement=>movement.bookingRequired===null).length,
-    missingLastVerified:movements.filter(movement=>!movement.lastVerified).length,
+    missingLastVerified:movements.filter(movement=>!verificationDate(movement.lastVerified)).length,
     externallySourced:movements.filter(movement=>
       Array.isArray(movement.source)&&movement.source.some(source=>/^https?:\/\//i.test(source))
     ).length,
@@ -101,8 +110,10 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations}){
   const evidence={
     sourcedSegments:routeSources,
     sourcedSegmentsPercent:pct(routeSources,(route.segments||[]).length),
-    segmentsWithVerificationDate:routeVerified,
-    segmentsWithVerificationDatePercent:pct(routeVerified,(route.segments||[]).length),
+    segmentsWithVerificationDate:validVerificationDates.length,
+    segmentsWithVerificationDatePercent:pct(validVerificationDates.length,(route.segments||[]).length),
+    invalidVerificationDates:invalidVerificationDates.map(segment=>Number(segment.id)),
+    missingVerificationDates:missingVerificationDates.map(segment=>Number(segment.id)),
     feasibility:{
       plannable:plannableFeasibility,
       conditional:conditionalFeasibility,
@@ -114,6 +125,7 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations}){
   const criticalLegIds=(route.segments||[]).filter(segment=>segment.feasibility==='Kritisch').map(segment=>Number(segment.id));
   const unresolvedMovementIds=movements.filter(movement=>movement.reviewStatus!=='reviewed').map(movement=>movement.id);
   const unresolvedGeometryMovementIds=movements.filter(movement=>!movement.coordinates).map(movement=>movement.id);
+  const verificationQueue=[...invalidVerificationDates,...missingVerificationDates].map(segment=>Number(segment.id));
 
   const workQueue=[
     {priority:'P0',id:'macro-country-coverage',count:countriesOutsideLegs.length,items:countriesOutsideLegs,goal:'Resolve country coverage without changing the 195-country / 194-leg invariant.'},
@@ -121,10 +133,16 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations}){
     {priority:'P1',id:'unresolved-endpoint-geometry',count:unresolvedGeometryMovementIds.length,items:unresolvedGeometryMovementIds,goal:'Resolve exact arrival/departure endpoints before asserting continuity.'},
     {priority:'P1',id:'missing-flight-geometry',count:missingFlightGeometryIds.length,items:missingFlightGeometryIds,goal:'Complete airport endpoint geometry without implying service availability.'},
     {priority:'P2',id:'movement-review',count:unresolvedMovementIds.length,items:unresolvedMovementIds,goal:'Add mode, duration, cost, booking decision and evidence where supported.'},
-    {priority:'P2',id:'route-verification-dates',count:(route.segments||[]).length-routeVerified,goal:'Refresh source-backed verification dates for operational route claims.'}
+    {priority:'P2',id:'route-verification-dates',count:verificationQueue.length,items:verificationQueue,goal:'Refresh source-backed verification dates for operational route claims.'}
   ].filter(item=>item.count>0);
 
   const blockers=[
+    !topology.canonical&&{
+      id:'topology',
+      category:'macro',
+      count:topology.catalogOrderErrors.length+topology.adjacencyErrors.length+topology.missing.length+topology.duplicates.length,
+      message:'The official route must be a canonical 195-country open path with the separate return home excluded from the 194-leg count.',
+    },
     countriesOutsideLegs.length&&{
       id:'country-coverage',
       category:'macro',
@@ -160,19 +178,21 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations}){
   ].filter(Boolean);
 
   const dataAsOf=latestDate([
-    route.generatedAt,
+    ...(route.segments||[]).map(segment=>segment.lastVerified),
     ...movements.map(movement=>movement.lastVerified),
     ...Object.values(flights.geometries||{}).flatMap(geometry=>[geometry.coordinateVerified,geometry.serviceVerified]),
   ]);
 
   return {
-    schemaVersion:1,
+    schemaVersion:2,
     dataAsOf,
+    routeGeneratedAt:isoDate(route.generatedAt),
     scope:{
       tripId:'world-195',
       purpose:'Operational departure-readiness audit for the 195-country flagship route.',
-      invariant:'195 sovereign states / 194 international legs. Domestic movements never increase the official leg count.',
+      invariant:'195 sovereign states / 194 official international legs. Domestic movements and the post-trip return home never increase the official leg count.',
     },
+    topology,
     structural,
     continuity,
     movements:movementHealth,
@@ -181,7 +201,11 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations}){
     workQueue,
     blockers,
     status:{
-      publicModelValid:structural.invariantOk&&continuity.countryMismatch===0&&movements.length===continuity.transferRequired+continuity.unresolvedEndpointGeometry,
+      publicModelValid:
+        structural.invariantOk&&
+        topology.canonical&&
+        continuity.countryMismatch===0&&
+        movements.length===continuity.transferRequired+continuity.unresolvedEndpointGeometry,
       departureReady:blockers.length===0,
     },
   };

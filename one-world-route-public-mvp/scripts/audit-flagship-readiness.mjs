@@ -27,11 +27,16 @@ if(process.argv.includes('--check')){
 console.log(JSON.stringify({
   dataAsOf:report.dataAsOf,
   invariant:report.structural.invariantOk,
+  canonicalPath:report.structural.canonicalPath,
+  routeStart:report.structural.routeStart,
+  routeEnd:report.structural.routeEnd,
   countriesOutsideLegs:report.structural.countriesOutsideLegs,
   unresolvedConnections:report.continuity.unresolvedConnections,
   movementsNeedsReview:report.movements.needsReview,
   missingFlightGeometries:report.flights.missingFullGeometries,
   criticalFeasibility:report.evidence.feasibility.critical,
+  invalidVerificationDates:report.evidence.invalidVerificationDates.length,
+  missingVerificationDates:report.evidence.missingVerificationDates.length,
   publicModelValid:report.status.publicModelValid,
   departureReady:report.status.departureReady,
 },null,2));

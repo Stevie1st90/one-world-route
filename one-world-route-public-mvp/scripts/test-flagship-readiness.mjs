@@ -20,6 +20,12 @@ test('flagship readiness report is deterministic and current',async()=>{
   assert.equal(generated.structural.expectedInternationalLegs,194);
   assert.equal(generated.structural.actualCountries,195);
   assert.equal(generated.structural.actualInternationalLegs,194);
+  assert.equal(generated.structural.countriesInLegEndpoints,195);
+  assert.equal(generated.structural.canonicalPath,true);
+  assert.equal(generated.structural.routeStart,'Deutschland');
+  assert.equal(generated.structural.routeEnd,'Malta');
+  assert.equal(generated.topology.canonical,true);
+  assert.equal(generated.evidence.invalidVerificationDates.length,0);
   assert.equal(generated.continuity.connections,193);
   assert.equal(
     generated.continuity.sharedEndpoints+
