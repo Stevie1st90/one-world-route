@@ -5,14 +5,14 @@
   "routeGeneratedAt": "2026-09-25",
   "departureReady": false,
   "summary": {
-    "total": 241,
+    "total": 223,
     "p0": 35,
     "p1": 17,
-    "p2": 189,
-    "blocking": 103,
+    "p2": 171,
+    "blocking": 89,
     "byCategory": {
-      "international-leg": 173,
-      "operational-movement": 68
+      "international-leg": 169,
+      "operational-movement": 54
     },
     "criticalReviewed": 35,
     "criticalBlocked": 2,
@@ -1965,37 +1965,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-25-26",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 25,
-      "movementId": "transfer-25-26",
-      "title": "Barcelona → Madrid",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-26",
       "priority": "P2",
       "category": "international-leg",
@@ -2227,37 +2196,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-34-35",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 34,
-      "movementId": "transfer-34-35",
-      "title": "Flores → Guatemala-Stadt",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-35",
       "priority": "P2",
       "category": "international-leg",
@@ -2363,60 +2301,6 @@
         "source"
       ],
       "geometry": "not-flight",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-39-40",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 39,
-      "movementId": "transfer-39-40",
-      "title": "Panama-Stadt → Panama-Stadt (PTY)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-40",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 40,
-      "movementId": null,
-      "title": "Panama → Kuba",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "full",
       "sourceCount": 0,
       "lastVerified": null,
       "reviewStatus": null,
@@ -2601,37 +2485,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-54-55",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 54,
-      "movementId": "transfer-54-55",
-      "title": "São Paulo (GRU), nonstop → Boa Vista",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-55",
@@ -2829,37 +2682,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-60-61",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 60,
-      "movementId": "transfer-60-61",
-      "title": "La Paz → Santa Cruz de la Sierra",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-61",
@@ -3135,26 +2957,18 @@
       "title": "Miri/Sarawak → Johor Bahru",
       "status": "needs-review",
       "blockers": [
-        "movement-mode",
         "movement-duration",
         "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
         "movement-review"
       ],
       "missing": [
-        "mode",
         "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
+        "estimatedCost"
       ],
       "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
+      "sourceCount": 2,
+      "externalSourceCount": 2,
+      "lastVerified": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -3304,37 +3118,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-87-88",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 87,
-      "movementId": "transfer-87-88",
-      "title": "Ho-Chi-Minh-Stadt → Hanoi (HAN)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-88",
       "priority": "P2",
       "category": "international-leg",
@@ -3409,37 +3192,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-91-92",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 91,
-      "movementId": "transfer-91-92",
-      "title": "Kolkata → Kolkata (CCU)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-92",
@@ -3728,37 +3480,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-105-106",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 105,
-      "movementId": "transfer-105-106",
-      "title": "Taschkent → Buchara",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-106",
       "priority": "P2",
       "category": "international-leg",
@@ -3949,37 +3670,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-111-112",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 111,
-      "movementId": "transfer-111-112",
-      "title": "Tiflis (TBS) → Tiflis",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-112",
       "priority": "P2",
       "category": "international-leg",
@@ -4001,37 +3691,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-112-113",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 112,
-      "movementId": "transfer-112-113",
-      "title": "Jerewan → Jerewan (EVN)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-113",
@@ -5370,37 +5029,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-159-160",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 159,
-      "movementId": "transfer-159-160",
-      "title": "Kampala → Entebbe (EBB)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-162",
       "priority": "P2",
       "category": "international-leg",
@@ -5670,37 +5298,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-179-180",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 179,
-      "movementId": "transfer-179-180",
-      "title": "Amman (AMM) → Amman",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-183",
       "priority": "P2",
       "category": "international-leg",
@@ -5965,137 +5562,6 @@
       "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
-    },
-    {
-      "id": "leg-192",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 192,
-      "movementId": null,
-      "title": "Italien → San Marino",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-192-193",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 192,
-      "movementId": "transfer-192-193",
-      "title": "San Marino → Rimini",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-193",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 193,
-      "movementId": null,
-      "title": "San Marino → Vatikanstadt",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-193-194",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 193,
-      "movementId": "transfer-193-194",
-      "title": "Rom; zu Fuß in Vatikanstadt → Rom (FCO/CIA)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-194",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 194,
-      "movementId": null,
-      "title": "Vatikanstadt → Malta",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "full",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
     }
   ]
 }
