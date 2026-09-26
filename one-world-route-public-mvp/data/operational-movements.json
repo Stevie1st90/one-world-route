@@ -1045,7 +1045,7 @@
       "country": "Brunei",
       "from": "Bandar Seri Begawan (BWN)",
       "to": "Bandar Seri Begawan",
-      "mode": null,
+      "mode": "Public bus (routes 23/24/34/38)",
       "corridor": "Bandar Seri Begawan (BWN) → Bandar Seri Begawan",
       "coordinates": [
         [
@@ -1063,29 +1063,34 @@
         "after": "2027-03-10",
         "before": "2027-03-10"
       },
-      "plannedDuration": null,
+      "plannedDuration": 30,
       "distanceKm": 4.8,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 1.37,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "walk-up-cash",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.mprt.gov.bn/SiteCollectionDocuments/ATF2020%20without%20LO.pdf",
+        "https://www.jpd.gov.bn/SiteAssets/Site%20Pages/Land%20Transport%20Department/Quick%20Links/Bus%20Route/New%20Bus%20Route.pdf",
+        "https://www.discover-airport.com/brunei/bus.php",
+        "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-sgd.de.html"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Brunei public-bus documentation lists airport-serving routes into Bandar Seri Begawan. Current secondary airport guidance gives about 30 minutes. Fare sources vary between BND 1 and BND 2; BND 2 is intentionally used as the conservative planning value. BND is treated at parity with SGD for planning conversion; recheck locally before travel.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 2,
+        "currency": "BND"
+      }
     },
     {
       "id": "transfer-81-82",
