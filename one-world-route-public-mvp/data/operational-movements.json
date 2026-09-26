@@ -427,10 +427,10 @@
       "parentAfterLeg": 32,
       "parentBeforeLeg": 33,
       "country": "Mexiko",
-      "from": "Mexiko-Stadt/Cancún",
+      "from": "Cancún (CUN)",
       "to": "Cancún/Chetumal",
       "mode": null,
-      "corridor": "Mexiko-Stadt/Cancún → Cancún/Chetumal",
+      "corridor": "Cancún (CUN) → Cancún/Chetumal",
       "coordinates": [
         [
           -99.07033,
