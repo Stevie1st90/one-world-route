@@ -1027,6 +1027,26 @@
       "serviceVerified": null,
       "geometryDecision": "corridor-explicit"
     },
+    "99": {
+      "airportCodes": [
+        "PUS",
+        "FUK"
+      ],
+      "coordinates": [
+        [
+          128.938004,
+          35.179501
+        ],
+        [
+          130.451004,
+          33.585899
+        ]
+      ],
+      "source": "https://ourairports.com/airports/RKPK/ ; https://ourairports.com/airports/RJFF/",
+      "coordinateVerified": "2026-09-26",
+      "serviceVerified": null,
+      "geometryDecision": "explicit-override"
+    },
     "100": {
       "airportCodes": [
         "NRT",
@@ -1977,6 +1997,26 @@
       "serviceVerified": null,
       "geometryDecision": "corridor-explicit"
     },
+    "173": {
+      "airportCodes": [
+        "RUH",
+        "KWI"
+      ],
+      "coordinates": [
+        [
+          46.698799,
+          24.9576
+        ],
+        [
+          47.969813,
+          29.224487
+        ]
+      ],
+      "source": "https://ourairports.com/data/",
+      "coordinateVerified": "2026-09-26",
+      "serviceVerified": null,
+      "geometryDecision": "explicit-override"
+    },
     "174": {
       "airportCodes": [
         "KWI",
@@ -2033,6 +2073,26 @@
         ]
       ],
       "source": "https://ourairports.com/data/ ; https://ourairports.com/airports/OMDB/",
+      "coordinateVerified": "2026-09-26",
+      "serviceVerified": null,
+      "geometryDecision": "explicit-override"
+    },
+    "177": {
+      "airportCodes": [
+        "DXB",
+        "MCT"
+      ],
+      "coordinates": [
+        [
+          55.370992,
+          25.24979
+        ],
+        [
+          58.285268,
+          23.600218
+        ]
+      ],
+      "source": "https://ourairports.com/airports/OMDB/ ; https://ourairports.com/airports/OOMS/",
       "coordinateVerified": "2026-09-26",
       "serviceVerified": null,
       "geometryDecision": "explicit-override"
@@ -3097,8 +3157,24 @@
       }
     },
     "99": {
-      "departure": null,
-      "arrival": null
+      "departure": {
+        "airportCode": "PUS",
+        "coordinates": [
+          128.938004,
+          35.179501
+        ],
+        "source": "https://ourairports.com/airports/RKPK/ ; https://ourairports.com/airports/RJFF/",
+        "coordinateVerified": "2026-09-26"
+      },
+      "arrival": {
+        "airportCode": "FUK",
+        "coordinates": [
+          130.451004,
+          33.585899
+        ],
+        "source": "https://ourairports.com/airports/RKPK/ ; https://ourairports.com/airports/RJFF/",
+        "coordinateVerified": "2026-09-26"
+      }
     },
     "100": {
       "departure": {
@@ -4013,8 +4089,24 @@
       }
     },
     "173": {
-      "departure": null,
-      "arrival": null
+      "departure": {
+        "airportCode": "RUH",
+        "coordinates": [
+          46.698799,
+          24.9576
+        ],
+        "source": "https://ourairports.com/data/",
+        "coordinateVerified": "2026-09-26"
+      },
+      "arrival": {
+        "airportCode": "KWI",
+        "coordinates": [
+          47.969813,
+          29.224487
+        ],
+        "source": "https://ourairports.com/data/",
+        "coordinateVerified": "2026-09-26"
+      }
     },
     "174": {
       "departure": {
@@ -4077,8 +4169,24 @@
       }
     },
     "177": {
-      "departure": null,
-      "arrival": null
+      "departure": {
+        "airportCode": "DXB",
+        "coordinates": [
+          55.370992,
+          25.24979
+        ],
+        "source": "https://ourairports.com/airports/OMDB/ ; https://ourairports.com/airports/OOMS/",
+        "coordinateVerified": "2026-09-26"
+      },
+      "arrival": {
+        "airportCode": "MCT",
+        "coordinates": [
+          58.285268,
+          23.600218
+        ],
+        "source": "https://ourairports.com/airports/OMDB/ ; https://ourairports.com/airports/OOMS/",
+        "coordinateVerified": "2026-09-26"
+      }
     },
     "178": {
       "departure": {

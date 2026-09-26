@@ -50,6 +50,7 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations,criti
   const movements=operations.movements||[];
   const flightLegs=(route.segments||[]).filter(segment=>requiresFullFlightGeometry(segment.mode));
   const fullFlightIds=new Set(Object.keys(flights.geometries||{}).map(Number));
+  const fullFlightGeometryCount=flightLegs.filter(segment=>fullFlightIds.has(Number(segment.id))).length;
   const missingFlightGeometryIds=flightLegs
     .filter(segment=>!fullFlightIds.has(Number(segment.id)))
     .map(segment=>Number(segment.id));
@@ -131,8 +132,8 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations,criti
 
   const flightsHealth={
     flightLegs:flightLegs.length,
-    fullGeometries:fullFlightIds.size,
-    fullGeometryPercent:pct(fullFlightIds.size,flightLegs.length),
+    fullGeometries:fullFlightGeometryCount,
+    fullGeometryPercent:pct(fullFlightGeometryCount,flightLegs.length),
     missingFullGeometries:missingFlightGeometryIds.length,
     missingFullGeometryLegIds:missingFlightGeometryIds,
     knownEndpoints:knownFlightEndpoints,

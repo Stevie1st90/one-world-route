@@ -245,6 +245,26 @@
         "https://ourairports.com/data/"
       ]
     },
+    "99": {
+      "airportCodes": [
+        "PUS",
+        "FUK"
+      ],
+      "coordinates": [
+        [
+          128.938004,
+          35.179501
+        ],
+        [
+          130.451004,
+          33.585899
+        ]
+      ],
+      "sources": [
+        "https://ourairports.com/airports/RKPK/",
+        "https://ourairports.com/airports/RJFF/"
+      ]
+    },
     "100": {
       "airportCodes": [
         "NRT",
@@ -375,6 +395,25 @@
         "https://ourairports.com/data/"
       ]
     },
+    "173": {
+      "airportCodes": [
+        "RUH",
+        "KWI"
+      ],
+      "coordinates": [
+        [
+          46.698799,
+          24.9576
+        ],
+        [
+          47.969813,
+          29.224487
+        ]
+      ],
+      "sources": [
+        "https://ourairports.com/data/"
+      ]
+    },
     "176": {
       "airportCodes": [
         "DOH",
@@ -393,6 +432,26 @@
       "sources": [
         "https://ourairports.com/data/",
         "https://ourairports.com/airports/OMDB/"
+      ]
+    },
+    "177": {
+      "airportCodes": [
+        "DXB",
+        "MCT"
+      ],
+      "coordinates": [
+        [
+          55.370992,
+          25.24979
+        ],
+        [
+          58.285268,
+          23.600218
+        ]
+      ],
+      "sources": [
+        "https://ourairports.com/airports/OMDB/",
+        "https://ourairports.com/airports/OOMS/"
       ]
     },
     "178": {

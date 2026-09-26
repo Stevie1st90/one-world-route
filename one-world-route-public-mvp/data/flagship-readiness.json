@@ -48,26 +48,26 @@
   },
   "continuity": {
     "connections": 193,
-    "sharedEndpoints": 120,
-    "transferRequired": 56,
-    "unresolvedEndpointGeometry": 17,
+    "sharedEndpoints": 128,
+    "transferRequired": 57,
+    "unresolvedEndpointGeometry": 8,
     "countryMismatch": 0,
-    "unresolvedConnections": 49
+    "unresolvedConnections": 40
   },
   "movements": {
-    "total": 73,
-    "reviewed": 24,
-    "needsReview": 49,
-    "reviewedPercent": 32.9,
-    "operationallyComplete": 24,
-    "operationallyCompletePercent": 32.9,
-    "unresolvedGeometry": 17,
-    "missingMode": 49,
-    "missingDuration": 49,
-    "missingCost": 49,
-    "missingBookingDecision": 49,
-    "missingLastVerified": 49,
-    "externallySourced": 24
+    "total": 65,
+    "reviewed": 25,
+    "needsReview": 40,
+    "reviewedPercent": 38.5,
+    "operationallyComplete": 25,
+    "operationallyCompletePercent": 38.5,
+    "unresolvedGeometry": 8,
+    "missingMode": 40,
+    "missingDuration": 40,
+    "missingCost": 40,
+    "missingBookingDecision": 40,
+    "missingLastVerified": 40,
+    "externallySourced": 25
   },
   "flights": {
     "flightLegs": 100,
@@ -313,23 +313,14 @@
     {
       "priority": "P1",
       "id": "unresolved-endpoint-geometry",
-      "count": 17,
+      "count": 8,
       "items": [
         "transfer-57-58",
         "transfer-58-59",
         "transfer-59-60",
-        "transfer-61-62",
-        "transfer-62-63",
         "transfer-96-97",
         "transfer-97-98",
         "transfer-98-99",
-        "transfer-99-100",
-        "transfer-139-140",
-        "transfer-140-141",
-        "transfer-172-173",
-        "transfer-173-174",
-        "transfer-176-177",
-        "transfer-177-178",
         "transfer-181-182",
         "transfer-182-183"
       ],
@@ -338,7 +329,7 @@
     {
       "priority": "P2",
       "id": "movement-review",
-      "count": 49,
+      "count": 40,
       "items": [
         "transfer-21-22",
         "transfer-31-32",
@@ -350,8 +341,6 @@
         "transfer-58-59",
         "transfer-59-60",
         "transfer-60-61",
-        "transfer-61-62",
-        "transfer-62-63",
         "transfer-81-82",
         "transfer-83-84",
         "transfer-90-91",
@@ -359,7 +348,6 @@
         "transfer-96-97",
         "transfer-97-98",
         "transfer-98-99",
-        "transfer-99-100",
         "transfer-101-102",
         "transfer-102-103",
         "transfer-106-107",
@@ -373,8 +361,6 @@
         "transfer-135-136",
         "transfer-137-138",
         "transfer-138-139",
-        "transfer-139-140",
-        "transfer-140-141",
         "transfer-144-145",
         "transfer-145-146",
         "transfer-147-148",
@@ -383,10 +369,6 @@
         "transfer-156-157",
         "transfer-157-158",
         "transfer-158-159",
-        "transfer-172-173",
-        "transfer-173-174",
-        "transfer-176-177",
-        "transfer-177-178",
         "transfer-181-182",
         "transfer-182-183"
       ],
@@ -566,13 +548,13 @@
     {
       "id": "continuity",
       "category": "operations",
-      "count": 49,
+      "count": 40,
       "message": "Operational continuity still contains unresolved or unreviewed connections."
     },
     {
       "id": "movement-review",
       "category": "operations",
-      "count": 49,
+      "count": 40,
       "message": "Inventoried domestic/operational movements still require complete geometry, mode, duration, cost, booking decision and external evidence."
     },
     {
