@@ -5,13 +5,13 @@
   "routeGeneratedAt": "2026-09-25",
   "departureReady": false,
   "summary": {
-    "total": 157,
+    "total": 137,
     "p0": 43,
     "p1": 0,
-    "p2": 114,
+    "p2": 94,
     "blocking": 43,
     "byCategory": {
-      "international-leg": 149,
+      "international-leg": 129,
       "operational-movement": 8
     },
     "criticalReviewed": 35,
@@ -1156,52 +1156,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "leg-9",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 9,
-      "movementId": null,
-      "title": "Estland → Lettland",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-10",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 10,
-      "movementId": null,
-      "title": "Lettland → Litauen",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
       "id": "leg-11",
       "priority": "P2",
       "category": "international-leg",
@@ -1372,98 +1326,6 @@
         "source"
       ],
       "geometry": "not-flight",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-25",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 25,
-      "movementId": null,
-      "title": "Andorra → Spanien",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-26",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 26,
-      "movementId": null,
-      "title": "Spanien → Portugal",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-28",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 28,
-      "movementId": null,
-      "title": "Vereinigtes Königreich → Irland",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-29",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 29,
-      "movementId": null,
-      "title": "Irland → Island",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "full",
       "sourceCount": 0,
       "lastVerified": null,
       "reviewStatus": null,
@@ -1658,29 +1520,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "leg-40",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 40,
-      "movementId": null,
-      "title": "Panama → Kuba",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "full",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
       "id": "leg-41",
       "priority": "P2",
       "category": "international-leg",
@@ -1709,28 +1548,6 @@
       "legId": 55,
       "movementId": null,
       "title": "Brasilien → Guyana",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-56",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 56,
-      "movementId": null,
-      "title": "Guyana → Suriname",
       "status": "needs-review",
       "blockers": [],
       "missing": [
@@ -1816,29 +1633,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "leg-63",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 63,
-      "movementId": null,
-      "title": "Argentinien → Uruguay",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
       "id": "leg-72",
       "priority": "P2",
       "category": "international-leg",
@@ -1905,29 +1699,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "leg-80",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 80,
-      "movementId": null,
-      "title": "Philippinen → Brunei",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "full",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
       "id": "leg-81",
       "priority": "P2",
       "category": "international-leg",
@@ -1957,29 +1728,6 @@
       "legId": 82,
       "movementId": null,
       "title": "Malaysia → Singapur",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-83",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 83,
-      "movementId": null,
-      "title": "Singapur → Indonesien",
       "status": "needs-review",
       "blockers": [],
       "missing": [
@@ -2146,29 +1894,6 @@
       ],
       "geometry": "full",
       "sourceCount": 1,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-99",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 99,
-      "movementId": null,
-      "title": "Südkorea → Japan",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 0,
       "lastVerified": null,
       "reviewStatus": null,
       "reviewDecision": null,
@@ -3158,29 +2883,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "leg-173",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 173,
-      "movementId": null,
-      "title": "Saudi-Arabien → Kuwait",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
       "id": "leg-174",
       "priority": "P2",
       "category": "international-leg",
@@ -3194,75 +2896,6 @@
         "source"
       ],
       "geometry": "full",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-175",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 175,
-      "movementId": null,
-      "title": "Bahrain → Katar",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "full",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-176",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 176,
-      "movementId": null,
-      "title": "Katar → Vereinigte Arabische Emirate",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "full",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-177",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 177,
-      "movementId": null,
-      "title": "Vereinigte Arabische Emirate → Oman",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
       "reviewStatus": null,
@@ -3387,28 +3020,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "leg-188",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 188,
-      "movementId": null,
-      "title": "Bosnien und Herzegowina → Serbien",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
       "id": "leg-189",
       "priority": "P2",
       "category": "international-leg",
@@ -3422,52 +3033,6 @@
       ],
       "geometry": "not-flight",
       "sourceCount": 1,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-190",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 190,
-      "movementId": null,
-      "title": "Kroatien → Slowenien",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-191",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 191,
-      "movementId": null,
-      "title": "Slowenien → Italien",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 0,
       "lastVerified": null,
       "reviewStatus": null,
       "reviewDecision": null,
@@ -3513,29 +3078,6 @@
         "source"
       ],
       "geometry": "not-flight",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-194",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 194,
-      "movementId": null,
-      "title": "Vatikanstadt → Malta",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "full",
       "sourceCount": 0,
       "lastVerified": null,
       "reviewStatus": null,
