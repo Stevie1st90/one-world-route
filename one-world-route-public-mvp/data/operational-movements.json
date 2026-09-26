@@ -370,7 +370,7 @@
       "country": "USA",
       "from": "New York/US-Hub",
       "to": "New York/US-Hub",
-      "mode": null,
+      "mode": "Subway + AirTrain",
       "corridor": "New York/US-Hub → New York/US-Hub",
       "coordinates": [
         [
@@ -388,29 +388,32 @@
         "after": "2026-12-09",
         "before": "2026-12-09"
       },
-      "plannedDuration": null,
+      "plannedDuration": 75,
       "distanceKm": 20.8,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 11,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "walk-up",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.jfkairport.com/transportation/public-transport",
+        "https://www.jfkairport.com/transportation/airtrain",
+        "https://www.mta.info/document/186881"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "JFK publishes public-transport connections via subway/LIRR and AirTrain. The current AirTrain single ride is USD 8.75; MTA's 2026 base subway fare is USD 3.00, giving USD 11.75 before FX for the subway+AirTrain option. EUR 11 is a rounded planning conversion; 75 minutes is a conservative Manhattan/US-hub-to-terminal allowance during the airport construction period.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-airport-public-transport-guidance-plus-conservative-construction-margin",
+      "costBasis": "published-2026-MTA-base-fare-plus-current-AirTrain-fare-rounded-eur",
+      "evidenceScope": "Current JFK public-transport connectivity and 2026 fares; exact origin within New York and travel-date journey time remain variable."
     },
     {
       "id": "transfer-32-33",
@@ -574,7 +577,7 @@
       "country": "Brasilien",
       "from": "São Paulo (GRU), nonstop",
       "to": "Boa Vista",
-      "mode": null,
+      "mode": "Domestic flight + local transfer",
       "corridor": "São Paulo (GRU), nonstop → Boa Vista",
       "coordinates": [
         [
@@ -592,29 +595,30 @@
         "after": "2027-01-13",
         "before": "2027-01-13"
       },
-      "plannedDuration": null,
+      "plannedDuration": 330,
       "distanceKm": 3300.2,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 200,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.latamairlines.com/br/pt/destinos/voos-de-sao-paulo-para-boa-vista"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "LATAM currently publishes direct São Paulo (GRU)–Boa Vista (BVB) service at about 3h32, with one direct flight weekly and January 2027 one-way fares from BRL 1,116.65. EUR 200 is a conservative rounded planning benchmark including a small local-transfer margin; the exact 13 January 2027 fare and weekly operating day must be rechecked before booking.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "published-direct-flight-time-plus-airport-processing-and-local-transfer-margin",
+      "costBasis": "current-published-January-2027-fare-rounded-eur-with-transfer-margin",
+      "evidenceScope": "Current direct GRU-BVB service, frequency, flight time and January 2027 fare examples; exact travel-date inventory remains dynamic."
     },
     {
       "id": "transfer-55-56",
@@ -1001,7 +1005,7 @@
       "country": "Malaysia",
       "from": "Miri/Sarawak",
       "to": "Johor Bahru",
-      "mode": null,
+      "mode": "Domestic flight",
       "corridor": "Miri/Sarawak → Johor Bahru",
       "coordinates": [
         [
@@ -1019,29 +1023,30 @@
         "after": "2027-03-11",
         "before": "2027-03-11"
       },
-      "plannedDuration": null,
+      "plannedDuration": 330,
       "distanceKm": 1183.1,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 80,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.airasia.com/flights/from-miri-myy-to-johor-bahru-jhb/"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "AirAsia currently sells Miri (MYY)–Johor Bahru (JHB) and states that direct service is available; its published route guide gives a non-stop journey around 3h55 and fares from MYR 366. EUR 80 is a rounded planning benchmark. 330 minutes includes airport processing and a small schedule margin; March 2027 inventory should be rechecked.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "published-route-time-plus-airport-processing-margin",
+      "costBasis": "current-published-route-fare-rounded-eur",
+      "evidenceScope": "Current AirAsia MYY-JHB route and fare guide; exact March 2027 schedule and fare remain dynamic."
     },
     {
       "id": "transfer-83-84",
@@ -1208,7 +1213,7 @@
       "country": "Bangladesch",
       "from": "Dhaka (DAC)",
       "to": "Dhaka",
-      "mode": null,
+      "mode": "Pre-booked airport transfer",
       "corridor": "Dhaka (DAC) → Dhaka",
       "coordinates": [
         [
@@ -1226,29 +1231,32 @@
         "after": "2027-03-27",
         "before": "2027-03-27"
       },
-      "plannedDuration": null,
+      "plannedDuration": 180,
       "distanceKm": 4,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 26,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.hsia.gov.bd/our-services/car-rental-service-43",
+        "https://www.hsia.gov.bd/transport-and-parking/car-rental-service-8",
+        "https://www.airporttransferportal.com/airport-guides/dac/cost-to-city"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Hazrat Shahjalal International Airport confirms licensed car-rental/transfer services in the arrivals area and destination-based fare setting. A current July 2026 transfer benchmark lists pre-booked DAC→Dhaka city transfers from about EUR 26. Dhaka traffic can make the roughly 20 km journey take multiple hours; 180 minutes is a conservative planning allowance.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-airport-transfer-guidance-with-Dhaka-peak-traffic-margin",
+      "costBasis": "current-fixed-prebooked-transfer-benchmark",
+      "evidenceScope": "Current airport transfer availability and a current fixed-price city-transfer benchmark; exact destination and traffic conditions remain variable."
     },
     {
       "id": "transfer-91-92",
@@ -1258,7 +1266,7 @@
       "country": "Indien",
       "from": "Kolkata",
       "to": "Kolkata (CCU)",
-      "mode": null,
+      "mode": "Prepaid airport taxi",
       "corridor": "Kolkata → Kolkata (CCU)",
       "coordinates": [
         [
@@ -1276,29 +1284,31 @@
         "after": "2027-03-28",
         "before": "2027-03-28"
       },
-      "plannedDuration": null,
+      "plannedDuration": 75,
       "distanceKm": 12.5,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 8,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "walk-up",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.aai.aero/en/airports/transport-details/kolkata/Taxi",
+        "https://taxibazaar.in/kolkata-airport-taxi-guide.php"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Airports Authority of India confirms 24/7 prepaid taxi and radio-taxi service to/from Kolkata airport. A current 2026 fare guide places central-city prepaid airport journeys broadly around INR 500–650 depending on destination; EUR 8 is a conservative rounded planning amount. 75 minutes covers normal central-Kolkata traffic with luggage margin.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-airport-taxi-service-plus-central-city-traffic-margin",
+      "costBasis": "current-2026-prepaid-taxi-range-rounded-eur",
+      "evidenceScope": "Current 24/7 official airport taxi availability plus current city fare range; exact pickup point and travel-date tariff should be confirmed."
     },
     {
       "id": "transfer-96-97",
@@ -1985,7 +1995,7 @@
       "country": "Libanon",
       "from": "Beirut",
       "to": "Beirut (BEY)",
-      "mode": null,
+      "mode": "Taxi / ride-hail",
       "corridor": "Beirut → Beirut (BEY)",
       "coordinates": [
         [
@@ -2003,29 +2013,31 @@
         "after": "2027-05-23",
         "before": "2027-05-23"
       },
-      "plannedDuration": null,
+      "plannedDuration": 45,
       "distanceKm": 8.3,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 18,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "walk-up",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.beirutairport.gov.lb/_page.php?page_id=17",
+        "https://www.airporttransferportal.com/airport-guides/bey"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Beirut Airport publishes licensed airport taxis and an official Beirut fare of USD 18. Current 2026 guidance places the airport-city drive at roughly 15–30 minutes. The published airport→Beirut tariff is used here only as a planning benchmark for the reverse Beirut→BEY movement; EUR 18 and 45 minutes are conservative values and the outbound quote should be reconfirmed.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-airport-city-drive-time-plus-traffic-margin",
+      "costBasis": "official-airport-to-Beirut-tariff-used-as-reverse-direction-planning-benchmark",
+      "evidenceScope": "Current licensed airport-taxi system, official Beirut tariff and airport-city timing; exact city-to-airport outbound fare should be reconfirmed."
     },
     {
       "id": "transfer-121-122",
@@ -2136,7 +2148,7 @@
       "country": "Nigeria",
       "from": "Lagos (LOS), nonstop",
       "to": "Lagos",
-      "mode": null,
+      "mode": "Pre-booked airport transfer",
       "corridor": "Lagos (LOS), nonstop → Lagos",
       "coordinates": [
         [
@@ -2154,29 +2166,31 @@
         "after": "2027-06-29",
         "before": "2027-06-29"
       },
-      "plannedDuration": null,
+      "plannedDuration": 150,
       "distanceKm": 8.7,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 53,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://faan.gov.ng/events/faan-passenger-safety-and-seamless-airport-mobility-remain-our-priority/",
+        "https://www.airporttransferportal.com/airport-guides/los"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "FAAN confirms regulated commercial ground-transport and e-hailing activity at Nigerian airports. A current 2026 Lagos guide lists fixed pre-booked LOS→Lagos City Center transfers from about EUR 53; airport-to-Victoria-Island drive times vary from roughly 45 minutes to 2.5 hours with traffic. 150 minutes and EUR 53 therefore provide a conservative fixed-transfer benchmark.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-Lagos-airport-transfer-range-conservative-upper-traffic-allowance",
+      "costBasis": "current-fixed-prebooked-transfer-benchmark",
+      "evidenceScope": "Current FAAN airport-mobility framework and current fixed-price transfer benchmark; exact destination within Lagos materially affects time and price."
     },
     {
       "id": "transfer-135-136",
@@ -2186,7 +2200,7 @@
       "country": "Sierra Leone",
       "from": "Freetown",
       "to": "Freetown (FNA)",
-      "mode": null,
+      "mode": "Water taxi + airport ground transfer",
       "corridor": "Freetown → Freetown (FNA)",
       "coordinates": [
         [
@@ -2204,29 +2218,32 @@
         "after": "2027-07-10",
         "before": "2027-07-10"
       },
-      "plannedDuration": null,
+      "plannedDuration": 150,
       "distanceKm": 17.2,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 60,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://freetown-airport.aero/transport-to-from-airport/",
+        "https://slaa.gov.sl/services/commercial-opperation-of-slaa",
+        "https://waigf.ecowas.int/important-travel-and-arrival-information-for-waigf-2026-participants/"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Freetown International Airport and Sierra Leone Airports Authority publish water-taxi services aligned with flights, with the water crossing around 30–40 minutes and advance arrangement recommended. Current 2026 ECOWAS travel guidance states a USD 60 water-taxi fare. EUR 60 and 150 minutes are conservative door-to-door planning values including ground legs and check-in margin.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "published-water-crossing-time-plus-ground-transfer-and-airport-margin",
+      "costBasis": "current-2026-water-taxi-fare-rounded-eur",
+      "evidenceScope": "Current airport water-transport availability, crossing time and 2026 fare guidance; weather and exact operator schedule remain variable."
     },
     {
       "id": "transfer-137-138",
@@ -2436,7 +2453,7 @@
       "country": "Namibia",
       "from": "Windhoek (WDH), nonstop",
       "to": "Windhoek",
-      "mode": null,
+      "mode": "Airport shuttle",
       "corridor": "Windhoek (WDH), nonstop → Windhoek",
       "coordinates": [
         [
@@ -2454,29 +2471,32 @@
         "after": "2027-08-08",
         "before": "2027-08-08"
       },
-      "plannedDuration": null,
+      "plannedDuration": 60,
       "distanceKm": 40.8,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 25,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.airports.com.na/airports/andimba-toivo-ya-toivo-airport/10",
+        "https://bennshuttle.com/",
+        "https://www.airporttransferportal.com/airport-guides/wdh"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Namibia Airports Company confirms registered shuttle/taxi operators at Hosea Kutako International Airport. Current operator pricing lists WDH↔Windhoek airport shuttle service from N$450 per person for 1–2 passengers, while current route guidance places the drive around 40–50 minutes. EUR 25 and 60 minutes are rounded planning values; advance booking is recommended.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-40-to-50-minute-airport-road-time-plus-margin",
+      "costBasis": "current-published-shuttle-operator-rate-rounded-eur",
+      "evidenceScope": "Current registered airport shuttle availability, operator fare and airport-city road time; exact 2027 provider rate should be rechecked."
     },
     {
       "id": "transfer-150-151",
@@ -2588,7 +2608,7 @@
       "country": "Mosambik",
       "from": "Maputo (MPM)",
       "to": "Maputo",
-      "mode": null,
+      "mode": "Pre-booked airport transfer",
       "corridor": "Maputo (MPM) → Maputo",
       "coordinates": [
         [
@@ -2606,29 +2626,31 @@
         "after": "2027-08-15",
         "before": "2027-08-15"
       },
-      "plannedDuration": null,
+      "plannedDuration": 45,
       "distanceKm": 5.4,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 56,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://aeroportos.co.mz/acesso-transportes",
+        "https://www.airporttransferportal.com/airport-guides/mpm/cost-to-city"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Aeroportos de Moçambique confirms accredited airport taxis are available 24/7 at arrivals. Current 2026 transfer guidance places Maputo Airport about 7 km from the city center, normally 15–25 minutes, and lists fixed pre-booked private transfers from about EUR 56. EUR 56 and 45 minutes are conservative planning values.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-airport-city-road-time-plus-margin",
+      "costBasis": "current-fixed-prebooked-transfer-benchmark",
+      "evidenceScope": "Current accredited airport taxi availability and current fixed-price city-transfer benchmark; street-taxi fares remain negotiated."
     },
     {
       "id": "transfer-154-155",
@@ -2691,7 +2713,7 @@
       "country": "Tansania",
       "from": "Dar es Salaam (DAR)",
       "to": "Dar es Salaam",
-      "mode": null,
+      "mode": "Pre-booked airport transfer",
       "corridor": "Dar es Salaam (DAR) → Dar es Salaam",
       "coordinates": [
         [
@@ -2709,29 +2731,32 @@
         "after": "2027-08-22",
         "before": "2027-08-22"
       },
-      "plannedDuration": null,
+      "plannedDuration": 90,
       "distanceKm": 9,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 54,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.jnia.taa.go.tz/pages/taxi-and-car-hire",
+        "https://www.jnia.taa.go.tz/pages/public-transport",
+        "https://www.airporttransferportal.com/transfer/dar-to-dar-es-salaam-city-center"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Tanzania Airports Authority confirms licensed airport taxis at JNIA and a public-bus stop outside the airport gate. Current fixed private transfers from DAR to Dar es Salaam City Center start around EUR 54; city-drive time can vary substantially with traffic. EUR 54 and 90 minutes are conservative pre-booked-transfer planning values.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-airport-city-road-guidance-with-high-traffic-margin",
+      "costBasis": "current-fixed-prebooked-transfer-benchmark",
+      "evidenceScope": "Current licensed airport transport availability and current fixed-price city transfer; actual road time remains traffic-sensitive."
     },
     {
       "id": "transfer-157-158",
@@ -2791,7 +2816,7 @@
       "country": "Ruanda",
       "from": "Kigali (KGL), nonstop",
       "to": "Kigali",
-      "mode": null,
+      "mode": "Pre-booked airport transfer",
       "corridor": "Kigali (KGL), nonstop → Kigali",
       "coordinates": [
         [
@@ -2809,29 +2834,31 @@
         "after": "2027-08-26",
         "before": "2027-08-26"
       },
-      "plannedDuration": null,
+      "plannedDuration": 45,
       "distanceKm": 9,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 50,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.airporttransferportal.com/transfer/kgl-to-kigali-city-center",
+        "https://www.airporttransferportal.com/airport-guides/kgl/cost-to-city"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Current 2026 Kigali transfer listings place KGL roughly 20–30 minutes from the city and fixed pre-booked transfers around EUR 48–56 per vehicle. EUR 50 and 45 minutes are rounded planning benchmarks that avoid negotiated curbside taxi pricing; exact hotel destination and 2027 supplier quote should be rechecked.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-20-to-30-minute-airport-city-drive-time-plus-margin",
+      "costBasis": "current-fixed-prebooked-transfer-benchmark-rounded",
+      "evidenceScope": "Current KGL-city fixed-transfer pricing and drive-time guidance; exact destination and supplier price remain dynamic."
     },
     {
       "id": "transfer-159-160",

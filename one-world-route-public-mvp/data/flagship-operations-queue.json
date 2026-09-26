@@ -5,14 +5,14 @@
   "routeGeneratedAt": "2026-09-25",
   "departureReady": false,
   "summary": {
-    "total": 213,
+    "total": 201,
     "p0": 35,
     "p1": 8,
-    "p2": 170,
-    "blocking": 75,
+    "p2": 158,
+    "blocking": 63,
     "byCategory": {
       "international-leg": 173,
-      "operational-movement": 40
+      "operational-movement": 28
     },
     "criticalReviewed": 35,
     "criticalBlocked": 2,
@@ -1737,37 +1737,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-31-32",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 31,
-      "movementId": "transfer-31-32",
-      "title": "New York/US-Hub → New York/US-Hub",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-32",
       "priority": "P2",
       "category": "international-leg",
@@ -2180,37 +2149,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-54-55",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 54,
-      "movementId": "transfer-54-55",
-      "title": "São Paulo (GRU), nonstop → Boa Vista",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-55",
@@ -2644,37 +2582,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-81-82",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 81,
-      "movementId": "transfer-81-82",
-      "title": "Miri/Sarawak → Johor Bahru",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-82",
       "priority": "P2",
       "category": "international-leg",
@@ -2843,37 +2750,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-90-91",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 90,
-      "movementId": "transfer-90-91",
-      "title": "Dhaka (DAC) → Dhaka",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-91",
       "priority": "P2",
       "category": "international-leg",
@@ -2895,37 +2771,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-91-92",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 91,
-      "movementId": "transfer-91-92",
-      "title": "Kolkata → Kolkata (CCU)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-92",
@@ -3480,37 +3325,6 @@
       "blocksDeparture": true
     },
     {
-      "id": "movement-transfer-116-117",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 116,
-      "movementId": "transfer-116-117",
-      "title": "Beirut → Beirut (BEY)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-117",
       "priority": "P2",
       "category": "international-leg",
@@ -3629,37 +3443,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-129-130",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 129,
-      "movementId": "transfer-129-130",
-      "title": "Lagos (LOS), nonstop → Lagos",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-130",
@@ -3792,37 +3575,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-135-136",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 135,
-      "movementId": "transfer-135-136",
-      "title": "Freetown → Freetown (FNA)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-136",
@@ -4213,37 +3965,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-147-148",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 147,
-      "movementId": "transfer-147-148",
-      "title": "Windhoek (WDH), nonstop → Windhoek",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-148",
       "priority": "P2",
       "category": "international-leg",
@@ -4389,37 +4110,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-152-153",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 152,
-      "movementId": "transfer-152-153",
-      "title": "Maputo (MPM) → Maputo",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-153",
       "priority": "P2",
       "category": "international-leg",
@@ -4511,37 +4201,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-156-157",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 156,
-      "movementId": "transfer-156-157",
-      "title": "Dar es Salaam (DAR) → Dar es Salaam",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-157",
       "priority": "P2",
       "category": "international-leg",
@@ -4615,37 +4274,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-158-159",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 158,
-      "movementId": "transfer-158-159",
-      "title": "Kigali (KGL), nonstop → Kigali",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-159",
