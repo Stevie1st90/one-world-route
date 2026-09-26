@@ -4412,8 +4412,8 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
-      "source": null,
+      "lastVerified": "2026-09-26",
+      "source": "https://www.visitsanmarino.com/pub2/VisitSM/de/contenuto/Pianifica-il-viaggio/COME-ARRIVARE.html ; https://www.bonellibus.it/en/shuttle-rimini-san-marino-2/ ; https://www.benedettinispa.com/en/rimini-san-marino",
       "alertLevel": "GREEN",
       "alertMessage": null
     },
@@ -4447,7 +4447,7 @@
       "planDeparture": 46691,
       "planArrival": 46693,
       "mode": "Flug",
-      "corridor": "Rom (FCO/CIA) → Malta (MLA)",
+      "corridor": "Rom (FCO) → Malta (MLA)",
       "feasibility": "Planbar",
       "dataQuality": "Plausibel",
       "bookingTier": "B",
@@ -4458,8 +4458,8 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
-      "source": null,
+      "lastVerified": "2026-09-26",
+      "source": "https://www.ryanair.com/gb/en/flights/flights-from-rome-to-malta",
       "alertLevel": "GREEN",
       "alertMessage": null
     }
