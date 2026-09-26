@@ -80,8 +80,8 @@
       "itinerary": [],
       "evidence": {
         "segments": 194,
-        "sourcedSegments": 127,
-        "verifiedSegments": 38,
+        "sourcedSegments": 128,
+        "verifiedSegments": 39,
         "latestEvidenceCheck": "2026-09-26"
       },
       "sources": []
