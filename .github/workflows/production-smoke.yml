@@ -56,9 +56,9 @@ jobs:
           CHROME_BIN="$(command -v google-chrome || command -v chromium)"
           test -n "$CHROME_BIN"
           cd qa
-          OWR_CHROMIUM_PATH="$CHROME_BIN" ./node_modules/.bin/playwright test tests/production-smoke.spec.mjs --project=desktop-1440 --project=mobile-390 --output=production-smoke-results
+          OWR_CHROMIUM_PATH="$CHROME_BIN" ./node_modules/.bin/playwright test tests/production-smoke.spec.mjs --project=desktop-1440 --project=mobile-390 --workers=3 --output=production-smoke-results
       - name: Upload production smoke artifacts
-        if: always()
+        if: failure()
         uses: actions/upload-artifact@v7
         with:
           name: production-smoke-${{ github.run_id }}

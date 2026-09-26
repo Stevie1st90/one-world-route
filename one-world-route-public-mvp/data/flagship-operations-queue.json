@@ -5,14 +5,14 @@
   "routeGeneratedAt": "2026-09-25",
   "departureReady": false,
   "summary": {
-    "total": 236,
+    "total": 222,
     "p0": 35,
     "p1": 17,
-    "p2": 184,
-    "blocking": 98,
+    "p2": 170,
+    "blocking": 84,
     "byCategory": {
       "international-leg": 173,
-      "operational-movement": 63
+      "operational-movement": 49
     },
     "criticalReviewed": 35,
     "criticalBlocked": 2,
@@ -2034,37 +2034,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-30-31",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 30,
-      "movementId": "transfer-30-31",
-      "title": "Toronto/Montreal → Toronto",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "movement-transfer-31-32",
       "priority": "P2",
       "category": "operational-movement",
@@ -2117,37 +2086,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-32-33",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 32,
-      "movementId": "transfer-32-33",
-      "title": "Mexiko-Stadt/Cancún → Cancún/Chetumal",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-33",
@@ -2340,37 +2278,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-39-40",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 39,
-      "movementId": "transfer-39-40",
-      "title": "Panama-Stadt → Panama-Stadt (PTY)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-40",
@@ -2900,37 +2807,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-63-64",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 63,
-      "movementId": "transfer-63-64",
-      "title": "Colonia/Montevideo → Montevideo (MVD)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-64",
       "priority": "P2",
       "category": "international-leg",
@@ -3040,37 +2916,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-80-81",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 80,
-      "movementId": "transfer-80-81",
-      "title": "Bandar Seri Begawan (BWN) → Bandar Seri Begawan",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-81",
@@ -3271,37 +3116,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-87-88",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 87,
-      "movementId": "transfer-87-88",
-      "title": "Ho-Chi-Minh-Stadt → Hanoi (HAN)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-88",
@@ -3697,37 +3511,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-105-106",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 105,
-      "movementId": "transfer-105-106",
-      "title": "Taschkent → Buchara",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-106",
       "priority": "P2",
       "category": "international-leg",
@@ -3918,37 +3701,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-111-112",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 111,
-      "movementId": "transfer-111-112",
-      "title": "Tiflis (TBS) → Tiflis",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-112",
       "priority": "P2",
       "category": "international-leg",
@@ -3970,37 +3722,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-112-113",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 112,
-      "movementId": "transfer-112-113",
-      "title": "Jerewan → Jerewan (EVN)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-113",
@@ -4152,37 +3873,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-121-122",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 121,
-      "movementId": "transfer-121-122",
-      "title": "Casablanca → Dakhla",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "movement-transfer-122-123",
@@ -4920,37 +4610,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-150-151",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 150,
-      "movementId": "transfer-150-151",
-      "title": "Livingstone → Lusaka",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-151",
       "priority": "P2",
       "category": "international-leg",
@@ -5102,37 +4761,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-154-155",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 154,
-      "movementId": "transfer-154-155",
-      "title": "Johannesburg → Johannesburg (JNB)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-155",
@@ -5337,37 +4965,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-159-160",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 159,
-      "movementId": "transfer-159-160",
-      "title": "Kampala → Entebbe (EBB)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-162",
@@ -5637,37 +5234,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-179-180",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 179,
-      "movementId": "transfer-179-180",
-      "title": "Amman (AMM) → Amman",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-183",
