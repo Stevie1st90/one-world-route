@@ -5,14 +5,14 @@
   "routeGeneratedAt": "2026-09-25",
   "departureReady": false,
   "summary": {
-    "total": 219,
+    "total": 217,
     "p0": 35,
     "p1": 17,
-    "p2": 167,
-    "blocking": 86,
+    "p2": 165,
+    "blocking": 85,
     "byCategory": {
-      "international-leg": 168,
-      "operational-movement": 51
+      "international-leg": 167,
+      "operational-movement": 50
     },
     "criticalReviewed": 35,
     "criticalBlocked": 2,
@@ -2785,60 +2785,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "leg-80",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 80,
-      "movementId": null,
-      "title": "Philippinen → Brunei",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "full",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-80-81",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 80,
-      "movementId": "transfer-80-81",
-      "title": "Bandar Seri Begawan (BWN) → Bandar Seri Begawan",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-81",
