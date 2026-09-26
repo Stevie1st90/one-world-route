@@ -9,6 +9,7 @@ const report=buildFlagshipReadiness({
   waypoints:await read('route-waypoints.json'),
   flights:await read('flight-geometries.json'),
   operations:await read('operational-movements.json'),
+  criticalReviews:await read('critical-leg-reviews.json'),
 });
 
 const output=JSON.stringify(report,null,2)+'\n';
@@ -35,6 +36,7 @@ console.log(JSON.stringify({
   movementsNeedsReview:report.movements.needsReview,
   missingFlightGeometries:report.flights.missingFullGeometries,
   criticalFeasibility:report.evidence.feasibility.critical,
+  criticalReviews:report.criticalReviews,
   invalidVerificationDates:report.evidence.invalidVerificationDates.length,
   missingVerificationDates:report.evidence.missingVerificationDates.length,
   publicModelValid:report.status.publicModelValid,

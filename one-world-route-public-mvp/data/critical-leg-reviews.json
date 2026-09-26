@@ -1,0 +1,596 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-26",
+  "scope": "Current operational and safety review for every international leg currently marked Kritisch. A reviewed leg may remain on HOLD or blocked; review completion is not a safety or service-availability approval.",
+  "invariants": {
+    "expectedCriticalLegs": 35,
+    "decisionsDoNotChangeMacroRoute": true,
+    "geometryDoesNotVerifyService": true
+  },
+  "reviews": {
+    "13": {
+      "legId": 13,
+      "title": "Polen → Ukraine",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "cross-border-movement-reported",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://granica.gov.pl/index_wait.php?c=t&k=w&p=u&v=en",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/ukrainesicherheit-201946"
+      ],
+      "notes": "Passenger border movement is reported, but Ukraine remains under a travel warning. Keep the land corridor on HOLD and recheck 7 days and 48 hours before travel."
+    },
+    "14": {
+      "legId": 14,
+      "title": "Ukraine → Moldau",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "cross-border-movement-reported",
+      "safetyState": "volatile",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://border.gov.md/index.php/masuri-temporare-pentru-asigurarea-securitatii-personalului-autoritatilor-de-control-la-frontiera",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/moldausicherheit-201932",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/ukrainesicherheit-201946"
+      ],
+      "notes": "Cross-border movement is reported by Moldovan border authorities, while the regional security situation remains volatile. Keep on HOLD and recheck before travel."
+    },
+    "54": {
+      "legId": 54,
+      "title": "Venezuela → Brasilien",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "airport-operating-route-source-not-reverified",
+      "safetyState": "partial-travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.directflights.com/CCS-GRU",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/venezuelasicherheit-224982",
+        "https://www.auswaertiges-amt.de/de/ReiseUndSicherheit/brasiliensicherheit/201092"
+      ],
+      "notes": "Caracas commercial flight operations have resumed with restrictions, but Venezuela/Brazil border regions carry official warnings. The specific CCS–GRU service source still requires a fresh schedule check."
+    },
+    "89": {
+      "legId": 89,
+      "title": "Laos → Myanmar",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "existing-service-source-not-reverified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.flightconnections.com/flights-from-vte-to-bkk",
+        "https://www.flightconnections.com/flights-from-bkk-to-rgn",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/myanmarsicherheit-212100"
+      ],
+      "notes": "Myanmar remains under a travel warning and transport can be disrupted. Preserve the Bangkok transit concept but require a fresh service and entry check."
+    },
+    "90": {
+      "legId": 90,
+      "title": "Myanmar → Bangladesch",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "existing-service-source-not-reverified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.flightconnections.com/flights-from-rgn-to-bkk",
+        "https://www.flightconnections.com/flights-from-bkk-to-dac",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/myanmarsicherheit-212100"
+      ],
+      "notes": "Myanmar remains under a travel warning. The Yangon–Bangkok–Dhaka concept is retained only as an unconfirmed operational option pending a fresh schedule and entry check."
+    },
+    "97": {
+      "legId": 97,
+      "title": "China → Nordkorea",
+      "status": "reviewed",
+      "decision": "blocked",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "general-entry-not-established",
+      "safetyState": "high-risk",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/koreademokratischevolksrepubliksicherheit-216104",
+        "https://www.gov.uk/foreign-travel-advice/north-korea/entry-requirements"
+      ],
+      "notes": "No ordinary, independently executable tourist entry corridor from China is established for this itinerary. Do not invent a train, flight or permit path; keep the leg blocked until general entry and operator arrangements are demonstrably available."
+    },
+    "98": {
+      "legId": 98,
+      "title": "Nordkorea → Südkorea",
+      "status": "reviewed",
+      "decision": "blocked",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "no-ordinary-tourist-crossing-established",
+      "safetyState": "restricted-border",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/koreademokratischevolksrepubliksicherheit-216104",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/korearepubliksicherheit-216132"
+      ],
+      "notes": "No ordinary tourist land crossing from North Korea into South Korea is established. The DMZ is a controlled military area; keep this leg blocked until a lawful executable corridor is verified."
+    },
+    "101": {
+      "legId": 101,
+      "title": "Mongolei → Russland",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "existing-service-source-not-reverified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.directflights.com/UBN-IKT",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/mongoleisicherheit-222842",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/russischefoederationsicherheit-201536"
+      ],
+      "notes": "Russia remains under a travel warning and air operations can be disrupted. Retain the UBN–IKT concept only pending a fresh service and entry check."
+    },
+    "102": {
+      "legId": 102,
+      "title": "Russland → Kasachstan",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "existing-service-source-not-reverified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.flightconnections.com/flights-from-svo-to-ala",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/russischefoederationsicherheit-201536"
+      ],
+      "notes": "Russia remains under a travel warning and airport disruption is possible. Reverify the SVO–ALA service and Russian exit conditions before travel."
+    },
+    "107": {
+      "legId": 107,
+      "title": "Turkmenistan → Afghanistan",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "border-permission-dependent",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/turkmenistansicherheit-206774",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/afghanistansicherheit-204692"
+      ],
+      "notes": "Turkmenistan explicitly warns against onward travel to Afghanistan and notes special-permission areas. The Serhetabat–Torghundi concept remains HOLD until both sides confirm crossing permission."
+    },
+    "108": {
+      "legId": 108,
+      "title": "Afghanistan → Pakistan",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "border-status-volatile",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.gov.uk/foreign-travel-advice/pakistan/entry-requirements",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/afghanistansicherheit-204692",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/pakistansicherheit-204974"
+      ],
+      "notes": "Afghanistan is under a travel warning and Pakistan–Afghanistan crossings can close or be restricted. Torkham must be checked immediately before travel."
+    },
+    "109": {
+      "legId": 109,
+      "title": "Pakistan → Iran",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "border-status-volatile",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.gov.uk/foreign-travel-advice/pakistan/entry-requirements",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/pakistansicherheit-204974",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/iransicherheit-202396"
+      ],
+      "notes": "The Pakistan–Iran land corridor runs through high-risk border regions and can face closures or restrictions. Keep Taftan/Mirjaveh on HOLD pending current permits and opening status."
+    },
+    "114": {
+      "legId": 114,
+      "title": "Türkei → Irak",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "existing-service-source-not-reverified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.flightconnections.com/flights-from-ist-to-bgw",
+        "https://www.flightconnections.com/flights-from-saw-to-bgw",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/iraksicherheit-202738"
+      ],
+      "notes": "Iraq remains under a travel warning and regional flight disruption is possible. Reverify the selected Istanbul–Baghdad service before travel."
+    },
+    "115": {
+      "legId": 115,
+      "title": "Irak → Syrien",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "existing-service-source-not-reverified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.directflights.com/BGW-DAM",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/iraksicherheit-202738",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/syriensicherheit-204278"
+      ],
+      "notes": "Both Iraq and Syria carry severe official warnings. Even if a flight is listed, this leg remains HOLD pending a fresh service, entry and security review."
+    },
+    "116": {
+      "legId": 116,
+      "title": "Syrien → Libanon",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "land-border-high-risk",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://syriaishome.org/en/border-and-customs/",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/syriensicherheit-204278",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/libanonsicherheit-204048"
+      ],
+      "notes": "Syria is under a travel warning and Lebanon warns against the Syrian border region. Keep the Masnaa/Jdaidet Yabous crossing concept on HOLD."
+    },
+    "118": {
+      "legId": 118,
+      "title": "Zypern → Libyen",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "routing-not-service-verified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/libyensicherheit-219624"
+      ],
+      "notes": "Libya remains under a travel warning. Geometry may select a transit routing, but actual airline service, visa acceptance and security remain unverified."
+    },
+    "119": {
+      "legId": 119,
+      "title": "Libyen → Tunesien",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "existing-service-source-not-reverified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.flightconnections.com/flights-from-mji-to-tun",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/libyensicherheit-219624",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/tunesiensicherheit-219024"
+      ],
+      "notes": "Libya remains under a travel warning and Tunisia has restrictions near the Libyan border. Reverify MJI–TUN service immediately before travel."
+    },
+    "122": {
+      "legId": 122,
+      "title": "Marokko → Mauretanien",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "land-crossing-reliability-unconfirmed",
+      "safetyState": "high-risk-corridor",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/mauretaniensicherheit-219190",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/marokkosicherheit-224080"
+      ],
+      "notes": "Official German guidance states reliable information on the Morocco/Mauritania land crossing is not available and advises against Western Sahara travel. Keep the Dakhla–Guerguerat concept on HOLD."
+    },
+    "123": {
+      "legId": 123,
+      "title": "Mauretanien → Mali",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "existing-service-source-not-reverified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.directflights.com/NKC-BKO",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/mauretaniensicherheit-219190",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/malisicherheit-208258"
+      ],
+      "notes": "Mali is under a travel warning and advises departure by air. Retain NKC–BKO only as a route concept pending a fresh operating-service and security check."
+    },
+    "124": {
+      "legId": 124,
+      "title": "Mali → Burkina Faso",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "existing-service-source-not-reverified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.flightconnections.com/flights-from-bko-to-oua",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/malisicherheit-208258",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/burkinafasosicherheit-212336"
+      ],
+      "notes": "Mali is under a travel warning and Burkina Faso has extensive regional warnings. Reverify BKO–OUA service and security before travel."
+    },
+    "125": {
+      "legId": 125,
+      "title": "Burkina Faso → Niger",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "existing-service-source-not-reverified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.directflights.com/OUA-NIM",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/burkinafasosicherheit-212336",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/nigersicherheit-226384"
+      ],
+      "notes": "Niger is under a travel warning with an exit recommendation. OUA–NIM remains HOLD despite the existing route source."
+    },
+    "126": {
+      "legId": 126,
+      "title": "Niger → Tschad",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "existing-service-source-not-reverified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.directflights.com/NIM-NDJ",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/nigersicherheit-226384",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/tschadsicherheit-225774"
+      ],
+      "notes": "Niger remains under a travel warning and Chad has warnings across multiple border regions. Reverify NIM–NDJ service and conditions before travel."
+    },
+    "127": {
+      "legId": 127,
+      "title": "Tschad → Zentralafrikanische Republik",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "routing-not-service-verified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.flightconnections.com/flights-from-ndj-to-bgf",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/tschadsicherheit-225774",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/zentralafrikanischerepubliksicherheit-226450"
+      ],
+      "notes": "The Central African Republic is under a travel warning and Chad carries significant regional warnings. A geometry route via Cameroon does not establish service availability."
+    },
+    "128": {
+      "legId": 128,
+      "title": "Zentralafrikanische Republik → Kamerun",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "existing-service-source-not-reverified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.flightconnections.com/flights-from-bgf-to-dla",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/zentralafrikanischerepubliksicherheit-226450",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/kamerunsicherheit-208874"
+      ],
+      "notes": "The Central African Republic is under a travel warning; Cameroon warns against the CAR border. Reverify the BGF–DLA service and security before travel."
+    },
+    "160": {
+      "legId": 160,
+      "title": "Uganda → Südsudan",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "existing-service-source-not-reverified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.flightconnections.com/flights-from-ebb-to-jub",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/ugandasicherheit-208752",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/suedsudansicherheit-244250"
+      ],
+      "notes": "South Sudan is under a travel warning and Uganda advises particular caution near the border. EBB–JUB requires a fresh service and security check."
+    },
+    "161": {
+      "legId": 161,
+      "title": "Südsudan → Kenia",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "existing-service-source-not-reverified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.flightconnections.com/flights-from-jub-to-nbo",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/suedsudansicherheit-244250"
+      ],
+      "notes": "South Sudan is under a travel warning. JUB–NBO remains a route concept pending fresh airline and departure-condition verification."
+    },
+    "167": {
+      "legId": 167,
+      "title": "Äthiopien → Somalia",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "existing-service-source-not-reverified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.flightconnections.com/flights-from-add-to-mgq",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/aethiopiensicherheit-209504",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/somaliasicherheit-203132"
+      ],
+      "notes": "Somalia is under a travel warning and Ethiopia warns against the Somali region. Reverify ADD–MGQ service and entry/security conditions."
+    },
+    "168": {
+      "legId": 168,
+      "title": "Somalia → Dschibuti",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "existing-service-source-not-reverified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.flightconnections.com/flights-from-mgq-to-jib",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/somaliasicherheit-203132",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/dschibutisicherheit-212168"
+      ],
+      "notes": "Somalia is under a travel warning; Djibouti discourages remote Somalia-border travel. Reverify MGQ–JIB service before travel."
+    },
+    "170": {
+      "legId": 170,
+      "title": "Eritrea → Sudan",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "existing-service-source-not-reverified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.flightconnections.com/flights-from-asm-to-pzu",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/eritreasicherheit-226176",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/sudansicherheit-203266"
+      ],
+      "notes": "Sudan is under a travel warning and Eritrea has border restrictions. Reverify ASM–PZU service and Sudan entry conditions."
+    },
+    "171": {
+      "legId": 171,
+      "title": "Sudan → Ägypten",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "existing-service-source-not-reverified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.flightconnections.com/flights-from-pzu-to-cai",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/sudansicherheit-203266",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/aegyptensicherheit-212622"
+      ],
+      "notes": "Sudan is under a travel warning and Egypt treats the Sudan border region as restricted. Reverify PZU–CAI service and exit/entry requirements."
+    },
+    "178": {
+      "legId": 178,
+      "title": "Oman → Jemen",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "routing-not-service-verified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://yemenia.com/ar/news/yemenia-riy-first-flight",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/omansicherheit-204160",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/jemensicherheit-202260"
+      ],
+      "notes": "Yemen is under a travel warning and Oman advises against the immediate Yemen border region. The selected airport geometry does not establish a bookable or safe service."
+    },
+    "179": {
+      "legId": 179,
+      "title": "Jemen → Jordanien",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "existing-service-source-not-reverified",
+      "safetyState": "travel-warning",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.flightconnections.com/flights-from-ade-to-amm",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/jemensicherheit-202260",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/jordaniensicherheit-218008"
+      ],
+      "notes": "Yemen is under a travel warning. Reverify ADE–AMM service, airport access and regional airspace before travel."
+    },
+    "180": {
+      "legId": 180,
+      "title": "Jordanien → Israel",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "border-operation-volatile",
+      "safetyState": "volatile",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/israelsicherheit-203814",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/jordaniensicherheit-218008"
+      ],
+      "notes": "Regional conditions and border operating hours can change quickly. Keep the Jordan–Israel land crossing on HOLD and verify the chosen crossing and reservation requirements immediately before travel."
+    },
+    "181": {
+      "legId": 181,
+      "title": "Israel → Staat Palästina",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "movement-restrictions-volatile",
+      "safetyState": "volatile",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/israelsicherheit-203814"
+      ],
+      "notes": "Movement between Israel and the West Bank is subject to changing security controls and restrictions. Keep the visit operationally conditional."
+    },
+    "182": {
+      "legId": 182,
+      "title": "Staat Palästina → Griechenland",
+      "status": "reviewed",
+      "decision": "hold",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "routeEvidence": "border-plus-flight-not-service-verified",
+      "safetyState": "volatile",
+      "transportServiceVerified": false,
+      "sources": [
+        "https://www.gov.uk/foreign-travel-advice/israel/entry-requirements",
+        "https://www.flightconnections.com/flights-from-amm-to-ath",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/israelsicherheit-203814",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/jordaniensicherheit-218008"
+      ],
+      "notes": "The West Bank–Jordan crossing and onward AMM–ATH flight both require current verification. Geometry must not be read as proof of border access or airline service."
+    }
+  }
+}

@@ -208,6 +208,10 @@ jobs:
         run: node --test scripts/test-verification-dates.mjs
       - name: Flagship readiness audit tests
         run: node --test scripts/test-flagship-readiness.mjs
+      - name: Operational geometry artifacts current
+        run: |
+          node scripts/build-flight-geometries.mjs --check
+          node scripts/refresh-movement-geometry.mjs --check
       - name: Flagship generated artifacts current
         run: |
           node scripts/audit-flagship-readiness.mjs --check

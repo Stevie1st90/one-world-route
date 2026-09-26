@@ -157,17 +157,21 @@
     const r=runtime.readiness,q=runtime.queue;
     if(!r||!q)return '';
     const blockers=r.blockers||[];
+    const reviews=r.criticalReviews||{};
     const top=(q.tasks||[]).filter(task=>task.blocksDeparture).slice(0,5);
+    const taskDetail=task=>task.reviewDecision
+      ?`reviewed ${String(task.reviewDecision).toUpperCase()} · ${task.reviewSafetyState||'critical'}`
+      :[...task.blockers,...task.missing].slice(0,3).join(' · ');
     return `
       <div class="ops-mini-title">Departure readiness</div>
       <div class="ops-readiness-grid">
         <div><span>Countries</span><b>${r.structural.countriesInLegEndpoints}/195</b></div>
         <div><span>Continuity open</span><b>${r.continuity.unresolvedConnections}</b></div>
         <div><span>Blocking tasks</span><b>${q.summary.blocking}</b></div>
-        <div><span>Critical legs</span><b>${r.evidence.feasibility.critical}</b></div>
+        <div><span>Critical reviewed</span><b>${reviews.reviewed??0}/${reviews.total??r.evidence.feasibility.critical}</b></div>
       </div>
-      <div class="ops-gate ${r.status.departureReady?'ready':'blocked'}"><span>${r.status.departureReady?'DEPARTURE READY':'DEPARTURE BLOCKED'}</span><b>${blockers.length} blocker categories · evidence as of ${esc(r.dataAsOf||'unknown')}</b></div>
-      ${top.length?'<div class="ops-queue">'+top.map(task=>`<button type="button" ${task.legId?`data-segment="${task.legId}"`:''}><span>${esc(task.priority)} · ${esc(task.category)}</span><b>${esc(task.title)}</b><small>${esc([...task.blockers,...task.missing].slice(0,3).join(' · '))}</small></button>`).join('')+'</div>':''}
+      <div class="ops-gate ${r.status.departureReady?'ready':'blocked'}"><span>${r.status.departureReady?'DEPARTURE READY':'DEPARTURE BLOCKED'}</span><b>${blockers.length} blocker categories · ${reviews.blocked??0} critical decisions blocked · evidence as of ${esc(r.dataAsOf||'unknown')}</b></div>
+      ${top.length?'<div class="ops-queue">'+top.map(task=>`<button type="button" ${task.legId?`data-segment="${task.legId}"`:''}><span>${esc(task.priority)} · ${esc(task.category)}</span><b>${esc(task.title)}</b><small>${esc(taskDetail(task))}</small></button>`).join('')+'</div>':''}
     `;
   }
 
@@ -269,7 +273,6 @@
   async function init(){ensureStyles();await loadData();wire();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
-
 /* ===== iteration7.js ===== */
 (() => {
   'use strict';

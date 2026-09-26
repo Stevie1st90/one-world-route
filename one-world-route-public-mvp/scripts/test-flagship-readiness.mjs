@@ -11,6 +11,7 @@ test('flagship readiness report is deterministic and current',async()=>{
     waypoints:await read('route-waypoints.json'),
     flights:await read('flight-geometries.json'),
     operations:await read('operational-movements.json'),
+    criticalReviews:await read('critical-leg-reviews.json'),
   };
   const generated=buildFlagshipReadiness(inputs);
   const committed=await read('flagship-readiness.json');
@@ -26,6 +27,12 @@ test('flagship readiness report is deterministic and current',async()=>{
   assert.equal(generated.structural.routeEnd,'Malta');
   assert.equal(generated.topology.canonical,true);
   assert.equal(generated.evidence.invalidVerificationDates.length,0);
+  assert.equal(generated.criticalReviews.total,35);
+  assert.equal(generated.criticalReviews.reviewed,35);
+  assert.equal(generated.criticalReviews.missing,0);
+  assert.equal(generated.criticalReviews.hold,33);
+  assert.equal(generated.criticalReviews.blocked,2);
+  assert.equal(generated.flights.missingFullGeometries,0);
   assert.equal(generated.continuity.connections,193);
   assert.equal(
     generated.continuity.sharedEndpoints+

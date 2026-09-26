@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 
 for (const script of [
   'build-flight-geometries.mjs',
+  'refresh-movement-geometry.mjs',
   'validate-public-data.mjs',
   'validate-platform-data.mjs',
   'audit-route-continuity.mjs',

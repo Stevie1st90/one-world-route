@@ -5,12 +5,24 @@ import {verificationDate} from './verification-date-model.mjs';
 const isFiniteNumber=value=>typeof value==='number'&&Number.isFinite(value);
 const isoDate=value=>typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)?value:null;
 const pct=(part,total)=>total?Math.round((part/total)*1000)/10:0;
+const requiresFullFlightGeometry=mode=>/^Flug(?:\s|\(|–|-|$)/i.test(String(mode||''));
+const hasExternalSource=movement=>Array.isArray(movement?.source)&&movement.source.some(source=>/^https?:\/\//i.test(source));
+const movementOperationallyComplete=movement=>Boolean(
+  movement?.reviewStatus==='reviewed'&&
+  movement.coordinates&&
+  movement.mode&&
+  movement.plannedDuration!==null&&
+  movement.estimatedCost!==null&&
+  typeof movement.bookingRequired==='boolean'&&
+  verificationDate(movement.lastVerified)&&
+  hasExternalSource(movement)
+);
 
 function latestDate(values){
   return values.map(verificationDate).filter(Boolean).sort().at(-1)||null;
 }
 
-export function buildFlagshipReadiness({route,waypoints,flights,operations}){
+export function buildFlagshipReadiness({route,waypoints,flights,operations,criticalReviews={reviews:{}}}){
   const topology=inspectFlagshipTopology(route);
   const connections=inventory(route,waypoints,flights);
   const movementByConnection=new Map(
@@ -29,32 +41,54 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations}){
     if(connection.classification==='shared-endpoint')return false;
     const movement=movementByConnection.get(`${connection.after}-${connection.before}`);
     return !(
-      movement?.reviewStatus==='reviewed'&&
+      movementOperationallyComplete(movement)&&
       connection.classification!=='unresolved-endpoint'&&
       connection.classification!=='country-mismatch'
     );
   });
 
   const movements=operations.movements||[];
-  const flightLegs=(route.segments||[]).filter(segment=>/flug/i.test(String(segment.mode||'')));
+  const flightLegs=(route.segments||[]).filter(segment=>requiresFullFlightGeometry(segment.mode));
   const fullFlightIds=new Set(Object.keys(flights.geometries||{}).map(Number));
   const missingFlightGeometryIds=flightLegs
     .filter(segment=>!fullFlightIds.has(Number(segment.id)))
     .map(segment=>Number(segment.id));
 
-  const knownFlightEndpoints=Object.values(flights.endpoints||{})
-    .reduce((count,endpoints)=>count+Number(Boolean(endpoints.departure))+Number(Boolean(endpoints.arrival)),0);
+  const knownFlightEndpoints=flightLegs.reduce((count,segment)=>{
+    const endpoints=flights.endpoints?.[String(segment.id)]||{};
+    return count+Number(Boolean(endpoints.departure))+Number(Boolean(endpoints.arrival));
+  },0);
 
   const routeSources=(route.segments||[]).filter(segment=>Boolean(segment.source)).length;
   const validVerificationDates=(route.segments||[]).filter(segment=>Boolean(verificationDate(segment.lastVerified)));
   const invalidVerificationDates=(route.segments||[]).filter(segment=>segment.lastVerified!==null&&segment.lastVerified!==undefined&&!verificationDate(segment.lastVerified));
   const missingVerificationDates=(route.segments||[]).filter(segment=>segment.lastVerified===null||segment.lastVerified===undefined);
-  const criticalFeasibility=(route.segments||[]).filter(segment=>segment.feasibility==='Kritisch').length;
+  const criticalSegments=(route.segments||[]).filter(segment=>segment.feasibility==='Kritisch');
+  const criticalFeasibility=criticalSegments.length;
+  const criticalReviewRows=criticalSegments.map(segment=>({
+    segment,
+    review:criticalReviews.reviews?.[String(segment.id)]||null,
+  }));
+  const reviewedCritical=criticalReviewRows.filter(({review})=>review?.status==='reviewed'&&verificationDate(review.reviewedAt)).length;
+  const missingCriticalReviewIds=criticalReviewRows
+    .filter(({review})=>review?.status!=='reviewed'||!verificationDate(review?.reviewedAt))
+    .map(({segment})=>Number(segment.id));
+  const criticalReviewHealth={
+    total:criticalFeasibility,
+    reviewed:reviewedCritical,
+    missing:missingCriticalReviewIds.length,
+    missingLegIds:missingCriticalReviewIds,
+    hold:criticalReviewRows.filter(({review})=>review?.decision==='hold').length,
+    blocked:criticalReviewRows.filter(({review})=>review?.decision==='blocked').length,
+    latestReview:latestDate(criticalReviewRows.map(({review})=>review?.reviewedAt)),
+    meaning:'Review completion records a current decision. HOLD/BLOCKED critical legs still block departure and are not asserted safe or executable.',
+  };
   const conditionalFeasibility=(route.segments||[]).filter(segment=>segment.feasibility==='Bedingt').length;
   const plannableFeasibility=(route.segments||[]).filter(segment=>segment.feasibility==='Planbar').length;
 
   const reviewedMovements=movements.filter(movement=>movement.reviewStatus==='reviewed').length;
-  const needsReviewMovements=movements.filter(movement=>movement.reviewStatus==='needs-review').length;
+  const operationallyCompleteMovements=movements.filter(movementOperationallyComplete).length;
+  const needsReviewMovements=movements.length-operationallyCompleteMovements;
 
   const structural={
     expectedCountries:195,
@@ -84,15 +118,15 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations}){
     reviewed:reviewedMovements,
     needsReview:needsReviewMovements,
     reviewedPercent:pct(reviewedMovements,movements.length),
+    operationallyComplete:operationallyCompleteMovements,
+    operationallyCompletePercent:pct(operationallyCompleteMovements,movements.length),
     unresolvedGeometry:movements.filter(movement=>!movement.coordinates).length,
     missingMode:movements.filter(movement=>!movement.mode).length,
     missingDuration:movements.filter(movement=>movement.plannedDuration===null).length,
     missingCost:movements.filter(movement=>movement.estimatedCost===null).length,
     missingBookingDecision:movements.filter(movement=>movement.bookingRequired===null).length,
     missingLastVerified:movements.filter(movement=>!verificationDate(movement.lastVerified)).length,
-    externallySourced:movements.filter(movement=>
-      Array.isArray(movement.source)&&movement.source.some(source=>/^https?:\/\//i.test(source))
-    ).length,
+    externallySourced:movements.filter(hasExternalSource).length,
   };
 
   const flightsHealth={
@@ -123,13 +157,14 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations}){
   };
 
   const criticalLegIds=(route.segments||[]).filter(segment=>segment.feasibility==='Kritisch').map(segment=>Number(segment.id));
-  const unresolvedMovementIds=movements.filter(movement=>movement.reviewStatus!=='reviewed').map(movement=>movement.id);
+  const unresolvedMovementIds=movements.filter(movement=>!movementOperationallyComplete(movement)).map(movement=>movement.id);
   const unresolvedGeometryMovementIds=movements.filter(movement=>!movement.coordinates).map(movement=>movement.id);
   const verificationQueue=[...invalidVerificationDates,...missingVerificationDates].map(segment=>Number(segment.id));
 
   const workQueue=[
     {priority:'P0',id:'macro-country-coverage',count:countriesOutsideLegs.length,items:countriesOutsideLegs,goal:'Resolve country coverage without changing the 195-country / 194-leg invariant.'},
-    {priority:'P0',id:'critical-feasibility',count:criticalLegIds.length,items:criticalLegIds,goal:'Reverify or redesign critical international legs.'},
+    {priority:'P0',id:'critical-review-gaps',count:missingCriticalReviewIds.length,items:missingCriticalReviewIds,goal:'Complete a current source-backed review for every critical international leg without equating review with approval.'},
+    {priority:'P0',id:'critical-feasibility',count:criticalLegIds.length,items:criticalLegIds,goal:'Keep HOLD/BLOCKED critical legs visible until safety, entry/border conditions and executable transport are genuinely resolved.'},
     {priority:'P1',id:'unresolved-endpoint-geometry',count:unresolvedGeometryMovementIds.length,items:unresolvedGeometryMovementIds,goal:'Resolve exact arrival/departure endpoints before asserting continuity.'},
     {priority:'P1',id:'missing-flight-geometry',count:missingFlightGeometryIds.length,items:missingFlightGeometryIds,goal:'Complete airport endpoint geometry without implying service availability.'},
     {priority:'P2',id:'movement-review',count:unresolvedMovementIds.length,items:unresolvedMovementIds,goal:'Add mode, duration, cost, booking decision and evidence where supported.'},
@@ -160,7 +195,7 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations}){
       id:'movement-review',
       category:'operations',
       count:needsReviewMovements,
-      message:'Inventoried domestic/operational movements still require review.',
+      message:'Inventoried domestic/operational movements still require complete geometry, mode, duration, cost, booking decision and external evidence.',
     },
     missingFlightGeometryIds.length&&{
       id:'flight-geometry',
@@ -181,6 +216,7 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations}){
     ...(route.segments||[]).map(segment=>segment.lastVerified),
     ...movements.map(movement=>movement.lastVerified),
     ...Object.values(flights.geometries||{}).flatMap(geometry=>[geometry.coordinateVerified,geometry.serviceVerified]),
+    ...Object.values(criticalReviews.reviews||{}).map(review=>review.reviewedAt),
   ]);
 
   return {
@@ -198,6 +234,7 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations}){
     movements:movementHealth,
     flights:flightsHealth,
     evidence,
+    criticalReviews:criticalReviewHealth,
     workQueue,
     blockers,
     status:{

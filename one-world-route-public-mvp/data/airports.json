@@ -1174,6 +1174,15 @@
       ],
       "countryCode": "NA",
       "ident": "FYWH"
+    },
+    "KTI": {
+      "name": "Techo International Airport",
+      "coordinates": [
+        104.921272,
+        11.359987
+      ],
+      "countryCode": "KH",
+      "ident": "VDTI"
     }
   }
 }

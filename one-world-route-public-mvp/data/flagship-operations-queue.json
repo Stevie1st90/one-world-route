@@ -1,19 +1,22 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "tripId": "world-195",
-  "dataAsOf": "2026-09-21",
+  "dataAsOf": "2026-09-26",
   "routeGeneratedAt": "2026-09-25",
   "departureReady": false,
   "summary": {
-    "total": 272,
+    "total": 241,
     "p0": 35,
-    "p1": 70,
-    "p2": 167,
-    "blocking": 150,
+    "p1": 17,
+    "p2": 189,
+    "blocking": 103,
     "byCategory": {
-      "international-leg": 179,
-      "operational-movement": 93
-    }
+      "international-leg": 173,
+      "operational-movement": 68
+    },
+    "criticalReviewed": 35,
+    "criticalBlocked": 2,
+    "criticalHold": 33
   },
   "tasks": [
     {
@@ -23,7 +26,7 @@
       "legId": 13,
       "movementId": null,
       "title": "Polen → Ukraine",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -31,6 +34,11 @@
       "geometry": "not-flight",
       "sourceCount": 2,
       "lastVerified": "2026-09-17",
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "cross-border-movement-reported",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -40,7 +48,7 @@
       "legId": 14,
       "movementId": null,
       "title": "Ukraine → Moldau",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -48,6 +56,11 @@
       "geometry": "not-flight",
       "sourceCount": 2,
       "lastVerified": "2026-09-17",
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "volatile",
+      "reviewRouteEvidence": "cross-border-movement-reported",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -57,7 +70,7 @@
       "legId": 54,
       "movementId": null,
       "title": "Venezuela → Brasilien",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -67,6 +80,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "partial-travel-warning",
+      "reviewRouteEvidence": "airport-operating-route-source-not-reverified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -76,17 +94,21 @@
       "legId": 89,
       "movementId": null,
       "title": "Laos → Myanmar",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
-        "critical-feasibility",
-        "missing-flight-geometry"
+        "critical-feasibility"
       ],
       "missing": [
         "lastVerified"
       ],
-      "geometry": "partial",
+      "geometry": "full",
       "sourceCount": 2,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "existing-service-source-not-reverified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -96,7 +118,7 @@
       "legId": 90,
       "movementId": null,
       "title": "Myanmar → Bangladesch",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -106,6 +128,11 @@
       "geometry": "full",
       "sourceCount": 2,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "existing-service-source-not-reverified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -115,7 +142,7 @@
       "legId": 97,
       "movementId": null,
       "title": "China → Nordkorea",
-      "status": "blocked",
+      "status": "reviewed-blocked",
       "blockers": [
         "critical-feasibility"
       ],
@@ -127,6 +154,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "blocked",
+      "reviewSafetyState": "high-risk",
+      "reviewRouteEvidence": "general-entry-not-established",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -136,7 +168,7 @@
       "legId": 98,
       "movementId": null,
       "title": "Nordkorea → Südkorea",
-      "status": "blocked",
+      "status": "reviewed-blocked",
       "blockers": [
         "critical-feasibility"
       ],
@@ -148,6 +180,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "blocked",
+      "reviewSafetyState": "restricted-border",
+      "reviewRouteEvidence": "no-ordinary-tourist-crossing-established",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -157,7 +194,7 @@
       "legId": 101,
       "movementId": null,
       "title": "Mongolei → Russland",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -167,6 +204,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "existing-service-source-not-reverified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -176,7 +218,7 @@
       "legId": 102,
       "movementId": null,
       "title": "Russland → Kasachstan",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -186,6 +228,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "existing-service-source-not-reverified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -195,7 +242,7 @@
       "legId": 107,
       "movementId": null,
       "title": "Turkmenistan → Afghanistan",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -205,6 +252,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "border-permission-dependent",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -214,7 +266,7 @@
       "legId": 108,
       "movementId": null,
       "title": "Afghanistan → Pakistan",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -224,6 +276,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "border-status-volatile",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -233,7 +290,7 @@
       "legId": 109,
       "movementId": null,
       "title": "Pakistan → Iran",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -243,6 +300,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "border-status-volatile",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -252,17 +314,21 @@
       "legId": 114,
       "movementId": null,
       "title": "Türkei → Irak",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
-        "critical-feasibility",
-        "missing-flight-geometry"
+        "critical-feasibility"
       ],
       "missing": [
         "lastVerified"
       ],
-      "geometry": "partial",
+      "geometry": "full",
       "sourceCount": 2,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "existing-service-source-not-reverified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -272,7 +338,7 @@
       "legId": 115,
       "movementId": null,
       "title": "Irak → Syrien",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -282,6 +348,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "existing-service-source-not-reverified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -291,7 +362,7 @@
       "legId": 116,
       "movementId": null,
       "title": "Syrien → Libanon",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -301,6 +372,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "land-border-high-risk",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -310,17 +386,21 @@
       "legId": 118,
       "movementId": null,
       "title": "Zypern → Libyen",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
-        "critical-feasibility",
-        "missing-flight-geometry"
+        "critical-feasibility"
       ],
       "missing": [
         "lastVerified"
       ],
-      "geometry": "missing",
+      "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "routing-not-service-verified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -330,7 +410,7 @@
       "legId": 119,
       "movementId": null,
       "title": "Libyen → Tunesien",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -340,6 +420,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "existing-service-source-not-reverified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -349,7 +434,7 @@
       "legId": 122,
       "movementId": null,
       "title": "Marokko → Mauretanien",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -359,6 +444,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "high-risk-corridor",
+      "reviewRouteEvidence": "land-crossing-reliability-unconfirmed",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -368,7 +458,7 @@
       "legId": 123,
       "movementId": null,
       "title": "Mauretanien → Mali",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -378,6 +468,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "existing-service-source-not-reverified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -387,7 +482,7 @@
       "legId": 124,
       "movementId": null,
       "title": "Mali → Burkina Faso",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -397,6 +492,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "existing-service-source-not-reverified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -406,7 +506,7 @@
       "legId": 125,
       "movementId": null,
       "title": "Burkina Faso → Niger",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -416,6 +516,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "existing-service-source-not-reverified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -425,7 +530,7 @@
       "legId": 126,
       "movementId": null,
       "title": "Niger → Tschad",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -435,6 +540,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "existing-service-source-not-reverified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -444,17 +554,21 @@
       "legId": 127,
       "movementId": null,
       "title": "Tschad → Zentralafrikanische Republik",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
-        "critical-feasibility",
-        "missing-flight-geometry"
+        "critical-feasibility"
       ],
       "missing": [
         "lastVerified"
       ],
-      "geometry": "partial",
+      "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "routing-not-service-verified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -464,7 +578,7 @@
       "legId": 128,
       "movementId": null,
       "title": "Zentralafrikanische Republik → Kamerun",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -474,6 +588,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "existing-service-source-not-reverified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -483,7 +602,7 @@
       "legId": 160,
       "movementId": null,
       "title": "Uganda → Südsudan",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -493,6 +612,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "existing-service-source-not-reverified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -502,7 +626,7 @@
       "legId": 161,
       "movementId": null,
       "title": "Südsudan → Kenia",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -512,6 +636,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "existing-service-source-not-reverified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -521,7 +650,7 @@
       "legId": 167,
       "movementId": null,
       "title": "Äthiopien → Somalia",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -531,6 +660,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "existing-service-source-not-reverified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -540,7 +674,7 @@
       "legId": 168,
       "movementId": null,
       "title": "Somalia → Dschibuti",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -550,6 +684,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "existing-service-source-not-reverified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -559,7 +698,7 @@
       "legId": 170,
       "movementId": null,
       "title": "Eritrea → Sudan",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -569,6 +708,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "existing-service-source-not-reverified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -578,7 +722,7 @@
       "legId": 171,
       "movementId": null,
       "title": "Sudan → Ägypten",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -588,6 +732,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "existing-service-source-not-reverified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -597,27 +746,7 @@
       "legId": 178,
       "movementId": null,
       "title": "Oman → Jemen",
-      "status": "blocked",
-      "blockers": [
-        "critical-feasibility",
-        "missing-flight-geometry"
-      ],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-179",
-      "priority": "P0",
-      "category": "international-leg",
-      "legId": 179,
-      "movementId": null,
-      "title": "Jemen → Jordanien",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -627,6 +756,35 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "routing-not-service-verified",
+      "reviewedAt": "2026-09-26",
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-179",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 179,
+      "movementId": null,
+      "title": "Jemen → Jordanien",
+      "status": "reviewed-hold",
+      "blockers": [
+        "critical-feasibility"
+      ],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "travel-warning",
+      "reviewRouteEvidence": "existing-service-source-not-reverified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -636,7 +794,7 @@
       "legId": 180,
       "movementId": null,
       "title": "Jordanien → Israel",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -646,6 +804,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "volatile",
+      "reviewRouteEvidence": "border-operation-volatile",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -655,7 +818,7 @@
       "legId": 181,
       "movementId": null,
       "title": "Israel → Staat Palästina",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
         "critical-feasibility"
       ],
@@ -665,6 +828,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "volatile",
+      "reviewRouteEvidence": "movement-restrictions-volatile",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -674,210 +842,21 @@
       "legId": 182,
       "movementId": null,
       "title": "Staat Palästina → Griechenland",
-      "status": "blocked",
+      "status": "reviewed-hold",
       "blockers": [
-        "critical-feasibility",
-        "missing-flight-geometry"
+        "critical-feasibility"
       ],
       "missing": [
         "lastVerified"
       ],
-      "geometry": "partial",
+      "geometry": "not-flight",
       "sourceCount": 2,
       "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-26-27",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 26,
-      "movementId": "transfer-26-27",
-      "title": "Lissabon (Direktbus) → Lissabon (LIS)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates"
-      ],
-      "geometry": "missing",
-      "sourceCount": 2,
-      "lastVerified": "2026-09-21",
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-27",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 27,
-      "movementId": null,
-      "title": "Portugal → Vereinigtes Königreich",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [],
-      "geometry": "partial",
-      "sourceCount": 2,
-      "lastVerified": "2026-09-17",
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-27-28",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 27,
-      "movementId": "transfer-27-28",
-      "title": "London (LON) → Holyhead",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-29-30",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 29,
-      "movementId": "transfer-29-30",
-      "title": "Keflavík (KEF) → Keflavík (KEF)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-30",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 30,
-      "movementId": null,
-      "title": "Island → Kanada",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [],
-      "geometry": "partial",
-      "sourceCount": 2,
-      "lastVerified": "2026-09-17",
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-30-31",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 30,
-      "movementId": "transfer-30-31",
-      "title": "Toronto/Montreal → Toronto",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-31-32",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 31,
-      "movementId": "transfer-31-32",
-      "title": "New York/US-Hub → New York/US-Hub",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-32",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 32,
-      "movementId": null,
-      "title": "USA → Mexiko",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "missing",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-32-33",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 32,
-      "movementId": "transfer-32-33",
-      "title": "Mexiko-Stadt/Cancún → Cancún/Chetumal",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewSafetyState": "volatile",
+      "reviewRouteEvidence": "border-plus-flight-not-service-verified",
+      "reviewedAt": "2026-09-26",
       "blocksDeparture": true
     },
     {
@@ -889,6 +868,13 @@
       "title": "Bogotá (BOG) → Bogotá/Quito-Korridor",
       "status": "needs-review",
       "blockers": [
+        "endpoint-geometry",
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -897,30 +883,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "missing",
       "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-58",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 58,
-      "movementId": null,
-      "title": "Kolumbien → Ecuador",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "missing",
-      "sourceCount": 0,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -933,6 +901,13 @@
       "title": "Ecuador → Quito/Guayaquil",
       "status": "needs-review",
       "blockers": [
+        "endpoint-geometry",
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -941,30 +916,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "missing",
       "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-59",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 59,
-      "movementId": null,
-      "title": "Ecuador → Peru",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "missing",
-      "sourceCount": 0,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -977,6 +934,13 @@
       "title": "Peru → Puno",
       "status": "needs-review",
       "blockers": [
+        "endpoint-geometry",
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -985,54 +949,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-60-61",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 60,
-      "movementId": "transfer-60-61",
-      "title": "La Paz → Santa Cruz de la Sierra",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-61",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 61,
-      "movementId": null,
-      "title": "Bolivien → Paraguay",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [
         "lastVerified",
-        "source"
+        "externalSource"
       ],
       "geometry": "missing",
-      "sourceCount": 0,
+      "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -1045,6 +967,13 @@
       "title": "Asunción → Asunción",
       "status": "needs-review",
       "blockers": [
+        "endpoint-geometry",
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -1053,30 +982,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "missing",
       "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-62",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 62,
-      "movementId": null,
-      "title": "Paraguay → Argentinien",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "missing",
-      "sourceCount": 0,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -1089,6 +1000,13 @@
       "title": "Buenos Aires → Buenos Aires",
       "status": "needs-review",
       "blockers": [
+        "endpoint-geometry",
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -1097,384 +1015,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-69-70",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 69,
-      "movementId": "transfer-69-70",
-      "title": "Funafuti (FUN) → Funafuti (FUN)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-70",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 70,
-      "movementId": null,
-      "title": "Tuvalu → Vanuatu",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [],
-      "geometry": "partial",
-      "sourceCount": 2,
-      "lastVerified": "2026-09-17",
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-70-71",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 70,
-      "movementId": "transfer-70-71",
-      "title": "Port Vila (VLI) → Port Vila (VLI)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-76-77",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 76,
-      "movementId": "transfer-76-77",
-      "title": "Majuro (MAJ), Freitag → Majuro (MAJ)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-77",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 77,
-      "movementId": null,
-      "title": "Marshallinseln → Mikronesien",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [],
-      "geometry": "partial",
-      "sourceCount": 1,
-      "lastVerified": "2026-09-17",
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-77-78",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 77,
-      "movementId": "transfer-77-78",
-      "title": "Pohnpei (PNI), bevorzugt United sonntags; alternativ Nauru-Airlines-Freitag → A: Pohnpei (PNI)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-78",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 78,
-      "movementId": null,
-      "title": "Mikronesien → Palau",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": "2026-09-17",
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-78-79",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 78,
-      "movementId": "transfer-78-79",
-      "title": "Koror (ROR) → Koror (ROR)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-83-84",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 83,
-      "movementId": "transfer-83-84",
-      "title": "Batam/Bintan → Denpasar/Jakarta",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-84",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 84,
-      "movementId": null,
-      "title": "Indonesien → Timor-Leste",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [
         "lastVerified",
-        "source"
-      ],
-      "geometry": "partial",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-84-85",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 84,
-      "movementId": "transfer-84-85",
-      "title": "Dili (DIL) → Dili",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
+        "externalSource"
       ],
       "geometry": "missing",
       "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-85",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 85,
-      "movementId": null,
-      "title": "Timor-Leste → Thailand",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "missing",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-85-86",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 85,
-      "movementId": "transfer-85-86",
-      "title": "Bangkok → Bangkok (BKK/DMK)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-86",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 86,
-      "movementId": null,
-      "title": "Thailand → Kambodscha",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "partial",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-86-87",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 86,
-      "movementId": "transfer-86-87",
-      "title": "Phnom Penh (PNH) → Phnom Penh",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-88-89",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 88,
-      "movementId": "transfer-88-89",
-      "title": "Vientiane (VTE), nonstop → Vientiane (VTE)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-89-90",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 89,
-      "movementId": "transfer-89-90",
-      "title": "Yangon (RGN) → Yangon (RGN)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -1484,9 +1030,16 @@
       "category": "operational-movement",
       "legId": 96,
       "movementId": "transfer-96-97",
-      "title": "Shanghai (PVG), nonstop → China (Abfahrtspunkt offen)",
+      "title": "Shanghai (PVG), nonstop → China",
       "status": "needs-review",
       "blockers": [
+        "endpoint-geometry",
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -1495,10 +1048,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "missing",
       "sourceCount": 2,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -1508,9 +1063,16 @@
       "category": "operational-movement",
       "legId": 97,
       "movementId": "transfer-97-98",
-      "title": "Nordkorea (Ankunftspunkt offen) → Nordkorea (Abfahrtspunkt offen)",
+      "title": "Nordkorea (operativer Korridor offen) → Nordkorea",
       "status": "needs-review",
       "blockers": [
+        "endpoint-geometry",
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -1519,10 +1081,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "missing",
       "sourceCount": 1,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -1532,9 +1096,16 @@
       "category": "operational-movement",
       "legId": 98,
       "movementId": "transfer-98-99",
-      "title": "Seoul (ICN) → Busan",
+      "title": "Südkorea (operativer Korridor offen) → Busan",
       "status": "needs-review",
       "blockers": [
+        "endpoint-geometry",
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -1543,30 +1114,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "missing",
       "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-99",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 99,
-      "movementId": null,
-      "title": "Südkorea → Japan",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "missing",
-      "sourceCount": 0,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -1579,6 +1132,13 @@
       "title": "Fukuoka; alternativ kurzer Flug → Tokyo/Narita",
       "status": "needs-review",
       "blockers": [
+        "endpoint-geometry",
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -1587,308 +1147,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-100",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 100,
-      "movementId": null,
-      "title": "Japan → Mongolei",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [
         "lastVerified",
-        "source"
-      ],
-      "geometry": "partial",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-100-101",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 100,
-      "movementId": "transfer-100-101",
-      "title": "Ulaanbaatar (UBN) → Ulaanbaatar (UBN)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
+        "externalSource"
       ],
       "geometry": "missing",
       "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-112-113",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 112,
-      "movementId": "transfer-112-113",
-      "title": "Jerewan → Jerewan (EVN)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-113",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 113,
-      "movementId": null,
-      "title": "Armenien → Türkei",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "partial",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-113-114",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 113,
-      "movementId": "transfer-113-114",
-      "title": "Istanbul (IST/SAW) → Istanbul (IST/SAW)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-114-115",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 114,
-      "movementId": "transfer-114-115",
-      "title": "Bagdad (BGW), nonstop → Bagdad (BGW)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-117-118",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 117,
-      "movementId": "transfer-117-118",
-      "title": "Larnaka (LCA) → Larnaka",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-118-119",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 118,
-      "movementId": "transfer-118-119",
-      "title": "Tripolis/Misrata → Tripoli-Mitiga (MJI)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-120-121",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 120,
-      "movementId": "transfer-120-121",
-      "title": "Algier (ALG), nonstop → Algier",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-121",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 121,
-      "movementId": null,
-      "title": "Algerien → Marokko",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-121-122",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 121,
-      "movementId": "transfer-121-122",
-      "title": "Casablanca → Dakhla",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-126-127",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 126,
-      "movementId": "transfer-126-127",
-      "title": "N'Djamena (NDJ), nonstop → N'Djamena (NDJ)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-127-128",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 127,
-      "movementId": "transfer-127-128",
-      "title": "Bangui (BGF) → Bangui (BGF)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -1901,6 +1165,13 @@
       "title": "Banjul → Banjul",
       "status": "needs-review",
       "blockers": [
+        "endpoint-geometry",
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -1909,29 +1180,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "missing",
       "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-140",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 140,
-      "movementId": null,
-      "title": "Gambia → Cabo Verde",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "partial",
-      "sourceCount": 2,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -1944,6 +1198,13 @@
       "title": "Praia (RAI) → Praia (RAI)",
       "status": "needs-review",
       "blockers": [
+        "endpoint-geometry",
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -1952,10 +1213,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "missing",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -1968,6 +1231,13 @@
       "title": "Riad (RUH) → Riad/Dammam",
       "status": "needs-review",
       "blockers": [
+        "endpoint-geometry",
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -1976,30 +1246,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "missing",
       "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-173",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 173,
-      "movementId": null,
-      "title": "Saudi-Arabien → Kuwait",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "missing",
-      "sourceCount": 0,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -2012,6 +1264,13 @@
       "title": "Kuwait City → Kuwait (KWI)",
       "status": "needs-review",
       "blockers": [
+        "endpoint-geometry",
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -2020,54 +1279,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-175-176",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 175,
-      "movementId": "transfer-175-176",
-      "title": "Doha (DOH) → Doha (DOH)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-176",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 176,
-      "movementId": null,
-      "title": "Katar → Vereinigte Arabische Emirate",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [
         "lastVerified",
-        "source"
+        "externalSource"
       ],
-      "geometry": "partial",
-      "sourceCount": 0,
+      "geometry": "missing",
+      "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -2080,6 +1297,13 @@
       "title": "Dubai/Abu Dhabi → Dubai/Abu Dhabi",
       "status": "needs-review",
       "blockers": [
+        "endpoint-geometry",
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -2088,30 +1312,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "missing",
       "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-177",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 177,
-      "movementId": null,
-      "title": "Vereinigte Arabische Emirate → Oman",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "missing",
-      "sourceCount": 0,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -2124,6 +1330,13 @@
       "title": "Muscat → Muscat",
       "status": "needs-review",
       "blockers": [
+        "endpoint-geometry",
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -2132,34 +1345,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "missing",
       "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-178-179",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 178,
-      "movementId": "transfer-178-179",
-      "title": "Aden/Seiyun/Mukalla, ggf. via Jeddah/Cairo → Aden (ADE)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -2172,6 +1363,13 @@
       "title": "Westjordanland (z. B. Bethlehem/Ramallah) → Westjordanland",
       "status": "needs-review",
       "blockers": [
+        "endpoint-geometry",
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -2180,10 +1378,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "missing",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -2196,6 +1396,13 @@
       "title": "Athen (ATH) → Thessaloniki",
       "status": "needs-review",
       "blockers": [
+        "endpoint-geometry",
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -2204,54 +1411,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-193-194",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 193,
-      "movementId": "transfer-193-194",
-      "title": "Rom; zu Fuß in Vatikanstadt → Rom (FCO/CIA)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-194",
-      "priority": "P1",
-      "category": "international-leg",
-      "legId": 194,
-      "movementId": null,
-      "title": "Vatikanstadt → Malta",
-      "status": "blocked",
-      "blockers": [
-        "missing-flight-geometry"
-      ],
-      "missing": [
         "lastVerified",
-        "source"
+        "externalSource"
       ],
-      "geometry": "partial",
-      "sourceCount": 0,
+      "geometry": "missing",
+      "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -2270,6 +1435,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": "2026-09-17",
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2287,6 +1457,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": "2026-09-17",
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2304,6 +1479,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": "2026-09-17",
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2321,6 +1501,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": "2026-09-17",
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2338,6 +1523,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": "2026-09-17",
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2355,6 +1545,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": "2026-09-17",
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2372,6 +1567,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": "2026-09-17",
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2389,6 +1589,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": "2026-09-17",
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2407,6 +1612,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2425,6 +1635,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2442,6 +1657,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2459,6 +1679,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2476,6 +1701,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": "2026-09-17",
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2493,6 +1723,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": "2026-09-17",
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2511,6 +1746,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2529,6 +1769,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2547,6 +1792,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2564,6 +1814,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2581,6 +1836,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2592,6 +1852,12 @@
       "title": "Buchs SG oder Sargans (LIEmobil) → Genève-Cornavin",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -2599,10 +1865,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -2621,24 +1889,12 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-22-23",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 22,
-      "movementId": "transfer-22-23",
-      "title": "Lyon Part-Dieu → Nice-Ville",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [],
-      "geometry": "known",
-      "sourceCount": 1,
-      "lastVerified": "2026-09-20",
-      "blocksDeparture": true
     },
     {
       "id": "leg-23",
@@ -2655,6 +1911,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2673,6 +1934,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2691,6 +1957,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2702,6 +1973,12 @@
       "title": "Barcelona → Madrid",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -2709,10 +1986,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -2732,6 +2011,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2750,27 +2034,12 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-28-29",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 28,
-      "movementId": "transfer-28-29",
-      "title": "Dublin → Dublin (DUB)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-review"
-      ],
-      "missing": [
-        "estimatedCost",
-        "bookingRequired"
-      ],
-      "geometry": "known",
-      "sourceCount": 2,
-      "lastVerified": "2026-09-21",
-      "blocksDeparture": true
     },
     {
       "id": "leg-29",
@@ -2788,7 +2057,128 @@
       "geometry": "full",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-30-31",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 30,
+      "movementId": "transfer-30-31",
+      "title": "Toronto/Montreal → Toronto",
+      "status": "needs-review",
+      "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified",
+        "externalSource"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "externalSourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-31-32",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 31,
+      "movementId": "transfer-31-32",
+      "title": "New York/US-Hub → New York/US-Hub",
+      "status": "needs-review",
+      "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified",
+        "externalSource"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "externalSourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-32",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 32,
+      "movementId": null,
+      "title": "USA → Mexiko",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "full",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-32-33",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 32,
+      "movementId": "transfer-32-33",
+      "title": "Mexiko-Stadt/Cancún → Cancún/Chetumal",
+      "status": "needs-review",
+      "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified",
+        "externalSource"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "externalSourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
     },
     {
       "id": "leg-33",
@@ -2806,6 +2196,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2824,6 +2219,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2835,6 +2235,12 @@
       "title": "Flores → Guatemala-Stadt",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -2842,10 +2248,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -2865,6 +2273,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2883,6 +2296,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2901,6 +2319,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2919,6 +2342,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2937,6 +2365,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2948,6 +2381,12 @@
       "title": "Panama-Stadt → Panama-Stadt (PTY)",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -2955,10 +2394,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -2978,6 +2419,11 @@
       "geometry": "full",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -2995,6 +2441,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3012,6 +2463,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3029,6 +2485,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3046,6 +2507,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3063,6 +2529,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3080,6 +2551,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3097,6 +2573,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3114,6 +2595,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3125,6 +2611,12 @@
       "title": "São Paulo (GRU), nonstop → Boa Vista",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -3132,10 +2624,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -3154,6 +2648,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3165,6 +2664,12 @@
       "title": "Georgetown → Moleson Creek",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -3172,10 +2677,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -3194,6 +2701,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3205,6 +2717,12 @@
       "title": "South Drain (MV Canawaima) → Paramaribo (PBM)",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -3212,10 +2730,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -3234,6 +2754,57 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-58",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 58,
+      "movementId": null,
+      "title": "Kolumbien → Ecuador",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-59",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 59,
+      "movementId": null,
+      "title": "Ecuador → Peru",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3252,6 +2823,88 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-60-61",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 60,
+      "movementId": "transfer-60-61",
+      "title": "La Paz → Santa Cruz de la Sierra",
+      "status": "needs-review",
+      "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified",
+        "externalSource"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "externalSourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-61",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 61,
+      "movementId": null,
+      "title": "Bolivien → Paraguay",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "full",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-62",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 62,
+      "movementId": null,
+      "title": "Paraguay → Argentinien",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3270,6 +2923,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3281,6 +2939,12 @@
       "title": "Colonia/Montevideo → Montevideo (MVD)",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -3288,10 +2952,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -3310,6 +2976,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3327,6 +2998,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3344,6 +3020,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3361,6 +3042,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3379,6 +3065,11 @@
       "geometry": "full",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3390,6 +3081,12 @@
       "title": "Bandar Seri Begawan (BWN) → Bandar Seri Begawan",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -3397,10 +3094,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -3420,6 +3119,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3431,6 +3135,12 @@
       "title": "Miri/Sarawak → Johor Bahru",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -3438,10 +3148,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -3461,6 +3173,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3479,6 +3196,88 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-83-84",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 83,
+      "movementId": "transfer-83-84",
+      "title": "Batam/Bintan → Denpasar/Jakarta",
+      "status": "needs-review",
+      "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified",
+        "externalSource"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "externalSourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-84",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 84,
+      "movementId": null,
+      "title": "Indonesien → Timor-Leste",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "full",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-85",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 85,
+      "movementId": null,
+      "title": "Timor-Leste → Thailand",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "full",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3497,6 +3296,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3508,6 +3312,12 @@
       "title": "Ho-Chi-Minh-Stadt → Hanoi (HAN)",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -3515,10 +3325,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -3537,6 +3349,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3548,6 +3365,12 @@
       "title": "Dhaka (DAC) → Dhaka",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -3555,10 +3378,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -3578,6 +3403,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3589,6 +3419,12 @@
       "title": "Kolkata → Kolkata (CCU)",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -3596,10 +3432,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -3618,6 +3456,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3635,6 +3478,11 @@
       "geometry": "full",
       "sourceCount": 2,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3652,6 +3500,11 @@
       "geometry": "full",
       "sourceCount": 2,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3669,6 +3522,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3686,6 +3544,57 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-99",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 99,
+      "movementId": null,
+      "title": "Südkorea → Japan",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-100",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 100,
+      "movementId": null,
+      "title": "Japan → Mongolei",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "full",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3697,6 +3606,12 @@
       "title": "Irkutsk (IKT), nonstop; anschließend Russland-Inlandsreise nach Bedarf → Moskau-Scheremetjewo (SVO)",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -3704,10 +3619,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -3720,6 +3637,12 @@
       "title": "Almaty (ALA), nonstop → Almaty",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -3727,10 +3650,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -3750,6 +3675,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3767,6 +3697,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3785,6 +3720,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3796,6 +3736,12 @@
       "title": "Taschkent → Buchara",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -3803,10 +3749,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -3825,6 +3773,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3836,6 +3789,12 @@
       "title": "Türkmenabat → Serhetabat",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -3843,10 +3802,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -3859,6 +3820,12 @@
       "title": "Torghundi, nur mit vorheriger Genehmigung → Kabul",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -3866,10 +3833,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -3882,6 +3851,12 @@
       "title": "Peshawar → Quetta",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -3889,10 +3864,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -3905,6 +3882,12 @@
       "title": "Zahedan → Teheran (IKA)",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -3912,10 +3895,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -3934,6 +3919,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3951,6 +3941,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -3962,6 +3957,12 @@
       "title": "Tiflis (TBS) → Tiflis",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -3969,10 +3970,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -3992,6 +3995,64 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-112-113",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 112,
+      "movementId": "transfer-112-113",
+      "title": "Jerewan → Jerewan (EVN)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified",
+        "externalSource"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "externalSourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-113",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 113,
+      "movementId": null,
+      "title": "Armenien → Türkei",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4003,6 +4064,12 @@
       "title": "Damaskus (DAM), nonstop → Damaskus",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -4010,10 +4077,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -4026,6 +4095,12 @@
       "title": "Beirut → Beirut (BEY)",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -4033,10 +4108,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -4056,6 +4133,11 @@
       "geometry": "full",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4073,7 +4155,65 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
+    },
+    {
+      "id": "leg-121",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 121,
+      "movementId": null,
+      "title": "Algerien → Marokko",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "full",
+      "sourceCount": 1,
+      "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-121-122",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 121,
+      "movementId": "transfer-121-122",
+      "title": "Casablanca → Dakhla",
+      "status": "needs-review",
+      "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified",
+        "externalSource"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "externalSourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
     },
     {
       "id": "movement-transfer-122-123",
@@ -4084,6 +4224,12 @@
       "title": "Nouakchott → Nouakchott (NKC)",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -4091,10 +4237,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -4113,6 +4261,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4124,6 +4277,12 @@
       "title": "Lagos (LOS), nonstop → Lagos",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -4131,10 +4290,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -4153,6 +4314,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4170,6 +4336,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4187,6 +4358,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4204,6 +4380,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4221,6 +4402,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4238,6 +4424,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4249,6 +4440,12 @@
       "title": "Freetown → Freetown (FNA)",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -4256,10 +4453,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -4278,6 +4477,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4295,6 +4499,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4306,6 +4515,12 @@
       "title": "Bissau (OXB) → Bissau",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -4313,10 +4528,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -4335,6 +4552,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4346,6 +4568,12 @@
       "title": "Senegal → Dakar",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -4353,10 +4581,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -4375,6 +4605,33 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-140",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 140,
+      "movementId": null,
+      "title": "Gambia → Cabo Verde",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 2,
+      "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4392,6 +4649,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4409,6 +4671,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4426,6 +4693,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4443,6 +4715,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4454,6 +4731,12 @@
       "title": "Brazzaville (BZV), nonstop → Beach de Brazzaville",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -4461,10 +4744,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -4483,6 +4768,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4494,6 +4784,12 @@
       "title": "Beach Ngobila, Kinshasa → Kinshasa (FIH)",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -4501,10 +4797,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -4523,6 +4821,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4540,6 +4843,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4551,6 +4859,12 @@
       "title": "Windhoek (WDH), nonstop → Windhoek",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -4558,10 +4872,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -4581,6 +4897,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4599,6 +4920,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4617,6 +4943,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4628,6 +4959,12 @@
       "title": "Livingstone → Lusaka",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -4635,10 +4972,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -4658,6 +4997,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4669,6 +5013,12 @@
       "title": "Lilongwe → Lilongwe (LLW)",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -4676,10 +5026,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -4698,6 +5050,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4709,6 +5066,12 @@
       "title": "Maputo (MPM) → Maputo",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -4716,10 +5079,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -4739,6 +5104,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4757,6 +5127,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4768,6 +5143,12 @@
       "title": "Johannesburg → Johannesburg (JNB)",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -4775,10 +5156,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -4797,6 +5180,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4815,6 +5203,11 @@
       "geometry": "full",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4826,6 +5219,12 @@
       "title": "Dar es Salaam (DAR) → Dar es Salaam",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -4833,10 +5232,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -4855,6 +5256,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4866,6 +5272,12 @@
       "title": "Bujumbura → Bujumbura (BJM)",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -4873,10 +5285,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -4895,6 +5309,11 @@
       "geometry": "full",
       "sourceCount": 2,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4906,6 +5325,12 @@
       "title": "Kigali (KGL), nonstop → Kigali",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -4913,10 +5338,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -4935,6 +5362,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4946,6 +5378,12 @@
       "title": "Kampala → Entebbe (EBB)",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -4953,10 +5391,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -4975,6 +5415,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -4992,6 +5437,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -5009,6 +5459,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -5026,6 +5481,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -5043,6 +5503,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -5060,6 +5525,11 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -5077,6 +5547,34 @@
       "geometry": "full",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-173",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 173,
+      "movementId": null,
+      "title": "Saudi-Arabien → Kuwait",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -5095,6 +5593,11 @@
       "geometry": "full",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -5113,6 +5616,57 @@
       "geometry": "full",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-176",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 176,
+      "movementId": null,
+      "title": "Katar → Vereinigte Arabische Emirate",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "full",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "leg-177",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 177,
+      "movementId": null,
+      "title": "Vereinigte Arabische Emirate → Oman",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "not-flight",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -5124,6 +5678,12 @@
       "title": "Amman (AMM) → Amman",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -5131,10 +5691,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -5154,6 +5716,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -5171,6 +5738,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -5189,6 +5761,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -5200,6 +5777,12 @@
       "title": "Tirana → Shkodër",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -5207,10 +5790,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -5230,6 +5815,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -5248,6 +5838,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -5265,6 +5860,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -5282,6 +5882,11 @@
       "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -5300,6 +5905,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -5318,6 +5928,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -5329,6 +5944,12 @@
       "title": "Venedig/Bologna → Rimini",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -5336,10 +5957,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -5359,6 +5982,11 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     },
     {
@@ -5370,6 +5998,12 @@
       "title": "San Marino → Rimini",
       "status": "needs-review",
       "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
         "movement-review"
       ],
       "missing": [
@@ -5377,10 +6011,12 @@
         "plannedDuration",
         "estimatedCost",
         "bookingRequired",
-        "lastVerified"
+        "lastVerified",
+        "externalSource"
       ],
       "geometry": "known",
       "sourceCount": 3,
+      "externalSourceCount": 0,
       "lastVerified": null,
       "blocksDeparture": true
     },
@@ -5400,6 +6036,65 @@
       "geometry": "not-flight",
       "sourceCount": 0,
       "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
+      "blocksDeparture": false
+    },
+    {
+      "id": "movement-transfer-193-194",
+      "priority": "P2",
+      "category": "operational-movement",
+      "legId": 193,
+      "movementId": "transfer-193-194",
+      "title": "Rom; zu Fuß in Vatikanstadt → Rom (FCO/CIA)",
+      "status": "needs-review",
+      "blockers": [
+        "movement-mode",
+        "movement-duration",
+        "movement-cost",
+        "booking-decision",
+        "verification-date",
+        "external-evidence",
+        "movement-review"
+      ],
+      "missing": [
+        "mode",
+        "plannedDuration",
+        "estimatedCost",
+        "bookingRequired",
+        "lastVerified",
+        "externalSource"
+      ],
+      "geometry": "known",
+      "sourceCount": 3,
+      "externalSourceCount": 0,
+      "lastVerified": null,
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-194",
+      "priority": "P2",
+      "category": "international-leg",
+      "legId": 194,
+      "movementId": null,
+      "title": "Vatikanstadt → Malta",
+      "status": "needs-review",
+      "blockers": [],
+      "missing": [
+        "lastVerified",
+        "source"
+      ],
+      "geometry": "full",
+      "sourceCount": 0,
+      "lastVerified": null,
+      "reviewStatus": null,
+      "reviewDecision": null,
+      "reviewSafetyState": null,
+      "reviewRouteEvidence": null,
+      "reviewedAt": null,
       "blocksDeparture": false
     }
   ]

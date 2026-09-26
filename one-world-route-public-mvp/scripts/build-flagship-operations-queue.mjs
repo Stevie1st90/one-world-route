@@ -10,6 +10,7 @@ const inputs={
   waypoints:await read('route-waypoints.json'),
   flights:await read('flight-geometries.json'),
   operations:await read('operational-movements.json'),
+  criticalReviews:await read('critical-leg-reviews.json'),
 };
 const readiness=buildFlagshipReadiness(inputs);
 const queue=buildFlagshipOperationsQueue({...inputs,readiness});

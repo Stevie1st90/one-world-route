@@ -21,7 +21,7 @@ test('route data preserves the macro contract and transit airports',async()=>{
   assert.equal(r.segments.at(-1).from,'Vatikanstadt');assert.equal(r.segments.at(-1).to,'Malta');
   assert.equal(r.postTripReturn.from,'Malta');assert.equal(r.postTripReturn.to,'Deutschland');assert.equal(r.postTripReturn.countedInInternationalLegs,false);
   assert.deepEqual(f.geometries['69'].airportCodes,['APW','NAN','FUN']);
-  assert.equal(f.geometries['27'],undefined);assert.equal(f.geometries['78'],undefined);
+  assert.deepEqual(f.geometries['27'].airportCodes,['LIS','LHR']);assert.deepEqual(f.geometries['78'].airportCodes,['PNI','TKK','GUM','ROR']);
   assert.equal(m.movements.find(x=>x.id==='transfer-21-22').actualCost,null);
 });
 
@@ -41,18 +41,32 @@ test('playback inserts transfer without advancing macro selection and stop clear
 });
 
 
-test('partial airport endpoints never select ambiguous airports or invent transit routing',async()=>{
+test('explicit geometry overrides resolve ambiguous airport choices without asserting service',async()=>{
   const f=await read('flight-geometries.json');
+  assert.equal(f.version,3);
   assert.equal(f.endpoints['27'].departure.airportCode,'LIS');
-  assert.equal(f.endpoints['27'].arrival,null);
-  assert.equal(f.endpoints['86'].departure,null);
-  assert.equal(f.endpoints['86'].arrival.airportCode,'PNH');
-  assert.equal(f.endpoints['70'].departure.airportCode,'FUN');
-  assert.equal(f.endpoints['70'].arrival.airportCode,'VLI');
-  assert.equal(f.geometries['70'],undefined);
-  assert.equal(f.endpoints['78'].departure,null);
-  assert.equal(f.endpoints['78'].arrival,null);
+  assert.equal(f.endpoints['27'].arrival.airportCode,'LHR');
+  assert.deepEqual(f.geometries['27'].airportCodes,['LIS','LHR']);
+  assert.equal(f.endpoints['86'].departure.airportCode,'BKK');
+  assert.equal(f.endpoints['86'].arrival.airportCode,'KTI');
+  assert.deepEqual(f.geometries['70'].airportCodes,['FUN','NAN','VLI']);
+  assert.equal(f.endpoints['78'].departure.airportCode,'PNI');
+  assert.equal(f.endpoints['78'].arrival.airportCode,'ROR');
+  assert.deepEqual(f.geometries['78'].airportCodes,['PNI','TKK','GUM','ROR']);
+  assert.equal(f.geometries['27'].serviceVerified,null);
 });
+
+test('Cambodia flagship arrival uses current Techo International Airport',async()=>{
+  const route=await read('public-route.json');
+  const airports=await read('airports.json');
+  const flights=await read('flight-geometries.json');
+  const leg=route.segments.find(segment=>Number(segment.id)===86);
+  assert.match(leg.corridor,/\bKTI\b/);
+  assert.doesNotMatch(leg.corridor,/\bPNH\b/);
+  assert.equal(airports.airports.KTI.ident,'VDTI');
+  assert.deepEqual(flights.geometries['86'].airportCodes,['BKK','KTI']);
+});
+
 
 
 test('Terrain fallback and chapter focus use known airports without requiring a full flight route',async()=>{

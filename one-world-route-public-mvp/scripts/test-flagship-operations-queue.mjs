@@ -12,6 +12,7 @@ test('operations queue is deterministic and exposes actionable blocking fields',
     waypoints:await read('route-waypoints.json'),
     flights:await read('flight-geometries.json'),
     operations:await read('operational-movements.json'),
+    criticalReviews:await read('critical-leg-reviews.json'),
   };
   const readiness=buildFlagshipReadiness(inputs);
   const queue=buildFlagshipOperationsQueue({...inputs,readiness});
@@ -21,6 +22,12 @@ test('operations queue is deterministic and exposes actionable blocking fields',
   assert.ok(queue.summary.total>0);
   assert.ok(queue.summary.blocking>0);
   assert.ok(queue.tasks.some(task=>task.priority==='P0'&&task.category==='international-leg'));
+  assert.equal(queue.summary.criticalReviewed,35);
+  assert.equal(queue.summary.criticalBlocked,2);
+  assert.equal(queue.summary.criticalHold,33);
+  assert.equal(queue.tasks.find(task=>task.id==='leg-97').status,'reviewed-blocked');
+  assert.equal(queue.tasks.find(task=>task.id==='leg-98').status,'reviewed-blocked');
+  assert.ok(queue.tasks.filter(task=>task.priority==='P0').every(task=>task.reviewStatus==='reviewed'));
   assert.ok(queue.tasks.some(task=>task.category==='operational-movement'));
   for(const task of queue.tasks){
     assert.ok(['P0','P1','P2'].includes(task.priority));
