@@ -633,7 +633,7 @@
       "country": "Guyana",
       "from": "Georgetown",
       "to": "Moleson Creek",
-      "mode": null,
+      "mode": "Coach / shuttle",
       "corridor": "Georgetown → Moleson Creek",
       "coordinates": [
         [
@@ -651,29 +651,31 @@
         "after": "2027-01-15",
         "before": "2027-01-15"
       },
-      "plannedDuration": null,
+      "plannedDuration": 240,
       "distanceKm": 157.2,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 35,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.guyoncoaches.com/fares-terms-and-conditions",
+        "https://www.rome2rio.com/s/Georgetown-Guyana/Moleson-Creek"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "GuyOn currently publishes Georgetown→Moleson Creek at GYD 8,000 one way, while current route data places the journey around three hours. Because this movement feeds the single daily Canawaima crossing, 240 minutes and EUR 35 provide conservative margin and advance booking is recommended.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-operator-route-time-plus-ferry-connection-margin",
+      "costBasis": "current-published-GuyOn-fare-rounded-eur",
+      "evidenceScope": "Current Georgetown–Moleson Creek coach/shuttle availability and published operator fare; pickup time should be reconfirmed against the ferry on the travel date."
     },
     {
       "id": "transfer-56-57",
@@ -683,7 +685,7 @@
       "country": "Suriname",
       "from": "South Drain (MV Canawaima)",
       "to": "Paramaribo (PBM)",
-      "mode": null,
+      "mode": "Bus / shuttle",
       "corridor": "South Drain (MV Canawaima) → Paramaribo (PBM)",
       "coordinates": [
         [
@@ -701,111 +703,31 @@
         "after": "2027-01-16",
         "before": "2027-01-16"
       },
-      "plannedDuration": null,
+      "plannedDuration": 210,
       "distanceKm": 218.1,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 32,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.rome2rio.com/s/South-Drain/Paramaribo",
+        "https://www.rome2rio.com/s/Paramaribo/South-Drain"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Current route data lists a direct South Drain/Nickerie→Paramaribo bus once daily at about 3h30 and USD 35, with on-demand shuttle alternatives around three hours. EUR 32 and 210 minutes are rounded planning values; the service should be pre-arranged because it connects directly from the international ferry.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
-    },
-    {
-      "id": "transfer-57-58",
-      "kind": "transfer",
-      "parentAfterLeg": 57,
-      "parentBeforeLeg": 58,
-      "country": "Kolumbien",
-      "from": "Bogotá (BOG)",
-      "to": "Bogotá/Quito-Korridor",
-      "mode": null,
-      "corridor": "Bogotá (BOG) → Bogotá/Quito-Korridor",
-      "coordinates": null,
-      "geometryKind": "unresolved",
-      "plannedDate": null,
-      "planningWindow": {
-        "after": "2027-01-18",
-        "before": "2027-01-18"
-      },
-      "plannedDuration": null,
-      "distanceKm": null,
-      "distanceBasis": null,
-      "estimatedCost": null,
-      "currency": "EUR",
-      "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
-      "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
-      ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
-      "status": "planned",
-      "plannedDeparture": null,
-      "actualDeparture": null,
-      "plannedArrival": null,
-      "actualArrival": null,
-      "actualCost": null,
-      "reviewStatus": "needs-review"
-    },
-    {
-      "id": "transfer-58-59",
-      "kind": "transfer",
-      "parentAfterLeg": 58,
-      "parentBeforeLeg": 59,
-      "country": "Ecuador",
-      "from": "Ecuador",
-      "to": "Quito/Guayaquil",
-      "mode": null,
-      "corridor": "Ecuador → Quito/Guayaquil",
-      "coordinates": null,
-      "geometryKind": "unresolved",
-      "plannedDate": null,
-      "planningWindow": {
-        "after": "2027-01-20",
-        "before": "2027-01-20"
-      },
-      "plannedDuration": null,
-      "distanceKm": null,
-      "distanceBasis": null,
-      "estimatedCost": null,
-      "currency": "EUR",
-      "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
-      "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
-      ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
-      "status": "planned",
-      "plannedDeparture": null,
-      "actualDeparture": null,
-      "plannedArrival": null,
-      "actualArrival": null,
-      "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-direct-bus-timetable",
+      "costBasis": "current-published-bus-price-rounded-eur",
+      "evidenceScope": "Current once-daily bus and shuttle options between South Drain/Nickerie and Paramaribo; operator timing should be reconfirmed around ferry arrival."
     },
     {
       "id": "transfer-59-60",
@@ -813,40 +735,51 @@
       "parentAfterLeg": 59,
       "parentBeforeLeg": 60,
       "country": "Peru",
-      "from": "Peru",
+      "from": "Lima (LIM), nonstop",
       "to": "Puno",
-      "mode": null,
-      "corridor": "Peru → Puno",
-      "coordinates": null,
-      "geometryKind": "unresolved",
+      "mode": "Domestic flight + airport bus",
+      "corridor": "Lima (LIM), nonstop → Puno",
+      "coordinates": [
+        [
+          -77.114305,
+          -12.0219
+        ],
+        [
+          -70.0219,
+          -15.8402
+        ]
+      ],
+      "geometryKind": "endpoint-connector",
       "plannedDate": null,
       "planningWindow": {
         "after": "2027-01-22",
         "before": "2027-01-22"
       },
-      "plannedDuration": null,
-      "distanceKm": null,
-      "distanceBasis": null,
-      "estimatedCost": null,
+      "plannedDuration": 300,
+      "distanceKm": 875.1,
+      "distanceBasis": "geodesic-lower-bound",
+      "estimatedCost": 90,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.latamairlines.com/us/en/destinations/peru/flights-from-lima-to-juliaca",
+        "https://www.rome2rio.com/Bus/Puno/Juliaca-Airport-JUL"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "LATAM currently publishes nonstop LIM→JUL fares from USD 77.50 for January 2027, while current Aeroexpreso data shows direct Juliaca Airport↔Puno buses around 1h12 for roughly USD 3–11. EUR 90 and 300 minutes combine the flight, airport processing and ground transfer with planning margin.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-LIM-JUL-flight-time-plus-airport-processing-and-Puno-ground-transfer",
+      "costBasis": "current-published-LATAM-fare-plus-current-airport-bus-benchmark-rounded-eur",
+      "evidenceScope": "Current nonstop Lima–Juliaca service and airport–Puno bus service; exact January 2027 fare and same-day bus departure should be reconfirmed."
     },
     {
       "id": "transfer-60-61",
@@ -1063,7 +996,7 @@
       "country": "Indonesien",
       "from": "Batam/Bintan",
       "to": "Denpasar/Jakarta",
-      "mode": null,
+      "mode": "Connecting domestic flight",
       "corridor": "Batam/Bintan → Denpasar/Jakarta",
       "coordinates": [
         [
@@ -1081,29 +1014,31 @@
         "after": "2027-03-14",
         "before": "2027-03-14"
       },
-      "plannedDuration": null,
+      "plannedDuration": 420,
       "distanceKm": 1645.8,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 145,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.garuda-indonesia.com/flights/en-id/flights-from-batam-to-bali-denpasar",
+        "https://www.flightconnections.com/flights-from-bth-to-dps"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Garuda Indonesia currently sells BTH→DPS itineraries from IDR 2,689,200 one way. Current schedule data shows no nonstop BTH–DPS flight, with connecting options typically around 4h50 or longer. EUR 145 and 420 minutes are conservative planning values for a protected domestic connection.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-shortest-connecting-itinerary-plus-airport-margin",
+      "costBasis": "current-published-Garuda-one-way-fare-rounded-eur",
+      "evidenceScope": "Current sellable BTH–DPS connecting itinerary and current fare; exact March 2027 routing, connection airport and fare remain dynamic."
     },
     {
       "id": "transfer-86-87",
@@ -1498,7 +1433,7 @@
       "country": "Russland",
       "from": "Irkutsk (IKT), nonstop; anschließend Russland-Inlandsreise nach Bedarf",
       "to": "Moskau-Scheremetjewo (SVO)",
-      "mode": null,
+      "mode": "Domestic flight",
       "corridor": "Irkutsk (IKT), nonstop; anschließend Russland-Inlandsreise nach Bedarf → Moskau-Scheremetjewo (SVO)",
       "coordinates": [
         [
@@ -1516,29 +1451,31 @@
         "after": "2027-04-15",
         "before": "2027-04-15"
       },
-      "plannedDuration": null,
+      "plannedDuration": 510,
       "distanceKm": 4211.4,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 160,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.flightsfrom.com/IKT-SVO",
+        "https://www.trip.com/flights/airport-ikt-svo/"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Current schedules show Aeroflot operating multiple daily nonstop IKT→SVO flights at roughly 5h50–6h40. Current market examples list one-way nonstop fares from about USD 177–181. EUR 160 and 510 minutes are conservative planning values including airport processing; April 2027 inventory must be rechecked before booking.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-nonstop-flight-time-plus-airport-processing-margin",
+      "costBasis": "current-market-nonstop-fare-benchmark-rounded-eur",
+      "evidenceScope": "Current Aeroflot nonstop IKT–SVO service and current fare benchmark; exact April 2027 departure and fare remain dynamic."
     },
     {
       "id": "transfer-102-103",
@@ -2317,7 +2254,7 @@
       "country": "Senegal",
       "from": "Senegal",
       "to": "Dakar",
-      "mode": null,
+      "mode": "Intercity coach",
       "corridor": "Senegal → Dakar",
       "coordinates": [
         [
@@ -2335,29 +2272,30 @@
         "after": "2027-07-16",
         "before": "2027-07-16"
       },
-      "plannedDuration": null,
+      "plannedDuration": 720,
       "distanceKm": 269.6,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 14,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://demdikk.sn/reseau-interurbain/"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Dakar Dem Dikk currently publishes a daily Ziguinchor→Dakar departure at 07:00 for 9,000 FCFA. The operator page does not publish an arrival time, so 720 minutes is a deliberately conservative same-day road allowance. EUR 14 reflects the published 9,000 FCFA fare at the euro-linked CFA rate.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-daily-operator-service-with-conservative-road-duration-allowance",
+      "costBasis": "current-published-Dakar-Dem-Dikk-fare",
+      "evidenceScope": "Current official daily coach service, departure time and fare; exact arrival time should be confirmed before travel."
     },
     {
       "id": "transfer-144-145",
@@ -2987,47 +2925,6 @@
       "evidenceScope": "Current airport bus option, indicative fare and duration; exact 2027 timetable should be rechecked."
     },
     {
-      "id": "transfer-181-182",
-      "kind": "transfer",
-      "parentAfterLeg": 181,
-      "parentBeforeLeg": 182,
-      "country": "Staat Palästina",
-      "from": "Westjordanland (z. B. Bethlehem/Ramallah)",
-      "to": "Westjordanland",
-      "mode": null,
-      "corridor": "Westjordanland (z. B. Bethlehem/Ramallah) → Westjordanland",
-      "coordinates": null,
-      "geometryKind": "unresolved",
-      "plannedDate": null,
-      "planningWindow": {
-        "after": "2027-10-12",
-        "before": "2027-10-12"
-      },
-      "plannedDuration": null,
-      "distanceKm": null,
-      "distanceBasis": null,
-      "estimatedCost": null,
-      "currency": "EUR",
-      "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
-      "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
-      ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
-      "status": "planned",
-      "plannedDeparture": null,
-      "actualDeparture": null,
-      "plannedArrival": null,
-      "actualArrival": null,
-      "actualCost": null,
-      "reviewStatus": "needs-review"
-    },
-    {
       "id": "transfer-182-183",
       "kind": "transfer",
       "parentAfterLeg": 182,
@@ -3035,38 +2932,49 @@
       "country": "Griechenland",
       "from": "Athen (ATH)",
       "to": "Thessaloniki",
-      "mode": null,
+      "mode": "Domestic flight + city transfer",
       "corridor": "Athen (ATH) → Thessaloniki",
-      "coordinates": null,
-      "geometryKind": "unresolved",
+      "coordinates": [
+        [
+          23.9445,
+          37.936401
+        ],
+        [
+          22.9444,
+          40.6401
+        ]
+      ],
+      "geometryKind": "endpoint-connector",
       "plannedDate": null,
       "planningWindow": {
         "after": "2027-10-17",
         "before": "2027-10-17"
       },
-      "plannedDuration": null,
-      "distanceKm": null,
-      "distanceBasis": null,
-      "estimatedCost": null,
+      "plannedDuration": 240,
+      "distanceKm": 312.7,
+      "distanceBasis": "geodesic-lower-bound",
+      "estimatedCost": 75,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://flights.aegeanair.com/en/flights-from-athens-to-thessaloniki",
+        "https://www.hellenictrain.gr/en/athens-thessaloniki/"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "AEGEAN currently sells ATH→SKG one-way Economy fares from about EUR 50–67 depending on month; Hellenic Train also publishes daily Athens–Thessaloniki rail service as a fallback. EUR 75 and 240 minutes cover a domestic flight plus transfer into Thessaloniki with booking margin.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-domestic-flight-plus-airport-and-city-transfer-margin",
+      "costBasis": "current-published-Aegean-one-way-fare-plus-local-transfer-margin",
+      "evidenceScope": "Current ATH–SKG air service with rail fallback; exact October 2027 fare and timetable should be rechecked."
     },
     {
       "id": "transfer-185-186",

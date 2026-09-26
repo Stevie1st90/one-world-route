@@ -48,43 +48,43 @@
   },
   "continuity": {
     "connections": 193,
-    "sharedEndpoints": 128,
-    "transferRequired": 57,
-    "unresolvedEndpointGeometry": 8,
+    "sharedEndpoints": 131,
+    "transferRequired": 59,
+    "unresolvedEndpointGeometry": 3,
     "countryMismatch": 0,
-    "unresolvedConnections": 18
+    "unresolvedConnections": 8
   },
   "movements": {
-    "total": 65,
-    "reviewed": 47,
-    "needsReview": 18,
-    "reviewedPercent": 72.3,
-    "operationallyComplete": 47,
-    "operationallyCompletePercent": 72.3,
-    "unresolvedGeometry": 8,
-    "missingMode": 18,
-    "missingDuration": 18,
-    "missingCost": 18,
-    "missingBookingDecision": 18,
-    "missingLastVerified": 18,
-    "externallySourced": 47
+    "total": 62,
+    "reviewed": 54,
+    "needsReview": 8,
+    "reviewedPercent": 87.1,
+    "operationallyComplete": 54,
+    "operationallyCompletePercent": 87.1,
+    "unresolvedGeometry": 3,
+    "missingMode": 8,
+    "missingDuration": 8,
+    "missingCost": 8,
+    "missingBookingDecision": 8,
+    "missingLastVerified": 8,
+    "externallySourced": 54
   },
   "flights": {
-    "flightLegs": 100,
-    "fullGeometries": 100,
+    "flightLegs": 102,
+    "fullGeometries": 102,
     "fullGeometryPercent": 100,
     "missingFullGeometries": 0,
     "missingFullGeometryLegIds": [],
-    "knownEndpoints": 200,
-    "totalEndpoints": 200,
+    "knownEndpoints": 204,
+    "totalEndpoints": 204,
     "endpointCoveragePercent": 100,
     "geometryScope": "Airport coordinates only; geometry does not verify airline service, schedules or booking availability."
   },
   "evidence": {
-    "sourcedSegments": 122,
-    "sourcedSegmentsPercent": 62.9,
-    "segmentsWithVerificationDate": 33,
-    "segmentsWithVerificationDatePercent": 17,
+    "sourcedSegments": 124,
+    "sourcedSegmentsPercent": 63.9,
+    "segmentsWithVerificationDate": 35,
+    "segmentsWithVerificationDatePercent": 18,
     "invalidVerificationDates": [],
     "missingVerificationDates": [
       9,
@@ -124,8 +124,6 @@
       55,
       56,
       57,
-      58,
-      59,
       60,
       61,
       62,
@@ -313,49 +311,34 @@
     {
       "priority": "P1",
       "id": "unresolved-endpoint-geometry",
-      "count": 8,
+      "count": 3,
       "items": [
-        "transfer-57-58",
-        "transfer-58-59",
-        "transfer-59-60",
         "transfer-96-97",
         "transfer-97-98",
-        "transfer-98-99",
-        "transfer-181-182",
-        "transfer-182-183"
+        "transfer-98-99"
       ],
       "goal": "Resolve exact arrival/departure endpoints before asserting continuity."
     },
     {
       "priority": "P2",
       "id": "movement-review",
-      "count": 18,
+      "count": 8,
       "items": [
-        "transfer-55-56",
-        "transfer-56-57",
-        "transfer-57-58",
-        "transfer-58-59",
-        "transfer-59-60",
-        "transfer-83-84",
         "transfer-96-97",
         "transfer-97-98",
         "transfer-98-99",
-        "transfer-101-102",
         "transfer-106-107",
         "transfer-107-108",
         "transfer-108-109",
         "transfer-109-110",
-        "transfer-115-116",
-        "transfer-138-139",
-        "transfer-181-182",
-        "transfer-182-183"
+        "transfer-115-116"
       ],
       "goal": "Add mode, duration, cost, booking decision and evidence where supported."
     },
     {
       "priority": "P2",
       "id": "route-verification-dates",
-      "count": 161,
+      "count": 159,
       "items": [
         9,
         10,
@@ -394,8 +377,6 @@
         55,
         56,
         57,
-        58,
-        59,
         60,
         61,
         62,
@@ -526,13 +507,13 @@
     {
       "id": "continuity",
       "category": "operations",
-      "count": 18,
+      "count": 8,
       "message": "Operational continuity still contains unresolved or unreviewed connections."
     },
     {
       "id": "movement-review",
       "category": "operations",
-      "count": 18,
+      "count": 8,
       "message": "Inventoried domestic/operational movements still require complete geometry, mode, duration, cost, booking decision and external evidence."
     },
     {

@@ -5,14 +5,14 @@
   "routeGeneratedAt": "2026-09-25",
   "departureReady": false,
   "summary": {
-    "total": 191,
+    "total": 179,
     "p0": 35,
-    "p1": 8,
-    "p2": 148,
-    "blocking": 53,
+    "p1": 3,
+    "p2": 141,
+    "blocking": 43,
     "byCategory": {
-      "international-leg": 173,
-      "operational-movement": 18
+      "international-leg": 171,
+      "operational-movement": 8
     },
     "criticalReviewed": 35,
     "criticalBlocked": 2,
@@ -860,105 +860,6 @@
       "blocksDeparture": true
     },
     {
-      "id": "movement-transfer-57-58",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 57,
-      "movementId": "transfer-57-58",
-      "title": "Bogotá (BOG) → Bogotá/Quito-Korridor",
-      "status": "needs-review",
-      "blockers": [
-        "endpoint-geometry",
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-58-59",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 58,
-      "movementId": "transfer-58-59",
-      "title": "Ecuador → Quito/Guayaquil",
-      "status": "needs-review",
-      "blockers": [
-        "endpoint-geometry",
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-59-60",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 59,
-      "movementId": "transfer-59-60",
-      "title": "Peru → Puno",
-      "status": "needs-review",
-      "blockers": [
-        "endpoint-geometry",
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "movement-transfer-96-97",
       "priority": "P1",
       "category": "operational-movement",
@@ -1031,72 +932,6 @@
       "legId": 98,
       "movementId": "transfer-98-99",
       "title": "Südkorea (operativer Korridor offen) → Busan",
-      "status": "needs-review",
-      "blockers": [
-        "endpoint-geometry",
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-181-182",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 181,
-      "movementId": "transfer-181-182",
-      "title": "Westjordanland (z. B. Bethlehem/Ramallah) → Westjordanland",
-      "status": "needs-review",
-      "blockers": [
-        "endpoint-geometry",
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-182-183",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 182,
-      "movementId": "transfer-182-183",
-      "title": "Athen (ATH) → Thessaloniki",
       "status": "needs-review",
       "blockers": [
         "endpoint-geometry",
@@ -2111,37 +1946,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-55-56",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 55,
-      "movementId": "transfer-55-56",
-      "title": "Georgetown → Moleson Creek",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-56",
       "priority": "P2",
       "category": "international-leg",
@@ -2164,37 +1968,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-56-57",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 56,
-      "movementId": "transfer-56-57",
-      "title": "South Drain (MV Canawaima) → Paramaribo (PBM)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-57",
       "priority": "P2",
       "category": "international-leg",
@@ -2208,52 +1981,6 @@
       ],
       "geometry": "full",
       "sourceCount": 1,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-58",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 58,
-      "movementId": null,
-      "title": "Kolumbien → Ecuador",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-59",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 59,
-      "movementId": null,
-      "title": "Ecuador → Peru",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 0,
       "lastVerified": null,
       "reviewStatus": null,
       "reviewDecision": null,
@@ -2535,37 +2262,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-83-84",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 83,
-      "movementId": "transfer-83-84",
-      "title": "Batam/Bintan → Denpasar/Jakarta",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-84",
       "priority": "P2",
       "category": "international-leg",
@@ -2834,37 +2530,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-101-102",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 101,
-      "movementId": "transfer-101-102",
-      "title": "Irkutsk (IKT), nonstop; anschließend Russland-Inlandsreise nach Bedarf → Moskau-Scheremetjewo (SVO)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-103",
@@ -3486,37 +3151,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-138-139",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 138,
-      "movementId": "transfer-138-139",
-      "title": "Senegal → Dakar",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-139",

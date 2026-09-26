@@ -407,6 +407,46 @@
       "serviceVerified": null,
       "geometryDecision": "corridor-explicit"
     },
+    "58": {
+      "airportCodes": [
+        "BOG",
+        "UIO"
+      ],
+      "coordinates": [
+        [
+          -74.1469,
+          4.70159
+        ],
+        [
+          -78.354306,
+          -0.125399
+        ]
+      ],
+      "source": "https://ourairports.com/airports/SKBO/ ; https://ourairports.com/airports/SEQM/",
+      "coordinateVerified": "2026-09-26",
+      "serviceVerified": null,
+      "geometryDecision": "explicit-override"
+    },
+    "59": {
+      "airportCodes": [
+        "UIO",
+        "LIM"
+      ],
+      "coordinates": [
+        [
+          -78.354306,
+          -0.125399
+        ],
+        [
+          -77.114305,
+          -12.0219
+        ]
+      ],
+      "source": "https://ourairports.com/airports/SEQM/ ; https://ourairports.com/airports/SPIM/",
+      "coordinateVerified": "2026-09-26",
+      "serviceVerified": null,
+      "geometryDecision": "explicit-override"
+    },
     "61": {
       "airportCodes": [
         "VVI",
@@ -2565,12 +2605,44 @@
       }
     },
     "58": {
-      "departure": null,
-      "arrival": null
+      "departure": {
+        "airportCode": "BOG",
+        "coordinates": [
+          -74.1469,
+          4.70159
+        ],
+        "source": "https://ourairports.com/airports/SKBO/ ; https://ourairports.com/airports/SEQM/",
+        "coordinateVerified": "2026-09-26"
+      },
+      "arrival": {
+        "airportCode": "UIO",
+        "coordinates": [
+          -78.354306,
+          -0.125399
+        ],
+        "source": "https://ourairports.com/airports/SKBO/ ; https://ourairports.com/airports/SEQM/",
+        "coordinateVerified": "2026-09-26"
+      }
     },
     "59": {
-      "departure": null,
-      "arrival": null
+      "departure": {
+        "airportCode": "UIO",
+        "coordinates": [
+          -78.354306,
+          -0.125399
+        ],
+        "source": "https://ourairports.com/airports/SEQM/ ; https://ourairports.com/airports/SPIM/",
+        "coordinateVerified": "2026-09-26"
+      },
+      "arrival": {
+        "airportCode": "LIM",
+        "coordinates": [
+          -77.114305,
+          -12.0219
+        ],
+        "source": "https://ourairports.com/airports/SEQM/ ; https://ourairports.com/airports/SPIM/",
+        "coordinateVerified": "2026-09-26"
+      }
     },
     "61": {
       "departure": {

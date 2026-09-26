@@ -63,6 +63,46 @@
         "https://ourairports.com/airports/MMMX/"
       ]
     },
+    "58": {
+      "airportCodes": [
+        "BOG",
+        "UIO"
+      ],
+      "coordinates": [
+        [
+          -74.1469,
+          4.70159
+        ],
+        [
+          -78.354306,
+          -0.125399
+        ]
+      ],
+      "sources": [
+        "https://ourairports.com/airports/SKBO/",
+        "https://ourairports.com/airports/SEQM/"
+      ]
+    },
+    "59": {
+      "airportCodes": [
+        "UIO",
+        "LIM"
+      ],
+      "coordinates": [
+        [
+          -78.354306,
+          -0.125399
+        ],
+        [
+          -77.114305,
+          -12.0219
+        ]
+      ],
+      "sources": [
+        "https://ourairports.com/airports/SEQM/",
+        "https://ourairports.com/airports/SPIM/"
+      ]
+    },
     "61": {
       "airportCodes": [
         "VVI",
