@@ -5,14 +5,14 @@
   "routeGeneratedAt": "2026-09-25",
   "departureReady": false,
   "summary": {
-    "total": 235,
+    "total": 234,
     "p0": 35,
     "p1": 17,
-    "p2": 183,
-    "blocking": 99,
+    "p2": 182,
+    "blocking": 98,
     "byCategory": {
       "international-leg": 171,
-      "operational-movement": 64
+      "operational-movement": 63
     },
     "criticalReviewed": 35,
     "criticalBlocked": 2,
@@ -5071,37 +5071,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-154-155",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 154,
-      "movementId": "transfer-154-155",
-      "title": "Johannesburg → Johannesburg (JNB)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-155",
