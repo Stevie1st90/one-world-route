@@ -5,14 +5,14 @@
   "routeGeneratedAt": "2026-09-25",
   "departureReady": false,
   "summary": {
-    "total": 241,
+    "total": 236,
     "p0": 35,
     "p1": 17,
-    "p2": 189,
-    "blocking": 103,
+    "p2": 184,
+    "blocking": 98,
     "byCategory": {
       "international-leg": 173,
-      "operational-movement": 68
+      "operational-movement": 63
     },
     "criticalReviewed": 35,
     "criticalBlocked": 2,
@@ -1963,37 +1963,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-25-26",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 25,
-      "movementId": "transfer-25-26",
-      "title": "Barcelona → Madrid",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-26",
@@ -5769,37 +5738,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-185-186",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 185,
-      "movementId": "transfer-185-186",
-      "title": "Tirana → Shkodër",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-186",
       "priority": "P2",
       "category": "international-leg",
@@ -5936,37 +5874,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-191-192",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 191,
-      "movementId": "transfer-191-192",
-      "title": "Venedig/Bologna → Rimini",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-192",
       "priority": "P2",
       "category": "international-leg",
@@ -5990,37 +5897,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-192-193",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 192,
-      "movementId": "transfer-192-193",
-      "title": "San Marino → Rimini",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-193",
       "priority": "P2",
       "category": "international-leg",
@@ -6042,37 +5918,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-193-194",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 193,
-      "movementId": "transfer-193-194",
-      "title": "Rom; zu Fuß in Vatikanstadt → Rom (FCO/CIA)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-194",

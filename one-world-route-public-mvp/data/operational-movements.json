@@ -111,7 +111,7 @@
       "country": "Spanien",
       "from": "Barcelona",
       "to": "Madrid",
-      "mode": null,
+      "mode": "High-speed train",
       "corridor": "Barcelona → Madrid",
       "coordinates": [
         [
@@ -129,29 +129,32 @@
         "after": "2026-11-29",
         "before": "2026-11-29"
       },
-      "plannedDuration": null,
+      "plannedDuration": 210,
       "distanceKm": 505.4,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 29,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.ouigo.com/es/tren-barcelona-madrid",
+        "https://www.ouigo.com/es/horarios-trenes-ouigo",
+        "https://www.ouigo.com/en/"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "OUIGO currently documents Barcelona-Sants to Madrid-Puerta de Atocha high-speed service. Current published schedules are roughly 3h02-3h30 for listed departures; 210 minutes is the conservative planning allowance. EUR 29 is a current published best-price planning benchmark, not a guaranteed fare for 29 Nov 2026. Reconfirm the exact departure, fare and station details before booking.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-published-timetable-conservative-allowance",
+      "costBasis": "current-published-best-price-planning-benchmark",
+      "evidenceScope": "Current high-speed service, stations, timetable and promotional planning benchmark; exact 2026-11-29 inventory and fare remain dynamic."
     },
     {
       "id": "transfer-26-27",
@@ -3315,7 +3318,7 @@
       "country": "Albanien",
       "from": "Tirana",
       "to": "Shkodër",
-      "mode": null,
+      "mode": "Coach",
       "corridor": "Tirana → Shkodër",
       "coordinates": [
         [
@@ -3333,29 +3336,31 @@
         "after": "2027-10-21",
         "before": "2027-10-21"
       },
-      "plannedDuration": null,
+      "plannedDuration": 90,
       "distanceKm": 86.2,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 12.98,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://global.flixbus.com/bus-routes/bus-tirana-shkoder",
+        "https://tirana.al/pika-interesi/terminali-i-autobusave-te-jugut-dhe-veriut"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "FlixBus currently publishes Tirana-Shkoder journeys from EUR 12.98, with a fastest journey of 1h20 and at least four rides per day. 90 minutes is the planning allowance. Tirana municipality also documents frequent Shkoder departures from its north/south intercity terminal. The exact operator stop pair is ticket-specific and must be reconfirmed for 21 Oct 2027.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "published-minimum-plus-margin",
+      "costBasis": "published-current-from-fare",
+      "evidenceScope": "Current bookable coach corridor plus municipal intercity-terminal evidence; exact 2027 stop pair, timetable and fare must be reconfirmed."
     },
     {
       "id": "transfer-191-192",
@@ -3365,7 +3370,7 @@
       "country": "Italien",
       "from": "Venedig/Bologna",
       "to": "Rimini",
-      "mode": null,
+      "mode": "Coach",
       "corridor": "Venedig/Bologna → Rimini",
       "coordinates": [
         [
@@ -3383,29 +3388,30 @@
         "after": "2027-10-28",
         "before": "2027-10-28"
       },
-      "plannedDuration": null,
+      "plannedDuration": 90,
       "distanceKm": 108.5,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 9.48,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://global.flixbus.com/bus-routes/bus-bologna-rimini"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "The synchronized route geometry resolves the ambiguous Venice/Bologna arrival to Bologna. FlixBus currently publishes Bologna-Rimini service with six rides per day, a fastest journey of 1h25 and a displayed fare from EUR 9.48 in the current route FAQ. 90 minutes is the planning allowance. Operator stops include Bologna Central Bus Station and several Rimini stops; the exact booked stop pair and 28 Oct 2027 fare must be reconfirmed.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "published-minimum-plus-margin",
+      "costBasis": "published-current-from-fare",
+      "evidenceScope": "Current Bologna-Rimini coach service; exact 2027 stop pair, timetable and fare remain dynamic."
     },
     {
       "id": "transfer-192-193",
@@ -3415,7 +3421,7 @@
       "country": "San Marino",
       "from": "San Marino",
       "to": "Rimini",
-      "mode": null,
+      "mode": "Bus",
       "corridor": "San Marino → Rimini",
       "coordinates": [
         [
@@ -3433,29 +3439,32 @@
         "after": "2027-10-30",
         "before": "2027-10-30"
       },
-      "plannedDuration": null,
+      "plannedDuration": 60,
       "distanceKm": 16.5,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 7,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.benedettinispa.com/it/san-marino-rimini",
+        "https://www.bonellibus.it/en/shuttle-rimini-san-marino-2/",
+        "https://devel.benedettinispa.com/en/san-marino-outlet"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Benedettini's current San Marino-Rimini timetable shows Centro Storico Capolinea Shuttle to Rimini Stazione FF.SS. in about 55 minutes; 60 minutes is the planning allowance. The operator publishes a EUR 7 single fare and allows onboard purchase subject to availability, while advance reservation is recommended. Service is jointly advertised as year-round/daily. Reconfirm the seasonal timetable for 30 Oct 2027.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "published-current-timetable-plus-margin",
+      "costBasis": "published-single-fare",
+      "evidenceScope": "Current year-round service framework, seasonal timetable and fare; exact 2027 seasonal timetable must be reconfirmed."
     },
     {
       "id": "transfer-193-194",
@@ -3465,7 +3474,7 @@
       "country": "Vatikanstadt",
       "from": "Rom; zu Fuß in Vatikanstadt",
       "to": "Rom (FCO/CIA)",
-      "mode": null,
+      "mode": "Airport coach",
       "corridor": "Rom; zu Fuß in Vatikanstadt → Rom (FCO/CIA)",
       "coordinates": [
         [
@@ -3483,29 +3492,31 @@
         "after": "2027-10-31",
         "before": "2027-10-31"
       },
-      "plannedDuration": null,
+      "plannedDuration": 60,
       "distanceKm": 19.9,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 7,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.sitbusshuttle.com/de/haltestellen-und-fahrplaene/fahrplan-rom-fiumicino/",
+        "https://www.sitbusshuttle.com/de/fiumicino-flughafen-transfer/"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "SIT Bus Shuttle currently serves Rome Vatican (Via Crescenzio 2) to Fiumicino Airport Terminal 3, matching the FCO departure geometry of international leg 194. Published city-airport fare is EUR 7 one way. Current timetable examples imply roughly 40-60 minutes from the Vatican stop depending on departure and traffic; 60 minutes is retained as the planning allowance. Reconfirm the 31 Oct 2027 timetable before travel.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "published-timetable-conservative-allowance",
+      "costBasis": "published-one-way-fare",
+      "evidenceScope": "Current Vatican-area to FCO coach service and fare; exact 2027 timetable remains subject to change."
     }
   ],
   "routeEnd": "Malta",
