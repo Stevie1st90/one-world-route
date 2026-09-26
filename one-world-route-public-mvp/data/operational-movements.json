@@ -12,7 +12,7 @@
       "country": "Schweiz",
       "from": "Buchs SG oder Sargans (LIEmobil)",
       "to": "Genève-Cornavin",
-      "mode": null,
+      "mode": "Intercity train",
       "corridor": "Buchs SG oder Sargans (LIEmobil) → Genève-Cornavin",
       "coordinates": [
         [
@@ -30,29 +30,32 @@
         "after": "2026-11-24",
         "before": "2026-11-24"
       },
-      "plannedDuration": null,
+      "plannedDuration": 300,
       "distanceKm": 268.6,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 55,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.sbb.ch/en/offers/saver-day-pass",
+        "https://www.sbb.ch/en/offers/find-saver-offers",
+        "https://www.rome2rio.com/Train/Buchs-Canton-of-St-Gallen-Switzerland/Geneva"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Current 2026 timetable data shows Buchs SG–Geneva rail journeys around 4h10–4h57 depending on connection, typically via Zurich. SBB Saver Day Passes without a Half Fare Travelcard start at CHF 52 when bought in advance and are quota-controlled. EUR 55 and 300 minutes are conservative planning values; the exact 24 November 2026 connection should be checked in SBB before purchase.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-2026-rail-journey-range-plus-transfer-margin",
+      "costBasis": "current-SBB-saver-day-pass-starting-price-rounded-eur",
+      "evidenceScope": "Current SBB 2026 ticket product and current Buchs SG–Geneva timetable examples; exact travel-date connection and saver quota remain dynamic."
     },
     {
       "id": "transfer-22-23",
@@ -475,7 +478,7 @@
       "country": "Guatemala",
       "from": "Flores",
       "to": "Guatemala-Stadt",
-      "mode": null,
+      "mode": "Domestic flight",
       "corridor": "Flores → Guatemala-Stadt",
       "coordinates": [
         [
@@ -493,29 +496,31 @@
         "after": "2026-12-13",
         "before": "2026-12-13"
       },
-      "plannedDuration": null,
+      "plannedDuration": 180,
       "distanceKm": 263.7,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 65,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.tagairlines.com/en-us/",
+        "https://tagairlines.com/es-gt/promociones/ofertas/tyc-ofertas/"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "TAG Airlines currently sells Flores (FRS)–Guatemala City (GUA) domestic flights. Its 2026 promotions show one-way GUA/FRS fares from USD 59 and round-trip promotional fares of USD 129 on the route. EUR 65 and 180 minutes are conservative planning values including airport processing. Reconfirm the exact 13 December 2026 departure and fare before booking.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-domestic-air-service-plus-airport-processing-margin",
+      "costBasis": "current-published-TAG-route-promo-fare-rounded-eur",
+      "evidenceScope": "Current FRS-GUA domestic service and 2026 published promotional fare references; exact travel-date inventory and final fare remain dynamic."
     },
     {
       "id": "transfer-39-40",
@@ -851,7 +856,7 @@
       "country": "Bolivien",
       "from": "La Paz",
       "to": "Santa Cruz de la Sierra",
-      "mode": null,
+      "mode": "Domestic flight",
       "corridor": "La Paz → Santa Cruz de la Sierra",
       "coordinates": [
         [
@@ -869,29 +874,31 @@
         "after": "2027-01-23",
         "before": "2027-01-23"
       },
-      "plannedDuration": null,
+      "plannedDuration": 180,
       "distanceKm": 545.1,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 65,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.oopp.gob.bo/nota_prensa/boliviana-de-aviacion-lanza-la-campana-tarifazo-boa-con-precios-economicos-para-rutas-nacionales/",
+        "https://www.boa.bo/"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Bolivia's Ministry of Public Works published BoA's 2026 national-web-fare campaign, including La Paz–Santa Cruz from BOB 484, and directs purchases through BoA's official portal. EUR 65 and 180 minutes provide a conservative one-way planning benchmark including airport processing and fare variation. Recheck January 2027 inventory before purchase.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-domestic-flight-corridor-plus-airport-processing-margin",
+      "costBasis": "published-2026-Boa-La-Paz-Santa-Cruz-web-fare-plus-margin-rounded-eur",
+      "evidenceScope": "Current official BoA domestic fare reference for La Paz–Santa Cruz; exact January 2027 schedule and fare remain dynamic."
     },
     {
       "id": "transfer-63-64",
@@ -1541,7 +1548,7 @@
       "country": "Kasachstan",
       "from": "Almaty (ALA), nonstop",
       "to": "Almaty",
-      "mode": null,
+      "mode": "Airport bus",
       "corridor": "Almaty (ALA), nonstop → Almaty",
       "coordinates": [
         [
@@ -1559,29 +1566,31 @@
         "after": "2027-04-16",
         "before": "2027-04-16"
       },
-      "plannedDuration": null,
+      "plannedDuration": 75,
       "distanceKm": 18,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 1,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "walk-up",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://almaty-ala-international-airport.com/transport",
+        "https://www.airporttransferportal.com/airport-guides/ala/cost-to-city"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Current July 2026 airport transport guidance lists city bus 79 from Almaty Airport into central Almaty at KZT 120 using the Onay/app/mobile-payment system, with roughly one hour travel depending on traffic. EUR 1 and 75 minutes are conservative planning values. Exact route and payment rules should be reconfirmed close to travel.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-airport-bus-guidance-plus-traffic-margin",
+      "costBasis": "current-published-city-bus-fare-rounded-eur",
+      "evidenceScope": "Current ALA-city bus route/fare guidance; source is independent rather than the airport authority, so travel-date reconfirmation is required."
     },
     {
       "id": "transfer-105-106",
@@ -2098,7 +2107,7 @@
       "country": "Mauretanien",
       "from": "Nouakchott",
       "to": "Nouakchott (NKC)",
-      "mode": null,
+      "mode": "Airport taxi / pre-arranged transfer",
       "corridor": "Nouakchott → Nouakchott (NKC)",
       "coordinates": [
         [
@@ -2116,29 +2125,32 @@
         "after": "2027-06-09",
         "before": "2027-06-09"
       },
-      "plannedDuration": null,
+      "plannedDuration": 60,
       "distanceKm": 26.3,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 35,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://forum.prcmarine.org/wp-content/uploads/2026/04/EN-FOMACO2026-Notes-dinformations.pdf.pdf",
+        "https://www.anac.mr/language/fr/communique-2/",
+        "https://www.kupi.com/en/explore/mauritania/nouakchott/nouakchott-international-airport"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "A 2026 Nouakchott event travel note states that airport taxis are available and quotes the airport-hotel journey at MRU 1,000–2,000, approximately EUR 25–50. Current airport guidance places the airport roughly 25 km north of central Nouakchott with a typical 30–45 minute road journey and recommends agreeing the fare in advance. EUR 35 and 60 minutes are conservative planning values.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-30-to-45-minute-airport-road-time-plus-margin",
+      "costBasis": "current-2026-published-airport-hotel-taxi-range-midpoint",
+      "evidenceScope": "Current 2026 airport transfer availability, journey-time guidance and published event transport fare range; exact hotel/airport quote should be agreed before travel."
     },
     {
       "id": "transfer-129-130",
@@ -2253,7 +2265,7 @@
       "country": "Guinea-Bissau",
       "from": "Bissau (OXB)",
       "to": "Bissau",
-      "mode": null,
+      "mode": "Airport taxi",
       "corridor": "Bissau (OXB) → Bissau",
       "coordinates": [
         [
@@ -2271,29 +2283,31 @@
         "after": "2027-07-14",
         "before": "2027-07-14"
       },
-      "plannedDuration": null,
+      "plannedDuration": 45,
       "distanceKm": 6.2,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 15,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.bissau-airport.com/",
+        "https://www.rome2rio.com/s/Bissau-Airport-OXB/Bissau"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Osvaldo Vieira International Airport publishes taxi/bus links to the city. Current route data places OXB–Bissau at about 11 km and roughly 14 minutes by taxi, with an indicative USD 11–14 fare. EUR 15 and 45 minutes are conservative planning values; because meters are uncommon, agree the fare before departure or arrange a hotel pickup.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-14-minute-airport-city-drive-time-plus-large-operational-margin",
+      "costBasis": "current-indicative-airport-taxi-range-rounded-eur",
+      "evidenceScope": "Current airport transport availability and current route/fare estimate; fare is not an official regulated tariff and must be agreed before the ride."
     },
     {
       "id": "transfer-138-139",
@@ -2353,7 +2367,7 @@
       "country": "Republik Kongo",
       "from": "Brazzaville (BZV), nonstop",
       "to": "Beach de Brazzaville",
-      "mode": null,
+      "mode": "Pre-booked private transfer",
       "corridor": "Brazzaville (BZV), nonstop → Beach de Brazzaville",
       "coordinates": [
         [
@@ -2371,29 +2385,31 @@
         "after": "2027-07-31",
         "before": "2027-07-31"
       },
-      "plannedDuration": null,
+      "plannedDuration": 45,
       "distanceKm": 3.6,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 55,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.brazzaville-airport.com/taxis-en/",
+        "https://www.airporttransferportal.com/airport-guides/bzv/cost-to-city"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Maya-Maya Airport confirms taxi access but no formal taxi queue. Current 2026 transfer guidance states there is no regulated taxi tariff and lists a fixed pre-booked BZV→Brazzaville City Center transfer from EUR 55, with a roughly 15–30 minute city drive. EUR 55 and 45 minutes avoid inventing a negotiated curbside fare and provide a predictable airport-to-Beach planning benchmark.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-15-to-30-minute-airport-city-drive-plus-margin",
+      "costBasis": "current-fixed-prebooked-transfer-benchmark",
+      "evidenceScope": "Current airport taxi availability and fixed private-transfer benchmark; exact Beach de Brazzaville drop-off should be confirmed with the supplier."
     },
     {
       "id": "transfer-145-146",
@@ -2403,7 +2419,7 @@
       "country": "Demokratische Republik Kongo",
       "from": "Beach Ngobila, Kinshasa",
       "to": "Kinshasa (FIH)",
-      "mode": null,
+      "mode": "Pre-booked private transfer",
       "corridor": "Beach Ngobila, Kinshasa → Kinshasa (FIH)",
       "coordinates": [
         [
@@ -2421,29 +2437,32 @@
         "after": "2027-08-03",
         "before": "2027-08-03"
       },
-      "plannedDuration": null,
+      "plannedDuration": 150,
       "distanceKm": 20.7,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 90,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.airporttransferportal.com/airport-guides/fih",
+        "https://www.airporttransferportal.com/city/kinshasa",
+        "https://acp.cd/economie/kinshasa-reprise-du-trafic-ferroviaire-sur-laxe-gare-centrale-aeroport-prevue-le-17-aout/"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Current 2026 Kinshasa guidance places N'djili Airport about 25 km east of central Kinshasa, with road journeys ranging from roughly 40 minutes to over two hours in traffic. Fixed pre-booked FIH↔Kinshasa transfers are currently listed from about EUR 85. Separately, the transport ministry announced resumption of the Gare Centrale–airport urban train in August 2026. EUR 90 and 150 minutes are conservative Beach Ngobila→FIH planning values.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-city-airport-road-time-range-conservative-upper-allowance",
+      "costBasis": "current-fixed-prebooked-city-airport-transfer-benchmark-rounded-up",
+      "evidenceScope": "Current FIH-city fixed transfer availability and current transport-ministry rail announcement; exact Beach Ngobila pickup routing remains supplier-dependent."
     },
     {
       "id": "transfer-147-148",
@@ -2558,7 +2577,7 @@
       "country": "Malawi",
       "from": "Lilongwe",
       "to": "Lilongwe (LLW)",
-      "mode": null,
+      "mode": "Pre-booked private transfer",
       "corridor": "Lilongwe → Lilongwe (LLW)",
       "coordinates": [
         [
@@ -2576,29 +2595,31 @@
         "after": "2027-08-13",
         "before": "2027-08-13"
       },
-      "plannedDuration": null,
+      "plannedDuration": 60,
       "distanceKm": 19.3,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 35,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.transfersco.africa/answers/lilongwe",
+        "https://www.transfeero.com/en/lilongwe-airport-transfers-llw/transfer-from-lilongwe-airport-to-modern-quarter-the-city/"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Current 2026 fixed-transfer providers publish LLW↔Lilongwe city service from about USD 40 / EUR 34.33, with a typical airport-city road time around 30–45 minutes. EUR 35 and 60 minutes are conservative planning values for the reverse Lilongwe→LLW movement. Reconfirm the exact hotel pickup and 2027 supplier quote.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "current-30-to-45-minute-airport-city-road-time-plus-margin",
+      "costBasis": "current-fixed-private-transfer-benchmark-rounded-eur",
+      "evidenceScope": "Current fixed-price LLW-city transfer benchmarks; exact 2027 supplier availability and city pickup point remain dynamic."
     },
     {
       "id": "transfer-152-153",
@@ -2766,7 +2787,7 @@
       "country": "Burundi",
       "from": "Bujumbura",
       "to": "Bujumbura (BJM)",
-      "mode": null,
+      "mode": "Pre-booked airport transfer",
       "corridor": "Bujumbura → Bujumbura (BJM)",
       "coordinates": [
         [
@@ -2784,29 +2805,31 @@
         "after": "2027-08-24",
         "before": "2027-08-24"
       },
-      "plannedDuration": null,
+      "plannedDuration": 45,
       "distanceKm": 6.6,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 27,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.bujumburashuttle.com/",
+        "https://www.bujumburashuttle.com/services/bujumbura-airport-taxi"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "BujaShuttle currently publishes fixed BJM airport-transfer fares from USD 29 per sedan for 1–2 travelers, with 24/7 pickup and a fixed price before travel. EUR 27 and 45 minutes are rounded planning values for central Bujumbura→BJM. Reconfirm the exact hotel address and August 2027 quote before booking.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "durationBasis": "short-Bujumbura-airport-road-transfer-plus-operational-margin",
+      "costBasis": "current-published-fixed-airport-transfer-fare-rounded-eur",
+      "evidenceScope": "Current fixed-price Bujumbura airport-transfer product and fare; exact 2027 supplier availability should be reconfirmed."
     },
     {
       "id": "transfer-158-159",

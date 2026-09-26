@@ -52,22 +52,22 @@
     "transferRequired": 57,
     "unresolvedEndpointGeometry": 8,
     "countryMismatch": 0,
-    "unresolvedConnections": 28
+    "unresolvedConnections": 18
   },
   "movements": {
     "total": 65,
-    "reviewed": 37,
-    "needsReview": 28,
-    "reviewedPercent": 56.9,
-    "operationallyComplete": 37,
-    "operationallyCompletePercent": 56.9,
+    "reviewed": 47,
+    "needsReview": 18,
+    "reviewedPercent": 72.3,
+    "operationallyComplete": 47,
+    "operationallyCompletePercent": 72.3,
     "unresolvedGeometry": 8,
-    "missingMode": 28,
-    "missingDuration": 28,
-    "missingCost": 28,
-    "missingBookingDecision": 28,
-    "missingLastVerified": 28,
-    "externallySourced": 37
+    "missingMode": 18,
+    "missingDuration": 18,
+    "missingCost": 18,
+    "missingBookingDecision": 18,
+    "missingLastVerified": 18,
+    "externallySourced": 47
   },
   "flights": {
     "flightLegs": 100,
@@ -329,34 +329,24 @@
     {
       "priority": "P2",
       "id": "movement-review",
-      "count": 28,
+      "count": 18,
       "items": [
-        "transfer-21-22",
-        "transfer-34-35",
         "transfer-55-56",
         "transfer-56-57",
         "transfer-57-58",
         "transfer-58-59",
         "transfer-59-60",
-        "transfer-60-61",
         "transfer-83-84",
         "transfer-96-97",
         "transfer-97-98",
         "transfer-98-99",
         "transfer-101-102",
-        "transfer-102-103",
         "transfer-106-107",
         "transfer-107-108",
         "transfer-108-109",
         "transfer-109-110",
         "transfer-115-116",
-        "transfer-122-123",
-        "transfer-137-138",
         "transfer-138-139",
-        "transfer-144-145",
-        "transfer-145-146",
-        "transfer-151-152",
-        "transfer-157-158",
         "transfer-181-182",
         "transfer-182-183"
       ],
@@ -536,13 +526,13 @@
     {
       "id": "continuity",
       "category": "operations",
-      "count": 28,
+      "count": 18,
       "message": "Operational continuity still contains unresolved or unreviewed connections."
     },
     {
       "id": "movement-review",
       "category": "operations",
-      "count": 28,
+      "count": 18,
       "message": "Inventoried domestic/operational movements still require complete geometry, mode, duration, cost, booking decision and external evidence."
     },
     {

@@ -5,14 +5,14 @@
   "routeGeneratedAt": "2026-09-25",
   "departureReady": false,
   "summary": {
-    "total": 201,
+    "total": 191,
     "p0": 35,
     "p1": 8,
-    "p2": 158,
-    "blocking": 63,
+    "p2": 148,
+    "blocking": 53,
     "byCategory": {
       "international-leg": 173,
-      "operational-movement": 28
+      "operational-movement": 18
     },
     "criticalReviewed": 35,
     "criticalBlocked": 2,
@@ -1547,37 +1547,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-21-22",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 21,
-      "movementId": "transfer-21-22",
-      "title": "Buchs SG oder Sargans (LIEmobil) → Genève-Cornavin",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-22",
       "priority": "P2",
       "category": "international-leg",
@@ -1804,37 +1773,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-34-35",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 34,
-      "movementId": "transfer-34-35",
-      "title": "Flores → Guatemala-Stadt",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-35",
@@ -2346,37 +2284,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-60-61",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 60,
-      "movementId": "transfer-60-61",
-      "title": "La Paz → Santa Cruz de la Sierra",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-61",
@@ -2960,37 +2867,6 @@
       "blocksDeparture": true
     },
     {
-      "id": "movement-transfer-102-103",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 102,
-      "movementId": "transfer-102-103",
-      "title": "Almaty (ALA), nonstop → Almaty",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-103",
       "priority": "P2",
       "category": "international-leg",
@@ -3392,37 +3268,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-122-123",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 122,
-      "movementId": "transfer-122-123",
-      "title": "Nouakchott → Nouakchott (NKC)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-129",
       "priority": "P2",
       "category": "international-leg",
@@ -3621,37 +3466,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-137-138",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 137,
-      "movementId": "transfer-137-138",
-      "title": "Bissau (OXB) → Bissau",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-138",
       "priority": "P2",
       "category": "international-leg",
@@ -3837,37 +3651,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-144-145",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 144,
-      "movementId": "transfer-144-145",
-      "title": "Brazzaville (BZV), nonstop → Beach de Brazzaville",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-145",
       "priority": "P2",
       "category": "international-leg",
@@ -3888,37 +3671,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-145-146",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 145,
-      "movementId": "transfer-145-146",
-      "title": "Beach Ngobila, Kinshasa → Kinshasa (FIH)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-146",
@@ -4057,37 +3809,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-151-152",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 151,
-      "movementId": "transfer-151-152",
-      "title": "Lilongwe → Lilongwe (LLW)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-152",
       "priority": "P2",
       "category": "international-leg",
@@ -4221,37 +3942,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-157-158",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 157,
-      "movementId": "transfer-157-158",
-      "title": "Bujumbura → Bujumbura (BJM)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-158",
