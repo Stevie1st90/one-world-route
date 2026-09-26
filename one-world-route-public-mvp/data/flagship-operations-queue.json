@@ -2039,7 +2039,7 @@
       "category": "operational-movement",
       "legId": 32,
       "movementId": "transfer-32-33",
-      "title": "Mexiko-Stadt/Cancún → Cancún/Chetumal",
+      "title": "Cancún (CUN) → Cancún/Chetumal",
       "status": "needs-review",
       "blockers": [
         "movement-mode",
