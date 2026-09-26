@@ -372,10 +372,10 @@
       "parentAfterLeg": 31,
       "parentBeforeLeg": 32,
       "country": "USA",
-      "from": "New York Penn",
+      "from": "New York Penn (Amtrak Maple Leaf)",
       "to": "New York (JFK)",
       "mode": "LIRR + AirTrain JFK",
-      "corridor": "New York Penn → Jamaica (LIRR) → JFK (AirTrain)",
+      "corridor": "New York Penn (Amtrak Maple Leaf) → New York (JFK)",
       "coordinates": [
         [
           -74.006,
