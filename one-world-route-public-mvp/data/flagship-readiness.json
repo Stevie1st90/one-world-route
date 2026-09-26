@@ -52,22 +52,22 @@
     "transferRequired": 56,
     "unresolvedEndpointGeometry": 17,
     "countryMismatch": 0,
-    "unresolvedConnections": 64
+    "unresolvedConnections": 63
   },
   "movements": {
     "total": 73,
-    "reviewed": 9,
-    "needsReview": 64,
-    "reviewedPercent": 12.3,
-    "operationallyComplete": 9,
-    "operationallyCompletePercent": 12.3,
+    "reviewed": 10,
+    "needsReview": 63,
+    "reviewedPercent": 13.7,
+    "operationallyComplete": 10,
+    "operationallyCompletePercent": 13.7,
     "unresolvedGeometry": 17,
-    "missingMode": 64,
-    "missingDuration": 64,
-    "missingCost": 64,
-    "missingBookingDecision": 64,
-    "missingLastVerified": 64,
-    "externallySourced": 9
+    "missingMode": 63,
+    "missingDuration": 63,
+    "missingCost": 63,
+    "missingBookingDecision": 63,
+    "missingLastVerified": 63,
+    "externallySourced": 10
   },
   "flights": {
     "flightLegs": 100,
@@ -336,7 +336,7 @@
     {
       "priority": "P2",
       "id": "movement-review",
-      "count": 64,
+      "count": 63,
       "items": [
         "transfer-21-22",
         "transfer-25-26",
@@ -388,7 +388,6 @@
         "transfer-150-151",
         "transfer-151-152",
         "transfer-152-153",
-        "transfer-154-155",
         "transfer-156-157",
         "transfer-157-158",
         "transfer-158-159",
@@ -577,13 +576,13 @@
     {
       "id": "continuity",
       "category": "operations",
-      "count": 64,
+      "count": 63,
       "message": "Operational continuity still contains unresolved or unreviewed connections."
     },
     {
       "id": "movement-review",
       "category": "operations",
-      "count": 64,
+      "count": 63,
       "message": "Inventoried domestic/operational movements still require complete geometry, mode, duration, cost, booking decision and external evidence."
     },
     {
