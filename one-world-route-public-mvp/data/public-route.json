@@ -456,8 +456,8 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
-      "source": "https://liemobil.li/en/travel/",
+      "lastVerified": "2026-09-26",
+      "source": "https://liemobil.li/en/travel/ ; https://liemobil.li/de/fahrplan/ ; https://www.oebb.at/de/fahrplan/baustelleninformation/bauarbeiten-feldkirch-buchs",
       "alertLevel": "GREEN",
       "alertMessage": null
     },
@@ -479,8 +479,8 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
-      "source": "https://liemobil.li/en/travel/",
+      "lastVerified": "2026-09-26",
+      "source": "https://liemobil.li/en/travel/ ; https://liemobil.li/de/fahrplan/ ; https://support.liemobil.li/hc/de/articles/4406394762257-Bis-wohin-gelten-die-LIEmobil-Fahrscheine-und-Abos",
       "alertLevel": "GREEN",
       "alertMessage": null
     },
@@ -502,8 +502,8 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
-      "source": "https://www.sncf-connect.com/en-ch/train/timetables/geneva/lyon",
+      "lastVerified": "2026-09-26",
+      "source": "https://www.sncf-connect.com/en-ch/train/timetables/geneva/lyon ; https://www.sncf-connect.com/en-en/train/route/geneva/lyon",
       "alertLevel": "GREEN",
       "alertMessage": null
     },
@@ -525,7 +525,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-26",
       "source": "https://www.sncf-connect.com/train/horaires/nice/monaco",
       "alertLevel": "GREEN",
       "alertMessage": null
@@ -1054,7 +1054,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-26",
       "source": "https://www.directflights.com/SKB-ANU",
       "alertLevel": "GREEN",
       "alertMessage": null
@@ -1077,7 +1077,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-26",
       "source": "https://www.directflights.com/ANU-DOM",
       "alertLevel": "GREEN",
       "alertMessage": null
@@ -1100,7 +1100,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-26",
       "source": "https://www.directflights.com/DOM-SLU",
       "alertLevel": "GREEN",
       "alertMessage": null
@@ -1123,7 +1123,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-26",
       "source": "https://www.directflights.com/SLU-BGI",
       "alertLevel": "GREEN",
       "alertMessage": null
@@ -1146,7 +1146,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-26",
       "source": "https://www.flightconnections.com/flights-from-bgi-to-svd",
       "alertLevel": "GREEN",
       "alertMessage": null
@@ -1169,7 +1169,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-26",
       "source": "https://www.flightconnections.com/flights-from-svd-to-gnd",
       "alertLevel": "GREEN",
       "alertMessage": null
@@ -1192,7 +1192,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-26",
       "source": "https://www.directflights.com/GND-POS",
       "alertLevel": "GREEN",
       "alertMessage": null
@@ -1307,7 +1307,7 @@
       "healthPriorityTarget": 3,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-26",
       "source": "https://www.copaair.com/en/flights-from-paramaribo-to-bogota",
       "alertLevel": "GREEN",
       "alertMessage": null
@@ -1468,7 +1468,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-26",
       "source": "https://www.skyairline.com/flights/en-uy/flights-from-montevideo-to-santiago",
       "alertLevel": "GREEN",
       "alertMessage": null
@@ -2020,8 +2020,8 @@
       "healthPriorityTarget": 5,
       "healthStatusTarget": "Pending",
       "planB": "HAN→BKK→VTE",
-      "lastVerified": null,
-      "source": "https://www.directflights.com/HAN-VTE",
+      "lastVerified": "2026-09-26",
+      "source": "https://www.directflights.com/HAN-VTE ; https://www.vietnamairlines.com/en-vn/flights-from-hanoi-to-vientiane",
       "alertLevel": "WATCH",
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
@@ -2135,8 +2135,8 @@
       "healthPriorityTarget": 3,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
-      "source": "https://drukair.com.bt/wp-content/uploads/2025/11/SCHEDULE-SEPTEMBER-2026.pdf ; https://bhutan.travel/faqs",
+      "lastVerified": "2026-09-26",
+      "source": "https://drukair.com.bt/wp-content/uploads/2025/11/SCHEDULE-SEPTEMBER-2026.pdf ; https://bhutan.travel/faqs ; https://drukair.com.bt/plan/plan-your-trip/flight-schedule/",
       "alertLevel": "WATCH",
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
@@ -2181,7 +2181,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-26",
       "source": "https://www.srilankan.com/en-lk/flights-from-colombo-to-maldives",
       "alertLevel": "GREEN",
       "alertMessage": null
@@ -2963,8 +2963,8 @@
       "healthPriorityTarget": 5,
       "healthStatusTarget": "Pending",
       "planB": null,
-      "lastVerified": null,
-      "source": "https://flights.flyairpeace.com/en/flights-from-douala-to-nigeria",
+      "lastVerified": "2026-09-26",
+      "source": "https://flights.flyairpeace.com/en/flights-from-douala-to-nigeria ; https://flights.flyairpeace.com/en/flights-from-douala-to-lagos",
       "alertLevel": "WATCH",
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
@@ -3561,7 +3561,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-26",
       "source": "https://www.flyairlink.com/news/jnb-maseru-flights",
       "alertLevel": "GREEN",
       "alertMessage": null
@@ -3722,7 +3722,7 @@
       "healthPriorityTarget": 5,
       "healthStatusTarget": "Pending",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-26",
       "source": "https://www.kenya-airways.com/en_ke/flights-from-nairobi-to-seychelles/",
       "alertLevel": "WATCH",
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
@@ -3745,7 +3745,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-26",
       "source": "https://flights.airseychelles.com/en-sc/flights-to-mauritius",
       "alertLevel": "GREEN",
       "alertMessage": null
@@ -3768,7 +3768,7 @@
       "healthPriorityTarget": 4,
       "healthStatusTarget": "Pending",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-26",
       "source": "https://www.airmauritius.com/flights/en-mu/flights-from-mauritius-to-antananarivo",
       "alertLevel": "WATCH",
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
@@ -3791,7 +3791,7 @@
       "healthPriorityTarget": 4,
       "healthStatusTarget": "Pending",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-26",
       "source": "https://madagascarairlines.com/informations-client/infos-clients/vols-antananarivo-mahajanga-moroni",
       "alertLevel": "GREEN",
       "alertMessage": null
