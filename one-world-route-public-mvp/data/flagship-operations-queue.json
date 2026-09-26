@@ -5,14 +5,14 @@
   "routeGeneratedAt": "2026-09-25",
   "departureReady": false,
   "summary": {
-    "total": 241,
+    "total": 235,
     "p0": 35,
     "p1": 17,
-    "p2": 189,
-    "blocking": 103,
+    "p2": 183,
+    "blocking": 99,
     "byCategory": {
-      "international-leg": 173,
-      "operational-movement": 68
+      "international-leg": 171,
+      "operational-movement": 64
     },
     "criticalReviewed": 35,
     "criticalBlocked": 2,
@@ -3949,37 +3949,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-111-112",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 111,
-      "movementId": "transfer-111-112",
-      "title": "Tiflis (TBS) → Tiflis",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-112",
       "priority": "P2",
       "category": "international-leg",
@@ -4001,37 +3970,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-112-113",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 112,
-      "movementId": "transfer-112-113",
-      "title": "Jerewan → Jerewan (EVN)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-113",
@@ -5967,60 +5905,6 @@
       "blocksDeparture": true
     },
     {
-      "id": "leg-192",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 192,
-      "movementId": null,
-      "title": "Italien → San Marino",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-192-193",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 192,
-      "movementId": "transfer-192-193",
-      "title": "San Marino → Rimini",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-193",
       "priority": "P2",
       "category": "international-leg",
@@ -6034,60 +5918,6 @@
         "source"
       ],
       "geometry": "not-flight",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-193-194",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 193,
-      "movementId": "transfer-193-194",
-      "title": "Rom; zu Fuß in Vatikanstadt → Rom (FCO/CIA)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-194",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 194,
-      "movementId": null,
-      "title": "Vatikanstadt → Malta",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "full",
       "sourceCount": 0,
       "lastVerified": null,
       "reviewStatus": null,
