@@ -1,13 +1,14 @@
 import {inspectFlagshipTopology} from './flagship-topology-model.mjs';
 import {readFile} from 'node:fs/promises';
 import {inventory,distanceKm} from './continuity-model.mjs';
+import {movementDecision,movementReviewResolved} from './movement-decision-model.mjs';
 const read=async name=>JSON.parse(await readFile(new URL('../data/'+name,import.meta.url),'utf8'));
 const route=await read('public-route.json'),waypoints=await read('route-waypoints.json'),flights=await read('flight-geometries.json'),data=await read('operational-movements.json');
 const connections=inventory(route,waypoints,flights),topology=inspectFlagshipTopology(route),errors=[],ids=new Set(),covered=new Set();
 const fail=m=>errors.push(m);
 if(route.segments.length!==194||route.countries.length!==195)fail('Macro counts changed');
 if(!topology.canonical)fail('Canonical flagship topology changed');
-const statuses=['planned','booked','in progress','completed','changed','cancelled'];
+const statuses=['planned','booked','in progress','completed','changed','cancelled','hold','blocked'];
 for(const m of data.movements){
   if(ids.has(m.id))fail('Duplicate movement '+m.id);ids.add(m.id);
   const c=connections.find(c=>c.after===m.parentAfterLeg&&c.before===m.parentBeforeLeg);
@@ -23,11 +24,16 @@ for(const m of data.movements){
     if(!valid)fail('Invalid coordinates: '+m.id);
     else if(c.coordinates&&(distanceKm(m.coordinates[0],c.coordinates[0])>0.1||distanceKm(m.coordinates.at(-1),c.coordinates.at(-1))>0.1))fail('Stale endpoints: '+m.id);
   }
-  if(m.reviewStatus==='reviewed'&&(!m.mode||!m.lastVerified||!m.source?.length||!m.coordinates||!m.notes))fail('Reviewed movement lacks evidence: '+m.id);
+  if(m.reviewStatus==='reviewed'&&!movementReviewResolved(m))fail('Reviewed movement lacks decision evidence: '+m.id);
 }
 for(const c of connections)if(c.classification!=='shared-endpoint'&&!covered.has(c.id))fail('Uninventoried connection '+c.id);
-const unresolved=connections.filter(c=>c.classification!=='shared-endpoint'&&!(data.movements.find(m=>m.parentAfterLeg===c.after&&m.parentBeforeLeg===c.before)?.reviewStatus==='reviewed'&&c.classification!=='unresolved-endpoint'&&c.classification!=='country-mismatch'));
+const unresolved=connections.filter(c=>{
+  if(c.classification==='shared-endpoint')return false;
+  const movement=data.movements.find(m=>m.parentAfterLeg===c.after&&m.parentBeforeLeg===c.before);
+  return !movementReviewResolved(movement);
+});
+const departureBlocked=data.movements.filter(m=>['hold','blocked'].includes(movementDecision(m)));
 const countriesInLegs=new Set(route.segments.flatMap(s=>[s.from,s.to]));
 const countriesOutsideLegs=route.countries.filter(c=>!countriesInLegs.has(c.name)).map(c=>c.name);
-console.log(JSON.stringify({topology,countriesInLegs:countriesInLegs.size,countriesOutsideLegs,knownFlightEndpoints:Object.values(flights.endpoints||{}).reduce((n,e)=>n+Number(!!e.departure)+Number(!!e.arrival),0),officialLegs:route.segments.length,countries:route.countries.length,connections:connections.length,sharedEndpoints:connections.filter(c=>c.classification==='shared-endpoint').length,operationalTransfers:data.movements.length,unresolvedConnections:unresolved.length,missingEndpointGeometry:connections.filter(c=>c.classification==='unresolved-endpoint').length,releaseReady:!errors.length&&!unresolved.length&&!countriesOutsideLegs.length,errors,unresolved},null,2));
+console.log(JSON.stringify({topology,countriesInLegs:countriesInLegs.size,countriesOutsideLegs,knownFlightEndpoints:Object.values(flights.endpoints||{}).reduce((n,e)=>n+Number(!!e.departure)+Number(!!e.arrival),0),officialLegs:route.segments.length,countries:route.countries.length,connections:connections.length,sharedEndpoints:connections.filter(c=>c.classification==='shared-endpoint').length,operationalTransfers:data.movements.length,unresolvedConnections:unresolved.length,departureBlockedMovements:departureBlocked.length,missingEndpointGeometry:connections.filter(c=>c.classification==='unresolved-endpoint').length,releaseReady:!errors.length&&!unresolved.length&&!countriesOutsideLegs.length&&!departureBlocked.length,errors,unresolved},null,2));
 if(errors.length||(process.argv.includes('--strict')&&(unresolved.length||countriesOutsideLegs.length)))process.exitCode=1;

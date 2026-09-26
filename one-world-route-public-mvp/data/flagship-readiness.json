@@ -52,22 +52,30 @@
     "transferRequired": 59,
     "unresolvedEndpointGeometry": 3,
     "countryMismatch": 0,
-    "unresolvedConnections": 8
+    "unresolvedConnections": 0,
+    "holdConnections": 5,
+    "blockedConnections": 3,
+    "departureBlockingConnections": 8
   },
   "movements": {
     "total": 62,
-    "reviewed": 54,
-    "needsReview": 8,
-    "reviewedPercent": 87.1,
+    "reviewed": 62,
+    "needsReview": 0,
+    "reviewedPercent": 100,
     "operationallyComplete": 54,
     "operationallyCompletePercent": 87.1,
-    "unresolvedGeometry": 3,
-    "missingMode": 8,
-    "missingDuration": 8,
-    "missingCost": 8,
-    "missingBookingDecision": 8,
-    "missingLastVerified": 8,
-    "externallySourced": 54
+    "resolved": 62,
+    "resolvedPercent": 100,
+    "hold": 5,
+    "blocked": 3,
+    "unresolvedGeometry": 0,
+    "deferredGeometry": 3,
+    "missingMode": 0,
+    "missingDuration": 0,
+    "missingCost": 0,
+    "missingBookingDecision": 0,
+    "missingLastVerified": 0,
+    "externallySourced": 62
   },
   "flights": {
     "flightLegs": 102,
@@ -309,31 +317,39 @@
       "goal": "Keep HOLD/BLOCKED critical legs visible until safety, entry/border conditions and executable transport are genuinely resolved."
     },
     {
-      "priority": "P1",
-      "id": "unresolved-endpoint-geometry",
+      "priority": "P0",
+      "id": "movement-blocked",
       "count": 3,
       "items": [
         "transfer-96-97",
         "transfer-97-98",
         "transfer-98-99"
       ],
-      "goal": "Resolve exact arrival/departure endpoints before asserting continuity."
+      "goal": "Keep blocked operational movements blocked until a lawful executable corridor is established; do not invent missing geometry or service."
     },
     {
-      "priority": "P2",
-      "id": "movement-review",
-      "count": 8,
+      "priority": "P0",
+      "id": "movement-hold",
+      "count": 5,
       "items": [
-        "transfer-96-97",
-        "transfer-97-98",
-        "transfer-98-99",
         "transfer-106-107",
         "transfer-107-108",
         "transfer-108-109",
         "transfer-109-110",
         "transfer-115-116"
       ],
-      "goal": "Add mode, duration, cost, booking decision and evidence where supported."
+      "goal": "Keep reviewed operational movements on HOLD until current safety, permission and border conditions support execution."
+    },
+    {
+      "priority": "P1",
+      "id": "deferred-endpoint-geometry",
+      "count": 3,
+      "items": [
+        "transfer-96-97",
+        "transfer-97-98",
+        "transfer-98-99"
+      ],
+      "goal": "Geometry is intentionally deferred while the associated movement is HOLD/BLOCKED; re-evaluate only when the corridor becomes executable."
     },
     {
       "priority": "P2",
@@ -505,16 +521,28 @@
   ],
   "blockers": [
     {
-      "id": "continuity",
+      "id": "movement-blocked",
       "category": "operations",
-      "count": 8,
-      "message": "Operational continuity still contains unresolved or unreviewed connections."
+      "count": 3,
+      "message": "Reviewed operational movements remain BLOCKED under current entry/border conditions.",
+      "items": [
+        "transfer-96-97",
+        "transfer-97-98",
+        "transfer-98-99"
+      ]
     },
     {
-      "id": "movement-review",
+      "id": "movement-hold",
       "category": "operations",
-      "count": 8,
-      "message": "Inventoried domestic/operational movements still require complete geometry, mode, duration, cost, booking decision and external evidence."
+      "count": 5,
+      "message": "Reviewed operational movements remain on HOLD under current safety, permission or border conditions.",
+      "items": [
+        "transfer-106-107",
+        "transfer-107-108",
+        "transfer-108-109",
+        "transfer-109-110",
+        "transfer-115-116"
+      ]
     },
     {
       "id": "critical-feasibility",

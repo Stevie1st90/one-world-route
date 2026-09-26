@@ -1,22 +1,17 @@
 import {inventory} from './continuity-model.mjs';
 import {inspectFlagshipTopology} from './flagship-topology-model.mjs';
 import {verificationDate} from './verification-date-model.mjs';
+import {
+  movementDecision,
+  movementOperationallyComplete,
+  movementReviewResolved,
+} from './movement-decision-model.mjs';
 
 const isFiniteNumber=value=>typeof value==='number'&&Number.isFinite(value);
 const isoDate=value=>typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)?value:null;
 const pct=(part,total)=>total?Math.round((part/total)*1000)/10:0;
 const requiresFullFlightGeometry=mode=>/^Flug(?:\s|\(|–|-|$)/i.test(String(mode||''));
 const hasExternalSource=movement=>Array.isArray(movement?.source)&&movement.source.some(source=>/^https?:\/\//i.test(source));
-const movementOperationallyComplete=movement=>Boolean(
-  movement?.reviewStatus==='reviewed'&&
-  movement.coordinates&&
-  movement.mode&&
-  movement.plannedDuration!==null&&
-  movement.estimatedCost!==null&&
-  typeof movement.bookingRequired==='boolean'&&
-  verificationDate(movement.lastVerified)&&
-  hasExternalSource(movement)
-);
 
 function latestDate(values){
   return values.map(verificationDate).filter(Boolean).sort().at(-1)||null;
@@ -40,12 +35,14 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations,criti
   const unresolvedConnections=connections.filter(connection=>{
     if(connection.classification==='shared-endpoint')return false;
     const movement=movementByConnection.get(`${connection.after}-${connection.before}`);
-    return !(
-      movementOperationallyComplete(movement)&&
-      connection.classification!=='unresolved-endpoint'&&
-      connection.classification!=='country-mismatch'
-    );
+    return !movementReviewResolved(movement);
   });
+  const holdConnections=connections.filter(connection=>
+    movementDecision(movementByConnection.get(`${connection.after}-${connection.before}`))==='hold'
+  );
+  const blockedConnections=connections.filter(connection=>
+    movementDecision(movementByConnection.get(`${connection.after}-${connection.before}`))==='blocked'
+  );
 
   const movements=operations.movements||[];
   const flightLegs=(route.segments||[]).filter(segment=>requiresFullFlightGeometry(segment.mode));
@@ -89,7 +86,10 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations,criti
 
   const reviewedMovements=movements.filter(movement=>movement.reviewStatus==='reviewed').length;
   const operationallyCompleteMovements=movements.filter(movementOperationallyComplete).length;
-  const needsReviewMovements=movements.length-operationallyCompleteMovements;
+  const resolvedMovements=movements.filter(movementReviewResolved).length;
+  const holdMovements=movements.filter(movement=>movementDecision(movement)==='hold').length;
+  const blockedMovements=movements.filter(movement=>movementDecision(movement)==='blocked').length;
+  const needsReviewMovements=movements.length-resolvedMovements;
 
   const structural={
     expectedCountries:195,
@@ -112,6 +112,9 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations,criti
     unresolvedEndpointGeometry:connections.filter(connection=>connection.classification==='unresolved-endpoint').length,
     countryMismatch:connections.filter(connection=>connection.classification==='country-mismatch').length,
     unresolvedConnections:unresolvedConnections.length,
+    holdConnections:holdConnections.length,
+    blockedConnections:blockedConnections.length,
+    departureBlockingConnections:holdConnections.length+blockedConnections.length,
   };
 
   const movementHealth={
@@ -121,12 +124,17 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations,criti
     reviewedPercent:pct(reviewedMovements,movements.length),
     operationallyComplete:operationallyCompleteMovements,
     operationallyCompletePercent:pct(operationallyCompleteMovements,movements.length),
-    unresolvedGeometry:movements.filter(movement=>!movement.coordinates).length,
-    missingMode:movements.filter(movement=>!movement.mode).length,
-    missingDuration:movements.filter(movement=>movement.plannedDuration===null).length,
-    missingCost:movements.filter(movement=>movement.estimatedCost===null).length,
-    missingBookingDecision:movements.filter(movement=>movement.bookingRequired===null).length,
-    missingLastVerified:movements.filter(movement=>!verificationDate(movement.lastVerified)).length,
+    resolved:resolvedMovements,
+    resolvedPercent:pct(resolvedMovements,movements.length),
+    hold:holdMovements,
+    blocked:blockedMovements,
+    unresolvedGeometry:movements.filter(movement=>!movement.coordinates&&!['hold','blocked'].includes(movementDecision(movement))).length,
+    deferredGeometry:movements.filter(movement=>!movement.coordinates&&['hold','blocked'].includes(movementDecision(movement))).length,
+    missingMode:movements.filter(movement=>!movement.mode&&!['hold','blocked'].includes(movementDecision(movement))).length,
+    missingDuration:movements.filter(movement=>movement.plannedDuration===null&&!['hold','blocked'].includes(movementDecision(movement))).length,
+    missingCost:movements.filter(movement=>movement.estimatedCost===null&&!['hold','blocked'].includes(movementDecision(movement))).length,
+    missingBookingDecision:movements.filter(movement=>movement.bookingRequired===null&&!['hold','blocked'].includes(movementDecision(movement))).length,
+    missingLastVerified:movements.filter(movement=>!verificationDate(movement.lastVerified)&&!['hold','blocked'].includes(movementDecision(movement))).length,
     externallySourced:movements.filter(hasExternalSource).length,
   };
 
@@ -158,15 +166,21 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations,criti
   };
 
   const criticalLegIds=(route.segments||[]).filter(segment=>segment.feasibility==='Kritisch').map(segment=>Number(segment.id));
-  const unresolvedMovementIds=movements.filter(movement=>!movementOperationallyComplete(movement)).map(movement=>movement.id);
-  const unresolvedGeometryMovementIds=movements.filter(movement=>!movement.coordinates).map(movement=>movement.id);
+  const unresolvedMovementIds=movements.filter(movement=>!movementReviewResolved(movement)).map(movement=>movement.id);
+  const holdMovementIds=movements.filter(movement=>movementDecision(movement)==='hold').map(movement=>movement.id);
+  const blockedMovementIds=movements.filter(movement=>movementDecision(movement)==='blocked').map(movement=>movement.id);
+  const unresolvedGeometryMovementIds=movements.filter(movement=>!movement.coordinates&&!['hold','blocked'].includes(movementDecision(movement))).map(movement=>movement.id);
+  const deferredGeometryMovementIds=movements.filter(movement=>!movement.coordinates&&['hold','blocked'].includes(movementDecision(movement))).map(movement=>movement.id);
   const verificationQueue=[...invalidVerificationDates,...missingVerificationDates].map(segment=>Number(segment.id));
 
   const workQueue=[
     {priority:'P0',id:'macro-country-coverage',count:countriesOutsideLegs.length,items:countriesOutsideLegs,goal:'Resolve country coverage without changing the 195-country / 194-leg invariant.'},
     {priority:'P0',id:'critical-review-gaps',count:missingCriticalReviewIds.length,items:missingCriticalReviewIds,goal:'Complete a current source-backed review for every critical international leg without equating review with approval.'},
     {priority:'P0',id:'critical-feasibility',count:criticalLegIds.length,items:criticalLegIds,goal:'Keep HOLD/BLOCKED critical legs visible until safety, entry/border conditions and executable transport are genuinely resolved.'},
+    {priority:'P0',id:'movement-blocked',count:blockedMovementIds.length,items:blockedMovementIds,goal:'Keep blocked operational movements blocked until a lawful executable corridor is established; do not invent missing geometry or service.'},
+    {priority:'P0',id:'movement-hold',count:holdMovementIds.length,items:holdMovementIds,goal:'Keep reviewed operational movements on HOLD until current safety, permission and border conditions support execution.'},
     {priority:'P1',id:'unresolved-endpoint-geometry',count:unresolvedGeometryMovementIds.length,items:unresolvedGeometryMovementIds,goal:'Resolve exact arrival/departure endpoints before asserting continuity.'},
+    {priority:'P1',id:'deferred-endpoint-geometry',count:deferredGeometryMovementIds.length,items:deferredGeometryMovementIds,goal:'Geometry is intentionally deferred while the associated movement is HOLD/BLOCKED; re-evaluate only when the corridor becomes executable.'},
     {priority:'P1',id:'missing-flight-geometry',count:missingFlightGeometryIds.length,items:missingFlightGeometryIds,goal:'Complete airport endpoint geometry without implying service availability.'},
     {priority:'P2',id:'movement-review',count:unresolvedMovementIds.length,items:unresolvedMovementIds,goal:'Add mode, duration, cost, booking decision and evidence where supported.'},
     {priority:'P2',id:'route-verification-dates',count:verificationQueue.length,items:verificationQueue,goal:'Refresh source-backed verification dates for operational route claims.'}
@@ -190,13 +204,27 @@ export function buildFlagshipReadiness({route,waypoints,flights,operations,criti
       id:'continuity',
       category:'operations',
       count:unresolvedConnections.length,
-      message:'Operational continuity still contains unresolved or unreviewed connections.',
+      message:'Operational continuity still contains unresolved review work.',
+    },
+    blockedMovements&&{
+      id:'movement-blocked',
+      category:'operations',
+      count:blockedMovements,
+      message:'Reviewed operational movements remain BLOCKED under current entry/border conditions.',
+      items:blockedMovementIds,
+    },
+    holdMovements&&{
+      id:'movement-hold',
+      category:'operations',
+      count:holdMovements,
+      message:'Reviewed operational movements remain on HOLD under current safety, permission or border conditions.',
+      items:holdMovementIds,
     },
     needsReviewMovements&&{
       id:'movement-review',
       category:'operations',
       count:needsReviewMovements,
-      message:'Inventoried domestic/operational movements still require complete geometry, mode, duration, cost, booking decision and external evidence.',
+      message:'Inventoried domestic/operational movements still require a completed operational decision.',
     },
     missingFlightGeometryIds.length&&{
       id:'flight-geometry',

@@ -49,5 +49,16 @@ test('flagship readiness report is deterministic and current',async()=>{
     generated.movements.reviewed+generated.movements.needsReview,
     generated.movements.total
   );
+  assert.equal(generated.movements.resolved,generated.movements.total);
+  assert.equal(generated.movements.resolvedPercent,100);
+  assert.equal(generated.movements.hold,5);
+  assert.equal(generated.movements.blocked,3);
+  assert.equal(generated.movements.needsReview,0);
+  assert.equal(generated.movements.unresolvedGeometry,0);
+  assert.equal(generated.movements.deferredGeometry,3);
+  assert.equal(generated.continuity.unresolvedConnections,0);
+  assert.equal(generated.continuity.holdConnections,5);
+  assert.equal(generated.continuity.blockedConnections,3);
+  assert.equal(generated.continuity.departureBlockingConnections,8);
   assert.equal(generated.status.departureReady,generated.blockers.length===0);
 });

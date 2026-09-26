@@ -28,6 +28,13 @@ test('operations queue is deterministic and exposes actionable blocking fields',
   assert.equal(queue.tasks.find(task=>task.id==='leg-97').status,'reviewed-blocked');
   assert.equal(queue.tasks.find(task=>task.id==='leg-98').status,'reviewed-blocked');
   assert.ok(queue.tasks.filter(task=>task.priority==='P0').every(task=>task.reviewStatus==='reviewed'));
+  assert.equal(queue.summary.movementHold,5);
+  assert.equal(queue.summary.movementBlocked,3);
+  assert.equal(queue.tasks.find(task=>task.id==='movement-transfer-96-97').status,'reviewed-blocked');
+  assert.equal(queue.tasks.find(task=>task.id==='movement-transfer-97-98').status,'reviewed-blocked');
+  assert.equal(queue.tasks.find(task=>task.id==='movement-transfer-98-99').status,'reviewed-blocked');
+  assert.equal(queue.tasks.find(task=>task.id==='movement-transfer-106-107').status,'reviewed-hold');
+  assert.equal(queue.tasks.filter(task=>task.category==='operational-movement'&&task.status==='needs-review').length,0);
   assert.ok(queue.tasks.some(task=>task.category==='operational-movement'));
   for(const task of queue.tasks){
     assert.ok(['P0','P1','P2'].includes(task.priority));

@@ -6,9 +6,9 @@
   "departureReady": false,
   "summary": {
     "total": 179,
-    "p0": 35,
-    "p1": 3,
-    "p2": 141,
+    "p0": 43,
+    "p1": 0,
+    "p2": 136,
     "blocking": 43,
     "byCategory": {
       "international-leg": 171,
@@ -16,7 +16,9 @@
     },
     "criticalReviewed": 35,
     "criticalBlocked": 2,
-    "criticalHold": 33
+    "criticalHold": 33,
+    "movementBlocked": 3,
+    "movementHold": 5
   },
   "tasks": [
     {
@@ -136,6 +138,29 @@
       "blocksDeparture": true
     },
     {
+      "id": "movement-transfer-96-97",
+      "priority": "P0",
+      "category": "operational-movement",
+      "legId": 96,
+      "movementId": "transfer-96-97",
+      "title": "Shanghai (PVG), nonstop → China",
+      "status": "reviewed-blocked",
+      "blockers": [
+        "operational-blocked"
+      ],
+      "missing": [],
+      "geometry": "deferred",
+      "sourceCount": 2,
+      "externalSourceCount": 2,
+      "lastVerified": "2026-09-26",
+      "reviewStatus": "reviewed",
+      "reviewDecision": "blocked",
+      "reviewReason": "north-korea-entry-corridor-not-established",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
+      "blocksDeparture": true
+    },
+    {
       "id": "leg-97",
       "priority": "P0",
       "category": "international-leg",
@@ -162,6 +187,29 @@
       "blocksDeparture": true
     },
     {
+      "id": "movement-transfer-97-98",
+      "priority": "P0",
+      "category": "operational-movement",
+      "legId": 97,
+      "movementId": "transfer-97-98",
+      "title": "Nordkorea (operativer Korridor offen) → Nordkorea",
+      "status": "reviewed-blocked",
+      "blockers": [
+        "operational-blocked"
+      ],
+      "missing": [],
+      "geometry": "deferred",
+      "sourceCount": 2,
+      "externalSourceCount": 2,
+      "lastVerified": "2026-09-26",
+      "reviewStatus": "reviewed",
+      "reviewDecision": "blocked",
+      "reviewReason": "north-korea-to-south-korea-tourist-crossing-not-established",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
+      "blocksDeparture": true
+    },
+    {
       "id": "leg-98",
       "priority": "P0",
       "category": "international-leg",
@@ -185,6 +233,29 @@
       "reviewSafetyState": "restricted-border",
       "reviewRouteEvidence": "no-ordinary-tourist-crossing-established",
       "reviewedAt": "2026-09-26",
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-98-99",
+      "priority": "P0",
+      "category": "operational-movement",
+      "legId": 98,
+      "movementId": "transfer-98-99",
+      "title": "Südkorea (operativer Korridor offen) → Busan",
+      "status": "reviewed-blocked",
+      "blockers": [
+        "operational-blocked"
+      ],
+      "missing": [],
+      "geometry": "deferred",
+      "sourceCount": 2,
+      "externalSourceCount": 2,
+      "lastVerified": "2026-09-26",
+      "reviewStatus": "reviewed",
+      "reviewDecision": "blocked",
+      "reviewReason": "south-korea-start-endpoint-depends-on-blocked-dprk-crossing",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
       "blocksDeparture": true
     },
     {
@@ -236,6 +307,29 @@
       "blocksDeparture": true
     },
     {
+      "id": "movement-transfer-106-107",
+      "priority": "P0",
+      "category": "operational-movement",
+      "legId": 106,
+      "movementId": "transfer-106-107",
+      "title": "Türkmenabat → Serhetabat",
+      "status": "reviewed-hold",
+      "blockers": [
+        "operational-hold"
+      ],
+      "missing": [],
+      "geometry": "known",
+      "sourceCount": 2,
+      "externalSourceCount": 2,
+      "lastVerified": "2026-09-26",
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewReason": "serhetabat-border-permission-dependent",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
+      "blocksDeparture": true
+    },
+    {
       "id": "leg-107",
       "priority": "P0",
       "category": "international-leg",
@@ -257,6 +351,29 @@
       "reviewSafetyState": "travel-warning",
       "reviewRouteEvidence": "border-permission-dependent",
       "reviewedAt": "2026-09-26",
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-107-108",
+      "priority": "P0",
+      "category": "operational-movement",
+      "legId": 107,
+      "movementId": "transfer-107-108",
+      "title": "Torghundi, nur mit vorheriger Genehmigung → Kabul",
+      "status": "reviewed-hold",
+      "blockers": [
+        "operational-hold"
+      ],
+      "missing": [],
+      "geometry": "known",
+      "sourceCount": 2,
+      "externalSourceCount": 2,
+      "lastVerified": "2026-09-26",
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewReason": "afghanistan-travel-warning-and-border-volatility",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
       "blocksDeparture": true
     },
     {
@@ -284,6 +401,29 @@
       "blocksDeparture": true
     },
     {
+      "id": "movement-transfer-108-109",
+      "priority": "P0",
+      "category": "operational-movement",
+      "legId": 108,
+      "movementId": "transfer-108-109",
+      "title": "Peshawar → Quetta",
+      "status": "reviewed-hold",
+      "blockers": [
+        "operational-hold"
+      ],
+      "missing": [],
+      "geometry": "known",
+      "sourceCount": 1,
+      "externalSourceCount": 1,
+      "lastVerified": "2026-09-26",
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewReason": "peshawar-quetta-route-crosses-travel-warning-regions",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
+      "blocksDeparture": true
+    },
+    {
       "id": "leg-109",
       "priority": "P0",
       "category": "international-leg",
@@ -305,6 +445,29 @@
       "reviewSafetyState": "travel-warning",
       "reviewRouteEvidence": "border-status-volatile",
       "reviewedAt": "2026-09-26",
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-109-110",
+      "priority": "P0",
+      "category": "operational-movement",
+      "legId": 109,
+      "movementId": "transfer-109-110",
+      "title": "Zahedan → Teheran (IKA)",
+      "status": "reviewed-hold",
+      "blockers": [
+        "operational-hold"
+      ],
+      "missing": [],
+      "geometry": "known",
+      "sourceCount": 1,
+      "externalSourceCount": 1,
+      "lastVerified": "2026-09-26",
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewReason": "iran-countrywide-travel-warning",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
       "blocksDeparture": true
     },
     {
@@ -353,6 +516,29 @@
       "reviewSafetyState": "travel-warning",
       "reviewRouteEvidence": "existing-service-source-not-reverified",
       "reviewedAt": "2026-09-26",
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-115-116",
+      "priority": "P0",
+      "category": "operational-movement",
+      "legId": 115,
+      "movementId": "transfer-115-116",
+      "title": "Damaskus (DAM), nonstop → Damaskus",
+      "status": "reviewed-hold",
+      "blockers": [
+        "operational-hold"
+      ],
+      "missing": [],
+      "geometry": "known",
+      "sourceCount": 1,
+      "externalSourceCount": 1,
+      "lastVerified": "2026-09-26",
+      "reviewStatus": "reviewed",
+      "reviewDecision": "hold",
+      "reviewReason": "syria-countrywide-travel-warning",
+      "reviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
       "blocksDeparture": true
     },
     {
@@ -857,105 +1043,6 @@
       "reviewSafetyState": "volatile",
       "reviewRouteEvidence": "border-plus-flight-not-service-verified",
       "reviewedAt": "2026-09-26",
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-96-97",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 96,
-      "movementId": "transfer-96-97",
-      "title": "Shanghai (PVG), nonstop → China",
-      "status": "needs-review",
-      "blockers": [
-        "endpoint-geometry",
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "missing",
-      "sourceCount": 2,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-97-98",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 97,
-      "movementId": "transfer-97-98",
-      "title": "Nordkorea (operativer Korridor offen) → Nordkorea",
-      "status": "needs-review",
-      "blockers": [
-        "endpoint-geometry",
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "missing",
-      "sourceCount": 1,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-98-99",
-      "priority": "P1",
-      "category": "operational-movement",
-      "legId": 98,
-      "movementId": "transfer-98-99",
-      "title": "Südkorea (operativer Korridor offen) → Busan",
-      "status": "needs-review",
-      "blockers": [
-        "endpoint-geometry",
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "coordinates",
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "missing",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
       "blocksDeparture": true
     },
     {
@@ -2622,130 +2709,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "movement-transfer-106-107",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 106,
-      "movementId": "transfer-106-107",
-      "title": "Türkmenabat → Serhetabat",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-107-108",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 107,
-      "movementId": "transfer-107-108",
-      "title": "Torghundi, nur mit vorheriger Genehmigung → Kabul",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-108-109",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 108,
-      "movementId": "transfer-108-109",
-      "title": "Peshawar → Quetta",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-109-110",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 109,
-      "movementId": "transfer-109-110",
-      "title": "Zahedan → Teheran (IKA)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
       "id": "leg-110",
       "priority": "P2",
       "category": "international-leg",
@@ -2833,37 +2796,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-115-116",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 115,
-      "movementId": "transfer-115-116",
-      "title": "Damaskus (DAM), nonstop → Damaskus",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-117",

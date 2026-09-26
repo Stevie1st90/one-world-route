@@ -1277,20 +1277,24 @@
       "budgetTreatment": "not-added-to-macro-budget",
       "bookingRequired": null,
       "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "feasibility": "blocked-current-conditions",
       "source": [
-        "data/public-route.json",
-        "data/flight-geometries.json"
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/koreademokratischevolksrepubliksicherheit-216104",
+        "https://www.gov.uk/foreign-travel-advice/north-korea/entry-requirements"
       ],
-      "lastVerified": null,
-      "notes": "The official macro path now continues from China to Nordkorea. Exact Chinese departure endpoint, mode, timing, cost and evidence remain unresolved.",
-      "status": "planned",
+      "lastVerified": "2026-09-26",
+      "notes": "BLOCKED. This China-side feeder cannot be fixed responsibly while leg 97 has no ordinary independently executable tourist entry corridor into North Korea. Do not invent a Chinese departure city, train or flight solely to close geometry.",
+      "status": "blocked",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "operationalDecision": "blocked",
+      "decisionReason": "north-korea-entry-corridor-not-established",
+      "decisionReviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes."
     },
     {
       "id": "transfer-97-98",
@@ -1317,19 +1321,24 @@
       "budgetTreatment": "not-added-to-macro-budget",
       "bookingRequired": null,
       "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "feasibility": "blocked-current-conditions",
       "source": [
-        "data/public-route.json"
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/koreademokratischevolksrepubliksicherheit-216104",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/korearepubliksicherheit-216132"
       ],
-      "lastVerified": null,
-      "notes": "Structural continuity record for the canonical 195-country path. Exact endpoints, mode, timing, cost and permissions require fresh source-backed review.",
-      "status": "planned",
+      "lastVerified": "2026-09-26",
+      "notes": "BLOCKED. No ordinary tourist crossing from North Korea to South Korea is established. The structural movement remains intentionally without invented geometry, duration or cost until a lawful executable corridor exists.",
+      "status": "blocked",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "operationalDecision": "blocked",
+      "decisionReason": "north-korea-to-south-korea-tourist-crossing-not-established",
+      "decisionReviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes."
     },
     {
       "id": "transfer-98-99",
@@ -1356,21 +1365,24 @@
       "budgetTreatment": "not-added-to-macro-budget",
       "bookingRequired": null,
       "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "feasibility": "blocked-current-conditions",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/koreademokratischevolksrepubliksicherheit-216104",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/korearepubliksicherheit-216132"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
-      "status": "planned",
+      "lastVerified": "2026-09-26",
+      "notes": "BLOCKED by the preceding North Korea→South Korea corridor. South Korean onward travel to Busan is not the issue; the lawful arrival point into South Korea is undefined while leg 98 remains blocked.",
+      "status": "blocked",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "operationalDecision": "blocked",
+      "decisionReason": "south-korea-start-endpoint-depends-on-blocked-dprk-crossing",
+      "decisionReviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes."
     },
     {
       "id": "transfer-99-100",
@@ -1615,21 +1627,24 @@
       "budgetTreatment": "not-added-to-macro-budget",
       "bookingRequired": null,
       "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "feasibility": "hold-current-conditions",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/turkmenistansicherheit-206774",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/afghanistansicherheit-204692"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
-      "status": "planned",
+      "lastVerified": "2026-09-26",
+      "notes": "HOLD. Serhetabat lies on the Afghanistan corridor. Official German guidance states that the Serhetabat crossing requires prior approval from Turkmen authorities, which is difficult to obtain, and warns against onward travel to Afghanistan. Do not lock an internal Türkmenabat→Serhetabat schedule/cost until permission and the dependent border leg are confirmed.",
+      "status": "hold",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "operationalDecision": "hold",
+      "decisionReason": "serhetabat-border-permission-dependent",
+      "decisionReviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes."
     },
     {
       "id": "transfer-107-108",
@@ -1665,21 +1680,24 @@
       "budgetTreatment": "not-added-to-macro-budget",
       "bookingRequired": null,
       "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "feasibility": "hold-current-conditions",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/afghanistansicherheit-204692",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/pakistansicherheit-204974"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
-      "status": "planned",
+      "lastVerified": "2026-09-26",
+      "notes": "HOLD. Afghanistan is under a current travel warning and the Afghanistan–Pakistan border situation is volatile. Torghundi→Kabul is therefore intentionally not given a normal executable timetable or cost until the overall Afghanistan segment is reassessed.",
+      "status": "hold",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "operationalDecision": "hold",
+      "decisionReason": "afghanistan-travel-warning-and-border-volatility",
+      "decisionReviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes."
     },
     {
       "id": "transfer-108-109",
@@ -1715,21 +1733,23 @@
       "budgetTreatment": "not-added-to-macro-budget",
       "bookingRequired": null,
       "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "feasibility": "hold-current-conditions",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/pakistansicherheit-204974"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
-      "status": "planned",
+      "lastVerified": "2026-09-26",
+      "notes": "HOLD. Current German guidance warns against travel to Peshawar/Khyber Pakhtunkhwa and to Balochistan including Quetta, and also warns against land entry/exit to Afghanistan and Iran. Do not present Peshawar→Quetta as routine executable transport.",
+      "status": "hold",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "operationalDecision": "hold",
+      "decisionReason": "peshawar-quetta-route-crosses-travel-warning-regions",
+      "decisionReviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes."
     },
     {
       "id": "transfer-109-110",
@@ -1765,21 +1785,23 @@
       "budgetTreatment": "not-added-to-macro-budget",
       "bookingRequired": null,
       "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "feasibility": "hold-current-conditions",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/iransicherheit-202396"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
-      "status": "planned",
+      "lastVerified": "2026-09-26",
+      "notes": "HOLD. Iran is under a current countrywide travel warning and departure advice. Zahedan lies in Sistan-Baluchistan, a particularly sensitive region. Do not operationalize Zahedan→Tehran as normal travel while those conditions persist.",
+      "status": "hold",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "operationalDecision": "hold",
+      "decisionReason": "iran-countrywide-travel-warning",
+      "decisionReviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes."
     },
     {
       "id": "transfer-111-112",
@@ -1917,21 +1939,23 @@
       "budgetTreatment": "not-added-to-macro-budget",
       "bookingRequired": null,
       "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "feasibility": "hold-current-conditions",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/syriensicherheit-204278"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
-      "status": "planned",
+      "lastVerified": "2026-09-26",
+      "notes": "HOLD. Syria remains under a current travel warning and security incidents continue in Damascus. The short DAM→Damascus movement is physically straightforward but is intentionally not treated as departure-ready while the Syria legs remain on HOLD.",
+      "status": "hold",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "operationalDecision": "hold",
+      "decisionReason": "syria-countrywide-travel-warning",
+      "decisionReviewedAt": "2026-09-26",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes."
     },
     {
       "id": "transfer-116-117",
