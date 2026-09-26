@@ -52,22 +52,22 @@
     "transferRequired": 56,
     "unresolvedEndpointGeometry": 17,
     "countryMismatch": 0,
-    "unresolvedConnections": 54
+    "unresolvedConnections": 51
   },
   "movements": {
     "total": 73,
-    "reviewed": 19,
-    "needsReview": 54,
-    "reviewedPercent": 26,
-    "operationallyComplete": 19,
-    "operationallyCompletePercent": 26,
+    "reviewed": 22,
+    "needsReview": 51,
+    "reviewedPercent": 30.1,
+    "operationallyComplete": 22,
+    "operationallyCompletePercent": 30.1,
     "unresolvedGeometry": 17,
-    "missingMode": 53,
-    "missingDuration": 54,
-    "missingCost": 54,
-    "missingBookingDecision": 53,
-    "missingLastVerified": 53,
-    "externallySourced": 20
+    "missingMode": 50,
+    "missingDuration": 51,
+    "missingCost": 51,
+    "missingBookingDecision": 50,
+    "missingLastVerified": 50,
+    "externallySourced": 23
   },
   "flights": {
     "flightLegs": 100,
@@ -81,10 +81,10 @@
     "geometryScope": "Airport coordinates only; geometry does not verify airline service, schedules or booking availability."
   },
   "evidence": {
-    "sourcedSegments": 126,
-    "sourcedSegmentsPercent": 64.9,
-    "segmentsWithVerificationDate": 37,
-    "segmentsWithVerificationDatePercent": 19.1,
+    "sourcedSegments": 127,
+    "sourcedSegmentsPercent": 65.5,
+    "segmentsWithVerificationDate": 38,
+    "segmentsWithVerificationDatePercent": 19.6,
     "invalidVerificationDates": [],
     "missingVerificationDates": [
       9,
@@ -103,7 +103,6 @@
       26,
       28,
       29,
-      32,
       33,
       34,
       35,
@@ -334,11 +333,9 @@
     {
       "priority": "P2",
       "id": "movement-review",
-      "count": 54,
+      "count": 51,
       "items": [
         "transfer-21-22",
-        "transfer-30-31",
-        "transfer-31-32",
         "transfer-32-33",
         "transfer-55-56",
         "transfer-56-57",
@@ -378,7 +375,6 @@
         "transfer-150-151",
         "transfer-151-152",
         "transfer-152-153",
-        "transfer-154-155",
         "transfer-156-157",
         "transfer-157-158",
         "transfer-158-159",
@@ -396,7 +392,7 @@
     {
       "priority": "P2",
       "id": "route-verification-dates",
-      "count": 157,
+      "count": 156,
       "items": [
         9,
         10,
@@ -414,7 +410,6 @@
         26,
         28,
         29,
-        32,
         33,
         34,
         35,
@@ -563,13 +558,13 @@
     {
       "id": "continuity",
       "category": "operations",
-      "count": 54,
+      "count": 51,
       "message": "Operational continuity still contains unresolved or unreviewed connections."
     },
     {
       "id": "movement-review",
       "category": "operations",
-      "count": 54,
+      "count": 51,
       "message": "Inventoried domestic/operational movements still require complete geometry, mode, duration, cost, booking decision and external evidence."
     },
     {
