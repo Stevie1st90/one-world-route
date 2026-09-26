@@ -111,7 +111,7 @@
       "country": "Spanien",
       "from": "Barcelona",
       "to": "Madrid",
-      "mode": null,
+      "mode": "High-speed train (OUIGO)",
       "corridor": "Barcelona → Madrid",
       "coordinates": [
         [
@@ -129,29 +129,32 @@
         "after": "2026-11-29",
         "before": "2026-11-29"
       },
-      "plannedDuration": null,
+      "plannedDuration": 210,
       "distanceKm": 505.4,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 25,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "book-ahead",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.ouigo.com/en/barcelona-madrid-train-es",
+        "https://www.ouigo.com/es/horarios-trenes-ouigo"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "OUIGO currently publishes several daily Barcelona-Sants–Madrid services, with the route marketed from €9. Current timetable examples are roughly 3h17–3h30; 210 minutes is used as a conservative planning duration. €25 is a planning benchmark above the published entry fare, not a guaranteed fare for 29 November 2026. Advance ticket purchase is required.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 25,
+        "currency": "EUR"
+      }
     },
     {
       "id": "transfer-26-27",
@@ -314,10 +317,10 @@
       "parentAfterLeg": 30,
       "parentBeforeLeg": 31,
       "country": "Kanada",
-      "from": "Toronto/Montreal",
-      "to": "Toronto",
-      "mode": null,
-      "corridor": "Toronto/Montreal → Toronto",
+      "from": "Toronto Pearson (YYZ)",
+      "to": "Toronto Union",
+      "mode": "UP Express",
+      "corridor": "Toronto Pearson (YYZ) → Toronto Union",
       "coordinates": [
         [
           -79.629421,
@@ -334,29 +337,34 @@
         "after": "2026-12-08",
         "before": "2026-12-08"
       },
-      "plannedDuration": null,
+      "plannedDuration": 28,
       "distanceKm": 20,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 7.66,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "walk-up",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.upexpress.com/en/up-express-stations/pearson-station",
+        "https://www.upexpress.com/en/about-up",
+        "https://www.upexpress.com/en/ways-to-pay/presto-fares",
+        "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-cad.cs.html"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "UP Express directly links Pearson Terminal 1 and Toronto Union in 28 minutes. Planning cost uses the published adult cash ceiling of CAD 12.35 converted at the ECB 25 Sep 2026 reference rate (EUR 1 = CAD 1.6127); PRESTO can be cheaper. Walk-up/contactless payment is supported.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 12.35,
+        "currency": "CAD"
+      }
     },
     {
       "id": "transfer-31-32",
@@ -364,10 +372,10 @@
       "parentAfterLeg": 31,
       "parentBeforeLeg": 32,
       "country": "USA",
-      "from": "New York/US-Hub",
-      "to": "New York/US-Hub",
-      "mode": null,
-      "corridor": "New York/US-Hub → New York/US-Hub",
+      "from": "New York Penn (Amtrak Maple Leaf)",
+      "to": "New York (JFK)",
+      "mode": "LIRR + AirTrain JFK",
+      "corridor": "New York Penn (Amtrak Maple Leaf) → New York (JFK)",
       "coordinates": [
         [
           -74.006,
@@ -384,29 +392,34 @@
         "after": "2026-12-09",
         "before": "2026-12-09"
       },
-      "plannedDuration": null,
+      "plannedDuration": 45,
       "distanceKm": 20.8,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 14.91,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "walk-up",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.jfkairport.com/transportation/public-transport",
+        "https://www.jfkairport.com/transportation/airtrain",
+        "https://www.mta.info/document/189006",
+        "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.hr.html"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "JFK recommends LIRR from Penn Station to Jamaica plus AirTrain. Planning allowance is 45 minutes. Native planning fare uses USD 8.25 off-peak LIRR Zone 1→3 plus USD 8.75 AirTrain = USD 17.00, converted at the ECB 25 Sep 2026 reference rate (EUR 1 = USD 1.1403). Peak LIRR travel costs more.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 17,
+        "currency": "USD"
+      }
     },
     {
       "id": "transfer-32-33",
@@ -414,10 +427,10 @@
       "parentAfterLeg": 32,
       "parentBeforeLeg": 33,
       "country": "Mexiko",
-      "from": "Mexiko-Stadt/Cancún",
+      "from": "Cancún (CUN)",
       "to": "Cancún/Chetumal",
       "mode": null,
-      "corridor": "Mexiko-Stadt/Cancún → Cancún/Chetumal",
+      "corridor": "Cancún (CUN) → Cancún/Chetumal",
       "coordinates": [
         [
           -99.07033,
@@ -466,7 +479,7 @@
       "country": "Guatemala",
       "from": "Flores",
       "to": "Guatemala-Stadt",
-      "mode": null,
+      "mode": "Flight (Avianca FRS→GUA)",
       "corridor": "Flores → Guatemala-Stadt",
       "coordinates": [
         [
@@ -484,29 +497,32 @@
         "after": "2026-12-13",
         "before": "2026-12-13"
       },
-      "plannedDuration": null,
+      "plannedDuration": 50,
       "distanceKm": 263.7,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 120,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "book-ahead",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.avianca.com/es/sobre-nosotros/noticias-corporativas/2026/febrero-19-2",
+        "https://www.avianca.com/gt/es/vuelos-desde-flores-a-ciudad-de-guatemala"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Avianca announced three daily Guatemala City–Flores frequencies from 29 March 2026; published Flores→Guatemala City schedules are about 45–50 minutes. Current fare pages show dynamic fares around €100+ / US$100+ depending date. €120 is a conservative planning benchmark, not a guaranteed 13 December 2026 fare.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 120,
+        "currency": "EUR"
+      }
     },
     {
       "id": "transfer-39-40",
@@ -516,7 +532,7 @@
       "country": "Panama",
       "from": "Panama-Stadt",
       "to": "Panama-Stadt (PTY)",
-      "mode": null,
+      "mode": "Metro",
       "corridor": "Panama-Stadt → Panama-Stadt (PTY)",
       "coordinates": [
         [
@@ -534,29 +550,32 @@
         "after": "2026-12-20",
         "before": "2026-12-20"
       },
-      "plannedDuration": null,
+      "plannedDuration": 60,
       "distanceKm": 17.6,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 0.75,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "walk-up",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://elmetrodepanama.com/nuevo-sistema-de-recaudo-entra-en-fase-de-optimizacion-para-mejorar-la-experiencia-de-los-usuarios/",
+        "https://www.elmetrodepanama.com/puesta-en-marcha-de-ramal-linea-2-facilita-la-movilidad-de-los-viajeros/"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Use Metro Line 1/Line 2 with the Corredor Sur airport branch to PTY. Current regular fares are B/.0.35 on Line 1 and B/.0.50 on Line 2; B/.0.85 is the conservative city-centre planning fare. €0.75 is the 2026-09-26 planning conversion. 60 minutes is a planning allowance because the exact origin inside Panama City is not yet fixed.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 0.85,
+        "currency": "PAB"
+      }
     },
     {
       "id": "transfer-54-55",
@@ -566,7 +585,7 @@
       "country": "Brasilien",
       "from": "São Paulo (GRU), nonstop",
       "to": "Boa Vista",
-      "mode": null,
+      "mode": "Flight (LATAM GRU→BVB)",
       "corridor": "São Paulo (GRU), nonstop → Boa Vista",
       "coordinates": [
         [
@@ -584,29 +603,31 @@
         "after": "2027-01-13",
         "before": "2027-01-13"
       },
-      "plannedDuration": null,
+      "plannedDuration": 212,
       "distanceKm": 3300.2,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 154.77,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "book-ahead",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.latamairlines.com/br/pt/destinos/voos-de-sao-paulo-para-boa-vista"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "LATAM currently publishes a direct GRU→BVB service with an average flight time of 3h32 and one weekly frequency. Current one-way examples start around BRL 913.65. €154.77 is the 2026-09-26 planning conversion; the actual 13 January 2027 fare and operating day must be rechecked when the booking window is firm.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 913.65,
+        "currency": "BRL"
+      }
     },
     {
       "id": "transfer-55-56",
@@ -839,7 +860,7 @@
       "country": "Bolivien",
       "from": "La Paz",
       "to": "Santa Cruz de la Sierra",
-      "mode": null,
+      "mode": "Flight (BoA LPB→VVI)",
       "corridor": "La Paz → Santa Cruz de la Sierra",
       "coordinates": [
         [
@@ -857,29 +878,32 @@
         "after": "2027-01-23",
         "before": "2027-01-23"
       },
-      "plannedDuration": null,
+      "plannedDuration": 65,
       "distanceKm": 545.1,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 34.65,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "book-ahead",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.oopp.gob.bo/nota_prensa/boliviana-de-aviacion-lanza-la-campana-tarifazo-boa-con-precios-economicos-para-rutas-nacionales/",
+        "https://www.flightconnections.com/es/vuelos-desde-lpb-a-vvi"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Bolivia's transport ministry published BoA web fares for La Paz→Santa Cruz from Bs 484 in 2026. Current schedules show frequent nonstop LPB→VVI service with a fastest flight time of about 1h05. €34.65 is the 2026-09-26 conversion of the published fare benchmark; the actual 23 January 2027 fare remains dynamic.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 484,
+        "currency": "BOB"
+      }
     },
     {
       "id": "transfer-61-62",
@@ -1021,7 +1045,7 @@
       "country": "Brunei",
       "from": "Bandar Seri Begawan (BWN)",
       "to": "Bandar Seri Begawan",
-      "mode": null,
+      "mode": "Public bus (routes 23/24/34/38)",
       "corridor": "Bandar Seri Begawan (BWN) → Bandar Seri Begawan",
       "coordinates": [
         [
@@ -1039,29 +1063,34 @@
         "after": "2027-03-10",
         "before": "2027-03-10"
       },
-      "plannedDuration": null,
+      "plannedDuration": 30,
       "distanceKm": 4.8,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 1.37,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "walk-up-cash",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.mprt.gov.bn/SiteCollectionDocuments/ATF2020%20without%20LO.pdf",
+        "https://www.jpd.gov.bn/SiteAssets/Site%20Pages/Land%20Transport%20Department/Quick%20Links/Bus%20Route/New%20Bus%20Route.pdf",
+        "https://www.discover-airport.com/brunei/bus.php",
+        "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-sgd.de.html"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Brunei public-bus documentation lists airport-serving routes into Bandar Seri Begawan. Current secondary airport guidance gives about 30 minutes. Fare sources vary between BND 1 and BND 2; BND 2 is intentionally used as the conservative planning value. BND is treated at parity with SGD for planning conversion; recheck locally before travel.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 2,
+        "currency": "BND"
+      }
     },
     {
       "id": "transfer-81-82",
@@ -1071,7 +1100,7 @@
       "country": "Malaysia",
       "from": "Miri/Sarawak",
       "to": "Johor Bahru",
-      "mode": null,
+      "mode": "Flight with connection (KUL/KCH; itinerary not selected)",
       "corridor": "Miri/Sarawak → Johor Bahru",
       "coordinates": [
         [
@@ -1095,16 +1124,15 @@
       "estimatedCost": null,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "itinerary-selection-required",
+      "feasibility": "needs-itinerary-selection",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.airasia.com/flights/from-miri-myy-to-johor-bahru-jhb/",
+        "https://www.flightsfrom.com/MYY-JHB"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Current schedule evidence does not support a nonstop MYY→JHB service: the former direct route is listed inactive since June 2026. AirAsia currently sells connecting itineraries via KUL or KCH. Keep this movement open until a specific 11 March 2027 itinerary, duration and fare are selected.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
@@ -1226,7 +1254,7 @@
       "country": "Vietnam",
       "from": "Ho-Chi-Minh-Stadt",
       "to": "Hanoi (HAN)",
-      "mode": null,
+      "mode": "Flight (Vietnam Airlines SGN→HAN)",
       "corridor": "Ho-Chi-Minh-Stadt → Hanoi (HAN)",
       "coordinates": [
         [
@@ -1244,29 +1272,32 @@
         "after": "2027-03-22",
         "before": "2027-03-22"
       },
-      "plannedDuration": null,
+      "plannedDuration": 120,
       "distanceKm": 1159.5,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 37.75,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "book-ahead",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.vietnamairlines.com/en-vn/flights-from-ho-chi-minh-city-to-hanoi",
+        "https://www.vietnamairlines.com/en-vn/flights-to-vietnam"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Vietnam Airlines publishes SGN→HAN as an approximately 2-hour domestic flight with current one-way economy examples from 1,117,181 VND. €37.75 is the 2026-09-26 planning conversion of that published benchmark; the actual 22 March 2027 fare remains dynamic.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 1117181,
+        "currency": "VND"
+      }
     },
     {
       "id": "transfer-90-91",
@@ -1326,7 +1357,7 @@
       "country": "Indien",
       "from": "Kolkata",
       "to": "Kolkata (CCU)",
-      "mode": null,
+      "mode": "Kolkata Metro (Blue + Yellow Line)",
       "corridor": "Kolkata → Kolkata (CCU)",
       "coordinates": [
         [
@@ -1344,29 +1375,33 @@
         "after": "2027-03-28",
         "before": "2027-03-28"
       },
-      "plannedDuration": null,
+      "plannedDuration": 45,
       "distanceKm": 12.5,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 0.27,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "walk-up",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://mtp.indianrailways.gov.in/index.jsp?lang=1",
+        "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2159869&lang=2&reg=3",
+        "https://yometro.com/from-central-metro-station-kolkata-to-jai-hind-metro-station-kolkata"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "The Noapara–Jai Hind Bimanbandar Yellow Line is commissioned and provides metro access to Kolkata airport. For operational planning, 'Kolkata' is anchored at Central Metro: current route data gives one interchange at Noapara, about 28 minutes and ₹30; 45 minutes is retained as a conservative interchange/luggage allowance. €0.27 is the 2026-09-26 planning conversion.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 30,
+        "currency": "INR"
+      }
     },
     {
       "id": "transfer-96-97",
@@ -1637,7 +1672,7 @@
       "country": "Usbekistan",
       "from": "Taschkent",
       "to": "Buchara",
-      "mode": null,
+      "mode": "Afrosiyob high-speed train",
       "corridor": "Taschkent → Buchara",
       "coordinates": [
         [
@@ -1655,29 +1690,32 @@
         "after": "2027-04-22",
         "before": "2027-04-22"
       },
-      "plannedDuration": null,
+      "plannedDuration": 251,
       "distanceKm": 440.8,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 37.77,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "book-ahead",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://uzrailpass.uz/en/pages/poezd-jadvali",
+        "https://t.me/s/uzrailways_uz?before=14077"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Uzbekistan Railways currently publishes daily Afrosiyob Tashkent→Bukhara services around 4h11–4h22. The operator's 2026 fare notice sets economy at UZS 509,000. €37.77 is the 2026-09-26 planning conversion. Advance booking is required because high-speed inventory is capacity-limited; recheck fare and timetable for 22 April 2027.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 509000,
+        "currency": "UZS"
+      }
     },
     {
       "id": "transfer-106-107",
@@ -1887,7 +1925,7 @@
       "country": "Georgien",
       "from": "Tiflis (TBS)",
       "to": "Tiflis",
-      "mode": null,
+      "mode": "Municipal Bus 337",
       "corridor": "Tiflis (TBS) → Tiflis",
       "coordinates": [
         [
@@ -1905,29 +1943,32 @@
         "after": "2027-05-10",
         "before": "2027-05-10"
       },
-      "plannedDuration": null,
+      "plannedDuration": 45,
       "distanceKm": 14.4,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 0.34,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "walk-up",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://tbilisiairport.com/en-EN/to-from-the-airport/page/bus",
+        "https://cdn.tbilisiairport.com/files/tbilisi-batumi-airports2025-1.pdf"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Tbilisi Airport publishes municipal bus 337 between the airport and the city centre for GEL 1. The airport infrastructure brochure gives approximately 45 minutes to the city centre. €0.34 is the 2026-09-26 planning conversion.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 1,
+        "currency": "GEL"
+      }
     },
     {
       "id": "transfer-112-113",
@@ -1937,7 +1978,7 @@
       "country": "Armenien",
       "from": "Jerewan",
       "to": "Jerewan (EVN)",
-      "mode": null,
+      "mode": "Airport Express Bus N201",
       "corridor": "Jerewan → Jerewan (EVN)",
       "coordinates": [
         [
@@ -1955,29 +1996,33 @@
         "after": "2027-05-12",
         "before": "2027-05-12"
       },
-      "plannedDuration": null,
+      "plannedDuration": 40,
       "distanceKm": 10.8,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 0.72,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "walk-up",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.zvartnots.aero/EN/Content/Transport",
+        "https://www.zvartnots.aero/EN/FAQ",
+        "https://www.salto-youth.net/downloads/4-17-4682/InfoPack_Volunteering%20for%20ALL_Armenia2026.pdf"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Zvartnots Airport publishes N201 between central Yerevan and EVN every 30 minutes from 07:00 to 22:00 for AMD 300. A 2026 travel information pack gives 30–40 minutes; 40 minutes is used as the planning allowance. €0.72 is the 2026-09-26 planning conversion.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 300,
+        "currency": "AMD"
+      }
     },
     {
       "id": "transfer-115-116",
@@ -2769,7 +2814,7 @@
       "country": "Südafrika",
       "from": "Johannesburg",
       "to": "Johannesburg (JNB)",
-      "mode": null,
+      "mode": "Gautrain (Park → Marlboro → OR Tambo)",
       "corridor": "Johannesburg → Johannesburg (JNB)",
       "coordinates": [
         [
@@ -2787,29 +2832,35 @@
         "after": "2027-08-17",
         "before": "2027-08-17"
       },
-      "plannedDuration": null,
+      "plannedDuration": 45,
       "distanceKm": 21.1,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 11.61,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "walk-up",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.gautrain.co.za/commuter/generalinformation",
+        "https://www.gautrain.co.za/commuter/stationinfo?stationName=Park",
+        "https://www.gautrain.co.za/commuter/stationinfo?stationName=OR+Tambo",
+        "https://parkstation.co.za/gautrain/",
+        "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-zar.lt.html"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Gautrain links Johannesburg Park Station to OR Tambo with an interchange on the airport line. Use 45 minutes as a conservative planning allowance. Native planning fare uses R217 as the current published/route benchmark and converts it with the ECB 25 Sep 2026 rate (EUR 1 = ZAR 18.6836). Walk-up payment is supported; recheck the fare before travel.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 217,
+        "currency": "ZAR"
+      }
     },
     {
       "id": "transfer-156-157",
@@ -2969,7 +3020,7 @@
       "country": "Uganda",
       "from": "Kampala",
       "to": "Entebbe (EBB)",
-      "mode": null,
+      "mode": "Scheduled shuttle (Pineapple Express)",
       "corridor": "Kampala → Entebbe (EBB)",
       "coordinates": [
         [
@@ -2987,29 +3038,32 @@
         "after": "2027-08-28",
         "before": "2027-08-28"
       },
-      "plannedDuration": null,
+      "plannedDuration": 90,
       "distanceKm": 37.3,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 13.17,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": true,
+      "bookingStatus": "book-ahead",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.entebbejinjashuttle.com/bus-schedule",
+        "https://caa.go.ug/entebbe-international-airport/"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Pineapple Express currently publishes daily Kampala→Entebbe departures with about 75–90 minutes scheduled travel and a US$15 one-way fare. Uganda CAA independently confirms the Kampala–Entebbe airport road connection and airport transport availability. €13.17 is the 2026-09-26 planning conversion. Advance reservation is used for the itinerary.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 15,
+        "currency": "USD"
+      }
     },
     {
       "id": "transfer-172-173",
@@ -3183,7 +3237,7 @@
       "country": "Jordanien",
       "from": "Amman (AMM)",
       "to": "Amman",
-      "mode": null,
+      "mode": "Sariyah Airport Express",
       "corridor": "Amman (AMM) → Amman",
       "coordinates": [
         [
@@ -3201,29 +3255,32 @@
         "after": "2027-10-05",
         "before": "2027-10-05"
       },
-      "plannedDuration": null,
+      "plannedDuration": 60,
       "distanceKm": 26.9,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 4.2,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "walk-up",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://sariyahexpress.com/airport-express/",
+        "https://www.airporttransferportal.com/airport-guides/amm/cost-to-city"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Sariyah publishes Airport Express service between Queen Alia Airport and Amman with a JOD 3.4 fare and tickets available at offices or from the driver. 60 minutes is the conservative end of the current 45–60 minute planning range. €4.20 is the 2026-09-26 planning conversion.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 3.4,
+        "currency": "JOD"
+      }
     },
     {
       "id": "transfer-181-182",
@@ -3415,7 +3472,7 @@
       "country": "San Marino",
       "from": "San Marino",
       "to": "Rimini",
-      "mode": null,
+      "mode": "Benedettini/Bonelli Bus",
       "corridor": "San Marino → Rimini",
       "coordinates": [
         [
@@ -3433,29 +3490,33 @@
         "after": "2027-10-30",
         "before": "2027-10-30"
       },
-      "plannedDuration": null,
+      "plannedDuration": 50,
       "distanceKm": 16.5,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 7,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "advance-recommended",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.bonellibus.it/shuttle-rimini-san-marino/",
+        "https://www.benedettinispa.com/en/san-marino-rimini",
+        "https://riminiturismo.it/en/guide/travel/getting-here/coach/bus-san-marino-republic"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "The San Marino–Rimini shuttle operates year-round and daily. Current operator fare is €7 one way; Rimini Turismo gives an approximate 50-minute journey. Advance booking is recommended but tickets may be purchased on board subject to capacity.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 7,
+        "currency": "EUR"
+      }
     },
     {
       "id": "transfer-193-194",
@@ -3464,9 +3525,9 @@
       "parentBeforeLeg": 194,
       "country": "Vatikanstadt",
       "from": "Rom; zu Fuß in Vatikanstadt",
-      "to": "Rom (FCO/CIA)",
-      "mode": null,
-      "corridor": "Rom; zu Fuß in Vatikanstadt → Rom (FCO/CIA)",
+      "to": "Rom (FCO)",
+      "mode": "Rome urban transit + Leonardo Express",
+      "corridor": "Rom; zu Fuß in Vatikanstadt → Rom (FCO)",
       "coordinates": [
         [
           12.4534,
@@ -3483,29 +3544,32 @@
         "after": "2027-10-31",
         "before": "2027-10-31"
       },
-      "plannedDuration": null,
+      "plannedDuration": 60,
       "distanceKm": 19.9,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 15.5,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "walk-up",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.atac.roma.it/en/tickets-and-passes/bit",
+        "https://www.trenitalia.com/en/connections/leonardo-express.html"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Operational plan after the Vatican visit: use Rome urban transit to Roma Termini (€1.50 BIT) and the nonstop Leonardo Express to FCO (€14, 32 minutes). 60 minutes is a planning allowance including the urban connection and interchange. Both tickets can be bought for same-day travel; no advance reservation is required.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 15.5,
+        "currency": "EUR"
+      }
     }
   ],
   "routeEnd": "Malta",
