@@ -2774,7 +2774,7 @@
       "country": "Südafrika",
       "from": "Johannesburg",
       "to": "Johannesburg (JNB)",
-      "mode": null,
+      "mode": "Gautrain",
       "corridor": "Johannesburg → Johannesburg (JNB)",
       "coordinates": [
         [
@@ -2792,29 +2792,34 @@
         "after": "2027-08-17",
         "before": "2027-08-17"
       },
-      "plannedDuration": null,
+      "plannedDuration": 45,
       "distanceKm": 21.1,
       "distanceBasis": "geodesic-lower-bound",
-      "estimatedCost": null,
+      "estimatedCost": 10.8,
       "currency": "EUR",
       "budgetTreatment": "not-added-to-macro-budget",
-      "bookingRequired": null,
-      "bookingStatus": "unknown",
-      "feasibility": "needs-review",
+      "bookingRequired": false,
+      "bookingStatus": "walk-up",
+      "feasibility": "planbar-current-service",
       "source": [
-        "data/public-route.json",
-        "data/route-waypoints.json",
-        "data/flight-geometries.json"
+        "https://www.gautrain.co.za/commuter/generalinformation",
+        "https://www.gautrain.co.za/commuter/stationinfo?stationName=OR+Tambo",
+        "https://parkstation.co.za/gautrain/"
       ],
-      "lastVerified": null,
-      "notes": "Imported connection inventory. Endpoint text may contain alternatives. Geometry does not establish an executable domestic route; mode, timing, cost and border dependencies require review.",
+      "lastVerified": "2026-09-26",
+      "notes": "Plan uses Gautrain from Johannesburg Park Station to OR Tambo with the required interchange on the airport service. Current Park Station guidance gives about 35–45 minutes and an approximate R185–R215 airport fare; R200 is stored as the planning midpoint, not a guaranteed fare. €10.80 is the rounded 2026-09-26 ZAR/EUR planning conversion. Gautrain confirms the active airport link and direct OR Tambo station integration.",
       "status": "planned",
       "plannedDeparture": null,
       "actualDeparture": null,
       "plannedArrival": null,
       "actualArrival": null,
       "actualCost": null,
-      "reviewStatus": "needs-review"
+      "reviewStatus": "reviewed",
+      "nativeFare": {
+        "amount": 200,
+        "currency": "ZAR",
+        "basis": "planning midpoint"
+      }
     },
     {
       "id": "transfer-156-157",
