@@ -13,7 +13,10 @@ async function open(page,path){
 
 async function expectRegional(page){
   await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:20000});
-  await expect.poll(()=>page.locator('.platform-stop').count()).toBeGreaterThan(1);
+  await expect.poll(
+    ()=>page.locator('.platform-stop').count(),
+    {timeout:20000,message:'regional stop list did not hydrate'}
+  ).toBeGreaterThan(1);
 }
 
 async function expectRegionalTooltipIsolation(page){
