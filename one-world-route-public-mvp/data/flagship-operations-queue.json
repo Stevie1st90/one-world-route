@@ -5,14 +5,14 @@
   "routeGeneratedAt": "2026-09-25",
   "departureReady": false,
   "summary": {
-    "total": 223,
+    "total": 219,
     "p0": 35,
     "p1": 17,
-    "p2": 171,
-    "blocking": 89,
+    "p2": 167,
+    "blocking": 86,
     "byCategory": {
-      "international-leg": 169,
-      "operational-movement": 54
+      "international-leg": 168,
+      "operational-movement": 51
     },
     "criticalReviewed": 35,
     "criticalBlocked": 2,
@@ -2017,91 +2017,6 @@
       "legId": 29,
       "movementId": null,
       "title": "Irland → Island",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified",
-        "source"
-      ],
-      "geometry": "full",
-      "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-30-31",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 30,
-      "movementId": "transfer-30-31",
-      "title": "Toronto/Montreal → Toronto",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "movement-transfer-31-32",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 31,
-      "movementId": "transfer-31-32",
-      "title": "New York/US-Hub → New York/US-Hub",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
-    },
-    {
-      "id": "leg-32",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 32,
-      "movementId": null,
-      "title": "USA → Mexiko",
       "status": "needs-review",
       "blockers": [],
       "missing": [
@@ -4792,37 +4707,6 @@
       "reviewRouteEvidence": null,
       "reviewedAt": null,
       "blocksDeparture": false
-    },
-    {
-      "id": "movement-transfer-154-155",
-      "priority": "P2",
-      "category": "operational-movement",
-      "legId": 154,
-      "movementId": "transfer-154-155",
-      "title": "Johannesburg → Johannesburg (JNB)",
-      "status": "needs-review",
-      "blockers": [
-        "movement-mode",
-        "movement-duration",
-        "movement-cost",
-        "booking-decision",
-        "verification-date",
-        "external-evidence",
-        "movement-review"
-      ],
-      "missing": [
-        "mode",
-        "plannedDuration",
-        "estimatedCost",
-        "bookingRequired",
-        "lastVerified",
-        "externalSource"
-      ],
-      "geometry": "known",
-      "sourceCount": 3,
-      "externalSourceCount": 0,
-      "lastVerified": null,
-      "blocksDeparture": true
     },
     {
       "id": "leg-155",
