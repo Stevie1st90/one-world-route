@@ -109,7 +109,7 @@
     "missingLegIds": [],
     "hold": 33,
     "blocked": 2,
-    "latestReview": "2026-09-26",
+    "latestReview": "2026-09-27",
     "meaning": "Review completion records a current decision. HOLD/BLOCKED critical legs still block departure and are not asserted safe or executable."
   },
   "workQueue": [

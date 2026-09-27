@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-09-26",
+  "reviewedAt": "2026-09-27",
   "scope": "Current operational and safety review for every international leg currently marked Kritisch. A reviewed leg may remain on HOLD or blocked; review completion is not a safety or service-availability approval.",
   "invariants": {
     "expectedCriticalLegs": 35,
@@ -63,34 +63,34 @@
       "title": "Laos → Myanmar",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "existing-service-source-not-reverified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.flightconnections.com/flights-from-vte-to-bkk",
-        "https://www.flightconnections.com/flights-from-bkk-to-rgn",
+        "https://www.thaiairways.com/flights/en-la/flights-from-vientiane-to-bangkok",
+        "https://www.thaiairways.com/flights/en/flights-from-bangkok-to-yangon",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/myanmarsicherheit-212100"
       ],
-      "notes": "Myanmar remains under a travel warning and transport can be disrupted. Preserve the Bangkok transit concept but require a fresh service and entry check."
+      "notes": "Current Thai Airways operator evidence for Vientiane–Bangkok and Bangkok–Yangon has been refreshed in the route evidence layer. This safety review does not certify transport service availability; Myanmar remains under an official German travel warning, so the leg stays on HOLD."
     },
     "90": {
       "legId": 90,
       "title": "Myanmar → Bangladesch",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "existing-service-source-not-reverified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.flightconnections.com/flights-from-rgn-to-bkk",
-        "https://www.flightconnections.com/flights-from-bkk-to-dac",
+        "https://www.thaiairways.com/flights/en/flights-from-bangkok-to-yangon",
+        "https://www.thaiairways.com/flights/en/flights-from-bangkok-to-dhaka",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/myanmarsicherheit-212100"
       ],
-      "notes": "Myanmar remains under a travel warning. The Yangon–Bangkok–Dhaka concept is retained only as an unconfirmed operational option pending a fresh schedule and entry check."
+      "notes": "Current Thai Airways operator evidence for Bangkok–Yangon and Bangkok–Dhaka has been refreshed in the route evidence layer. This safety review does not certify transport service availability; Myanmar remains under an official German travel warning, so the leg stays on HOLD."
     },
     "97": {
       "legId": 97,
@@ -146,16 +146,16 @@
       "title": "Russland → Kasachstan",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "existing-service-source-not-reverified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.flightconnections.com/flights-from-svo-to-ala",
+        "https://ir.airastana.com/en/about-us/company-news/flights-to-russia/",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/russischefoederationsicherheit-201536"
       ],
-      "notes": "Russia remains under a travel warning and airport disruption is possible. Reverify the SVO–ALA service and Russian exit conditions before travel."
+      "notes": "Current Air Astana evidence for continued Almaty–Moscow operation has been refreshed in the route evidence layer. This safety review does not certify transport service availability; Russia remains under an official German travel warning, so the leg stays on HOLD."
     },
     "107": {
       "legId": 107,
@@ -212,17 +212,16 @@
       "title": "Türkei → Irak",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "existing-service-source-not-reverified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.flightconnections.com/flights-from-ist-to-bgw",
-        "https://www.flightconnections.com/flights-from-saw-to-bgw",
+        "https://www.turkishairlines.com/en-tr/flights-from-istanbul-to-baghdad",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/iraksicherheit-202738"
       ],
-      "notes": "Iraq remains under a travel warning and regional flight disruption is possible. Reverify the selected Istanbul–Baghdad service before travel."
+      "notes": "Current Turkish Airlines evidence for Istanbul–Baghdad has been refreshed in the route evidence layer. This safety review does not certify transport service availability; Iraq remains under an official German travel warning, so the leg stays on HOLD."
     },
     "115": {
       "legId": 115,
@@ -413,33 +412,33 @@
       "title": "Uganda → Südsudan",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "existing-service-source-not-reverified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.flightconnections.com/flights-from-ebb-to-jub",
+        "https://ugandairlines.com/destinations/flights/ebb/jub/flights-from-entebbe-to-juba",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/ugandasicherheit-208752",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/suedsudansicherheit-244250"
       ],
-      "notes": "South Sudan is under a travel warning and Uganda advises particular caution near the border. EBB–JUB requires a fresh service and security check."
+      "notes": "Current Uganda Airlines evidence for Entebbe–Juba has been refreshed in the route evidence layer. This safety review does not certify transport service availability; South Sudan remains under an official German travel warning and urgent departure recommendation, so the leg stays on HOLD."
     },
     "161": {
       "legId": 161,
       "title": "Südsudan → Kenia",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "existing-service-source-not-reverified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.flightconnections.com/flights-from-jub-to-nbo",
+        "https://www.kenya-airways.com/en_ke/flights-from-juba-to-nairobi/",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/suedsudansicherheit-244250"
       ],
-      "notes": "South Sudan is under a travel warning. JUB–NBO remains a route concept pending fresh airline and departure-condition verification."
+      "notes": "Current Kenya Airways evidence for Juba–Nairobi has been refreshed in the route evidence layer. This safety review does not certify transport service availability; South Sudan remains under an official German travel warning and urgent departure recommendation, so the leg stays on HOLD."
     },
     "167": {
       "legId": 167,
