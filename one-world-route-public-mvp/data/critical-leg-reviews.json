@@ -13,33 +13,37 @@
       "title": "Polen → Ukraine",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "cross-border-movement-reported",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
+        "https://uz-vezemo.uz.gov.ua/",
+        "https://booking.uz.gov.ua/en/",
         "https://granica.gov.pl/index_wait.php?c=t&k=w&p=u&v=en",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/ukrainesicherheit-201946"
       ],
-      "notes": "Passenger border movement is reported, but Ukraine remains under a travel warning. Keep the land corridor on HOLD and recheck 7 days and 48 hours before travel."
+      "notes": "Ukrainian Railways currently publishes active Przemyśl–Ukraine and Warsaw–Kyiv international services, while the Polish border service continues to report passenger processing. The route evidence layer is refreshed; this safety review does not certify service availability. Ukraine remains under an official German travel warning, so the leg stays on HOLD."
     },
     "14": {
       "legId": 14,
       "title": "Ukraine → Moldau",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "cross-border-movement-reported",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "volatile",
       "transportServiceVerified": false,
       "sources": [
+        "https://uz-vezemo.uz.gov.ua/",
+        "https://booking.uz.gov.ua/",
         "https://border.gov.md/index.php/masuri-temporare-pentru-asigurarea-securitatii-personalului-autoritatilor-de-control-la-frontiera",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/moldausicherheit-201932",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/ukrainesicherheit-201946"
       ],
-      "notes": "Cross-border movement is reported by Moldovan border authorities, while the regional security situation remains volatile. Keep on HOLD and recheck before travel."
+      "notes": "Ukrainian Railways currently publishes daily Kyiv–Chișinău service and current international rail information to Moldova. The route evidence layer is refreshed; this safety review does not certify service availability. Ukraine remains under an official German travel warning and border operations remain security-sensitive, so the leg stays on HOLD."
     },
     "54": {
       "legId": 54,
@@ -385,17 +389,19 @@
       "title": "Tschad → Zentralafrikanische Republik",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "routing-not-service-verified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.flightconnections.com/flights-from-ndj-to-bgf",
+        "https://www.camair-co.cm/CM/en/horaireVols",
+        "https://www.camair-co.cm/page/CM/fr/reseau-de-la-compagnie",
+        "https://flights.rwandair.com/en/flights-from-douala-to-bangui",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/tschadsicherheit-225774",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/zentralafrikanischerepubliksicherheit-226450"
       ],
-      "notes": "The Central African Republic is under a travel warning and Chad carries significant regional warnings. A geometry route via Cameroon does not establish service availability."
+      "notes": "Camair-Co currently publishes N'Djamena as an active regional destination from its Douala hub, and RwandAir currently publishes Douala–Bangui inventory. This refresh supports the planned one-stop corridor via Douala. The safety review does not certify service availability; Chad and the Central African Republic remain under severe official warnings, so the leg stays on HOLD."
     },
     "128": {
       "legId": 128,
@@ -558,16 +564,19 @@
       "title": "Jordanien → Israel",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "border-operation-volatile",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "volatile",
       "transportServiceVerified": false,
       "sources": [
+        "https://www.iaa.gov.il/en/land-border-crossings/alenbi/opening-hours/",
+        "https://www.iaa.gov.il/en/land-border-crossings/jordan-river/opening-hours-jorden-river/",
+        "https://www.iaa.gov.il/en/land-border-crossings/notifications-and-updates-lion-s-roar/",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/israelsicherheit-203814",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/jordaniensicherheit-218008"
       ],
-      "notes": "Regional conditions and border operating hours can change quickly. Keep the Jordan–Israel land crossing on HOLD and verify the chosen crossing and reservation requirements immediately before travel."
+      "notes": "The Israel Airports Authority currently publishes 2026 passenger operating hours for both Allenby and Jordan River crossings, confirming that lawful passenger crossing infrastructure is operating subject to current restrictions and schedules. The safety review does not certify unrestricted executability; the regional security situation remains volatile, so the leg stays on HOLD."
     },
     "181": {
       "legId": 181,
@@ -589,18 +598,19 @@
       "title": "Staat Palästina → Griechenland",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "border-plus-flight-not-service-verified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "volatile",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.gov.uk/foreign-travel-advice/israel/entry-requirements",
-        "https://www.flightconnections.com/flights-from-amm-to-ath",
+        "https://www.iaa.gov.il/en/land-border-crossings/alenbi/opening-hours/",
+        "https://www.rj.com/en/plan-and-book/track-flights/rjs-timetable",
+        "https://www.rj.com/-/media/RJ-Timetables/2026/May-Timetable.pdf?hash=863735C7DA02A212890131ACECF6E69C&rev=-1",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/israelsicherheit-203814",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/jordaniensicherheit-218008"
       ],
-      "notes": "The West Bank–Jordan crossing and onward AMM–ATH flight both require current verification. Geometry must not be read as proof of border access or airline service."
+      "notes": "The Israel Airports Authority currently publishes 2026 passenger operating hours at Allenby, and Royal Jordanian currently publishes downloadable timetables with Amman–Athens service. This refresh supports the planned West Bank–Allenby–Amman–Athens chain. The safety review does not certify unrestricted executability; the regional security situation remains volatile, so the leg stays on HOLD."
     }
   }
 }
