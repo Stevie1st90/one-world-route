@@ -89,21 +89,15 @@
     "geometryScope": "Airport coordinates only; geometry does not verify airline service, schedules or booking availability."
   },
   "evidence": {
-    "sourcedSegments": 178,
-    "sourcedSegmentsPercent": 91.8,
-    "segmentsWithVerificationDate": 185,
-    "segmentsWithVerificationDatePercent": 95.4,
+    "sourcedSegments": 181,
+    "sourcedSegmentsPercent": 93.3,
+    "segmentsWithVerificationDate": 191,
+    "segmentsWithVerificationDatePercent": 98.5,
     "invalidVerificationDates": [],
     "missingVerificationDates": [
-      33,
       34,
-      81,
-      91,
-      110,
       149,
-      151,
-      157,
-      159
+      151
     ],
     "feasibility": {
       "plannable": 117,
@@ -204,17 +198,11 @@
     {
       "priority": "P2",
       "id": "route-verification-dates",
-      "count": 9,
+      "count": 3,
       "items": [
-        33,
         34,
-        81,
-        91,
-        110,
         149,
-        151,
-        157,
-        159
+        151
       ],
       "goal": "Refresh source-backed verification dates for operational route claims."
     }
