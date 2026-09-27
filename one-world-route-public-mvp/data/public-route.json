@@ -2227,7 +2227,7 @@
       "healthPriorityTarget": 5,
       "healthStatusTarget": "Pending",
       "planB": "Operativer Einreise- und Weiterreisekorridor bleibt bis zu einer neuen, quellenbasierten Prüfung offen.",
-      "lastVerified": "2026-09-26",
+      "lastVerified": "2026-09-27",
       "source": "https://www.auswaertiges-amt.de/de/reiseundsicherheit/koreademokratischevolksrepubliksicherheit-216104 ; https://www.gov.uk/foreign-travel-advice/north-korea/entry-requirements",
       "alertLevel": "ORANGE",
       "alertMessage": "Makroabdeckung hergestellt; operative Route und Einreise vor Abfahrt neu verifizieren."
@@ -2250,7 +2250,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": "Operativer Ausreise- und Einreisekorridor bleibt bis zu einer neuen, quellenbasierten Prüfung offen.",
-      "lastVerified": "2026-09-26",
+      "lastVerified": "2026-09-27",
       "source": "https://www.auswaertiges-amt.de/de/reiseundsicherheit/koreademokratischevolksrepubliksicherheit-216104 ; https://www.auswaertiges-amt.de/de/reiseundsicherheit/korearepubliksicherheit-216132",
       "alertLevel": "ORANGE",
       "alertMessage": "Operative Route und Grenz-/Einreisebedingungen vor Abfahrt neu verifizieren."
@@ -2802,8 +2802,8 @@
       "healthPriorityTarget": 3,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": "2026-09-26",
-      "source": "https://www.auswaertiges-amt.de/de/reiseundsicherheit/mauretaniensicherheit-219190 ; https://www.auswaertiges-amt.de/de/reiseundsicherheit/marokkosicherheit-224080",
+      "lastVerified": "2026-09-27",
+      "source": "https://www.auswaertiges-amt.de/de/reiseundsicherheit/marokkosicherheit-224080 ; https://www.auswaertiges-amt.de/de/reiseundsicherheit/mauretaniensicherheit-219190 ; https://markoub.ma/en/company/lux-sahara-loks-shraaa/dakhla_guerguerat/121_47",
       "alertLevel": "WATCH",
       "alertMessage": "Späteres kritisches Segment beobachten"
     },
@@ -4159,8 +4159,8 @@
       "healthPriorityTarget": 3,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": "2026-09-26",
-      "source": "https://www.auswaertiges-amt.de/de/reiseundsicherheit/israelsicherheit-203814",
+      "lastVerified": "2026-09-27",
+      "source": "https://www.auswaertiges-amt.de/de/reiseundsicherheit/israelsicherheit-203814 ; https://www.auswaertiges-amt.de/de/reiseundsicherheit/palaestinensischegebietesicherheit-203674",
       "alertLevel": "WATCH",
       "alertMessage": "Späteres kritisches Segment beobachten"
     },

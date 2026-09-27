@@ -101,32 +101,32 @@
       "title": "China → Nordkorea",
       "status": "reviewed",
       "decision": "blocked",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "general-entry-not-established",
+      "routeEvidence": "general-entry-closed-current",
       "safetyState": "high-risk",
       "transportServiceVerified": false,
       "sources": [
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/koreademokratischevolksrepubliksicherheit-216104",
         "https://www.gov.uk/foreign-travel-advice/north-korea/entry-requirements"
       ],
-      "notes": "No ordinary, independently executable tourist entry corridor from China is established for this itinerary. Do not invent a train, flight or permit path; keep the leg blocked until general entry and operator arrangements are demonstrably available."
+      "notes": "Current official guidance still does not establish an ordinary independently executable tourist entry corridor from China. UK FCDO states that North Korea remains closed to general entry, although limited tourism has restarted, and German guidance requires a visa plus a Korean invitation/tour operator. Limited exceptions do not establish a dependable China→North Korea passenger corridor for this itinerary, so the leg remains BLOCKED."
     },
     "98": {
       "legId": 98,
       "title": "Nordkorea → Südkorea",
       "status": "reviewed",
       "decision": "blocked",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "no-ordinary-tourist-crossing-established",
+      "routeEvidence": "no-ordinary-tourist-crossing-current",
       "safetyState": "restricted-border",
       "transportServiceVerified": false,
       "sources": [
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/koreademokratischevolksrepubliksicherheit-216104",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/korearepubliksicherheit-216132"
       ],
-      "notes": "No ordinary tourist land crossing from North Korea into South Korea is established. The DMZ is a controlled military area; keep this leg blocked until a lawful executable corridor is verified."
+      "notes": "Current German guidance states that the inter-Korean border is a militarily restricted zone and that entry into North Korea from South Korea is not possible; travel to North Korea requires routing through third countries. No ordinary tourist land crossing from North Korea into South Korea is established. Keep the leg BLOCKED until a lawful executable passenger corridor is officially verified."
     },
     "101": {
       "legId": 101,
@@ -311,16 +311,17 @@
       "title": "Marokko → Mauretanien",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "land-crossing-reliability-unconfirmed",
+      "routeEvidence": "dakhla-guerguerat-service-current-crossborder-continuity-unconfirmed",
       "safetyState": "high-risk-corridor",
       "transportServiceVerified": false,
       "sources": [
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/marokkosicherheit-224080",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/mauretaniensicherheit-219190",
-        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/marokkosicherheit-224080"
+        "https://markoub.ma/en/company/lux-sahara-loks-shraaa/dakhla_guerguerat/121_47"
       ],
-      "notes": "Official German guidance states reliable information on the Morocco/Mauritania land crossing is not available and advises against Western Sahara travel. Keep the Dakhla–Guerguerat concept on HOLD."
+      "notes": "Current ticketing evidence shows bookable Dakhla→Guerguerat bus service, and Mauritanian guidance confirms that an approved e-visa can be presented at land borders. However, current German guidance still says reliable information on the Morocco/Mauritania land crossing is unavailable and advises against overland travel through Western Sahara. No authoritative current source establishes dependable end-to-end passenger continuity Guerguerat→Nouadhibou→Nouakchott, so the leg stays on HOLD."
     },
     "123": {
       "legId": 123,
@@ -597,15 +598,16 @@
       "title": "Israel → Staat Palästina",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "movement-restrictions-volatile",
+      "routeEvidence": "west-bank-access-restricted-current",
       "safetyState": "volatile",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/israelsicherheit-203814"
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/israelsicherheit-203814",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/palaestinensischegebietesicherheit-203674"
       ],
-      "notes": "Movement between Israel and the West Bank is subject to changing security controls and restrictions. Keep the visit operationally conditional."
+      "notes": "Current German guidance warns against travel to the West Bank, reports numerous fixed and mobile checkpoints and road closures, and states that crossings between Israel/Jerusalem and the West Bank can be closed without prior notice. Short visits from Israel are procedurally distinct from trips solely to the West Bank, but actual movement remains highly volatile. Keep the Jerusalem→West Bank visit on HOLD."
     },
     "182": {
       "legId": 182,
