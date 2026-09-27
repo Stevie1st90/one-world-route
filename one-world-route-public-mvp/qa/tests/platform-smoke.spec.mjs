@@ -27,10 +27,17 @@ test('@flagship operations exposes departure recheck controls',async({page})=>{
   const errors=capturePageErrors(page);
   await page.goto('/?segment=13&mode=operations&lang=en',{waitUntil:'domcontentloaded'});
   await expect(page.locator('#detailContent')).toContainText('Departure recheck',{timeout:15000});
+  await expect(page.locator('#detailContent')).toContainText('Recheck status');
   await expect(page.locator('#detailContent')).toContainText('Next recheck');
   await expect(page.locator('#detailContent')).toContainText('Manual review');
   await expect(page.locator('#detailContent')).toContainText('HOLD');
   await expect(page.locator('#detailContent')).toContainText('Scheduled + condition watch');
+  await page.goto('/?segment=106&mode=operations&lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('#detailContent')).toContainText('Operational movement recheck',{timeout:15000});
+  await expect(page.locator('#detailContent')).toContainText('Türkmenabat → Serhetabat');
+  await expect(page.locator('#detailContent')).toContainText('Recheck status');
+  await expect(page.locator('#detailContent')).toContainText('Manual review');
+  await expect(page.locator('#detailContent')).toContainText('HOLD');
   expect(errors,'flagship recheck runtime page errors').toEqual([]);
 });
 

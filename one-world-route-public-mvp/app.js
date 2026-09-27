@@ -35,7 +35,7 @@
   };
 
   const state = {
-    raw:null, recheckPlan:null, recheckByLeg:new Map(), segments:[], countries:[], geo:[], geoIndex:new Map(), countryByCca3:new Map(), polygons:[], globe:null,
+    raw:null, recheckPlan:null, recheckByLeg:new Map(), recheckMovementByLeg:new Map(), segments:[], countries:[], geo:[], geoIndex:new Map(), countryByCca3:new Map(), polygons:[], globe:null,
     selectedSegmentId:1, selectedCountry:null, layer:'route', phase:'all', mode:'explore', activeTab:'overview',
     filters:{mode:'all', tier:'all', feasibility:'all', alert:'all'},
     playing:false, playTimer:null, speed:700, criticalIds:new Set(),
@@ -72,7 +72,35 @@
   const readinessColor = r => r === 'READY' ? colors.green : r === 'BLOCKED' ? colors.red : colors.amber;
   const sourceList = s => String(s||'').split(/\s*;\s*/).filter(x=>/^https?:/.test(x));
   const recheckForSegment = s => state.recheckByLeg.get(Number(s?.id))||null;
+  const movementRechecksAfterSegment = s => state.recheckMovementByLeg.get(Number(s?.id))||[];
   const recheckColor = task => task?.decision==='blocked'?colors.red:colors.amber;
+  const todayIso = () => new Date().toISOString().slice(0,10);
+  function runtimeRecheckState(task){
+    if(!task)return {label:'—',next:null,color:colors.muted};
+    const today=todayIso();
+    const reviewedAt=String(task.reviewedAt||'');
+    const pending=(task.scheduledRechecks||[])
+      .filter(item=>item?.dueOn&&!(reviewedAt&&reviewedAt>=item.dueOn))
+      .sort((a,b)=>String(a.dueOn).localeCompare(String(b.dueOn)));
+    const due=pending.filter(item=>item.dueOn<=today);
+    if(due.length){
+      const overdue=Boolean(task.targetDate&&today>task.targetDate);
+      return {label:overdue?'Overdue':'Due',next:due[0].dueOn,color:colors.red};
+    }
+    if(pending.length){
+      const days=Math.ceil((Date.parse(pending[0].dueOn+'T00:00:00Z')-Date.parse(today+'T00:00:00Z'))/86400000);
+      return {label:days<=7?'Upcoming':'Scheduled',next:pending[0].dueOn,color:days<=7?colors.orange:colors.blue};
+    }
+    if(task.monitoringMode==='condition-watch')return {label:'Condition watch',next:null,color:colors.amber};
+    return {label:'Reviewed',next:null,color:colors.green};
+  }
+  function movementRecheckMarkup(tasks){
+    if(!tasks.length)return '';
+    return `<h3>Operational movement recheck${tasks.length>1?'s':''}</h3>${tasks.map(task=>{
+      const live=runtimeRecheckState(task);
+      return `<div class="op-callout"><b>${escapeHtml(task.title||task.movementId||'Operational movement')}</b><div class="data-grid" style="margin-top:10px">${dataCard('Decision',String(task.decision||'—').toUpperCase())}${dataCard('Recheck status',live.label)}${dataCard('Next gate',fmtDate(live.next))}${dataCard('Target date',fmtDate(task.targetDate))}</div><span class="route-sub">Manual review · ${escapeHtml(task.monitoringMode==='condition-watch'?'Condition watch':'Scheduled + condition watch')}</span></div>`;
+    }).join('')}`;
+  }
   const escapeHtml = s => String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[m]));
   const trim = (s,n=84) => String(s||'').length>n ? String(s).slice(0,n-1)+'…' : String(s||'');
   const flagAssetUrl = c => /^[a-z]{2}$/i.test(String(c?.cca2||'')) ? `https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.5.0/flags/4x3/${String(c.cca2).toLowerCase()}.svg` : '';
@@ -424,10 +452,13 @@
       box.innerHTML=`<div class="data-grid">${dataCard('From',segmentFrom(s))}${dataCard('To',segmentTo(s))}${dataCard('Plan depart',fmtDate(s.planDeparture))}${dataCard('Plan arrive',fmtDate(s.planArrival))}${dataCard('Booking tier',s.bookingTier||'—')}${dataCard('Data quality',englishValue(s.dataQuality)||'—')}${dataCard('Plan status',englishText(s.planStatus)||'—')}${dataCard('Budget',eur(s.transportBudgetEur))}</div><h3>Corridor</h3><p class="detail-copy">${escapeHtml(englishText(s.corridor||'—'))}</p>`;
     } else if(state.activeTab==='operations'){
       const recheck=recheckForSegment(s);
-      const recheckBlock=recheck?`<h3>Departure recheck</h3><div class="data-grid">${dataCard('Decision',String(recheck.decision||'—').toUpperCase())}${dataCard('Next recheck',fmtDate(recheck.nextScheduledRecheck))}${dataCard('Target date',fmtDate(recheck.targetDate))}${dataCard('Release control','Manual review')}</div><div class="op-callout"><b>Monitoring:</b> ${escapeHtml(recheck.monitoringMode==='condition-watch'?'Condition watch':'Scheduled + condition watch')}. Automatic promotion is disabled; a material official change requires a new source-backed review.</div>`:'';
+      const liveRecheck=runtimeRecheckState(recheck);
+      const movementRechecks=movementRechecksAfterSegment(s);
+      const recheckBlock=recheck?`<h3>Departure recheck</h3><div class="data-grid">${dataCard('Decision',String(recheck.decision||'—').toUpperCase())}${dataCard('Recheck status',liveRecheck.label)}${dataCard('Next recheck',fmtDate(liveRecheck.next||recheck.nextScheduledRecheck))}${dataCard('Target date',fmtDate(recheck.targetDate))}${dataCard('Release control','Manual review')}</div><div class="op-callout"><b>Monitoring:</b> ${escapeHtml(recheck.monitoringMode==='condition-watch'?'Condition watch':'Scheduled + condition watch')}. Automatic promotion is disabled; a material official change requires a new source-backed review.</div>`:'';
+      const movementBlock=movementRecheckMarkup(movementRechecks);
       box.innerHTML=`<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">${badge(s.alertLevel,statusColor(s.alertLevel))}${badge(`Tier ${s.bookingTier||'—'}`,colors.blue)}${state.criticalIds.has(s.id)?badge('Critical path',colors.red):''}${recheck?badge(String(recheck.decision||'').toUpperCase(),recheckColor(recheck)):''}</div>
       <div class="data-grid">${dataCard('Visa target',englishValue(s.visaTypeTarget)||'—',englishValue(s.visaStatusTarget)||'')}${dataCard('Health',`Priority ${s.healthPriorityTarget??'—'}`,englishValue(s.healthStatusTarget)||'')}${dataCard('Verified',fmtDate(s.lastVerified))}${dataCard('Criticality',`${s.criticalScore}/100-ish`)}</div>
-      ${s.alertMessage?`<div class="op-callout">${escapeHtml(englishText(s.alertMessage))}</div>`:''}${recheckBlock}<h3>Plan B</h3><p class="detail-copy">${escapeHtml(englishText(s.planB||'No specific fallback recorded; use surrounding hub/next published service logic.'))}</p>`;
+      ${s.alertMessage?`<div class="op-callout">${escapeHtml(englishText(s.alertMessage))}</div>`:''}${recheckBlock}${movementBlock}<h3>Plan B</h3><p class="detail-copy">${escapeHtml(englishText(s.planB||'No specific fallback recorded; use surrounding hub/next published service logic.'))}</p>`;
     } else {
       const links=sourceList(s.source); box.innerHTML=links.length?`<p class="detail-copy">Source links attached to this segment. “Verified” refers to the planning snapshot date, not a guarantee that conditions remain unchanged.</p>${links.map((u,i)=>`<a class="source-link" target="_blank" rel="noopener" href="${escapeHtml(u)}">Source ${i+1} · ${escapeHtml(trim(u,62))}</a>`).join('')}`:`<p class="detail-copy">No public source URL is attached to this segment in the current snapshot.</p>`;
     }
@@ -613,7 +644,7 @@
   async function init(){
     try{
       const [raw,recheckPlan,geo]=await Promise.all([fetch('./data/public-route.json').then(r=>{if(!r.ok)throw new Error('public data');return r.json()}),loadRecheckPlan(),loadGeo()]);
-      state.raw=raw; state.recheckPlan=recheckPlan; state.recheckByLeg=new Map((recheckPlan?.tasks||[]).filter(task=>task.category==='international-leg'&&task.legId).map(task=>[Number(task.legId),task])); state.geo=geo; buildGeoIndex(geo); enrich(); restoreUrl(); fillFilters(); bindUI(); renderChrome(); updateRange(); updateTimeline(); renderDetail(); initGlobe();
+      state.raw=raw; state.recheckPlan=recheckPlan; state.recheckByLeg=new Map((recheckPlan?.tasks||[]).filter(task=>task.category==='international-leg'&&task.legId).map(task=>[Number(task.legId),task])); state.recheckMovementByLeg=new Map(); for(const task of (recheckPlan?.tasks||[])){if(task.category!=='operational-movement'||!task.legId)continue;const legId=Number(task.legId);const rows=state.recheckMovementByLeg.get(legId)||[];rows.push(task);state.recheckMovementByLeg.set(legId,rows);} state.geo=geo; buildGeoIndex(geo); enrich(); restoreUrl(); fillFilters(); bindUI(); renderChrome(); updateRange(); updateTimeline(); renderDetail(); initGlobe();
       if(state.selectedCountry)focusCountry(state.selectedCountry,0);else{const s=state.segments.find(x=>x.id===state.selectedSegmentId);if(s&&state.selectedSegmentId!==1)focusSegment(s,0)}
       const missing=state.countries.filter(c=>!c.lat&&!c.lng).map(c=>c.name); if(missing.length)console.warn('Countries without coordinates',missing);
     }catch(e){console.error(e);$('#globeLoader').classList.add('hidden');$('#globeFallback').classList.remove('hidden');$('#globeFallback').textContent='Public route data could not be loaded. Run this site through a local/static web server rather than opening index.html directly.';}
