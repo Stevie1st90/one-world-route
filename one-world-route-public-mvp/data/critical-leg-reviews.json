@@ -167,50 +167,55 @@
       "title": "Turkmenistan → Afghanistan",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "border-permission-dependent",
+      "routeEvidence": "border-freight-only-current",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
+        "https://afghanistan.tmembassy.gov.tm/en/news/84854",
+        "https://germany.tmembassy.gov.tm/index.php/de/news/84645",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/turkmenistansicherheit-206774",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/afghanistansicherheit-204692"
       ],
-      "notes": "Turkmenistan explicitly warns against onward travel to Afghanistan and notes special-permission areas. The Serhetabat–Torghundi concept remains HOLD until both sides confirm crossing permission."
+      "notes": "Turkmenistan reported on 26 August 2026 that the Serhetabad–Torghundi checkpoint is operating smoothly for substantial freight traffic. That does not establish ordinary tourist/passenger crossing availability. The border evidence is current, but passenger executability remains permission-dependent and Afghanistan remains under an official German travel warning, so the leg stays on HOLD."
     },
     "108": {
       "legId": 108,
       "title": "Afghanistan → Pakistan",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "border-status-volatile",
+      "routeEvidence": "border-restricted-current",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.gov.uk/foreign-travel-advice/pakistan/entry-requirements",
+        "https://mofa.gov.pk/press-releases/transcript-of-the-press-briefing-by-the-spokesperson-on-thursday-16-july-2026",
+        "https://pid.gov.pk/site/press_detail/33719",
+        "https://www.gov.uk/foreign-travel-advice/pakistan",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/afghanistansicherheit-204692",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/pakistansicherheit-204974"
       ],
-      "notes": "Afghanistan is under a travel warning and Pakistan–Afghanistan crossings can close or be restricted. Torkham must be checked immediately before travel."
+      "notes": "Pakistan's July 2026 official briefings document restricted Torkham movement for humanitarian cargo and selected stranded students rather than normal unrestricted passenger traffic. The current border evidence therefore supports continued restriction, not a READY corridor. Afghanistan and the Pakistan border region remain under severe travel warnings, so the leg stays on HOLD."
     },
     "109": {
       "legId": 109,
       "title": "Pakistan → Iran",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "border-status-volatile",
+      "routeEvidence": "limited-passenger-access-current",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.gov.uk/foreign-travel-advice/pakistan/entry-requirements",
+        "https://dtm.iom.int/reports/pakistan-joint-iom-and-unhcr-border-monitoring-report-inflows-islamic-republic-iran-01-1",
+        "https://www.fbr.gov.pk/he-iranian-ambassador-in-pakistan-calls-on-chairman-fbr/163247",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/pakistansicherheit-204974",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/iransicherheit-202396"
       ],
-      "notes": "The Pakistan–Iran land corridor runs through high-risk border regions and can face closures or restrictions. Keep Taftan/Mirjaveh on HOLD pending current permits and opening status."
+      "notes": "IOM/UNHCR monitored 2026 inflows through the Taftan crossing, while Pakistan FBR identifies Taftan–Mirjaveh as an operating border gate. Current public evidence does not establish unrestricted ordinary tourist passage in both directions, and both Balochistan and Iran remain high-risk. The leg therefore stays on HOLD."
     },
     "114": {
       "legId": 114,
@@ -251,32 +256,37 @@
       "title": "Syrien → Libanon",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "land-border-high-risk",
+      "routeEvidence": "border-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://syriaishome.org/en/border-and-customs/",
+        "https://www.general-security.gov.lb/en/operations/details/181",
+        "https://www.general-security.gov.lb/en/posts/148",
+        "https://isf.gov.lb/news/arrest-of-a-dangerous-wanted-individual-involved-in-drug-trafficking-crimes-and-dismantling-of-an-international-network-that-was-preparing-to-smuggle-85-kg-of-captagon-to-kuwait-by-the-central-anti/",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/syriensicherheit-204278",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/libanonsicherheit-204048"
       ],
-      "notes": "Syria is under a travel warning and Lebanon warns against the Syrian border region. Keep the Masnaa/Jdaidet Yabous crossing concept on HOLD."
+      "notes": "Lebanese General Security currently lists Al Masnaa as an active border center and offers traveler express services there; Lebanese ISF also documented an actual Syria-to-Lebanon handover at Masnaa in March 2026. This refresh confirms active border infrastructure, not unrestricted tourist safety. Syria and Lebanon remain subject to severe official warnings, so the leg stays on HOLD."
     },
     "118": {
       "legId": 118,
       "title": "Zypern → Libyen",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "routing-not-service-verified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
+        "https://flights.aegeanair.com/en/flights-from-larnaca-to-istanbul",
+        "https://www.turkishairlines.com/en-de/book-flights-to-libya",
+        "https://www.turkishairlines.com/de-de/flights/flights-to-tripoli/",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/libyensicherheit-219624"
       ],
-      "notes": "Libya remains under a travel warning. Geometry may select a transit routing, but actual airline service, visa acceptance and security remain unverified."
+      "notes": "AEGEAN currently publishes Larnaka–Istanbul fares through the 2026/27 horizon and Turkish Airlines currently operates Istanbul–Tripoli Mitiga, supporting the planned one-stop Cyprus–Libya routing. This safety review does not certify transport availability; Libya remains under an official German travel warning, so the leg stays on HOLD."
     },
     "119": {
       "legId": 119,
@@ -530,34 +540,38 @@
       "title": "Oman → Jemen",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "routing-not-service-verified",
+      "routeEvidence": "service-suspended-current",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://yemenia.com/ar/news/yemenia-riy-first-flight",
+        "https://services.omanair.com/ae/ar/flights/flights-from-Muscat-to-Jeddah",
+        "https://yemenia.com/ar/news/yemenia-suspends-operations",
+        "https://yemenia.com/flights-schedule",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/omansicherheit-204160",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/jemensicherheit-202260"
       ],
-      "notes": "Yemen is under a travel warning and Oman advises against the immediate Yemen border region. The selected airport geometry does not establish a bookable or safe service."
+      "notes": "Oman Air continues to expose Muscat–Jeddah routing, but Yemenia announced on 26 September 2026 that all operations are suspended until further notice for safety reasons. The planned onward Yemen air segment is therefore not presently established as executable. Yemen remains under an official German travel warning, so the leg stays on HOLD."
     },
     "179": {
       "legId": 179,
       "title": "Jemen → Jordanien",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "existing-service-source-not-reverified",
+      "routeEvidence": "service-suspended-current",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.flightconnections.com/flights-from-ade-to-amm",
+        "https://yemenia.com/ar/news/yemenia-suspends-operations",
+        "https://www.amman-airport.com/queen-alia-airlines/yemenia",
+        "https://yemenia.com/flights-schedule",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/jemensicherheit-202260",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/jordaniensicherheit-218008"
       ],
-      "notes": "Yemen is under a travel warning. Reverify ADE–AMM service, airport access and regional airspace before travel."
+      "notes": "Queen Alia Airport data shows Yemenia had been operating Aden–Amman four days per week through September 2026, but Yemenia announced on 26 September 2026 that all operations are suspended until further notice. Current evidence therefore requires treating the service as suspended, not available. Yemen remains under an official German travel warning, so the leg stays on HOLD."
     },
     "180": {
       "legId": 180,
