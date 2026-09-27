@@ -34,6 +34,18 @@ test('@flagship operations exposes departure recheck controls',async({page})=>{
   expect(errors,'flagship recheck runtime page errors').toEqual([]);
 });
 
+test('@flagship operational movement exposes recheck status',async({page})=>{
+  test.setTimeout(30000);
+  const errors=capturePageErrors(page);
+  await page.goto('/?segment=107&mode=operations&lang=en',{waitUntil:'domcontentloaded'});
+  const transfer=page.locator('[data-movement-id="transfer-106-107"]');
+  await expect(transfer).toBeVisible({timeout:15000});
+  await expect(transfer).toContainText('TRANSFER · reviewed · HOLD');
+  await expect(transfer).toContainText('Recheck: 2027-04-17 · manual release only');
+  await expect(page.locator('.ops-gate')).toContainText('next scheduled recheck 2026-11-01');
+  expect(errors,'movement recheck runtime page errors').toEqual([]);
+});
+
 test('@regional representative regional shell boots cleanly',async({page,isMobile})=>{
   test.setTimeout(30000);
   expect(regional).toBeTruthy();

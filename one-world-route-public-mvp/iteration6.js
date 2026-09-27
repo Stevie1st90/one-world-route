@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const runtime={data:null,readiness:null,queue:null,segments:[],selectedId:1,observer:null,renderFrame:null};
+  const runtime={data:null,readiness:null,queue:null,recheck:null,recheckByMovement:new Map(),segments:[],selectedId:1,observer:null,renderFrame:null};
   const $=(s,r=document)=>r.querySelector(s);
   const $$=(s,r=document)=>[...r.querySelectorAll(s)];
   const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -24,15 +24,18 @@
   async function loadData(){
     if(runtime.data)return runtime.data;
     try{
-      const [r,c,readiness,queue]=await Promise.all([
+      const [r,c,readiness,queue,recheck]=await Promise.all([
         fetch('./data/public-route.json',{cache:'force-cache'}),
         fetch('./data/country-centroids.json',{cache:'force-cache'}),
         fetch('./data/flagship-readiness.json',{cache:'no-cache'}),
-        fetch('./data/flagship-operations-queue.json',{cache:'no-cache'})
+        fetch('./data/flagship-operations-queue.json',{cache:'no-cache'}),
+        fetch('./data/flagship-recheck-plan.json',{cache:'no-cache'})
       ]);
       runtime.data=await r.json();
       runtime.readiness=await readiness.json();
       runtime.queue=await queue.json();
+      runtime.recheck=await recheck.json();
+      runtime.recheckByMovement=new Map((runtime.recheck?.tasks||[]).filter(task=>task.category==='operational-movement'&&task.movementId).map(task=>[task.movementId,task]));
       runtime.operational=await window.ONE_WORLD_MOVEMENTS.ready;
       const countries=await c.json();
       EN.registerCountries?.(countries||[]);
@@ -134,6 +137,7 @@
     const blockers=r.blockers||[];
     const reviews=r.criticalReviews||{};
     const top=(q.tasks||[]).filter(task=>task.blocksDeparture).slice(0,5);
+    const nextRecheck=runtime.recheck?.summary?.nextScheduledRecheck||null;
     const taskDetail=task=>task.reviewDecision
       ?`reviewed ${String(task.reviewDecision).toUpperCase()} · ${task.reviewSafetyState||'critical'}`
       :[...task.blockers,...task.missing].slice(0,3).join(' · ');
@@ -145,14 +149,19 @@
         <div><span>Blocking tasks</span><b>${q.summary.blocking}</b></div>
         <div><span>Critical reviewed</span><b>${reviews.reviewed??0}/${reviews.total??r.evidence.feasibility.critical}</b></div>
       </div>
-      <div class="ops-gate ${r.status.departureReady?'ready':'blocked'}"><span>${r.status.departureReady?'DEPARTURE READY':'DEPARTURE BLOCKED'}</span><b>${blockers.length} blocker categories · ${reviews.blocked??0} critical decisions blocked · evidence as of ${esc(r.dataAsOf||'unknown')}</b></div>
+      <div class="ops-gate ${r.status.departureReady?'ready':'blocked'}"><span>${r.status.departureReady?'DEPARTURE READY':'DEPARTURE BLOCKED'}</span><b>${blockers.length} blocker categories · ${reviews.blocked??0} critical decisions blocked · evidence as of ${esc(r.dataAsOf||'unknown')} · next scheduled recheck ${esc(nextRecheck||'condition watch')}</b></div>
       ${top.length?'<div class="ops-queue">'+top.map(task=>`<button type="button" ${task.legId?`data-segment="${task.legId}"`:''}><span>${esc(task.priority)} · ${esc(task.category)}</span><b>${esc(task.title)}</b><small>${esc(taskDetail(task))}</small></button>`).join('')+'</div>':''}
     `;
   }
 
   function movementTimeline(s){
     const items=runtime.operational?.movements||[];
-    const card=m=>`<article class="ops-movement" data-movement-id="${esc(m.id)}"><small>TRANSFER · ${esc(m.reviewStatus)}</small><b>${esc(m.from)} → ${esc(m.to)}</b><span>${esc(m.mode||'Mode to confirm')} · ${m.distanceKm===null?'Distance unknown':`${m.distanceBasis==='geodesic-lower-bound'?'≥ ':''}${m.distanceKm} km (${m.distanceBasis==='geodesic-lower-bound'?'straight-line':'route estimate'})`}</span><span>${m.durationBasis==='planning-allowance'?'Time allowance':'Duration'}: ${m.plannedDuration===null?'unknown':m.plannedDuration+' min'} · Estimated cost: ${m.estimatedCost===null?'unpriced':euro(m.estimatedCost)}</span><span>Window: ${esc(m.planningWindow.after||'unknown')} → ${esc(m.planningWindow.before||'unknown')}</span><span>Status: ${esc(m.status)} · Booking: ${esc(m.bookingStatus)}</span><details><summary>Planning evidence and actuals</summary><p>${esc(m.notes)}</p><p>Last verified: ${esc(m.lastVerified||'Not verified')}<br>Actual departure: ${esc(m.actualDeparture||'Not recorded')}<br>Actual arrival: ${esc(m.actualArrival||'Not recorded')}<br>Actual cost: ${m.actualCost===null?'Not recorded':euro(m.actualCost)}</p></details></article>`;
+    const card=m=>{
+      const recheck=runtime.recheckByMovement.get(m.id)||null;
+      const reviewLabel=recheck?`${m.reviewStatus} · ${String(recheck.decision||'').toUpperCase()}`:m.reviewStatus;
+      const recheckLine=recheck?`<span>Recheck: ${esc(recheck.nextScheduledRecheck||'condition watch')} · manual release only</span>`:'';
+      return `<article class="ops-movement" data-movement-id="${esc(m.id)}"><small>TRANSFER · ${esc(reviewLabel)}</small><b>${esc(m.from)} → ${esc(m.to)}</b><span>${esc(m.mode||'Mode to confirm')} · ${m.distanceKm===null?'Distance unknown':`${m.distanceBasis==='geodesic-lower-bound'?'≥ ':''}${m.distanceKm} km (${m.distanceBasis==='geodesic-lower-bound'?'straight-line':'route estimate'})`}</span><span>${m.durationBasis==='planning-allowance'?'Time allowance':'Duration'}: ${m.plannedDuration===null?'unknown':m.plannedDuration+' min'} · Estimated cost: ${m.estimatedCost===null?'unpriced':euro(m.estimatedCost)}</span><span>Window: ${esc(m.planningWindow.after||'unknown')} → ${esc(m.planningWindow.before||'unknown')}</span><span>Status: ${esc(m.status)} · Booking: ${esc(m.bookingStatus)}</span>${recheckLine}<details><summary>Planning evidence and actuals</summary><p>${esc(m.notes)}</p><p>Last verified: ${esc(m.lastVerified||'Not verified')}<br>Actual departure: ${esc(m.actualDeparture||'Not recorded')}<br>Actual arrival: ${esc(m.actualArrival||'Not recorded')}<br>Actual cost: ${m.actualCost===null?'Not recorded':euro(m.actualCost)}</p></details></article>`;
+    };
     const before=items.filter(m=>m.parentBeforeLeg===Number(s.id)),after=items.filter(m=>m.parentAfterLeg===Number(s.id));
     const home=Number(s.id)===runtime.segments.length?runtime.data?.postTripReturn:null;
     const returnCard=home?`<article class="ops-movement ops-return"><small>POST-TRIP RETURN · NOT AN OFFICIAL LEG</small><b>${esc(home.corridor)}</b><span>${esc(home.note||'')}</span></article>`:'';
