@@ -331,51 +331,54 @@
       "title": "Mali → Burkina Faso",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "existing-service-source-not-reverified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.flightconnections.com/flights-from-bko-to-oua",
+        "https://flights.flyairsenegal.com/en/flights-from-bamako-to-ouagadougou",
+        "https://flights.flyairsenegal.com/en/flights-to-ouagadougou",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/malisicherheit-208258",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/burkinafasosicherheit-212336"
       ],
-      "notes": "Mali is under a travel warning and Burkina Faso has extensive regional warnings. Reverify BKO–OUA service and security before travel."
+      "notes": "Air Senegal currently publishes Bamako–Ouagadougou as an active West African route and advertises recurring Ouagadougou service. The route evidence layer is refreshed; this safety review does not certify service availability. Mali and Burkina Faso remain subject to severe official warnings, so the leg stays on HOLD."
     },
     "125": {
       "legId": 125,
       "title": "Burkina Faso → Niger",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "existing-service-source-not-reverified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.directflights.com/OUA-NIM",
+        "https://www.aircotedivoire.com/en/flights-from-ouagadougou-to-niamey",
+        "https://www.aircotedivoire.com/fr/vols-de-niamey-a-ouagadougou",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/burkinafasosicherheit-212336",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/nigersicherheit-226384"
       ],
-      "notes": "Niger is under a travel warning with an exit recommendation. OUA–NIM remains HOLD despite the existing route source."
+      "notes": "Air Côte d’Ivoire currently publishes the Ouagadougou–Niamey city pair in its booking inventory, including current 2026 fare pages in the reverse direction. The route evidence layer is refreshed; this safety review does not certify service availability. Burkina Faso and Niger remain under severe official warnings, so the leg stays on HOLD."
     },
     "126": {
       "legId": 126,
       "title": "Niger → Tschad",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "existing-service-source-not-reverified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.directflights.com/NIM-NDJ",
+        "https://www.turkishairlines.com/en/flights-from-ndjamena-to-niamey",
+        "https://www.turkishairlines.com/en/book-flights-to-niger",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/nigersicherheit-226384",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/tschadsicherheit-225774"
       ],
-      "notes": "Niger remains under a travel warning and Chad has warnings across multiple border regions. Reverify NIM–NDJ service and conditions before travel."
+      "notes": "Turkish Airlines currently publishes N'Djamena–Niamey booking inventory, confirming the operated city pair underlying the Niamey–N'Djamena route evidence. This safety review does not certify service availability. Niger and Chad remain under severe official warnings, so the leg stays on HOLD."
     },
     "127": {
       "legId": 127,
@@ -468,34 +471,35 @@
       "title": "Somalia → Dschibuti",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "existing-service-source-not-reverified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.flightconnections.com/flights-from-mgq-to-jib",
+        "https://www.air-djibouti.com/",
+        "https://www.qatarairways.com/en/destinations/flights-to-djibouti/from-mogadishu.html",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/somaliasicherheit-203132",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/dschibutisicherheit-212168"
       ],
-      "notes": "Somalia is under a travel warning; Djibouti discourages remote Somalia-border travel. Reverify MGQ–JIB service before travel."
+      "notes": "Air Djibouti currently lists Mogadishu among its active destinations, while Qatar Airways currently sells Mogadishu–Djibouti itineraries. The route evidence layer is refreshed; this safety review does not certify service availability or a specific nonstop operator. Somalia remains under an official German travel warning, so the leg stays on HOLD."
     },
     "170": {
       "legId": 170,
       "title": "Eritrea → Sudan",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "existing-service-source-not-reverified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.flightconnections.com/flights-from-asm-to-pzu",
+        "https://shabait.com/2026/05/23/badr-airlines-starts-commercial-flight/",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/eritreasicherheit-226176",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/sudansicherheit-203266"
       ],
-      "notes": "Sudan is under a travel warning and Eritrea has border restrictions. Reverify ASM–PZU service and Sudan entry conditions."
+      "notes": "Eritrea's Ministry of Information reported the May 2026 launch of Badr Airlines commercial service between Port Sudan and Asmara, with regular travel services to and from Eritrea. The route evidence layer is refreshed; this safety review does not certify future availability. Sudan remains under an official German travel warning, so the leg stays on HOLD."
     },
     "171": {
       "legId": 171,
