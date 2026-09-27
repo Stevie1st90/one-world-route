@@ -89,8 +89,8 @@
     "geometryScope": "Airport coordinates only; geometry does not verify airline service, schedules or booking availability."
   },
   "evidence": {
-    "sourcedSegments": 184,
-    "sourcedSegmentsPercent": 94.8,
+    "sourcedSegments": 194,
+    "sourcedSegmentsPercent": 100,
     "segmentsWithVerificationDate": 194,
     "segmentsWithVerificationDatePercent": 100,
     "invalidVerificationDates": [],
