@@ -89,16 +89,12 @@
     "geometryScope": "Airport coordinates only; geometry does not verify airline service, schedules or booking availability."
   },
   "evidence": {
-    "sourcedSegments": 181,
-    "sourcedSegmentsPercent": 93.3,
-    "segmentsWithVerificationDate": 191,
-    "segmentsWithVerificationDatePercent": 98.5,
+    "sourcedSegments": 184,
+    "sourcedSegmentsPercent": 94.8,
+    "segmentsWithVerificationDate": 194,
+    "segmentsWithVerificationDatePercent": 100,
     "invalidVerificationDates": [],
-    "missingVerificationDates": [
-      34,
-      149,
-      151
-    ],
+    "missingVerificationDates": [],
     "feasibility": {
       "plannable": 117,
       "conditional": 42,
@@ -194,17 +190,6 @@
         "transfer-98-99"
       ],
       "goal": "Geometry is intentionally deferred while the associated movement is HOLD/BLOCKED; re-evaluate only when the corridor becomes executable."
-    },
-    {
-      "priority": "P2",
-      "id": "route-verification-dates",
-      "count": 3,
-      "items": [
-        34,
-        149,
-        151
-      ],
-      "goal": "Refresh source-backed verification dates for operational route claims."
     }
   ],
   "blockers": [
