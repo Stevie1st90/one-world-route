@@ -14,7 +14,7 @@ if(data.postTripReturn?.countedInInternationalLegs!==false)fail('Post-trip retur
 const privatePattern=/(passport|pnr|booking.?reference|payment.?date|insurance.?id|emergency.?contact|card.?number|private.?document|liquidity)/i;
 const walk=(v,path='root')=>{if(!v||typeof v!=='object')return;for(const [k,x] of Object.entries(v)){if(privatePattern.test(k))fail('Private field detected at '+path+'.'+k);if(typeof x==='object')walk(x,path+'.'+k)}};
 walk(data);
-for(const file of ['operational-movements.json','flight-geometries.json','flight-geometry-overrides.json','critical-leg-reviews.json','flagship-readiness.json','flagship-operations-queue.json','airports.json','actual-progress.json','media.json'])walk(JSON.parse(await readFile(new URL('../data/'+file,import.meta.url),'utf8')),file);
+for(const file of ['operational-movements.json','flight-geometries.json','flight-geometry-overrides.json','critical-leg-reviews.json','flagship-readiness.json','flagship-operations-queue.json','flagship-recheck-plan.json','airports.json','actual-progress.json','media.json'])walk(JSON.parse(await readFile(new URL('../data/'+file,import.meta.url),'utf8')),file);
 
 const criticalReviews=JSON.parse(await readFile(new URL('../data/critical-leg-reviews.json',import.meta.url),'utf8'));
 const criticalIds=(data.segments||[]).filter(segment=>segment.feasibility==='Kritisch').map(segment=>Number(segment.id));
@@ -29,6 +29,32 @@ for(const id of criticalIds){
   if(!Array.isArray(review?.sources)||!review.sources.length)fail('Critical leg '+id+' review must include sources');
   if(review?.transportServiceVerified!==false)fail('Critical leg '+id+' must not imply service verification through the safety review');
 }
+const operationalMovements=JSON.parse(await readFile(new URL('../data/operational-movements.json',import.meta.url),'utf8'));
+const recheckPlan=JSON.parse(await readFile(new URL('../data/flagship-recheck-plan.json',import.meta.url),'utf8'));
+const expectedRecheckIds=[
+  ...criticalIds.map(id=>'leg-'+id),
+  ...(operationalMovements.movements||[])
+    .filter(movement=>['hold','blocked'].includes(movement.operationalDecision))
+    .map(movement=>'movement-'+movement.id),
+].sort();
+const actualRecheckIds=(recheckPlan.items||[]).map(item=>item.id).sort();
+if(recheckPlan.schemaVersion!==1)fail('Flagship recheck plan schemaVersion must be 1');
+if(recheckPlan.tripId!=='world-195')fail('Flagship recheck plan tripId must be world-195');
+if(JSON.stringify(expectedRecheckIds)!==JSON.stringify(actualRecheckIds))fail('Flagship recheck plan coverage must exactly match critical legs and HOLD/BLOCKED movements');
+for(const item of recheckPlan.items||[]){
+  if(!['hold','blocked'].includes(item.currentDecision))fail('Recheck item '+item.id+' must carry an explicit HOLD/BLOCKED decision');
+  if(item.blocksDeparture!==true)fail('Recheck item '+item.id+' must remain departure-blocking');
+  if(!verificationDate(item.reviewedAt))fail('Recheck item '+item.id+' has invalid reviewedAt');
+  if(!Array.isArray(item.triggerOn)||!item.triggerOn.length)fail('Recheck item '+item.id+' must declare material-change triggers');
+  if(item.travelDate!==null){
+    if(!verificationDate(item.travelDate))fail('Recheck item '+item.id+' has invalid travelDate');
+    const t7=item.schedule?.tMinus7?.date;
+    const t48=item.schedule?.tMinus48h?.date;
+    if(!verificationDate(t7)||!verificationDate(t48))fail('Recheck item '+item.id+' must have T-7 and T-48h dates');
+    if(!(t7<t48&&t48<item.travelDate))fail('Recheck item '+item.id+' checkpoint chronology is invalid');
+  }
+}
+
 const geometryOverrides=JSON.parse(await readFile(new URL('../data/flight-geometry-overrides.json',import.meta.url),'utf8'));
 for(const [id,value] of Object.entries(geometryOverrides.selections||{})){
   const segment=data.segments?.find(item=>Number(item.id)===Number(id));

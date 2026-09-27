@@ -172,8 +172,12 @@ jobs:
           node --check scripts/verification-date-model.mjs
           node --check scripts/flagship-readiness-model.mjs
           node --check scripts/flagship-operations-queue-model.mjs
+          node --check scripts/flagship-recheck-plan-model.mjs
           node --check scripts/audit-flagship-readiness.mjs
+          node --check scripts/audit-flagship-rechecks.mjs
           node --check scripts/build-flagship-operations-queue.mjs
+          node --check scripts/build-flagship-recheck-plan.mjs
+          node --check scripts/test-flagship-recheck-plan.mjs
           node --check scripts/test-flagship-topology.mjs
           node --check scripts/test-verification-dates.mjs
           node --check scripts/test-flagship-readiness.mjs
@@ -245,8 +249,11 @@ jobs:
         run: |
           node scripts/audit-flagship-readiness.mjs --check
           node scripts/build-flagship-operations-queue.mjs --check
+          node scripts/build-flagship-recheck-plan.mjs --check
       - name: Flagship operations queue tests
         run: node --test scripts/test-flagship-operations-queue.mjs
+      - name: Flagship recheck plan tests
+        run: node --test scripts/test-flagship-recheck-plan.mjs
 
   release:
     name: Release build and preview

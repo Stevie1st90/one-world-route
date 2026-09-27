@@ -1,0 +1,1560 @@
+{
+  "schemaVersion": 1,
+  "tripId": "world-195",
+  "dataAsOf": "2026-09-27",
+  "policy": {
+    "fixedCheckpoints": [
+      "T-7d",
+      "T-48h"
+    ],
+    "immediateTriggers": [
+      "material-regional-change",
+      "official-security-advice-change",
+      "entry-border-rule-change",
+      "transport-service-status-change",
+      "dependent-leg-decision-change"
+    ],
+    "principle": "A completed review does not clear a HOLD/BLOCKED item. Rechecks update evidence and decisions only when current sources justify a change."
+  },
+  "summary": {
+    "total": 43,
+    "internationalLegs": 35,
+    "operationalMovements": 8,
+    "hold": 38,
+    "blocked": 5,
+    "dueAtDataAsOf": 0,
+    "upcoming30Days": 0,
+    "unscheduledTravelDate": 1,
+    "eventDrivenWatch": 43,
+    "nextScheduledRecheck": "2026-11-01"
+  },
+  "nextScheduledItems": [
+    {
+      "itemId": "leg-13",
+      "checkpoint": "T-7d"
+    }
+  ],
+  "items": [
+    {
+      "id": "leg-13",
+      "category": "international-leg",
+      "legId": 13,
+      "movementId": null,
+      "title": "Polen → Ukraine",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2026-11-08",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 42,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        13
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2026-11-01",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2026-11-06",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-14",
+      "category": "international-leg",
+      "legId": 14,
+      "movementId": null,
+      "title": "Ukraine → Moldau",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2026-11-11",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 45,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "volatile",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        14
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2026-11-04",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2026-11-09",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-54",
+      "category": "international-leg",
+      "legId": 54,
+      "movementId": null,
+      "title": "Venezuela → Brasilien",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-01-12",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 107,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "partial-travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        54
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-01-05",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-01-10",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-89",
+      "category": "international-leg",
+      "legId": 89,
+      "movementId": null,
+      "title": "Laos → Myanmar",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-03-25",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 179,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        89
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-03-18",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-03-23",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-90",
+      "category": "international-leg",
+      "legId": 90,
+      "movementId": null,
+      "title": "Myanmar → Bangladesch",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-03-26",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 180,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        90
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-03-19",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-03-24",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-97",
+      "category": "international-leg",
+      "legId": 97,
+      "movementId": null,
+      "title": "China → Nordkorea",
+      "currentDecision": "blocked",
+      "actionClass": "external-change-required",
+      "travelDate": "2027-04-07",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 192,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "general-entry-closed-current",
+      "safetyState": "high-risk",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        97
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-03-31",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-04-05",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-96-97",
+      "category": "operational-movement",
+      "legId": 96,
+      "movementId": "transfer-96-97",
+      "title": "Shanghai (PVG), nonstop → China",
+      "currentDecision": "blocked",
+      "actionClass": "external-change-required",
+      "travelDate": "2027-04-07",
+      "travelDateBasis": "planning-window-before",
+      "daysUntilTravelFromDataAsOf": 192,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "north-korea-entry-corridor-not-established",
+      "safetyState": null,
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "dependent-leg-decision-change",
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        96,
+        97
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-03-31",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-04-05",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-98",
+      "category": "international-leg",
+      "legId": 98,
+      "movementId": null,
+      "title": "Nordkorea → Südkorea",
+      "currentDecision": "blocked",
+      "actionClass": "external-change-required",
+      "travelDate": "2027-04-09",
+      "travelDateBasis": "plan-arrival",
+      "daysUntilTravelFromDataAsOf": 194,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "no-ordinary-tourist-crossing-current",
+      "safetyState": "restricted-border",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        98
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-04-02",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-04-07",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-98-99",
+      "category": "operational-movement",
+      "legId": 98,
+      "movementId": "transfer-98-99",
+      "title": "Südkorea (operativer Korridor offen) → Busan",
+      "currentDecision": "blocked",
+      "actionClass": "external-change-required",
+      "travelDate": "2027-04-09",
+      "travelDateBasis": "planning-window-before",
+      "daysUntilTravelFromDataAsOf": 194,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "south-korea-start-endpoint-depends-on-blocked-dprk-crossing",
+      "safetyState": null,
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "dependent-leg-decision-change",
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        98,
+        99
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-04-02",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-04-07",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-101",
+      "category": "international-leg",
+      "legId": 101,
+      "movementId": null,
+      "title": "Mongolei → Russland",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-04-13",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 198,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        101
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-04-06",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-04-11",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-102",
+      "category": "international-leg",
+      "legId": 102,
+      "movementId": null,
+      "title": "Russland → Kasachstan",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-04-15",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 200,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        102
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-04-08",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-04-13",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-107",
+      "category": "international-leg",
+      "legId": 107,
+      "movementId": null,
+      "title": "Turkmenistan → Afghanistan",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-04-24",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 209,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "border-freight-only-current",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        107
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-04-17",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-04-22",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-106-107",
+      "category": "operational-movement",
+      "legId": 106,
+      "movementId": "transfer-106-107",
+      "title": "Türkmenabat → Serhetabat",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-04-24",
+      "travelDateBasis": "planning-window-before",
+      "daysUntilTravelFromDataAsOf": 209,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "serhetabat-border-permission-dependent",
+      "safetyState": null,
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "dependent-leg-decision-change",
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        106,
+        107
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-04-17",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-04-22",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-108",
+      "category": "international-leg",
+      "legId": 108,
+      "movementId": null,
+      "title": "Afghanistan → Pakistan",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-04-27",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 212,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "border-restricted-current",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        108
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-04-20",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-04-25",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-107-108",
+      "category": "operational-movement",
+      "legId": 107,
+      "movementId": "transfer-107-108",
+      "title": "Torghundi, nur mit vorheriger Genehmigung → Kabul",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-04-27",
+      "travelDateBasis": "planning-window-before",
+      "daysUntilTravelFromDataAsOf": 212,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "afghanistan-travel-warning-and-border-volatility",
+      "safetyState": null,
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "dependent-leg-decision-change",
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        107,
+        108
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-04-20",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-04-25",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-109",
+      "category": "international-leg",
+      "legId": 109,
+      "movementId": null,
+      "title": "Pakistan → Iran",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-05-01",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 216,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "limited-passenger-access-current",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        109
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-04-24",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-04-29",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-108-109",
+      "category": "operational-movement",
+      "legId": 108,
+      "movementId": "transfer-108-109",
+      "title": "Peshawar → Quetta",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-05-01",
+      "travelDateBasis": "planning-window-before",
+      "daysUntilTravelFromDataAsOf": 216,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "peshawar-quetta-route-crosses-travel-warning-regions",
+      "safetyState": null,
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "dependent-leg-decision-change",
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        108,
+        109
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-04-24",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-04-29",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-109-110",
+      "category": "operational-movement",
+      "legId": 109,
+      "movementId": "transfer-109-110",
+      "title": "Zahedan → Teheran (IKA)",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-05-05",
+      "travelDateBasis": "planning-window-before",
+      "daysUntilTravelFromDataAsOf": 220,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "iran-countrywide-travel-warning",
+      "safetyState": null,
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "dependent-leg-decision-change",
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        109,
+        110
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-04-28",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-05-03",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-114",
+      "category": "international-leg",
+      "legId": 114,
+      "movementId": null,
+      "title": "Türkei → Irak",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-05-15",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 230,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        114
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-05-08",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-05-13",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-115",
+      "category": "international-leg",
+      "legId": 115,
+      "movementId": null,
+      "title": "Irak → Syrien",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-05-16",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 231,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        115
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-05-09",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-05-14",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-116",
+      "category": "international-leg",
+      "legId": 116,
+      "movementId": null,
+      "title": "Syrien → Libanon",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-05-19",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 234,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "border-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        116
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-05-12",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-05-17",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-115-116",
+      "category": "operational-movement",
+      "legId": 115,
+      "movementId": "transfer-115-116",
+      "title": "Damaskus (DAM), nonstop → Damaskus",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-05-19",
+      "travelDateBasis": "planning-window-before",
+      "daysUntilTravelFromDataAsOf": 234,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "syria-countrywide-travel-warning",
+      "safetyState": null,
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "dependent-leg-decision-change",
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        115,
+        116
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-05-12",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-05-17",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-118",
+      "category": "international-leg",
+      "legId": 118,
+      "movementId": null,
+      "title": "Zypern → Libyen",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-05-25",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 240,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        118
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-05-18",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-05-23",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-119",
+      "category": "international-leg",
+      "legId": 119,
+      "movementId": null,
+      "title": "Libyen → Tunesien",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-05-29",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 244,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        119
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-05-22",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-05-27",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-122",
+      "category": "international-leg",
+      "legId": 122,
+      "movementId": null,
+      "title": "Marokko → Mauretanien",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-06-05",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 251,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "dakhla-guerguerat-service-current-crossborder-continuity-unconfirmed",
+      "safetyState": "high-risk-corridor",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        122
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-05-29",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-06-03",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-123",
+      "category": "international-leg",
+      "legId": 123,
+      "movementId": null,
+      "title": "Mauretanien → Mali",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-06-09",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 255,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        123
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-06-02",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-06-07",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-124",
+      "category": "international-leg",
+      "legId": 124,
+      "movementId": null,
+      "title": "Mali → Burkina Faso",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-06-12",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 258,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        124
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-06-05",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-06-10",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-125",
+      "category": "international-leg",
+      "legId": 125,
+      "movementId": null,
+      "title": "Burkina Faso → Niger",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-06-14",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 260,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        125
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-06-07",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-06-12",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-126",
+      "category": "international-leg",
+      "legId": 126,
+      "movementId": null,
+      "title": "Niger → Tschad",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-06-16",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 262,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        126
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-06-09",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-06-14",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-127",
+      "category": "international-leg",
+      "legId": 127,
+      "movementId": null,
+      "title": "Tschad → Zentralafrikanische Republik",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-06-19",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 265,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        127
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-06-12",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-06-17",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-128",
+      "category": "international-leg",
+      "legId": 128,
+      "movementId": null,
+      "title": "Zentralafrikanische Republik → Kamerun",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-06-24",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 270,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        128
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-06-17",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-06-22",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-160",
+      "category": "international-leg",
+      "legId": 160,
+      "movementId": null,
+      "title": "Uganda → Südsudan",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-08-28",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 335,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        160
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-08-21",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-08-26",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-161",
+      "category": "international-leg",
+      "legId": 161,
+      "movementId": null,
+      "title": "Südsudan → Kenia",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-08-29",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 336,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        161
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-08-22",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-08-27",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-167",
+      "category": "international-leg",
+      "legId": 167,
+      "movementId": null,
+      "title": "Äthiopien → Somalia",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-09-10",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 348,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        167
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-09-03",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-09-08",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-168",
+      "category": "international-leg",
+      "legId": 168,
+      "movementId": null,
+      "title": "Somalia → Dschibuti",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-09-11",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 349,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        168
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-09-04",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-09-09",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-170",
+      "category": "international-leg",
+      "legId": 170,
+      "movementId": null,
+      "title": "Eritrea → Sudan",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-09-15",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 353,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        170
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-09-08",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-09-13",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-171",
+      "category": "international-leg",
+      "legId": 171,
+      "movementId": null,
+      "title": "Sudan → Ägypten",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-09-16",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 354,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        171
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-09-09",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-09-14",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-178",
+      "category": "international-leg",
+      "legId": 178,
+      "movementId": null,
+      "title": "Oman → Jemen",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-09-29",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 367,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "service-suspended-current",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        178
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-09-22",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-09-27",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-179",
+      "category": "international-leg",
+      "legId": 179,
+      "movementId": null,
+      "title": "Jemen → Jordanien",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-10-03",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 371,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "service-suspended-current",
+      "safetyState": "travel-warning",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        179
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-09-26",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-10-01",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-180",
+      "category": "international-leg",
+      "legId": 180,
+      "movementId": null,
+      "title": "Jordanien → Israel",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-10-05",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 373,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "volatile",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        180
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-09-28",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-10-03",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-181",
+      "category": "international-leg",
+      "legId": 181,
+      "movementId": null,
+      "title": "Israel → Staat Palästina",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-10-09",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 377,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "west-bank-access-restricted-current",
+      "safetyState": "volatile",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        181
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-10-02",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-10-07",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "leg-182",
+      "category": "international-leg",
+      "legId": 182,
+      "movementId": null,
+      "title": "Staat Palästina → Griechenland",
+      "currentDecision": "hold",
+      "actionClass": "monitor-and-recheck",
+      "travelDate": "2027-10-12",
+      "travelDateBasis": "plan-departure",
+      "daysUntilTravelFromDataAsOf": 380,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "volatile",
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        182
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": "2027-10-05",
+          "state": "scheduled"
+        },
+        "tMinus48h": {
+          "date": "2027-10-10",
+          "state": "scheduled"
+        }
+      },
+      "blocksDeparture": true
+    },
+    {
+      "id": "movement-transfer-97-98",
+      "category": "operational-movement",
+      "legId": 97,
+      "movementId": "transfer-97-98",
+      "title": "Nordkorea (operativer Korridor offen) → Nordkorea",
+      "currentDecision": "blocked",
+      "actionClass": "external-change-required",
+      "travelDate": null,
+      "travelDateBasis": "external-change-only",
+      "daysUntilTravelFromDataAsOf": null,
+      "reviewedAt": "2026-09-27",
+      "evidenceState": "north-korea-to-south-korea-tourist-crossing-not-established",
+      "safetyState": null,
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
+      "triggerOn": [
+        "dependent-leg-decision-change",
+        "official-security-advice-change",
+        "entry-border-rule-change",
+        "transport-service-status-change"
+      ],
+      "dependencyLegs": [
+        97,
+        98
+      ],
+      "schedule": {
+        "tMinus7": {
+          "date": null,
+          "state": "unscheduled"
+        },
+        "tMinus48h": {
+          "date": null,
+          "state": "unscheduled"
+        }
+      },
+      "blocksDeparture": true
+    }
+  ]
+}

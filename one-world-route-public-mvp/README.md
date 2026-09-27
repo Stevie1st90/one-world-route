@@ -36,6 +36,7 @@ The invariant is enforced by `scripts/flagship-topology-model.mjs`, public-data 
 Operational readiness is generated into:
 - `data/flagship-readiness.json` — canonical topology, continuity, movement, flight-geometry, evidence and blocker summary.
 - `data/flagship-operations-queue.json` — deterministic P0/P1/P2 task queue with missing fields, evidence state, geometry state and departure-blocking status.
+- `data/flagship-recheck-plan.json` — deterministic departure recheck schedule for every critical leg and HOLD/BLOCKED operational movement, including T-7/T-48h checkpoints and material-change triggers.
 
 Verification dates are ISO `YYYY-MM-DD` values. Legacy Excel serial dates are normalized by `scripts/verification-date-model.mjs`; invalid verification-date formats fail validation instead of being counted as fresh evidence.
 
@@ -78,6 +79,20 @@ node scripts/audit-flagship-readiness.mjs --strict
 ```
 
 The normal release build refreshes the snapshot deterministically. `--check` fails when the committed report is stale. `--strict` is reserved for departure-readiness gating; the public site may remain publishable while operational blockers are still visible.
+
+### Departure rechecks
+
+The recheck plan is derived from the current critical reviews, operational movement decisions and planned travel windows. It never promotes a HOLD/BLOCKED item by itself. Fixed checkpoints are scheduled at T-7 days and T-48 hours where a travel date exists; material safety, border, entry or transport changes always trigger an immediate manual evidence review.
+
+```bash
+node scripts/build-flagship-recheck-plan.mjs
+node scripts/build-flagship-recheck-plan.mjs --check
+node scripts/audit-flagship-rechecks.mjs
+node scripts/audit-flagship-rechecks.mjs --as-of=2026-11-01
+node scripts/audit-flagship-rechecks.mjs --strict-due
+```
+
+The live auditor evaluates due checkpoints against the real current UTC date (or an explicit `--as-of` date) without making the generated repository artifact time-dependent. Items without a defensible travel date remain event-driven-only instead of receiving an invented schedule.
 
 
 ## Multi-trip platform foundation
