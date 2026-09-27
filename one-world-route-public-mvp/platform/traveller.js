@@ -1,9 +1,9 @@
 (() => {
   'use strict';
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
-  const ALLOWED=['passports','residenceCountry','language','currency','origin','party','accessibility','vehicle'];
+  const ALLOWED=['passports','residenceCountry','language','currency','origin','originRegion','party','accessibility','vehicle'];
   function defaults(locale='en'){
-    return {passports:[],residenceCountry:null,language:locale,currency:'EUR',origin:null,party:{adults:1,children:0},accessibility:{reducedMobility:false},vehicle:null};
+    return {passports:[],residenceCountry:null,language:locale,currency:'EUR',origin:null,originRegion:null,party:{adults:1,children:0},accessibility:{reducedMobility:false},vehicle:null};
   }
   function normalize(input,locale='en'){
     const base=defaults(locale),raw=input&&typeof input==='object'?input:{},safe={};

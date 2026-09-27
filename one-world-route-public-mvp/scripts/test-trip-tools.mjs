@@ -63,3 +63,13 @@ test('workspace export contains only planning state and no traveller identity fi
   assert.equal(parsed.workspace.budgets['trip-a'].lodgingPerNight,90);
   assert.doesNotMatch(json,/passport|residenceCountry|bookingReference|payment/i);
 });
+
+
+test('route start preferences stay local per journey',()=>{
+  const tools=load(),s=storage();
+  assert.equal(tools.getRouteStart(s,'trip-a'),'');
+  assert.equal(tools.setRouteStart(s,'trip-a','stop-b'),'stop-b');
+  assert.equal(tools.getRouteStart(s,'trip-a'),'stop-b');
+  const parsed=JSON.parse(tools.workspaceJson(s));
+  assert.equal(parsed.workspace.routeStarts['trip-a'],'stop-b');
+});

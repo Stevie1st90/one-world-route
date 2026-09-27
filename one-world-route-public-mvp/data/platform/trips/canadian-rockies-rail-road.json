@@ -1,0 +1,276 @@
+{
+  "schemaVersion": 1,
+  "id": "canadian-rockies-rail-road",
+  "slug": "canadian-rockies-rail-road",
+  "kind": "multimodal",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Canadian Rockies Rail & Road",
+    "de": "Kanadische Rockies · Bahn & Straße",
+    "it": "Rockies canadesi · treno e strada",
+    "es": "Rocosas canadienses · tren y carretera",
+    "fr": "Rocheuses canadiennes · train et route",
+    "pt": "Rochosas canadenses · trem e estrada"
+  },
+  "summary": {
+    "en": "A mountain journey linking Vancouver with the Canadian Rockies and Calgary through rail and road stages.",
+    "de": "Eine Bergreise von Vancouver durch die kanadischen Rockies bis Calgary mit Bahn- und Straßenetappen.",
+    "it": "Un viaggio tra Vancouver e le Rockies canadesi in treno e su strada.",
+    "es": "Un viaje de Vancouver a las Rocosas canadienses en tren y carretera.",
+    "fr": "Un voyage de Vancouver aux Rocheuses canadiennes en train et par la route.",
+    "pt": "Uma viagem de Vancouver às Rochosas canadenses de trem e estrada."
+  },
+  "geography": {
+    "countries": [
+      "CA"
+    ],
+    "primaryCountry": "CA"
+  },
+  "planning": {
+    "days": 14,
+    "currency": "CAD",
+    "pace": "balanced",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 51.0108,
+      "lng": -118.23442,
+      "altitude": 0.72
+    }
+  },
+  "media": {
+    "hero": {
+      "type": "art-directed",
+      "theme": "rockies",
+      "asset": null,
+      "attribution": null,
+      "license": "original-ui-art"
+    },
+    "gallery": []
+  },
+  "highlights": [
+    "Vancouver, mountain parks and Calgary",
+    "mountains · rail · road-trip"
+  ],
+  "places": [
+    {
+      "id": "vancouver",
+      "type": "place",
+      "countryCode": "CA",
+      "name": {
+        "en": "Vancouver"
+      },
+      "coordinates": {
+        "lat": 49.2827,
+        "lng": -123.1207
+      }
+    },
+    {
+      "id": "kamloops",
+      "type": "place",
+      "countryCode": "CA",
+      "name": {
+        "en": "Kamloops"
+      },
+      "coordinates": {
+        "lat": 50.6745,
+        "lng": -120.3273
+      }
+    },
+    {
+      "id": "jasper",
+      "type": "place",
+      "countryCode": "CA",
+      "name": {
+        "en": "Jasper"
+      },
+      "coordinates": {
+        "lat": 52.8737,
+        "lng": -118.0814
+      }
+    },
+    {
+      "id": "banff",
+      "type": "place",
+      "countryCode": "CA",
+      "name": {
+        "en": "Banff"
+      },
+      "coordinates": {
+        "lat": 51.1784,
+        "lng": -115.5708
+      }
+    },
+    {
+      "id": "calgary",
+      "type": "place",
+      "countryCode": "CA",
+      "name": {
+        "en": "Calgary"
+      },
+      "coordinates": {
+        "lat": 51.0447,
+        "lng": -114.0719
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "canadian-rockies-rail-road-stop-01",
+      "sequence": 1,
+      "placeId": "vancouver",
+      "dayStart": 1,
+      "dayEnd": 2,
+      "nights": 2
+    },
+    {
+      "id": "canadian-rockies-rail-road-stop-02",
+      "sequence": 2,
+      "placeId": "kamloops",
+      "dayStart": 3,
+      "dayEnd": 5,
+      "nights": 3
+    },
+    {
+      "id": "canadian-rockies-rail-road-stop-03",
+      "sequence": 3,
+      "placeId": "jasper",
+      "dayStart": 6,
+      "dayEnd": 8,
+      "nights": 3
+    },
+    {
+      "id": "canadian-rockies-rail-road-stop-04",
+      "sequence": 4,
+      "placeId": "banff",
+      "dayStart": 9,
+      "dayEnd": 11,
+      "nights": 3
+    },
+    {
+      "id": "canadian-rockies-rail-road-stop-05",
+      "sequence": 5,
+      "placeId": "calgary",
+      "dayStart": 12,
+      "dayEnd": 14,
+      "nights": 3
+    }
+  ],
+  "segments": [
+    {
+      "id": "canadian-rockies-rail-road-leg-01",
+      "sequence": 1,
+      "fromStopId": "canadian-rockies-rail-road-stop-01",
+      "toStopId": "canadian-rockies-rail-road-stop-02",
+      "transport": {
+        "mode": "multimodal",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "canadian-rockies-rail-road-leg-02",
+      "sequence": 2,
+      "fromStopId": "canadian-rockies-rail-road-stop-02",
+      "toStopId": "canadian-rockies-rail-road-stop-03",
+      "transport": {
+        "mode": "multimodal",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "canadian-rockies-rail-road-leg-03",
+      "sequence": 3,
+      "fromStopId": "canadian-rockies-rail-road-stop-03",
+      "toStopId": "canadian-rockies-rail-road-stop-04",
+      "transport": {
+        "mode": "multimodal",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "canadian-rockies-rail-road-leg-04",
+      "sequence": 4,
+      "fromStopId": "canadian-rockies-rail-road-stop-04",
+      "toStopId": "canadian-rockies-rail-road-stop-05",
+      "transport": {
+        "mode": "multimodal",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    }
+  ],
+  "sources": [],
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context"
+  },
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true,
+    "notes": "Stable editorial route; volatile transport, price, access and traveller-specific facts are maintained separately."
+  }
+}

@@ -1,0 +1,276 @@
+{
+  "schemaVersion": 1,
+  "id": "morocco-atlas-desert",
+  "slug": "morocco-atlas-desert",
+  "kind": "road-trip",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Morocco Atlas & Desert",
+    "de": "Marokko · Atlas & Wüste",
+    "it": "Marocco · Atlante e deserto",
+    "es": "Marruecos · Atlas y desierto",
+    "fr": "Maroc · Atlas et désert",
+    "pt": "Marrocos · Atlas e deserto"
+  },
+  "summary": {
+    "en": "A high-contrast Morocco loop from Marrakech across the Atlas to desert landscapes and Atlantic light.",
+    "de": "Eine kontrastreiche Marokko-Runde von Marrakesch über den Atlas zu Wüstenlandschaften und Atlantiklicht.",
+    "it": "Un circuito in Marocco da Marrakech attraverso l'Atlante fino al deserto.",
+    "es": "Un circuito por Marruecos desde Marrakech, cruzando el Atlas hasta el desierto.",
+    "fr": "Une boucle marocaine de Marrakech à travers l'Atlas jusqu'au désert.",
+    "pt": "Um circuito pelo Marrocos de Marrakech através do Atlas até o deserto."
+  },
+  "geography": {
+    "countries": [
+      "MA"
+    ],
+    "primaryCountry": "MA"
+  },
+  "planning": {
+    "days": 12,
+    "currency": "MAD",
+    "pace": "active",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 31.327180000000006,
+      "lng": -6.974199999999999,
+      "altitude": 0.72
+    }
+  },
+  "media": {
+    "hero": {
+      "type": "art-directed",
+      "theme": "desert",
+      "asset": null,
+      "attribution": null,
+      "license": "original-ui-art"
+    },
+    "gallery": []
+  },
+  "highlights": [
+    "medinas, mountain passes and Sahara",
+    "road-trip · desert · culture"
+  ],
+  "places": [
+    {
+      "id": "marrakech",
+      "type": "place",
+      "countryCode": "MA",
+      "name": {
+        "en": "Marrakech"
+      },
+      "coordinates": {
+        "lat": 31.6295,
+        "lng": -7.9811
+      }
+    },
+    {
+      "id": "ait-benhaddou",
+      "type": "place",
+      "countryCode": "MA",
+      "name": {
+        "en": "Aït Benhaddou"
+      },
+      "coordinates": {
+        "lat": 31.047,
+        "lng": -7.129
+      }
+    },
+    {
+      "id": "dades",
+      "type": "place",
+      "countryCode": "MA",
+      "name": {
+        "en": "Dadès Valley"
+      },
+      "coordinates": {
+        "lat": 31.3707,
+        "lng": -5.988
+      }
+    },
+    {
+      "id": "merzouga",
+      "type": "place",
+      "countryCode": "MA",
+      "name": {
+        "en": "Merzouga"
+      },
+      "coordinates": {
+        "lat": 31.0802,
+        "lng": -4.0134
+      }
+    },
+    {
+      "id": "essaouira",
+      "type": "place",
+      "countryCode": "MA",
+      "name": {
+        "en": "Essaouira"
+      },
+      "coordinates": {
+        "lat": 31.5085,
+        "lng": -9.7595
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "morocco-atlas-desert-stop-01",
+      "sequence": 1,
+      "placeId": "marrakech",
+      "dayStart": 1,
+      "dayEnd": 2,
+      "nights": 2
+    },
+    {
+      "id": "morocco-atlas-desert-stop-02",
+      "sequence": 2,
+      "placeId": "ait-benhaddou",
+      "dayStart": 3,
+      "dayEnd": 4,
+      "nights": 2
+    },
+    {
+      "id": "morocco-atlas-desert-stop-03",
+      "sequence": 3,
+      "placeId": "dades",
+      "dayStart": 5,
+      "dayEnd": 7,
+      "nights": 3
+    },
+    {
+      "id": "morocco-atlas-desert-stop-04",
+      "sequence": 4,
+      "placeId": "merzouga",
+      "dayStart": 8,
+      "dayEnd": 9,
+      "nights": 2
+    },
+    {
+      "id": "morocco-atlas-desert-stop-05",
+      "sequence": 5,
+      "placeId": "essaouira",
+      "dayStart": 10,
+      "dayEnd": 12,
+      "nights": 3
+    }
+  ],
+  "segments": [
+    {
+      "id": "morocco-atlas-desert-leg-01",
+      "sequence": 1,
+      "fromStopId": "morocco-atlas-desert-stop-01",
+      "toStopId": "morocco-atlas-desert-stop-02",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "morocco-atlas-desert-leg-02",
+      "sequence": 2,
+      "fromStopId": "morocco-atlas-desert-stop-02",
+      "toStopId": "morocco-atlas-desert-stop-03",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "morocco-atlas-desert-leg-03",
+      "sequence": 3,
+      "fromStopId": "morocco-atlas-desert-stop-03",
+      "toStopId": "morocco-atlas-desert-stop-04",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "morocco-atlas-desert-leg-04",
+      "sequence": 4,
+      "fromStopId": "morocco-atlas-desert-stop-04",
+      "toStopId": "morocco-atlas-desert-stop-05",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    }
+  ],
+  "sources": [],
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context"
+  },
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true,
+    "notes": "Stable editorial route; volatile transport, price, access and traveller-specific facts are maintained separately."
+  }
+}

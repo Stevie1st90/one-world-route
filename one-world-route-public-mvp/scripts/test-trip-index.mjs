@@ -22,6 +22,10 @@ test('trip index stays deterministic and source-derived',async()=>{
   assert.equal(italy.evidence.segments,10);
   assert.equal(italy.planning.knownPublishedMinimumEur,120.4);
   assert.ok(italy.sources.every(source=>/^https?:\/\//.test(source.url)));
+  assert.equal(italy.itinerary.length,11);
+  assert.equal(italy.preview.points.length,10);
+  assert.equal(italy.preview.arcs.length,10);
+  assert.ok(italy.preview.arcs.every(arc=>Number.isFinite(arc.start.lat)&&Number.isFinite(arc.end.lng)));
 });
 
 

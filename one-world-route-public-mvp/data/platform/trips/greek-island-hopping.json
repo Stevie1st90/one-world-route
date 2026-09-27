@@ -1,0 +1,276 @@
+{
+  "schemaVersion": 1,
+  "id": "greek-island-hopping",
+  "slug": "greek-island-hopping",
+  "kind": "island-hopping",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Greek Island Hopping",
+    "de": "Griechisches Inselhopping",
+    "it": "Island hopping in Grecia",
+    "es": "Island hopping por Grecia",
+    "fr": "D'île en île en Grèce",
+    "pt": "Island hopping na Grécia"
+  },
+  "summary": {
+    "en": "A slow Aegean journey from Athens through the Cyclades, pairing ferry hops with whitewashed villages and long coastal evenings.",
+    "de": "Eine entspannte Ägäisreise von Athen durch die Kykladen mit Fährpassagen, weißen Dörfern und langen Abenden am Meer.",
+    "it": "Un viaggio lento nell'Egeo tra Atene e le Cicladi.",
+    "es": "Un viaje tranquilo por el Egeo entre Atenas y las Cícladas.",
+    "fr": "Un voyage lent en mer Égée entre Athènes et les Cyclades.",
+    "pt": "Uma viagem tranquila pelo Egeu entre Atenas e as Cíclades."
+  },
+  "geography": {
+    "countries": [
+      "GR"
+    ],
+    "primaryCountry": "GR"
+  },
+  "planning": {
+    "days": 14,
+    "currency": "EUR",
+    "pace": "relaxed",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 37.20252,
+      "lng": 25.00864,
+      "altitude": 0.72
+    }
+  },
+  "media": {
+    "hero": {
+      "type": "art-directed",
+      "theme": "aegean",
+      "asset": null,
+      "attribution": null,
+      "license": "original-ui-art"
+    },
+    "gallery": []
+  },
+  "highlights": [
+    "Athens, Cyclades and Aegean blue",
+    "islands · coast · food"
+  ],
+  "places": [
+    {
+      "id": "athens",
+      "type": "place",
+      "countryCode": "GR",
+      "name": {
+        "en": "Athens"
+      },
+      "coordinates": {
+        "lat": 37.9838,
+        "lng": 23.7275
+      }
+    },
+    {
+      "id": "mykonos",
+      "type": "place",
+      "countryCode": "GR",
+      "name": {
+        "en": "Mykonos"
+      },
+      "coordinates": {
+        "lat": 37.4467,
+        "lng": 25.3289
+      }
+    },
+    {
+      "id": "naxos",
+      "type": "place",
+      "countryCode": "GR",
+      "name": {
+        "en": "Naxos"
+      },
+      "coordinates": {
+        "lat": 37.1036,
+        "lng": 25.3764
+      }
+    },
+    {
+      "id": "paros",
+      "type": "place",
+      "countryCode": "GR",
+      "name": {
+        "en": "Paros"
+      },
+      "coordinates": {
+        "lat": 37.0853,
+        "lng": 25.1489
+      }
+    },
+    {
+      "id": "santorini",
+      "type": "place",
+      "countryCode": "GR",
+      "name": {
+        "en": "Santorini"
+      },
+      "coordinates": {
+        "lat": 36.3932,
+        "lng": 25.4615
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "greek-island-hopping-stop-01",
+      "sequence": 1,
+      "placeId": "athens",
+      "dayStart": 1,
+      "dayEnd": 2,
+      "nights": 2
+    },
+    {
+      "id": "greek-island-hopping-stop-02",
+      "sequence": 2,
+      "placeId": "mykonos",
+      "dayStart": 3,
+      "dayEnd": 5,
+      "nights": 3
+    },
+    {
+      "id": "greek-island-hopping-stop-03",
+      "sequence": 3,
+      "placeId": "naxos",
+      "dayStart": 6,
+      "dayEnd": 8,
+      "nights": 3
+    },
+    {
+      "id": "greek-island-hopping-stop-04",
+      "sequence": 4,
+      "placeId": "paros",
+      "dayStart": 9,
+      "dayEnd": 11,
+      "nights": 3
+    },
+    {
+      "id": "greek-island-hopping-stop-05",
+      "sequence": 5,
+      "placeId": "santorini",
+      "dayStart": 12,
+      "dayEnd": 14,
+      "nights": 3
+    }
+  ],
+  "segments": [
+    {
+      "id": "greek-island-hopping-leg-01",
+      "sequence": 1,
+      "fromStopId": "greek-island-hopping-stop-01",
+      "toStopId": "greek-island-hopping-stop-02",
+      "transport": {
+        "mode": "ferry",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "greek-island-hopping-leg-02",
+      "sequence": 2,
+      "fromStopId": "greek-island-hopping-stop-02",
+      "toStopId": "greek-island-hopping-stop-03",
+      "transport": {
+        "mode": "ferry",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "greek-island-hopping-leg-03",
+      "sequence": 3,
+      "fromStopId": "greek-island-hopping-stop-03",
+      "toStopId": "greek-island-hopping-stop-04",
+      "transport": {
+        "mode": "ferry",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "greek-island-hopping-leg-04",
+      "sequence": 4,
+      "fromStopId": "greek-island-hopping-stop-04",
+      "toStopId": "greek-island-hopping-stop-05",
+      "transport": {
+        "mode": "ferry",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    }
+  ],
+  "sources": [],
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context"
+  },
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true,
+    "notes": "Stable editorial route; volatile transport, price, access and traveller-specific facts are maintained separately."
+  }
+}

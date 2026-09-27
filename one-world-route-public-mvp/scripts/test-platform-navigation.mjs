@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','formatters.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','trip-tools.js','traveller-fit.js','trip-compare.js','trip-planning.js','my-trips.js','home.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','regional-selection.js','story.js','terrain.js','extensions.js','extensions/cruise.js','extensions/road.js','extensions/border.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','formatters.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','journey-adapter.js','shared-knowledge.js','trip-tools.js','traveller-fit.js','trip-compare.js','trip-planning.js','my-trips.js','home.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','regional-selection.js','story.js','terrain.js','extensions.js','extensions/cruise.js','extensions/road.js','extensions/border.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -226,7 +226,9 @@ test('regional copy is visually reduced without removing overview content',()=>{
 test('route library exposes transparent Route Fit controls',()=>{
   const routeLibrary=moduleSources['route-library.js'];
   for(const token of ['platformFitToggle','platformFitFilters','platformRoutePace','platformRouteSeason','platformRouteParty','platformRouteStart'])assert.match(routeLibrary,new RegExp(token));
-  assert.match(routeLibrary,/pluralLabel\(filtered\.length/);
+  assert.match(routeLibrary,/visibleLimit=PAGE_SIZE/);
+  assert.match(routeLibrary,/showingJourneys/);
+  assert.match(routeLibrary,/ordered\.slice\(0,visibleLimit\)/);
   assert.doesNotMatch(routeLibrary,/filtered\.length===1/);
   const discovery=moduleSources['discovery.js'];
   assert.match(discovery,/fit\.pace===filters\.pace/);
@@ -520,7 +522,11 @@ test('homepage is catalog-driven and reuses shared Discovery and Route Fit',()=>
   const discovery=moduleSources['discovery.js'];
   assert.match(home,/Discovery\.facets\(d\.catalog\)/);
   assert.match(home,/Discovery\.filter\(d\.catalog/);
-  assert.match(home,/d\.Model\.routeGeometry\(entry\.trip\)/);
+  assert.match(home,/tripIndex/);
+  assert.match(home,/entry\.preview\.arcs/);
+  assert.match(home,/trip-index\.json/);
+  assert.match(home,/found\.slice\(0,resultLimit\)/);
+  assert.doesNotMatch(home,/Promise\.all\(metas\.map/);
   assert.match(home,/d\.catalog\.defaultTripId/);
   assert.doesNotMatch(home,/italy-grand-tour|western-mediterranean-cruise-loop|central-europe-rail-journey/);
   assert.match(discovery,/fit\.accessibility===filters\.accessibility/);

@@ -34,11 +34,21 @@
       vehicleContextMissing:vehicleRequired&&!vehicleProvided,
       originKnown,
       origin:profile?.origin||null,
+      originRegion:profile?.originRegion||null,
       startRegion:fit.startRegion||null,
       pace:fit.pace||null,
       seasons:[...(fit.seasons||[])]
     };
   }
 
-  root.travellerFit={partyKey,evaluate};
+  function recommendationReasons(meta,profile){
+    const result=evaluate(meta,profile),reasons=[];
+    if(result.originRegion&&result.startRegion===result.originRegion)reasons.push({kind:'origin',value:result.startRegion});
+    if(result.partyListed&&result.party)reasons.push({kind:'party',value:result.party});
+    const mode=meta?.discovery?.modes?.[0];
+    if(mode)reasons.push({kind:'mode',value:mode});
+    return reasons.slice(0,3);
+  }
+
+  root.travellerFit={partyKey,evaluate,recommendationReasons};
 })();

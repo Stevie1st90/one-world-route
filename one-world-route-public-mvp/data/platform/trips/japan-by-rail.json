@@ -1,0 +1,321 @@
+{
+  "schemaVersion": 1,
+  "id": "japan-by-rail",
+  "slug": "japan-by-rail",
+  "kind": "rail",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Japan by Rail",
+    "de": "Japan mit der Bahn",
+    "it": "Giappone in treno",
+    "es": "Japón en tren",
+    "fr": "Japon en train",
+    "pt": "Japão de trem"
+  },
+  "summary": {
+    "en": "A cinematic rail journey from Tokyo through mountain towns and old capitals to Hiroshima — designed for discovery first, with live schedules intentionally left open.",
+    "de": "Eine visuelle Bahnreise von Tokio über Bergstädte und alte Kaiserstädte bis Hiroshima – zuerst zum Entdecken, mit bewusst offenen Live-Fahrplänen.",
+    "it": "Un viaggio ferroviario cinematografico da Tokyo a Hiroshima passando per montagne e antiche capitali.",
+    "es": "Un viaje ferroviario cinematográfico de Tokio a Hiroshima entre montañas y antiguas capitales.",
+    "fr": "Un voyage ferroviaire cinématographique de Tokyo à Hiroshima entre montagnes et anciennes capitales.",
+    "pt": "Uma viagem ferroviária cinematográfica de Tóquio a Hiroshima entre montanhas e antigas capitais."
+  },
+  "geography": {
+    "countries": [
+      "JP"
+    ],
+    "primaryCountry": "JP"
+  },
+  "planning": {
+    "days": 14,
+    "currency": "JPY",
+    "pace": "balanced",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 35.427683333333334,
+      "lng": 136.33403333333334,
+      "altitude": 0.72
+    }
+  },
+  "media": {
+    "hero": {
+      "type": "art-directed",
+      "theme": "sakura",
+      "asset": null,
+      "attribution": null,
+      "license": "original-ui-art"
+    },
+    "gallery": []
+  },
+  "highlights": [
+    "Tokyo, the Alps, Kyoto and Hiroshima",
+    "rail · culture · food"
+  ],
+  "places": [
+    {
+      "id": "tokyo",
+      "type": "place",
+      "countryCode": "JP",
+      "name": {
+        "en": "Tokyo"
+      },
+      "coordinates": {
+        "lat": 35.6762,
+        "lng": 139.6503
+      }
+    },
+    {
+      "id": "matsumoto",
+      "type": "place",
+      "countryCode": "JP",
+      "name": {
+        "en": "Matsumoto"
+      },
+      "coordinates": {
+        "lat": 36.238,
+        "lng": 137.972
+      }
+    },
+    {
+      "id": "kanazawa",
+      "type": "place",
+      "countryCode": "JP",
+      "name": {
+        "en": "Kanazawa"
+      },
+      "coordinates": {
+        "lat": 36.5613,
+        "lng": 136.6562
+      }
+    },
+    {
+      "id": "kyoto",
+      "type": "place",
+      "countryCode": "JP",
+      "name": {
+        "en": "Kyoto"
+      },
+      "coordinates": {
+        "lat": 35.0116,
+        "lng": 135.7681
+      }
+    },
+    {
+      "id": "osaka",
+      "type": "place",
+      "countryCode": "JP",
+      "name": {
+        "en": "Osaka"
+      },
+      "coordinates": {
+        "lat": 34.6937,
+        "lng": 135.5023
+      }
+    },
+    {
+      "id": "hiroshima",
+      "type": "place",
+      "countryCode": "JP",
+      "name": {
+        "en": "Hiroshima"
+      },
+      "coordinates": {
+        "lat": 34.3853,
+        "lng": 132.4553
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "japan-by-rail-stop-01",
+      "sequence": 1,
+      "placeId": "tokyo",
+      "dayStart": 1,
+      "dayEnd": 2,
+      "nights": 2
+    },
+    {
+      "id": "japan-by-rail-stop-02",
+      "sequence": 2,
+      "placeId": "matsumoto",
+      "dayStart": 3,
+      "dayEnd": 4,
+      "nights": 2
+    },
+    {
+      "id": "japan-by-rail-stop-03",
+      "sequence": 3,
+      "placeId": "kanazawa",
+      "dayStart": 5,
+      "dayEnd": 7,
+      "nights": 3
+    },
+    {
+      "id": "japan-by-rail-stop-04",
+      "sequence": 4,
+      "placeId": "kyoto",
+      "dayStart": 8,
+      "dayEnd": 9,
+      "nights": 2
+    },
+    {
+      "id": "japan-by-rail-stop-05",
+      "sequence": 5,
+      "placeId": "osaka",
+      "dayStart": 10,
+      "dayEnd": 11,
+      "nights": 2
+    },
+    {
+      "id": "japan-by-rail-stop-06",
+      "sequence": 6,
+      "placeId": "hiroshima",
+      "dayStart": 12,
+      "dayEnd": 14,
+      "nights": 3
+    }
+  ],
+  "segments": [
+    {
+      "id": "japan-by-rail-leg-01",
+      "sequence": 1,
+      "fromStopId": "japan-by-rail-stop-01",
+      "toStopId": "japan-by-rail-stop-02",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "japan-by-rail-leg-02",
+      "sequence": 2,
+      "fromStopId": "japan-by-rail-stop-02",
+      "toStopId": "japan-by-rail-stop-03",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "japan-by-rail-leg-03",
+      "sequence": 3,
+      "fromStopId": "japan-by-rail-stop-03",
+      "toStopId": "japan-by-rail-stop-04",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "japan-by-rail-leg-04",
+      "sequence": 4,
+      "fromStopId": "japan-by-rail-stop-04",
+      "toStopId": "japan-by-rail-stop-05",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "japan-by-rail-leg-05",
+      "sequence": 5,
+      "fromStopId": "japan-by-rail-stop-05",
+      "toStopId": "japan-by-rail-stop-06",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    }
+  ],
+  "sources": [],
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context",
+    "originAccess": "dynamic",
+    "returnMode": "to-origin",
+    "preserveCoreRoute": true
+  },
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true,
+    "notes": "Stable editorial route; volatile transport, price, access and traveller-specific facts are maintained separately."
+  }
+}

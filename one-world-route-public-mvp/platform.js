@@ -11,6 +11,8 @@
   const TravellerUi=PLATFORM_MODULES.travellerUi;
   const Discovery=PLATFORM_MODULES.discovery;
   const TripTools=PLATFORM_MODULES.tripTools;
+  const JourneyAdapter=PLATFORM_MODULES.journeyAdapter;
+  const SharedKnowledge=PLATFORM_MODULES.sharedKnowledge;
   const TravellerFit=PLATFORM_MODULES.travellerFit;
   const TripCompare=PLATFORM_MODULES.tripCompare;
   const MyTrips=PLATFORM_MODULES.myTrips;
@@ -29,7 +31,7 @@
   const Ui=PLATFORM_MODULES.ui;
   const Navigation=PLATFORM_MODULES.navigation;
   const LegacyLocalization=PLATFORM_MODULES.legacyLocalization;
-  if(!LocaleData||!Formatters||!Model||!Traveller||!TravellerUi||!Discovery||!TripTools||!TravellerFit||!TripCompare||!MyTrips||!TripPlanning||!Extensions||!Home||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!RegionalSelection||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
+  if(!LocaleData||!Formatters||!Model||!Traveller||!TravellerUi||!Discovery||!TripTools||!JourneyAdapter||!SharedKnowledge||!TravellerFit||!TripCompare||!MyTrips||!TripPlanning||!Extensions||!Home||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!RegionalSelection||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
   const HOME_REQUEST=location.pathname==='/'&&!new URLSearchParams(location.search).has('trip');
   if(HOME_REQUEST){
     window.ONE_WORLD_ROUTE_OWNERSHIP='home';
@@ -64,7 +66,8 @@
   const facetLabel = value => {
     const key='facet_'+String(value||'').replaceAll('-','_');
     const translated=t(key);
-    return translated===key?String(value||'').replaceAll('-',' '):translated;
+    if(translated!==key)return translated;
+    return String(value||'').replaceAll('-',' ').replace(/\b\w/g,letter=>letter.toUpperCase());
   };
   const countryDisplay = code => LocaleData.regionName(locale,code);
   const pluralLabel = (count,oneKey,otherKey) => LocaleData.plural(locale,count,{one:t(oneKey),other:t(otherKey)});
@@ -143,6 +146,7 @@
       ensureDialog:Ui.ensureDialog,
       t,
       esc,
+      facetLabel,
       onClear:()=>{
         clearProfile();
         location.reload();
@@ -252,7 +256,10 @@
       local,
       esc,
       facetLabel,
+      statusLabel,
+      pluralLabel,
       countryDisplay,
+      selectStop:(index,focus)=>RegionalSelection.selectStop(index,focus),
       durationLabel:planning=>Formatters.durationLabel(planning),
       costLabel:planning=>Formatters.costLabel({locale,planning,defaultCurrency:currentTrip?.planning?.currency||'EUR',publishedFrom:t('publishedFrom')}),
       editorialNote:value=>Formatters.editorialNote(locale,value,local),
@@ -264,9 +271,12 @@
       locale:()=>locale,
       tripPlanning:TripPlanning,
       tripTools:TripTools,
+      journeyAdapter:JourneyAdapter,
+      sharedKnowledge:SharedKnowledge,
       travellerFit:TravellerFit,
       storage:localStorage,
       toast:Ui.toast,
+      onRouteVariantChange:()=>location.reload(),
       extensions:Extensions,
       stopMap,
       placeMap
@@ -345,7 +355,8 @@
 
   async function activateRegionalTrip(meta){
     currentTripMeta=meta;
-    currentTrip=await fetch(meta.dataset,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Trip dataset '+r.status);return r.json()});
+    const baseTrip=await fetch(meta.dataset,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Trip dataset '+r.status);return r.json()});
+    currentTrip=JourneyAdapter.apply(baseTrip,{startStopId:TripTools.getRouteStart(localStorage,meta.id)});
     await waitForCore();
     configureRegionalSelection();
     RegionalSelection.reset(0);
@@ -365,6 +376,7 @@
   async function init(){
     try{
       catalog=await fetch(CATALOG_URL,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Trip catalog '+r.status);return r.json()});
+      await SharedKnowledge.load();
       const p=new URLSearchParams(location.search);
       const profile=loadProfile();
       const explicitLang=new URLSearchParams(location.search).get('lang');
@@ -407,9 +419,11 @@
           onMyTrips:openMyTrips,
           tripTools:TripTools,
           tripCompare:TripCompare,
+          travellerFit:TravellerFit,
           storage:localStorage,
           ensureDialog:Ui.ensureDialog,
           loadProfile,
+          profileConfigured:()=>Boolean(localStorage.getItem(PROFILE_KEY)),
           toast:Ui.toast
         });
         await Home.open();

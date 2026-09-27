@@ -1,6 +1,18 @@
 # ONE WORLD ROUTE — Public Explorer
 
-A production-oriented multi-trip discovery platform for extraordinary journeys worldwide. The original 195-country route remains the flagship journey.
+A production-oriented visual journey discovery platform for extraordinary trips worldwide. The original 195-country route remains the flagship journey, while the public product is designed for many kinds of travel rather than for one itinerary.
+
+## Product direction
+
+ONE WORLD ROUTE is **inspiration first, planning second**:
+
+- public discovery leads with journey, place, route and visual identity;
+- one generic place → stop → segment model supports rail, road, cruise, island hopping, camper, multimodal and future trip types;
+- the 195-country journey is a flagship showcase, not the product boundary;
+- operations, evidence and recheck controls remain available as deeper infrastructure instead of defining the public experience;
+- visual media is a separate presentation layer and never counts as route evidence.
+
+The discovery catalog currently contains **17 journeys**, including 12 new worldwide editorial-preview routes. Editorial previews deliberately keep schedules, fares, operators and date-sensitive access facts unknown until source-backed planning is added.
 
 ## Implemented
 - Public multi-trip homepage with a shared world Globe and catalog-driven Journey Discovery
@@ -223,3 +235,46 @@ node scripts/scaffold-trip.mjs japan-by-rail rail --days=16 --write
 ```
 
 The scaffolder writes only to `data/platform/drafts/`; it never publishes or edits the public trip catalog automatically.
+
+
+## Journey personalization and low-maintenance operations
+
+The public product now separates three concerns so the catalog can scale far beyond the current journeys:
+
+- **Stable journey layer** — route shape, stops, editorial story, discovery metadata and rights-cleared media.
+- **Personal runtime layer** — traveller origin, party context and an allowed route entry. A trip can remain fixed or explicitly permit a safe reverse-direction variant.
+- **Shared knowledge layer** — reusable planning guidance that is maintained once and matched automatically to every relevant journey by transport mode, trip type or country scope.
+
+A free-text home origin is never used to invent a "best" airport or transport connection. It is saved as traveller context. Route order changes only when the trip's `routePolicy` permits it. Directional evidence and fares are invalidated by default when a route is reversed.
+
+### Maintenance model
+
+Each trip can declare a maintenance tier and a source-review interval. The CI maintenance audit surfaces stale or expired source candidates without making editorial content unusable merely because a review date passed. Malformed contracts still fail validation.
+
+Run locally:
+
+```
+node scripts/audit-platform-maintenance.mjs
+```
+
+Use `--strict-stale` only when a release process intentionally wants stale review candidates to fail the gate.
+
+The goal is that adding or maintaining the 100th or 1000th journey remains a data/content operation rather than a renderer rewrite.
+
+Runtime scaling follows the same rule: `data/platform/trip-index.json` contains compact route-preview geometry generated at release time, so the public discovery globe does not fetch every full journey dataset. Catalog result cards are progressively rendered in batches instead of placing an arbitrarily large catalog in the DOM at once.
+
+The scheduled `Journey maintenance watch` validates contracts weekly. If review candidates become stale or expire, it opens or refreshes one GitHub issue named `Journey maintenance review`; when the audit is clean again, the generated issue is closed automatically.
+
+
+### Discovery recommendations and collections
+
+Discovery remains deterministic and explainable:
+
+- the user may store an exact free-text origin for arrival planning;
+- an optional broad start region is used for discovery ordering without geocoding or a paid routing API;
+- traveller party, vehicle context and declared Route Fit can influence the order of featured journeys;
+- no live connection, fare or gateway is invented from the origin text.
+
+Curated collections live in `data/platform/collections.json` and are filter definitions rather than manually maintained arrays of trip IDs. New matching journeys therefore appear automatically in collections such as rail journeys, road trips or nature routes.
+
+If a future commercial phase needs true "best gateway from my exact city" recommendations, the current personalization contract can accept a geocoder/routing provider. That provider should remain optional so the core product and catalog do not depend on per-request API spend.

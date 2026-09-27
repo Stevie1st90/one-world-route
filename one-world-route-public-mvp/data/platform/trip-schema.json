@@ -225,6 +225,136 @@
     },
     "extensions": {
       "$ref": "#/$defs/extensions"
+    },
+    "media": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Presentation media. Art-directed themes are license-free UI art; external or local photo assets must carry attribution/license metadata.",
+      "properties": {
+        "hero": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "type": {
+              "enum": [
+                "art-directed",
+                "image"
+              ]
+            },
+            "theme": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "asset": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "attribution": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "license": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        "gallery": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "routePolicy": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Controls safe runtime personalization without trip-specific renderer code.",
+      "properties": {
+        "startMode": {
+          "enum": [
+            "fixed",
+            "endpoints",
+            "any-stop"
+          ]
+        },
+        "reversible": {
+          "type": "boolean"
+        },
+        "reverseEvidenceReusable": {
+          "type": "boolean"
+        },
+        "reversePlanningReusable": {
+          "type": "boolean"
+        },
+        "originMode": {
+          "enum": [
+            "traveller-context",
+            "fixed"
+          ]
+        },
+        "originAccess": {
+          "enum": [
+            "none",
+            "dynamic"
+          ]
+        },
+        "returnMode": {
+          "enum": [
+            "none",
+            "to-origin"
+          ]
+        },
+        "preserveCoreRoute": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    },
+    "maintenance": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Content maintenance metadata. Stable editorial structure stays separate from volatile travel facts.",
+      "properties": {
+        "tier": {
+          "enum": [
+            "evergreen",
+            "seasonal",
+            "live-dependent"
+          ]
+        },
+        "sourceReviewDays": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sharedKnowledge": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
     }
   },
   "x-oneWorldRoute": {
@@ -370,6 +500,33 @@
     "capabilities": {
       "rule": "Catalog capabilities declare available experiences (for example terrain, story, traveller-context, source-evidence). UI must inspect capabilities/registered extensions rather than hard-code a trip ID.",
       "rendererRule": "All normal curated trips use the generic regional renderer unless a deliberately separate renderer is registered."
+    },
+    "media": {
+      "rule": "Visual discovery is separate from route evidence. Art-directed themes require no third-party media. Any image asset must store source/attribution/license metadata and must never imply route verification.",
+      "heroTypes": [
+        "art-directed",
+        "image"
+      ]
+    },
+    "personalization": {
+      "rule": "Traveller origin changes access/return planning and recommendation context. The curated core route changes only when routePolicy explicitly permits endpoint reversal or loop rotation. Directional live facts are never invented.",
+      "startModes": [
+        "fixed",
+        "endpoints",
+        "any-stop"
+      ],
+      "architecture": "user origin -> access layer -> core journey -> return layer",
+      "originAccessModes": [
+        "none",
+        "dynamic"
+      ],
+      "returnModes": [
+        "none",
+        "to-origin"
+      ]
+    },
+    "maintenance": {
+      "rule": "Keep stable route/editorial content in the trip dataset. Keep volatile transport, access, entry, price and seasonal guidance source-backed and reviewable. Do not duplicate the same volatile claim across many trips when shared knowledge can represent it."
     }
   },
   "$defs": {

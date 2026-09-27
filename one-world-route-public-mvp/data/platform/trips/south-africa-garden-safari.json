@@ -1,0 +1,276 @@
+{
+  "schemaVersion": 1,
+  "id": "south-africa-garden-safari",
+  "slug": "south-africa-garden-safari",
+  "kind": "road-trip",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "South Africa Garden Route & Safari",
+    "de": "Südafrika · Garden Route & Safari",
+    "it": "Sudafrica · Garden Route e safari",
+    "es": "Sudáfrica · Garden Route y safari",
+    "fr": "Afrique du Sud · Garden Route et safari",
+    "pt": "África do Sul · Garden Route e safári"
+  },
+  "summary": {
+    "en": "A South African road journey from Cape Town along the Garden Route toward wildlife country.",
+    "de": "Eine Südafrika-Reise von Kapstadt entlang der Garden Route bis in Regionen mit großer Tierwelt.",
+    "it": "Un viaggio su strada sudafricano da Città del Capo lungo la Garden Route.",
+    "es": "Un viaje por carretera desde Ciudad del Cabo por la Garden Route.",
+    "fr": "Un voyage routier depuis Le Cap le long de la Garden Route.",
+    "pt": "Uma viagem rodoviária da Cidade do Cabo pela Garden Route."
+  },
+  "geography": {
+    "countries": [
+      "ZA"
+    ],
+    "primaryCountry": "ZA"
+  },
+  "planning": {
+    "days": 16,
+    "currency": "ZAR",
+    "pace": "balanced",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": -33.9787,
+      "lng": 22.07002,
+      "altitude": 0.72
+    }
+  },
+  "media": {
+    "hero": {
+      "type": "art-directed",
+      "theme": "savanna",
+      "asset": null,
+      "attribution": null,
+      "license": "original-ui-art"
+    },
+    "gallery": []
+  },
+  "highlights": [
+    "Cape coast, forests and wildlife",
+    "road-trip · wildlife · coast"
+  ],
+  "places": [
+    {
+      "id": "cape-town",
+      "type": "place",
+      "countryCode": "ZA",
+      "name": {
+        "en": "Cape Town"
+      },
+      "coordinates": {
+        "lat": -33.9249,
+        "lng": 18.4241
+      }
+    },
+    {
+      "id": "hermanus",
+      "type": "place",
+      "countryCode": "ZA",
+      "name": {
+        "en": "Hermanus"
+      },
+      "coordinates": {
+        "lat": -34.4187,
+        "lng": 19.2345
+      }
+    },
+    {
+      "id": "knysna",
+      "type": "place",
+      "countryCode": "ZA",
+      "name": {
+        "en": "Knysna"
+      },
+      "coordinates": {
+        "lat": -34.0351,
+        "lng": 23.0465
+      }
+    },
+    {
+      "id": "tsitsikamma",
+      "type": "place",
+      "countryCode": "ZA",
+      "name": {
+        "en": "Tsitsikamma"
+      },
+      "coordinates": {
+        "lat": -34.0318,
+        "lng": 23.895
+      }
+    },
+    {
+      "id": "addo",
+      "type": "place",
+      "countryCode": "ZA",
+      "name": {
+        "en": "Addo Elephant National Park"
+      },
+      "coordinates": {
+        "lat": -33.483,
+        "lng": 25.75
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "south-africa-garden-safari-stop-01",
+      "sequence": 1,
+      "placeId": "cape-town",
+      "dayStart": 1,
+      "dayEnd": 3,
+      "nights": 3
+    },
+    {
+      "id": "south-africa-garden-safari-stop-02",
+      "sequence": 2,
+      "placeId": "hermanus",
+      "dayStart": 4,
+      "dayEnd": 6,
+      "nights": 3
+    },
+    {
+      "id": "south-africa-garden-safari-stop-03",
+      "sequence": 3,
+      "placeId": "knysna",
+      "dayStart": 7,
+      "dayEnd": 9,
+      "nights": 3
+    },
+    {
+      "id": "south-africa-garden-safari-stop-04",
+      "sequence": 4,
+      "placeId": "tsitsikamma",
+      "dayStart": 10,
+      "dayEnd": 12,
+      "nights": 3
+    },
+    {
+      "id": "south-africa-garden-safari-stop-05",
+      "sequence": 5,
+      "placeId": "addo",
+      "dayStart": 13,
+      "dayEnd": 16,
+      "nights": 4
+    }
+  ],
+  "segments": [
+    {
+      "id": "south-africa-garden-safari-leg-01",
+      "sequence": 1,
+      "fromStopId": "south-africa-garden-safari-stop-01",
+      "toStopId": "south-africa-garden-safari-stop-02",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "south-africa-garden-safari-leg-02",
+      "sequence": 2,
+      "fromStopId": "south-africa-garden-safari-stop-02",
+      "toStopId": "south-africa-garden-safari-stop-03",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "south-africa-garden-safari-leg-03",
+      "sequence": 3,
+      "fromStopId": "south-africa-garden-safari-stop-03",
+      "toStopId": "south-africa-garden-safari-stop-04",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "south-africa-garden-safari-leg-04",
+      "sequence": 4,
+      "fromStopId": "south-africa-garden-safari-stop-04",
+      "toStopId": "south-africa-garden-safari-stop-05",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    }
+  ],
+  "sources": [],
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context"
+  },
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true,
+    "notes": "Stable editorial route; volatile transport, price, access and traveller-specific facts are maintained separately."
+  }
+}

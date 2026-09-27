@@ -1,0 +1,276 @@
+{
+  "schemaVersion": 1,
+  "id": "peru-andes-journey",
+  "slug": "peru-andes-journey",
+  "kind": "multimodal",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Peru Andes Journey",
+    "de": "Peru · Andenreise",
+    "it": "Perù · viaggio nelle Ande",
+    "es": "Perú · viaje por los Andes",
+    "fr": "Pérou · voyage dans les Andes",
+    "pt": "Peru · viagem pelos Andes"
+  },
+  "summary": {
+    "en": "A high-altitude journey from Lima to Cusco, the Sacred Valley and Lake Titicaca, with rail and road stages left open for live planning.",
+    "de": "Eine Höhenreise von Lima nach Cusco, ins Heilige Tal und zum Titicacasee – mit Bahn- und Straßenetappen für die spätere Live-Planung.",
+    "it": "Un viaggio d'alta quota da Lima a Cusco, Valle Sacra e Titicaca.",
+    "es": "Un viaje de altura desde Lima a Cusco, Valle Sagrado y Titicaca.",
+    "fr": "Un voyage en altitude de Lima à Cusco, Vallée sacrée et Titicaca.",
+    "pt": "Uma viagem de altitude de Lima a Cusco, Vale Sagrado e Titicaca."
+  },
+  "geography": {
+    "countries": [
+      "PE"
+    ],
+    "primaryCountry": "PE"
+  },
+  "planning": {
+    "days": 13,
+    "currency": "PEN",
+    "pace": "active",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": -13.582980000000001,
+      "lng": -72.7321,
+      "altitude": 0.72
+    }
+  },
+  "media": {
+    "hero": {
+      "type": "art-directed",
+      "theme": "andes",
+      "asset": null,
+      "attribution": null,
+      "license": "original-ui-art"
+    },
+    "gallery": []
+  },
+  "highlights": [
+    "Lima, Sacred Valley and high Andes",
+    "mountains · culture · history"
+  ],
+  "places": [
+    {
+      "id": "lima",
+      "type": "place",
+      "countryCode": "PE",
+      "name": {
+        "en": "Lima"
+      },
+      "coordinates": {
+        "lat": -12.0464,
+        "lng": -77.0428
+      }
+    },
+    {
+      "id": "cusco",
+      "type": "place",
+      "countryCode": "PE",
+      "name": {
+        "en": "Cusco"
+      },
+      "coordinates": {
+        "lat": -13.5319,
+        "lng": -71.9675
+      }
+    },
+    {
+      "id": "sacred-valley",
+      "type": "place",
+      "countryCode": "PE",
+      "name": {
+        "en": "Sacred Valley"
+      },
+      "coordinates": {
+        "lat": -13.3333,
+        "lng": -72.0833
+      }
+    },
+    {
+      "id": "machu-picchu",
+      "type": "place",
+      "countryCode": "PE",
+      "name": {
+        "en": "Machu Picchu"
+      },
+      "coordinates": {
+        "lat": -13.1631,
+        "lng": -72.545
+      }
+    },
+    {
+      "id": "puno",
+      "type": "place",
+      "countryCode": "PE",
+      "name": {
+        "en": "Puno"
+      },
+      "coordinates": {
+        "lat": -15.8402,
+        "lng": -70.0219
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "peru-andes-journey-stop-01",
+      "sequence": 1,
+      "placeId": "lima",
+      "dayStart": 1,
+      "dayEnd": 2,
+      "nights": 2
+    },
+    {
+      "id": "peru-andes-journey-stop-02",
+      "sequence": 2,
+      "placeId": "cusco",
+      "dayStart": 3,
+      "dayEnd": 5,
+      "nights": 3
+    },
+    {
+      "id": "peru-andes-journey-stop-03",
+      "sequence": 3,
+      "placeId": "sacred-valley",
+      "dayStart": 6,
+      "dayEnd": 7,
+      "nights": 2
+    },
+    {
+      "id": "peru-andes-journey-stop-04",
+      "sequence": 4,
+      "placeId": "machu-picchu",
+      "dayStart": 8,
+      "dayEnd": 10,
+      "nights": 3
+    },
+    {
+      "id": "peru-andes-journey-stop-05",
+      "sequence": 5,
+      "placeId": "puno",
+      "dayStart": 11,
+      "dayEnd": 13,
+      "nights": 3
+    }
+  ],
+  "segments": [
+    {
+      "id": "peru-andes-journey-leg-01",
+      "sequence": 1,
+      "fromStopId": "peru-andes-journey-stop-01",
+      "toStopId": "peru-andes-journey-stop-02",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "peru-andes-journey-leg-02",
+      "sequence": 2,
+      "fromStopId": "peru-andes-journey-stop-02",
+      "toStopId": "peru-andes-journey-stop-03",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "peru-andes-journey-leg-03",
+      "sequence": 3,
+      "fromStopId": "peru-andes-journey-stop-03",
+      "toStopId": "peru-andes-journey-stop-04",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "peru-andes-journey-leg-04",
+      "sequence": 4,
+      "fromStopId": "peru-andes-journey-stop-04",
+      "toStopId": "peru-andes-journey-stop-05",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    }
+  ],
+  "sources": [],
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context"
+  },
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true,
+    "notes": "Stable editorial route; volatile transport, price, access and traveller-specific facts are maintained separately."
+  }
+}

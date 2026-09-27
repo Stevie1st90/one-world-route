@@ -1,0 +1,318 @@
+{
+  "schemaVersion": 1,
+  "id": "iceland-ring-road",
+  "slug": "iceland-ring-road",
+  "kind": "road-trip",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Iceland Ring Road",
+    "de": "Island-Ringstraße",
+    "it": "Ring Road d'Islanda",
+    "es": "Ring Road de Islandia",
+    "fr": "Route circulaire d'Islande",
+    "pt": "Ring Road da Islândia"
+  },
+  "summary": {
+    "en": "A full Ring Road loop around Iceland built around waterfalls, lava landscapes, glacial coast and geothermal country.",
+    "de": "Eine komplette Island-Ringrunde mit Wasserfällen, Lavafeldern, Gletscherküste und Geothermie.",
+    "it": "Un giro completo dell'Islanda tra cascate, lava e ghiacciai.",
+    "es": "Una vuelta completa a Islandia entre cascadas, lava y glaciares.",
+    "fr": "Un tour complet de l'Islande entre cascades, lave et glaciers.",
+    "pt": "Uma volta completa pela Islândia entre cachoeiras, lava e geleiras."
+  },
+  "geography": {
+    "countries": [
+      "IS"
+    ],
+    "primaryCountry": "IS"
+  },
+  "planning": {
+    "days": 10,
+    "currency": "ISK",
+    "pace": "active",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 64.56155,
+      "lng": -18.904166666666665,
+      "altitude": 0.72
+    }
+  },
+  "media": {
+    "hero": {
+      "type": "art-directed",
+      "theme": "volcanic",
+      "asset": null,
+      "attribution": null,
+      "license": "original-ui-art"
+    },
+    "gallery": []
+  },
+  "highlights": [
+    "volcanoes, waterfalls and black-sand coast",
+    "road-trip · nature · volcanic"
+  ],
+  "places": [
+    {
+      "id": "reykjavik",
+      "type": "place",
+      "countryCode": "IS",
+      "name": {
+        "en": "Reykjavík"
+      },
+      "coordinates": {
+        "lat": 64.1466,
+        "lng": -21.9426
+      }
+    },
+    {
+      "id": "vik",
+      "type": "place",
+      "countryCode": "IS",
+      "name": {
+        "en": "Vík"
+      },
+      "coordinates": {
+        "lat": 63.4194,
+        "lng": -19.009
+      }
+    },
+    {
+      "id": "jokulsarlon",
+      "type": "place",
+      "countryCode": "IS",
+      "name": {
+        "en": "Jökulsárlón"
+      },
+      "coordinates": {
+        "lat": 64.0489,
+        "lng": -16.1794
+      }
+    },
+    {
+      "id": "egilsstadir",
+      "type": "place",
+      "countryCode": "IS",
+      "name": {
+        "en": "Egilsstaðir"
+      },
+      "coordinates": {
+        "lat": 65.2669,
+        "lng": -14.3948
+      }
+    },
+    {
+      "id": "akureyri",
+      "type": "place",
+      "countryCode": "IS",
+      "name": {
+        "en": "Akureyri"
+      },
+      "coordinates": {
+        "lat": 65.6885,
+        "lng": -18.1262
+      }
+    },
+    {
+      "id": "snaefellsnes",
+      "type": "place",
+      "countryCode": "IS",
+      "name": {
+        "en": "Snæfellsnes"
+      },
+      "coordinates": {
+        "lat": 64.799,
+        "lng": -23.773
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "iceland-ring-road-stop-01",
+      "sequence": 1,
+      "placeId": "reykjavik",
+      "dayStart": 1,
+      "dayEnd": 1,
+      "nights": 1
+    },
+    {
+      "id": "iceland-ring-road-stop-02",
+      "sequence": 2,
+      "placeId": "vik",
+      "dayStart": 2,
+      "dayEnd": 3,
+      "nights": 2
+    },
+    {
+      "id": "iceland-ring-road-stop-03",
+      "sequence": 3,
+      "placeId": "jokulsarlon",
+      "dayStart": 4,
+      "dayEnd": 5,
+      "nights": 2
+    },
+    {
+      "id": "iceland-ring-road-stop-04",
+      "sequence": 4,
+      "placeId": "egilsstadir",
+      "dayStart": 6,
+      "dayEnd": 6,
+      "nights": 1
+    },
+    {
+      "id": "iceland-ring-road-stop-05",
+      "sequence": 5,
+      "placeId": "akureyri",
+      "dayStart": 7,
+      "dayEnd": 8,
+      "nights": 2
+    },
+    {
+      "id": "iceland-ring-road-stop-06",
+      "sequence": 6,
+      "placeId": "snaefellsnes",
+      "dayStart": 9,
+      "dayEnd": 10,
+      "nights": 2
+    }
+  ],
+  "segments": [
+    {
+      "id": "iceland-ring-road-leg-01",
+      "sequence": 1,
+      "fromStopId": "iceland-ring-road-stop-01",
+      "toStopId": "iceland-ring-road-stop-02",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "iceland-ring-road-leg-02",
+      "sequence": 2,
+      "fromStopId": "iceland-ring-road-stop-02",
+      "toStopId": "iceland-ring-road-stop-03",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "iceland-ring-road-leg-03",
+      "sequence": 3,
+      "fromStopId": "iceland-ring-road-stop-03",
+      "toStopId": "iceland-ring-road-stop-04",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "iceland-ring-road-leg-04",
+      "sequence": 4,
+      "fromStopId": "iceland-ring-road-stop-04",
+      "toStopId": "iceland-ring-road-stop-05",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "iceland-ring-road-leg-05",
+      "sequence": 5,
+      "fromStopId": "iceland-ring-road-stop-05",
+      "toStopId": "iceland-ring-road-stop-06",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    }
+  ],
+  "sources": [],
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context"
+  },
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true,
+    "notes": "Stable editorial route; volatile transport, price, access and traveller-specific facts are maintained separately."
+  }
+}

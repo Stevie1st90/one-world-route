@@ -134,6 +134,8 @@ jobs:
           node --check platform/navigation.js
           node --check platform/discovery.js
           node --check platform/trip-tools.js
+          node --check platform/journey-adapter.js
+          node --check platform/shared-knowledge.js
           node --check platform/traveller-fit.js
           node --check platform/trip-compare.js
           node --check platform/home.js
@@ -161,6 +163,9 @@ jobs:
           node --check scripts/platform-extension-validators/port.mjs
           node --check scripts/platform-extension-validators/rail.mjs
           node --check scripts/scaffold-trip.mjs
+          node --check scripts/audit-platform-maintenance.mjs
+          node --check scripts/audit-platform-media.mjs
+          node --check scripts/test-journey-adapter.mjs
           node --check scripts/generate-seo.mjs
           node --check scripts/serve-local.mjs
           node --check scripts/test-preview-routes.mjs
@@ -205,6 +210,12 @@ jobs:
         run: node --test scripts/test-cache-policy.mjs
       - name: Platform model tests
         run: node --test scripts/test-platform-model.mjs
+      - name: Journey personalization tests
+        run: node --test scripts/test-journey-adapter.mjs
+      - name: Journey maintenance audit
+        run: node scripts/audit-platform-maintenance.mjs
+      - name: Journey media rights audit
+        run: node scripts/audit-platform-media.mjs
       - name: Platform locale tests
         run: node --test scripts/test-platform-i18n.mjs
       - name: Platform formatter tests
@@ -384,6 +395,14 @@ jobs:
           name: regional-browser-smoke-${{ github.run_id }}
           path: one-world-route-public-mvp/qa/test-results
           if-no-files-found: ignore
+          retention-days: 7
+      - name: Upload discovery visual QA
+        if: success()
+        uses: actions/upload-artifact@v7
+        with:
+          name: discovery-visual-qa-${{ github.run_id }}
+          path: one-world-route-public-mvp/qa/test-results
+          if-no-files-found: error
           retention-days: 7
 
   validate:

@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "collections": [
+    {
+      "id": "great-rail-journeys",
+      "theme": "rockies",
+      "filters": {
+        "mode": "rail"
+      },
+      "title": {
+        "en": "Great Rail Journeys",
+        "de": "Große Bahnreisen",
+        "it": "Grandi viaggi in treno",
+        "es": "Grandes viajes en tren",
+        "fr": "Grands voyages en train",
+        "pt": "Grandes viagens de trem"
+      },
+      "description": {
+        "en": "Journeys where the railway is part of the experience.",
+        "de": "Reisen, bei denen die Bahn selbst Teil des Erlebnisses ist.",
+        "it": "Viaggi in cui il treno fa parte dell'esperienza.",
+        "es": "Viajes donde el tren forma parte de la experiencia.",
+        "fr": "Des voyages où le train fait partie de l'expérience.",
+        "pt": "Viagens em que o trem faz parte da experiência."
+      }
+    },
+    {
+      "id": "epic-road-trips",
+      "theme": "desert",
+      "filters": {
+        "theme": "road-trip"
+      },
+      "title": {
+        "en": "Epic Road Trips",
+        "de": "Epische Roadtrips",
+        "it": "Road trip epici",
+        "es": "Road trips épicos",
+        "fr": "Road trips épiques",
+        "pt": "Road trips épicas"
+      },
+      "description": {
+        "en": "Routes built around freedom, landscapes and the road itself.",
+        "de": "Routen rund um Freiheit, Landschaft und das Unterwegssein.",
+        "it": "Percorsi tra libertà, paesaggi e strada.",
+        "es": "Rutas de libertad, paisajes y carretera.",
+        "fr": "Des itinéraires entre liberté, paysages et route.",
+        "pt": "Rotas de liberdade, paisagens e estrada."
+      }
+    },
+    {
+      "id": "island-escapes",
+      "theme": "aegean",
+      "filters": {
+        "theme": "islands"
+      },
+      "title": {
+        "en": "Island Escapes",
+        "de": "Inselreisen",
+        "it": "Fughe tra le isole",
+        "es": "Escapadas entre islas",
+        "fr": "Escapades insulaires",
+        "pt": "Escapadas por ilhas"
+      },
+      "description": {
+        "en": "Ferries, coastlines and slower days between islands.",
+        "de": "Fähren, Küsten und entschleunigte Tage zwischen Inseln.",
+        "it": "Traghetti, coste e giornate lente tra le isole.",
+        "es": "Ferries, costas y días tranquilos entre islas.",
+        "fr": "Ferries, côtes et journées lentes entre les îles.",
+        "pt": "Balsas, costas e dias tranquilos entre ilhas."
+      }
+    },
+    {
+      "id": "nature-wildlife",
+      "theme": "rainforest",
+      "filters": {
+        "themeAny": [
+          "nature",
+          "wildlife"
+        ]
+      },
+      "title": {
+        "en": "Nature & Wildlife",
+        "de": "Natur & Tierwelt",
+        "it": "Natura e fauna",
+        "es": "Naturaleza y fauna",
+        "fr": "Nature et faune",
+        "pt": "Natureza e vida selvagem"
+      },
+      "description": {
+        "en": "Journeys led by landscapes, ecosystems and wildlife.",
+        "de": "Reisen, bei denen Landschaften, Ökosysteme und Tierwelt im Mittelpunkt stehen.",
+        "it": "Viaggi guidati da paesaggi, ecosistemi e fauna.",
+        "es": "Viajes centrados en paisajes, ecosistemas y fauna.",
+        "fr": "Voyages centrés sur paysages, écosystèmes et faune.",
+        "pt": "Viagens focadas em paisagens, ecossistemas e vida selvagem."
+      }
+    },
+    {
+      "id": "two-week-adventures",
+      "theme": "sakura",
+      "filters": {
+        "duration": "7-14"
+      },
+      "title": {
+        "en": "Two Weeks or Less",
+        "de": "Bis zu zwei Wochen",
+        "it": "Fino a due settimane",
+        "es": "Hasta dos semanas",
+        "fr": "Deux semaines ou moins",
+        "pt": "Até duas semanas"
+      },
+      "description": {
+        "en": "High-impact journeys that fit into a shorter window.",
+        "de": "Erlebnisreiche Reisen für ein kompakteres Zeitfenster.",
+        "it": "Viaggi intensi in una finestra più breve.",
+        "es": "Viajes intensos para una ventana más corta.",
+        "fr": "Des voyages riches dans une fenêtre plus courte.",
+        "pt": "Viagens intensas em uma janela mais curta."
+      }
+    },
+    {
+      "id": "culture-food",
+      "theme": "andes",
+      "filters": {
+        "themeAny": [
+          "culture",
+          "food"
+        ]
+      },
+      "title": {
+        "en": "Culture & Food",
+        "de": "Kultur & Kulinarik",
+        "it": "Cultura e gastronomia",
+        "es": "Cultura y gastronomía",
+        "fr": "Culture et gastronomie",
+        "pt": "Cultura e gastronomia"
+      },
+      "description": {
+        "en": "Routes shaped by cities, traditions and regional food.",
+        "de": "Routen geprägt von Städten, Traditionen und regionaler Küche.",
+        "it": "Percorsi tra città, tradizioni e cucina regionale.",
+        "es": "Rutas de ciudades, tradiciones y cocina regional.",
+        "fr": "Des routes entre villes, traditions et cuisine régionale.",
+        "pt": "Rotas por cidades, tradições e gastronomia regional."
+      }
+    }
+  ]
+}

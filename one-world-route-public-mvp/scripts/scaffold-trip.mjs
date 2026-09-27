@@ -35,6 +35,8 @@ const trip={
   geography:{regions:[],countries:[]},
   planning:{days,currency:'EUR'},
   rendering:{},
+  routePolicy:{startMode:'fixed',reversible:false,reverseEvidenceReusable:false,reversePlanningReusable:false,originMode:'traveller-context'},
+  maintenance:{tier:'live-dependent',sourceReviewDays:90,sharedKnowledge:true,notes:'Keep volatile transport, price, access and traveller-specific facts separate from stable route/editorial content.'},
   places:[],
   stops:[],
   segments:[],
@@ -54,7 +56,7 @@ const catalogEntry={
   title:localized(human),
   subtitle:localized('TODO — public discovery subtitle'),
   metrics:{days,stops:0,countries:0},
-  capabilities:['globe','story','terrain'],
+  capabilities:['globe','story','terrain','trip-planning'],
   discovery:{
     regions:[],
     themes:[],

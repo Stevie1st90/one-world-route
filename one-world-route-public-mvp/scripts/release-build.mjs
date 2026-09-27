@@ -6,6 +6,8 @@ for (const script of [
   'refresh-movement-geometry.mjs',
   'validate-public-data.mjs',
   'validate-platform-data.mjs',
+  'audit-platform-media.mjs',
+  'audit-platform-maintenance.mjs',
   'audit-route-continuity.mjs',
   'audit-flagship-readiness.mjs',
   'build-flagship-operations-queue.mjs',

@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-27",
+  "reviewPolicies": {
+    "evergreen": {
+      "reviewAfterDays": 365
+    },
+    "seasonal": {
+      "reviewAfterDays": 90
+    },
+    "live-dependent": {
+      "reviewAfterDays": 30
+    }
+  },
+  "items": [
+    {
+      "id": "policy-live-transport",
+      "type": "planning-policy",
+      "volatility": "live",
+      "appliesTo": {
+        "modes": [
+          "rail",
+          "ferry",
+          "cruise",
+          "flight",
+          "bus",
+          "coach"
+        ]
+      },
+      "title": {
+        "en": "Live transport check",
+        "de": "Aktueller Verkehrscheck",
+        "it": "Verifica trasporti aggiornata",
+        "es": "Comprobación de transporte actual",
+        "fr": "Vérification transport actuelle",
+        "pt": "Verificação atual de transporte"
+      },
+      "summary": {
+        "en": "Schedules, fares and operating patterns can change. Confirm the chosen direction and travel date close to departure.",
+        "de": "Fahrpläne, Preise und Betriebsabläufe können sich ändern. Gewählte Richtung und Reisedatum sollten vor Abfahrt aktuell geprüft werden.",
+        "it": "Orari, tariffe e servizi possono cambiare. Verifica direzione e data di viaggio vicino alla partenza.",
+        "es": "Horarios, tarifas y servicios pueden cambiar. Confirma dirección y fecha cerca de la salida.",
+        "fr": "Horaires, tarifs et services peuvent changer. Vérifiez le sens et la date peu avant le départ.",
+        "pt": "Horários, tarifas e serviços podem mudar. Confirme direção e data próximo da partida."
+      },
+      "sourceRequired": false,
+      "reviewMode": "before-travel"
+    },
+    {
+      "id": "policy-road-context",
+      "type": "planning-policy",
+      "volatility": "contextual",
+      "appliesTo": {
+        "tripKinds": [
+          "road-trip",
+          "camper"
+        ],
+        "modes": [
+          "car"
+        ]
+      },
+      "title": {
+        "en": "Vehicle context matters",
+        "de": "Fahrzeugkontext beachten",
+        "it": "Il veicolo conta",
+        "es": "El vehículo importa",
+        "fr": "Le véhicule compte",
+        "pt": "O veículo importa"
+      },
+      "summary": {
+        "en": "Tolls, low-emission zones, rental permissions and access rules can depend on the actual vehicle and itinerary.",
+        "de": "Maut, Umweltzonen, Mietwagenfreigaben und Zufahrtsregeln können vom konkreten Fahrzeug und Reiseverlauf abhängen.",
+        "it": "Pedaggi, zone ambientali, noleggio e accessi possono dipendere dal veicolo e dall'itinerario.",
+        "es": "Peajes, zonas ambientales, permisos de alquiler y accesos pueden depender del vehículo y del itinerario.",
+        "fr": "Péages, zones environnementales, location et accès peuvent dépendre du véhicule et de l'itinéraire.",
+        "pt": "Pedágios, zonas ambientais, permissões de aluguel e acessos podem depender do veículo e do roteiro."
+      },
+      "sourceRequired": false,
+      "reviewMode": "traveller-context"
+    },
+    {
+      "id": "policy-multi-country-entry",
+      "type": "planning-policy",
+      "volatility": "traveller-specific",
+      "appliesTo": {
+        "minimumCountries": 2
+      },
+      "title": {
+        "en": "Entry rules are traveller-specific",
+        "de": "Einreise ist reisendenspezifisch",
+        "it": "Le regole d'ingresso dipendono dal viaggiatore",
+        "es": "La entrada depende del viajero",
+        "fr": "L'entrée dépend du voyageur",
+        "pt": "A entrada depende do viajante"
+      },
+      "summary": {
+        "en": "Passport, residence, dates and route direction can change entry requirements. Use official sources for the actual traveller context.",
+        "de": "Pass, Wohnsitz, Reisedaten und Routenrichtung können Einreisebedingungen verändern. Für den konkreten Reisekontext sind offizielle Quellen maßgeblich.",
+        "it": "Passaporto, residenza, date e direzione possono cambiare i requisiti d'ingresso.",
+        "es": "Pasaporte, residencia, fechas y dirección pueden cambiar los requisitos de entrada.",
+        "fr": "Passeport, résidence, dates et sens du voyage peuvent modifier les conditions d'entrée.",
+        "pt": "Passaporte, residência, datas e direção podem alterar os requisitos de entrada."
+      },
+      "sourceRequired": false,
+      "reviewMode": "traveller-context"
+    }
+  ]
+}

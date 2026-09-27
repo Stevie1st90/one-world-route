@@ -55,3 +55,24 @@ test('legacy world translator is isolated and reuses platform locale data',()=>{
   assert.equal(legacy.translate('Day 5'),'Tag 5');
   assert.equal(legacy.translate('CHAPTER 2 / 12'),'KAPITEL 2 / 12');
 });
+
+
+test('global discovery facets are localized across supported locales',()=>{
+  const i18n=loadI18n();
+  assert.equal(i18n.messages.de.facet_south_america,'Südamerika');
+  assert.equal(i18n.messages.de.facet_island_hopping,'Inselhopping');
+  assert.equal(i18n.messages.es.facet_japan,'Japón');
+  assert.equal(i18n.messages.fr.facet_new_zealand,'Nouvelle-Zélande');
+  assert.equal(i18n.messages.it.facet_nature,'Natura');
+  assert.equal(i18n.messages.pt.status_editorial_preview,'Prévia editorial');
+  assert.equal(i18n.messages.de.exploreByRegion,'Nach Region entdecken');
+  assert.equal(i18n.messages.de.filters,'Filter');
+  assert.equal(i18n.messages.fr.hideFilters,'Masquer les filtres');
+  assert.equal(i18n.messages.de.personalizeJourneyTitle,'Passe die Reise an dich an');
+  assert.equal(i18n.messages.en.journeyUpdates,'Journey updates');
+  assert.equal(i18n.messages.de.originRegion,'Startregion (Empfehlungen)');
+  assert.equal(i18n.messages.en.curatedCollections,'Curated collections');
+  assert.equal(i18n.messages.de.loadMoreJourneys,'{count} weitere Reisen anzeigen');
+  assert.match(i18n.messages.en.showingJourneys,/\{shown\}.*\{total\}/);
+  assert.equal(i18n.messages.de.routeAccess,'Anreise zur Route');
+});

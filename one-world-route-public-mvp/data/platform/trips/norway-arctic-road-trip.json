@@ -1,0 +1,276 @@
+{
+  "schemaVersion": 1,
+  "id": "norway-arctic-road-trip",
+  "slug": "norway-arctic-road-trip",
+  "kind": "road-trip",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Norway Arctic Road Trip",
+    "de": "Norwegens Arktis-Roadtrip",
+    "it": "Road trip artico in Norvegia",
+    "es": "Road trip ártico por Noruega",
+    "fr": "Road trip arctique en Norvège",
+    "pt": "Road trip ártico na Noruega"
+  },
+  "summary": {
+    "en": "An Arctic road journey from Tromsø through Senja and the Lofoten Islands, built around dramatic coastlines and long northern light.",
+    "de": "Eine arktische Straßenreise von Tromsø über Senja zu den Lofoten – geprägt von Küstenlandschaften und nordischem Licht.",
+    "it": "Un viaggio artico su strada tra Tromsø, Senja e le Lofoten.",
+    "es": "Un viaje por carretera ártico entre Tromsø, Senja y Lofoten.",
+    "fr": "Un voyage routier arctique entre Tromsø, Senja et les Lofoten.",
+    "pt": "Uma viagem rodoviária ártica entre Tromsø, Senja e Lofoten."
+  },
+  "geography": {
+    "countries": [
+      "NO"
+    ],
+    "primaryCountry": "NO"
+  },
+  "planning": {
+    "days": 12,
+    "currency": "NOK",
+    "pace": "balanced",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 68.881,
+      "lng": 16.05012,
+      "altitude": 0.72
+    }
+  },
+  "media": {
+    "hero": {
+      "type": "art-directed",
+      "theme": "aurora",
+      "asset": null,
+      "attribution": null,
+      "license": "original-ui-art"
+    },
+    "gallery": []
+  },
+  "highlights": [
+    "fjords, islands and Arctic light",
+    "road-trip · coast · nature"
+  ],
+  "places": [
+    {
+      "id": "tromso",
+      "type": "place",
+      "countryCode": "NO",
+      "name": {
+        "en": "Tromsø"
+      },
+      "coordinates": {
+        "lat": 69.6492,
+        "lng": 18.9553
+      }
+    },
+    {
+      "id": "senja",
+      "type": "place",
+      "countryCode": "NO",
+      "name": {
+        "en": "Senja"
+      },
+      "coordinates": {
+        "lat": 69.2748,
+        "lng": 17.5179
+      }
+    },
+    {
+      "id": "andoya",
+      "type": "place",
+      "countryCode": "NO",
+      "name": {
+        "en": "Andøya"
+      },
+      "coordinates": {
+        "lat": 69.3142,
+        "lng": 16.1194
+      }
+    },
+    {
+      "id": "svolvaer",
+      "type": "place",
+      "countryCode": "NO",
+      "name": {
+        "en": "Svolvær"
+      },
+      "coordinates": {
+        "lat": 68.2343,
+        "lng": 14.5684
+      }
+    },
+    {
+      "id": "reine",
+      "type": "place",
+      "countryCode": "NO",
+      "name": {
+        "en": "Reine"
+      },
+      "coordinates": {
+        "lat": 67.9325,
+        "lng": 13.0896
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "norway-arctic-road-trip-stop-01",
+      "sequence": 1,
+      "placeId": "tromso",
+      "dayStart": 1,
+      "dayEnd": 2,
+      "nights": 2
+    },
+    {
+      "id": "norway-arctic-road-trip-stop-02",
+      "sequence": 2,
+      "placeId": "senja",
+      "dayStart": 3,
+      "dayEnd": 4,
+      "nights": 2
+    },
+    {
+      "id": "norway-arctic-road-trip-stop-03",
+      "sequence": 3,
+      "placeId": "andoya",
+      "dayStart": 5,
+      "dayEnd": 7,
+      "nights": 3
+    },
+    {
+      "id": "norway-arctic-road-trip-stop-04",
+      "sequence": 4,
+      "placeId": "svolvaer",
+      "dayStart": 8,
+      "dayEnd": 9,
+      "nights": 2
+    },
+    {
+      "id": "norway-arctic-road-trip-stop-05",
+      "sequence": 5,
+      "placeId": "reine",
+      "dayStart": 10,
+      "dayEnd": 12,
+      "nights": 3
+    }
+  ],
+  "segments": [
+    {
+      "id": "norway-arctic-road-trip-leg-01",
+      "sequence": 1,
+      "fromStopId": "norway-arctic-road-trip-stop-01",
+      "toStopId": "norway-arctic-road-trip-stop-02",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "norway-arctic-road-trip-leg-02",
+      "sequence": 2,
+      "fromStopId": "norway-arctic-road-trip-stop-02",
+      "toStopId": "norway-arctic-road-trip-stop-03",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "norway-arctic-road-trip-leg-03",
+      "sequence": 3,
+      "fromStopId": "norway-arctic-road-trip-stop-03",
+      "toStopId": "norway-arctic-road-trip-stop-04",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "norway-arctic-road-trip-leg-04",
+      "sequence": 4,
+      "fromStopId": "norway-arctic-road-trip-stop-04",
+      "toStopId": "norway-arctic-road-trip-stop-05",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    }
+  ],
+  "sources": [],
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context"
+  },
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true,
+    "notes": "Stable editorial route; volatile transport, price, access and traveller-specific facts are maintained separately."
+  }
+}

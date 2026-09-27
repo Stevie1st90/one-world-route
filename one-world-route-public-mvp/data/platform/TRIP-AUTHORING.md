@@ -118,6 +118,19 @@ Catalog `capabilities` describe what a trip can do. Examples:
 
 Capabilities are product features. Trip kind is editorial classification. Keep those concepts separate.
 
+
+
+## Visual discovery and media
+
+Journey discovery is **inspiration first**. A trip may declare a `media.hero` presentation independently from transport evidence.
+
+- `type: "art-directed"` uses the built-in CSS visual themes and has no third-party licensing dependency.
+- `type: "image"` is reserved for a controlled local/remote asset with explicit attribution and license metadata.
+- Media never counts as route evidence and must not be used to imply that schedules, fares, access or services are verified.
+- New editorial-preview journeys may publish with draft transport segments as long as unknown operational facts remain unknown.
+
+The catalog can add presentation-only `visual` metadata such as `theme` and `featurePriority`. Renderers must still depend on the universal place → stop → segment model rather than trip IDs.
+
 ## Sources and volatile facts
 
 Do not invent schedules, fares, border rules or eligibility.
@@ -150,3 +163,58 @@ node scripts/release-build.mjs
 ```
 
 For browser QA also run the Playwright suite in `qa/`.
+
+
+## Personalization contract
+
+Every journey can use the global traveller context as the user's personal origin. Do not duplicate the same home origin in every journey.
+
+Use `routePolicy` to state whether the authored route itself may change:
+
+- `startMode: "fixed"` — route order is fixed; the personal origin only affects arrival/departure planning.
+- `startMode: "endpoints"` + `reversible: true` — the user may start at either route end and the runtime derives a reverse itinerary.
+- `startMode: "any-stop"` — reserved for routes whose data model genuinely supports starting at any stop (for example a fully modelled loop).
+
+Directional transport evidence, fares and timing MUST NOT be reused after reversing a route unless `reverseEvidenceReusable` / `reversePlanningReusable` explicitly say so. The safe default is false.
+
+The product must never invent a "best" gateway from a free-text home city. A future geocoding/routing provider may rank entry gateways, but until such a provider is configured the user chooses the eligible route start explicitly.
+
+## Low-maintenance content architecture
+
+Keep three layers separate:
+
+1. **Stable journey content** — places, stop order, editorial story, visual media and long-lived discovery metadata.
+2. **Shared knowledge** — reusable planning guidance that can apply to many journeys. Store it in `data/platform/shared-knowledge.json`.
+3. **Volatile sourced facts** — timetables, fares, entry rules, closures, operator services, access restrictions and similar facts that require current evidence.
+
+Do not copy the same volatile claim into dozens of trip files. If the claim is broadly reusable, model it as shared knowledge with scope and review metadata. If it is route-specific, keep it source-backed in the trip dataset.
+
+Each new trip should define `maintenance`:
+
+```json
+{
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true
+  }
+}
+```
+
+The maintenance audit is advisory for stale sources and hard-fails only malformed contracts by default. This keeps day-to-day operations low while still surfacing review work.
+
+## Scaling rule
+
+Adding the 18th, 100th or 1000th journey must not require renderer branches for a trip ID. A new journey should normally require only:
+
+- one dataset,
+- one catalog entry,
+- optional shared-knowledge entries,
+- rights-cleared media,
+- validation.
+
+If a new travel type needs specialized behavior, implement a reusable capability/extension, not a trip-specific conditional.
+
+The release build generates compact preview geometry into `data/platform/trip-index.json`. Discovery uses that index for the global globe and loads a full trip dataset only when the user opens the journey. Do not add homepage code that fetches every trip file.
+
+Large catalogs must use progressive rendering. A new discovery surface should page or batch results rather than assuming the complete catalog can be rendered at once.

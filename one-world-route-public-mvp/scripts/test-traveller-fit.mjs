@@ -40,3 +40,22 @@ test('Traveller Fit reports explicit checks from published metadata and local co
   assert.equal(result.origin,'Frankfurt');
   assert.deepEqual(JSON.parse(JSON.stringify(result.seasons)),['spring','autumn']);
 });
+
+test('traveller fit exposes explicit origin region without inferring it from free text',()=>{
+  const fit=load();
+  const result=fit.evaluate({discovery:{fit:{party:['solo'],seasons:['spring'],startRegion:'europe',accessibility:'standard-check'}},capabilities:[]},{origin:'Frankfurt / FRA',originRegion:'europe',party:{adults:1,children:0}});
+  assert.equal(result.origin,'Frankfurt / FRA');
+  assert.equal(result.originRegion,'europe');
+  assert.equal(result.startRegion,'europe');
+});
+
+test('recommendation reasons expose why a route fits without exposing a magic score',()=>{
+  const fit=load();
+  const meta={discovery:{modes:['rail'],fit:{party:['couples'],startRegion:'europe',pace:'balanced',seasons:['spring'],accessibility:'standard-check'}},capabilities:[]};
+  const profile={origin:'Frankfurt',originRegion:'europe',party:{adults:2,children:0}};
+  assert.deepEqual(JSON.parse(JSON.stringify(fit.recommendationReasons(meta,profile))),[
+    {kind:'origin',value:'europe'},
+    {kind:'party',value:'couples'},
+    {kind:'mode',value:'rail'}
+  ]);
+});

@@ -28,6 +28,27 @@ export function buildTripIndex(catalog,datasets){
       });
       const segments=trip.segments||[];
       const sources=trip.sources||[];
+      const stopById=new Map((trip.stops||[]).map(stop=>[stop.id,stop]));
+      const preview=meta.renderer==='regional-globe'?{
+        points:(trip.places||[]).filter(place=>Number.isFinite(Number(place.coordinates?.lat))&&Number.isFinite(Number(place.coordinates?.lng))).map(place=>({
+          id:place.id,
+          name:place.name||'',
+          lat:Number(place.coordinates.lat),
+          lng:Number(place.coordinates.lng)
+        })),
+        arcs:segments.map(segment=>{
+          const fromStop=stopById.get(segment.fromStopId),toStop=stopById.get(segment.toStopId);
+          const from=places.get(fromStop?.placeId)||{},to=places.get(toStop?.placeId)||{};
+          if(!Number.isFinite(Number(from.coordinates?.lat))||!Number.isFinite(Number(from.coordinates?.lng))||!Number.isFinite(Number(to.coordinates?.lat))||!Number.isFinite(Number(to.coordinates?.lng)))return null;
+          return {
+            id:segment.id,
+            fromName:from.name||'',
+            toName:to.name||'',
+            start:{lat:Number(from.coordinates.lat),lng:Number(from.coordinates.lng)},
+            end:{lat:Number(to.coordinates.lat),lng:Number(to.coordinates.lng)}
+          };
+        }).filter(Boolean)
+      }:null;
       const sourcedSegments=segments.filter(segment=>
         Boolean(segment.source)||(segment.verification?.sourceIds||[]).length>0
       ).length;
@@ -61,6 +82,7 @@ export function buildTripIndex(catalog,datasets){
           knownPublishedMinimumScope:trip.planning?.knownPublishedMinimumScope||null
         },
         itinerary,
+        preview,
         evidence:{
           segments:segments.length||Number(meta.metrics?.segments||meta.metrics?.internationalLegs||0),
           sourcedSegments,

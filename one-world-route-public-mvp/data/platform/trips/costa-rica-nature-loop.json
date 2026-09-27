@@ -1,0 +1,276 @@
+{
+  "schemaVersion": 1,
+  "id": "costa-rica-nature-loop",
+  "slug": "costa-rica-nature-loop",
+  "kind": "road-trip",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Costa Rica Nature Loop",
+    "de": "Costa Rica · Natur-Rundreise",
+    "it": "Costa Rica · circuito natura",
+    "es": "Costa Rica · circuito de naturaleza",
+    "fr": "Costa Rica · boucle nature",
+    "pt": "Costa Rica · circuito de natureza"
+  },
+  "summary": {
+    "en": "A compact nature loop from San José to volcano country, cloud forest and the Pacific.",
+    "de": "Eine kompakte Natur-Rundreise von San José zu Vulkanen, Nebelwald und Pazifik.",
+    "it": "Un circuito naturalistico tra vulcani, foresta nebulosa e Pacifico.",
+    "es": "Un circuito de naturaleza entre volcanes, bosque nuboso y Pacífico.",
+    "fr": "Une boucle nature entre volcans, forêt de nuages et Pacifique.",
+    "pt": "Um circuito de natureza entre vulcões, floresta nublada e Pacífico."
+  },
+  "geography": {
+    "countries": [
+      "CR"
+    ],
+    "primaryCountry": "CR"
+  },
+  "planning": {
+    "days": 14,
+    "currency": "USD",
+    "pace": "balanced",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 9.85018,
+      "lng": -84.29884,
+      "altitude": 0.72
+    }
+  },
+  "media": {
+    "hero": {
+      "type": "art-directed",
+      "theme": "rainforest",
+      "asset": null,
+      "attribution": null,
+      "license": "original-ui-art"
+    },
+    "gallery": []
+  },
+  "highlights": [
+    "volcanoes, rainforest and Pacific coast",
+    "nature · wildlife · coast"
+  ],
+  "places": [
+    {
+      "id": "san-jose",
+      "type": "place",
+      "countryCode": "CR",
+      "name": {
+        "en": "San José"
+      },
+      "coordinates": {
+        "lat": 9.9281,
+        "lng": -84.0907
+      }
+    },
+    {
+      "id": "arenal",
+      "type": "place",
+      "countryCode": "CR",
+      "name": {
+        "en": "Arenal"
+      },
+      "coordinates": {
+        "lat": 10.4626,
+        "lng": -84.7033
+      }
+    },
+    {
+      "id": "monteverde",
+      "type": "place",
+      "countryCode": "CR",
+      "name": {
+        "en": "Monteverde"
+      },
+      "coordinates": {
+        "lat": 10.3009,
+        "lng": -84.8255
+      }
+    },
+    {
+      "id": "manuel-antonio",
+      "type": "place",
+      "countryCode": "CR",
+      "name": {
+        "en": "Manuel Antonio"
+      },
+      "coordinates": {
+        "lat": 9.3923,
+        "lng": -84.1367
+      }
+    },
+    {
+      "id": "uvita",
+      "type": "place",
+      "countryCode": "CR",
+      "name": {
+        "en": "Uvita"
+      },
+      "coordinates": {
+        "lat": 9.167,
+        "lng": -83.738
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "costa-rica-nature-loop-stop-01",
+      "sequence": 1,
+      "placeId": "san-jose",
+      "dayStart": 1,
+      "dayEnd": 2,
+      "nights": 2
+    },
+    {
+      "id": "costa-rica-nature-loop-stop-02",
+      "sequence": 2,
+      "placeId": "arenal",
+      "dayStart": 3,
+      "dayEnd": 5,
+      "nights": 3
+    },
+    {
+      "id": "costa-rica-nature-loop-stop-03",
+      "sequence": 3,
+      "placeId": "monteverde",
+      "dayStart": 6,
+      "dayEnd": 8,
+      "nights": 3
+    },
+    {
+      "id": "costa-rica-nature-loop-stop-04",
+      "sequence": 4,
+      "placeId": "manuel-antonio",
+      "dayStart": 9,
+      "dayEnd": 11,
+      "nights": 3
+    },
+    {
+      "id": "costa-rica-nature-loop-stop-05",
+      "sequence": 5,
+      "placeId": "uvita",
+      "dayStart": 12,
+      "dayEnd": 14,
+      "nights": 3
+    }
+  ],
+  "segments": [
+    {
+      "id": "costa-rica-nature-loop-leg-01",
+      "sequence": 1,
+      "fromStopId": "costa-rica-nature-loop-stop-01",
+      "toStopId": "costa-rica-nature-loop-stop-02",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "costa-rica-nature-loop-leg-02",
+      "sequence": 2,
+      "fromStopId": "costa-rica-nature-loop-stop-02",
+      "toStopId": "costa-rica-nature-loop-stop-03",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "costa-rica-nature-loop-leg-03",
+      "sequence": 3,
+      "fromStopId": "costa-rica-nature-loop-stop-03",
+      "toStopId": "costa-rica-nature-loop-stop-04",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "costa-rica-nature-loop-leg-04",
+      "sequence": 4,
+      "fromStopId": "costa-rica-nature-loop-stop-04",
+      "toStopId": "costa-rica-nature-loop-stop-05",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    }
+  ],
+  "sources": [],
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context"
+  },
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true,
+    "notes": "Stable editorial route; volatile transport, price, access and traveller-specific facts are maintained separately."
+  }
+}

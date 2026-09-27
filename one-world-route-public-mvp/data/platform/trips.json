@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-23",
+  "updatedAt": "2026-09-27",
   "defaultLocale": "en",
   "supportedLocales": [
     "en",
@@ -382,6 +382,938 @@
             "families"
           ],
           "startRegion": "europe",
+          "accessibility": "standard-check"
+        }
+      }
+    },
+    {
+      "id": "japan-by-rail",
+      "slug": "japan-by-rail",
+      "kind": "rail",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/japan-by-rail.json",
+      "title": {
+        "en": "Japan by Rail",
+        "de": "Japan mit der Bahn",
+        "it": "Giappone in treno",
+        "es": "Japón en tren",
+        "fr": "Japon en train",
+        "pt": "Japão de trem"
+      },
+      "subtitle": {
+        "en": "14 days · Tokyo, the Alps, Kyoto and Hiroshima",
+        "de": "14 Tage · Tokio, Alpen, Kyoto und Hiroshima",
+        "it": "14 giorni · Tokyo, Alpi, Kyoto e Hiroshima",
+        "es": "14 días · Tokio, Alpes, Kioto e Hiroshima",
+        "fr": "14 jours · Tokyo, Alpes, Kyoto et Hiroshima",
+        "pt": "14 dias · Tóquio, Alpes, Kyoto e Hiroshima"
+      },
+      "metrics": {
+        "days": 14,
+        "countries": 1,
+        "stops": 6,
+        "segments": 5,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "trip-planning",
+        "story",
+        "terrain"
+      ],
+      "visual": {
+        "theme": "sakura",
+        "featurePriority": 100,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "asia",
+          "east-asia",
+          "japan"
+        ],
+        "themes": [
+          "rail",
+          "culture",
+          "food",
+          "cities"
+        ],
+        "modes": [
+          "rail"
+        ],
+        "durationBand": "7-14",
+        "featured": true,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "spring",
+            "autumn",
+            "winter"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "asia",
+          "accessibility": "standard-check"
+        }
+      }
+    },
+    {
+      "id": "patagonia-road-trip",
+      "slug": "patagonia-road-trip",
+      "kind": "road-trip",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/patagonia-road-trip.json",
+      "title": {
+        "en": "Patagonia Road Trip",
+        "de": "Patagonien-Roadtrip",
+        "it": "Road trip in Patagonia",
+        "es": "Road trip por la Patagonia",
+        "fr": "Road trip en Patagonie",
+        "pt": "Road trip pela Patagônia"
+      },
+      "subtitle": {
+        "en": "18 days · glaciers, steppe and the Andes",
+        "de": "18 Tage · Gletscher, Steppe und Anden",
+        "it": "18 giorni · ghiacciai, steppa e Ande",
+        "es": "18 días · glaciares, estepa y Andes",
+        "fr": "18 jours · glaciers, steppe et Andes",
+        "pt": "18 dias · geleiras, estepe e Andes"
+      },
+      "metrics": {
+        "days": 18,
+        "countries": 2,
+        "stops": 5,
+        "segments": 4,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "trip-planning",
+        "story",
+        "terrain"
+      ],
+      "visual": {
+        "theme": "glacier",
+        "featurePriority": 95,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "south-america",
+          "patagonia",
+          "argentina",
+          "chile"
+        ],
+        "themes": [
+          "road-trip",
+          "mountains",
+          "nature",
+          "adventure"
+        ],
+        "modes": [
+          "car"
+        ],
+        "durationBand": "15-30",
+        "featured": true,
+        "fit": {
+          "pace": "active",
+          "seasons": [
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "couples",
+            "friends"
+          ],
+          "startRegion": "south-america",
+          "accessibility": "vehicle-dependent"
+        }
+      }
+    },
+    {
+      "id": "norway-arctic-road-trip",
+      "slug": "norway-arctic-road-trip",
+      "kind": "road-trip",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/norway-arctic-road-trip.json",
+      "title": {
+        "en": "Norway Arctic Road Trip",
+        "de": "Norwegens Arktis-Roadtrip",
+        "it": "Road trip artico in Norvegia",
+        "es": "Road trip ártico por Noruega",
+        "fr": "Road trip arctique en Norvège",
+        "pt": "Road trip ártico na Noruega"
+      },
+      "subtitle": {
+        "en": "12 days · fjords, islands and Arctic light",
+        "de": "12 Tage · Fjorde, Inseln und arktisches Licht",
+        "it": "12 giorni · fiordi, isole e luce artica",
+        "es": "12 días · fiordos, islas y luz ártica",
+        "fr": "12 jours · fjords, îles et lumière arctique",
+        "pt": "12 dias · fiordes, ilhas e luz ártica"
+      },
+      "metrics": {
+        "days": 12,
+        "countries": 1,
+        "stops": 5,
+        "segments": 4,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "trip-planning",
+        "story",
+        "terrain"
+      ],
+      "visual": {
+        "theme": "aurora",
+        "featurePriority": 90,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "europe",
+          "northern-europe",
+          "norway"
+        ],
+        "themes": [
+          "road-trip",
+          "coast",
+          "nature",
+          "arctic"
+        ],
+        "modes": [
+          "car",
+          "ferry"
+        ],
+        "durationBand": "7-14",
+        "featured": true,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "summer",
+            "winter"
+          ],
+          "party": [
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "europe",
+          "accessibility": "vehicle-dependent"
+        }
+      }
+    },
+    {
+      "id": "new-zealand-camper-loop",
+      "slug": "new-zealand-camper-loop",
+      "kind": "camper",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/new-zealand-camper-loop.json",
+      "title": {
+        "en": "New Zealand Camper Loop",
+        "de": "Neuseeland-Camper-Loop",
+        "it": "Nuova Zelanda in camper",
+        "es": "Nueva Zelanda en camper",
+        "fr": "Nouvelle-Zélande en camper",
+        "pt": "Nova Zelândia de camper"
+      },
+      "subtitle": {
+        "en": "21 days · mountains, fjords and wild coast",
+        "de": "21 Tage · Berge, Fjorde und wilde Küste",
+        "it": "21 giorni · montagne, fiordi e costa selvaggia",
+        "es": "21 días · montañas, fiordos y costa salvaje",
+        "fr": "21 jours · montagnes, fjords et côte sauvage",
+        "pt": "21 dias · montanhas, fiordes e costa selvagem"
+      },
+      "metrics": {
+        "days": 21,
+        "countries": 1,
+        "stops": 6,
+        "segments": 5,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "trip-planning",
+        "story",
+        "terrain"
+      ],
+      "visual": {
+        "theme": "fern",
+        "featurePriority": 92,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "oceania",
+          "new-zealand"
+        ],
+        "themes": [
+          "camper",
+          "road-trip",
+          "nature",
+          "mountains"
+        ],
+        "modes": [
+          "car"
+        ],
+        "durationBand": "15-30",
+        "featured": true,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "oceania",
+          "accessibility": "vehicle-dependent"
+        }
+      }
+    },
+    {
+      "id": "greek-island-hopping",
+      "slug": "greek-island-hopping",
+      "kind": "island-hopping",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/greek-island-hopping.json",
+      "title": {
+        "en": "Greek Island Hopping",
+        "de": "Griechisches Inselhopping",
+        "it": "Island hopping in Grecia",
+        "es": "Island hopping por Grecia",
+        "fr": "D'île en île en Grèce",
+        "pt": "Island hopping na Grécia"
+      },
+      "subtitle": {
+        "en": "14 days · Athens, Cyclades and Aegean blue",
+        "de": "14 Tage · Athen, Kykladen und Ägäisblau",
+        "it": "14 giorni · Atene, Cicladi e blu Egeo",
+        "es": "14 días · Atenas, Cícladas y azul Egeo",
+        "fr": "14 jours · Athènes, Cyclades et bleu Égée",
+        "pt": "14 dias · Atenas, Cíclades e azul do Egeu"
+      },
+      "metrics": {
+        "days": 14,
+        "countries": 1,
+        "stops": 5,
+        "segments": 4,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "trip-planning",
+        "story",
+        "terrain"
+      ],
+      "visual": {
+        "theme": "aegean",
+        "featurePriority": 89,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "europe",
+          "southern-europe",
+          "greece",
+          "mediterranean"
+        ],
+        "themes": [
+          "islands",
+          "coast",
+          "food",
+          "culture"
+        ],
+        "modes": [
+          "ferry"
+        ],
+        "durationBand": "7-14",
+        "featured": true,
+        "fit": {
+          "pace": "relaxed",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "europe",
+          "accessibility": "operator-dependent"
+        }
+      }
+    },
+    {
+      "id": "morocco-atlas-desert",
+      "slug": "morocco-atlas-desert",
+      "kind": "road-trip",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/morocco-atlas-desert.json",
+      "title": {
+        "en": "Morocco Atlas & Desert",
+        "de": "Marokko · Atlas & Wüste",
+        "it": "Marocco · Atlante e deserto",
+        "es": "Marruecos · Atlas y desierto",
+        "fr": "Maroc · Atlas et désert",
+        "pt": "Marrocos · Atlas e deserto"
+      },
+      "subtitle": {
+        "en": "12 days · medinas, mountain passes and Sahara",
+        "de": "12 Tage · Medinas, Bergpässe und Sahara",
+        "it": "12 giorni · medine, passi e Sahara",
+        "es": "12 días · medinas, puertos y Sáhara",
+        "fr": "12 jours · médinas, cols et Sahara",
+        "pt": "12 dias · medinas, passos e Saara"
+      },
+      "metrics": {
+        "days": 12,
+        "countries": 1,
+        "stops": 5,
+        "segments": 4,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "trip-planning",
+        "story",
+        "terrain"
+      ],
+      "visual": {
+        "theme": "desert",
+        "featurePriority": 88,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "africa",
+          "north-africa",
+          "morocco"
+        ],
+        "themes": [
+          "road-trip",
+          "desert",
+          "culture",
+          "mountains"
+        ],
+        "modes": [
+          "car"
+        ],
+        "durationBand": "7-14",
+        "featured": true,
+        "fit": {
+          "pace": "active",
+          "seasons": [
+            "spring",
+            "autumn",
+            "winter"
+          ],
+          "party": [
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "africa",
+          "accessibility": "vehicle-dependent"
+        }
+      }
+    },
+    {
+      "id": "south-africa-garden-safari",
+      "slug": "south-africa-garden-safari",
+      "kind": "road-trip",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/south-africa-garden-safari.json",
+      "title": {
+        "en": "South Africa Garden Route & Safari",
+        "de": "Südafrika · Garden Route & Safari",
+        "it": "Sudafrica · Garden Route e safari",
+        "es": "Sudáfrica · Garden Route y safari",
+        "fr": "Afrique du Sud · Garden Route et safari",
+        "pt": "África do Sul · Garden Route e safári"
+      },
+      "subtitle": {
+        "en": "16 days · Cape coast, forests and wildlife",
+        "de": "16 Tage · Kapküste, Wälder und Tierwelt",
+        "it": "16 giorni · costa, foreste e fauna",
+        "es": "16 días · costa, bosques y fauna",
+        "fr": "16 jours · côte, forêts et faune",
+        "pt": "16 dias · costa, florestas e vida selvagem"
+      },
+      "metrics": {
+        "days": 16,
+        "countries": 1,
+        "stops": 5,
+        "segments": 4,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "trip-planning",
+        "story",
+        "terrain"
+      ],
+      "visual": {
+        "theme": "savanna",
+        "featurePriority": 84,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "africa",
+          "southern-africa",
+          "south-africa"
+        ],
+        "themes": [
+          "road-trip",
+          "wildlife",
+          "coast",
+          "nature"
+        ],
+        "modes": [
+          "car"
+        ],
+        "durationBand": "15-30",
+        "featured": false,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "africa",
+          "accessibility": "vehicle-dependent"
+        }
+      }
+    },
+    {
+      "id": "canadian-rockies-rail-road",
+      "slug": "canadian-rockies-rail-road",
+      "kind": "multimodal",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/canadian-rockies-rail-road.json",
+      "title": {
+        "en": "Canadian Rockies Rail & Road",
+        "de": "Kanadische Rockies · Bahn & Straße",
+        "it": "Rockies canadesi · treno e strada",
+        "es": "Rocosas canadienses · tren y carretera",
+        "fr": "Rocheuses canadiennes · train et route",
+        "pt": "Rochosas canadenses · trem e estrada"
+      },
+      "subtitle": {
+        "en": "14 days · Vancouver, mountain parks and Calgary",
+        "de": "14 Tage · Vancouver, Bergparks und Calgary",
+        "it": "14 giorni · Vancouver, parchi montani e Calgary",
+        "es": "14 días · Vancouver, parques de montaña y Calgary",
+        "fr": "14 jours · Vancouver, parcs de montagne et Calgary",
+        "pt": "14 dias · Vancouver, parques de montanha e Calgary"
+      },
+      "metrics": {
+        "days": 14,
+        "countries": 1,
+        "stops": 5,
+        "segments": 4,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "trip-planning",
+        "story",
+        "terrain"
+      ],
+      "visual": {
+        "theme": "rockies",
+        "featurePriority": 86,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "north-america",
+          "canada"
+        ],
+        "themes": [
+          "mountains",
+          "rail",
+          "road-trip",
+          "nature"
+        ],
+        "modes": [
+          "rail",
+          "car"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "north-america",
+          "accessibility": "standard-check"
+        }
+      }
+    },
+    {
+      "id": "vietnam-north-south",
+      "slug": "vietnam-north-south",
+      "kind": "rail",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/vietnam-north-south.json",
+      "title": {
+        "en": "Vietnam North to South",
+        "de": "Vietnam von Nord nach Süd",
+        "it": "Vietnam da nord a sud",
+        "es": "Vietnam de norte a sur",
+        "fr": "Vietnam du nord au sud",
+        "pt": "Vietnã de norte a sul"
+      },
+      "subtitle": {
+        "en": "18 days · Hanoi, coast, heritage and Saigon",
+        "de": "18 Tage · Hanoi, Küste, Kulturerbe und Saigon",
+        "it": "18 giorni · Hanoi, costa, patrimonio e Saigon",
+        "es": "18 días · Hanói, costa, patrimonio y Saigón",
+        "fr": "18 jours · Hanoï, côte, patrimoine et Saïgon",
+        "pt": "18 dias · Hanói, costa, patrimônio e Saigon"
+      },
+      "metrics": {
+        "days": 18,
+        "countries": 1,
+        "stops": 6,
+        "segments": 5,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "trip-planning",
+        "story",
+        "terrain"
+      ],
+      "visual": {
+        "theme": "tropical",
+        "featurePriority": 81,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "asia",
+          "south-east-asia",
+          "vietnam"
+        ],
+        "themes": [
+          "rail",
+          "food",
+          "culture",
+          "coast"
+        ],
+        "modes": [
+          "rail"
+        ],
+        "durationBand": "15-30",
+        "featured": false,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "spring",
+            "autumn",
+            "winter"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends"
+          ],
+          "startRegion": "asia",
+          "accessibility": "operator-dependent"
+        }
+      }
+    },
+    {
+      "id": "costa-rica-nature-loop",
+      "slug": "costa-rica-nature-loop",
+      "kind": "road-trip",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/costa-rica-nature-loop.json",
+      "title": {
+        "en": "Costa Rica Nature Loop",
+        "de": "Costa Rica · Natur-Rundreise",
+        "it": "Costa Rica · circuito natura",
+        "es": "Costa Rica · circuito de naturaleza",
+        "fr": "Costa Rica · boucle nature",
+        "pt": "Costa Rica · circuito de natureza"
+      },
+      "subtitle": {
+        "en": "14 days · volcanoes, rainforest and Pacific coast",
+        "de": "14 Tage · Vulkane, Regenwald und Pazifikküste",
+        "it": "14 giorni · vulcani, foresta e Pacifico",
+        "es": "14 días · volcanes, selva y Pacífico",
+        "fr": "14 jours · volcans, forêt et Pacifique",
+        "pt": "14 dias · vulcões, floresta e Pacífico"
+      },
+      "metrics": {
+        "days": 14,
+        "countries": 1,
+        "stops": 5,
+        "segments": 4,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "trip-planning",
+        "story",
+        "terrain"
+      ],
+      "visual": {
+        "theme": "rainforest",
+        "featurePriority": 82,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "central-america",
+          "costa-rica"
+        ],
+        "themes": [
+          "nature",
+          "wildlife",
+          "coast",
+          "road-trip"
+        ],
+        "modes": [
+          "car"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "winter",
+            "spring"
+          ],
+          "party": [
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "central-america",
+          "accessibility": "vehicle-dependent"
+        }
+      }
+    },
+    {
+      "id": "iceland-ring-road",
+      "slug": "iceland-ring-road",
+      "kind": "road-trip",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/iceland-ring-road.json",
+      "title": {
+        "en": "Iceland Ring Road",
+        "de": "Island-Ringstraße",
+        "it": "Ring Road d'Islanda",
+        "es": "Ring Road de Islandia",
+        "fr": "Route circulaire d'Islande",
+        "pt": "Ring Road da Islândia"
+      },
+      "subtitle": {
+        "en": "10 days · volcanoes, waterfalls and black-sand coast",
+        "de": "10 Tage · Vulkane, Wasserfälle und schwarze Küsten",
+        "it": "10 giorni · vulcani, cascate e coste nere",
+        "es": "10 días · volcanes, cascadas y costa negra",
+        "fr": "10 jours · volcans, cascades et côtes noires",
+        "pt": "10 dias · vulcões, cachoeiras e costa negra"
+      },
+      "metrics": {
+        "days": 10,
+        "countries": 1,
+        "stops": 6,
+        "segments": 5,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "trip-planning",
+        "story",
+        "terrain"
+      ],
+      "visual": {
+        "theme": "volcanic",
+        "featurePriority": 83,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "europe",
+          "northern-europe",
+          "iceland"
+        ],
+        "themes": [
+          "road-trip",
+          "nature",
+          "volcanic",
+          "coast"
+        ],
+        "modes": [
+          "car"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "active",
+          "seasons": [
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "europe",
+          "accessibility": "vehicle-dependent"
+        }
+      }
+    },
+    {
+      "id": "peru-andes-journey",
+      "slug": "peru-andes-journey",
+      "kind": "multimodal",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/peru-andes-journey.json",
+      "title": {
+        "en": "Peru Andes Journey",
+        "de": "Peru · Andenreise",
+        "it": "Perù · viaggio nelle Ande",
+        "es": "Perú · viaje por los Andes",
+        "fr": "Pérou · voyage dans les Andes",
+        "pt": "Peru · viagem pelos Andes"
+      },
+      "subtitle": {
+        "en": "13 days · Lima, Sacred Valley and high Andes",
+        "de": "13 Tage · Lima, Heiliges Tal und Hochanden",
+        "it": "13 giorni · Lima, Valle Sacra e alte Ande",
+        "es": "13 días · Lima, Valle Sagrado y altos Andes",
+        "fr": "13 jours · Lima, Vallée sacrée et hautes Andes",
+        "pt": "13 dias · Lima, Vale Sagrado e altos Andes"
+      },
+      "metrics": {
+        "days": 13,
+        "countries": 1,
+        "stops": 5,
+        "segments": 4,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "trip-planning",
+        "story",
+        "terrain"
+      ],
+      "visual": {
+        "theme": "andes",
+        "featurePriority": 80,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "south-america",
+          "peru",
+          "andes"
+        ],
+        "themes": [
+          "mountains",
+          "culture",
+          "history",
+          "adventure"
+        ],
+        "modes": [
+          "rail",
+          "road"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "active",
+          "seasons": [
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "couples",
+            "friends"
+          ],
+          "startRegion": "south-america",
           "accessibility": "standard-check"
         }
       }

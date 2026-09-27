@@ -1,0 +1,318 @@
+{
+  "schemaVersion": 1,
+  "id": "vietnam-north-south",
+  "slug": "vietnam-north-south",
+  "kind": "rail",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Vietnam North to South",
+    "de": "Vietnam von Nord nach Süd",
+    "it": "Vietnam da nord a sud",
+    "es": "Vietnam de norte a sur",
+    "fr": "Vietnam du nord au sud",
+    "pt": "Vietnã de norte a sul"
+  },
+  "summary": {
+    "en": "A long-form Vietnam journey tracing the country from Hanoi to Ho Chi Minh City with coastal and heritage stops.",
+    "de": "Eine längere Vietnam-Reise von Hanoi bis Ho-Chi-Minh-Stadt mit Küsten- und Kulturstopps.",
+    "it": "Un viaggio attraverso il Vietnam da Hanoi a Ho Chi Minh City.",
+    "es": "Un viaje por Vietnam de Hanói a Ciudad Ho Chi Minh.",
+    "fr": "Un voyage à travers le Vietnam de Hanoï à Hô Chi Minh-Ville.",
+    "pt": "Uma viagem pelo Vietnã de Hanói à Cidade de Ho Chi Minh."
+  },
+  "geography": {
+    "countries": [
+      "VN"
+    ],
+    "primaryCountry": "VN"
+  },
+  "planning": {
+    "days": 18,
+    "currency": "VND",
+    "pace": "balanced",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 15.41465,
+      "lng": 107.63194999999997,
+      "altitude": 0.72
+    }
+  },
+  "media": {
+    "hero": {
+      "type": "art-directed",
+      "theme": "tropical",
+      "asset": null,
+      "attribution": null,
+      "license": "original-ui-art"
+    },
+    "gallery": []
+  },
+  "highlights": [
+    "Hanoi, coast, heritage and Saigon",
+    "rail · food · culture"
+  ],
+  "places": [
+    {
+      "id": "hanoi",
+      "type": "place",
+      "countryCode": "VN",
+      "name": {
+        "en": "Hanoi"
+      },
+      "coordinates": {
+        "lat": 21.0278,
+        "lng": 105.8342
+      }
+    },
+    {
+      "id": "hue",
+      "type": "place",
+      "countryCode": "VN",
+      "name": {
+        "en": "Huế"
+      },
+      "coordinates": {
+        "lat": 16.4637,
+        "lng": 107.5909
+      }
+    },
+    {
+      "id": "da-nang",
+      "type": "place",
+      "countryCode": "VN",
+      "name": {
+        "en": "Da Nang"
+      },
+      "coordinates": {
+        "lat": 16.0544,
+        "lng": 108.2022
+      }
+    },
+    {
+      "id": "hoi-an",
+      "type": "place",
+      "countryCode": "VN",
+      "name": {
+        "en": "Hội An"
+      },
+      "coordinates": {
+        "lat": 15.8801,
+        "lng": 108.338
+      }
+    },
+    {
+      "id": "nha-trang",
+      "type": "place",
+      "countryCode": "VN",
+      "name": {
+        "en": "Nha Trang"
+      },
+      "coordinates": {
+        "lat": 12.2388,
+        "lng": 109.1967
+      }
+    },
+    {
+      "id": "ho-chi-minh",
+      "type": "place",
+      "countryCode": "VN",
+      "name": {
+        "en": "Ho Chi Minh City"
+      },
+      "coordinates": {
+        "lat": 10.8231,
+        "lng": 106.6297
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "vietnam-north-south-stop-01",
+      "sequence": 1,
+      "placeId": "hanoi",
+      "dayStart": 1,
+      "dayEnd": 3,
+      "nights": 3
+    },
+    {
+      "id": "vietnam-north-south-stop-02",
+      "sequence": 2,
+      "placeId": "hue",
+      "dayStart": 4,
+      "dayEnd": 6,
+      "nights": 3
+    },
+    {
+      "id": "vietnam-north-south-stop-03",
+      "sequence": 3,
+      "placeId": "da-nang",
+      "dayStart": 7,
+      "dayEnd": 9,
+      "nights": 3
+    },
+    {
+      "id": "vietnam-north-south-stop-04",
+      "sequence": 4,
+      "placeId": "hoi-an",
+      "dayStart": 10,
+      "dayEnd": 12,
+      "nights": 3
+    },
+    {
+      "id": "vietnam-north-south-stop-05",
+      "sequence": 5,
+      "placeId": "nha-trang",
+      "dayStart": 13,
+      "dayEnd": 15,
+      "nights": 3
+    },
+    {
+      "id": "vietnam-north-south-stop-06",
+      "sequence": 6,
+      "placeId": "ho-chi-minh",
+      "dayStart": 16,
+      "dayEnd": 18,
+      "nights": 3
+    }
+  ],
+  "segments": [
+    {
+      "id": "vietnam-north-south-leg-01",
+      "sequence": 1,
+      "fromStopId": "vietnam-north-south-stop-01",
+      "toStopId": "vietnam-north-south-stop-02",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "vietnam-north-south-leg-02",
+      "sequence": 2,
+      "fromStopId": "vietnam-north-south-stop-02",
+      "toStopId": "vietnam-north-south-stop-03",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "vietnam-north-south-leg-03",
+      "sequence": 3,
+      "fromStopId": "vietnam-north-south-stop-03",
+      "toStopId": "vietnam-north-south-stop-04",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "vietnam-north-south-leg-04",
+      "sequence": 4,
+      "fromStopId": "vietnam-north-south-stop-04",
+      "toStopId": "vietnam-north-south-stop-05",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "vietnam-north-south-leg-05",
+      "sequence": 5,
+      "fromStopId": "vietnam-north-south-stop-05",
+      "toStopId": "vietnam-north-south-stop-06",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    }
+  ],
+  "sources": [],
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context"
+  },
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true,
+    "notes": "Stable editorial route; volatile transport, price, access and traveller-specific facts are maintained separately."
+  }
+}

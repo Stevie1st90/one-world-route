@@ -1,0 +1,78 @@
+name: Journey maintenance watch
+
+on:
+  schedule:
+    - cron: '30 5 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: journey-maintenance-watch
+  cancel-in-progress: true
+
+jobs:
+  maintenance:
+    name: Review stale journey knowledge
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: one-world-route-public-mvp
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Validate journey data contracts
+        run: node scripts/validate-platform-data.mjs
+      - name: Audit stale or expired review candidates
+        id: maintenance-audit
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          node scripts/audit-platform-maintenance.mjs --strict-stale 2>&1 | tee journey-maintenance-report.txt
+      - name: Publish maintenance summary
+        if: always()
+        run: |
+          {
+            echo "## Journey maintenance"
+            echo
+            echo '~~~text'
+            cat journey-maintenance-report.txt 2>/dev/null || echo "No maintenance report was produced."
+            echo '~~~'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Open or refresh maintenance issue
+        if: steps.maintenance-audit.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="Journey maintenance review"
+          number="$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$title\" in:title" --json number,title --jq '.[] | select(.title=="Journey maintenance review") | .number' | head -n 1)"
+          {
+            echo "The automated weekly journey audit found stale or expired review candidates."
+            echo
+            echo "This issue is maintained automatically. Update the affected source-backed facts once, then the shared knowledge and every journey that depends on it remain aligned."
+            echo
+            echo '~~~text'
+            cat journey-maintenance-report.txt
+            echo '~~~'
+            echo
+            echo "Workflow: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          } > journey-maintenance-issue.md
+          if [ -n "$number" ]; then
+            gh issue edit "$number" --repo "$GITHUB_REPOSITORY" --body-file journey-maintenance-issue.md
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body-file journey-maintenance-issue.md
+          fi
+      - name: Close resolved maintenance issue
+        if: steps.maintenance-audit.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="Journey maintenance review"
+          number="$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$title\" in:title" --json number,title --jq '.[] | select(.title=="Journey maintenance review") | .number' | head -n 1)"
+          if [ -n "$number" ]; then
+            gh issue close "$number" --repo "$GITHUB_REPOSITORY" --comment "Automated journey maintenance audit is clean again. Closing this generated review task."
+          fi

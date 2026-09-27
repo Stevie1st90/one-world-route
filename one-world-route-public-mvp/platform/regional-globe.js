@@ -164,7 +164,7 @@
       updateAutoRotate();
       if(!document.body.dataset.regionalCameraReady){
         document.body.dataset.regionalCameraReady='1';
-        globe.pointOfView(routeCamera(),settings.reducedMotion?0:700);
+        globe.pointOfView(routeCamera(),0);
       }
     }catch(error){console.warn('Regional globe render failed',error)}
   }

@@ -1,0 +1,318 @@
+{
+  "schemaVersion": 1,
+  "id": "new-zealand-camper-loop",
+  "slug": "new-zealand-camper-loop",
+  "kind": "camper",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "New Zealand Camper Loop",
+    "de": "Neuseeland-Camper-Loop",
+    "it": "Nuova Zelanda in camper",
+    "es": "Nueva Zelanda en camper",
+    "fr": "Nouvelle-Zélande en camper",
+    "pt": "Nova Zelândia de camper"
+  },
+  "summary": {
+    "en": "A South Island camper journey weaving from Christchurch to alpine lakes, Fiordland and the West Coast.",
+    "de": "Eine Camperreise über Neuseelands Südinsel von Christchurch zu Alpenseen, Fiordland und Westküste.",
+    "it": "Un viaggio in camper nell'Isola del Sud tra laghi alpini e Fiordland.",
+    "es": "Un viaje en camper por la Isla Sur entre lagos alpinos y Fiordland.",
+    "fr": "Un voyage en camper sur l'île du Sud entre lacs alpins et Fiordland.",
+    "pt": "Uma viagem de camper pela Ilha Sul entre lagos alpinos e Fiordland."
+  },
+  "geography": {
+    "countries": [
+      "NZ"
+    ],
+    "primaryCountry": "NZ"
+  },
+  "planning": {
+    "days": 21,
+    "currency": "NZD",
+    "pace": "balanced",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": -44.22055,
+      "lng": 169.83758333333333,
+      "altitude": 0.72
+    }
+  },
+  "media": {
+    "hero": {
+      "type": "art-directed",
+      "theme": "fern",
+      "asset": null,
+      "attribution": null,
+      "license": "original-ui-art"
+    },
+    "gallery": []
+  },
+  "highlights": [
+    "mountains, fjords and wild coast",
+    "camper · road-trip · nature"
+  ],
+  "places": [
+    {
+      "id": "christchurch",
+      "type": "place",
+      "countryCode": "NZ",
+      "name": {
+        "en": "Christchurch"
+      },
+      "coordinates": {
+        "lat": -43.5321,
+        "lng": 172.6362
+      }
+    },
+    {
+      "id": "tekapo",
+      "type": "place",
+      "countryCode": "NZ",
+      "name": {
+        "en": "Lake Tekapo"
+      },
+      "coordinates": {
+        "lat": -44.0047,
+        "lng": 170.4771
+      }
+    },
+    {
+      "id": "queenstown",
+      "type": "place",
+      "countryCode": "NZ",
+      "name": {
+        "en": "Queenstown"
+      },
+      "coordinates": {
+        "lat": -45.0312,
+        "lng": 168.6626
+      }
+    },
+    {
+      "id": "milford",
+      "type": "place",
+      "countryCode": "NZ",
+      "name": {
+        "en": "Milford Sound"
+      },
+      "coordinates": {
+        "lat": -44.6717,
+        "lng": 167.9256
+      }
+    },
+    {
+      "id": "wanaka",
+      "type": "place",
+      "countryCode": "NZ",
+      "name": {
+        "en": "Wānaka"
+      },
+      "coordinates": {
+        "lat": -44.694,
+        "lng": 169.141
+      }
+    },
+    {
+      "id": "west-coast",
+      "type": "place",
+      "countryCode": "NZ",
+      "name": {
+        "en": "Franz Josef"
+      },
+      "coordinates": {
+        "lat": -43.3896,
+        "lng": 170.183
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "new-zealand-camper-loop-stop-01",
+      "sequence": 1,
+      "placeId": "christchurch",
+      "dayStart": 1,
+      "dayEnd": 3,
+      "nights": 3
+    },
+    {
+      "id": "new-zealand-camper-loop-stop-02",
+      "sequence": 2,
+      "placeId": "tekapo",
+      "dayStart": 4,
+      "dayEnd": 7,
+      "nights": 4
+    },
+    {
+      "id": "new-zealand-camper-loop-stop-03",
+      "sequence": 3,
+      "placeId": "queenstown",
+      "dayStart": 8,
+      "dayEnd": 10,
+      "nights": 3
+    },
+    {
+      "id": "new-zealand-camper-loop-stop-04",
+      "sequence": 4,
+      "placeId": "milford",
+      "dayStart": 11,
+      "dayEnd": 14,
+      "nights": 4
+    },
+    {
+      "id": "new-zealand-camper-loop-stop-05",
+      "sequence": 5,
+      "placeId": "wanaka",
+      "dayStart": 15,
+      "dayEnd": 17,
+      "nights": 3
+    },
+    {
+      "id": "new-zealand-camper-loop-stop-06",
+      "sequence": 6,
+      "placeId": "west-coast",
+      "dayStart": 18,
+      "dayEnd": 21,
+      "nights": 4
+    }
+  ],
+  "segments": [
+    {
+      "id": "new-zealand-camper-loop-leg-01",
+      "sequence": 1,
+      "fromStopId": "new-zealand-camper-loop-stop-01",
+      "toStopId": "new-zealand-camper-loop-stop-02",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "new-zealand-camper-loop-leg-02",
+      "sequence": 2,
+      "fromStopId": "new-zealand-camper-loop-stop-02",
+      "toStopId": "new-zealand-camper-loop-stop-03",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "new-zealand-camper-loop-leg-03",
+      "sequence": 3,
+      "fromStopId": "new-zealand-camper-loop-stop-03",
+      "toStopId": "new-zealand-camper-loop-stop-04",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "new-zealand-camper-loop-leg-04",
+      "sequence": 4,
+      "fromStopId": "new-zealand-camper-loop-stop-04",
+      "toStopId": "new-zealand-camper-loop-stop-05",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "new-zealand-camper-loop-leg-05",
+      "sequence": 5,
+      "fromStopId": "new-zealand-camper-loop-stop-05",
+      "toStopId": "new-zealand-camper-loop-stop-06",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    }
+  ],
+  "sources": [],
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context"
+  },
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true,
+    "notes": "Stable editorial route; volatile transport, price, access and traveller-specific facts are maintained separately."
+  }
+}

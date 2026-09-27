@@ -1,0 +1,277 @@
+{
+  "schemaVersion": 1,
+  "id": "patagonia-road-trip",
+  "slug": "patagonia-road-trip",
+  "kind": "road-trip",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Patagonia Road Trip",
+    "de": "Patagonien-Roadtrip",
+    "it": "Road trip in Patagonia",
+    "es": "Road trip por la Patagonia",
+    "fr": "Road trip en Patagonie",
+    "pt": "Road trip pela Patagônia"
+  },
+  "summary": {
+    "en": "A wide-open route across Argentine and Chilean Patagonia, linking glaciers, granite peaks and windswept national parks.",
+    "de": "Eine weite Route durch das argentinische und chilenische Patagonien mit Gletschern, Granitgipfeln und windgeprägten Nationalparks.",
+    "it": "Una grande rotta attraverso la Patagonia argentina e cilena tra ghiacciai e montagne.",
+    "es": "Una gran ruta por la Patagonia argentina y chilena entre glaciares y montañas.",
+    "fr": "Une grande route à travers la Patagonie argentine et chilienne entre glaciers et montagnes.",
+    "pt": "Uma grande rota pela Patagônia argentina e chilena entre geleiras e montanhas."
+  },
+  "geography": {
+    "countries": [
+      "AR",
+      "CL"
+    ],
+    "primaryCountry": null
+  },
+  "planning": {
+    "days": 18,
+    "currency": "USD",
+    "pace": "active",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": -51.10012,
+      "lng": -72.3962,
+      "altitude": 0.72
+    }
+  },
+  "media": {
+    "hero": {
+      "type": "art-directed",
+      "theme": "glacier",
+      "asset": null,
+      "attribution": null,
+      "license": "original-ui-art"
+    },
+    "gallery": []
+  },
+  "highlights": [
+    "glaciers, steppe and the Andes",
+    "road-trip · mountains · nature"
+  ],
+  "places": [
+    {
+      "id": "el-calafate",
+      "type": "place",
+      "countryCode": "AR",
+      "name": {
+        "en": "El Calafate"
+      },
+      "coordinates": {
+        "lat": -50.337,
+        "lng": -72.2648
+      }
+    },
+    {
+      "id": "el-chalten",
+      "type": "place",
+      "countryCode": "AR",
+      "name": {
+        "en": "El Chaltén"
+      },
+      "coordinates": {
+        "lat": -49.3315,
+        "lng": -72.8863
+      }
+    },
+    {
+      "id": "torres",
+      "type": "place",
+      "countryCode": "CL",
+      "name": {
+        "en": "Torres del Paine"
+      },
+      "coordinates": {
+        "lat": -50.9423,
+        "lng": -73.4068
+      }
+    },
+    {
+      "id": "puerto-natales",
+      "type": "place",
+      "countryCode": "CL",
+      "name": {
+        "en": "Puerto Natales"
+      },
+      "coordinates": {
+        "lat": -51.726,
+        "lng": -72.506
+      }
+    },
+    {
+      "id": "punta-arenas",
+      "type": "place",
+      "countryCode": "CL",
+      "name": {
+        "en": "Punta Arenas"
+      },
+      "coordinates": {
+        "lat": -53.1638,
+        "lng": -70.9171
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "patagonia-road-trip-stop-01",
+      "sequence": 1,
+      "placeId": "el-calafate",
+      "dayStart": 1,
+      "dayEnd": 3,
+      "nights": 3
+    },
+    {
+      "id": "patagonia-road-trip-stop-02",
+      "sequence": 2,
+      "placeId": "el-chalten",
+      "dayStart": 4,
+      "dayEnd": 7,
+      "nights": 4
+    },
+    {
+      "id": "patagonia-road-trip-stop-03",
+      "sequence": 3,
+      "placeId": "torres",
+      "dayStart": 8,
+      "dayEnd": 10,
+      "nights": 3
+    },
+    {
+      "id": "patagonia-road-trip-stop-04",
+      "sequence": 4,
+      "placeId": "puerto-natales",
+      "dayStart": 11,
+      "dayEnd": 14,
+      "nights": 4
+    },
+    {
+      "id": "patagonia-road-trip-stop-05",
+      "sequence": 5,
+      "placeId": "punta-arenas",
+      "dayStart": 15,
+      "dayEnd": 18,
+      "nights": 4
+    }
+  ],
+  "segments": [
+    {
+      "id": "patagonia-road-trip-leg-01",
+      "sequence": 1,
+      "fromStopId": "patagonia-road-trip-stop-01",
+      "toStopId": "patagonia-road-trip-stop-02",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "patagonia-road-trip-leg-02",
+      "sequence": 2,
+      "fromStopId": "patagonia-road-trip-stop-02",
+      "toStopId": "patagonia-road-trip-stop-03",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "patagonia-road-trip-leg-03",
+      "sequence": 3,
+      "fromStopId": "patagonia-road-trip-stop-03",
+      "toStopId": "patagonia-road-trip-stop-04",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    },
+    {
+      "id": "patagonia-road-trip-leg-04",
+      "sequence": 4,
+      "fromStopId": "patagonia-road-trip-stop-04",
+      "toStopId": "patagonia-road-trip-stop-05",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-timetable-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares and access conditions require source-backed planning before travel."
+      }
+    }
+  ],
+  "sources": [],
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context"
+  },
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true,
+    "notes": "Stable editorial route; volatile transport, price, access and traveller-specific facts are maintained separately."
+  }
+}

@@ -5,6 +5,8 @@ const root = new URL('../', import.meta.url);
 const readJson = async rel => JSON.parse(await readFile(new URL(rel, root), 'utf8'));
 const catalog = await readJson('data/platform/trips.json');
 const world = await readJson('data/public-route.json');
+const sharedKnowledge = await readJson('data/platform/shared-knowledge.json');
+const collections = await readJson('data/platform/collections.json');
 const allowedModes = new Set(['walk','bicycle','road','car','motorcycle','bus','coach','rail','metro','tram','ground-transfer','rideshare','taxi','ferry','cruise','flight','helicopter','rail+ground','multimodal','other']);
 let failed = false;
 const fail = m => { failed = true; console.error('PLATFORM VALIDATION:', m); };
@@ -77,8 +79,11 @@ for (const item of catalog.trips || []) {
     stopById.set(s.id,s);
     if (!placeIds.has(s.placeId)) fail(item.id+': stop '+s.id+' references missing place '+s.placeId);
   }
+  const routePolicy=trip.routePolicy||{startMode:'fixed',reversible:false,originMode:'traveller-context',originAccess:'dynamic',returnMode:'to-origin',preserveCoreRoute:true};
   const segs = [...(trip.segments || [])].sort((a,b)=>a.sequence-b.sequence);
-  if (segs.length !== Math.max(0, orderedStops.length-1)) fail(item.id+': segments must connect each adjacent stop visit');
+  const loopRoute=routePolicy.startMode==='any-stop';
+  const expectedSegments=loopRoute?orderedStops.length:Math.max(0,orderedStops.length-1);
+  if (segs.length !== expectedSegments) fail(item.id+': segment count does not match routePolicy ('+segs.length+' vs '+expectedSegments+')');
 
   const actualCountries = new Set((trip.places || []).map(place=>place.countryCode).filter(Boolean)).size;
   const actualSourcedSegments = segs.filter(segment=>(segment.verification?.sourceIds||[]).length).length;
@@ -95,7 +100,7 @@ for (const item of catalog.trips || []) {
     if (declared != null && Number(declared) !== Number(actual)) fail(item.id+': catalog metric '+name+' mismatch (declared '+declared+', actual '+actual+')');
   }
   for (let i=0;i<segs.length;i++) {
-    const s=segs[i], from=orderedStops[i], to=orderedStops[i+1];
+    const s=segs[i], from=orderedStops[i], to=(loopRoute&&i===orderedStops.length-1)?orderedStops[0]:orderedStops[i+1];
     if (s.fromStopId!==from?.id || s.toStopId!==to?.id) fail(item.id+': non-continuous segment '+s.id);
     if (!allowedModes.has(s.transport?.mode)) fail(item.id+': unsupported transport mode '+s.transport?.mode);
     if (!['current-check-required','verified','draft','illustrative'].includes(s.verification?.status)) fail(item.id+': invalid verification status on '+s.id);
@@ -108,6 +113,35 @@ for (const item of catalog.trips || []) {
     }
   }
   validatePlatformExtensions({item,trip,orderedStops,segs,stopById,placeById,sourceIds,fail});
+  if(!['fixed','endpoints','any-stop'].includes(routePolicy.startMode||'fixed')) fail(item.id+': invalid routePolicy.startMode');
+  if(!['traveller-context','fixed'].includes(routePolicy.originMode||'traveller-context')) fail(item.id+': invalid routePolicy.originMode');
+  if(!['none','dynamic'].includes(routePolicy.originAccess||'dynamic')) fail(item.id+': invalid routePolicy.originAccess');
+  if(!['none','to-origin'].includes(routePolicy.returnMode||'to-origin')) fail(item.id+': invalid routePolicy.returnMode');
+  if(routePolicy.preserveCoreRoute!==undefined&&typeof routePolicy.preserveCoreRoute!=='boolean') fail(item.id+': routePolicy.preserveCoreRoute must be boolean');
+  if(routePolicy.reversible===true&&!['endpoints','any-stop'].includes(routePolicy.startMode)) fail(item.id+': reversible route requires endpoints or any-stop startMode');
+  if(routePolicy.startMode==='any-stop'){
+    const first=orderedStops[0]?.id,last=orderedStops.at(-1)?.id;
+    const closesLoop=segs.some(segment=>segment.fromStopId===last&&segment.toStopId===first);
+    if(!closesLoop) fail(item.id+': any-stop route requires an explicitly modelled closing segment');
+  }
+  const maintenance=trip.maintenance||null;
+  if(maintenance){
+    if(!['evergreen','seasonal','live-dependent'].includes(maintenance.tier)) fail(item.id+': invalid maintenance.tier');
+    if(!Number.isInteger(Number(maintenance.sourceReviewDays))||Number(maintenance.sourceReviewDays)<1) fail(item.id+': maintenance.sourceReviewDays must be a positive integer');
+    if(maintenance.sharedKnowledge!==true&&maintenance.sharedKnowledge!==false) fail(item.id+': maintenance.sharedKnowledge must be boolean');
+  }
+  const media=trip.media||null;
+  const heroMedia=media?.hero||null;
+  if(heroMedia){
+    if(!['art-directed','image'].includes(heroMedia.type)) fail(item.id+': unsupported media.hero.type '+heroMedia.type);
+    if(heroMedia.type==='art-directed'&&!String(heroMedia.theme||'').trim()) fail(item.id+': art-directed media hero requires a theme');
+    if(heroMedia.type==='image'){
+      if(!String(heroMedia.asset||'').trim()) fail(item.id+': image media hero requires an asset');
+      if(!String(heroMedia.attribution||'').trim()) fail(item.id+': image media hero requires attribution');
+      if(!String(heroMedia.license||'').trim()) fail(item.id+': image media hero requires license metadata');
+    }
+  }
+
   const entry = trip.entryGuidance;
   if (entry) {
     for (const id of [entry.officialResolverSourceId,...(entry.supportingSourceIds||[])].filter(Boolean)) if (!sourceIds.has(id)) fail(item.id+': entry guidance references missing source '+id);
@@ -115,5 +149,27 @@ for (const item of catalog.trips || []) {
   }
 }
 
+const knowledgeIds=new Set();
+for(const entry of sharedKnowledge.items||[]){
+  if(!entry.id||knowledgeIds.has(entry.id)) fail('shared knowledge ids must be unique: '+entry.id); else knowledgeIds.add(entry.id);
+  if(!entry.type) fail('shared knowledge '+entry.id+': type required');
+  if(entry.type!=='planning-policy'&&entry.sourceRequired!==false){
+    if(!/^https:\/\//.test(String(entry.source?.url||''))) fail('shared knowledge '+entry.id+': factual entry requires https source.url');
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(String(entry.checkedAt||''))) fail('shared knowledge '+entry.id+': factual entry requires checkedAt');
+  }
+}
+
+const collectionIds=new Set();
+for(const collection of collections.collections||[]){
+  if(!collection.id||collectionIds.has(collection.id)) fail('collection ids must be unique: '+collection.id); else collectionIds.add(collection.id);
+  if(!collection.filters||typeof collection.filters!=='object') fail('collection '+collection.id+': filters required');
+  if(collection.filters.duration&&!['7-14','15-30','31-89','90-plus'].includes(collection.filters.duration)) fail('collection '+collection.id+': invalid duration filter');
+  if(collection.filters.themeAny&&!Array.isArray(collection.filters.themeAny)) fail('collection '+collection.id+': themeAny must be an array');
+  for(const lang of supportedLocales){
+    if(!String(collection.title?.[lang]||'').trim()) fail('collection '+collection.id+': missing title for '+lang);
+    if(!String(collection.description?.[lang]||'').trim()) fail('collection '+collection.id+': missing description for '+lang);
+  }
+}
+
 if (failed) process.exit(1);
-console.log('Platform data validation complete:', catalog.trips.length, 'trips; flagship invariants 195 countries / 194 international legs preserved');
+console.log('Platform data validation complete:', catalog.trips.length, 'trips;', collectionIds.size, 'collections; shared knowledge', knowledgeIds.size, 'items; flagship invariants 195 countries / 194 international legs preserved');
