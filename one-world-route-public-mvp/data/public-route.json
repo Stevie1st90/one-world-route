@@ -249,7 +249,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-27",
       "source": "https://vrm.lrv.lt/en/news/government-decides-to-reopen-salcininkai-and-medininkai-border-checkpoints-with-belarus-ODM1/",
       "alertLevel": "GREEN",
       "alertMessage": null
@@ -272,7 +272,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-27",
       "source": "https://granica.gov.pl/index_wait.php?c=f&k=w&p=b&v=en",
       "alertLevel": "GREEN",
       "alertMessage": null
@@ -1261,7 +1261,7 @@
       "healthPriorityTarget": 4,
       "healthStatusTarget": "Pending",
       "planB": "GRU/BSB→PTY→GEO",
-      "lastVerified": null,
+      "lastVerified": "2026-09-27",
       "source": "https://health.gov.gy/wp-content/uploads/2025/09/HCNS-ESA-ESMP-LETHEM.pdf",
       "alertLevel": "GREEN",
       "alertMessage": null
@@ -1813,8 +1813,8 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
-      "source": "https://www.flight.info/PR514",
+      "lastVerified": "2026-09-27",
+      "source": "https://flights.philippineairlines.com/en/flights-from-koror-to-manila",
       "alertLevel": "GREEN",
       "alertMessage": null
     },
@@ -2112,7 +2112,7 @@
       "healthPriorityTarget": 3,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-27",
       "source": "https://www.airindia.com/en-in/book-flights/kolkata-to-kathmandu-flights",
       "alertLevel": "WATCH",
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
@@ -2388,7 +2388,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": "Bischkek→Duschanbe Flug, falls veröffentlicht",
-      "lastVerified": null,
+      "lastVerified": "2026-09-27",
       "source": "https://invest.gov.kg/en/news/16115",
       "alertLevel": "GREEN",
       "alertMessage": null
@@ -2434,7 +2434,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-27",
       "source": "https://www.auswaertiges-amt.de/de/reiseundsicherheit/turkmenistansicherheit-206774",
       "alertLevel": "WATCH",
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
@@ -2595,7 +2595,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-27",
       "source": "https://www.gov.uk/foreign-travel-advice/armenia/regional-risks",
       "alertLevel": "GREEN",
       "alertMessage": null
@@ -2756,8 +2756,8 @@
       "healthPriorityTarget": 4,
       "healthStatusTarget": "Pending",
       "planB": "Melloula/Babbouch Landgrenze",
-      "lastVerified": null,
-      "source": "https://www.flightconnections.com/flights-from-tun-to-alg",
+      "lastVerified": "2026-09-27",
+      "source": "https://www.tunisair.com/en-tr/vols-en-cours",
       "alertLevel": "WATCH",
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
@@ -2986,7 +2986,7 @@
       "healthPriorityTarget": 5,
       "healthStatusTarget": "Pending",
       "planB": "Flug via Lomé, anschließend Cotonou",
-      "lastVerified": null,
+      "lastVerified": "2026-09-27",
       "source": "https://www.ecowas.int/ecowas-supports-ghana-togo-benin-and-nigeria-with-modern-directional-and-information-signage-at-the-akanu-noepe-and-seme-krake-joint-border-posts/",
       "alertLevel": "WATCH",
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
@@ -3009,7 +3009,7 @@
       "healthPriorityTarget": 5,
       "healthStatusTarget": "Pending",
       "planB": "Cotonou→Lomé Flug/Regionalhub",
-      "lastVerified": null,
+      "lastVerified": "2026-09-27",
       "source": "https://www.uemoa.int/index.php/actualites/le-commissaire-jonas-gbian-recu-par-les-ministres-en-charge-du-cadre-de-vie-et-de",
       "alertLevel": "WATCH",
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
@@ -3032,7 +3032,7 @@
       "healthPriorityTarget": 5,
       "healthStatusTarget": "Pending",
       "planB": "Akanu-Noepe Joint Border Post",
-      "lastVerified": null,
+      "lastVerified": "2026-09-27",
       "source": "https://gna.org.gh/2026/03/ghana-immigration-service-enhances-border-operations-with-new-weather-sheds-at-aflao/",
       "alertLevel": "WATCH",
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
@@ -3055,7 +3055,7 @@
       "healthPriorityTarget": 5,
       "healthStatusTarget": "Pending",
       "planB": "ACC→ABJ nonstop, sofern am Datum verfügbar",
-      "lastVerified": null,
+      "lastVerified": "2026-09-27",
       "source": "https://gis.gov.gh/western-region/",
       "alertLevel": "WATCH",
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
@@ -3078,7 +3078,7 @@
       "healthPriorityTarget": 4,
       "healthStatusTarget": "Pending",
       "planB": "ABJ→ACC→ROB",
-      "lastVerified": null,
+      "lastVerified": "2026-09-27",
       "source": "https://www.diplomatie.gouv.fr/fr/information-par-pays/liberia/conseils-aux-voyageurs-securite",
       "alertLevel": "WATCH",
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
@@ -3101,7 +3101,7 @@
       "healthPriorityTarget": 5,
       "healthStatusTarget": "Pending",
       "planB": "ROB→FNA nonstop",
-      "lastVerified": null,
+      "lastVerified": "2026-09-27",
       "source": "https://statehouse.gov.sl/2026/04/18/sierra-leones-president-julius-maada-bio-joins-president-joseph-nyuma-boakai-sr-of-liberia-to-launch-255km-road-project-advancing-regional-integration-in-west-africa/",
       "alertLevel": "WATCH",
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
@@ -3170,7 +3170,7 @@
       "healthPriorityTarget": 4,
       "healthStatusTarget": "Pending",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-27",
       "source": "https://www.ecowas.int/ecowas-supports-over-260-women-with-the-issuance-of-ecowas-national-biometric-cards-enbic-at-the-border-communities-of-sao-domingos-guinea-bissau-and-mpack-senegal/",
       "alertLevel": "GREEN",
       "alertMessage": null
@@ -3239,7 +3239,7 @@
       "healthPriorityTarget": 4,
       "healthStatusTarget": "Pending",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-27",
       "source": "https://www.royalairmaroc.com/en/flights-from-praia-to-malabo",
       "alertLevel": "WATCH",
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
@@ -3331,7 +3331,7 @@
       "healthPriorityTarget": 5,
       "healthStatusTarget": "Pending",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-27",
       "source": "https://diplomatie.belgium.be/fr/pays/republique-democratique-du-congo/voyager-en-republique-democratique-du-congo-conseils-aux-voyageurs/transport-en-republique-democratique-du-congo",
       "alertLevel": "WATCH",
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
@@ -3630,8 +3630,8 @@
       "healthPriorityTarget": 4,
       "healthStatusTarget": "Pending",
       "planB": null,
-      "lastVerified": null,
-      "source": "https://www.auswaertiges-amt.de/de/reiseundsicherheit/burundisicherheit-222614 ; https://flights.rwandair.com/en/flights-from-bujumbura-to-kigali",
+      "lastVerified": "2026-09-27",
+      "source": "https://www.auswaertiges-amt.de/de/reiseundsicherheit/burundisicherheit-222614 ; https://flights.rwandair.com/en/flights-from-bujumbura-to-rwanda",
       "alertLevel": "WATCH",
       "alertMessage": "Spätere Visa-/Entry-Aktion beobachten"
     },
@@ -4343,7 +4343,7 @@
       "healthPriorityTarget": 1,
       "healthStatusTarget": "Ready",
       "planB": null,
-      "lastVerified": null,
+      "lastVerified": "2026-09-27",
       "source": "https://www.bas.rs/sr/autobuske-linije/beograd-zagreb",
       "alertLevel": "GREEN",
       "alertMessage": null

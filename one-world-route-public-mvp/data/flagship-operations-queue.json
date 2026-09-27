@@ -5,13 +5,13 @@
   "routeGeneratedAt": "2026-09-25",
   "departureReady": false,
   "summary": {
-    "total": 117,
+    "total": 97,
     "p0": 43,
     "p1": 0,
-    "p2": 74,
+    "p2": 54,
     "blocking": 43,
     "byCategory": {
-      "international-leg": 109,
+      "international-leg": 89,
       "operational-movement": 8
     },
     "criticalReviewed": 35,
@@ -1156,50 +1156,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "leg-11",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 11,
-      "movementId": null,
-      "title": "Litauen → Belarus",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-12",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 12,
-      "movementId": null,
-      "title": "Belarus → Polen",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
       "id": "leg-15",
       "priority": "P2",
       "category": "international-leg",
@@ -1427,28 +1383,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "leg-55",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 55,
-      "movementId": null,
-      "title": "Brasilien → Guyana",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
       "id": "leg-60",
       "priority": "P2",
       "category": "international-leg",
@@ -1500,28 +1434,6 @@
       "legId": 73,
       "movementId": null,
       "title": "Papua-Neuguinea → Australien",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "full",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-79",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 79,
-      "movementId": null,
-      "title": "Palau → Philippinen",
       "status": "needs-review",
       "blockers": [],
       "missing": [
@@ -1607,28 +1519,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "leg-92",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 92,
-      "movementId": null,
-      "title": "Indien → Nepal",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "full",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
       "id": "leg-94",
       "priority": "P2",
       "category": "international-leg",
@@ -1696,28 +1586,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "leg-104",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 104,
-      "movementId": null,
-      "title": "Kirgisistan → Tadschikistan",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
       "id": "leg-105",
       "priority": "P2",
       "category": "international-leg",
@@ -1732,28 +1600,6 @@
       ],
       "geometry": "not-flight",
       "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-106",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 106,
-      "movementId": null,
-      "title": "Usbekistan → Turkmenistan",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 1,
       "lastVerified": null,
       "reviewStatus": null,
       "reviewDecision": null,
@@ -1807,50 +1653,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "leg-113",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 113,
-      "movementId": null,
-      "title": "Armenien → Türkei",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "full",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-120",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 120,
-      "movementId": null,
-      "title": "Tunesien → Algerien",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "full",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
       "id": "leg-121",
       "priority": "P2",
       "category": "international-leg",
@@ -1863,138 +1665,6 @@
         "lastVerified"
       ],
       "geometry": "full",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-130",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 130,
-      "movementId": null,
-      "title": "Nigeria → Benin",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-131",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 131,
-      "movementId": null,
-      "title": "Benin → Togo",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-132",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 132,
-      "movementId": null,
-      "title": "Togo → Ghana",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-133",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 133,
-      "movementId": null,
-      "title": "Ghana → Côte d’Ivoire",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-134",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 134,
-      "movementId": null,
-      "title": "Côte d’Ivoire → Liberia",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-135",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 135,
-      "movementId": null,
-      "title": "Liberia → Sierra Leone",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
       "reviewStatus": null,
@@ -2049,28 +1719,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "leg-138",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 138,
-      "movementId": null,
-      "title": "Guinea-Bissau → Senegal",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
       "id": "leg-139",
       "priority": "P2",
       "category": "international-leg",
@@ -2106,28 +1754,6 @@
       ],
       "geometry": "not-flight",
       "sourceCount": 2,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-141",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 141,
-      "movementId": null,
-      "title": "Cabo Verde → Äquatorialguinea",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "full",
-      "sourceCount": 1,
       "lastVerified": null,
       "reviewStatus": null,
       "reviewDecision": null,
@@ -2193,28 +1819,6 @@
         "lastVerified"
       ],
       "geometry": "full",
-      "sourceCount": 1,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-145",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 145,
-      "movementId": null,
-      "title": "Republik Kongo → Demokratische Republik Kongo",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "not-flight",
       "sourceCount": 1,
       "lastVerified": null,
       "reviewStatus": null,
@@ -2428,28 +2032,6 @@
       "blocksDeparture": false
     },
     {
-      "id": "leg-158",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 158,
-      "movementId": null,
-      "title": "Burundi → Ruanda",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "full",
-      "sourceCount": 2,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
       "id": "leg-159",
       "priority": "P2",
       "category": "international-leg",
@@ -2574,28 +2156,6 @@
       ],
       "geometry": "not-flight",
       "sourceCount": 0,
-      "lastVerified": null,
-      "reviewStatus": null,
-      "reviewDecision": null,
-      "reviewSafetyState": null,
-      "reviewRouteEvidence": null,
-      "reviewedAt": null,
-      "blocksDeparture": false
-    },
-    {
-      "id": "leg-189",
-      "priority": "P2",
-      "category": "international-leg",
-      "legId": 189,
-      "movementId": null,
-      "title": "Serbien → Kroatien",
-      "status": "needs-review",
-      "blockers": [],
-      "missing": [
-        "lastVerified"
-      ],
-      "geometry": "not-flight",
-      "sourceCount": 1,
       "lastVerified": null,
       "reviewStatus": null,
       "reviewDecision": null,
