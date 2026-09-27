@@ -46,17 +46,17 @@
       "title": "Venezuela → Brasilien",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "airport-operating-route-source-not-reverified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "partial-travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.directflights.com/CCS-GRU",
+        "https://www.voegol.com.br/br/voos-de-caracas-para-sao-paulo",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/venezuelasicherheit-224982",
         "https://www.auswaertiges-amt.de/de/ReiseUndSicherheit/brasiliensicherheit/201092"
       ],
-      "notes": "Caracas commercial flight operations have resumed with restrictions, but Venezuela/Brazil border regions carry official warnings. The specific CCS–GRU service source still requires a fresh schedule check."
+      "notes": "GOL currently publishes Caracas (CCS)–São Paulo (GRU) fares for October 2026, refreshing the route evidence layer. This safety review does not certify transport service availability; Venezuela retains official warning areas, so the leg stays on HOLD."
     },
     "89": {
       "legId": 89,
@@ -129,17 +129,18 @@
       "title": "Mongolei → Russland",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "existing-service-source-not-reverified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.directflights.com/UBN-IKT",
+        "https://www.hunnuair.com/en/timetable",
+        "https://timetable.ulaanbaatar-airport.mn/seasonalflight?d=dep&l=en",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/mongoleisicherheit-222842",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/russischefoederationsicherheit-201536"
       ],
-      "notes": "Russia remains under a travel warning and air operations can be disrupted. Retain the UBN–IKT concept only pending a fresh service and entry check."
+      "notes": "Hunnu Air and Ulaanbaatar Airport publish the Ulaanbaatar–Irkutsk seasonal corridor in 2026, refreshing the route evidence layer. This safety review does not certify future service availability; Russia remains under an official German travel warning, so the leg stays on HOLD."
     },
     "102": {
       "legId": 102,
@@ -228,17 +229,18 @@
       "title": "Irak → Syrien",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "existing-service-source-not-reverified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.directflights.com/BGW-DAM",
+        "https://damairport.gov.sy/en/destinations/bgw",
+        "https://damairport.gov.sy/en/airlines",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/iraksicherheit-202738",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/syriensicherheit-204278"
       ],
-      "notes": "Both Iraq and Syria carry severe official warnings. Even if a flight is listed, this leg remains HOLD pending a fresh service, entry and security review."
+      "notes": "Damascus International Airport currently lists scheduled Baghdad–Damascus Fly Cham movements, refreshing the route evidence layer. This safety review does not certify transport service availability; both Iraq and Syria retain severe official warnings, so the leg stays on HOLD."
     },
     "116": {
       "legId": 116,
@@ -277,17 +279,18 @@
       "title": "Libyen → Tunesien",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "existing-service-source-not-reverified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.flightconnections.com/flights-from-mji-to-tun",
+        "https://libyanwings.ly/book-a-flight-form/",
+        "https://libyanwings.ly/",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/libyensicherheit-219624",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/tunesiensicherheit-219024"
       ],
-      "notes": "Libya remains under a travel warning and Tunisia has restrictions near the Libyan border. Reverify MJI–TUN service immediately before travel."
+      "notes": "Libyan Wings currently exposes Mitiga (MJI) and Tunis (TUN) in its booking flow and Tunis among its live destinations, refreshing the route evidence layer. This safety review does not certify transport service availability; Libya remains under an official German travel warning, so the leg stays on HOLD."
     },
     "122": {
       "legId": 122,
@@ -310,17 +313,18 @@
       "title": "Mauretanien → Mali",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "existing-service-source-not-reverified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.directflights.com/NKC-BKO",
+        "https://www.mauritaniaairline.com/destinations",
+        "https://www.mauritaniaairline.com/nos-destinations",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/mauretaniensicherheit-219190",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/malisicherheit-208258"
       ],
-      "notes": "Mali is under a travel warning and advises departure by air. Retain NKC–BKO only as a route concept pending a fresh operating-service and security check."
+      "notes": "Mauritania Airlines currently lists Bamako among its international destinations and publishes live schedules from its Nouakchott network, refreshing the route evidence layer. This safety review does not certify transport service availability; Mali remains under an official German travel warning, so the leg stays on HOLD."
     },
     "124": {
       "legId": 124,
@@ -395,17 +399,18 @@
       "title": "Zentralafrikanische Republik → Kamerun",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "existing-service-source-not-reverified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.flightconnections.com/flights-from-bgf-to-dla",
+        "https://flights.rwandair.com/en/flights-to-douala",
+        "https://flights.rwandair.com/en/flights-from-bangui-to-douala",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/zentralafrikanischerepubliksicherheit-226450",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/kamerunsicherheit-208874"
       ],
-      "notes": "The Central African Republic is under a travel warning; Cameroon warns against the CAR border. Reverify the BGF–DLA service and security before travel."
+      "notes": "RwandAir currently publishes Bangui–Douala inventory including March 2027 fares, refreshing the route evidence layer. This safety review does not certify transport service availability; the Central African Republic remains under an official German travel warning, so the leg stays on HOLD."
     },
     "160": {
       "legId": 160,
@@ -445,17 +450,18 @@
       "title": "Äthiopien → Somalia",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "existing-service-source-not-reverified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
-        "https://www.flightconnections.com/flights-from-add-to-mgq",
+        "https://www.ethiopianairlines.com/en-et/flights-from-addis-ababa-to-mogadishu",
+        "https://www.ethiopianairlines.com/en-et/flights-to-mogadishu",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/aethiopiensicherheit-209504",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/somaliasicherheit-203132"
       ],
-      "notes": "Somalia is under a travel warning and Ethiopia warns against the Somali region. Reverify ADD–MGQ service and entry/security conditions."
+      "notes": "Ethiopian Airlines currently publishes Addis Ababa–Mogadishu as a bookable route, refreshing the route evidence layer. This safety review does not certify transport service availability; Somalia remains under an official German travel warning, so the leg stays on HOLD."
     },
     "168": {
       "legId": 168,
@@ -496,17 +502,18 @@
       "title": "Sudan → Ägypten",
       "status": "reviewed",
       "decision": "hold",
-      "reviewedAt": "2026-09-26",
+      "reviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
-      "routeEvidence": "existing-service-source-not-reverified",
+      "routeEvidence": "operator-evidence-refreshed-separately",
       "safetyState": "travel-warning",
       "transportServiceVerified": false,
       "sources": [
+        "https://office.tarco.badrairlines.com/en/timetable.php",
         "https://www.flightconnections.com/flights-from-pzu-to-cai",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/sudansicherheit-203266",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/aegyptensicherheit-212622"
       ],
-      "notes": "Sudan is under a travel warning and Egypt treats the Sudan border region as restricted. Reverify PZU–CAI service and exit/entry requirements."
+      "notes": "The current Badr/Tarco timetable publishes Port Sudan–Cairo service and fresh schedule data also lists multiple nonstop operators, refreshing the route evidence layer. This safety review does not certify transport service availability; Sudan remains under an official German travel warning, so the leg stays on HOLD."
     },
     "178": {
       "legId": 178,
