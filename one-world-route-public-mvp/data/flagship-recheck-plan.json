@@ -1,0 +1,2059 @@
+{
+  "schemaVersion": 1,
+  "tripId": "world-195",
+  "dataAsOf": "2026-09-27",
+  "policy": {
+    "scheduledOffsetsHours": [
+      168,
+      48
+    ],
+    "immediateRecheckOnMaterialChange": true,
+    "manualReleaseRequired": true,
+    "autoPromote": false,
+    "datePrecision": "day",
+    "note": "The source itinerary is date-granular; the 48-hour checkpoint is represented as target date minus two calendar days. Material official changes require immediate manual re-review regardless of schedule."
+  },
+  "summary": {
+    "total": 43,
+    "blocking": 43,
+    "byDecision": {
+      "hold": 38,
+      "blocked": 5
+    },
+    "byCategory": {
+      "international-leg": 35,
+      "operational-movement": 8
+    },
+    "scheduledTaskCount": 42,
+    "conditionWatchOnlyTaskCount": 1,
+    "milestoneCount": 84,
+    "nextScheduledRecheck": "2026-11-01"
+  },
+  "tasks": [
+    {
+      "id": "leg-13",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 13,
+      "movementId": null,
+      "title": "Polen → Ukraine",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2026-11-08",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2026-11-01"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2026-11-06"
+        }
+      ],
+      "nextScheduledRecheck": "2026-11-01",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "border-entry-permission-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://uz-vezemo.uz.gov.ua/",
+        "https://booking.uz.gov.ua/en/",
+        "https://granica.gov.pl/index_wait.php?c=t&k=w&p=u&v=en",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/ukrainesicherheit-201946"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-14",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 14,
+      "movementId": null,
+      "title": "Ukraine → Moldau",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2026-11-11",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "volatile",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2026-11-04"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2026-11-09"
+        }
+      ],
+      "nextScheduledRecheck": "2026-11-04",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "border-entry-permission-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://uz-vezemo.uz.gov.ua/",
+        "https://booking.uz.gov.ua/",
+        "https://border.gov.md/index.php/masuri-temporare-pentru-asigurarea-securitatii-personalului-autoritatilor-de-control-la-frontiera",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/moldausicherheit-201932",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/ukrainesicherheit-201946"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-54",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 54,
+      "movementId": null,
+      "title": "Venezuela → Brasilien",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-01-12",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "partial-travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-01-05"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-01-10"
+        }
+      ],
+      "nextScheduledRecheck": "2027-01-05",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.voegol.com.br/br/voos-de-caracas-para-sao-paulo",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/venezuelasicherheit-224982",
+        "https://www.auswaertiges-amt.de/de/ReiseUndSicherheit/brasiliensicherheit/201092"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-89",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 89,
+      "movementId": null,
+      "title": "Laos → Myanmar",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-03-25",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-03-18"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-03-23"
+        }
+      ],
+      "nextScheduledRecheck": "2027-03-18",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.thaiairways.com/flights/en-la/flights-from-vientiane-to-bangkok",
+        "https://www.thaiairways.com/flights/en/flights-from-bangkok-to-yangon",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/myanmarsicherheit-212100"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-90",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 90,
+      "movementId": null,
+      "title": "Myanmar → Bangladesch",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-03-26",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-03-19"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-03-24"
+        }
+      ],
+      "nextScheduledRecheck": "2027-03-19",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.thaiairways.com/flights/en/flights-from-bangkok-to-yangon",
+        "https://www.thaiairways.com/flights/en/flights-from-bangkok-to-dhaka",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/myanmarsicherheit-212100"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "movement-transfer-96-97",
+      "priority": "P0",
+      "category": "operational-movement",
+      "legId": 96,
+      "movementId": "transfer-96-97",
+      "title": "Shanghai (PVG), nonstop → China",
+      "decision": "blocked",
+      "blocksDeparture": true,
+      "targetDate": "2027-04-07",
+      "planningWindow": {
+        "after": "2027-04-07",
+        "before": "2027-04-07"
+      },
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "north-korea-entry-corridor-not-established",
+      "safetyState": null,
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-03-31"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-04-05"
+        }
+      ],
+      "nextScheduledRecheck": "2027-03-31",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "border-entry-permission-change",
+        "transport-service-change",
+        "lawful-corridor-or-entry-established"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/koreademokratischevolksrepubliksicherheit-216104",
+        "https://www.gov.uk/foreign-travel-advice/north-korea/entry-requirements"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-97",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 97,
+      "movementId": null,
+      "title": "China → Nordkorea",
+      "decision": "blocked",
+      "blocksDeparture": true,
+      "targetDate": "2027-04-07",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "general-entry-closed-current",
+      "safetyState": "high-risk",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-03-31"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-04-05"
+        }
+      ],
+      "nextScheduledRecheck": "2027-03-31",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "border-entry-permission-change",
+        "transport-service-change",
+        "security-environment-change",
+        "lawful-corridor-or-entry-established"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/koreademokratischevolksrepubliksicherheit-216104",
+        "https://www.gov.uk/foreign-travel-advice/north-korea/entry-requirements"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "movement-transfer-97-98",
+      "priority": "P0",
+      "category": "operational-movement",
+      "legId": 97,
+      "movementId": "transfer-97-98",
+      "title": "Nordkorea (operativer Korridor offen) → Nordkorea",
+      "decision": "blocked",
+      "blocksDeparture": true,
+      "targetDate": null,
+      "planningWindow": {
+        "after": null,
+        "before": null
+      },
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "north-korea-to-south-korea-tourist-crossing-not-established",
+      "safetyState": null,
+      "monitoringMode": "condition-watch",
+      "scheduledRechecks": [],
+      "nextScheduledRecheck": null,
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "border-entry-permission-change",
+        "lawful-corridor-or-entry-established"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/koreademokratischevolksrepubliksicherheit-216104",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/korearepubliksicherheit-216132"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-98",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 98,
+      "movementId": null,
+      "title": "Nordkorea → Südkorea",
+      "decision": "blocked",
+      "blocksDeparture": true,
+      "targetDate": "2027-04-09",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "no-ordinary-tourist-crossing-current",
+      "safetyState": "restricted-border",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-04-02"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-04-07"
+        }
+      ],
+      "nextScheduledRecheck": "2027-04-02",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "border-entry-permission-change",
+        "transport-service-change",
+        "lawful-corridor-or-entry-established"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/koreademokratischevolksrepubliksicherheit-216104",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/korearepubliksicherheit-216132"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "movement-transfer-98-99",
+      "priority": "P0",
+      "category": "operational-movement",
+      "legId": 98,
+      "movementId": "transfer-98-99",
+      "title": "Südkorea (operativer Korridor offen) → Busan",
+      "decision": "blocked",
+      "blocksDeparture": true,
+      "targetDate": "2027-04-09",
+      "planningWindow": {
+        "after": "2027-04-09",
+        "before": "2027-04-09"
+      },
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "south-korea-start-endpoint-depends-on-blocked-dprk-crossing",
+      "safetyState": null,
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-04-02"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-04-07"
+        }
+      ],
+      "nextScheduledRecheck": "2027-04-02",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "border-entry-permission-change",
+        "security-environment-change",
+        "lawful-corridor-or-entry-established"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/koreademokratischevolksrepubliksicherheit-216104",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/korearepubliksicherheit-216132"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-101",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 101,
+      "movementId": null,
+      "title": "Mongolei → Russland",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-04-13",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-04-06"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-04-11"
+        }
+      ],
+      "nextScheduledRecheck": "2027-04-06",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "border-entry-permission-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.hunnuair.com/en/timetable",
+        "https://timetable.ulaanbaatar-airport.mn/seasonalflight?d=dep&l=en",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/mongoleisicherheit-222842",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/russischefoederationsicherheit-201536"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-102",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 102,
+      "movementId": null,
+      "title": "Russland → Kasachstan",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-04-15",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-04-08"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-04-13"
+        }
+      ],
+      "nextScheduledRecheck": "2027-04-08",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://ir.airastana.com/en/about-us/company-news/flights-to-russia/",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/russischefoederationsicherheit-201536"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "movement-transfer-106-107",
+      "priority": "P0",
+      "category": "operational-movement",
+      "legId": 106,
+      "movementId": "transfer-106-107",
+      "title": "Türkmenabat → Serhetabat",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-04-24",
+      "planningWindow": {
+        "after": "2027-04-24",
+        "before": "2027-04-24"
+      },
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "serhetabat-border-permission-dependent",
+      "safetyState": null,
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-04-17"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-04-22"
+        }
+      ],
+      "nextScheduledRecheck": "2027-04-17",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "border-entry-permission-change",
+        "transport-service-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.railway.gov.tm/schedule",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/turkmenistansicherheit-206774",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/afghanistansicherheit-204692"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-107",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 107,
+      "movementId": null,
+      "title": "Turkmenistan → Afghanistan",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-04-24",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "border-freight-only-current",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-04-17"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-04-22"
+        }
+      ],
+      "nextScheduledRecheck": "2027-04-17",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "border-entry-permission-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://afghanistan.tmembassy.gov.tm/en/news/84854",
+        "https://germany.tmembassy.gov.tm/index.php/de/news/84645",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/turkmenistansicherheit-206774",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/afghanistansicherheit-204692"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "movement-transfer-107-108",
+      "priority": "P0",
+      "category": "operational-movement",
+      "legId": 107,
+      "movementId": "transfer-107-108",
+      "title": "Torghundi, nur mit vorheriger Genehmigung → Kabul",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-04-27",
+      "planningWindow": {
+        "after": "2027-04-27",
+        "before": "2027-04-27"
+      },
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "afghanistan-travel-warning-and-border-volatility",
+      "safetyState": null,
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-04-20"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-04-25"
+        }
+      ],
+      "nextScheduledRecheck": "2027-04-20",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "border-entry-permission-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/afghanistansicherheit-204692",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/pakistansicherheit-204974",
+        "https://dpmea.gov.af/1405-English-News-51",
+        "https://mopw.gov.af/index.php/en/node/3894"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-108",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 108,
+      "movementId": null,
+      "title": "Afghanistan → Pakistan",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-04-27",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "border-restricted-current",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-04-20"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-04-25"
+        }
+      ],
+      "nextScheduledRecheck": "2027-04-20",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "border-entry-permission-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://mofa.gov.pk/press-releases/transcript-of-the-press-briefing-by-the-spokesperson-on-thursday-16-july-2026",
+        "https://pid.gov.pk/site/press_detail/33719",
+        "https://www.gov.uk/foreign-travel-advice/pakistan",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/afghanistansicherheit-204692",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/pakistansicherheit-204974"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "movement-transfer-108-109",
+      "priority": "P0",
+      "category": "operational-movement",
+      "legId": 108,
+      "movementId": "transfer-108-109",
+      "title": "Peshawar → Quetta",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-05-01",
+      "planningWindow": {
+        "after": "2027-05-01",
+        "before": "2027-05-01"
+      },
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "peshawar-quetta-route-crosses-travel-warning-regions",
+      "safetyState": null,
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-04-24"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-04-29"
+        }
+      ],
+      "nextScheduledRecheck": "2027-04-24",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "border-entry-permission-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/pakistansicherheit-204974",
+        "https://www.pakrail.gov.pk/Map.aspx"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-109",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 109,
+      "movementId": null,
+      "title": "Pakistan → Iran",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-05-01",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "limited-passenger-access-current",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-04-24"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-04-29"
+        }
+      ],
+      "nextScheduledRecheck": "2027-04-24",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "border-entry-permission-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://dtm.iom.int/reports/pakistan-joint-iom-and-unhcr-border-monitoring-report-inflows-islamic-republic-iran-01-1",
+        "https://www.fbr.gov.pk/he-iranian-ambassador-in-pakistan-calls-on-chairman-fbr/163247",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/pakistansicherheit-204974",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/iransicherheit-202396"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "movement-transfer-109-110",
+      "priority": "P0",
+      "category": "operational-movement",
+      "legId": 109,
+      "movementId": "transfer-109-110",
+      "title": "Zahedan → Teheran (IKA)",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-05-05",
+      "planningWindow": {
+        "after": "2027-05-05",
+        "before": "2027-05-05"
+      },
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "iran-countrywide-travel-warning",
+      "safetyState": null,
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-04-28"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-05-03"
+        }
+      ],
+      "nextScheduledRecheck": "2027-04-28",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/iransicherheit-202396"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-114",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 114,
+      "movementId": null,
+      "title": "Türkei → Irak",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-05-15",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-05-08"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-05-13"
+        }
+      ],
+      "nextScheduledRecheck": "2027-05-08",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.turkishairlines.com/en-tr/flights-from-istanbul-to-baghdad",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/iraksicherheit-202738"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-115",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 115,
+      "movementId": null,
+      "title": "Irak → Syrien",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-05-16",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-05-09"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-05-14"
+        }
+      ],
+      "nextScheduledRecheck": "2027-05-09",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://damairport.gov.sy/en/destinations/bgw",
+        "https://damairport.gov.sy/en/airlines",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/iraksicherheit-202738",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/syriensicherheit-204278"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "movement-transfer-115-116",
+      "priority": "P0",
+      "category": "operational-movement",
+      "legId": 115,
+      "movementId": "transfer-115-116",
+      "title": "Damaskus (DAM), nonstop → Damaskus",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-05-19",
+      "planningWindow": {
+        "after": "2027-05-19",
+        "before": "2027-05-19"
+      },
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "syria-countrywide-travel-warning",
+      "safetyState": null,
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-05-12"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-05-17"
+        }
+      ],
+      "nextScheduledRecheck": "2027-05-12",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/syriensicherheit-204278",
+        "https://sana.sy/en/syria/2345798/"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-116",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 116,
+      "movementId": null,
+      "title": "Syrien → Libanon",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-05-19",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "border-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-05-12"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-05-17"
+        }
+      ],
+      "nextScheduledRecheck": "2027-05-12",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "border-entry-permission-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.general-security.gov.lb/en/operations/details/181",
+        "https://www.general-security.gov.lb/en/posts/148",
+        "https://isf.gov.lb/news/arrest-of-a-dangerous-wanted-individual-involved-in-drug-trafficking-crimes-and-dismantling-of-an-international-network-that-was-preparing-to-smuggle-85-kg-of-captagon-to-kuwait-by-the-central-anti/",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/syriensicherheit-204278",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/libanonsicherheit-204048"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-118",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 118,
+      "movementId": null,
+      "title": "Zypern → Libyen",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-05-25",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-05-18"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-05-23"
+        }
+      ],
+      "nextScheduledRecheck": "2027-05-18",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://flights.aegeanair.com/en/flights-from-larnaca-to-istanbul",
+        "https://www.turkishairlines.com/en-de/book-flights-to-libya",
+        "https://www.turkishairlines.com/de-de/flights/flights-to-tripoli/",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/libyensicherheit-219624"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-119",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 119,
+      "movementId": null,
+      "title": "Libyen → Tunesien",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-05-29",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-05-22"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-05-27"
+        }
+      ],
+      "nextScheduledRecheck": "2027-05-22",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://libyanwings.ly/book-a-flight-form/",
+        "https://libyanwings.ly/",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/libyensicherheit-219624",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/tunesiensicherheit-219024"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-122",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 122,
+      "movementId": null,
+      "title": "Marokko → Mauretanien",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-06-05",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "dakhla-guerguerat-service-current-crossborder-continuity-unconfirmed",
+      "safetyState": "high-risk-corridor",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-05-29"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-06-03"
+        }
+      ],
+      "nextScheduledRecheck": "2027-05-29",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "border-entry-permission-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/marokkosicherheit-224080",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/mauretaniensicherheit-219190",
+        "https://markoub.ma/en/company/lux-sahara-loks-shraaa/dakhla_guerguerat/121_47"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-123",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 123,
+      "movementId": null,
+      "title": "Mauretanien → Mali",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-06-09",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-06-02"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-06-07"
+        }
+      ],
+      "nextScheduledRecheck": "2027-06-02",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.mauritaniaairline.com/destinations",
+        "https://www.mauritaniaairline.com/nos-destinations",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/mauretaniensicherheit-219190",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/malisicherheit-208258"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-124",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 124,
+      "movementId": null,
+      "title": "Mali → Burkina Faso",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-06-12",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-06-05"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-06-10"
+        }
+      ],
+      "nextScheduledRecheck": "2027-06-05",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://flights.flyairsenegal.com/en/flights-from-bamako-to-ouagadougou",
+        "https://flights.flyairsenegal.com/en/flights-to-ouagadougou",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/malisicherheit-208258",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/burkinafasosicherheit-212336"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-125",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 125,
+      "movementId": null,
+      "title": "Burkina Faso → Niger",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-06-14",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-06-07"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-06-12"
+        }
+      ],
+      "nextScheduledRecheck": "2027-06-07",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.aircotedivoire.com/en/flights-from-ouagadougou-to-niamey",
+        "https://www.aircotedivoire.com/fr/vols-de-niamey-a-ouagadougou",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/burkinafasosicherheit-212336",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/nigersicherheit-226384"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-126",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 126,
+      "movementId": null,
+      "title": "Niger → Tschad",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-06-16",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-06-09"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-06-14"
+        }
+      ],
+      "nextScheduledRecheck": "2027-06-09",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.turkishairlines.com/en/flights-from-ndjamena-to-niamey",
+        "https://www.turkishairlines.com/en/book-flights-to-niger",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/nigersicherheit-226384",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/tschadsicherheit-225774"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-127",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 127,
+      "movementId": null,
+      "title": "Tschad → Zentralafrikanische Republik",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-06-19",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-06-12"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-06-17"
+        }
+      ],
+      "nextScheduledRecheck": "2027-06-12",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "border-entry-permission-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.camair-co.cm/CM/en/horaireVols",
+        "https://www.camair-co.cm/page/CM/fr/reseau-de-la-compagnie",
+        "https://flights.rwandair.com/en/flights-from-douala-to-bangui",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/tschadsicherheit-225774",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/zentralafrikanischerepubliksicherheit-226450"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-128",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 128,
+      "movementId": null,
+      "title": "Zentralafrikanische Republik → Kamerun",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-06-24",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-06-17"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-06-22"
+        }
+      ],
+      "nextScheduledRecheck": "2027-06-17",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://flights.rwandair.com/en/flights-to-douala",
+        "https://flights.rwandair.com/en/flights-from-bangui-to-douala",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/zentralafrikanischerepubliksicherheit-226450",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/kamerunsicherheit-208874"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-160",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 160,
+      "movementId": null,
+      "title": "Uganda → Südsudan",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-08-28",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-08-21"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-08-26"
+        }
+      ],
+      "nextScheduledRecheck": "2027-08-21",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://ugandairlines.com/destinations/flights/ebb/jub/flights-from-entebbe-to-juba",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/ugandasicherheit-208752",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/suedsudansicherheit-244250"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-161",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 161,
+      "movementId": null,
+      "title": "Südsudan → Kenia",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-08-29",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-08-22"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-08-27"
+        }
+      ],
+      "nextScheduledRecheck": "2027-08-22",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.kenya-airways.com/en_ke/flights-from-juba-to-nairobi/",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/suedsudansicherheit-244250"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-167",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 167,
+      "movementId": null,
+      "title": "Äthiopien → Somalia",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-09-10",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-09-03"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-09-08"
+        }
+      ],
+      "nextScheduledRecheck": "2027-09-03",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.ethiopianairlines.com/en-et/flights-from-addis-ababa-to-mogadishu",
+        "https://www.ethiopianairlines.com/en-et/flights-to-mogadishu",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/aethiopiensicherheit-209504",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/somaliasicherheit-203132"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-168",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 168,
+      "movementId": null,
+      "title": "Somalia → Dschibuti",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-09-11",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-09-04"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-09-09"
+        }
+      ],
+      "nextScheduledRecheck": "2027-09-04",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.air-djibouti.com/",
+        "https://www.qatarairways.com/en/destinations/flights-to-djibouti/from-mogadishu.html",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/somaliasicherheit-203132",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/dschibutisicherheit-212168"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-170",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 170,
+      "movementId": null,
+      "title": "Eritrea → Sudan",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-09-15",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-09-08"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-09-13"
+        }
+      ],
+      "nextScheduledRecheck": "2027-09-08",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://shabait.com/2026/05/23/badr-airlines-starts-commercial-flight/",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/eritreasicherheit-226176",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/sudansicherheit-203266"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-171",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 171,
+      "movementId": null,
+      "title": "Sudan → Ägypten",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-09-16",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-09-09"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-09-14"
+        }
+      ],
+      "nextScheduledRecheck": "2027-09-09",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://office.tarco.badrairlines.com/en/timetable.php",
+        "https://www.flightconnections.com/flights-from-pzu-to-cai",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/sudansicherheit-203266",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/aegyptensicherheit-212622"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-178",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 178,
+      "movementId": null,
+      "title": "Oman → Jemen",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-09-29",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "service-suspended-current",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-09-22"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-09-27"
+        }
+      ],
+      "nextScheduledRecheck": "2027-09-22",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://services.omanair.com/ae/ar/flights/flights-from-Muscat-to-Jeddah",
+        "https://yemenia.com/ar/news/yemenia-suspends-operations",
+        "https://yemenia.com/flights-schedule",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/omansicherheit-204160",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/jemensicherheit-202260"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-179",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 179,
+      "movementId": null,
+      "title": "Jemen → Jordanien",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-10-03",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "service-suspended-current",
+      "safetyState": "travel-warning",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-09-26"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-10-01"
+        }
+      ],
+      "nextScheduledRecheck": "2027-09-26",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://yemenia.com/ar/news/yemenia-suspends-operations",
+        "https://www.amman-airport.com/queen-alia-airlines/yemenia",
+        "https://yemenia.com/flights-schedule",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/jemensicherheit-202260",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/jordaniensicherheit-218008"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-180",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 180,
+      "movementId": null,
+      "title": "Jordanien → Israel",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-10-05",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "volatile",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-09-28"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-10-03"
+        }
+      ],
+      "nextScheduledRecheck": "2027-09-28",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "border-entry-permission-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.iaa.gov.il/en/land-border-crossings/alenbi/opening-hours/",
+        "https://www.iaa.gov.il/en/land-border-crossings/jordan-river/opening-hours-jorden-river/",
+        "https://www.iaa.gov.il/en/land-border-crossings/notifications-and-updates-lion-s-roar/",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/israelsicherheit-203814",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/jordaniensicherheit-218008"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-181",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 181,
+      "movementId": null,
+      "title": "Israel → Staat Palästina",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-10-09",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "west-bank-access-restricted-current",
+      "safetyState": "volatile",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-10-02"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-10-07"
+        }
+      ],
+      "nextScheduledRecheck": "2027-10-02",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "border-entry-permission-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/israelsicherheit-203814",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/palaestinensischegebietesicherheit-203674"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    },
+    {
+      "id": "leg-182",
+      "priority": "P0",
+      "category": "international-leg",
+      "legId": 182,
+      "movementId": null,
+      "title": "Staat Palästina → Griechenland",
+      "decision": "hold",
+      "blocksDeparture": true,
+      "targetDate": "2027-10-12",
+      "planningWindow": null,
+      "reviewedAt": "2026-09-27",
+      "lastVerified": "2026-09-27",
+      "evidenceState": "operator-evidence-refreshed-separately",
+      "safetyState": "volatile",
+      "monitoringMode": "scheduled-and-condition-watch",
+      "scheduledRechecks": [
+        {
+          "id": "pre-departure-7d",
+          "offsetHours": 168,
+          "dueOn": "2027-10-05"
+        },
+        {
+          "id": "pre-departure-48h",
+          "offsetHours": 48,
+          "dueOn": "2027-10-10"
+        }
+      ],
+      "nextScheduledRecheck": "2027-10-05",
+      "watchTriggers": [
+        "official-guidance-material-change",
+        "border-entry-permission-change",
+        "transport-service-change",
+        "security-environment-change"
+      ],
+      "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the leg; recheck immediately on material regional changes.",
+      "sources": [
+        "https://www.iaa.gov.il/en/land-border-crossings/alenbi/opening-hours/",
+        "https://www.rj.com/en/plan-and-book/track-flights/rjs-timetable",
+        "https://www.rj.com/-/media/RJ-Timetables/2026/May-Timetable.pdf?hash=863735C7DA02A212890131ACECF6E69C&rev=-1",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/israelsicherheit-203814",
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/jordaniensicherheit-218008"
+      ],
+      "releaseControl": {
+        "manualReviewRequired": true,
+        "autoPromote": false,
+        "requirement": "A HOLD/BLOCKED task may change only after a new source-backed review establishes current safety/entry conditions and executable transport where applicable."
+      }
+    }
+  ]
+}

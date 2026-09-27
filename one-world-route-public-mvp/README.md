@@ -36,6 +36,7 @@ The invariant is enforced by `scripts/flagship-topology-model.mjs`, public-data 
 Operational readiness is generated into:
 - `data/flagship-readiness.json` — canonical topology, continuity, movement, flight-geometry, evidence and blocker summary.
 - `data/flagship-operations-queue.json` — deterministic P0/P1/P2 task queue with missing fields, evidence state, geometry state and departure-blocking status.
+- `data/flagship-recheck-plan.json` — deterministic schedule/watch layer for every departure-blocking P0 item, including 7-day and 48-hour checkpoints plus material-change trigger classes.
 
 Verification dates are ISO `YYYY-MM-DD` values. Legacy Excel serial dates are normalized by `scripts/verification-date-model.mjs`; invalid verification-date formats fail validation instead of being counted as fresh evidence.
 
@@ -78,6 +79,19 @@ node scripts/audit-flagship-readiness.mjs --strict
 ```
 
 The normal release build refreshes the snapshot deterministically. `--check` fails when the committed report is stale. `--strict` is reserved for departure-readiness gating; the public site may remain publishable while operational blockers are still visible.
+
+## Flagship recheck control
+
+Departure blockers are monitored separately from the public release gate. Every P0 HOLD/BLOCKED item is represented in `data/flagship-recheck-plan.json`. Dated items receive two deterministic checkpoints: seven days and 48 hours before the planned movement. Items without an executable date remain condition-watch tasks.
+
+```bash
+node scripts/build-flagship-recheck-plan.mjs
+node scripts/build-flagship-recheck-plan.mjs --check
+node scripts/audit-flagship-rechecks.mjs --date=2026-11-01
+node scripts/audit-flagship-rechecks.mjs --strict
+```
+
+The daily `Flagship recheck watch` GitHub workflow reports due/overdue checkpoints. It never changes HOLD/BLOCKED to READY. A material safety, border/entry, permission or operator-service change is a trigger for a new source-backed manual review, not an automatic status promotion.
 
 
 ## Multi-trip platform foundation

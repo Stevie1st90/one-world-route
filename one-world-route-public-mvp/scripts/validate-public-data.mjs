@@ -14,7 +14,7 @@ if(data.postTripReturn?.countedInInternationalLegs!==false)fail('Post-trip retur
 const privatePattern=/(passport|pnr|booking.?reference|payment.?date|insurance.?id|emergency.?contact|card.?number|private.?document|liquidity)/i;
 const walk=(v,path='root')=>{if(!v||typeof v!=='object')return;for(const [k,x] of Object.entries(v)){if(privatePattern.test(k))fail('Private field detected at '+path+'.'+k);if(typeof x==='object')walk(x,path+'.'+k)}};
 walk(data);
-for(const file of ['operational-movements.json','flight-geometries.json','flight-geometry-overrides.json','critical-leg-reviews.json','flagship-readiness.json','flagship-operations-queue.json','airports.json','actual-progress.json','media.json'])walk(JSON.parse(await readFile(new URL('../data/'+file,import.meta.url),'utf8')),file);
+for(const file of ['operational-movements.json','flight-geometries.json','flight-geometry-overrides.json','critical-leg-reviews.json','flagship-readiness.json','flagship-operations-queue.json','flagship-recheck-plan.json','airports.json','actual-progress.json','media.json'])walk(JSON.parse(await readFile(new URL('../data/'+file,import.meta.url),'utf8')),file);
 
 const criticalReviews=JSON.parse(await readFile(new URL('../data/critical-leg-reviews.json',import.meta.url),'utf8'));
 const criticalIds=(data.segments||[]).filter(segment=>segment.feasibility==='Kritisch').map(segment=>Number(segment.id));

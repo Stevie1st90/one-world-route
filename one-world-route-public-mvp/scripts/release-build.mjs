@@ -9,6 +9,7 @@ for (const script of [
   'audit-route-continuity.mjs',
   'audit-flagship-readiness.mjs',
   'build-flagship-operations-queue.mjs',
+  'build-flagship-recheck-plan.mjs',
   'build-trip-index.mjs',
   'build-bundles.mjs',
   'generate-seo.mjs',
