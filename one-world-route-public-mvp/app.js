@@ -35,7 +35,7 @@
   };
 
   const state = {
-    raw:null, segments:[], countries:[], geo:[], geoIndex:new Map(), countryByCca3:new Map(), polygons:[], globe:null,
+    raw:null, recheckPlan:null, recheckByLeg:new Map(), segments:[], countries:[], geo:[], geoIndex:new Map(), countryByCca3:new Map(), polygons:[], globe:null,
     selectedSegmentId:1, selectedCountry:null, layer:'route', phase:'all', mode:'explore', activeTab:'overview',
     filters:{mode:'all', tier:'all', feasibility:'all', alert:'all'},
     playing:false, playTimer:null, speed:700, criticalIds:new Set(),
@@ -71,6 +71,8 @@
   const statusColor = a => ({RED:colors.red,ORANGE:colors.orange,WATCH:colors.amber,GREEN:colors.green}[a] || colors.muted);
   const readinessColor = r => r === 'READY' ? colors.green : r === 'BLOCKED' ? colors.red : colors.amber;
   const sourceList = s => String(s||'').split(/\s*;\s*/).filter(x=>/^https?:/.test(x));
+  const recheckForSegment = s => state.recheckByLeg.get(Number(s?.id))||null;
+  const recheckColor = task => task?.decision==='blocked'?colors.red:colors.amber;
   const escapeHtml = s => String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[m]));
   const trim = (s,n=84) => String(s||'').length>n ? String(s).slice(0,n-1)+'…' : String(s||'');
   const flagAssetUrl = c => /^[a-z]{2}$/i.test(String(c?.cca2||'')) ? `https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.5.0/flags/4x3/${String(c.cca2).toLowerCase()}.svg` : '';
@@ -96,6 +98,17 @@
     if(s.dataQuality && !/verifiziert/i.test(s.dataQuality)) x+=12;
     if(/Nauru|Tuvalu|Marshall|Mikronesien|Palau|Haiti|Syrien|Jemen|Sudan|Somalia/i.test(`${s.from} ${s.to}`)) x+=9;
     return x;
+  }
+
+  async function loadRecheckPlan(){
+    try{
+      const r=await fetch('./data/flagship-recheck-plan.json',{cache:'no-cache'});
+      if(!r.ok)throw new Error(r.status);
+      return await r.json();
+    }catch(e){
+      console.warn('Flagship recheck plan failed',e);
+      return null;
+    }
   }
 
   async function loadGeo(){
@@ -353,6 +366,7 @@
       state.selectedSegmentId=Math.min(194,Math.max(1,Number(p.get('segment'))||1));
       const selected=state.segments.find(s=>s.id===state.selectedSegmentId);
       if(selected&&state.phase!=='all'&&Number(state.phase)!==selected.phaseId)state.phase=String(selected.phaseId);
+      state.activeTab=state.mode==='operations'?'operations':'overview';
     }
   }
 
@@ -409,9 +423,11 @@
     } else if(state.activeTab==='details'){
       box.innerHTML=`<div class="data-grid">${dataCard('From',segmentFrom(s))}${dataCard('To',segmentTo(s))}${dataCard('Plan depart',fmtDate(s.planDeparture))}${dataCard('Plan arrive',fmtDate(s.planArrival))}${dataCard('Booking tier',s.bookingTier||'—')}${dataCard('Data quality',englishValue(s.dataQuality)||'—')}${dataCard('Plan status',englishText(s.planStatus)||'—')}${dataCard('Budget',eur(s.transportBudgetEur))}</div><h3>Corridor</h3><p class="detail-copy">${escapeHtml(englishText(s.corridor||'—'))}</p>`;
     } else if(state.activeTab==='operations'){
-      box.innerHTML=`<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">${badge(s.alertLevel,statusColor(s.alertLevel))}${badge(`Tier ${s.bookingTier||'—'}`,colors.blue)}${state.criticalIds.has(s.id)?badge('Critical path',colors.red):''}</div>
+      const recheck=recheckForSegment(s);
+      const recheckBlock=recheck?`<h3>Departure recheck</h3><div class="data-grid">${dataCard('Decision',String(recheck.decision||'—').toUpperCase())}${dataCard('Next recheck',fmtDate(recheck.nextScheduledRecheck))}${dataCard('Target date',fmtDate(recheck.targetDate))}${dataCard('Release control','Manual review')}</div><div class="op-callout"><b>Monitoring:</b> ${escapeHtml(recheck.monitoringMode==='condition-watch'?'Condition watch':'Scheduled + condition watch')}. Automatic promotion is disabled; a material official change requires a new source-backed review.</div>`:'';
+      box.innerHTML=`<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">${badge(s.alertLevel,statusColor(s.alertLevel))}${badge(`Tier ${s.bookingTier||'—'}`,colors.blue)}${state.criticalIds.has(s.id)?badge('Critical path',colors.red):''}${recheck?badge(String(recheck.decision||'').toUpperCase(),recheckColor(recheck)):''}</div>
       <div class="data-grid">${dataCard('Visa target',englishValue(s.visaTypeTarget)||'—',englishValue(s.visaStatusTarget)||'')}${dataCard('Health',`Priority ${s.healthPriorityTarget??'—'}`,englishValue(s.healthStatusTarget)||'')}${dataCard('Verified',fmtDate(s.lastVerified))}${dataCard('Criticality',`${s.criticalScore}/100-ish`)}</div>
-      ${s.alertMessage?`<div class="op-callout">${escapeHtml(englishText(s.alertMessage))}</div>`:''}<h3>Plan B</h3><p class="detail-copy">${escapeHtml(englishText(s.planB||'No specific fallback recorded; use surrounding hub/next published service logic.'))}</p>`;
+      ${s.alertMessage?`<div class="op-callout">${escapeHtml(englishText(s.alertMessage))}</div>`:''}${recheckBlock}<h3>Plan B</h3><p class="detail-copy">${escapeHtml(englishText(s.planB||'No specific fallback recorded; use surrounding hub/next published service logic.'))}</p>`;
     } else {
       const links=sourceList(s.source); box.innerHTML=links.length?`<p class="detail-copy">Source links attached to this segment. “Verified” refers to the planning snapshot date, not a guarantee that conditions remain unchanged.</p>${links.map((u,i)=>`<a class="source-link" target="_blank" rel="noopener" href="${escapeHtml(u)}">Source ${i+1} · ${escapeHtml(trim(u,62))}</a>`).join('')}`:`<p class="detail-copy">No public source URL is attached to this segment in the current snapshot.</p>`;
     }
@@ -596,8 +612,8 @@
 
   async function init(){
     try{
-      const [raw,geo]=await Promise.all([fetch('./data/public-route.json').then(r=>{if(!r.ok)throw new Error('public data');return r.json()}),loadGeo()]);
-      state.raw=raw; state.geo=geo; buildGeoIndex(geo); enrich(); restoreUrl(); fillFilters(); bindUI(); renderChrome(); updateRange(); updateTimeline(); renderDetail(); initGlobe();
+      const [raw,recheckPlan,geo]=await Promise.all([fetch('./data/public-route.json').then(r=>{if(!r.ok)throw new Error('public data');return r.json()}),loadRecheckPlan(),loadGeo()]);
+      state.raw=raw; state.recheckPlan=recheckPlan; state.recheckByLeg=new Map((recheckPlan?.tasks||[]).filter(task=>task.category==='international-leg'&&task.legId).map(task=>[Number(task.legId),task])); state.geo=geo; buildGeoIndex(geo); enrich(); restoreUrl(); fillFilters(); bindUI(); renderChrome(); updateRange(); updateTimeline(); renderDetail(); initGlobe();
       if(state.selectedCountry)focusCountry(state.selectedCountry,0);else{const s=state.segments.find(x=>x.id===state.selectedSegmentId);if(s&&state.selectedSegmentId!==1)focusSegment(s,0)}
       const missing=state.countries.filter(c=>!c.lat&&!c.lng).map(c=>c.name); if(missing.length)console.warn('Countries without coordinates',missing);
     }catch(e){console.error(e);$('#globeLoader').classList.add('hidden');$('#globeFallback').classList.remove('hidden');$('#globeFallback').textContent='Public route data could not be loaded. Run this site through a local/static web server rather than opening index.html directly.';}

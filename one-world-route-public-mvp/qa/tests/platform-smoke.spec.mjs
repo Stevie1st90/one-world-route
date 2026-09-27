@@ -22,6 +22,18 @@ test('@flagship flagship shell boots cleanly',async({page,isMobile})=>{
   expect(errors,'flagship runtime page errors').toEqual([]);
 });
 
+test('@flagship operations exposes departure recheck controls',async({page})=>{
+  test.setTimeout(30000);
+  const errors=capturePageErrors(page);
+  await page.goto('/?segment=13&mode=operations&lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('#detailContent')).toContainText('Departure recheck',{timeout:15000});
+  await expect(page.locator('#detailContent')).toContainText('Next recheck');
+  await expect(page.locator('#detailContent')).toContainText('Manual review');
+  await expect(page.locator('#detailContent')).toContainText('HOLD');
+  await expect(page.locator('#detailContent')).toContainText('Scheduled + condition watch');
+  expect(errors,'flagship recheck runtime page errors').toEqual([]);
+});
+
 test('@regional representative regional shell boots cleanly',async({page,isMobile})=>{
   test.setTimeout(30000);
   expect(regional).toBeTruthy();
