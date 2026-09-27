@@ -1282,8 +1282,8 @@
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/koreademokratischevolksrepubliksicherheit-216104",
         "https://www.gov.uk/foreign-travel-advice/north-korea/entry-requirements"
       ],
-      "lastVerified": "2026-09-26",
-      "notes": "BLOCKED. This China-side feeder cannot be fixed responsibly while leg 97 has no ordinary independently executable tourist entry corridor into North Korea. Do not invent a Chinese departure city, train or flight solely to close geometry.",
+      "lastVerified": "2026-09-27",
+      "notes": "BLOCKED. Current official guidance still does not establish ordinary general tourist entry into North Korea, and the China-side departure point therefore cannot be fixed responsibly. Limited organized-tour exceptions do not justify inventing a Chinese departure city, train or flight. Keep geometry, duration and cost unresolved until leg 97 has a lawful executable entry corridor.",
       "status": "blocked",
       "plannedDeparture": null,
       "actualDeparture": null,
@@ -1293,7 +1293,7 @@
       "reviewStatus": "reviewed",
       "operationalDecision": "blocked",
       "decisionReason": "north-korea-entry-corridor-not-established",
-      "decisionReviewedAt": "2026-09-26",
+      "decisionReviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes."
     },
     {
@@ -1326,8 +1326,8 @@
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/koreademokratischevolksrepubliksicherheit-216104",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/korearepubliksicherheit-216132"
       ],
-      "lastVerified": "2026-09-26",
-      "notes": "BLOCKED. No ordinary tourist crossing from North Korea to South Korea is established. The structural movement remains intentionally without invented geometry, duration or cost until a lawful executable corridor exists.",
+      "lastVerified": "2026-09-27",
+      "notes": "BLOCKED. Current German guidance continues to describe the inter-Korean border as a militarily restricted zone and does not establish an ordinary tourist crossing from North Korea into South Korea. Keep this structural movement without invented geometry, duration or cost until a lawful passenger corridor is officially verified.",
       "status": "blocked",
       "plannedDeparture": null,
       "actualDeparture": null,
@@ -1337,7 +1337,7 @@
       "reviewStatus": "reviewed",
       "operationalDecision": "blocked",
       "decisionReason": "north-korea-to-south-korea-tourist-crossing-not-established",
-      "decisionReviewedAt": "2026-09-26",
+      "decisionReviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes."
     },
     {
@@ -1370,8 +1370,8 @@
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/koreademokratischevolksrepubliksicherheit-216104",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/korearepubliksicherheit-216132"
       ],
-      "lastVerified": "2026-09-26",
-      "notes": "BLOCKED by the preceding North Korea→South Korea corridor. South Korean onward travel to Busan is not the issue; the lawful arrival point into South Korea is undefined while leg 98 remains blocked.",
+      "lastVerified": "2026-09-27",
+      "notes": "BLOCKED by the preceding North Korea→South Korea corridor. Current official guidance does not establish a lawful ordinary tourist arrival point into South Korea from North Korea. South Korean onward travel to Busan is not the blocker; the movement remains intentionally unresolved until leg 98 has an executable arrival corridor.",
       "status": "blocked",
       "plannedDeparture": null,
       "actualDeparture": null,
@@ -1381,7 +1381,7 @@
       "reviewStatus": "reviewed",
       "operationalDecision": "blocked",
       "decisionReason": "south-korea-start-endpoint-depends-on-blocked-dprk-crossing",
-      "decisionReviewedAt": "2026-09-26",
+      "decisionReviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes."
     },
     {
@@ -1629,11 +1629,12 @@
       "bookingStatus": "unknown",
       "feasibility": "hold-current-conditions",
       "source": [
+        "https://www.railway.gov.tm/schedule",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/turkmenistansicherheit-206774",
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/afghanistansicherheit-204692"
       ],
-      "lastVerified": "2026-09-26",
-      "notes": "HOLD. Serhetabat lies on the Afghanistan corridor. Official German guidance states that the Serhetabat crossing requires prior approval from Turkmen authorities, which is difficult to obtain, and warns against onward travel to Afghanistan. Do not lock an internal Türkmenabat→Serhetabat schedule/cost until permission and the dependent border leg are confirmed.",
+      "lastVerified": "2026-09-27",
+      "notes": "HOLD. Turkmenistan Railways currently publishes daily passenger services Türkmenabat→Aşgabat via Mary and Aşgabat→Serhetabat via Mary, confirming active passenger-rail infrastructure to Serhetabat. This does not establish a protected through connection or border permission. German guidance states the Serhetabat crossing is generally open only with prior Turkmen approval that is difficult to obtain and advises avoiding the immediate Afghanistan border area. Keep a normal timetable/cost unset until permission and dependent leg 107 are confirmed.",
       "status": "hold",
       "plannedDeparture": null,
       "actualDeparture": null,
@@ -1643,7 +1644,7 @@
       "reviewStatus": "reviewed",
       "operationalDecision": "hold",
       "decisionReason": "serhetabat-border-permission-dependent",
-      "decisionReviewedAt": "2026-09-26",
+      "decisionReviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes."
     },
     {
@@ -1683,10 +1684,12 @@
       "feasibility": "hold-current-conditions",
       "source": [
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/afghanistansicherheit-204692",
-        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/pakistansicherheit-204974"
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/pakistansicherheit-204974",
+        "https://dpmea.gov.af/1405-English-News-51",
+        "https://mopw.gov.af/index.php/en/node/3894"
       ],
-      "lastVerified": "2026-09-26",
-      "notes": "HOLD. Afghanistan is under a current travel warning and the Afghanistan–Pakistan border situation is volatile. Torghundi→Kabul is therefore intentionally not given a normal executable timetable or cost until the overall Afghanistan segment is reassessed.",
+      "lastVerified": "2026-09-27",
+      "notes": "HOLD. Current Afghan government sources document active Torghundi/Herat connectivity work and ongoing works on the Kabul–Herat highway corridor, but they do not establish a dependable tourist passenger operator or timetable for Torghundi→Kabul. Afghanistan remains under a current travel warning and the dependent Afghanistan–Pakistan border situation remains volatile. Keep duration, booking and cost uncommitted.",
       "status": "hold",
       "plannedDeparture": null,
       "actualDeparture": null,
@@ -1696,7 +1699,7 @@
       "reviewStatus": "reviewed",
       "operationalDecision": "hold",
       "decisionReason": "afghanistan-travel-warning-and-border-volatility",
-      "decisionReviewedAt": "2026-09-26",
+      "decisionReviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes."
     },
     {
@@ -1735,10 +1738,11 @@
       "bookingStatus": "unknown",
       "feasibility": "hold-current-conditions",
       "source": [
-        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/pakistansicherheit-204974"
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/pakistansicherheit-204974",
+        "https://www.pakrail.gov.pk/Map.aspx"
       ],
-      "lastVerified": "2026-09-26",
-      "notes": "HOLD. Current German guidance warns against travel to Peshawar/Khyber Pakhtunkhwa and to Balochistan including Quetta, and also warns against land entry/exit to Afghanistan and Iran. Do not present Peshawar→Quetta as routine executable transport.",
+      "lastVerified": "2026-09-27",
+      "notes": "HOLD. Pakistan Railways maintains an official passenger journey/train lookup, but this static review does not certify uninterrupted Peshawar→Quetta service on the travel date. Current German guidance explicitly warns against travel to Peshawar/Khyber Pakhtunkhwa and Balochistan including Quetta, and against land entry/exit to Afghanistan and Iran. Keep this movement non-routine and reverify the operator immediately before travel.",
       "status": "hold",
       "plannedDeparture": null,
       "actualDeparture": null,
@@ -1748,7 +1752,7 @@
       "reviewStatus": "reviewed",
       "operationalDecision": "hold",
       "decisionReason": "peshawar-quetta-route-crosses-travel-warning-regions",
-      "decisionReviewedAt": "2026-09-26",
+      "decisionReviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes."
     },
     {
@@ -1789,8 +1793,8 @@
       "source": [
         "https://www.auswaertiges-amt.de/de/reiseundsicherheit/iransicherheit-202396"
       ],
-      "lastVerified": "2026-09-26",
-      "notes": "HOLD. Iran is under a current countrywide travel warning and departure advice. Zahedan lies in Sistan-Baluchistan, a particularly sensitive region. Do not operationalize Zahedan→Tehran as normal travel while those conditions persist.",
+      "lastVerified": "2026-09-27",
+      "notes": "HOLD. Current German guidance continues to warn against all travel to Iran and urges German nationals to leave. Sistan-Baluchistan has substantial kidnapping/attack risk, movement restrictions and increased controls. Domestic flights in Tehran use Mehrabad rather than IKA, so the Zahedan→Tehran (IKA) endpoint also requires a separately verified onward transfer if this segment ever becomes executable. Do not operationalize a timetable or cost while the countrywide warning persists.",
       "status": "hold",
       "plannedDeparture": null,
       "actualDeparture": null,
@@ -1800,7 +1804,7 @@
       "reviewStatus": "reviewed",
       "operationalDecision": "hold",
       "decisionReason": "iran-countrywide-travel-warning",
-      "decisionReviewedAt": "2026-09-26",
+      "decisionReviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes."
     },
     {
@@ -1941,10 +1945,11 @@
       "bookingStatus": "unknown",
       "feasibility": "hold-current-conditions",
       "source": [
-        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/syriensicherheit-204278"
+        "https://www.auswaertiges-amt.de/de/reiseundsicherheit/syriensicherheit-204278",
+        "https://sana.sy/en/syria/2345798/"
       ],
-      "lastVerified": "2026-09-26",
-      "notes": "HOLD. Syria remains under a current travel warning and security incidents continue in Damascus. The short DAM→Damascus movement is physically straightforward but is intentionally not treated as departure-ready while the Syria legs remain on HOLD.",
+      "lastVerified": "2026-09-27",
+      "notes": "HOLD. Damascus International Airport is currently operational and Syria's civil-aviation authority reported upgraded navigation systems entering service for 24-hour airport operations on 24 September 2026. That technical airport availability does not resolve the safety blocker: Germany continues to warn against all travel to Syria and reports recurring security incidents in Damascus. Keep the short DAM→Damascus movement on HOLD.",
       "status": "hold",
       "plannedDeparture": null,
       "actualDeparture": null,
@@ -1954,7 +1959,7 @@
       "reviewStatus": "reviewed",
       "operationalDecision": "hold",
       "decisionReason": "syria-countrywide-travel-warning",
-      "decisionReviewedAt": "2026-09-26",
+      "decisionReviewedAt": "2026-09-27",
       "recheckPolicy": "Recheck official security, border/entry and operator information 7 days and 48 hours before the dependent international leg; recheck immediately on material regional changes."
     },
     {
