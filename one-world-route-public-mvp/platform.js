@@ -129,6 +129,9 @@
       catalog,
       currentTripMeta,
       Discovery,
+      travellerFit:TravellerFit,
+      loadProfile,
+      profileConfigured:()=>Boolean(localStorage.getItem(PROFILE_KEY)),
       ensureDialog:Ui.ensureDialog,
       t,
       local,
@@ -149,6 +152,7 @@
       t,
       esc,
       facetLabel,
+      preferenceOptions:Discovery.facets(catalog),
       onClear:()=>{
         clearProfile();
         location.reload();
