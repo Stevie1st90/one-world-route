@@ -15,6 +15,7 @@
   const SharedKnowledge=PLATFORM_MODULES.sharedKnowledge;
   const TravellerFit=PLATFORM_MODULES.travellerFit;
   const TripCompare=PLATFORM_MODULES.tripCompare;
+  const JourneyGuide=PLATFORM_MODULES.journeyGuide;
   const MyTrips=PLATFORM_MODULES.myTrips;
   const TripPlanning=PLATFORM_MODULES.tripPlanning;
   const Extensions=PLATFORM_MODULES.extensions;
@@ -31,7 +32,7 @@
   const Ui=PLATFORM_MODULES.ui;
   const Navigation=PLATFORM_MODULES.navigation;
   const LegacyLocalization=PLATFORM_MODULES.legacyLocalization;
-  if(!LocaleData||!Formatters||!Model||!Traveller||!TravellerUi||!Discovery||!TripTools||!JourneyAdapter||!SharedKnowledge||!TravellerFit||!TripCompare||!MyTrips||!TripPlanning||!Extensions||!Home||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!RegionalSelection||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
+  if(!LocaleData||!Formatters||!Model||!Traveller||!TravellerUi||!Discovery||!TripTools||!JourneyAdapter||!SharedKnowledge||!TravellerFit||!TripCompare||!JourneyGuide||!MyTrips||!TripPlanning||!Extensions||!Home||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!RegionalSelection||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
   const HOME_REQUEST=location.pathname==='/'&&!new URLSearchParams(location.search).has('trip');
   if(HOME_REQUEST){
     window.ONE_WORLD_ROUTE_OWNERSHIP='home';
@@ -270,6 +271,7 @@
       openTraveller,
       locale:()=>locale,
       tripPlanning:TripPlanning,
+      journeyGuide:JourneyGuide,
       tripTools:TripTools,
       journeyAdapter:JourneyAdapter,
       sharedKnowledge:SharedKnowledge,

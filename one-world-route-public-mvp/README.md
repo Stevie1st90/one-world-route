@@ -124,6 +124,7 @@ Current platform features:
 - Italy Grand Tour as the first regional editorial template
 - modular platform validation in the release pipeline
 - Practical trip-planning layer for capability-enabled regional routes: collapsible day-by-day itinerary, known transport minimums, fare/evidence coverage, Route Fit and Traveller-origin context
+- Data-derived Journey Guide on every regional route: route rhythm, time concentration, transport mix and before-booking checks computed from the existing trip graph without extra APIs or duplicated editorial maintenance
 - Browser-local trip utility layer: save a journey, filter saved journeys, export JSON/CSV/ICS and calculate a personal planning estimate from explicit user assumptions without accounts
 - My Trips planning workspace with saved-route status, start date, planning season, budget state, transparent Traveller Context checks and a portable planning-backup export
 - Practical planning capability across all published regional journeys; missing transport prices stay explicitly unknown rather than being inferred
@@ -218,6 +219,7 @@ The multi-trip platform is intentionally split into small browser modules that a
 - `platform/discovery.js` — catalog facets and Route Fit filtering
 - `platform/trip-tools.js` — browser-local saved trips, start dates, seasonal planning preferences, budget assumptions, workspace backup and JSON/CSV/ICS exports
 - `platform/traveller-fit.js` — transparent party/accessibility/vehicle context signals without hidden scores
+- `platform/journey-guide.js` — automatic route-depth summary derived from stop timing, transport, verification and planning coverage
 - `platform/my-trips.js` — browser-local planning workspace for saved journeys
 - `platform/home.js` — public catalog-driven homepage and multi-route Globe preview
 - `platform/extensions.js` — registered cruise, road and border presenters
@@ -259,7 +261,7 @@ node scripts/audit-platform-maintenance.mjs
 
 Use `--strict-stale` only when a release process intentionally wants stale review candidates to fail the gate.
 
-The goal is that adding or maintaining the 100th or 1000th journey remains a data/content operation rather than a renderer rewrite.
+The goal is that adding or maintaining the 100th or 1000th journey remains a data/content operation rather than a renderer rewrite. The Journey Guide follows the same rule: it derives useful route depth from stop durations, segment modes, evidence state and planning coverage instead of requiring a separate hand-written guide for every trip.
 
 Runtime scaling follows the same rule: `data/platform/trip-index.json` contains compact route-preview geometry generated at release time, so the public discovery globe does not fetch every full journey dataset. Catalog result cards are progressively rendered in batches instead of placing an arbitrarily large catalog in the DOM at once.
 

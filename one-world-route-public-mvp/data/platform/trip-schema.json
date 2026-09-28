@@ -527,6 +527,20 @@
     },
     "maintenance": {
       "rule": "Keep stable route/editorial content in the trip dataset. Keep volatile transport, access, entry, price and seasonal guidance source-backed and reviewable. Do not duplicate the same volatile claim across many trips when shared knowledge can represent it."
+    },
+    "journeyGuide": {
+      "rule": "Regional Journey Guide content is derived from the canonical trip graph. It summarizes stop timing, transport modes, price coverage, verification state and route-context checks without duplicating volatile facts.",
+      "inputs": [
+        "stop.dayStart",
+        "stop.dayEnd",
+        "segment.transport.mode",
+        "segment.planning.cost",
+        "segment.verification.status",
+        "entryGuidance",
+        "routePolicy",
+        "catalog capabilities"
+      ],
+      "maintenance": "Improve the canonical route/evidence data; do not hand-copy derived guide facts into separate per-trip prose."
     }
   },
   "$defs": {

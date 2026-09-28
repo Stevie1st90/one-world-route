@@ -179,6 +179,20 @@ Directional transport evidence, fares and timing MUST NOT be reused after revers
 
 The product must never invent a "best" gateway from a free-text home city. A future geocoding/routing provider may rank entry gateways, but until such a provider is configured the user chooses the eligible route start explicitly.
 
+## Automatic Journey Guide
+
+Every published regional trip receives a Journey Guide without a second hand-written content file. The guide derives from the canonical trip graph:
+
+- `stop.dayStart` / `stop.dayEnd` → average stay and time concentration,
+- segment transport modes → travel flow,
+- verification state → current-date review needs,
+- known segment costs → transport-price coverage,
+- entry, vehicle and origin-access contracts → before-booking context.
+
+Authors should improve the underlying route data rather than copy these facts into prose. This makes the same product depth available to the 18th, 100th or 1000th journey and prevents the guide from drifting away from the itinerary.
+
+The guide does **not** invent activities, live schedules, prices, border outcomes or a “best” gateway. Rich destination stories may still be added as stable editorial content, while date-sensitive claims remain source-backed.
+
 ## Low-maintenance content architecture
 
 Keep three layers separate:

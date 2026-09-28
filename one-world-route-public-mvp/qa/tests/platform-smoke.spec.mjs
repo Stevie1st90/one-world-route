@@ -115,7 +115,7 @@ test('@regional traveller origin country derives recommendation region without m
 });
 
 test('@regional editorial preview journey uses the generic visual detail shell',async({page,isMobile},testInfo)=>{
-  test.setTimeout(60000);
+  test.setTimeout(120000);
   expect(discoveryPreview).toBeTruthy();
   const errors=capturePageErrors(page);
   await page.goto('/?trip='+encodeURIComponent(discoveryPreview.id)+'&lang=en',{waitUntil:'domcontentloaded'});
@@ -126,12 +126,16 @@ test('@regional editorial preview journey uses the generic visual detail shell',
   await expect(page.locator('.platform-stop')).toHaveCount(discoveryPreview.metrics.stops);
   await expect(page.locator('.platform-journey-flow-stop')).toHaveCount(discoveryPreview.metrics.stops);
   await expect(page.locator('.platform-route-fit-panel')).toHaveCount(1);
+  await expect(page.locator('.platform-journey-guide')).toHaveCount(1);
+  await expect(page.locator('.platform-journey-guide')).toContainText('Journey guide');
+  await expect(page.locator('.platform-journey-guide')).toContainText('Kanazawa');
   await expect(page.locator('.platform-editorial-status')).toContainText(/Editorial preview/i);
   if(isMobile){
     await page.locator('#mobileDetails').click();
     await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);
   }
   await expect(page.locator('.platform-journey-personalize')).toBeVisible();
+  await page.locator('.platform-journey-guide').screenshot({path:testInfo.outputPath('journey-guide.png'),animations:'disabled'});
   await expect(page.locator('.platform-route-access')).toContainText('Tokyo');
   await expect(page.locator('[data-trip-route-start]')).toHaveCount(1);
   await expect(page.locator('.platform-shared-guidance')).toHaveCount(1);
@@ -139,6 +143,7 @@ test('@regional editorial preview journey uses the generic visual detail shell',
   await expect.poll(()=>page.evaluate(()=>window.__ONE_WORLD_ROUTE_GLOBE__?.pointOfView?.()?.lng??null),{timeout:10000}).toBeLessThan(150);
   await expect(page.locator('body')).not.toContainText(/undefined/i);
   await page.screenshot({path:testInfo.outputPath('editorial-journey.png'),fullPage:true});
+  if(isMobile&&await page.locator('#rightPanel').evaluate(node=>node.classList.contains('mobile-open')))await page.locator('#closeDetails').click();
   await page.locator('#platformRouteBtn').click();
   await expect(page.locator('#platformRouteModal:not(.hidden) .platform-route-card-visual')).toHaveCount(catalog.trips.length);
   await expect(page.locator('#platformRouteModal .platform-route-card').first().locator('h3')).toHaveText(discoveryPreview.title.en);

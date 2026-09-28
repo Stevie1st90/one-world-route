@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','formatters.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','journey-adapter.js','shared-knowledge.js','trip-tools.js','traveller-fit.js','trip-compare.js','trip-planning.js','my-trips.js','home.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','regional-selection.js','story.js','terrain.js','extensions.js','extensions/cruise.js','extensions/road.js','extensions/border.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','formatters.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','journey-adapter.js','shared-knowledge.js','trip-tools.js','traveller-fit.js','trip-compare.js','journey-guide.js','trip-planning.js','my-trips.js','home.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','regional-selection.js','story.js','terrain.js','extensions.js','extensions/cruise.js','extensions/road.js','extensions/border.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -284,6 +284,11 @@ test('practical trip planning stays capability-driven and trip-generic',()=>{
   assert.match(source,/const TripTools=PLATFORM_MODULES\.tripTools/);
   assert.match(source,/const TripCompare=PLATFORM_MODULES\.tripCompare/);
   assert.match(source,/const TripPlanning=PLATFORM_MODULES\.tripPlanning/);
+  assert.match(source,/const JourneyGuide=PLATFORM_MODULES\.journeyGuide/);
+  assert.match(moduleSources['journey-guide.js'],/function snapshot/);
+  assert.match(moduleSources['journey-guide.js'],/function render/);
+  assert.match(moduleSources['regional-detail.js'],/d\.journeyGuide\.render/);
+  assert.doesNotMatch(moduleSources['journey-guide.js'],/trip\.id\s*===|trip\.kind\s*===/);
   assert.match(planning,/includes\('trip-planning'\)/);
   assert.match(planning,/function itinerary/);
   assert.match(planning,/function snapshot/);
