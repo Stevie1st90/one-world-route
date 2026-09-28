@@ -21,9 +21,10 @@ const wait=async()=>{
 const request=async(path,opt={})=>{const r=await fetch(base+path,{headers:{'content-type':'application/json',...(opt.headers||{})},...opt});const j=await r.json();if(!r.ok||j.ok===false)throw new Error(j.error||'Request failed');return j};
 try{
   await wait();
-  const state=await request('/__builder/api/state');assert.ok(state.catalog.trips.some(t=>t.id==='world-195'));
+  const state=await request('/__builder/api/state');assert.ok(state.catalog.trips.some(t=>t.id==='world-195'));assert.ok(state.archetypes.includes('rail'));assert.ok(state.archetypes.includes('road-trip'));
+  const maintenance=await request('/__builder/api/maintenance-queue');assert.equal(Array.isArray(maintenance.queue.items),true);assert.equal(maintenance.queue.summary.journeys>=16,true);assert.equal(Number.isFinite(maintenance.queue.summary.uniqueExternalSources),true);
   const coverage=await request('/__builder/api/experience-coverage');assert.equal(coverage.coverage.summary.journeys>=16,true);assert.equal(coverage.coverage.summary.coveredPlaces>0,true);assert.equal(Array.isArray(coverage.coverage.queue),true);assert.equal(coverage.coverage.journeys.some(item=>item.tripId==='japan-by-rail'&&item.coveragePct===100),true);
-  await request('/__builder/api/scaffold',{method:'POST',body:JSON.stringify({slug,kind:'rail',days:2})});
+  const scaffolded=await request('/__builder/api/scaffold',{method:'POST',body:JSON.stringify({slug,kind:'rail',days:2})});assert.equal(scaffolded.trip.routePolicy.reversible,true);assert.equal(scaffolded.trip.maintenance.sourceReviewDays,90);assert.deepEqual(scaffolded.catalogEntry.discovery.regions,['global']);assert.ok(scaffolded.catalogEntry.capabilities.includes('trip-planning'));
   const title=Object.fromEntries(state.catalog.supportedLocales.map(l=>[l,'CI Builder Proof']));
   const subtitle=Object.fromEntries(state.catalog.supportedLocales.map(l=>[l,'Two-day CI rail proof']));
   const trip={schemaVersion:1,id:slug,slug,kind:'rail',status:'draft',defaultLocale:state.catalog.defaultLocale,supportedLocales:state.catalog.supportedLocales,title,summary:title,planning:{days:2,currency:'EUR'},places:[
