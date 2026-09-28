@@ -2095,20 +2095,41 @@
 (() => {
   'use strict';
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
-  const ALLOWED=['passports','residenceCountry','language','currency','origin','originCountry','originRegion','party','accessibility','vehicle'];
+  const ALLOWED=['passports','residenceCountry','language','currency','origin','originCountry','originRegion','party','accessibility','vehicle','preferences'];
+  const cleanChoice=value=>typeof value==='string'&&value.trim()?value.trim():null;
   function defaults(locale='en'){
-    return {passports:[],residenceCountry:null,language:locale,currency:'EUR',origin:null,originCountry:null,originRegion:null,party:{adults:1,children:0},accessibility:{reducedMobility:false},vehicle:null};
+    return {
+      passports:[],
+      residenceCountry:null,
+      language:locale,
+      currency:'EUR',
+      origin:null,
+      originCountry:null,
+      originRegion:null,
+      party:{adults:1,children:0},
+      accessibility:{reducedMobility:false},
+      vehicle:null,
+      preferences:{durationBand:null,pace:null,season:null,mode:null,theme:null}
+    };
   }
   function normalize(input,locale='en'){
     const base=defaults(locale),raw=input&&typeof input==='object'?input:{},safe={};
     for(const key of ALLOWED)if(Object.prototype.hasOwnProperty.call(raw,key))safe[key]=raw[key];
+    const rawPreferences=safe.preferences&&typeof safe.preferences==='object'?safe.preferences:{};
     return {
       ...base,
       ...safe,
       passports:Array.isArray(safe.passports)?safe.passports.filter(v=>typeof v==='string').slice(0,2):base.passports,
       party:{...base.party,...(safe.party&&typeof safe.party==='object'?safe.party:{})},
       accessibility:{...base.accessibility,...(safe.accessibility&&typeof safe.accessibility==='object'?safe.accessibility:{})},
-      vehicle:safe.vehicle&&typeof safe.vehicle==='object'?{...safe.vehicle}:null
+      vehicle:safe.vehicle&&typeof safe.vehicle==='object'?{...safe.vehicle}:null,
+      preferences:{
+        durationBand:cleanChoice(rawPreferences.durationBand),
+        pace:cleanChoice(rawPreferences.pace),
+        season:cleanChoice(rawPreferences.season),
+        mode:cleanChoice(rawPreferences.mode),
+        theme:cleanChoice(rawPreferences.theme)
+      }
     };
   }
   function load(storage,key,locale='en'){
@@ -2158,6 +2179,7 @@
       t,
       esc,
       facetLabel,
+      preferenceOptions={},
       onSave,
       onClear
     }=deps;
@@ -2174,8 +2196,15 @@
     const currencies=typeof Intl.supportedValuesOf==='function'
       ?Intl.supportedValuesOf('currency')
       :['EUR','USD','GBP','CHF','JPY','CAD','AUD','NZD','CNY','INR','BRL','MXN','ZAR','SGD'];
+    const preferenceSelect=(values,selected)=>`<option value="">${esc(t('notSet'))}</option>${(values||[]).map(value=>`<option value="${esc(value)}" ${selected===value?'selected':''}>${esc(facetLabel(value))}</option>`).join('')}`;
+    const durationOptions=[
+      ['7-14','7–14 '+t('days')],
+      ['15-30','15–30 '+t('days')],
+      ['31-89','31–89 '+t('days')],
+      ['90-plus','90+ '+t('days')]
+    ];
 
-    modal.innerHTML=`<form id="platformTravellerForm" class="platform-modal-card traveller-card glass"><button class="platform-x" type="button" aria-label="${esc(t('close'))}">×</button><div class="platform-eyebrow">${esc(t('global'))}</div><h2>${esc(t('contextTitle'))}</h2><p class="platform-lead">${esc(t('contextLead'))}</p><div class="traveller-grid"><label>${esc(t('passports'))}<select name="passport">${countryOptions(profile.passports?.[0]||null)}</select></label><label>${esc(t('secondPassport'))}<select name="passport2">${countryOptions(profile.passports?.[1]||null)}</select></label><label>${esc(t('residence'))}<select name="residence">${countryOptions(profile.residenceCountry)}</select></label><label>${esc(t('language'))}<select name="language">${supportedLocales.map(l=>`<option value="${esc(l)}" ${profile.language===l?'selected':''}>${esc(l.toUpperCase())}</option>`).join('')}</select></label><label>${esc(t('currency'))}<select name="currency">${currencies.map(c=>`<option value="${esc(c)}" ${profile.currency===c?'selected':''}>${esc(c)}</option>`).join('')}</select></label><label>${esc(t('origin'))}<input name="origin" value="${esc(profile.origin||'')}" autocomplete="off" placeholder="e.g. Toronto / YYZ"></label><label>${esc(t('originCountry'))}<select name="originCountry">${countryOptions(profile.originCountry||null)}</select></label><label>${esc(t('adults'))}<input name="adults" type="number" min="1" max="20" value="${Number(profile.party?.adults||1)}"></label><label>${esc(t('children'))}<input name="children" type="number" min="0" max="20" value="${Number(profile.party?.children||0)}"></label><label class="check span-2"><input name="mobility" type="checkbox" ${profile.accessibility?.reducedMobility?'checked':''}><span>${esc(t('mobility'))}</span></label><div class="traveller-subhead span-2">${esc(t('vehicleSection'))}</div><label>${esc(t('vehicleType'))}<select name="vehicleType"><option value="">${esc(t('notSet'))}</option><option value="private-car" ${profile.vehicle?.type==='private-car'?'selected':''}>${esc(t('privateCar'))}</option><option value="rental-car" ${profile.vehicle?.type==='rental-car'?'selected':''}>${esc(t('rentalCar'))}</option><option value="camper" ${profile.vehicle?.type==='camper'?'selected':''}>${esc(t('camper'))}</option><option value="motorcycle" ${profile.vehicle?.type==='motorcycle'?'selected':''}>${esc(t('motorcycle'))}</option><option value="other" ${profile.vehicle?.type==='other'?'selected':''}>${esc(t('otherVehicle'))}</option></select></label><label>${esc(t('registrationCountry'))}<select name="vehicleRegistration">${countryOptions(profile.vehicle?.registrationCountry||null)}</select></label><label>${esc(t('fuelType'))}<select name="vehicleFuel"><option value="unknown">${esc(t('unknown'))}</option><option value="petrol" ${profile.vehicle?.fuelType==='petrol'?'selected':''}>${esc(t('petrol'))}</option><option value="diesel" ${profile.vehicle?.fuelType==='diesel'?'selected':''}>${esc(t('diesel'))}</option><option value="hybrid" ${profile.vehicle?.fuelType==='hybrid'?'selected':''}>${esc(t('hybrid'))}</option><option value="plug-in-hybrid" ${profile.vehicle?.fuelType==='plug-in-hybrid'?'selected':''}>${esc(t('pluginHybrid'))}</option><option value="electric" ${profile.vehicle?.fuelType==='electric'?'selected':''}>${esc(t('electric'))}</option><option value="hydrogen" ${profile.vehicle?.fuelType==='hydrogen'?'selected':''}>${esc(t('hydrogen'))}</option><option value="other" ${profile.vehicle?.fuelType==='other'?'selected':''}>${esc(t('otherVehicle'))}</option></select></label><label>${esc(t('euroClass'))}<select name="vehicleEuro"><option value="unknown">${esc(t('unknown'))}</option>${['Euro 1','Euro 2','Euro 3','Euro 4','Euro 5','Euro 6'].map(v=>`<option value="${esc(v)}" ${profile.vehicle?.euroClass===v?'selected':''}>${esc(v)}</option>`).join('')}</select></label><label class="check span-2"><input name="rentalCrossBorder" type="checkbox" ${profile.vehicle?.rentalCrossBorderApproved===true?'checked':''}><span>${esc(t('rentalCrossBorder'))}</span></label></div><p class="platform-privacy">${esc(t('private'))}</p><div class="platform-form-actions"><button class="ghost" type="button" id="platformClearTraveller">${esc(t('clear'))}</button><button class="primary" type="submit">${esc(t('save'))}</button></div></form>`;
+    modal.innerHTML=`<form id="platformTravellerForm" class="platform-modal-card traveller-card glass"><button class="platform-x" type="button" aria-label="${esc(t('close'))}">×</button><div class="platform-eyebrow">${esc(t('global'))}</div><h2>${esc(t('contextTitle'))}</h2><p class="platform-lead">${esc(t('contextLead'))}</p><div class="traveller-grid"><label>${esc(t('passports'))}<select name="passport">${countryOptions(profile.passports?.[0]||null)}</select></label><label>${esc(t('secondPassport'))}<select name="passport2">${countryOptions(profile.passports?.[1]||null)}</select></label><label>${esc(t('residence'))}<select name="residence">${countryOptions(profile.residenceCountry)}</select></label><label>${esc(t('language'))}<select name="language">${supportedLocales.map(l=>`<option value="${esc(l)}" ${profile.language===l?'selected':''}>${esc(l.toUpperCase())}</option>`).join('')}</select></label><label>${esc(t('currency'))}<select name="currency">${currencies.map(c=>`<option value="${esc(c)}" ${profile.currency===c?'selected':''}>${esc(c)}</option>`).join('')}</select></label><label>${esc(t('origin'))}<input name="origin" value="${esc(profile.origin||'')}" autocomplete="off" placeholder="e.g. Toronto / YYZ"></label><label>${esc(t('originCountry'))}<select name="originCountry">${countryOptions(profile.originCountry||null)}</select></label><label>${esc(t('adults'))}<input name="adults" type="number" min="1" max="20" value="${Number(profile.party?.adults||1)}"></label><label>${esc(t('children'))}<input name="children" type="number" min="0" max="20" value="${Number(profile.party?.children||0)}"></label><label class="check span-2"><input name="mobility" type="checkbox" ${profile.accessibility?.reducedMobility?'checked':''}><span>${esc(t('mobility'))}</span></label><div class="traveller-subhead span-2">${esc(t('routeFit'))}</div><p class="platform-privacy span-2">${esc(t('recommendationContextLead'))}</p><label>${esc(t('filterDuration'))}<select name="durationBand"><option value="">${esc(t('notSet'))}</option>${durationOptions.map(([value,label])=>`<option value="${esc(value)}" ${profile.preferences?.durationBand===value?'selected':''}>${esc(label)}</option>`).join('')}</select></label><label>${esc(t('fitPace'))}<select name="pace">${preferenceSelect(preferenceOptions.paces,profile.preferences?.pace)}</select></label><label>${esc(t('fitSeason'))}<select name="season">${preferenceSelect(preferenceOptions.seasons,profile.preferences?.season)}</select></label><label>${esc(t('filterMode'))}<select name="mode">${preferenceSelect(preferenceOptions.modes,profile.preferences?.mode)}</select></label><label class="span-2">${esc(t('filterTheme'))}<select name="theme">${preferenceSelect(preferenceOptions.themes,profile.preferences?.theme)}</select></label><div class="traveller-subhead span-2">${esc(t('vehicleSection'))}</div><label>${esc(t('vehicleType'))}<select name="vehicleType"><option value="">${esc(t('notSet'))}</option><option value="private-car" ${profile.vehicle?.type==='private-car'?'selected':''}>${esc(t('privateCar'))}</option><option value="rental-car" ${profile.vehicle?.type==='rental-car'?'selected':''}>${esc(t('rentalCar'))}</option><option value="camper" ${profile.vehicle?.type==='camper'?'selected':''}>${esc(t('camper'))}</option><option value="motorcycle" ${profile.vehicle?.type==='motorcycle'?'selected':''}>${esc(t('motorcycle'))}</option><option value="other" ${profile.vehicle?.type==='other'?'selected':''}>${esc(t('otherVehicle'))}</option></select></label><label>${esc(t('registrationCountry'))}<select name="vehicleRegistration">${countryOptions(profile.vehicle?.registrationCountry||null)}</select></label><label>${esc(t('fuelType'))}<select name="vehicleFuel"><option value="unknown">${esc(t('unknown'))}</option><option value="petrol" ${profile.vehicle?.fuelType==='petrol'?'selected':''}>${esc(t('petrol'))}</option><option value="diesel" ${profile.vehicle?.fuelType==='diesel'?'selected':''}>${esc(t('diesel'))}</option><option value="hybrid" ${profile.vehicle?.fuelType==='hybrid'?'selected':''}>${esc(t('hybrid'))}</option><option value="plug-in-hybrid" ${profile.vehicle?.fuelType==='plug-in-hybrid'?'selected':''}>${esc(t('pluginHybrid'))}</option><option value="electric" ${profile.vehicle?.fuelType==='electric'?'selected':''}>${esc(t('electric'))}</option><option value="hydrogen" ${profile.vehicle?.fuelType==='hydrogen'?'selected':''}>${esc(t('hydrogen'))}</option><option value="other" ${profile.vehicle?.fuelType==='other'?'selected':''}>${esc(t('otherVehicle'))}</option></select></label><label>${esc(t('euroClass'))}<select name="vehicleEuro"><option value="unknown">${esc(t('unknown'))}</option>${['Euro 1','Euro 2','Euro 3','Euro 4','Euro 5','Euro 6'].map(v=>`<option value="${esc(v)}" ${profile.vehicle?.euroClass===v?'selected':''}>${esc(v)}</option>`).join('')}</select></label><label class="check span-2"><input name="rentalCrossBorder" type="checkbox" ${profile.vehicle?.rentalCrossBorderApproved===true?'checked':''}><span>${esc(t('rentalCrossBorder'))}</span></label></div><p class="platform-privacy">${esc(t('private'))}</p><div class="platform-form-actions"><button class="ghost" type="button" id="platformClearTraveller">${esc(t('clear'))}</button><button class="primary" type="submit">${esc(t('save'))}</button></div></form>`;
     modal.classList.remove('hidden');
     $('.platform-x',modal).onclick=()=>modal.classList.add('hidden');
     $('#platformClearTraveller',modal).onclick=()=>{
@@ -2209,6 +2238,13 @@
         originRegion:regionSlug(originMeta),
         party:{adults:Number(f.get('adults')||1),children:Number(f.get('children')||0)},
         accessibility:{reducedMobility:f.get('mobility')==='on'},
+        preferences:{
+          durationBand:String(f.get('durationBand')||'').trim()||null,
+          pace:String(f.get('pace')||'').trim()||null,
+          season:String(f.get('season')||'').trim()||null,
+          mode:String(f.get('mode')||'').trim()||null,
+          theme:String(f.get('theme')||'').trim()||null
+        },
         vehicle
       };
       modal.classList.add('hidden');
@@ -2763,6 +2799,18 @@
     return 'friends';
   }
 
+  function preferences(profile){
+    const raw=profile?.preferences&&typeof profile.preferences==='object'?profile.preferences:{};
+    const value=key=>typeof raw[key]==='string'&&raw[key].trim()?raw[key].trim():null;
+    return {
+      durationBand:value('durationBand'),
+      pace:value('pace'),
+      season:value('season'),
+      mode:value('mode'),
+      theme:value('theme')
+    };
+  }
+
   function evaluate(meta,profile){
     const fit=meta?.discovery?.fit||{};
     const capabilities=meta?.capabilities||[];
@@ -2790,20 +2838,62 @@
       originRegion:profile?.originRegion||null,
       startRegion:fit.startRegion||null,
       pace:fit.pace||null,
-      seasons:[...(fit.seasons||[])]
+      seasons:[...(fit.seasons||[])],
+      preferences:preferences(profile)
     };
   }
 
-  function recommendationReasons(meta,profile){
-    const result=evaluate(meta,profile),reasons=[];
-    if(result.originRegion&&result.startRegion===result.originRegion)reasons.push({kind:'origin',value:result.startRegion});
-    if(result.partyListed&&result.party)reasons.push({kind:'party',value:result.party});
-    const mode=meta?.discovery?.modes?.[0];
-    if(mode)reasons.push({kind:'mode',value:mode});
-    return reasons.slice(0,3);
+  function recommendationSignals(meta,profile){
+    const d=meta?.discovery||{},fit=d.fit||{},pref=preferences(profile),signals=[];
+    const add=(kind,value,source)=>{if(value)signals.push({kind,value,source})};
+    if(pref.durationBand&&d.durationBand===pref.durationBand)add('duration',pref.durationBand,'preference');
+    if(pref.pace&&fit.pace===pref.pace)add('pace',pref.pace,'preference');
+    if(pref.season&&(fit.seasons||[]).includes(pref.season))add('season',pref.season,'preference');
+    if(pref.mode&&(d.modes||[]).includes(pref.mode))add('mode',pref.mode,'preference');
+    if(pref.theme&&(d.themes||[]).includes(pref.theme))add('theme',pref.theme,'preference');
+
+    const party=partyKey(profile);
+    if(profile?.originRegion&&((d.regions||[]).includes(profile.originRegion)||fit.startRegion===profile.originRegion))add('origin',profile.originRegion,'context');
+    if(party&&(fit.party||[]).includes(party))add('party',party,'context');
+    if(profile?.vehicle&&(d.modes||[]).some(mode=>mode==='car'||mode==='road'))add('vehicle','car','context');
+    return signals;
   }
 
-  root.travellerFit={partyKey,evaluate,recommendationReasons};
+  function configuredPreferenceCount(profile){
+    return Object.values(preferences(profile)).filter(Boolean).length;
+  }
+
+  function rank(trips,profile){
+    const configured=configuredPreferenceCount(profile);
+    return (trips||[]).map(trip=>{
+      const signals=recommendationSignals(trip,profile);
+      const preferenceMatches=signals.filter(signal=>signal.source==='preference').length;
+      const contextMatches=signals.filter(signal=>signal.source==='context').length;
+      return {
+        trip,
+        signals,
+        preferenceMatches,
+        preferenceMisses:Math.max(0,configured-preferenceMatches),
+        contextMatches
+      };
+    }).sort((a,b)=>
+      a.preferenceMisses-b.preferenceMisses||
+      b.preferenceMatches-a.preferenceMatches||
+      b.contextMatches-a.contextMatches||
+      Number(b.trip?.visual?.featurePriority||0)-Number(a.trip?.visual?.featurePriority||0)||
+      String(a.trip?.id||'').localeCompare(String(b.trip?.id||''))
+    );
+  }
+
+  function recommendationReasons(meta,profile){
+    const priority=['duration','pace','season','mode','theme','origin','party','vehicle'];
+    return recommendationSignals(meta,profile)
+      .sort((a,b)=>priority.indexOf(a.kind)-priority.indexOf(b.kind))
+      .slice(0,3)
+      .map(({kind,value})=>({kind,value}));
+  }
+
+  root.travellerFit={partyKey,preferences,evaluate,recommendationSignals,recommendationReasons,configuredPreferenceCount,rank};
 })();
 
 /* ===== platform/trip-compare.js ===== */
@@ -3300,29 +3390,28 @@
   };
   const primaryRegion=trip=>trip.discovery?.regions?.find(region=>!['global','europe','asia','africa','north-america','south-america','oceania'].includes(region))||trip.discovery?.regions?.[0]||trip.kind;
 
-  function recommendationScore(trip){
-    const d=context();
-    let score=Number(trip.visual?.featurePriority||0);
-    if(!d.profileConfigured?.())return score;
-    const profile=d.loadProfile(),fit=trip.discovery?.fit||{};
-    const party=d.travellerFit?.partyKey?.(profile);
-    if(party&&(fit.party||[]).includes(party))score+=24;
-    if(profile?.originRegion&&((trip.discovery?.regions||[]).includes(profile.originRegion)||fit.startRegion===profile.originRegion))score+=18;
-    if(profile?.vehicle&&(trip.discovery?.modes||[]).includes('car'))score+=7;
-    if(profile?.accessibility?.reducedMobility&&fit.accessibility==='standard-check')score+=4;
-    return score;
-  }
+  const durationLabel=value=>({
+    '7-14':'7–14',
+    '15-30':'15–30',
+    '31-89':'31–89',
+    '90-plus':'90+'
+  }[value]||value);
+
   function recommendationReasonMarkup(trip){
     const d=context();
     if(!d.profileConfigured?.())return '';
     const reasons=d.travellerFit?.recommendationReasons?.(trip,d.loadProfile())||[];
     if(!reasons.length)return '';
     const label=reason=>{
+      if(reason.kind==='duration')return d.t('filterDuration')+' · '+durationLabel(reason.value)+' '+d.t('days');
+      if(reason.kind==='pace')return d.t('fitPace')+' · '+d.facetLabel(reason.value);
+      if(reason.kind==='season')return d.t('fitSeason')+' · '+d.facetLabel(reason.value);
+      if(reason.kind==='theme')return d.t('filterTheme')+' · '+d.facetLabel(reason.value);
       if(reason.kind==='origin')return d.t('fitStart')+' · '+d.facetLabel(reason.value);
       if(reason.kind==='party')return d.t('fitParty')+' · '+d.facetLabel(reason.value);
       return d.t('transportModes')+' · '+d.facetLabel(reason.value);
     };
-    return '<div class="platform-home-card-fit">'+reasons.map(reason=>'<span>'+d.esc(label(reason))+'</span>').join('')+'</div>';
+    return '<div class="platform-home-card-fit">'+reasons.map(reason=>'<span data-recommendation-kind="'+d.esc(reason.kind)+'">'+d.esc(label(reason))+'</span>').join('')+'</div>';
   }
 
   function visualMarkup(trip){
@@ -3379,10 +3468,11 @@
   function renderFeatured(){
     const d=context(),host=$('#platformHomeFeatured');
     if(!host)return;
-    const trips=(d.catalog.trips||[])
-      .filter(trip=>trip.id!==d.catalog.defaultTripId)
-      .sort((a,b)=>recommendationScore(b)-recommendationScore(a)||Number(b.visual?.featurePriority||0)-Number(a.visual?.featurePriority||0))
-      .slice(0,6);
+    const candidates=(d.catalog.trips||[]).filter(trip=>trip.id!==d.catalog.defaultTripId);
+    const trips=(d.profileConfigured?.()
+      ?d.travellerFit.rank(candidates,d.loadProfile()).map(result=>result.trip)
+      :[...candidates].sort((a,b)=>Number(b.visual?.featurePriority||0)-Number(a.visual?.featurePriority||0))
+    ).slice(0,6);
     host.innerHTML=trips.map(trip=>card(trip,{featured:true})).join('');
   }
 
@@ -3449,6 +3539,7 @@
       if(definition)found=found.filter(trip=>collectionMatches(trip,definition));
     }
     if($('#homeRouteSavedOnly')?.checked)found=found.filter(trip=>d.tripTools.isSaved(d.storage,trip.id));
+    if(d.profileConfigured?.())found=d.travellerFit.rank(found,d.loadProfile()).map(result=>result.trip);
     const visible=found.slice(0,resultLimit);
     host.innerHTML=found.length?visible.map(card).join(''):'<div class="platform-home-empty">'+d.esc(d.t('noRoutes'))+'</div>';
     const more=$('#platformHomeMore');
@@ -3678,12 +3769,22 @@
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
 
   function open(deps){
-    const {catalog,currentTripMeta,Discovery,ensureDialog,t,local,esc,facetLabel,statusLabel,pluralLabel,onOpenTrip}=deps;
+    const {catalog,currentTripMeta,Discovery,travellerFit,loadProfile,profileConfigured,ensureDialog,t,local,esc,facetLabel,statusLabel,pluralLabel,onOpenTrip}=deps;
     const $=(s,r=document)=>r.querySelector(s);
     const modal=ensureDialog('platformRouteModal');
     const PAGE_SIZE=36;
     let visibleLimit=PAGE_SIZE;
     const {kinds,regions,modes,themes,paces,seasons,parties,starts,accessibilities}=Discovery.facets(catalog);
+    const durationLabel=value=>({'7-14':'7–14','15-30':'15–30','31-89':'31–89','90-plus':'90+'}[value]||value);
+    const reasonLabel=reason=>{
+      if(reason.kind==='duration')return t('filterDuration')+' · '+durationLabel(reason.value)+' '+t('days');
+      if(reason.kind==='pace')return t('fitPace')+' · '+facetLabel(reason.value);
+      if(reason.kind==='season')return t('fitSeason')+' · '+facetLabel(reason.value);
+      if(reason.kind==='theme')return t('filterTheme')+' · '+facetLabel(reason.value);
+      if(reason.kind==='origin')return t('fitStart')+' · '+facetLabel(reason.value);
+      if(reason.kind==='party')return t('fitParty')+' · '+facetLabel(reason.value);
+      return t('transportModes')+' · '+facetLabel(reason.value);
+    };
     const card=r=>{
       const metrics=[];
       if(r.metrics?.days)metrics.push(`${r.metrics.days} ${t('days')}`);
@@ -3694,7 +3795,9 @@
       const fallbackTheme={world:'ocean','round-trip':'aegean','road-trip':'desert',rail:'rockies',cruise:'ocean',camper:'fern','island-hopping':'aegean',multimodal:'andes'}[r.kind]||'ocean';
       const theme=String(r.visual?.theme||fallbackTheme).replace(/[^a-z0-9-]/gi,'');
       const region=(r.discovery?.regions||[]).find(value=>!['global','europe','asia','africa','north-america','south-america','oceania'].includes(value))||r.discovery?.regions?.[0]||r.kind;
-      return `<article class="platform-route-card ${r.id===currentTripMeta?.id?'active':''}"><div class="platform-route-card-visual visual-${esc(theme)}"><span>${esc(facetLabel(region))}</span><b>${esc(facetLabel(r.kind))}</b><div class="platform-home-card-route-art" aria-hidden="true"><i></i><i></i><i></i><i></i></div></div><div class="platform-route-card-body"><div class="platform-route-top"><span>${esc(facetLabel(r.kind))}</span><b>${esc(statusLabel(r))}</b></div><h3>${esc(local(r.title))}</h3><p>${esc(local(r.subtitle))}</p><div class="platform-route-metrics">${metrics.map(x=>`<span>${esc(x)}</span>`).join('')}</div><button type="button" data-platform-trip="${esc(r.id)}">${esc(t('open'))} →</button></div></article>`;
+      const reasons=profileConfigured?.()?(travellerFit?.recommendationReasons?.(r,loadProfile())||[]):[];
+      const reasonMarkup=reasons.length?'<div class="platform-home-card-fit">'+reasons.map(reason=>'<span data-recommendation-kind="'+esc(reason.kind)+'">'+esc(reasonLabel(reason))+'</span>').join('')+'</div>':'';
+      return `<article class="platform-route-card ${r.id===currentTripMeta?.id?'active':''}"><div class="platform-route-card-visual visual-${esc(theme)}"><span>${esc(facetLabel(region))}</span><b>${esc(facetLabel(r.kind))}</b><div class="platform-home-card-route-art" aria-hidden="true"><i></i><i></i><i></i><i></i></div></div><div class="platform-route-card-body"><div class="platform-route-top"><span>${esc(facetLabel(r.kind))}</span><b>${esc(statusLabel(r))}</b></div><h3>${esc(local(r.title))}</h3><p>${esc(local(r.subtitle))}</p><div class="platform-route-metrics">${metrics.map(x=>`<span>${esc(x)}</span>`).join('')}</div>${reasonMarkup}<button type="button" data-platform-trip="${esc(r.id)}">${esc(t('open'))} →</button></div></article>`;
     };
 
     modal.innerHTML=`<div class="platform-modal-card route-library-card glass"><button class="platform-x" aria-label="Close">×</button><div class="platform-eyebrow">ONE WORLD ROUTE</div><h2>${esc(t('routeLibrary'))}</h2><p class="platform-lead">${esc(t('routeLibraryLead'))}</p><div class="platform-route-filters"><label class="route-search"><span>${esc(t('searchRoutes'))}</span><input id="platformRouteSearch" type="search" autocomplete="off" placeholder="${esc(t('searchRoutes'))}"></label><button id="platformPrimaryFilterToggle" class="platform-route-mobile-filter-toggle" type="button" aria-expanded="false">${esc(t('filters'))} <span>＋</span></button><label><span>${esc(t('filterType'))}</span><select id="platformRouteKind"><option value="">${esc(t('all'))}</option>${kinds.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('filterRegion'))}</span><select id="platformRouteRegion"><option value="">${esc(t('all'))}</option>${regions.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('filterDuration'))}</span><select id="platformRouteDuration"><option value="">${esc(t('all'))}</option><option value="7-14">7–14 ${esc(t('days'))}</option><option value="15-30">15–30 ${esc(t('days'))}</option><option value="31-89">31–89 ${esc(t('days'))}</option><option value="90-plus">90+ ${esc(t('days'))}</option></select></label><label><span>${esc(t('filterMode'))}</span><select id="platformRouteMode"><option value="">${esc(t('all'))}</option>${modes.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('filterTheme'))}</span><select id="platformRouteTheme"><option value="">${esc(t('all'))}</option>${themes.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label></div><div class="platform-fit-head"><button id="platformFitToggle" type="button" aria-expanded="false">${esc(t('showFit'))}</button></div><div id="platformFitFilters" class="platform-fit-filters hidden"><div class="platform-fit-title">${esc(t('routeFit'))}</div><label><span>${esc(t('fitPace'))}</span><select id="platformRoutePace"><option value="">${esc(t('all'))}</option>${paces.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('fitSeason'))}</span><select id="platformRouteSeason"><option value="">${esc(t('all'))}</option>${seasons.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('fitParty'))}</span><select id="platformRouteParty"><option value="">${esc(t('all'))}</option>${parties.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('fitStart'))}</span><select id="platformRouteStart"><option value="">${esc(t('all'))}</option>${starts.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('filterAccessibility'))}</span><select id="platformRouteAccessibility"><option value="">${esc(t('all'))}</option>${accessibilities.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label></div><div class="platform-route-resultbar"><span id="platformRouteCount"></span><button id="platformRouteReset" type="button">${esc(t('resetFilters'))}</button></div><div id="platformRouteResults" class="platform-route-grid"></div><button id="platformRouteMore" class="platform-route-more" type="button" hidden>${esc(t('loadMoreJourneys').replace('{count}',String(PAGE_SIZE)))}</button></div>`;
@@ -3716,7 +3819,8 @@
         accessibility:$('#platformRouteAccessibility',modal)?.value||''
       };
       const filtered=Discovery.filter(catalog,filters,r=>[local(r.title),local(r.subtitle),r.kind,...(r.discovery?.regions||[]),...(r.discovery?.themes||[]),...(r.discovery?.modes||[])].join(' '));
-      const ordered=[...filtered].sort((a,b)=>{
+      const personalized=profileConfigured?.()?travellerFit.rank(filtered,loadProfile()).map(result=>result.trip):null;
+      const ordered=personalized||[...filtered].sort((a,b)=>{
         const currentA=a.id===currentTripMeta?.id?1:0,currentB=b.id===currentTripMeta?.id?1:0;
         if(currentA!==currentB)return currentB-currentA;
         const priority=Number(b.visual?.featurePriority||0)-Number(a.visual?.featurePriority||0);
@@ -5136,6 +5240,9 @@
       catalog,
       currentTripMeta,
       Discovery,
+      travellerFit:TravellerFit,
+      loadProfile,
+      profileConfigured:()=>Boolean(localStorage.getItem(PROFILE_KEY)),
       ensureDialog:Ui.ensureDialog,
       t,
       local,
@@ -5156,6 +5263,7 @@
       t,
       esc,
       facetLabel,
+      preferenceOptions:Discovery.facets(catalog),
       onClear:()=>{
         clearProfile();
         location.reload();
