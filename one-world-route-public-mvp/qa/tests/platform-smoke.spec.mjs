@@ -151,20 +151,17 @@ test('@regional starting country applies the closest supported journey entry and
   await expect(page.locator('[data-trip-route-start]')).toHaveValue('japan-by-rail-stop-06');
   await page.locator('.platform-journey-personalize').screenshot({path:testInfo.outputPath('journey-entry-suggestion.png'),animations:'disabled'});
 
-  await Promise.all([
-    page.waitForLoadState('domcontentloaded'),
-    page.locator('[data-trip-route-start]').selectOption('japan-by-rail-stop-01')
-  ]);
+  await page.locator('[data-trip-route-start]').selectOption('japan-by-rail-stop-01');
+  await expect.poll(async()=>page.locator('.platform-journey-flow-stop').first().textContent().catch(()=>''),{timeout:20000}).toContain('Tokyo');
+  const manualState=await page.evaluate(()=>JSON.parse(localStorage.getItem('one-world-route:trip-tools:v1')||'{}'));
+  expect(manualState.routeStarts?.['japan-by-rail']).toBe('japan-by-rail-stop-01');
   if(isMobile){await page.locator('#mobileDetails').click();await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);}
-  await expect(page.locator('.platform-journey-flow-stop').first()).toContainText('Tokyo');
   await expect(page.locator('[data-trip-entry-suggest]')).toBeVisible();
 
-  await Promise.all([
-    page.waitForLoadState('domcontentloaded'),
-    page.locator('[data-trip-entry-suggest]').click()
-  ]);
-  if(isMobile){await page.locator('#mobileDetails').click();await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);}
-  await expect(page.locator('.platform-journey-flow-stop').first()).toContainText('Hiroshima');
+  await page.locator('[data-trip-entry-suggest]').click();
+  await expect.poll(async()=>page.locator('.platform-journey-flow-stop').first().textContent().catch(()=>''),{timeout:20000}).toContain('Hiroshima');
+  const suggestedState=await page.evaluate(()=>JSON.parse(localStorage.getItem('one-world-route:trip-tools:v1')||'{}'));
+  expect(suggestedState.routeStarts?.['japan-by-rail']).toBe('japan-by-rail-stop-06');
   expect(errors,'journey entry recommendation runtime page errors').toEqual([]);
 });
 
