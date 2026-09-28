@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {computeTripMetrics,normalizeCatalogEntry,validateTripDraft} from './trip-draft-contract.mjs';
+import {computeTripMetrics,normalizeCatalogEntry,validatePublicationReadiness,validateTripDraft} from './trip-draft-contract.mjs';
 
 const catalog={supportedLocales:['en','de']};
 function valid(){
@@ -82,4 +82,30 @@ test('publish gate rejects out-of-range coordinates and malformed country codes'
   assert.equal(r.valid,false);
   assert.match(r.errors.join('\n'),/coordinates are out of range/);
   assert.match(r.errors.join('\n'),/countryCode must be ISO alpha-2/);
+});
+
+
+test('publication readiness requires a deliberate supported public status',()=>{
+  const ctx=valid();
+  ctx.trip.status='draft';
+  ctx.catalogEntry.status='draft';
+  let r=validatePublicationReadiness(ctx);
+  assert.equal(r.valid,false);
+  assert.match(r.errors.join('\n'),/explicit public status/);
+
+  ctx.trip.status='planned';
+  ctx.catalogEntry.status='sourced-beta';
+  r=validatePublicationReadiness(ctx);
+  assert.equal(r.valid,false);
+  assert.match(r.errors.join('\n'),/must match/);
+
+  ctx.catalogEntry.status='planned';
+  r=validatePublicationReadiness(ctx);
+  assert.equal(r.valid,true,r.errors.join('\n'));
+
+  ctx.trip.status='published';
+  ctx.catalogEntry.status='published';
+  r=validatePublicationReadiness(ctx);
+  assert.equal(r.valid,false);
+  assert.match(r.errors.join('\n'),/unsupported/);
 });
