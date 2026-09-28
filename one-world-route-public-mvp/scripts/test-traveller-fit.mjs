@@ -60,3 +60,34 @@ test('recommendation reasons expose why a route fits without exposing a magic sc
     {kind:'mode',value:'rail'}
   ]);
 });
+
+test('journey preferences reuse published discovery metadata and rank without a separate recommendation dataset',()=>{
+  const fit=load();
+  const profile={
+    originRegion:'europe',
+    party:{adults:2,children:0},
+    preferences:{durationBand:'7-14',pace:'balanced',season:'spring',mode:'rail',theme:'culture'}
+  };
+  const rail={
+    id:'rail',
+    visual:{featurePriority:1},
+    discovery:{durationBand:'7-14',modes:['rail'],themes:['culture'],regions:['europe'],fit:{party:['couples'],startRegion:'europe',pace:'balanced',seasons:['spring'],accessibility:'standard-check'}}
+  };
+  const road={
+    id:'road',
+    visual:{featurePriority:99},
+    discovery:{durationBand:'15-30',modes:['car'],themes:['nature'],regions:['europe'],fit:{party:['couples'],startRegion:'europe',pace:'active',seasons:['summer'],accessibility:'standard-check'}}
+  };
+  const reasons=fit.recommendationReasons(rail,profile);
+  assert.deepEqual(JSON.parse(JSON.stringify(reasons)),[
+    {kind:'duration',value:'7-14'},
+    {kind:'pace',value:'balanced'},
+    {kind:'season',value:'spring'}
+  ]);
+  const ranked=fit.rank([road,rail],profile);
+  assert.equal(ranked[0].trip.id,'rail');
+  assert.equal(ranked[0].preferenceMatches,5);
+  assert.equal(ranked[0].preferenceMisses,0);
+  assert.ok(ranked[0].contextMatches>=2);
+  assert.equal(ranked[1].preferenceMisses,5);
+});
