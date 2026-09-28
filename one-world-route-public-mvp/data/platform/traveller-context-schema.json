@@ -131,7 +131,67 @@
         null
       ],
       "description": "Derived broad recommendation region. Kept in stored context for compatibility; users do not need to select it manually."
+    },
+    "preferences": {
+      "type": "object",
+      "properties": {
+        "durationBand": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "7-14",
+            "15-30",
+            "31-89",
+            "90-plus",
+            null
+          ]
+        },
+        "pace": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "relaxed",
+            "balanced",
+            "active",
+            null
+          ]
+        },
+        "season": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "spring",
+            "summer",
+            "autumn",
+            "winter",
+            "multi-season",
+            null
+          ]
+        },
+        "mode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Optional preferred normalized discovery transport mode."
+        },
+        "theme": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Optional preferred normalized discovery theme."
+        }
+      },
+      "additionalProperties": false,
+      "description": "Optional journey discovery preferences. These are local preference signals, not safety, legal, accessibility or booking guarantees."
     }
   },
-  "description": "Store only non-secret planning context. Origin country may be used to derive a broad recommendation region; the free-text origin is never geocoded or treated as a verified transport gateway. Vehicle Context is optional and supports road-rule, toll and low-emission-zone checks. Never store passport numbers, booking references, payment data, exact home address, licence numbers, vehicle VINs or other identity documents in the public dataset."
+  "description": "Store only non-secret planning context. Origin country may be used to derive a broad recommendation region without geocoding the free-text origin. Optional journey preferences reuse published Discovery and Route Fit metadata to order recommendations transparently. Vehicle Context is optional and supports road-rule, toll and low-emission-zone checks. Never store passport numbers, booking references, payment data, exact home address, licence numbers, vehicle VINs or other identity documents in the public dataset."
 }
