@@ -2863,7 +2863,7 @@
     return Object.values(preferences(profile)).filter(Boolean).length;
   }
 
-  function rank(trips,profile){
+  function orderRecommendations(trips,profile){
     const configured=configuredPreferenceCount(profile);
     return (trips||[]).map(trip=>{
       const signals=recommendationSignals(trip,profile);
@@ -2893,7 +2893,7 @@
       .map(({kind,value})=>({kind,value}));
   }
 
-  root.travellerFit={partyKey,preferences,evaluate,recommendationSignals,recommendationReasons,configuredPreferenceCount,rank};
+  root.travellerFit={partyKey,preferences,evaluate,recommendationSignals,recommendationReasons,configuredPreferenceCount,orderRecommendations};
 })();
 
 /* ===== platform/trip-compare.js ===== */
@@ -3470,7 +3470,7 @@
     if(!host)return;
     const candidates=(d.catalog.trips||[]).filter(trip=>trip.id!==d.catalog.defaultTripId);
     const trips=(d.profileConfigured?.()
-      ?d.travellerFit.rank(candidates,d.loadProfile()).map(result=>result.trip)
+      ?d.travellerFit.orderRecommendations(candidates,d.loadProfile()).map(result=>result.trip)
       :[...candidates].sort((a,b)=>Number(b.visual?.featurePriority||0)-Number(a.visual?.featurePriority||0))
     ).slice(0,6);
     host.innerHTML=trips.map(trip=>card(trip,{featured:true})).join('');
@@ -3539,7 +3539,7 @@
       if(definition)found=found.filter(trip=>collectionMatches(trip,definition));
     }
     if($('#homeRouteSavedOnly')?.checked)found=found.filter(trip=>d.tripTools.isSaved(d.storage,trip.id));
-    if(d.profileConfigured?.())found=d.travellerFit.rank(found,d.loadProfile()).map(result=>result.trip);
+    if(d.profileConfigured?.())found=d.travellerFit.orderRecommendations(found,d.loadProfile()).map(result=>result.trip);
     const visible=found.slice(0,resultLimit);
     host.innerHTML=found.length?visible.map(card).join(''):'<div class="platform-home-empty">'+d.esc(d.t('noRoutes'))+'</div>';
     const more=$('#platformHomeMore');
@@ -3819,7 +3819,7 @@
         accessibility:$('#platformRouteAccessibility',modal)?.value||''
       };
       const filtered=Discovery.filter(catalog,filters,r=>[local(r.title),local(r.subtitle),r.kind,...(r.discovery?.regions||[]),...(r.discovery?.themes||[]),...(r.discovery?.modes||[])].join(' '));
-      const personalized=profileConfigured?.()?travellerFit.rank(filtered,loadProfile()).map(result=>result.trip):null;
+      const personalized=profileConfigured?.()?travellerFit.orderRecommendations(filtered,loadProfile()).map(result=>result.trip):null;
       const ordered=personalized||[...filtered].sort((a,b)=>{
         const currentA=a.id===currentTripMeta?.id?1:0,currentB=b.id===currentTripMeta?.id?1:0;
         if(currentA!==currentB)return currentB-currentA;
