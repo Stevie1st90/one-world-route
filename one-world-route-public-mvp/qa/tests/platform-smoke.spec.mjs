@@ -141,7 +141,7 @@ test('@regional traveller origin country derives recommendation region without m
   await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
   await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:15000});
   if(isMobile)await page.evaluate(()=>window.ONE_WORLD_PLATFORM?.openTraveller?.());
-  else await page.locator('[data-home-traveller]').click();
+  else await page.locator('.platform-home-nav [data-home-traveller]').click();
   await expect(page.locator('#platformTravellerForm')).toBeVisible();
   await expect(page.locator('#platformTravellerForm select[name="originRegion"]')).toHaveCount(0);
   for(const name of ['durationBand','pace','season','mode','theme']){
