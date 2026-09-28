@@ -119,3 +119,31 @@ test('detail planning status can include saved-journey state without changing My
   const myTripsStatus=tools.planningStatus({storage:s,tripId:'trip-a',profile,hasPlanning:false,routeStartRequired:false});
   assert.deepEqual(JSON.parse(JSON.stringify(myTripsStatus.items.map(item=>item.id))),['origin','startDate','access']);
 });
+
+
+test('trip pack carries portable planning workspace state without private identity data',()=>{
+  const tools=load();
+  const trip={
+    id:'trip-a',title:{en:'Trip A'},summary:{en:'Summary'},planning:{days:3,currency:'EUR'},
+    places:[{id:'p1',name:{en:'Alpha'}},{id:'p2',name:{en:'Beta'}}],
+    stops:[{id:'s1',placeId:'p1',dayStart:1,dayEnd:1,nights:1},{id:'s2',placeId:'p2',dayStart:2,dayEnd:3,nights:1}],
+    segments:[{transport:{mode:'rail'}}],sources:[]
+  };
+  const json=tools.jsonPack({
+    trip,meta:{id:'trip-a'},local:value=>value?.en||value||'',facetLabel:value=>value,
+    snapshot:{days:3,nights:2,currency:'EUR',knownPublishedMinimum:null},
+    assumptions:{lodgingPerNight:80},profile:{party:{adults:1,children:0}},
+    startDate:'2027-05-10',season:'spring',
+    journeyPlan:{type:'origin-access-core-return'},
+    planningWorkspace:{
+      saved:true,routeStartId:'s2',accessCheckedAt:'2026-09-28T10:00:00.000Z',
+      status:{completed:6,total:6,complete:true,next:null,items:[]}
+    }
+  });
+  const parsed=JSON.parse(json);
+  assert.equal(parsed.planningWorkspace.saved,true);
+  assert.equal(parsed.planningWorkspace.routeStartId,'s2');
+  assert.equal(parsed.planningWorkspace.accessCheckedAt,'2026-09-28T10:00:00.000Z');
+  assert.equal(parsed.planningWorkspace.status.complete,true);
+  assert.doesNotMatch(json,/passport|residenceCountry|bookingReference|payment/i);
+});
