@@ -294,7 +294,7 @@
       travellerFit:TravellerFit,
       storage:localStorage,
       toast:Ui.toast,
-      onRouteVariantChange:()=>location.reload(),
+      onRouteVariantChange:()=>activateRegionalTrip(currentTripMeta).catch(error=>console.warn('Regional route variant refresh failed',error)),
       extensions:Extensions,
       stopMap,
       placeMap
