@@ -4,8 +4,9 @@ import {createReadStream,existsSync} from 'node:fs';
 import {extname,join,normalize,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
-import {validateTripDraft,normalizeCatalogEntry} from '../one-world-route-public-mvp/scripts/trip-draft-contract.mjs';
+import {validateTripDraft,normalizeCatalogEntry,validatePublicationReadiness} from '../one-world-route-public-mvp/scripts/trip-draft-contract.mjs';
 import {buildExperienceCoverage} from '../one-world-route-public-mvp/scripts/experience-coverage-model.mjs';
+import {buildMaintenanceReport} from '../one-world-route-public-mvp/scripts/platform-maintenance-model.mjs';
 
 const here=resolve(fileURLToPath(new URL('.',import.meta.url)));
 const publicRoot=resolve(here,'../one-world-route-public-mvp');
@@ -13,6 +14,9 @@ const draftsDir=join(publicRoot,'data/platform/drafts');
 const tripsDir=join(publicRoot,'data/platform/trips');
 const catalogPath=join(publicRoot,'data/platform/trips.json');
 const experienceIndexPath=join(publicRoot,'data/platform/place-experiences/index.json');
+const sharedKnowledgePath=join(publicRoot,'data/platform/shared-knowledge.json');
+const tripIndexPath=join(publicRoot,'data/platform/trip-index.json');
+const sitemapPath=join(publicRoot,'sitemap.xml');
 const host='127.0.0.1',port=Number(process.env.OWR_BUILDER_PORT||4175);
 const slugPattern=/^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.webmanifest':'application/manifest+json'};
@@ -28,14 +32,20 @@ const localized=(locales,v)=>Object.fromEntries(locales.map(l=>[l,v]));
 const band=d=>d==null?'7-14':d<=14?'7-14':d<=30?'15-30':d<=89?'31-89':'90-plus';
 
 
+const publicationGenerators=[
+  ['Trip index generation',['scripts/build-trip-index.mjs']],
+  ['SEO sitemap generation',['scripts/generate-seo.mjs']]
+];
 const publishChecks=[
   ['Platform data validation',['scripts/validate-platform-data.mjs']],
   ['Public data validation',['scripts/validate-public-data.mjs']],
   ['Platform model tests',['--test','scripts/test-platform-model.mjs']],
   ['Platform locale tests',['--test','scripts/test-platform-i18n.mjs']],
   ['Platform formatter tests',['--test','scripts/test-platform-formatters.mjs']],
+  ['Public trip index tests',['--test','scripts/test-trip-index.mjs']],
   ['Share page tests',['--test','scripts/test-share-pages.mjs']],
   ['Platform navigation tests',['--test','scripts/test-platform-navigation.mjs']],
+  ['Journey maintenance audit',['scripts/audit-platform-maintenance.mjs']],
   ['Experience coverage tests',['--test','scripts/test-experience-coverage.mjs']],
   ['Regional runtime integration',['--test','scripts/test-regional-runtime.mjs']],
   ['Rail validator tests',['--test','scripts/test-platform-rail-validator.mjs']],
@@ -43,9 +53,9 @@ const publishChecks=[
   ['Continuity tests',['--test','scripts/test-continuity.mjs']]
 ];
 
-function runPublishChecks(){
+function runNodeSteps(steps){
   const results=[];
-  for(const [name,args] of publishChecks){
+  for(const [name,args] of steps){
     const r=spawnSync(process.execPath,args.map(arg=>arg.startsWith('scripts/')?join(publicRoot,arg):arg),{cwd:publicRoot,encoding:'utf8'});
     const result={name,ok:r.status===0,output:String(r.status===0?r.stdout:(r.stderr||r.stdout||'')).trim().slice(-4000)};
     results.push(result);
@@ -53,6 +63,7 @@ function runPublishChecks(){
   }
   return{ok:true,results};
 }
+const runPublishChecks=()=>runNodeSteps(publishChecks);
 
 async function experienceCoverage(){
   const catalog=await json(catalogPath),datasets=new Map(),profiles=[];
@@ -69,13 +80,29 @@ async function experienceCoverage(){
   }
   return buildExperienceCoverage({catalog,datasets,profiles});
 }
+async function maintenanceReport(){
+  const catalog=await json(catalogPath),datasets=new Map(),profiles=[];
+  for(const meta of catalog.trips||[]){
+    if(meta.renderer!=='regional-globe')continue;
+    const relative=String(meta.dataset||'').replace(/^\.\//,'');
+    datasets.set(meta.id,await json(join(publicRoot,relative)));
+  }
+  const index=await json(experienceIndexPath);
+  for(const shardMeta of index.shards||[]){
+    const relative=String(shardMeta.dataset||'').replace(/^\.\//,'');
+    const shard=await json(join(publicRoot,relative));
+    profiles.push(...(shard.profiles||[]));
+  }
+  const shared=await json(sharedKnowledgePath).catch(()=>({items:[],reviewPolicies:{}}));
+  return buildMaintenanceReport({catalog,datasets,shared,experienceProfiles:profiles,now:new Date()});
+}
 
 async function scaffold(input){
   const slug=safeSlug(input.slug),kind=safeSlug(input.kind||'custom'),catalog=await json(catalogPath),p=paths(slug);
   if(await exists(p.trip)||(catalog.trips||[]).some(t=>t.id===slug))throw new Error('Draft or public trip already exists');
   const locales=catalog.supportedLocales||['en'],human=slug.split('-').map(x=>x[0].toUpperCase()+x.slice(1)).join(' '),days=input.days?Number(input.days):null;
-  const trip={schemaVersion:1,id:slug,slug,kind,status:'draft',defaultLocale:catalog.defaultLocale||'en',supportedLocales:[...locales],title:localized(locales,human),summary:localized(locales,'TODO — editorial summary'),geography:{regions:[],countries:[]},planning:{days,currency:'EUR'},rendering:{},places:[],stops:[],segments:[],chapters:[],travellerContext:{scope:[]},sources:[],extensions:{}};
-  const catalogEntry={id:slug,slug,kind,status:'draft',renderer:'regional-globe',dataset:'./data/platform/trips/'+slug+'.json',title:localized(locales,human),subtitle:localized(locales,'TODO — discovery subtitle'),metrics:{},capabilities:['globe','story','terrain'],discovery:{regions:['europe'],themes:[kind],modes:[kind==='road-trip'?'road':kind],durationBand:band(days),fit:{pace:'balanced',seasons:['multi-season'],party:['solo','couples','friends'],startRegion:'europe',accessibility:'standard-check'}}};
+  const trip={schemaVersion:1,id:slug,slug,kind,status:'draft',defaultLocale:catalog.defaultLocale||'en',supportedLocales:[...locales],title:localized(locales,human),summary:localized(locales,'TODO — editorial summary'),geography:{regions:[],countries:[]},planning:{days,currency:'EUR'},rendering:{},routePolicy:{startMode:'fixed',reversible:false,reverseEvidenceReusable:false,reversePlanningReusable:false,originMode:'traveller-context'},maintenance:{tier:'live-dependent',sourceReviewDays:90,sharedKnowledge:true,notes:'Keep volatile transport, price, access and traveller-specific facts separate from stable route/editorial content.'},places:[],stops:[],segments:[],chapters:[],travellerContext:{scope:[]},sources:[],extensions:{}};
+  const catalogEntry={id:slug,slug,kind,status:'draft',renderer:'regional-globe',dataset:'./data/platform/trips/'+slug+'.json',title:localized(locales,human),subtitle:localized(locales,'TODO — discovery subtitle'),metrics:{},capabilities:['globe','story','terrain','trip-planning'],discovery:{regions:['europe'],themes:[kind],modes:[kind==='road-trip'?'road':kind],durationBand:band(days),fit:{pace:'balanced',seasons:['multi-season'],party:['solo','couples','friends'],startRegion:'europe',accessibility:'standard-check'}}};
   await mkdir(draftsDir,{recursive:true});await atomic(p.trip,trip);await atomic(p.catalog,catalogEntry);return{trip,catalogEntry};
 }
 async function listDrafts(){
@@ -100,21 +127,50 @@ async function validateSlug(slug){
   const d=await loadDraft(slug),catalog=await json(catalogPath);return validateTripDraft({trip:d.trip,catalogEntry:d.catalogEntry,catalog});
 }
 async function publish(slug){
-  slug=safeSlug(slug);const d=await loadDraft(slug),catalog=await json(catalogPath),gate=validateTripDraft({trip:d.trip,catalogEntry:d.catalogEntry,catalog});
-  if(!gate.valid)return{published:false,...gate};
-  const trip={...d.trip,status:d.trip.status==='draft'?'sourced-beta':d.trip.status};
-  const entry={...normalizeCatalogEntry(d.catalogEntry,trip),status:d.catalogEntry.status==='draft'?'sourced-beta':d.catalogEntry.status};
-  const next={...catalog,trips:[...(catalog.trips||[]).filter(t=>t.id!==slug),entry]},target=join(tripsDir,slug+'.json');
-  const oldCatalog=await readFile(catalogPath,'utf8'),had=await exists(target),oldTrip=had?await readFile(target,'utf8'):null;
+  slug=safeSlug(slug);
+  const d=await loadDraft(slug),catalog=await json(catalogPath);
+  const gate=validateTripDraft({trip:d.trip,catalogEntry:d.catalogEntry,catalog});
+  const publication=validatePublicationReadiness(d);
+  if(!gate.valid||!publication.valid){
+    return {published:false,validation:{...gate,valid:false,errors:[...gate.errors,...publication.errors]},publication};
+  }
+  const trip={...d.trip};
+  const entry={...normalizeCatalogEntry(d.catalogEntry,trip)};
+  const existingIndex=(catalog.trips||[]).findIndex(t=>t.id===slug);
+  const trips=[...(catalog.trips||[])];
+  if(existingIndex>=0)trips[existingIndex]=entry;else trips.push(entry);
+  const next={...catalog,updatedAt:new Date().toISOString().slice(0,10),trips};
+  const target=join(tripsDir,slug+'.json');
+  const snapshots=new Map();
+  for(const filePath of [catalogPath,target,tripIndexPath,sitemapPath]){
+    snapshots.set(filePath,await readFile(filePath).catch(()=>null));
+  }
+  const restore=async()=>{
+    for(const [filePath,value] of snapshots){
+      if(value===null)await rm(filePath,{force:true});
+      else await writeFile(filePath,value);
+    }
+  };
   try{
-    await atomic(target,trip);await atomic(catalogPath,next);
+    await atomic(target,trip);
+    await atomic(catalogPath,next);
+    const generation=runNodeSteps(publicationGenerators);
+    if(!generation.ok){
+      const failed=generation.results.find(result=>!result.ok);
+      throw new Error((failed?.name||'Publication artifact generation')+' failed'+(failed?.output?'\n'+failed.output:''));
+    }
     const quality=runPublishChecks();
     if(!quality.ok){
       const failed=quality.results.find(result=>!result.ok);
       throw new Error((failed?.name||'Publish quality gate')+' failed'+(failed?.output?'\n'+failed.output:''));
     }
-    await atomic(paths(slug).trip,trip);await atomic(paths(slug).catalog,entry);return{published:true,validation:gate,qualityChecks:quality.results};
-  }catch(e){await writeFile(catalogPath,oldCatalog);if(had)await writeFile(target,oldTrip);else await rm(target,{force:true});throw e}
+    await atomic(paths(slug).trip,trip);
+    await atomic(paths(slug).catalog,entry);
+    return {published:true,validation:gate,publication,generation:generation.results,qualityChecks:[...generation.results,...quality.results]};
+  }catch(error){
+    await restore();
+    throw error;
+  }
 }
 function cookieDraft(req){const m=String(req.headers.cookie||'').match(/(?:^|;\s*)owr_builder_draft=([^;]+)/);return m?decodeURIComponent(m[1]):null}
 async function file(res,p){if(!existsSync(p))return false;res.writeHead(200,{'content-type':mime[extname(p)]||'application/octet-stream','cache-control':'no-store'});createReadStream(p).pipe(res);return true}
@@ -127,6 +183,7 @@ async function handler(req,res){
     if(pathname==='/__builder/styles.css')return void await file(res,join(here,'styles.css'));
     if(pathname==='/__builder/api/state'&&req.method==='GET')return send(res,200,{ok:true,catalog:await json(catalogPath),drafts:await listDrafts()});
     if(pathname==='/__builder/api/experience-coverage'&&req.method==='GET')return send(res,200,{ok:true,coverage:await experienceCoverage()});
+    if(pathname==='/__builder/api/maintenance'&&req.method==='GET')return send(res,200,{ok:true,report:await maintenanceReport()});
     if(pathname==='/__builder/api/scaffold'&&req.method==='POST')return send(res,201,{ok:true,...await scaffold(await readBody(req))});
     if(pathname==='/__builder/api/clone'&&req.method==='POST'){const b=await readBody(req);return send(res,201,{ok:true,...await clonePublic(b.slug)})}
     const m=pathname.match(/^\/__builder\/api\/draft\/([a-z0-9-]+)(?:\/(validate|publish))?$/);
