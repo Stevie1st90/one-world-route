@@ -71,7 +71,7 @@ jobs:
                 regional_browser=true
                 builder_browser=true
                 ;;
-              one-world-route-public-mvp/qa/tests/trip-builder.spec.mjs|one-world-route-public-mvp/scripts/trip-draft-contract.mjs|one-world-route-public-mvp/scripts/test-trip-draft-contract.mjs|one-world-route-public-mvp/scripts/platform-extension-validators.mjs|one-world-route-public-mvp/scripts/platform-extension-validators/*)
+              one-world-route-public-mvp/qa/tests/trip-builder.spec.mjs|one-world-route-public-mvp/scripts/trip-draft-contract.mjs|one-world-route-public-mvp/scripts/test-trip-draft-contract.mjs|one-world-route-public-mvp/scripts/platform-maintenance-model.mjs|one-world-route-public-mvp/scripts/test-platform-maintenance-model.mjs|one-world-route-public-mvp/scripts/platform-extension-validators.mjs|one-world-route-public-mvp/scripts/platform-extension-validators/*)
                 builder_browser=true
                 ;;
               one-world-route-public-mvp/qa/tests/platform-smoke.spec.mjs|one-world-route-public-mvp/qa/playwright.config.mjs|one-world-route-public-mvp/qa/run-local.mjs)
@@ -164,6 +164,8 @@ jobs:
           node --check scripts/platform-extension-validators/rail.mjs
           node --check scripts/scaffold-trip.mjs
           node --check scripts/audit-platform-maintenance.mjs
+          node --check scripts/platform-maintenance-model.mjs
+          node --check scripts/test-platform-maintenance-model.mjs
           node --check scripts/audit-platform-media.mjs
           node --check scripts/test-journey-adapter.mjs
           node --check scripts/generate-seo.mjs
@@ -218,6 +220,8 @@ jobs:
         run: node --test scripts/test-journey-adapter.mjs
       - name: Journey maintenance audit
         run: node scripts/audit-platform-maintenance.mjs
+      - name: Journey maintenance model tests
+        run: node --test scripts/test-platform-maintenance-model.mjs
       - name: Journey media rights audit
         run: node scripts/audit-platform-media.mjs
       - name: Platform locale tests
