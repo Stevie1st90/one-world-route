@@ -173,6 +173,49 @@ test('@regional starting country applies the closest supported journey entry and
   expect(errors,'journey entry recommendation runtime page errors').toEqual([]);
 });
 
+
+
+test('@regional saved journeys expose actionable planning workspace status',async({page,isMobile},testInfo)=>{
+  test.setTimeout(90000);
+  await page.addInitScript(()=>{
+    localStorage.setItem('one-world-route:traveller-context:v1',JSON.stringify({
+      language:'en',currency:'EUR',origin:'Seoul / ICN',originCountry:'KR',originRegion:'asia',
+      party:{adults:1,children:0},accessibility:{reducedMobility:false}
+    }));
+    localStorage.setItem('one-world-route:trip-tools:v1',JSON.stringify({
+      savedTrips:['japan-by-rail'],
+      budgets:{'japan-by-rail':{lodgingPerNight:110,foodPerPersonDay:35,localPerPersonDay:15,extras:100,contingencyPercent:10,transportMultiplier:1}},
+      startDates:{'japan-by-rail':'2027-04-10'},
+      seasons:{'japan-by-rail':'spring'},
+      routeStarts:{'japan-by-rail':'japan-by-rail-stop-06'},
+      planningChecks:{}
+    }));
+  });
+  const errors=capturePageErrors(page);
+  await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:15000});
+  await page.evaluate(()=>window.ONE_WORLD_PLATFORM?.openMyTrips?.());
+  const modal=page.locator('#platformMyTripsModal:not(.hidden)');
+  await expect(modal).toBeVisible();
+  const card=modal.locator('[data-mytrip="japan-by-rail"]');
+  await expect(card).toBeVisible();
+  await expect(card.locator('[data-planning-step]')).toHaveCount(5);
+  await expect(card.locator('.platform-mytrip-plan-head>strong')).toHaveText('4 / 5');
+  await expect(card.locator('.platform-mytrip-plan-head')).toContainText('Next planning step: Route access check');
+  await expect(card.locator('[data-mytrip-open]')).toContainText('Continue planning');
+  await card.screenshot({path:testInfo.outputPath('planning-workspace-before-check.png'),animations:'disabled'});
+
+  await card.locator('[data-mytrip-access-check]').click();
+  await expect(card.locator('.platform-mytrip-plan-head>strong')).toHaveText('5 / 5');
+  await expect(card.locator('.platform-mytrip-plan-head')).toContainText('Core planning setup recorded');
+  await expect(card.locator('[data-planning-step="access"]')).toContainText('Manual check recorded');
+  const state=await page.evaluate(()=>JSON.parse(localStorage.getItem('one-world-route:trip-tools:v1')||'{}'));
+  expect(state.planningChecks?.['japan-by-rail']?.accessCheckedAt).toMatch(/^\d{4}-\d{2}-\d{2}T/);
+  await card.screenshot({path:testInfo.outputPath('planning-workspace.png'),animations:'disabled'});
+  if(isMobile)await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
+  expect(errors,'planning workspace runtime page errors').toEqual([]);
+});
+
 test('@regional editorial preview journey uses the generic visual detail shell',async({page,isMobile},testInfo)=>{
   test.setTimeout(120000);
   expect(discoveryPreview).toBeTruthy();
