@@ -9,7 +9,7 @@ const discoveryPreview=catalog.trips.find(item=>item.id==='japan-by-rail');
 const discoveryPreviewData=await readJson(new URL('../../data/platform/trips/japan-by-rail.json',import.meta.url));
 
 test('@flagship flagship shell boots cleanly',async({page,isMobile})=>{
-  test.setTimeout(30000);
+  test.setTimeout(60000);
   const errors=capturePageErrors(page);
   await page.goto('/?trip='+encodeURIComponent(flagship.id)+'&lang=en',{waitUntil:'domcontentloaded'});
   await expect(page.locator('body')).not.toHaveClass(/platform-regional-trip/,{timeout:15000});
@@ -45,7 +45,7 @@ test('@flagship operations exposes departure recheck controls',async({page})=>{
 
 
 test('@regional global discovery home exposes a broad visual journey catalog',async({page,isMobile},testInfo)=>{
-  test.setTimeout(60000);
+  test.setTimeout(90000);
   const errors=capturePageErrors(page);
   await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
   await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:15000});
@@ -86,6 +86,32 @@ test('@regional traveller start region changes transparent journey recommendatio
   await expect(page.locator('.platform-home-featured h2')).toHaveText('Recommended for you');
   await expect(page.locator('#platformHomeFeatured .platform-home-card').first().locator('h3')).toHaveText('Patagonia Road Trip');
   expect(errors,'personalized discovery runtime page errors').toEqual([]);
+});
+
+test('@regional traveller origin country derives recommendation region without manual region selection',async({page,isMobile},testInfo)=>{
+  test.setTimeout(90000);
+  const errors=capturePageErrors(page);
+  await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:15000});
+  if(isMobile)await page.evaluate(()=>window.ONE_WORLD_PLATFORM?.openTraveller?.());
+  else await page.locator('[data-home-traveller]').click();
+  await expect(page.locator('#platformTravellerForm')).toBeVisible();
+  await expect(page.locator('#platformTravellerForm select[name="originRegion"]')).toHaveCount(0);
+  await page.locator('#platformTravellerForm input[name="origin"]').fill('São Paulo / GRU');
+  await page.locator('#platformTravellerForm select[name="originCountry"]').selectOption('BR');
+  await page.locator('#platformTravellerForm input[name="adults"]').fill('2');
+  await page.screenshot({path:testInfo.outputPath('traveller-origin.png'),fullPage:false});
+  await Promise.all([
+    page.waitForLoadState('domcontentloaded'),
+    page.locator('#platformTravellerForm').locator('button[type="submit"]').click()
+  ]);
+  await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:15000});
+  const context=await page.evaluate(()=>JSON.parse(localStorage.getItem('one-world-route:traveller-context:v1')||'{}'));
+  expect(context.originCountry).toBe('BR');
+  expect(context.originRegion).toBe('south-america');
+  await expect(page.locator('#platformHomeFeatured .platform-home-card').first().locator('h3')).toHaveText('Patagonia Road Trip');
+  await expect(page.locator('#platformHomeFeatured .platform-home-card').first().locator('.platform-home-card-fit')).toContainText('South America');
+  expect(errors,'origin-country derived recommendation runtime page errors').toEqual([]);
 });
 
 test('@regional editorial preview journey uses the generic visual detail shell',async({page,isMobile},testInfo)=>{

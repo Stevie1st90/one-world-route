@@ -107,7 +107,31 @@
           ]
         }
       }
+    },
+    "originCountry": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[A-Z]{2}$",
+      "description": "Optional starting country used to derive broad recommendation region without geocoding the free-text origin."
+    },
+    "originRegion": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "europe",
+        "asia",
+        "africa",
+        "north-america",
+        "south-america",
+        "oceania",
+        null
+      ],
+      "description": "Derived broad recommendation region. Kept in stored context for compatibility; users do not need to select it manually."
     }
   },
-  "description": "Store only non-secret planning context. Vehicle Context is optional and supports road-rule, toll and low-emission-zone checks. Never store passport numbers, booking references, payment data, exact home address, licence numbers, vehicle VINs or other identity documents in the public dataset."
+  "description": "Store only non-secret planning context. Origin country may be used to derive a broad recommendation region; the free-text origin is never geocoded or treated as a verified transport gateway. Vehicle Context is optional and supports road-rule, toll and low-emission-zone checks. Never store passport numbers, booking references, payment data, exact home address, licence numbers, vehicle VINs or other identity documents in the public dataset."
 }

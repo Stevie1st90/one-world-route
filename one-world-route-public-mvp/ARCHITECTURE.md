@@ -69,7 +69,7 @@ Transport is extensible rather than tied to international borders. Cruise itiner
 
 ### Global perspective
 
-No route should infer eligibility or advice from a German departure perspective. Traveller-specific logic is keyed by relevant planning dimensions such as passport country/countries, country of residence, preferred language and currency, origin, party composition and accessibility context. The first implementation stores that context only in browser local storage. It must never contain passport numbers, booking/payment data or private identity documents.
+No route should infer eligibility or advice from a German departure perspective. Traveller-specific logic is keyed by relevant planning dimensions such as passport country/countries, country of residence, preferred language and currency, free-text origin, structured starting country, party composition and accessibility context. The broad discovery region is derived from the selected starting country rather than manually requested from the traveller. The first implementation stores that context only in browser local storage. It must never contain passport numbers, booking/payment data or private identity documents.
 
 Global editorial defaults remain neutral and generic. Visa/entry, price, insurance, health and legal claims require current sources appropriate to the traveller context. Unknown values remain unknown.
 

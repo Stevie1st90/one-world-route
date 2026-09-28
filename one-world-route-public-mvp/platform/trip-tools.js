@@ -153,7 +153,7 @@
     const routeStartSelect=eligible.length>1?'<label><span>'+esc(t('routeStart'))+'</span><select data-trip-route-start>'+routeStartOptions+'</select><small>'+esc(t('routeStartFlexibleLead'))+'</small></label>':'<div class="platform-route-start-fixed"><span>'+esc(t('routeStart'))+'</span><b>'+esc(local(places.get(eligible[0]?.placeId)?.name)||'—')+'</b><small>'+esc(t('routeStartFixedLead'))+'</small></div>';
     const selectedStop=eligible.find(stop=>stop.id===selectedStart)||eligible[0]||null;
     const selectedPlace=places.get(selectedStop?.placeId);
-    const origin=String(profile?.origin||'').trim();
+    const origin=String(profile?.origin||profile?.originCountry||'').trim();
     const journeyPlan=journeyAdapter?.originPlan?.(trip,profile)||null;
     const coreStartPlace=places.get(journeyPlan?.core?.startPlaceId)||selectedPlace;
     const coreEndPlace=places.get(journeyPlan?.core?.endPlaceId)||places.get(trip?.stops?.at(-1)?.placeId);

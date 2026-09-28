@@ -100,7 +100,7 @@
     const loop=p.startMode==='any-stop'&&Boolean(startStop&&lastStop&&segments.length===stops.length&&segments.at(-1)?.toStopId===startStop.id);
     const finishStop=loop?startStop:lastStop;
     const startPlace=places.get(startStop?.placeId)||null,finishPlace=places.get(finishStop?.placeId)||null;
-    const origin=String(profile?.origin||'').trim()||null;
+    const origin=String(profile?.origin||profile?.originCountry||'').trim()||null;
     const canAccess=p.originAccess==='dynamic'&&p.originMode==='traveller-context';
     return {
       structure:'origin-access-core-return',

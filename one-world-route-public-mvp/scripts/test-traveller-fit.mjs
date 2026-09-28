@@ -52,7 +52,8 @@ test('traveller fit exposes explicit origin region without inferring it from fre
 test('recommendation reasons expose why a route fits without exposing a magic score',()=>{
   const fit=load();
   const meta={discovery:{modes:['rail'],fit:{party:['couples'],startRegion:'europe',pace:'balanced',seasons:['spring'],accessibility:'standard-check'}},capabilities:[]};
-  const profile={origin:'Frankfurt',originRegion:'europe',party:{adults:2,children:0}};
+  const profile={origin:'Frankfurt',originCountry:'DE',originRegion:'europe',party:{adults:2,children:0}};
+  assert.equal(fit.evaluate(meta,profile).originCountry,'DE');
   assert.deepEqual(JSON.parse(JSON.stringify(fit.recommendationReasons(meta,profile))),[
     {kind:'origin',value:'europe'},
     {kind:'party',value:'couples'},

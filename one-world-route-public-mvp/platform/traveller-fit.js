@@ -34,6 +34,7 @@
       vehicleContextMissing:vehicleRequired&&!vehicleProvided,
       originKnown,
       origin:profile?.origin||null,
+      originCountry:profile?.originCountry||null,
       originRegion:profile?.originRegion||null,
       startRegion:fit.startRegion||null,
       pace:fit.pace||null,

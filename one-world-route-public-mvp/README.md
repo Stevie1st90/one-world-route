@@ -242,7 +242,7 @@ The scaffolder writes only to `data/platform/drafts/`; it never publishes or edi
 The public product now separates three concerns so the catalog can scale far beyond the current journeys:
 
 - **Stable journey layer** — route shape, stops, editorial story, discovery metadata and rights-cleared media.
-- **Personal runtime layer** — traveller origin, party context and an allowed route entry. A trip can remain fixed or explicitly permit a safe reverse-direction variant.
+- **Personal runtime layer** — traveller origin, starting country, party context and an allowed route entry. The broad recommendation region is derived from the selected country; a trip can remain fixed or explicitly permit a safe reverse-direction variant.
 - **Shared knowledge layer** — reusable planning guidance that is maintained once and matched automatically to every relevant journey by transport mode, trip type or country scope.
 
 A free-text home origin is never used to invent a "best" airport or transport connection. It is saved as traveller context. Route order changes only when the trip's `routePolicy` permits it. Directional evidence and fares are invalidated by default when a route is reversed.
@@ -270,8 +270,8 @@ The scheduled `Journey maintenance watch` validates contracts weekly. If review 
 
 Discovery remains deterministic and explainable:
 
-- the user may store an exact free-text origin for arrival planning;
-- an optional broad start region is used for discovery ordering without geocoding or a paid routing API;
+- the user may store a free-text city/airport origin for arrival planning plus a structured starting country;
+- the broad recommendation region is derived from that country, so users do not manually maintain a technical region field and no paid geocoder is required;
 - traveller party, vehicle context and declared Route Fit can influence the order of featured journeys;
 - no live connection, fare or gateway is invented from the origin text.
 

@@ -51,7 +51,7 @@ Implemented foundation:
 
 Next product layers:
 - expand the source-backed nationality/passport and residence rule engine beyond the Italy official-resolver foundation
-- extend implemented route discovery with origin-market relevance, seasonality and accessibility filters
+- origin-market relevance now uses a structured starting country with an automatically derived broad region; seasonality and accessibility filters remain catalog-driven
 - practical trip-planning layer (implemented first on Italy): day-by-day itinerary, known transport minimum, fare/evidence coverage and Route Fit
 - browser-local save, saved-only discovery, JSON/CSV/ICS export and explicit-assumption budget estimator
 - My Trips workspace with route planning status, start date, planning season, Traveller Context checks and portable browser-local backup
