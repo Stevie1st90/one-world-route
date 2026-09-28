@@ -118,6 +118,14 @@
       "destination": "/api/share?type=country&slug=:slug"
     },
     {
+      "source": "/:lang/journeys/:slug",
+      "destination": "/api/share?type=collection&lang=:lang&slug=:slug"
+    },
+    {
+      "source": "/journeys/:slug",
+      "destination": "/api/share?type=collection&slug=:slug"
+    },
+    {
       "source": "/:lang/trip/:slug",
       "destination": "/api/share?type=trip&lang=:lang&slug=:slug"
     },
