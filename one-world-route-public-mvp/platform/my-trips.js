@@ -12,6 +12,13 @@
     try{return new Intl.NumberFormat(locale||'en',{style:'currency',currency:currency||'EUR',maximumFractionDigits:0}).format(Number(value))}
     catch{return String(Math.round(Number(value)))+' '+String(currency||'EUR')}
   }
+  function dateLabel(value,locale){
+    if(!value)return '';
+    const date=new Date(value);
+    if(!Number.isFinite(date.getTime()))return '';
+    try{return new Intl.DateTimeFormat(locale||'en',{year:'numeric',month:'short',day:'numeric'}).format(date)}
+    catch{return String(value).slice(0,10)}
+  }
 
   async function loadTrip(meta){
     const response=await fetch(meta.dataset,{cache:'no-cache'});
@@ -26,6 +33,49 @@
     if(fit.vehicleContextMissing)items.push('<span class="check">'+d.esc(d.t('vehicleContextMissing'))+'</span>');
     if(fit.originKnown)items.push('<span>'+d.esc(d.t('planningOrigin'))+': '+d.esc(fit.origin)+'</span>');
     return items.join('');
+  }
+
+  function planningLabel(id){
+    const d=context();
+    return {
+      origin:d.t('planningOrigin'),
+      routeStart:d.t('routeStart'),
+      startDate:d.t('startDate'),
+      budget:d.t('budgetEstimate'),
+      access:d.t('planningAccessCheck')
+    }[id]||id;
+  }
+
+  function planningMarkup({meta,trip,profile,budget,currency,start}){
+    const d=context(),id=meta.id,hasPlanning=(meta.capabilities||[]).includes('trip-planning');
+    const eligible=trip?(d.journeyAdapter?.eligibleStartStops?.(trip)||[trip?.stops?.[0]].filter(Boolean)):[];
+    const routeStartRequired=eligible.length>1;
+    const plan=d.TripTools.planningStatus({storage:d.storage,tripId:id,profile,hasPlanning,routeStartRequired});
+    const routeStartId=d.TripTools.getRouteStart(d.storage,id);
+    const places=new Map((trip?.places||[]).map(place=>[place.id,place]));
+    const routeStop=eligible.find(stop=>stop.id===routeStartId)||null;
+    const routeName=routeStop?d.local(places.get(routeStop.placeId)?.name):'';
+    const checks=d.TripTools.getPlanningChecks(d.storage,id);
+    const origin=String(profile?.origin||profile?.originCountry||'').trim();
+    const values={
+      origin:origin||d.t('notSet'),
+      routeStart:routeName||d.t('notSet'),
+      startDate:start||d.t('notSet'),
+      budget:budget?money(budget.total,currency,d.locale()):d.t('notSet'),
+      access:checks.accessCheckedAt?(d.t('manualCheckRecorded')+' · '+dateLabel(checks.accessCheckedAt,d.locale())):d.t('currentCheck')
+    };
+    const steps=plan.items.map(item=>
+      '<span class="platform-mytrip-plan-step '+(item.complete?'ok':'pending')+'" data-planning-step="'+d.esc(item.id)+'">'+
+        '<i aria-hidden="true">'+(item.complete?'✓':'·')+'</i><span><b>'+d.esc(planningLabel(item.id))+'</b><small>'+d.esc(values[item.id]||d.t('notSet'))+'</small></span>'+
+      '</span>'
+    ).join('');
+    const next=plan.complete?d.t('planningCoreRecorded'):(d.t('nextPlanningStep')+': '+planningLabel(plan.next));
+    const actionText=checks.accessCheckedAt?d.t('markForRecheck'):d.t('recordCurrentCheck');
+    return '<section class="platform-mytrip-plan">'+
+      '<div class="platform-mytrip-plan-head"><div><span>'+d.esc(d.t('planningStatus'))+'</span><b>'+d.esc(next)+'</b></div><strong>'+d.esc(String(plan.completed))+' / '+d.esc(String(plan.total))+'</strong></div>'+
+      '<div class="platform-mytrip-plan-list">'+steps+'</div>'+
+      '<div class="platform-mytrip-plan-foot"><small>'+d.esc(d.t('planningStatusLead'))+'</small><button type="button" data-mytrip-access-check="'+d.esc(id)+'" data-checked="'+(checks.accessCheckedAt?'true':'false')+'">'+d.esc(actionText)+'</button></div>'+
+    '</section>';
   }
 
   async function buildCard(meta,profile){
@@ -48,17 +98,22 @@
       '<span class="'+(budget?'ok':'')+'">'+d.esc(d.t('budgetEstimate'))+': <b>'+d.esc(budget?money(budget.total,currency,d.locale()):d.t('notSet'))+'</b></span>'
     ].join('');
     return '<article class="platform-mytrip-card" data-mytrip="'+d.esc(id)+'">'+
-      '<div class="platform-mytrip-head"><div><span>'+d.esc(d.statusLabel(meta))+'</span><h3>'+d.esc(d.local(meta.title))+'</h3></div><button type="button" data-mytrip-remove="'+d.esc(id)+'">×</button></div>'+
+      '<div class="platform-mytrip-head"><div><span>'+d.esc(d.statusLabel(meta))+'</span><h3>'+d.esc(d.local(meta.title))+'</h3></div><button type="button" data-mytrip-remove="'+d.esc(id)+'" aria-label="'+d.esc(d.t('removeSaved'))+'">×</button></div>'+
       '<p>'+d.esc(d.local(meta.subtitle))+'</p>'+
       '<div class="platform-mytrip-setup">'+setup+'</div>'+
+      planningMarkup({meta,trip,profile,budget,currency,start})+
       '<div class="platform-mytrip-fit">'+fitMarkup(meta,profile)+'</div>'+
-      '<div class="platform-mytrip-actions"><button type="button" data-mytrip-open="'+d.esc(id)+'">'+d.esc(d.t('open'))+' →</button></div>'+
+      '<div class="platform-mytrip-actions"><button type="button" data-mytrip-open="'+d.esc(id)+'">'+d.esc(d.t('continuePlanning'))+' →</button></div>'+
     '</article>';
   }
 
   async function render(modal){
     const d=context(),profile=d.loadProfile(),saved=d.TripTools.load(d.storage).savedTrips;
-    const metas=(d.catalog.trips||[]).filter(meta=>saved.includes(meta.id));
+    const metas=(d.catalog.trips||[]).filter(meta=>saved.includes(meta.id)).sort((a,b)=>{
+      const aDate=d.TripTools.getStartDate(d.storage,a.id)||'9999-12-31';
+      const bDate=d.TripTools.getStartDate(d.storage,b.id)||'9999-12-31';
+      return aDate.localeCompare(bDate)||d.local(a.title).localeCompare(d.local(b.title));
+    });
     const body=$('[data-mytrips-body]',modal);
     const count=$('[data-mytrips-count]',modal);
     if(count)count.textContent=String(metas.length);
@@ -80,6 +135,12 @@
     modal.onclick=async event=>{
       const exportBtn=event.target.closest('[data-mytrips-export]');
       if(exportBtn){d.TripTools.download('one-world-route-planning-workspace.json',d.TripTools.workspaceJson(d.storage),'application/json');return}
+      const checkBtn=event.target.closest('[data-mytrip-access-check]');
+      if(checkBtn){
+        d.TripTools.setAccessChecked(d.storage,checkBtn.dataset.mytripAccessCheck,checkBtn.dataset.checked!=='true');
+        await render(modal);
+        return;
+      }
       const openBtn=event.target.closest('[data-mytrip-open]');
       if(openBtn){d.onOpenTrip(openBtn.dataset.mytripOpen);return}
       const removeBtn=event.target.closest('[data-mytrip-remove]');
