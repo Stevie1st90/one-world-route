@@ -9,12 +9,12 @@
 <div class="shell">
 <aside>
 <div class="brand"><span class="orb"></span><div><b>ONE WORLD ROUTE</b><small>Internal Trip Builder</small></div></div>
-<button id="newBtn" class="primary">+ New draft</button><button id="cloneBtn">Clone public trip</button><button id="coverageBtn">Experience coverage</button>
+<button id="newBtn" class="primary">+ New draft</button><button id="cloneBtn">Clone public trip</button><button id="coverageBtn">Experience coverage</button><button id="maintenanceBtn">Maintenance queue</button>
 <div class="label">Drafts</div><div id="drafts" class="drafts"></div>
 <div class="aside-note">Local-only authoring. Drafts stay outside the public catalog until Publish passes the gate.</div>
 </aside>
 <main>
-<div class="mobile-tools"><select id="mobileDraftSelect"><option value="">Select draft…</option></select><button id="mobileNewBtn" class="primary">New</button><button id="mobileCloneBtn">Clone</button><button id="mobileCoverageBtn">Coverage</button></div>
+<div class="mobile-tools"><select id="mobileDraftSelect"><option value="">Select draft…</option></select><button id="mobileNewBtn" class="primary">New</button><button id="mobileCloneBtn">Clone</button><button id="mobileCoverageBtn">Coverage</button><button id="mobileMaintenanceBtn">Maintenance</button></div>
 <header><div><span class="eyebrow">CONTENT PIPELINE</span><h1 id="heading">Select or create a trip</h1><p id="subheading">Author → validate → preview with the real regional engine → publish locally → normal Git/QA/deploy workflow.</p></div>
 <div class="actions"><button id="previewBtn" disabled>Preview</button><button id="saveBtn" disabled>Save draft</button><button id="validateBtn" disabled>Validate</button><button id="publishBtn" class="primary" disabled>Publish</button></div></header>
 <section id="empty" class="empty">Create a draft or clone a reusable public trip to begin.</section>
@@ -23,7 +23,7 @@
 <div class="grid">
 <section class="card"><h2>Identity & discovery</h2><div class="fields">
 <label>Slug<input id="slug" readonly></label><label>Kind<input id="kind"></label>
-<label>Status<select id="status"><option>draft</option><option>sourced-beta</option><option>published</option></select></label><label>Days<input id="days" type="number" min="1"></label>
+<label>Status<select id="status"><option>draft</option><option>planned</option><option>sourced-beta</option><option>illustrative-template</option><option>editorial-preview</option></select></label><label>Days<input id="days" type="number" min="1"></label>
 <label>Title EN<input id="titleEn"></label><label>Title DE<input id="titleDe"></label>
 <label>Subtitle EN<input id="subtitleEn"></label><label>Subtitle DE<input id="subtitleDe"></label>
 <label>Regions<input id="regions"></label><label>Themes<input id="themes"></label><label>Modes<input id="modes"></label>
@@ -49,6 +49,13 @@
 <section><h3>Editorial queue</h3><p class="coverage-help">Places used by more journeys come first; ties use featured journeys, stop days and feature priority.</p><div id="coverageQueue" class="coverage-list"></div></section>
 <section><h3>Journey coverage</h3><p class="coverage-help">Missing experience copy never blocks publishing; this shows where enrichment has the most effect.</p><div id="coverageJourneys" class="coverage-list"></div></section>
 </div>
+</div></dialog>
+
+
+<dialog id="maintenanceDialog" class="coverage-dialog"><div class="coverage-shell">
+<div class="coverage-head"><div><span class="eyebrow">CONTENT OPERATIONS</span><h2>Maintenance queue</h2><p>Source and experience reviews derived from the same metadata used by CI. Due-soon items are advisory; expired and overdue items are the priority.</p></div><button type="button" data-close="maintenanceDialog">Close</button></div>
+<div id="maintenanceSummary" class="coverage-summary"></div>
+<section class="maintenance-queue-card"><h3>Review queue</h3><p class="coverage-help">Nothing here is guessed from the web. The queue is calculated from checkedAt, validUntil and configured review intervals.</p><div id="maintenanceQueue" class="coverage-list"></div></section>
 </div></dialog>
 
 <script src="/__builder/app.js"></script>
