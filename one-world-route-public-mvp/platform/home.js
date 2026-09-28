@@ -49,29 +49,28 @@
   };
   const primaryRegion=trip=>trip.discovery?.regions?.find(region=>!['global','europe','asia','africa','north-america','south-america','oceania'].includes(region))||trip.discovery?.regions?.[0]||trip.kind;
 
-  function recommendationScore(trip){
-    const d=context();
-    let score=Number(trip.visual?.featurePriority||0);
-    if(!d.profileConfigured?.())return score;
-    const profile=d.loadProfile(),fit=trip.discovery?.fit||{};
-    const party=d.travellerFit?.partyKey?.(profile);
-    if(party&&(fit.party||[]).includes(party))score+=24;
-    if(profile?.originRegion&&((trip.discovery?.regions||[]).includes(profile.originRegion)||fit.startRegion===profile.originRegion))score+=18;
-    if(profile?.vehicle&&(trip.discovery?.modes||[]).includes('car'))score+=7;
-    if(profile?.accessibility?.reducedMobility&&fit.accessibility==='standard-check')score+=4;
-    return score;
-  }
+  const durationLabel=value=>({
+    '7-14':'7–14',
+    '15-30':'15–30',
+    '31-89':'31–89',
+    '90-plus':'90+'
+  }[value]||value);
+
   function recommendationReasonMarkup(trip){
     const d=context();
     if(!d.profileConfigured?.())return '';
     const reasons=d.travellerFit?.recommendationReasons?.(trip,d.loadProfile())||[];
     if(!reasons.length)return '';
     const label=reason=>{
+      if(reason.kind==='duration')return d.t('filterDuration')+' · '+durationLabel(reason.value)+' '+d.t('days');
+      if(reason.kind==='pace')return d.t('fitPace')+' · '+d.facetLabel(reason.value);
+      if(reason.kind==='season')return d.t('fitSeason')+' · '+d.facetLabel(reason.value);
+      if(reason.kind==='theme')return d.t('filterTheme')+' · '+d.facetLabel(reason.value);
       if(reason.kind==='origin')return d.t('fitStart')+' · '+d.facetLabel(reason.value);
       if(reason.kind==='party')return d.t('fitParty')+' · '+d.facetLabel(reason.value);
       return d.t('transportModes')+' · '+d.facetLabel(reason.value);
     };
-    return '<div class="platform-home-card-fit">'+reasons.map(reason=>'<span>'+d.esc(label(reason))+'</span>').join('')+'</div>';
+    return '<div class="platform-home-card-fit">'+reasons.map(reason=>'<span data-recommendation-kind="'+d.esc(reason.kind)+'">'+d.esc(label(reason))+'</span>').join('')+'</div>';
   }
 
   function visualMarkup(trip){
@@ -128,10 +127,11 @@
   function renderFeatured(){
     const d=context(),host=$('#platformHomeFeatured');
     if(!host)return;
-    const trips=(d.catalog.trips||[])
-      .filter(trip=>trip.id!==d.catalog.defaultTripId)
-      .sort((a,b)=>recommendationScore(b)-recommendationScore(a)||Number(b.visual?.featurePriority||0)-Number(a.visual?.featurePriority||0))
-      .slice(0,6);
+    const candidates=(d.catalog.trips||[]).filter(trip=>trip.id!==d.catalog.defaultTripId);
+    const trips=(d.profileConfigured?.()
+      ?d.travellerFit.rank(candidates,d.loadProfile()).map(result=>result.trip)
+      :[...candidates].sort((a,b)=>Number(b.visual?.featurePriority||0)-Number(a.visual?.featurePriority||0))
+    ).slice(0,6);
     host.innerHTML=trips.map(trip=>card(trip,{featured:true})).join('');
   }
 
@@ -198,6 +198,7 @@
       if(definition)found=found.filter(trip=>collectionMatches(trip,definition));
     }
     if($('#homeRouteSavedOnly')?.checked)found=found.filter(trip=>d.tripTools.isSaved(d.storage,trip.id));
+    if(d.profileConfigured?.())found=d.travellerFit.rank(found,d.loadProfile()).map(result=>result.trip);
     const visible=found.slice(0,resultLimit);
     host.innerHTML=found.length?visible.map(card).join(''):'<div class="platform-home-empty">'+d.esc(d.t('noRoutes'))+'</div>';
     const more=$('#platformHomeMore');
