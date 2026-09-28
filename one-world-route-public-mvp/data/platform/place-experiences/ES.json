@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "ES",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "ES:barcelona",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "coast"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Distinctive architecture, dense neighbourhood life and the Mediterranean waterfront combine culture, city energy and coast in one stop.",
+        "de": "Markante Architektur, dichtes Viertelleben und die Mittelmeerküste verbinden Kultur, Großstadtenergie und Meer in einem Stopp.",
+        "it": "Architettura riconoscibile, vita intensa dei quartieri e lungomare mediterraneo uniscono cultura, energia urbana e costa in un’unica tappa.",
+        "es": "Arquitectura singular, intensa vida de barrio y frente marítimo mediterráneo combinan cultura, energía urbana y costa en una sola parada.",
+        "fr": "Architecture singulière, vie de quartier dense et front de mer méditerranéen réunissent culture, énergie urbaine et littoral en une seule étape.",
+        "pt": "Arquitetura marcante, vida intensa de bairro e orla mediterrânea combinam cultura, energia urbana e litoral em uma única parada."
+      }
+    }
+  ]
+}

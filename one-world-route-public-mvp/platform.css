@@ -169,6 +169,16 @@ body.platform-home #globeLoader,body.platform-home #globeFallback{display:none!i
 @media(max-width:520px){.platform-guide-rhythm,.platform-guide-focus{grid-template-columns:1fr}.platform-guide-focus b{white-space:normal}}
 
 
+/* Reusable place experience layer */
+.platform-stop-experience{margin:12px 0;padding:13px;border:1px solid rgba(119,196,255,.14);border-radius:14px;background:linear-gradient(145deg,rgba(48,110,155,.08),rgba(255,255,255,.018))}
+.platform-stop-experience-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px}
+.platform-stop-experience-head span{font-size:8px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:#91ddf0}
+.platform-stop-experience-head b{padding:4px 7px;border-radius:999px;background:rgba(255,255,255,.05);color:#8499ad;font-size:7px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.platform-stop-experience p{margin:0;color:#a4b5c6;font-size:9.5px;line-height:1.55}
+.platform-stop-experience-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}.platform-stop-experience-tags span{padding:4px 7px;border:1px solid rgba(255,255,255,.07);border-radius:999px;background:rgba(255,255,255,.025);color:#8197aa;font-size:7px}
+@media(max-width:520px){.platform-stop-experience-head{align-items:flex-start}.platform-stop-experience-head b{text-align:right}.platform-stop-experience p{font-size:10px}}
+
+
 /* Practical trip-planning layer */
 .platform-planning-guide{margin-top:18px;padding:16px;border:1px solid rgba(151,215,255,.16);border-radius:18px;background:linear-gradient(180deg,rgba(10,25,39,.78),rgba(7,17,28,.72))}
 .platform-planning-head{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;margin-bottom:8px}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-28",
+  "shards": [
+    {
+      "countryCode": "ES",
+      "dataset": "./data/platform/place-experiences/ES.json"
+    },
+    {
+      "countryCode": "FR",
+      "dataset": "./data/platform/place-experiences/FR.json"
+    },
+    {
+      "countryCode": "IT",
+      "dataset": "./data/platform/place-experiences/IT.json"
+    },
+    {
+      "countryCode": "JP",
+      "dataset": "./data/platform/place-experiences/JP.json"
+    }
+  ]
+}

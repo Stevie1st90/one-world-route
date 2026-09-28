@@ -10,6 +10,23 @@ const collections = await readJson('data/platform/collections.json');
 const allowedModes = new Set(['walk','bicycle','road','car','motorcycle','bus','coach','rail','metro','tram','ground-transfer','rideshare','taxi','ferry','cruise','flight','helicopter','rail+ground','multimodal','other']);
 let failed = false;
 const fail = m => { failed = true; console.error('PLATFORM VALIDATION:', m); };
+const experienceIndex = await readJson('data/platform/place-experiences/index.json');
+const experienceProfiles = new Map();
+for (const shardMeta of experienceIndex.shards || []) {
+  if (!/^[A-Z]{2}$/.test(String(shardMeta.countryCode||''))) fail('place experience shard requires ISO-like countryCode');
+  const shardPath=String(shardMeta.dataset||'').replace(/^\.\//,'');
+  const shard=await readJson(shardPath);
+  if (shard.countryCode!==shardMeta.countryCode) fail('place experience shard country mismatch: '+shardMeta.countryCode);
+  for (const profile of shard.profiles || []) {
+    if (!profile.id || experienceProfiles.has(profile.id)) fail('duplicate place experience profile '+profile.id);
+    else experienceProfiles.set(profile.id,profile);
+    if (!new RegExp('^'+shardMeta.countryCode+':[a-z0-9]+(?:-[a-z0-9]+)*$').test(String(profile.id||''))) fail('invalid place experience id '+profile.id);
+    if (profile.contentType!=='editorial-evergreen') fail('place experience '+profile.id+': contentType must be editorial-evergreen');
+    if (!Array.isArray(profile.tags)||!profile.tags.length||profile.tags.some(tag=>!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(String(tag)))) fail('place experience '+profile.id+': normalized tags required');
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(profile.reviewedAt||''))) fail('place experience '+profile.id+': reviewedAt required');
+    if (!Number.isInteger(Number(profile.reviewDays))||Number(profile.reviewDays)<1) fail('place experience '+profile.id+': reviewDays must be positive');
+  }
+}
 const ids = new Set();
 const slugs = new Set();
 const supportedLocales = Array.isArray(catalog.supportedLocales)?catalog.supportedLocales:[];
@@ -70,6 +87,11 @@ for (const item of catalog.trips || []) {
     if (!p.id || placeIds.has(p.id)) fail(item.id+': duplicate place '+p.id); else placeIds.add(p.id);
     placeById.set(p.id,p);
     if (!Number.isFinite(p.coordinates?.lat) || !Number.isFinite(p.coordinates?.lng)) fail(item.id+': place '+p.id+' requires coordinates');
+    if (p.experienceRef) {
+      if (!/^[A-Z]{2}:[a-z0-9]+(?:-[a-z0-9]+)*$/.test(String(p.experienceRef))) fail(item.id+': invalid experienceRef on '+p.id);
+      else if (!experienceProfiles.has(p.experienceRef)) fail(item.id+': place '+p.id+' references missing experience profile '+p.experienceRef);
+      else if (!String(p.experienceRef).startsWith(String(p.countryCode||'')+':')) fail(item.id+': place '+p.id+' experienceRef country mismatch');
+    }
   }
   const stopIds = new Set();
   const stopById = new Map();
@@ -171,5 +193,8 @@ for(const collection of collections.collections||[]){
   }
 }
 
+for (const [id,profile] of experienceProfiles) {
+  for (const lang of supportedLocales) if (!String(profile.essence?.[lang]||'').trim()) fail('place experience '+id+': missing essence for '+lang);
+}
 if (failed) process.exit(1);
-console.log('Platform data validation complete:', catalog.trips.length, 'trips;', collectionIds.size, 'collections; shared knowledge', knowledgeIds.size, 'items; flagship invariants 195 countries / 194 international legs preserved');
+console.log('Platform data validation complete:', catalog.trips.length, 'trips;', collectionIds.size, 'collections; shared knowledge', knowledgeIds.size, 'items; place experiences', experienceProfiles.size, 'profiles; flagship invariants 195 countries / 194 international legs preserved');

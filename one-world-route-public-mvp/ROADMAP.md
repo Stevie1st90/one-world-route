@@ -39,6 +39,7 @@
 Implemented foundation:
 - generic trip catalog and route URLs
 - data-derived Journey Guide for regional routes, including travel rhythm, time focus, transport mix and transparent pre-booking checks
+- reusable localized Place Experience layer, initially seeded for Japan and shared high-overlap European stops, with country-sharded loading and maintenance review dates
 - localized crawlable trip URLs with canonical/hreflang and TouristTrip structured data
 - reusable place / visit / segment schema
 - Traveller Context without a German-default assumption

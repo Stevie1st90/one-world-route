@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','formatters.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','journey-adapter.js','shared-knowledge.js','trip-tools.js','traveller-fit.js','trip-compare.js','journey-guide.js','trip-planning.js','my-trips.js','home.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','regional-selection.js','story.js','terrain.js','extensions.js','extensions/cruise.js','extensions/road.js','extensions/border.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','formatters.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','journey-adapter.js','shared-knowledge.js','trip-tools.js','traveller-fit.js','trip-compare.js','journey-guide.js','place-experiences.js','trip-planning.js','my-trips.js','home.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','regional-selection.js','story.js','terrain.js','extensions.js','extensions/cruise.js','extensions/road.js','extensions/border.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -294,6 +294,18 @@ test('practical trip planning stays capability-driven and trip-generic',()=>{
   assert.match(planning,/function snapshot/);
   assert.match(detail,/d\.tripPlanning\.render/);
   assert.doesNotMatch(planning,/italy-grand-tour|trip\.id\s*===|trip\.kind\s*===/);
+});
+
+test('place experience layer is reusable, lazy-loaded and trip-generic',()=>{
+  const experiences=moduleSources['place-experiences.js'];
+  const detail=moduleSources['regional-detail.js'];
+  assert.match(source,/const PlaceExperiences=PLATFORM_MODULES\.placeExperiences/);
+  assert.match(source,/PlaceExperiences\.loadForTrip\(currentTrip\)/);
+  assert.match(experiences,/function loadForTrip/);
+  assert.match(experiences,/function routeRole/);
+  assert.match(experiences,/function render/);
+  assert.match(detail,/d\.placeExperiences\.render/);
+  assert.doesNotMatch(experiences,/trip\.id\s*===|trip\.kind\s*===|japan-by-rail|italy-grand-tour/);
 });
 
 test('platform core delegates reusable concerns to modules',()=>{

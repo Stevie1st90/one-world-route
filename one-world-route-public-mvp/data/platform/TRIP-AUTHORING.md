@@ -179,6 +179,31 @@ Directional transport evidence, fares and timing MUST NOT be reused after revers
 
 The product must never invent a "best" gateway from a free-text home city. A future geocoding/routing provider may rank entry gateways, but until such a provider is configured the user chooses the eligible route start explicitly.
 
+## Reusable Place Experiences
+
+Stable destination inspiration belongs in the shared place-experience library, not in every trip file.
+
+A place can opt into reusable content with:
+
+```json
+{
+  "id": "rome",
+  "countryCode": "IT",
+  "experienceRef": "IT:rome"
+}
+```
+
+Profiles live in country shards under `data/platform/place-experiences/`. The runtime loads only shards referenced by the active journey. A Rome profile can therefore be reused by a round trip, road trip or future journey without duplicating translations or maintenance.
+
+Each profile contains:
+- a localized evergreen `essence`,
+- normalized experience tags,
+- `reviewedAt` and `reviewDays` maintenance metadata.
+
+Use this layer for long-lived destination character such as history, food, urban atmosphere, coast, nature or mountains. Do **not** put timetables, fares, opening hours, visa rules, closures, seasonal service availability or other volatile claims here.
+
+If a place has no `experienceRef`, the journey still renders normally. Missing experience coverage is an editorial enhancement opportunity, not a renderer failure. This lets coverage grow progressively without making new journey publication dependent on writing 100% of destination copy first.
+
 ## Automatic Journey Guide
 
 Every published regional trip receives a Journey Guide without a second hand-written content file. The guide derives from the canonical trip graph:

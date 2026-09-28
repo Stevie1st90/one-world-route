@@ -76,6 +76,9 @@ test('global discovery facets are localized across supported locales',()=>{
   assert.equal(i18n.messages.fr.originCountry,'Pays de départ');
   assert.equal(i18n.messages.en.journeyGuide,'Journey guide');
   assert.equal(i18n.messages.de.journeyGuide,'Reise-Guide');
+  assert.equal(i18n.messages.en.whatToExpect,'What to expect');
+  assert.equal(i18n.messages.de.experienceRoleAnchor,'Längerer Aufenthalt');
+  assert.equal(i18n.messages.fr.experienceRoleFinale,'Finale de l’itinéraire');
   assert.match(i18n.messages.pt.guideReviewSegments,/\{count\}.*\{total\}/);
   assert.equal(i18n.messages.en.curatedCollections,'Curated collections');
   assert.equal(i18n.messages.de.loadMoreJourneys,'{count} weitere Reisen anzeigen');

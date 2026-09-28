@@ -62,6 +62,10 @@ test('production critical public surfaces boot cleanly',async({page,request,isMo
   await expect.poll(()=>page.locator('.platform-stop').count(),{timeout:15000}).toBeGreaterThan(1);
   await expect(page.locator('body')).not.toContainText('[object');
   await expect(page.locator('body')).not.toContainText(/\bundefined\b/i);
+  await expect(page.locator('.platform-journey-guide')).toHaveCount(1);
+  await page.locator('[data-journey-stop-index="0"]').evaluate(node=>node.click());
+  await expect(page.locator('.platform-stop-experience')).toHaveCount(1);
+  await expect(page.locator('.platform-stop-experience')).toContainText('What to expect');
 
   if(isMobile){
     const overflow=await page.evaluate(()=>({x:window.scrollX,app:document.querySelector('#app')?.scrollLeft||0}));

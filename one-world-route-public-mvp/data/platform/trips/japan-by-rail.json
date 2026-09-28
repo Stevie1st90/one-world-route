@@ -76,7 +76,8 @@
       "coordinates": {
         "lat": 35.6762,
         "lng": 139.6503
-      }
+      },
+      "experienceRef": "JP:tokyo"
     },
     {
       "id": "matsumoto",
@@ -88,7 +89,8 @@
       "coordinates": {
         "lat": 36.238,
         "lng": 137.972
-      }
+      },
+      "experienceRef": "JP:matsumoto"
     },
     {
       "id": "kanazawa",
@@ -100,7 +102,8 @@
       "coordinates": {
         "lat": 36.5613,
         "lng": 136.6562
-      }
+      },
+      "experienceRef": "JP:kanazawa"
     },
     {
       "id": "kyoto",
@@ -112,7 +115,8 @@
       "coordinates": {
         "lat": 35.0116,
         "lng": 135.7681
-      }
+      },
+      "experienceRef": "JP:kyoto"
     },
     {
       "id": "osaka",
@@ -124,7 +128,8 @@
       "coordinates": {
         "lat": 34.6937,
         "lng": 135.5023
-      }
+      },
+      "experienceRef": "JP:osaka"
     },
     {
       "id": "hiroshima",
@@ -136,7 +141,8 @@
       "coordinates": {
         "lat": 34.3853,
         "lng": 132.4553
-      }
+      },
+      "experienceRef": "JP:hiroshima"
     }
   ],
   "stops": [

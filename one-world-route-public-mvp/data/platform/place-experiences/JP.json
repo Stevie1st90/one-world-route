@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "JP",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "JP:tokyo",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "food",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Dense neighbourhood contrasts, food culture and design unfold around an extensive urban rail network.",
+        "de": "Dichte Kontraste zwischen Stadtvierteln, Esskultur und Design entfalten sich rund um ein weit verzweigtes Nahverkehrsnetz.",
+        "it": "Contrasti tra quartieri, cultura gastronomica e design si intrecciano intorno a una vasta rete ferroviaria urbana.",
+        "es": "Los contrastes entre barrios, la cultura gastronómica y el diseño se despliegan alrededor de una amplia red ferroviaria urbana.",
+        "fr": "Les contrastes entre quartiers, la culture culinaire et le design s’organisent autour d’un vaste réseau ferroviaire urbain.",
+        "pt": "Contrastes entre bairros, cultura gastronômica e design se desenvolvem em torno de uma ampla rede ferroviária urbana."
+      }
+    },
+    {
+      "id": "JP:matsumoto",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "mountains",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A compact castle city at the edge of the Japanese Alps, combining historic streets with a clear transition toward mountain Japan.",
+        "de": "Eine kompakte Burgstadt am Rand der Japanischen Alpen, die historische Straßen mit dem Übergang in die Bergwelt Japans verbindet.",
+        "it": "Una compatta città-castello ai margini delle Alpi giapponesi, tra strade storiche e il passaggio verso il Giappone montano.",
+        "es": "Una compacta ciudad con castillo al borde de los Alpes japoneses, entre calles históricas y la transición hacia el Japón de montaña.",
+        "fr": "Une ville-château compacte au bord des Alpes japonaises, entre rues historiques et transition vers le Japon montagnard.",
+        "pt": "Uma cidade compacta de castelo às margens dos Alpes Japoneses, entre ruas históricas e a transição para o Japão de montanha."
+      }
+    },
+    {
+      "id": "JP:kanazawa",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "culture",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Historic districts, gardens, craft traditions and seafood shape this cultured stop on the Sea of Japan coast.",
+        "de": "Historische Viertel, Gärten, Handwerkstraditionen und Meeresküche prägen diesen kulturell geprägten Stopp an der Küste des Japanischen Meeres.",
+        "it": "Quartieri storici, giardini, tradizioni artigiane e cucina di mare caratterizzano questa tappa sulla costa del Mar del Giappone.",
+        "es": "Barrios históricos, jardines, tradiciones artesanales y cocina marinera definen esta parada en la costa del mar de Japón.",
+        "fr": "Quartiers historiques, jardins, traditions artisanales et cuisine de la mer donnent son caractère à cette étape sur la côte de la mer du Japon.",
+        "pt": "Bairros históricos, jardins, tradições artesanais e gastronomia do mar marcam esta parada na costa do Mar do Japão."
+      }
+    },
+    {
+      "id": "JP:kyoto",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "culture",
+        "history",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Temple districts, traditional streets, gardens and craft culture make Kyoto a heritage-rich stop that rewards unhurried exploration.",
+        "de": "Tempelviertel, traditionelle Straßen, Gärten und Handwerkskultur machen Kyoto zu einem besonders geschichtsträchtigen Stopp, der Zeit zum Erkunden belohnt.",
+        "it": "Quartieri di templi, strade tradizionali, giardini e cultura artigiana rendono Kyoto una tappa ricca di patrimonio da esplorare con calma.",
+        "es": "Barrios de templos, calles tradicionales, jardines y cultura artesanal hacen de Kioto una parada rica en patrimonio que merece recorrerse sin prisa.",
+        "fr": "Quartiers de temples, rues traditionnelles, jardins et culture artisanale font de Kyoto une étape riche en patrimoine à découvrir sans se presser.",
+        "pt": "Bairros de templos, ruas tradicionais, jardins e cultura artesanal fazem de Kyoto uma parada rica em patrimônio para explorar sem pressa."
+      }
+    },
+    {
+      "id": "JP:osaka",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "food",
+        "cities",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Street food, nightlife and dense commercial districts give Osaka an informal, high-energy urban character.",
+        "de": "Streetfood, Nachtleben und dichte Geschäftsviertel geben Osaka einen informellen, energiegeladenen Großstadtcharakter.",
+        "it": "Street food, vita notturna e fitti quartieri commerciali danno a Osaka un carattere urbano informale e dinamico.",
+        "es": "La comida callejera, la vida nocturna y los densos distritos comerciales dan a Osaka un carácter urbano informal y enérgico.",
+        "fr": "Cuisine de rue, vie nocturne et quartiers commerçants denses donnent à Osaka un caractère urbain informel et énergique.",
+        "pt": "Comida de rua, vida noturna e distritos comerciais densos dão a Osaka um caráter urbano informal e cheio de energia."
+      }
+    },
+    {
+      "id": "JP:hiroshima",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "culture",
+        "coast"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Remembrance and renewal sit alongside a modern waterfront city and easy access to the Seto Inland Sea.",
+        "de": "Erinnerung und Neubeginn treffen hier auf eine moderne Stadt am Wasser und den Zugang zur Seto-Inlandsee.",
+        "it": "Memoria e rinascita convivono con una moderna città sul lungomare e con l’accesso al Mare Interno di Seto.",
+        "es": "Memoria y renovación conviven con una moderna ciudad frente al agua y el acceso al mar Interior de Seto.",
+        "fr": "Mémoire et renouveau côtoient une ville moderne au bord de l’eau et l’accès à la mer intérieure de Seto.",
+        "pt": "Memória e renovação convivem com uma cidade moderna à beira d’água e com acesso ao Mar Interior de Seto."
+      }
+    }
+  ]
+}

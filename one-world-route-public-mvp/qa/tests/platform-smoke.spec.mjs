@@ -179,6 +179,27 @@ test('@regional editorial preview journey uses the generic visual detail shell',
   expect(errors,'editorial preview runtime page errors').toEqual([]);
 });
 
+test('@regional reusable place experience content renders from a shared country shard',async({page,isMobile},testInfo)=>{
+  test.setTimeout(60000);
+  const errors=capturePageErrors(page);
+  await page.goto('/?trip=japan-by-rail&lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:15000});
+  if(isMobile){
+    await page.locator('#mobileDetails').click();
+    await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);
+  }
+  await page.locator('[data-journey-stop-index="2"]').evaluate(node=>node.click());
+  await expect(page.locator('#detailTitle')).toHaveText('Kanazawa');
+  await expect(page.locator('.platform-stop-experience')).toHaveCount(1);
+  await expect(page.locator('.platform-stop-experience')).toContainText('What to expect');
+  await expect(page.locator('.platform-stop-experience')).toContainText('Longer stay');
+  await expect(page.locator('.platform-stop-experience')).toContainText('Historic districts');
+  await expect(page.locator('.platform-stop-experience-tags')).toContainText('History');
+  await page.locator('.platform-stop-experience').screenshot({path:testInfo.outputPath('place-experience.png'),animations:'disabled'});
+  if(isMobile)await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
+  expect(errors,'place experience runtime page errors').toEqual([]);
+});
+
 test('@regional representative regional shell boots cleanly',async({page,isMobile})=>{
   test.setTimeout(30000);
   expect(regional).toBeTruthy();

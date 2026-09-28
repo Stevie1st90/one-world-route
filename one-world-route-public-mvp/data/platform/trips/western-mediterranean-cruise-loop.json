@@ -84,7 +84,8 @@
             "barcelona-port-cruise"
           ]
         }
-      }
+      },
+      "experienceRef": "ES:barcelona"
     },
     {
       "id": "port-marseille",
@@ -108,7 +109,8 @@
             "marseille-port-cruise"
           ]
         }
-      }
+      },
+      "experienceRef": "FR:marseille"
     },
     {
       "id": "port-civitavecchia",
@@ -156,7 +158,8 @@
             "naples-terminal-cruise"
           ]
         }
-      }
+      },
+      "experienceRef": "IT:naples"
     },
     {
       "id": "port-la-goulette",

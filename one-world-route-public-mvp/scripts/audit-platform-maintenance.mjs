@@ -11,6 +11,7 @@ const daysBetween=(a,b)=>Math.floor((a-b)/86400000);
 
 const catalog=await readJson('data/platform/trips.json');
 const shared=await readJson('data/platform/shared-knowledge.json').catch(()=>({items:[]}));
+const experienceIndex=await readJson('data/platform/place-experiences/index.json').catch(()=>({shards:[]}));
 const now=new Date();
 const strict=process.argv.includes('--strict-stale');
 const issues=[];
@@ -18,6 +19,9 @@ const reviewCandidates=[];
 let sourceCount=0;
 let liveDependentTrips=0;
 let reversibleTrips=0;
+let experienceProfileCount=0;
+let experienceReferenceCount=0;
+const experienceUse=new Map();
 
 for(const meta of catalog.trips||[]){
   if(meta.renderer==='legacy-world')continue;
@@ -31,6 +35,12 @@ for(const meta of catalog.trips||[]){
   if(trip.routePolicy?.reversible===true&&trip.routePolicy?.startMode!=='endpoints'&&trip.routePolicy?.startMode!=='any-stop'){
     issues.push(meta.id+': reversible route requires endpoints or any-stop startMode');
   }
+  for(const place of trip.places||[]){
+    if(place.experienceRef){
+      experienceReferenceCount++;
+      experienceUse.set(place.experienceRef,(experienceUse.get(place.experienceRef)||0)+1);
+    }
+  }
   const reviewDays=Number(maintenance.sourceReviewDays||180);
   for(const source of trip.sources||[]){
     sourceCount++;
@@ -41,6 +51,19 @@ for(const meta of catalog.trips||[]){
     const until=asDate(source.validUntil);
     if(source.validUntil&&!until)issues.push(meta.id+': source '+source.id+' has invalid validUntil');
     if(until&&until<now)reviewCandidates.push({tripId:meta.id,sourceId:source.id,expired:true,validUntil:source.validUntil});
+  }
+}
+
+for(const shardMeta of experienceIndex.shards||[]){
+  const relative=String(shardMeta.dataset||'').replace(/^\.\//,'');
+  const shard=await readJson(relative);
+  for(const profile of shard.profiles||[]){
+    experienceProfileCount++;
+    const reviewed=asDate(profile.reviewedAt);
+    const reviewDays=Number(profile.reviewDays||365);
+    if(!reviewed){issues.push('place experience '+profile.id+': invalid reviewedAt');continue}
+    const age=daysBetween(now,reviewed);
+    if(age>reviewDays)reviewCandidates.push({tripId:'place-experience',sourceId:profile.id,ageDays:age,reviewDays});
   }
 }
 
@@ -57,6 +80,9 @@ console.log('Reversible personalized trips:',reversibleTrips);
 console.log('Live-dependent trips:',liveDependentTrips);
 console.log('Trip sources:',sourceCount);
 console.log('Shared knowledge items:',shared.items?.length||0);
+console.log('Place experience profiles:',experienceProfileCount);
+console.log('Place experience references:',experienceReferenceCount);
+console.log('Shared place profiles reused by multiple trip places:',[...experienceUse.values()].filter(count=>count>1).length);
 console.log('Review candidates:',reviewCandidates.length);
 for(const item of reviewCandidates.slice(0,30)){
   console.log('-',item.tripId,item.sourceId,item.expired?'expired '+item.validUntil:'age '+item.ageDays+'d > '+item.reviewDays+'d');

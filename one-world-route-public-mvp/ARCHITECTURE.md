@@ -86,6 +86,7 @@ The generic platform is split by responsibility:
 - **regional shell** — trip chrome, stop navigation and chapter rail
 - **regional detail** — generic trip/stop/segment detail rendering
 - **journey guide** — deterministic route-depth summary derived from stop duration, transport modes, price coverage, verification state and route context
+- **place experiences** — lazy-loaded country shards for reusable evergreen destination inspiration; route files carry only `experienceRef` references
 - **regional globe** — Globe.gl isolation, route geometry, camera and focus behavior
 - **regional timeline** — timeline DOM, selected-segment playback and playback timer
 - **regional controls** — settings wiring and methodology UI
@@ -116,6 +117,8 @@ Trip kinds are open normalized slugs. Capabilities determine product behavior. T
 ### Compatibility
 
 The flagship world trip remains on the existing `legacy-world` renderer, including Operations, Story and Terrain. Regional trips can reuse the standard Globe.gl view without Terrain. The platform validator explicitly fails if the legacy world data ceases to contain 195 country entries or 194 macro legs.
+
+Place Experience content is a separate stable-content layer. A place may reference one localized evergreen profile through `experienceRef`. The runtime loads only the country shards needed by the active journey. The same profile can serve rail, road, cruise or future journeys without duplicating copy. Operational claims never belong in this layer.
 
 Regional Journey Guide content is intentionally derived, not a second editorial datastore. It consumes the same place → stop → segment graph and therefore scales automatically to newly published regional journeys. Volatile facts remain in their evidence and maintenance layers.
 

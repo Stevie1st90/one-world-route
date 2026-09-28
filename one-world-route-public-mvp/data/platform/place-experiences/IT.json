@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "IT",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "IT:rome",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "culture",
+        "cities"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Ancient layers, monumental public spaces and everyday neighbourhood life make Rome a dense introduction to Italian history and urban culture.",
+        "de": "Antike Schichten, monumentale Stadträume und alltägliches Viertelleben machen Rom zu einem dichten Einstieg in Italiens Geschichte und Stadtkultur.",
+        "it": "Strati antichi, spazi monumentali e vita quotidiana dei quartieri fanno di Roma un’intensa introduzione alla storia e alla cultura urbana italiana.",
+        "es": "Capas de historia antigua, espacios monumentales y vida cotidiana de barrio hacen de Roma una intensa introducción a la historia y cultura urbana de Italia.",
+        "fr": "Strates antiques, espaces monumentaux et vie quotidienne des quartiers font de Rome une introduction dense à l’histoire et à la culture urbaine italiennes.",
+        "pt": "Camadas antigas, espaços monumentais e vida cotidiana de bairro fazem de Roma uma introdução intensa à história e à cultura urbana italiana."
+      }
+    },
+    {
+      "id": "IT:florence",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "culture",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Renaissance streetscapes, museums, artisan traditions and Tuscan food culture concentrate a great deal of Italy into a walkable historic core.",
+        "de": "Renaissance-Stadtbild, Museen, Handwerkstraditionen und toskanische Esskultur bündeln viel Italien in einem gut zu Fuß erfahrbaren historischen Zentrum.",
+        "it": "Paesaggio rinascimentale, musei, tradizioni artigiane e cultura gastronomica toscana concentrano molto dell’Italia in un centro storico percorribile a piedi.",
+        "es": "Paisaje renacentista, museos, tradiciones artesanas y cultura gastronómica toscana concentran mucho de Italia en un centro histórico fácil de recorrer a pie.",
+        "fr": "Décor Renaissance, musées, traditions artisanales et culture culinaire toscane concentrent une grande part de l’Italie dans un centre historique propice à la marche.",
+        "pt": "Cenário renascentista, museus, tradições artesanais e cultura gastronômica toscana concentram muito da Itália em um centro histórico fácil de explorar a pé."
+      }
+    },
+    {
+      "id": "IT:naples",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "food",
+        "history",
+        "coast"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Layered streets, intense food culture and a bayfront setting give Naples a vivid southern-Italian character with history always close by.",
+        "de": "Vielschichtige Straßen, intensive Esskultur und die Lage an der Bucht geben Neapel einen lebendigen süditalienischen Charakter, in dem Geschichte ständig präsent ist.",
+        "it": "Strade stratificate, forte cultura gastronomica e posizione sul golfo danno a Napoli un carattere vivace del Sud Italia, con la storia sempre vicina.",
+        "es": "Calles llenas de capas, una intensa cultura gastronómica y su ubicación frente a la bahía dan a Nápoles un carácter vivo del sur de Italia, con la historia siempre cerca.",
+        "fr": "Rues stratifiées, forte culture culinaire et situation sur la baie donnent à Naples un caractère méridional très vivant, avec l’histoire toujours à proximité.",
+        "pt": "Ruas cheias de camadas, forte cultura gastronômica e localização à beira da baía dão a Nápoles um caráter vibrante do sul da Itália, com a história sempre por perto."
+      }
+    }
+  ]
+}

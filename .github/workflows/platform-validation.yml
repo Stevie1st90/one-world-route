@@ -190,6 +190,7 @@ jobs:
           node --check scripts/test-trip-tools.mjs
           node --check scripts/test-trip-planning.mjs
           node --check scripts/test-journey-guide.mjs
+          node --check scripts/test-place-experiences.mjs
           node --check scripts/test-traveller-fit.mjs
           node --check scripts/test-trip-compare.mjs
           node --check scripts/trip-index-model.mjs
@@ -233,6 +234,8 @@ jobs:
         run: node --test scripts/test-trip-planning.mjs
       - name: Journey guide tests
         run: node --test scripts/test-journey-guide.mjs
+      - name: Place experience tests
+        run: node --test scripts/test-place-experiences.mjs
       - name: Traveller Fit tests
         run: node --test scripts/test-traveller-fit.mjs
       - name: Journey comparison tests

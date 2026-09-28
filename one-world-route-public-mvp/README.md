@@ -125,6 +125,7 @@ Current platform features:
 - modular platform validation in the release pipeline
 - Practical trip-planning layer for capability-enabled regional routes: collapsible day-by-day itinerary, known transport minimums, fare/evidence coverage, Route Fit and Traveller-origin context
 - Data-derived Journey Guide on every regional route: route rhythm, time concentration, transport mix and before-booking checks computed from the existing trip graph without extra APIs or duplicated editorial maintenance
+- Reusable place-experience layer: localized evergreen destination character is stored once in country shards and referenced from any journey that visits the place
 - Browser-local trip utility layer: save a journey, filter saved journeys, export JSON/CSV/ICS and calculate a personal planning estimate from explicit user assumptions without accounts
 - My Trips planning workspace with saved-route status, start date, planning season, budget state, transparent Traveller Context checks and a portable planning-backup export
 - Practical planning capability across all published regional journeys; missing transport prices stay explicitly unknown rather than being inferred

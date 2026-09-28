@@ -36,6 +36,11 @@
         "properties": {
           "extensions": {
             "$ref": "#/$defs/extensions"
+          },
+          "experienceRef": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}:[a-z0-9]+(?:-[a-z0-9]+)*$",
+            "description": "Reference to reusable evergreen place-experience content. Shared across trips; operational facts do not belong here."
           }
         },
         "additionalProperties": true
@@ -541,6 +546,13 @@
         "catalog capabilities"
       ],
       "maintenance": "Improve the canonical route/evidence data; do not hand-copy derived guide facts into separate per-trip prose."
+    },
+    "placeExperience": {
+      "rule": "Stable destination inspiration is reusable place content, separate from route-specific planning and volatile facts.",
+      "reference": "place.experienceRef -> data/platform/place-experiences/<country>.json profile id",
+      "loading": "Only shards referenced by the active journey are loaded.",
+      "content": "Localized evergreen essence plus normalized discovery tags.",
+      "maintenance": "Profiles carry reviewedAt and reviewDays. Timetables, fares, entry rules, closures and other volatile claims must remain in sourced planning layers."
     }
   },
   "$defs": {

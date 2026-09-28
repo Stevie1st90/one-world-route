@@ -16,6 +16,7 @@
   const TravellerFit=PLATFORM_MODULES.travellerFit;
   const TripCompare=PLATFORM_MODULES.tripCompare;
   const JourneyGuide=PLATFORM_MODULES.journeyGuide;
+  const PlaceExperiences=PLATFORM_MODULES.placeExperiences;
   const MyTrips=PLATFORM_MODULES.myTrips;
   const TripPlanning=PLATFORM_MODULES.tripPlanning;
   const Extensions=PLATFORM_MODULES.extensions;
@@ -32,7 +33,7 @@
   const Ui=PLATFORM_MODULES.ui;
   const Navigation=PLATFORM_MODULES.navigation;
   const LegacyLocalization=PLATFORM_MODULES.legacyLocalization;
-  if(!LocaleData||!Formatters||!Model||!Traveller||!TravellerUi||!Discovery||!TripTools||!JourneyAdapter||!SharedKnowledge||!TravellerFit||!TripCompare||!JourneyGuide||!MyTrips||!TripPlanning||!Extensions||!Home||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!RegionalSelection||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
+  if(!LocaleData||!Formatters||!Model||!Traveller||!TravellerUi||!Discovery||!TripTools||!JourneyAdapter||!SharedKnowledge||!TravellerFit||!TripCompare||!JourneyGuide||!PlaceExperiences||!MyTrips||!TripPlanning||!Extensions||!Home||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!RegionalSelection||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
   const HOME_REQUEST=location.pathname==='/'&&!new URLSearchParams(location.search).has('trip');
   if(HOME_REQUEST){
     window.ONE_WORLD_ROUTE_OWNERSHIP='home';
@@ -272,6 +273,7 @@
       locale:()=>locale,
       tripPlanning:TripPlanning,
       journeyGuide:JourneyGuide,
+      placeExperiences:PlaceExperiences,
       tripTools:TripTools,
       journeyAdapter:JourneyAdapter,
       sharedKnowledge:SharedKnowledge,
@@ -359,6 +361,7 @@
     currentTripMeta=meta;
     const baseTrip=await fetch(meta.dataset,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Trip dataset '+r.status);return r.json()});
     currentTrip=JourneyAdapter.apply(baseTrip,{startStopId:TripTools.getRouteStart(localStorage,meta.id)});
+    await PlaceExperiences.loadForTrip(currentTrip).catch(error=>console.warn('Place experience layer unavailable',error));
     await waitForCore();
     configureRegionalSelection();
     RegionalSelection.reset(0);

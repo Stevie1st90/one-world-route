@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "FR",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "FR:marseille",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "food",
+        "cities"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A working Mediterranean port, steep neighbourhoods and a strong food culture give Marseille a distinctly coastal big-city feel.",
+        "de": "Ein aktiver Mittelmeerhafen, steile Viertel und eine ausgeprägte Esskultur geben Marseille ein deutlich maritimes Großstadtgefühl.",
+        "it": "Un porto mediterraneo vivo, quartieri in pendenza e una forte cultura gastronomica danno a Marsiglia un carattere metropolitano decisamente costiero.",
+        "es": "Un puerto mediterráneo activo, barrios en pendiente y una fuerte cultura gastronómica dan a Marsella un marcado ambiente de gran ciudad costera.",
+        "fr": "Un port méditerranéen actif, des quartiers en pente et une forte culture culinaire donnent à Marseille une identité de grande ville résolument maritime.",
+        "pt": "Um porto mediterrâneo ativo, bairros em encostas e uma forte cultura gastronômica dão a Marselha uma identidade clara de grande cidade costeira."
+      }
+    }
+  ]
+}
