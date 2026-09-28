@@ -2756,12 +2756,13 @@
     });
     return ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//ONE WORLD ROUTE//Trip itinerary//EN','CALSCALE:GREGORIAN',...events,'END:VCALENDAR',''].join('\r\n');
   }
-  function jsonPack({trip,meta,local,facetLabel,snapshot,assumptions,profile,startDate,season,journeyPlan=null}){
+  function jsonPack({trip,meta,local,facetLabel,snapshot,assumptions,profile,startDate,season,journeyPlan=null,planningWorkspace=null}){
     return JSON.stringify({
       schemaVersion:1,exportedAt:new Date().toISOString(),
       trip:{id:meta?.id||trip?.id,title:local(trip?.title),summary:local(trip?.summary),planning:trip?.planning||null,startDate:validDate(startDate)||null,seasonPreference:String(season||'')||null},
       itinerary:itineraryRows(trip,local,facetLabel),
       journeyPlan,
+      planningWorkspace,
       budget:{currency:snapshot?.currency||trip?.planning?.currency||'EUR',assumptions:normalizeBudget(assumptions),estimate:estimate({snapshot,profile,assumptions}),scope:'Personal planning estimate. Published transport minimums plus user-entered assumptions; not a quote.'},
       sources:trip?.sources||[]
     },null,2)+'\n';
@@ -2914,7 +2915,7 @@
     });
     const save=host.querySelector('[data-trip-save]');
     if(save)save.onclick=()=>{const active=toggleSaved(storage,id);save.classList.toggle('active',active);save.textContent=active?t('removeSaved'):t('saveTrip');toast?.(active?t('savedLocally'):t('removedSaved'));refreshPlanning()};
-    host.querySelector('[data-trip-export-json]')?.addEventListener('click',()=>{const assumptions=getBudget(storage,id);download(id+'-trip-pack.json',jsonPack({trip,meta,local,facetLabel,snapshot:planningSnapshot,assumptions,profile,startDate:getStartDate(storage,id),season:getSeason(storage,id),journeyPlan:window.ONE_WORLD_PLATFORM_MODULES?.journeyAdapter?.originPlan?.(trip,profile)||null}),'application/json')});
+    host.querySelector('[data-trip-export-json]')?.addEventListener('click',()=>{const assumptions=getBudget(storage,id),status=planningStatus({storage,tripId:id,profile,hasPlanning,routeStartRequired:eligible.length>1,includeSaved:true}),checks=getPlanningChecks(storage,id);download(id+'-trip-pack.json',jsonPack({trip,meta,local,facetLabel,snapshot:planningSnapshot,assumptions,profile,startDate:getStartDate(storage,id),season:getSeason(storage,id),journeyPlan:window.ONE_WORLD_PLATFORM_MODULES?.journeyAdapter?.originPlan?.(trip,profile)||null,planningWorkspace:{saved:isSaved(storage,id),routeStartId:getRouteStart(storage,id)||null,accessCheckedAt:checks.accessCheckedAt||null,status}}),'application/json')});
     host.querySelector('[data-trip-export-csv]')?.addEventListener('click',()=>download(id+'-itinerary.csv',csv(trip,local,facetLabel),'text/csv'));
     const dateInput=host.querySelector('[data-trip-start-date]'),calendarButton=host.querySelector('[data-trip-export-calendar]'),seasonSelect=host.querySelector('[data-trip-season]');
     if(dateInput)dateInput.onchange=()=>{const date=setStartDate(storage,id,dateInput.value);if(calendarButton)calendarButton.disabled=!date;refreshPlanning()};
