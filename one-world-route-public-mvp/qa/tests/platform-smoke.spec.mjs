@@ -155,17 +155,22 @@ test('@regional starting country applies the closest supported journey entry and
   await page.locator('.platform-journey-personalize').screenshot({path:testInfo.outputPath('journey-entry-suggestion.png'),animations:'disabled'});
 
   await Promise.all([
-    page.waitForLoadState('domcontentloaded'),
+    page.waitForNavigation({waitUntil:'domcontentloaded'}),
     page.locator('[data-trip-route-start]').selectOption('japan-by-rail-stop-01')
   ]);
+  await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:15000});
   await expect(page.locator('.platform-journey-flow-stop').first()).toContainText('Tokyo',{timeout:20000});
   const manualState=await page.evaluate(()=>JSON.parse(localStorage.getItem('one-world-route:trip-tools:v1')||'{}'));
   expect(manualState.routeStarts?.['japan-by-rail']).toBe('japan-by-rail-stop-01');
   if(isMobile){await page.locator('#mobileDetails').click();await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);}
   await expect(page.locator('[data-trip-entry-suggest]')).toBeVisible();
 
-  await page.locator('[data-trip-entry-suggest]').click();
-  await expect.poll(async()=>page.locator('.platform-journey-flow-stop').first().textContent().catch(()=>''),{timeout:20000}).toContain('Hiroshima');
+  await Promise.all([
+    page.waitForNavigation({waitUntil:'domcontentloaded'}),
+    page.locator('[data-trip-entry-suggest]').click()
+  ]);
+  await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:15000});
+  await expect(page.locator('.platform-journey-flow-stop').first()).toContainText('Hiroshima',{timeout:20000});
   const suggestedState=await page.evaluate(()=>JSON.parse(localStorage.getItem('one-world-route:trip-tools:v1')||'{}'));
   expect(suggestedState.routeStarts?.['japan-by-rail']).toBe('japan-by-rail-stop-06');
   expect(errors,'journey entry recommendation runtime page errors').toEqual([]);
