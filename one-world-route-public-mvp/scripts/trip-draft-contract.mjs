@@ -9,6 +9,57 @@ const seasons=new Set(['spring','summer','autumn','winter','multi-season']);
 const parties=new Set(['solo','couples','friends','families']);
 const accessibilities=new Set(['standard-check','operator-dependent','vehicle-dependent','complex-planning']);
 
+const baseCapabilities=['globe','regional-stops','traveller-context','source-evidence','trip-planning','story','terrain'];
+const archetypeDefinitions={
+  rail:{mode:'rail',themes:['rail','cities','culture'],capabilities:[],reviewDays:90,maintenanceTier:'live-dependent',accessibility:'standard-check',routePolicy:{startMode:'endpoints',reversible:true,reverseEvidenceReusable:false,reversePlanningReusable:false,originAccess:'dynamic',returnMode:'dynamic',preserveCoreRoute:true},visualTheme:'rockies'},
+  'road-trip':{mode:'car',themes:['road-trip','nature','cities'],capabilities:['vehicle-context','road-rules'],reviewDays:180,maintenanceTier:'stable-editorial',accessibility:'vehicle-dependent',routePolicy:{startMode:'endpoints',reversible:true,reverseEvidenceReusable:false,reversePlanningReusable:false,originAccess:'dynamic',returnMode:'dynamic',preserveCoreRoute:true},visualTheme:'desert'},
+  camper:{mode:'car',themes:['camper','road-trip','nature'],capabilities:['vehicle-context','road-rules'],reviewDays:180,maintenanceTier:'stable-editorial',accessibility:'vehicle-dependent',routePolicy:{startMode:'endpoints',reversible:true,reverseEvidenceReusable:false,reversePlanningReusable:false,originAccess:'dynamic',returnMode:'dynamic',preserveCoreRoute:true},visualTheme:'fern'},
+  cruise:{mode:'cruise',themes:['cruise','coast','ports'],capabilities:['cruise-calls','sea-days','border-context'],reviewDays:30,maintenanceTier:'live-dependent',accessibility:'operator-dependent',routePolicy:{startMode:'fixed',reversible:false,originAccess:'dynamic',returnMode:'dynamic',preserveCoreRoute:true},visualTheme:'ocean'},
+  'island-hopping':{mode:'ferry',themes:['islands','coast','culture'],capabilities:['border-context'],reviewDays:60,maintenanceTier:'live-dependent',accessibility:'operator-dependent',routePolicy:{startMode:'endpoints',reversible:true,reverseEvidenceReusable:false,reversePlanningReusable:false,originAccess:'dynamic',returnMode:'dynamic',preserveCoreRoute:true},visualTheme:'aegean'},
+  'round-trip':{mode:'multimodal',themes:['round-trip','culture','cities'],capabilities:[],reviewDays:180,maintenanceTier:'stable-editorial',accessibility:'standard-check',routePolicy:{startMode:'fixed',reversible:false,originAccess:'dynamic',returnMode:'dynamic',preserveCoreRoute:true},visualTheme:'aegean'},
+  multimodal:{mode:'multimodal',themes:['culture','cities','nature'],capabilities:['border-context'],reviewDays:90,maintenanceTier:'live-dependent',accessibility:'complex-planning',routePolicy:{startMode:'endpoints',reversible:true,reverseEvidenceReusable:false,reversePlanningReusable:false,originAccess:'dynamic',returnMode:'dynamic',preserveCoreRoute:true},visualTheme:'andes'}
+};
+const clone=value=>JSON.parse(JSON.stringify(value));
+export function journeyArchetypes(){return Object.keys(archetypeDefinitions)}
+export function journeyArchetype(kind){
+  const key=String(kind||'').trim();
+  const source=archetypeDefinitions[key]||{mode:key||'multimodal',themes:[key||'journey'],capabilities:[],reviewDays:180,maintenanceTier:'stable-editorial',accessibility:'standard-check',routePolicy:{startMode:'fixed',reversible:false,originAccess:'dynamic',returnMode:'dynamic',preserveCoreRoute:true},visualTheme:'ocean'};
+  return clone({...source,capabilities:[...baseCapabilities,...source.capabilities]});
+}
+const localized=(locales,value)=>Object.fromEntries(locales.map(locale=>[locale,value]));
+const durationBand=days=>days==null?'7-14':days<=14?'7-14':days<=30?'15-30':days<=89?'31-89':'90-plus';
+
+export function scaffoldTripDraft({slug,kind,days,catalog}){
+  const locales=Array.isArray(catalog?.supportedLocales)&&catalog.supportedLocales.length?catalog.supportedLocales:['en'];
+  const human=String(slug||'').split('-').filter(Boolean).map(part=>part[0]?.toUpperCase()+part.slice(1)).join(' ');
+  const normalizedDays=days===null||days===undefined||days===''?null:Number(days);
+  const archetype=journeyArchetype(kind);
+  const trip={
+    schemaVersion:1,id:slug,slug,kind,status:'draft',
+    defaultLocale:catalog?.defaultLocale||'en',supportedLocales:[...locales],
+    title:localized(locales,human),summary:localized(locales,'TODO — editorial summary'),
+    geography:{regions:[],countries:[]},
+    planning:{days:normalizedDays,currency:'EUR'},
+    maintenance:{tier:archetype.maintenanceTier,sourceReviewDays:archetype.reviewDays},
+    routePolicy:archetype.routePolicy,
+    rendering:{},places:[],stops:[],segments:[],chapters:[],
+    travellerContext:{scope:[]},sources:[],extensions:{}
+  };
+  const catalogEntry={
+    id:slug,slug,kind,status:'draft',renderer:'regional-globe',
+    dataset:'./data/platform/trips/'+slug+'.json',
+    title:localized(locales,human),subtitle:localized(locales,'TODO — discovery subtitle'),
+    metrics:{},capabilities:archetype.capabilities,
+    visual:{theme:archetype.visualTheme,mediaState:'art-directed'},
+    discovery:{
+      regions:['global'],themes:archetype.themes,modes:[archetype.mode],
+      durationBand:durationBand(normalizedDays),featured:false,
+      fit:{pace:'balanced',seasons:['multi-season'],party:['solo','couples','friends'],startRegion:'global',accessibility:archetype.accessibility}
+    }
+  };
+  return {trip,catalogEntry,archetype};
+}
+
 export function computeTripMetrics(trip={}){
   const segments=Array.isArray(trip.segments)?trip.segments:[];
   const places=Array.isArray(trip.places)?trip.places:[];
