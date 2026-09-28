@@ -44,6 +44,20 @@ test('@flagship operations exposes departure recheck controls',async({page})=>{
 });
 
 
+test('@regional homepage claims ownership before deferred feature runtime',async({page})=>{
+  test.setTimeout(30000);
+  await page.route('**/features.bundle.js',async route=>{
+    await new Promise(resolve=>setTimeout(resolve,1400));
+    await route.continue();
+  });
+  await page.goto('/?lang=en',{waitUntil:'commit'});
+  await page.waitForSelector('#app>.topbar',{state:'attached',timeout:10000});
+  await expect(page.locator('body')).toHaveClass(/platform-home/);
+  await expect(page.locator('#app>.topbar')).toBeHidden();
+  await page.waitForLoadState('domcontentloaded');
+  await expect(page.locator('#platformHome')).toBeVisible({timeout:15000});
+});
+
 test('@regional global discovery home exposes a broad visual journey catalog',async({page,isMobile},testInfo)=>{
   test.setTimeout(90000);
   const errors=capturePageErrors(page);

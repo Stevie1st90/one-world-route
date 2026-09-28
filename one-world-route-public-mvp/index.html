@@ -21,6 +21,14 @@
   <script defer src="./features.bundle.js"></script>
 </head>
 <body>
+  <script>
+    (() => {
+      const params = new URLSearchParams(location.search);
+      if (location.pathname === '/' && !params.has('trip')) {
+        document.body.classList.add('platform-home');
+      }
+    })();
+  </script>
   <div id="app" class="app-shell">
     <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div><div class="noise"></div>
 
