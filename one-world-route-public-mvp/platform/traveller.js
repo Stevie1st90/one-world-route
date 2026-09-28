@@ -1,20 +1,41 @@
 (() => {
   'use strict';
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
-  const ALLOWED=['passports','residenceCountry','language','currency','origin','originCountry','originRegion','party','accessibility','vehicle'];
+  const ALLOWED=['passports','residenceCountry','language','currency','origin','originCountry','originRegion','party','accessibility','vehicle','preferences'];
+  const cleanChoice=value=>typeof value==='string'&&value.trim()?value.trim():null;
   function defaults(locale='en'){
-    return {passports:[],residenceCountry:null,language:locale,currency:'EUR',origin:null,originCountry:null,originRegion:null,party:{adults:1,children:0},accessibility:{reducedMobility:false},vehicle:null};
+    return {
+      passports:[],
+      residenceCountry:null,
+      language:locale,
+      currency:'EUR',
+      origin:null,
+      originCountry:null,
+      originRegion:null,
+      party:{adults:1,children:0},
+      accessibility:{reducedMobility:false},
+      vehicle:null,
+      preferences:{durationBand:null,pace:null,season:null,mode:null,theme:null}
+    };
   }
   function normalize(input,locale='en'){
     const base=defaults(locale),raw=input&&typeof input==='object'?input:{},safe={};
     for(const key of ALLOWED)if(Object.prototype.hasOwnProperty.call(raw,key))safe[key]=raw[key];
+    const rawPreferences=safe.preferences&&typeof safe.preferences==='object'?safe.preferences:{};
     return {
       ...base,
       ...safe,
       passports:Array.isArray(safe.passports)?safe.passports.filter(v=>typeof v==='string').slice(0,2):base.passports,
       party:{...base.party,...(safe.party&&typeof safe.party==='object'?safe.party:{})},
       accessibility:{...base.accessibility,...(safe.accessibility&&typeof safe.accessibility==='object'?safe.accessibility:{})},
-      vehicle:safe.vehicle&&typeof safe.vehicle==='object'?{...safe.vehicle}:null
+      vehicle:safe.vehicle&&typeof safe.vehicle==='object'?{...safe.vehicle}:null,
+      preferences:{
+        durationBand:cleanChoice(rawPreferences.durationBand),
+        pace:cleanChoice(rawPreferences.pace),
+        season:cleanChoice(rawPreferences.season),
+        mode:cleanChoice(rawPreferences.mode),
+        theme:cleanChoice(rawPreferences.theme)
+      }
     };
   }
   function load(storage,key,locale='en'){
