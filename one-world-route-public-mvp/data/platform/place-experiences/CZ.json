@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "CZ",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "CZ:prague",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "history",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Historic squares, river crossings and dense architectural layers create one of the journey’s most visually concentrated old-city experiences.",
+        "de": "Historische Plätze, Flussquerungen und dichte Architekturschichten schaffen eines der visuell konzentriertesten Altstadterlebnisse der Reise.",
+        "it": "Piazze storiche, attraversamenti del fiume e fitte stratificazioni architettoniche creano una delle esperienze di città antica più concentrate del viaggio.",
+        "es": "Plazas históricas, cruces del río y densas capas arquitectónicas crean una de las experiencias de casco antiguo más concentradas visualmente del viaje.",
+        "fr": "Places historiques, traversées du fleuve et strates architecturales denses créent l’une des expériences de vieille ville les plus concentrées visuellement du voyage.",
+        "pt": "Praças históricas, travessias do rio e densas camadas arquitetônicas criam uma das experiências de centro antigo mais concentradas visualmente da viagem."
+      }
+    }
+  ]
+}

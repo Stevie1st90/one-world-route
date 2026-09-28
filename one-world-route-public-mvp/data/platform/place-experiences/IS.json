@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "IS",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "IS:reykjavik",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "coast"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A compact northern capital with colourful streets, harbour life and a creative cultural scene that eases the route into Iceland’s open landscapes.",
+        "de": "Eine kompakte Hauptstadt des Nordens mit farbenfrohen Straßen, Hafenleben und kreativer Kulturszene, die sanft in Islands offene Landschaften überleitet.",
+        "it": "Una compatta capitale del nord con strade colorate, vita portuale e scena culturale creativa che introduce gradualmente ai grandi paesaggi islandesi.",
+        "es": "Una compacta capital del norte con calles coloridas, vida portuaria y una escena cultural creativa que introduce poco a poco en los grandes paisajes de Islandia.",
+        "fr": "Une capitale nordique compacte aux rues colorées, à la vie portuaire et à la scène culturelle créative, qui introduit doucement aux grands paysages islandais.",
+        "pt": "Uma capital nórdica compacta, com ruas coloridas, vida portuária e cena cultural criativa, que introduz gradualmente às grandes paisagens da Islândia."
+      }
+    },
+    {
+      "id": "IS:vik",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "nature",
+        "volcanic"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Black-sand coastline, steep green slopes and exposed Atlantic weather give Vík a stark, volcanic coastal character.",
+        "de": "Schwarze Sandküste, steile grüne Hänge und exponiertes Atlantikwetter geben Vík einen markanten vulkanischen Küstencharakter.",
+        "it": "Costa di sabbia nera, pendii verdi ripidi e clima atlantico esposto danno a Vík un carattere costiero vulcanico molto netto.",
+        "es": "Costa de arena negra, pendientes verdes y clima atlántico expuesto dan a Vík un marcado carácter costero volcánico.",
+        "fr": "Côte de sable noir, pentes vertes abruptes et météo atlantique exposée donnent à Vík un caractère côtier volcanique très marqué.",
+        "pt": "Costa de areia preta, encostas verdes íngremes e clima atlântico exposto dão a Vík um caráter costeiro vulcânico marcante."
+      }
+    },
+    {
+      "id": "IS:jokulsarlon",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "coast",
+        "volcanic"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Glacial ice, dark shoreline and wide open horizons create one of the route’s most elemental landscape stops.",
+        "de": "Gletschereis, dunkle Küste und weite Horizonte schaffen einen der elementarsten Landschaftsstopps der Route.",
+        "it": "Ghiaccio glaciale, costa scura e orizzonti aperti creano una delle tappe paesaggistiche più essenziali del percorso.",
+        "es": "Hielo glaciar, costa oscura y horizontes abiertos crean una de las paradas paisajísticas más elementales de la ruta.",
+        "fr": "Glace glaciaire, rivage sombre et vastes horizons créent l’une des étapes paysagères les plus élémentaires de l’itinéraire.",
+        "pt": "Gelo glacial, litoral escuro e horizontes amplos criam uma das paradas paisagísticas mais elementares da rota."
+      }
+    },
+    {
+      "id": "IS:egilsstadir",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "mountains",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A small eastern hub surrounded by broad valleys and highland scenery, giving the Ring Road a quieter inland chapter.",
+        "de": "Ein kleiner Knotenpunkt im Osten, umgeben von breiten Tälern und Hochlandlandschaft, der der Ringstraße einen ruhigeren Abschnitt im Landesinneren gibt.",
+        "it": "Un piccolo centro dell’est circondato da ampie valli e paesaggi d’altopiano, che dà alla Ring Road un capitolo interno più tranquillo.",
+        "es": "Un pequeño centro del este rodeado de amplios valles y paisajes de tierras altas, que aporta a la Ring Road un tramo interior más tranquilo.",
+        "fr": "Un petit centre de l’est entouré de larges vallées et de paysages de hauts plateaux, donnant à la Ring Road une étape intérieure plus calme.",
+        "pt": "Um pequeno centro do leste cercado por vales amplos e paisagens de terras altas, dando à Ring Road um trecho interior mais tranquilo."
+      }
+    },
+    {
+      "id": "IS:akureyri",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "mountains",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A compact northern town at the head of a long fjord, combining urban comfort with surrounding mountain scenery.",
+        "de": "Eine kompakte Stadt im Norden am Ende eines langen Fjords, die urbanen Komfort mit umliegender Berglandschaft verbindet.",
+        "it": "Una compatta città del nord in fondo a un lungo fiordo, tra comodità urbane e paesaggi montani circostanti.",
+        "es": "Una compacta ciudad del norte al fondo de un largo fiordo, que combina comodidad urbana con paisaje montañoso.",
+        "fr": "Une ville compacte du nord au fond d’un long fjord, associant confort urbain et paysages montagneux environnants.",
+        "pt": "Uma cidade compacta do norte no fundo de um longo fiorde, combinando conforto urbano com paisagens montanhosas ao redor."
+      }
+    },
+    {
+      "id": "IS:snaefellsnes",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "coast",
+        "volcanic"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Volcanic peaks, fishing settlements and a varied Atlantic coastline compress many of Iceland’s landscape types into one peninsula.",
+        "de": "Vulkanische Gipfel, Fischersiedlungen und eine abwechslungsreiche Atlantikküste bündeln viele Landschaftstypen Islands auf einer Halbinsel.",
+        "it": "Cime vulcaniche, villaggi di pescatori e una costa atlantica varia concentrano molti paesaggi islandesi in una sola penisola.",
+        "es": "Picos volcánicos, pueblos pesqueros y una costa atlántica variada concentran muchos tipos de paisaje islandés en una sola península.",
+        "fr": "Sommets volcaniques, villages de pêcheurs et côte atlantique variée concentrent de nombreux paysages islandais sur une seule péninsule.",
+        "pt": "Picos vulcânicos, vilas de pescadores e uma costa atlântica variada concentram muitos tipos de paisagem islandesa em uma única península."
+      }
+    }
+  ]
+}

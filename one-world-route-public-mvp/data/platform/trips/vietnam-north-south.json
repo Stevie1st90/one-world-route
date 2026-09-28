@@ -76,7 +76,8 @@
       "coordinates": {
         "lat": 21.0278,
         "lng": 105.8342
-      }
+      },
+      "experienceRef": "VN:hanoi"
     },
     {
       "id": "hue",
@@ -88,7 +89,8 @@
       "coordinates": {
         "lat": 16.4637,
         "lng": 107.5909
-      }
+      },
+      "experienceRef": "VN:hue"
     },
     {
       "id": "da-nang",
@@ -100,7 +102,8 @@
       "coordinates": {
         "lat": 16.0544,
         "lng": 108.2022
-      }
+      },
+      "experienceRef": "VN:da-nang"
     },
     {
       "id": "hoi-an",
@@ -112,7 +115,8 @@
       "coordinates": {
         "lat": 15.8801,
         "lng": 108.338
-      }
+      },
+      "experienceRef": "VN:hoi-an"
     },
     {
       "id": "nha-trang",
@@ -124,7 +128,8 @@
       "coordinates": {
         "lat": 12.2388,
         "lng": 109.1967
-      }
+      },
+      "experienceRef": "VN:nha-trang"
     },
     {
       "id": "ho-chi-minh",
@@ -136,7 +141,8 @@
       "coordinates": {
         "lat": 10.8231,
         "lng": 106.6297
-      }
+      },
+      "experienceRef": "VN:ho-chi-minh-city"
     }
   ],
   "stops": [

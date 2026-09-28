@@ -23,6 +23,25 @@
       }
     },
     {
+      "id": "ES:granada",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "culture",
+        "mountains"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A compact historic city beneath the Sierra Nevada, combining layered architecture, hillside neighbourhoods and a strong Andalusian identity.",
+        "de": "Eine kompakte historische Stadt unterhalb der Sierra Nevada, die vielschichtige Architektur, Hangviertel und eine starke andalusische Identität verbindet.",
+        "it": "Una compatta città storica ai piedi della Sierra Nevada, tra architettura stratificata, quartieri collinari e forte identità andalusa.",
+        "es": "Una compacta ciudad histórica bajo Sierra Nevada, que combina arquitectura en capas, barrios en ladera y una fuerte identidad andaluza.",
+        "fr": "Une ville historique compacte au pied de la Sierra Nevada, mêlant architecture stratifiée, quartiers en pente et forte identité andalouse.",
+        "pt": "Uma cidade histórica compacta sob a Sierra Nevada, combinando arquitetura em camadas, bairros nas encostas e forte identidade andaluza."
+      }
+    },
+    {
       "id": "ES:palma-de-mallorca",
       "contentType": "editorial-evergreen",
       "tags": [
@@ -39,6 +58,44 @@
         "es": "Una compacta capital insular donde calles históricas, un amplio frente marítimo y vida urbana mediterránea crean una marcada parada balear.",
         "fr": "Une capitale insulaire compacte où rues historiques, vaste front de mer et vie urbaine méditerranéenne composent une forte étape baléare.",
         "pt": "Uma capital insular compacta onde ruas históricas, uma ampla orla e vida urbana mediterrânea criam uma marcante parada balear."
+      }
+    },
+    {
+      "id": "ES:seville",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "history",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Warm plazas, layered historic streets and a strong Andalusian food culture give Seville a vivid southern-city rhythm.",
+        "de": "Warme Plätze, vielschichtige historische Straßen und eine starke andalusische Esskultur geben Sevilla einen lebendigen südstädtischen Rhythmus.",
+        "it": "Piazze luminose, strade storiche stratificate e forte cultura gastronomica andalusa danno a Siviglia un ritmo urbano meridionale molto vivo.",
+        "es": "Plazas luminosas, calles históricas llenas de capas y una fuerte cultura gastronómica andaluza dan a Sevilla un ritmo urbano sureño muy vivo.",
+        "fr": "Places lumineuses, rues historiques stratifiées et forte culture culinaire andalouse donnent à Séville un rythme urbain méridional très vivant.",
+        "pt": "Praças luminosas, ruas históricas em camadas e forte cultura gastronômica andaluza dão a Sevilha um ritmo urbano sulista muito vivo."
+      }
+    },
+    {
+      "id": "ES:valencia",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "coast",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A broad Mediterranean city where historic streets, modern public spaces and food culture meet close to the coast.",
+        "de": "Eine weitläufige Mittelmeerstadt, in der historische Straßen, moderne Stadträume und Esskultur nahe der Küste zusammenkommen.",
+        "it": "Una vasta città mediterranea dove strade storiche, spazi pubblici moderni e cultura gastronomica si incontrano vicino alla costa.",
+        "es": "Una amplia ciudad mediterránea donde calles históricas, espacios públicos modernos y cultura gastronómica se encuentran cerca de la costa.",
+        "fr": "Une vaste ville méditerranéenne où rues historiques, espaces publics modernes et culture culinaire se rencontrent près de la côte.",
+        "pt": "Uma ampla cidade mediterrânea onde ruas históricas, espaços públicos modernos e cultura gastronômica se encontram perto da costa."
       }
     }
   ]

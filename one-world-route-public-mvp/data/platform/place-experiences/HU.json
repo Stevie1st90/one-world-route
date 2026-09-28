@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "HU",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "HU:budapest",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "history",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Danube views, grand architecture and lively neighbourhoods combine monumental scale with a strong everyday city rhythm.",
+        "de": "Donaupanorama, große Architektur und lebendige Viertel verbinden monumentale Dimension mit einem starken alltäglichen Stadtrhythmus.",
+        "it": "Viste sul Danubio, grande architettura e quartieri vivaci uniscono scala monumentale e forte ritmo urbano quotidiano.",
+        "es": "Vistas al Danubio, gran arquitectura y barrios animados combinan escala monumental con un fuerte ritmo de vida cotidiana.",
+        "fr": "Vues sur le Danube, grande architecture et quartiers animés combinent échelle monumentale et rythme urbain quotidien marqué.",
+        "pt": "Vistas do Danúbio, grande arquitetura e bairros animados combinam escala monumental com um forte ritmo urbano cotidiano."
+      }
+    }
+  ]
+}

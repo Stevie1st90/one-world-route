@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "PT",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "PT:lisbon",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Hilly neighbourhoods, tiled streets, river views and a strong food culture give Lisbon a distinctive Atlantic urban character.",
+        "de": "Hügelige Viertel, gekachelte Straßen, Flussblicke und eine ausgeprägte Esskultur geben Lissabon einen unverwechselbaren atlantischen Großstadtcharakter.",
+        "it": "Quartieri collinari, strade piastrellate, viste sul fiume e forte cultura gastronomica danno a Lisbona un carattere urbano atlantico inconfondibile.",
+        "es": "Barrios en colinas, calles con azulejos, vistas al río y una fuerte cultura gastronómica dan a Lisboa un carácter urbano atlántico muy singular.",
+        "fr": "Quartiers vallonnés, rues carrelées, vues sur le fleuve et forte culture culinaire donnent à Lisbonne un caractère urbain atlantique très distinctif.",
+        "pt": "Bairros em colinas, ruas de azulejos, vistas para o rio e forte cultura gastronômica dão a Lisboa um caráter urbano atlântico muito marcante."
+      }
+    }
+  ]
+}

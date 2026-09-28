@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "AT",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "AT:vienna",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "history",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Imperial architecture, formal public spaces and café culture give Vienna a composed, history-rich Central European character.",
+        "de": "Imperiale Architektur, repräsentative Stadträume und Kaffeehauskultur geben Wien einen geordneten, geschichtsreichen mitteleuropäischen Charakter.",
+        "it": "Architettura imperiale, spazi pubblici formali e cultura dei caffè danno a Vienna un carattere mitteleuropeo composto e ricco di storia.",
+        "es": "Arquitectura imperial, espacios públicos formales y cultura de cafés dan a Viena un carácter centroeuropeo ordenado y rico en historia.",
+        "fr": "Architecture impériale, espaces publics formels et culture des cafés donnent à Vienne un caractère centre-européen posé et riche en histoire.",
+        "pt": "Arquitetura imperial, espaços públicos formais e cultura de cafés dão a Viena um caráter centro-europeu elegante e rico em história."
+      }
+    }
+  ]
+}

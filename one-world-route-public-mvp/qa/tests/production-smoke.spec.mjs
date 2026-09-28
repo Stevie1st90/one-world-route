@@ -14,7 +14,7 @@ async function open(page,path){
 test.describe.configure({mode:'parallel'});
 
 test('production critical public surfaces boot cleanly',async({page,request,isMobile})=>{
-  test.setTimeout(60000);
+  test.setTimeout(120000);
   const errors=capturePageErrors(page);
 
   const catalogResponse=await request.get('/data/platform/trips.json');

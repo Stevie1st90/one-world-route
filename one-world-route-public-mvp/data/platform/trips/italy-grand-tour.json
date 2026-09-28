@@ -111,7 +111,8 @@
       "coordinates": {
         "lat": 40.634,
         "lng": 14.6027
-      }
+      },
+      "experienceRef": "IT:amalfi-coast"
     },
     {
       "id": "matera",
@@ -128,7 +129,8 @@
       "coordinates": {
         "lat": 40.6663,
         "lng": 16.6043
-      }
+      },
+      "experienceRef": "IT:matera"
     },
     {
       "id": "bari",
@@ -145,7 +147,8 @@
       "coordinates": {
         "lat": 41.1171,
         "lng": 16.8719
-      }
+      },
+      "experienceRef": "IT:bari"
     },
     {
       "id": "bologna",
@@ -162,7 +165,8 @@
       "coordinates": {
         "lat": 44.4949,
         "lng": 11.3426
-      }
+      },
+      "experienceRef": "IT:bologna"
     },
     {
       "id": "venice",
@@ -179,7 +183,8 @@
       "coordinates": {
         "lat": 45.4408,
         "lng": 12.3155
-      }
+      },
+      "experienceRef": "IT:venice"
     },
     {
       "id": "cortina",
@@ -196,7 +201,8 @@
       "coordinates": {
         "lat": 46.5405,
         "lng": 12.1357
-      }
+      },
+      "experienceRef": "IT:dolomites-cortina"
     },
     {
       "id": "florence",
@@ -231,7 +237,8 @@
       "coordinates": {
         "lat": 43.3188,
         "lng": 11.3308
-      }
+      },
+      "experienceRef": "IT:siena"
     }
   ],
   "stops": [

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "DE",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "DE:cologne",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "history",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A Rhine city where monumental history, compact old-town streets and lively neighbourhoods create a strong first German rail stop.",
+        "de": "Eine Rheinstadt, in der monumentale Geschichte, kompakte Altstadtstraßen und lebendige Viertel einen markanten ersten deutschen Bahnstopp bilden.",
+        "it": "Una città sul Reno dove storia monumentale, strade compatte del centro storico e quartieri vivaci creano una forte prima tappa ferroviaria tedesca.",
+        "es": "Una ciudad del Rin donde historia monumental, calles compactas del casco antiguo y barrios animados crean una fuerte primera parada ferroviaria alemana.",
+        "fr": "Une ville du Rhin où histoire monumentale, rues compactes de la vieille ville et quartiers animés forment une forte première étape ferroviaire allemande.",
+        "pt": "Uma cidade às margens do Reno onde história monumental, ruas compactas do centro antigo e bairros animados criam uma forte primeira parada ferroviária alemã."
+      }
+    },
+    {
+      "id": "DE:frankfurt",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "history"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A modern skyline, riverfront and compact historic core create a sharp contrast between financial-city energy and older urban layers.",
+        "de": "Moderne Skyline, Flussufer und kompakter historischer Kern schaffen einen deutlichen Kontrast zwischen Finanzstadt-Energie und älteren Stadtschichten.",
+        "it": "Skyline moderna, lungofiume e centro storico compatto creano un netto contrasto tra energia finanziaria e strati urbani più antichi.",
+        "es": "Un skyline moderno, el río y un casco histórico compacto crean un fuerte contraste entre energía financiera y capas urbanas más antiguas.",
+        "fr": "Skyline moderne, quais du fleuve et centre historique compact créent un contraste net entre énergie financière et strates urbaines plus anciennes.",
+        "pt": "Skyline moderna, margem do rio e centro histórico compacto criam um forte contraste entre energia financeira e camadas urbanas mais antigas."
+      }
+    },
+    {
+      "id": "DE:munich",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Grand boulevards, beer-hall culture and a strong Bavarian identity give Munich a polished but distinctly regional urban character.",
+        "de": "Große Boulevards, Bierhallenkultur und eine starke bayerische Identität geben München einen gepflegten, zugleich klar regionalen Großstadtcharakter.",
+        "it": "Ampi viali, cultura delle birrerie e forte identità bavarese danno a Monaco un carattere urbano raffinato ma decisamente regionale.",
+        "es": "Grandes avenidas, cultura cervecera y una fuerte identidad bávara dan a Múnich un carácter urbano cuidado pero claramente regional.",
+        "fr": "Grands boulevards, culture des brasseries et forte identité bavaroise donnent à Munich un caractère urbain soigné mais nettement régional.",
+        "pt": "Grandes avenidas, cultura das cervejarias e forte identidade bávara dão a Munique um caráter urbano refinado, mas claramente regional."
+      }
+    },
+    {
+      "id": "DE:berlin",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "history",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Layered twentieth-century history, broad urban spaces and a diverse cultural scene make Berlin a spacious, high-contrast finale.",
+        "de": "Vielschichtige Geschichte des 20. Jahrhunderts, weite Stadträume und eine vielfältige Kulturszene machen Berlin zu einem großzügigen, kontrastreichen Finale.",
+        "it": "Storia stratificata del Novecento, ampi spazi urbani e scena culturale diversificata fanno di Berlino un finale ampio e ricco di contrasti.",
+        "es": "Historia del siglo XX en capas, amplios espacios urbanos y una escena cultural diversa hacen de Berlín un final espacioso y lleno de contrastes.",
+        "fr": "Histoire du XXe siècle en strates, grands espaces urbains et scène culturelle diverse font de Berlin un final vaste et contrasté.",
+        "pt": "História do século XX em camadas, amplos espaços urbanos e uma cena cultural diversa fazem de Berlim um final espaçoso e cheio de contrastes."
+      }
+    }
+  ]
+}

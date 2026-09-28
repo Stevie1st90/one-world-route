@@ -4,6 +4,63 @@
   "updatedAt": "2026-09-28",
   "profiles": [
     {
+      "id": "IT:amalfi-coast",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "culture",
+        "nature"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Cliffside towns, steep coastal roads and Mediterranean views give the Amalfi Coast a dramatic, tightly packed landscape character.",
+        "de": "Orte an steilen Hängen, kurvige Küstenstraßen und Mittelmeerblicke geben der Amalfiküste einen dramatischen, dicht gepackten Landschaftscharakter.",
+        "it": "Borghi sulle scogliere, strade costiere ripide e viste sul Mediterraneo danno alla Costiera Amalfitana un carattere paesaggistico intenso e compatto.",
+        "es": "Pueblos sobre acantilados, carreteras costeras empinadas y vistas al Mediterráneo dan a la Costa Amalfitana un carácter paisajístico intenso y concentrado.",
+        "fr": "Villages accrochés aux falaises, routes côtières escarpées et vues méditerranéennes donnent à la côte amalfitaine un caractère paysager spectaculaire et compact.",
+        "pt": "Cidades nas encostas, estradas costeiras íngremes e vistas do Mediterrâneo dão à Costa Amalfitana um caráter paisagístico dramático e concentrado."
+      }
+    },
+    {
+      "id": "IT:bari",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "food",
+        "cities"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A lively Adriatic port with a compact old town and strong food culture, giving the route an energetic southern coastal chapter.",
+        "de": "Ein lebendiger Adriathafen mit kompakter Altstadt und ausgeprägter Esskultur gibt der Route einen energiegeladenen süditalienischen Küstenabschnitt.",
+        "it": "Un vivace porto adriatico con centro storico compatto e forte cultura gastronomica, per una tappa costiera del Sud piena di energia.",
+        "es": "Un animado puerto del Adriático con casco antiguo compacto y fuerte cultura gastronómica, que aporta a la ruta un capítulo costero sureño lleno de energía.",
+        "fr": "Un port adriatique animé avec vieille ville compacte et forte culture culinaire, offrant à l’itinéraire une étape côtière méridionale dynamique.",
+        "pt": "Um porto animado no Adriático, com centro antigo compacto e forte cultura gastronômica, dando à rota um trecho costeiro sulista cheio de energia."
+      }
+    },
+    {
+      "id": "IT:bologna",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "food",
+        "history",
+        "cities"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Arcaded streets, dense historic fabric and an especially strong food identity make Bologna a rich inland counterpoint to Italy’s coastal stops.",
+        "de": "Arkadenstraßen, dichte historische Bausubstanz und eine besonders starke Esskultur machen Bologna zu einem reichen Kontrast zu Italiens Küstenstopps.",
+        "it": "Portici, tessuto storico denso e una forte identità gastronomica fanno di Bologna un ricco contrappunto interno alle tappe costiere italiane.",
+        "es": "Calles porticadas, tejido histórico denso y una fuerte identidad gastronómica hacen de Bolonia un rico contrapunto interior a las paradas costeras de Italia.",
+        "fr": "Rues à arcades, tissu historique dense et forte identité culinaire font de Bologne un riche contrepoint intérieur aux étapes côtières italiennes.",
+        "pt": "Ruas com pórticos, tecido histórico denso e forte identidade gastronômica fazem de Bolonha um rico contraponto interior às paradas costeiras da Itália."
+      }
+    },
+    {
       "id": "IT:civitavecchia-rome-gateway",
       "contentType": "editorial-evergreen",
       "tags": [
@@ -23,6 +80,25 @@
       }
     },
     {
+      "id": "IT:dolomites-cortina",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "mountains",
+        "nature",
+        "adventure"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "High limestone peaks, alpine valleys and a compact mountain-town base shift the journey decisively into the Dolomites.",
+        "de": "Hohe Kalkgipfel, Alpentäler und ein kompakter Bergort als Basis verlagern die Reise klar in die Dolomiten.",
+        "it": "Alte cime calcaree, valli alpine e una compatta base di montagna portano decisamente il viaggio nelle Dolomiti.",
+        "es": "Altas cumbres de caliza, valles alpinos y una base compacta de montaña llevan el viaje claramente hacia los Dolomitas.",
+        "fr": "Hauts sommets calcaires, vallées alpines et base de montagne compacte font basculer nettement le voyage dans les Dolomites.",
+        "pt": "Altos picos de calcário, vales alpinos e uma base compacta de montanha levam a viagem claramente para as Dolomitas."
+      }
+    },
+    {
       "id": "IT:florence",
       "contentType": "editorial-evergreen",
       "tags": [
@@ -39,6 +115,44 @@
         "es": "Paisaje renacentista, museos, tradiciones artesanas y cultura gastronómica toscana concentran mucho de Italia en un centro histórico fácil de recorrer a pie.",
         "fr": "Décor Renaissance, musées, traditions artisanales et culture culinaire toscane concentrent une grande part de l’Italie dans un centre historique propice à la marche.",
         "pt": "Cenário renascentista, museus, tradições artesanais e cultura gastronômica toscana concentram muito da Itália em um centro histórico fácil de explorar a pé."
+      }
+    },
+    {
+      "id": "IT:genoa",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "history",
+        "cities"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A dense historic port city climbing from the Ligurian waterfront, with narrow streets and maritime character shaping the experience.",
+        "de": "Eine dichte historische Hafenstadt, die sich vom ligurischen Ufer den Hang hinaufzieht und von engen Straßen und maritimem Charakter geprägt ist.",
+        "it": "Una densa città portuale storica che sale dal lungomare ligure, con vicoli stretti e carattere marittimo a definirne l’esperienza.",
+        "es": "Una densa ciudad portuaria histórica que asciende desde el litoral ligur, con calles estrechas y marcado carácter marítimo.",
+        "fr": "Une ville portuaire historique dense qui grimpe depuis le front de mer ligure, marquée par ses ruelles étroites et son caractère maritime.",
+        "pt": "Uma cidade portuária histórica e densa que sobe a partir da orla da Ligúria, marcada por ruas estreitas e forte caráter marítimo."
+      }
+    },
+    {
+      "id": "IT:matera",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "culture",
+        "cities"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Stone-cut dwellings and a dense historic landscape give Matera one of southern Italy’s most distinctive urban forms.",
+        "de": "In Fels gehauene Wohnformen und eine dichte historische Landschaft geben Matera eine der markantesten Stadtformen Süditaliens.",
+        "it": "Abitazioni scavate nella roccia e un fitto paesaggio storico danno a Matera una delle forme urbane più distintive del Sud Italia.",
+        "es": "Viviendas excavadas en la roca y un denso paisaje histórico dan a Matera una de las formas urbanas más singulares del sur de Italia.",
+        "fr": "Habitations creusées dans la roche et paysage historique dense donnent à Matera l’une des formes urbaines les plus singulières du sud de l’Italie.",
+        "pt": "Moradias escavadas na rocha e uma paisagem histórica densa dão a Matera uma das formas urbanas mais marcantes do sul da Itália."
       }
     },
     {
@@ -77,6 +191,44 @@
         "es": "Capas de historia antigua, espacios monumentales y vida cotidiana de barrio hacen de Roma una intensa introducción a la historia y cultura urbana de Italia.",
         "fr": "Strates antiques, espaces monumentaux et vie quotidienne des quartiers font de Rome une introduction dense à l’histoire et à la culture urbaine italiennes.",
         "pt": "Camadas antigas, espaços monumentais e vida cotidiana de bairro fazem de Roma uma introdução intensa à história e à cultura urbana italiana."
+      }
+    },
+    {
+      "id": "IT:siena",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "culture",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Brick streets, a compact medieval core and Tuscan hill-country atmosphere create a slower, strongly regional finale.",
+        "de": "Backsteinstraßen, kompakter mittelalterlicher Kern und toskanische Hügellandschaft schaffen ein langsameres, stark regional geprägtes Finale.",
+        "it": "Strade in mattoni, centro medievale compatto e atmosfera delle colline toscane creano un finale più lento e fortemente regionale.",
+        "es": "Calles de ladrillo, un compacto núcleo medieval y ambiente de colinas toscanas crean un final más pausado y muy regional.",
+        "fr": "Rues de brique, cœur médiéval compact et atmosphère des collines toscanes créent un final plus lent et fortement régional.",
+        "pt": "Ruas de tijolos, centro medieval compacto e atmosfera das colinas toscanas criam um final mais lento e fortemente regional."
+      }
+    },
+    {
+      "id": "IT:venice",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "culture",
+        "cities"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Canals, narrow lanes and water-based movement create a city experience unlike any other stop on the route.",
+        "de": "Kanäle, schmale Gassen und Bewegung auf dem Wasser schaffen ein Stadterlebnis, das sich deutlich von allen anderen Stopps der Route unterscheidet.",
+        "it": "Canali, calli strette e spostamenti sull’acqua creano un’esperienza urbana diversa da qualsiasi altra tappa del percorso.",
+        "es": "Canales, calles estrechas y desplazamientos por el agua crean una experiencia urbana distinta de cualquier otra parada de la ruta.",
+        "fr": "Canaux, ruelles étroites et déplacements sur l’eau créent une expérience urbaine sans équivalent parmi les autres étapes de l’itinéraire.",
+        "pt": "Canais, ruas estreitas e deslocamentos pela água criam uma experiência urbana diferente de qualquer outra parada da rota."
       }
     }
   ]

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "BE",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "BE:brussels",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Grand civic spaces, neighbourhood cafés and multilingual urban life make Brussels a layered European capital with strong everyday character.",
+        "de": "Große öffentliche Plätze, Viertelcafés und mehrsprachiges Stadtleben machen Brüssel zu einer vielschichtigen europäischen Hauptstadt mit starkem Alltagscharakter.",
+        "it": "Grandi spazi civici, caffè di quartiere e vita urbana multilingue fanno di Bruxelles una capitale europea stratificata e molto vissuta.",
+        "es": "Grandes espacios cívicos, cafés de barrio y vida urbana multilingüe hacen de Bruselas una capital europea llena de capas y carácter cotidiano.",
+        "fr": "Grands espaces civiques, cafés de quartier et vie urbaine multilingue font de Bruxelles une capitale européenne riche en strates et en vie quotidienne.",
+        "pt": "Grandes espaços cívicos, cafés de bairro e vida urbana multilíngue fazem de Bruxelas uma capital europeia cheia de camadas e caráter cotidiano."
+      }
+    }
+  ]
+}

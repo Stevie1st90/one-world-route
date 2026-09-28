@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "NL",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "NL:amsterdam",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "history"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Canals, narrow historic streets and dense neighbourhood life create a highly walkable city experience with a distinctive northern-European rhythm.",
+        "de": "Kanäle, schmale historische Straßen und dichtes Viertelleben schaffen ein sehr gut zu Fuß erlebbares Stadterlebnis mit markantem nordeuropäischem Rhythmus.",
+        "it": "Canali, strette strade storiche e intensa vita di quartiere creano un’esperienza urbana molto percorribile a piedi, dal ritmo tipicamente nord-europeo.",
+        "es": "Canales, calles históricas estrechas y una intensa vida de barrio crean una experiencia urbana muy caminable y con un ritmo claramente norte-europeo.",
+        "fr": "Canaux, rues historiques étroites et vie de quartier dense créent une expérience urbaine très propice à la marche, au rythme typiquement nord-européen.",
+        "pt": "Canais, ruas históricas estreitas e vida intensa de bairro criam uma experiência urbana muito caminhável, com ritmo marcadamente norte-europeu."
+      }
+    }
+  ]
+}

@@ -20,8 +20,10 @@ test('internal builder authors a draft and previews it with the regional engine'
     expect(coverageBounds.bottom).toBeLessThanOrEqual(coverageBounds.height);
     expect(coverageBounds.right).toBeLessThanOrEqual(coverageBounds.width);
     await expect(page.locator('#coverageSummary')).toContainText('Coverage');
+    await expect(page.locator('#coverageSummary')).toContainText('100%');
     await expect(page.locator('#coverageSummary')).toContainText('Profiles');
-    await expect(page.locator('#coverageQueue .coverage-item').first()).toBeVisible();
+    await expect(page.locator('#coverageQueue .coverage-empty')).toContainText('All published regional places have reusable experience content.');
+    await expect(page.locator('#coverageQueue .coverage-item')).toHaveCount(0);
     await expect(page.locator('#coverageJourneys .coverage-journey')).toHaveCount(16);
     await page.locator('#coverageDialog').screenshot({path:testInfo.outputPath('experience-coverage-'+testInfo.project.name+'.png'),animations:'disabled'});
     await page.locator('#coverageDialog [data-close="coverageDialog"]').click();

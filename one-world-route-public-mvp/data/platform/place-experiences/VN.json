@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "VN",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "VN:hanoi",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Dense street life, historic neighbourhoods and food culture give Hanoi a layered, energetic opening to northern Vietnam.",
+        "de": "Dichtes Straßenleben, historische Viertel und Esskultur geben Hanoi einen vielschichtigen, energiegeladenen Einstieg in Nordvietnam.",
+        "it": "Vita di strada intensa, quartieri storici e cultura gastronomica danno ad Hanoi un’apertura stratificata ed energica sul Vietnam del nord.",
+        "es": "Vida callejera intensa, barrios históricos y cultura gastronómica dan a Hanói una apertura llena de capas y energía al norte de Vietnam.",
+        "fr": "Vie de rue dense, quartiers historiques et culture culinaire donnent à Hanoï une ouverture énergique et stratifiée sur le nord du Vietnam.",
+        "pt": "Vida de rua intensa, bairros históricos e cultura gastronômica dão a Hanói uma abertura cheia de camadas e energia para o norte do Vietnã."
+      }
+    },
+    {
+      "id": "VN:hue",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "culture",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Imperial heritage, river scenery and a slower urban rhythm give Huế a reflective historic chapter in central Vietnam.",
+        "de": "Kaiserliches Erbe, Flusslandschaft und ein ruhigerer Stadtrhythmus geben Huế einen nachdenklicheren historischen Abschnitt in Zentralvietnam.",
+        "it": "Patrimonio imperiale, paesaggio fluviale e ritmo urbano più lento danno a Huế un capitolo storico riflessivo nel Vietnam centrale.",
+        "es": "Patrimonio imperial, paisaje fluvial y un ritmo urbano más lento dan a Huế un capítulo histórico y pausado en el centro de Vietnam.",
+        "fr": "Patrimoine impérial, paysage fluvial et rythme urbain plus lent donnent à Huế une étape historique et contemplative au centre du Vietnam.",
+        "pt": "Patrimônio imperial, paisagem fluvial e ritmo urbano mais lento dão a Huế um capítulo histórico e contemplativo no centro do Vietnã."
+      }
+    },
+    {
+      "id": "VN:da-nang",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "coast",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A broad modern city on the central coast, combining long beaches, riverfront urban space and easy regional connections.",
+        "de": "Eine weitläufige moderne Stadt an der Zentralküste, die lange Strände, urbane Flussräume und gute regionale Verbindungen kombiniert.",
+        "it": "Una moderna città ampia sulla costa centrale, tra lunghe spiagge, spazi urbani sul fiume e facili collegamenti regionali.",
+        "es": "Una amplia ciudad moderna en la costa central, con largas playas, espacios urbanos junto al río y buenas conexiones regionales.",
+        "fr": "Une vaste ville moderne sur la côte centrale, associant longues plages, espaces urbains fluviaux et liaisons régionales faciles.",
+        "pt": "Uma cidade moderna e ampla na costa central, combinando longas praias, espaços urbanos à beira do rio e boas conexões regionais."
+      }
+    },
+    {
+      "id": "VN:hoi-an",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "culture",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Low-rise historic streets, lantern-lit evenings and riverside life create a compact, highly walkable heritage stop.",
+        "de": "Niedrige historische Straßen, Laternenlicht am Abend und Leben am Fluss schaffen einen kompakten, sehr gut zu Fuß erlebbaren Kulturstopp.",
+        "it": "Strade storiche basse, serate illuminate da lanterne e vita sul fiume creano una tappa di patrimonio compatta e molto percorribile a piedi.",
+        "es": "Calles históricas de baja altura, noches iluminadas con faroles y vida junto al río crean una parada patrimonial compacta y muy caminable.",
+        "fr": "Rues historiques basses, soirées éclairées aux lanternes et vie au bord de la rivière composent une étape patrimoniale compacte et très propice à la marche.",
+        "pt": "Ruas históricas de baixa altura, noites iluminadas por lanternas e vida à beira do rio criam uma parada patrimonial compacta e fácil de explorar a pé."
+      }
+    },
+    {
+      "id": "VN:nha-trang",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "cities",
+        "tropical"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A long urban beachfront and tropical bay setting create a more relaxed coastal break in the north-to-south journey.",
+        "de": "Eine lange städtische Strandfront und die tropische Bucht schaffen eine entspanntere Küstenpause auf der Reise von Nord nach Süd.",
+        "it": "Un lungo fronte spiaggia urbano e una baia tropicale creano una pausa costiera più rilassata nel viaggio da nord a sud.",
+        "es": "Un largo frente de playa urbano y una bahía tropical crean una pausa costera más relajada en el recorrido de norte a sur.",
+        "fr": "Un long front de mer urbain et une baie tropicale offrent une pause côtière plus détendue dans le voyage du nord au sud.",
+        "pt": "Uma longa faixa de praia urbana e uma baía tropical criam uma pausa costeira mais tranquila na viagem de norte a sul."
+      }
+    },
+    {
+      "id": "VN:ho-chi-minh-city",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Fast-moving street life, dense commercial districts and layered modern history give the journey a high-energy southern finale.",
+        "de": "Schnelles Straßenleben, dichte Geschäftsviertel und vielschichtige moderne Geschichte geben der Reise ein energiegeladenes Finale im Süden.",
+        "it": "Vita di strada veloce, densi quartieri commerciali e storia moderna stratificata danno al viaggio un finale meridionale pieno di energia.",
+        "es": "Vida callejera intensa, densos distritos comerciales e historia moderna en capas dan al viaje un final sureño de gran energía.",
+        "fr": "Vie de rue rapide, quartiers commerciaux denses et histoire moderne stratifiée donnent au voyage un final méridional très énergique.",
+        "pt": "Vida de rua acelerada, distritos comerciais densos e história moderna em camadas dão à viagem um final sulista cheio de energia."
+      }
+    }
+  ]
+}

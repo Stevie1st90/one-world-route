@@ -77,7 +77,8 @@
       "coordinates": {
         "lat": 38.7223,
         "lng": -9.1393
-      }
+      },
+      "experienceRef": "PT:lisbon"
     },
     {
       "id": "seville",
@@ -94,7 +95,8 @@
       "coordinates": {
         "lat": 37.3891,
         "lng": -5.9845
-      }
+      },
+      "experienceRef": "ES:seville"
     },
     {
       "id": "granada",
@@ -111,7 +113,8 @@
       "coordinates": {
         "lat": 37.1773,
         "lng": -3.5986
-      }
+      },
+      "experienceRef": "ES:granada"
     },
     {
       "id": "valencia",
@@ -128,7 +131,8 @@
       "coordinates": {
         "lat": 39.4699,
         "lng": -0.3763
-      }
+      },
+      "experienceRef": "ES:valencia"
     },
     {
       "id": "barcelona",
@@ -163,7 +167,8 @@
       "coordinates": {
         "lat": 43.6108,
         "lng": 3.8767
-      }
+      },
+      "experienceRef": "FR:montpellier"
     },
     {
       "id": "marseille",
@@ -198,7 +203,8 @@
       "coordinates": {
         "lat": 43.7102,
         "lng": 7.262
-      }
+      },
+      "experienceRef": "FR:nice"
     },
     {
       "id": "genoa",
@@ -215,7 +221,8 @@
       "coordinates": {
         "lat": 44.4056,
         "lng": 8.9463
-      }
+      },
+      "experienceRef": "IT:genoa"
     },
     {
       "id": "florence",

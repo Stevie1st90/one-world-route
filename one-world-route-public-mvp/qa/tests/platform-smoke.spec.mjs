@@ -253,6 +253,44 @@ test('@regional major experience batch loads cruise and island country shards',a
   expect(errors,'major experience batch runtime page errors').toEqual([]);
 });
 
+test('@regional complete experience coverage loads seven-country rail shards plus Iceland and Vietnam',async({page,isMobile},testInfo)=>{
+  test.setTimeout(180000);
+  const errors=capturePageErrors(page);
+  const shardResponses=[];
+  page.on('response',response=>{
+    const match=response.url().match(/place-experiences\/([A-Z]{2})\.json/);
+    if(match)shardResponses.push({country:match[1],status:response.status()});
+  });
+
+  await page.goto('/?trip=central-europe-rail-journey&lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:15000});
+  await expect.poll(()=>[...new Set(shardResponses.filter(x=>x.status===200).map(x=>x.country))].sort().join(',')).toBe('AT,BE,CZ,DE,FR,HU,NL');
+  if(isMobile){await page.locator('#mobileDetails').click();await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);}
+  await page.locator('[data-journey-stop-index="9"]').evaluate(node=>node.click());
+  await expect(page.locator('#detailTitle')).toHaveText('Berlin');
+  await expect(page.locator('.platform-stop-experience')).toContainText('twentieth-century history');
+  await page.locator('.platform-stop-experience').screenshot({path:testInfo.outputPath('central-europe-place-experience.png'),animations:'disabled'});
+
+  await page.goto('/?trip=iceland-ring-road&lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:15000});
+  if(isMobile){await page.locator('#mobileDetails').click();await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);}
+  await page.locator('[data-journey-stop-index="2"]').evaluate(node=>node.click());
+  await expect(page.locator('#detailTitle')).toHaveText('Jökulsárlón');
+  await expect(page.locator('.platform-stop-experience')).toContainText('Glacial ice');
+  await page.locator('.platform-stop-experience').screenshot({path:testInfo.outputPath('iceland-place-experience.png'),animations:'disabled'});
+
+  await page.goto('/?trip=vietnam-north-south&lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:15000});
+  if(isMobile){await page.locator('#mobileDetails').click();await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);}
+  await page.locator('[data-journey-stop-index="3"]').evaluate(node=>node.click());
+  await expect(page.locator('#detailTitle')).toHaveText('Hội An');
+  await expect(page.locator('.platform-stop-experience')).toContainText('lantern-lit evenings');
+  await page.locator('.platform-stop-experience').screenshot({path:testInfo.outputPath('vietnam-place-experience.png'),animations:'disabled'});
+
+  if(isMobile)await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
+  expect(errors,'complete coverage runtime page errors').toEqual([]);
+});
+
 test('@regional representative regional shell boots cleanly',async({page,isMobile})=>{
   test.setTimeout(30000);
   expect(regional).toBeTruthy();

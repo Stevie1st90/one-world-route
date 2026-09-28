@@ -21,6 +21,63 @@
         "fr": "Un port méditerranéen actif, des quartiers en pente et une forte culture culinaire donnent à Marseille une identité de grande ville résolument maritime.",
         "pt": "Um porto mediterrâneo ativo, bairros em encostas e uma forte cultura gastronômica dão a Marselha uma identidade clara de grande cidade costeira."
       }
+    },
+    {
+      "id": "FR:montpellier",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "coast"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A lively southern city with pedestrian streets, warm-stone architecture and a relaxed Mediterranean rhythm just inland from the coast.",
+        "de": "Eine lebendige Stadt im Süden mit Fußgängerstraßen, warmer Steinarchitektur und entspanntem Mittelmeerrhythmus knapp im Landesinneren.",
+        "it": "Una vivace città del sud con strade pedonali, architettura in pietra chiara e ritmo mediterraneo rilassato poco all’interno della costa.",
+        "es": "Una animada ciudad del sur con calles peatonales, arquitectura de piedra cálida y un ritmo mediterráneo relajado cerca de la costa.",
+        "fr": "Une ville du Sud animée, avec rues piétonnes, architecture de pierre claire et rythme méditerranéen détendu à proximité du littoral.",
+        "pt": "Uma cidade animada do sul, com ruas de pedestres, arquitetura de pedra clara e ritmo mediterrâneo tranquilo perto do litoral."
+      }
+    },
+    {
+      "id": "FR:nice",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "coast",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A long Mediterranean waterfront, dense old-town streets and bright southern light give Nice an elegant coastal-city character.",
+        "de": "Eine lange Mittelmeerpromenade, dichte Altstadtgassen und helles Licht des Südens geben Nizza einen eleganten Küstenstadtcharakter.",
+        "it": "Un lungo lungomare mediterraneo, fitte strade del centro storico e luce del sud danno a Nizza un elegante carattere di città costiera.",
+        "es": "Un largo paseo mediterráneo, densas calles del casco antiguo y la luz del sur dan a Niza un elegante carácter de ciudad costera.",
+        "fr": "Un long front de mer méditerranéen, les rues denses de la vieille ville et la lumière du Sud donnent à Nice un caractère côtier élégant.",
+        "pt": "Uma longa orla mediterrânea, ruas densas do centro antigo e a luz do sul dão a Nice um elegante caráter de cidade costeira."
+      }
+    },
+    {
+      "id": "FR:paris",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "history",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Grand avenues, neighbourhood streets, riverfront landmarks and dense cultural life make Paris a monumental yet highly varied opening to the rail journey.",
+        "de": "Große Boulevards, Viertelstraßen, Wahrzeichen an der Seine und dichtes Kulturleben machen Paris zu einem monumentalen und zugleich vielfältigen Auftakt der Bahnreise.",
+        "it": "Grandi viali, strade di quartiere, monumenti sul fiume e intensa vita culturale fanno di Parigi un’apertura monumentale ma molto varia del viaggio in treno.",
+        "es": "Grandes avenidas, calles de barrio, monumentos junto al río y una intensa vida cultural hacen de París una apertura monumental y muy variada del viaje en tren.",
+        "fr": "Grands boulevards, rues de quartier, monuments en bord de Seine et vie culturelle dense font de Paris une ouverture monumentale et très variée du voyage ferroviaire.",
+        "pt": "Grandes avenidas, ruas de bairro, marcos à beira do rio e intensa vida cultural fazem de Paris uma abertura monumental e muito variada da viagem de trem."
+      }
     }
   ]
 }
