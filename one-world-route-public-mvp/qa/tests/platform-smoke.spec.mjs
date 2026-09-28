@@ -140,7 +140,10 @@ test('@regional starting country applies the closest supported journey entry and
       language:'en',currency:'EUR',origin:'Seoul / ICN',originCountry:'KR',originRegion:'asia',
       party:{adults:1,children:0},accessibility:{reducedMobility:false}
     }));
-    localStorage.removeItem('one-world-route:trip-tools:v1');
+    if(!sessionStorage.getItem('one-world-route:journey-entry-qa:init')){
+      localStorage.removeItem('one-world-route:trip-tools:v1');
+      sessionStorage.setItem('one-world-route:journey-entry-qa:init','1');
+    }
   });
   const errors=capturePageErrors(page);
   await page.goto('/?trip=japan-by-rail&lang=en',{waitUntil:'domcontentloaded'});
