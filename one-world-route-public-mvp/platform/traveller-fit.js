@@ -75,7 +75,7 @@
     return Object.values(preferences(profile)).filter(Boolean).length;
   }
 
-  function rank(trips,profile){
+  function orderRecommendations(trips,profile){
     const configured=configuredPreferenceCount(profile);
     return (trips||[]).map(trip=>{
       const signals=recommendationSignals(trip,profile);
@@ -105,5 +105,5 @@
       .map(({kind,value})=>({kind,value}));
   }
 
-  root.travellerFit={partyKey,preferences,evaluate,recommendationSignals,recommendationReasons,configuredPreferenceCount,rank};
+  root.travellerFit={partyKey,preferences,evaluate,recommendationSignals,recommendationReasons,configuredPreferenceCount,orderRecommendations};
 })();
