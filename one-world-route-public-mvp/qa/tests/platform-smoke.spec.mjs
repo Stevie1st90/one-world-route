@@ -130,7 +130,7 @@ test('@regional collection deep link opens the same filtered interactive catalog
   const expected=catalog.trips.filter(trip=>trip.id!==catalog.defaultTripId&&(!definition.filters.mode||(trip.discovery?.modes||[]).includes(definition.filters.mode)));
   const cards=page.locator('#platformHomeResults .platform-home-card');
   await expect(cards).toHaveCount(expected.length);
-  for(const trip of expected)await expect(cards).toContainText(trip.title.en);
+  for(const trip of expected)await expect(cards.filter({hasText:trip.title.en})).toHaveCount(1);
   await context.screenshot({path:testInfo.outputPath('collection-handoff.png'),animations:'disabled'});
   if(isMobile)await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
   expect(errors,'collection deep-link runtime errors').toEqual([]);
