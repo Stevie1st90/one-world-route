@@ -8,6 +8,7 @@ const paces=new Set(['relaxed','balanced','active']);
 const seasons=new Set(['spring','summer','autumn','winter','multi-season']);
 const parties=new Set(['solo','couples','friends','families']);
 const accessibilities=new Set(['standard-check','operator-dependent','vehicle-dependent','complex-planning']);
+export const publicationStatuses=new Set(['planned','sourced-beta','illustrative-template','editorial-preview']);
 
 export function computeTripMetrics(trip={}){
   const segments=Array.isArray(trip.segments)?trip.segments:[];
@@ -33,6 +34,18 @@ export function normalizeCatalogEntry(entry={},trip={}){
     dataset:`./data/platform/trips/${trip.slug}.json`,
     metrics:{...(entry.metrics||{}),...metrics}
   };
+}
+
+export function validatePublicationReadiness({trip,catalogEntry}={}){
+  const errors=[];
+  const tripStatus=String(trip?.status||'').trim();
+  const catalogStatus=String(catalogEntry?.status||'').trim();
+  if(!tripStatus||tripStatus==='draft')errors.push('trip.status must be an explicit public status before publish');
+  if(!catalogStatus||catalogStatus==='draft')errors.push('catalog status must be an explicit public status before publish');
+  if(tripStatus&&catalogStatus&&tripStatus!==catalogStatus)errors.push('trip and catalog publication status must match');
+  if(tripStatus&&tripStatus!=='draft'&&!publicationStatuses.has(tripStatus))errors.push('unsupported trip publication status: '+tripStatus);
+  if(catalogStatus&&catalogStatus!=='draft'&&!publicationStatuses.has(catalogStatus))errors.push('unsupported catalog publication status: '+catalogStatus);
+  return {valid:errors.length===0,errors,status:tripStatus||catalogStatus||''};
 }
 
 export function validateTripDraft({trip,catalogEntry,catalog}){
