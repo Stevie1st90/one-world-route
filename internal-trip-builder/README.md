@@ -26,7 +26,7 @@ The server binds only to \`127.0.0.1\`. It is intentionally outside the Vercel R
 
 ## Workflow
 
-0. Open **Experience coverage** to see current destination-content coverage and the transparent editorial priority queue.
+0. Open **Experience coverage** for destination-content coverage and **Maintenance queue** for source/experience reviews that are expired, overdue or due soon.
 1. Create a new draft or clone an existing reusable public trip.
 2. Edit identity/discovery metadata and the place → stop → segment graph.
 3. Add source evidence and namespaced extension data.
@@ -39,8 +39,11 @@ The server binds only to \`127.0.0.1\`. It is intentionally outside the Vercel R
 
 - Drafts live in \`one-world-route-public-mvp/data/platform/drafts/\` and are gitignored.
 - Publish does not commit or deploy.
+- Publication status is deliberate: a draft cannot publish until a supported public status is selected, and trip/catalog status must match.
+- Trip data, catalog, trip index and sitemap are one transactional publication unit; any failed generator or quality check restores all of them.
+- Maintenance Queue is derived from existing `checkedAt`, `validUntil`, review intervals and shared review policies. It does not fetch or invent live facts.
 - Catalog metrics are recomputed from the trip graph.
-- Publication runs the non-mutating platform quality suite: public/platform validation, model, locale, formatter, share, navigation, regional runtime, rail, story and continuity tests.
+- Publication regenerates the trip index and SEO sitemap, then runs the platform quality suite: public/platform validation, model, locale, formatter, trip index, share, navigation, maintenance, regional runtime, rail, story and continuity tests.
 - A failed quality check rolls the catalog/trip publication back transactionally.
 - Placeholder or missing trip summaries, titles, place names and required source evidence block publication.
 - Duplicate segment IDs, broken graph sequences, invalid coordinates and malformed country codes block publication.
