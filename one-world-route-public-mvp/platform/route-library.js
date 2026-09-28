@@ -53,7 +53,7 @@
         accessibility:$('#platformRouteAccessibility',modal)?.value||''
       };
       const filtered=Discovery.filter(catalog,filters,r=>[local(r.title),local(r.subtitle),r.kind,...(r.discovery?.regions||[]),...(r.discovery?.themes||[]),...(r.discovery?.modes||[])].join(' '));
-      const personalized=profileConfigured?.()?travellerFit.rank(filtered,loadProfile()).map(result=>result.trip):null;
+      const personalized=profileConfigured?.()?travellerFit.orderRecommendations(filtered,loadProfile()).map(result=>result.trip):null;
       const ordered=personalized||[...filtered].sort((a,b)=>{
         const currentA=a.id===currentTripMeta?.id?1:0,currentB=b.id===currentTripMeta?.id?1:0;
         if(currentA!==currentB)return currentB-currentA;
