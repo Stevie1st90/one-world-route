@@ -7,6 +7,19 @@
     return JSON.parse(JSON.stringify(value));
   };
   const rotate=(items,index)=>[...items.slice(index),...items.slice(0,index)];
+  const radians=value=>Number(value)*Math.PI/180;
+  function coordinates(value){
+    const lat=Number(value?.lat??value?.coordinates?.lat),lng=Number(value?.lng??value?.coordinates?.lng);
+    return Number.isFinite(lat)&&Number.isFinite(lng)?{lat,lng}:null;
+  }
+  function distanceKm(a,b){
+    const from=coordinates(a),to=coordinates(b);
+    if(!from||!to)return null;
+    const dLat=radians(to.lat-from.lat),dLng=radians(to.lng-from.lng);
+    const lat1=radians(from.lat),lat2=radians(to.lat);
+    const h=Math.sin(dLat/2)**2+Math.cos(lat1)*Math.cos(lat2)*Math.sin(dLng/2)**2;
+    return 6371*2*Math.atan2(Math.sqrt(h),Math.sqrt(1-h));
+  }
 
   function policy(trip){
     const raw=trip?.routePolicy||{};
@@ -29,6 +42,33 @@
     if(p.startMode==='endpoints'&&p.reversible&&stops.length>1)return [stops[0],stops.at(-1)];
     if(p.startMode==='any-stop')return [...stops];
     return [stops[0]];
+  }
+
+  function recommendEntry(trip,profile={},countries=[]){
+    const eligible=eligibleStartStops(trip),p=policy(trip);
+    if(eligible.length<=1)return {available:false,reason:'fixed-route',stopId:eligible[0]?.id||null,placeId:eligible[0]?.placeId||null,method:null};
+    const originCountry=String(profile?.originCountry||'').trim().toUpperCase();
+    if(!originCountry)return {available:false,reason:'origin-country-required',stopId:null,placeId:null,method:'country-centroid'};
+    const origin=coordinates((countries||[]).find(country=>String(country?.cca2||'').toUpperCase()===originCountry));
+    if(!origin)return {available:false,reason:'origin-country-unavailable',originCountry,stopId:null,placeId:null,method:'country-centroid'};
+    const places=new Map((trip?.places||[]).map(place=>[place.id,place]));
+    const ranked=eligible.map(stop=>{
+      const place=places.get(stop.placeId),distance=distanceKm(origin,place);
+      return {stop,place,distance};
+    }).filter(item=>Number.isFinite(item.distance)).sort((a,b)=>a.distance-b.distance||Number(a.stop?.sequence||0)-Number(b.stop?.sequence||0));
+    const best=ranked[0];
+    if(!best)return {available:false,reason:'route-coordinates-unavailable',originCountry,stopId:null,placeId:null,method:'country-centroid'};
+    return {
+      available:true,
+      reason:'nearest-eligible-start',
+      method:'country-centroid',
+      originCountry,
+      startMode:p.startMode,
+      stopId:best.stop.id,
+      placeId:best.place?.id||best.stop.placeId||null,
+      distanceKm:Math.round(best.distance),
+      alternatives:ranked.slice(0,3).map(item=>({stopId:item.stop.id,placeId:item.place?.id||item.stop.placeId||null,distanceKm:Math.round(item.distance)}))
+    };
   }
 
   function normalizeStops(stops){
@@ -62,7 +102,7 @@
     return next;
   }
 
-  function apply(trip,{startStopId}={}){
+  function apply(trip,{startStopId,startSource=null,entrySuggestion=null}={}){
     if(!trip)return trip;
     const p=policy(trip),eligible=eligibleStartStops(trip);
     const selected=eligible.find(stop=>stop.id===startStopId)||eligible[0]||null;
@@ -76,20 +116,20 @@
         next.stops=normalizeStops(rotate(next.stops,index));
         next.segments=rotate(next.segments,index).map((segment,segmentIndex)=>({...segment,sequence:segmentIndex+1}));
       }
-      next._personalization={startStopId:selected.id,direction:'forward',adapted:index>0,rotation:index};
+      next._personalization={startStopId:selected.id,direction:'forward',adapted:index>0,rotation:index,startSource:startSource||(startStopId?'requested':'default'),entrySuggestion};
       return next;
     }
 
     const shouldReverse=p.startMode==='endpoints'&&p.reversible&&selected.id===last?.id&&selected.id!==first?.id;
     if(!shouldReverse){
       const next=clone(trip);
-      next._personalization={startStopId:selected.id,direction:'forward',adapted:false};
+      next._personalization={startStopId:selected.id,direction:'forward',adapted:false,startSource:startSource||(startStopId?'requested':'default'),entrySuggestion};
       return next;
     }
     const next=clone(trip);
     next.stops=normalizeStops([...next.stops].reverse());
     next.segments=[...next.segments].reverse().map((segment,index)=>reverseSegment(segment,index,p));
-    next._personalization={startStopId:selected.id,direction:'reverse',adapted:true};
+    next._personalization={startStopId:selected.id,direction:'reverse',adapted:true,startSource:startSource||(startStopId?'requested':'default'),entrySuggestion};
     return next;
   }
 
@@ -131,5 +171,5 @@
     };
   }
 
-  root.journeyAdapter={policy,eligibleStartStops,apply,normalizeStops,originPlan};
+  root.journeyAdapter={policy,eligibleStartStops,recommendEntry,apply,normalizeStops,originPlan,distanceKm};
 })();

@@ -86,3 +86,40 @@ test('origin plan keeps access and return separate from the curated core journey
   assert.equal(plan.return.to,'Frankfurt');
   assert.equal(plan.preserveCoreRoute,true);
 });
+
+
+test('starting country recommends the nearest policy-allowed route endpoint',()=>{
+  const adapter=load();
+  const japan={
+    id:'japan',
+    routePolicy:{startMode:'endpoints',reversible:true,originMode:'traveller-context'},
+    places:[
+      {id:'tokyo',coordinates:{lat:35.6762,lng:139.6503}},
+      {id:'hiroshima',coordinates:{lat:34.3853,lng:132.4553}}
+    ],
+    stops:[
+      {id:'tokyo-stop',sequence:1,placeId:'tokyo',dayStart:1,dayEnd:1},
+      {id:'hiroshima-stop',sequence:2,placeId:'hiroshima',dayStart:2,dayEnd:2}
+    ],
+    segments:[
+      {id:'leg',sequence:1,fromStopId:'tokyo-stop',toStopId:'hiroshima-stop',planning:{durationMinutes:1},verification:{status:'verified',sourceIds:['x']}}
+    ]
+  };
+  const suggestion=adapter.recommendEntry(japan,{originCountry:'KR'},[{cca2:'KR',lat:35.9078,lng:127.7669}]);
+  assert.equal(suggestion.available,true);
+  assert.equal(suggestion.method,'country-centroid');
+  assert.equal(suggestion.stopId,'hiroshima-stop');
+  const adapted=adapter.apply(japan,{startStopId:suggestion.stopId,startSource:'suggested',entrySuggestion:suggestion});
+  assert.equal(adapted.stops[0].id,'hiroshima-stop');
+  assert.equal(adapted._personalization.startSource,'suggested');
+  assert.equal(adapted._personalization.entrySuggestion.stopId,'hiroshima-stop');
+});
+
+test('entry recommendation never invents an alternative for a fixed route',()=>{
+  const adapter=load();
+  const fixed={...trip,places:[{id:'a',coordinates:{lat:50,lng:8}},{id:'b',coordinates:{lat:48,lng:11}},{id:'c',coordinates:{lat:47,lng:13}}],routePolicy:{startMode:'fixed',reversible:false}};
+  const suggestion=adapter.recommendEntry(fixed,{originCountry:'DE'},[{cca2:'DE',lat:51,lng:10}]);
+  assert.equal(suggestion.available,false);
+  assert.equal(suggestion.reason,'fixed-route');
+  assert.equal(suggestion.stopId,'s1');
+});

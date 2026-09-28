@@ -2,6 +2,7 @@
   'use strict';
 
   const CATALOG_URL = './data/platform/trips.json';
+  const COUNTRY_CENTROIDS_URL = './data/country-centroids.json';
   const PROFILE_KEY = 'one-world-route:traveller-context:v1';
   const PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
   const LocaleData=PLATFORM_MODULES.i18n;
@@ -90,8 +91,17 @@
   let catalog = null;
   let currentTrip = null;
   let currentTripMeta = null;
+  let countryCentroidsPromise = null;
 
   function loadProfile(){return Traveller.load(localStorage,PROFILE_KEY,locale)}
+  function loadCountryCentroids(){
+    if(!countryCentroidsPromise){
+      countryCentroidsPromise=fetch(COUNTRY_CENTROIDS_URL,{cache:'force-cache'})
+        .then(r=>{if(!r.ok)throw new Error('Country centroids '+r.status);return r.json()})
+        .catch(error=>{console.warn('Country centroids unavailable for entry suggestions',error);return []});
+    }
+    return countryCentroidsPromise;
+  }
   function saveProfile(profile){return Traveller.save(localStorage,PROFILE_KEY,profile,locale)}
   function clearProfile(){return Traveller.clear(localStorage,PROFILE_KEY,locale)}
 
@@ -284,7 +294,7 @@
       travellerFit:TravellerFit,
       storage:localStorage,
       toast:Ui.toast,
-      onRouteVariantChange:()=>location.reload(),
+      onRouteVariantChange:()=>activateRegionalTrip(currentTripMeta).catch(error=>console.warn('Regional route variant refresh failed',error)),
       extensions:Extensions,
       stopMap,
       placeMap
@@ -363,8 +373,19 @@
 
   async function activateRegionalTrip(meta){
     currentTripMeta=meta;
-    const baseTrip=await fetch(meta.dataset,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Trip dataset '+r.status);return r.json()});
-    currentTrip=JourneyAdapter.apply(baseTrip,{startStopId:TripTools.getRouteStart(localStorage,meta.id)});
+    const [baseTrip,countryCentroids]=await Promise.all([
+      fetch(meta.dataset,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Trip dataset '+r.status);return r.json()}),
+      loadCountryCentroids()
+    ]);
+    const profile=loadProfile();
+    const storedStart=TripTools.getRouteStart(localStorage,meta.id);
+    const entrySuggestion=JourneyAdapter.recommendEntry(baseTrip,profile,countryCentroids);
+    const suggestedStart=!storedStart&&entrySuggestion?.available?entrySuggestion.stopId:'';
+    currentTrip=JourneyAdapter.apply(baseTrip,{
+      startStopId:storedStart||suggestedStart,
+      startSource:storedStart?'saved':(suggestedStart?'suggested':'default'),
+      entrySuggestion
+    });
     await PlaceExperiences.loadForTrip(currentTrip).catch(error=>console.warn('Place experience layer unavailable',error));
     await waitForCore();
     configureRegionalSelection();
