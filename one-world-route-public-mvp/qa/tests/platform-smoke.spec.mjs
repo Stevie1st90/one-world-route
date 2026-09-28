@@ -133,6 +133,41 @@ test('@regional traveller origin country derives recommendation region without m
   expect(errors,'origin-country derived recommendation runtime page errors').toEqual([]);
 });
 
+test('@regional starting country applies the closest supported journey entry and keeps manual control',async({page,isMobile},testInfo)=>{
+  test.setTimeout(120000);
+  await page.addInitScript(()=>{
+    localStorage.setItem('one-world-route:traveller-context:v1',JSON.stringify({
+      language:'en',currency:'EUR',origin:'Seoul / ICN',originCountry:'KR',originRegion:'asia',
+      party:{adults:1,children:0},accessibility:{reducedMobility:false}
+    }));
+    localStorage.removeItem('one-world-route:trip-tools:v1');
+  });
+  const errors=capturePageErrors(page);
+  await page.goto('/?trip=japan-by-rail&lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:15000});
+  if(isMobile){await page.locator('#mobileDetails').click();await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);}
+  await expect(page.locator('.platform-journey-flow-stop').first()).toContainText('Hiroshima');
+  await expect(page.locator('[data-entry-suggestion]')).toContainText('Seoul / ICN → Hiroshima');
+  await expect(page.locator('[data-trip-route-start]')).toHaveValue('japan-by-rail-stop-06');
+  await page.locator('.platform-journey-personalize').screenshot({path:testInfo.outputPath('journey-entry-suggestion.png'),animations:'disabled'});
+
+  await Promise.all([
+    page.waitForLoadState('domcontentloaded'),
+    page.locator('[data-trip-route-start]').selectOption('japan-by-rail-stop-01')
+  ]);
+  if(isMobile){await page.locator('#mobileDetails').click();await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);}
+  await expect(page.locator('.platform-journey-flow-stop').first()).toContainText('Tokyo');
+  await expect(page.locator('[data-trip-entry-suggest]')).toBeVisible();
+
+  await Promise.all([
+    page.waitForLoadState('domcontentloaded'),
+    page.locator('[data-trip-entry-suggest]').click()
+  ]);
+  if(isMobile){await page.locator('#mobileDetails').click();await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);}
+  await expect(page.locator('.platform-journey-flow-stop').first()).toContainText('Hiroshima');
+  expect(errors,'journey entry recommendation runtime page errors').toEqual([]);
+});
+
 test('@regional editorial preview journey uses the generic visual detail shell',async({page,isMobile},testInfo)=>{
   test.setTimeout(120000);
   expect(discoveryPreview).toBeTruthy();
