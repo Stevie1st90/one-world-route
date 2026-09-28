@@ -82,6 +82,39 @@ test('@regional global discovery home exposes a broad visual journey catalog',as
   expect(errors,'global discovery home page errors').toEqual([]);
 });
 
+
+
+test('@regional guided discovery exposes a simple finder before advanced filters',async({page,isMobile},testInfo)=>{
+  test.setTimeout(90000);
+  const errors=capturePageErrors(page);
+  await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:15000});
+  await expect(page.locator('.platform-home-hero h1')).toHaveText('One world. Many ways to travel.');
+  await expect(page.locator('#platformHomeFinder')).toBeVisible();
+  await expect(page.locator('[data-home-filter-advanced]')).toBeHidden();
+  if(isMobile){
+    await expect(page.locator('.platform-home-nav [data-home-traveller]')).toBeVisible();
+    await expect(page.locator('.platform-home-nav [data-home-method]')).toBeHidden();
+  }else{
+    await expect(page.locator('.platform-home-nav [data-home-traveller]')).toBeVisible();
+    await expect(page.locator('.platform-home-nav [data-home-method]')).toBeVisible();
+  }
+
+  await page.locator('#homeFinderRegion').selectOption('asia');
+  await page.locator('#homeFinderKind').selectOption('rail');
+  await page.locator('#homeFinderDuration').selectOption('7-14');
+  await page.locator('[data-home-finder-apply]').click();
+  await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(1);
+  await expect(page.locator('#platformHomeResults .platform-home-card h3')).toHaveText('Japan by Rail');
+
+  await page.locator('[data-home-filter-more]').click();
+  await expect(page.locator('[data-home-filter-advanced]')).toBeVisible();
+  await expect(page.locator('[data-home-filter-more]')).toHaveAttribute('aria-expanded','true');
+  await page.locator('#platformHomeFinder').screenshot({path:testInfo.outputPath('discovery-finder-v2.png'),animations:'disabled'});
+  if(isMobile)await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
+  expect(errors,'guided discovery runtime page errors').toEqual([]);
+});
+
 test('@regional traveller start region changes transparent journey recommendations',async({page})=>{
   test.setTimeout(60000);
   await page.addInitScript(()=>{
@@ -108,7 +141,7 @@ test('@regional traveller origin country derives recommendation region without m
   await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
   await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:15000});
   if(isMobile)await page.evaluate(()=>window.ONE_WORLD_PLATFORM?.openTraveller?.());
-  else await page.locator('[data-home-traveller]').click();
+  else await page.locator('.platform-home-nav [data-home-traveller]').click();
   await expect(page.locator('#platformTravellerForm')).toBeVisible();
   await expect(page.locator('#platformTravellerForm select[name="originRegion"]')).toHaveCount(0);
   for(const name of ['durationBand','pace','season','mode','theme']){
