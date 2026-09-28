@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "ZA",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "ZA:cape-town",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "coast",
+        "mountains"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A dramatic meeting of city, mountain and ocean gives Cape Town one of the route’s strongest combinations of urban life and landscape.",
+        "de": "Das markante Zusammentreffen von Stadt, Berg und Ozean gibt Kapstadt eine der stärksten Verbindungen von urbanem Leben und Landschaft auf der Route.",
+        "it": "L’incontro spettacolare tra città, montagna e oceano dà a Città del Capo una delle combinazioni più forti tra vita urbana e paesaggio.",
+        "es": "El encuentro entre ciudad, montaña y océano da a Ciudad del Cabo una de las combinaciones más potentes de vida urbana y paisaje de la ruta.",
+        "fr": "La rencontre spectaculaire entre ville, montagne et océan donne au Cap l’une des combinaisons les plus fortes entre vie urbaine et paysage.",
+        "pt": "O encontro marcante entre cidade, montanha e oceano dá à Cidade do Cabo uma das combinações mais fortes entre vida urbana e paisagem."
+      }
+    },
+    {
+      "id": "ZA:hermanus",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "nature",
+        "wildlife"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Clifftop paths, open ocean views and a relaxed coastal town atmosphere make Hermanus a nature-focused pause on the southern coast.",
+        "de": "Klippenwege, offene Ozeanblicke und eine entspannte Küstenatmosphäre machen Hermanus zu einer naturgeprägten Pause an der Südküste.",
+        "it": "Sentieri sulle scogliere, viste sull’oceano e atmosfera costiera rilassata fanno di Hermanus una pausa dedicata alla natura lungo la costa meridionale.",
+        "es": "Senderos sobre acantilados, vistas al océano y ambiente costero relajado hacen de Hermanus una pausa centrada en la naturaleza en la costa sur.",
+        "fr": "Sentiers en falaise, vues ouvertes sur l’océan et ambiance côtière détendue font d’Hermanus une pause tournée vers la nature sur la côte sud.",
+        "pt": "Trilhas sobre falésias, vistas abertas do oceano e atmosfera costeira tranquila fazem de Hermanus uma pausa voltada à natureza na costa sul."
+      }
+    },
+    {
+      "id": "ZA:knysna",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "nature",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Lagoon scenery, forested hills and an easygoing small-town feel give Knysna a softer coastal chapter along the Garden Route.",
+        "de": "Lagunenlandschaft, bewaldete Hügel und entspannte Kleinstadtatmosphäre geben Knysna einen sanfteren Küstenabschnitt entlang der Garden Route.",
+        "it": "Laguna, colline boscose e atmosfera rilassata da piccola città danno a Knysna un capitolo costiero più morbido lungo la Garden Route.",
+        "es": "Laguna, colinas boscosas y ambiente relajado de pequeña ciudad dan a Knysna un capítulo costero más suave en la Garden Route.",
+        "fr": "Lagune, collines boisées et ambiance détendue de petite ville donnent à Knysna une étape côtière plus douce sur la Garden Route.",
+        "pt": "Laguna, colinas arborizadas e clima tranquilo de cidade pequena dão a Knysna um trecho costeiro mais suave na Garden Route."
+      }
+    },
+    {
+      "id": "ZA:tsitsikamma",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "coast",
+        "adventure"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Dense coastal forest, steep shoreline and river-cut landscapes make Tsitsikamma one of the route’s most immersive nature sections.",
+        "de": "Dichter Küstenwald, steile Uferlandschaft und von Flüssen geprägtes Gelände machen Tsitsikamma zu einem der intensivsten Naturabschnitte der Route.",
+        "it": "Foresta costiera fitta, costa ripida e paesaggi incisi dai fiumi rendono Tsitsikamma uno dei tratti più immersivi nella natura.",
+        "es": "Bosque costero denso, costa escarpada y paisajes cortados por ríos convierten Tsitsikamma en uno de los tramos más inmersivos en naturaleza.",
+        "fr": "Forêt côtière dense, rivage escarpé et paysages découpés par les rivières font de Tsitsikamma l’une des étapes les plus immersives dans la nature.",
+        "pt": "Floresta costeira densa, litoral íngreme e paisagens recortadas por rios fazem de Tsitsikamma um dos trechos mais imersivos em natureza."
+      }
+    },
+    {
+      "id": "ZA:addo-elephant-national-park",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "wildlife",
+        "nature",
+        "adventure"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Open bush landscapes and wildlife viewing shift the journey from coast and mountains into a distinctly safari-focused finale.",
+        "de": "Offene Buschlandschaften und Tierbeobachtung führen die Reise von Küste und Bergen in ein klar safari-geprägtes Finale.",
+        "it": "Paesaggi aperti di bush e osservazione della fauna spostano il viaggio da costa e montagne verso un finale decisamente orientato al safari.",
+        "es": "Paisajes abiertos de matorral y observación de fauna llevan el viaje desde la costa y las montañas a un final claramente de safari.",
+        "fr": "Paysages ouverts de bush et observation de la faune font passer le voyage de la côte et des montagnes à un final clairement tourné vers le safari.",
+        "pt": "Paisagens abertas de savana arbustiva e observação da vida selvagem levam a viagem da costa e das montanhas a um final claramente voltado ao safári."
+      }
+    }
+  ]
+}

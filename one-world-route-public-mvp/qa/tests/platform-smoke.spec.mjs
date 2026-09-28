@@ -231,6 +231,28 @@ test('@regional country-sharded place experiences load across Patagonia and New 
   expect(errors,'country-sharded place experience page errors').toEqual([]);
 });
 
+test('@regional major experience batch loads cruise and island country shards',async({page,isMobile},testInfo)=>{
+  test.setTimeout(150000);
+  const errors=capturePageErrors(page);
+
+  async function openTrip(tripId,stopIndex,title,copy,shot){
+    await page.goto('/?trip='+tripId+'&lang=en',{waitUntil:'domcontentloaded'});
+    await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:15000});
+    if(isMobile){await page.locator('#mobileDetails').click();await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);}
+    await page.locator('[data-journey-stop-index="'+stopIndex+'"]').evaluate(node=>node.click());
+    await expect(page.locator('#detailTitle')).toHaveText(title);
+    await expect(page.locator('.platform-stop-experience')).toContainText(copy);
+    await page.locator('.platform-stop-experience').screenshot({path:testInfo.outputPath(shot),animations:'disabled'});
+  }
+
+  await openTrip('western-mediterranean-cruise-loop',4,'La Goulette · Tunis','Mediterranean port gateway','cruise-place-experience.png');
+  await openTrip('norway-arctic-road-trip',2,'Andøya','Open ocean','norway-place-experience.png');
+  await openTrip('greek-island-hopping',4,'Santorini','volcanic caldera','greece-place-experience.png');
+
+  if(isMobile)await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
+  expect(errors,'major experience batch runtime page errors').toEqual([]);
+});
+
 test('@regional representative regional shell boots cleanly',async({page,isMobile})=>{
   test.setTimeout(30000);
   expect(regional).toBeTruthy();

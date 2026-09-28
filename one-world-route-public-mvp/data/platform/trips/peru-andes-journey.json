@@ -76,7 +76,8 @@
       "coordinates": {
         "lat": -12.0464,
         "lng": -77.0428
-      }
+      },
+      "experienceRef": "PE:lima"
     },
     {
       "id": "cusco",
@@ -88,7 +89,8 @@
       "coordinates": {
         "lat": -13.5319,
         "lng": -71.9675
-      }
+      },
+      "experienceRef": "PE:cusco"
     },
     {
       "id": "sacred-valley",
@@ -100,7 +102,8 @@
       "coordinates": {
         "lat": -13.3333,
         "lng": -72.0833
-      }
+      },
+      "experienceRef": "PE:sacred-valley"
     },
     {
       "id": "machu-picchu",
@@ -112,7 +115,8 @@
       "coordinates": {
         "lat": -13.1631,
         "lng": -72.545
-      }
+      },
+      "experienceRef": "PE:machu-picchu"
     },
     {
       "id": "puno",
@@ -124,7 +128,8 @@
       "coordinates": {
         "lat": -15.8402,
         "lng": -70.0219
-      }
+      },
+      "experienceRef": "PE:puno"
     }
   ],
   "stops": [

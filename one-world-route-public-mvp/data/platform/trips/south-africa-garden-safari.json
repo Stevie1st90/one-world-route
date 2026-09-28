@@ -76,7 +76,8 @@
       "coordinates": {
         "lat": -33.9249,
         "lng": 18.4241
-      }
+      },
+      "experienceRef": "ZA:cape-town"
     },
     {
       "id": "hermanus",
@@ -88,7 +89,8 @@
       "coordinates": {
         "lat": -34.4187,
         "lng": 19.2345
-      }
+      },
+      "experienceRef": "ZA:hermanus"
     },
     {
       "id": "knysna",
@@ -100,7 +102,8 @@
       "coordinates": {
         "lat": -34.0351,
         "lng": 23.0465
-      }
+      },
+      "experienceRef": "ZA:knysna"
     },
     {
       "id": "tsitsikamma",
@@ -112,7 +115,8 @@
       "coordinates": {
         "lat": -34.0318,
         "lng": 23.895
-      }
+      },
+      "experienceRef": "ZA:tsitsikamma"
     },
     {
       "id": "addo",
@@ -124,7 +128,8 @@
       "coordinates": {
         "lat": -33.483,
         "lng": 25.75
-      }
+      },
+      "experienceRef": "ZA:addo-elephant-national-park"
     }
   ],
   "stops": [

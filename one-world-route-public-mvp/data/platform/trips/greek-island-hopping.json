@@ -76,7 +76,8 @@
       "coordinates": {
         "lat": 37.9838,
         "lng": 23.7275
-      }
+      },
+      "experienceRef": "GR:athens"
     },
     {
       "id": "mykonos",
@@ -88,7 +89,8 @@
       "coordinates": {
         "lat": 37.4467,
         "lng": 25.3289
-      }
+      },
+      "experienceRef": "GR:mykonos"
     },
     {
       "id": "naxos",
@@ -100,7 +102,8 @@
       "coordinates": {
         "lat": 37.1036,
         "lng": 25.3764
-      }
+      },
+      "experienceRef": "GR:naxos"
     },
     {
       "id": "paros",
@@ -112,7 +115,8 @@
       "coordinates": {
         "lat": 37.0853,
         "lng": 25.1489
-      }
+      },
+      "experienceRef": "GR:paros"
     },
     {
       "id": "santorini",
@@ -124,7 +128,8 @@
       "coordinates": {
         "lat": 36.3932,
         "lng": 25.4615
-      }
+      },
+      "experienceRef": "GR:santorini"
     }
   ],
   "stops": [

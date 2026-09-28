@@ -134,7 +134,8 @@
             "civitavecchia-port-cruise"
           ]
         }
-      }
+      },
+      "experienceRef": "IT:civitavecchia-rome-gateway"
     },
     {
       "id": "port-naples",
@@ -183,7 +184,8 @@
             "la-goulette-port-cruise"
           ]
         }
-      }
+      },
+      "experienceRef": "TN:la-goulette-tunis"
     },
     {
       "id": "port-palma",
@@ -207,7 +209,8 @@
             "palma-port-cruise"
           ]
         }
-      }
+      },
+      "experienceRef": "ES:palma-de-mallorca"
     }
   ],
   "stops": [

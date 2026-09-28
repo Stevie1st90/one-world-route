@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "PE",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "PE:lima",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "food",
+        "coast"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A large Pacific capital where coastal neighbourhoods, historic streets and a strong food culture create a dense urban opening.",
+        "de": "Eine große Pazifikmetropole, in der Küstenviertel, historische Straßen und eine ausgeprägte Esskultur einen dichten urbanen Auftakt schaffen.",
+        "it": "Una grande capitale sul Pacifico dove quartieri costieri, strade storiche e forte cultura gastronomica creano un intenso inizio urbano.",
+        "es": "Una gran capital del Pacífico donde barrios costeros, calles históricas y una fuerte cultura gastronómica crean un comienzo urbano intenso.",
+        "fr": "Une grande capitale du Pacifique où quartiers côtiers, rues historiques et forte culture culinaire forment une ouverture urbaine dense.",
+        "pt": "Uma grande capital do Pacífico onde bairros costeiros, ruas históricas e forte cultura gastronômica criam uma abertura urbana intensa."
+      }
+    },
+    {
+      "id": "PE:cusco",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "culture",
+        "mountains"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Stone streets, layered Andean history and high-altitude city life make Cusco a cultural anchor before the Sacred Valley.",
+        "de": "Steinstraßen, vielschichtige Andengeschichte und das Leben in großer Höhe machen Cusco zum kulturellen Anker vor dem Heiligen Tal.",
+        "it": "Strade in pietra, storia andina stratificata e vita urbana in altura fanno di Cusco un punto culturale centrale prima della Valle Sacra.",
+        "es": "Calles de piedra, historia andina en capas y vida urbana en altura hacen de Cusco un ancla cultural antes del Valle Sagrado.",
+        "fr": "Rues de pierre, histoire andine stratifiée et vie urbaine en altitude font de Cusco un ancrage culturel avant la Vallée sacrée.",
+        "pt": "Ruas de pedra, história andina em camadas e vida urbana em altitude fazem de Cusco uma âncora cultural antes do Vale Sagrado."
+      }
+    },
+    {
+      "id": "PE:sacred-valley",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "culture",
+        "mountains",
+        "nature"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Andean villages, agricultural terraces and broad valley scenery slow the route down between Cusco and the mountain sites beyond.",
+        "de": "Andendörfer, Terrassenfelder und weite Tallandschaften entschleunigen die Route zwischen Cusco und den weiter entfernten Bergstätten.",
+        "it": "Villaggi andini, terrazze agricole e ampi paesaggi vallivi rallentano il ritmo tra Cusco e i siti montani successivi.",
+        "es": "Pueblos andinos, terrazas agrícolas y amplios paisajes de valle desaceleran la ruta entre Cusco y los enclaves de montaña posteriores.",
+        "fr": "Villages andins, terrasses agricoles et larges paysages de vallée ralentissent l’itinéraire entre Cusco et les sites de montagne plus loin.",
+        "pt": "Vilarejos andinos, terraços agrícolas e amplas paisagens de vale desaceleram a rota entre Cusco e os sítios de montanha adiante."
+      }
+    },
+    {
+      "id": "PE:machu-picchu",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "mountains",
+        "nature"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A compact high-mountain archaeological landscape where stone architecture and steep green ridges dominate the experience.",
+        "de": "Eine kompakte archäologische Hochgebirgslandschaft, in der Steinarchitektur und steile grüne Bergrücken das Erlebnis prägen.",
+        "it": "Un paesaggio archeologico compatto d’alta montagna dove architettura in pietra e ripide creste verdi dominano l’esperienza.",
+        "es": "Un paisaje arqueológico compacto de alta montaña donde la arquitectura de piedra y las verdes crestas escarpadas dominan la experiencia.",
+        "fr": "Un paysage archéologique compact de haute montagne où architecture de pierre et crêtes vertes abruptes dominent l’expérience.",
+        "pt": "Uma paisagem arqueológica compacta de alta montanha onde a arquitetura de pedra e as cristas verdes íngremes dominam a experiência."
+      }
+    },
+    {
+      "id": "PE:puno",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "culture",
+        "mountains",
+        "nature"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "High-altitude lakeside life and broad Altiplano horizons give Puno a distinct ending shaped by Andean culture and open space.",
+        "de": "Leben am Hochlandsee und weite Horizonte des Altiplano geben Puno ein markantes Finale, geprägt von Andenkultur und offener Landschaft.",
+        "it": "La vita sul lago in alta quota e gli ampi orizzonti dell’Altiplano danno a Puno un finale distinto segnato da cultura andina e grandi spazi.",
+        "es": "La vida junto al lago en altura y los amplios horizontes del Altiplano dan a Puno un final marcado por la cultura andina y el espacio abierto.",
+        "fr": "La vie au bord du lac en altitude et les vastes horizons de l’Altiplano donnent à Puno une fin distincte marquée par la culture andine et les grands espaces.",
+        "pt": "A vida à beira do lago em altitude e os amplos horizontes do Altiplano dão a Puno um final distinto marcado pela cultura andina e pelos espaços abertos."
+      }
+    }
+  ]
+}

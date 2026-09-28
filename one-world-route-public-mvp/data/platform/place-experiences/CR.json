@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "CR",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "CR:san-jose",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A busy highland capital with markets, museums and everyday urban life, offering a practical cultural entry into Costa Rica.",
+        "de": "Eine lebendige Hauptstadt im Hochland mit Märkten, Museen und alltäglichem Stadtleben, die einen praktischen kulturellen Einstieg in Costa Rica bietet.",
+        "it": "Una vivace capitale d’altopiano con mercati, musei e vita urbana quotidiana, come introduzione culturale pratica alla Costa Rica.",
+        "es": "Una animada capital de altura con mercados, museos y vida urbana cotidiana, que ofrece una entrada cultural práctica a Costa Rica.",
+        "fr": "Une capitale animée des hauts plateaux, avec marchés, musées et vie urbaine quotidienne, offrant une entrée culturelle pratique au Costa Rica.",
+        "pt": "Uma capital movimentada nas terras altas, com mercados, museus e vida urbana cotidiana, oferecendo uma entrada cultural prática na Costa Rica."
+      }
+    },
+    {
+      "id": "CR:arenal",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "volcanic",
+        "adventure"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Volcanic landscapes, rainforest and lake scenery make Arenal a concentrated nature stop with strong outdoor character.",
+        "de": "Vulkanlandschaften, Regenwald und Seeblicke machen Arenal zu einem konzentrierten Naturstopp mit starkem Outdoor-Charakter.",
+        "it": "Paesaggi vulcanici, foresta pluviale e viste sul lago rendono Arenal una tappa concentrata sulla natura e sulle attività all’aperto.",
+        "es": "Paisajes volcánicos, selva tropical y vistas al lago hacen de Arenal una parada muy centrada en la naturaleza y el aire libre.",
+        "fr": "Paysages volcaniques, forêt tropicale et vues sur le lac font d’Arenal une étape très concentrée sur la nature et le plein air.",
+        "pt": "Paisagens vulcânicas, floresta tropical e vistas do lago fazem de Arenal uma parada fortemente ligada à natureza e ao ar livre."
+      }
+    },
+    {
+      "id": "CR:monteverde",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "wildlife",
+        "mountains"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Cloud forest, misty ridges and dense biodiversity give Monteverde a cooler, elevated contrast to Costa Rica’s lowland tropics.",
+        "de": "Nebelwald, feuchte Bergrücken und hohe Artenvielfalt geben Monteverde einen kühleren, höher gelegenen Kontrast zu Costa Ricas tropischem Tiefland.",
+        "it": "Foresta nebulosa, creste avvolte nella nebbia e grande biodiversità danno a Monteverde un contrasto più fresco e d’altura rispetto ai tropici di pianura.",
+        "es": "Bosque nuboso, crestas con niebla y gran biodiversidad dan a Monteverde un contraste más fresco y elevado frente a los trópicos de tierras bajas.",
+        "fr": "Forêt nuageuse, crêtes brumeuses et forte biodiversité donnent à Monteverde un contraste plus frais et en altitude avec les tropiques de basse terre.",
+        "pt": "Floresta nublada, cristas com neblina e grande biodiversidade dão a Monteverde um contraste mais fresco e elevado com os trópicos de baixa altitude."
+      }
+    },
+    {
+      "id": "CR:manuel-antonio",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "nature",
+        "wildlife"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Rainforest reaching the Pacific coast creates a compact mix of beaches, tropical vegetation and wildlife-rich landscapes.",
+        "de": "Regenwald bis an die Pazifikküste schafft eine kompakte Mischung aus Stränden, tropischer Vegetation und wildreichen Landschaften.",
+        "it": "La foresta pluviale che raggiunge la costa del Pacifico crea un mix compatto di spiagge, vegetazione tropicale e paesaggi ricchi di fauna.",
+        "es": "La selva que llega hasta la costa del Pacífico crea una mezcla compacta de playas, vegetación tropical y paisajes ricos en fauna.",
+        "fr": "La forêt tropicale descendant jusqu’à la côte pacifique crée un mélange compact de plages, végétation tropicale et paysages riches en faune.",
+        "pt": "A floresta tropical chegando até a costa do Pacífico cria uma combinação compacta de praias, vegetação tropical e paisagens ricas em vida selvagem."
+      }
+    },
+    {
+      "id": "CR:uvita",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "nature",
+        "tropical"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A quieter Pacific-coast base where rainforest hills, broad beaches and a slower rhythm close the route on a relaxed note.",
+        "de": "Ein ruhigerer Ausgangspunkt an der Pazifikküste, wo Regenwaldhügel, breite Strände und ein langsamerer Rhythmus die Route entspannt ausklingen lassen.",
+        "it": "Una base più tranquilla sulla costa pacifica, tra colline di foresta pluviale, ampie spiagge e un ritmo più lento per chiudere il viaggio.",
+        "es": "Una base más tranquila en la costa del Pacífico, entre colinas de selva, amplias playas y un ritmo más lento para cerrar la ruta.",
+        "fr": "Une base plus calme sur la côte pacifique, entre collines de forêt tropicale, grandes plages et rythme plus lent pour terminer l’itinéraire.",
+        "pt": "Uma base mais tranquila na costa do Pacífico, entre colinas de floresta tropical, praias amplas e um ritmo mais lento para encerrar a rota."
+      }
+    }
+  ]
+}

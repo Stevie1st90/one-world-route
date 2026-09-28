@@ -76,7 +76,8 @@
       "coordinates": {
         "lat": 49.2827,
         "lng": -123.1207
-      }
+      },
+      "experienceRef": "CA:vancouver"
     },
     {
       "id": "kamloops",
@@ -88,7 +89,8 @@
       "coordinates": {
         "lat": 50.6745,
         "lng": -120.3273
-      }
+      },
+      "experienceRef": "CA:kamloops"
     },
     {
       "id": "jasper",
@@ -100,7 +102,8 @@
       "coordinates": {
         "lat": 52.8737,
         "lng": -118.0814
-      }
+      },
+      "experienceRef": "CA:jasper"
     },
     {
       "id": "banff",
@@ -112,7 +115,8 @@
       "coordinates": {
         "lat": 51.1784,
         "lng": -115.5708
-      }
+      },
+      "experienceRef": "CA:banff"
     },
     {
       "id": "calgary",
@@ -124,7 +128,8 @@
       "coordinates": {
         "lat": 51.0447,
         "lng": -114.0719
-      }
+      },
+      "experienceRef": "CA:calgary"
     }
   ],
   "stops": [

@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "CA",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "CA:vancouver",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "coast",
+        "nature"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A Pacific city framed by water and mountains, mixing dense neighbourhoods, waterfront space and easy access to outdoor landscapes.",
+        "de": "Eine Pazifikstadt zwischen Wasser und Bergen, die dichte Viertel, Uferbereiche und schnellen Zugang zu Natur miteinander verbindet.",
+        "it": "Una città sul Pacifico incorniciata da acqua e montagne, tra quartieri densi, spazi sul lungomare e facile accesso alla natura.",
+        "es": "Una ciudad del Pacífico rodeada de agua y montañas, con barrios densos, espacios junto al mar y fácil acceso a la naturaleza.",
+        "fr": "Une ville du Pacifique encadrée par l’eau et les montagnes, entre quartiers denses, espaces en bord de mer et accès facile à la nature.",
+        "pt": "Uma cidade do Pacífico cercada por água e montanhas, combinando bairros densos, áreas à beira-mar e fácil acesso à natureza."
+      }
+    },
+    {
+      "id": "CA:kamloops",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "road",
+        "mountains"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Dry interior landscapes, broad valleys and road-trip scale make Kamloops a transitional stop between the coast and the Rockies.",
+        "de": "Trockene Landschaften im Landesinneren, breite Täler und Roadtrip-Distanzen machen Kamloops zu einem Übergang zwischen Küste und Rockies.",
+        "it": "Paesaggi secchi dell’interno, ampie valli e dimensioni da road trip rendono Kamloops una tappa di transizione tra costa e Rockies.",
+        "es": "Paisajes secos del interior, amplios valles y escala de carretera convierten Kamloops en una transición entre la costa y las Rocosas.",
+        "fr": "Paysages secs de l’intérieur, larges vallées et échelle routière font de Kamloops une étape de transition entre la côte et les Rocheuses.",
+        "pt": "Paisagens secas do interior, vales amplos e escala de estrada fazem de Kamloops uma transição entre a costa e as Montanhas Rochosas."
+      }
+    },
+    {
+      "id": "CA:jasper",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "mountains",
+        "wildlife"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A small mountain town surrounded by broad valleys, alpine lakes and wildlife-rich landscapes deep in the Canadian Rockies.",
+        "de": "Ein kleiner Bergort, umgeben von weiten Tälern, Alpenseen und wildreichen Landschaften mitten in den kanadischen Rockies.",
+        "it": "Una piccola località di montagna circondata da ampie valli, laghi alpini e paesaggi ricchi di fauna nelle Rockies canadesi.",
+        "es": "Una pequeña localidad de montaña rodeada de amplios valles, lagos alpinos y paisajes ricos en fauna en las Rocosas canadienses.",
+        "fr": "Une petite ville de montagne entourée de larges vallées, de lacs alpins et de paysages riches en faune au cœur des Rocheuses canadiennes.",
+        "pt": "Uma pequena cidade de montanha cercada por vales amplos, lagos alpinos e paisagens ricas em vida selvagem nas Rochosas Canadenses."
+      }
+    },
+    {
+      "id": "CA:banff",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "mountains",
+        "cities"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A compact resort town set directly among high peaks and turquoise lakes, combining walkable amenities with immediate alpine scenery.",
+        "de": "Ein kompakter Ferienort direkt zwischen hohen Gipfeln und türkisfarbenen Seen, der gute Erreichbarkeit zu Fuß mit unmittelbarer Alpenkulisse verbindet.",
+        "it": "Una compatta località turistica tra alte cime e laghi turchesi, con servizi facilmente raggiungibili e paesaggi alpini immediati.",
+        "es": "Una compacta localidad turística entre altas cumbres y lagos turquesa, con servicios accesibles a pie y paisaje alpino inmediato.",
+        "fr": "Une station compacte au milieu de hauts sommets et de lacs turquoise, combinant commodités accessibles à pied et décor alpin immédiat.",
+        "pt": "Uma cidade turística compacta entre picos altos e lagos turquesa, combinando estrutura acessível a pé com cenário alpino imediato."
+      }
+    },
+    {
+      "id": "CA:calgary",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "mountains"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A modern prairie city with western character and mountain horizons, providing an urban finish after the Rockies.",
+        "de": "Eine moderne Präriestadt mit westlichem Charakter und Bergpanorama, die nach den Rockies einen urbanen Abschluss bildet.",
+        "it": "Una moderna città di prateria dal carattere western e con le montagne all’orizzonte, ideale come finale urbano dopo le Rockies.",
+        "es": "Una moderna ciudad de pradera con carácter del oeste y montañas en el horizonte, que ofrece un final urbano tras las Rocosas.",
+        "fr": "Une ville moderne des Prairies au caractère western et aux montagnes à l’horizon, offrant une conclusion urbaine après les Rocheuses.",
+        "pt": "Uma cidade moderna das pradarias, com caráter do oeste e montanhas no horizonte, oferecendo um final urbano após as Rochosas."
+      }
+    }
+  ]
+}

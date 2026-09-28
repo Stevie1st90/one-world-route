@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "MA",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "MA:marrakech",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Dense medina lanes, courtyards, markets and food culture create an intense urban introduction to southern Morocco.",
+        "de": "Dichte Gassen der Medina, Innenhöfe, Märkte und Esskultur schaffen einen intensiven städtischen Einstieg in den Süden Marokkos.",
+        "it": "Vicoli densi della medina, cortili, mercati e cultura gastronomica creano un intenso ingresso urbano nel sud del Marocco.",
+        "es": "Callejones densos de la medina, patios, mercados y cultura gastronómica crean una intensa introducción urbana al sur de Marruecos.",
+        "fr": "Ruelles denses de la médina, patios, marchés et culture culinaire offrent une introduction urbaine intense au sud du Maroc.",
+        "pt": "Ruelas densas da medina, pátios, mercados e cultura gastronômica criam uma intensa introdução urbana ao sul do Marrocos."
+      }
+    },
+    {
+      "id": "MA:ait-benhaddou",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "culture",
+        "desert"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Earthen architecture and a compact fortified settlement create a strong visual transition between cultivated valleys and Morocco’s drier interior.",
+        "de": "Lehmarchitektur und eine kompakte befestigte Siedlung schaffen einen markanten Übergang zwischen bewirtschafteten Tälern und dem trockeneren Landesinneren Marokkos.",
+        "it": "Architettura in terra e insediamento fortificato compatto segnano il passaggio tra valli coltivate e interno più arido del Marocco.",
+        "es": "Arquitectura de tierra y un asentamiento fortificado compacto marcan la transición entre valles cultivados y el interior más seco de Marruecos.",
+        "fr": "Architecture en terre et village fortifié compact marquent la transition entre vallées cultivées et intérieur plus aride du Maroc.",
+        "pt": "Arquitetura de terra e um assentamento fortificado compacto marcam a transição entre vales cultivados e o interior mais seco do Marrocos."
+      }
+    },
+    {
+      "id": "MA:dades-valley",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "mountains",
+        "desert"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Rocky valleys, layered cliffs and winding roads make the Dadès region a landscape-focused bridge between the Atlas and desert country.",
+        "de": "Felsige Täler, geschichtete Klippen und kurvige Straßen machen die Dadès-Region zu einer landschaftsgeprägten Verbindung zwischen Atlas und Wüstenraum.",
+        "it": "Valli rocciose, pareti stratificate e strade tortuose rendono il Dadès un collegamento paesaggistico tra Atlante e regioni desertiche.",
+        "es": "Valles rocosos, acantilados estratificados y carreteras sinuosas convierten el Dadès en un puente paisajístico entre el Atlas y el desierto.",
+        "fr": "Vallées rocheuses, falaises stratifiées et routes sinueuses font du Dadès un lien paysager entre l’Atlas et les régions désertiques.",
+        "pt": "Vales rochosos, falésias em camadas e estradas sinuosas fazem do Dadès uma ligação paisagística entre o Atlas e o deserto."
+      }
+    },
+    {
+      "id": "MA:merzouga",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "desert",
+        "nature",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Large dune landscapes and sparse desert settlement patterns shift the route into a quieter, more elemental Sahara environment.",
+        "de": "Große Dünenlandschaften und dünn besiedelte Wüstenräume verlagern die Reise in eine ruhigere, elementarere Sahara-Umgebung.",
+        "it": "Grandi paesaggi di dune e insediamenti radi portano la rotta in un ambiente sahariano più silenzioso ed essenziale.",
+        "es": "Grandes paisajes de dunas y asentamientos dispersos trasladan la ruta a un entorno sahariano más silencioso y elemental.",
+        "fr": "Grands paysages de dunes et habitat dispersé font basculer l’itinéraire vers un environnement saharien plus calme et élémentaire.",
+        "pt": "Grandes paisagens de dunas e povoamento esparso levam a rota para um ambiente saariano mais silencioso e essencial."
+      }
+    },
+    {
+      "id": "MA:essaouira",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "culture",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Atlantic light, fortified seafront streets and a working harbour give Essaouira a relaxed coastal contrast to Morocco’s inland route.",
+        "de": "Atlantisches Licht, befestigte Straßen am Meer und ein aktiver Hafen geben Essaouira einen entspannten Küstenkontrast zur Route durch das Landesinnere.",
+        "it": "Luce atlantica, strade fortificate sul mare e un porto attivo danno a Essaouira un rilassato contrasto costiero rispetto all’interno del Marocco.",
+        "es": "Luz atlántica, calles fortificadas junto al mar y un puerto activo dan a Essaouira un contraste costero relajado frente al interior de Marruecos.",
+        "fr": "Lumière atlantique, rues fortifiées en bord de mer et port actif donnent à Essaouira un contraste côtier détendu avec l’intérieur du Maroc.",
+        "pt": "Luz atlântica, ruas fortificadas à beira-mar e um porto ativo dão a Essaouira um contraste costeiro tranquilo em relação ao interior do Marrocos."
+      }
+    }
+  ]
+}

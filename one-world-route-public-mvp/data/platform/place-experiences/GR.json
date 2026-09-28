@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "GR",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "GR:athens",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "culture",
+        "cities"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Ancient landmarks, dense neighbourhoods and contemporary street life make Athens a layered urban opening to the Greek islands.",
+        "de": "Antike Wahrzeichen, dichte Viertel und modernes Straßenleben machen Athen zu einem vielschichtigen städtischen Auftakt für die griechischen Inseln.",
+        "it": "Monumenti antichi, quartieri densi e vita urbana contemporanea fanno di Atene un’apertura stratificata verso le isole greche.",
+        "es": "Monumentos antiguos, barrios densos y vida urbana contemporánea hacen de Atenas una apertura urbana llena de capas hacia las islas griegas.",
+        "fr": "Monuments antiques, quartiers denses et vie urbaine contemporaine font d’Athènes une ouverture riche en strates vers les îles grecques.",
+        "pt": "Monumentos antigos, bairros densos e vida urbana contemporânea fazem de Atenas uma abertura cheia de camadas para as ilhas gregas."
+      }
+    },
+    {
+      "id": "GR:mykonos",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "islands",
+        "coast",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Whitewashed lanes, compact harbour life and a strong Cycladic island identity give Mykonos an energetic coastal character.",
+        "de": "Weiß gekalkte Gassen, kompaktes Hafenleben und eine ausgeprägte kykladische Inselidentität geben Mykonos einen lebendigen Küstencharakter.",
+        "it": "Vicoli imbiancati, vita portuale compatta e forte identità cicladica danno a Mykonos un carattere costiero vivace.",
+        "es": "Calles encaladas, vida portuaria compacta y una fuerte identidad cicládica dan a Mykonos un carácter costero animado.",
+        "fr": "Ruelles blanchies à la chaux, vie portuaire compacte et forte identité cycladique donnent à Mykonos un caractère côtier très vivant.",
+        "pt": "Ruelas caiadas, vida portuária compacta e forte identidade cicládica dão a Mykonos um caráter costeiro vibrante."
+      }
+    },
+    {
+      "id": "GR:naxos",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "islands",
+        "coast",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A larger Cycladic island combining beaches, inland villages and agricultural landscapes, with more room to slow down beyond the harbour.",
+        "de": "Eine größere Kykladeninsel mit Stränden, Dörfern im Inselinneren und landwirtschaftlichen Landschaften, die abseits des Hafens mehr Raum zum Entschleunigen bietet.",
+        "it": "Una delle isole Cicladi più grandi, tra spiagge, villaggi interni e paesaggi agricoli, con più spazio per rallentare oltre il porto.",
+        "es": "Una isla cicládica más grande que combina playas, pueblos del interior y paisajes agrícolas, con más espacio para ir despacio más allá del puerto.",
+        "fr": "Une grande île des Cyclades mêlant plages, villages de l’intérieur et paysages agricoles, avec davantage d’espace pour ralentir au-delà du port.",
+        "pt": "Uma ilha maior das Cíclades que combina praias, vilas do interior e paisagens agrícolas, com mais espaço para desacelerar além do porto."
+      }
+    },
+    {
+      "id": "GR:paros",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "islands",
+        "coast",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Harbour towns, low hills and easygoing Cycladic landscapes make Paros feel balanced between island life, beaches and village atmosphere.",
+        "de": "Hafenorte, sanfte Hügel und entspannte Kykladenlandschaften geben Paros eine ausgewogene Mischung aus Inselleben, Stränden und Dorfatmosphäre.",
+        "it": "Paesi portuali, dolci colline e paesaggi cicladici rilassati rendono Paros equilibrata tra vita isolana, spiagge e atmosfera di villaggio.",
+        "es": "Pueblos portuarios, colinas suaves y paisajes cicládicos tranquilos hacen de Paros un equilibrio entre vida isleña, playas y ambiente de pueblo.",
+        "fr": "Villages portuaires, collines douces et paysages cycladiques tranquilles donnent à Paros un équilibre entre vie insulaire, plages et ambiance de village.",
+        "pt": "Vilarejos portuários, colinas suaves e paisagens cicládicas tranquilas fazem de Paros um equilíbrio entre vida insular, praias e atmosfera de vila."
+      }
+    },
+    {
+      "id": "GR:santorini",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "islands",
+        "coast",
+        "volcanic"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Clifftop settlements and volcanic caldera scenery give Santorini a distinctive finale shaped by steep terrain, sea views and island architecture.",
+        "de": "Siedlungen an steilen Klippen und die vulkanische Caldera-Landschaft geben Santorini ein markantes Finale aus Höhenlage, Meerblick und Inselarchitektur.",
+        "it": "Insediamenti sulle scogliere e paesaggi della caldera vulcanica danno a Santorini un finale distintivo tra rilievi ripidi, viste sul mare e architettura isolana.",
+        "es": "Pueblos sobre acantilados y paisajes de caldera volcánica dan a Santorini un final muy singular marcado por desniveles, vistas al mar y arquitectura isleña.",
+        "fr": "Villages perchés et paysages de caldeira volcanique donnent à Santorin un final très distinctif entre relief escarpé, vues marines et architecture insulaire.",
+        "pt": "Vilarejos no alto das falésias e paisagens de caldeira vulcânica dão a Santorini um final marcante entre relevo íngreme, vistas para o mar e arquitetura insular."
+      }
+    }
+  ]
+}

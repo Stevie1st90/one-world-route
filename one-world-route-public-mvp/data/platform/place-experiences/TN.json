@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "TN",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "TN:la-goulette-tunis",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "port",
+        "cities",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A Mediterranean port gateway into the Tunis urban area, linking waterfront arrival with North African city culture and history.",
+        "de": "Ein mediterranes Hafentor zum Großraum Tunis, das die Ankunft am Wasser mit nordafrikanischer Stadtkultur und Geschichte verbindet.",
+        "it": "Una porta portuale mediterranea verso l’area urbana di Tunisi, tra arrivo sul mare, cultura cittadina nordafricana e storia.",
+        "es": "Una puerta portuaria mediterránea al área urbana de Túnez, que conecta la llegada por mar con cultura urbana norteafricana e historia.",
+        "fr": "Une porte portuaire méditerranéenne vers l’aire urbaine de Tunis, reliant arrivée maritime, culture urbaine nord-africaine et histoire.",
+        "pt": "Uma porta portuária mediterrânea para a área urbana de Túnis, ligando a chegada pelo mar à cultura urbana norte-africana e à história."
+      }
+    }
+  ]
+}

@@ -4,22 +4,22 @@
   "updatedAt": "2026-09-28",
   "profiles": [
     {
-      "id": "IT:rome",
+      "id": "IT:civitavecchia-rome-gateway",
       "contentType": "editorial-evergreen",
       "tags": [
+        "port",
         "history",
-        "culture",
         "cities"
       ],
       "reviewedAt": "2026-09-28",
       "reviewDays": 365,
       "essence": {
-        "en": "Ancient layers, monumental public spaces and everyday neighbourhood life make Rome a dense introduction to Italian history and urban culture.",
-        "de": "Antike Schichten, monumentale Stadträume und alltägliches Viertelleben machen Rom zu einem dichten Einstieg in Italiens Geschichte und Stadtkultur.",
-        "it": "Strati antichi, spazi monumentali e vita quotidiana dei quartieri fanno di Roma un’intensa introduzione alla storia e alla cultura urbana italiana.",
-        "es": "Capas de historia antigua, espacios monumentales y vida cotidiana de barrio hacen de Roma una intensa introducción a la historia y cultura urbana de Italia.",
-        "fr": "Strates antiques, espaces monumentaux et vie quotidienne des quartiers font de Rome une introduction dense à l’histoire et à la culture urbaine italiennes.",
-        "pt": "Camadas antigas, espaços monumentais e vida cotidiana de bairro fazem de Roma uma introdução intensa à história e à cultura urbana italiana."
+        "en": "A working Mediterranean port that functions as the sea gateway to Rome, contrasting cruise infrastructure with access to one of Italy’s richest historic urban regions.",
+        "de": "Ein aktiver Mittelmeerhafen als Seetor nach Rom, der Kreuzfahrtinfrastruktur mit dem Zugang zu einer der geschichtsträchtigsten Stadtregionen Italiens verbindet.",
+        "it": "Un porto mediterraneo attivo che funge da porta marittima verso Roma, tra infrastrutture crocieristiche e accesso a una delle aree urbane più ricche di storia d’Italia.",
+        "es": "Un puerto mediterráneo activo que funciona como puerta marítima a Roma, entre infraestructura de cruceros y acceso a una de las regiones urbanas más ricas en historia de Italia.",
+        "fr": "Un port méditerranéen actif servant de porte maritime vers Rome, entre infrastructures de croisière et accès à l’une des régions urbaines les plus riches en histoire d’Italie.",
+        "pt": "Um porto mediterrâneo ativo que funciona como porta marítima para Roma, entre infraestrutura de cruzeiros e acesso a uma das regiões urbanas mais ricas em história da Itália."
       }
     },
     {
@@ -58,6 +58,25 @@
         "es": "Calles llenas de capas, una intensa cultura gastronómica y su ubicación frente a la bahía dan a Nápoles un carácter vivo del sur de Italia, con la historia siempre cerca.",
         "fr": "Rues stratifiées, forte culture culinaire et situation sur la baie donnent à Naples un caractère méridional très vivant, avec l’histoire toujours à proximité.",
         "pt": "Ruas cheias de camadas, forte cultura gastronômica e localização à beira da baía dão a Nápoles um caráter vibrante do sul da Itália, com a história sempre por perto."
+      }
+    },
+    {
+      "id": "IT:rome",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "culture",
+        "cities"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Ancient layers, monumental public spaces and everyday neighbourhood life make Rome a dense introduction to Italian history and urban culture.",
+        "de": "Antike Schichten, monumentale Stadträume und alltägliches Viertelleben machen Rom zu einem dichten Einstieg in Italiens Geschichte und Stadtkultur.",
+        "it": "Strati antichi, spazi monumentali e vita quotidiana dei quartieri fanno di Roma un’intensa introduzione alla storia e alla cultura urbana italiana.",
+        "es": "Capas de historia antigua, espacios monumentales y vida cotidiana de barrio hacen de Roma una intensa introducción a la historia y cultura urbana de Italia.",
+        "fr": "Strates antiques, espaces monumentaux et vie quotidienne des quartiers font de Rome une introduction dense à l’histoire et à la culture urbaine italiennes.",
+        "pt": "Camadas antigas, espaços monumentais e vida cotidiana de bairro fazem de Roma uma introdução intensa à história e à cultura urbana italiana."
       }
     }
   ]

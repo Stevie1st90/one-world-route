@@ -76,7 +76,8 @@
       "coordinates": {
         "lat": 9.9281,
         "lng": -84.0907
-      }
+      },
+      "experienceRef": "CR:san-jose"
     },
     {
       "id": "arenal",
@@ -88,7 +89,8 @@
       "coordinates": {
         "lat": 10.4626,
         "lng": -84.7033
-      }
+      },
+      "experienceRef": "CR:arenal"
     },
     {
       "id": "monteverde",
@@ -100,7 +102,8 @@
       "coordinates": {
         "lat": 10.3009,
         "lng": -84.8255
-      }
+      },
+      "experienceRef": "CR:monteverde"
     },
     {
       "id": "manuel-antonio",
@@ -112,7 +115,8 @@
       "coordinates": {
         "lat": 9.3923,
         "lng": -84.1367
-      }
+      },
+      "experienceRef": "CR:manuel-antonio"
     },
     {
       "id": "uvita",
@@ -124,7 +128,8 @@
       "coordinates": {
         "lat": 9.167,
         "lng": -83.738
-      }
+      },
+      "experienceRef": "CR:uvita"
     }
   ],
   "stops": [

@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "NO",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "NO:tromso",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "arctic",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A compact Arctic city where harbour life, northern culture and easy access to dramatic coastal landscapes meet.",
+        "de": "Eine kompakte arktische Stadt, in der Hafenleben, nordische Kultur und der direkte Zugang zu eindrucksvollen Küstenlandschaften zusammenkommen.",
+        "it": "Una compatta città artica dove vita portuale, cultura del nord e facile accesso a paesaggi costieri spettacolari si incontrano.",
+        "es": "Una compacta ciudad ártica donde la vida portuaria, la cultura del norte y el fácil acceso a paisajes costeros espectaculares se encuentran.",
+        "fr": "Une ville arctique compacte où vie portuaire, culture nordique et accès facile à de grands paysages côtiers se rencontrent.",
+        "pt": "Uma cidade ártica compacta onde vida portuária, cultura do norte e fácil acesso a paisagens costeiras marcantes se encontram."
+      }
+    },
+    {
+      "id": "NO:senja",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "coast",
+        "mountains"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Sharp mountains, fishing villages and ocean-facing roads give Senja a concentrated mix of Arctic coast and rugged scenery.",
+        "de": "Steile Berge, Fischerdörfer und Straßen am offenen Meer geben Senja eine konzentrierte Mischung aus arktischer Küste und rauer Landschaft.",
+        "it": "Montagne ripide, villaggi di pescatori e strade affacciate sull’oceano danno a Senja un intenso mix di costa artica e paesaggi aspri.",
+        "es": "Montañas escarpadas, pueblos pesqueros y carreteras frente al océano dan a Senja una intensa mezcla de costa ártica y paisaje abrupto.",
+        "fr": "Montagnes abruptes, villages de pêcheurs et routes face à l’océan donnent à Senja un mélange concentré de côte arctique et de paysages sauvages.",
+        "pt": "Montanhas íngremes, vilas de pescadores e estradas voltadas para o oceano dão a Senja uma combinação intensa de costa ártica e paisagem selvagem."
+      }
+    },
+    {
+      "id": "NO:andoya",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "coast",
+        "wildlife"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Open ocean, broad beaches and exposed northern landscapes make Andøya feel spacious, remote and strongly shaped by the sea.",
+        "de": "Offener Ozean, weite Strände und exponierte Landschaften des Nordens lassen Andøya großzügig, abgelegen und stark vom Meer geprägt wirken.",
+        "it": "Oceano aperto, ampie spiagge e paesaggi esposti del nord rendono Andøya spaziosa, remota e profondamente legata al mare.",
+        "es": "Océano abierto, amplias playas y paisajes expuestos del norte hacen que Andøya se sienta extensa, remota y muy marcada por el mar.",
+        "fr": "Océan ouvert, longues plages et paysages exposés du Nord donnent à Andøya une impression d’espace, d’isolement et de forte présence maritime.",
+        "pt": "Oceano aberto, praias amplas e paisagens expostas do norte fazem Andøya parecer espaçosa, remota e fortemente moldada pelo mar."
+      }
+    },
+    {
+      "id": "NO:svolvaer",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "mountains",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A lively fishing-port base beneath steep Lofoten peaks, balancing working harbour character with immediate mountain scenery.",
+        "de": "Ein lebendiger Fischereihafen unter steilen Lofoten-Gipfeln, der echten Hafencharakter mit unmittelbarer Bergkulisse verbindet.",
+        "it": "Una vivace base portuale sotto le ripide cime delle Lofoten, tra carattere marittimo autentico e paesaggi montani immediati.",
+        "es": "Una animada base portuaria bajo las escarpadas cumbres de Lofoten, que combina carácter marítimo con montañas muy cercanas.",
+        "fr": "Une base portuaire animée sous les sommets abrupts des Lofoten, entre caractère maritime et reliefs immédiatement présents.",
+        "pt": "Uma base portuária animada sob os picos íngremes de Lofoten, combinando caráter marítimo com montanhas logo ao redor."
+      }
+    },
+    {
+      "id": "NO:reine",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "coast",
+        "mountains"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A small Lofoten village framed by steep mountains and sheltered water, offering one of the route’s most compact combinations of coast and alpine scenery.",
+        "de": "Ein kleines Lofoten-Dorf zwischen steilen Bergen und geschütztem Wasser, das Küsten- und Alpenlandschaft besonders kompakt verbindet.",
+        "it": "Un piccolo villaggio delle Lofoten incorniciato da montagne ripide e acque riparate, con un forte incontro tra costa e paesaggio alpino.",
+        "es": "Un pequeño pueblo de Lofoten rodeado de montañas escarpadas y aguas protegidas, con una combinación muy concentrada de costa y paisaje alpino.",
+        "fr": "Un petit village des Lofoten entouré de montagnes abruptes et d’eaux abritées, réunissant de façon saisissante côte et paysage alpin.",
+        "pt": "Uma pequena vila de Lofoten cercada por montanhas íngremes e águas protegidas, reunindo de forma marcante litoral e paisagem alpina."
+      }
+    }
+  ]
+}

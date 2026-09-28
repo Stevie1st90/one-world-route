@@ -76,7 +76,8 @@
       "coordinates": {
         "lat": 31.6295,
         "lng": -7.9811
-      }
+      },
+      "experienceRef": "MA:marrakech"
     },
     {
       "id": "ait-benhaddou",
@@ -88,7 +89,8 @@
       "coordinates": {
         "lat": 31.047,
         "lng": -7.129
-      }
+      },
+      "experienceRef": "MA:ait-benhaddou"
     },
     {
       "id": "dades",
@@ -100,7 +102,8 @@
       "coordinates": {
         "lat": 31.3707,
         "lng": -5.988
-      }
+      },
+      "experienceRef": "MA:dades-valley"
     },
     {
       "id": "merzouga",
@@ -112,7 +115,8 @@
       "coordinates": {
         "lat": 31.0802,
         "lng": -4.0134
-      }
+      },
+      "experienceRef": "MA:merzouga"
     },
     {
       "id": "essaouira",
@@ -124,7 +128,8 @@
       "coordinates": {
         "lat": 31.5085,
         "lng": -9.7595
-      }
+      },
+      "experienceRef": "MA:essaouira"
     }
   ],
   "stops": [

@@ -21,6 +21,25 @@
         "fr": "Architecture singulière, vie de quartier dense et front de mer méditerranéen réunissent culture, énergie urbaine et littoral en une seule étape.",
         "pt": "Arquitetura marcante, vida intensa de bairro e orla mediterrânea combinam cultura, energia urbana e litoral em uma única parada."
       }
+    },
+    {
+      "id": "ES:palma-de-mallorca",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "islands",
+        "coast",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A compact island capital where historic streets, a large waterfront and Mediterranean city life create a strong Balearic stop.",
+        "de": "Eine kompakte Inselhauptstadt, in der historische Straßen, eine große Uferzone und mediterranes Stadtleben einen markanten Balearen-Stopp bilden.",
+        "it": "Una compatta capitale insulare dove strade storiche, un ampio lungomare e vita urbana mediterranea creano una forte tappa balearica.",
+        "es": "Una compacta capital insular donde calles históricas, un amplio frente marítimo y vida urbana mediterránea crean una marcada parada balear.",
+        "fr": "Une capitale insulaire compacte où rues historiques, vaste front de mer et vie urbaine méditerranéenne composent une forte étape baléare.",
+        "pt": "Uma capital insular compacta onde ruas históricas, uma ampla orla e vida urbana mediterrânea criam uma marcante parada balear."
+      }
     }
   ]
 }

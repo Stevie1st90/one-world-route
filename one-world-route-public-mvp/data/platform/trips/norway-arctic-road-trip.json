@@ -76,7 +76,8 @@
       "coordinates": {
         "lat": 69.6492,
         "lng": 18.9553
-      }
+      },
+      "experienceRef": "NO:tromso"
     },
     {
       "id": "senja",
@@ -88,7 +89,8 @@
       "coordinates": {
         "lat": 69.2748,
         "lng": 17.5179
-      }
+      },
+      "experienceRef": "NO:senja"
     },
     {
       "id": "andoya",
@@ -100,7 +102,8 @@
       "coordinates": {
         "lat": 69.3142,
         "lng": 16.1194
-      }
+      },
+      "experienceRef": "NO:andoya"
     },
     {
       "id": "svolvaer",
@@ -112,7 +115,8 @@
       "coordinates": {
         "lat": 68.2343,
         "lng": 14.5684
-      }
+      },
+      "experienceRef": "NO:svolvaer"
     },
     {
       "id": "reine",
@@ -124,7 +128,8 @@
       "coordinates": {
         "lat": 67.9325,
         "lng": 13.0896
-      }
+      },
+      "experienceRef": "NO:reine"
     }
   ],
   "stops": [

@@ -7,8 +7,16 @@
       "dataset": "./data/platform/place-experiences/AR.json"
     },
     {
+      "countryCode": "CA",
+      "dataset": "./data/platform/place-experiences/CA.json"
+    },
+    {
       "countryCode": "CL",
       "dataset": "./data/platform/place-experiences/CL.json"
+    },
+    {
+      "countryCode": "CR",
+      "dataset": "./data/platform/place-experiences/CR.json"
     },
     {
       "countryCode": "ES",
@@ -19,6 +27,10 @@
       "dataset": "./data/platform/place-experiences/FR.json"
     },
     {
+      "countryCode": "GR",
+      "dataset": "./data/platform/place-experiences/GR.json"
+    },
+    {
       "countryCode": "IT",
       "dataset": "./data/platform/place-experiences/IT.json"
     },
@@ -27,8 +39,28 @@
       "dataset": "./data/platform/place-experiences/JP.json"
     },
     {
+      "countryCode": "MA",
+      "dataset": "./data/platform/place-experiences/MA.json"
+    },
+    {
+      "countryCode": "NO",
+      "dataset": "./data/platform/place-experiences/NO.json"
+    },
+    {
       "countryCode": "NZ",
       "dataset": "./data/platform/place-experiences/NZ.json"
+    },
+    {
+      "countryCode": "PE",
+      "dataset": "./data/platform/place-experiences/PE.json"
+    },
+    {
+      "countryCode": "TN",
+      "dataset": "./data/platform/place-experiences/TN.json"
+    },
+    {
+      "countryCode": "ZA",
+      "dataset": "./data/platform/place-experiences/ZA.json"
     }
   ]
 }
