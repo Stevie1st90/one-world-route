@@ -129,7 +129,7 @@
     if(!host)return;
     const candidates=(d.catalog.trips||[]).filter(trip=>trip.id!==d.catalog.defaultTripId);
     const trips=(d.profileConfigured?.()
-      ?d.travellerFit.rank(candidates,d.loadProfile()).map(result=>result.trip)
+      ?d.travellerFit.orderRecommendations(candidates,d.loadProfile()).map(result=>result.trip)
       :[...candidates].sort((a,b)=>Number(b.visual?.featurePriority||0)-Number(a.visual?.featurePriority||0))
     ).slice(0,6);
     host.innerHTML=trips.map(trip=>card(trip,{featured:true})).join('');
@@ -198,7 +198,7 @@
       if(definition)found=found.filter(trip=>collectionMatches(trip,definition));
     }
     if($('#homeRouteSavedOnly')?.checked)found=found.filter(trip=>d.tripTools.isSaved(d.storage,trip.id));
-    if(d.profileConfigured?.())found=d.travellerFit.rank(found,d.loadProfile()).map(result=>result.trip);
+    if(d.profileConfigured?.())found=d.travellerFit.orderRecommendations(found,d.loadProfile()).map(result=>result.trip);
     const visible=found.slice(0,resultLimit);
     host.innerHTML=found.length?visible.map(card).join(''):'<div class="platform-home-empty">'+d.esc(d.t('noRoutes'))+'</div>';
     const more=$('#platformHomeMore');
