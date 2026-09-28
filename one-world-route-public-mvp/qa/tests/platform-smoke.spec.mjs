@@ -236,6 +236,10 @@ test('@regional journey detail guides the essential planning flow without duplic
   const errors=capturePageErrors(page);
   await page.goto('/?trip=japan-by-rail&lang=en',{waitUntil:'domcontentloaded'});
   await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:15000});
+  if(isMobile){
+    await page.locator('#mobileDetails').click();
+    await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);
+  }
   const plan=page.locator('[data-trip-planning-status]');
   await expect(plan).toBeVisible();
   await expect(plan.locator('[data-trip-planning-step]')).toHaveCount(6);
@@ -244,7 +248,7 @@ test('@regional journey detail guides the essential planning flow without duplic
 
   await plan.locator('[data-trip-plan-next]').click();
   await expect(plan.locator('.platform-detail-planning-head>strong')).toHaveText('2 / 6');
-  await expect(plan.locator('.platform-detail-planning-head')).toContainText('Next planning step: Route start');
+  await expect(plan.locator('.platform-detail-planning-head')).toContainText('Next planning step: Start this route at');
 
   await plan.locator('[data-trip-plan-next]').click();
   await expect(page.locator('[data-trip-planning-status] .platform-detail-planning-head>strong')).toHaveText('3 / 6',{timeout:20000});
