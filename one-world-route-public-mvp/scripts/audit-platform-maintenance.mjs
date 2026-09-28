@@ -1,4 +1,5 @@
 import {readFile} from 'node:fs/promises';
+import {buildExperienceCoverage} from './experience-coverage-model.mjs';
 
 const root=new URL('../',import.meta.url);
 const readJson=async path=>JSON.parse(await readFile(new URL(path,root),'utf8'));
@@ -22,12 +23,15 @@ let reversibleTrips=0;
 let experienceProfileCount=0;
 let experienceReferenceCount=0;
 const experienceUse=new Map();
+const experienceProfiles=[];
+const experienceDatasets=new Map();
 
 for(const meta of catalog.trips||[]){
   if(meta.renderer==='legacy-world')continue;
   const relative=String(meta.dataset||'').replace(/^\.\//,'');
   if(!relative.startsWith('data/')){issues.push(meta.id+': dataset must stay under data/');continue}
   const trip=await readJson(relative);
+  experienceDatasets.set(meta.id,trip);
   if(trip.id!==meta.id)issues.push(meta.id+': dataset id mismatch');
   const maintenance=trip.maintenance||{};
   if(maintenance.tier==='live-dependent')liveDependentTrips++;
@@ -59,6 +63,7 @@ for(const shardMeta of experienceIndex.shards||[]){
   const shard=await readJson(relative);
   for(const profile of shard.profiles||[]){
     experienceProfileCount++;
+    experienceProfiles.push(profile);
     const reviewed=asDate(profile.reviewedAt);
     const reviewDays=Number(profile.reviewDays||365);
     if(!reviewed){issues.push('place experience '+profile.id+': invalid reviewedAt');continue}
@@ -74,6 +79,8 @@ for(const item of shared.items||[]){
   }
 }
 
+const coverage=buildExperienceCoverage({catalog,datasets:experienceDatasets,profiles:experienceProfiles});
+
 console.log('JOURNEY MAINTENANCE AUDIT');
 console.log('Trips:',catalog.trips?.length||0);
 console.log('Reversible personalized trips:',reversibleTrips);
@@ -83,6 +90,10 @@ console.log('Shared knowledge items:',shared.items?.length||0);
 console.log('Place experience profiles:',experienceProfileCount);
 console.log('Place experience references:',experienceReferenceCount);
 console.log('Shared place profiles reused by multiple trip places:',[...experienceUse.values()].filter(count=>count>1).length);
+console.log('Place experience coverage:',coverage.summary.coveredPlaces+'/'+coverage.summary.totalPlaces,'('+coverage.summary.coveragePct+'%)');
+console.log('Experience-complete journeys:',coverage.summary.completeJourneys+'/'+coverage.summary.journeys);
+console.log('Editorial experience candidates:',coverage.summary.queueItems);
+for(const item of coverage.queue.slice(0,10))console.log('-',item.name,item.countryCode,'·',item.journeyCount,'journey(s) ·',item.stopDays,'route day(s) ·',item.action);
 console.log('Review candidates:',reviewCandidates.length);
 for(const item of reviewCandidates.slice(0,30)){
   console.log('-',item.tripId,item.sourceId,item.expired?'expired '+item.validUntil:'age '+item.ageDays+'d > '+item.reviewDays+'d');

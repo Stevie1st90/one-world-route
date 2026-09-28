@@ -191,6 +191,8 @@ jobs:
           node --check scripts/test-trip-planning.mjs
           node --check scripts/test-journey-guide.mjs
           node --check scripts/test-place-experiences.mjs
+          node --check scripts/experience-coverage-model.mjs
+          node --check scripts/test-experience-coverage.mjs
           node --check scripts/test-traveller-fit.mjs
           node --check scripts/test-trip-compare.mjs
           node --check scripts/trip-index-model.mjs
@@ -236,6 +238,8 @@ jobs:
         run: node --test scripts/test-journey-guide.mjs
       - name: Place experience tests
         run: node --test scripts/test-place-experiences.mjs
+      - name: Experience coverage tests
+        run: node --test scripts/test-experience-coverage.mjs
       - name: Traveller Fit tests
         run: node --test scripts/test-traveller-fit.mjs
       - name: Journey comparison tests
@@ -331,6 +335,14 @@ jobs:
           name: builder-browser-smoke-${{ github.run_id }}
           path: one-world-route-public-mvp/qa/builder-test-results
           if-no-files-found: ignore
+          retention-days: 7
+      - name: Upload builder visual QA
+        if: success()
+        uses: actions/upload-artifact@v7
+        with:
+          name: builder-visual-qa-${{ github.run_id }}
+          path: one-world-route-public-mvp/qa/builder-test-results
+          if-no-files-found: error
           retention-days: 7
 
   flagship-browser:

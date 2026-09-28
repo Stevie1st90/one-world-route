@@ -26,6 +26,7 @@ The server binds only to \`127.0.0.1\`. It is intentionally outside the Vercel R
 
 ## Workflow
 
+0. Open **Experience coverage** to see current destination-content coverage and the transparent editorial priority queue.
 1. Create a new draft or clone an existing reusable public trip.
 2. Edit identity/discovery metadata and the place → stop → segment graph.
 3. Add source evidence and namespaced extension data.
@@ -44,6 +45,7 @@ The server binds only to \`127.0.0.1\`. It is intentionally outside the Vercel R
 - Placeholder or missing trip summaries, titles, place names and required source evidence block publication.
 - Duplicate segment IDs, broken graph sequences, invalid coordinates and malformed country codes block publication.
 - The flagship 195/194 invariants remain under the existing platform validator.
+- Experience coverage is calculated live from published journeys and reusable place profiles; it is advisory and never blocks a valid new route.
 
 ## Production verification
 

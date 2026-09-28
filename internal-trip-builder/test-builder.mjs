@@ -22,6 +22,7 @@ const request=async(path,opt={})=>{const r=await fetch(base+path,{headers:{'cont
 try{
   await wait();
   const state=await request('/__builder/api/state');assert.ok(state.catalog.trips.some(t=>t.id==='world-195'));
+  const coverage=await request('/__builder/api/experience-coverage');assert.equal(coverage.coverage.summary.journeys>=16,true);assert.equal(coverage.coverage.summary.coveredPlaces>0,true);assert.equal(Array.isArray(coverage.coverage.queue),true);assert.equal(coverage.coverage.journeys.some(item=>item.tripId==='japan-by-rail'&&item.coveragePct===100),true);
   await request('/__builder/api/scaffold',{method:'POST',body:JSON.stringify({slug,kind:'rail',days:2})});
   const title=Object.fromEntries(state.catalog.supportedLocales.map(l=>[l,'CI Builder Proof']));
   const subtitle=Object.fromEntries(state.catalog.supportedLocales.map(l=>[l,'Two-day CI rail proof']));

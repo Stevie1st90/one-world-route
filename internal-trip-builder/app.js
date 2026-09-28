@@ -30,10 +30,38 @@ function collect(){
  return{trip:t,catalogEntry:e};
 }
 function gate(r){const n=$('#gate'),checks=r.qualityChecks?.length?' · '+r.qualityChecks.length+' quality checks passed':'';n.className='gate '+(r.valid?'ok':'bad');n.innerHTML=r.valid?'✓ Publish gate passed'+checks+(r.warnings?.length?' · '+r.warnings.length+' warnings':''):'✕ '+r.errors.length+' blocking issue(s)<br>'+r.errors.map(esc).join('<br>')}
+function renderCoverage(coverage){
+ const s=coverage.summary||{},summary=$('#coverageSummary');
+ summary.innerHTML=[
+  ['Coverage',(s.coveragePct??0)+'%'],
+  ['Places',(s.coveredPlaces??0)+' / '+(s.totalPlaces??0)],
+  ['Complete journeys',(s.completeJourneys??0)+' / '+(s.journeys??0)],
+  ['Profiles',s.profiles??0],
+  ['Reused profiles',s.reusedProfiles??0]
+ ].map(([label,value])=>'<div><b>'+esc(value)+'</b><span>'+esc(label)+'</span></div>').join('');
+ const queue=(coverage.queue||[]).slice(0,30);
+ $('#coverageQueue').innerHTML=queue.length?queue.map((item,index)=>{
+   const action=item.action==='link-existing'?'Link existing profile':'Create profile';
+   const impact=item.journeyCount+' journey'+(item.journeyCount===1?'':'s')+' · '+item.stopDays+' route day'+(item.stopDays===1?'':'s')+(item.featuredJourneyCount?' · '+item.featuredJourneyCount+' featured':'');
+   return '<article class="coverage-item"><span class="coverage-rank">'+String(index+1).padStart(2,'0')+'</span><div><b>'+esc(item.name)+' <small>'+esc(item.countryCode)+'</small></b><p>'+esc(impact)+'</p><code>'+esc(item.suggestedProfileId||'—')+'</code><em>'+esc(action)+'</em></div></article>';
+ }).join(''):'<div class="coverage-empty">All published regional places have reusable experience content.</div>';
+ $('#coverageJourneys').innerHTML=(coverage.journeys||[]).map(item=>
+   '<article class="coverage-journey"><div><b>'+esc(item.title)+'</b><span>'+esc(item.coveredPlaces)+' / '+esc(item.totalPlaces)+' places</span></div><div class="coverage-bar"><i style="width:'+Math.max(0,Math.min(100,Number(item.coveragePct)||0))+'%"></i></div><strong>'+esc(item.coveragePct)+'%</strong></article>'
+ ).join('');
+}
+async function openCoverage(){
+ const dialog=$('#coverageDialog');
+ dialog.showModal();
+ $('#coverageSummary').innerHTML='<div class="coverage-loading">Loading current coverage…</div>';
+ $('#coverageQueue').innerHTML='';$('#coverageJourneys').innerHTML='';
+ try{const r=await api('experience-coverage');renderCoverage(r.coverage)}
+ catch(error){$('#coverageSummary').innerHTML='<div class="coverage-error">'+esc(error.message)+'</div>'}
+}
+
 async function loadState(){const r=await api('state');state.catalog=r.catalog;state.drafts=r.drafts;renderDrafts();$('#cloneSelect').innerHTML=(r.catalog.trips||[]).filter(t=>t.renderer==='regional-globe').map(t=>'<option value="'+t.slug+'">'+esc(t.title?.en||t.slug)+'</option>').join('')}
 async function loadDraft(slug){const r=await api('draft/'+slug);state.slug=slug;state.trip=r.trip;state.catalogEntry=r.catalogEntry;$('#empty').classList.add('hidden');$('#editor').classList.remove('hidden');$('#heading').textContent=r.trip.title?.en||slug;$('#subheading').textContent=r.trip.kind+' · local draft';['previewBtn','saveBtn','validateBtn','publishBtn'].forEach(id=>$('#'+id).disabled=false);$('#gate').className='gate';$('#gate').textContent='Not validated yet.';bind();await loadState()}
 async function save(){const r=await api('draft/'+state.slug,{method:'PUT',body:JSON.stringify(collect())});state.trip=r.trip;state.catalogEntry=r.catalogEntry;gate(r);renderMetrics();await loadState();return r}
-$('#newBtn').onclick=()=>$('#newDialog').showModal();$('#cloneBtn').onclick=()=>$('#cloneDialog').showModal();$('#mobileNewBtn').onclick=()=>$('#newDialog').showModal();$('#mobileCloneBtn').onclick=()=>$('#cloneDialog').showModal();$('#mobileDraftSelect').onchange=e=>{if(e.target.value)loadDraft(e.target.value)};$$('[data-close]').forEach(b=>b.onclick=()=>$('#'+b.dataset.close).close());
+$('#newBtn').onclick=()=>$('#newDialog').showModal();$('#cloneBtn').onclick=()=>$('#cloneDialog').showModal();$('#mobileNewBtn').onclick=()=>$('#newDialog').showModal();$('#mobileCloneBtn').onclick=()=>$('#cloneDialog').showModal();$('#coverageBtn').onclick=openCoverage;$('#mobileCoverageBtn').onclick=openCoverage;$('#mobileDraftSelect').onchange=e=>{if(e.target.value)loadDraft(e.target.value)};$$('[data-close]').forEach(b=>b.onclick=()=>$('#'+b.dataset.close).close());
 $('#newForm').onsubmit=async e=>{e.preventDefault();try{const f=new FormData(e.currentTarget),r=await api('scaffold',{method:'POST',body:JSON.stringify({slug:f.get('slug'),kind:f.get('kind'),days:f.get('days')||null})});$('#newDialog').close();await loadState();await loadDraft(r.trip.slug)}catch(x){alert(x.message)}};
 $('#cloneForm').onsubmit=async e=>{e.preventDefault();try{const slug=new FormData(e.currentTarget).get('slug');await api('clone',{method:'POST',body:JSON.stringify({slug})});$('#cloneDialog').close();await loadState();await loadDraft(slug)}catch(x){alert(x.message)}};
 $$('[data-tab]').forEach(b=>b.onclick=()=>{try{syncSection();showTab(b.dataset.tab)}catch(x){alert(x.message)}});$('#formatBtn').onclick=()=>{try{$('#jsonEditor').value=JSON.stringify(readSection(),null,2)}catch(x){alert(x.message)}};$('#applyBtn').onclick=()=>{try{syncSection()}catch(x){alert(x.message)}};

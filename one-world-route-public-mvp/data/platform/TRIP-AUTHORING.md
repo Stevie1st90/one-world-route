@@ -204,6 +204,18 @@ Use this layer for long-lived destination character such as history, food, urban
 
 If a place has no `experienceRef`, the journey still renders normally. Missing experience coverage is an editorial enhancement opportunity, not a renderer failure. This lets coverage grow progressively without making new journey publication dependent on writing 100% of destination copy first.
 
+### Experience coverage queue
+
+Use **Experience coverage** in the local Trip Builder to decide what to enrich next. The queue is recalculated from the current published catalog and does not use a hidden editorial score.
+
+Ordering is deterministic:
+1. places used by more journeys,
+2. then places affecting more featured journeys,
+3. then total route days spent at the place,
+4. then catalog feature priority.
+
+Each candidate also shows whether the likely action is to create a new profile or link an already existing canonical profile. Journey coverage is advisory: a missing profile never blocks publication.
+
 ## Automatic Journey Guide
 
 Every published regional trip receives a Journey Guide without a second hand-written content file. The guide derives from the canonical trip graph:

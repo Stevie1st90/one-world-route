@@ -5,12 +5,14 @@ import {extname,join,normalize,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
 import {validateTripDraft,normalizeCatalogEntry} from '../one-world-route-public-mvp/scripts/trip-draft-contract.mjs';
+import {buildExperienceCoverage} from '../one-world-route-public-mvp/scripts/experience-coverage-model.mjs';
 
 const here=resolve(fileURLToPath(new URL('.',import.meta.url)));
 const publicRoot=resolve(here,'../one-world-route-public-mvp');
 const draftsDir=join(publicRoot,'data/platform/drafts');
 const tripsDir=join(publicRoot,'data/platform/trips');
 const catalogPath=join(publicRoot,'data/platform/trips.json');
+const experienceIndexPath=join(publicRoot,'data/platform/place-experiences/index.json');
 const host='127.0.0.1',port=Number(process.env.OWR_BUILDER_PORT||4175);
 const slugPattern=/^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.webmanifest':'application/manifest+json'};
@@ -34,6 +36,7 @@ const publishChecks=[
   ['Platform formatter tests',['--test','scripts/test-platform-formatters.mjs']],
   ['Share page tests',['--test','scripts/test-share-pages.mjs']],
   ['Platform navigation tests',['--test','scripts/test-platform-navigation.mjs']],
+  ['Experience coverage tests',['--test','scripts/test-experience-coverage.mjs']],
   ['Regional runtime integration',['--test','scripts/test-regional-runtime.mjs']],
   ['Rail validator tests',['--test','scripts/test-platform-rail-validator.mjs']],
   ['Story controller tests',['--test','scripts/test-platform-story.mjs']],
@@ -49,6 +52,22 @@ function runPublishChecks(){
     if(!result.ok)return{ok:false,results,failed:name};
   }
   return{ok:true,results};
+}
+
+async function experienceCoverage(){
+  const catalog=await json(catalogPath),datasets=new Map(),profiles=[];
+  for(const meta of catalog.trips||[]){
+    if(meta.renderer!=='regional-globe')continue;
+    const relative=String(meta.dataset||'').replace(/^\.\//,'');
+    datasets.set(meta.id,await json(join(publicRoot,relative)));
+  }
+  const index=await json(experienceIndexPath);
+  for(const shardMeta of index.shards||[]){
+    const relative=String(shardMeta.dataset||'').replace(/^\.\//,'');
+    const shard=await json(join(publicRoot,relative));
+    profiles.push(...(shard.profiles||[]));
+  }
+  return buildExperienceCoverage({catalog,datasets,profiles});
 }
 
 async function scaffold(input){
@@ -107,6 +126,7 @@ async function handler(req,res){
     if(pathname==='/__builder/app.js')return void await file(res,join(here,'app.js'));
     if(pathname==='/__builder/styles.css')return void await file(res,join(here,'styles.css'));
     if(pathname==='/__builder/api/state'&&req.method==='GET')return send(res,200,{ok:true,catalog:await json(catalogPath),drafts:await listDrafts()});
+    if(pathname==='/__builder/api/experience-coverage'&&req.method==='GET')return send(res,200,{ok:true,coverage:await experienceCoverage()});
     if(pathname==='/__builder/api/scaffold'&&req.method==='POST')return send(res,201,{ok:true,...await scaffold(await readBody(req))});
     if(pathname==='/__builder/api/clone'&&req.method==='POST'){const b=await readBody(req);return send(res,201,{ok:true,...await clonePublic(b.slug)})}
     const m=pathname.match(/^\/__builder\/api\/draft\/([a-z0-9-]+)(?:\/(validate|publish))?$/);
