@@ -115,6 +115,24 @@ test('@regional guided discovery exposes a simple finder before advanced filters
   expect(errors,'guided discovery runtime page errors').toEqual([]);
 });
 
+
+
+test('@regional collection deep link opens the same filtered interactive catalog',async({page,isMobile},testInfo)=>{
+  test.setTimeout(90000);
+  const errors=capturePageErrors(page);
+  await page.goto('/?collection=great-rail-journeys&lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:15000});
+  const context=page.locator('#platformHomeCollectionContext');
+  await expect(context).toBeVisible();
+  await expect(context).toContainText('Great Rail Journeys');
+  const cards=page.locator('#platformHomeResults .platform-home-card');
+  await expect(cards).toHaveCount(2);
+  await expect(cards).toContainText(['Japan by Rail','Central Europe Rail Journey']);
+  await context.screenshot({path:testInfo.outputPath('collection-handoff.png'),animations:'disabled'});
+  if(isMobile)await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
+  expect(errors,'collection deep-link runtime errors').toEqual([]);
+});
+
 test('@regional traveller start region changes transparent journey recommendations',async({page})=>{
   test.setTimeout(60000);
   await page.addInitScript(()=>{
