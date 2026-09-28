@@ -2887,10 +2887,12 @@
 
   function recommendationReasons(meta,profile){
     const priority=['duration','pace','season','mode','theme','origin','party','vehicle'];
-    return recommendationSignals(meta,profile)
+    const reasons=recommendationSignals(meta,profile)
       .sort((a,b)=>priority.indexOf(a.kind)-priority.indexOf(b.kind))
-      .slice(0,3)
       .map(({kind,value})=>({kind,value}));
+    const firstMode=meta?.discovery?.modes?.[0]||null;
+    if(reasons.length<3&&firstMode&&!reasons.some(reason=>reason.kind==='mode'))reasons.push({kind:'mode',value:firstMode});
+    return reasons.slice(0,3);
   }
 
   root.travellerFit={partyKey,preferences,evaluate,recommendationSignals,recommendationReasons,configuredPreferenceCount,orderRecommendations};
