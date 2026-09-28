@@ -28,10 +28,22 @@ test('internal builder authors a draft and previews it with the regional engine'
     await page.locator('#coverageDialog').screenshot({path:testInfo.outputPath('experience-coverage-'+testInfo.project.name+'.png'),animations:'disabled'});
     await page.locator('#coverageDialog [data-close="coverageDialog"]').click();
     await expect(page.locator('#coverageDialog')).not.toBeVisible();
+    if(isMobile)await page.locator('#mobileMaintenanceBtn').click();else await page.locator('#maintenanceBtn').click();
+    await expect(page.locator('#maintenanceDialog')).toBeVisible();
+    await expect(page.locator('#maintenanceSummary')).toContainText('Trip sources');
+    await expect(page.locator('#maintenanceSummary')).toContainText('Experience coverage');
+    const maintenanceItems=page.locator('#maintenanceQueue .maintenance-item');
+    if(await maintenanceItems.count())await expect(maintenanceItems.first()).toBeVisible();
+    else await expect(page.locator('#maintenanceQueue .coverage-empty')).toBeVisible();
+    await page.locator('#maintenanceDialog').screenshot({path:testInfo.outputPath('maintenance-queue-'+testInfo.project.name+'.png'),animations:'disabled'});
+    await page.locator('#maintenanceDialog [data-close="maintenanceDialog"]').click();
+    await expect(page.locator('#maintenanceDialog')).not.toBeVisible();
     await page.request.post('/__builder/api/scaffold',{data:{slug,kind:'island-hopping',days:8}});
     await page.reload({waitUntil:'domcontentloaded'});
     if(isMobile){await page.locator('#mobileDraftSelect').selectOption(slug)}else{await page.locator('[data-slug="'+slug+'"]').click()}
     await expect(page.locator('#editor')).toBeVisible();
+    await expect(page.locator('#status option')).toHaveCount(5);
+    await expect(page.locator('#status option')).toHaveText(['draft','planned','sourced-beta','illustrative-template','editorial-preview']);
     await expect(page.locator('[data-tab="localization"]')).toBeVisible();
     await expect(page.locator('[data-tab="trip"]')).toBeVisible();
     await expect(page.locator('[data-tab="catalog"]')).toBeVisible();
