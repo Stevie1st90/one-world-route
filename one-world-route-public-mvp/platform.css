@@ -314,6 +314,13 @@ body.platform-home #globeLoader,body.platform-home #globeFallback{display:none!i
 @media(max-width:520px){.platform-mytrips-title{align-items:flex-start;flex-direction:column}.platform-mytrips-title>button{width:100%}}
 
 
+/* Journey Planning v3 */
+.platform-detail-planning{display:grid;gap:12px;margin:14px 0;padding:14px;border:1px solid rgba(89,221,255,.14);border-radius:16px;background:linear-gradient(145deg,rgba(89,221,255,.05),rgba(146,118,255,.025))}
+.platform-detail-planning-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}.platform-detail-planning-head>div{min-width:0}.platform-detail-planning-head span{display:block;color:#79dff9;font-size:7px;font-weight:850;letter-spacing:.11em;text-transform:uppercase}.platform-detail-planning-head h3{margin:4px 0 4px;color:#e5f3fb;font-size:14px;line-height:1.25}.platform-detail-planning-head p{margin:0;color:#7d91a6;font-size:8.5px;line-height:1.45}.platform-detail-planning-head>strong{flex:0 0 auto;padding:5px 8px;border:1px solid rgba(89,221,255,.16);border-radius:999px;background:rgba(89,221,255,.06);color:#bfeef8;font-size:8px}
+.platform-detail-planning-steps{display:flex;flex-wrap:wrap;gap:6px}.platform-detail-planning-steps>span{display:flex;align-items:center;gap:6px;padding:6px 8px;border:1px solid rgba(255,255,255,.07);border-radius:999px;background:rgba(255,255,255,.025);color:#8295aa;font-size:8px}.platform-detail-planning-steps i{display:grid;place-items:center;width:16px;height:16px;border-radius:999px;background:rgba(255,255,255,.055);font-style:normal;font-weight:800}.platform-detail-planning-steps .ok{border-color:rgba(101,229,167,.15);color:#b9e9cf}.platform-detail-planning-steps .ok i{background:rgba(101,229,167,.11);color:#9ce7bd}
+.platform-detail-planning-next{justify-self:start;min-height:36px;padding:0 12px;border:1px solid rgba(89,221,255,.22);border-radius:10px;background:linear-gradient(135deg,rgba(43,137,184,.18),rgba(79,124,255,.1));color:#e4f9ff;font-size:8px;font-weight:800;letter-spacing:.045em;text-transform:uppercase;cursor:pointer}
+@media(max-width:520px){.platform-detail-planning-head{flex-direction:column}.platform-detail-planning-head>strong{order:-1}.platform-detail-planning-next{width:100%}}
+
 /* Planning Workspace v2 */
 .platform-mytrip-plan{display:grid;gap:10px;padding:12px;border:1px solid rgba(89,221,255,.12);border-radius:14px;background:linear-gradient(145deg,rgba(89,221,255,.035),rgba(146,118,255,.018))}
 .platform-mytrip-plan-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
