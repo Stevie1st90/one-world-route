@@ -2,6 +2,7 @@ import {readFile,writeFile} from 'node:fs/promises';
 const route=JSON.parse(await readFile(new URL('../data/public-route.json',import.meta.url),'utf8'));
 const geo=JSON.parse(await readFile(new URL('../data/country-centroids.json',import.meta.url),'utf8'));
 const platform=JSON.parse(await readFile(new URL('../data/platform/trips.json',import.meta.url),'utf8'));
+const collections=JSON.parse(await readFile(new URL('../data/platform/collections.json',import.meta.url),'utf8'));
 const langs=Array.isArray(platform.supportedLocales)&&platform.supportedLocales.length?platform.supportedLocales:['en'];
 const display=new Intl.DisplayNames(['en'],{type:'region'}),gm=new Map(geo.map(c=>[c.name,c]));
 const en=n=>{const c=gm.get(n);try{return c?.cca2?display.of(c.cca2):n}catch{return n}};
@@ -14,13 +15,20 @@ const normal=[
   ...route.countries.map(c=>base+'/country/'+slug(en(c.name)))
 ];
 const tripUrls=platform.trips.flatMap(t=>[base+'/trip/'+t.slug,...langs.map(lang=>base+'/'+lang+'/trip/'+t.slug)]);
+const collectionUrls=(collections.collections||[]).flatMap(item=>[base+'/journeys/'+item.id,...langs.map(lang=>base+'/'+lang+'/journeys/'+item.id)]);
 const tripGroup=t=>{
   const alternates=[...langs.map(lang=>({lang,url:base+'/'+lang+'/trip/'+t.slug})),{lang:'x-default',url:base+'/trip/'+t.slug}];
   const entries=[base+'/trip/'+t.slug,...langs.map(lang=>base+'/'+lang+'/trip/'+t.slug)];
   return entries.map(url=>'  <url><loc>'+xmlEsc(url)+'</loc>'+alternates.map(a=>'<xhtml:link rel="alternate" hreflang="'+a.lang+'" href="'+xmlEsc(a.url)+'"/>').join('')+'</url>').join('\n');
 };
+const collectionGroup=item=>{
+  const alternates=[...langs.map(lang=>({lang,url:base+'/'+lang+'/journeys/'+item.id})),{lang:'x-default',url:base+'/journeys/'+item.id}];
+  const entries=[base+'/journeys/'+item.id,...langs.map(lang=>base+'/'+lang+'/journeys/'+item.id)];
+  return entries.map(url=>'  <url><loc>'+xmlEsc(url)+'</loc>'+alternates.map(a=>'<xhtml:link rel="alternate" hreflang="'+a.lang+'" href="'+xmlEsc(a.url)+'"/>').join('')+'</url>').join('\n');
+};
 const normalXml=[...new Set(normal)].map(u=>'  <url><loc>'+xmlEsc(u)+'</loc></url>').join('\n');
 const tripXml=platform.trips.map(tripGroup).join('\n');
-const xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'+normalXml+'\n'+tripXml+'\n</urlset>\n';
+const collectionXml=(collections.collections||[]).map(collectionGroup).join('\n');
+const xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'+normalXml+'\n'+tripXml+'\n'+collectionXml+'\n</urlset>\n';
 await writeFile(new URL('../sitemap.xml',import.meta.url),xml);
-console.log('Generated',new Set([...normal,...tripUrls]).size,'SEO URLs in',langs.length,'trip languages');
+console.log('Generated',new Set([...normal,...tripUrls,...collectionUrls]).size,'SEO URLs in',langs.length,'trip languages and',(collections.collections||[]).length,'collections');
