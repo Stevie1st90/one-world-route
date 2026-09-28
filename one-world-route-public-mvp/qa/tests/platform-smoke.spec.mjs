@@ -3,6 +3,7 @@ import {readFile} from 'node:fs/promises';
 
 const readJson=async url=>JSON.parse(await readFile(url,'utf8'));
 const catalog=await readJson(new URL('../../data/platform/trips.json',import.meta.url));
+const collectionCatalog=await readJson(new URL('../../data/platform/collections.json',import.meta.url));
 const flagship=catalog.trips.find(item=>item.id===catalog.defaultTripId);
 const regional=catalog.trips.find(item=>item.renderer==='regional-globe');
 const discoveryPreview=catalog.trips.find(item=>item.id==='japan-by-rail');
@@ -125,9 +126,11 @@ test('@regional collection deep link opens the same filtered interactive catalog
   const context=page.locator('#platformHomeCollectionContext');
   await expect(context).toBeVisible();
   await expect(context).toContainText('Great Rail Journeys');
+  const definition=collectionCatalog.collections.find(item=>item.id==='great-rail-journeys');
+  const expected=catalog.trips.filter(trip=>trip.id!==catalog.defaultTripId&&(!definition.filters.mode||(trip.discovery?.modes||[]).includes(definition.filters.mode)));
   const cards=page.locator('#platformHomeResults .platform-home-card');
-  await expect(cards).toHaveCount(2);
-  await expect(cards).toContainText(['Japan by Rail','Central Europe Rail Journey']);
+  await expect(cards).toHaveCount(expected.length);
+  for(const trip of expected)await expect(cards).toContainText(trip.title.en);
   await context.screenshot({path:testInfo.outputPath('collection-handoff.png'),animations:'disabled'});
   if(isMobile)await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
   expect(errors,'collection deep-link runtime errors').toEqual([]);
