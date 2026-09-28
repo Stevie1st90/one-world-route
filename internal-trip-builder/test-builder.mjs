@@ -32,13 +32,13 @@ try{
   const title=Object.fromEntries(state.catalog.supportedLocales.map(l=>[l,'CI Builder Proof']));
   const subtitle=Object.fromEntries(state.catalog.supportedLocales.map(l=>[l,'Two-day CI rail proof']));
   const trip={schemaVersion:1,id:slug,slug,kind:'rail',status:'draft',defaultLocale:state.catalog.defaultLocale,supportedLocales:state.catalog.supportedLocales,title,summary:title,planning:{days:2,currency:'EUR'},places:[
-    {id:'a',countryCode:'DE',name:title,coordinates:{lat:50,lng:8}},
-    {id:'b',countryCode:'FR',name:title,coordinates:{lat:49,lng:7}}
-  ],stops:[{id:'s1',sequence:1,placeId:'a'},{id:'s2',sequence:2,placeId:'b'}],segments:[{
+    {id:'a',countryCode:'DE',type:'city',name:title,experienceRef:'DE:berlin',coordinates:{lat:52.52,lng:13.405}},
+    {id:'b',countryCode:'FR',type:'city',name:title,experienceRef:'FR:paris',coordinates:{lat:48.8566,lng:2.3522}}
+  ],stops:[{id:'s1',sequence:1,placeId:'a',dayStart:1,dayEnd:1,nights:1},{id:'s2',sequence:2,placeId:'b',dayStart:2,dayEnd:2,nights:0}],segments:[{
     id:'seg1',sequence:1,fromStopId:'s1',toStopId:'s2',transport:{mode:'rail',stages:[{mode:'rail',sourceIds:['src']}]},
     verification:{status:'verified',sourceIds:['src'],lastVerified:'2026-09-22'}
   }],chapters:[],sources:[{id:'src',title:'CI Operator',issuer:'CI Operator',issuerType:'official-operator',url:'https://example.com/rail',checkedAt:'2026-09-22'}],extensions:{rail:{scope:'rail-only',sourcePolicy:'official-operator',crossBorder:true}}};
-  const catalogEntry={id:slug,slug,kind:'rail',status:'draft',renderer:'regional-globe',dataset:'./data/platform/trips/'+slug+'.json',title,subtitle,capabilities:['globe','story','terrain','source-evidence'],discovery:{regions:['europe'],themes:['rail'],modes:['rail'],durationBand:'7-14',fit:{pace:'balanced',seasons:['multi-season'],party:['solo'],startRegion:'europe',accessibility:'standard-check'}}};
+  const catalogEntry={id:slug,slug,kind:'rail',status:'draft',renderer:'regional-globe',dataset:'./data/platform/trips/'+slug+'.json',title,subtitle,capabilities:['globe','story','terrain','source-evidence','trip-planning'],discovery:{regions:['europe'],themes:['rail'],modes:['rail'],durationBand:'7-14',fit:{pace:'balanced',seasons:['multi-season'],party:['solo'],startRegion:'europe',accessibility:'standard-check'}}};
   const saved=await request('/__builder/api/draft/'+slug,{method:'PUT',body:JSON.stringify({trip,catalogEntry})});assert.equal(saved.valid,true,saved.errors?.join('\n'));
   const validated=await request('/__builder/api/draft/'+slug+'/validate',{method:'POST'});assert.equal(validated.valid,true);
   const page=await fetch(base+'/?trip='+slug+'&__draft='+slug,{redirect:'manual'});const cookie=page.headers.get('set-cookie');assert.match(cookie,/owr_builder_draft=/);
