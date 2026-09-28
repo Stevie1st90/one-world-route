@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "VN",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "VN:hanoi",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "history",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Dense old-quarter streets, lakes, cafés and street food create a layered capital where everyday life and history sit side by side.",
+        "de": "Dichte Altstadtgassen, Seen, Cafés und Streetfood schaffen eine vielschichtige Hauptstadt, in der Alltag und Geschichte eng nebeneinanderliegen.",
+        "it": "Strade fitte del quartiere antico, laghi, caffè e street food creano una capitale stratificata dove vita quotidiana e storia convivono.",
+        "es": "Calles densas del casco antiguo, lagos, cafés y comida callejera crean una capital en capas donde la vida diaria y la historia conviven.",
+        "fr": "Rues denses du vieux quartier, lacs, cafés et cuisine de rue composent une capitale stratifiée où quotidien et histoire cohabitent.",
+        "pt": "Ruas densas do bairro antigo, lagos, cafés e comida de rua criam uma capital em camadas onde cotidiano e história convivem."
+      }
+    },
+    {
+      "id": "VN:hue",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "culture",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Imperial heritage, riverside scenery and a slower central-Vietnam rhythm give Huế a reflective cultural character.",
+        "de": "Kaiserliches Erbe, Flusslandschaft und ein ruhigerer zentralvietnamesischer Rhythmus geben Huế einen nachdenklichen kulturellen Charakter.",
+        "it": "Patrimonio imperiale, paesaggio fluviale e ritmo più lento del Vietnam centrale danno a Huế un carattere culturale contemplativo.",
+        "es": "Herencia imperial, paisaje junto al río y un ritmo más pausado del centro de Vietnam dan a Huế un carácter cultural contemplativo.",
+        "fr": "Patrimoine impérial, paysage fluvial et rythme plus lent du centre du Vietnam donnent à Huế un caractère culturel contemplatif.",
+        "pt": "Herança imperial, paisagem ribeirinha e um ritmo mais tranquilo do centro do Vietnã dão a Huế um caráter cultural contemplativo."
+      }
+    },
+    {
+      "id": "VN:da-nang",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "cities",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A broad beachfront, modern cityscape and central location give Da Nang an easygoing coastal contrast to Vietnam’s historic urban stops.",
+        "de": "Breiter Strand, moderne Stadtstruktur und zentrale Lage machen Da Nang zu einem entspannten Küstenkontrast zu Vietnams historischen Städten.",
+        "it": "Ampia spiaggia, città moderna e posizione centrale danno a Da Nang un rilassato contrasto costiero con le città storiche del Vietnam.",
+        "es": "Una amplia playa, paisaje urbano moderno y ubicación central dan a Da Nang un contraste costero relajado frente a las ciudades históricas de Vietnam.",
+        "fr": "Large plage, paysage urbain moderne et position centrale donnent à Da Nang un contraste côtier détendu avec les villes historiques du Vietnam.",
+        "pt": "Uma ampla faixa de praia, paisagem urbana moderna e localização central dão a Da Nang um contraste costeiro tranquilo com as cidades históricas do Vietnã."
+      }
+    },
+    {
+      "id": "VN:hoi-an",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "culture",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Lantern-lit historic streets, riverside lanes and craft traditions give Hội An a compact, highly atmospheric old-town experience.",
+        "de": "Laternenbeleuchtete historische Straßen, Gassen am Fluss und Handwerkstraditionen geben Hội An ein kompaktes, besonders atmosphärisches Altstadterlebnis.",
+        "it": "Strade storiche illuminate da lanterne, vicoli sul fiume e tradizioni artigiane danno a Hội An un centro storico compatto e molto suggestivo.",
+        "es": "Calles históricas iluminadas por faroles, callejones junto al río y tradiciones artesanales dan a Hội An una experiencia de casco antiguo compacta y muy atmosférica.",
+        "fr": "Rues historiques éclairées aux lanternes, ruelles au bord de la rivière et traditions artisanales donnent à Hội An une vieille ville compacte et très atmosphérique.",
+        "pt": "Ruas históricas iluminadas por lanternas, vielas à beira do rio e tradições artesanais dão a Hội An uma experiência compacta e muito atmosférica."
+      }
+    },
+    {
+      "id": "VN:nha-trang",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "cities",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A long urban beach, island views and a lively seafront make Nha Trang a distinctly coastal pause on the north–south journey.",
+        "de": "Langer Stadtstrand, Inselblicke und lebhafte Uferpromenade machen Nha Trang zu einer deutlich maritimen Pause auf der Nord-Süd-Reise.",
+        "it": "Lunga spiaggia urbana, viste sulle isole e vivace lungomare rendono Nha Trang una pausa decisamente costiera nel viaggio nord-sud.",
+        "es": "Una larga playa urbana, vistas a islas y un animado paseo marítimo hacen de Nha Trang una pausa claramente costera en el viaje norte-sur.",
+        "fr": "Longue plage urbaine, vues sur les îles et front de mer animé font de Nha Trang une pause résolument côtière sur l’axe nord-sud.",
+        "pt": "Uma longa praia urbana, vistas para ilhas e uma orla animada fazem de Nha Trang uma pausa claramente costeira na viagem norte-sul."
+      }
+    },
+    {
+      "id": "VN:ho-chi-minh-city",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "history",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Fast-moving streets, layered twentieth-century history and an intense food scene give Ho Chi Minh City a large-scale southern finale.",
+        "de": "Schnelle Straßen, vielschichtige Geschichte des 20. Jahrhunderts und intensive Esskultur geben Ho-Chi-Minh-Stadt ein großstädtisches südliches Finale.",
+        "it": "Strade frenetiche, storia stratificata del Novecento e intensa scena gastronomica danno a Ho Chi Minh City un finale meridionale di grande scala.",
+        "es": "Calles aceleradas, historia del siglo XX y una intensa escena gastronómica dan a Ciudad Ho Chi Minh un final sureño de gran escala.",
+        "fr": "Rues très animées, histoire stratifiée du XXe siècle et scène culinaire intense donnent à Hô Chi Minh-Ville un grand final méridional.",
+        "pt": "Ruas aceleradas, história em camadas do século XX e uma intensa cena gastronômica dão à Cidade de Ho Chi Minh um grande final no sul."
+      }
+    }
+  ]
+}

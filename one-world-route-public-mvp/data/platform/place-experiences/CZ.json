@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "CZ",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "CZ:prague",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "history",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A dense historic centre of towers, bridges and layered architecture gives Prague a highly walkable old-world atmosphere.",
+        "de": "Ein dichtes historisches Zentrum aus Türmen, Brücken und vielschichtiger Architektur verleiht Prag eine besonders gut zu Fuß erfahrbare Altstadtatmosphäre.",
+        "it": "Un centro storico denso di torri, ponti e architetture stratificate dà a Praga un’atmosfera antica ideale da esplorare a piedi.",
+        "es": "Un denso centro histórico de torres, puentes y arquitectura en capas da a Praga una atmósfera histórica muy fácil de recorrer a pie.",
+        "fr": "Un centre historique dense de tours, ponts et architectures superposées donne à Prague une atmosphère ancienne particulièrement propice à la marche.",
+        "pt": "Um centro histórico denso de torres, pontes e arquitetura em camadas dá a Praga uma atmosfera histórica ideal para explorar a pé."
+      }
+    }
+  ]
+}

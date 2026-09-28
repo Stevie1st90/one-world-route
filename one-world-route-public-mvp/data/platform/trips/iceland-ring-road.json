@@ -76,7 +76,8 @@
       "coordinates": {
         "lat": 64.1466,
         "lng": -21.9426
-      }
+      },
+      "experienceRef": "IS:reykjavik"
     },
     {
       "id": "vik",
@@ -88,7 +89,8 @@
       "coordinates": {
         "lat": 63.4194,
         "lng": -19.009
-      }
+      },
+      "experienceRef": "IS:vik"
     },
     {
       "id": "jokulsarlon",
@@ -100,7 +102,8 @@
       "coordinates": {
         "lat": 64.0489,
         "lng": -16.1794
-      }
+      },
+      "experienceRef": "IS:jokulsarlon"
     },
     {
       "id": "egilsstadir",
@@ -112,7 +115,8 @@
       "coordinates": {
         "lat": 65.2669,
         "lng": -14.3948
-      }
+      },
+      "experienceRef": "IS:egilsstadir"
     },
     {
       "id": "akureyri",
@@ -124,7 +128,8 @@
       "coordinates": {
         "lat": 65.6885,
         "lng": -18.1262
-      }
+      },
+      "experienceRef": "IS:akureyri"
     },
     {
       "id": "snaefellsnes",
@@ -136,7 +141,8 @@
       "coordinates": {
         "lat": 64.799,
         "lng": -23.773
-      }
+      },
+      "experienceRef": "IS:snaefellsnes"
     }
   ],
   "stops": [

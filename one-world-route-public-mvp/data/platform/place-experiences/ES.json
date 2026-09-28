@@ -23,6 +23,25 @@
       }
     },
     {
+      "id": "ES:granada",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "culture",
+        "mountains"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Historic quarters, Moorish architectural layers and a Sierra Nevada backdrop give Granada a compact mix of heritage and mountain context.",
+        "de": "Historische Viertel, maurische Architekturschichten und die Kulisse der Sierra Nevada verbinden in Granada Kulturerbe und Bergnähe.",
+        "it": "Quartieri storici, stratificazioni architettoniche moresche e lo sfondo della Sierra Nevada uniscono patrimonio e contesto montano.",
+        "es": "Barrios históricos, capas de arquitectura andalusí y el fondo de Sierra Nevada combinan patrimonio y contexto de montaña.",
+        "fr": "Quartiers historiques, strates d’architecture mauresque et décor de la Sierra Nevada associent patrimoine et contexte montagnard.",
+        "pt": "Bairros históricos, camadas de arquitetura mourisca e o cenário da Sierra Nevada combinam patrimônio e contexto de montanha."
+      }
+    },
+    {
       "id": "ES:palma-de-mallorca",
       "contentType": "editorial-evergreen",
       "tags": [
@@ -39,6 +58,44 @@
         "es": "Una compacta capital insular donde calles históricas, un amplio frente marítimo y vida urbana mediterránea crean una marcada parada balear.",
         "fr": "Une capitale insulaire compacte où rues historiques, vaste front de mer et vie urbaine méditerranéenne composent une forte étape baléare.",
         "pt": "Uma capital insular compacta onde ruas históricas, uma ampla orla e vida urbana mediterrânea criam uma marcante parada balear."
+      }
+    },
+    {
+      "id": "ES:seville",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "history",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Orange-scented squares, layered architecture and a strong street-and-food culture give Seville a vivid Andalusian identity.",
+        "de": "Orangenduft, Plätze, vielschichtige Architektur und ausgeprägte Straßen- und Esskultur geben Sevilla eine lebendige andalusische Identität.",
+        "it": "Piazze profumate d’arancio, architetture stratificate e forte cultura di strada e gastronomica danno a Siviglia una vivace identità andalusa.",
+        "es": "Plazas con aroma a azahar, arquitectura en capas y una fuerte cultura callejera y gastronómica dan a Sevilla una identidad andaluza muy viva.",
+        "fr": "Places parfumées à l’oranger, architecture stratifiée et forte culture de rue et culinaire donnent à Séville une identité andalouse très vivante.",
+        "pt": "Praças com aroma de laranjeira, arquitetura em camadas e forte cultura de rua e gastronomia dão a Sevilha uma identidade andaluza muito viva."
+      }
+    },
+    {
+      "id": "ES:valencia",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "coast",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A broad Mediterranean city mixing historic streets, contemporary architecture, beaches and a strong local food culture.",
+        "de": "Eine weitläufige Mittelmeerstadt, die historische Straßen, moderne Architektur, Strände und ausgeprägte lokale Esskultur verbindet.",
+        "it": "Una grande città mediterranea che unisce strade storiche, architettura contemporanea, spiagge e forte cultura gastronomica locale.",
+        "es": "Una amplia ciudad mediterránea que combina calles históricas, arquitectura contemporánea, playas y una fuerte cultura gastronómica local.",
+        "fr": "Une grande ville méditerranéenne mêlant rues historiques, architecture contemporaine, plages et forte culture culinaire locale.",
+        "pt": "Uma ampla cidade mediterrânea que combina ruas históricas, arquitetura contemporânea, praias e forte cultura gastronômica local."
       }
     }
   ]

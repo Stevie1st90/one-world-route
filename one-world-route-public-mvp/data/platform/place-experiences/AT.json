@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "AT",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "AT:vienna",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "history",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Imperial architecture, coffeehouse culture, museums and elegant public spaces give Vienna a refined Central European rhythm.",
+        "de": "Kaiserliche Architektur, Kaffeehauskultur, Museen und elegante öffentliche Räume geben Wien einen kultivierten mitteleuropäischen Rhythmus.",
+        "it": "Architettura imperiale, cultura dei caffè, musei e spazi pubblici eleganti danno a Vienna un ritmo raffinato dell’Europa centrale.",
+        "es": "Arquitectura imperial, cultura de cafés, museos y espacios públicos elegantes dan a Viena un ritmo refinado de Europa Central.",
+        "fr": "Architecture impériale, culture des cafés, musées et espaces publics élégants donnent à Vienne un rythme raffiné d’Europe centrale.",
+        "pt": "Arquitetura imperial, cultura dos cafés, museus e espaços públicos elegantes dão a Viena um ritmo refinado da Europa Central."
+      }
+    }
+  ]
+}

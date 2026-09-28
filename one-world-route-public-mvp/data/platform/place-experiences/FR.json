@@ -21,6 +21,63 @@
         "fr": "Un port méditerranéen actif, des quartiers en pente et une forte culture culinaire donnent à Marseille une identité de grande ville résolument maritime.",
         "pt": "Um porto mediterrâneo ativo, bairros em encostas e uma forte cultura gastronômica dão a Marselha uma identidade clara de grande cidade costeira."
       }
+    },
+    {
+      "id": "FR:montpellier",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "coast"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A youthful southern city with shaded squares, historic lanes and Mediterranean light, balancing urban life with easy access to the coast.",
+        "de": "Eine junge südfranzösische Stadt mit schattigen Plätzen, historischen Gassen und mediterranem Licht, die Stadtleben mit Küstennähe verbindet.",
+        "it": "Una giovane città del sud con piazze ombreggiate, vicoli storici e luce mediterranea, tra vita urbana e facile accesso alla costa.",
+        "es": "Una ciudad joven del sur con plazas sombreadas, calles históricas y luz mediterránea, entre vida urbana y fácil acceso a la costa.",
+        "fr": "Une ville méridionale jeune avec places ombragées, ruelles historiques et lumière méditerranéenne, entre vie urbaine et accès facile au littoral.",
+        "pt": "Uma cidade jovem do sul com praças sombreadas, ruas históricas e luz mediterrânea, equilibrando vida urbana e fácil acesso ao litoral."
+      }
+    },
+    {
+      "id": "FR:nice",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "cities",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A bright Mediterranean waterfront, old-town lanes and hillside views give Nice a polished Riviera atmosphere with strong urban depth.",
+        "de": "Helle Mittelmeerküste, Altstadtgassen und Hangblicke geben Nizza eine elegante Riviera-Atmosphäre mit echter urbaner Tiefe.",
+        "it": "Lungomare mediterraneo luminoso, vicoli del centro storico e viste collinari danno a Nizza un’elegante atmosfera di Riviera.",
+        "es": "Un luminoso paseo mediterráneo, calles del casco antiguo y vistas desde las colinas dan a Niza una elegante atmósfera de Riviera.",
+        "fr": "Front de mer méditerranéen lumineux, ruelles du Vieux-Nice et vues depuis les collines donnent à Nice une élégante atmosphère de Riviera.",
+        "pt": "Orla mediterrânea luminosa, ruas do centro histórico e vistas das colinas dão a Nice uma elegante atmosfera de Riviera."
+      }
+    },
+    {
+      "id": "FR:paris",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "history"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Monumental avenues, neighbourhood cafés, museums and the Seine combine global-city energy with a strongly walkable sense of place.",
+        "de": "Monumentale Achsen, Viertelcafés, Museen und die Seine verbinden Großstadtenergie mit einem besonders gut zu Fuß erfahrbaren Stadtgefühl.",
+        "it": "Viali monumentali, caffè di quartiere, musei e la Senna uniscono energia metropolitana e una forte dimensione pedonale.",
+        "es": "Grandes avenidas, cafés de barrio, museos y el Sena combinan energía de gran ciudad con una fuerte sensación de recorrido a pie.",
+        "fr": "Avenues monumentales, cafés de quartier, musées et Seine associent énergie métropolitaine et forte expérience de la marche.",
+        "pt": "Avenidas monumentais, cafés de bairro, museus e o Sena combinam energia metropolitana com forte sensação de descoberta a pé."
+      }
     }
   ]
 }

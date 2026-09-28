@@ -79,7 +79,8 @@
       "coordinates": {
         "lat": 48.8566,
         "lng": 2.3522
-      }
+      },
+      "experienceRef": "FR:paris"
     },
     {
       "id": "brussels",
@@ -96,7 +97,8 @@
       "coordinates": {
         "lat": 50.8503,
         "lng": 4.3517
-      }
+      },
+      "experienceRef": "BE:brussels"
     },
     {
       "id": "amsterdam",
@@ -113,7 +115,8 @@
       "coordinates": {
         "lat": 52.3676,
         "lng": 4.9041
-      }
+      },
+      "experienceRef": "NL:amsterdam"
     },
     {
       "id": "cologne",
@@ -130,7 +133,8 @@
       "coordinates": {
         "lat": 50.9375,
         "lng": 6.9603
-      }
+      },
+      "experienceRef": "DE:cologne"
     },
     {
       "id": "frankfurt",
@@ -147,7 +151,8 @@
       "coordinates": {
         "lat": 50.1109,
         "lng": 8.6821
-      }
+      },
+      "experienceRef": "DE:frankfurt"
     },
     {
       "id": "munich",
@@ -164,7 +169,8 @@
       "coordinates": {
         "lat": 48.1351,
         "lng": 11.582
-      }
+      },
+      "experienceRef": "DE:munich"
     },
     {
       "id": "vienna",
@@ -181,7 +187,8 @@
       "coordinates": {
         "lat": 48.2082,
         "lng": 16.3738
-      }
+      },
+      "experienceRef": "AT:vienna"
     },
     {
       "id": "budapest",
@@ -198,7 +205,8 @@
       "coordinates": {
         "lat": 47.4979,
         "lng": 19.0402
-      }
+      },
+      "experienceRef": "HU:budapest"
     },
     {
       "id": "prague",
@@ -215,7 +223,8 @@
       "coordinates": {
         "lat": 50.0755,
         "lng": 14.4378
-      }
+      },
+      "experienceRef": "CZ:prague"
     },
     {
       "id": "berlin",
@@ -232,7 +241,8 @@
       "coordinates": {
         "lat": 52.52,
         "lng": 13.405
-      }
+      },
+      "experienceRef": "DE:berlin"
     }
   ],
   "stops": [

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "DE",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "DE:cologne",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "history",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A cathedral-led skyline, Rhine riverfront and lively neighbourhoods give Cologne a relaxed urban character with deep historic layers.",
+        "de": "Dom-Silhouette, Rheinufer und lebendige Viertel geben Köln einen entspannten Großstadtcharakter mit tiefen historischen Schichten.",
+        "it": "Il profilo dominato dalla cattedrale, il Reno e quartieri vivaci danno a Colonia un carattere urbano rilassato e ricco di storia.",
+        "es": "La silueta de la catedral, el Rin y los barrios animados dan a Colonia un carácter urbano relajado y lleno de historia.",
+        "fr": "La silhouette dominée par la cathédrale, le Rhin et les quartiers animés donnent à Cologne un caractère urbain détendu et chargé d’histoire.",
+        "pt": "A silhueta marcada pela catedral, o Reno e bairros animados dão a Colônia um caráter urbano descontraído e cheio de história."
+      }
+    },
+    {
+      "id": "DE:frankfurt",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A modern skyline, riverfront museums and traditional districts create a sharp contrast between global finance and local Hessian character.",
+        "de": "Moderne Skyline, Museumsufer und traditionelle Viertel schaffen einen starken Kontrast zwischen globalem Finanzzentrum und lokaler hessischer Prägung.",
+        "it": "Skyline moderno, musei sul fiume e quartieri tradizionali creano un forte contrasto tra finanza globale e carattere locale dell’Assia.",
+        "es": "Un skyline moderno, museos junto al río y barrios tradicionales crean un fuerte contraste entre finanzas globales y carácter local de Hesse.",
+        "fr": "Skyline moderne, musées en bord de fleuve et quartiers traditionnels créent un fort contraste entre finance mondiale et caractère local de la Hesse.",
+        "pt": "Um skyline moderno, museus à beira do rio e bairros tradicionais criam um forte contraste entre finanças globais e o caráter local de Hesse."
+      }
+    },
+    {
+      "id": "DE:munich",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Grand boulevards, historic squares, beer culture and easy access to Alpine landscapes give Munich a polished southern-German identity.",
+        "de": "Große Boulevards, historische Plätze, Bierkultur und die Nähe zu den Alpen geben München eine ausgeprägte süddeutsche Identität.",
+        "it": "Grandi viali, piazze storiche, cultura della birra e facile accesso alle Alpi danno a Monaco una forte identità della Germania meridionale.",
+        "es": "Grandes avenidas, plazas históricas, cultura cervecera y fácil acceso a los Alpes dan a Múnich una marcada identidad del sur de Alemania.",
+        "fr": "Grands boulevards, places historiques, culture de la bière et proximité des Alpes donnent à Munich une identité sud-allemande très marquée.",
+        "pt": "Grandes avenidas, praças históricas, cultura cervejeira e fácil acesso aos Alpes dão a Munique uma forte identidade do sul da Alemanha."
+      }
+    },
+    {
+      "id": "DE:berlin",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "history",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Layered twentieth-century history, creative neighbourhoods and an unusually open urban scale make Berlin feel constantly in motion.",
+        "de": "Vielschichtige Geschichte des 20. Jahrhunderts, kreative Viertel und eine ungewöhnlich offene Stadtstruktur lassen Berlin ständig in Bewegung wirken.",
+        "it": "Storia stratificata del Novecento, quartieri creativi e una scala urbana insolitamente aperta fanno sembrare Berlino sempre in movimento.",
+        "es": "Historia del siglo XX, barrios creativos y una escala urbana inusualmente abierta hacen que Berlín parezca estar siempre en movimiento.",
+        "fr": "Histoire du XXe siècle, quartiers créatifs et échelle urbaine inhabituellement ouverte donnent à Berlin une impression de mouvement permanent.",
+        "pt": "História do século XX, bairros criativos e uma escala urbana incomumente aberta fazem Berlim parecer sempre em movimento."
+      }
+    }
+  ]
+}

@@ -4,6 +4,63 @@
   "updatedAt": "2026-09-28",
   "profiles": [
     {
+      "id": "IT:amalfi-coast",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "culture",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Cliffside towns, sea views and tightly packed historic streets make the Amalfi Coast a dramatic Mediterranean chapter built around scenery and slow travel.",
+        "de": "Hangstädte, Meerblicke und dicht gebaute historische Gassen machen die Amalfiküste zu einem eindrucksvollen Mittelmeerabschnitt für langsames Reisen.",
+        "it": "Borghi sulle scogliere, viste sul mare e fitte strade storiche rendono la Costiera Amalfitana un capitolo mediterraneo spettacolare da vivere con calma.",
+        "es": "Pueblos en acantilados, vistas al mar y calles históricas compactas convierten la Costa Amalfitana en un capítulo mediterráneo pensado para viajar despacio.",
+        "fr": "Villages accrochés aux falaises, vues sur la mer et ruelles historiques serrées font de la côte amalfitaine une étape méditerranéenne spectaculaire à parcourir lentement.",
+        "pt": "Vilas nas falésias, vistas para o mar e ruas históricas compactas fazem da Costa Amalfitana um capítulo mediterrâneo marcante para viajar devagar."
+      }
+    },
+    {
+      "id": "IT:bari",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "food",
+        "history"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A lively Adriatic port with a dense old town and strong food traditions, Bari blends everyday southern-Italian life with a working waterfront.",
+        "de": "Ein lebendiger Adriahafen mit dichter Altstadt und starker Esskultur verbindet in Bari süditalienischen Alltag mit aktivem Hafenleben.",
+        "it": "Un vivace porto adriatico con un centro storico denso e forti tradizioni gastronomiche, Bari unisce vita quotidiana del Sud e lungomare operativo.",
+        "es": "Un animado puerto adriático con un casco antiguo compacto y fuertes tradiciones gastronómicas, Bari mezcla vida cotidiana del sur y frente portuario.",
+        "fr": "Un port adriatique animé avec vieille ville dense et fortes traditions culinaires, Bari mêle vie quotidienne du Sud et front de mer actif.",
+        "pt": "Um porto adriático animado com centro histórico compacto e fortes tradições gastronômicas, Bari combina cotidiano do sul com uma orla portuária ativa."
+      }
+    },
+    {
+      "id": "IT:bologna",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "food",
+        "history",
+        "cities"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Arcaded streets, medieval towers and one of Italy’s strongest food cultures make Bologna a compact, deeply local city stop.",
+        "de": "Arkadenstraßen, mittelalterliche Türme und eine der stärksten Esskulturen Italiens machen Bologna zu einem kompakten, sehr lokalen Stadtstopp.",
+        "it": "Portici, torri medievali e una delle culture gastronomiche più forti d’Italia rendono Bologna una tappa urbana compatta e profondamente locale.",
+        "es": "Calles porticadas, torres medievales y una de las culturas gastronómicas más fuertes de Italia hacen de Bolonia una parada urbana compacta y muy local.",
+        "fr": "Rues à portiques, tours médiévales et l’une des cultures culinaires les plus fortes d’Italie font de Bologne une étape urbaine compacte et très locale.",
+        "pt": "Ruas com pórticos, torres medievais e uma das culturas gastronômicas mais fortes da Itália fazem de Bolonha uma parada urbana compacta e muito local."
+      }
+    },
+    {
       "id": "IT:civitavecchia-rome-gateway",
       "contentType": "editorial-evergreen",
       "tags": [
@@ -23,6 +80,25 @@
       }
     },
     {
+      "id": "IT:dolomites-cortina",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "mountains",
+        "nature",
+        "adventure"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Sharp limestone peaks, alpine valleys and a polished mountain-town base make Cortina a strong contrast to Italy’s historic cities and coasts.",
+        "de": "Markante Kalkgipfel, Alpentäler und ein eleganter Bergort machen Cortina zu einem starken Kontrast zu Italiens historischen Städten und Küsten.",
+        "it": "Cime calcaree, valli alpine e una raffinata località di montagna rendono Cortina un forte contrasto con città storiche e coste italiane.",
+        "es": "Picos calizos, valles alpinos y una elegante localidad de montaña hacen de Cortina un marcado contraste con las ciudades históricas y las costas italianas.",
+        "fr": "Pics calcaires, vallées alpines et station de montagne élégante font de Cortina un fort contraste avec les villes historiques et les côtes italiennes.",
+        "pt": "Picos calcários, vales alpinos e uma elegante base de montanha fazem de Cortina um forte contraste com as cidades históricas e costas italianas."
+      }
+    },
+    {
       "id": "IT:florence",
       "contentType": "editorial-evergreen",
       "tags": [
@@ -39,6 +115,44 @@
         "es": "Paisaje renacentista, museos, tradiciones artesanas y cultura gastronómica toscana concentran mucho de Italia en un centro histórico fácil de recorrer a pie.",
         "fr": "Décor Renaissance, musées, traditions artisanales et culture culinaire toscane concentrent une grande part de l’Italie dans un centre historique propice à la marche.",
         "pt": "Cenário renascentista, museus, tradições artesanais e cultura gastronômica toscana concentram muito da Itália em um centro histórico fácil de explorar a pé."
+      }
+    },
+    {
+      "id": "IT:genoa",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "history",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A steep historic port city of narrow lanes, grand palaces and Ligurian food traditions, Genoa feels dense, maritime and strongly local.",
+        "de": "Eine steile historische Hafenstadt mit engen Gassen, großen Palästen und ligurischer Esskultur – Genua wirkt dicht, maritim und stark lokal geprägt.",
+        "it": "Una storica città portuale ripida, fatta di vicoli stretti, grandi palazzi e tradizioni gastronomiche liguri, Genova è densa, marittima e autentica.",
+        "es": "Una histórica ciudad portuaria de calles estrechas, grandes palacios y tradiciones gastronómicas ligures, Génova se siente densa, marítima y muy local.",
+        "fr": "Ville portuaire historique et escarpée, faite de ruelles étroites, grands palais et traditions culinaires ligures, Gênes est dense, maritime et très locale.",
+        "pt": "Uma histórica cidade portuária íngreme, de ruas estreitas, grandes palácios e tradições gastronômicas da Ligúria, Gênova é densa, marítima e muito local."
+      }
+    },
+    {
+      "id": "IT:matera",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "culture",
+        "cities"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Stone dwellings, cave districts and a dramatic ravine setting give Matera a highly distinctive historic landscape rather than a conventional city experience.",
+        "de": "Steinwohnungen, Höhlenviertel und die Lage an einer Schlucht geben Matera eine außergewöhnliche historische Landschaft statt klassischem Stadtgefühl.",
+        "it": "Abitazioni in pietra, quartieri rupestri e un suggestivo canyon danno a Matera un paesaggio storico unico più che una tradizionale esperienza urbana.",
+        "es": "Viviendas de piedra, barrios rupestres y un espectacular barranco dan a Matera un paisaje histórico singular más que una experiencia urbana convencional.",
+        "fr": "Habitations en pierre, quartiers troglodytiques et ravin spectaculaire donnent à Matera un paysage historique unique plutôt qu’une expérience urbaine classique.",
+        "pt": "Moradias de pedra, bairros em cavernas e um desfiladeiro marcante dão a Matera uma paisagem histórica única, mais do que uma experiência urbana convencional."
       }
     },
     {
@@ -77,6 +191,44 @@
         "es": "Capas de historia antigua, espacios monumentales y vida cotidiana de barrio hacen de Roma una intensa introducción a la historia y cultura urbana de Italia.",
         "fr": "Strates antiques, espaces monumentaux et vie quotidienne des quartiers font de Rome une introduction dense à l’histoire et à la culture urbaine italiennes.",
         "pt": "Camadas antigas, espaços monumentais e vida cotidiana de bairro fazem de Roma uma introdução intensa à história e à cultura urbana italiana."
+      }
+    },
+    {
+      "id": "IT:siena",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "culture",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Brick streets, a dramatic central square and Tuscan hill-country atmosphere give Siena a smaller-scale, deeply historic counterpoint to Florence.",
+        "de": "Backsteingassen, ein markanter Hauptplatz und toskanische Hügellandschaft machen Siena zu einem kleineren, tief historischen Gegenpol zu Florenz.",
+        "it": "Strade in mattoni, una piazza centrale scenografica e atmosfera collinare toscana fanno di Siena un contrappunto più raccolto e storico a Firenze.",
+        "es": "Calles de ladrillo, una plaza central espectacular y ambiente de colinas toscanas hacen de Siena un contrapunto más pequeño y profundamente histórico a Florencia.",
+        "fr": "Rues de brique, grande place spectaculaire et atmosphère des collines toscanes font de Sienne un contrepoint plus intime et profondément historique à Florence.",
+        "pt": "Ruas de tijolos, uma praça central marcante e atmosfera das colinas toscanas fazem de Siena um contraponto menor e profundamente histórico a Florença."
+      }
+    },
+    {
+      "id": "IT:venice",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "culture",
+        "coast"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Canals, car-free lanes and monumental waterfront architecture create an urban experience shaped almost entirely by water and historic fabric.",
+        "de": "Kanäle, autofreie Gassen und monumentale Architektur am Wasser schaffen ein Stadterlebnis, das fast vollständig von Wasser und historischer Struktur geprägt ist.",
+        "it": "Canali, calli pedonali e architettura monumentale sull’acqua creano un’esperienza urbana modellata quasi interamente dall’acqua e dal tessuto storico.",
+        "es": "Canales, calles peatonales y arquitectura monumental frente al agua crean una experiencia urbana definida casi por completo por el agua y el tejido histórico.",
+        "fr": "Canaux, ruelles sans voitures et architecture monumentale sur l’eau créent une expérience urbaine façonnée presque entièrement par l’eau et le tissu historique.",
+        "pt": "Canais, ruas sem carros e arquitetura monumental à beira d’água criam uma experiência urbana moldada quase inteiramente pela água e pelo tecido histórico."
       }
     }
   ]

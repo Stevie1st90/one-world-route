@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "BE",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "BE:brussels",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "food"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Grand squares, Art Nouveau details and a multilingual urban culture give Brussels a compact but distinctly European capital feel.",
+        "de": "Große Plätze, Jugendstil-Details und eine mehrsprachige Stadtkultur geben Brüssel das kompakte, zugleich deutlich europäische Flair einer Hauptstadt.",
+        "it": "Grandi piazze, dettagli Art Nouveau e cultura urbana multilingue danno a Bruxelles l’atmosfera compatta ma decisamente europea di una capitale.",
+        "es": "Grandes plazas, detalles Art Nouveau y una cultura urbana multilingüe dan a Bruselas el ambiente compacto y claramente europeo de una capital.",
+        "fr": "Grandes places, détails Art nouveau et culture urbaine multilingue donnent à Bruxelles l’allure compacte mais nettement européenne d’une capitale.",
+        "pt": "Grandes praças, detalhes Art Nouveau e uma cultura urbana multilíngue dão a Bruxelas o caráter compacto e claramente europeu de uma capital."
+      }
+    }
+  ]
+}

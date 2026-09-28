@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "PT",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "PT:lisbon",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "history",
+        "coast"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Hilly neighbourhoods, tiled façades, viewpoints and the broad Tagus waterfront give Lisbon a bright Atlantic city character.",
+        "de": "Hügelige Viertel, gekachelte Fassaden, Aussichtspunkte und das breite Tejo-Ufer geben Lissabon einen hellen atlantischen Großstadtcharakter.",
+        "it": "Quartieri collinari, facciate in azulejos, belvedere e il grande fronte sul Tago danno a Lisbona un luminoso carattere atlantico.",
+        "es": "Barrios en colinas, fachadas de azulejos, miradores y el amplio frente del Tajo dan a Lisboa un carácter urbano atlántico y luminoso.",
+        "fr": "Quartiers en pente, façades carrelées, belvédères et large front du Tage donnent à Lisbonne un caractère urbain atlantique lumineux.",
+        "pt": "Bairros em colinas, fachadas de azulejos, miradouros e a ampla frente do Tejo dão a Lisboa um caráter urbano atlântico e luminoso."
+      }
+    }
+  ]
+}

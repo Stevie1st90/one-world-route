@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "NL",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "NL:amsterdam",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "history"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Canals, narrow historic streets, museums and cycling culture make Amsterdam feel intimate despite its international city energy.",
+        "de": "Grachten, schmale historische Straßen, Museen und Fahrradkultur lassen Amsterdam trotz seiner internationalen Großstadtenergie überraschend intim wirken.",
+        "it": "Canali, strette strade storiche, musei e cultura della bicicletta rendono Amsterdam intima nonostante la sua energia internazionale.",
+        "es": "Canales, calles históricas estrechas, museos y cultura ciclista hacen que Ámsterdam se sienta íntima pese a su energía internacional.",
+        "fr": "Canaux, rues historiques étroites, musées et culture du vélo donnent à Amsterdam une atmosphère intime malgré son énergie internationale.",
+        "pt": "Canais, ruas históricas estreitas, museus e cultura da bicicleta fazem Amsterdã parecer íntima apesar de sua energia internacional."
+      }
+    }
+  ]
+}

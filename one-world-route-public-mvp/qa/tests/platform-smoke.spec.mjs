@@ -253,6 +253,30 @@ test('@regional major experience batch loads cruise and island country shards',a
   expect(errors,'major experience batch runtime page errors').toEqual([]);
 });
 
+test('@regional final experience completion batch loads remaining regional shards',async({page,isMobile},testInfo)=>{
+  test.setTimeout(180000);
+  const errors=capturePageErrors(page);
+
+  async function openTrip(tripId,stopIndex,title,copy,shot){
+    await page.goto('/?trip='+tripId+'&lang=en',{waitUntil:'domcontentloaded'});
+    await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:15000});
+    if(isMobile){await page.locator('#mobileDetails').click();await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);}
+    await page.locator('[data-journey-stop-index="'+stopIndex+'"]').evaluate(node=>node.click());
+    await expect(page.locator('#detailTitle')).toHaveText(title);
+    await expect(page.locator('.platform-stop-experience')).toContainText(copy);
+    await page.locator('.platform-stop-experience').screenshot({path:testInfo.outputPath(shot),animations:'disabled'});
+  }
+
+  await openTrip('central-europe-rail-journey',9,'Berlin','creative neighbourhoods','central-europe-place-experience.png');
+  await openTrip('italy-grand-tour',6,'Venice','car-free lanes','italy-place-experience.png');
+  await openTrip('southern-europe-road-trip',0,'Lisbon','tiled façades','southern-europe-place-experience.png');
+  await openTrip('vietnam-north-south',0,'Hanoi','old-quarter streets','vietnam-place-experience.png');
+  await openTrip('iceland-ring-road',2,'Jökulsárlón','Floating ice','iceland-place-experience.png');
+
+  if(isMobile)await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
+  expect(errors,'final experience completion batch runtime page errors').toEqual([]);
+});
+
 test('@regional representative regional shell boots cleanly',async({page,isMobile})=>{
   test.setTimeout(30000);
   expect(regional).toBeTruthy();

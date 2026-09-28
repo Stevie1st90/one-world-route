@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "IS",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "IS:reykjavik",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "coast"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Colourful low-rise streets, harbour life and a strong creative culture make Reykjavík a compact urban gateway to Iceland’s wider landscapes.",
+        "de": "Bunte niedrige Häuser, Hafenleben und starke Kreativkultur machen Reykjavík zu einem kompakten urbanen Tor zu Islands großen Landschaften.",
+        "it": "Strade colorate a bassa densità, vita portuale e forte cultura creativa fanno di Reykjavík una porta urbana compatta verso i grandi paesaggi islandesi.",
+        "es": "Calles coloridas de baja altura, vida portuaria y fuerte cultura creativa hacen de Reikiavik una puerta urbana compacta a los grandes paisajes islandeses.",
+        "fr": "Rues colorées et basses, vie du port et forte culture créative font de Reykjavík une porte urbaine compacte vers les grands paysages islandais.",
+        "pt": "Ruas coloridas de baixa altura, vida portuária e forte cultura criativa fazem de Reykjavík uma porta urbana compacta para as grandes paisagens islandesas."
+      }
+    },
+    {
+      "id": "IS:vik",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "nature",
+        "volcanic"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Black-sand coast, steep green slopes and exposed Atlantic weather give Vík a stark south-coast landscape character.",
+        "de": "Schwarzer Sand, steile grüne Hänge und offenes Atlantikwetter geben Vík einen markanten Landschaftscharakter an der Südküste.",
+        "it": "Costa di sabbia nera, pendii verdi ripidi e clima atlantico esposto danno a Vík un carattere paesaggistico netto sulla costa meridionale.",
+        "es": "Costa de arena negra, laderas verdes y clima atlántico expuesto dan a Vík un fuerte carácter paisajístico en la costa sur.",
+        "fr": "Côte de sable noir, pentes vertes abruptes et météo atlantique exposée donnent à Vík un caractère paysager saisissant sur la côte sud.",
+        "pt": "Costa de areia preta, encostas verdes íngremes e clima atlântico exposto dão a Vík um forte caráter paisagístico no sul."
+      }
+    },
+    {
+      "id": "IS:jokulsarlon",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "coast",
+        "volcanic"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Floating ice, glacial water and a vast open setting create one of the ring road’s most concentrated natural-landscape experiences.",
+        "de": "Treibendes Eis, Gletscherwasser und große offene Landschaft schaffen eines der konzentriertesten Naturerlebnisse der Ringstraße.",
+        "it": "Ghiaccio galleggiante, acqua glaciale e vasto paesaggio aperto creano una delle esperienze naturali più intense della Ring Road.",
+        "es": "Hielo flotante, agua glaciar y un entorno abierto crean una de las experiencias naturales más intensas de la Ring Road.",
+        "fr": "Glaces flottantes, eau glaciaire et vaste décor ouvert créent l’une des expériences naturelles les plus concentrées de la route circulaire.",
+        "pt": "Gelo flutuante, água glacial e uma paisagem aberta criam uma das experiências naturais mais intensas da Ring Road."
+      }
+    },
+    {
+      "id": "IS:egilsstadir",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "mountains",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A small eastern base surrounded by lakes, valleys and broad highland scenery, Egilsstaðir brings a quieter inland rhythm to the route.",
+        "de": "Ein kleiner östlicher Ausgangspunkt zwischen Seen, Tälern und weitem Hochland – Egilsstaðir bringt einen ruhigeren Binnenrhythmus in die Route.",
+        "it": "Una piccola base orientale tra laghi, valli e vasti paesaggi d’altopiano, Egilsstaðir porta un ritmo interno più tranquillo al viaggio.",
+        "es": "Una pequeña base oriental entre lagos, valles y amplios paisajes de tierras altas, Egilsstaðir aporta un ritmo interior más tranquilo.",
+        "fr": "Petite base de l’est entourée de lacs, vallées et vastes hauts plateaux, Egilsstaðir apporte un rythme intérieur plus calme.",
+        "pt": "Uma pequena base no leste cercada por lagos, vales e amplas terras altas, Egilsstaðir traz um ritmo interior mais tranquilo à rota."
+      }
+    },
+    {
+      "id": "IS:akureyri",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "mountains"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A compact northern town at the head of a fjord, combining cafés, gardens and urban comfort with immediate mountain context.",
+        "de": "Eine kompakte Stadt im Norden am Ende eines Fjords, die Cafés, Gärten und städtischen Komfort direkt mit Berglandschaft verbindet.",
+        "it": "Una compatta città del nord in fondo a un fiordo, tra caffè, giardini e comfort urbano con montagne subito vicine.",
+        "es": "Una compacta ciudad del norte al fondo de un fiordo, con cafés, jardines y comodidad urbana junto a las montañas.",
+        "fr": "Une ville compacte du nord au fond d’un fjord, mêlant cafés, jardins et confort urbain à un environnement montagneux immédiat.",
+        "pt": "Uma cidade compacta no norte, no fundo de um fiorde, combinando cafés, jardins e conforto urbano com montanhas logo ao redor."
+      }
+    },
+    {
+      "id": "IS:snaefellsnes",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "coast",
+        "volcanic"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Volcanic peaks, fishing villages and a deeply indented coastline compress many classic Icelandic landscapes into one peninsula.",
+        "de": "Vulkangipfel, Fischerdörfer und stark gegliederte Küste bündeln viele typische Islandlandschaften auf einer Halbinsel.",
+        "it": "Cime vulcaniche, villaggi di pescatori e costa frastagliata concentrano molti paesaggi classici islandesi in una sola penisola.",
+        "es": "Picos volcánicos, pueblos pesqueros y una costa recortada concentran muchos paisajes clásicos de Islandia en una sola península.",
+        "fr": "Pics volcaniques, villages de pêcheurs et côte très découpée concentrent de nombreux paysages islandais classiques sur une seule péninsule.",
+        "pt": "Picos vulcânicos, vilas pesqueiras e uma costa recortada concentram muitas paisagens clássicas da Islândia em uma única península."
+      }
+    }
+  ]
+}

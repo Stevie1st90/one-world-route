@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "HU",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "HU:budapest",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "history",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "The Danube, monumental architecture, thermal-bath culture and lively districts give Budapest both grandeur and everyday energy.",
+        "de": "Donau, monumentale Architektur, Thermalbadkultur und lebendige Viertel verbinden in Budapest große Kulisse mit alltäglicher Energie.",
+        "it": "Danubio, architettura monumentale, cultura termale e quartieri vivaci danno a Budapest insieme grandiosità ed energia quotidiana.",
+        "es": "El Danubio, la arquitectura monumental, la cultura termal y los barrios animados dan a Budapest grandeza y energía cotidiana.",
+        "fr": "Le Danube, l’architecture monumentale, la culture des bains thermaux et les quartiers animés donnent à Budapest grandeur et énergie quotidienne.",
+        "pt": "O Danúbio, a arquitetura monumental, a cultura dos banhos termais e bairros animados dão a Budapeste grandeza e energia cotidiana."
+      }
+    }
+  ]
+}
