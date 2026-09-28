@@ -309,6 +309,29 @@ body.platform-home #globeLoader,body.platform-home #globeFallback{display:none!i
 @media(max-width:520px){.platform-mytrips-title{align-items:flex-start;flex-direction:column}.platform-mytrips-title>button{width:100%}}
 
 
+/* Planning Workspace v2 */
+.platform-mytrip-plan{display:grid;gap:10px;padding:12px;border:1px solid rgba(89,221,255,.12);border-radius:14px;background:linear-gradient(145deg,rgba(89,221,255,.035),rgba(146,118,255,.018))}
+.platform-mytrip-plan-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.platform-mytrip-plan-head>div{display:grid;gap:3px;min-width:0}
+.platform-mytrip-plan-head span{color:#78dff8;font-size:7px;font-weight:850;letter-spacing:.11em;text-transform:uppercase}
+.platform-mytrip-plan-head b{color:#d8e8f4;font-size:10px;line-height:1.4}
+.platform-mytrip-plan-head>strong{flex:0 0 auto;padding:5px 8px;border:1px solid rgba(89,221,255,.16);border-radius:999px;background:rgba(89,221,255,.055);color:#bfeef8;font-size:8px}
+.platform-mytrip-plan-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.platform-mytrip-plan-step{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;align-items:start;padding:9px;border:1px solid rgba(255,255,255,.06);border-radius:11px;background:rgba(255,255,255,.025)}
+.platform-mytrip-plan-step>i{display:grid;place-items:center;width:22px;height:22px;border-radius:999px;background:rgba(255,255,255,.055);color:#7d91a6;font-size:9px;font-style:normal;font-weight:800}
+.platform-mytrip-plan-step>span{display:grid;gap:2px;min-width:0}
+.platform-mytrip-plan-step b{color:#cddde9;font-size:9px}
+.platform-mytrip-plan-step small{color:#72869b;font-size:8px;line-height:1.4;overflow-wrap:anywhere}
+.platform-mytrip-plan-step.ok{border-color:rgba(101,229,167,.14);background:rgba(101,229,167,.035)}
+.platform-mytrip-plan-step.ok>i{background:rgba(101,229,167,.1);color:#9ce7bd}
+.platform-mytrip-plan-step.pending{border-color:rgba(255,202,84,.1)}
+.platform-mytrip-plan-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:2px}
+.platform-mytrip-plan-foot small{max-width:620px;color:#71859a;font-size:8px;line-height:1.45}
+.platform-mytrip-plan-foot button{min-height:32px;padding:0 10px;border:1px solid rgba(89,221,255,.16);border-radius:9px;background:rgba(89,221,255,.05);color:#c9eef7;font-size:8px;font-weight:750;cursor:pointer;white-space:nowrap}
+@media(max-width:760px){.platform-mytrip-plan-list{grid-template-columns:1fr}}
+@media(max-width:520px){.platform-mytrip-plan-foot{align-items:stretch;flex-direction:column}.platform-mytrip-plan-foot button{width:100%}}
+
+
 /* ===== Global journey discovery visual system ===== */
 .platform-home-featured{position:relative;z-index:2;width:min(1280px,calc(100% - 56px));margin:0 auto;padding:66px 0 72px;border-top:1px solid rgba(255,255,255,.08);pointer-events:auto}
 .platform-home-featured-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}

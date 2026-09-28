@@ -7,7 +7,7 @@
     const parsed=Number(value);
     return Number.isFinite(parsed)?Math.min(max,Math.max(min,parsed)):0;
   };
-  function defaults(){return {savedTrips:[],budgets:{},startDates:{},seasons:{},routeStarts:{}}}
+  function defaults(){return {savedTrips:[],budgets:{},startDates:{},seasons:{},routeStarts:{},planningChecks:{}}}
   function load(storage){
     try{
       const raw=JSON.parse(storage.getItem(KEY)||'{}');
@@ -16,7 +16,8 @@
         budgets:raw.budgets&&typeof raw.budgets==='object'?raw.budgets:{},
         startDates:raw.startDates&&typeof raw.startDates==='object'?raw.startDates:{},
         seasons:raw.seasons&&typeof raw.seasons==='object'?raw.seasons:{},
-        routeStarts:raw.routeStarts&&typeof raw.routeStarts==='object'?raw.routeStarts:{}
+        routeStarts:raw.routeStarts&&typeof raw.routeStarts==='object'?raw.routeStarts:{},
+        planningChecks:raw.planningChecks&&typeof raw.planningChecks==='object'?raw.planningChecks:{}
       };
     }catch{return defaults()}
   }
@@ -61,9 +62,37 @@
     if(start)state.routeStarts[tripId]=start;else delete state.routeStarts[tripId];
     persist(storage,state);notify(tripId);return start;
   }
+  function normalizePlanningChecks(input={}){
+    const raw=String(input?.accessCheckedAt||'').trim();
+    const parsed=raw?new Date(raw):null;
+    return {accessCheckedAt:parsed&&Number.isFinite(parsed.getTime())?parsed.toISOString():''};
+  }
+  function getPlanningChecks(storage,tripId){return normalizePlanningChecks(load(storage).planningChecks[tripId])}
+  function setAccessChecked(storage,tripId,checked,at=null){
+    const state=load(storage),current=normalizePlanningChecks(state.planningChecks[tripId]);
+    if(checked){
+      const stamp=at?new Date(at):new Date();
+      if(!Number.isFinite(stamp.getTime()))return current;
+      state.planningChecks[tripId]={...current,accessCheckedAt:stamp.toISOString()};
+    }else{
+      delete state.planningChecks[tripId];
+    }
+    persist(storage,state);notify(tripId);return getPlanningChecks(storage,tripId);
+  }
   function hasBudgetAssumptions(input){
     const a=normalizeBudget(input);
     return [a.lodgingPerNight,a.foodPerPersonDay,a.localPerPersonDay,a.extras,a.contingencyPercent].some(value=>Number(value)>0)||a.transportMultiplier!==null;
+  }
+  function planningStatus({storage,tripId,profile={},hasPlanning=false,routeStartRequired=false}={}){
+    const origin=String(profile?.origin||profile?.originCountry||'').trim();
+    const items=[{id:'origin',complete:Boolean(origin)}];
+    if(routeStartRequired)items.push({id:'routeStart',complete:Boolean(getRouteStart(storage,tripId))});
+    items.push({id:'startDate',complete:Boolean(getStartDate(storage,tripId))});
+    if(hasPlanning)items.push({id:'budget',complete:hasBudgetAssumptions(getBudget(storage,tripId))});
+    const checks=getPlanningChecks(storage,tripId);
+    items.push({id:'access',complete:Boolean(checks.accessCheckedAt),checkedAt:checks.accessCheckedAt||null});
+    const completed=items.filter(item=>item.complete).length;
+    return {items,completed,total:items.length,complete:completed===items.length,next:items.find(item=>!item.complete)?.id||null};
   }
   function estimate({snapshot,profile,assumptions}){
     const a=normalizeBudget(assumptions);
@@ -233,5 +262,5 @@
       toast?.(t('estimateUpdated'));
     };
   }
-  root.tripTools={load,isSaved,toggleSaved,normalizeBudget,getBudget,setBudget,getStartDate,setStartDate,getSeason,setSeason,getRouteStart,setRouteStart,hasBudgetAssumptions,estimate,itineraryRows,csv,calendar,jsonPack,workspaceJson,download,render,bind};
+  root.tripTools={load,isSaved,toggleSaved,normalizeBudget,getBudget,setBudget,getStartDate,setStartDate,getSeason,setSeason,getRouteStart,setRouteStart,normalizePlanningChecks,getPlanningChecks,setAccessChecked,hasBudgetAssumptions,planningStatus,estimate,itineraryRows,csv,calendar,jsonPack,workspaceJson,download,render,bind};
 })();

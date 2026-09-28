@@ -73,3 +73,32 @@ test('route start preferences stay local per journey',()=>{
   const parsed=JSON.parse(tools.workspaceJson(s));
   assert.equal(parsed.workspace.routeStarts['trip-a'],'stop-b');
 });
+
+
+test('planning status exposes the next incomplete step and records manual access checks locally',()=>{
+  const tools=load(),s=storage(),profile={origin:'Seoul / ICN',originCountry:'KR'};
+  let status=tools.planningStatus({storage:s,tripId:'trip-a',profile,hasPlanning:true,routeStartRequired:true});
+  assert.equal(status.completed,1);
+  assert.equal(status.total,5);
+  assert.equal(status.next,'routeStart');
+
+  tools.setRouteStart(s,'trip-a','stop-b');
+  tools.setStartDate(s,'trip-a','2027-04-10');
+  tools.setBudget(s,'trip-a',{lodgingPerNight:90});
+  status=tools.planningStatus({storage:s,tripId:'trip-a',profile,hasPlanning:true,routeStartRequired:true});
+  assert.equal(status.completed,4);
+  assert.equal(status.next,'access');
+  assert.equal(status.complete,false);
+
+  const checks=tools.setAccessChecked(s,'trip-a',true,'2026-09-28T10:00:00Z');
+  assert.equal(checks.accessCheckedAt,'2026-09-28T10:00:00.000Z');
+  status=tools.planningStatus({storage:s,tripId:'trip-a',profile,hasPlanning:true,routeStartRequired:true});
+  assert.equal(status.completed,5);
+  assert.equal(status.next,null);
+  assert.equal(status.complete,true);
+
+  const workspace=JSON.parse(tools.workspaceJson(s));
+  assert.equal(workspace.workspace.planningChecks['trip-a'].accessCheckedAt,'2026-09-28T10:00:00.000Z');
+  tools.setAccessChecked(s,'trip-a',false);
+  assert.equal(tools.getPlanningChecks(s,'trip-a').accessCheckedAt,'');
+});
