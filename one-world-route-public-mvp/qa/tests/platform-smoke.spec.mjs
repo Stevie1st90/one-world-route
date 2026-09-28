@@ -222,6 +222,63 @@ test('@regional starting country applies the closest supported journey entry and
 
 
 
+
+
+test('@regional journey detail guides the essential planning flow without duplicate state',async({page,isMobile},testInfo)=>{
+  test.setTimeout(120000);
+  await page.addInitScript(()=>{
+    localStorage.setItem('one-world-route:traveller-context:v1',JSON.stringify({
+      language:'en',currency:'EUR',origin:'Seoul / ICN',originCountry:'KR',originRegion:'asia',
+      party:{adults:1,children:0},accessibility:{reducedMobility:false}
+    }));
+    localStorage.removeItem('one-world-route:trip-tools:v1');
+  });
+  const errors=capturePageErrors(page);
+  await page.goto('/?trip=japan-by-rail&lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:15000});
+  const plan=page.locator('[data-trip-planning-status]');
+  await expect(plan).toBeVisible();
+  await expect(plan.locator('[data-trip-planning-step]')).toHaveCount(6);
+  await expect(plan.locator('.platform-detail-planning-head>strong')).toHaveText('1 / 6');
+  await expect(plan.locator('.platform-detail-planning-head')).toContainText('Next planning step: Saved');
+
+  await plan.locator('[data-trip-plan-next]').click();
+  await expect(plan.locator('.platform-detail-planning-head>strong')).toHaveText('2 / 6');
+  await expect(plan.locator('.platform-detail-planning-head')).toContainText('Next planning step: Route start');
+
+  await plan.locator('[data-trip-plan-next]').click();
+  await expect(page.locator('[data-trip-planning-status] .platform-detail-planning-head>strong')).toHaveText('3 / 6',{timeout:20000});
+  await expect(page.locator('[data-trip-planning-status] .platform-detail-planning-head')).toContainText('Next planning step: Start date');
+
+  await page.locator('[data-trip-plan-next]').click();
+  const dateInput=page.locator('[data-trip-start-date]');
+  await expect(dateInput).toBeFocused();
+  await dateInput.fill('2027-04-10');
+  await dateInput.dispatchEvent('change');
+  await expect(page.locator('[data-trip-planning-status] .platform-detail-planning-head>strong')).toHaveText('4 / 6');
+  await expect(page.locator('[data-trip-planning-status] .platform-detail-planning-head')).toContainText('Next planning step: Budget estimate');
+
+  await page.locator('[data-trip-plan-next]').click();
+  await expect(page.locator('.platform-trip-tools')).toHaveAttribute('open','');
+  await page.locator('[data-trip-budget] input[name="lodging"]').fill('100');
+  await page.locator('[data-trip-budget] button[type="submit"]').click();
+  await expect(page.locator('[data-trip-planning-status] .platform-detail-planning-head>strong')).toHaveText('5 / 6');
+  await expect(page.locator('[data-trip-planning-status] .platform-detail-planning-head')).toContainText('Next planning step: Route access check');
+
+  await page.locator('[data-trip-plan-next]').click();
+  await expect(page.locator('[data-trip-planning-status] .platform-detail-planning-head>strong')).toHaveText('6 / 6');
+  await expect(page.locator('[data-trip-planning-status] .platform-detail-planning-head')).toContainText('Core planning setup recorded');
+  const state=await page.evaluate(()=>JSON.parse(localStorage.getItem('one-world-route:trip-tools:v1')||'{}'));
+  expect(state.savedTrips).toContain('japan-by-rail');
+  expect(state.routeStarts?.['japan-by-rail']).toBeTruthy();
+  expect(state.startDates?.['japan-by-rail']).toBe('2027-04-10');
+  expect(state.budgets?.['japan-by-rail']?.lodgingPerNight).toBe(100);
+  expect(state.planningChecks?.['japan-by-rail']?.accessCheckedAt).toMatch(/^\d{4}-\d{2}-\d{2}T/);
+  await plan.screenshot({path:testInfo.outputPath('journey-planning-v3.png'),animations:'disabled'});
+  if(isMobile)await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
+  expect(errors,'journey detail planning runtime errors').toEqual([]);
+});
+
 test('@regional saved journeys expose actionable planning workspace status',async({page,isMobile},testInfo)=>{
   test.setTimeout(90000);
   await page.addInitScript(()=>{
