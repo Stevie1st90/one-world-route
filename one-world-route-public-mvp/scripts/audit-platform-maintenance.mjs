@@ -1,113 +1,59 @@
 import {readFile} from 'node:fs/promises';
-import {buildExperienceCoverage} from './experience-coverage-model.mjs';
+import {buildMaintenanceReport} from './platform-maintenance-model.mjs';
 
 const root=new URL('../',import.meta.url);
 const readJson=async path=>JSON.parse(await readFile(new URL(path,root),'utf8'));
-const asDate=value=>{
-  if(!value)return null;
-  const date=new Date(String(value)+'T00:00:00Z');
-  return Number.isNaN(date.getTime())?null:date;
-};
-const daysBetween=(a,b)=>Math.floor((a-b)/86400000);
-
 const catalog=await readJson('data/platform/trips.json');
-const shared=await readJson('data/platform/shared-knowledge.json').catch(()=>({items:[]}));
+const shared=await readJson('data/platform/shared-knowledge.json').catch(()=>({items:[],reviewPolicies:{}}));
 const experienceIndex=await readJson('data/platform/place-experiences/index.json').catch(()=>({shards:[]}));
-const now=new Date();
-const strict=process.argv.includes('--strict-stale');
-const issues=[];
-const reviewCandidates=[];
-let sourceCount=0;
-let liveDependentTrips=0;
-let reversibleTrips=0;
-let experienceProfileCount=0;
-let experienceReferenceCount=0;
-const experienceUse=new Map();
-const experienceProfiles=[];
-const experienceDatasets=new Map();
+const datasets=new Map(),experienceProfiles=[];
 
 for(const meta of catalog.trips||[]){
   if(meta.renderer==='legacy-world')continue;
   const relative=String(meta.dataset||'').replace(/^\.\//,'');
-  if(!relative.startsWith('data/')){issues.push(meta.id+': dataset must stay under data/');continue}
-  const trip=await readJson(relative);
-  experienceDatasets.set(meta.id,trip);
-  if(trip.id!==meta.id)issues.push(meta.id+': dataset id mismatch');
-  const maintenance=trip.maintenance||{};
-  if(maintenance.tier==='live-dependent')liveDependentTrips++;
-  if(trip.routePolicy?.reversible===true)reversibleTrips++;
-  if(trip.routePolicy?.reversible===true&&trip.routePolicy?.startMode!=='endpoints'&&trip.routePolicy?.startMode!=='any-stop'){
-    issues.push(meta.id+': reversible route requires endpoints or any-stop startMode');
-  }
-  for(const place of trip.places||[]){
-    if(place.experienceRef){
-      experienceReferenceCount++;
-      experienceUse.set(place.experienceRef,(experienceUse.get(place.experienceRef)||0)+1);
-    }
-  }
-  const reviewDays=Number(maintenance.sourceReviewDays||180);
-  for(const source of trip.sources||[]){
-    sourceCount++;
-    const checked=asDate(source.checkedAt);
-    if(!checked){issues.push(meta.id+': source '+source.id+' has invalid checkedAt');continue}
-    const age=daysBetween(now,checked);
-    if(age>reviewDays)reviewCandidates.push({tripId:meta.id,sourceId:source.id,ageDays:age,reviewDays});
-    const until=asDate(source.validUntil);
-    if(source.validUntil&&!until)issues.push(meta.id+': source '+source.id+' has invalid validUntil');
-    if(until&&until<now)reviewCandidates.push({tripId:meta.id,sourceId:source.id,expired:true,validUntil:source.validUntil});
+  if(relative.startsWith('data/')){
+    try{datasets.set(meta.id,await readJson(relative))}
+    catch{datasets.set(meta.id,null)}
   }
 }
-
 for(const shardMeta of experienceIndex.shards||[]){
   const relative=String(shardMeta.dataset||'').replace(/^\.\//,'');
-  const shard=await readJson(relative);
-  for(const profile of shard.profiles||[]){
-    experienceProfileCount++;
-    experienceProfiles.push(profile);
-    const reviewed=asDate(profile.reviewedAt);
-    const reviewDays=Number(profile.reviewDays||365);
-    if(!reviewed){issues.push('place experience '+profile.id+': invalid reviewedAt');continue}
-    const age=daysBetween(now,reviewed);
-    if(age>reviewDays)reviewCandidates.push({tripId:'place-experience',sourceId:profile.id,ageDays:age,reviewDays});
-  }
+  try{
+    const shard=await readJson(relative);
+    experienceProfiles.push(...(shard.profiles||[]));
+  }catch{}
 }
 
-for(const item of shared.items||[]){
-  if(!item.id)issues.push('shared knowledge item without id');
-  if(item.type!=='planning-policy'&&item.sourceRequired!==false){
-    if(!item.source?.url||!item.checkedAt)issues.push('shared knowledge '+item.id+': factual item needs source.url and checkedAt');
-  }
-}
-
-const coverage=buildExperienceCoverage({catalog,datasets:experienceDatasets,profiles:experienceProfiles});
+const report=buildMaintenanceReport({catalog,datasets,shared,experienceProfiles,now:new Date()});
+const strict=process.argv.includes('--strict-stale');
 
 console.log('JOURNEY MAINTENANCE AUDIT');
-console.log('Trips:',catalog.trips?.length||0);
-console.log('Reversible personalized trips:',reversibleTrips);
-console.log('Live-dependent trips:',liveDependentTrips);
-console.log('Trip sources:',sourceCount);
-console.log('Shared knowledge items:',shared.items?.length||0);
-console.log('Place experience profiles:',experienceProfileCount);
-console.log('Place experience references:',experienceReferenceCount);
-console.log('Shared place profiles reused by multiple trip places:',[...experienceUse.values()].filter(count=>count>1).length);
-console.log('Place experience coverage:',coverage.summary.coveredPlaces+'/'+coverage.summary.totalPlaces,'('+coverage.summary.coveragePct+'%)');
-console.log('Experience-complete journeys:',coverage.summary.completeJourneys+'/'+coverage.summary.journeys);
-console.log('Editorial experience candidates:',coverage.summary.queueItems);
-for(const item of coverage.queue.slice(0,10))console.log('-',item.name,item.countryCode,'·',item.journeyCount,'journey(s) ·',item.stopDays,'route day(s) ·',item.action);
-console.log('Review candidates:',reviewCandidates.length);
-for(const item of reviewCandidates.slice(0,30)){
-  console.log('-',item.tripId,item.sourceId,item.expired?'expired '+item.validUntil:'age '+item.ageDays+'d > '+item.reviewDays+'d');
+console.log('Trips:',report.summary.trips);
+console.log('Reversible personalized trips:',report.summary.reversibleTrips);
+console.log('Live-dependent trips:',report.summary.liveDependentTrips);
+console.log('Trip sources:',report.summary.tripSources);
+console.log('Shared knowledge items:',report.summary.sharedKnowledgeItems);
+console.log('Place experience profiles:',report.summary.experienceProfiles);
+console.log('Place experience references:',report.summary.experienceReferences);
+console.log('Shared place profiles reused by multiple trip places:',report.summary.reusedExperienceProfiles);
+console.log('Place experience coverage:',report.experienceCoverage.coveredPlaces+'/'+report.experienceCoverage.totalPlaces,'('+report.summary.experienceCoveragePct+'%)');
+console.log('Experience-complete journeys:',report.summary.completeExperienceJourneys+'/'+report.summary.experienceJourneys);
+console.log('Editorial experience candidates:',report.experienceCoverage.queueItems);
+console.log('Maintenance queue:',report.summary.queueItems,'· expired',report.summary.expired,'· overdue',report.summary.overdue,'· due soon',report.summary.dueSoon);
+for(const item of report.queue.slice(0,30)){
+  const due=item.state==='expired'?'expired '+(item.validUntil||''):item.state==='overdue'?Math.abs(item.dueInDays)+'d overdue':'due in '+item.dueInDays+'d';
+  console.log('-',item.kind,item.tripId,item.sourceId,'·',due);
 }
-if(reviewCandidates.length>30)console.log('... and',reviewCandidates.length-30,'more');
+if(report.queue.length>30)console.log('... and',report.queue.length-30,'more');
 
-if(issues.length){
+if(report.issues.length){
   console.error('Maintenance contract errors:');
-  for(const issue of issues)console.error('-',issue);
+  for(const issue of report.issues)console.error('-',issue);
   process.exitCode=1;
-}else if(strict&&reviewCandidates.length){
-  console.error('Strict stale mode: review candidates found.');
+}else if(strict&&(report.summary.expired||report.summary.overdue)){
+  console.error('Strict stale mode: expired or overdue review items found.');
   process.exitCode=1;
 }else{
   console.log('Maintenance contract: PASS');
-  if(reviewCandidates.length)console.log('Review candidates are advisory unless --strict-stale is used.');
+  if(report.summary.queueItems)console.log('Maintenance queue is advisory unless --strict-stale is used.');
 }
