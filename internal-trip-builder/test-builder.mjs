@@ -7,11 +7,15 @@ import assert from 'node:assert/strict';
 const here=resolve(fileURLToPath(new URL('.',import.meta.url)));
 const root=resolve(here,'../one-world-route-public-mvp');
 const catalogPath=join(root,'data/platform/trips.json');
+const tripIndexPath=join(root,'data/platform/trip-index.json');
+const sitemapPath=join(root,'sitemap.xml');
 const slug='ci-builder-proof';
 const draftTrip=join(root,'data/platform/drafts/'+slug+'.trip.json');
 const draftCatalog=join(root,'data/platform/drafts/'+slug+'.catalog.json');
 const publicTrip=join(root,'data/platform/trips/'+slug+'.json');
 const originalCatalog=await readFile(catalogPath,'utf8');
+const originalTripIndex=await readFile(tripIndexPath,'utf8');
+const originalSitemap=await readFile(sitemapPath,'utf8');
 const server=spawn(process.execPath,[join(here,'server.mjs')],{stdio:['ignore','pipe','pipe']});
 const base='http://127.0.0.1:4175';
 const wait=async()=>{
@@ -23,6 +27,7 @@ try{
   await wait();
   const state=await request('/__builder/api/state');assert.ok(state.catalog.trips.some(t=>t.id==='world-195'));
   const coverage=await request('/__builder/api/experience-coverage');assert.equal(coverage.coverage.summary.journeys>=16,true);assert.equal(coverage.coverage.summary.coveredPlaces>0,true);assert.equal(Array.isArray(coverage.coverage.queue),true);assert.equal(coverage.coverage.journeys.some(item=>item.tripId==='japan-by-rail'&&item.coveragePct===100),true);
+  const maintenance=await request('/__builder/api/maintenance');assert.equal(maintenance.report.summary.regionalTrips>=16,true);assert.equal(Array.isArray(maintenance.report.queue),true);assert.equal(Array.isArray(maintenance.report.issues),true);
   await request('/__builder/api/scaffold',{method:'POST',body:JSON.stringify({slug,kind:'rail',days:2})});
   const title=Object.fromEntries(state.catalog.supportedLocales.map(l=>[l,'CI Builder Proof']));
   const subtitle=Object.fromEntries(state.catalog.supportedLocales.map(l=>[l,'Two-day CI rail proof']));
@@ -39,14 +44,28 @@ try{
   const page=await fetch(base+'/?trip='+slug+'&__draft='+slug,{redirect:'manual'});const cookie=page.headers.get('set-cookie');assert.match(cookie,/owr_builder_draft=/);
   const preview=await fetch(base+'/data/platform/trips.json',{headers:{cookie:cookie.split(';')[0]}}).then(r=>r.json());
   const injected=preview.trips.find(t=>t.id===slug);assert.ok(injected);assert.equal(injected.dataset,'./data/platform/drafts/'+slug+'.trip.json');
+  const blocked=await request('/__builder/api/draft/'+slug+'/publish',{method:'POST'});
+  assert.equal(blocked.published,false);
+  assert.match(blocked.validation.errors.join('\n'),/explicit public status/);
+
+  trip.status='sourced-beta';catalogEntry.status='sourced-beta';
+  const publishReady=await request('/__builder/api/draft/'+slug,{method:'PUT',body:JSON.stringify({trip,catalogEntry})});
+  assert.equal(publishReady.valid,true,publishReady.errors?.join('\n'));
   const published=await request('/__builder/api/draft/'+slug+'/publish',{method:'POST'});assert.equal(published.published,true);
+  assert.equal(published.publication.valid,true);
+  assert.equal(Array.isArray(published.generation),true);
+  assert.equal(published.generation.every(check=>check.ok===true),true);
   assert.equal(Array.isArray(published.qualityChecks),true);
   assert.equal(published.qualityChecks.every(check=>check.ok===true),true);
-  assert.equal(published.qualityChecks.length>=10,true);
-  const publicCatalog=JSON.parse(await readFile(catalogPath,'utf8'));assert.ok(publicCatalog.trips.some(t=>t.id===slug));
-  console.log('Internal Trip Builder smoke complete: draft -> validate -> preview -> publish');
+  assert.equal(published.qualityChecks.length>=12,true);
+  const publicCatalog=JSON.parse(await readFile(catalogPath,'utf8'));assert.ok(publicCatalog.trips.some(t=>t.id===slug&&t.status==='sourced-beta'));
+  const tripIndex=JSON.parse(await readFile(tripIndexPath,'utf8'));assert.ok(tripIndex.trips.some(t=>t.id===slug));
+  const sitemap=await readFile(sitemapPath,'utf8');assert.match(sitemap,new RegExp('/trip/'+slug));
+  console.log('Internal Trip Builder smoke complete: draft -> validate -> preview -> explicit status -> publish -> generated artifacts');
 }finally{
   server.kill('SIGTERM');
   await writeFile(catalogPath,originalCatalog);
+  await writeFile(tripIndexPath,originalTripIndex);
+  await writeFile(sitemapPath,originalSitemap);
   await rm(draftTrip,{force:true});await rm(draftCatalog,{force:true});await rm(publicTrip,{force:true});
 }
