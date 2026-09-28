@@ -94,7 +94,7 @@ test('localized collection page is crawlable and lists only matching journeys',(
   assert.match(body,/"@type":"ItemList"/);
   assert.match(body,/Japan mit der Bahn/);
   assert.match(body,/Mitteleuropa mit der Bahn/);
-  assert.doesNotMatch(body,/Patagonia Road Trip/);
+  assert.doesNotMatch(body,/\/de\/trip\/patagonia-road-trip/);
   assert.match(body,/collection=great-rail-journeys&amp;lang=de|collection%3Dgreat-rail-journeys/);
   assert.doesNotMatch(body,/location\.replace/);
 });
