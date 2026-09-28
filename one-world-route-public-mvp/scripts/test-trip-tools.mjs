@@ -102,3 +102,20 @@ test('planning status exposes the next incomplete step and records manual access
   tools.setAccessChecked(s,'trip-a',false);
   assert.equal(tools.getPlanningChecks(s,'trip-a').accessCheckedAt,'');
 });
+
+
+test('detail planning status can include saved-journey state without changing My Trips semantics',()=>{
+  const tools=load(),s=storage(),profile={origin:'Berlin',originCountry:'DE'};
+  let status=tools.planningStatus({storage:s,tripId:'trip-a',profile,hasPlanning:false,routeStartRequired:false,includeSaved:true});
+  assert.deepEqual(JSON.parse(JSON.stringify(status.items.map(item=>item.id))),['saved','origin','startDate','access']);
+  assert.equal(status.next,'saved');
+  assert.equal(status.completed,1);
+
+  tools.toggleSaved(s,'trip-a');
+  status=tools.planningStatus({storage:s,tripId:'trip-a',profile,hasPlanning:false,routeStartRequired:false,includeSaved:true});
+  assert.equal(status.next,'startDate');
+  assert.equal(status.completed,2);
+
+  const myTripsStatus=tools.planningStatus({storage:s,tripId:'trip-a',profile,hasPlanning:false,routeStartRequired:false});
+  assert.deepEqual(JSON.parse(JSON.stringify(myTripsStatus.items.map(item=>item.id))),['origin','startDate','access']);
+});

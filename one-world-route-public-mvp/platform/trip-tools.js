@@ -83,9 +83,11 @@
     const a=normalizeBudget(input);
     return [a.lodgingPerNight,a.foodPerPersonDay,a.localPerPersonDay,a.extras,a.contingencyPercent].some(value=>Number(value)>0)||a.transportMultiplier!==null;
   }
-  function planningStatus({storage,tripId,profile={},hasPlanning=false,routeStartRequired=false}={}){
+  function planningStatus({storage,tripId,profile={},hasPlanning=false,routeStartRequired=false,includeSaved=false}={}){
     const origin=String(profile?.origin||profile?.originCountry||'').trim();
-    const items=[{id:'origin',complete:Boolean(origin)}];
+    const items=[];
+    if(includeSaved)items.push({id:'saved',complete:isSaved(storage,tripId)});
+    items.push({id:'origin',complete:Boolean(origin)});
     if(routeStartRequired)items.push({id:'routeStart',complete:Boolean(getRouteStart(storage,tripId))});
     items.push({id:'startDate',complete:Boolean(getStartDate(storage,tripId))});
     if(hasPlanning)items.push({id:'budget',complete:hasBudgetAssumptions(getBudget(storage,tripId))});
@@ -172,6 +174,33 @@
     try{return new Intl.NumberFormat(locale||'en',{style:'currency',currency:currency||'EUR',maximumFractionDigits:0}).format(Number(value)||0)}
     catch{return String(Math.round(Number(value)||0))+' '+String(currency||'EUR')}
   }
+  function planningWorkspaceMarkup({trip,meta,profile,storage,t,esc,journeyAdapter}){
+    const id=meta?.id||trip?.id,hasPlanning=(meta?.capabilities||[]).includes('trip-planning');
+    const eligible=journeyAdapter?.eligibleStartStops?.(trip)||[trip?.stops?.[0]].filter(Boolean);
+    const status=planningStatus({storage,tripId:id,profile,hasPlanning,routeStartRequired:eligible.length>1,includeSaved:true});
+    const label=step=>({
+      saved:t('saved'),
+      origin:t('planningOrigin'),
+      routeStart:t('routeStart'),
+      startDate:t('startDate'),
+      budget:t('budgetEstimate'),
+      access:t('planningAccessCheck')
+    }[step]||step);
+    const action=status.complete?t('exportJson'):({
+      saved:t('saveTrip'),
+      origin:t('change'),
+      routeStart:t('routeStart'),
+      startDate:t('startDate'),
+      budget:t('budgetEstimate'),
+      access:t('recordCurrentCheck')
+    }[status.next]||t('continuePlanning'));
+    return '<section class="platform-detail-planning" data-trip-planning-status>'+
+      '<div class="platform-detail-planning-head"><div><span>'+esc(t('planningStatus'))+'</span><h3>'+esc(status.complete?t('planningCoreRecorded'):t('nextPlanningStep')+': '+label(status.next))+'</h3><p>'+esc(t('planningWorkspaceLead'))+'</p></div><strong>'+esc(String(status.completed))+' / '+esc(String(status.total))+'</strong></div>'+
+      '<div class="platform-detail-planning-steps">'+status.items.map(item=>'<span class="'+(item.complete?'ok':'pending')+'" data-trip-planning-step="'+esc(item.id)+'"><i aria-hidden="true">'+(item.complete?'✓':'·')+'</i>'+esc(label(item.id))+'</span>').join('')+'</div>'+
+      '<button type="button" class="platform-detail-planning-next" data-trip-plan-next="'+esc(status.next||'export')+'">'+esc(action)+' →</button>'+
+    '</section>';
+  }
+
   function render({trip,meta,profile,storage,t,esc,local,facetLabel,planningSnapshot,locale,journeyAdapter}){
     const id=meta?.id||trip?.id,saved=isSaved(storage,id),a=getBudget(storage,id),hasPlanning=(meta?.capabilities||[]).includes('trip-planning');
     const startDate=getStartDate(storage,id),season=getSeason(storage,id),e=estimate({snapshot:planningSnapshot,profile,assumptions:a}),currency=planningSnapshot?.currency||trip?.planning?.currency||'EUR';
@@ -206,7 +235,8 @@
       '<span>'+esc(t('food'))+'<b>'+esc(money(e.food,currency,locale))+'</b></span>'+
       '<span>'+esc(t('localTravel'))+'<b>'+esc(money(e.local,currency,locale))+'</b></span>'+
       '</div>';
-    return personalization+'<section class="platform-trip-utility">'+
+    const planningWorkspace=planningWorkspaceMarkup({trip,meta,profile,storage,t,esc,journeyAdapter});
+    return planningWorkspace+personalization+'<section class="platform-trip-utility">'+
       '<button class="platform-save-trip '+(saved?'active':'')+'" type="button" data-trip-save>'+esc(saved?t('removeSaved'):t('saveTrip'))+'</button>'+
       '<details class="platform-trip-tools"><summary>'+esc(t('tripTools'))+' <span>+</span></summary>'+
         '<div class="platform-tool-actions"><button type="button" data-trip-export-json>'+esc(t('exportJson'))+'</button><button type="button" data-trip-export-csv>'+esc(t('exportCsv'))+'</button></div>'+
@@ -224,8 +254,48 @@
           '<div class="platform-budget-result"><span>'+esc(t('estimatedTripTotal'))+'</span><b data-budget-total>'+esc(money(e.total,currency,locale))+'</b><small>'+esc(e.travellers)+' '+esc(t('travellers'))+' · '+esc(t('budgetEstimateScope'))+'</small>'+(e.transportKnown?'':'<em>'+esc(t('transportUnknownBudget'))+'</em>')+breakdown+'</div></form>':'')+
       '</details></section>';
   }
-  function bind({host,trip,meta,profile,storage,t,local,facetLabel,planningSnapshot,locale,toast,onTraveller,onRouteVariantChange}){
+  function bind({host,trip,meta,profile,storage,t,esc=s=>String(s??''),local,facetLabel,planningSnapshot,locale,toast,onTraveller,onRouteVariantChange,journeyAdapter=window.ONE_WORLD_PLATFORM_MODULES?.journeyAdapter}){
     const id=meta?.id||trip?.id;
+    const hasPlanning=(meta?.capabilities||[]).includes('trip-planning');
+    const eligible=journeyAdapter?.eligibleStartStops?.(trip)||[trip?.stops?.[0]].filter(Boolean);
+    const refreshPlanning=()=>{
+      const node=host.querySelector('[data-trip-planning-status]');
+      if(node)node.outerHTML=planningWorkspaceMarkup({trip,meta,profile,storage,t,esc,journeyAdapter});
+    };
+    host.addEventListener('click',event=>{
+      const next=event.target.closest('[data-trip-plan-next]');
+      if(!next)return;
+      const status=planningStatus({storage,tripId:id,profile,hasPlanning,routeStartRequired:eligible.length>1,includeSaved:true});
+      const step=status.next||'export';
+      if(step==='saved'){
+        if(!isSaved(storage,id))toggleSaved(storage,id);
+        const saveButton=host.querySelector('[data-trip-save]');
+        if(saveButton){saveButton.classList.add('active');saveButton.textContent=t('removeSaved')}
+        toast?.(t('savedLocally'));refreshPlanning();return;
+      }
+      if(step==='origin'){onTraveller?.();return}
+      if(step==='routeStart'){
+        const selected=host.querySelector('[data-trip-route-start]')?.value||eligible[0]?.id||'';
+        if(selected){setRouteStart(storage,id,selected);toast?.(t('routeStartUpdated'));onRouteVariantChange?.()}
+        return;
+      }
+      const details=host.querySelector('.platform-trip-tools');
+      if(step==='startDate'){
+        if(details)details.open=true;
+        host.querySelector('[data-trip-start-date]')?.focus();
+        return;
+      }
+      if(step==='budget'){
+        if(details)details.open=true;
+        host.querySelector('[data-trip-budget] input')?.focus();
+        return;
+      }
+      if(step==='access'){
+        setAccessChecked(storage,id,true);
+        toast?.(t('manualCheckRecorded'));refreshPlanning();return;
+      }
+      host.querySelector('[data-trip-export-json]')?.click();
+    });
     host.querySelector('[data-trip-origin-edit]')?.addEventListener('click',()=>onTraveller?.());
     host.querySelector('[data-trip-entry-suggest]')?.addEventListener('click',()=>{
       const suggestion=trip?._personalization?.entrySuggestion;
@@ -240,11 +310,11 @@
       onRouteVariantChange?.();
     });
     const save=host.querySelector('[data-trip-save]');
-    if(save)save.onclick=()=>{const active=toggleSaved(storage,id);save.classList.toggle('active',active);save.textContent=active?t('removeSaved'):t('saveTrip');toast?.(active?t('savedLocally'):t('removedSaved'))};
+    if(save)save.onclick=()=>{const active=toggleSaved(storage,id);save.classList.toggle('active',active);save.textContent=active?t('removeSaved'):t('saveTrip');toast?.(active?t('savedLocally'):t('removedSaved'));refreshPlanning()};
     host.querySelector('[data-trip-export-json]')?.addEventListener('click',()=>{const assumptions=getBudget(storage,id);download(id+'-trip-pack.json',jsonPack({trip,meta,local,facetLabel,snapshot:planningSnapshot,assumptions,profile,startDate:getStartDate(storage,id),season:getSeason(storage,id),journeyPlan:window.ONE_WORLD_PLATFORM_MODULES?.journeyAdapter?.originPlan?.(trip,profile)||null}),'application/json')});
     host.querySelector('[data-trip-export-csv]')?.addEventListener('click',()=>download(id+'-itinerary.csv',csv(trip,local,facetLabel),'text/csv'));
     const dateInput=host.querySelector('[data-trip-start-date]'),calendarButton=host.querySelector('[data-trip-export-calendar]'),seasonSelect=host.querySelector('[data-trip-season]');
-    if(dateInput)dateInput.onchange=()=>{const date=setStartDate(storage,id,dateInput.value);if(calendarButton)calendarButton.disabled=!date};
+    if(dateInput)dateInput.onchange=()=>{const date=setStartDate(storage,id,dateInput.value);if(calendarButton)calendarButton.disabled=!date;refreshPlanning()};
     if(seasonSelect)seasonSelect.onchange=()=>{setSeason(storage,id,seasonSelect.value);toast?.(t('planningSeasonSaved'))};
     if(calendarButton)calendarButton.onclick=()=>{
       const date=getStartDate(storage,id);
@@ -259,7 +329,7 @@
       const total=form.querySelector('[data-budget-total]');if(total)total.textContent=money(result.total,planningSnapshot?.currency||trip?.planning?.currency||'EUR',locale);
       const values=[result.transport,result.lodging,result.food,result.local];
       form.querySelectorAll('.platform-budget-breakdown b').forEach((node,index)=>node.textContent=money(values[index],planningSnapshot?.currency||trip?.planning?.currency||'EUR',locale));
-      toast?.(t('estimateUpdated'));
+      toast?.(t('estimateUpdated'));refreshPlanning();
     };
   }
   root.tripTools={load,isSaved,toggleSaved,normalizeBudget,getBudget,setBudget,getStartDate,setStartDate,getSeason,setSeason,getRouteStart,setRouteStart,normalizePlanningChecks,getPlanningChecks,setAccessChecked,hasBudgetAssumptions,planningStatus,estimate,itineraryRows,csv,calendar,jsonPack,workspaceJson,download,render,bind};
