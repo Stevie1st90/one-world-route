@@ -26,7 +26,7 @@ test('maintenance report prioritizes expired, overdue and due-soon review work',
     shared:{reviewPolicies:{seasonal:{reviewAfterDays:90}},items:[{
       id:'shared-a',type:'factual',volatility:'seasonal',title:{en:'Shared A'},source:{url:'https://example.com'},checkedAt:'2026-07-20'
     }]},
-    experienceProfiles:[{id:'place-alpha',name:{en:'Alpha'},reviewedAt:'2025-11-01',reviewDays:365}],
+    experienceProfiles:[{id:'place-alpha',name:{en:'Alpha'},reviewedAt:'2025-10-15',reviewDays:365}],
     now
   });
   assert.equal(report.issues.length,0);
