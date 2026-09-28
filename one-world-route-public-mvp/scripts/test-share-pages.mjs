@@ -92,8 +92,8 @@ test('localized collection page is crawlable and lists only matching journeys',(
   for(const lang of ['en','de','it','es','fr','pt'])assert.match(body,new RegExp('hreflang="'+lang+'"'));
   assert.match(body,/hreflang="x-default"/);
   assert.match(body,/"@type":"ItemList"/);
-  assert.match(body,/Japan by Rail/);
-  assert.match(body,/Central Europe Rail Journey|Bahnreise durch Mitteleuropa/);
+  assert.match(body,/Japan mit der Bahn/);
+  assert.match(body,/Mitteleuropa mit der Bahn/);
   assert.doesNotMatch(body,/Patagonia Road Trip/);
   assert.match(body,/collection=great-rail-journeys&amp;lang=de|collection%3Dgreat-rail-journeys/);
   assert.doesNotMatch(body,/location\.replace/);
