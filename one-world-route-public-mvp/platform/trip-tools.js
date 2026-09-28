@@ -153,18 +153,24 @@
     const routeStartSelect=eligible.length>1?'<label><span>'+esc(t('routeStart'))+'</span><select data-trip-route-start>'+routeStartOptions+'</select><small>'+esc(t('routeStartFlexibleLead'))+'</small></label>':'<div class="platform-route-start-fixed"><span>'+esc(t('routeStart'))+'</span><b>'+esc(local(places.get(eligible[0]?.placeId)?.name)||'—')+'</b><small>'+esc(t('routeStartFixedLead'))+'</small></div>';
     const selectedStop=eligible.find(stop=>stop.id===selectedStart)||eligible[0]||null;
     const selectedPlace=places.get(selectedStop?.placeId);
+    const entrySuggestion=trip?._personalization?.entrySuggestion||null;
+    const suggestedStop=entrySuggestion?.available?(trip?.stops||[]).find(stop=>stop.id===entrySuggestion.stopId):null;
+    const suggestedPlace=places.get(suggestedStop?.placeId);
+    const suggestedName=local(suggestedPlace?.name)||'';
+    const suggestionSelected=Boolean(suggestedStop&&selectedStop?.id===suggestedStop.id);
     const origin=String(profile?.origin||profile?.originCountry||'').trim();
     const journeyPlan=journeyAdapter?.originPlan?.(trip,profile)||null;
     const coreStartPlace=places.get(journeyPlan?.core?.startPlaceId)||selectedPlace;
     const coreEndPlace=places.get(journeyPlan?.core?.endPlaceId)||places.get(trip?.stops?.at(-1)?.placeId);
     const coreStartName=local(coreStartPlace?.name)||'—',coreEndName=local(coreEndPlace?.name)||'—';
     const originMarkup='<div class="platform-origin-summary"><span>'+esc(t('originPoint'))+'</span><b>'+esc(origin||t('notSet'))+'</b><button type="button" data-trip-origin-edit>'+esc(t('change'))+'</button></div>';
+    const suggestionMarkup=entrySuggestion?.available&&suggestedName?'<div class="platform-origin-summary platform-entry-suggestion" data-entry-suggestion><span>'+esc(t('entrySuggestion'))+'</span><b>'+esc((origin||entrySuggestion.originCountry||t('originPoint'))+' → '+suggestedName)+'</b><button type="button" '+(suggestionSelected?'disabled':'data-trip-entry-suggest')+'>'+esc(suggestionSelected?t('entrySuggestionApplied'):t('useSuggestedEntry'))+'</button></div>':'';
     const accessMarkup='<div class="platform-route-access platform-route-access-grid">'+
       '<div class="platform-route-access-step"><span>1 · '+esc(t('routeAccess'))+'</span><strong>'+esc(origin||t('originPoint'))+' → '+esc(coreStartName)+'</strong><small>'+esc(origin?t('currentCheck'):t('personalizeJourneyLead'))+'</small></div>'+
       '<div class="platform-route-access-step"><span>2 · '+esc(t('overview'))+'</span><strong>'+esc(coreStartName)+' → '+esc(coreEndName)+'</strong><small>'+esc(t('routeAccessLead'))+'</small></div>'+
       '<div class="platform-route-access-step"><span>3 · '+esc(t('routeAccess'))+'</span><strong>'+esc(coreEndName)+' → '+esc(origin||t('originPoint'))+'</strong><small>'+esc(origin?t('currentCheck'):t('personalizeJourneyLead'))+'</small></div>'+
     '</div>';
-    const personalization='<section class="platform-journey-personalize"><div class="platform-personalize-head"><span>'+esc(t('personalizeJourney'))+'</span><h3>'+esc(t('personalizeJourneyTitle'))+'</h3></div><p>'+esc(t('personalizeJourneyLead'))+'</p>'+originMarkup+accessMarkup+'<div class="platform-route-start-control">'+routeStartSelect+'</div></section>';
+    const personalization='<section class="platform-journey-personalize"><div class="platform-personalize-head"><span>'+esc(t('personalizeJourney'))+'</span><h3>'+esc(t('personalizeJourneyTitle'))+'</h3></div><p>'+esc(t('personalizeJourneyLead'))+'</p>'+originMarkup+suggestionMarkup+accessMarkup+'<div class="platform-route-start-control">'+routeStartSelect+'</div></section>';
     const breakdown='<div class="platform-budget-breakdown">'+
       '<span>'+esc(t('transportMinimum'))+'<b>'+esc(money(e.transport,currency,locale))+'</b></span>'+
       '<span>'+esc(t('lodging'))+'<b>'+esc(money(e.lodging,currency,locale))+'</b></span>'+
@@ -192,6 +198,13 @@
   function bind({host,trip,meta,profile,storage,t,local,facetLabel,planningSnapshot,locale,toast,onTraveller,onRouteVariantChange}){
     const id=meta?.id||trip?.id;
     host.querySelector('[data-trip-origin-edit]')?.addEventListener('click',()=>onTraveller?.());
+    host.querySelector('[data-trip-entry-suggest]')?.addEventListener('click',()=>{
+      const suggestion=trip?._personalization?.entrySuggestion;
+      if(!suggestion?.available||!suggestion.stopId)return;
+      setRouteStart(storage,id,suggestion.stopId);
+      toast?.(t('routeStartUpdated'));
+      onRouteVariantChange?.();
+    });
     host.querySelector('[data-trip-route-start]')?.addEventListener('change',event=>{
       setRouteStart(storage,id,event.currentTarget.value);
       toast?.(t('routeStartUpdated'));
