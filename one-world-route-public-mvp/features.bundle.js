@@ -5302,7 +5302,7 @@
   const SUPPORTED_LOCALES=LocaleData.supportedLocales;
   const I18N=LocaleData.messages;
   const $ = (s, r=document) => r.querySelector(s);
-  const $ = (s, r=document) => [...r.querySelectorAll(s)];
+  const $$ = (s, r=document) => [...r.querySelectorAll(s)];
   const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   const initialLocale = (() => {
     const q = new URLSearchParams(location.search).get('lang');
