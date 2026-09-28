@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "AR",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "AR:el-calafate",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "mountains",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A compact Patagonian base surrounded by open steppe and glacier country, with a strong sense of transition between town and vast southern landscapes.",
+        "de": "Ein kompakter Ausgangspunkt in Patagonien zwischen offener Steppe und Gletscherlandschaft, bei dem der Übergang von der Stadt in die weiten Landschaften des Südens deutlich spürbar ist.",
+        "it": "Una base compatta in Patagonia tra steppa aperta e paesaggi glaciali, dove il passaggio dalla città agli immensi scenari del sud è particolarmente evidente.",
+        "es": "Una base compacta en la Patagonia, rodeada de estepa abierta y paisajes glaciares, donde se siente con claridad la transición entre la ciudad y la inmensidad del sur.",
+        "fr": "Une base compacte en Patagonie, entourée de steppe ouverte et de paysages glaciaires, où la transition entre la ville et les grands espaces du Sud est très perceptible.",
+        "pt": "Uma base compacta na Patagônia, cercada por estepe aberta e paisagens glaciais, onde a transição entre a cidade e os vastos cenários do sul é muito marcante."
+      }
+    },
+    {
+      "id": "AR:el-chalten",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "mountains",
+        "adventure"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A small trekking-oriented Patagonian town where trails, granite peaks and broad mountain views define the experience more than urban sightseeing.",
+        "de": "Ein kleiner, vom Trekking geprägter Ort in Patagonien, in dem Wanderwege, Granitgipfel und weite Bergblicke wichtiger sind als klassisches Stadt-Sightseeing.",
+        "it": "Una piccola località patagonica orientata al trekking, dove sentieri, cime granitiche e ampi panorami di montagna contano più delle visite urbane.",
+        "es": "Una pequeña localidad patagónica centrada en el trekking, donde los senderos, las cumbres de granito y las amplias vistas de montaña pesan más que el turismo urbano.",
+        "fr": "Une petite localité patagonienne tournée vers la randonnée, où sentiers, sommets granitiques et vastes panoramas de montagne comptent davantage que les visites urbaines.",
+        "pt": "Uma pequena localidade patagônica voltada ao trekking, onde trilhas, picos de granito e amplas paisagens de montanha importam mais do que o turismo urbano."
+      }
+    }
+  ]
+}

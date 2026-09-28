@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "CL",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "CL:torres-del-paine",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "mountains",
+        "adventure"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Jagged mountain silhouettes, open steppe, lakes and long hiking landscapes make this one of the route’s most nature-intensive chapters.",
+        "de": "Markante Bergsilhouetten, offene Steppe, Seen und weitläufige Wanderlandschaften machen diesen Stopp zu einem der naturintensivsten Abschnitte der Route.",
+        "it": "Profili montuosi frastagliati, steppa aperta, laghi e grandi paesaggi escursionistici rendono questa tappa uno dei capitoli più immersi nella natura.",
+        "es": "Siluetas montañosas escarpadas, estepa abierta, lagos y amplios paisajes de senderismo convierten esta parada en uno de los capítulos más intensos de naturaleza de la ruta.",
+        "fr": "Reliefs montagneux découpés, steppe ouverte, lacs et vastes paysages de randonnée font de cette étape l’un des chapitres les plus immersifs de l’itinéraire.",
+        "pt": "Silhuetas montanhosas recortadas, estepe aberta, lagos e amplas paisagens de caminhada fazem desta parada um dos trechos mais intensos em natureza da rota."
+      }
+    },
+    {
+      "id": "CL:puerto-natales",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "nature",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A compact waterfront town with a distinctly southern atmosphere, linking Patagonian fjord scenery, steppe and the practical rhythm of an expedition gateway.",
+        "de": "Eine kompakte Stadt am Wasser mit ausgeprägt südlicher Atmosphäre, die patagonische Fjordlandschaften, Steppe und den praktischen Rhythmus eines Expeditionsortes verbindet.",
+        "it": "Una cittadina compatta sul lungomare dall’atmosfera decisamente australe, tra paesaggi di fiordi patagonici, steppa e ritmo da porta d’accesso alle esplorazioni.",
+        "es": "Una localidad compacta frente al agua y de marcada atmósfera austral, entre paisajes de fiordos patagónicos, estepa y el ritmo práctico de una puerta de entrada a la exploración.",
+        "fr": "Une petite ville au bord de l’eau à l’atmosphère résolument australe, entre paysages de fjords patagoniens, steppe et rythme pratique d’une porte d’entrée vers l’exploration.",
+        "pt": "Uma cidade compacta à beira d’água, com atmosfera marcadamente austral, entre paisagens de fiordes patagônicos, estepe e o ritmo prático de uma base de exploração."
+      }
+    },
+    {
+      "id": "CL:punta-arenas",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "history",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A far-southern port city shaped by maritime history, broad skies and its position on the Strait of Magellan.",
+        "de": "Eine Hafenstadt im äußersten Süden, geprägt von Seefahrtsgeschichte, weitem Himmel und ihrer Lage an der Magellanstraße.",
+        "it": "Una città portuale dell’estremo sud segnata dalla storia marittima, da cieli immensi e dalla sua posizione sullo Stretto di Magellano.",
+        "es": "Una ciudad portuaria del extremo sur marcada por la historia marítima, los cielos abiertos y su ubicación en el estrecho de Magallanes.",
+        "fr": "Une ville portuaire de l’extrême Sud marquée par l’histoire maritime, les grands ciels et sa situation sur le détroit de Magellan.",
+        "pt": "Uma cidade portuária do extremo sul marcada pela história marítima, pelos céus amplos e por sua localização no Estreito de Magalhães."
+      }
+    }
+  ]
+}

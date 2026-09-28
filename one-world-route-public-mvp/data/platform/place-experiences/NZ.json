@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "NZ",
+  "updatedAt": "2026-09-28",
+  "profiles": [
+    {
+      "id": "NZ:christchurch",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "nature"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A spacious South Island city where parks, neighbourhood life and a modern urban centre provide an easy transition into the island’s wider landscapes.",
+        "de": "Eine weitläufige Stadt auf der Südinsel, in der Parks, Viertelleben und ein modernes Zentrum einen angenehmen Übergang in die großen Landschaften der Insel bilden.",
+        "it": "Una città spaziosa dell’Isola del Sud, dove parchi, vita di quartiere e centro urbano moderno introducono gradualmente ai grandi paesaggi dell’isola.",
+        "es": "Una ciudad espaciosa de la Isla Sur, donde parques, vida de barrio y un centro urbano moderno ofrecen una transición cómoda hacia los grandes paisajes de la isla.",
+        "fr": "Une ville aérée de l’île du Sud, où parcs, vie de quartier et centre urbain moderne offrent une transition douce vers les grands paysages de l’île.",
+        "pt": "Uma cidade ampla da Ilha Sul, onde parques, vida de bairro e um centro urbano moderno fazem uma transição natural para as grandes paisagens da ilha."
+      }
+    },
+    {
+      "id": "NZ:lake-tekapo",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "mountains",
+        "adventure"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "An alpine-lake stop defined by open high-country scenery, mountain horizons and a strong sense of space under broad southern skies.",
+        "de": "Ein Stopp an einem Alpensee, geprägt von offener Hochlandlandschaft, Bergpanorama und einem starken Gefühl von Weite unter dem Himmel des Südens.",
+        "it": "Una tappa su un lago alpino caratterizzata da paesaggi d’altopiano aperti, orizzonti montani e una forte sensazione di spazio sotto i cieli del sud.",
+        "es": "Una parada junto a un lago alpino definida por paisajes abiertos de altura, horizontes montañosos y una gran sensación de amplitud bajo los cielos del sur.",
+        "fr": "Une étape au bord d’un lac alpin marquée par des paysages ouverts de haut pays, des horizons montagneux et une forte impression d’espace sous les ciels du Sud.",
+        "pt": "Uma parada junto a um lago alpino marcada por paisagens abertas de altitude, horizontes montanhosos e uma forte sensação de amplitude sob os céus do sul."
+      }
+    },
+    {
+      "id": "NZ:queenstown",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "mountains",
+        "nature",
+        "cities"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A lively lakefront town framed by mountains, combining compact urban energy with immediate access to dramatic outdoor scenery.",
+        "de": "Eine lebendige Stadt am See vor Bergkulisse, die kompakte urbane Energie mit unmittelbarem Zugang zu eindrucksvoller Natur verbindet.",
+        "it": "Una vivace località sul lago incorniciata dalle montagne, che unisce energia urbana compatta e accesso immediato a paesaggi naturali spettacolari.",
+        "es": "Una animada localidad junto al lago enmarcada por montañas, que combina energía urbana compacta con acceso inmediato a paisajes naturales espectaculares.",
+        "fr": "Une ville animée au bord du lac, encadrée par les montagnes, qui associe énergie urbaine compacte et accès immédiat à de grands paysages naturels.",
+        "pt": "Uma cidade animada à beira do lago, cercada por montanhas, combinando energia urbana compacta com acesso imediato a paisagens naturais marcantes."
+      }
+    },
+    {
+      "id": "NZ:milford-sound",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "mountains",
+        "coast"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Steep fjord walls, rainforest, water and frequent waterfalls create a concentrated landscape experience with very little urban distraction.",
+        "de": "Steile Fjordwände, Regenwald, Wasser und häufige Wasserfälle schaffen ein besonders konzentriertes Landschaftserlebnis mit kaum urbaner Ablenkung.",
+        "it": "Pareti ripide del fiordo, foresta pluviale, acqua e numerose cascate creano un’esperienza paesaggistica intensa con pochissime distrazioni urbane.",
+        "es": "Paredes escarpadas del fiordo, bosque lluvioso, agua y frecuentes cascadas crean una experiencia paisajística muy concentrada y con pocas distracciones urbanas.",
+        "fr": "Parois abruptes du fjord, forêt pluviale, eau et nombreuses cascades composent une expérience paysagère très concentrée, presque sans distraction urbaine.",
+        "pt": "Paredes íngremes do fiorde, floresta úmida, água e cachoeiras frequentes criam uma experiência de paisagem intensa, com pouca distração urbana."
+      }
+    },
+    {
+      "id": "NZ:wanaka",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "mountains",
+        "adventure"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A relaxed lakefront base with an alpine backdrop, balancing small-town atmosphere with easy access to mountain and lakeside landscapes.",
+        "de": "Ein entspannter Ort am See vor alpiner Kulisse, der Kleinstadtatmosphäre mit leicht erreichbaren Berg- und Seenlandschaften verbindet.",
+        "it": "Una rilassata base sul lago con sfondo alpino, tra atmosfera da piccola città e facile accesso a paesaggi montani e lacustri.",
+        "es": "Una tranquila base junto al lago con fondo alpino, que combina ambiente de pequeña localidad con fácil acceso a paisajes de montaña y lago.",
+        "fr": "Une base détendue au bord du lac avec décor alpin, entre ambiance de petite ville et accès facile aux paysages de montagne et de lac.",
+        "pt": "Uma base tranquila à beira do lago com cenário alpino, combinando atmosfera de cidade pequena com fácil acesso a paisagens de montanha e lago."
+      }
+    },
+    {
+      "id": "NZ:franz-josef",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "mountains",
+        "coast"
+      ],
+      "reviewedAt": "2026-09-28",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A small West Coast settlement where rainforest, steep mountains and glacier country meet in a compact and distinctly wild-feeling landscape.",
+        "de": "Eine kleine Siedlung an der Westküste, wo Regenwald, steile Berge und Gletscherlandschaft in einem kompakten, deutlich wild wirkenden Raum zusammentreffen.",
+        "it": "Un piccolo centro della West Coast dove foresta pluviale, montagne ripide e paesaggi glaciali si incontrano in uno scenario compatto e decisamente selvaggio.",
+        "es": "Una pequeña localidad de la costa oeste donde bosque lluvioso, montañas escarpadas y paisajes glaciares se encuentran en un entorno compacto y marcadamente salvaje.",
+        "fr": "Une petite localité de la côte Ouest où forêt pluviale, montagnes abruptes et paysages glaciaires se rejoignent dans un environnement compact et très sauvage.",
+        "pt": "Uma pequena localidade da Costa Oeste onde floresta úmida, montanhas íngremes e paisagens glaciais se encontram em um cenário compacto e marcadamente selvagem."
+      }
+    }
+  ]
+}

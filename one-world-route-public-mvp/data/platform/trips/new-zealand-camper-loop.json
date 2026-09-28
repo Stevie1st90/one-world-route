@@ -76,7 +76,8 @@
       "coordinates": {
         "lat": -43.5321,
         "lng": 172.6362
-      }
+      },
+      "experienceRef": "NZ:christchurch"
     },
     {
       "id": "tekapo",
@@ -88,7 +89,8 @@
       "coordinates": {
         "lat": -44.0047,
         "lng": 170.4771
-      }
+      },
+      "experienceRef": "NZ:lake-tekapo"
     },
     {
       "id": "queenstown",
@@ -100,7 +102,8 @@
       "coordinates": {
         "lat": -45.0312,
         "lng": 168.6626
-      }
+      },
+      "experienceRef": "NZ:queenstown"
     },
     {
       "id": "milford",
@@ -112,7 +115,8 @@
       "coordinates": {
         "lat": -44.6717,
         "lng": 167.9256
-      }
+      },
+      "experienceRef": "NZ:milford-sound"
     },
     {
       "id": "wanaka",
@@ -124,7 +128,8 @@
       "coordinates": {
         "lat": -44.694,
         "lng": 169.141
-      }
+      },
+      "experienceRef": "NZ:wanaka"
     },
     {
       "id": "west-coast",
@@ -136,7 +141,8 @@
       "coordinates": {
         "lat": -43.3896,
         "lng": 170.183
-      }
+      },
+      "experienceRef": "NZ:franz-josef"
     }
   ],
   "stops": [

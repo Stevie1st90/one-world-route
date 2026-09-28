@@ -3,6 +3,14 @@
   "updatedAt": "2026-09-28",
   "shards": [
     {
+      "countryCode": "AR",
+      "dataset": "./data/platform/place-experiences/AR.json"
+    },
+    {
+      "countryCode": "CL",
+      "dataset": "./data/platform/place-experiences/CL.json"
+    },
+    {
       "countryCode": "ES",
       "dataset": "./data/platform/place-experiences/ES.json"
     },
@@ -17,6 +25,10 @@
     {
       "countryCode": "JP",
       "dataset": "./data/platform/place-experiences/JP.json"
+    },
+    {
+      "countryCode": "NZ",
+      "dataset": "./data/platform/place-experiences/NZ.json"
     }
   ]
 }

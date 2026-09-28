@@ -77,7 +77,8 @@
       "coordinates": {
         "lat": -50.337,
         "lng": -72.2648
-      }
+      },
+      "experienceRef": "AR:el-calafate"
     },
     {
       "id": "el-chalten",
@@ -89,7 +90,8 @@
       "coordinates": {
         "lat": -49.3315,
         "lng": -72.8863
-      }
+      },
+      "experienceRef": "AR:el-chalten"
     },
     {
       "id": "torres",
@@ -101,7 +103,8 @@
       "coordinates": {
         "lat": -50.9423,
         "lng": -73.4068
-      }
+      },
+      "experienceRef": "CL:torres-del-paine"
     },
     {
       "id": "puerto-natales",
@@ -113,7 +116,8 @@
       "coordinates": {
         "lat": -51.726,
         "lng": -72.506
-      }
+      },
+      "experienceRef": "CL:puerto-natales"
     },
     {
       "id": "punta-arenas",
@@ -125,7 +129,8 @@
       "coordinates": {
         "lat": -53.1638,
         "lng": -70.9171
-      }
+      },
+      "experienceRef": "CL:punta-arenas"
     }
   ],
   "stops": [

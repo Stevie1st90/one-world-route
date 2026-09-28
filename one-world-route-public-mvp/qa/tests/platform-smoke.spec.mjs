@@ -200,6 +200,37 @@ test('@regional reusable place experience content renders from a shared country 
   expect(errors,'place experience runtime page errors').toEqual([]);
 });
 
+test('@regional country-sharded place experiences load across Patagonia and New Zealand',async({page,isMobile},testInfo)=>{
+  test.setTimeout(120000);
+  const errors=capturePageErrors(page);
+
+  await page.goto('/?trip=patagonia-road-trip&lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:15000});
+  if(isMobile){await page.locator('#mobileDetails').click();await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);}
+  await page.locator('[data-journey-stop-index="1"]').evaluate(node=>node.click());
+  await expect(page.locator('#detailTitle')).toHaveText('El Chaltén');
+  await expect(page.locator('.platform-stop-experience')).toContainText('trekking-oriented Patagonian town');
+
+  await page.goto('/?trip=patagonia-road-trip&lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:15000});
+  if(isMobile){await page.locator('#mobileDetails').click();await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);}
+  await page.locator('[data-journey-stop-index="3"]').evaluate(node=>node.click());
+  await expect(page.locator('#detailTitle')).toHaveText('Puerto Natales');
+  await expect(page.locator('.platform-stop-experience')).toContainText('compact waterfront town');
+  await page.locator('.platform-stop-experience').screenshot({path:testInfo.outputPath('patagonia-place-experience.png'),animations:'disabled'});
+
+  await page.goto('/?trip=new-zealand-camper-loop&lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:15000});
+  if(isMobile){await page.locator('#mobileDetails').click();await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);}
+  await page.locator('[data-journey-stop-index="3"]').evaluate(node=>node.click());
+  await expect(page.locator('#detailTitle')).toHaveText('Milford Sound');
+  await expect(page.locator('.platform-stop-experience')).toContainText('Steep fjord walls');
+  await page.locator('.platform-stop-experience').screenshot({path:testInfo.outputPath('new-zealand-place-experience.png'),animations:'disabled'});
+
+  if(isMobile)await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
+  expect(errors,'country-sharded place experience page errors').toEqual([]);
+});
+
 test('@regional representative regional shell boots cleanly',async({page,isMobile})=>{
   test.setTimeout(30000);
   expect(regional).toBeTruthy();
