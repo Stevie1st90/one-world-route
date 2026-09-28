@@ -3495,6 +3495,7 @@
   let tripIndex=[];
   let activeCollection=null;
   const PAGE_SIZE=24;
+  const PRIMARY_REGIONS=['europe','asia','africa','north-america','south-america','oceania'];
   let resultLimit=PAGE_SIZE;
   const $=(s,r=document)=>r.querySelector(s);
 
@@ -3596,6 +3597,33 @@
     return '<div class="platform-home-quick">'+items.map(([type,value,fallback])=>'<button type="button" data-home-quick-type="'+d.esc(type)+'" data-home-quick-value="'+d.esc(value)+'">'+d.esc(d.facetLabel(value)||fallback)+'</button>').join('')+'</div>';
   }
 
+  function platformProofMarkup(){
+    const d=context(),trips=(d.catalog.trips||[]).filter(trip=>trip.id!==d.catalog.defaultTripId),facets=d.Discovery.facets({trips});
+    const regions=PRIMARY_REGIONS.filter(region=>trips.some(trip=>(trip.discovery?.regions||[]).includes(region))).length;
+    const kinds=facets.kinds.length;
+    return '<div class="platform-home-proof">'+
+      '<span><b>'+d.esc(String(trips.length))+'</b><small>'+d.esc(d.t('curatedJourneys'))+'</small></span>'+
+      '<span><b>'+d.esc(String(regions))+'</b><small>'+d.esc(d.t('worldRegions'))+'</small></span>'+
+      '<span><b>'+d.esc(String(kinds))+'</b><small>'+d.esc(d.t('journeyTypes'))+'</small></span>'+
+      '<span><b>100%</b><small>'+d.esc(d.t('localPlanning'))+'</small></span>'+
+    '</div>';
+  }
+
+  function finderMarkup(){
+    const d=context(),facets=d.Discovery.facets(d.catalog);
+    const kinds=facets.kinds.filter(value=>value!=='world');
+    const regions=PRIMARY_REGIONS.filter(region=>(d.catalog.trips||[]).some(trip=>trip.id!==d.catalog.defaultTripId&&(trip.discovery?.regions||[]).includes(region)));
+    return '<section class="platform-home-finder" id="platformHomeFinder"><div class="platform-home-finder-copy"><div class="platform-home-section-kicker">'+d.esc(d.t('findJourneyEyebrow'))+'</div><h2>'+d.esc(d.t('findJourneyTitle'))+'</h2><p>'+d.esc(d.t('findJourneyLead'))+'</p></div>'+
+      '<div class="platform-home-finder-grid">'+
+        '<label><span>'+d.esc(d.t('whereTravel'))+'</span><select id="homeFinderRegion"><option value="">'+d.esc(d.t('anywhere'))+'</option>'+regions.map(v=>option(v,d.facetLabel(v))).join('')+'</select></label>'+
+        '<label><span>'+d.esc(d.t('howTravel'))+'</span><select id="homeFinderKind"><option value="">'+d.esc(d.t('anyStyle'))+'</option>'+kinds.map(v=>option(v,d.facetLabel(v))).join('')+'</select></label>'+
+        '<label><span>'+d.esc(d.t('howLong'))+'</span><select id="homeFinderDuration"><option value="">'+d.esc(d.t('anyDuration'))+'</option><option value="7-14">7–14 '+d.esc(d.t('days'))+'</option><option value="15-30">15–30 '+d.esc(d.t('days'))+'</option><option value="31-89">31–89 '+d.esc(d.t('days'))+'</option><option value="90-plus">90+ '+d.esc(d.t('days'))+'</option></select></label>'+
+        '<button class="primary" type="button" data-home-finder-apply>'+d.esc(d.t('showJourneys'))+' →</button>'+
+      '</div>'+
+      '<div class="platform-home-finder-personal"><span>'+d.esc(d.profileConfigured?.()?d.t('recommendationsActive'):d.t('personalizeLead'))+'</span><button type="button" data-home-traveller>'+d.esc(d.profileConfigured?.()?d.t('tunePreferences'):d.t('personalizeRecommendations'))+'</button></div>'+
+    '</section>';
+  }
+
   function regionCollectionsMarkup(){
     const d=context();
     const regions=[
@@ -3645,19 +3673,23 @@
   function filtersMarkup(){
     const d=context();
     const facets=d.Discovery.facets(d.catalog);
-    const select=(id,label,values)=>'<label><span>'+d.esc(label)+'</span><select id="'+id+'"><option value="">'+d.esc(d.t('all'))+'</option>'+values.map(v=>option(v,d.facetLabel(v))).join('')+'</select></label>';
-    return '<div class="platform-home-filter-grid">'+
+    const select=(id,label,values,extra='')=>'<label class="'+extra+'"><span>'+d.esc(label)+'</span><select id="'+id+'"><option value="">'+d.esc(d.t('all'))+'</option>'+values.map(v=>option(v,d.facetLabel(v))).join('')+'</select></label>';
+    return '<div class="platform-home-filter-grid" data-home-filter-grid>'+
       '<label class="platform-home-search"><span>'+d.esc(d.t('searchRoutes'))+'</span><input id="homeRouteSearch" type="search" autocomplete="off" placeholder="'+d.esc(d.t('searchRoutes'))+'"></label>'+
-      '<label class="platform-home-saved-filter"><span>'+d.esc(d.t('savedOnly'))+'</span><input id="homeRouteSavedOnly" type="checkbox"></label>'+
-      select('homeRouteRegion',d.t('filterRegion'),facets.regions)+
-      select('homeRouteMode',d.t('filterMode'),facets.modes)+
-      select('homeRouteTheme',d.t('filterTheme'),facets.themes)+
-      '<label><span>'+d.esc(d.t('filterDuration'))+'</span><select id="homeRouteDuration"><option value="">'+d.esc(d.t('all'))+'</option><option value="7-14">7–14 '+d.esc(d.t('days'))+'</option><option value="15-30">15–30 '+d.esc(d.t('days'))+'</option><option value="31-89">31–89 '+d.esc(d.t('days'))+'</option><option value="90-plus">90+ '+d.esc(d.t('days'))+'</option></select></label>'+
-      select('homeRoutePace',d.t('fitPace'),facets.paces)+
-      select('homeRouteSeason',d.t('fitSeason'),facets.seasons)+
-      select('homeRouteParty',d.t('fitParty'),facets.parties)+
-      select('homeRouteStart',d.t('fitStart'),facets.starts)+
-      select('homeRouteAccessibility',d.t('filterAccessibility'),facets.accessibilities)+
+      select('homeRouteKind',d.t('filterType'),facets.kinds.filter(value=>value!=='world'),'platform-home-filter-core')+
+      select('homeRouteRegion',d.t('filterRegion'),facets.regions,'platform-home-filter-core')+
+      '<label class="platform-home-filter-core"><span>'+d.esc(d.t('filterDuration'))+'</span><select id="homeRouteDuration"><option value="">'+d.esc(d.t('all'))+'</option><option value="7-14">7–14 '+d.esc(d.t('days'))+'</option><option value="15-30">15–30 '+d.esc(d.t('days'))+'</option><option value="31-89">31–89 '+d.esc(d.t('days'))+'</option><option value="90-plus">90+ '+d.esc(d.t('days'))+'</option></select></label>'+
+      '<button class="platform-home-filter-more" type="button" data-home-filter-more aria-expanded="false">'+d.esc(d.t('moreFilters'))+' <span>+</span></button>'+
+      '<div class="platform-home-filter-advanced" data-home-filter-advanced>'+
+        '<label class="platform-home-saved-filter"><span>'+d.esc(d.t('savedOnly'))+'</span><input id="homeRouteSavedOnly" type="checkbox"></label>'+
+        select('homeRouteMode',d.t('filterMode'),facets.modes)+
+        select('homeRouteTheme',d.t('filterTheme'),facets.themes)+
+        select('homeRoutePace',d.t('fitPace'),facets.paces)+
+        select('homeRouteSeason',d.t('fitSeason'),facets.seasons)+
+        select('homeRouteParty',d.t('fitParty'),facets.parties)+
+        select('homeRouteStart',d.t('fitStart'),facets.starts)+
+        select('homeRouteAccessibility',d.t('filterAccessibility'),facets.accessibilities)+
+      '</div>'+
     '</div>';
   }
 
@@ -3667,6 +3699,7 @@
     if(!host)return;
     const filters={
       q:String($('#homeRouteSearch')?.value||'').trim().toLowerCase(),
+      kind:$('#homeRouteKind')?.value||'',
       region:$('#homeRouteRegion')?.value||'',
       duration:$('#homeRouteDuration')?.value||'',
       mode:$('#homeRouteMode')?.value||'',
@@ -3829,6 +3862,22 @@
         return
       }
       if(event.target.closest('[data-home-explore]')){$('#platformHomeExplore')?.scrollIntoView({behavior:'smooth',block:'start'});return}
+      if(event.target.closest('[data-home-find]')){$('#platformHomeFinder')?.scrollIntoView({behavior:'smooth',block:'center'});return}
+      if(event.target.closest('[data-home-finder-apply]')){
+        activeCollection=null;
+        const pairs=[['homeFinderRegion','homeRouteRegion'],['homeFinderKind','homeRouteKind'],['homeFinderDuration','homeRouteDuration']];
+        for(const [sourceId,targetId] of pairs){const source=$('#'+sourceId),target=$('#'+targetId);if(source&&target)target.value=source.value}
+        $('#platformHomeExplore')?.scrollIntoView({behavior:'smooth',block:'start'});
+        renderCards({preserveLimit:false});
+        return
+      }
+      const filterMore=event.target.closest('[data-home-filter-more]');
+      if(filterMore){
+        const grid=$('[data-home-filter-grid]'),expanded=grid?.classList.toggle('filters-expanded')===true;
+        filterMore.setAttribute('aria-expanded',String(expanded));
+        filterMore.innerHTML=d.esc(expanded?d.t('fewerFilters'):d.t('moreFilters'))+' <span>'+(expanded?'−':'+')+'</span>';
+        return
+      }
       if(event.target.closest('[data-home-mytrips]')){d.onMyTrips();return}
       if(event.target.closest('[data-home-traveller]')){d.onTraveller();return}
       if(event.target.closest('[data-home-method]')){$('#platformHomeMethodology')?.scrollIntoView({behavior:'smooth',block:'start'});return}
@@ -3848,7 +3897,7 @@
       }
             const quick=event.target.closest('[data-home-quick-type]');
       if(quick){
-        const targetId={region:'homeRouteRegion',mode:'homeRouteMode',theme:'homeRouteTheme'}[quick.dataset.homeQuickType];
+        const targetId={region:'homeRouteRegion',mode:'homeRouteMode',theme:'homeRouteTheme',kind:'homeRouteKind'}[quick.dataset.homeQuickType];
         const node=targetId?$('#'+targetId):null;
         if(node&&[...node.options].some(option=>option.value===quick.dataset.homeQuickValue))node.value=quick.dataset.homeQuickValue;
         $('#platformHomeExplore')?.scrollIntoView({behavior:'smooth',block:'start'});
@@ -3857,14 +3906,14 @@
       }
       if(event.target.closest('[data-home-reset]')){
         activeCollection=null;
-        for(const id of ['homeRouteSearch','homeRouteRegion','homeRouteMode','homeRouteTheme','homeRouteDuration','homeRoutePace','homeRouteSeason','homeRouteParty','homeRouteStart','homeRouteAccessibility']){
+        for(const id of ['homeRouteSearch','homeRouteKind','homeRouteRegion','homeRouteMode','homeRouteTheme','homeRouteDuration','homeRoutePace','homeRouteSeason','homeRouteParty','homeRouteStart','homeRouteAccessibility']){
           const node=$('#'+id);if(node)node.value='';
         }
         const savedOnly=$('#homeRouteSavedOnly');if(savedOnly)savedOnly.checked=false;
         renderCards({preserveLimit:false});
       }
     });
-    for(const id of ['homeRouteSearch','homeRouteRegion','homeRouteMode','homeRouteTheme','homeRouteDuration','homeRoutePace','homeRouteSeason','homeRouteParty','homeRouteStart','homeRouteAccessibility','homeRouteSavedOnly']){
+    for(const id of ['homeRouteSearch','homeRouteKind','homeRouteRegion','homeRouteMode','homeRouteTheme','homeRouteDuration','homeRoutePace','homeRouteSeason','homeRouteParty','homeRouteStart','homeRouteAccessibility','homeRouteSavedOnly']){
       $('#'+id)?.addEventListener(id==='homeRouteSearch'?'input':'change',()=>renderCards({preserveLimit:false}));
     }
   }
@@ -3890,8 +3939,9 @@
     host.innerHTML=
       '<header class="platform-home-nav"><button class="platform-home-brand" data-home-top type="button"><span class="brand-orbit"><i></i></span><span><strong>ONE WORLD ROUTE</strong><small>'+d.esc(d.t('homeNavSub'))+'</small></span></button><nav><button data-home-explore type="button">'+d.esc(d.t('routes'))+'</button><button data-home-mytrips type="button">'+d.esc(d.t('myTrips'))+'</button><button data-home-traveller type="button">'+d.esc(d.t('traveller'))+'</button><button data-home-method type="button">'+d.esc(d.t('methodology'))+'</button></nav></header>'+
       '<main>'+
-        '<section class="platform-home-hero"><div class="platform-home-hero-copy"><div class="platform-home-kicker">ONE WORLD ROUTE · '+d.esc(d.t('homeEyebrow'))+'</div><h1>'+d.esc(d.t('homeTitle'))+'</h1><p>'+d.esc(d.t('homeLead'))+'</p><div class="platform-home-hero-actions"><button class="primary" data-home-explore type="button">'+d.esc(d.t('exploreJourneys'))+'</button><button type="button" data-open-home-trip="'+d.esc(flagship.id)+'">'+d.esc(d.t('openFlagship'))+'</button></div>'+quickExploreMarkup()+'</div><div class="platform-home-globe-caption"><span>'+d.esc(d.t('homeGlobeLabel'))+'</span><b>'+d.esc(d.t('homeGlobeHint'))+'</b></div></section>'+
-        '<section class="platform-home-featured"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('journeyDiscovery'))+'</div><h2>'+d.esc(d.profileConfigured?.()?d.t('recommendedForYou'):d.t('exploreJourneys'))+'</h2><p>'+d.esc(d.profileConfigured?.()?d.t('recommendationContextLead'):d.t('featuredLead'))+'</p></div></div><div class="platform-home-featured-grid" id="platformHomeFeatured"></div></section>'+
+        '<section class="platform-home-hero"><div class="platform-home-hero-copy"><div class="platform-home-kicker">ONE WORLD ROUTE · '+d.esc(d.t('homeEyebrow'))+'</div><h1>'+d.esc(d.t('homeTitle'))+'</h1><p>'+d.esc(d.t('homeLead'))+'</p><div class="platform-home-hero-actions"><button class="primary" data-home-find type="button">'+d.esc(d.t('findJourneyTitle'))+'</button><button type="button" data-home-traveller>'+d.esc(d.profileConfigured?.()?d.t('tunePreferences'):d.t('personalizeRecommendations'))+'</button></div>'+quickExploreMarkup()+platformProofMarkup()+'</div><div class="platform-home-globe-caption"><span>'+d.esc(d.t('homeGlobeLabel'))+'</span><b>'+d.esc(d.t('homeGlobeHint'))+'</b></div></section>'+
+        finderMarkup()+
+        '<section class="platform-home-featured"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('journeyDiscovery'))+'</div><h2>'+d.esc(d.profileConfigured?.()?d.t('recommendedForYou'):d.t('featuredJourneys'))+'</h2><p>'+d.esc(d.profileConfigured?.()?d.t('recommendationContextLead'):d.t('featuredLead'))+'</p></div></div><div class="platform-home-featured-grid" id="platformHomeFeatured"></div></section>'+
         collectionsMarkup()+
         '<section class="platform-home-regions"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('filterRegion'))+'</div><h2>'+d.esc(d.t('exploreByRegion'))+'</h2></div></div>'+regionCollectionsMarkup()+'</section>'+
         '<section class="platform-home-flagship"><div><div class="platform-home-section-kicker">'+d.esc(d.t('flagshipJourney'))+'</div><h2>'+d.esc(d.local(flagship.title))+'</h2><p>'+d.esc(d.local(flagship.subtitle))+'</p><button type="button" data-open-home-trip="'+d.esc(flagship.id)+'">'+d.esc(d.t('openFlagship'))+' →</button></div><div class="platform-home-flagship-metrics"><article><b>'+d.esc(flagship.metrics?.countries??'—')+'</b><span>'+d.esc(d.t('homeStates'))+'</span></article><article><b>'+d.esc(flagship.metrics?.internationalLegs??'—')+'</b><span>'+d.esc(d.t('homeLegs'))+'</span></article><article><b>'+d.esc(flagship.metrics?.days??'—')+'</b><span>'+d.esc(d.t('homePlannedDays'))+'</span></article><article><b>'+d.esc(formatDate(flagship.metrics?.startDate))+'</b><span>'+d.esc(d.t('homeStart'))+'</span></article><article><b>'+d.esc(formatBudget(flagship.metrics?.budget))+'</b><span>'+d.esc(d.t('homeBaseModel'))+'</span></article></div></section>'+
@@ -3909,7 +3959,6 @@
   const api={configure,open,renderCards,renderFeatured,renderGlobe};
   root.home=api;
 })();
-
 /* ===== platform/route-library.js ===== */
 (() => {
   'use strict';
