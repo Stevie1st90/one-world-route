@@ -84,10 +84,10 @@ test('journey preferences reuse published discovery metadata and rank without a 
     {kind:'pace',value:'balanced'},
     {kind:'season',value:'spring'}
   ]);
-  const ranked=fit.rank([road,rail],profile);
-  assert.equal(ranked[0].trip.id,'rail');
-  assert.equal(ranked[0].preferenceMatches,5);
-  assert.equal(ranked[0].preferenceMisses,0);
-  assert.ok(ranked[0].contextMatches>=2);
-  assert.equal(ranked[1].preferenceMisses,5);
+  const ordered=fit.orderRecommendations([road,rail],profile);
+  assert.equal(ordered[0].trip.id,'rail');
+  assert.equal(ordered[0].preferenceMatches,5);
+  assert.equal(ordered[0].preferenceMisses,0);
+  assert.ok(ordered[0].contextMatches>=2);
+  assert.equal(ordered[1].preferenceMisses,5);
 });
