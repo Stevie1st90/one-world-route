@@ -488,7 +488,7 @@ body.platform-home #globeLoader,body.platform-home #globeFallback{display:none!i
 
 /* ===== Origin-aware journey plan + transparent recommendation reasons ===== */
 .platform-route-access.platform-route-access-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:10px 0;padding:0;border:0;background:none}
-.right-panel .platform-route-access.platform-route-access-grid{grid-template-columns:1fr}
+#rightPanel .platform-route-access.platform-route-access-grid{grid-template-columns:1fr}
 .platform-route-access-step{min-width:0;padding:11px 12px;border:1px solid rgba(101,229,167,.14);border-radius:12px;background:rgba(101,229,167,.045)}
 .platform-route-access-step>span,.platform-route-access-step>strong,.platform-route-access-step>small{display:block}
 .platform-route-access-step>span{font-size:7px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#7fae9a}
