@@ -97,10 +97,18 @@ test('@regional traveller origin country derives recommendation region without m
   else await page.locator('[data-home-traveller]').click();
   await expect(page.locator('#platformTravellerForm')).toBeVisible();
   await expect(page.locator('#platformTravellerForm select[name="originRegion"]')).toHaveCount(0);
+  for(const name of ['durationBand','pace','season','mode','theme']){
+    await expect(page.locator('#platformTravellerForm [name="'+name+'"]')).toBeVisible();
+  }
   await page.locator('#platformTravellerForm input[name="origin"]').fill('São Paulo / GRU');
   await page.locator('#platformTravellerForm select[name="originCountry"]').selectOption('BR');
   await page.locator('#platformTravellerForm input[name="adults"]').fill('2');
-  await page.screenshot({path:testInfo.outputPath('traveller-origin.png'),fullPage:false});
+  await page.locator('#platformTravellerForm select[name="durationBand"]').selectOption('15-30');
+  await page.locator('#platformTravellerForm select[name="pace"]').selectOption('active');
+  await page.locator('#platformTravellerForm select[name="season"]').selectOption('summer');
+  await page.locator('#platformTravellerForm select[name="mode"]').selectOption('car');
+  await page.locator('#platformTravellerForm select[name="theme"]').selectOption('nature');
+  await page.screenshot({path:testInfo.outputPath('traveller-preferences.png'),fullPage:false});
   await Promise.all([
     page.waitForLoadState('domcontentloaded'),
     page.locator('#platformTravellerForm').locator('button[type="submit"]').click()
@@ -109,8 +117,19 @@ test('@regional traveller origin country derives recommendation region without m
   const context=await page.evaluate(()=>JSON.parse(localStorage.getItem('one-world-route:traveller-context:v1')||'{}'));
   expect(context.originCountry).toBe('BR');
   expect(context.originRegion).toBe('south-america');
-  await expect(page.locator('#platformHomeFeatured .platform-home-card').first().locator('h3')).toHaveText('Patagonia Road Trip');
-  await expect(page.locator('#platformHomeFeatured .platform-home-card').first().locator('.platform-home-card-fit')).toContainText('South America');
+  expect(context.preferences).toEqual({
+    durationBand:'15-30',
+    pace:'active',
+    season:'summer',
+    mode:'car',
+    theme:'nature'
+  });
+  const firstRecommendation=page.locator('#platformHomeFeatured .platform-home-card').first();
+  await expect(firstRecommendation.locator('h3')).toHaveText('Patagonia Road Trip');
+  await expect(firstRecommendation.locator('[data-recommendation-kind="duration"]')).toBeVisible();
+  await expect(firstRecommendation.locator('[data-recommendation-kind="pace"]')).toBeVisible();
+  await expect(firstRecommendation.locator('[data-recommendation-kind="season"]')).toBeVisible();
+  await page.locator('.platform-home-featured').screenshot({path:testInfo.outputPath('personalized-recommendations.png'),animations:'disabled'});
   expect(errors,'origin-country derived recommendation runtime page errors').toEqual([]);
 });
 
