@@ -58,14 +58,36 @@ async function openCoverage(){
  catch(error){$('#coverageSummary').innerHTML='<div class="coverage-error">'+esc(error.message)+'</div>'}
 }
 
+function renderMaintenance(report){
+ const s=report.summary||{},summary=$('#maintenanceSummary');
+ summary.innerHTML=[
+  ['Expired',s.expired??0],
+  ['Overdue',s.overdue??0],
+  ['Due soon',s.dueSoon??0],
+  ['Trip sources',s.tripSources??0],
+  ['Experience coverage',(s.experienceCoveragePct??0)+'%']
+ ].map(([label,value])=>'<div><b>'+esc(value)+'</b><span>'+esc(label)+'</span></div>').join('');
+ const queue=report.queue||[];
+ $('#maintenanceQueue').innerHTML=queue.length?queue.map((item,index)=>{
+   const timing=item.state==='expired'?'Expired '+(item.validUntil||''):item.state==='overdue'?Math.abs(item.dueInDays)+' days overdue':'Due in '+item.dueInDays+' days';
+   return '<article class="coverage-item maintenance-item state-'+esc(item.state)+'"><span class="coverage-rank">'+String(index+1).padStart(2,'0')+'</span><div><b>'+esc(item.title||item.sourceId)+' <small>'+esc(item.kind)+'</small></b><p>'+esc(item.tripId)+' · checked '+esc(item.checkedAt||'unknown')+'</p><code>'+esc(item.sourceId)+'</code><em>'+esc(timing)+'</em></div></article>';
+ }).join(''):'<div class="coverage-empty">No source or experience reviews are due within the next 30 days.</div>';
+}
+async function openMaintenance(){
+ const dialog=$('#maintenanceDialog');dialog.showModal();
+ $('#maintenanceSummary').innerHTML='<div class="coverage-loading">Loading maintenance state…</div>';$('#maintenanceQueue').innerHTML='';
+ try{const r=await api('maintenance');renderMaintenance(r.report)}
+ catch(error){$('#maintenanceSummary').innerHTML='<div class="coverage-error">'+esc(error.message)+'</div>'}
+}
+
 async function loadState(){const r=await api('state');state.catalog=r.catalog;state.drafts=r.drafts;renderDrafts();$('#cloneSelect').innerHTML=(r.catalog.trips||[]).filter(t=>t.renderer==='regional-globe').map(t=>'<option value="'+t.slug+'">'+esc(t.title?.en||t.slug)+'</option>').join('')}
 async function loadDraft(slug){const r=await api('draft/'+slug);state.slug=slug;state.trip=r.trip;state.catalogEntry=r.catalogEntry;$('#empty').classList.add('hidden');$('#editor').classList.remove('hidden');$('#heading').textContent=r.trip.title?.en||slug;$('#subheading').textContent=r.trip.kind+' · local draft';['previewBtn','saveBtn','validateBtn','publishBtn'].forEach(id=>$('#'+id).disabled=false);$('#gate').className='gate';$('#gate').textContent='Not validated yet.';bind();await loadState()}
 async function save(){const r=await api('draft/'+state.slug,{method:'PUT',body:JSON.stringify(collect())});state.trip=r.trip;state.catalogEntry=r.catalogEntry;gate(r);renderMetrics();await loadState();return r}
-$('#newBtn').onclick=()=>$('#newDialog').showModal();$('#cloneBtn').onclick=()=>$('#cloneDialog').showModal();$('#mobileNewBtn').onclick=()=>$('#newDialog').showModal();$('#mobileCloneBtn').onclick=()=>$('#cloneDialog').showModal();$('#coverageBtn').onclick=openCoverage;$('#mobileCoverageBtn').onclick=openCoverage;$('#mobileDraftSelect').onchange=e=>{if(e.target.value)loadDraft(e.target.value)};$$('[data-close]').forEach(b=>b.onclick=()=>$('#'+b.dataset.close).close());
+$('#newBtn').onclick=()=>$('#newDialog').showModal();$('#cloneBtn').onclick=()=>$('#cloneDialog').showModal();$('#mobileNewBtn').onclick=()=>$('#newDialog').showModal();$('#mobileCloneBtn').onclick=()=>$('#cloneDialog').showModal();$('#coverageBtn').onclick=openCoverage;$('#mobileCoverageBtn').onclick=openCoverage;$('#maintenanceBtn').onclick=openMaintenance;$('#mobileMaintenanceBtn').onclick=openMaintenance;$('#mobileDraftSelect').onchange=e=>{if(e.target.value)loadDraft(e.target.value)};$('[data-close]').forEach(b=>b.onclick=()=>$('#'+b.dataset.close).close());
 $('#newForm').onsubmit=async e=>{e.preventDefault();try{const f=new FormData(e.currentTarget),r=await api('scaffold',{method:'POST',body:JSON.stringify({slug:f.get('slug'),kind:f.get('kind'),days:f.get('days')||null})});$('#newDialog').close();await loadState();await loadDraft(r.trip.slug)}catch(x){alert(x.message)}};
 $('#cloneForm').onsubmit=async e=>{e.preventDefault();try{const slug=new FormData(e.currentTarget).get('slug');await api('clone',{method:'POST',body:JSON.stringify({slug})});$('#cloneDialog').close();await loadState();await loadDraft(slug)}catch(x){alert(x.message)}};
 $$('[data-tab]').forEach(b=>b.onclick=()=>{try{syncSection();showTab(b.dataset.tab)}catch(x){alert(x.message)}});$('#formatBtn').onclick=()=>{try{$('#jsonEditor').value=JSON.stringify(readSection(),null,2)}catch(x){alert(x.message)}};$('#applyBtn').onclick=()=>{try{syncSection()}catch(x){alert(x.message)}};
 $('#saveBtn').onclick=async()=>{try{await save()}catch(x){alert(x.message)}};$('#validateBtn').onclick=async()=>{try{await save();gate(await api('draft/'+state.slug+'/validate',{method:'POST'}))}catch(x){alert(x.message)}};
 $('#previewBtn').onclick=async()=>{const preview=window.open('about:blank','owr-preview');try{await save();if(!preview)throw new Error('Preview window was blocked by the browser');preview.location='/?trip='+encodeURIComponent(state.slug)+'&lang=en&__draft='+encodeURIComponent(state.slug)}catch(x){preview?.close();alert(x.message)}};
-$('#publishBtn').onclick=async()=>{if(!confirm('Publish this draft into the local public catalog after validation?'))return;try{await save();const r=await api('draft/'+state.slug+'/publish',{method:'POST'});gate({...r.validation,qualityChecks:r.qualityChecks||[]});if(r.published){alert('Published locally after the full quality gate. Review git diff and run the normal QA/commit/deploy workflow.');await loadDraft(state.slug);gate({...r.validation,qualityChecks:r.qualityChecks||[]})}}catch(x){alert(x.message)}};
+$('#publishBtn').onclick=async()=>{if(!confirm('Publish this draft into the local public catalog after validation? Choose an explicit public status first; draft is never promoted automatically.'))return;try{await save();const r=await api('draft/'+state.slug+'/publish',{method:'POST'});gate({...r.validation,qualityChecks:r.qualityChecks||[]});if(r.published){alert('Published locally after artifact generation and the full quality gate. Review git diff and run the normal Git/QA workflow.');await loadDraft(state.slug);gate({...r.validation,qualityChecks:r.qualityChecks||[]})}}catch(x){alert(x.message)}};
 loadState();
