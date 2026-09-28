@@ -416,6 +416,7 @@
         TripTools,
         TripPlanning,
         TravellerFit,
+        journeyAdapter:JourneyAdapter,
         storage:localStorage,
         loadProfile,
         ensureDialog:Ui.ensureDialog,
