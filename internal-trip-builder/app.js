@@ -1,5 +1,5 @@
 const $=s=>document.querySelector(s),$$=s=>Array.from(document.querySelectorAll(s));
-let state={catalog:null,drafts:[],archetypes:[],slug:null,trip:null,catalogEntry:null,tab:'places'};
+let state={catalog:null,drafts:[],archetypes:[],sourceLibrary:[],slug:null,trip:null,catalogEntry:null,tab:'places'};
 const api=async(path,opt={})=>{const r=await fetch('/__builder/api/'+path,{headers:{'content-type':'application/json'},...opt}),j=await r.json();if(!r.ok||j.ok===false)throw new Error(j.error||'Request failed');return j};
 const csv=v=>String(v||'').split(',').map(x=>x.trim()).filter(Boolean),join=v=>(v||[]).join(', '),clone=v=>JSON.parse(JSON.stringify(v));
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -100,11 +100,42 @@ function openSkeleton(){
  $('#skeletonMode').value=state.catalogEntry?.discovery?.modes?.[0]||'multimodal';
  $('#skeletonDialog').showModal();
 }
-function openEvidence(){
+function sourceIdForReuse(source){
+ const existing=state.trip?.sources||[],sameUrl=existing.find(item=>item.url===source.url);
+ if(sameUrl?.id)return sameUrl.id;
+ let candidate=String(source.id||source.aliases?.[0]||'source').trim()||'source';
+ if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(candidate))candidate='source';
+ const used=new Map(existing.map(item=>[item.id,item.url]));
+ if(!used.has(candidate)||used.get(candidate)===source.url)return candidate;
+ let n=2;while(used.has(candidate+'-'+n)&&used.get(candidate+'-'+n)!==source.url)n++;
+ return candidate+'-'+n;
+}
+function applyLibrarySource(source){
+ if(!source)return;
+ $('#evidenceId').value=sourceIdForReuse(source);
+ const form=$('#evidenceForm');
+ form.elements.title.value=source.title||'';
+ form.elements.issuer.value=source.issuer||'';
+ form.elements.issuerType.value=source.issuerType||'';
+ form.elements.url.value=source.url||'';
+ form.elements.checkedAt.value=source.checkedAt||'';
+ form.elements.claims.value=(source.claims||[]).join('\n');
+}
+async function openEvidence(){
  if(!state.trip)return;
  $('#evidenceForm').reset();
  $('#evidenceStatus').value='draft';
+ $('#evidenceLibrary').innerHTML='<option value="">Loading known sources…</option>';
  $('#evidenceDialog').showModal();
+ try{
+   const r=await api('source-library');state.sourceLibrary=r.sources||[];
+   const local=(state.trip.sources||[]).map(source=>({...source,reuseCount:1,journeys:[state.trip.id],aliases:[source.id],local:true}));
+   const seen=new Set(),combined=[...local,...state.sourceLibrary].filter(source=>{const key=source.url||source.id;if(!key||seen.has(key))return false;seen.add(key);return true});
+   $('#evidenceLibrary').innerHTML='<option value="">New source…</option>'+combined.map((source,index)=>'<option value="'+index+'">'+esc(source.issuer||source.title||source.id)+' · '+esc(source.title||source.url)+(source.reuseCount>1?' · '+source.reuseCount+' journeys':'')+(source.local?' · current draft':'')+'</option>').join('');
+   $('#evidenceLibrary').onchange=event=>{const index=Number(event.target.value);if(Number.isInteger(index)&&combined[index])applyLibrarySource(combined[index])};
+ }catch(error){
+   $('#evidenceLibrary').innerHTML='<option value="">Source library unavailable · create new</option>';
+ }
 }
 async function loadState(){const r=await api('state');state.catalog=r.catalog;state.drafts=r.drafts;state.archetypes=r.archetypes||[];renderDrafts();$('#cloneSelect').innerHTML=(r.catalog.trips||[]).filter(t=>t.renderer==='regional-globe').map(t=>'<option value="'+t.slug+'">'+esc(t.title?.en||t.slug)+'</option>').join('');const kind=$('#newKind');if(kind)kind.innerHTML=state.archetypes.map(value=>'<option value="'+esc(value)+'">'+esc(value.replaceAll('-',' '))+'</option>').join('')}
 async function loadDraft(slug){const r=await api('draft/'+slug);state.slug=slug;state.trip=r.trip;state.catalogEntry=r.catalogEntry;$('#empty').classList.add('hidden');$('#editor').classList.remove('hidden');$('#heading').textContent=r.trip.title?.en||slug;$('#subheading').textContent=r.trip.kind+' · local draft';['previewBtn','saveBtn','validateBtn','publishBtn','skeletonBtn','evidenceBtn','localizationBtn'].forEach(id=>$('#'+id).disabled=false);$('#gate').className='gate';$('#gate').textContent='Not validated yet.';bind();await loadState()}
