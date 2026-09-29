@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "IN",
+  "updatedAt": "2026-09-29",
+  "profiles": [
+    {
+      "id": "IN:delhi",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "history",
+        "culture",
+        "food"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Historic monuments, dense markets and modern districts overlap across a vast capital shaped by many eras of Indian history.",
+        "de": "Historische Monumente, dichte Märkte und moderne Viertel überlagern sich in einer weitläufigen Hauptstadt, die von vielen Epochen indischer Geschichte geprägt ist.",
+        "it": "Monumenti storici, mercati fitti e quartieri moderni si sovrappongono in una vasta capitale segnata da molte epoche della storia indiana.",
+        "es": "Monumentos históricos, mercados densos y barrios modernos se superponen en una gran capital marcada por muchas épocas de la historia india.",
+        "fr": "Monuments historiques, marchés denses et quartiers modernes se superposent dans une vaste capitale marquée par de nombreuses époques de l'histoire indienne.",
+        "pt": "Monumentos históricos, mercados densos e bairros modernos se sobrepõem em uma vasta capital moldada por muitas épocas da história indiana."
+      }
+    },
+    {
+      "id": "IN:agra",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "architecture",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Mughal architecture and the Yamuna riverfront give Agra a concentrated heritage character anchored by the Taj Mahal.",
+        "de": "Mogularchitektur und das Ufer des Yamuna geben Agra einen konzentrierten historischen Charakter, dessen bekanntester Bezugspunkt das Taj Mahal ist.",
+        "it": "L'architettura moghul e il lungofiume Yamuna danno ad Agra un carattere storico concentrato, con il Taj Mahal come punto di riferimento.",
+        "es": "La arquitectura mogol y la ribera del Yamuna dan a Agra un carácter patrimonial concentrado, con el Taj Mahal como gran referencia.",
+        "fr": "L'architecture moghole et les rives de la Yamuna donnent à Agra un caractère patrimonial concentré, dominé par le Taj Mahal.",
+        "pt": "A arquitetura mogol e a margem do rio Yamuna dão a Agra um caráter histórico concentrado, tendo o Taj Mahal como principal referência."
+      }
+    },
+    {
+      "id": "IN:jaipur",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "architecture",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Fortified hills, palaces, bazaars and the planned old city give Jaipur a distinctive Rajasthan gateway character.",
+        "de": "Befestigte Hügel, Paläste, Basare und die geplante Altstadt verleihen Jaipur seinen markanten Charakter als Tor zu Rajasthan.",
+        "it": "Colline fortificate, palazzi, bazar e la città vecchia pianificata danno a Jaipur il suo carattere distintivo di porta del Rajasthan.",
+        "es": "Colinas fortificadas, palacios, bazares y la ciudad antigua planificada dan a Jaipur su carácter distintivo como puerta de Rajastán.",
+        "fr": "Collines fortifiées, palais, bazars et vieille ville planifiée donnent à Jaipur son caractère distinctif de porte du Rajasthan.",
+        "pt": "Colinas fortificadas, palácios, bazares e a cidade antiga planejada dão a Jaipur seu caráter marcante como porta do Rajastão."
+      }
+    }
+  ]
+}

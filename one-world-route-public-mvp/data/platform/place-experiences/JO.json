@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "JO",
+  "updatedAt": "2026-09-29",
+  "profiles": [
+    {
+      "id": "JO:amman",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "culture",
+        "history"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A hill-spread capital where archaeological layers, lively neighbourhoods and contemporary city life sit close together.",
+        "de": "Eine über Hügel verteilte Hauptstadt, in der archäologische Schichten, lebendige Viertel und modernes Stadtleben eng zusammenliegen.",
+        "it": "Una capitale distesa sulle colline, dove strati archeologici, quartieri vivaci e vita urbana contemporanea convivono a breve distanza.",
+        "es": "Una capital extendida sobre colinas donde capas arqueológicas, barrios animados y vida urbana contemporánea conviven muy cerca.",
+        "fr": "Une capitale étendue sur les collines où vestiges archéologiques, quartiers animés et vie urbaine contemporaine se côtoient.",
+        "pt": "Uma capital espalhada por colinas, onde camadas arqueológicas, bairros vibrantes e vida urbana contemporânea ficam lado a lado."
+      }
+    },
+    {
+      "id": "JO:jerash",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "archaeology",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Monumental Roman-era streets, plazas and columns make Jerash one of Jordan's strongest archaeology-focused stops.",
+        "de": "Monumentale Straßen, Plätze und Säulen aus römischer Zeit machen Jerash zu einem der wichtigsten archäologischen Stopps Jordaniens.",
+        "it": "Strade, piazze e colonne monumentali di epoca romana rendono Jerash una delle tappe archeologiche più importanti della Giordania.",
+        "es": "Calles, plazas y columnas monumentales de época romana convierten Jerash en una de las paradas arqueológicas más destacadas de Jordania.",
+        "fr": "Rues, places et colonnes monumentales de l'époque romaine font de Jerash l'une des étapes archéologiques majeures de Jordanie.",
+        "pt": "Ruas, praças e colunas monumentais da época romana fazem de Jerash uma das principais paradas arqueológicas da Jordânia."
+      }
+    },
+    {
+      "id": "JO:dead-sea",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "wellness",
+        "landscape"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A low-lying salt-lake landscape combining stark desert scenery with the distinctive experience of floating in highly saline water.",
+        "de": "Eine tief gelegene Salzsee-Landschaft, die karge Wüstenszenerie mit dem besonderen Schwebeerlebnis im stark salzhaltigen Wasser verbindet.",
+        "it": "Un paesaggio di lago salato a bassa quota che unisce scenari desertici essenziali all'esperienza particolare di galleggiare in acque molto saline.",
+        "es": "Un paisaje de lago salado a baja altitud que combina escenarios desérticos con la singular experiencia de flotar en aguas muy salinas.",
+        "fr": "Un paysage de lac salé en contrebas associant décor désertique et expérience singulière de flottaison dans une eau très saline.",
+        "pt": "Uma paisagem de lago salgado em baixa altitude que combina cenário desértico com a experiência singular de flutuar em águas muito salinas."
+      }
+    },
+    {
+      "id": "JO:petra",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "archaeology",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Rock-cut façades, narrow sandstone passages and a vast archaeological landscape make Petra a heritage anchor of the journey.",
+        "de": "In Fels gehauene Fassaden, enge Sandsteinpassagen und eine weitläufige archäologische Landschaft machen Petra zum kulturellen Anker der Reise.",
+        "it": "Facciate scavate nella roccia, stretti passaggi di arenaria e un vasto paesaggio archeologico fanno di Petra il fulcro storico del viaggio.",
+        "es": "Fachadas talladas en roca, estrechos pasos de arenisca y un vasto paisaje arqueológico convierten Petra en un punto central del viaje.",
+        "fr": "Façades taillées dans la roche, passages étroits de grès et vaste paysage archéologique font de Pétra un point fort patrimonial du voyage.",
+        "pt": "Fachadas esculpidas na rocha, passagens estreitas de arenito e uma vasta paisagem arqueológica fazem de Petra um eixo histórico da viagem."
+      }
+    },
+    {
+      "id": "JO:wadi-rum",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "desert",
+        "nature",
+        "landscape"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Wide desert valleys, sandstone massifs and dramatic light define Wadi Rum's expansive southern Jordan landscape.",
+        "de": "Weite Wüstentäler, Sandsteinmassive und dramatisches Licht prägen die offene Landschaft von Wadi Rum im Süden Jordaniens.",
+        "it": "Ampie vallate desertiche, massicci di arenaria e luce spettacolare definiscono il paesaggio aperto di Wadi Rum nel sud della Giordania.",
+        "es": "Amplios valles desérticos, macizos de arenisca y una luz dramática definen el paisaje abierto de Wadi Rum en el sur de Jordania.",
+        "fr": "Vastes vallées désertiques, massifs de grès et lumière spectaculaire caractérisent le paysage ouvert du Wadi Rum, au sud de la Jordanie.",
+        "pt": "Amplos vales desérticos, maciços de arenito e luz marcante definem a paisagem aberta de Wadi Rum, no sul da Jordânia."
+      }
+    },
+    {
+      "id": "JO:aqaba",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "sea",
+        "cities"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Jordan's Red Sea gateway combines a compact coastal city with warm-water marine scenery and a contrasting finale after the desert.",
+        "de": "Jordaniens Tor zum Roten Meer verbindet eine kompakte Küstenstadt mit warmer Meereslandschaft und bildet einen Kontrast zum Wüstenabschnitt.",
+        "it": "La porta giordana sul Mar Rosso unisce una compatta città costiera a paesaggi marini caldi, creando un finale in contrasto con il deserto.",
+        "es": "La puerta jordana al Mar Rojo combina una ciudad costera compacta con paisajes marinos cálidos y ofrece un final contrastante tras el desierto.",
+        "fr": "La porte jordanienne sur la mer Rouge associe une ville côtière compacte à des paysages marins chauds, en contraste avec le désert.",
+        "pt": "A porta jordaniana para o Mar Vermelho combina uma cidade costeira compacta com paisagens marinhas de águas quentes, contrastando com o deserto."
+      }
+    }
+  ]
+}

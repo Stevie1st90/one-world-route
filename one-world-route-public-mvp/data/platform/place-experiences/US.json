@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "US",
+  "updatedAt": "2026-09-29",
+  "profiles": [
+    {
+      "id": "US:zion-national-park",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "hiking",
+        "canyons"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Towering sandstone walls, narrow canyons and high desert plateaus create one of Utah's most dramatic park landscapes.",
+        "de": "Hohe Sandsteinwände, enge Canyons und Hochwüstenplateaus formen eine der dramatischsten Parklandschaften Utahs.",
+        "it": "Imponenti pareti di arenaria, canyon stretti e altopiani desertici creano uno dei paesaggi più spettacolari dello Utah.",
+        "es": "Altas paredes de arenisca, cañones estrechos y mesetas desérticas forman uno de los paisajes más espectaculares de Utah.",
+        "fr": "Hautes parois de grès, canyons étroits et plateaux désertiques composent l'un des paysages les plus spectaculaires de l'Utah.",
+        "pt": "Altas paredes de arenito, cânions estreitos e planaltos desérticos formam uma das paisagens mais marcantes de Utah."
+      }
+    },
+    {
+      "id": "US:bryce-canyon-national-park",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "geology",
+        "hiking"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Dense amphitheatres of orange and pink hoodoos give Bryce Canyon a compact but highly distinctive geological landscape.",
+        "de": "Dichte Amphitheater aus orange- und rosafarbenen Hoodoos geben Bryce Canyon eine kompakte, aber unverwechselbare geologische Landschaft.",
+        "it": "Densi anfiteatri di hoodoo arancioni e rosa danno a Bryce Canyon un paesaggio geologico compatto e inconfondibile.",
+        "es": "Densos anfiteatros de hoodoos naranjas y rosados dan a Bryce Canyon un paisaje geológico compacto e inconfundible.",
+        "fr": "Des amphithéâtres denses de hoodoos orange et roses donnent à Bryce Canyon un paysage géologique compact et immédiatement reconnaissable.",
+        "pt": "Anfiteatros densos de hoodoos laranja e rosados dão a Bryce Canyon uma paisagem geológica compacta e inconfundível."
+      }
+    },
+    {
+      "id": "US:capitol-reef-national-park",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "geology",
+        "history"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Layered cliffs, domes, canyons and the Waterpocket Fold combine geology with traces of human settlement in a quieter central-Utah setting.",
+        "de": "Geschichtete Felsen, Kuppeln, Canyons und die Waterpocket Fold verbinden Geologie mit Spuren menschlicher Besiedlung in einer ruhigeren Landschaft Zentral-Utahs.",
+        "it": "Pareti stratificate, cupole, canyon e la Waterpocket Fold uniscono geologia e tracce di insediamenti umani in una zona più tranquilla dello Utah centrale.",
+        "es": "Acantilados estratificados, cúpulas, cañones y el Waterpocket Fold combinan geología y huellas de asentamientos humanos en el centro de Utah.",
+        "fr": "Falaises stratifiées, dômes, canyons et Waterpocket Fold associent géologie et traces d'occupation humaine dans un secteur plus calme du centre de l'Utah.",
+        "pt": "Falésias em camadas, domos, cânions e a Waterpocket Fold combinam geologia e vestígios de ocupação humana em uma área mais tranquila do centro de Utah."
+      }
+    },
+    {
+      "id": "US:arches-national-park",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "geology",
+        "hiking"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Natural stone arches, fins and balanced rock formations define a concentrated red-rock landscape just outside Moab.",
+        "de": "Natürliche Steinbögen, Felsrippen und balancierende Formationen prägen eine konzentrierte Red-Rock-Landschaft direkt bei Moab.",
+        "it": "Archi naturali, pinnacoli e formazioni rocciose in equilibrio definiscono un paesaggio di roccia rossa concentrato alle porte di Moab.",
+        "es": "Arcos naturales, aletas de roca y formaciones equilibradas definen un paisaje de roca roja concentrado junto a Moab.",
+        "fr": "Arches naturelles, lames rocheuses et formations en équilibre définissent un paysage de roche rouge concentré aux portes de Moab.",
+        "pt": "Arcos naturais, lâminas rochosas e formações equilibradas definem uma paisagem de rocha vermelha concentrada perto de Moab."
+      }
+    },
+    {
+      "id": "US:canyonlands-national-park",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "canyons",
+        "geology"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Vast canyon systems, mesas and river-cut plateaus create a remote-feeling finale on the Colorado Plateau.",
+        "de": "Weite Canyonsysteme, Tafelberge und von Flüssen eingeschnittene Plateaus bilden einen abgeschiedenen wirkenden Abschluss auf dem Colorado-Plateau.",
+        "it": "Vasti sistemi di canyon, mesas e altopiani incisi dai fiumi creano un finale dal carattere remoto sull'altopiano del Colorado.",
+        "es": "Grandes sistemas de cañones, mesas y mesetas talladas por ríos crean un final de sensación remota en la meseta del Colorado.",
+        "fr": "Vastes systèmes de canyons, mesas et plateaux entaillés par les rivières offrent une finale au caractère isolé sur le plateau du Colorado.",
+        "pt": "Vastos sistemas de cânions, mesas e planaltos cortados por rios criam um final de sensação remota no Planalto do Colorado."
+      }
+    }
+  ]
+}
