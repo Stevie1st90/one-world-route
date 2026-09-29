@@ -533,3 +533,13 @@ body.platform-home #globeLoader,body.platform-home #globeFallback{display:none!i
 .platform-home-card-fit{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
 .platform-home-card-fit span{padding:4px 7px;border:1px solid rgba(89,221,255,.11);border-radius:999px;background:rgba(89,221,255,.035);color:#9fc8d4;font-size:7px;line-height:1.2}
 @media(max-width:640px){.platform-route-access.platform-route-access-grid{grid-template-columns:1fr}}
+
+
+/* Product boot / rendering hardening */
+body.platform-booting #app>:not(.ambient):not(.noise){visibility:hidden!important;opacity:0!important}
+body.platform-booting:before{content:"";position:fixed;z-index:220;inset:0;background:radial-gradient(circle at 50% 42%,rgba(28,74,132,.22),rgba(5,7,13,.96) 46%,#05070d 78%);pointer-events:none}
+body.platform-booting:after{content:"ONE WORLD ROUTE";position:fixed;z-index:221;left:50%;top:50%;transform:translate(-50%,-50%);padding-top:28px;color:#dff8ff;font-size:10px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;pointer-events:none;background:radial-gradient(circle at 50% 8px,#59ddff 0 2px,rgba(89,221,255,.3) 3px,transparent 9px)}
+body.platform-ready #app>.topbar,body.platform-ready #app>.left-panel,body.platform-ready #app>.right-panel,body.platform-ready #app>.timeline,body.platform-ready #app>.globe-stage,body.platform-ready #app>.platform-home-shell{animation:platform-ready-in .18s ease-out both}
+@keyframes platform-ready-in{from{opacity:.35}to{opacity:1}}
+.platform-home-featured,.platform-home-collections,.platform-home-regions,.platform-home-flagship,.platform-home-explore,.platform-home-method,.platform-home-footer{content-visibility:auto;contain-intrinsic-size:1px 520px}
+@media(prefers-reduced-motion:reduce){body.platform-ready #app>.topbar,body.platform-ready #app>.left-panel,body.platform-ready #app>.right-panel,body.platform-ready #app>.timeline,body.platform-ready #app>.globe-stage,body.platform-ready #app>.platform-home-shell{animation:none}}

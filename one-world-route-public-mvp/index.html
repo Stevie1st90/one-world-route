@@ -24,6 +24,7 @@
   <script>
     (() => {
       const params = new URLSearchParams(location.search);
+      document.body.classList.add('platform-booting');
       if (location.pathname === '/' && !params.has('trip')) {
         document.body.classList.add('platform-home');
       }

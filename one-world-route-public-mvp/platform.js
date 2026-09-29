@@ -469,7 +469,12 @@
         LegacyLocalization.configure({getLocale:()=>locale,t}).activate();
         window.__ONE_WORLD_ROUTE_APP__?.refreshGlobe?.();
       }
-    }catch(e){console.warn('ONE WORLD ROUTE platform layer unavailable',e)}
+    }catch(e){
+      console.warn('ONE WORLD ROUTE platform layer unavailable',e);
+    }finally{
+      document.body.classList.remove('platform-booting');
+      document.body.classList.add('platform-ready');
+    }
   }
 
   window.ONE_WORLD_PLATFORM={openHome:goHome,openRoutes:openRouteLibrary,openMyTrips,openTraveller,getProfile:loadProfile,getTrip:()=>currentTripMeta,buildTripUrl,setTerrain:active=>Terrain.setActive(active),startStory:()=>Story.start(),stopStory:()=>Story.stop(),focusRoute:()=>{if(document.body.classList.contains('platform-home'))return Home.renderGlobe();if(document.body.classList.contains('terrain-view'))Terrain.focusRoute();else RegionalGlobe.focusRoute()}};
