@@ -81,13 +81,17 @@ jobs:
                 discovery_browser=true
                 ;;
               one-world-route-public-mvp/data/platform/trips/*.json)
-                content_browser=true
                 trip_slug="${file##*/}"
                 trip_slug="${trip_slug%.json}"
-                if [[ -n "$content_trip_ids" ]]; then
-                  content_trip_ids="$content_trip_ids,$trip_slug"
-                else
-                  content_trip_ids="$trip_slug"
+                if [[ "$trip_slug" == "world-195" ]]; then
+                  flagship_browser=true
+                elif [[ -f "$file" ]]; then
+                  content_browser=true
+                  if [[ -n "$content_trip_ids" ]]; then
+                    content_trip_ids="$content_trip_ids,$trip_slug"
+                  else
+                    content_trip_ids="$trip_slug"
+                  fi
                 fi
                 ;;
               one-world-route-public-mvp/data/platform/trips.json)
