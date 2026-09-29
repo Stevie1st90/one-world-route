@@ -83,7 +83,8 @@
       "coordinates": {
         "lat": 28.6139,
         "lng": 77.209
-      }
+      },
+      "experienceRef": "IN:delhi"
     },
     {
       "id": "india-golden-triangle-place-02",
@@ -100,7 +101,8 @@
       "coordinates": {
         "lat": 27.1767,
         "lng": 78.0081
-      }
+      },
+      "experienceRef": "IN:agra"
     },
     {
       "id": "india-golden-triangle-place-03",
@@ -117,7 +119,8 @@
       "coordinates": {
         "lat": 26.9124,
         "lng": 75.7873
-      }
+      },
+      "experienceRef": "IN:jaipur"
     }
   ],
   "stops": [
