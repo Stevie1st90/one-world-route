@@ -147,3 +147,16 @@ test('trip pack carries portable planning workspace state without private identi
   assert.equal(parsed.planningWorkspace.status.complete,true);
   assert.doesNotMatch(json,/passport|residenceCountry|bookingReference|payment/i);
 });
+
+
+test('journey variant choice stays local per source journey',()=>{
+  const tools=load(),s=storage();
+  assert.equal(tools.getVariant(s,'trip-a'),'base');
+  assert.equal(tools.setVariant(s,'trip-a','northern-italy-tuscany'),'northern-italy-tuscany');
+  assert.equal(tools.getVariant(s,'trip-a'),'northern-italy-tuscany');
+  let parsed=JSON.parse(tools.workspaceJson(s));
+  assert.equal(parsed.workspace.variants['trip-a'],'northern-italy-tuscany');
+  assert.equal(tools.setVariant(s,'trip-a','base'),'base');
+  parsed=JSON.parse(tools.workspaceJson(s));
+  assert.equal(parsed.workspace.variants['trip-a'],undefined);
+});
