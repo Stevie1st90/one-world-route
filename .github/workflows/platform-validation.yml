@@ -87,6 +87,12 @@ jobs:
                 ;;
               one-world-route-public-mvp/README.md)
                 ;;
+              one-world-route-public-mvp/features.bundle.js|one-world-route-public-mvp/features.bundle.css|one-world-route-public-mvp/core.bundle.js|one-world-route-public-mvp/core.bundle.css)
+                # Generated artifacts inherit browser scope from their source files.
+                ;;
+              one-world-route-public-mvp/api/share.js|one-world-route-public-mvp/vercel.json|one-world-route-public-mvp/sitemap.xml)
+                discovery_browser=true
+                ;;
               one-world-route-public-mvp/platform/home.js|one-world-route-public-mvp/platform/home.css)
                 discovery_browser=true
                 ;;
