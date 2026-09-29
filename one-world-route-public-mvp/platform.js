@@ -472,10 +472,8 @@
     }catch(e){
       console.warn('ONE WORLD ROUTE platform layer unavailable',e);
     }finally{
-      requestAnimationFrame(()=>{
-        document.body.classList.remove('platform-booting');
-        document.body.classList.add('platform-ready');
-      });
+      document.body.classList.remove('platform-booting');
+      document.body.classList.add('platform-ready');
     }
   }
 
