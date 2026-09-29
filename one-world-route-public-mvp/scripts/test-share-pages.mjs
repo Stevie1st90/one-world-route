@@ -106,3 +106,22 @@ test('collection x-default canonical remains language neutral',()=>{
   assert.match(body,/rel="canonical" href="https:\/\/one-world-route\.vercel\.app\/journeys\/island-escapes"/);
   assert.match(body,/Greek Island Hopping/);
 });
+
+test('metadata-driven taxonomy page is crawlable and localized',()=>{
+  const {headers,body}=render({type:'taxonomy',facet:'kind',value:'rail',lang:'de'});
+  assert.equal(headers['Content-Language'],'de');
+  assert.match(body,/Bahn-Reisen — ONE WORLD ROUTE/);
+  assert.match(body,/rel="canonical" href="https:\/\/one-world-route\.vercel\.app\/de\/discover\/kind\/rail"/);
+  assert.match(body,/Japan mit der Bahn/);
+  assert.match(body,/Mitteleuropa mit der Bahn/);
+  assert.doesNotMatch(body,/Patagonien|patagonia-road-trip/);
+  assert.doesNotMatch(body,/location\.replace/);
+  assert.match(body,/"@type":"ItemList"/);
+});
+
+test('taxonomy pages reject thin or unsupported facets',()=>{
+  const unsupported=render({type:'taxonomy',facet:'region',value:'antarctica',lang:'en'}).body;
+  assert.match(unsupported,/ONE WORLD ROUTE — routes without borders/);
+  assert.doesNotMatch(unsupported,/\/discover\/region\/antarctica/);
+});
+

@@ -118,6 +118,14 @@
       "destination": "/api/share?type=country&slug=:slug"
     },
     {
+      "source": "/:lang/discover/:facet/:value",
+      "destination": "/api/share?type=taxonomy&lang=:lang&facet=:facet&value=:value"
+    },
+    {
+      "source": "/discover/:facet/:value",
+      "destination": "/api/share?type=taxonomy&facet=:facet&value=:value"
+    },
+    {
       "source": "/:lang/journeys/:slug",
       "destination": "/api/share?type=collection&lang=:lang&slug=:slug"
     },

@@ -44,6 +44,43 @@ const collectionMatches=(trip,collection)=>{
   return trip?.id!==platform.defaultTripId;
 };
 
+const TAXONOMY_REGIONS=new Set(['europe','asia','africa','north-america','south-america','oceania','central-america']);
+const TAXONOMY_FACETS=new Set(['kind','region','duration']);
+const taxonomyMatches=(trip,facet,value)=>{
+  if(!trip||trip.id===platform.defaultTripId)return false;
+  if(facet==='kind')return trip.kind===value;
+  if(facet==='region')return TAXONOMY_REGIONS.has(value)&&(trip.discovery?.regions||[]).includes(value);
+  if(facet==='duration')return trip.discovery?.durationBand===value;
+  return false;
+};
+const taxonomyTrips=(facet,value)=>platform.trips.filter(trip=>taxonomyMatches(trip,facet,value));
+const taxonomyExists=(facet,value)=>TAXONOMY_FACETS.has(facet)&&taxonomyTrips(facet,value).length>=2;
+const TAXONOMY_LABELS={
+  en:{kind:'{value} journeys',region:'Journeys in {value}',duration:'Journeys for {value} days',values:{'road-trip':'Road trip',rail:'Rail',cruise:'Cruise',camper:'Camper','island-hopping':'Island hopping','round-trip':'Round trip',multimodal:'Multimodal',europe:'Europe',asia:'Asia',africa:'Africa','north-america':'North America','south-america':'South America',oceania:'Oceania','central-america':'Central America','7-14':'7–14','15-30':'15–30','90-plus':'90+'}},
+  de:{kind:'{value}-Reisen',region:'Reisen in {value}',duration:'Reisen für {value} Tage',values:{'road-trip':'Roadtrip',rail:'Bahn',cruise:'Kreuzfahrt',camper:'Camper','island-hopping':'Inselhopping','round-trip':'Rundreise',multimodal:'Multimodal',europe:'Europa',asia:'Asien',africa:'Afrika','north-america':'Nordamerika','south-america':'Südamerika',oceania:'Ozeanien','central-america':'Mittelamerika','7-14':'7–14','15-30':'15–30','90-plus':'90+'}},
+  it:{kind:'Viaggi {value}',region:'Viaggi in {value}',duration:'Viaggi di {value} giorni',values:{'road-trip':'on the road',rail:'in treno',cruise:'in crociera',camper:'in camper','island-hopping':'tra isole','round-trip':'ad anello',multimodal:'multimodali',europe:'Europa',asia:'Asia',africa:'Africa','north-america':'Nord America','south-america':'Sud America',oceania:'Oceania','central-america':'America Centrale','7-14':'7–14','15-30':'15–30','90-plus':'90+'}},
+  es:{kind:'Viajes {value}',region:'Viajes por {value}',duration:'Viajes de {value} días',values:{'road-trip':'por carretera',rail:'en tren',cruise:'en crucero',camper:'en camper','island-hopping':'entre islas','round-trip':'circulares',multimodal:'multimodales',europe:'Europa',asia:'Asia',africa:'África','north-america':'Norteamérica','south-america':'Sudamérica',oceania:'Oceanía','central-america':'Centroamérica','7-14':'7–14','15-30':'15–30','90-plus':'90+'}},
+  fr:{kind:'Voyages {value}',region:'Voyages en {value}',duration:'Voyages de {value} jours',values:{'road-trip':'en road trip',rail:'en train',cruise:'en croisière',camper:'en van','island-hopping':'d’île en île','round-trip':'en boucle',multimodal:'multimodaux',europe:'Europe',asia:'Asie',africa:'Afrique','north-america':'Amérique du Nord','south-america':'Amérique du Sud',oceania:'Océanie','central-america':'Amérique centrale','7-14':'7–14','15-30':'15–30','90-plus':'90+'}},
+  pt:{kind:'Viagens {value}',region:'Viagens na {value}',duration:'Viagens de {value} dias',values:{'road-trip':'de carro',rail:'de trem',cruise:'de cruzeiro',camper:'de camper','island-hopping':'entre ilhas','round-trip':'em circuito',multimodal:'multimodais',europe:'Europa',asia:'Ásia',africa:'África','north-america':'América do Norte','south-america':'América do Sul',oceania:'Oceania','central-america':'América Central','7-14':'7–14','15-30':'15–30','90-plus':'90+'}}
+};
+const taxonomyLabel=(facet,value,lang='en')=>{
+  const dict=TAXONOMY_LABELS[lang]||TAXONOMY_LABELS.en;
+  const label=dict.values[value]||humanize(value);
+  return String(dict[facet]||'{value}').replace('{value}',label);
+};
+const taxonomyTarget=(facet,value,lang)=>{
+  const p=new URLSearchParams();
+  if(facet==='kind')p.set('kind',value);
+  if(facet==='region')p.set('region',value);
+  if(facet==='duration')p.set('duration',value);
+  p.set('lang',lang);
+  return '/?'+p.toString();
+};
+const taxonomyAlternateLinks=(origin,facet,value)=>[
+  ...SUPPORTED_LANGS.map(lang=>'<link rel="alternate" hreflang="'+lang+'" href="'+esc(origin+'/'+lang+'/discover/'+facet+'/'+value)+'">'),
+  '<link rel="alternate" hreflang="x-default" href="'+esc(origin+'/discover/'+facet+'/'+value)+'">'
+].join('');
+
 const PAGE_TEXT={
   en:{open:'Open interactive route',overview:'Overview',itinerary:'Itinerary',planning:'Practical planning',evidence:'Evidence',sources:'Sources',days:'days',nights:'nights',stops:'stops',legs:'legs',countries:'countries',modes:'Transport',pace:'Pace',seasons:'Seasons',knownTransport:'Known published transport minimum',latestCheck:'Latest evidence check',sourced:'sourced segments',verified:'verified segments',unknown:'Not yet published',readiness:'Flagship readiness',readinessLead:'The public route model is valid, but operational departure work is still in progress.',dataAsOf:'Data as of',workQueue:'Current operational work queue',interactiveLead:'Open the interactive globe for route detail, Story Mode, Terrain and Traveller Context.',journeys:'journeys'},
   de:{open:'Interaktive Route öffnen',overview:'Überblick',itinerary:'Reiseplan',planning:'Praktische Planung',evidence:'Quellenlage',sources:'Quellen',days:'Tage',nights:'Nächte',stops:'Stopps',legs:'Etappen',countries:'Länder',modes:'Verkehrsmittel',pace:'Reisetempo',seasons:'Reisezeiten',knownTransport:'Bekanntes veröffentlichtes Verkehrsminimum',latestCheck:'Letzte Quellenprüfung',sourced:'Segmente mit Quellen',verified:'verifizierte Segmente',unknown:'Noch nicht veröffentlicht',readiness:'Flagship-Readiness',readinessLead:'Das öffentliche Routenmodell ist gültig, die operative Abfahrtsvorbereitung ist aber noch nicht abgeschlossen.',dataAsOf:'Datenstand',workQueue:'Aktuelle operative Arbeitsliste',interactiveLead:'Im interaktiven Globus gibt es Routendetails, Story Mode, Terrain und Reisekontext.',journeys:'Reisen'},
@@ -94,6 +131,20 @@ const collectionJsonLd=(collection,trips,lang,url)=>JSON.stringify({
     name:localized(trip.title,lang)
   }))
 }).replace(/</g,'\\u003c');
+
+function richTaxonomyBody({facet,value,trips,lang,target}){
+  const tx=PAGE_TEXT[lang]||PAGE_TEXT.en;
+  const heading=taxonomyLabel(facet,value,lang);
+  const cards=trips.map(trip=>{
+    const metrics=[
+      trip.metrics?.days?trip.metrics.days+' '+tx.days:null,
+      trip.metrics?.countries?trip.metrics.countries+' '+tx.countries:null,
+      (trip.discovery?.modes||[]).slice(0,2).map(humanize).join(' · ')
+    ].filter(Boolean).join(' · ');
+    return '<article class="collection-card"><div><span>'+esc(humanize(trip.kind))+'</span><h2>'+esc(localized(trip.title,lang))+'</h2><p>'+esc(localized(trip.subtitle,lang))+'</p><small>'+esc(metrics)+'</small></div><a href="/'+esc(lang)+'/trip/'+esc(trip.slug)+'">'+esc(tx.open)+' →</a></article>';
+  }).join('');
+  return '<main class="trip-page collection-page"><header><a class="brand" href="/">ONE WORLD ROUTE</a><div class="eyebrow">'+esc(tx.overview)+'</div><h1>'+esc(heading)+'</h1><p class="lead">'+esc(String(trips.length))+' '+esc(tx.journeys)+' · '+esc(tx.interactiveLead)+'</p><div class="cta"><a href="'+esc(target)+'">'+esc(tx.open)+' →</a></div></header><section><div class="collection-list">'+cards+'</div></section><footer><a href="'+esc(target)+'">'+esc(tx.open)+' →</a><span>ONE WORLD ROUTE</span></footer></main>';
+}
 
 function richCollectionBody({collection,trips,lang,target}){
   const tx=PAGE_TEXT[lang]||PAGE_TEXT.en;
@@ -164,6 +215,21 @@ module.exports=(req,res)=>{
       alternates=alternateLinks(origin,trip);
       jsonLd='<script type="application/ld+json">'+tripJsonLd(trip,index,lang,canonical)+'</script>';
       body=richTripBody({trip,index,lang,target});
+      autoRedirect=false;
+    }
+  }else if(type==='taxonomy'){
+    const facet=String(req.query.facet||'').toLowerCase(),value=slug(req.query.value||'');
+    if(taxonomyExists(facet,value)){
+      const trips=taxonomyTrips(facet,value);
+      htmlLang=lang;
+      const heading=taxonomyLabel(facet,value,lang);
+      title=heading+' — ONE WORLD ROUTE';
+      desc=heading+' · '+trips.length+' '+(PAGE_TEXT[lang]||PAGE_TEXT.en).journeys+'.';
+      target=taxonomyTarget(facet,value,lang);
+      canonical=requestedLang&&SUPPORTED_LANGS.includes(requestedLang)?origin+'/'+lang+'/discover/'+facet+'/'+value:origin+'/discover/'+facet+'/'+value;
+      alternates=taxonomyAlternateLinks(origin,facet,value);
+      jsonLd='<script type="application/ld+json">'+collectionJsonLd({title:{[lang]:heading,en:heading},description:{[lang]:desc,en:desc}},trips,lang,canonical)+'</script>';
+      body=richTaxonomyBody({facet,value,trips,lang,target});
       autoRedirect=false;
     }
   }else if(type==='collection'){
