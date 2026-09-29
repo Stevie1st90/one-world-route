@@ -1397,6 +1397,83 @@
           "accessibility": "vehicle-dependent"
         }
       }
+    },
+    {
+      "id": "india-golden-triangle-rail",
+      "slug": "india-golden-triangle-rail",
+      "kind": "rail",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/india-golden-triangle-rail.json",
+      "title": {
+        "en": "India Golden Triangle by Rail",
+        "de": "Indiens Goldenes Dreieck per Bahn",
+        "it": "Triangolo d'Oro dell'India in treno",
+        "es": "Triángulo Dorado de India en tren",
+        "fr": "Triangle d'Or de l'Inde en train",
+        "pt": "Triângulo Dourado da Índia de trem"
+      },
+      "subtitle": {
+        "en": "7 days · Delhi, Agra and Jaipur by rail",
+        "de": "7 Tage · Delhi, Agra und Jaipur per Bahn",
+        "it": "7 giorni · Delhi, Agra e Jaipur in treno",
+        "es": "7 días · Delhi, Agra y Jaipur en tren",
+        "fr": "7 jours · Delhi, Agra et Jaipur en train",
+        "pt": "7 dias · Delhi, Agra e Jaipur de trem"
+      },
+      "metrics": {
+        "days": 7,
+        "countries": 1,
+        "stops": 3,
+        "segments": 2,
+        "sourcedSegments": 2,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "source-evidence",
+        "trip-planning",
+        "story",
+        "terrain"
+      ],
+      "visual": {
+        "theme": "rockies",
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "asia",
+          "south-asia",
+          "india"
+        ],
+        "themes": [
+          "rail",
+          "culture",
+          "history",
+          "cities"
+        ],
+        "modes": [
+          "rail"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "multi-season"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "asia",
+          "accessibility": "standard-check"
+        }
+      }
     }
   ]
 }
