@@ -4,6 +4,7 @@ import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
 const source=await readFile(new URL('../platform/journey-adapter.js',import.meta.url),'utf8');
+const variantSource=await readFile(new URL('../platform/journey-variants.js',import.meta.url),'utf8');
 
 function load(){
   const window={ONE_WORLD_PLATFORM_MODULES:{}};
@@ -122,4 +123,62 @@ test('entry recommendation never invents an alternative for a fixed route',()=>{
   assert.equal(suggestion.available,false);
   assert.equal(suggestion.reason,'fixed-route');
   assert.equal(suggestion.stopId,'s1');
+});
+
+
+function loadVariants(){
+  const window={ONE_WORLD_PLATFORM_MODULES:{}};
+  const context={window,structuredClone:globalThis.structuredClone};
+  vm.createContext(context);
+  vm.runInContext(variantSource,context);
+  return window.ONE_WORLD_PLATFORM_MODULES.journeyVariants;
+}
+
+test('journey variants derive a contiguous trip window without duplicating source data',()=>{
+  const variants=loadVariants();
+  const sourceTrip={
+    id:'demo',
+    title:{en:'Full'},
+    planning:{days:6,pace:'balanced'},
+    routePolicy:{startMode:'fixed',reversible:false},
+    places:[{id:'a'},{id:'b'},{id:'c'},{id:'d'}],
+    stops:[
+      {id:'s1',sequence:1,placeId:'a',dayStart:1,dayEnd:2,nights:2},
+      {id:'s2',sequence:2,placeId:'b',dayStart:3,dayEnd:3,nights:1},
+      {id:'s3',sequence:3,placeId:'c',dayStart:4,dayEnd:5,nights:2},
+      {id:'s4',sequence:4,placeId:'d',dayStart:6,dayEnd:6,nights:1}
+    ],
+    segments:[
+      {id:'l1',sequence:1,fromStopId:'s1',toStopId:'s2'},
+      {id:'l2',sequence:2,fromStopId:'s2',toStopId:'s3'},
+      {id:'l3',sequence:3,fromStopId:'s3',toStopId:'s4'}
+    ],
+    chapters:[{id:'all',stopIds:['s1','s2','s3','s4']}],
+    variants:[{
+      id:'middle',
+      title:{en:'Middle'},
+      summary:{en:'Middle route'},
+      startStopId:'s2',
+      endStopId:'s3',
+      pace:'active'
+    }]
+  };
+  const result=variants.apply(sourceTrip,'middle');
+  assert.deepEqual(Array.from(result.stops,x=>x.id),['s2','s3']);
+  assert.deepEqual(Array.from(result.segments,x=>x.id),['l2']);
+  assert.deepEqual(Array.from(result.places,x=>x.id),['b','c']);
+  assert.deepEqual(Array.from(result.chapters[0].stopIds),['s2','s3']);
+  assert.equal(result.planning.days,3);
+  assert.equal(result.planning.pace,'active');
+  assert.equal(result._variant.id,'middle');
+  assert.equal(sourceTrip.stops.length,4);
+});
+
+test('unknown journey variant falls back to the full source journey',()=>{
+  const variants=loadVariants();
+  const sourceTrip={id:'demo',stops:[{id:'s1',sequence:1,placeId:'a',dayStart:1,dayEnd:1}],segments:[],places:[{id:'a'}],variants:[]};
+  const result=variants.apply(sourceTrip,'missing');
+  assert.equal(result._variant.id,'base');
+  assert.equal(result._variant.adapted,false);
+  assert.equal(result.stops.length,1);
 });
