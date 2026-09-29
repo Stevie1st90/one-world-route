@@ -119,7 +119,7 @@ test('scaffold uses archetype defaults and stays globally neutral until authored
 test('builds a deterministic draft route skeleton from compact stop rows',()=>{
   const ctx=valid();
   ctx.trip.places=[];ctx.trip.stops=[];ctx.trip.segments=[];ctx.trip.planning.days=null;
-  const text='Berlin | DE | 52.5200 | 13.4050 | 2\\nParis | FR | 48.8566 | 2.3522 | 3\\nLyon | FR | 45.7640 | 4.8357 | 1';
+  const text='Berlin | DE | 52.5200 | 13.4050 | 2\nParis | FR | 48.8566 | 2.3522 | 3\nLyon | FR | 45.7640 | 4.8357 | 1';
   const rows=parseRouteSkeletonText(text);
   assert.equal(rows.length,3);
   const result=buildRouteSkeleton({...ctx,text,mode:'rail'});
@@ -137,7 +137,7 @@ test('builds a deterministic draft route skeleton from compact stop rows',()=>{
 
 test('route skeleton rejects malformed rows before mutating a draft',()=>{
   assert.throws(()=>parseRouteSkeletonText('Berlin | DE | 52.5 | 13.4 | 2'),/at least two stops/);
-  assert.throws(()=>parseRouteSkeletonText('Berlin | DE | 52.5 | 13.4 | 2\\nParis | FRA | 48.8 | 2.3 | 2'),/ISO alpha-2/);
+  assert.throws(()=>parseRouteSkeletonText('Berlin | DE | 52.5 | 13.4 | 2\nParis | FRA | 48.8 | 2.3 | 2'),/ISO alpha-2/);
 });
 
 test('derives countries, route modes and duration metadata from authored route data',()=>{
