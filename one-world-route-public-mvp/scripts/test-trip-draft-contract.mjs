@@ -1,3 +1,4 @@
+import {deriveDiscoveryRegions} from './country-region-model.mjs';
 import {journeyArchetypeRegistry,validateJourneyArchetypeRegistry} from './journey-archetype-registry.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -233,4 +234,24 @@ test('file-backed archetype registry stays extensible without contract edits',()
   };
   assert.equal(validateJourneyArchetypeRegistry(registry),true);
   assert.ok(Object.keys(registry.archetypes).includes('river-cruise'));
+});
+
+test('derives neutral discovery regions from route countries without overwriting curated regions',()=>{
+  const ctx=valid();
+  ctx.catalogEntry.discovery.regions=['global'];
+  ctx.catalogEntry.discovery.fit.startRegion='global';
+  let normalized=normalizeDraftMetadata(ctx);
+  assert.deepEqual(normalized.catalogEntry.discovery.regions,['europe','western-europe']);
+  assert.equal(normalized.catalogEntry.discovery.fit.startRegion,'europe');
+
+  ctx.catalogEntry.discovery.regions=['mediterranean','italy'];
+  ctx.catalogEntry.discovery.fit.startRegion='italy';
+  normalized=normalizeDraftMetadata(ctx);
+  assert.deepEqual(normalized.catalogEntry.discovery.regions,['mediterranean','italy']);
+  assert.equal(normalized.catalogEntry.discovery.fit.startRegion,'italy');
+});
+
+test('maps Americas countries into the primary discovery taxonomy',()=>{
+  assert.deepEqual(deriveDiscoveryRegions(['CR']),['north-america','central-america']);
+  assert.deepEqual(deriveDiscoveryRegions(['AR','CL']),['south-america']);
 });
