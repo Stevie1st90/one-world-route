@@ -4,7 +4,7 @@ import {createReadStream,existsSync} from 'node:fs';
 import {extname,join,normalize,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
-import {validateTripDraft,normalizeCatalogEntry,scaffoldTripDraft,journeyArchetypes} from '../one-world-route-public-mvp/scripts/trip-draft-contract.mjs';
+import {validateTripDraft,normalizeCatalogEntry,validatePublicationReadiness,scaffoldTripDraft,journeyArchetypes} from '../one-world-route-public-mvp/scripts/trip-draft-contract.mjs';
 import {buildExperienceCoverage} from '../one-world-route-public-mvp/scripts/experience-coverage-model.mjs';
 import {buildMaintenanceQueue} from '../one-world-route-public-mvp/scripts/maintenance-queue-model.mjs';
 
@@ -14,6 +14,8 @@ const draftsDir=join(publicRoot,'data/platform/drafts');
 const tripsDir=join(publicRoot,'data/platform/trips');
 const catalogPath=join(publicRoot,'data/platform/trips.json');
 const experienceIndexPath=join(publicRoot,'data/platform/place-experiences/index.json');
+const tripIndexPath=join(publicRoot,'data/platform/trip-index.json');
+const sitemapPath=join(publicRoot,'sitemap.xml');
 const host='127.0.0.1',port=Number(process.env.OWR_BUILDER_PORT||4175);
 const slugPattern=/^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.webmanifest':'application/manifest+json'};
@@ -25,12 +27,17 @@ async function exists(p){try{await access(p);return true}catch{return false}}
 async function readBody(req){let s='';for await(const c of req){s+=c;if(s.length>3000000)throw new Error('Payload too large')}return s?JSON.parse(s):{}}
 async function atomic(p,v){const tmp=p+'.tmp';await writeFile(tmp,JSON.stringify(v,null,2)+'\n');await rename(tmp,p)}
 async function loadDraft(s){const p=paths(s);return{trip:await json(p.trip),catalogEntry:await json(p.catalog)}}
+const publicationGenerators=[
+  ['Trip index generation',['scripts/build-trip-index.mjs']],
+  ['SEO sitemap generation',['scripts/generate-seo.mjs']]
+];
 const publishChecks=[
   ['Platform data validation',['scripts/validate-platform-data.mjs']],
   ['Public data validation',['scripts/validate-public-data.mjs']],
   ['Platform model tests',['--test','scripts/test-platform-model.mjs']],
   ['Platform locale tests',['--test','scripts/test-platform-i18n.mjs']],
   ['Platform formatter tests',['--test','scripts/test-platform-formatters.mjs']],
+  ['Public trip index tests',['--test','scripts/test-trip-index.mjs']],
   ['Share page tests',['--test','scripts/test-share-pages.mjs']],
   ['Platform navigation tests',['--test','scripts/test-platform-navigation.mjs']],
   ['Trip draft contract tests',['--test','scripts/test-trip-draft-contract.mjs']],
@@ -43,9 +50,9 @@ const publishChecks=[
   ['Continuity tests',['--test','scripts/test-continuity.mjs']]
 ];
 
-function runPublishChecks(){
+function runNodeSteps(steps){
   const results=[];
-  for(const [name,args] of publishChecks){
+  for(const [name,args] of steps){
     const r=spawnSync(process.execPath,args.map(arg=>arg.startsWith('scripts/')?join(publicRoot,arg):arg),{cwd:publicRoot,encoding:'utf8'});
     const result={name,ok:r.status===0,output:String(r.status===0?r.stdout:(r.stderr||r.stdout||'')).trim().slice(-4000)};
     results.push(result);
@@ -53,6 +60,7 @@ function runPublishChecks(){
   }
   return{ok:true,results};
 }
+const runPublishChecks=()=>runNodeSteps(publishChecks);
 
 async function experienceCoverage(){
   const catalog=await json(catalogPath),datasets=new Map(),profiles=[];
@@ -115,21 +123,50 @@ async function validateSlug(slug){
   const d=await loadDraft(slug),catalog=await json(catalogPath);return validateTripDraft({trip:d.trip,catalogEntry:d.catalogEntry,catalog});
 }
 async function publish(slug){
-  slug=safeSlug(slug);const d=await loadDraft(slug),catalog=await json(catalogPath),gate=validateTripDraft({trip:d.trip,catalogEntry:d.catalogEntry,catalog});
-  if(!gate.valid)return{published:false,...gate};
-  const trip={...d.trip,status:d.trip.status==='draft'?'sourced-beta':d.trip.status};
-  const entry={...normalizeCatalogEntry(d.catalogEntry,trip),status:d.catalogEntry.status==='draft'?'sourced-beta':d.catalogEntry.status};
-  const next={...catalog,trips:[...(catalog.trips||[]).filter(t=>t.id!==slug),entry]},target=join(tripsDir,slug+'.json');
-  const oldCatalog=await readFile(catalogPath,'utf8'),had=await exists(target),oldTrip=had?await readFile(target,'utf8'):null;
+  slug=safeSlug(slug);
+  const d=await loadDraft(slug),catalog=await json(catalogPath);
+  const gate=validateTripDraft({trip:d.trip,catalogEntry:d.catalogEntry,catalog});
+  const publication=validatePublicationReadiness(d);
+  if(!gate.valid||!publication.valid){
+    return {published:false,validation:{...gate,valid:false,errors:[...gate.errors,...publication.errors]},publication};
+  }
+  const trip={...d.trip};
+  const entry={...normalizeCatalogEntry(d.catalogEntry,trip)};
+  const existingIndex=(catalog.trips||[]).findIndex(t=>t.id===slug);
+  const trips=[...(catalog.trips||[])];
+  if(existingIndex>=0)trips[existingIndex]=entry;else trips.push(entry);
+  const next={...catalog,updatedAt:new Date().toISOString().slice(0,10),trips};
+  const target=join(tripsDir,slug+'.json');
+  const snapshots=new Map();
+  for(const filePath of [catalogPath,target,tripIndexPath,sitemapPath]){
+    snapshots.set(filePath,await readFile(filePath).catch(()=>null));
+  }
+  const restore=async()=>{
+    for(const [filePath,value] of snapshots){
+      if(value===null)await rm(filePath,{force:true});
+      else await writeFile(filePath,value);
+    }
+  };
   try{
-    await atomic(target,trip);await atomic(catalogPath,next);
+    await atomic(target,trip);
+    await atomic(catalogPath,next);
+    const generation=runNodeSteps(publicationGenerators);
+    if(!generation.ok){
+      const failed=generation.results.find(result=>!result.ok);
+      throw new Error((failed?.name||'Publication artifact generation')+' failed'+(failed?.output?'\\n'+failed.output:''));
+    }
     const quality=runPublishChecks();
     if(!quality.ok){
       const failed=quality.results.find(result=>!result.ok);
-      throw new Error((failed?.name||'Publish quality gate')+' failed'+(failed?.output?'\n'+failed.output:''));
+      throw new Error((failed?.name||'Publish quality gate')+' failed'+(failed?.output?'\\n'+failed.output:''));
     }
-    await atomic(paths(slug).trip,trip);await atomic(paths(slug).catalog,entry);return{published:true,validation:gate,qualityChecks:quality.results};
-  }catch(e){await writeFile(catalogPath,oldCatalog);if(had)await writeFile(target,oldTrip);else await rm(target,{force:true});throw e}
+    await atomic(paths(slug).trip,trip);
+    await atomic(paths(slug).catalog,entry);
+    return {published:true,validation:gate,publication,generation:generation.results,qualityChecks:[...generation.results,...quality.results]};
+  }catch(error){
+    await restore();
+    throw error;
+  }
 }
 function cookieDraft(req){const m=String(req.headers.cookie||'').match(/(?:^|;\s*)owr_builder_draft=([^;]+)/);return m?decodeURIComponent(m[1]):null}
 async function file(res,p){if(!existsSync(p))return false;res.writeHead(200,{'content-type':mime[extname(p)]||'application/octet-stream','cache-control':'no-store'});createReadStream(p).pipe(res);return true}
