@@ -83,7 +83,8 @@
       "coordinates": {
         "lat": 31.9539,
         "lng": 35.9106
-      }
+      },
+      "experienceRef": "JO:amman"
     },
     {
       "id": "jordan-heritage-desert-place-02",
@@ -100,7 +101,8 @@
       "coordinates": {
         "lat": 32.2747,
         "lng": 35.8961
-      }
+      },
+      "experienceRef": "JO:jerash"
     },
     {
       "id": "jordan-heritage-desert-place-03",
@@ -117,7 +119,8 @@
       "coordinates": {
         "lat": 31.559,
         "lng": 35.4732
-      }
+      },
+      "experienceRef": "JO:dead-sea"
     },
     {
       "id": "jordan-heritage-desert-place-04",
@@ -134,7 +137,8 @@
       "coordinates": {
         "lat": 30.3285,
         "lng": 35.4444
-      }
+      },
+      "experienceRef": "JO:petra"
     },
     {
       "id": "jordan-heritage-desert-place-05",
@@ -151,7 +155,8 @@
       "coordinates": {
         "lat": 29.5765,
         "lng": 35.419
-      }
+      },
+      "experienceRef": "JO:wadi-rum"
     },
     {
       "id": "jordan-heritage-desert-place-06",
@@ -168,7 +173,8 @@
       "coordinates": {
         "lat": 29.5321,
         "lng": 35.0063
-      }
+      },
+      "experienceRef": "JO:aqaba"
     }
   ],
   "stops": [
