@@ -134,18 +134,17 @@ async function syncPublishedSource(input){
   const sourceUrl=canonicalSourceUrl(input.url);
   if(!sourceUrl)throw new Error('A valid source URL is required');
   const catalog=await json(catalogPath),updates=[];
-  const patch={
-    title:String(input.title||'').trim(),issuer:String(input.issuer||'').trim(),issuerType:String(input.issuerType||'').trim(),
-    checkedAt:String(input.checkedAt||'').trim(),claims:Array.isArray(input.claims)?input.claims.map(value=>String(value).trim()).filter(Boolean):[]
-  };
-  if(!patch.title||!patch.issuer||!patch.issuerType)throw new Error('Source title, issuer and issuerType are required');
+  const patch={title:String(input.title||'').trim(),issuer:String(input.issuer||'').trim(),checkedAt:String(input.checkedAt||'').trim()};
+  const issuerType=String(input.issuerType||'').trim();
+  const claims=Array.isArray(input.claims)?input.claims.map(value=>String(value).trim()).filter(Boolean):null;
+  if(!patch.title||!patch.issuer)throw new Error('Source title and issuer are required');
   if(!/^\d{4}-\d{2}-\d{2}$/.test(patch.checkedAt))throw new Error('checkedAt must use YYYY-MM-DD');
   for(const meta of catalog.trips||[]){
     if(meta.renderer!=='regional-globe')continue;
     const target=join(publicRoot,String(meta.dataset||'').replace(/^\.\//,''));
     const trip=await json(target),matching=(trip.sources||[]).filter(source=>canonicalSourceUrl(source.url)===sourceUrl);
     if(!matching.length)continue;
-    const nextTrip={...trip,sources:(trip.sources||[]).map(source=>canonicalSourceUrl(source.url)!==sourceUrl?source:{...source,...patch,url:source.url})};
+    const nextTrip={...trip,sources:(trip.sources||[]).map(source=>canonicalSourceUrl(source.url)!==sourceUrl?source:{...source,...patch,...(issuerType?{issuerType}:{}),...(claims?{claims}:{}),url:source.url})};
     const normalized=normalizeDraftMetadata({trip:nextTrip,catalogEntry:meta}),gate=validateTripDraft({...normalized,catalog});
     if(!gate.valid)throw new Error('Source sync would invalidate '+meta.id+': '+gate.errors.join('; '));
     updates.push({tripId:meta.id,target,trip:nextTrip,sourceIds:matching.map(source=>source.id)});
