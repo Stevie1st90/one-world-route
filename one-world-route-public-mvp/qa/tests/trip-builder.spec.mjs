@@ -52,6 +52,17 @@ test('internal builder authors a draft and previews it with the regional engine'
     await expect(page.locator('[data-tab="catalog"]')).toBeVisible();
     await expect(page.locator('#skeletonBtn')).toBeVisible();
     await expect(page.locator('#evidenceBtn')).toBeVisible();
+    await expect(page.locator('#localizationBtn')).toBeVisible();
+    await page.locator('#localizationBtn').click();
+    await expect(page.locator('#localizationDialog')).toBeVisible();
+    await expect(page.locator('#localizationFields .localization-row')).toHaveCount(6);
+    const localizationBounds=await page.locator('#localizationDialog').evaluate(el=>{const r=el.getBoundingClientRect();return{top:r.top,bottom:r.bottom,left:r.left,right:r.right,width:innerWidth,height:innerHeight}});
+    expect(localizationBounds.top).toBeGreaterThanOrEqual(0);
+    expect(localizationBounds.left).toBeGreaterThanOrEqual(0);
+    expect(localizationBounds.bottom).toBeLessThanOrEqual(localizationBounds.height);
+    expect(localizationBounds.right).toBeLessThanOrEqual(localizationBounds.width);
+    await page.locator('#localizationDialog [data-close="localizationDialog"]').click();
+    await expect(page.locator('#localizationDialog')).not.toBeVisible();
     await page.locator('#evidenceBtn').click();
     await expect(page.locator('#evidenceDialog')).toBeVisible();
     await expect(page.locator('#evidenceStatus')).toHaveValue('draft');
