@@ -292,8 +292,8 @@ body.platform-home #globeLoader,body.platform-home #globeFallback{display:none!i
 .platform-mytrip-fit span,.platform-plan-context-fit span{padding:6px 8px;border-radius:999px;background:rgba(255,255,255,.04);color:#8ca0b5;font-size:8px}
 .platform-mytrip-fit span.ok,.platform-plan-context-fit span.ok{background:rgba(101,229,167,.07);color:#9de8bf}
 .platform-mytrip-fit span.check,.platform-plan-context-fit span.check{background:rgba(255,202,84,.07);color:#e2c177}
-.platform-mytrip-actions{display:flex;justify-content:flex-end}
-.platform-mytrip-actions button{min-width:140px;height:34px;border:1px solid rgba(89,221,255,.18);border-radius:9px;background:rgba(89,221,255,.06);color:#dff8ff;font-size:9px;font-weight:750;cursor:pointer}
+.platform-mytrip-actions{display:flex;justify-content:flex-end;gap:7px;flex-wrap:wrap}
+.platform-mytrip-actions button{min-width:140px;height:34px;border:1px solid rgba(89,221,255,.18);border-radius:9px;background:rgba(89,221,255,.06);color:#dff8ff;font-size:9px;font-weight:750;cursor:pointer}.platform-mytrip-actions button:disabled{opacity:.55;cursor:wait}
 .platform-mytrips-empty,.platform-mytrips-loading{display:grid;gap:6px;padding:22px;border:1px dashed rgba(255,255,255,.1);border-radius:14px;color:#7f92a7;font-size:10px}
 .platform-mytrips-empty b{color:#d6e4f0;font-size:13px}
 .platform-plan-context-fit{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:start;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.07)}
