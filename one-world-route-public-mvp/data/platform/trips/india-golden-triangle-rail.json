@@ -297,5 +297,31 @@
       "timetablePolicy": "live-operator-check",
       "crossBorder": false
     }
-  }
+  },
+  "highlights": [
+    {
+      "en": "Delhi's layered heritage",
+      "de": "Delhis vielschichtiges Erbe",
+      "it": "Il patrimonio stratificato di Delhi",
+      "es": "El patrimonio histórico de Delhi",
+      "fr": "Le patrimoine multiple de Delhi",
+      "pt": "O patrimônio histórico de Delhi"
+    },
+    {
+      "en": "Mughal Agra",
+      "de": "Das Mogul-Erbe von Agra",
+      "it": "L'eredità moghul di Agra",
+      "es": "La herencia mogol de Agra",
+      "fr": "L'héritage moghol d'Agra",
+      "pt": "A herança mogol de Agra"
+    },
+    {
+      "en": "Jaipur's forts and palaces",
+      "de": "Jaipurs Festungen und Paläste",
+      "it": "Fortezze e palazzi di Jaipur",
+      "es": "Fortalezas y palacios de Jaipur",
+      "fr": "Forts et palais de Jaipur",
+      "pt": "Fortes e palácios de Jaipur"
+    }
+  ]
 }
