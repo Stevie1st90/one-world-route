@@ -11,6 +11,10 @@
       "dataset": "./data/platform/place-experiences/AT.json"
     },
     {
+      "countryCode": "AU",
+      "dataset": "./data/platform/place-experiences/AU.json"
+    },
+    {
       "countryCode": "BE",
       "dataset": "./data/platform/place-experiences/BE.json"
     },
