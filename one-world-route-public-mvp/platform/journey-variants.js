@@ -8,13 +8,14 @@
 
   function definitions(trip){
     if(!Array.isArray(trip?.variants))return [];
-    const seen=new Set();
-    return trip.variants.filter(item=>{
+    const seen=new Set(),out=[];
+    for(const item of trip.variants){
       const id=typeof item?.id==='string'?item.id.trim():'';
-      if(!id||id==='base'||seen.has(id))return false;
+      if(!id||id==='base'||seen.has(id))continue;
       seen.add(id);
-      return true;
-    });
+      out.push({...item,id});
+    }
+    return out;
   }
 
   function list(trip){
