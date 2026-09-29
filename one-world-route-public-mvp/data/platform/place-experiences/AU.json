@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "countryCode": "AU",
+  "updatedAt": "2026-09-29",
+  "profiles": [
+    {
+      "id": "AU:bellarine-peninsula",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "food",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Bayside towns, vineyards and coastal scenery give the Bellarine Peninsula a relaxed opening to a wider Victoria road trip.",
+        "de": "Küstenorte, Weinberge und Landschaften an der Bucht machen die Bellarine Peninsula zu einem entspannten Auftakt für eine Victoria-Rundreise.",
+        "it": "Località sul mare, vigneti e paesaggi costieri fanno della Bellarine Peninsula un inizio rilassato per un viaggio più ampio nel Victoria.",
+        "es": "Pueblos costeros, viñedos y paisajes de bahía hacen de la península de Bellarine un inicio relajado para recorrer Victoria.",
+        "fr": "Villages côtiers, vignobles et paysages de baie font de la péninsule de Bellarine une entrée en matière détendue pour parcourir le Victoria.",
+        "pt": "Cidades costeiras, vinhedos e paisagens da baía fazem da Península de Bellarine uma abertura tranquila para uma viagem por Victoria."
+      }
+    },
+    {
+      "id": "AU:lorne",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "nature",
+        "food"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "A compact seaside town backed by forest, Lorne combines Great Ocean Road views with easy access to beaches and waterfalls.",
+        "de": "Lorne ist ein kompakter Küstenort vor bewaldetem Hinterland und verbindet Ausblicke der Great Ocean Road mit Stränden und Wasserfällen.",
+        "it": "Compatta cittadina sul mare ai margini della foresta, Lorne unisce panorami della Great Ocean Road, spiagge e cascate.",
+        "es": "Lorne es una compacta localidad costera junto al bosque que combina vistas de la Great Ocean Road con playas y cascadas.",
+        "fr": "Petite ville côtière adossée à la forêt, Lorne associe panoramas de la Great Ocean Road, plages et cascades.",
+        "pt": "Uma pequena cidade costeira cercada por floresta, Lorne combina vistas da Great Ocean Road com praias e cachoeiras."
+      }
+    },
+    {
+      "id": "AU:cape-otway",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "coast",
+        "wildlife"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Rainforest, rugged coastline and wildlife meet around Cape Otway, where the Great Ocean Road transitions through the Otways.",
+        "de": "Regenwald, raue Küste und Tierwelt treffen rund um Cape Otway aufeinander, wo die Great Ocean Road durch die Otways führt.",
+        "it": "Foresta pluviale, costa selvaggia e fauna si incontrano intorno a Cape Otway, lungo il passaggio della Great Ocean Road attraverso gli Otways.",
+        "es": "Selva templada, costa escarpada y fauna se encuentran en Cape Otway, donde la Great Ocean Road atraviesa los Otways.",
+        "fr": "Forêt pluviale, côte sauvage et faune se rencontrent autour de Cape Otway, sur le passage de la Great Ocean Road à travers les Otways.",
+        "pt": "Floresta úmida, costa selvagem e vida animal se encontram em Cape Otway, onde a Great Ocean Road atravessa os Otways."
+      }
+    },
+    {
+      "id": "AU:port-fairy",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "coast",
+        "history",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Historic streets, a working harbour and Southern Ocean scenery give Port Fairy a distinctive small-town coastal character.",
+        "de": "Historische Straßen, ein aktiver Hafen und die Landschaft des Southern Ocean geben Port Fairy seinen besonderen Küstenort-Charakter.",
+        "it": "Strade storiche, un porto attivo e il paesaggio dell'Oceano Australe danno a Port Fairy un carattere costiero ben definito.",
+        "es": "Calles históricas, un puerto activo y el paisaje del océano Austral dan a Port Fairy un carácter costero muy definido.",
+        "fr": "Rues historiques, port actif et paysages de l'océan Austral donnent à Port Fairy un caractère côtier bien marqué.",
+        "pt": "Ruas históricas, um porto ativo e a paisagem do Oceano Antártico dão a Port Fairy um caráter costeiro marcante."
+      }
+    },
+    {
+      "id": "AU:halls-gap-gariwerd",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "nature",
+        "hiking",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Halls Gap is a practical gateway into Gariwerd, combining mountain scenery, walking access and deep Aboriginal cultural significance.",
+        "de": "Halls Gap ist ein praktisches Tor nach Gariwerd und verbindet Berglandschaften, Wanderzugänge und große Bedeutung für die Kultur der Aboriginal Peoples.",
+        "it": "Halls Gap è una porta pratica verso Gariwerd, tra paesaggi montani, sentieri e un profondo significato culturale aborigeno.",
+        "es": "Halls Gap es una puerta práctica a Gariwerd, con paisajes montañosos, senderos y una profunda importancia cultural aborigen.",
+        "fr": "Halls Gap constitue une porte d'entrée pratique vers Gariwerd, entre paysages montagneux, randonnées et forte importance culturelle aborigène.",
+        "pt": "Halls Gap é uma porta prática para Gariwerd, combinando paisagens montanhosas, trilhas e profunda importância cultural aborígene."
+      }
+    },
+    {
+      "id": "AU:ballarat",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "history",
+        "culture",
+        "cities"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Gold-rush heritage, grand civic architecture and a strong regional arts identity shape Ballarat's inland Victoria character.",
+        "de": "Goldrausch-Erbe, repräsentative Architektur und eine starke regionale Kulturszene prägen Ballarats Charakter im Landesinneren Victorias.",
+        "it": "Eredità della corsa all'oro, architettura civica monumentale e forte identità artistica regionale definiscono Ballarat.",
+        "es": "El legado de la fiebre del oro, la arquitectura cívica monumental y una fuerte identidad artística regional definen Ballarat.",
+        "fr": "Héritage de la ruée vers l'or, architecture civique monumentale et forte identité artistique régionale caractérisent Ballarat.",
+        "pt": "Herança da corrida do ouro, arquitetura cívica marcante e uma forte identidade artística regional definem Ballarat."
+      }
+    },
+    {
+      "id": "AU:daylesford",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "wellness",
+        "food",
+        "nature"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Mineral springs, lakeside scenery and a strong food-and-wellness culture make Daylesford a slower-paced final regional stop.",
+        "de": "Mineralquellen, Landschaft am See und eine ausgeprägte Genuss- und Wellnesskultur machen Daylesford zu einem ruhigeren letzten Regionalstopp.",
+        "it": "Sorgenti minerali, paesaggi lacustri e una forte cultura gastronomica e del benessere rendono Daylesford una tappa regionale più lenta.",
+        "es": "Manantiales minerales, paisajes junto al lago y una marcada cultura gastronómica y de bienestar hacen de Daylesford una parada más pausada.",
+        "fr": "Sources minérales, paysages lacustres et forte culture gastronomique et bien-être font de Daylesford une étape régionale plus paisible.",
+        "pt": "Fontes minerais, paisagens à beira do lago e uma forte cultura de gastronomia e bem-estar fazem de Daylesford uma parada mais tranquila."
+      }
+    },
+    {
+      "id": "AU:melbourne",
+      "contentType": "editorial-evergreen",
+      "tags": [
+        "cities",
+        "food",
+        "culture"
+      ],
+      "reviewedAt": "2026-09-29",
+      "reviewDays": 365,
+      "essence": {
+        "en": "Laneways, food, arts and a dense inner-city fabric make Melbourne a strong urban finale after regional Victoria.",
+        "de": "Gassen, Gastronomie, Kunst und ein dichtes Stadtgefüge machen Melbourne zu einem starken urbanen Abschluss nach dem regionalen Victoria.",
+        "it": "Vicoletti, gastronomia, arte e un tessuto urbano denso rendono Melbourne un forte finale cittadino dopo il Victoria regionale.",
+        "es": "Callejones, gastronomía, arte y un tejido urbano denso hacen de Melbourne un sólido final urbano tras recorrer Victoria.",
+        "fr": "Ruelles, gastronomie, arts et tissu urbain dense font de Melbourne une forte conclusion citadine après le Victoria régional.",
+        "pt": "Becos, gastronomia, arte e uma malha urbana densa fazem de Melbourne um forte final urbano depois do interior de Victoria."
+      }
+    }
+  ]
+}
