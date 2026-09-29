@@ -132,6 +132,16 @@ test('derives countries, route modes and duration metadata from authored route d
   assert.equal(normalized.catalogEntry.metrics.countries,2);
 });
 
+test('restores archetype capabilities while preserving explicit extras',()=>{
+  const ctx=valid();
+  ctx.catalogEntry.capabilities=['globe','entry-guidance'];
+  const normalized=normalizeDraftMetadata(ctx);
+  for(const capability of journeyArchetype('rail').capabilities){
+    assert.ok(normalized.catalogEntry.capabilities.includes(capability),capability);
+  }
+  assert.ok(normalized.catalogEntry.capabilities.includes('entry-guidance'));
+});
+
 test('publication readiness requires a deliberate supported public status',()=>{
   const ctx=valid();
   ctx.trip.status='draft';
