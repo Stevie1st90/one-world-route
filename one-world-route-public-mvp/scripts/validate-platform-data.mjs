@@ -203,6 +203,11 @@ for(const collection of collections.collections||[]){
   if(!collection.filters||typeof collection.filters!=='object') fail('collection '+collection.id+': filters required');
   if(collection.filters.duration&&!['7-14','15-30','31-89','90-plus'].includes(collection.filters.duration)) fail('collection '+collection.id+': invalid duration filter');
   if(collection.filters.themeAny&&!Array.isArray(collection.filters.themeAny)) fail('collection '+collection.id+': themeAny must be an array');
+  if(collection.filters.modeAny&&!Array.isArray(collection.filters.modeAny)) fail('collection '+collection.id+': modeAny must be an array');
+  if(collection.filters.kind&&typeof collection.filters.kind!=='string') fail('collection '+collection.id+': kind must be a string');
+  if(collection.filters.pace&&typeof collection.filters.pace!=='string') fail('collection '+collection.id+': pace must be a string');
+  if(collection.filters.party&&typeof collection.filters.party!=='string') fail('collection '+collection.id+': party must be a string');
+  if(collection.filters.accessibility&&typeof collection.filters.accessibility!=='string') fail('collection '+collection.id+': accessibility must be a string');
   for(const lang of supportedLocales){
     if(!String(collection.title?.[lang]||'').trim()) fail('collection '+collection.id+': missing title for '+lang);
     if(!String(collection.description?.[lang]||'').trim()) fail('collection '+collection.id+': missing description for '+lang);

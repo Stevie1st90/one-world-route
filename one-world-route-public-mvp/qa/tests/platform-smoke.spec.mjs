@@ -568,3 +568,13 @@ test('@regional journey variant deep link derives a smaller route from the sourc
   expect(new URL(page.url()).searchParams.get('variant')).toBe('southern-italy-highlights');
   expect(errors,'journey variant runtime page errors').toEqual([]);
 });
+
+test('@discovery curated collection deep link supports combined metadata filters',async({page})=>{
+  await page.goto('/?collection=active-nature&lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:15000});
+  await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(3);
+  for(const title of ['Patagonia Road Trip','Iceland Ring Road','Utah National Parks Road Trip']){
+    await expect(page.locator('#platformHomeResults .platform-home-card').filter({hasText:title})).toHaveCount(1);
+  }
+});
+
