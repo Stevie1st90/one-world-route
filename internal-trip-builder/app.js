@@ -132,7 +132,7 @@ async function openEvidence(){
    const local=(state.trip.sources||[]).map(source=>({...source,reuseCount:1,journeys:[state.trip.id],aliases:[source.id],local:true}));
    const seen=new Set(),combined=[...local,...state.sourceLibrary].filter(source=>{const key=source.url||source.id;if(!key||seen.has(key))return false;seen.add(key);return true});
    $('#evidenceLibrary').innerHTML='<option value="">New source…</option>'+combined.map((source,index)=>'<option value="'+index+'">'+esc(source.issuer||source.title||source.id)+' · '+esc(source.title||source.url)+(source.reuseCount>1?' · '+source.reuseCount+' journeys':'')+(source.local?' · current draft':'')+'</option>').join('');
-   $('#evidenceLibrary').onchange=event=>{const index=Number(event.target.value);if(Number.isInteger(index)&&combined[index])applyLibrarySource(combined[index])};
+   $('#evidenceLibrary').onchange=event=>{if(event.target.value==='')return;const index=Number(event.target.value);if(Number.isInteger(index)&&combined[index])applyLibrarySource(combined[index])};
  }catch(error){
    $('#evidenceLibrary').innerHTML='<option value="">Source library unavailable · create new</option>';
  }
