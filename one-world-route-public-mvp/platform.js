@@ -13,6 +13,7 @@
   const Discovery=PLATFORM_MODULES.discovery;
   const TripTools=PLATFORM_MODULES.tripTools;
   const JourneyAdapter=PLATFORM_MODULES.journeyAdapter;
+  const JourneyVariants=PLATFORM_MODULES.journeyVariants;
   const SharedKnowledge=PLATFORM_MODULES.sharedKnowledge;
   const TravellerFit=PLATFORM_MODULES.travellerFit;
   const TripCompare=PLATFORM_MODULES.tripCompare;
@@ -34,7 +35,7 @@
   const Ui=PLATFORM_MODULES.ui;
   const Navigation=PLATFORM_MODULES.navigation;
   const LegacyLocalization=PLATFORM_MODULES.legacyLocalization;
-  if(!LocaleData||!Formatters||!Model||!Traveller||!TravellerUi||!Discovery||!TripTools||!JourneyAdapter||!SharedKnowledge||!TravellerFit||!TripCompare||!JourneyGuide||!PlaceExperiences||!MyTrips||!TripPlanning||!Extensions||!Home||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!RegionalSelection||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
+  if(!LocaleData||!Formatters||!Model||!Traveller||!TravellerUi||!Discovery||!TripTools||!JourneyAdapter||!JourneyVariants||!SharedKnowledge||!TravellerFit||!TripCompare||!JourneyGuide||!PlaceExperiences||!MyTrips||!TripPlanning||!Extensions||!Home||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!RegionalSelection||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
   const HOME_REQUEST=location.pathname==='/'&&!new URLSearchParams(location.search).has('trip');
   if(HOME_REQUEST){
     window.ONE_WORLD_ROUTE_OWNERSHIP='home';
@@ -188,7 +189,8 @@
       locale,
       search:location.search,
       pathname:location.pathname,
-      terrainActive:document.body.classList.contains('terrain-view')
+      terrainActive:document.body.classList.contains('terrain-view'),
+      variantId:currentTrip?._variant?.id||null
     }));
   }
 
@@ -294,7 +296,7 @@
       travellerFit:TravellerFit,
       storage:localStorage,
       toast:Ui.toast,
-      onRouteVariantChange:()=>activateRegionalTrip(currentTripMeta).catch(error=>console.warn('Regional route variant refresh failed',error)),
+      onRouteVariantChange:change=>activateRegionalTrip(currentTripMeta,change||{}).catch(error=>console.warn('Regional route variant refresh failed',error)),
       extensions:Extensions,
       stopMap,
       placeMap
@@ -371,17 +373,21 @@
     });
   }
 
-  async function activateRegionalTrip(meta){
+  async function activateRegionalTrip(meta,change={}){
     currentTripMeta=meta;
     const [baseTrip,countryCentroids]=await Promise.all([
       fetch(meta.dataset,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Trip dataset '+r.status);return r.json()}),
       loadCountryCentroids()
     ]);
     const profile=loadProfile();
+    const urlVariant=new URLSearchParams(location.search).get('variant');
+    const requestedVariant=String(change?.variantId||urlVariant||TripTools.getVariant(localStorage,meta.id)||'base');
+    if(urlVariant&&!change?.variantId)TripTools.setVariant(localStorage,meta.id,urlVariant);
+    const variantTrip=JourneyVariants.apply(baseTrip,requestedVariant);
     const storedStart=TripTools.getRouteStart(localStorage,meta.id);
-    const entrySuggestion=JourneyAdapter.recommendEntry(baseTrip,profile,countryCentroids);
+    const entrySuggestion=JourneyAdapter.recommendEntry(variantTrip,profile,countryCentroids);
     const suggestedStart=!storedStart&&entrySuggestion?.available?entrySuggestion.stopId:'';
-    currentTrip=JourneyAdapter.apply(baseTrip,{
+    currentTrip=JourneyAdapter.apply(variantTrip,{
       startStopId:storedStart||suggestedStart,
       startSource:storedStart?'saved':(suggestedStart?'suggested':'default'),
       entrySuggestion
