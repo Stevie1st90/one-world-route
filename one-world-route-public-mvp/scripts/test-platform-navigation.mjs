@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 
-const moduleFiles=['runtime.js','map-style.js','i18n.js','formatters.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','journey-adapter.js','shared-knowledge.js','trip-tools.js','traveller-fit.js','trip-compare.js','journey-guide.js','place-experiences.js','trip-planning.js','my-trips.js','home.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','regional-selection.js','story.js','terrain.js','extensions.js','extensions/cruise.js','extensions/road.js','extensions/border.js'];
+const moduleFiles=['runtime.js','map-style.js','i18n.js','formatters.js','legacy-localization.js','model.js','traveller.js','traveller-ui.js','ui.js','navigation.js','discovery.js','journey-adapter.js','journey-variants.js','shared-knowledge.js','trip-tools.js','traveller-fit.js','trip-compare.js','journey-guide.js','place-experiences.js','trip-planning.js','my-trips.js','home.js','route-library.js','regional-shell.js','regional-detail.js','regional-globe.js','regional-timeline.js','regional-controls.js','regional-selection.js','story.js','terrain.js','extensions.js','extensions/cruise.js','extensions/road.js','extensions/border.js'];
 const moduleSources=Object.fromEntries(await Promise.all(moduleFiles.map(async name=>[name,await readFile(new URL('../platform/'+name,import.meta.url),'utf8')])));
 const modularSource=moduleFiles.map(name=>moduleSources[name]).join('\n');
 const source=await readFile(new URL('../platform.js',import.meta.url),'utf8');
@@ -41,7 +41,7 @@ test('trip URL builder preserves language and clears route-specific state',()=>{
   assert.equal(parsed.pathname,'/');
   assert.equal(parsed.searchParams.get('trip'),'southern-europe-road-trip');
   assert.equal(parsed.searchParams.get('lang'),'de');
-  for(const key of ['segment','country','phase','view'])assert.equal(parsed.searchParams.has(key),false);
+  for(const key of ['segment','country','phase','view','variant'])assert.equal(parsed.searchParams.has(key),false);
 });
 
 test('navigation module owns reusable regional URL state',()=>{
@@ -63,9 +63,10 @@ test('navigation module owns reusable regional URL state',()=>{
       tripId:'italy-grand-tour',
       locale:'de',
       search:'?view=terrain&country=Italy',
-      pathname:'/de/trip/italy-grand-tour'
+      pathname:'/de/trip/italy-grand-tour',
+      variantId:'northern-italy-tuscany'
     }),
-    '/de/trip/italy-grand-tour?trip=italy-grand-tour&lang=de&view=terrain'
+    '/de/trip/italy-grand-tour?trip=italy-grand-tour&lang=de&view=terrain&variant=northern-italy-tuscany'
   );
 });
 
