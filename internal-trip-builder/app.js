@@ -1,5 +1,5 @@
 const $=s=>document.querySelector(s),$$=s=>Array.from(document.querySelectorAll(s));
-let state={catalog:null,drafts:[],archetypes:[],sourceLibrary:[],slug:null,trip:null,catalogEntry:null,tab:'places'};
+let state={catalog:null,drafts:[],archetypes:[],sourceLibrary:[],maintenanceItems:[],slug:null,trip:null,catalogEntry:null,tab:'places'};
 const api=async(path,opt={})=>{const r=await fetch('/__builder/api/'+path,{headers:{'content-type':'application/json'},...opt}),j=await r.json();if(!r.ok||j.ok===false)throw new Error(j.error||'Request failed');return j};
 const csv=v=>String(v||'').split(',').map(x=>x.trim()).filter(Boolean),join=v=>(v||[]).join(', '),clone=v=>JSON.parse(JSON.stringify(v));
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -67,19 +67,33 @@ function renderMaintenance(queue){
   ['Overdue',s.overdue??0],
   ['Due soon',s.dueSoon??0]
  ].map(([label,value])=>'<div><b>'+esc(value)+'</b><span>'+esc(label)+'</span></div>').join('');
- const items=queue.items||[];
- $('#maintenanceQueue').innerHTML=items.length?items.slice(0,80).map(item=>{
-   const title=esc(item.title||item.profileId||item.id),state=esc(item.state||'unknown'),when=esc(item.nextReviewAt||item.validUntil||'—');
+ const items=(queue.items||[]).slice(0,80);state.maintenanceItems=items;
+ $('#maintenanceQueue').innerHTML=items.length?items.map((item,index)=>{
+   const title=esc(item.title||item.profileId||item.id),itemState=esc(item.state||'unknown'),when=esc(item.nextReviewAt||item.validUntil||'—');
    const reuse=item.reuseCount>1?' · '+esc(item.reuseCount)+' dependents':'';
    const detail=item.type==='external-source'?(esc(item.issuer||'external source')+reuse):(esc(item.countryCode||'place experience'));
-   return '<article class="maintenance-item state-'+state+'"><div><span>'+state+'</span><b>'+title+'</b><small>'+detail+'</small></div><div><strong>'+when+'</strong><small>'+esc(item.priorityReason||'')+'</small></div></article>';
+   const journeyDependents=(item.dependents||[]).filter(dep=>dep.kind==='journey').length;
+   const action=item.type==='external-source'&&journeyDependents?'<button type="button" data-source-sync="'+index+'">Update '+journeyDependents+' journey'+(journeyDependents===1?'':'s')+'</button>':'';
+   return '<article class="maintenance-item state-'+itemState+'"><div><span>'+itemState+'</span><b>'+title+'</b><small>'+detail+'</small></div><div><strong>'+when+'</strong><small>'+esc(item.priorityReason||'')+'</small>'+action+'</div></article>';
  }).join(''):'<div class="coverage-empty">No maintenance items found.</div>';
+ $('[data-source-sync]').forEach(button=>button.onclick=()=>openSourceSync(state.maintenanceItems[Number(button.dataset.sourceSync)]));
 }
 async function openMaintenance(){
  const dialog=$('#maintenanceDialog');dialog.showModal();
  $('#maintenanceSummary').innerHTML='<div class="coverage-loading">Building maintenance queue…</div>';$('#maintenanceQueue').innerHTML='';
  try{const r=await api('maintenance-queue');renderMaintenance(r.queue)}
  catch(error){$('#maintenanceSummary').innerHTML='<div class="coverage-error">'+esc(error.message)+'</div>'}
+}
+
+function openSourceSync(item){
+ if(!item?.url)return;
+ const form=$('#sourceSyncForm');form.reset();
+ form.elements.url.value=item.url||'';
+ form.elements.title.value=item.title||'';
+ form.elements.issuer.value=item.issuer||'';
+ form.elements.checkedAt.value=item.checkedAt||'';
+ $('#sourceSyncImpact').textContent='This source is reused by '+(item.dependents||[]).filter(dep=>dep.kind==='journey').length+' published journey(s).';
+ $('#sourceSyncDialog').showModal();
 }
 
 function renderLocalizationWorkspace(){
@@ -146,6 +160,7 @@ $('#cloneForm').onsubmit=async e=>{e.preventDefault();try{const slug=new FormDat
 $('#skeletonForm').onsubmit=async e=>{e.preventDefault();if(!state.slug)return;const hasGraph=(state.trip?.places||[]).length||(state.trip?.stops||[]).length||(state.trip?.segments||[]).length;if(hasGraph&&!confirm('Replace the current Places, Stops and Segments with this route skeleton? Existing sources are kept.'))return;try{await save();const form=new FormData(e.currentTarget),r=await api('draft/'+state.slug+'/skeleton',{method:'POST',body:JSON.stringify({text:form.get('text'),mode:form.get('mode')})});state.trip=r.trip;state.catalogEntry=r.catalogEntry;state.tab='places';$('#skeletonDialog').close();bind();gate(r);await loadState()}catch(x){alert(x.message)}};
 $('#localizationForm').onsubmit=e=>{e.preventDefault();if(!state.trip)return;const form=new FormData(e.currentTarget),locales=state.catalog?.supportedLocales||['en'];state.trip.title=state.trip.title||{};state.trip.summary=state.trip.summary||{};state.catalogEntry.subtitle=state.catalogEntry.subtitle||{};for(const locale of locales){state.trip.title[locale]=String(form.get('title-'+locale)||'').trim();state.trip.summary[locale]=String(form.get('summary-'+locale)||'').trim();state.catalogEntry.subtitle[locale]=String(form.get('subtitle-'+locale)||'').trim()}state.catalogEntry.title=clone(state.trip.title);state.tab='localization';$('#localizationDialog').close();bind();$('#gate').className='gate';$('#gate').textContent='Localization changed. Validate again before publishing.';};
 $('#evidenceForm').onsubmit=async e=>{e.preventDefault();if(!state.slug)return;try{await save();const form=new FormData(e.currentTarget),claims=String(form.get('claims')||'').split(/\r?\n/).map(value=>value.trim()).filter(Boolean),source={id:form.get('id'),title:form.get('title'),issuer:form.get('issuer'),issuerType:form.get('issuerType'),url:form.get('url'),checkedAt:form.get('checkedAt'),claims},r=await api('draft/'+state.slug+'/evidence',{method:'POST',body:JSON.stringify({source,segments:form.get('segments'),status:form.get('status'),notes:form.get('notes')})});state.trip=r.trip;state.catalogEntry=r.catalogEntry;state.tab='sources';$('#evidenceDialog').close();bind();gate(r);await loadState()}catch(x){alert(x.message)}};
+$('#sourceSyncForm').onsubmit=async e=>{e.preventDefault();try{const form=new FormData(e.currentTarget),claims=String(form.get('claims')||'').split(/\r?\n/).map(value=>value.trim()).filter(Boolean),payload={url:form.get('url'),title:form.get('title'),issuer:form.get('issuer'),issuerType:form.get('issuerType'),checkedAt:form.get('checkedAt'),...(claims.length?{claims}:{})},r=await api('maintenance/source-sync',{method:'POST',body:JSON.stringify(payload)});$('#sourceSyncDialog').close();alert('Updated '+r.updatedJourneys.length+' published journey(s) and regenerated the trip index.');await openMaintenance()}catch(x){alert(x.message)}};
 $$('[data-tab]').forEach(b=>b.onclick=()=>{try{syncSection();showTab(b.dataset.tab)}catch(x){alert(x.message)}});$('#formatBtn').onclick=()=>{try{$('#jsonEditor').value=JSON.stringify(readSection(),null,2)}catch(x){alert(x.message)}};$('#applyBtn').onclick=()=>{try{syncSection()}catch(x){alert(x.message)}};
 $('#saveBtn').onclick=async()=>{try{await save()}catch(x){alert(x.message)}};$('#validateBtn').onclick=async()=>{try{await save();gate(await api('draft/'+state.slug+'/validate',{method:'POST'}))}catch(x){alert(x.message)}};
 $('#previewBtn').onclick=async()=>{const preview=window.open('about:blank','owr-preview');try{await save();if(!preview)throw new Error('Preview window was blocked by the browser');preview.location='/?trip='+encodeURIComponent(state.slug)+'&lang=en&__draft='+encodeURIComponent(state.slug)}catch(x){preview?.close();alert(x.message)}};
