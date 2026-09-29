@@ -50,6 +50,18 @@ test('internal builder authors a draft and previews it with the regional engine'
     await expect(page.locator('[data-tab="localization"]')).toBeVisible();
     await expect(page.locator('[data-tab="trip"]')).toBeVisible();
     await expect(page.locator('[data-tab="catalog"]')).toBeVisible();
+    await expect(page.locator('#skeletonBtn')).toBeVisible();
+    await expect(page.locator('#evidenceBtn')).toBeVisible();
+    await page.locator('#evidenceBtn').click();
+    await expect(page.locator('#evidenceDialog')).toBeVisible();
+    await expect(page.locator('#evidenceStatus')).toHaveValue('draft');
+    const evidenceBounds=await page.locator('#evidenceDialog').evaluate(el=>{const r=el.getBoundingClientRect();return{top:r.top,bottom:r.bottom,left:r.left,right:r.right,width:innerWidth,height:innerHeight}});
+    expect(evidenceBounds.top).toBeGreaterThanOrEqual(0);
+    expect(evidenceBounds.left).toBeGreaterThanOrEqual(0);
+    expect(evidenceBounds.bottom).toBeLessThanOrEqual(evidenceBounds.height);
+    expect(evidenceBounds.right).toBeLessThanOrEqual(evidenceBounds.width);
+    await page.locator('#evidenceDialog [data-close="evidenceDialog"]').click();
+    await expect(page.locator('#evidenceDialog')).not.toBeVisible();
     await page.locator('[data-tab="localization"]').click();
     await expect(page.locator('#jsonEditor')).toHaveValue(/"subtitle"/);
     await page.screenshot({path:testInfo.outputPath('trip-builder-'+testInfo.project.name+'.png'),fullPage:true,animations:'disabled'});

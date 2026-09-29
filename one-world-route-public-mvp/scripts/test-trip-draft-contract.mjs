@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {buildRouteSkeleton,computeTripMetrics,normalizeCatalogEntry,normalizeDraftMetadata,parseRouteSkeletonText,validatePublicationReadiness,validateTripDraft,journeyArchetype,journeyArchetypes,scaffoldTripDraft} from './trip-draft-contract.mjs';
+import {attachEvidenceSource,buildRouteSkeleton,computeTripMetrics,normalizeCatalogEntry,normalizeDraftMetadata,parseRouteSkeletonText,parseSegmentSelection,validatePublicationReadiness,validateTripDraft,journeyArchetype,journeyArchetypes,scaffoldTripDraft} from './trip-draft-contract.mjs';
 
 const catalog={supportedLocales:['en','de']};
 function valid(){
@@ -138,6 +138,26 @@ test('builds a deterministic draft route skeleton from compact stop rows',()=>{
 test('route skeleton rejects malformed rows before mutating a draft',()=>{
   assert.throws(()=>parseRouteSkeletonText('Berlin | DE | 52.5 | 13.4 | 2'),/at least two stops/);
   assert.throws(()=>parseRouteSkeletonText('Berlin | DE | 52.5 | 13.4 | 2\nParis | FRA | 48.8 | 2.3 | 2'),/ISO alpha-2/);
+});
+
+test('attaches an explicit evidence source only to selected segments',()=>{
+  const ctx=valid();
+  ctx.trip.stops.push({id:'s3',sequence:3,placeId:'a'});
+  ctx.trip.segments.push({id:'seg2',sequence:2,fromStopId:'s2',toStopId:'s3',transport:{mode:'rail',stages:[]},verification:{status:'draft',sourceIds:[]}});
+  assert.deepEqual(parseSegmentSelection('1-2,2',2),[1,2]);
+  const result=attachEvidenceSource({...ctx,segments:'2',status:'current-check-required',notes:'Check timetable before travel',source:{id:'operator-update',title:'Operator timetable',issuer:'Example Rail',issuerType:'official-operator',url:'https://example.com/timetable',checkedAt:'2026-09-29',claims:['Published timetable']}});
+  assert.equal(result.trip.sources.some(source=>source.id==='operator-update'),true);
+  assert.deepEqual(result.trip.segments[0].verification.sourceIds,['src']);
+  assert.deepEqual(result.trip.segments[1].verification.sourceIds,['operator-update']);
+  assert.equal(result.trip.segments[1].verification.status,'current-check-required');
+  assert.equal(result.trip.segments[1].verification.lastVerified,'2026-09-29');
+  assert.equal(result.trip.segments[1].verification.notes,'Check timetable before travel');
+});
+
+test('evidence helper rejects unsafe source reuse and invalid segment ranges',()=>{
+  const ctx=valid();
+  assert.throws(()=>parseSegmentSelection('3',2),/out of range/);
+  assert.throws(()=>attachEvidenceSource({...ctx,segments:'1',source:{id:'src',title:'Other',issuer:'Other',issuerType:'official-operator',url:'https://other.example.com',checkedAt:'2026-09-29'}}),/another URL/);
 });
 
 test('derives countries, route modes and duration metadata from authored route data',()=>{
