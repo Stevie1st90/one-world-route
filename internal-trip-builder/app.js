@@ -76,7 +76,7 @@ function renderMaintenance(queue){
    const action=item.type==='external-source'&&journeyDependents?'<button type="button" data-source-sync="'+index+'">Update '+journeyDependents+' journey'+(journeyDependents===1?'':'s')+'</button>':'';
    return '<article class="maintenance-item state-'+itemState+'"><div><span>'+itemState+'</span><b>'+title+'</b><small>'+detail+'</small></div><div><strong>'+when+'</strong><small>'+esc(item.priorityReason||'')+'</small>'+action+'</div></article>';
  }).join(''):'<div class="coverage-empty">No maintenance items found.</div>';
- $('[data-source-sync]').forEach(button=>button.onclick=()=>openSourceSync(state.maintenanceItems[Number(button.dataset.sourceSync)]));
+ $$('[data-source-sync]').forEach(button=>button.onclick=()=>openSourceSync(state.maintenanceItems[Number(button.dataset.sourceSync)]));
 }
 async function openMaintenance(){
  const dialog=$('#maintenanceDialog');dialog.showModal();
