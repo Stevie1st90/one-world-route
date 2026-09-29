@@ -44,7 +44,7 @@ The server binds only to \`127.0.0.1\`. It is intentionally outside the Vercel R
 - Catalog metrics are recomputed from the trip graph.
 - Route skeleton generates only draft segments and never invents sources or verification.
 - Evidence source requires an explicit source, affected segment selection and verification status; it never auto-verifies a route.
-- New drafts start globally neutral; regions are not silently defaulted to Europe.
+- New drafts start globally neutral; once route countries exist, primary/subregional discovery regions are derived from the existing country metadata. Explicit curated regions remain untouched.
 - Archetypes provide generic route-policy, maintenance cadence, capabilities, discovery mode and visual-theme defaults without trip-specific runtime code.
 - Publication runs the non-mutating platform quality suite, including draft contracts and maintenance queue tests, before public files are kept.
 - A failed quality check rolls the catalog/trip publication back transactionally.
