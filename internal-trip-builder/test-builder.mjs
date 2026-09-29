@@ -38,7 +38,7 @@ try{
     id:'seg1',sequence:1,fromStopId:'s1',toStopId:'s2',transport:{mode:'rail',stages:[{mode:'rail',sourceIds:['src']}]},
     verification:{status:'verified',sourceIds:['src'],lastVerified:'2026-09-22'}
   }],chapters:[],sources:[{id:'src',title:'CI Operator',issuer:'CI Operator',issuerType:'official-operator',url:'https://example.com/rail',checkedAt:'2026-09-22'}],extensions:{rail:{scope:'rail-only',sourcePolicy:'official-operator',crossBorder:true}}};
-  const catalogEntry={id:slug,slug,kind:'rail',status:'draft',renderer:'regional-globe',dataset:'./data/platform/trips/'+slug+'.json',title,subtitle,capabilities:['globe','story','terrain','source-evidence'],discovery:{regions:['europe'],themes:['rail'],modes:['rail'],durationBand:'7-14',fit:{pace:'balanced',seasons:['multi-season'],party:['solo'],startRegion:'europe',accessibility:'standard-check'}}};
+  const catalogEntry={id:slug,slug,kind:'rail',status:'draft',renderer:'regional-globe',dataset:'./data/platform/trips/'+slug+'.json',title,subtitle,capabilities:['globe','story','terrain','source-evidence','trip-planning'],discovery:{regions:['europe'],themes:['rail'],modes:['rail'],durationBand:'7-14',fit:{pace:'balanced',seasons:['multi-season'],party:['solo'],startRegion:'europe',accessibility:'standard-check'}}};
   const saved=await request('/__builder/api/draft/'+slug,{method:'PUT',body:JSON.stringify({trip,catalogEntry})});assert.equal(saved.valid,true,saved.errors?.join('\n'));
   const validated=await request('/__builder/api/draft/'+slug+'/validate',{method:'POST'});assert.equal(validated.valid,true);
   const page=await fetch(base+'/?trip='+slug+'&__draft='+slug,{redirect:'manual'});const cookie=page.headers.get('set-cookie');assert.match(cookie,/owr_builder_draft=/);
