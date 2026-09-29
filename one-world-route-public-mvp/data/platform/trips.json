@@ -1474,6 +1474,87 @@
           "accessibility": "standard-check"
         }
       }
+    },
+    {
+      "id": "utah-national-parks-road-trip",
+      "slug": "utah-national-parks-road-trip",
+      "kind": "road-trip",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/utah-national-parks-road-trip.json",
+      "title": {
+        "en": "Utah National Parks Road Trip",
+        "de": "Utahs Nationalparks · Roadtrip",
+        "it": "Road trip nei parchi nazionali dello Utah",
+        "es": "Road trip por los parques nacionales de Utah",
+        "fr": "Road trip dans les parcs nationaux de l'Utah",
+        "pt": "Road trip pelos parques nacionais de Utah"
+      },
+      "subtitle": {
+        "en": "10 days · Zion, Bryce, Capitol Reef, Arches and Canyonlands",
+        "de": "10 Tage · Zion, Bryce, Capitol Reef, Arches und Canyonlands",
+        "it": "10 giorni · Zion, Bryce, Capitol Reef, Arches e Canyonlands",
+        "es": "10 días · Zion, Bryce, Capitol Reef, Arches y Canyonlands",
+        "fr": "10 jours · Zion, Bryce, Capitol Reef, Arches et Canyonlands",
+        "pt": "10 dias · Zion, Bryce, Capitol Reef, Arches e Canyonlands"
+      },
+      "metrics": {
+        "days": 10,
+        "countries": 1,
+        "stops": 5,
+        "segments": 4,
+        "sourcedSegments": 4,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "source-evidence",
+        "trip-planning",
+        "story",
+        "terrain",
+        "vehicle-context",
+        "road-rules"
+      ],
+      "visual": {
+        "theme": "desert",
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "north-america",
+          "united-states",
+          "utah"
+        ],
+        "themes": [
+          "road-trip",
+          "nature",
+          "national-parks",
+          "desert"
+        ],
+        "modes": [
+          "car"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "active",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "north-america",
+          "accessibility": "vehicle-dependent"
+        }
+      }
     }
   ]
 }
