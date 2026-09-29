@@ -43,7 +43,7 @@
     "priceModel": "live-source-check-required"
   },
   "maintenance": {
-    "tier": "stable-editorial",
+    "tier": "evergreen",
     "sourceReviewDays": 180,
     "sharedKnowledge": true,
     "notes": "Stable editorial route; road conditions, rental terms, access rules, prices and traveller-specific facts require current checks."
@@ -54,8 +54,9 @@
     "reverseEvidenceReusable": false,
     "reversePlanningReusable": false,
     "originAccess": "dynamic",
-    "returnMode": "dynamic",
-    "preserveCoreRoute": true
+    "returnMode": "to-origin",
+    "preserveCoreRoute": true,
+    "originMode": "traveller-context"
   },
   "rendering": {
     "preferred": "standard-globe",
