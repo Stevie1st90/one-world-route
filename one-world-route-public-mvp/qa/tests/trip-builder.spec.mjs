@@ -61,8 +61,16 @@ test('internal builder authors a draft and previews it with the regional engine'
     expect(localizationBounds.left).toBeGreaterThanOrEqual(0);
     expect(localizationBounds.bottom).toBeLessThanOrEqual(localizationBounds.height);
     expect(localizationBounds.right).toBeLessThanOrEqual(localizationBounds.width);
-    await page.locator('#localizationDialog [data-close="localizationDialog"]').click();
+    const italian=page.locator('#localizationFields [data-locale="it"]');
+    await italian.locator('[data-localization-field="title"]').fill('Viaggio di prova');
+    await italian.locator('[data-localization-field="summary"]').fill('Sintesi di prova');
+    await italian.locator('[data-localization-field="subtitle"]').fill('Sottotitolo di prova');
+    await page.locator('#localizationForm button.primary').click();
     await expect(page.locator('#localizationDialog')).not.toBeVisible();
+    const localizedDraft=await page.request.get('/__builder/api/draft/'+slug).then(r=>r.json());
+    expect(localizedDraft.trip.title.it).toBe('Viaggio di prova');
+    expect(localizedDraft.trip.summary.it).toBe('Sintesi di prova');
+    expect(localizedDraft.catalogEntry.subtitle.it).toBe('Sottotitolo di prova');
     await page.locator('#evidenceBtn').click();
     await expect(page.locator('#evidenceDialog')).toBeVisible();
     await expect(page.locator('#evidenceStatus')).toHaveValue('draft');
