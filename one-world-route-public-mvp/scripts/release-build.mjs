@@ -7,6 +7,7 @@ for (const script of [
   'validate-public-data.mjs',
   'validate-platform-data.mjs',
   'audit-platform-media.mjs',
+  'build-media-manifest.mjs',
   'audit-platform-maintenance.mjs',
   'audit-route-continuity.mjs',
   'audit-flagship-readiness.mjs',

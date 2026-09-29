@@ -195,6 +195,7 @@ jobs:
           node --check platform/traveller-fit.js
           node --check platform/trip-compare.js
           node --check platform/home.js
+          node --check platform/media.js
           node --check platform/route-library.js
           node --check platform/regional-shell.js
           node --check platform/regional-detail.js
@@ -224,6 +225,8 @@ jobs:
           node --check scripts/build-maintenance-queue.mjs
           node --check scripts/test-maintenance-queue.mjs
           node --check scripts/audit-platform-media.mjs
+          node --check scripts/build-media-manifest.mjs
+          node --check scripts/test-platform-media.mjs
           node --check scripts/test-journey-adapter.mjs
           node --check scripts/generate-seo.mjs
           node --check scripts/serve-local.mjs
@@ -283,6 +286,8 @@ jobs:
         run: node --test scripts/test-maintenance-queue.mjs
       - name: Journey media rights audit
         run: node scripts/audit-platform-media.mjs
+      - name: Media renderer tests
+        run: node --test scripts/test-platform-media.mjs
       - name: Platform locale tests
         run: node --test scripts/test-platform-i18n.mjs
       - name: Platform formatter tests
