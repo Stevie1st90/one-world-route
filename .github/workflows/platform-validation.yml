@@ -103,6 +103,9 @@ jobs:
                 flagship_browser=true
                 regional_browser=true
                 ;;
+              one-world-route-public-mvp/scripts/*)
+                # Build/editorial scripts are covered by Core + Release unless a more specific case above requests browser QA.
+                ;;
               one-world-route-public-mvp/data/*)
                 flagship_browser=true
                 ;;
