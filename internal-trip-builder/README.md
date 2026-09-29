@@ -28,9 +28,10 @@ The server binds only to \`127.0.0.1\`. It is intentionally outside the Vercel R
 
 0. Open **Experience coverage** for destination-content coverage and **Maintenance queue** for source/review work across all journeys.
 1. Create a new draft from a journey archetype (rail, road trip, camper, cruise, island hopping, round trip or multimodal) or clone an existing reusable public trip.
-2. Edit identity/discovery metadata and the place → stop → segment graph.
-3. Add source evidence and namespaced extension data.
-4. Save and run the publication gate.
+2. Build the route quickly with **Route skeleton** (`Place | CC | latitude | longitude | nights`) or edit the place → stop → segment graph directly.
+3. Add source evidence with **Evidence source** by explicitly selecting the affected segment numbers and verification status; use raw JSON only for advanced cases.
+4. Add namespaced extension data where the journey type requires it.
+5. Save and run the publication gate.
 5. Preview using the actual production regional renderer. The local server injects the draft into the catalog only for that preview session.
 6. Publish locally. The builder writes the trip into \`data/platform/trips/\` and updates \`trips.json\` only after validation succeeds.
 7. Review the resulting Git diff and use the normal branch, CI, visual QA and deployment workflow.
@@ -40,6 +41,8 @@ The server binds only to \`127.0.0.1\`. It is intentionally outside the Vercel R
 - Drafts live in \`one-world-route-public-mvp/data/platform/drafts/\` and are gitignored.
 - Publish does not commit or deploy.
 - Catalog metrics are recomputed from the trip graph.
+- Route skeleton generates only draft segments and never invents sources or verification.
+- Evidence source requires an explicit source, affected segment selection and verification status; it never auto-verifies a route.
 - New drafts start globally neutral; regions are not silently defaulted to Europe.
 - Archetypes provide generic route-policy, maintenance cadence, capabilities, discovery mode and visual-theme defaults without trip-specific runtime code.
 - Publication runs the non-mutating platform quality suite, including draft contracts and maintenance queue tests, before public files are kept.
