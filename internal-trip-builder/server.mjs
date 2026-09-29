@@ -4,7 +4,7 @@ import {createReadStream,existsSync} from 'node:fs';
 import {extname,join,normalize,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
-import {validateTripDraft,normalizeCatalogEntry,normalizeDraftMetadata,validatePublicationReadiness,scaffoldTripDraft,journeyArchetypes} from '../one-world-route-public-mvp/scripts/trip-draft-contract.mjs';
+import {buildRouteSkeleton,validateTripDraft,normalizeCatalogEntry,normalizeDraftMetadata,validatePublicationReadiness,scaffoldTripDraft,journeyArchetypes} from '../one-world-route-public-mvp/scripts/trip-draft-contract.mjs';
 import {buildExperienceCoverage} from '../one-world-route-public-mvp/scripts/experience-coverage-model.mjs';
 import {buildMaintenanceQueue} from '../one-world-route-public-mvp/scripts/maintenance-queue-model.mjs';
 
@@ -119,6 +119,11 @@ async function clonePublic(slug){
   const trip=await json(join(publicRoot,String(entry.dataset).replace(/^\.\//,'')));await mkdir(draftsDir,{recursive:true});
   await atomic(p.trip,{...trip,status:'draft'});await atomic(p.catalog,{...entry,status:'draft'});return loadDraft(slug);
 }
+async function applyRouteSkeleton(slug,input){
+  slug=safeSlug(slug);
+  const draft=await loadDraft(slug),skeleton=buildRouteSkeleton({...draft,text:input.text,mode:input.mode});
+  return saveDraft(slug,skeleton);
+}
 async function validateSlug(slug){
   const d=normalizeDraftMetadata(await loadDraft(slug)),catalog=await json(catalogPath);return validateTripDraft({...d,catalog});
 }
@@ -182,11 +187,12 @@ async function handler(req,res){
     if(pathname==='/__builder/api/maintenance-queue'&&req.method==='GET')return send(res,200,{ok:true,queue:await maintenanceQueue()});
     if(pathname==='/__builder/api/scaffold'&&req.method==='POST')return send(res,201,{ok:true,...await scaffold(await readBody(req))});
     if(pathname==='/__builder/api/clone'&&req.method==='POST'){const b=await readBody(req);return send(res,201,{ok:true,...await clonePublic(b.slug)})}
-    const m=pathname.match(/^\/__builder\/api\/draft\/([a-z0-9-]+)(?:\/(validate|publish))?$/);
+    const m=pathname.match(/^\/__builder\/api\/draft\/([a-z0-9-]+)(?:\/(validate|publish|skeleton))?$/);
     if(m){
       const slug=safeSlug(m[1]),action=m[2];
       if(req.method==='GET'&&!action)return send(res,200,{ok:true,...await loadDraft(slug)});
       if(req.method==='PUT'&&!action)return send(res,200,{ok:true,...await saveDraft(slug,await readBody(req))});
+      if(req.method==='POST'&&action==='skeleton')return send(res,200,{ok:true,...await applyRouteSkeleton(slug,await readBody(req))});
       if(req.method==='POST'&&action==='validate')return send(res,200,{ok:true,...await validateSlug(slug)});
       if(req.method==='POST'&&action==='publish')return send(res,200,{ok:true,...await publish(slug)});
     }
