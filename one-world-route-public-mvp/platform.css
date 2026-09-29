@@ -579,4 +579,7 @@ body.platform-ready #app>.topbar,body.platform-ready #app>.left-panel,body.platf
 /* Rights-aware media assets */
 .platform-media-image{background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}
 .platform-media-credit{position:absolute;z-index:6;right:10px;bottom:8px;max-width:70%;padding:3px 6px;border-radius:6px;background:rgba(4,9,15,.66);color:rgba(238,247,255,.72);font-size:6px;line-height:1.25;text-align:right;backdrop-filter:blur(6px)}
+/* Planning workspace portability */
+.platform-mytrips-portability{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.platform-mytrips-portability button{height:34px;padding:0 10px;border:1px solid rgba(255,255,255,.1);border-radius:9px;background:rgba(255,255,255,.045);color:#c8d9e8;font-size:8px;font-weight:750;cursor:pointer}
+@media(max-width:520px){.platform-mytrips-portability{width:100%}.platform-mytrips-portability button{flex:1;min-width:0}}
 

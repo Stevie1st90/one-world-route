@@ -184,6 +184,40 @@
   function workspaceJson(storage){
     return JSON.stringify({schemaVersion:1,exportedAt:new Date().toISOString(),workspace:load(storage)},null,2)+'\n';
   }
+  function normalizeWorkspace(input={},allowedTripIds=null){
+    const allowed=allowedTripIds?new Set(allowedTripIds):null;
+    const validId=id=>typeof id==='string'&&(!allowed||allowed.has(id));
+    const source=input&&typeof input==='object'?input:{};
+    const pickMap=(value,normalizer=null)=>{
+      const out={};
+      if(!value||typeof value!=='object'||Array.isArray(value))return out;
+      for(const [id,current] of Object.entries(value)){
+        if(!validId(id))continue;
+        const normalized=normalizer?normalizer(current):current;
+        if(normalized!==undefined&&normalized!==null&&normalized!=='')out[id]=normalized;
+      }
+      return out;
+    };
+    return {
+      savedTrips:[...new Set((Array.isArray(source.savedTrips)?source.savedTrips:[]).filter(validId))],
+      recentTrips:[...new Set((Array.isArray(source.recentTrips)?source.recentTrips:[]).filter(validId))].slice(0,12),
+      budgets:pickMap(source.budgets,normalizeBudget),
+      startDates:pickMap(source.startDates,value=>validDate(value)||undefined),
+      seasons:pickMap(source.seasons,value=>String(value||'').trim()||undefined),
+      routeStarts:pickMap(source.routeStarts,value=>String(value||'').trim()||undefined),
+      variants:pickMap(source.variants,value=>{const v=String(value||'base').trim();return v&&v!=='base'?v:undefined}),
+      planningChecks:pickMap(source.planningChecks,value=>{const v=normalizePlanningChecks(value);return v.accessCheckedAt?v:undefined})
+    };
+  }
+  function importWorkspace(storage,text,allowedTripIds=null){
+    let payload;
+    try{payload=typeof text==='string'?JSON.parse(text):text}catch{return {ok:false,reason:'invalid-json'}}
+    if(Number(payload?.schemaVersion)!==1||!payload?.workspace||typeof payload.workspace!=='object')return {ok:false,reason:'invalid-schema'};
+    const workspace=normalizeWorkspace(payload.workspace,allowedTripIds);
+    persist(storage,workspace);
+    notify(null);
+    return {ok:true,workspace};
+  }
   function download(name,text,type='text/plain'){
     const blob=new Blob([text],{type:type+';charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
     a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),500);
@@ -363,5 +397,5 @@
       toast?.(t('estimateUpdated'));refreshPlanning();
     };
   }
-  root.tripTools={load,isSaved,getRecent,markViewed,toggleSaved,normalizeBudget,getBudget,setBudget,getStartDate,setStartDate,getSeason,setSeason,getRouteStart,setRouteStart,getVariant,setVariant,normalizePlanningChecks,getPlanningChecks,setAccessChecked,hasBudgetAssumptions,planningStatus,estimate,itineraryRows,csv,calendar,jsonPack,workspaceJson,download,render,bind};
+  root.tripTools={load,isSaved,getRecent,markViewed,toggleSaved,normalizeBudget,getBudget,setBudget,getStartDate,setStartDate,getSeason,setSeason,getRouteStart,setRouteStart,getVariant,setVariant,normalizePlanningChecks,getPlanningChecks,setAccessChecked,hasBudgetAssumptions,planningStatus,estimate,itineraryRows,csv,calendar,jsonPack,workspaceJson,normalizeWorkspace,importWorkspace,download,render,bind};
 })();
