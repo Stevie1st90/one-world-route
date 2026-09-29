@@ -11,6 +11,8 @@ test('internal builder authors a draft and previews it with the regional engine'
   const draftBase=resolve(root,'data/platform/drafts',slug);
   try{
     await page.goto('/__builder/',{waitUntil:'domcontentloaded'});
+    const builderState=await page.request.get('/__builder/api/state').then(response=>response.json());
+    const regionalJourneyCount=(builderState.catalog?.trips||[]).filter(item=>item.renderer==='regional-globe').length;
     await expect(page.locator('#heading')).toHaveText('Select or create a trip');
     if(isMobile)await page.locator('#mobileCoverageBtn').click();else await page.locator('#coverageBtn').click();
     await expect(page.locator('#coverageDialog')).toBeVisible();
@@ -24,7 +26,7 @@ test('internal builder authors a draft and previews it with the regional engine'
     const queueItems=page.locator('#coverageQueue .coverage-item');
     if(await queueItems.count())await expect(queueItems.first()).toBeVisible();
     else await expect(page.locator('#coverageQueue .coverage-empty')).toContainText('All published regional places have reusable experience content.');
-    await expect(page.locator('#coverageJourneys .coverage-journey')).toHaveCount(16);
+    await expect(page.locator('#coverageJourneys .coverage-journey')).toHaveCount(regionalJourneyCount);
     await page.locator('#coverageDialog').screenshot({path:testInfo.outputPath('experience-coverage-'+testInfo.project.name+'.png'),animations:'disabled'});
     await page.locator('#coverageDialog [data-close="coverageDialog"]').click();
     await expect(page.locator('#coverageDialog')).not.toBeVisible();
@@ -39,7 +41,7 @@ test('internal builder authors a draft and previews it with the regional engine'
 
     if(isMobile)await page.locator('#mobileNewBtn').click();else await page.locator('#newBtn').click();
     await expect(page.locator('#newDialog')).toBeVisible();
-    await expect(page.locator('#newKind option')).toHaveCount(7);
+    await expect(page.locator('#newKind option')).toHaveCount(builderState.archetypes.length);
     await expect(page.locator('#newKind')).toContainText('rail');
     await page.locator('#newDialog [data-close="newDialog"]').click();
 
