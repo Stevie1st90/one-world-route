@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "catalogUpdatedAt": "2026-09-27",
+  "catalogUpdatedAt": "2026-09-29",
   "trips": [
     {
       "id": "world-195",
@@ -6145,6 +6145,465 @@
           }
         ]
       }
+    },
+    {
+      "id": "jordan-heritage-desert-drive",
+      "slug": "jordan-heritage-desert-drive",
+      "kind": "road-trip",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "title": {
+        "en": "Jordan Heritage & Desert Drive",
+        "de": "Jordanien · Kultur & Wüste",
+        "it": "Giordania · Cultura e deserto",
+        "es": "Jordania · Cultura y desierto",
+        "fr": "Jordanie · Culture et désert",
+        "pt": "Jordânia · Cultura e deserto"
+      },
+      "subtitle": {
+        "en": "10 days · Roman ruins, Petra, desert and Red Sea",
+        "de": "10 Tage · römische Ruinen, Petra, Wüste und Rotes Meer",
+        "it": "10 giorni · rovine romane, Petra, deserto e Mar Rosso",
+        "es": "10 días · ruinas romanas, Petra, desierto y Mar Rojo",
+        "fr": "10 jours · vestiges romains, Pétra, désert et mer Rouge",
+        "pt": "10 dias · ruínas romanas, Petra, deserto e Mar Vermelho"
+      },
+      "summary": {
+        "en": "A ten-day self-drive journey from Amman through Jerash and the Dead Sea to Petra, Wadi Rum and the Red Sea at Aqaba.",
+        "de": "Eine zehntägige Selbstfahrerreise von Amman über Jerash und das Tote Meer nach Petra, Wadi Rum und ans Rote Meer bei Aqaba.",
+        "it": "Un viaggio self-drive di dieci giorni da Amman attraverso Jerash e il Mar Morto fino a Petra, Wadi Rum e al Mar Rosso ad Aqaba.",
+        "es": "Un viaje de diez días en coche desde Amán, pasando por Jerash y el Mar Muerto, hasta Petra, Wadi Rum y el Mar Rojo en Aqaba.",
+        "fr": "Un voyage de dix jours en voiture depuis Amman, via Jerash et la mer Morte, jusqu'à Pétra, Wadi Rum et la mer Rouge à Aqaba.",
+        "pt": "Uma viagem de dez dias de carro desde Amã, passando por Jerash e o Mar Morto, até Petra, Wadi Rum e o Mar Vermelho em Aqaba."
+      },
+      "metrics": {
+        "days": 10,
+        "countries": 1,
+        "stops": 6,
+        "segments": 5,
+        "sourcedSegments": 5,
+        "verifiedSegments": 0
+      },
+      "discovery": {
+        "regions": [
+          "asia",
+          "west-asia",
+          "jordan"
+        ],
+        "themes": [
+          "road-trip",
+          "culture",
+          "history",
+          "desert",
+          "coast"
+        ],
+        "modes": [
+          "car"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "multi-season"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "asia",
+          "accessibility": "vehicle-dependent"
+        }
+      },
+      "planning": {
+        "days": 10,
+        "currency": "JOD",
+        "pace": "balanced",
+        "knownPublishedMinimumEur": null,
+        "knownPublishedMinimumScope": null
+      },
+      "itinerary": [
+        {
+          "id": "jordan-heritage-desert-stop-01",
+          "sequence": 1,
+          "dayStart": 1,
+          "dayEnd": 2,
+          "nights": 2,
+          "name": {
+            "en": "Amman",
+            "de": "Amman",
+            "it": "Amman",
+            "es": "Amán",
+            "fr": "Amman",
+            "pt": "Amã"
+          },
+          "countryCode": "JO",
+          "type": "city"
+        },
+        {
+          "id": "jordan-heritage-desert-stop-02",
+          "sequence": 2,
+          "dayStart": 3,
+          "dayEnd": 3,
+          "nights": 1,
+          "name": {
+            "en": "Jerash",
+            "de": "Jerash",
+            "it": "Jerash",
+            "es": "Jerash",
+            "fr": "Jerash",
+            "pt": "Jerash"
+          },
+          "countryCode": "JO",
+          "type": "city"
+        },
+        {
+          "id": "jordan-heritage-desert-stop-03",
+          "sequence": 3,
+          "dayStart": 4,
+          "dayEnd": 4,
+          "nights": 1,
+          "name": {
+            "en": "Dead Sea",
+            "de": "Totes Meer",
+            "it": "Mar Morto",
+            "es": "Mar Muerto",
+            "fr": "Mer Morte",
+            "pt": "Mar Morto"
+          },
+          "countryCode": "JO",
+          "type": "natural-area"
+        },
+        {
+          "id": "jordan-heritage-desert-stop-04",
+          "sequence": 4,
+          "dayStart": 5,
+          "dayEnd": 6,
+          "nights": 2,
+          "name": {
+            "en": "Petra",
+            "de": "Petra",
+            "it": "Petra",
+            "es": "Petra",
+            "fr": "Petra",
+            "pt": "Petra"
+          },
+          "countryCode": "JO",
+          "type": "city"
+        },
+        {
+          "id": "jordan-heritage-desert-stop-05",
+          "sequence": 5,
+          "dayStart": 7,
+          "dayEnd": 8,
+          "nights": 2,
+          "name": {
+            "en": "Wadi Rum",
+            "de": "Wadi Rum",
+            "it": "Wadi Rum",
+            "es": "Wadi Rum",
+            "fr": "Wadi Rum",
+            "pt": "Wadi Rum"
+          },
+          "countryCode": "JO",
+          "type": "city"
+        },
+        {
+          "id": "jordan-heritage-desert-stop-06",
+          "sequence": 6,
+          "dayStart": 9,
+          "dayEnd": 10,
+          "nights": 2,
+          "name": {
+            "en": "Aqaba",
+            "de": "Aqaba",
+            "it": "Aqaba",
+            "es": "Aqaba",
+            "fr": "Aqaba",
+            "pt": "Aqaba"
+          },
+          "countryCode": "JO",
+          "type": "city"
+        }
+      ],
+      "preview": {
+        "points": [
+          {
+            "id": "jordan-heritage-desert-place-01",
+            "name": {
+              "en": "Amman",
+              "de": "Amman",
+              "it": "Amman",
+              "es": "Amán",
+              "fr": "Amman",
+              "pt": "Amã"
+            },
+            "lat": 31.9539,
+            "lng": 35.9106
+          },
+          {
+            "id": "jordan-heritage-desert-place-02",
+            "name": {
+              "en": "Jerash",
+              "de": "Jerash",
+              "it": "Jerash",
+              "es": "Jerash",
+              "fr": "Jerash",
+              "pt": "Jerash"
+            },
+            "lat": 32.2747,
+            "lng": 35.8961
+          },
+          {
+            "id": "jordan-heritage-desert-place-03",
+            "name": {
+              "en": "Dead Sea",
+              "de": "Totes Meer",
+              "it": "Mar Morto",
+              "es": "Mar Muerto",
+              "fr": "Mer Morte",
+              "pt": "Mar Morto"
+            },
+            "lat": 31.559,
+            "lng": 35.4732
+          },
+          {
+            "id": "jordan-heritage-desert-place-04",
+            "name": {
+              "en": "Petra",
+              "de": "Petra",
+              "it": "Petra",
+              "es": "Petra",
+              "fr": "Petra",
+              "pt": "Petra"
+            },
+            "lat": 30.3285,
+            "lng": 35.4444
+          },
+          {
+            "id": "jordan-heritage-desert-place-05",
+            "name": {
+              "en": "Wadi Rum",
+              "de": "Wadi Rum",
+              "it": "Wadi Rum",
+              "es": "Wadi Rum",
+              "fr": "Wadi Rum",
+              "pt": "Wadi Rum"
+            },
+            "lat": 29.5765,
+            "lng": 35.419
+          },
+          {
+            "id": "jordan-heritage-desert-place-06",
+            "name": {
+              "en": "Aqaba",
+              "de": "Aqaba",
+              "it": "Aqaba",
+              "es": "Aqaba",
+              "fr": "Aqaba",
+              "pt": "Aqaba"
+            },
+            "lat": 29.5321,
+            "lng": 35.0063
+          }
+        ],
+        "arcs": [
+          {
+            "id": "jordan-heritage-desert-leg-01",
+            "fromName": {
+              "en": "Amman",
+              "de": "Amman",
+              "it": "Amman",
+              "es": "Amán",
+              "fr": "Amman",
+              "pt": "Amã"
+            },
+            "toName": {
+              "en": "Jerash",
+              "de": "Jerash",
+              "it": "Jerash",
+              "es": "Jerash",
+              "fr": "Jerash",
+              "pt": "Jerash"
+            },
+            "start": {
+              "lat": 31.9539,
+              "lng": 35.9106
+            },
+            "end": {
+              "lat": 32.2747,
+              "lng": 35.8961
+            }
+          },
+          {
+            "id": "jordan-heritage-desert-leg-02",
+            "fromName": {
+              "en": "Jerash",
+              "de": "Jerash",
+              "it": "Jerash",
+              "es": "Jerash",
+              "fr": "Jerash",
+              "pt": "Jerash"
+            },
+            "toName": {
+              "en": "Dead Sea",
+              "de": "Totes Meer",
+              "it": "Mar Morto",
+              "es": "Mar Muerto",
+              "fr": "Mer Morte",
+              "pt": "Mar Morto"
+            },
+            "start": {
+              "lat": 32.2747,
+              "lng": 35.8961
+            },
+            "end": {
+              "lat": 31.559,
+              "lng": 35.4732
+            }
+          },
+          {
+            "id": "jordan-heritage-desert-leg-03",
+            "fromName": {
+              "en": "Dead Sea",
+              "de": "Totes Meer",
+              "it": "Mar Morto",
+              "es": "Mar Muerto",
+              "fr": "Mer Morte",
+              "pt": "Mar Morto"
+            },
+            "toName": {
+              "en": "Petra",
+              "de": "Petra",
+              "it": "Petra",
+              "es": "Petra",
+              "fr": "Petra",
+              "pt": "Petra"
+            },
+            "start": {
+              "lat": 31.559,
+              "lng": 35.4732
+            },
+            "end": {
+              "lat": 30.3285,
+              "lng": 35.4444
+            }
+          },
+          {
+            "id": "jordan-heritage-desert-leg-04",
+            "fromName": {
+              "en": "Petra",
+              "de": "Petra",
+              "it": "Petra",
+              "es": "Petra",
+              "fr": "Petra",
+              "pt": "Petra"
+            },
+            "toName": {
+              "en": "Wadi Rum",
+              "de": "Wadi Rum",
+              "it": "Wadi Rum",
+              "es": "Wadi Rum",
+              "fr": "Wadi Rum",
+              "pt": "Wadi Rum"
+            },
+            "start": {
+              "lat": 30.3285,
+              "lng": 35.4444
+            },
+            "end": {
+              "lat": 29.5765,
+              "lng": 35.419
+            }
+          },
+          {
+            "id": "jordan-heritage-desert-leg-05",
+            "fromName": {
+              "en": "Wadi Rum",
+              "de": "Wadi Rum",
+              "it": "Wadi Rum",
+              "es": "Wadi Rum",
+              "fr": "Wadi Rum",
+              "pt": "Wadi Rum"
+            },
+            "toName": {
+              "en": "Aqaba",
+              "de": "Aqaba",
+              "it": "Aqaba",
+              "es": "Aqaba",
+              "fr": "Aqaba",
+              "pt": "Aqaba"
+            },
+            "start": {
+              "lat": 29.5765,
+              "lng": 35.419
+            },
+            "end": {
+              "lat": 29.5321,
+              "lng": 35.0063
+            }
+          }
+        ]
+      },
+      "evidence": {
+        "segments": 5,
+        "sourcedSegments": 5,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-09-29"
+      },
+      "sources": [
+        {
+          "id": "jo-ground-transport-2026",
+          "issuer": "Jordan Tourism Board",
+          "title": "Ground Transportation",
+          "url": "https://international.visitjordan.com/page/19/ground-transportation/",
+          "checkedAt": "2026-09-29"
+        },
+        {
+          "id": "jo-jerash-2026",
+          "issuer": "Jordan Tourism Board",
+          "title": "Jerash",
+          "url": "https://international.visitjordan.com/wheretogo/jerash/",
+          "checkedAt": "2026-09-29"
+        },
+        {
+          "id": "jo-dead-sea-2026",
+          "issuer": "Jordan Tourism Board",
+          "title": "Dead Sea",
+          "url": "https://international.visitjordan.com/wheretogo/the-dead-sea/",
+          "checkedAt": "2026-09-29"
+        },
+        {
+          "id": "jo-petra-2026",
+          "issuer": "Jordan Tourism Board",
+          "title": "Petra",
+          "url": "https://international.visitjordan.com/wheretogo/petra/",
+          "checkedAt": "2026-09-29"
+        },
+        {
+          "id": "jo-petra-access-2026",
+          "issuer": "Jordan Tourism Board",
+          "title": "Petra Jordan How to Get There",
+          "url": "https://international.visitjordan.com/blog/external/7644/petra-jordan-how-to-get-there/",
+          "checkedAt": "2026-09-29"
+        },
+        {
+          "id": "jo-wadi-rum-2026",
+          "issuer": "Jordan Tourism Board",
+          "title": "Wadi Rum",
+          "url": "https://international.visitjordan.com/wheretogo/wadi-rum/",
+          "checkedAt": "2026-09-29"
+        },
+        {
+          "id": "jo-aqaba-2026",
+          "issuer": "Jordan Tourism Board",
+          "title": "Aqaba",
+          "url": "https://international.visitjordan.com/wheretogo/aqaba/",
+          "checkedAt": "2026-09-29"
+        }
+      ]
     }
   ]
 }

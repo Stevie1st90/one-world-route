@@ -1,0 +1,525 @@
+{
+  "schemaVersion": 1,
+  "id": "jordan-heritage-desert-drive",
+  "slug": "jordan-heritage-desert-drive",
+  "kind": "road-trip",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Jordan Heritage & Desert Drive",
+    "de": "Jordanien · Kultur & Wüste",
+    "it": "Giordania · Cultura e deserto",
+    "es": "Jordania · Cultura y desierto",
+    "fr": "Jordanie · Culture et désert",
+    "pt": "Jordânia · Cultura e deserto"
+  },
+  "summary": {
+    "en": "A ten-day self-drive journey from Amman through Jerash and the Dead Sea to Petra, Wadi Rum and the Red Sea at Aqaba.",
+    "de": "Eine zehntägige Selbstfahrerreise von Amman über Jerash und das Tote Meer nach Petra, Wadi Rum und ans Rote Meer bei Aqaba.",
+    "it": "Un viaggio self-drive di dieci giorni da Amman attraverso Jerash e il Mar Morto fino a Petra, Wadi Rum e al Mar Rosso ad Aqaba.",
+    "es": "Un viaje de diez días en coche desde Amán, pasando por Jerash y el Mar Muerto, hasta Petra, Wadi Rum y el Mar Rojo en Aqaba.",
+    "fr": "Un voyage de dix jours en voiture depuis Amman, via Jerash et la mer Morte, jusqu'à Pétra, Wadi Rum et la mer Rouge à Aqaba.",
+    "pt": "Uma viagem de dez dias de carro desde Amã, passando por Jerash e o Mar Morto, até Petra, Wadi Rum e o Mar Vermelho em Aqaba."
+  },
+  "geography": {
+    "countries": [
+      "JO"
+    ],
+    "primaryCountry": "JO"
+  },
+  "planning": {
+    "days": 10,
+    "currency": "JOD",
+    "pace": "balanced",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "maintenance": {
+    "tier": "evergreen",
+    "sourceReviewDays": 180,
+    "sharedKnowledge": true,
+    "notes": "Stable editorial route; road conditions, rental terms, access rules, prices and traveller-specific facts require current checks."
+  },
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originAccess": "dynamic",
+    "returnMode": "to-origin",
+    "preserveCoreRoute": true,
+    "originMode": "traveller-context"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 30.9,
+      "lng": 35.55,
+      "altitude": 0.72
+    }
+  },
+  "places": [
+    {
+      "id": "jordan-heritage-desert-place-01",
+      "type": "city",
+      "countryCode": "JO",
+      "name": {
+        "en": "Amman",
+        "de": "Amman",
+        "it": "Amman",
+        "es": "Amán",
+        "fr": "Amman",
+        "pt": "Amã"
+      },
+      "coordinates": {
+        "lat": 31.9539,
+        "lng": 35.9106
+      }
+    },
+    {
+      "id": "jordan-heritage-desert-place-02",
+      "type": "city",
+      "countryCode": "JO",
+      "name": {
+        "en": "Jerash",
+        "de": "Jerash",
+        "it": "Jerash",
+        "es": "Jerash",
+        "fr": "Jerash",
+        "pt": "Jerash"
+      },
+      "coordinates": {
+        "lat": 32.2747,
+        "lng": 35.8961
+      }
+    },
+    {
+      "id": "jordan-heritage-desert-place-03",
+      "type": "natural-area",
+      "countryCode": "JO",
+      "name": {
+        "en": "Dead Sea",
+        "de": "Totes Meer",
+        "it": "Mar Morto",
+        "es": "Mar Muerto",
+        "fr": "Mer Morte",
+        "pt": "Mar Morto"
+      },
+      "coordinates": {
+        "lat": 31.559,
+        "lng": 35.4732
+      }
+    },
+    {
+      "id": "jordan-heritage-desert-place-04",
+      "type": "city",
+      "countryCode": "JO",
+      "name": {
+        "en": "Petra",
+        "de": "Petra",
+        "it": "Petra",
+        "es": "Petra",
+        "fr": "Petra",
+        "pt": "Petra"
+      },
+      "coordinates": {
+        "lat": 30.3285,
+        "lng": 35.4444
+      }
+    },
+    {
+      "id": "jordan-heritage-desert-place-05",
+      "type": "city",
+      "countryCode": "JO",
+      "name": {
+        "en": "Wadi Rum",
+        "de": "Wadi Rum",
+        "it": "Wadi Rum",
+        "es": "Wadi Rum",
+        "fr": "Wadi Rum",
+        "pt": "Wadi Rum"
+      },
+      "coordinates": {
+        "lat": 29.5765,
+        "lng": 35.419
+      }
+    },
+    {
+      "id": "jordan-heritage-desert-place-06",
+      "type": "city",
+      "countryCode": "JO",
+      "name": {
+        "en": "Aqaba",
+        "de": "Aqaba",
+        "it": "Aqaba",
+        "es": "Aqaba",
+        "fr": "Aqaba",
+        "pt": "Aqaba"
+      },
+      "coordinates": {
+        "lat": 29.5321,
+        "lng": 35.0063
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "jordan-heritage-desert-stop-01",
+      "sequence": 1,
+      "placeId": "jordan-heritage-desert-place-01",
+      "dayStart": 1,
+      "dayEnd": 2,
+      "nights": 2
+    },
+    {
+      "id": "jordan-heritage-desert-stop-02",
+      "sequence": 2,
+      "placeId": "jordan-heritage-desert-place-02",
+      "dayStart": 3,
+      "dayEnd": 3,
+      "nights": 1
+    },
+    {
+      "id": "jordan-heritage-desert-stop-03",
+      "sequence": 3,
+      "placeId": "jordan-heritage-desert-place-03",
+      "dayStart": 4,
+      "dayEnd": 4,
+      "nights": 1
+    },
+    {
+      "id": "jordan-heritage-desert-stop-04",
+      "sequence": 4,
+      "placeId": "jordan-heritage-desert-place-04",
+      "dayStart": 5,
+      "dayEnd": 6,
+      "nights": 2
+    },
+    {
+      "id": "jordan-heritage-desert-stop-05",
+      "sequence": 5,
+      "placeId": "jordan-heritage-desert-place-05",
+      "dayStart": 7,
+      "dayEnd": 8,
+      "nights": 2
+    },
+    {
+      "id": "jordan-heritage-desert-stop-06",
+      "sequence": 6,
+      "placeId": "jordan-heritage-desert-place-06",
+      "dayStart": 9,
+      "dayEnd": 10,
+      "nights": 2
+    }
+  ],
+  "segments": [
+    {
+      "id": "jordan-heritage-desert-leg-01",
+      "sequence": 1,
+      "fromStopId": "jordan-heritage-desert-stop-01",
+      "toStopId": "jordan-heritage-desert-stop-02",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null,
+        "durationBasis": "live-road-check-required"
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-29",
+        "sourceIds": [
+          "jo-ground-transport-2026",
+          "jo-jerash-2026"
+        ],
+        "notes": "Editorial self-drive sequence. Exact road conditions, closures, rental terms and timing require current checks before travel."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "JO",
+          "toCountry": "JO",
+          "crossBorder": false,
+          "rentalApprovalRequired": false
+        }
+      }
+    },
+    {
+      "id": "jordan-heritage-desert-leg-02",
+      "sequence": 2,
+      "fromStopId": "jordan-heritage-desert-stop-02",
+      "toStopId": "jordan-heritage-desert-stop-03",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null,
+        "durationBasis": "live-road-check-required"
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-29",
+        "sourceIds": [
+          "jo-ground-transport-2026",
+          "jo-dead-sea-2026"
+        ],
+        "notes": "Editorial self-drive sequence. Exact road conditions, closures, rental terms and timing require current checks before travel."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "JO",
+          "toCountry": "JO",
+          "crossBorder": false,
+          "rentalApprovalRequired": false
+        }
+      }
+    },
+    {
+      "id": "jordan-heritage-desert-leg-03",
+      "sequence": 3,
+      "fromStopId": "jordan-heritage-desert-stop-03",
+      "toStopId": "jordan-heritage-desert-stop-04",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null,
+        "durationBasis": "live-road-check-required"
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-29",
+        "sourceIds": [
+          "jo-ground-transport-2026",
+          "jo-petra-2026",
+          "jo-petra-access-2026"
+        ],
+        "notes": "Editorial self-drive sequence. Exact road conditions, closures, rental terms and timing require current checks before travel."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "JO",
+          "toCountry": "JO",
+          "crossBorder": false,
+          "rentalApprovalRequired": false
+        }
+      }
+    },
+    {
+      "id": "jordan-heritage-desert-leg-04",
+      "sequence": 4,
+      "fromStopId": "jordan-heritage-desert-stop-04",
+      "toStopId": "jordan-heritage-desert-stop-05",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null,
+        "durationBasis": "live-road-check-required"
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-29",
+        "sourceIds": [
+          "jo-ground-transport-2026",
+          "jo-wadi-rum-2026"
+        ],
+        "notes": "Editorial self-drive sequence. Exact road conditions, closures, rental terms and timing require current checks before travel."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "JO",
+          "toCountry": "JO",
+          "crossBorder": false,
+          "rentalApprovalRequired": false
+        }
+      }
+    },
+    {
+      "id": "jordan-heritage-desert-leg-05",
+      "sequence": 5,
+      "fromStopId": "jordan-heritage-desert-stop-05",
+      "toStopId": "jordan-heritage-desert-stop-06",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null,
+        "durationBasis": "live-road-check-required"
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-29",
+        "sourceIds": [
+          "jo-ground-transport-2026",
+          "jo-wadi-rum-2026",
+          "jo-aqaba-2026"
+        ],
+        "notes": "Editorial self-drive sequence. Exact road conditions, closures, rental terms and timing require current checks before travel."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "JO",
+          "toCountry": "JO",
+          "crossBorder": false,
+          "rentalApprovalRequired": false
+        }
+      }
+    }
+  ],
+  "chapters": [
+    {
+      "id": "jordan-heritage-north",
+      "title": {
+        "en": "Cities & antiquity",
+        "de": "Städte & Antike",
+        "it": "Città e antichità",
+        "es": "Ciudades y antigüedad",
+        "fr": "Villes et antiquité",
+        "pt": "Cidades e antiguidade"
+      },
+      "stopIds": [
+        "jordan-heritage-desert-stop-01",
+        "jordan-heritage-desert-stop-02",
+        "jordan-heritage-desert-stop-03"
+      ]
+    },
+    {
+      "id": "jordan-heritage-south",
+      "title": {
+        "en": "Petra & desert",
+        "de": "Petra & Wüste",
+        "it": "Petra e deserto",
+        "es": "Petra y desierto",
+        "fr": "Pétra et désert",
+        "pt": "Petra e deserto"
+      },
+      "stopIds": [
+        "jordan-heritage-desert-stop-04",
+        "jordan-heritage-desert-stop-05",
+        "jordan-heritage-desert-stop-06"
+      ]
+    }
+  ],
+  "travellerContext": {
+    "scope": [
+      "vehicle"
+    ]
+  },
+  "sources": [
+    {
+      "id": "jo-ground-transport-2026",
+      "title": "Ground Transportation",
+      "issuer": "Jordan Tourism Board",
+      "issuerType": "official-tourism-board",
+      "url": "https://international.visitjordan.com/page/19/ground-transportation/",
+      "checkedAt": "2026-09-29",
+      "claims": [
+        "The official tourism board lists car rental as a ground-transport option in Jordan."
+      ]
+    },
+    {
+      "id": "jo-jerash-2026",
+      "title": "Jerash",
+      "issuer": "Jordan Tourism Board",
+      "issuerType": "official-tourism-board",
+      "url": "https://international.visitjordan.com/wheretogo/jerash/",
+      "checkedAt": "2026-09-29",
+      "claims": [
+        "Jerash is presented as a major archaeological destination north of Amman."
+      ]
+    },
+    {
+      "id": "jo-dead-sea-2026",
+      "title": "Dead Sea",
+      "issuer": "Jordan Tourism Board",
+      "issuerType": "official-tourism-board",
+      "url": "https://international.visitjordan.com/wheretogo/the-dead-sea/",
+      "checkedAt": "2026-09-29",
+      "claims": [
+        "The Dead Sea is presented as a major Jordan tourism destination with visitor facilities and wellness attractions."
+      ]
+    },
+    {
+      "id": "jo-petra-2026",
+      "title": "Petra",
+      "issuer": "Jordan Tourism Board",
+      "issuerType": "official-tourism-board",
+      "url": "https://international.visitjordan.com/wheretogo/petra/",
+      "checkedAt": "2026-09-29",
+      "claims": [
+        "Petra is presented as one of Jordan's best-known attractions and a UNESCO World Heritage site."
+      ]
+    },
+    {
+      "id": "jo-petra-access-2026",
+      "title": "Petra Jordan How to Get There",
+      "issuer": "Jordan Tourism Board",
+      "issuerType": "official-tourism-board",
+      "url": "https://international.visitjordan.com/blog/external/7644/petra-jordan-how-to-get-there/",
+      "checkedAt": "2026-09-29",
+      "claims": [
+        "The official guide describes self-drive, private-transfer and bus access to Petra from major Jordan destinations."
+      ]
+    },
+    {
+      "id": "jo-wadi-rum-2026",
+      "title": "Wadi Rum",
+      "issuer": "Jordan Tourism Board",
+      "issuerType": "official-tourism-board",
+      "url": "https://international.visitjordan.com/wheretogo/wadi-rum/",
+      "checkedAt": "2026-09-29",
+      "claims": [
+        "Wadi Rum is presented as a UNESCO World Heritage destination and part of the south-Jordan travel corridor."
+      ]
+    },
+    {
+      "id": "jo-aqaba-2026",
+      "title": "Aqaba",
+      "issuer": "Jordan Tourism Board",
+      "issuerType": "official-tourism-board",
+      "url": "https://international.visitjordan.com/wheretogo/aqaba/",
+      "checkedAt": "2026-09-29",
+      "claims": [
+        "Aqaba is presented as Jordan's southern Red Sea destination."
+      ]
+    }
+  ],
+  "extensions": {
+    "roadTrip": {
+      "vehicleContextRequired": true,
+      "rentalCrossBorderApprovalRequired": false,
+      "vehicleOwnershipModes": [
+        "private",
+        "rental",
+        "camper",
+        "motorcycle",
+        "other"
+      ],
+      "rule": "Do not calculate rental eligibility, road access, timing or route-specific restrictions without current vehicle and traveller context."
+    }
+  }
+}

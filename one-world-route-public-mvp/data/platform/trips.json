@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-27",
+  "updatedAt": "2026-09-29",
   "defaultLocale": "en",
   "supportedLocales": [
     "en",
@@ -1315,6 +1315,86 @@
           ],
           "startRegion": "south-america",
           "accessibility": "standard-check"
+        }
+      }
+    },
+    {
+      "id": "jordan-heritage-desert-drive",
+      "slug": "jordan-heritage-desert-drive",
+      "kind": "road-trip",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/jordan-heritage-desert-drive.json",
+      "title": {
+        "en": "Jordan Heritage & Desert Drive",
+        "de": "Jordanien · Kultur & Wüste",
+        "it": "Giordania · Cultura e deserto",
+        "es": "Jordania · Cultura y desierto",
+        "fr": "Jordanie · Culture et désert",
+        "pt": "Jordânia · Cultura e deserto"
+      },
+      "subtitle": {
+        "en": "10 days · Roman ruins, Petra, desert and Red Sea",
+        "de": "10 Tage · römische Ruinen, Petra, Wüste und Rotes Meer",
+        "it": "10 giorni · rovine romane, Petra, deserto e Mar Rosso",
+        "es": "10 días · ruinas romanas, Petra, desierto y Mar Rojo",
+        "fr": "10 jours · vestiges romains, Pétra, désert et mer Rouge",
+        "pt": "10 dias · ruínas romanas, Petra, deserto e Mar Vermelho"
+      },
+      "metrics": {
+        "days": 10,
+        "countries": 1,
+        "stops": 6,
+        "segments": 5,
+        "sourcedSegments": 5,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "source-evidence",
+        "trip-planning",
+        "story",
+        "terrain",
+        "vehicle-context",
+        "road-rules"
+      ],
+      "visual": {
+        "theme": "desert",
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "asia",
+          "west-asia",
+          "jordan"
+        ],
+        "themes": [
+          "road-trip",
+          "culture",
+          "history",
+          "desert",
+          "coast"
+        ],
+        "modes": [
+          "car"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "multi-season"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "asia",
+          "accessibility": "vehicle-dependent"
         }
       }
     }
