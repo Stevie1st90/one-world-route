@@ -122,6 +122,50 @@ async function sourceLibrary(){
   return {sources};
 }
 
+const canonicalSourceUrl=value=>{
+  try{
+    const url=new URL(String(value||''));url.hash='';
+    if(url.pathname.length>1)url.pathname=url.pathname.replace(/\/+$/,'');
+    return url.toString();
+  }catch{return ''}
+};
+
+async function syncPublishedSource(input){
+  const sourceUrl=canonicalSourceUrl(input.url);
+  if(!sourceUrl)throw new Error('A valid source URL is required');
+  const catalog=await json(catalogPath),updates=[];
+  const patch={title:String(input.title||'').trim(),issuer:String(input.issuer||'').trim(),checkedAt:String(input.checkedAt||'').trim()};
+  const issuerType=String(input.issuerType||'').trim();
+  const claims=Array.isArray(input.claims)?input.claims.map(value=>String(value).trim()).filter(Boolean):null;
+  if(!patch.title||!patch.issuer)throw new Error('Source title and issuer are required');
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(patch.checkedAt))throw new Error('checkedAt must use YYYY-MM-DD');
+  for(const meta of catalog.trips||[]){
+    if(meta.renderer!=='regional-globe')continue;
+    const target=join(publicRoot,String(meta.dataset||'').replace(/^\.\//,''));
+    const trip=await json(target),matching=(trip.sources||[]).filter(source=>canonicalSourceUrl(source.url)===sourceUrl);
+    if(!matching.length)continue;
+    const nextTrip={...trip,sources:(trip.sources||[]).map(source=>canonicalSourceUrl(source.url)!==sourceUrl?source:{...source,...patch,...(issuerType?{issuerType}:{}),...(claims?{claims}:{}),url:source.url})};
+    const normalized=normalizeDraftMetadata({trip:nextTrip,catalogEntry:meta}),gate=validateTripDraft({...normalized,catalog});
+    if(!gate.valid)throw new Error('Source sync would invalidate '+meta.id+': '+gate.errors.join('; '));
+    updates.push({tripId:meta.id,target,trip:nextTrip,sourceIds:matching.map(source=>source.id)});
+  }
+  if(!updates.length)throw new Error('No published journey uses this source URL');
+  const snapshots=new Map();
+  for(const item of updates)snapshots.set(item.target,await readFile(item.target));
+  snapshots.set(tripIndexPath,await readFile(tripIndexPath).catch(()=>null));
+  const restore=async()=>{
+    for(const [filePath,value] of snapshots){
+      if(value===null)await rm(filePath,{force:true});else await writeFile(filePath,value);
+    }
+  };
+  try{
+    for(const item of updates)await atomic(item.target,item.trip);
+    const generation=runNodeSteps([['Trip index generation',['scripts/build-trip-index.mjs']],['Public trip index tests',['--test','scripts/test-trip-index.mjs']],['Journey maintenance contract',['scripts/audit-platform-maintenance.mjs']]]);
+    if(!generation.ok){const failed=generation.results.find(result=>!result.ok);throw new Error((failed?.name||'Source sync validation')+' failed'+(failed?.output?'\\n'+failed.output:''));}
+    return {updatedJourneys:updates.map(item=>({tripId:item.tripId,sourceIds:item.sourceIds})),qualityChecks:generation.results};
+  }catch(error){await restore();throw error}
+}
+
 async function scaffold(input){
   const slug=safeSlug(input.slug),kind=safeSlug(input.kind||'custom'),catalog=await json(catalogPath),p=paths(slug);
   if(await exists(p.trip)||(catalog.trips||[]).some(t=>t.id===slug))throw new Error('Draft or public trip already exists');
@@ -218,6 +262,7 @@ async function handler(req,res){
     if(pathname==='/__builder/api/experience-coverage'&&req.method==='GET')return send(res,200,{ok:true,coverage:await experienceCoverage()});
     if(pathname==='/__builder/api/maintenance-queue'&&req.method==='GET')return send(res,200,{ok:true,queue:await maintenanceQueue()});
     if(pathname==='/__builder/api/source-library'&&req.method==='GET')return send(res,200,{ok:true,...await sourceLibrary()});
+    if(pathname==='/__builder/api/maintenance/source-sync'&&req.method==='POST')return send(res,200,{ok:true,...await syncPublishedSource(await readBody(req))});
     if(pathname==='/__builder/api/scaffold'&&req.method==='POST')return send(res,201,{ok:true,...await scaffold(await readBody(req))});
     if(pathname==='/__builder/api/clone'&&req.method==='POST'){const b=await readBody(req);return send(res,201,{ok:true,...await clonePublic(b.slug)})}
     const m=pathname.match(/^\/__builder\/api\/draft\/([a-z0-9-]+)(?:\/(validate|publish|skeleton|evidence))?$/);

@@ -65,7 +65,12 @@ try{
   const publicCatalog=JSON.parse(await readFile(catalogPath,'utf8'));assert.ok(publicCatalog.trips.some(t=>t.id===slug&&t.status==='sourced-beta'));
   const tripIndex=JSON.parse(await readFile(tripIndexPath,'utf8'));assert.ok(tripIndex.trips.some(t=>t.id===slug));
   const sitemap=await readFile(sitemapPath,'utf8');assert.match(sitemap,new RegExp('/trip/'+slug));
-  console.log('Internal Trip Builder smoke complete: draft -> validate -> preview -> explicit status -> publish -> generated artifacts');
+  const synced=await request('/__builder/api/maintenance/source-sync',{method:'POST',body:JSON.stringify({url:'https://example.com/rail',title:'CI Operator Updated',issuer:'CI Operator',checkedAt:'2026-09-29'})});
+  assert.equal(synced.updatedJourneys.some(item=>item.tripId===slug),true);
+  assert.equal(synced.qualityChecks.every(check=>check.ok===true),true);
+  const syncedTrip=JSON.parse(await readFile(publicTrip,'utf8'));
+  assert.equal(syncedTrip.sources.find(source=>source.id==='src')?.title,'CI Operator Updated');
+  console.log('Internal Trip Builder smoke complete: draft -> validate -> preview -> publish -> source sync -> generated artifacts');
 }finally{
   server.kill('SIGTERM');
   await writeFile(catalogPath,originalCatalog);
