@@ -1,4 +1,6 @@
 import {validatePlatformExtensions} from './platform-extension-validators.mjs';
+import {journeyArchetype,journeyArchetypes} from './journey-archetype-registry.mjs';
+export {journeyArchetype,journeyArchetypes} from './journey-archetype-registry.mjs';
 
 const slugPattern=/^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const allowedModes=new Set(['walk','bicycle','road','car','motorcycle','bus','coach','rail','metro','tram','ground-transfer','rideshare','taxi','ferry','cruise','flight','helicopter','rail+ground','multimodal','other']);
@@ -10,23 +12,6 @@ const parties=new Set(['solo','couples','friends','families']);
 const accessibilities=new Set(['standard-check','operator-dependent','vehicle-dependent','complex-planning']);
 export const publicationStatuses=new Set(['planned','sourced-beta','illustrative-template','editorial-preview']);
 
-const baseCapabilities=['globe','regional-stops','traveller-context','source-evidence','trip-planning','story','terrain'];
-const archetypeDefinitions={
-  rail:{mode:'rail',themes:['rail','cities','culture'],capabilities:[],reviewDays:90,maintenanceTier:'live-dependent',accessibility:'standard-check',routePolicy:{startMode:'endpoints',reversible:true,reverseEvidenceReusable:false,reversePlanningReusable:false,originAccess:'dynamic',returnMode:'dynamic',preserveCoreRoute:true},visualTheme:'rockies'},
-  'road-trip':{mode:'car',themes:['road-trip','nature','cities'],capabilities:['vehicle-context','road-rules'],reviewDays:180,maintenanceTier:'stable-editorial',accessibility:'vehicle-dependent',routePolicy:{startMode:'endpoints',reversible:true,reverseEvidenceReusable:false,reversePlanningReusable:false,originAccess:'dynamic',returnMode:'dynamic',preserveCoreRoute:true},visualTheme:'desert'},
-  camper:{mode:'car',themes:['camper','road-trip','nature'],capabilities:['vehicle-context','road-rules'],reviewDays:180,maintenanceTier:'stable-editorial',accessibility:'vehicle-dependent',routePolicy:{startMode:'endpoints',reversible:true,reverseEvidenceReusable:false,reversePlanningReusable:false,originAccess:'dynamic',returnMode:'dynamic',preserveCoreRoute:true},visualTheme:'fern'},
-  cruise:{mode:'cruise',themes:['cruise','coast','ports'],capabilities:['cruise-calls','sea-days','border-context'],reviewDays:30,maintenanceTier:'live-dependent',accessibility:'operator-dependent',routePolicy:{startMode:'fixed',reversible:false,originAccess:'dynamic',returnMode:'dynamic',preserveCoreRoute:true},visualTheme:'ocean'},
-  'island-hopping':{mode:'ferry',themes:['islands','coast','culture'],capabilities:['border-context'],reviewDays:60,maintenanceTier:'live-dependent',accessibility:'operator-dependent',routePolicy:{startMode:'endpoints',reversible:true,reverseEvidenceReusable:false,reversePlanningReusable:false,originAccess:'dynamic',returnMode:'dynamic',preserveCoreRoute:true},visualTheme:'aegean'},
-  'round-trip':{mode:'multimodal',themes:['round-trip','culture','cities'],capabilities:[],reviewDays:180,maintenanceTier:'stable-editorial',accessibility:'standard-check',routePolicy:{startMode:'fixed',reversible:false,originAccess:'dynamic',returnMode:'dynamic',preserveCoreRoute:true},visualTheme:'aegean'},
-  multimodal:{mode:'multimodal',themes:['culture','cities','nature'],capabilities:['border-context'],reviewDays:90,maintenanceTier:'live-dependent',accessibility:'complex-planning',routePolicy:{startMode:'endpoints',reversible:true,reverseEvidenceReusable:false,reversePlanningReusable:false,originAccess:'dynamic',returnMode:'dynamic',preserveCoreRoute:true},visualTheme:'andes'}
-};
-const clone=value=>JSON.parse(JSON.stringify(value));
-export function journeyArchetypes(){return Object.keys(archetypeDefinitions)}
-export function journeyArchetype(kind){
-  const key=String(kind||'').trim();
-  const source=archetypeDefinitions[key]||{mode:key||'multimodal',themes:[key||'journey'],capabilities:[],reviewDays:180,maintenanceTier:'stable-editorial',accessibility:'standard-check',routePolicy:{startMode:'fixed',reversible:false,originAccess:'dynamic',returnMode:'dynamic',preserveCoreRoute:true},visualTheme:'ocean'};
-  return clone({...source,capabilities:[...baseCapabilities,...source.capabilities]});
-}
 const localized=(locales,value)=>Object.fromEntries(locales.map(locale=>[locale,value]));
 const durationBand=days=>days==null?'7-14':days<=14?'7-14':days<=30?'15-30':days<=89?'31-89':'90-plus';
 
