@@ -52,6 +52,13 @@ test('internal builder authors a draft and previews it with the regional engine'
     await expect(page.locator('[data-tab="catalog"]')).toBeVisible();
     await expect(page.locator('#skeletonBtn')).toBeVisible();
     await expect(page.locator('#evidenceBtn')).toBeVisible();
+    await expect(page.locator('#localizationBtn')).toBeVisible();
+    await page.locator('#localizationBtn').click();
+    await expect(page.locator('#localizationDialog')).toBeVisible();
+    await expect(page.locator('#localizationGrid .localization-card')).toHaveCount(6);
+    await expect(page.locator('#localizationProgress')).toContainText('locales complete');
+    await page.locator('#localizationDialog [data-close="localizationDialog"]').click();
+    await expect(page.locator('#localizationDialog')).not.toBeVisible();
     await page.locator('#evidenceBtn').click();
     await expect(page.locator('#evidenceDialog')).toBeVisible();
     await expect(page.locator('#evidenceStatus')).toHaveValue('draft');
