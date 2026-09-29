@@ -171,12 +171,12 @@ test('recent journeys are deduplicated, newest first and bounded locally',()=>{
   assert.equal(recent.length,12);
   assert.equal(new Set(recent).size,recent.length);
   const workspace=JSON.parse(tools.workspaceJson(s));
-  assert.deepEqual(workspace.workspace.recentTrips,recent);
+  assert.deepEqual(workspace.workspace.recentTrips,Array.from(recent));
 });
 
 test('planning workspace import validates schema and filters unknown trips',()=>{
   const tools=load();
-  const storage=memoryStorage();
+  const storage=storage();
   const payload=JSON.stringify({
     schemaVersion:1,
     workspace:{
@@ -193,8 +193,8 @@ test('planning workspace import validates schema and filters unknown trips',()=>
   const result=tools.importWorkspace(storage,payload,['italy-grand-tour']);
   assert.equal(result.ok,true);
   const state=tools.load(storage);
-  assert.deepEqual(state.savedTrips,['italy-grand-tour']);
-  assert.deepEqual(state.recentTrips,['italy-grand-tour']);
+  assert.deepEqual(Array.from(state.savedTrips),['italy-grand-tour']);
+  assert.deepEqual(Array.from(state.recentTrips),['italy-grand-tour']);
   assert.equal(state.budgets['italy-grand-tour'].lodgingPerNight,120);
   assert.equal(state.startDates['italy-grand-tour'],'2027-05-04');
   assert.equal(state.routeStarts['italy-grand-tour'],'it-stop-03');
@@ -204,10 +204,10 @@ test('planning workspace import validates schema and filters unknown trips',()=>
 
 test('planning workspace import rejects invalid payloads without replacing state',()=>{
   const tools=load();
-  const storage=memoryStorage();
+  const storage=storage();
   tools.toggleSaved(storage,'italy-grand-tour');
   assert.equal(tools.importWorkspace(storage,'not json',['italy-grand-tour']).ok,false);
   assert.equal(tools.importWorkspace(storage,JSON.stringify({schemaVersion:2,workspace:{}}),['italy-grand-tour']).ok,false);
-  assert.deepEqual(tools.load(storage).savedTrips,['italy-grand-tour']);
+  assert.deepEqual(Array.from(tools.load(storage).savedTrips),['italy-grand-tour']);
 });
 
