@@ -1,6 +1,7 @@
 const route=require('../data/public-route.json');
 const geo=require('../data/country-centroids.json');
 const platform=require('../data/platform/trips.json');
+const collections=require('../data/platform/collections.json');
 const tripIndex=require('../data/platform/trip-index.json');
 const readiness=require('../data/flagship-readiness.json');
 
@@ -23,14 +24,33 @@ const alternateLinks=(origin,trip)=>[
   ...SUPPORTED_LANGS.map(lang=>'<link rel="alternate" hreflang="'+lang+'" href="'+esc(origin+'/'+lang+'/trip/'+trip.slug)+'">'),
   '<link rel="alternate" hreflang="x-default" href="'+esc(origin+'/trip/'+trip.slug)+'">'
 ].join('');
+const collectionTarget=(collection,lang)=>{
+  const p=new URLSearchParams();
+  p.set('collection',collection.id);
+  p.set('lang',lang);
+  return '/?'+p.toString();
+};
+const collectionAlternateLinks=(origin,collection)=>[
+  ...SUPPORTED_LANGS.map(lang=>'<link rel="alternate" hreflang="'+lang+'" href="'+esc(origin+'/'+lang+'/journeys/'+collection.id)+'">'),
+  '<link rel="alternate" hreflang="x-default" href="'+esc(origin+'/journeys/'+collection.id)+'">'
+].join('');
+const collectionMatches=(trip,collection)=>{
+  const filters=collection?.filters||{},discovery=trip?.discovery||{};
+  if(filters.mode&&!(discovery.modes||[]).includes(filters.mode))return false;
+  if(filters.theme&&!(discovery.themes||[]).includes(filters.theme))return false;
+  if(filters.region&&!(discovery.regions||[]).includes(filters.region))return false;
+  if(filters.duration&&discovery.durationBand!==filters.duration)return false;
+  if(filters.themeAny?.length&&!filters.themeAny.some(value=>(discovery.themes||[]).includes(value)))return false;
+  return trip?.id!==platform.defaultTripId;
+};
 
 const PAGE_TEXT={
-  en:{open:'Open interactive route',overview:'Overview',itinerary:'Itinerary',planning:'Practical planning',evidence:'Evidence',sources:'Sources',days:'days',nights:'nights',stops:'stops',legs:'legs',countries:'countries',modes:'Transport',pace:'Pace',seasons:'Seasons',knownTransport:'Known published transport minimum',latestCheck:'Latest evidence check',sourced:'sourced segments',verified:'verified segments',unknown:'Not yet published',readiness:'Flagship readiness',readinessLead:'The public route model is valid, but operational departure work is still in progress.',dataAsOf:'Data as of',workQueue:'Current operational work queue',interactiveLead:'Open the interactive globe for route detail, Story Mode, Terrain and Traveller Context.'},
-  de:{open:'Interaktive Route öffnen',overview:'Überblick',itinerary:'Reiseplan',planning:'Praktische Planung',evidence:'Quellenlage',sources:'Quellen',days:'Tage',nights:'Nächte',stops:'Stopps',legs:'Etappen',countries:'Länder',modes:'Verkehrsmittel',pace:'Reisetempo',seasons:'Reisezeiten',knownTransport:'Bekanntes veröffentlichtes Verkehrsminimum',latestCheck:'Letzte Quellenprüfung',sourced:'Segmente mit Quellen',verified:'verifizierte Segmente',unknown:'Noch nicht veröffentlicht',readiness:'Flagship-Readiness',readinessLead:'Das öffentliche Routenmodell ist gültig, die operative Abfahrtsvorbereitung ist aber noch nicht abgeschlossen.',dataAsOf:'Datenstand',workQueue:'Aktuelle operative Arbeitsliste',interactiveLead:'Im interaktiven Globus gibt es Routendetails, Story Mode, Terrain und Reisekontext.'},
-  it:{open:'Apri itinerario interattivo',overview:'Panoramica',itinerary:'Itinerario',planning:'Pianificazione pratica',evidence:'Fonti',sources:'Fonti',days:'giorni',nights:'notti',stops:'tappe',legs:'tratte',countries:'paesi',modes:'Trasporti',pace:'Ritmo',seasons:'Stagioni',knownTransport:'Minimo trasporti pubblicato noto',latestCheck:'Ultima verifica fonti',sourced:'tratte con fonti',verified:'tratte verificate',unknown:'Non ancora pubblicato',readiness:'Stato del viaggio flagship',readinessLead:'Il modello pubblico dell’itinerario è valido, ma la preparazione operativa alla partenza è ancora in corso.',dataAsOf:'Dati al',workQueue:'Lavori operativi attuali',interactiveLead:'Apri il globo interattivo per dettagli, Story Mode, terreno e profilo viaggiatore.'},
-  es:{open:'Abrir ruta interactiva',overview:'Resumen',itinerary:'Itinerario',planning:'Planificación práctica',evidence:'Fuentes',sources:'Fuentes',days:'días',nights:'noches',stops:'paradas',legs:'tramos',countries:'países',modes:'Transportes',pace:'Ritmo',seasons:'Temporadas',knownTransport:'Mínimo de transporte publicado conocido',latestCheck:'Última revisión de fuentes',sourced:'tramos con fuentes',verified:'tramos verificados',unknown:'Aún no publicado',readiness:'Estado del viaje flagship',readinessLead:'El modelo público de la ruta es válido, pero la preparación operativa para la salida sigue en curso.',dataAsOf:'Datos a',workQueue:'Trabajo operativo actual',interactiveLead:'Abre el globo interactivo para detalles, Story Mode, terreno y contexto del viajero.'},
-  fr:{open:'Ouvrir l’itinéraire interactif',overview:'Aperçu',itinerary:'Itinéraire',planning:'Planification pratique',evidence:'Sources',sources:'Sources',days:'jours',nights:'nuits',stops:'étapes',legs:'segments',countries:'pays',modes:'Transports',pace:'Rythme',seasons:'Saisons',knownTransport:'Minimum de transport publié connu',latestCheck:'Dernière vérification des sources',sourced:'segments sourcés',verified:'segments vérifiés',unknown:'Pas encore publié',readiness:'État du voyage flagship',readinessLead:'Le modèle public de l’itinéraire est valide, mais la préparation opérationnelle au départ est encore en cours.',dataAsOf:'Données au',workQueue:'Travail opérationnel actuel',interactiveLead:'Ouvrez le globe interactif pour les détails, Story Mode, le relief et le contexte voyageur.'},
-  pt:{open:'Abrir rota interativa',overview:'Visão geral',itinerary:'Itinerário',planning:'Planejamento prático',evidence:'Fontes',sources:'Fontes',days:'dias',nights:'noites',stops:'paradas',legs:'trechos',countries:'países',modes:'Transportes',pace:'Ritmo',seasons:'Estações',knownTransport:'Mínimo de transporte publicado conhecido',latestCheck:'Última verificação das fontes',sourced:'segmentos com fontes',verified:'segmentos verificados',unknown:'Ainda não publicado',readiness:'Estado da viagem flagship',readinessLead:'O modelo público da rota é válido, mas a preparação operacional para a partida ainda está em andamento.',dataAsOf:'Dados em',workQueue:'Trabalho operacional atual',interactiveLead:'Abra o globo interativo para detalhes, Story Mode, terreno e contexto do viajante.'}
+  en:{open:'Open interactive route',overview:'Overview',itinerary:'Itinerary',planning:'Practical planning',evidence:'Evidence',sources:'Sources',days:'days',nights:'nights',stops:'stops',legs:'legs',countries:'countries',modes:'Transport',pace:'Pace',seasons:'Seasons',knownTransport:'Known published transport minimum',latestCheck:'Latest evidence check',sourced:'sourced segments',verified:'verified segments',unknown:'Not yet published',readiness:'Flagship readiness',readinessLead:'The public route model is valid, but operational departure work is still in progress.',dataAsOf:'Data as of',workQueue:'Current operational work queue',interactiveLead:'Open the interactive globe for route detail, Story Mode, Terrain and Traveller Context.',journeys:'journeys'},
+  de:{open:'Interaktive Route öffnen',overview:'Überblick',itinerary:'Reiseplan',planning:'Praktische Planung',evidence:'Quellenlage',sources:'Quellen',days:'Tage',nights:'Nächte',stops:'Stopps',legs:'Etappen',countries:'Länder',modes:'Verkehrsmittel',pace:'Reisetempo',seasons:'Reisezeiten',knownTransport:'Bekanntes veröffentlichtes Verkehrsminimum',latestCheck:'Letzte Quellenprüfung',sourced:'Segmente mit Quellen',verified:'verifizierte Segmente',unknown:'Noch nicht veröffentlicht',readiness:'Flagship-Readiness',readinessLead:'Das öffentliche Routenmodell ist gültig, die operative Abfahrtsvorbereitung ist aber noch nicht abgeschlossen.',dataAsOf:'Datenstand',workQueue:'Aktuelle operative Arbeitsliste',interactiveLead:'Im interaktiven Globus gibt es Routendetails, Story Mode, Terrain und Reisekontext.',journeys:'Reisen'},
+  it:{open:'Apri itinerario interattivo',overview:'Panoramica',itinerary:'Itinerario',planning:'Pianificazione pratica',evidence:'Fonti',sources:'Fonti',days:'giorni',nights:'notti',stops:'tappe',legs:'tratte',countries:'paesi',modes:'Trasporti',pace:'Ritmo',seasons:'Stagioni',knownTransport:'Minimo trasporti pubblicato noto',latestCheck:'Ultima verifica fonti',sourced:'tratte con fonti',verified:'tratte verificate',unknown:'Non ancora pubblicato',readiness:'Stato del viaggio flagship',readinessLead:'Il modello pubblico dell’itinerario è valido, ma la preparazione operativa alla partenza è ancora in corso.',dataAsOf:'Dati al',workQueue:'Lavori operativi attuali',interactiveLead:'Apri il globo interattivo per dettagli, Story Mode, terreno e profilo viaggiatore.',journeys:'viaggi'},
+  es:{open:'Abrir ruta interactiva',overview:'Resumen',itinerary:'Itinerario',planning:'Planificación práctica',evidence:'Fuentes',sources:'Fuentes',days:'días',nights:'noches',stops:'paradas',legs:'tramos',countries:'países',modes:'Transportes',pace:'Ritmo',seasons:'Temporadas',knownTransport:'Mínimo de transporte publicado conocido',latestCheck:'Última revisión de fuentes',sourced:'tramos con fuentes',verified:'tramos verificados',unknown:'Aún no publicado',readiness:'Estado del viaje flagship',readinessLead:'El modelo público de la ruta es válido, pero la preparación operativa para la salida sigue en curso.',dataAsOf:'Datos a',workQueue:'Trabajo operativo actual',interactiveLead:'Abre el globo interactivo para detalles, Story Mode, terreno y contexto del viajero.',journeys:'viajes'},
+  fr:{open:'Ouvrir l’itinéraire interactif',overview:'Aperçu',itinerary:'Itinéraire',planning:'Planification pratique',evidence:'Sources',sources:'Sources',days:'jours',nights:'nuits',stops:'étapes',legs:'segments',countries:'pays',modes:'Transports',pace:'Rythme',seasons:'Saisons',knownTransport:'Minimum de transport publié connu',latestCheck:'Dernière vérification des sources',sourced:'segments sourcés',verified:'segments vérifiés',unknown:'Pas encore publié',readiness:'État du voyage flagship',readinessLead:'Le modèle public de l’itinéraire est valide, mais la préparation opérationnelle au départ est encore en cours.',dataAsOf:'Données au',workQueue:'Travail opérationnel actuel',interactiveLead:'Ouvrez le globe interactif pour les détails, Story Mode, le relief et le contexte voyageur.',journeys:'voyages'},
+  pt:{open:'Abrir rota interativa',overview:'Visão geral',itinerary:'Itinerário',planning:'Planejamento prático',evidence:'Fontes',sources:'Fontes',days:'dias',nights:'noites',stops:'paradas',legs:'trechos',countries:'países',modes:'Transportes',pace:'Ritmo',seasons:'Estações',knownTransport:'Mínimo de transporte publicado conhecido',latestCheck:'Última verificação das fontes',sourced:'segmentos com fontes',verified:'segmentos verificados',unknown:'Ainda não publicado',readiness:'Estado da viagem flagship',readinessLead:'O modelo público da rota é válido, mas a preparação operacional para a partida ainda está em andamento.',dataAsOf:'Dados em',workQueue:'Trabalho operacional atual',interactiveLead:'Abra o globo interativo para detalhes, Story Mode, terreno e contexto do viajante.',journeys:'viagens'}
 };
 
 const money=(value,currency,lang)=>{
@@ -61,6 +81,33 @@ const tripJsonLd=(trip,index,lang,url)=>{
 };
 const metric=(value,label)=>'<article><b>'+esc(value??'—')+'</b><span>'+esc(label)+'</span></article>';
 
+const collectionJsonLd=(collection,trips,lang,url)=>JSON.stringify({
+  '@context':'https://schema.org',
+  '@type':'ItemList',
+  name:localized(collection.title,lang),
+  description:localized(collection.description,lang),
+  url,
+  itemListElement:trips.map((trip,position)=>({
+    '@type':'ListItem',
+    position:position+1,
+    url:'https://one-world-route.vercel.app/'+lang+'/trip/'+trip.slug,
+    name:localized(trip.title,lang)
+  }))
+}).replace(/</g,'\\u003c');
+
+function richCollectionBody({collection,trips,lang,target}){
+  const tx=PAGE_TEXT[lang]||PAGE_TEXT.en;
+  const cards=trips.map(trip=>{
+    const metrics=[
+      trip.metrics?.days?trip.metrics.days+' '+tx.days:null,
+      trip.metrics?.countries?trip.metrics.countries+' '+tx.countries:null,
+      (trip.discovery?.modes||[]).slice(0,2).map(humanize).join(' · ')
+    ].filter(Boolean).join(' · ');
+    return '<article class="collection-card"><div><span>'+esc(humanize(trip.kind))+'</span><h2>'+esc(localized(trip.title,lang))+'</h2><p>'+esc(localized(trip.subtitle,lang))+'</p><small>'+esc(metrics)+'</small></div><a href="/'+esc(lang)+'/trip/'+esc(trip.slug)+'">'+esc(tx.open)+' →</a></article>';
+  }).join('');
+  return '<main class="trip-page collection-page"><header><a class="brand" href="/">ONE WORLD ROUTE</a><div class="eyebrow">'+esc(tx.overview)+'</div><h1>'+esc(localized(collection.title,lang))+'</h1><p class="lead">'+esc(localized(collection.description,lang))+'</p><div class="cta"><a href="'+esc(target)+'">'+esc(tx.open)+' →</a><span>'+esc(String(trips.length))+' '+esc(tx.journeys||'journeys')+'</span></div></header><section><div class="collection-list">'+cards+'</div></section><footer><a href="'+esc(target)+'">'+esc(tx.open)+' →</a><span>ONE WORLD ROUTE</span></footer></main>';
+}
+
 function richTripBody({trip,index,lang,target}){
   const tx=PAGE_TEXT[lang]||PAGE_TEXT.en;
   const fit=trip.discovery?.fit||{};
@@ -89,7 +136,7 @@ function richTripBody({trip,index,lang,target}){
 }
 
 const style='<style>'+
-  ':root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#05070d;color:#e8f0f7;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:inherit}.trip-page{width:min(1040px,calc(100% - 32px));margin:0 auto;padding:34px 0 60px}.trip-page header{padding:50px 0 56px;border-bottom:1px solid #172232}.brand{display:inline-block;margin-bottom:42px;color:#7fe9ff;text-decoration:none;font-size:11px;font-weight:800;letter-spacing:.16em}.eyebrow{color:#67dfff;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.trip-page h1{max-width:820px;margin:8px 0 14px;font-size:clamp(38px,7vw,74px);line-height:.96;letter-spacing:-.045em}.trip-page h2{margin:6px 0 18px;font-size:26px;letter-spacing:-.03em}.lead{max-width:720px;color:#9aabbd;font-size:17px;line-height:1.6}.cta{display:flex;align-items:center;gap:18px;margin-top:26px}.cta a,footer a{padding:12px 16px;border:1px solid #26687a;border-radius:10px;background:#0d2430;color:#dffaff;text-decoration:none;font-size:12px;font-weight:800}.cta span{max-width:470px;color:#73869a;font-size:11px;line-height:1.45}.trip-page section{padding:42px 0;border-bottom:1px solid #141f2d}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.metrics article,.planning-grid article{padding:16px;border:1px solid #172738;border-radius:14px;background:#08131e}.metrics b,.metrics span,.planning-grid span,.planning-grid b,.planning-grid small{display:block}.metrics b{font-size:17px}.metrics span,.planning-grid span{margin-top:5px;color:#75899e;font-size:9px;text-transform:uppercase;letter-spacing:.08em}.itinerary{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:0;list-style:none}.itinerary li{display:flex;gap:14px;padding:14px;border:1px solid #172738;border-radius:12px;background:#08131e}.itinerary li>span{flex:0 0 70px;color:#6bdff8;font-size:9px;text-transform:uppercase}.itinerary b,.itinerary small{display:block}.itinerary small{margin-top:4px;color:#74879a;font-size:9px}.planning-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.planning-grid b{margin:8px 0 5px;font-size:18px}.planning-grid small{color:#74879a;line-height:1.45}.sources{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.sources a{display:grid;gap:4px;padding:13px;border:1px solid #172738;border-radius:12px;background:#08131e;text-decoration:none}.sources span,.sources small{color:#74879a;font-size:9px}.readiness p{max-width:720px;color:#92a4b7;line-height:1.55}.readiness-meta,.queue{display:flex;flex-wrap:wrap;gap:8px}.readiness-meta span,.queue span{padding:8px 10px;border-radius:9px;background:#0a1825;color:#8fa2b5;font-size:9px}.readiness h3{margin:22px 0 8px;font-size:13px}footer{display:flex;justify-content:space-between;align-items:center;padding-top:34px;color:#63778d;font-size:9px;letter-spacing:.08em}@media(max-width:720px){.trip-page{width:min(100% - 24px,1040px)}.metrics{grid-template-columns:1fr 1fr}.itinerary,.planning-grid,.sources{grid-template-columns:1fr}.cta{align-items:flex-start;flex-direction:column}.trip-page header{padding-top:28px}.brand{margin-bottom:30px}}'+
+  ':root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#05070d;color:#e8f0f7;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:inherit}.trip-page{width:min(1040px,calc(100% - 32px));margin:0 auto;padding:34px 0 60px}.trip-page header{padding:50px 0 56px;border-bottom:1px solid #172232}.brand{display:inline-block;margin-bottom:42px;color:#7fe9ff;text-decoration:none;font-size:11px;font-weight:800;letter-spacing:.16em}.eyebrow{color:#67dfff;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.trip-page h1{max-width:820px;margin:8px 0 14px;font-size:clamp(38px,7vw,74px);line-height:.96;letter-spacing:-.045em}.trip-page h2{margin:6px 0 18px;font-size:26px;letter-spacing:-.03em}.lead{max-width:720px;color:#9aabbd;font-size:17px;line-height:1.6}.cta{display:flex;align-items:center;gap:18px;margin-top:26px}.cta a,footer a{padding:12px 16px;border:1px solid #26687a;border-radius:10px;background:#0d2430;color:#dffaff;text-decoration:none;font-size:12px;font-weight:800}.cta span{max-width:470px;color:#73869a;font-size:11px;line-height:1.45}.trip-page section{padding:42px 0;border-bottom:1px solid #141f2d}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.metrics article,.planning-grid article{padding:16px;border:1px solid #172738;border-radius:14px;background:#08131e}.metrics b,.metrics span,.planning-grid span,.planning-grid b,.planning-grid small{display:block}.metrics b{font-size:17px}.metrics span,.planning-grid span{margin-top:5px;color:#75899e;font-size:9px;text-transform:uppercase;letter-spacing:.08em}.itinerary{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:0;list-style:none}.itinerary li{display:flex;gap:14px;padding:14px;border:1px solid #172738;border-radius:12px;background:#08131e}.itinerary li>span{flex:0 0 70px;color:#6bdff8;font-size:9px;text-transform:uppercase}.itinerary b,.itinerary small{display:block}.itinerary small{margin-top:4px;color:#74879a;font-size:9px}.planning-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.planning-grid b{margin:8px 0 5px;font-size:18px}.planning-grid small{color:#74879a;line-height:1.45}.sources{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.sources a{display:grid;gap:4px;padding:13px;border:1px solid #172738;border-radius:12px;background:#08131e;text-decoration:none}.sources span,.sources small{color:#74879a;font-size:9px}.readiness p{max-width:720px;color:#92a4b7;line-height:1.55}.readiness-meta,.queue{display:flex;flex-wrap:wrap;gap:8px}.readiness-meta span,.queue span{padding:8px 10px;border-radius:9px;background:#0a1825;color:#8fa2b5;font-size:9px}.readiness h3{margin:22px 0 8px;font-size:13px}.collection-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.collection-card{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;padding:18px;border:1px solid #172738;border-radius:14px;background:#08131e}.collection-card span,.collection-card small{color:#75899e;font-size:9px}.collection-card span{text-transform:uppercase;letter-spacing:.08em}.collection-card h2{margin:5px 0 7px;font-size:20px}.collection-card p{max-width:560px;margin:0 0 10px;color:#8da0b3;font-size:11px;line-height:1.5}.collection-card>a{flex:0 0 auto;padding:9px 11px;border:1px solid #26687a;border-radius:9px;background:#0d2430;color:#dffaff;text-decoration:none;font-size:10px;font-weight:800}footer{display:flex;justify-content:space-between;align-items:center;padding-top:34px;color:#63778d;font-size:9px;letter-spacing:.08em}@media(max-width:720px){.trip-page{width:min(100% - 24px,1040px)}.metrics{grid-template-columns:1fr 1fr}.itinerary,.planning-grid,.sources,.collection-list{grid-template-columns:1fr}.collection-card{align-items:flex-start;flex-direction:column}.cta{align-items:flex-start;flex-direction:column}.trip-page header{padding-top:28px}.brand{margin-bottom:30px}}'+
 '</style>';
 
 module.exports=(req,res)=>{
@@ -117,6 +164,21 @@ module.exports=(req,res)=>{
       alternates=alternateLinks(origin,trip);
       jsonLd='<script type="application/ld+json">'+tripJsonLd(trip,index,lang,canonical)+'</script>';
       body=richTripBody({trip,index,lang,target});
+      autoRedirect=false;
+    }
+  }else if(type==='collection'){
+    const wanted=slug(req.query.slug||req.query.id||'');
+    const collection=(collections.collections||[]).find(item=>slug(item.id)===wanted);
+    if(collection){
+      const trips=platform.trips.filter(trip=>collectionMatches(trip,collection));
+      htmlLang=lang;
+      title=localized(collection.title,lang)+' — ONE WORLD ROUTE';
+      desc=localized(collection.description,lang);
+      target=collectionTarget(collection,lang);
+      canonical=requestedLang&&SUPPORTED_LANGS.includes(requestedLang)?origin+'/'+lang+'/journeys/'+collection.id:origin+'/journeys/'+collection.id;
+      alternates=collectionAlternateLinks(origin,collection);
+      jsonLd='<script type="application/ld+json">'+collectionJsonLd(collection,trips,lang,canonical)+'</script>';
+      body=richCollectionBody({collection,trips,lang,target});
       autoRedirect=false;
     }
   }
