@@ -101,12 +101,19 @@ test('@regional @discovery @mobile-critical guided discovery exposes a simple fi
     await expect(page.locator('.platform-home-nav [data-home-method]')).toBeVisible();
   }
 
+  const expectedFinder=catalog.trips.filter(item=>
+    item.id!==catalog.defaultTripId&&
+    item.kind==='rail'&&
+    (item.discovery?.regions||[]).includes('asia')&&
+    item.discovery?.durationBand==='7-14'
+  );
   await page.locator('#homeFinderRegion').selectOption('asia');
   await page.locator('#homeFinderKind').selectOption('rail');
   await page.locator('#homeFinderDuration').selectOption('7-14');
   await page.locator('[data-home-finder-apply]').click();
-  await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(1);
-  await expect(page.locator('#platformHomeResults .platform-home-card h3')).toHaveText('Japan by Rail');
+  const finderCards=page.locator('#platformHomeResults .platform-home-card');
+  await expect(finderCards).toHaveCount(expectedFinder.length);
+  for(const item of expectedFinder)await expect(finderCards.filter({hasText:item.title.en})).toHaveCount(1);
 
   await page.locator('[data-home-filter-more]').click();
   await expect(page.locator('[data-home-filter-advanced]')).toBeVisible();
