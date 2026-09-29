@@ -132,6 +132,16 @@ test('derives countries, route modes and duration metadata from authored route d
   assert.equal(normalized.catalogEntry.metrics.countries,2);
 });
 
+test('synchronizes catalog title and status from the trip source of truth',()=>{
+  const ctx=valid();
+  ctx.trip.status='planned';
+  ctx.catalogEntry.status='sourced-beta';
+  ctx.catalogEntry.title={en:'Wrong',de:'Falsch'};
+  const normalized=normalizeDraftMetadata(ctx);
+  assert.deepEqual(normalized.catalogEntry.title,ctx.trip.title);
+  assert.equal(normalized.catalogEntry.status,'planned');
+});
+
 test('restores archetype capabilities while preserving explicit extras',()=>{
   const ctx=valid();
   ctx.catalogEntry.capabilities=['globe','entry-guidance'];
