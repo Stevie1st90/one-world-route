@@ -95,6 +95,33 @@ async function maintenanceQueue(){
   return buildMaintenanceQueue({catalog,datasets,shared,profiles,now:new Date()});
 }
 
+async function sourceLibrary(){
+  const catalog=await json(catalogPath),byUrl=new Map();
+  for(const meta of catalog.trips||[]){
+    if(meta.renderer!=='regional-globe')continue;
+    const relative=String(meta.dataset||'').replace(/^\.\//,'');
+    const trip=await json(join(publicRoot,relative)).catch(()=>null);
+    if(!trip)continue;
+    for(const source of trip.sources||[]){
+      const url=String(source.url||'').trim();
+      if(!/^https:\/\//.test(url))continue;
+      const current=byUrl.get(url)||{...source,journeys:[],ids:[],reuseCount:0};
+      current.journeys.push(meta.id);
+      current.ids.push(String(source.id||'').trim());
+      current.reuseCount+=1;
+      if(String(source.checkedAt||'')>String(current.checkedAt||''))Object.assign(current,source);
+      byUrl.set(url,current);
+    }
+  }
+  const sources=[...byUrl.values()].map(source=>({
+    id:String(source.id||source.ids?.find(Boolean)||'').trim(),
+    title:String(source.title||'').trim(),issuer:String(source.issuer||'').trim(),issuerType:String(source.issuerType||'').trim(),
+    url:String(source.url||'').trim(),checkedAt:String(source.checkedAt||'').trim(),claims:Array.isArray(source.claims)?source.claims:[],
+    reuseCount:source.reuseCount||1,journeys:[...new Set(source.journeys||[])],aliases:[...new Set((source.ids||[]).filter(Boolean))]
+  })).sort((a,b)=>b.reuseCount-a.reuseCount||a.issuer.localeCompare(b.issuer)||a.title.localeCompare(b.title));
+  return {sources};
+}
+
 async function scaffold(input){
   const slug=safeSlug(input.slug),kind=safeSlug(input.kind||'custom'),catalog=await json(catalogPath),p=paths(slug);
   if(await exists(p.trip)||(catalog.trips||[]).some(t=>t.id===slug))throw new Error('Draft or public trip already exists');
@@ -190,6 +217,7 @@ async function handler(req,res){
     if(pathname==='/__builder/api/state'&&req.method==='GET')return send(res,200,{ok:true,catalog:await json(catalogPath),drafts:await listDrafts(),archetypes:journeyArchetypes()});
     if(pathname==='/__builder/api/experience-coverage'&&req.method==='GET')return send(res,200,{ok:true,coverage:await experienceCoverage()});
     if(pathname==='/__builder/api/maintenance-queue'&&req.method==='GET')return send(res,200,{ok:true,queue:await maintenanceQueue()});
+    if(pathname==='/__builder/api/source-library'&&req.method==='GET')return send(res,200,{ok:true,...await sourceLibrary()});
     if(pathname==='/__builder/api/scaffold'&&req.method==='POST')return send(res,201,{ok:true,...await scaffold(await readBody(req))});
     if(pathname==='/__builder/api/clone'&&req.method==='POST'){const b=await readBody(req);return send(res,201,{ok:true,...await clonePublic(b.slug)})}
     const m=pathname.match(/^\/__builder\/api\/draft\/([a-z0-9-]+)(?:\/(validate|publish|skeleton|evidence))?$/);
