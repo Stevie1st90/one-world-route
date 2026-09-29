@@ -144,6 +144,172 @@
         "fr": "Des routes entre villes, traditions et cuisine régionale.",
         "pt": "Rotas por cidades, tradições e gastronomia regional."
       }
+    },
+    {
+      "id": "family-journeys",
+      "theme": "rainforest",
+      "filters": {
+        "party": "families"
+      },
+      "title": {
+        "en": "Family Journeys",
+        "de": "Reisen für Familien",
+        "it": "Viaggi in famiglia",
+        "es": "Viajes en familia",
+        "fr": "Voyages en famille",
+        "pt": "Viagens em família"
+      },
+      "description": {
+        "en": "Journeys whose published fit metadata explicitly includes families.",
+        "de": "Reisen, deren veröffentlichte Fit-Metadaten Familien ausdrücklich einschließen.",
+        "it": "Viaggi i cui metadati di compatibilità includono esplicitamente le famiglie.",
+        "es": "Viajes cuyos metadatos de compatibilidad incluyen expresamente a las familias.",
+        "fr": "Voyages dont les métadonnées d’adéquation incluent explicitement les familles.",
+        "pt": "Viagens cujos metadados de adequação incluem explicitamente famílias."
+      }
+    },
+    {
+      "id": "no-car-needed",
+      "theme": "sakura",
+      "filters": {
+        "vehicleRequired": false
+      },
+      "title": {
+        "en": "No Car Needed",
+        "de": "Ohne Auto",
+        "it": "Senza auto",
+        "es": "Sin coche",
+        "fr": "Sans voiture",
+        "pt": "Sem carro"
+      },
+      "description": {
+        "en": "Journeys that do not require vehicle context in the published trip model.",
+        "de": "Reisen, die im veröffentlichten Reisemodell keinen Fahrzeugkontext benötigen.",
+        "it": "Viaggi che nel modello pubblicato non richiedono un contesto veicolo.",
+        "es": "Viajes que no requieren contexto de vehículo en el modelo publicado.",
+        "fr": "Voyages qui ne nécessitent pas de contexte véhicule dans le modèle publié.",
+        "pt": "Viagens que não exigem contexto de veículo no modelo publicado."
+      }
+    },
+    {
+      "id": "asia",
+      "featured": false,
+      "theme": "sakura",
+      "filters": {
+        "region": "asia"
+      },
+      "title": {
+        "en": "Journeys in Asia",
+        "de": "Reisen in Asien",
+        "it": "Viaggi in Asia",
+        "es": "Viajes por Asia",
+        "fr": "Voyages en Asie",
+        "pt": "Viagens pela Ásia"
+      },
+      "description": {
+        "en": "Rail, road and multimodal journeys across East, South, Southeast and West Asia.",
+        "de": "Bahn-, Straßen- und multimodale Reisen durch Ost-, Süd-, Südost- und Westasien.",
+        "it": "Viaggi ferroviari, stradali e multimodali nell’Asia orientale, meridionale, sud-orientale e occidentale.",
+        "es": "Viajes en tren, carretera y multimodales por Asia oriental, meridional, sudoriental y occidental.",
+        "fr": "Voyages ferroviaires, routiers et multimodaux en Asie de l’Est, du Sud, du Sud-Est et de l’Ouest.",
+        "pt": "Viagens ferroviárias, rodoviárias e multimodais pelo leste, sul, sudeste e oeste da Ásia."
+      }
+    },
+    {
+      "id": "australia",
+      "featured": false,
+      "theme": "ocean",
+      "filters": {
+        "region": "australia"
+      },
+      "title": {
+        "en": "Journeys in Australia",
+        "de": "Reisen in Australien",
+        "it": "Viaggi in Australia",
+        "es": "Viajes por Australia",
+        "fr": "Voyages en Australie",
+        "pt": "Viagens pela Austrália"
+      },
+      "description": {
+        "en": "Source-backed road journeys and future travel formats across Australia.",
+        "de": "Quellenbasierte Roadtrips und künftige Reiseformate durch Australien.",
+        "it": "Road trip supportati da fonti e futuri formati di viaggio in Australia.",
+        "es": "Road trips respaldados por fuentes y futuros formatos de viaje por Australia.",
+        "fr": "Road trips sourcés et futurs formats de voyage en Australie.",
+        "pt": "Road trips com fontes e futuros formatos de viagem pela Austrália."
+      }
+    },
+    {
+      "id": "rail",
+      "featured": false,
+      "theme": "rockies",
+      "filters": {
+        "mode": "rail"
+      },
+      "title": {
+        "en": "Rail Journeys",
+        "de": "Bahnreisen",
+        "it": "Viaggi in treno",
+        "es": "Viajes en tren",
+        "fr": "Voyages en train",
+        "pt": "Viagens de trem"
+      },
+      "description": {
+        "en": "Discover journeys where rail is a published transport mode.",
+        "de": "Entdecke Reisen, bei denen Bahn als veröffentlichtes Verkehrsmittel enthalten ist.",
+        "it": "Scopri viaggi in cui il treno è una modalità di trasporto pubblicata.",
+        "es": "Descubre viajes donde el tren forma parte de los transportes publicados.",
+        "fr": "Découvrez des voyages où le train figure parmi les modes de transport publiés.",
+        "pt": "Descubra viagens em que o trem faz parte dos modos de transporte publicados."
+      }
+    },
+    {
+      "id": "road-trips",
+      "featured": false,
+      "theme": "desert",
+      "filters": {
+        "theme": "road-trip"
+      },
+      "title": {
+        "en": "Road Trips",
+        "de": "Roadtrips",
+        "it": "Road trip",
+        "es": "Road trips",
+        "fr": "Road trips",
+        "pt": "Road trips"
+      },
+      "description": {
+        "en": "Self-drive journeys built around landscapes, regional stops and the road itself.",
+        "de": "Selbstfahrerreisen rund um Landschaften, regionale Stopps und das Unterwegssein.",
+        "it": "Viaggi self-drive tra paesaggi, tappe regionali e strada.",
+        "es": "Viajes en coche entre paisajes, paradas regionales y carretera.",
+        "fr": "Voyages en voiture entre paysages, étapes régionales et route.",
+        "pt": "Viagens de carro entre paisagens, paradas regionais e estrada."
+      }
+    },
+    {
+      "id": "7-14-days",
+      "featured": false,
+      "theme": "andes",
+      "filters": {
+        "duration": "7-14"
+      },
+      "title": {
+        "en": "7–14 Day Journeys",
+        "de": "Reisen für 7–14 Tage",
+        "it": "Viaggi di 7–14 giorni",
+        "es": "Viajes de 7–14 días",
+        "fr": "Voyages de 7 à 14 jours",
+        "pt": "Viagens de 7–14 dias"
+      },
+      "description": {
+        "en": "Journey ideas designed for one to two weeks.",
+        "de": "Reiseideen für ein bis zwei Wochen.",
+        "it": "Idee di viaggio pensate per una o due settimane.",
+        "es": "Ideas de viaje para una o dos semanas.",
+        "fr": "Idées de voyage conçues pour une à deux semaines.",
+        "pt": "Ideias de viagem para uma ou duas semanas."
+      }
     }
   ]
 }
