@@ -1555,6 +1555,85 @@
           "accessibility": "vehicle-dependent"
         }
       }
+    },
+    {
+      "id": "victoria-great-ocean-highlands-road-trip",
+      "slug": "victoria-great-ocean-highlands-road-trip",
+      "kind": "road-trip",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/victoria-great-ocean-highlands-road-trip.json",
+      "title": {
+        "en": "Victoria Great Ocean & Highlands Road Trip",
+        "de": "Victoria · Great Ocean & Highlands Roadtrip",
+        "it": "Victoria · Great Ocean e Highlands on the road",
+        "es": "Victoria · Great Ocean y Highlands en ruta",
+        "fr": "Victoria · Great Ocean et Highlands en road trip",
+        "pt": "Victoria · Great Ocean e Highlands de carro"
+      },
+      "subtitle": {
+        "en": "10 days · Great Ocean Road, Gariwerd, Ballarat and Daylesford",
+        "de": "10 Tage · Great Ocean Road, Gariwerd, Ballarat und Daylesford",
+        "it": "10 giorni · Great Ocean Road, Gariwerd, Ballarat e Daylesford",
+        "es": "10 días · Great Ocean Road, Gariwerd, Ballarat y Daylesford",
+        "fr": "10 jours · Great Ocean Road, Gariwerd, Ballarat et Daylesford",
+        "pt": "10 dias · Great Ocean Road, Gariwerd, Ballarat e Daylesford"
+      },
+      "metrics": {
+        "days": 10,
+        "countries": 1,
+        "stops": 8,
+        "segments": 7,
+        "sourcedSegments": 7,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "source-evidence",
+        "trip-planning",
+        "story",
+        "terrain",
+        "vehicle-context",
+        "road-rules"
+      ],
+      "visual": {
+        "theme": "coast",
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "oceania",
+          "australia",
+          "victoria"
+        ],
+        "themes": [
+          "road-trip",
+          "coast",
+          "nature",
+          "culture"
+        ],
+        "modes": [
+          "car"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "multi-season"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "oceania",
+          "accessibility": "vehicle-dependent"
+        }
+      }
     }
   ]
 }
