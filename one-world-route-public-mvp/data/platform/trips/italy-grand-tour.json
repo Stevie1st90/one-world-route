@@ -1095,5 +1095,59 @@
       "en": "Entry and visa requirements must be resolved from the traveller’s passport citizenship, country of residence, trip duration and purpose. ONE WORLD ROUTE does not infer these from language, IP address or departure country.",
       "de": "Einreise- und Visabedingungen müssen aus Passstaatsangehörigkeit, Wohnsitzland, Reisedauer und Reisezweck bestimmt werden. ONE WORLD ROUTE leitet diese Angaben nicht aus Sprache, IP-Adresse oder Abreiseland ab."
     }
-  }
+  },
+  "variants": [
+    {
+      "id": "southern-italy-highlights",
+      "title": {
+        "en": "Southern Italy Highlights",
+        "de": "Highlights Süditaliens",
+        "it": "Il meglio del Sud Italia",
+        "es": "Lo mejor del sur de Italia",
+        "fr": "Les incontournables du sud de l'Italie",
+        "pt": "Destaques do sul da Itália"
+      },
+      "summary": {
+        "en": "An eight-day cut of the Italy Grand Tour linking Rome, Naples, the Amalfi Coast, Matera and Bari using the same sourced route evidence.",
+        "de": "Eine achttägige Variante der Italien-Rundreise von Rom über Neapel und die Amalfiküste nach Matera und Bari – mit denselben quellenbasierten Routendaten.",
+        "it": "Una variante di otto giorni del Gran Tour d'Italia tra Roma, Napoli, Costiera Amalfitana, Matera e Bari, con le stesse fonti della rotta principale.",
+        "es": "Una variante de ocho días del Gran Tour de Italia entre Roma, Nápoles, la Costa Amalfitana, Matera y Bari, con las mismas fuentes de la ruta principal.",
+        "fr": "Une variante de huit jours du Grand tour d'Italie reliant Rome, Naples, la côte amalfitaine, Matera et Bari avec les mêmes sources que l'itinéraire principal.",
+        "pt": "Uma variante de oito dias da Grande Volta pela Itália entre Roma, Nápoles, Costa Amalfitana, Matera e Bari, usando as mesmas fontes da rota principal."
+      },
+      "startStopId": "it-stop-01",
+      "endStopId": "it-stop-05",
+      "pace": "balanced",
+      "routePolicy": {
+        "startMode": "fixed",
+        "reversible": false
+      }
+    },
+    {
+      "id": "northern-italy-tuscany",
+      "title": {
+        "en": "Northern Italy & Tuscany",
+        "de": "Norditalien & Toskana",
+        "it": "Nord Italia e Toscana",
+        "es": "Norte de Italia y Toscana",
+        "fr": "Italie du Nord et Toscane",
+        "pt": "Norte da Itália e Toscana"
+      },
+      "summary": {
+        "en": "A ten-day variant from Bologna through Venice and the Dolomites to Florence, Siena and Rome, derived from the sourced northern half of the Grand Tour.",
+        "de": "Eine zehntägige Variante von Bologna über Venedig und die Dolomiten nach Florenz, Siena und Rom – abgeleitet aus der quellenbasierten Nordhälfte der Grand Tour.",
+        "it": "Una variante di dieci giorni da Bologna attraverso Venezia e le Dolomiti fino a Firenze, Siena e Roma, ricavata dalla parte settentrionale del Gran Tour.",
+        "es": "Una variante de diez días desde Bolonia, pasando por Venecia y los Dolomitas, hasta Florencia, Siena y Roma, derivada de la mitad norte del Gran Tour.",
+        "fr": "Une variante de dix jours de Bologne via Venise et les Dolomites jusqu'à Florence, Sienne et Rome, dérivée de la moitié nord sourcée du Grand Tour.",
+        "pt": "Uma variante de dez dias de Bolonha, passando por Veneza e Dolomitas, até Florença, Siena e Roma, derivada da metade norte da Grande Volta."
+      },
+      "startStopId": "it-stop-06",
+      "endStopId": "it-stop-11",
+      "pace": "active",
+      "routePolicy": {
+        "startMode": "fixed",
+        "reversible": false
+      }
+    }
+  ]
 }

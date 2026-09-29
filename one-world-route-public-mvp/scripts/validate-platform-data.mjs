@@ -101,6 +101,22 @@ for (const item of catalog.trips || []) {
     stopById.set(s.id,s);
     if (!placeIds.has(s.placeId)) fail(item.id+': stop '+s.id+' references missing place '+s.placeId);
   }
+  const variants=Array.isArray(trip.variants)?trip.variants:[];
+  const variantIds=new Set();
+  for(const variant of variants){
+    if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(String(variant.id||''))||variant.id==='base') fail(item.id+': invalid journey variant id '+String(variant.id||''));
+    else if(variantIds.has(variant.id)) fail(item.id+': duplicate journey variant '+variant.id);
+    else variantIds.add(variant.id);
+    const startIndex=orderedStops.findIndex(stop=>stop.id===variant.startStopId);
+    const endIndex=orderedStops.findIndex(stop=>stop.id===variant.endStopId);
+    if(startIndex<0||endIndex<0||endIndex<startIndex) fail(item.id+': journey variant '+variant.id+' requires an ordered stop window');
+    for(const lang of supportedLocales){
+      if(!String(variant.title?.[lang]||'').trim()) fail(item.id+': journey variant '+variant.id+' missing title for '+lang);
+      if(!String(variant.summary?.[lang]||'').trim()) fail(item.id+': journey variant '+variant.id+' missing summary for '+lang);
+    }
+    if(variant.pace&&!['relaxed','balanced','active'].includes(variant.pace)) fail(item.id+': journey variant '+variant.id+' invalid pace');
+    if(variant.routePolicy?.startMode&&!['fixed','endpoints','any-stop'].includes(variant.routePolicy.startMode)) fail(item.id+': journey variant '+variant.id+' invalid startMode');
+  }
   const routePolicy=trip.routePolicy||{startMode:'fixed',reversible:false,originMode:'traveller-context',originAccess:'dynamic',returnMode:'to-origin',preserveCoreRoute:true};
   const segs = [...(trip.segments || [])].sort((a,b)=>a.sequence-b.sequence);
   const loopRoute=routePolicy.startMode==='any-stop';

@@ -17,12 +17,6 @@ test('@flagship flagship shell boots cleanly',async({page,isMobile})=>{
   await expect(page.locator('#routeRange')).toHaveAttribute('max',String(flagship.metrics.internationalLegs),{timeout:15000});
   await expect(page.locator('#filterCount')).toContainText(String(flagship.metrics.internationalLegs));
   await expect(page.locator('body')).toHaveClass(/platform-ready/,{timeout:15000});
-  const settingsVisibility=await page.evaluate(()=>{
-    const button=document.querySelector('#settingsBtn'),actions=button?.parentElement,topbar=button?.closest('.topbar');
-    const snapshot=node=>node?{className:node.className,display:getComputedStyle(node).display,visibility:getComputedStyle(node).visibility,opacity:getComputedStyle(node).opacity,rect:node.getBoundingClientRect().toJSON()}:null;
-    return {bodyClass:document.body.className,button:snapshot(button),actions:snapshot(actions),topbar:snapshot(topbar)};
-  });
-  console.log('FLAGSHIP_SETTINGS_VISIBILITY',JSON.stringify(settingsVisibility));
   await expect(page.locator('#settingsBtn')).toBeVisible();
   await expect(page.locator('#platformRouteBtn')).toBeVisible();
   if(isMobile){
@@ -556,3 +550,22 @@ function capturePageErrors(page){
   page.on('pageerror',error=>errors.push(error.message));
   return errors;
 }
+
+
+test('@regional journey variant deep link derives a smaller route from the source trip',async({page,isMobile})=>{
+  test.setTimeout(60000);
+  const errors=capturePageErrors(page);
+  await page.goto('/?trip=italy-grand-tour&variant=southern-italy-highlights&lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:15000});
+  await expect(page.locator('body')).not.toHaveClass(/platform-booting/,{timeout:15000});
+  if(isMobile){
+    await page.locator('#mobileDetails').click();
+    await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);
+  }
+  await expect(page.locator('[data-trip-variant]')).toHaveValue('southern-italy-highlights');
+  await expect(page.locator('.platform-journey-flow-stop')).toHaveCount(5);
+  await expect(page.locator('#regionalRouteRange')).toHaveAttribute('max','4');
+  await expect(page.locator('#detailTitle')).toHaveText('Southern Italy Highlights');
+  expect(new URL(page.url()).searchParams.get('variant')).toBe('southern-italy-highlights');
+  expect(errors,'journey variant runtime page errors').toEqual([]);
+});

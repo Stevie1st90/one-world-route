@@ -556,7 +556,13 @@ body.platform-ready #app>.topbar,body.platform-ready #app>.left-panel,body.platf
 .platform-origin-summary.platform-entry-suggestion>small{grid-area:detail;color:#71859a;font-size:7px;line-height:1.4}
 @media(max-width:760px){.platform-home-resultbar{flex-wrap:wrap}.platform-home-sort{order:3;width:100%;justify-content:flex-end}.platform-home-sort select{min-width:150px}}
 @media(max-width:520px){.platform-home-finder-grid{grid-template-columns:1fr}.platform-home-finder-grid>button{grid-column:1;width:100%;justify-self:stretch}.platform-home-sort{justify-content:stretch}.platform-home-sort select{flex:1;min-width:0}}
+
+
+/* Journey variants */
+.platform-journey-variant{display:grid;gap:5px;padding:10px;border:1px solid rgba(89,221,255,.1);border-radius:12px;background:rgba(89,221,255,.025)}
+.platform-journey-variant>span{color:#6f8399;font-size:7px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
+.platform-journey-variant select{width:100%;height:36px;border:1px solid rgba(255,255,255,.09);border-radius:9px;background:#0d1826;color:#dcebf5;padding:0 9px;font-size:9px}
+.platform-journey-variant small{color:#71859a;font-size:7px;line-height:1.45}
 /* Flagship shell actions remain reachable after global navigation expansion. */
 body:not(.platform-home):not(.platform-regional-trip) .top-actions{display:flex!important}
-body:not(.platform-home):not(.platform-regional-trip) #settingsBtn{display:inline-grid!important;visibility:visible!important}
-
+body:not(.platform-home):not(.platform-regional-trip) #settingsBtn{display:inline-grid!important}
