@@ -13,6 +13,7 @@ for (const script of [
   'build-flagship-operations-queue.mjs',
   'build-flagship-recheck-plan.mjs',
   'build-trip-index.mjs',
+  'build-locale-coverage.mjs',
   'build-bundles.mjs',
   'generate-seo.mjs',
 ]) {

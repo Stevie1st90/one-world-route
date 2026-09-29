@@ -256,6 +256,7 @@ jobs:
           node --check scripts/test-trip-compare.mjs
           node --check scripts/trip-index-model.mjs
           node --check scripts/build-trip-index.mjs
+          node --check scripts/build-locale-coverage.mjs
           node --check scripts/test-trip-index.mjs
           node --check scripts/test-cache-policy.mjs
           node --check ../internal-trip-builder/server.mjs
@@ -288,6 +289,8 @@ jobs:
         run: node --test scripts/test-platform-formatters.mjs
       - name: Public trip index tests
         run: node --test scripts/test-trip-index.mjs
+      - name: Locale coverage audit
+        run: node scripts/build-locale-coverage.mjs
       - name: Share page tests
         run: node --test scripts/test-share-pages.mjs
       - name: Platform navigation tests
