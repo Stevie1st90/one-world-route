@@ -556,3 +556,7 @@ body.platform-ready #app>.topbar,body.platform-ready #app>.left-panel,body.platf
 .platform-origin-summary.platform-entry-suggestion>small{grid-area:detail;color:#71859a;font-size:7px;line-height:1.4}
 @media(max-width:760px){.platform-home-resultbar{flex-wrap:wrap}.platform-home-sort{order:3;width:100%;justify-content:flex-end}.platform-home-sort select{min-width:150px}}
 @media(max-width:520px){.platform-home-finder-grid{grid-template-columns:1fr}.platform-home-finder-grid>button{grid-column:1;width:100%;justify-self:stretch}.platform-home-sort{justify-content:stretch}.platform-home-sort select{flex:1;min-width:0}}
+/* Flagship shell actions remain reachable after global navigation expansion. */
+body:not(.platform-home):not(.platform-regional-trip) .top-actions{display:flex!important}
+body:not(.platform-home):not(.platform-regional-trip) #settingsBtn{display:inline-grid!important}
+
