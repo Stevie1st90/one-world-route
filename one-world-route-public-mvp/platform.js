@@ -20,6 +20,7 @@
   const JourneyGuide=PLATFORM_MODULES.journeyGuide;
   const PlaceExperiences=PLATFORM_MODULES.placeExperiences;
   const MyTrips=PLATFORM_MODULES.myTrips;
+  const ServiceWorker=PLATFORM_MODULES.serviceWorker;
   const TripPlanning=PLATFORM_MODULES.tripPlanning;
   const Extensions=PLATFORM_MODULES.extensions;
   const Home=PLATFORM_MODULES.home;
@@ -434,6 +435,7 @@
         statusLabel,
         locale:()=>locale,
         onOpenTrip:setQueryTrip,
+        serviceWorker:ServiceWorker,
         toast:Ui.toast
       });
       Ui.ensureGlobalActions({t,esc,onHome:goHome,onRoutes:openRouteLibrary,onMyTrips:openMyTrips,onTraveller:openTraveller});

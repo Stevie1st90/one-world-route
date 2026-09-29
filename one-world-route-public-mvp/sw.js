@@ -1,5 +1,5 @@
 const LOCAL_PREVIEW=['127.0.0.1','localhost','::1'].includes(self.location.hostname);
-const CACHE='one-world-route-flagship-ops-20260925a';
+const CACHE='one-world-route-pwa-offline-20260929a';
 const MIGRATION_CACHE=/^one-world-route-(regional-hardening|homepage|utility-readiness|compare-calendar)-/;
 const SHELL=[
   '/index.html',
@@ -83,7 +83,24 @@ self.addEventListener('activate',event=>{
 });
 
 self.addEventListener('message',event=>{
-  if(event.data?.type==='SKIP_WAITING')self.skipWaiting();
+  if(event.data?.type==='SKIP_WAITING'){self.skipWaiting();return}
+  if(event.data?.type==='CACHE_URLS'){
+    const reply=payload=>{try{event.ports?.[0]?.postMessage(payload)}catch{}};
+    event.waitUntil((async()=>{
+      if(LOCAL_PREVIEW){reply({ok:false,reason:'local-preview'});return}
+      const urls=[...new Set((event.data.urls||[]).filter(value=>typeof value==='string'&&value.startsWith('/')))];
+      const cache=await caches.open(CACHE);
+      let cached=0;
+      for(const url of urls){
+        try{
+          const request=new Request(url,{method:'GET'});
+          const response=await fetch(request,{cache:'no-store'});
+          if(response.ok){await cache.put(request,response.clone());cached++}
+        }catch{}
+      }
+      reply({ok:cached===urls.length,cached,total:urls.length});
+    })());
+  }
 });
 
 self.addEventListener('fetch',event=>{

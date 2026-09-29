@@ -13,6 +13,8 @@ test('delivery policy keeps navigations and mutable app resources network-first'
   assert.match(sw,/fetch\(request,\{cache:'no-store'\}\)/);
   assert.match(sw,/MIGRATION_CACHE/);
   assert.match(sw,/client\.navigate\(client\.url\)/);
+  assert.match(sw,/CACHE_URLS/);
+  assert.match(sw,/event\.ports/);
   assert.doesNotMatch(sw,/caches\.match\(e\.request\)\.then\(hit=>hit\|\|fetch/);
 });
 
@@ -22,6 +24,9 @@ test('service worker registration bypasses the HTTP cache and activates updates'
   assert.match(source,/registration\.update\(\)/);
   assert.match(source,/SKIP_WAITING/);
   assert.match(source,/controllerchange/);
+  assert.match(source,/cacheUrls/);
+  assert.match(source,/cacheTrip/);
+  assert.match(source,/MessageChannel/);
 });
 
 test('Vercel serves shell and worker with explicit revalidation policy',async()=>{

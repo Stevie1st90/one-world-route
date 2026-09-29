@@ -107,7 +107,7 @@
       '<div class="platform-mytrip-setup">'+setup+'</div>'+
       planningMarkup({meta,trip,profile,budget,currency,start})+
       '<div class="platform-mytrip-fit">'+fitMarkup(meta,profile)+'</div>'+
-      '<div class="platform-mytrip-actions"><button type="button" data-mytrip-open="'+d.esc(id)+'">'+d.esc(d.t('continuePlanning'))+' →</button></div>'+
+      '<div class="platform-mytrip-actions"><button type="button" data-mytrip-offline="'+d.esc(id)+'">'+d.esc(d.t('saveOffline'))+'</button><button type="button" data-mytrip-open="'+d.esc(id)+'">'+d.esc(d.t('continuePlanning'))+' →</button></div>'+
     '</article>';
   }
 
@@ -160,6 +160,25 @@
       if(saveBtn){
         if(!d.TripTools.isSaved(d.storage,saveBtn.dataset.mytripSave))d.TripTools.toggleSaved(d.storage,saveBtn.dataset.mytripSave);
         await render(modal);
+        return;
+      }
+      const offlineBtn=event.target.closest('[data-mytrip-offline]');
+      if(offlineBtn){
+        const meta=(d.catalog.trips||[]).find(item=>item.id===offlineBtn.dataset.mytripOffline);
+        if(!meta||!d.serviceWorker?.cacheTrip){d.toast(d.t('offlineUnavailable'));return}
+        offlineBtn.disabled=true;
+        const original=offlineBtn.textContent;
+        offlineBtn.textContent=d.t('offlineSaving');
+        try{
+          const result=await d.serviceWorker.cacheTrip(meta);
+          d.toast(result?.ok?d.t('offlineReady'):d.t('offlineUnavailable'));
+        }catch(error){
+          console.warn('Offline trip cache failed',error);
+          d.toast(d.t('offlineUnavailable'));
+        }finally{
+          offlineBtn.disabled=false;
+          offlineBtn.textContent=original;
+        }
         return;
       }
       const openBtn=event.target.closest('[data-mytrip-open]');
