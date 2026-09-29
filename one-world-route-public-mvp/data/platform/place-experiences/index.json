@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28",
+  "updatedAt": "2026-09-29",
   "shards": [
     {
       "countryCode": "AR",
@@ -51,12 +51,20 @@
       "dataset": "./data/platform/place-experiences/HU.json"
     },
     {
+      "countryCode": "IN",
+      "dataset": "./data/platform/place-experiences/IN.json"
+    },
+    {
       "countryCode": "IS",
       "dataset": "./data/platform/place-experiences/IS.json"
     },
     {
       "countryCode": "IT",
       "dataset": "./data/platform/place-experiences/IT.json"
+    },
+    {
+      "countryCode": "JO",
+      "dataset": "./data/platform/place-experiences/JO.json"
     },
     {
       "countryCode": "JP",
@@ -89,6 +97,10 @@
     {
       "countryCode": "TN",
       "dataset": "./data/platform/place-experiences/TN.json"
+    },
+    {
+      "countryCode": "US",
+      "dataset": "./data/platform/place-experiences/US.json"
     },
     {
       "countryCode": "VN",
