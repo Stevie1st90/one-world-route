@@ -24,6 +24,7 @@ jobs:
     outputs:
       flagship_browser: ${{ steps.scope.outputs.flagship_browser }}
       regional_browser: ${{ steps.scope.outputs.regional_browser }}
+      discovery_browser: ${{ steps.scope.outputs.discovery_browser }}
       builder_browser: ${{ steps.scope.outputs.builder_browser }}
     steps:
       - uses: actions/checkout@v7
@@ -41,6 +42,7 @@ jobs:
           if [[ "${{ github.event_name }}" == "push" ]]; then
             echo "flagship_browser=false" >> "$GITHUB_OUTPUT"
             echo "regional_browser=false" >> "$GITHUB_OUTPUT"
+            echo "discovery_browser=false" >> "$GITHUB_OUTPUT"
             echo "builder_browser=false" >> "$GITHUB_OUTPUT"
             echo "main push: fast gate only; browser regression is not duplicated"
             exit 0
@@ -53,6 +55,7 @@ jobs:
 
           flagship_browser=false
           regional_browser=false
+          discovery_browser=false
           builder_browser=false
 
           while IFS= read -r file; do
@@ -60,12 +63,16 @@ jobs:
               .github/workflows/platform-validation.yml)
                 flagship_browser=true
                 regional_browser=true
+                discovery_browser=true
                 builder_browser=true
                 ;;
               internal-trip-builder/*)
                 if [[ "$file" != "internal-trip-builder/README.md" ]]; then
                   builder_browser=true
                 fi
+                ;;
+              one-world-route-public-mvp/data/platform/collections.json)
+                discovery_browser=true
                 ;;
               one-world-route-public-mvp/data/platform/*)
                 regional_browser=true
@@ -79,6 +86,9 @@ jobs:
                 regional_browser=true
                 ;;
               one-world-route-public-mvp/README.md)
+                ;;
+              one-world-route-public-mvp/platform/home.js|one-world-route-public-mvp/platform/home.css)
+                discovery_browser=true
                 ;;
               one-world-route-public-mvp/platform/regional-*|one-world-route-public-mvp/platform/extensions.js|one-world-route-public-mvp/platform/extensions/*)
                 regional_browser=true
@@ -99,12 +109,14 @@ jobs:
 
           echo "flagship_browser=$flagship_browser" >> "$GITHUB_OUTPUT"
           echo "regional_browser=$regional_browser" >> "$GITHUB_OUTPUT"
+          echo "discovery_browser=$discovery_browser" >> "$GITHUB_OUTPUT"
           echo "builder_browser=$builder_browser" >> "$GITHUB_OUTPUT"
 
           echo "Changed files:"
           cat /tmp/owr-changed-files.txt
           echo "flagship_browser=$flagship_browser"
           echo "regional_browser=$regional_browser"
+          echo "discovery_browser=$discovery_browser"
           echo "builder_browser=$builder_browser"
 
   core:
@@ -385,6 +397,49 @@ jobs:
           if-no-files-found: ignore
           retention-days: 7
 
+  discovery-browser:
+    name: Discovery browser smoke
+    needs: changes
+    if: needs.changes.outputs.discovery_browser == 'true' && needs.changes.outputs.regional_browser != 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: one-world-route-public-mvp
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: one-world-route-public-mvp/qa/package-lock.json
+      - name: Install browser QA dependencies
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+        run: npm ci --prefix qa
+      - name: Run discovery browser smoke
+        env:
+          OWR_QA_NO_VIDEO: '1'
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          test -n "$CHROME_BIN"
+          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/platform-smoke.spec.mjs --grep="@discovery" --project=desktop-1440 --project=mobile-390 --workers=2
+      - name: Upload discovery browser smoke artifacts
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: discovery-browser-smoke-${{ github.run_id }}
+          path: one-world-route-public-mvp/qa/test-results
+          if-no-files-found: ignore
+          retention-days: 7
+      - name: Upload discovery visual QA
+        if: success()
+        uses: actions/upload-artifact@v7
+        with:
+          name: discovery-visual-qa-${{ github.run_id }}
+          path: one-world-route-public-mvp/qa/test-results
+          if-no-files-found: error
+          retention-days: 7
+
   regional-browser:
     name: Regional browser smoke
     needs: changes
@@ -410,7 +465,8 @@ jobs:
         run: |
           CHROME_BIN="$(command -v google-chrome || command -v chromium)"
           test -n "$CHROME_BIN"
-          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/platform-smoke.spec.mjs --grep="@regional" --project=desktop-1440 --project=mobile-390 --workers=2
+          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/platform-smoke.spec.mjs --grep="@regional" --project=desktop-1440 --workers=2
+          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/platform-smoke.spec.mjs --grep="@mobile-critical" --project=mobile-390 --workers=2
       - name: Upload regional browser smoke artifacts
         if: failure()
         uses: actions/upload-artifact@v7
@@ -437,6 +493,7 @@ jobs:
       - release
       - builder-browser
       - flagship-browser
+      - discovery-browser
       - regional-browser
     runs-on: ubuntu-latest
     steps:
@@ -448,6 +505,7 @@ jobs:
           RELEASE_RESULT: ${{ needs.release.result }}
           BUILDER_RESULT: ${{ needs.builder-browser.result }}
           FLAGSHIP_RESULT: ${{ needs.flagship-browser.result }}
+          DISCOVERY_RESULT: ${{ needs.discovery-browser.result }}
           REGIONAL_RESULT: ${{ needs.regional-browser.result }}
         run: |
           set -euo pipefail
@@ -464,6 +522,11 @@ jobs:
           case "$FLAGSHIP_RESULT" in
             success|skipped) ;;
             *) echo "Flagship browser smoke failed: $FLAGSHIP_RESULT"; exit 1 ;;
+          esac
+
+          case "$DISCOVERY_RESULT" in
+            success|skipped) ;;
+            *) echo "Discovery browser smoke failed: $DISCOVERY_RESULT"; exit 1 ;;
           esac
 
           case "$REGIONAL_RESULT" in
