@@ -48,9 +48,9 @@ jobs:
             exit 0
           fi
 
+          # Three-dot diff scopes QA to PR-authored changes even when main advanced after the branch was created.
           git diff --name-only \
-            "${{ github.event.pull_request.base.sha }}" \
-            "${{ github.event.pull_request.head.sha }}" \
+            "${{ github.event.pull_request.base.sha }}...${{ github.event.pull_request.head.sha }}" \
             > /tmp/owr-changed-files.txt
 
           flagship_browser=false
