@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {computeTripMetrics,normalizeCatalogEntry,validatePublicationReadiness,validateTripDraft,journeyArchetype,journeyArchetypes,scaffoldTripDraft} from './trip-draft-contract.mjs';
+import {computeTripMetrics,normalizeCatalogEntry,normalizeDraftMetadata,validatePublicationReadiness,validateTripDraft,journeyArchetype,journeyArchetypes,scaffoldTripDraft} from './trip-draft-contract.mjs';
 
 const catalog={supportedLocales:['en','de']};
 function valid(){
@@ -113,6 +113,23 @@ test('scaffold uses archetype defaults and stays globally neutral until authored
   assert.equal(catalogEntry.discovery.durationBand,'7-14');
   assert.ok(catalogEntry.capabilities.includes('regional-stops'));
   assert.equal(catalogEntry.visual.mediaState,'art-directed');
+  assert.equal(trip.planning.currency,null);
+});
+
+test('derives countries, route modes and duration metadata from authored route data',()=>{
+  const ctx=valid();
+  ctx.trip.geography={countries:['ZZ']};
+  ctx.trip.planning.days=null;
+  ctx.trip.stops[0].dayStart=1;ctx.trip.stops[0].dayEnd=1;
+  ctx.trip.stops[1].dayStart=2;ctx.trip.stops[1].dayEnd=2;
+  ctx.catalogEntry.discovery.durationBand='90-plus';
+  ctx.catalogEntry.discovery.modes=[];
+  const normalized=normalizeDraftMetadata(ctx);
+  assert.deepEqual(normalized.trip.geography.countries,['DE','FR']);
+  assert.equal(normalized.trip.planning.days,2);
+  assert.equal(normalized.catalogEntry.discovery.durationBand,'7-14');
+  assert.deepEqual(normalized.catalogEntry.discovery.modes,['rail']);
+  assert.equal(normalized.catalogEntry.metrics.countries,2);
 });
 
 test('publication readiness requires a deliberate supported public status',()=>{

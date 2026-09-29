@@ -40,7 +40,7 @@ export function scaffoldTripDraft({slug,kind,days,catalog}){
     defaultLocale:catalog?.defaultLocale||'en',supportedLocales:[...locales],
     title:localized(locales,human),summary:localized(locales,'TODO — editorial summary'),
     geography:{regions:[],countries:[]},
-    planning:{days:normalizedDays,currency:'EUR'},
+    planning:{days:normalizedDays,currency:null},
     maintenance:{tier:archetype.maintenanceTier,sourceReviewDays:archetype.reviewDays},
     routePolicy:archetype.routePolicy,
     rendering:{},places:[],stops:[],segments:[],chapters:[],
@@ -72,6 +72,27 @@ export function computeTripMetrics(trip={}){
     sourcedSegments:segments.filter(s=>(s.verification?.sourceIds||[]).length).length,
     verifiedSegments:segments.filter(s=>s.verification?.status==='verified').length
   };
+}
+
+export function normalizeDraftMetadata({trip={},catalogEntry={}}={}){
+  const nextTrip=clone(trip||{});
+  const nextEntry=clone(catalogEntry||{});
+  const countries=[...new Set((nextTrip.places||[]).map(place=>String(place.countryCode||'').trim()).filter(code=>/^[A-Z]{2}$/.test(code)))];
+  nextTrip.geography={...(nextTrip.geography||{}),countries};
+  nextTrip.planning={...(nextTrip.planning||{})};
+  if(!Number.isFinite(Number(nextTrip.planning.days))||Number(nextTrip.planning.days)<=0){
+    const stopDays=(nextTrip.stops||[]).flatMap(stop=>[stop.dayEnd,stop.dayStart]).map(Number).filter(value=>Number.isFinite(value)&&value>0);
+    if(stopDays.length)nextTrip.planning.days=Math.max(...stopDays);
+  }
+  const normalized=normalizeCatalogEntry(nextEntry,nextTrip);
+  const actualModes=[...new Set((nextTrip.segments||[]).map(segment=>segment.transport?.mode).filter(mode=>allowedModes.has(mode)))];
+  const existingModes=Array.isArray(normalized.discovery?.modes)?normalized.discovery.modes:[];
+  normalized.discovery={
+    ...(normalized.discovery||{}),
+    modes:[...new Set([...existingModes,...actualModes])],
+    durationBand:durationBand(nextTrip.planning.days)
+  };
+  return {trip:nextTrip,catalogEntry:normalized};
 }
 
 export function normalizeCatalogEntry(entry={},trip={}){
