@@ -109,7 +109,8 @@
       "coordinates": {
         "lat": 37.2982,
         "lng": -113.0263
-      }
+      },
+      "experienceRef": "US:zion-national-park"
     },
     {
       "id": "utah-national-parks-place-02",
@@ -126,7 +127,8 @@
       "coordinates": {
         "lat": 37.6283,
         "lng": -112.1677
-      }
+      },
+      "experienceRef": "US:bryce-canyon-national-park"
     },
     {
       "id": "utah-national-parks-place-03",
@@ -143,7 +145,8 @@
       "coordinates": {
         "lat": 38.2916,
         "lng": -111.2615
-      }
+      },
+      "experienceRef": "US:capitol-reef-national-park"
     },
     {
       "id": "utah-national-parks-place-04",
@@ -160,7 +163,8 @@
       "coordinates": {
         "lat": 38.7331,
         "lng": -109.5925
-      }
+      },
+      "experienceRef": "US:arches-national-park"
     },
     {
       "id": "utah-national-parks-place-05",
@@ -177,7 +181,8 @@
       "coordinates": {
         "lat": 38.3269,
         "lng": -109.8783
-      }
+      },
+      "experienceRef": "US:canyonlands-national-park"
     }
   ],
   "stops": [
