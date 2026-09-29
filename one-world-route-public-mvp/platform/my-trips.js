@@ -143,10 +143,20 @@
   async function open(){
     const d=context(),modal=d.ensureDialog('platformMyTripsModal');
     modal.innerHTML='<div class="platform-modal-card platform-mytrips-card glass"><button class="platform-x" type="button" aria-label="'+d.esc(d.t('close'))+'">×</button>'+
-      '<div class="platform-eyebrow">'+d.esc(d.t('myTrips'))+'</div><div class="platform-mytrips-title"><h2>'+d.esc(d.t('myTrips'))+' <span data-mytrips-count></span></h2><button type="button" data-mytrips-export>'+d.esc(d.t('exportWorkspace'))+'</button></div><p class="platform-lead">'+d.esc(d.t('myTripsLead'))+'</p>'+
+      '<div class="platform-eyebrow">'+d.esc(d.t('myTrips'))+'</div><div class="platform-mytrips-title"><h2>'+d.esc(d.t('myTrips'))+' <span data-mytrips-count></span></h2><div class="platform-mytrips-portability"><button type="button" data-mytrips-import>'+d.esc(d.t('importWorkspace'))+'</button><button type="button" data-mytrips-export>'+d.esc(d.t('exportWorkspace'))+'</button><input type="file" accept="application/json,.json" data-mytrips-import-file hidden></div></div><p class="platform-lead">'+d.esc(d.t('myTripsLead'))+'</p>'+
       '<div data-mytrips-body></div></div>';
     modal.classList.remove('hidden');
     $('.platform-x',modal).onclick=()=>modal.classList.add('hidden');
+    const importFile=$('[data-mytrips-import-file]',modal);
+    $('[data-mytrips-import]',modal).onclick=()=>importFile?.click();
+    if(importFile)importFile.onchange=async()=>{
+      const file=importFile.files?.[0];
+      if(!file)return;
+      const result=d.TripTools.importWorkspace(d.storage,await file.text(),(d.catalog.trips||[]).map(item=>item.id));
+      importFile.value='';
+      d.toast(result.ok?d.t('workspaceImported'):d.t('workspaceImportFailed'));
+      if(result.ok)await render(modal);
+    };
     modal.onclick=async event=>{
       const exportBtn=event.target.closest('[data-mytrips-export]');
       if(exportBtn){d.TripTools.download('one-world-route-planning-workspace.json',d.TripTools.workspaceJson(d.storage),'application/json');return}

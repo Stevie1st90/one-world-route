@@ -173,3 +173,41 @@ test('recent journeys are deduplicated, newest first and bounded locally',()=>{
   const workspace=JSON.parse(tools.workspaceJson(s));
   assert.deepEqual(workspace.workspace.recentTrips,recent);
 });
+
+test('planning workspace import validates schema and filters unknown trips',()=>{
+  const tools=load();
+  const storage=memoryStorage();
+  const payload=JSON.stringify({
+    schemaVersion:1,
+    workspace:{
+      savedTrips:['italy-grand-tour','unknown-trip'],
+      recentTrips:['unknown-trip','italy-grand-tour'],
+      budgets:{'italy-grand-tour':{lodgingPerNight:120},'unknown-trip':{lodgingPerNight:999}},
+      startDates:{'italy-grand-tour':'2027-05-04','unknown-trip':'bad'},
+      seasons:{'italy-grand-tour':'spring'},
+      routeStarts:{'italy-grand-tour':'it-stop-03'},
+      variants:{'italy-grand-tour':'southern-highlights'},
+      planningChecks:{'italy-grand-tour':{accessCheckedAt:'2026-09-29T12:00:00.000Z'}}
+    }
+  });
+  const result=tools.importWorkspace(storage,payload,['italy-grand-tour']);
+  assert.equal(result.ok,true);
+  const state=tools.load(storage);
+  assert.deepEqual(state.savedTrips,['italy-grand-tour']);
+  assert.deepEqual(state.recentTrips,['italy-grand-tour']);
+  assert.equal(state.budgets['italy-grand-tour'].lodgingPerNight,120);
+  assert.equal(state.startDates['italy-grand-tour'],'2027-05-04');
+  assert.equal(state.routeStarts['italy-grand-tour'],'it-stop-03');
+  assert.equal(state.variants['italy-grand-tour'],'southern-highlights');
+  assert.equal(Object.hasOwn(state.budgets,'unknown-trip'),false);
+});
+
+test('planning workspace import rejects invalid payloads without replacing state',()=>{
+  const tools=load();
+  const storage=memoryStorage();
+  tools.toggleSaved(storage,'italy-grand-tour');
+  assert.equal(tools.importWorkspace(storage,'not json',['italy-grand-tour']).ok,false);
+  assert.equal(tools.importWorkspace(storage,JSON.stringify({schemaVersion:2,workspace:{}}),['italy-grand-tour']).ok,false);
+  assert.deepEqual(tools.load(storage).savedTrips,['italy-grand-tour']);
+});
+
