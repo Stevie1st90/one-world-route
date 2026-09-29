@@ -137,6 +137,76 @@ export function attachEvidenceSource({trip={},catalogEntry={},source={},segments
   return normalizeDraftMetadata({trip:nextTrip,catalogEntry:nextEntry});
 }
 
+export function extensionStarterType({trip={},catalogEntry={}}={}){
+  const capabilities=new Set(catalogEntry.capabilities||journeyArchetype(trip.kind).capabilities||[]);
+  if(capabilities.has('vehicle-context')||capabilities.has('road-rules'))return 'road';
+  if(capabilities.has('cruise-calls')||capabilities.has('sea-days'))return 'cruise';
+  return null;
+}
+
+export function buildExtensionStarter({trip={},catalogEntry={}}={}){
+  const nextTrip=clone(trip||{}),nextEntry=clone(catalogEntry||{}),type=extensionStarterType({trip:nextTrip,catalogEntry:nextEntry});
+  if(!type)throw new Error('No extension starter is available for journey kind '+String(nextTrip.kind||'unknown'));
+  const stops=[...(nextTrip.stops||[])].sort((a,b)=>Number(a.sequence)-Number(b.sequence));
+  if(stops.length<2)throw new Error('Build the route skeleton before creating extension metadata');
+  const stopById=new Map(stops.map(stop=>[stop.id,stop]));
+  const placeById=new Map((nextTrip.places||[]).map(place=>[place.id,place]));
+  nextTrip.extensions={...(nextTrip.extensions||{})};
+
+  if(type==='road'){
+    nextTrip.extensions.roadTrip={
+      vehicleContextRequired:true,
+      rentalCrossBorderApprovalRequired:'operator-dependent',
+      vehicleOwnershipModes:['private','rental','camper','motorcycle','other'],
+      rule:'Vehicle-specific tolls, access rules and rental permissions require explicit current evidence.',
+      ...(nextTrip.extensions.roadTrip||{})
+    };
+    nextTrip.travellerContext={...(nextTrip.travellerContext||{}),scope:[...new Set([...(nextTrip.travellerContext?.scope||[]),'vehicle'])]};
+    const vehicleModes=new Set(['car','road','motorcycle']);
+    nextTrip.segments=(nextTrip.segments||[]).map(segment=>{
+      if(!vehicleModes.has(segment.transport?.mode))return segment;
+      const from=placeById.get(stopById.get(segment.fromStopId)?.placeId),to=placeById.get(stopById.get(segment.toStopId)?.placeId);
+      const existing=segment.extensions?.road||{};
+      const crossBorder=Boolean(from?.countryCode&&to?.countryCode&&from.countryCode!==to.countryCode);
+      return {...segment,extensions:{...(segment.extensions||{}),road:{
+        fromCountry:from?.countryCode||null,
+        toCountry:to?.countryCode||null,
+        crossBorder,
+        tollSystems:Array.isArray(existing.tollSystems)?existing.tollSystems:[],
+        urbanAccessChecks:Array.isArray(existing.urbanAccessChecks)?existing.urbanAccessChecks:[],
+        ...(crossBorder?{rentalApprovalRequired:true}:{}),
+        ...existing
+      }}};
+    });
+  }
+
+  if(type==='cruise'){
+    nextTrip.extensions.cruise={
+      embarkationStopId:stops[0].id,
+      disembarkationStopId:stops.at(-1).id,
+      operator:null,
+      vessel:null,
+      sailingDate:null,
+      bookingState:'illustrative-template',
+      requiresSailingSelection:true,
+      rule:'Sailing, operator, vessel, call times, berth assignments and prices remain unasserted until a concrete sailing is selected.',
+      ...(nextTrip.extensions.cruise||{})
+    };
+    nextTrip.segments=(nextTrip.segments||[]).map(segment=>{
+      if(segment.transport?.mode!=='cruise')return segment;
+      const existing=segment.extensions?.cruise||{};
+      return {...segment,extensions:{...(segment.extensions||{}),cruise:{
+        operator:null,
+        vessel:null,
+        serviceStatus:'illustrative',
+        seaDayNumbers:Array.isArray(existing.seaDayNumbers)?existing.seaDayNumbers:[],
+        ...existing
+      }}};
+    });
+  }
+  return {...normalizeDraftMetadata({trip:nextTrip,catalogEntry:nextEntry}),starterType:type};
+}
+
 export function computeTripMetrics(trip={}){
   const segments=Array.isArray(trip.segments)?trip.segments:[];
   const places=Array.isArray(trip.places)?trip.places:[];
