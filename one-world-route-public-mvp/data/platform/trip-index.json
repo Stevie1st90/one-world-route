@@ -6604,6 +6604,272 @@
           "checkedAt": "2026-09-29"
         }
       ]
+    },
+    {
+      "id": "india-golden-triangle-rail",
+      "slug": "india-golden-triangle-rail",
+      "kind": "rail",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "title": {
+        "en": "India Golden Triangle by Rail",
+        "de": "Indiens Goldenes Dreieck per Bahn",
+        "it": "Triangolo d'Oro dell'India in treno",
+        "es": "Triángulo Dorado de India en tren",
+        "fr": "Triangle d'Or de l'Inde en train",
+        "pt": "Triângulo Dourado da Índia de trem"
+      },
+      "subtitle": {
+        "en": "7 days · Delhi, Agra and Jaipur by rail",
+        "de": "7 Tage · Delhi, Agra und Jaipur per Bahn",
+        "it": "7 giorni · Delhi, Agra e Jaipur in treno",
+        "es": "7 días · Delhi, Agra y Jaipur en tren",
+        "fr": "7 jours · Delhi, Agra et Jaipur en train",
+        "pt": "7 dias · Delhi, Agra e Jaipur de trem"
+      },
+      "summary": {
+        "en": "A seven-day rail journey linking Delhi, Agra and Jaipur, focused on the historic cities of India's Golden Triangle.",
+        "de": "Eine siebentägige Bahnreise durch Delhi, Agra und Jaipur mit Fokus auf die historischen Städte des Goldenen Dreiecks Indiens.",
+        "it": "Un viaggio di sette giorni in treno tra Delhi, Agra e Jaipur, dedicato alle città storiche del Triangolo d'Oro indiano.",
+        "es": "Un viaje de siete días en tren por Delhi, Agra y Jaipur, centrado en las ciudades históricas del Triángulo Dorado de India.",
+        "fr": "Un voyage de sept jours en train entre Delhi, Agra et Jaipur, centré sur les villes historiques du Triangle d'Or indien.",
+        "pt": "Uma viagem de sete dias de trem por Delhi, Agra e Jaipur, focada nas cidades históricas do Triângulo Dourado da Índia."
+      },
+      "metrics": {
+        "days": 7,
+        "countries": 1,
+        "stops": 3,
+        "segments": 2,
+        "sourcedSegments": 2,
+        "verifiedSegments": 0
+      },
+      "discovery": {
+        "regions": [
+          "asia",
+          "south-asia",
+          "india"
+        ],
+        "themes": [
+          "rail",
+          "culture",
+          "history",
+          "cities"
+        ],
+        "modes": [
+          "rail"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "multi-season"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "asia",
+          "accessibility": "standard-check"
+        }
+      },
+      "planning": {
+        "days": 7,
+        "currency": "INR",
+        "pace": "balanced",
+        "knownPublishedMinimumEur": null,
+        "knownPublishedMinimumScope": null
+      },
+      "itinerary": [
+        {
+          "id": "india-golden-triangle-stop-01",
+          "sequence": 1,
+          "dayStart": 1,
+          "dayEnd": 2,
+          "nights": 2,
+          "name": {
+            "en": "Delhi",
+            "de": "Delhi",
+            "it": "Delhi",
+            "es": "Delhi",
+            "fr": "Delhi",
+            "pt": "Delhi"
+          },
+          "countryCode": "IN",
+          "type": "city"
+        },
+        {
+          "id": "india-golden-triangle-stop-02",
+          "sequence": 2,
+          "dayStart": 3,
+          "dayEnd": 4,
+          "nights": 2,
+          "name": {
+            "en": "Agra",
+            "de": "Agra",
+            "it": "Agra",
+            "es": "Agra",
+            "fr": "Agra",
+            "pt": "Agra"
+          },
+          "countryCode": "IN",
+          "type": "city"
+        },
+        {
+          "id": "india-golden-triangle-stop-03",
+          "sequence": 3,
+          "dayStart": 5,
+          "dayEnd": 7,
+          "nights": 3,
+          "name": {
+            "en": "Jaipur",
+            "de": "Jaipur",
+            "it": "Jaipur",
+            "es": "Jaipur",
+            "fr": "Jaipur",
+            "pt": "Jaipur"
+          },
+          "countryCode": "IN",
+          "type": "city"
+        }
+      ],
+      "preview": {
+        "points": [
+          {
+            "id": "india-golden-triangle-place-01",
+            "name": {
+              "en": "Delhi",
+              "de": "Delhi",
+              "it": "Delhi",
+              "es": "Delhi",
+              "fr": "Delhi",
+              "pt": "Delhi"
+            },
+            "lat": 28.6139,
+            "lng": 77.209
+          },
+          {
+            "id": "india-golden-triangle-place-02",
+            "name": {
+              "en": "Agra",
+              "de": "Agra",
+              "it": "Agra",
+              "es": "Agra",
+              "fr": "Agra",
+              "pt": "Agra"
+            },
+            "lat": 27.1767,
+            "lng": 78.0081
+          },
+          {
+            "id": "india-golden-triangle-place-03",
+            "name": {
+              "en": "Jaipur",
+              "de": "Jaipur",
+              "it": "Jaipur",
+              "es": "Jaipur",
+              "fr": "Jaipur",
+              "pt": "Jaipur"
+            },
+            "lat": 26.9124,
+            "lng": 75.7873
+          }
+        ],
+        "arcs": [
+          {
+            "id": "india-golden-triangle-leg-01",
+            "fromName": {
+              "en": "Delhi",
+              "de": "Delhi",
+              "it": "Delhi",
+              "es": "Delhi",
+              "fr": "Delhi",
+              "pt": "Delhi"
+            },
+            "toName": {
+              "en": "Agra",
+              "de": "Agra",
+              "it": "Agra",
+              "es": "Agra",
+              "fr": "Agra",
+              "pt": "Agra"
+            },
+            "start": {
+              "lat": 28.6139,
+              "lng": 77.209
+            },
+            "end": {
+              "lat": 27.1767,
+              "lng": 78.0081
+            }
+          },
+          {
+            "id": "india-golden-triangle-leg-02",
+            "fromName": {
+              "en": "Agra",
+              "de": "Agra",
+              "it": "Agra",
+              "es": "Agra",
+              "fr": "Agra",
+              "pt": "Agra"
+            },
+            "toName": {
+              "en": "Jaipur",
+              "de": "Jaipur",
+              "it": "Jaipur",
+              "es": "Jaipur",
+              "fr": "Jaipur",
+              "pt": "Jaipur"
+            },
+            "start": {
+              "lat": 27.1767,
+              "lng": 78.0081
+            },
+            "end": {
+              "lat": 26.9124,
+              "lng": 75.7873
+            }
+          }
+        ]
+      },
+      "evidence": {
+        "segments": 2,
+        "sourcedSegments": 2,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-09-29"
+      },
+      "sources": [
+        {
+          "id": "in-indian-railways-2026",
+          "issuer": "Indian Railways",
+          "title": "Reserved Train Between Stations",
+          "url": "https://www.indianrail.gov.in/enquiry/TBIS/TrainBetweenImportantStations.jsp",
+          "checkedAt": "2026-09-29"
+        },
+        {
+          "id": "in-delhi-2026",
+          "issuer": "Ministry of Tourism, Government of India",
+          "title": "Delhi",
+          "url": "https://www.incredibleindia.gov.in/en/delhi/delhi",
+          "checkedAt": "2026-09-29"
+        },
+        {
+          "id": "in-agra-2026",
+          "issuer": "Ministry of Tourism, Government of India",
+          "title": "Agra",
+          "url": "https://www.incredibleindia.gov.in/en/uttar-pradesh/agra",
+          "checkedAt": "2026-09-29"
+        },
+        {
+          "id": "in-jaipur-2026",
+          "issuer": "Ministry of Tourism, Government of India",
+          "title": "Jaipur",
+          "url": "https://www.incredibleindia.gov.in/en/rajasthan/jaipur",
+          "checkedAt": "2026-09-29"
+        }
+      ]
     }
   ]
 }
