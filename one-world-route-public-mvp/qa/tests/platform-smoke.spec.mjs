@@ -549,3 +549,22 @@ function capturePageErrors(page){
   page.on('pageerror',error=>errors.push(error.message));
   return errors;
 }
+
+
+test('@regional journey variant deep link derives a smaller route from the source trip',async({page,isMobile})=>{
+  test.setTimeout(60000);
+  const errors=capturePageErrors(page);
+  await page.goto('/?trip=italy-grand-tour&variant=southern-italy-highlights&lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:15000});
+  await expect(page.locator('body')).not.toHaveClass(/platform-booting/,{timeout:15000});
+  if(isMobile){
+    await page.locator('#mobileDetails').click();
+    await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);
+  }
+  await expect(page.locator('[data-trip-variant]')).toHaveValue('southern-italy-highlights');
+  await expect(page.locator('.platform-journey-flow-stop')).toHaveCount(5);
+  await expect(page.locator('#regionalRouteRange')).toHaveAttribute('max','4');
+  await expect(page.locator('#detailTitle')).toHaveText('Southern Italy Highlights');
+  expect(new URL(page.url()).searchParams.get('variant')).toBe('southern-italy-highlights');
+  expect(errors,'journey variant runtime page errors').toEqual([]);
+});
