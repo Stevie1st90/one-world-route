@@ -1,4 +1,5 @@
 import {validatePlatformExtensions} from './platform-extension-validators.mjs';
+import {deriveDiscoveryRegions,derivePrimaryRegion} from './country-region-model.mjs';
 import {journeyArchetype,journeyArchetypes} from './journey-archetype-registry.mjs';
 export {journeyArchetype,journeyArchetypes} from './journey-archetype-registry.mjs';
 
@@ -167,10 +168,18 @@ export function normalizeDraftMetadata({trip={},catalogEntry={}}={}){
   normalized.capabilities=[...new Set([...archetype.capabilities,...existingCapabilities])];
   const actualModes=[...new Set((nextTrip.segments||[]).map(segment=>segment.transport?.mode).filter(mode=>allowedModes.has(mode)))];
   const existingModes=Array.isArray(normalized.discovery?.modes)?normalized.discovery.modes:[];
+  const existingDiscovery=normalized.discovery||{};
+  const existingRegions=Array.isArray(existingDiscovery.regions)?existingDiscovery.regions:[];
+  const derivedRegions=deriveDiscoveryRegions(countries);
+  const useDerivedRegions=!existingRegions.length||existingRegions.every(region=>region==='global');
+  const fit={...(existingDiscovery.fit||{})};
+  if((!fit.startRegion||fit.startRegion==='global')&&countries.length)fit.startRegion=derivePrimaryRegion(countries)||'global';
   normalized.discovery={
-    ...(normalized.discovery||{}),
+    ...existingDiscovery,
+    regions:useDerivedRegions?(derivedRegions.length?derivedRegions:['global']):existingRegions,
     modes:[...new Set([...existingModes,...actualModes])],
-    durationBand:durationBand(nextTrip.planning.days)
+    durationBand:durationBand(nextTrip.planning.days),
+    fit
   };
   return {trip:nextTrip,catalogEntry:normalized};
 }
