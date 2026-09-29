@@ -65,10 +65,11 @@
     if(brandSmall)brandSmall.textContent=d.local(trip.title);
     const hero=$('.hero-copy');
     if(hero){
-      const theme=String(trip.media?.hero?.theme||'ocean').replace(/[^a-z0-9-]/gi,'');
+      const media=root.media?.descriptor?.(trip.media?.hero,'ocean')||{className:'visual-ocean',style:'',type:'art-directed'};
+      const credit=root.media?.credit?.(trip.media?.hero,d.esc)||'';
       const first=trip.stops?.[0]?d.stopPlace(trip,trip.stops[0]):null;
       const last=trip.stops?.at(-1)?d.stopPlace(trip,trip.stops.at(-1)):null;
-      hero.innerHTML=`<div class="platform-journey-hero-art visual-${d.esc(theme)}"><div><span>${d.esc(d.facetLabel(trip.kind))}</span><span>${trip.stops?.length||0} ${d.esc(d.t('stops'))}</span></div><strong>${d.esc(d.local(first?.name)||'')} → ${d.esc(d.local(last?.name)||'')}</strong></div><div class="eyebrow"><span class="live-dot"></span>${d.esc(d.facetLabel(trip.kind))} · ${trip.planning?.days||''} ${d.esc(d.t('days'))}</div><h1>${d.esc(d.local(trip.title))}</h1><p>${d.esc(d.local(trip.summary))}</p><div class="platform-template-note">${d.esc(d.t('editorial'))}</div>`;
+      hero.innerHTML=`<div class="platform-journey-hero-art ${d.esc(media.className)}" data-media-type="${d.esc(media.type)}"${media.style?` style="${d.esc(media.style)}"`:''}><div><span>${d.esc(d.facetLabel(trip.kind))}</span><span>${trip.stops?.length||0} ${d.esc(d.t('stops'))}</span></div><strong>${d.esc(d.local(first?.name)||'')} → ${d.esc(d.local(last?.name)||'')}</strong>${credit}</div><div class="eyebrow"><span class="live-dot"></span>${d.esc(d.facetLabel(trip.kind))} · ${trip.planning?.days||''} ${d.esc(d.t('days'))}</div><h1>${d.esc(d.local(trip.title))}</h1><p>${d.esc(d.local(trip.summary))}</p><div class="platform-template-note">${d.esc(d.t('editorial'))}</div>`;
     }
     const kpis=$('#topKpis');
     if(kpis)kpis.innerHTML=`<div class="kpi"><b>${trip.planning?.days||'—'}</b><span>${d.esc(d.t('days'))}</span></div><div class="kpi"><b>${trip.stops?.length||0}</b><span>${d.esc(d.t('stops'))}</span></div><div class="kpi"><b>${trip.segments?.length||0}</b><span>${d.esc(d.t('segments'))}</span></div>`;

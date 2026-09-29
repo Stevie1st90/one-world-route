@@ -49,8 +49,8 @@
   }
 
   function stopVisualMarkup(trip,stop,place){
-    const d=context(),theme=String(trip.media?.hero?.theme||'ocean').replace(/[^a-z0-9-]/gi,'');
-    return '<div class="platform-stop-visual visual-'+d.esc(theme)+'"><div><span>'+d.esc(d.t('stop'))+' '+stop.sequence+'</span><span>'+d.esc(d.t('day'))+' '+stop.dayStart+(stop.dayEnd!==stop.dayStart?'–'+stop.dayEnd:'')+'</span></div><strong>'+d.esc(d.local(place.name))+'</strong></div>';
+    const d=context(),media=root.media?.descriptor?.(trip.media?.hero,'ocean')||{className:'visual-ocean',style:'',type:'art-directed'};
+    return '<div class="platform-stop-visual '+d.esc(media.className)+'" data-media-type="'+d.esc(media.type)+'"'+(media.style?' style="'+d.esc(media.style)+'"':'')+'><div><span>'+d.esc(d.t('stop'))+' '+stop.sequence+'</span><span>'+d.esc(d.t('day'))+' '+stop.dayStart+(stop.dayEnd!==stop.dayStart?'–'+stop.dayEnd:'')+'</span></div><strong>'+d.esc(d.local(place.name))+'</strong></div>';
   }
 
   function renderTripOverview(){
