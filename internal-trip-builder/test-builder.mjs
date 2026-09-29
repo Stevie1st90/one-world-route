@@ -32,9 +32,9 @@ try{
   const title=Object.fromEntries(state.catalog.supportedLocales.map(l=>[l,'CI Builder Proof']));
   const subtitle=Object.fromEntries(state.catalog.supportedLocales.map(l=>[l,'Two-day CI rail proof']));
   const trip={schemaVersion:1,id:slug,slug,kind:'rail',status:'draft',defaultLocale:state.catalog.defaultLocale,supportedLocales:state.catalog.supportedLocales,title,summary:title,planning:{days:2,currency:'EUR'},places:[
-    {id:'a',countryCode:'DE',name:title,coordinates:{lat:50,lng:8}},
-    {id:'b',countryCode:'FR',name:title,coordinates:{lat:49,lng:7}}
-  ],stops:[{id:'s1',sequence:1,placeId:'a'},{id:'s2',sequence:2,placeId:'b'}],segments:[{
+    {id:'a',countryCode:'DE',type:'city',name:title,coordinates:{lat:50,lng:8}},
+    {id:'b',countryCode:'FR',type:'city',name:title,coordinates:{lat:49,lng:7}}
+  ],stops:[{id:'s1',sequence:1,placeId:'a',dayStart:1,dayEnd:1,nights:1},{id:'s2',sequence:2,placeId:'b',dayStart:2,dayEnd:2,nights:0}],segments:[{
     id:'seg1',sequence:1,fromStopId:'s1',toStopId:'s2',transport:{mode:'rail',stages:[{mode:'rail',sourceIds:['src']}]},
     verification:{status:'verified',sourceIds:['src'],lastVerified:'2026-09-22'}
   }],chapters:[],sources:[{id:'src',title:'CI Operator',issuer:'CI Operator',issuerType:'official-operator',url:'https://example.com/rail',checkedAt:'2026-09-22'}],extensions:{rail:{scope:'rail-only',sourcePolicy:'official-operator',crossBorder:true}}};
