@@ -1,0 +1,649 @@
+{
+  "schemaVersion": 1,
+  "id": "victoria-great-ocean-highlands-road-trip",
+  "slug": "victoria-great-ocean-highlands-road-trip",
+  "kind": "road-trip",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Victoria Great Ocean & Highlands Road Trip",
+    "de": "Victoria · Great Ocean & Highlands Roadtrip",
+    "it": "Victoria · Great Ocean e Highlands on the road",
+    "es": "Victoria · Great Ocean y Highlands en ruta",
+    "fr": "Victoria · Great Ocean et Highlands en road trip",
+    "pt": "Victoria · Great Ocean e Highlands de carro"
+  },
+  "summary": {
+    "en": "A ten-day self-drive loop through coastal Victoria, the Great Ocean Road, Gariwerd (Grampians), Ballarat and Daylesford, finishing in Melbourne.",
+    "de": "Eine zehntägige Selbstfahrer-Rundreise durch Victorias Küste, die Great Ocean Road, Gariwerd (Grampians), Ballarat und Daylesford bis Melbourne.",
+    "it": "Un itinerario self-drive di dieci giorni tra la costa del Victoria, la Great Ocean Road, Gariwerd (Grampians), Ballarat e Daylesford, con arrivo a Melbourne.",
+    "es": "Un road trip de diez días por la costa de Victoria, la Great Ocean Road, Gariwerd (Grampians), Ballarat y Daylesford, terminando en Melbourne.",
+    "fr": "Un road trip de dix jours à travers la côte du Victoria, la Great Ocean Road, Gariwerd (Grampians), Ballarat et Daylesford, jusqu'à Melbourne.",
+    "pt": "Um road trip de dez dias pela costa de Victoria, Great Ocean Road, Gariwerd (Grampians), Ballarat e Daylesford, terminando em Melbourne."
+  },
+  "highlights": [
+    {
+      "en": "Great Ocean Road coastline",
+      "de": "Küste der Great Ocean Road",
+      "it": "Costa della Great Ocean Road",
+      "es": "Costa de la Great Ocean Road",
+      "fr": "Côte de la Great Ocean Road",
+      "pt": "Costa da Great Ocean Road"
+    },
+    {
+      "en": "Gariwerd mountain landscapes",
+      "de": "Berglandschaften von Gariwerd",
+      "it": "Paesaggi montani di Gariwerd",
+      "es": "Paisajes montañosos de Gariwerd",
+      "fr": "Paysages montagneux de Gariwerd",
+      "pt": "Paisagens montanhosas de Gariwerd"
+    },
+    {
+      "en": "Goldfields and mineral-springs towns",
+      "de": "Goldfelder und Thermalorte",
+      "it": "Città dei giacimenti auriferi e delle sorgenti termali",
+      "es": "Pueblos de los campos de oro y aguas termales",
+      "fr": "Villes des champs aurifères et sources minérales",
+      "pt": "Cidades dos campos de ouro e fontes minerais"
+    }
+  ],
+  "geography": {
+    "countries": [
+      "AU"
+    ],
+    "primaryCountry": "AU"
+  },
+  "planning": {
+    "days": 10,
+    "currency": "AUD",
+    "pace": "balanced",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "maintenance": {
+    "tier": "evergreen",
+    "sourceReviewDays": 180,
+    "sharedKnowledge": true,
+    "notes": "Stable editorial route; road works, closures, park conditions, weather, vehicle and traveller-specific details require current checks."
+  },
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": false,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context",
+    "originAccess": "dynamic",
+    "returnMode": "to-origin",
+    "preserveCoreRoute": true
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": -37.9,
+      "lng": 143.3,
+      "altitude": 0.72
+    }
+  },
+  "places": [
+    {
+      "id": "victoria-road-place-01",
+      "type": "coastal-area",
+      "countryCode": "AU",
+      "name": {
+        "en": "Bellarine Peninsula",
+        "de": "Bellarine Peninsula",
+        "it": "Bellarine Peninsula",
+        "es": "Bellarine Peninsula",
+        "fr": "Bellarine Peninsula",
+        "pt": "Bellarine Peninsula"
+      },
+      "coordinates": {
+        "lat": -38.2679,
+        "lng": 144.661
+      }
+    },
+    {
+      "id": "victoria-road-place-02",
+      "type": "town",
+      "countryCode": "AU",
+      "name": {
+        "en": "Lorne",
+        "de": "Lorne",
+        "it": "Lorne",
+        "es": "Lorne",
+        "fr": "Lorne",
+        "pt": "Lorne"
+      },
+      "coordinates": {
+        "lat": -38.5402,
+        "lng": 143.9763
+      }
+    },
+    {
+      "id": "victoria-road-place-03",
+      "type": "natural-area",
+      "countryCode": "AU",
+      "name": {
+        "en": "Cape Otway",
+        "de": "Cape Otway",
+        "it": "Cape Otway",
+        "es": "Cape Otway",
+        "fr": "Cape Otway",
+        "pt": "Cape Otway"
+      },
+      "coordinates": {
+        "lat": -38.856,
+        "lng": 143.506
+      }
+    },
+    {
+      "id": "victoria-road-place-04",
+      "type": "town",
+      "countryCode": "AU",
+      "name": {
+        "en": "Port Fairy",
+        "de": "Port Fairy",
+        "it": "Port Fairy",
+        "es": "Port Fairy",
+        "fr": "Port Fairy",
+        "pt": "Port Fairy"
+      },
+      "coordinates": {
+        "lat": -38.3855,
+        "lng": 142.237
+      }
+    },
+    {
+      "id": "victoria-road-place-05",
+      "type": "town",
+      "countryCode": "AU",
+      "name": {
+        "en": "Halls Gap · Gariwerd",
+        "de": "Halls Gap · Gariwerd",
+        "it": "Halls Gap · Gariwerd",
+        "es": "Halls Gap · Gariwerd",
+        "fr": "Halls Gap · Gariwerd",
+        "pt": "Halls Gap · Gariwerd"
+      },
+      "coordinates": {
+        "lat": -37.14,
+        "lng": 142.519
+      }
+    },
+    {
+      "id": "victoria-road-place-06",
+      "type": "city",
+      "countryCode": "AU",
+      "name": {
+        "en": "Ballarat",
+        "de": "Ballarat",
+        "it": "Ballarat",
+        "es": "Ballarat",
+        "fr": "Ballarat",
+        "pt": "Ballarat"
+      },
+      "coordinates": {
+        "lat": -37.5622,
+        "lng": 143.8503
+      }
+    },
+    {
+      "id": "victoria-road-place-07",
+      "type": "town",
+      "countryCode": "AU",
+      "name": {
+        "en": "Daylesford",
+        "de": "Daylesford",
+        "it": "Daylesford",
+        "es": "Daylesford",
+        "fr": "Daylesford",
+        "pt": "Daylesford"
+      },
+      "coordinates": {
+        "lat": -37.3411,
+        "lng": 144.1426
+      }
+    },
+    {
+      "id": "victoria-road-place-08",
+      "type": "city",
+      "countryCode": "AU",
+      "name": {
+        "en": "Melbourne",
+        "de": "Melbourne",
+        "it": "Melbourne",
+        "es": "Melbourne",
+        "fr": "Melbourne",
+        "pt": "Melbourne"
+      },
+      "coordinates": {
+        "lat": -37.8136,
+        "lng": 144.9631
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "victoria-road-stop-01",
+      "sequence": 1,
+      "placeId": "victoria-road-place-01",
+      "dayStart": 1,
+      "dayEnd": 1,
+      "nights": 1
+    },
+    {
+      "id": "victoria-road-stop-02",
+      "sequence": 2,
+      "placeId": "victoria-road-place-02",
+      "dayStart": 2,
+      "dayEnd": 2,
+      "nights": 1
+    },
+    {
+      "id": "victoria-road-stop-03",
+      "sequence": 3,
+      "placeId": "victoria-road-place-03",
+      "dayStart": 3,
+      "dayEnd": 3,
+      "nights": 1
+    },
+    {
+      "id": "victoria-road-stop-04",
+      "sequence": 4,
+      "placeId": "victoria-road-place-04",
+      "dayStart": 4,
+      "dayEnd": 4,
+      "nights": 1
+    },
+    {
+      "id": "victoria-road-stop-05",
+      "sequence": 5,
+      "placeId": "victoria-road-place-05",
+      "dayStart": 5,
+      "dayEnd": 5,
+      "nights": 1
+    },
+    {
+      "id": "victoria-road-stop-06",
+      "sequence": 6,
+      "placeId": "victoria-road-place-06",
+      "dayStart": 6,
+      "dayEnd": 7,
+      "nights": 2
+    },
+    {
+      "id": "victoria-road-stop-07",
+      "sequence": 7,
+      "placeId": "victoria-road-place-07",
+      "dayStart": 8,
+      "dayEnd": 9,
+      "nights": 2
+    },
+    {
+      "id": "victoria-road-stop-08",
+      "sequence": 8,
+      "placeId": "victoria-road-place-08",
+      "dayStart": 10,
+      "dayEnd": 10,
+      "nights": 1
+    }
+  ],
+  "segments": [
+    {
+      "id": "victoria-road-leg-01",
+      "sequence": 1,
+      "fromStopId": "victoria-road-stop-01",
+      "toStopId": "victoria-road-stop-02",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null,
+        "durationBasis": "live-road-check-required"
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-29",
+        "sourceIds": [
+          "au-victoria-10day-tourism-2026",
+          "au-vic-road-conditions-2026"
+        ],
+        "notes": "Editorial road-trip sequence. Exact road works, closures, weather, park access and travel time require current Transport Victoria/Parks Victoria checks before travel."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "AU",
+          "toCountry": "AU",
+          "crossBorder": false,
+          "rentalApprovalRequired": false
+        }
+      }
+    },
+    {
+      "id": "victoria-road-leg-02",
+      "sequence": 2,
+      "fromStopId": "victoria-road-stop-02",
+      "toStopId": "victoria-road-stop-03",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null,
+        "durationBasis": "live-road-check-required"
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-29",
+        "sourceIds": [
+          "au-victoria-10day-tourism-2026",
+          "au-vic-road-conditions-2026"
+        ],
+        "notes": "Editorial road-trip sequence. Exact road works, closures, weather, park access and travel time require current Transport Victoria/Parks Victoria checks before travel."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "AU",
+          "toCountry": "AU",
+          "crossBorder": false,
+          "rentalApprovalRequired": false
+        }
+      }
+    },
+    {
+      "id": "victoria-road-leg-03",
+      "sequence": 3,
+      "fromStopId": "victoria-road-stop-03",
+      "toStopId": "victoria-road-stop-04",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null,
+        "durationBasis": "live-road-check-required"
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-29",
+        "sourceIds": [
+          "au-victoria-10day-tourism-2026",
+          "au-vic-road-conditions-2026"
+        ],
+        "notes": "Editorial road-trip sequence. Exact road works, closures, weather, park access and travel time require current Transport Victoria/Parks Victoria checks before travel."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "AU",
+          "toCountry": "AU",
+          "crossBorder": false,
+          "rentalApprovalRequired": false
+        }
+      }
+    },
+    {
+      "id": "victoria-road-leg-04",
+      "sequence": 4,
+      "fromStopId": "victoria-road-stop-04",
+      "toStopId": "victoria-road-stop-05",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null,
+        "durationBasis": "live-road-check-required"
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-29",
+        "sourceIds": [
+          "au-victoria-10day-tourism-2026",
+          "au-vic-road-conditions-2026",
+          "au-grampians-parks-2026"
+        ],
+        "notes": "Editorial road-trip sequence. Exact road works, closures, weather, park access and travel time require current Transport Victoria/Parks Victoria checks before travel."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "AU",
+          "toCountry": "AU",
+          "crossBorder": false,
+          "rentalApprovalRequired": false
+        }
+      }
+    },
+    {
+      "id": "victoria-road-leg-05",
+      "sequence": 5,
+      "fromStopId": "victoria-road-stop-05",
+      "toStopId": "victoria-road-stop-06",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null,
+        "durationBasis": "live-road-check-required"
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-29",
+        "sourceIds": [
+          "au-victoria-10day-tourism-2026",
+          "au-vic-road-conditions-2026",
+          "au-grampians-parks-2026"
+        ],
+        "notes": "Editorial road-trip sequence. Exact road works, closures, weather, park access and travel time require current Transport Victoria/Parks Victoria checks before travel."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "AU",
+          "toCountry": "AU",
+          "crossBorder": false,
+          "rentalApprovalRequired": false
+        }
+      }
+    },
+    {
+      "id": "victoria-road-leg-06",
+      "sequence": 6,
+      "fromStopId": "victoria-road-stop-06",
+      "toStopId": "victoria-road-stop-07",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null,
+        "durationBasis": "live-road-check-required"
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-29",
+        "sourceIds": [
+          "au-victoria-10day-tourism-2026",
+          "au-vic-road-conditions-2026"
+        ],
+        "notes": "Editorial road-trip sequence. Exact road works, closures, weather, park access and travel time require current Transport Victoria/Parks Victoria checks before travel."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "AU",
+          "toCountry": "AU",
+          "crossBorder": false,
+          "rentalApprovalRequired": false
+        }
+      }
+    },
+    {
+      "id": "victoria-road-leg-07",
+      "sequence": 7,
+      "fromStopId": "victoria-road-stop-07",
+      "toStopId": "victoria-road-stop-08",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null,
+        "durationBasis": "live-road-check-required"
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-29",
+        "sourceIds": [
+          "au-victoria-10day-tourism-2026",
+          "au-vic-road-conditions-2026"
+        ],
+        "notes": "Editorial road-trip sequence. Exact road works, closures, weather, park access and travel time require current Transport Victoria/Parks Victoria checks before travel."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "AU",
+          "toCountry": "AU",
+          "crossBorder": false,
+          "rentalApprovalRequired": false
+        }
+      }
+    }
+  ],
+  "chapters": [
+    {
+      "id": "victoria-coast",
+      "title": {
+        "en": "Great Ocean coast",
+        "de": "Great Ocean Küste",
+        "it": "Costa della Great Ocean",
+        "es": "Costa Great Ocean",
+        "fr": "Côte de la Great Ocean",
+        "pt": "Costa Great Ocean"
+      },
+      "stopIds": [
+        "victoria-road-stop-01",
+        "victoria-road-stop-02",
+        "victoria-road-stop-03",
+        "victoria-road-stop-04"
+      ]
+    },
+    {
+      "id": "victoria-gariwerd",
+      "title": {
+        "en": "Gariwerd highlands",
+        "de": "Gariwerd Highlands",
+        "it": "Altopiani di Gariwerd",
+        "es": "Tierras altas de Gariwerd",
+        "fr": "Hauts plateaux de Gariwerd",
+        "pt": "Terras altas de Gariwerd"
+      },
+      "stopIds": [
+        "victoria-road-stop-05"
+      ]
+    },
+    {
+      "id": "victoria-goldfields",
+      "title": {
+        "en": "Goldfields & springs",
+        "de": "Goldfelder & Quellen",
+        "it": "Campi d'oro e sorgenti",
+        "es": "Campos de oro y manantiales",
+        "fr": "Champs aurifères et sources",
+        "pt": "Campos de ouro e fontes"
+      },
+      "stopIds": [
+        "victoria-road-stop-06",
+        "victoria-road-stop-07",
+        "victoria-road-stop-08"
+      ]
+    }
+  ],
+  "travellerContext": {
+    "scope": [
+      "vehicle"
+    ]
+  },
+  "sources": [
+    {
+      "id": "au-victoria-10day-tourism-2026",
+      "title": "10-day road trip through regional Victoria",
+      "issuer": "Tourism Australia",
+      "issuerType": "official-tourism-board",
+      "url": "https://www.australia.com/en/trips-and-itineraries/melbourne-and-surrounds/10-days-through-regional-victoria.html",
+      "checkedAt": "2026-09-29",
+      "claims": [
+        "Tourism Australia publishes a 10-day self-drive loop through regional Victoria covering the Great Ocean Road, Grampians, Ballarat, Daylesford and Melbourne."
+      ]
+    },
+    {
+      "id": "au-great-ocean-road-tourism-2026",
+      "title": "Guide to the Great Ocean Road",
+      "issuer": "Tourism Australia",
+      "issuerType": "official-tourism-board",
+      "url": "https://www.australia.com/en-us/places/melbourne-and-surrounds/guide-to-the-great-ocean-road.html",
+      "checkedAt": "2026-09-29",
+      "claims": [
+        "Tourism Australia identifies the Great Ocean Road as a major scenic self-drive route and Torquay as its official starting point."
+      ]
+    },
+    {
+      "id": "au-vic-road-conditions-2026",
+      "title": "Great Ocean Road and Inland Routes landslip works",
+      "issuer": "Transport Victoria",
+      "issuerType": "government",
+      "url": "https://transport.vic.gov.au/news-and-resources/projects-hub/barwon-south-west/great-ocean-road-and-inland-routes-landslip-works",
+      "checkedAt": "2026-09-29",
+      "claims": [
+        "Transport Victoria publishes current Great Ocean Road and inland-route disruption, closure and roadwork information."
+      ]
+    },
+    {
+      "id": "au-grampians-parks-2026",
+      "title": "Grampians (Gariwerd) National Park",
+      "issuer": "Parks Victoria",
+      "issuerType": "government",
+      "url": "https://www.parks.vic.gov.au/places-to-see/parks/grampians-national-park",
+      "checkedAt": "2026-09-29",
+      "claims": [
+        "Parks Victoria publishes current access, road, fire-recovery and visitor-condition information for Gariwerd (Grampians) National Park."
+      ]
+    }
+  ],
+  "extensions": {
+    "roadTrip": {
+      "vehicleContextRequired": true,
+      "rentalCrossBorderApprovalRequired": false,
+      "vehicleOwnershipModes": [
+        "private",
+        "rental",
+        "camper",
+        "motorcycle",
+        "other"
+      ],
+      "rule": "Do not calculate road access, rental eligibility, park conditions or travel time without current vehicle and traveller context."
+    }
+  }
+}
