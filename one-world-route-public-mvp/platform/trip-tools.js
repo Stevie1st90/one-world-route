@@ -223,7 +223,10 @@
     const coreEndPlace=places.get(journeyPlan?.core?.endPlaceId)||places.get(trip?.stops?.at(-1)?.placeId);
     const coreStartName=local(coreStartPlace?.name)||'—',coreEndName=local(coreEndPlace?.name)||'—';
     const originMarkup='<div class="platform-origin-summary"><span>'+esc(t('originPoint'))+'</span><b>'+esc(origin||t('notSet'))+'</b><button type="button" data-trip-origin-edit>'+esc(t('change'))+'</button></div>';
-    const suggestionMarkup=entrySuggestion?.available&&suggestedName?'<div class="platform-origin-summary platform-entry-suggestion" data-entry-suggestion><span>'+esc(t('entrySuggestion'))+'</span><b>'+esc((origin||entrySuggestion.originCountry||t('originPoint'))+' → '+suggestedName)+'</b><button type="button" '+(suggestionSelected?'disabled':'data-trip-entry-suggest')+'>'+esc(suggestionSelected?t('entrySuggestionApplied'):t('useSuggestedEntry'))+'</button></div>':'';
+    const suggestionDetail=entrySuggestion?.available
+      ?((Number.isFinite(Number(entrySuggestion.distanceKm))?'≈ '+Math.round(Number(entrySuggestion.distanceKm))+' km · ':'')+t('entryApproximation'))
+      :'';
+    const suggestionMarkup=entrySuggestion?.available&&suggestedName?'<div class="platform-origin-summary platform-entry-suggestion" data-entry-suggestion><span>'+esc(t('entrySuggestion'))+'</span><b>'+esc((origin||entrySuggestion.originCountry||t('originPoint'))+' → '+suggestedName)+'</b><small>'+esc(suggestionDetail)+'</small><button type="button" '+(suggestionSelected?'disabled':'data-trip-entry-suggest')+'>'+esc(suggestionSelected?t('entrySuggestionApplied'):t('useSuggestedEntry'))+'</button></div>':'';
     const accessMarkup='<div class="platform-route-access platform-route-access-grid">'+
       '<div class="platform-route-access-step"><span>1 · '+esc(t('routeAccess'))+'</span><strong>'+esc(origin||t('originPoint'))+' → '+esc(coreStartName)+'</strong><small>'+esc(origin?t('currentCheck'):t('personalizeJourneyLead'))+'</small></div>'+
       '<div class="platform-route-access-step"><span>2 · '+esc(t('overview'))+'</span><strong>'+esc(coreStartName)+' → '+esc(coreEndName)+'</strong><small>'+esc(t('routeAccessLead'))+'</small></div>'+
