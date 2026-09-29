@@ -109,7 +109,8 @@
       "coordinates": {
         "lat": -38.2679,
         "lng": 144.661
-      }
+      },
+      "experienceRef": "AU:bellarine-peninsula"
     },
     {
       "id": "victoria-road-place-02",
@@ -126,7 +127,8 @@
       "coordinates": {
         "lat": -38.5402,
         "lng": 143.9763
-      }
+      },
+      "experienceRef": "AU:lorne"
     },
     {
       "id": "victoria-road-place-03",
@@ -143,7 +145,8 @@
       "coordinates": {
         "lat": -38.856,
         "lng": 143.506
-      }
+      },
+      "experienceRef": "AU:cape-otway"
     },
     {
       "id": "victoria-road-place-04",
@@ -160,7 +163,8 @@
       "coordinates": {
         "lat": -38.3855,
         "lng": 142.237
-      }
+      },
+      "experienceRef": "AU:port-fairy"
     },
     {
       "id": "victoria-road-place-05",
@@ -177,7 +181,8 @@
       "coordinates": {
         "lat": -37.14,
         "lng": 142.519
-      }
+      },
+      "experienceRef": "AU:halls-gap-gariwerd"
     },
     {
       "id": "victoria-road-place-06",
@@ -194,7 +199,8 @@
       "coordinates": {
         "lat": -37.5622,
         "lng": 143.8503
-      }
+      },
+      "experienceRef": "AU:ballarat"
     },
     {
       "id": "victoria-road-place-07",
@@ -211,7 +217,8 @@
       "coordinates": {
         "lat": -37.3411,
         "lng": 144.1426
-      }
+      },
+      "experienceRef": "AU:daylesford"
     },
     {
       "id": "victoria-road-place-08",
@@ -228,7 +235,8 @@
       "coordinates": {
         "lat": -37.8136,
         "lng": 144.9631
-      }
+      },
+      "experienceRef": "AU:melbourne"
     }
   ],
   "stops": [
