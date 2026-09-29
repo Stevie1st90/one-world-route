@@ -544,6 +544,47 @@ test('@regional @mobile-critical representative regional shell boots cleanly',as
   expect(errors,'regional runtime page errors').toEqual([]);
 });
 
+
+test('@regional @mobile-critical journey variant and planning state stay consistent together',async({page,isMobile})=>{
+  test.setTimeout(90000);
+  await page.addInitScript(()=>{
+    localStorage.setItem('one-world-route:traveller-context:v1',JSON.stringify({
+      language:'en',currency:'EUR',origin:'Frankfurt / FRA',originCountry:'DE',
+      party:{adults:2,children:0},accessibility:{reducedMobility:false}
+    }));
+    localStorage.removeItem('one-world-route:trip-tools:v1');
+  });
+  const errors=capturePageErrors(page);
+  await page.goto('/?trip=italy-grand-tour&variant=southern-italy-highlights&lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:15000});
+  await expect(page.locator('body')).not.toHaveClass(/platform-booting/,{timeout:15000});
+  if(isMobile){
+    await page.locator('#mobileDetails').click();
+    await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);
+  }
+  await expect(page.locator('[data-trip-variant]')).toHaveValue('southern-italy-highlights');
+  await expect(page.locator('[data-trip-planning-status]')).toBeVisible();
+  await page.locator('[data-trip-save]').click();
+
+  await page.locator('[data-trip-variant]').selectOption('northern-italy-tuscany');
+  await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:15000});
+  if(isMobile&&!await page.locator('#rightPanel').evaluate(node=>node.classList.contains('mobile-open'))){
+    await page.locator('#mobileDetails').click();
+    await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);
+  }
+  await expect(page.locator('[data-trip-variant]')).toHaveValue('northern-italy-tuscany',{timeout:20000});
+  await expect(page.locator('#detailTitle')).toHaveText('Northern Italy & Tuscany');
+  await expect(page.locator('.platform-journey-flow-stop')).toHaveCount(6);
+  expect(new URL(page.url()).searchParams.get('variant')).toBe('northern-italy-tuscany');
+
+  const state=await page.evaluate(()=>JSON.parse(localStorage.getItem('one-world-route:trip-tools:v1')||'{}'));
+  expect(state.savedTrips).toContain('italy-grand-tour');
+  expect(state.variants?.['italy-grand-tour']).toBe('northern-italy-tuscany');
+  await expect(page.locator('[data-trip-planning-status]')).toBeVisible();
+  if(isMobile)await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
+  expect(errors,'variant + planning integration runtime errors').toEqual([]);
+});
+
 function capturePageErrors(page){
   const errors=[];
   page.on('pageerror',error=>errors.push(error.message));
