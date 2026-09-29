@@ -6,8 +6,8 @@ import {readFile} from 'node:fs/promises';
 const source=await readFile(new URL('../platform/media.js',import.meta.url),'utf8');
 function load(){
   const window={ONE_WORLD_PLATFORM_MODULES:{}};
-  vm.createContext({window,String});
-  vm.runInContext(source,{window,String});
+  const context=vm.createContext({window,String});
+  vm.runInContext(source,context);
   return window.ONE_WORLD_PLATFORM_MODULES.media;
 }
 
