@@ -1,0 +1,301 @@
+{
+  "schemaVersion": 1,
+  "id": "india-golden-triangle-rail",
+  "slug": "india-golden-triangle-rail",
+  "kind": "rail",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "India Golden Triangle by Rail",
+    "de": "Indiens Goldenes Dreieck per Bahn",
+    "it": "Triangolo d'Oro dell'India in treno",
+    "es": "Triángulo Dorado de India en tren",
+    "fr": "Triangle d'Or de l'Inde en train",
+    "pt": "Triângulo Dourado da Índia de trem"
+  },
+  "summary": {
+    "en": "A seven-day rail journey linking Delhi, Agra and Jaipur, focused on the historic cities of India's Golden Triangle.",
+    "de": "Eine siebentägige Bahnreise durch Delhi, Agra und Jaipur mit Fokus auf die historischen Städte des Goldenen Dreiecks Indiens.",
+    "it": "Un viaggio di sette giorni in treno tra Delhi, Agra e Jaipur, dedicato alle città storiche del Triangolo d'Oro indiano.",
+    "es": "Un viaje de siete días en tren por Delhi, Agra y Jaipur, centrado en las ciudades históricas del Triángulo Dorado de India.",
+    "fr": "Un voyage de sept jours en train entre Delhi, Agra et Jaipur, centré sur les villes historiques du Triangle d'Or indien.",
+    "pt": "Uma viagem de sete dias de trem por Delhi, Agra e Jaipur, focada nas cidades históricas do Triângulo Dourado da Índia."
+  },
+  "geography": {
+    "countries": [
+      "IN"
+    ],
+    "primaryCountry": "IN"
+  },
+  "planning": {
+    "days": 7,
+    "currency": "INR",
+    "pace": "balanced",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true,
+    "notes": "Stable editorial route; train schedules, fares, reservation availability and traveller-specific facts require current operator checks."
+  },
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context",
+    "originAccess": "dynamic",
+    "returnMode": "to-origin",
+    "preserveCoreRoute": true
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 27.55,
+      "lng": 77,
+      "altitude": 0.72
+    }
+  },
+  "places": [
+    {
+      "id": "india-golden-triangle-place-01",
+      "type": "city",
+      "countryCode": "IN",
+      "name": {
+        "en": "Delhi",
+        "de": "Delhi",
+        "it": "Delhi",
+        "es": "Delhi",
+        "fr": "Delhi",
+        "pt": "Delhi"
+      },
+      "coordinates": {
+        "lat": 28.6139,
+        "lng": 77.209
+      }
+    },
+    {
+      "id": "india-golden-triangle-place-02",
+      "type": "city",
+      "countryCode": "IN",
+      "name": {
+        "en": "Agra",
+        "de": "Agra",
+        "it": "Agra",
+        "es": "Agra",
+        "fr": "Agra",
+        "pt": "Agra"
+      },
+      "coordinates": {
+        "lat": 27.1767,
+        "lng": 78.0081
+      }
+    },
+    {
+      "id": "india-golden-triangle-place-03",
+      "type": "city",
+      "countryCode": "IN",
+      "name": {
+        "en": "Jaipur",
+        "de": "Jaipur",
+        "it": "Jaipur",
+        "es": "Jaipur",
+        "fr": "Jaipur",
+        "pt": "Jaipur"
+      },
+      "coordinates": {
+        "lat": 26.9124,
+        "lng": 75.7873
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "india-golden-triangle-stop-01",
+      "sequence": 1,
+      "placeId": "india-golden-triangle-place-01",
+      "dayStart": 1,
+      "dayEnd": 2,
+      "nights": 2
+    },
+    {
+      "id": "india-golden-triangle-stop-02",
+      "sequence": 2,
+      "placeId": "india-golden-triangle-place-02",
+      "dayStart": 3,
+      "dayEnd": 4,
+      "nights": 2
+    },
+    {
+      "id": "india-golden-triangle-stop-03",
+      "sequence": 3,
+      "placeId": "india-golden-triangle-place-03",
+      "dayStart": 5,
+      "dayEnd": 7,
+      "nights": 3
+    }
+  ],
+  "segments": [
+    {
+      "id": "india-golden-triangle-leg-01",
+      "sequence": 1,
+      "fromStopId": "india-golden-triangle-stop-01",
+      "toStopId": "india-golden-triangle-stop-02",
+      "transport": {
+        "mode": "rail",
+        "stages": [
+          {
+            "mode": "rail",
+            "sourceIds": [
+              "in-indian-railways-2026"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null,
+        "durationBasis": "live-timetable-required"
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-29",
+        "sourceIds": [
+          "in-indian-railways-2026"
+        ],
+        "notes": "Editorial rail sequence. Exact trains, timings, fares and reservation availability require a current Indian Railways check before travel."
+      }
+    },
+    {
+      "id": "india-golden-triangle-leg-02",
+      "sequence": 2,
+      "fromStopId": "india-golden-triangle-stop-02",
+      "toStopId": "india-golden-triangle-stop-03",
+      "transport": {
+        "mode": "rail",
+        "stages": [
+          {
+            "mode": "rail",
+            "sourceIds": [
+              "in-indian-railways-2026"
+            ]
+          }
+        ]
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null,
+        "durationBasis": "live-timetable-required"
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-29",
+        "sourceIds": [
+          "in-indian-railways-2026"
+        ],
+        "notes": "Editorial rail sequence. Exact trains, timings, fares and reservation availability require a current Indian Railways check before travel."
+      }
+    }
+  ],
+  "chapters": [
+    {
+      "id": "india-golden-triangle-imperial",
+      "title": {
+        "en": "Delhi & Mughal history",
+        "de": "Delhi & Mogulgeschichte",
+        "it": "Delhi e storia moghul",
+        "es": "Delhi e historia mogol",
+        "fr": "Delhi et histoire moghole",
+        "pt": "Delhi e história mogol"
+      },
+      "stopIds": [
+        "india-golden-triangle-stop-01",
+        "india-golden-triangle-stop-02"
+      ]
+    },
+    {
+      "id": "india-golden-triangle-rajasthan",
+      "title": {
+        "en": "Rajasthan gateway",
+        "de": "Tor zu Rajasthan",
+        "it": "Porta del Rajasthan",
+        "es": "Puerta a Rajastán",
+        "fr": "Porte du Rajasthan",
+        "pt": "Porta para o Rajastão"
+      },
+      "stopIds": [
+        "india-golden-triangle-stop-03"
+      ]
+    }
+  ],
+  "travellerContext": {
+    "scope": []
+  },
+  "sources": [
+    {
+      "id": "in-indian-railways-2026",
+      "title": "Reserved Train Between Stations",
+      "issuer": "Indian Railways",
+      "issuerType": "official-operator",
+      "url": "https://www.indianrail.gov.in/enquiry/TBIS/TrainBetweenImportantStations.jsp",
+      "checkedAt": "2026-09-29",
+      "claims": [
+        "Indian Railways provides an official train-between-stations enquiry for current journey planning."
+      ]
+    },
+    {
+      "id": "in-delhi-2026",
+      "title": "Delhi",
+      "issuer": "Ministry of Tourism, Government of India",
+      "issuerType": "government",
+      "url": "https://www.incredibleindia.gov.in/en/delhi/delhi",
+      "checkedAt": "2026-09-29",
+      "claims": [
+        "Delhi is presented as a major historic and cultural destination with multiple UNESCO World Heritage sites."
+      ]
+    },
+    {
+      "id": "in-agra-2026",
+      "title": "Agra",
+      "issuer": "Ministry of Tourism, Government of India",
+      "issuerType": "government",
+      "url": "https://www.incredibleindia.gov.in/en/uttar-pradesh/agra",
+      "checkedAt": "2026-09-29",
+      "claims": [
+        "Agra is presented as part of India's Golden Triangle tourist circuit with Delhi and Jaipur."
+      ]
+    },
+    {
+      "id": "in-jaipur-2026",
+      "title": "Jaipur",
+      "issuer": "Ministry of Tourism, Government of India",
+      "issuerType": "government",
+      "url": "https://www.incredibleindia.gov.in/en/rajasthan/jaipur",
+      "checkedAt": "2026-09-29",
+      "claims": [
+        "Jaipur is presented as one of the three points of India's Golden Triangle with Delhi and Agra."
+      ]
+    }
+  ],
+  "extensions": {
+    "rail": {
+      "scope": "rail-only",
+      "sourcePolicy": "official-operator",
+      "timetablePolicy": "live-operator-check",
+      "crossBorder": false
+    }
+  }
+}
