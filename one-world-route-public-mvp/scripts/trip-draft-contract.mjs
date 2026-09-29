@@ -12,6 +12,7 @@ const parties=new Set(['solo','couples','friends','families']);
 const accessibilities=new Set(['standard-check','operator-dependent','vehicle-dependent','complex-planning']);
 export const publicationStatuses=new Set(['planned','sourced-beta','illustrative-template','editorial-preview']);
 
+const clone=value=>JSON.parse(JSON.stringify(value));
 const localized=(locales,value)=>Object.fromEntries(locales.map(locale=>[locale,value]));
 const durationBand=days=>days==null?'7-14':days<=14?'7-14':days<=30?'15-30':days<=89?'31-89':'90-plus';
 
