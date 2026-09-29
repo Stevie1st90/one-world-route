@@ -1,6 +1,6 @@
 import {readFileSync} from 'node:fs';
 
-const registryUrl=new URL('./config/journey-archetypes.json',import.meta.url);
+const registryUrl=new URL('./config/journey-archetypes.config',import.meta.url);
 const raw=JSON.parse(readFileSync(registryUrl,'utf8'));
 const clone=value=>JSON.parse(JSON.stringify(value));
 
