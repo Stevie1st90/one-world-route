@@ -1,0 +1,492 @@
+{
+  "schemaVersion": 1,
+  "id": "utah-national-parks-road-trip",
+  "slug": "utah-national-parks-road-trip",
+  "kind": "road-trip",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Utah National Parks Road Trip",
+    "de": "Utahs Nationalparks · Roadtrip",
+    "it": "Road trip nei parchi nazionali dello Utah",
+    "es": "Road trip por los parques nacionales de Utah",
+    "fr": "Road trip dans les parcs nationaux de l'Utah",
+    "pt": "Road trip pelos parques nacionais de Utah"
+  },
+  "summary": {
+    "en": "A ten-day road trip through Utah's red-rock national parks, linking Zion, Bryce Canyon, Capitol Reef, Arches and Canyonlands.",
+    "de": "Ein zehntägiger Roadtrip durch Utahs rote Felslandschaften mit Zion, Bryce Canyon, Capitol Reef, Arches und Canyonlands.",
+    "it": "Un road trip di dieci giorni tra i paesaggi di roccia rossa dello Utah, da Zion a Bryce Canyon, Capitol Reef, Arches e Canyonlands.",
+    "es": "Un road trip de diez días por los paisajes de roca roja de Utah, enlazando Zion, Bryce Canyon, Capitol Reef, Arches y Canyonlands.",
+    "fr": "Un road trip de dix jours à travers les paysages de roche rouge de l'Utah, reliant Zion, Bryce Canyon, Capitol Reef, Arches et Canyonlands.",
+    "pt": "Um road trip de dez dias pelas paisagens de rocha vermelha de Utah, ligando Zion, Bryce Canyon, Capitol Reef, Arches e Canyonlands."
+  },
+  "highlights": [
+    {
+      "en": "Five iconic red-rock parks",
+      "de": "Fünf ikonische Red-Rock-Parks",
+      "it": "Cinque iconici parchi di roccia rossa",
+      "es": "Cinco parques icónicos de roca roja",
+      "fr": "Cinq parcs emblématiques de roche rouge",
+      "pt": "Cinco parques icônicos de rocha vermelha"
+    },
+    {
+      "en": "Canyons, hoodoos and natural arches",
+      "de": "Canyons, Hoodoos und Naturbögen",
+      "it": "Canyon, hoodoo e archi naturali",
+      "es": "Cañones, hoodoos y arcos naturales",
+      "fr": "Canyons, hoodoos et arches naturelles",
+      "pt": "Cânions, hoodoos e arcos naturais"
+    },
+    {
+      "en": "Road conditions checked live",
+      "de": "Straßenbedingungen aktuell prüfen",
+      "it": "Condizioni stradali da verificare in tempo reale",
+      "es": "Condiciones de carretera con verificación actual",
+      "fr": "Conditions routières à vérifier en direct",
+      "pt": "Condições das estradas verificadas em tempo real"
+    }
+  ],
+  "geography": {
+    "countries": [
+      "US"
+    ],
+    "primaryCountry": "US"
+  },
+  "planning": {
+    "days": 10,
+    "currency": "USD",
+    "pace": "active",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "maintenance": {
+    "tier": "evergreen",
+    "sourceReviewDays": 180,
+    "sharedKnowledge": true,
+    "notes": "Stable editorial route; road, park access, weather, reservation and traveller-specific facts require current checks."
+  },
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context",
+    "originAccess": "dynamic",
+    "returnMode": "to-origin",
+    "preserveCoreRoute": true
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 38,
+      "lng": -111.4,
+      "altitude": 0.72
+    }
+  },
+  "places": [
+    {
+      "id": "utah-national-parks-place-01",
+      "type": "natural-area",
+      "countryCode": "US",
+      "name": {
+        "en": "Zion National Park",
+        "de": "Zion National Park",
+        "it": "Zion National Park",
+        "es": "Zion National Park",
+        "fr": "Zion National Park",
+        "pt": "Zion National Park"
+      },
+      "coordinates": {
+        "lat": 37.2982,
+        "lng": -113.0263
+      }
+    },
+    {
+      "id": "utah-national-parks-place-02",
+      "type": "natural-area",
+      "countryCode": "US",
+      "name": {
+        "en": "Bryce Canyon National Park",
+        "de": "Bryce Canyon National Park",
+        "it": "Bryce Canyon National Park",
+        "es": "Bryce Canyon National Park",
+        "fr": "Bryce Canyon National Park",
+        "pt": "Bryce Canyon National Park"
+      },
+      "coordinates": {
+        "lat": 37.6283,
+        "lng": -112.1677
+      }
+    },
+    {
+      "id": "utah-national-parks-place-03",
+      "type": "natural-area",
+      "countryCode": "US",
+      "name": {
+        "en": "Capitol Reef National Park",
+        "de": "Capitol Reef National Park",
+        "it": "Capitol Reef National Park",
+        "es": "Capitol Reef National Park",
+        "fr": "Capitol Reef National Park",
+        "pt": "Capitol Reef National Park"
+      },
+      "coordinates": {
+        "lat": 38.2916,
+        "lng": -111.2615
+      }
+    },
+    {
+      "id": "utah-national-parks-place-04",
+      "type": "natural-area",
+      "countryCode": "US",
+      "name": {
+        "en": "Arches National Park",
+        "de": "Arches National Park",
+        "it": "Arches National Park",
+        "es": "Arches National Park",
+        "fr": "Arches National Park",
+        "pt": "Arches National Park"
+      },
+      "coordinates": {
+        "lat": 38.7331,
+        "lng": -109.5925
+      }
+    },
+    {
+      "id": "utah-national-parks-place-05",
+      "type": "natural-area",
+      "countryCode": "US",
+      "name": {
+        "en": "Canyonlands National Park",
+        "de": "Canyonlands National Park",
+        "it": "Canyonlands National Park",
+        "es": "Canyonlands National Park",
+        "fr": "Canyonlands National Park",
+        "pt": "Canyonlands National Park"
+      },
+      "coordinates": {
+        "lat": 38.3269,
+        "lng": -109.8783
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "utah-national-parks-stop-01",
+      "sequence": 1,
+      "placeId": "utah-national-parks-place-01",
+      "dayStart": 1,
+      "dayEnd": 2,
+      "nights": 2
+    },
+    {
+      "id": "utah-national-parks-stop-02",
+      "sequence": 2,
+      "placeId": "utah-national-parks-place-02",
+      "dayStart": 3,
+      "dayEnd": 4,
+      "nights": 2
+    },
+    {
+      "id": "utah-national-parks-stop-03",
+      "sequence": 3,
+      "placeId": "utah-national-parks-place-03",
+      "dayStart": 5,
+      "dayEnd": 6,
+      "nights": 2
+    },
+    {
+      "id": "utah-national-parks-stop-04",
+      "sequence": 4,
+      "placeId": "utah-national-parks-place-04",
+      "dayStart": 7,
+      "dayEnd": 8,
+      "nights": 2
+    },
+    {
+      "id": "utah-national-parks-stop-05",
+      "sequence": 5,
+      "placeId": "utah-national-parks-place-05",
+      "dayStart": 9,
+      "dayEnd": 10,
+      "nights": 2
+    }
+  ],
+  "segments": [
+    {
+      "id": "utah-national-parks-leg-01",
+      "sequence": 1,
+      "fromStopId": "utah-national-parks-stop-01",
+      "toStopId": "utah-national-parks-stop-02",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null,
+        "durationBasis": "live-road-check-required"
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-29",
+        "sourceIds": [
+          "us-ut-udot-traffic-2026",
+          "us-bryce-nps-2026"
+        ],
+        "notes": "Editorial park-to-park sequence. Exact roads, closures, weather impacts, park access and travel time require current UDOT/NPS checks before travel."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "US",
+          "toCountry": "US",
+          "crossBorder": false,
+          "rentalApprovalRequired": false
+        }
+      }
+    },
+    {
+      "id": "utah-national-parks-leg-02",
+      "sequence": 2,
+      "fromStopId": "utah-national-parks-stop-02",
+      "toStopId": "utah-national-parks-stop-03",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null,
+        "durationBasis": "live-road-check-required"
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-29",
+        "sourceIds": [
+          "us-ut-udot-traffic-2026",
+          "us-capitol-reef-nps-2026"
+        ],
+        "notes": "Editorial park-to-park sequence. Exact roads, closures, weather impacts, park access and travel time require current UDOT/NPS checks before travel."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "US",
+          "toCountry": "US",
+          "crossBorder": false,
+          "rentalApprovalRequired": false
+        }
+      }
+    },
+    {
+      "id": "utah-national-parks-leg-03",
+      "sequence": 3,
+      "fromStopId": "utah-national-parks-stop-03",
+      "toStopId": "utah-national-parks-stop-04",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null,
+        "durationBasis": "live-road-check-required"
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-29",
+        "sourceIds": [
+          "us-ut-udot-traffic-2026",
+          "us-arches-nps-2026"
+        ],
+        "notes": "Editorial park-to-park sequence. Exact roads, closures, weather impacts, park access and travel time require current UDOT/NPS checks before travel."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "US",
+          "toCountry": "US",
+          "crossBorder": false,
+          "rentalApprovalRequired": false
+        }
+      }
+    },
+    {
+      "id": "utah-national-parks-leg-04",
+      "sequence": 4,
+      "fromStopId": "utah-national-parks-stop-04",
+      "toStopId": "utah-national-parks-stop-05",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "distanceKm": null,
+        "cost": null,
+        "durationBasis": "live-road-check-required"
+      },
+      "verification": {
+        "status": "current-check-required",
+        "lastVerified": "2026-09-29",
+        "sourceIds": [
+          "us-ut-udot-traffic-2026",
+          "us-canyonlands-nps-2026"
+        ],
+        "notes": "Editorial park-to-park sequence. Exact roads, closures, weather impacts, park access and travel time require current UDOT/NPS checks before travel."
+      },
+      "extensions": {
+        "road": {
+          "fromCountry": "US",
+          "toCountry": "US",
+          "crossBorder": false,
+          "rentalApprovalRequired": false
+        }
+      }
+    }
+  ],
+  "chapters": [
+    {
+      "id": "utah-west",
+      "title": {
+        "en": "Zion & Bryce",
+        "de": "Zion & Bryce",
+        "it": "Zion e Bryce",
+        "es": "Zion y Bryce",
+        "fr": "Zion et Bryce",
+        "pt": "Zion e Bryce"
+      },
+      "stopIds": [
+        "utah-national-parks-stop-01",
+        "utah-national-parks-stop-02"
+      ]
+    },
+    {
+      "id": "utah-central",
+      "title": {
+        "en": "Capitol Reef",
+        "de": "Capitol Reef",
+        "it": "Capitol Reef",
+        "es": "Capitol Reef",
+        "fr": "Capitol Reef",
+        "pt": "Capitol Reef"
+      },
+      "stopIds": [
+        "utah-national-parks-stop-03"
+      ]
+    },
+    {
+      "id": "utah-moab",
+      "title": {
+        "en": "Arches & Canyonlands",
+        "de": "Arches & Canyonlands",
+        "it": "Arches e Canyonlands",
+        "es": "Arches y Canyonlands",
+        "fr": "Arches et Canyonlands",
+        "pt": "Arches e Canyonlands"
+      },
+      "stopIds": [
+        "utah-national-parks-stop-04",
+        "utah-national-parks-stop-05"
+      ]
+    }
+  ],
+  "travellerContext": {
+    "scope": [
+      "vehicle"
+    ]
+  },
+  "sources": [
+    {
+      "id": "us-ut-udot-traffic-2026",
+      "title": "UDOT Traffic",
+      "issuer": "Utah Department of Transportation",
+      "issuerType": "government",
+      "url": "https://www.udottraffic.utah.gov/",
+      "checkedAt": "2026-09-29",
+      "claims": [
+        "UDOT provides current Utah road conditions, construction, incidents, weather impacts and travel alerts."
+      ]
+    },
+    {
+      "id": "us-zion-nps-2026",
+      "title": "Zion National Park — Plan Your Visit",
+      "issuer": "U.S. National Park Service",
+      "issuerType": "government",
+      "url": "https://www.nps.gov/zion/planyourvisit/index.htm",
+      "checkedAt": "2026-09-29",
+      "claims": [
+        "NPS provides current visitor planning, transportation, operating conditions and access information for Zion National Park."
+      ]
+    },
+    {
+      "id": "us-bryce-nps-2026",
+      "title": "Bryce Canyon National Park — Plan Your Visit",
+      "issuer": "U.S. National Park Service",
+      "issuerType": "government",
+      "url": "https://www.nps.gov/brca/planyourvisit/index.htm",
+      "checkedAt": "2026-09-29",
+      "claims": [
+        "NPS provides visitor planning, operating hours, fees and seasonal information for Bryce Canyon National Park."
+      ]
+    },
+    {
+      "id": "us-capitol-reef-nps-2026",
+      "title": "Capitol Reef National Park — Plan Your Visit",
+      "issuer": "U.S. National Park Service",
+      "issuerType": "government",
+      "url": "https://www.nps.gov/care/planyourvisit/index.htm",
+      "checkedAt": "2026-09-29",
+      "claims": [
+        "NPS provides current visitor planning and conditions information for Capitol Reef National Park."
+      ]
+    },
+    {
+      "id": "us-arches-nps-2026",
+      "title": "Arches National Park — Plan Your Visit",
+      "issuer": "U.S. National Park Service",
+      "issuerType": "government",
+      "url": "https://www.nps.gov/arch/planyourvisit/index.htm",
+      "checkedAt": "2026-09-29",
+      "claims": [
+        "NPS provides current visitor planning, access and operating information for Arches National Park."
+      ]
+    },
+    {
+      "id": "us-canyonlands-nps-2026",
+      "title": "Canyonlands National Park — Plan Your Visit",
+      "issuer": "U.S. National Park Service",
+      "issuerType": "government",
+      "url": "https://www.nps.gov/cany/planyourvisit/index.htm",
+      "checkedAt": "2026-09-29",
+      "claims": [
+        "NPS provides current visitor planning and road-condition guidance for Canyonlands National Park."
+      ]
+    }
+  ],
+  "extensions": {
+    "roadTrip": {
+      "vehicleContextRequired": true,
+      "rentalCrossBorderApprovalRequired": false,
+      "vehicleOwnershipModes": [
+        "private",
+        "rental",
+        "camper",
+        "motorcycle",
+        "other"
+      ],
+      "rule": "Do not calculate road access, rental eligibility, seasonal closures, park entry or travel time without current vehicle and traveller context."
+    }
+  }
+}
