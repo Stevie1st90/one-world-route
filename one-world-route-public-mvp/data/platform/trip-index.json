@@ -6870,6 +6870,402 @@
           "checkedAt": "2026-09-29"
         }
       ]
+    },
+    {
+      "id": "utah-national-parks-road-trip",
+      "slug": "utah-national-parks-road-trip",
+      "kind": "road-trip",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "title": {
+        "en": "Utah National Parks Road Trip",
+        "de": "Utahs Nationalparks · Roadtrip",
+        "it": "Road trip nei parchi nazionali dello Utah",
+        "es": "Road trip por los parques nacionales de Utah",
+        "fr": "Road trip dans les parcs nationaux de l'Utah",
+        "pt": "Road trip pelos parques nacionais de Utah"
+      },
+      "subtitle": {
+        "en": "10 days · Zion, Bryce, Capitol Reef, Arches and Canyonlands",
+        "de": "10 Tage · Zion, Bryce, Capitol Reef, Arches und Canyonlands",
+        "it": "10 giorni · Zion, Bryce, Capitol Reef, Arches e Canyonlands",
+        "es": "10 días · Zion, Bryce, Capitol Reef, Arches y Canyonlands",
+        "fr": "10 jours · Zion, Bryce, Capitol Reef, Arches et Canyonlands",
+        "pt": "10 dias · Zion, Bryce, Capitol Reef, Arches e Canyonlands"
+      },
+      "summary": {
+        "en": "A ten-day road trip through Utah's red-rock national parks, linking Zion, Bryce Canyon, Capitol Reef, Arches and Canyonlands.",
+        "de": "Ein zehntägiger Roadtrip durch Utahs rote Felslandschaften mit Zion, Bryce Canyon, Capitol Reef, Arches und Canyonlands.",
+        "it": "Un road trip di dieci giorni tra i paesaggi di roccia rossa dello Utah, da Zion a Bryce Canyon, Capitol Reef, Arches e Canyonlands.",
+        "es": "Un road trip de diez días por los paisajes de roca roja de Utah, enlazando Zion, Bryce Canyon, Capitol Reef, Arches y Canyonlands.",
+        "fr": "Un road trip de dix jours à travers les paysages de roche rouge de l'Utah, reliant Zion, Bryce Canyon, Capitol Reef, Arches et Canyonlands.",
+        "pt": "Um road trip de dez dias pelas paisagens de rocha vermelha de Utah, ligando Zion, Bryce Canyon, Capitol Reef, Arches e Canyonlands."
+      },
+      "metrics": {
+        "days": 10,
+        "countries": 1,
+        "stops": 5,
+        "segments": 4,
+        "sourcedSegments": 4,
+        "verifiedSegments": 0
+      },
+      "discovery": {
+        "regions": [
+          "north-america",
+          "united-states",
+          "utah"
+        ],
+        "themes": [
+          "road-trip",
+          "nature",
+          "national-parks",
+          "desert"
+        ],
+        "modes": [
+          "car"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "active",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "north-america",
+          "accessibility": "vehicle-dependent"
+        }
+      },
+      "planning": {
+        "days": 10,
+        "currency": "USD",
+        "pace": "active",
+        "knownPublishedMinimumEur": null,
+        "knownPublishedMinimumScope": null
+      },
+      "itinerary": [
+        {
+          "id": "utah-national-parks-stop-01",
+          "sequence": 1,
+          "dayStart": 1,
+          "dayEnd": 2,
+          "nights": 2,
+          "name": {
+            "en": "Zion National Park",
+            "de": "Zion National Park",
+            "it": "Zion National Park",
+            "es": "Zion National Park",
+            "fr": "Zion National Park",
+            "pt": "Zion National Park"
+          },
+          "countryCode": "US",
+          "type": "natural-area"
+        },
+        {
+          "id": "utah-national-parks-stop-02",
+          "sequence": 2,
+          "dayStart": 3,
+          "dayEnd": 4,
+          "nights": 2,
+          "name": {
+            "en": "Bryce Canyon National Park",
+            "de": "Bryce Canyon National Park",
+            "it": "Bryce Canyon National Park",
+            "es": "Bryce Canyon National Park",
+            "fr": "Bryce Canyon National Park",
+            "pt": "Bryce Canyon National Park"
+          },
+          "countryCode": "US",
+          "type": "natural-area"
+        },
+        {
+          "id": "utah-national-parks-stop-03",
+          "sequence": 3,
+          "dayStart": 5,
+          "dayEnd": 6,
+          "nights": 2,
+          "name": {
+            "en": "Capitol Reef National Park",
+            "de": "Capitol Reef National Park",
+            "it": "Capitol Reef National Park",
+            "es": "Capitol Reef National Park",
+            "fr": "Capitol Reef National Park",
+            "pt": "Capitol Reef National Park"
+          },
+          "countryCode": "US",
+          "type": "natural-area"
+        },
+        {
+          "id": "utah-national-parks-stop-04",
+          "sequence": 4,
+          "dayStart": 7,
+          "dayEnd": 8,
+          "nights": 2,
+          "name": {
+            "en": "Arches National Park",
+            "de": "Arches National Park",
+            "it": "Arches National Park",
+            "es": "Arches National Park",
+            "fr": "Arches National Park",
+            "pt": "Arches National Park"
+          },
+          "countryCode": "US",
+          "type": "natural-area"
+        },
+        {
+          "id": "utah-national-parks-stop-05",
+          "sequence": 5,
+          "dayStart": 9,
+          "dayEnd": 10,
+          "nights": 2,
+          "name": {
+            "en": "Canyonlands National Park",
+            "de": "Canyonlands National Park",
+            "it": "Canyonlands National Park",
+            "es": "Canyonlands National Park",
+            "fr": "Canyonlands National Park",
+            "pt": "Canyonlands National Park"
+          },
+          "countryCode": "US",
+          "type": "natural-area"
+        }
+      ],
+      "preview": {
+        "points": [
+          {
+            "id": "utah-national-parks-place-01",
+            "name": {
+              "en": "Zion National Park",
+              "de": "Zion National Park",
+              "it": "Zion National Park",
+              "es": "Zion National Park",
+              "fr": "Zion National Park",
+              "pt": "Zion National Park"
+            },
+            "lat": 37.2982,
+            "lng": -113.0263
+          },
+          {
+            "id": "utah-national-parks-place-02",
+            "name": {
+              "en": "Bryce Canyon National Park",
+              "de": "Bryce Canyon National Park",
+              "it": "Bryce Canyon National Park",
+              "es": "Bryce Canyon National Park",
+              "fr": "Bryce Canyon National Park",
+              "pt": "Bryce Canyon National Park"
+            },
+            "lat": 37.6283,
+            "lng": -112.1677
+          },
+          {
+            "id": "utah-national-parks-place-03",
+            "name": {
+              "en": "Capitol Reef National Park",
+              "de": "Capitol Reef National Park",
+              "it": "Capitol Reef National Park",
+              "es": "Capitol Reef National Park",
+              "fr": "Capitol Reef National Park",
+              "pt": "Capitol Reef National Park"
+            },
+            "lat": 38.2916,
+            "lng": -111.2615
+          },
+          {
+            "id": "utah-national-parks-place-04",
+            "name": {
+              "en": "Arches National Park",
+              "de": "Arches National Park",
+              "it": "Arches National Park",
+              "es": "Arches National Park",
+              "fr": "Arches National Park",
+              "pt": "Arches National Park"
+            },
+            "lat": 38.7331,
+            "lng": -109.5925
+          },
+          {
+            "id": "utah-national-parks-place-05",
+            "name": {
+              "en": "Canyonlands National Park",
+              "de": "Canyonlands National Park",
+              "it": "Canyonlands National Park",
+              "es": "Canyonlands National Park",
+              "fr": "Canyonlands National Park",
+              "pt": "Canyonlands National Park"
+            },
+            "lat": 38.3269,
+            "lng": -109.8783
+          }
+        ],
+        "arcs": [
+          {
+            "id": "utah-national-parks-leg-01",
+            "fromName": {
+              "en": "Zion National Park",
+              "de": "Zion National Park",
+              "it": "Zion National Park",
+              "es": "Zion National Park",
+              "fr": "Zion National Park",
+              "pt": "Zion National Park"
+            },
+            "toName": {
+              "en": "Bryce Canyon National Park",
+              "de": "Bryce Canyon National Park",
+              "it": "Bryce Canyon National Park",
+              "es": "Bryce Canyon National Park",
+              "fr": "Bryce Canyon National Park",
+              "pt": "Bryce Canyon National Park"
+            },
+            "start": {
+              "lat": 37.2982,
+              "lng": -113.0263
+            },
+            "end": {
+              "lat": 37.6283,
+              "lng": -112.1677
+            }
+          },
+          {
+            "id": "utah-national-parks-leg-02",
+            "fromName": {
+              "en": "Bryce Canyon National Park",
+              "de": "Bryce Canyon National Park",
+              "it": "Bryce Canyon National Park",
+              "es": "Bryce Canyon National Park",
+              "fr": "Bryce Canyon National Park",
+              "pt": "Bryce Canyon National Park"
+            },
+            "toName": {
+              "en": "Capitol Reef National Park",
+              "de": "Capitol Reef National Park",
+              "it": "Capitol Reef National Park",
+              "es": "Capitol Reef National Park",
+              "fr": "Capitol Reef National Park",
+              "pt": "Capitol Reef National Park"
+            },
+            "start": {
+              "lat": 37.6283,
+              "lng": -112.1677
+            },
+            "end": {
+              "lat": 38.2916,
+              "lng": -111.2615
+            }
+          },
+          {
+            "id": "utah-national-parks-leg-03",
+            "fromName": {
+              "en": "Capitol Reef National Park",
+              "de": "Capitol Reef National Park",
+              "it": "Capitol Reef National Park",
+              "es": "Capitol Reef National Park",
+              "fr": "Capitol Reef National Park",
+              "pt": "Capitol Reef National Park"
+            },
+            "toName": {
+              "en": "Arches National Park",
+              "de": "Arches National Park",
+              "it": "Arches National Park",
+              "es": "Arches National Park",
+              "fr": "Arches National Park",
+              "pt": "Arches National Park"
+            },
+            "start": {
+              "lat": 38.2916,
+              "lng": -111.2615
+            },
+            "end": {
+              "lat": 38.7331,
+              "lng": -109.5925
+            }
+          },
+          {
+            "id": "utah-national-parks-leg-04",
+            "fromName": {
+              "en": "Arches National Park",
+              "de": "Arches National Park",
+              "it": "Arches National Park",
+              "es": "Arches National Park",
+              "fr": "Arches National Park",
+              "pt": "Arches National Park"
+            },
+            "toName": {
+              "en": "Canyonlands National Park",
+              "de": "Canyonlands National Park",
+              "it": "Canyonlands National Park",
+              "es": "Canyonlands National Park",
+              "fr": "Canyonlands National Park",
+              "pt": "Canyonlands National Park"
+            },
+            "start": {
+              "lat": 38.7331,
+              "lng": -109.5925
+            },
+            "end": {
+              "lat": 38.3269,
+              "lng": -109.8783
+            }
+          }
+        ]
+      },
+      "evidence": {
+        "segments": 4,
+        "sourcedSegments": 4,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-09-29"
+      },
+      "sources": [
+        {
+          "id": "us-ut-udot-traffic-2026",
+          "issuer": "Utah Department of Transportation",
+          "title": "UDOT Traffic",
+          "url": "https://www.udottraffic.utah.gov/",
+          "checkedAt": "2026-09-29"
+        },
+        {
+          "id": "us-zion-nps-2026",
+          "issuer": "U.S. National Park Service",
+          "title": "Zion National Park — Plan Your Visit",
+          "url": "https://www.nps.gov/zion/planyourvisit/index.htm",
+          "checkedAt": "2026-09-29"
+        },
+        {
+          "id": "us-bryce-nps-2026",
+          "issuer": "U.S. National Park Service",
+          "title": "Bryce Canyon National Park — Plan Your Visit",
+          "url": "https://www.nps.gov/brca/planyourvisit/index.htm",
+          "checkedAt": "2026-09-29"
+        },
+        {
+          "id": "us-capitol-reef-nps-2026",
+          "issuer": "U.S. National Park Service",
+          "title": "Capitol Reef National Park — Plan Your Visit",
+          "url": "https://www.nps.gov/care/planyourvisit/index.htm",
+          "checkedAt": "2026-09-29"
+        },
+        {
+          "id": "us-arches-nps-2026",
+          "issuer": "U.S. National Park Service",
+          "title": "Arches National Park — Plan Your Visit",
+          "url": "https://www.nps.gov/arch/planyourvisit/index.htm",
+          "checkedAt": "2026-09-29"
+        },
+        {
+          "id": "us-canyonlands-nps-2026",
+          "issuer": "U.S. National Park Service",
+          "title": "Canyonlands National Park — Plan Your Visit",
+          "url": "https://www.nps.gov/cany/planyourvisit/index.htm",
+          "checkedAt": "2026-09-29"
+        }
+      ]
     }
   ]
 }
