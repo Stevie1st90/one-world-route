@@ -1,3 +1,4 @@
+import {journeyArchetypeRegistry,validateJourneyArchetypeRegistry} from './journey-archetype-registry.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {attachEvidenceSource,buildRouteSkeleton,computeTripMetrics,normalizeCatalogEntry,normalizeDraftMetadata,parseRouteSkeletonText,parseSegmentSelection,validatePublicationReadiness,validateTripDraft,journeyArchetype,journeyArchetypes,scaffoldTripDraft} from './trip-draft-contract.mjs';
@@ -219,4 +220,17 @@ test('publication readiness requires a deliberate supported public status',()=>{
   r=validatePublicationReadiness(ctx);
   assert.equal(r.valid,false);
   assert.match(r.errors.join('\\n'),/unsupported/);
+});
+
+test('file-backed archetype registry stays extensible without contract edits',()=>{
+  const registry=journeyArchetypeRegistry();
+  assert.equal(validateJourneyArchetypeRegistry(registry),true);
+  registry.archetypes['river-cruise']={
+    mode:'cruise',themes:['river','culture'],capabilities:['cruise-calls'],reviewDays:30,
+    maintenanceTier:'live-dependent',accessibility:'operator-dependent',
+    routePolicy:{startMode:'fixed',reversible:false,originAccess:'dynamic',returnMode:'dynamic',preserveCoreRoute:true},
+    visualTheme:'ocean'
+  };
+  assert.equal(validateJourneyArchetypeRegistry(registry),true);
+  assert.ok(Object.keys(registry.archetypes).includes('river-cruise'));
 });
