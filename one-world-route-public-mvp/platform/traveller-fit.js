@@ -107,5 +107,23 @@
     return reasons.slice(0,3);
   }
 
-  root.travellerFit={partyKey,preferences,evaluate,recommendationSignals,recommendationReasons,configuredPreferenceCount,orderRecommendations};
+  function recommendationSummary(meta,profile){
+    const configured=configuredPreferenceCount(profile);
+    const signals=recommendationSignals(meta,profile);
+    const preferenceMatches=signals.filter(signal=>signal.source==='preference').length;
+    const fit=evaluate(meta,profile),checks=[];
+    if(!fit.partyListed)checks.push('party');
+    if(fit.needsMobilityCheck)checks.push('mobility');
+    if(fit.vehicleContextMissing)checks.push('vehicle');
+    return {
+      configured,
+      preferenceMatches,
+      preferenceMisses:Math.max(0,configured-preferenceMatches),
+      contextMatches:signals.filter(signal=>signal.source==='context').length,
+      checks,
+      signals
+    };
+  }
+
+  root.travellerFit={partyKey,preferences,evaluate,recommendationSignals,recommendationReasons,recommendationSummary,configuredPreferenceCount,orderRecommendations};
 })();

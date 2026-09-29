@@ -543,3 +543,20 @@ body.platform-ready #app>.topbar,body.platform-ready #app>.left-panel,body.platf
 @keyframes platform-ready-in{from{opacity:.35}to{opacity:1}}
 .platform-home-featured,.platform-home-collections,.platform-home-regions,.platform-home-flagship,.platform-home-explore,.platform-home-method,.platform-home-footer{content-visibility:auto;contain-intrinsic-size:1px 520px}
 @media(prefers-reduced-motion:reduce){body.platform-ready #app>.topbar,body.platform-ready #app>.left-panel,body.platform-ready #app>.right-panel,body.platform-ready #app>.timeline,body.platform-ready #app>.globe-stage,body.platform-ready #app>.platform-home-shell{animation:none}}
+
+
+/* Discovery 2.0 */
+.platform-home-finder-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.platform-home-finder-grid>button{grid-column:1/-1;justify-self:end;min-width:160px}
+.platform-home-sort{display:flex;align-items:center;gap:6px}
+.platform-home-sort>span{font-size:7px!important;font-weight:750;letter-spacing:.08em;text-transform:uppercase}
+.platform-home-sort select{height:30px;min-width:126px;border:1px solid rgba(255,255,255,.09);border-radius:9px;background:#0d1826;color:#cddbea;padding:0 8px;font-size:8px}
+.platform-home-card-fit small{flex-basis:100%;color:#71859a;font-size:7px;line-height:1.35}
+.platform-origin-summary.platform-entry-suggestion{grid-template-areas:"label action" "value action" "detail action"}
+.platform-origin-summary.platform-entry-suggestion>small{grid-area:detail;color:#71859a;font-size:7px;line-height:1.4}
+@media(max-width:760px){.platform-home-resultbar{flex-wrap:wrap}.platform-home-sort{order:3;width:100%;justify-content:flex-end}.platform-home-sort select{min-width:150px}}
+@media(max-width:520px){.platform-home-finder-grid{grid-template-columns:1fr}.platform-home-finder-grid>button{grid-column:1;width:100%;justify-self:stretch}.platform-home-sort{justify-content:stretch}.platform-home-sort select{flex:1;min-width:0}}
+/* Flagship shell actions remain reachable after global navigation expansion. */
+body:not(.platform-home):not(.platform-regional-trip) .top-actions{display:flex!important}
+body:not(.platform-home):not(.platform-regional-trip) #settingsBtn{display:inline-grid!important;visibility:visible!important}
+

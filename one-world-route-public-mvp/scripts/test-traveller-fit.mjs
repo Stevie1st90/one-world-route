@@ -91,3 +91,29 @@ test('journey preferences reuse published discovery metadata and rank without a 
   assert.ok(ordered[0].contextMatches>=2);
   assert.equal(ordered[1].preferenceMisses,5);
 });
+
+
+test('recommendation summary separates preference matches from explicit traveller checks',()=>{
+  const fit=load();
+  const meta={
+    capabilities:['vehicle-context'],
+    discovery:{
+      durationBand:'7-14',
+      modes:['car'],
+      themes:['nature'],
+      fit:{party:['couples'],startRegion:'europe',pace:'balanced',seasons:['spring'],accessibility:'vehicle-dependent'}
+    }
+  };
+  const profile={
+    originRegion:'europe',
+    party:{adults:2,children:1},
+    accessibility:{reducedMobility:true},
+    vehicle:null,
+    preferences:{durationBand:'7-14',pace:'balanced',season:'spring',mode:'car',theme:'nature'}
+  };
+  const summary=fit.recommendationSummary(meta,profile);
+  assert.equal(summary.configured,5);
+  assert.equal(summary.preferenceMatches,5);
+  assert.equal(summary.preferenceMisses,0);
+  assert.deepEqual(JSON.parse(JSON.stringify(summary.checks)),['party','mobility','vehicle']);
+});
