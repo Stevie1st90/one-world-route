@@ -144,6 +144,79 @@
         "fr": "Des routes entre villes, traditions et cuisine régionale.",
         "pt": "Rotas por cidades, tradições e gastronomia regional."
       }
+    },
+    {
+      "id": "active-nature",
+      "theme": "glacier",
+      "filters": {
+        "themeAny": [
+          "nature",
+          "wildlife"
+        ],
+        "pace": "active"
+      },
+      "title": {
+        "en": "Active Nature",
+        "de": "Aktiv in der Natur",
+        "it": "Natura attiva",
+        "es": "Naturaleza activa",
+        "fr": "Nature active",
+        "pt": "Natureza ativa"
+      },
+      "description": {
+        "en": "Journeys for travellers who want landscapes, wildlife and a more active pace.",
+        "de": "Reisen für alle, die Landschaften, Tierwelt und ein aktiveres Tempo suchen.",
+        "it": "Viaggi per chi cerca paesaggi, fauna e un ritmo più attivo.",
+        "es": "Viajes para quienes buscan paisajes, fauna y un ritmo más activo.",
+        "fr": "Des voyages pour celles et ceux qui recherchent paysages, faune et rythme plus actif.",
+        "pt": "Viagens para quem procura paisagens, vida selvagem e um ritmo mais ativo."
+      }
+    },
+    {
+      "id": "relaxed-escapes",
+      "theme": "aegean",
+      "filters": {
+        "pace": "relaxed"
+      },
+      "title": {
+        "en": "Relaxed Escapes",
+        "de": "Entspannte Reisen",
+        "it": "Viaggi rilassati",
+        "es": "Escapadas tranquilas",
+        "fr": "Escapades tranquilles",
+        "pt": "Escapadas tranquilas"
+      },
+      "description": {
+        "en": "Slower journeys with more room to settle into each stop.",
+        "de": "Langsamere Reisen mit mehr Zeit, an jedem Stopp anzukommen.",
+        "it": "Viaggi più lenti, con più tempo per vivere ogni tappa.",
+        "es": "Viajes más pausados con más tiempo para disfrutar cada parada.",
+        "fr": "Des voyages plus lents avec davantage de temps à chaque étape.",
+        "pt": "Viagens mais tranquilas, com mais tempo em cada parada."
+      }
+    },
+    {
+      "id": "oceania-journeys",
+      "theme": "ocean",
+      "filters": {
+        "region": "oceania"
+      },
+      "title": {
+        "en": "Oceania Journeys",
+        "de": "Reisen durch Ozeanien",
+        "it": "Viaggi in Oceania",
+        "es": "Viajes por Oceanía",
+        "fr": "Voyages en Océanie",
+        "pt": "Viagens pela Oceania"
+      },
+      "description": {
+        "en": "Road trips and longer journeys across Australia, New Zealand and the wider Pacific region as the catalog grows.",
+        "de": "Roadtrips und längere Reisen durch Australien, Neuseeland und den weiteren Pazifikraum – mitwachsend mit dem Katalog.",
+        "it": "Road trip e viaggi più lunghi tra Australia, Nuova Zelanda e Pacifico, ampliati insieme al catalogo.",
+        "es": "Road trips y viajes más largos por Australia, Nueva Zelanda y el Pacífico, ampliados junto con el catálogo.",
+        "fr": "Road trips et voyages plus longs en Australie, Nouvelle-Zélande et dans le Pacifique, au rythme du catalogue.",
+        "pt": "Road trips e viagens mais longas pela Austrália, Nova Zelândia e Pacífico, ampliadas com o catálogo."
+      }
     }
   ]
 }

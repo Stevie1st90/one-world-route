@@ -125,3 +125,13 @@ test('taxonomy pages reject thin or unsupported facets',()=>{
   assert.doesNotMatch(unsupported,/\/discover\/region\/antarctica/);
 });
 
+test('combined collection filters stay factual and crawlable',()=>{
+  const {body}=render({type:'collection',slug:'active-nature',lang:'en'});
+  assert.match(body,/Active Nature — ONE WORLD ROUTE/);
+  assert.match(body,/Patagonia Road Trip/);
+  assert.match(body,/Iceland Ring Road/);
+  assert.match(body,/Utah National Parks Road Trip/);
+  assert.doesNotMatch(body,/Japan by Rail/);
+  assert.doesNotMatch(body,/location\.replace/);
+});
+
