@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {computeTripMetrics,normalizeCatalogEntry,normalizeDraftMetadata,validatePublicationReadiness,validateTripDraft,journeyArchetype,journeyArchetypes,scaffoldTripDraft} from './trip-draft-contract.mjs';
+import {buildRouteSkeleton,computeTripMetrics,normalizeCatalogEntry,normalizeDraftMetadata,parseRouteSkeletonText,validatePublicationReadiness,validateTripDraft,journeyArchetype,journeyArchetypes,scaffoldTripDraft} from './trip-draft-contract.mjs';
 
 const catalog={supportedLocales:['en','de']};
 function valid(){
@@ -114,6 +114,30 @@ test('scaffold uses archetype defaults and stays globally neutral until authored
   assert.ok(catalogEntry.capabilities.includes('regional-stops'));
   assert.equal(catalogEntry.visual.mediaState,'art-directed');
   assert.equal(trip.planning.currency,null);
+});
+
+test('builds a deterministic draft route skeleton from compact stop rows',()=>{
+  const ctx=valid();
+  ctx.trip.places=[];ctx.trip.stops=[];ctx.trip.segments=[];ctx.trip.planning.days=null;
+  const text='Berlin | DE | 52.5200 | 13.4050 | 2\nParis | FR | 48.8566 | 2.3522 | 3\nLyon | FR | 45.7640 | 4.8357 | 1';
+  const rows=parseRouteSkeletonText(text);
+  assert.equal(rows.length,3);
+  const result=buildRouteSkeleton({...ctx,text,mode:'rail'});
+  assert.equal(result.trip.places.length,3);
+  assert.equal(result.trip.stops.length,3);
+  assert.equal(result.trip.segments.length,2);
+  assert.equal(result.trip.planning.days,6);
+  assert.deepEqual(result.trip.geography.countries,['DE','FR']);
+  assert.deepEqual(result.catalogEntry.discovery.modes,['rail']);
+  assert.deepEqual(result.trip.stops.map(stop=>[stop.dayStart,stop.dayEnd,stop.nights]),[[1,2,2],[3,5,3],[6,6,1]]);
+  assert.equal(result.trip.segments[0].verification.status,'draft');
+  assert.deepEqual(result.trip.segments[0].verification.sourceIds,[]);
+  assert.equal(result.trip.places[0].name.de,'Berlin');
+});
+
+test('route skeleton rejects malformed rows before mutating a draft',()=>{
+  assert.throws(()=>parseRouteSkeletonText('Berlin | DE | 52.5 | 13.4 | 2'),/at least two stops/);
+  assert.throws(()=>parseRouteSkeletonText('Berlin | DE | 52.5 | 13.4 | 2\nParis | FRA | 48.8 | 2.3 | 2'),/ISO alpha-2/);
 });
 
 test('derives countries, route modes and duration metadata from authored route data',()=>{

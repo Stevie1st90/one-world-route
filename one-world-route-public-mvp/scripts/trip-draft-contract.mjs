@@ -61,6 +61,46 @@ export function scaffoldTripDraft({slug,kind,days,catalog}){
   return {trip,catalogEntry,archetype};
 }
 
+export function parseRouteSkeletonText(text){
+  const lines=String(text||'').split(/\r?\n/).map(line=>line.trim()).filter(Boolean);
+  if(lines.length<2)throw new Error('Route skeleton requires at least two stops');
+  return lines.map((line,index)=>{
+    const parts=line.split('|').map(value=>value.trim());
+    if(parts.length!==5)throw new Error('Route skeleton line '+(index+1)+' must be: Place | CC | latitude | longitude | nights');
+    const [name,countryCodeRaw,latRaw,lngRaw,nightsRaw]=parts;
+    const countryCode=countryCodeRaw.toUpperCase(),lat=Number(latRaw),lng=Number(lngRaw),nights=Number(nightsRaw);
+    if(!name)throw new Error('Route skeleton line '+(index+1)+' requires a place name');
+    if(!/^[A-Z]{2}$/.test(countryCode))throw new Error('Route skeleton line '+(index+1)+' requires an ISO alpha-2 country code');
+    if(!Number.isFinite(lat)||lat < -90||lat > 90)throw new Error('Route skeleton line '+(index+1)+' latitude is invalid');
+    if(!Number.isFinite(lng)||lng < -180||lng > 180)throw new Error('Route skeleton line '+(index+1)+' longitude is invalid');
+    if(!Number.isInteger(nights)||nights<1)throw new Error('Route skeleton line '+(index+1)+' nights must be a positive integer');
+    return {name,countryCode,lat,lng,nights};
+  });
+}
+
+export function buildRouteSkeleton({trip={},catalogEntry={},text='',mode}={}){
+  const nextTrip=clone(trip||{}),nextEntry=clone(catalogEntry||{}),rows=parseRouteSkeletonText(text);
+  const locales=Array.isArray(nextTrip.supportedLocales)&&nextTrip.supportedLocales.length?nextTrip.supportedLocales:Object.keys(nextTrip.title||{}).length?Object.keys(nextTrip.title):['en'];
+  const selectedMode=String(mode||nextEntry.discovery?.modes?.[0]||journeyArchetype(nextTrip.kind).mode||'multimodal').trim();
+  if(!allowedModes.has(selectedMode))throw new Error('Route skeleton uses unsupported mode '+selectedMode);
+  let day=1;
+  const places=[],stops=[];
+  rows.forEach((row,index)=>{
+    const number=String(index+1).padStart(2,'0'),placeId=nextTrip.slug+'-place-'+number,stopId=nextTrip.slug+'-stop-'+number;
+    places.push({id:placeId,countryCode:row.countryCode,type:'city',name:localized(locales,row.name),coordinates:{lat:row.lat,lng:row.lng}});
+    stops.push({id:stopId,sequence:index+1,placeId,dayStart:day,dayEnd:day+row.nights-1,nights:row.nights});
+    day+=row.nights;
+  });
+  const segments=stops.slice(0,-1).map((stop,index)=>({
+    id:nextTrip.slug+'-segment-'+String(index+1).padStart(2,'0'),sequence:index+1,fromStopId:stop.id,toStopId:stops[index+1].id,
+    transport:{mode:selectedMode,stages:[{mode:selectedMode,sourceIds:[]}]},verification:{status:'draft',sourceIds:[]}
+  }));
+  nextTrip.places=places;nextTrip.stops=stops;nextTrip.segments=segments;nextTrip.chapters=[];
+  nextTrip.planning={...(nextTrip.planning||{}),days:day-1};
+  nextEntry.discovery={...(nextEntry.discovery||{}),modes:[selectedMode]};
+  return normalizeDraftMetadata({trip:nextTrip,catalogEntry:nextEntry});
+}
+
 export function computeTripMetrics(trip={}){
   const segments=Array.isArray(trip.segments)?trip.segments:[];
   const places=Array.isArray(trip.places)?trip.places:[];
