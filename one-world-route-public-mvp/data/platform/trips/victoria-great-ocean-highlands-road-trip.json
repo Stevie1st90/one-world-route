@@ -611,13 +611,13 @@
     },
     {
       "id": "au-vic-road-conditions-2026",
-      "title": "Great Ocean Road and Inland Routes landslip works",
-      "issuer": "Transport Victoria",
+      "title": "VicTraffic",
+      "issuer": "Department of Transport and Planning Victoria",
       "issuerType": "government",
-      "url": "https://transport.vic.gov.au/news-and-resources/projects-hub/barwon-south-west/great-ocean-road-and-inland-routes-landslip-works",
+      "url": "https://traffic.transport.vic.gov.au/",
       "checkedAt": "2026-09-29",
       "claims": [
-        "Transport Victoria publishes current Great Ocean Road and inland-route disruption, closure and roadwork information."
+        "VicTraffic is Victoria's official source for current road and traffic disruptions, including incidents, roadworks and other conditions that may affect road users."
       ]
     },
     {
