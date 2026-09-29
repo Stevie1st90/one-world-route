@@ -172,19 +172,27 @@
   }
 
   function collectionMatches(trip,definition){
-    const filters=definition?.filters||{};
-    if(filters.mode&&!(trip.discovery?.modes||[]).includes(filters.mode))return false;
-    if(filters.theme&&!(trip.discovery?.themes||[]).includes(filters.theme))return false;
-    if(filters.region&&!(trip.discovery?.regions||[]).includes(filters.region))return false;
-    if(filters.duration&&trip.discovery?.durationBand!==filters.duration)return false;
-    if(filters.themeAny?.length&&!filters.themeAny.some(value=>(trip.discovery?.themes||[]).includes(value)))return false;
+    const filters=definition?.filters||{},discovery=trip.discovery||{},fit=discovery.fit||{};
+    if(filters.kind&&trip.kind!==filters.kind)return false;
+    if(filters.kindAny?.length&&!filters.kindAny.includes(trip.kind))return false;
+    if(filters.mode&&!(discovery.modes||[]).includes(filters.mode))return false;
+    if(filters.modeAny?.length&&!filters.modeAny.some(value=>(discovery.modes||[]).includes(value)))return false;
+    if(filters.theme&&!(discovery.themes||[]).includes(filters.theme))return false;
+    if(filters.region&&!(discovery.regions||[]).includes(filters.region))return false;
+    if(filters.regionAny?.length&&!filters.regionAny.some(value=>(discovery.regions||[]).includes(value)))return false;
+    if(filters.duration&&discovery.durationBand!==filters.duration)return false;
+    if(filters.party&&!(fit.party||[]).includes(filters.party))return false;
+    if(filters.accessibility&&fit.accessibility!==filters.accessibility)return false;
+    if(typeof filters.vehicleRequired==='boolean'&&((trip.capabilities||[]).includes('vehicle-context'))!==filters.vehicleRequired)return false;
+    if(filters.themeAny?.length&&!filters.themeAny.some(value=>(discovery.themes||[]).includes(value)))return false;
     return true;
   }
 
   function collectionsMarkup(){
     const d=context();
     if(!collections.length)return '';
-    return '<section class="platform-home-collections"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('journeyDiscovery'))+'</div><h2>'+d.esc(d.t('curatedCollections'))+'</h2><p>'+d.esc(d.t('collectionsLead'))+'</p></div></div><div class="platform-home-collection-grid">'+collections.map(item=>{
+    const visibleCollections=collections.filter(item=>item.featured!==false);
+    return '<section class="platform-home-collections"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('journeyDiscovery'))+'</div><h2>'+d.esc(d.t('curatedCollections'))+'</h2><p>'+d.esc(d.t('collectionsLead'))+'</p></div></div><div class="platform-home-collection-grid">'+visibleCollections.map(item=>{
       const count=(d.catalog.trips||[]).filter(trip=>trip.id!==d.catalog.defaultTripId&&collectionMatches(trip,item)).length;
       return '<button type="button" class="platform-home-collection visual-'+d.esc(String(item.theme||'ocean'))+'" data-home-collection="'+d.esc(item.id)+'"><span>'+count+' '+d.esc(d.pluralLabel(count,'resultOne','results'))+'</span><strong>'+d.esc(d.local(item.title))+'</strong><small>'+d.esc(d.local(item.description))+'</small></button>';
     }).join('')+'</div></section>';
