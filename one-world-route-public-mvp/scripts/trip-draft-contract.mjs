@@ -101,6 +101,55 @@ export function buildRouteSkeleton({trip={},catalogEntry={},text='',mode}={}){
   return normalizeDraftMetadata({trip:nextTrip,catalogEntry:nextEntry});
 }
 
+export function parseSegmentSelection(value,maxSequence){
+  const tokens=String(value||'').split(',').map(token=>token.trim()).filter(Boolean);
+  if(!tokens.length)throw new Error('Select at least one segment');
+  const selected=new Set();
+  for(const token of tokens){
+    let start,end;
+    if(/^\d+$/.test(token))start=end=Number(token);
+    else{
+      const match=token.match(/^(\d+)\s*-\s*(\d+)$/);
+      if(!match)throw new Error('Invalid segment selection: '+token);
+      start=Number(match[1]);end=Number(match[2]);
+      if(start>end)throw new Error('Invalid descending segment range: '+token);
+    }
+    for(let sequence=start;sequence<=end;sequence++){
+      if(sequence<1||Number.isFinite(Number(maxSequence))&&sequence>Number(maxSequence))throw new Error('Segment selection out of range: '+sequence);
+      selected.add(sequence);
+    }
+  }
+  return [...selected].sort((a,b)=>a-b);
+}
+
+export function attachEvidenceSource({trip={},catalogEntry={},source={},segments='',status='draft',notes=''}={}){
+  const nextTrip=clone(trip||{}),nextEntry=clone(catalogEntry||{}),sourceId=String(source.id||'').trim();
+  if(!slugPattern.test(sourceId))throw new Error('Evidence source ID must be a normalized slug');
+  const normalizedSource={
+    id:sourceId,title:String(source.title||'').trim(),issuer:String(source.issuer||'').trim(),issuerType:String(source.issuerType||'').trim(),
+    url:String(source.url||'').trim(),checkedAt:String(source.checkedAt||'').trim(),claims:(Array.isArray(source.claims)?source.claims:[]).map(value=>String(value).trim()).filter(Boolean)
+  };
+  if(!normalizedSource.title||!normalizedSource.issuer||!normalizedSource.issuerType)throw new Error('Evidence source title, issuer and issuerType are required');
+  if(!/^https:\/\//.test(normalizedSource.url))throw new Error('Evidence source requires an https URL');
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(normalizedSource.checkedAt))throw new Error('Evidence source requires checkedAt as YYYY-MM-DD');
+  const verificationStatus=String(status||'draft').trim();
+  if(!verificationStates.has(verificationStatus))throw new Error('Unsupported verification status '+verificationStatus);
+  const ordered=[...(nextTrip.segments||[])].sort((a,b)=>Number(a.sequence)-Number(b.sequence));
+  if(!ordered.length)throw new Error('Add route segments before attaching evidence');
+  const selected=parseSegmentSelection(segments,ordered.length),selectedSet=new Set(selected);
+  const existing=(nextTrip.sources||[]).find(item=>item.id===sourceId);
+  if(existing&&String(existing.url||'')!==normalizedSource.url)throw new Error('Evidence source ID already belongs to another URL');
+  nextTrip.sources=[...(nextTrip.sources||[]).filter(item=>item.id!==sourceId),normalizedSource];
+  nextTrip.segments=(nextTrip.segments||[]).map(segment=>{
+    if(!selectedSet.has(Number(segment.sequence)))return segment;
+    const verification={...(segment.verification||{}),status:verificationStatus,sourceIds:[...new Set([...(segment.verification?.sourceIds||[]),sourceId])]};
+    if(verificationStatus!=='draft')verification.lastVerified=normalizedSource.checkedAt;
+    if(String(notes||'').trim())verification.notes=String(notes).trim();
+    return {...segment,verification};
+  });
+  return normalizeDraftMetadata({trip:nextTrip,catalogEntry:nextEntry});
+}
+
 export function computeTripMetrics(trip={}){
   const segments=Array.isArray(trip.segments)?trip.segments:[];
   const places=Array.isArray(trip.places)?trip.places:[];
