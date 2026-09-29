@@ -93,6 +93,10 @@ test('@regional @discovery @mobile-critical guided discovery exposes a simple fi
   await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:15000});
   await expect(page.locator('.platform-home-hero h1')).toHaveText('One world. Many ways to travel.');
   await expect(page.locator('#platformHomeFinder')).toBeVisible();
+  await expect(page.locator('#homeFinderPace option')).not.toHaveCount(1);
+  await expect(page.locator('#homeFinderTheme option')).not.toHaveCount(1);
+  await expect(page.locator('#homeFinderParty option')).not.toHaveCount(1);
+  await expect(page.locator('#homeRouteSort')).toBeVisible();
   await expect(page.locator('[data-home-filter-advanced]')).toBeHidden();
   if(isMobile){
     await expect(page.locator('.platform-home-nav [data-home-traveller]')).toBeVisible();
@@ -115,6 +119,9 @@ test('@regional @discovery @mobile-critical guided discovery exposes a simple fi
   const finderCards=page.locator('#platformHomeResults .platform-home-card');
   await expect(finderCards).toHaveCount(expectedFinder.length);
   for(const item of expectedFinder)await expect(finderCards.filter({hasText:item.title.en})).toHaveCount(1);
+  await page.locator('#homeRouteSort').selectOption('alphabetical');
+  const titles=await page.locator('#platformHomeResults .platform-home-card h3').allTextContents();
+  expect(titles).toEqual([...titles].sort((a,b)=>a.localeCompare(b)));
 
   await page.locator('[data-home-filter-more]').click();
   await expect(page.locator('[data-home-filter-advanced]')).toBeVisible();
