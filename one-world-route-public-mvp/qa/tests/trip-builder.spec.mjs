@@ -62,6 +62,9 @@ test('internal builder authors a draft and previews it with the regional engine'
     await page.locator('#evidenceBtn').click();
     await expect(page.locator('#evidenceDialog')).toBeVisible();
     await expect(page.locator('#evidenceStatus')).toHaveValue('draft');
+    await expect.poll(()=>page.locator('#evidenceLibrary option').count()).toBeGreaterThan(1);
+    await page.locator('#evidenceLibrary').selectOption({index:1});
+    await expect(page.locator('#evidenceForm input[name="url"]')).toHaveValue(/^https:\/\//);
     const evidenceBounds=await page.locator('#evidenceDialog').evaluate(el=>{const r=el.getBoundingClientRect();return{top:r.top,bottom:r.bottom,left:r.left,right:r.right,width:innerWidth,height:innerHeight}});
     expect(evidenceBounds.top).toBeGreaterThanOrEqual(0);
     expect(evidenceBounds.left).toBeGreaterThanOrEqual(0);
