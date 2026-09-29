@@ -163,7 +163,7 @@
   function jsonPack({trip,meta,local,facetLabel,snapshot,assumptions,profile,startDate,season,journeyPlan=null,planningWorkspace=null}){
     return JSON.stringify({
       schemaVersion:1,exportedAt:new Date().toISOString(),
-      trip:{id:meta?.id||trip?.id,title:local(trip?.title),summary:local(trip?.summary),planning:trip?.planning||null,startDate:validDate(startDate)||null,seasonPreference:String(season||'')||null},
+      trip:{id:meta?.id||trip?.id,title:local(trip?.title),summary:local(trip?.summary),variantId:trip?._variant?.id||'base',planning:trip?.planning||null,startDate:validDate(startDate)||null,seasonPreference:String(season||'')||null},
       itinerary:itineraryRows(trip,local,facetLabel),
       journeyPlan,
       planningWorkspace,
