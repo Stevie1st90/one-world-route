@@ -7,12 +7,13 @@
     const parsed=Number(value);
     return Number.isFinite(parsed)?Math.min(max,Math.max(min,parsed)):0;
   };
-  function defaults(){return {savedTrips:[],budgets:{},startDates:{},seasons:{},routeStarts:{},variants:{},planningChecks:{}}}
+  function defaults(){return {savedTrips:[],recentTrips:[],budgets:{},startDates:{},seasons:{},routeStarts:{},variants:{},planningChecks:{}}}
   function load(storage){
     try{
       const raw=JSON.parse(storage.getItem(KEY)||'{}');
       return {
         savedTrips:Array.isArray(raw.savedTrips)?[...new Set(raw.savedTrips.filter(v=>typeof v==='string'))]:[],
+        recentTrips:Array.isArray(raw.recentTrips)?[...new Set(raw.recentTrips.filter(v=>typeof v==='string'))].slice(0,12):[],
         budgets:raw.budgets&&typeof raw.budgets==='object'?raw.budgets:{},
         startDates:raw.startDates&&typeof raw.startDates==='object'?raw.startDates:{},
         seasons:raw.seasons&&typeof raw.seasons==='object'?raw.seasons:{},
@@ -25,6 +26,15 @@
   function persist(storage,state){storage.setItem(KEY,JSON.stringify(state));return state}
   function notify(tripId){if(typeof window?.dispatchEvent==='function'&&typeof CustomEvent==='function')window.dispatchEvent(new CustomEvent('one-world-route:trip-tools-changed',{detail:{tripId}}))}
   function isSaved(storage,tripId){return load(storage).savedTrips.includes(tripId)}
+  function getRecent(storage){return load(storage).recentTrips}
+  function markViewed(storage,tripId){
+    const id=String(tripId||'').trim();
+    if(!id)return getRecent(storage);
+    const state=load(storage);
+    state.recentTrips=[id,...state.recentTrips.filter(value=>value!==id)].slice(0,12);
+    persist(storage,state);
+    return [...state.recentTrips];
+  }
   function toggleSaved(storage,tripId){
     const state=load(storage),saved=new Set(state.savedTrips);
     if(saved.has(tripId))saved.delete(tripId);else saved.add(tripId);
@@ -353,5 +363,5 @@
       toast?.(t('estimateUpdated'));refreshPlanning();
     };
   }
-  root.tripTools={load,isSaved,toggleSaved,normalizeBudget,getBudget,setBudget,getStartDate,setStartDate,getSeason,setSeason,getRouteStart,setRouteStart,getVariant,setVariant,normalizePlanningChecks,getPlanningChecks,setAccessChecked,hasBudgetAssumptions,planningStatus,estimate,itineraryRows,csv,calendar,jsonPack,workspaceJson,download,render,bind};
+  root.tripTools={load,isSaved,getRecent,markViewed,toggleSaved,normalizeBudget,getBudget,setBudget,getStartDate,setStartDate,getSeason,setSeason,getRouteStart,setRouteStart,getVariant,setVariant,normalizePlanningChecks,getPlanningChecks,setAccessChecked,hasBudgetAssumptions,planningStatus,estimate,itineraryRows,csv,calendar,jsonPack,workspaceJson,download,render,bind};
 })();

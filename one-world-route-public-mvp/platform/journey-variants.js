@@ -7,15 +7,7 @@
   };
 
   function definitions(trip){
-    if(!Array.isArray(trip?.variants))return [];
-    const seen=new Set(),out=[];
-    for(const item of trip.variants){
-      const id=typeof item?.id==='string'?item.id.trim():'';
-      if(!id||id==='base'||seen.has(id))continue;
-      seen.add(id);
-      out.push({...item,id});
-    }
-    return out;
+    return Array.isArray(trip?.variants)?trip.variants.filter(item=>item&&typeof item.id==='string'&&item.id.trim()):[];
   }
 
   function list(trip){

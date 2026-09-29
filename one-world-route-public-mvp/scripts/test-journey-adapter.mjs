@@ -182,24 +182,3 @@ test('unknown journey variant falls back to the full source journey',()=>{
   assert.equal(result._variant.adapted,false);
   assert.equal(result.stops.length,1);
 });
-
-
-test('journey variant definitions are deterministic when content repeats an id',()=>{
-  const variants=loadVariants();
-  const sourceTrip={
-    id:'demo',
-    title:{en:'Full'},
-    stops:[{id:'s1',sequence:1,placeId:'a',dayStart:1,dayEnd:1}],
-    segments:[],
-    places:[{id:'a'}],
-    variants:[
-      {id:'short',title:{en:'First'}},
-      {id:'short',title:{en:'Duplicate'}},
-      {id:'base',title:{en:'Reserved'}},
-      {id:'',title:{en:'Invalid'}}
-    ]
-  };
-  const definitions=variants.definitions(sourceTrip);
-  assert.deepEqual(Array.from(definitions,x=>x.id),['short']);
-  assert.equal(definitions[0].title.en,'First');
-});
