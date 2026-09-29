@@ -190,6 +190,55 @@ async function clonePublic(slug){
   const trip=await json(join(publicRoot,String(entry.dataset).replace(/^\.\//,'')));await mkdir(draftsDir,{recursive:true});
   await atomic(p.trip,{...trip,status:'draft'});await atomic(p.catalog,{...entry,status:'draft'});return loadDraft(slug);
 }
+const humanizeSlug=slug=>slug.split('-').map(word=>word?word[0].toUpperCase()+word.slice(1):word).join(' ');
+function clonedTemplateTrip(source,targetSlug,catalog){
+  const locales=Array.isArray(catalog?.supportedLocales)&&catalog.supportedLocales.length?catalog.supportedLocales:['en'];
+  const trip=structuredClone(source);
+  trip.id=targetSlug;trip.slug=targetSlug;trip.status='draft';
+  trip.title=Object.fromEntries(locales.map(locale=>[locale,humanizeSlug(targetSlug)]));
+  trip.sources=[];delete trip.variants;
+  trip.segments=(trip.segments||[]).map(segment=>{
+    const next=structuredClone(segment);
+    next.transport={...(next.transport||{}),stages:(next.transport?.stages||[]).map(stage=>({...stage,sourceIds:[],cost:null}))};
+    next.planning={...(next.planning||{}),cost:null};
+    next.verification={status:'draft',sourceIds:[],notes:'Cloned template — attach current evidence before publication.'};
+    return next;
+  });
+  return trip;
+}
+async function clonePublicAsNew(input){
+  const sourceSlug=safeSlug(input.sourceSlug),targetSlug=safeSlug(input.targetSlug);
+  if(sourceSlug===targetSlug)throw new Error('New journey slug must differ from the source');
+  const catalog=await json(catalogPath),entry=(catalog.trips||[]).find(t=>t.id===sourceSlug);
+  if(!entry||entry.renderer==='legacy-world')throw new Error('Reusable public source trip not found');
+  const target=paths(targetSlug);
+  if(await exists(target.trip)||(catalog.trips||[]).some(t=>t.id===targetSlug))throw new Error('Target draft or public trip already exists');
+  const source=await json(join(publicRoot,String(entry.dataset).replace(/^\.\//,''))),trip=clonedTemplateTrip(source,targetSlug,catalog),locales=catalog.supportedLocales||['en'];
+  const catalogEntry={
+    ...structuredClone(entry),id:targetSlug,slug:targetSlug,status:'draft',
+    title:structuredClone(trip.title),subtitle:Object.fromEntries(locales.map(locale=>[locale,'TODO — discovery subtitle'])),
+    metrics:{...(entry.metrics||{}),days:trip.planning?.days||entry.metrics?.days||null,stops:(trip.stops||[]).length,segments:(trip.segments||[]).length,sourcedSegments:0,verifiedSegments:0}
+  };
+  delete catalogEntry.dataset;
+  await mkdir(draftsDir,{recursive:true});await atomic(target.trip,trip);await atomic(target.catalog,catalogEntry);
+  return loadDraft(targetSlug);
+}
+async function localeCoverage(){
+  const catalog=await json(catalogPath),locales=catalog.supportedLocales||['en'],journeys=[];
+  for(const meta of catalog.trips||[]){
+    if(meta.renderer==='legacy-world')continue;
+    const trip=await json(join(publicRoot,String(meta.dataset).replace(/^\.\//,''))),missing=[];
+    for(const locale of locales){
+      for(const [field,value] of [['title',trip.title?.[locale]],['summary',trip.summary?.[locale]],['subtitle',meta.subtitle?.[locale]]]){
+        if(!String(value||'').trim()||/^TODO\b/i.test(String(value)))missing.push(locale+':'+field);
+      }
+    }
+    const completeLocales=locales.filter(locale=>!missing.some(item=>item.startsWith(locale+':'))).length;
+    journeys.push({tripId:meta.id,title:meta.title?.en||meta.id,completeLocales,totalLocales:locales.length,coveragePct:Math.round(completeLocales/locales.length*100),missing});
+  }
+  const complete=journeys.filter(item=>item.completeLocales===item.totalLocales).length;
+  return {schemaVersion:1,summary:{journeys:journeys.length,complete,incomplete:journeys.length-complete,locales:locales.length},journeys:journeys.sort((a,b)=>a.coveragePct-b.coveragePct||a.title.localeCompare(b.title))};
+}
 async function applyRouteSkeleton(slug,input){
   slug=safeSlug(slug);
   const draft=await loadDraft(slug),skeleton=buildRouteSkeleton({...draft,text:input.text,mode:input.mode});
@@ -263,8 +312,10 @@ async function handler(req,res){
     if(pathname==='/__builder/api/maintenance-queue'&&req.method==='GET')return send(res,200,{ok:true,queue:await maintenanceQueue()});
     if(pathname==='/__builder/api/source-library'&&req.method==='GET')return send(res,200,{ok:true,...await sourceLibrary()});
     if(pathname==='/__builder/api/maintenance/source-sync'&&req.method==='POST')return send(res,200,{ok:true,...await syncPublishedSource(await readBody(req))});
+    if(pathname==='/__builder/api/locale-coverage'&&req.method==='GET')return send(res,200,{ok:true,coverage:await localeCoverage()});
     if(pathname==='/__builder/api/scaffold'&&req.method==='POST')return send(res,201,{ok:true,...await scaffold(await readBody(req))});
     if(pathname==='/__builder/api/clone'&&req.method==='POST'){const b=await readBody(req);return send(res,201,{ok:true,...await clonePublic(b.slug)})}
+    if(pathname==='/__builder/api/clone-as-new'&&req.method==='POST')return send(res,201,{ok:true,...await clonePublicAsNew(await readBody(req))})
     const m=pathname.match(/^\/__builder\/api\/draft\/([a-z0-9-]+)(?:\/(validate|publish|skeleton|evidence))?$/);
     if(m){
       const slug=safeSlug(m[1]),action=m[2];

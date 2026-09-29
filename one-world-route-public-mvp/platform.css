@@ -576,6 +576,3 @@ body.platform-ready #app>.topbar,body.platform-ready #app>.left-panel,body.platf
 .platform-mytrip-recent>div:last-child{display:flex;gap:6px;flex:0 0 auto}
 .platform-mytrip-recent button{min-height:31px;padding:0 9px;border:1px solid rgba(89,221,255,.14);border-radius:8px;background:rgba(89,221,255,.045);color:#cbeff8;font-size:8px;font-weight:750;cursor:pointer}
 @media(max-width:620px){.platform-mytrip-recent{align-items:stretch;flex-direction:column}.platform-mytrip-recent>div:last-child{display:grid;grid-template-columns:1fr 1fr}.platform-mytrip-recent button{width:100%}.platform-mytrip-recent small{white-space:normal}}
-/* Flagship shell actions remain reachable after global navigation expansion. */
-body:not(.platform-home):not(.platform-regional-trip) .top-actions{display:flex!important}
-body:not(.platform-home):not(.platform-regional-trip) #settingsBtn{display:inline-grid!important}

@@ -10,7 +10,10 @@ const catalogPath=join(root,'data/platform/trips.json');
 const tripIndexPath=join(root,'data/platform/trip-index.json');
 const sitemapPath=join(root,'sitemap.xml');
 const slug='ci-builder-proof';
+const cloneSlug='ci-builder-proof-clone';
 const draftTrip=join(root,'data/platform/drafts/'+slug+'.trip.json');
+const cloneDraftTrip=join(root,'data/platform/drafts/'+cloneSlug+'.trip.json');
+const cloneDraftCatalog=join(root,'data/platform/drafts/'+cloneSlug+'.catalog.json');
 const draftCatalog=join(root,'data/platform/drafts/'+slug+'.catalog.json');
 const publicTrip=join(root,'data/platform/trips/'+slug+'.json');
 const originalCatalog=await readFile(catalogPath,'utf8');
@@ -26,7 +29,8 @@ const request=async(path,opt={})=>{const r=await fetch(base+path,{headers:{'cont
 try{
   await wait();
   const state=await request('/__builder/api/state');assert.ok(state.catalog.trips.some(t=>t.id==='world-195'));assert.ok(state.archetypes.includes('rail'));assert.ok(state.archetypes.includes('road-trip'));
-  const maintenance=await request('/__builder/api/maintenance-queue');assert.equal(Array.isArray(maintenance.queue.items),true);assert.equal(maintenance.queue.summary.journeys>=16,true);assert.equal(Number.isFinite(maintenance.queue.summary.uniqueExternalSources),true);
+  const maintenance=await request('/__builder/api/maintenance-queue');assert.equal(Array.isArray(maintenance.queue.items),true);assert.equal(maintenance.queue.summary.journeys>=16,true);assert.equal(Number.isFinite(maintenance.queue.summary.uniqueExternalSources),true);assert.equal(Array.isArray(maintenance.queue.journeyHealth),true);
+  const localeCoverage=await request('/__builder/api/locale-coverage');assert.equal(localeCoverage.coverage.summary.journeys>=16,true);assert.equal(localeCoverage.coverage.summary.locales,state.catalog.supportedLocales.length);assert.equal(Array.isArray(localeCoverage.coverage.journeys),true);
   const coverage=await request('/__builder/api/experience-coverage');assert.equal(coverage.coverage.summary.journeys>=16,true);assert.equal(coverage.coverage.summary.coveredPlaces>0,true);assert.equal(Array.isArray(coverage.coverage.queue),true);assert.equal(coverage.coverage.journeys.some(item=>item.tripId==='japan-by-rail'&&item.coveragePct===100),true);
   const scaffolded=await request('/__builder/api/scaffold',{method:'POST',body:JSON.stringify({slug,kind:'rail',days:2})});assert.equal(scaffolded.trip.routePolicy.reversible,true);assert.equal(scaffolded.trip.maintenance.sourceReviewDays,90);assert.deepEqual(scaffolded.catalogEntry.discovery.regions,['global']);assert.ok(scaffolded.catalogEntry.capabilities.includes('trip-planning'));
   const skeletoned=await request('/__builder/api/draft/'+slug+'/skeleton',{method:'POST',body:JSON.stringify({mode:'rail',text:'Berlin | DE | 52.5200 | 13.4050 | 1\nParis | FR | 48.8566 | 2.3522 | 2\nLyon | FR | 45.7640 | 4.8357 | 1'})});
@@ -65,16 +69,18 @@ try{
   const publicCatalog=JSON.parse(await readFile(catalogPath,'utf8'));assert.ok(publicCatalog.trips.some(t=>t.id===slug&&t.status==='sourced-beta'));
   const tripIndex=JSON.parse(await readFile(tripIndexPath,'utf8'));assert.ok(tripIndex.trips.some(t=>t.id===slug));
   const sitemap=await readFile(sitemapPath,'utf8');assert.match(sitemap,new RegExp('/trip/'+slug));
+  const cloned=await request('/__builder/api/clone-as-new',{method:'POST',body:JSON.stringify({sourceSlug:slug,targetSlug:cloneSlug})});
+  assert.equal(cloned.trip.id,cloneSlug);assert.equal(cloned.trip.slug,cloneSlug);assert.equal(cloned.trip.status,'draft');assert.equal(cloned.trip.sources.length,0);assert.equal(cloned.trip.segments.every(segment=>segment.verification?.status==='draft'&&(segment.verification?.sourceIds||[]).length===0),true);assert.equal(cloned.catalogEntry.id,cloneSlug);assert.equal(cloned.catalogEntry.status,'draft');assert.equal(cloned.catalogEntry.metrics.sourcedSegments,0);assert.equal(cloned.catalogEntry.metrics.verifiedSegments,0);
   const synced=await request('/__builder/api/maintenance/source-sync',{method:'POST',body:JSON.stringify({url:'https://example.com/rail',title:'CI Operator Updated',issuer:'CI Operator',checkedAt:'2026-09-29'})});
   assert.equal(synced.updatedJourneys.some(item=>item.tripId===slug),true);
   assert.equal(synced.qualityChecks.every(check=>check.ok===true),true);
   const syncedTrip=JSON.parse(await readFile(publicTrip,'utf8'));
   assert.equal(syncedTrip.sources.find(source=>source.id==='src')?.title,'CI Operator Updated');
-  console.log('Internal Trip Builder smoke complete: draft -> validate -> preview -> publish -> source sync -> generated artifacts');
+  console.log('Internal Trip Builder smoke complete: draft -> validate -> preview -> publish -> source sync -> clone template -> generated artifacts');
 }finally{
   server.kill('SIGTERM');
   await writeFile(catalogPath,originalCatalog);
   await writeFile(tripIndexPath,originalTripIndex);
   await writeFile(sitemapPath,originalSitemap);
-  await rm(draftTrip,{force:true});await rm(draftCatalog,{force:true});await rm(publicTrip,{force:true});
+  await rm(draftTrip,{force:true});await rm(draftCatalog,{force:true});await rm(cloneDraftTrip,{force:true});await rm(cloneDraftCatalog,{force:true});await rm(publicTrip,{force:true});
 }
