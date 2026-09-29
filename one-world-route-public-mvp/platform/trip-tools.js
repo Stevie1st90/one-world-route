@@ -321,6 +321,7 @@
     });
     host.querySelector('[data-trip-variant]')?.addEventListener('change',event=>{
       const variantId=setVariant(storage,id,event.currentTarget.value);
+      setRouteStart(storage,id,'');
       toast?.(t('variantUpdated'));
       onRouteVariantChange?.({variantId});
     });
