@@ -76,13 +76,33 @@ function renderMaintenance(queue){
    const action=item.type==='external-source'&&journeyDependents?'<button type="button" data-source-sync="'+index+'">Update '+journeyDependents+' journey'+(journeyDependents===1?'':'s')+'</button>':'';
    return '<article class="maintenance-item state-'+itemState+'"><div><span>'+itemState+'</span><b>'+title+'</b><small>'+detail+'</small></div><div><strong>'+when+'</strong><small>'+esc(item.priorityReason||'')+'</small>'+action+'</div></article>';
  }).join(''):'<div class="coverage-empty">No maintenance items found.</div>';
- $$('[data-source-sync]').forEach(button=>button.onclick=()=>openSourceSync(state.maintenanceItems[Number(button.dataset.sourceSync)]));
+ const health=queue.journeyHealth||[];
+ $('#journeyHealth').innerHTML=health.map(item=>'<article class="maintenance-item state-'+esc(item.state)+'"><div><span>'+esc(item.state.replaceAll('-',' '))+'</span><b>'+esc(item.title)+'</b><small>'+esc(item.totalSources)+' sources · '+esc(item.currentChecks)+' current checks</small></div><div><strong>'+esc(item.staleSources?item.staleSources+' stale':item.dueSoonSources?item.dueSoonSources+' due soon':'')+'</strong></div></article>').join('')||'<div class="coverage-empty">No journey health data.</div>';
+ $('[data-source-sync]').forEach(button=>button.onclick=()=>openSourceSync(state.maintenanceItems[Number(button.dataset.sourceSync)]));
 }
 async function openMaintenance(){
  const dialog=$('#maintenanceDialog');dialog.showModal();
  $('#maintenanceSummary').innerHTML='<div class="coverage-loading">Building maintenance queue…</div>';$('#maintenanceQueue').innerHTML='';
  try{const r=await api('maintenance-queue');renderMaintenance(r.queue)}
  catch(error){$('#maintenanceSummary').innerHTML='<div class="coverage-error">'+esc(error.message)+'</div>'}
+}
+function renderLocaleCoverage(coverage){
+ const summary=coverage.summary||{};
+ $('#localeCoverageSummary').innerHTML=[
+  ['Journeys',summary.journeys||0],
+  ['Complete',summary.complete||0],
+  ['Needs copy',summary.incomplete||0],
+  ['Locales',summary.locales||0]
+ ].map(item=>'<div><span>'+esc(item[0])+'</span><b>'+esc(item[1])+'</b></div>').join('');
+ $('#localeCoverageJourneys').innerHTML=(coverage.journeys||[]).map(item=>
+   '<article class="coverage-journey"><div><b>'+esc(item.title)+'</b><span>'+esc(item.completeLocales)+' / '+esc(item.totalLocales)+' locales'+(item.missing?.length?' · '+esc(item.missing.slice(0,6).join(', ')):'')+'</span></div><div class="coverage-bar"><i style="width:'+Math.max(0,Math.min(100,Number(item.coveragePct)||0))+'%"></i></div><strong>'+esc(item.coveragePct)+'%</strong></article>'
+ ).join('');
+}
+async function openLocaleCoverage(){
+ const dialog=$('#localeCoverageDialog');dialog.showModal();
+ $('#localeCoverageSummary').innerHTML='<div class="coverage-loading">Checking localized public copy…</div>';$('#localeCoverageJourneys').innerHTML='';
+ try{const r=await api('locale-coverage');renderLocaleCoverage(r.coverage)}
+ catch(error){$('#localeCoverageSummary').innerHTML='<div class="coverage-error">'+esc(error.message)+'</div>'}
 }
 
 function openSourceSync(item){
@@ -154,9 +174,9 @@ async function openEvidence(){
 async function loadState(){const r=await api('state');state.catalog=r.catalog;state.drafts=r.drafts;state.archetypes=r.archetypes||[];renderDrafts();$('#cloneSelect').innerHTML=(r.catalog.trips||[]).filter(t=>t.renderer==='regional-globe').map(t=>'<option value="'+t.slug+'">'+esc(t.title?.en||t.slug)+'</option>').join('');const kind=$('#newKind');if(kind)kind.innerHTML=state.archetypes.map(value=>'<option value="'+esc(value)+'">'+esc(value.replaceAll('-',' '))+'</option>').join('')}
 async function loadDraft(slug){const r=await api('draft/'+slug);state.slug=slug;state.trip=r.trip;state.catalogEntry=r.catalogEntry;$('#empty').classList.add('hidden');$('#editor').classList.remove('hidden');$('#heading').textContent=r.trip.title?.en||slug;$('#subheading').textContent=r.trip.kind+' · local draft';['previewBtn','saveBtn','validateBtn','publishBtn','skeletonBtn','evidenceBtn','localizationBtn'].forEach(id=>$('#'+id).disabled=false);$('#gate').className='gate';$('#gate').textContent='Not validated yet.';bind();await loadState()}
 async function save(){const r=await api('draft/'+state.slug,{method:'PUT',body:JSON.stringify(collect())});state.trip=r.trip;state.catalogEntry=r.catalogEntry;gate(r);renderMetrics();await loadState();return r}
-$('#newBtn').onclick=()=>$('#newDialog').showModal();$('#cloneBtn').onclick=()=>$('#cloneDialog').showModal();$('#mobileNewBtn').onclick=()=>$('#newDialog').showModal();$('#mobileCloneBtn').onclick=()=>$('#cloneDialog').showModal();$('#skeletonBtn').onclick=openSkeleton;$('#evidenceBtn').onclick=openEvidence;$('#localizationBtn').onclick=openLocalization;$('#coverageBtn').onclick=openCoverage;$('#mobileCoverageBtn').onclick=openCoverage;$('#maintenanceBtn').onclick=openMaintenance;$('#mobileMaintenanceBtn').onclick=openMaintenance;$('#mobileDraftSelect').onchange=e=>{if(e.target.value)loadDraft(e.target.value)};$$('[data-close]').forEach(b=>b.onclick=()=>$('#'+b.dataset.close).close());
+$('#newBtn').onclick=()=>$('#newDialog').showModal();$('#cloneBtn').onclick=()=>$('#cloneDialog').showModal();$('#mobileNewBtn').onclick=()=>$('#newDialog').showModal();$('#mobileCloneBtn').onclick=()=>$('#cloneDialog').showModal();$('#skeletonBtn').onclick=openSkeleton;$('#evidenceBtn').onclick=openEvidence;$('#localizationBtn').onclick=openLocalization;$('#coverageBtn').onclick=openCoverage;$('#mobileCoverageBtn').onclick=openCoverage;$('#localeCoverageBtn').onclick=openLocaleCoverage;$('#mobileLocaleCoverageBtn').onclick=openLocaleCoverage;$('#maintenanceBtn').onclick=openMaintenance;$('#mobileMaintenanceBtn').onclick=openMaintenance;$('#mobileDraftSelect').onchange=e=>{if(e.target.value)loadDraft(e.target.value)};$$('[data-close]').forEach(b=>b.onclick=()=>$('#'+b.dataset.close).close());
 $('#newForm').onsubmit=async e=>{e.preventDefault();try{const f=new FormData(e.currentTarget),r=await api('scaffold',{method:'POST',body:JSON.stringify({slug:f.get('slug'),kind:f.get('kind'),days:f.get('days')||null})});$('#newDialog').close();await loadState();await loadDraft(r.trip.slug)}catch(x){alert(x.message)}};
-$('#cloneForm').onsubmit=async e=>{e.preventDefault();try{const slug=new FormData(e.currentTarget).get('slug');await api('clone',{method:'POST',body:JSON.stringify({slug})});$('#cloneDialog').close();await loadState();await loadDraft(slug)}catch(x){alert(x.message)}};
+$('#cloneForm').onsubmit=async e=>{e.preventDefault();try{const form=new FormData(e.currentTarget),slug=String(form.get('slug')||''),mode=e.submitter?.value||'edit';let target=slug;if(mode==='new'){target=String(form.get('targetSlug')||'').trim();if(!target)throw new Error('New journey slug is required');await api('clone-as-new',{method:'POST',body:JSON.stringify({sourceSlug:slug,targetSlug:target})})}else await api('clone',{method:'POST',body:JSON.stringify({slug})});$('#cloneDialog').close();e.currentTarget.reset();await loadState();await loadDraft(target)}catch(x){alert(x.message)}};
 $('#skeletonForm').onsubmit=async e=>{e.preventDefault();if(!state.slug)return;const hasGraph=(state.trip?.places||[]).length||(state.trip?.stops||[]).length||(state.trip?.segments||[]).length;if(hasGraph&&!confirm('Replace the current Places, Stops and Segments with this route skeleton? Existing sources are kept.'))return;try{await save();const form=new FormData(e.currentTarget),r=await api('draft/'+state.slug+'/skeleton',{method:'POST',body:JSON.stringify({text:form.get('text'),mode:form.get('mode')})});state.trip=r.trip;state.catalogEntry=r.catalogEntry;state.tab='places';$('#skeletonDialog').close();bind();gate(r);await loadState()}catch(x){alert(x.message)}};
 $('#localizationForm').onsubmit=e=>{e.preventDefault();if(!state.trip)return;const form=new FormData(e.currentTarget),locales=state.catalog?.supportedLocales||['en'];state.trip.title=state.trip.title||{};state.trip.summary=state.trip.summary||{};state.catalogEntry.subtitle=state.catalogEntry.subtitle||{};for(const locale of locales){state.trip.title[locale]=String(form.get('title-'+locale)||'').trim();state.trip.summary[locale]=String(form.get('summary-'+locale)||'').trim();state.catalogEntry.subtitle[locale]=String(form.get('subtitle-'+locale)||'').trim()}state.catalogEntry.title=clone(state.trip.title);state.tab='localization';$('#localizationDialog').close();bind();$('#gate').className='gate';$('#gate').textContent='Localization changed. Validate again before publishing.';};
 $('#evidenceForm').onsubmit=async e=>{e.preventDefault();if(!state.slug)return;try{await save();const form=new FormData(e.currentTarget),claims=String(form.get('claims')||'').split(/\r?\n/).map(value=>value.trim()).filter(Boolean),source={id:form.get('id'),title:form.get('title'),issuer:form.get('issuer'),issuerType:form.get('issuerType'),url:form.get('url'),checkedAt:form.get('checkedAt'),claims},r=await api('draft/'+state.slug+'/evidence',{method:'POST',body:JSON.stringify({source,segments:form.get('segments'),status:form.get('status'),notes:form.get('notes')})});state.trip=r.trip;state.catalogEntry=r.catalogEntry;state.tab='sources';$('#evidenceDialog').close();bind();gate(r);await loadState()}catch(x){alert(x.message)}};

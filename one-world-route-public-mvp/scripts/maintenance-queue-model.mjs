@@ -106,7 +106,18 @@ export function buildMaintenanceQueue({catalog,datasets=new Map(),shared={items:
   });
 
   const items=[...sourceItems,...profileItems].sort((a,b)=>b.priority-a.priority||String(a.nextReviewAt||'9999').localeCompare(String(b.nextReviewAt||'9999'))||a.id.localeCompare(b.id));
+  const journeyHealth=(catalog?.trips||[]).filter(meta=>meta.renderer!=='legacy-world').map(meta=>{
+    const trip=datasets instanceof Map?datasets.get(meta.id):datasets?.[meta.id],related=sourceItems.filter(item=>item.dependents.some(dep=>dep.kind==='journey'&&dep.tripId===meta.id));
+    const sourceStates=related.map(item=>item.state),currentChecks=(trip?.segments||[]).filter(segment=>segment.verification?.status!=='verified').length;
+    const stale=sourceStates.filter(state=>['expired','overdue','unknown'].includes(state)).length,dueSoon=sourceStates.filter(state=>state==='due-soon').length;
+    const state=stale?'source-stale':dueSoon?'review-soon':currentChecks?'current-check-required':'healthy';
+    return {tripId:meta.id,title:meta.title?.en||meta.id,state,currentChecks,staleSources:stale,dueSoonSources:dueSoon,totalSources:related.length};
+  }).sort((a,b)=>{
+    const weight={'source-stale':4,'review-soon':3,'current-check-required':2,healthy:1};
+    return (weight[b.state]||0)-(weight[a.state]||0)||a.title.localeCompare(b.title);
+  });
   const count=state=>items.filter(item=>item.state===state).length;
+  const journeyCount=state=>journeyHealth.filter(item=>item.state===state).length;
   return {
     schemaVersion:1,generatedAt:today.toISOString(),
     summary:{
@@ -114,8 +125,10 @@ export function buildMaintenanceQueue({catalog,datasets=new Map(),shared={items:
       uniqueExternalSources:sourceItems.length,
       reusedExternalSources:sourceItems.filter(item=>item.reuseCount>1).length,
       placeExperienceProfiles:profileItems.length,
-      expired:count('expired'),overdue:count('overdue'),dueSoon:count('due-soon'),unknown:count('unknown'),scheduled:count('scheduled')
+      expired:count('expired'),overdue:count('overdue'),dueSoon:count('due-soon'),unknown:count('unknown'),scheduled:count('scheduled'),
+      journeyHealthy:journeyCount('healthy'),journeyCurrentCheck:journeyCount('current-check-required'),journeyReviewSoon:journeyCount('review-soon'),journeySourceStale:journeyCount('source-stale')
     },
+    journeyHealth,
     items
   };
 }

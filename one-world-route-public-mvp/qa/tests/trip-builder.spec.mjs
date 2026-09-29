@@ -5,10 +5,12 @@ import {resolve} from 'node:path';
 test('internal builder authors a draft and previews it with the regional engine',async({page,isMobile},testInfo)=>{
   test.setTimeout(90000);
   const slug=('ci-builder-ui-'+testInfo.project.name).toLowerCase().replace(/[^a-z0-9]+/g,'-');
+  const cloneSlug=(slug+'-clone').slice(0,80);
   const pageErrors=[];
   page.on('pageerror',error=>pageErrors.push(error.message));
   const root=resolve(process.cwd(),'..');
   const draftBase=resolve(root,'data/platform/drafts',slug);
+  const cloneDraftBase=resolve(root,'data/platform/drafts',cloneSlug);
   try{
     await page.goto('/__builder/',{waitUntil:'domcontentloaded'});
     const builderState=await page.request.get('/__builder/api/state').then(response=>response.json());
@@ -30,14 +32,30 @@ test('internal builder authors a draft and previews it with the regional engine'
     await page.locator('#coverageDialog').screenshot({path:testInfo.outputPath('experience-coverage-'+testInfo.project.name+'.png'),animations:'disabled'});
     await page.locator('#coverageDialog [data-close="coverageDialog"]').click();
     await expect(page.locator('#coverageDialog')).not.toBeVisible();
+    if(isMobile)await page.locator('#mobileLocaleCoverageBtn').click();else await page.locator('#localeCoverageBtn').click();
+    await expect(page.locator('#localeCoverageDialog')).toBeVisible();
+    await expect(page.locator('#localeCoverageSummary')).toContainText('Journeys');
+    await expect(page.locator('#localeCoverageSummary')).toContainText('Locales');
+    await expect(page.locator('#localeCoverageJourneys .coverage-journey').first()).toBeVisible();
+    await page.locator('#localeCoverageDialog [data-close="localeCoverageDialog"]').click();
+    await expect(page.locator('#localeCoverageDialog')).not.toBeVisible();
     if(isMobile)await page.locator('#mobileMaintenanceBtn').click();else await page.locator('#maintenanceBtn').click();
     await expect(page.locator('#maintenanceDialog')).toBeVisible();
     await expect(page.locator('#maintenanceSummary')).toContainText('External sources');
     await expect(page.locator('#maintenanceSummary')).toContainText('Reused sources');
     await expect(page.locator('#maintenanceQueue .maintenance-item').first()).toBeVisible();
+    await expect(page.locator('#journeyHealth .maintenance-item').first()).toBeVisible();
     await page.locator('#maintenanceDialog').screenshot({path:testInfo.outputPath('maintenance-queue-'+testInfo.project.name+'.png'),animations:'disabled'});
     await page.locator('#maintenanceDialog [data-close="maintenanceDialog"]').click();
     await expect(page.locator('#maintenanceDialog')).not.toBeVisible();
+
+    if(isMobile)await page.locator('#mobileCloneBtn').click();else await page.locator('#cloneBtn').click();
+    await expect(page.locator('#cloneDialog')).toBeVisible();
+    await page.locator('#cloneForm input[name="targetSlug"]').fill(cloneSlug);
+    await page.locator('#cloneForm button[value="new"]').click();
+    await expect(page.locator('#cloneDialog')).not.toBeVisible();
+    await expect(page.locator('#slug')).toHaveValue(cloneSlug);
+    await expect(page.locator('#status')).toHaveValue('draft');
 
     if(isMobile)await page.locator('#mobileNewBtn').click();else await page.locator('#newBtn').click();
     await expect(page.locator('#newDialog')).toBeVisible();
@@ -88,5 +106,7 @@ test('internal builder authors a draft and previews it with the regional engine'
   }finally{
     await rm(draftBase+'.trip.json',{force:true});
     await rm(draftBase+'.catalog.json',{force:true});
+    await rm(cloneDraftBase+'.trip.json',{force:true});
+    await rm(cloneDraftBase+'.catalog.json',{force:true});
   }
 });

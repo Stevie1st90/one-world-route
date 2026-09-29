@@ -30,6 +30,9 @@ test('deduplicates external sources and preserves dependent journeys',()=>{
   assert.equal(source.reviewDays,30);
   assert.match(source.priorityReason,/reused 2×/);
   assert.equal(queue.summary.reusedExternalSources,1);
+  assert.equal(queue.journeyHealth.length,2);
+  assert.equal(queue.journeyHealth.find(item=>item.tripId==='rail-a').state,'source-stale');
+  assert.equal(queue.summary.journeySourceStale,2);
 });
 
 test('separates expired, overdue, due-soon and scheduled review states',()=>{
