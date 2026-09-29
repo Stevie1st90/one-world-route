@@ -64,6 +64,7 @@ test('@regional @discovery @mobile-critical global discovery home exposes a broa
   const errors=capturePageErrors(page);
   await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
   await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:15000});
+  await expect(page.locator('body')).not.toHaveClass(/platform-booting/,{timeout:15000});
   await expect(page.locator('#platformHomeFeatured .platform-home-card')).toHaveCount(6,{timeout:15000});
   await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(catalog.trips.length,{timeout:15000});
   await expect(page.locator('.platform-home-card-visual').first()).toBeVisible();
@@ -223,6 +224,7 @@ test('@regional starting country applies the closest supported journey entry and
   const errors=capturePageErrors(page);
   await page.goto('/?trip=japan-by-rail&lang=en',{waitUntil:'domcontentloaded'});
   await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:15000});
+  await expect(page.locator('body')).not.toHaveClass(/platform-booting/,{timeout:15000});
   if(isMobile){await page.locator('#mobileDetails').click();await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);}
   await expect(page.locator('.platform-journey-flow-stop').first()).toContainText('Hiroshima');
   await expect(page.locator('[data-entry-suggestion]')).toContainText('Seoul / ICN → Hiroshima');
