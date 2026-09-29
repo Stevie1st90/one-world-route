@@ -423,6 +423,7 @@
         TripPlanning,
         TravellerFit,
         journeyAdapter:JourneyAdapter,
+        journeyVariants:JourneyVariants,
         storage:localStorage,
         loadProfile,
         ensureDialog:Ui.ensureDialog,
@@ -468,6 +469,7 @@
       }
       const wanted=p.get('trip')||catalog.defaultTripId;
       currentTripMeta=catalog.trips.find(x=>x.id===wanted||x.slug===wanted)||catalog.trips.find(x=>x.id===catalog.defaultTripId);
+      TripTools.markViewed(localStorage,currentTripMeta.id);
       window.ONE_WORLD_ROUTE_OWNERSHIP=currentTripMeta.renderer==='legacy-world'?'legacy':'regional';
       if(currentTripMeta.renderer!=='legacy-world') await activateRegionalTrip(currentTripMeta);
       else {
