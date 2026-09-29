@@ -1,3 +1,4 @@
+import {deriveDiscoveryRegions} from './country-region-model.mjs';
 import {journeyArchetypeRegistry,validateJourneyArchetypeRegistry} from './journey-archetype-registry.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -248,4 +249,9 @@ test('derives neutral discovery regions from route countries without overwriting
   normalized=normalizeDraftMetadata(ctx);
   assert.deepEqual(normalized.catalogEntry.discovery.regions,['mediterranean','italy']);
   assert.equal(normalized.catalogEntry.discovery.fit.startRegion,'italy');
+});
+
+test('maps Americas countries into the primary discovery taxonomy',()=>{
+  assert.deepEqual(deriveDiscoveryRegions(['CR']),['north-america','central-america']);
+  assert.deepEqual(deriveDiscoveryRegions(['AR','CL']),['south-america']);
 });
