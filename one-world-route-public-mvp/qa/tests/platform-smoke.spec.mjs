@@ -17,6 +17,12 @@ test('@flagship flagship shell boots cleanly',async({page,isMobile})=>{
   await expect(page.locator('#routeRange')).toHaveAttribute('max',String(flagship.metrics.internationalLegs),{timeout:15000});
   await expect(page.locator('#filterCount')).toContainText(String(flagship.metrics.internationalLegs));
   await expect(page.locator('body')).toHaveClass(/platform-ready/,{timeout:15000});
+  const settingsVisibility=await page.evaluate(()=>{
+    const button=document.querySelector('#settingsBtn'),actions=button?.parentElement,topbar=button?.closest('.topbar');
+    const snapshot=node=>node?{className:node.className,display:getComputedStyle(node).display,visibility:getComputedStyle(node).visibility,opacity:getComputedStyle(node).opacity,rect:node.getBoundingClientRect().toJSON()}:null;
+    return {bodyClass:document.body.className,button:snapshot(button),actions:snapshot(actions),topbar:snapshot(topbar)};
+  });
+  console.log('FLAGSHIP_SETTINGS_VISIBILITY',JSON.stringify(settingsVisibility));
   await expect(page.locator('#settingsBtn')).toBeVisible();
   await expect(page.locator('#platformRouteBtn')).toBeVisible();
   if(isMobile){
