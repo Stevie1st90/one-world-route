@@ -35,11 +35,18 @@ const collectionAlternateLinks=(origin,collection)=>[
   '<link rel="alternate" hreflang="x-default" href="'+esc(origin+'/journeys/'+collection.id)+'">'
 ].join('');
 const collectionMatches=(trip,collection)=>{
-  const filters=collection?.filters||{},discovery=trip?.discovery||{};
+  const filters=collection?.filters||{},discovery=trip?.discovery||{},fit=discovery.fit||{};
+  if(filters.kind&&trip.kind!==filters.kind)return false;
+  if(filters.kindAny?.length&&!filters.kindAny.includes(trip.kind))return false;
   if(filters.mode&&!(discovery.modes||[]).includes(filters.mode))return false;
+  if(filters.modeAny?.length&&!filters.modeAny.some(value=>(discovery.modes||[]).includes(value)))return false;
   if(filters.theme&&!(discovery.themes||[]).includes(filters.theme))return false;
   if(filters.region&&!(discovery.regions||[]).includes(filters.region))return false;
+  if(filters.regionAny?.length&&!filters.regionAny.some(value=>(discovery.regions||[]).includes(value)))return false;
   if(filters.duration&&discovery.durationBand!==filters.duration)return false;
+  if(filters.party&&!(fit.party||[]).includes(filters.party))return false;
+  if(filters.accessibility&&fit.accessibility!==filters.accessibility)return false;
+  if(typeof filters.vehicleRequired==='boolean'&&((trip.capabilities||[]).includes('vehicle-context'))!==filters.vehicleRequired)return false;
   if(filters.themeAny?.length&&!filters.themeAny.some(value=>(discovery.themes||[]).includes(value)))return false;
   return trip?.id!==platform.defaultTripId;
 };
