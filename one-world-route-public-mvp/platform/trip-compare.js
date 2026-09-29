@@ -43,6 +43,16 @@
       row(t('fitSeason'),values(trip=>(trip.discovery?.fit?.seasons||[]).map(facetLabel).join(' · ')),esc)+
       row(t('travellerParty'),partyValues,esc)+
       row(t('filterAccessibility'),accessValues,esc)+
+      row(t('planningComplexity'),values(trip=>facetLabel(trip.discovery?.fit?.accessibility||'standard-check')),esc)+
+      row(t('vehicleRequirement'),values(trip=>(trip.capabilities||[]).includes('vehicle-context')?t('yes'):t('no')),esc)+
+      row(t('evidenceCoverage'),values(trip=>{
+        const total=Number(trip.metrics?.segments||trip.metrics?.internationalLegs||0),sourced=Number(trip.metrics?.sourcedSegments||0);
+        return total?String(sourced)+' / '+String(total):'—';
+      }),esc)+
+      row(t('currentChecks'),values(trip=>{
+        const total=Number(trip.metrics?.segments||trip.metrics?.internationalLegs||0),verified=Number(trip.metrics?.verifiedSegments||0);
+        return total?String(Math.max(0,total-verified)):'—';
+      }),esc)+
       row(t('editorialStatus'),values(trip=>statusLabel(trip)),esc)+
       row(t('homeBaseModel'),values(trip=>{
         const budget=trip.metrics?.budget;

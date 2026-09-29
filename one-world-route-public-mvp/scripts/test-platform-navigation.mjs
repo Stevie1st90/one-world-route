@@ -256,6 +256,8 @@ test('My Trips remains browser-local, source-derived and trip-generic',()=>{
   assert.match(workspace,/TripTools\.load/);
   assert.match(workspace,/TripPlanning\.snapshot/);
   assert.match(workspace,/TravellerFit\.evaluate/);
+  assert.match(workspace,/recentlyViewed/);
+  assert.match(workspace,/journeyVariants/);
   assert.doesNotMatch(workspace,/italy-grand-tour|world-195|passportNumber|bookingReference|payment/i);
   assert.doesNotMatch(fit,/score|rank|winner/i);
 });
@@ -266,6 +268,9 @@ test('trip comparison stays neutral, transparent and trip-generic',()=>{
   assert.match(compare,/function toggle/);
   assert.match(compare,/function open/);
   assert.match(compare,/statusLabel/);
+  assert.match(compare,/currentChecks/);
+  assert.match(compare,/vehicleRequirement/);
+  assert.match(compare,/evidenceCoverage/);
   assert.doesNotMatch(compare,/winner|scoreTrip|rankTrip|italy-grand-tour|world-195/);
 });
 

@@ -160,3 +160,16 @@ test('journey variant choice stays local per source journey',()=>{
   parsed=JSON.parse(tools.workspaceJson(s));
   assert.equal(parsed.workspace.variants['trip-a'],undefined);
 });
+
+
+test('recent journeys are deduplicated, newest first and bounded locally',()=>{
+  const tools=load(),s=storage();
+  for(let i=0;i<14;i++)tools.markViewed(s,'trip-'+i);
+  tools.markViewed(s,'trip-5');
+  const recent=tools.getRecent(s);
+  assert.equal(recent[0],'trip-5');
+  assert.equal(recent.length,12);
+  assert.equal(new Set(recent).size,recent.length);
+  const workspace=JSON.parse(tools.workspaceJson(s));
+  assert.deepEqual(workspace.workspace.recentTrips,recent);
+});
