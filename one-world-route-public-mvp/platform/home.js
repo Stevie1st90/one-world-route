@@ -205,6 +205,14 @@
     '</div>';
   }
 
+  function renderCollectionContext(){
+    const d=context(),host=$('#platformHomeCollectionContext');
+    if(!host)return;
+    const item=activeCollection?collections.find(value=>value.id===activeCollection):null;
+    host.innerHTML=item?'<div><span>'+d.esc(d.t('curatedCollections'))+'</span><b>'+d.esc(d.local(item.title))+'</b><small>'+d.esc(d.local(item.description))+'</small></div><button type="button" data-home-reset>'+d.esc(d.t('resetFilters'))+'</button>':'';
+    host.hidden=!item;
+  }
+
   function renderCards({preserveLimit=true}={}){
     const d=context(),host=$('#platformHomeResults');
     if(!preserveLimit)resultLimit=PAGE_SIZE;
@@ -233,6 +241,7 @@
     if($('#homeRouteSavedOnly')?.checked)found=found.filter(trip=>d.tripTools.isSaved(d.storage,trip.id));
     if(d.profileConfigured?.())found=d.travellerFit.orderRecommendations(found,d.loadProfile()).map(result=>result.trip);
     const visible=found.slice(0,resultLimit);
+    renderCollectionContext();
     host.innerHTML=found.length?visible.map(card).join(''):'<div class="platform-home-empty">'+d.esc(d.t('noRoutes'))+'</div>';
     const more=$('#platformHomeMore');
     if(more){
@@ -441,6 +450,8 @@
       collections=collectionResponse.ok?(await collectionResponse.json()).collections||[]:[];
       tripIndex=indexResponse.ok?(await indexResponse.json()).trips||[]:[];
     }catch(error){console.warn('Journey discovery support data unavailable',error);collections=[];tripIndex=[]}
+    const requestedCollection=new URLSearchParams(location.search).get('collection');
+    activeCollection=collections.some(item=>item.id===requestedCollection)?requestedCollection:null;
     document.body.classList.add('platform-home');
     document.body.classList.remove('platform-regional-trip','story-mode','story-launching','terrain-view');
     document.documentElement.lang=d.locale();
@@ -457,7 +468,7 @@
         collectionsMarkup()+
         '<section class="platform-home-regions"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('filterRegion'))+'</div><h2>'+d.esc(d.t('exploreByRegion'))+'</h2></div></div>'+regionCollectionsMarkup()+'</section>'+
         '<section class="platform-home-flagship"><div><div class="platform-home-section-kicker">'+d.esc(d.t('flagshipJourney'))+'</div><h2>'+d.esc(d.local(flagship.title))+'</h2><p>'+d.esc(d.local(flagship.subtitle))+'</p><button type="button" data-open-home-trip="'+d.esc(flagship.id)+'">'+d.esc(d.t('openFlagship'))+' →</button></div><div class="platform-home-flagship-metrics"><article><b>'+d.esc(flagship.metrics?.countries??'—')+'</b><span>'+d.esc(d.t('homeStates'))+'</span></article><article><b>'+d.esc(flagship.metrics?.internationalLegs??'—')+'</b><span>'+d.esc(d.t('homeLegs'))+'</span></article><article><b>'+d.esc(flagship.metrics?.days??'—')+'</b><span>'+d.esc(d.t('homePlannedDays'))+'</span></article><article><b>'+d.esc(formatDate(flagship.metrics?.startDate))+'</b><span>'+d.esc(d.t('homeStart'))+'</span></article><article><b>'+d.esc(formatBudget(flagship.metrics?.budget))+'</b><span>'+d.esc(d.t('homeBaseModel'))+'</span></article></div></section>'+
-        '<section class="platform-home-explore" id="platformHomeExplore"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('journeyDiscovery'))+'</div><h2>'+d.esc(d.t('allJourneys'))+'</h2><p>'+d.esc(d.t('journeyDiscoveryLead'))+'</p></div><div class="platform-home-resultbar"><span id="platformHomeCount"></span><button id="platformHomeCompare" data-home-compare-open type="button" disabled>'+d.esc(d.t('compareSelected').replace('{count}','0'))+'</button><button data-home-reset type="button">'+d.esc(d.t('resetFilters'))+'</button></div></div>'+filtersMarkup()+'<div class="platform-home-grid" id="platformHomeResults"></div><button class="platform-home-more" id="platformHomeMore" data-home-load-more type="button" hidden>'+d.esc(d.t('loadMoreJourneys').replace('{count}',String(PAGE_SIZE)))+'</button></section>'+
+        '<section class="platform-home-explore" id="platformHomeExplore"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('journeyDiscovery'))+'</div><h2>'+d.esc(d.t('allJourneys'))+'</h2><p>'+d.esc(d.t('journeyDiscoveryLead'))+'</p></div><div class="platform-home-resultbar"><span id="platformHomeCount"></span><button id="platformHomeCompare" data-home-compare-open type="button" disabled>'+d.esc(d.t('compareSelected').replace('{count}','0'))+'</button><button data-home-reset type="button">'+d.esc(d.t('resetFilters'))+'</button></div></div>'+'<div id="platformHomeCollectionContext" class="platform-home-collection-context" hidden></div>'+filtersMarkup()+'<div class="platform-home-grid" id="platformHomeResults"></div><button class="platform-home-more" id="platformHomeMore" data-home-load-more type="button" hidden>'+d.esc(d.t('loadMoreJourneys').replace('{count}',String(PAGE_SIZE)))+'</button></section>'+
         '<section class="platform-home-method" id="platformHomeMethodology"><div class="platform-home-section-kicker">'+d.esc(d.t('methodology'))+'</div><h2>'+d.esc(d.t('inspirationMethodTitle'))+'</h2><p>'+d.esc(d.t('inspirationMethodText'))+'</p><div><article><b>'+d.esc(d.t('homeSourceRuleTitle'))+'</b><span>'+d.esc(d.t('homeSourceRule'))+'</span></article><article><b>'+d.esc(d.t('homeUnknownRuleTitle'))+'</b><span>'+d.esc(d.t('homeUnknownRule'))+'</span></article><article><b>'+d.esc(d.t('globalDesignTitle'))+'</b><span>'+d.esc(d.t('globalDesignText'))+'</span></article></div></section>'+
       '</main><footer class="platform-home-footer"><strong>ONE WORLD ROUTE</strong><span>'+d.esc(d.t('homeFooter'))+'</span></footer>';
     document.querySelector('#app')?.appendChild(host);
@@ -465,6 +476,7 @@
     window.addEventListener('one-world-route:trip-tools-changed',renderCards);
     renderFeatured();
     renderCards();
+    if(activeCollection)requestAnimationFrame(()=>$('#platformHomeExplore')?.scrollIntoView({block:'start'}));
     await renderGlobe();
   }
 

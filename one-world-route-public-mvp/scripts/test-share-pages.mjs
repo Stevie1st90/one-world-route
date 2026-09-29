@@ -82,3 +82,27 @@ test('legacy route and country share pages keep their direct interactive redirec
   assert.match(render({type:'route',id:'1'}).body,/location\.replace/);
   assert.match(render({type:'country',slug:'germany'}).body,/location\.replace/);
 });
+
+
+test('localized collection page is crawlable and lists only matching journeys',()=>{
+  const {headers,body}=render({type:'collection',slug:'great-rail-journeys',lang:'de'});
+  assert.equal(headers['Content-Language'],'de');
+  assert.match(body,/Große Bahnreisen — ONE WORLD ROUTE/);
+  assert.match(body,/rel="canonical" href="https:\/\/one-world-route\.vercel\.app\/de\/journeys\/great-rail-journeys"/);
+  for(const lang of ['en','de','it','es','fr','pt'])assert.match(body,new RegExp('hreflang="'+lang+'"'));
+  assert.match(body,/hreflang="x-default"/);
+  assert.match(body,/"@type":"ItemList"/);
+  assert.match(body,/Japan mit der Bahn/);
+  assert.match(body,/Mitteleuropa mit der Bahn/);
+  assert.doesNotMatch(body,/\/de\/trip\/patagonia-road-trip/);
+  assert.match(body,/collection=great-rail-journeys&amp;lang=de|collection%3Dgreat-rail-journeys/);
+  assert.doesNotMatch(body,/location\.replace/);
+});
+
+test('collection x-default canonical remains language neutral',()=>{
+  const {headers,body}=render({type:'collection',slug:'island-escapes'});
+  assert.equal(headers['Content-Language'],'en');
+  assert.match(body,/Island Escapes — ONE WORLD ROUTE/);
+  assert.match(body,/rel="canonical" href="https:\/\/one-world-route\.vercel\.app\/journeys\/island-escapes"/);
+  assert.match(body,/Greek Island Hopping/);
+});

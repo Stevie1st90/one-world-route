@@ -3,6 +3,7 @@ import {readFile} from 'node:fs/promises';
 
 const readJson=async url=>JSON.parse(await readFile(url,'utf8'));
 const catalog=await readJson(new URL('../../data/platform/trips.json',import.meta.url));
+const collectionCatalog=await readJson(new URL('../../data/platform/collections.json',import.meta.url));
 const flagship=catalog.trips.find(item=>item.id===catalog.defaultTripId);
 const regional=catalog.trips.find(item=>item.renderer==='regional-globe');
 const discoveryPreview=catalog.trips.find(item=>item.id==='japan-by-rail');
@@ -113,6 +114,26 @@ test('@regional guided discovery exposes a simple finder before advanced filters
   await page.locator('#platformHomeFinder').screenshot({path:testInfo.outputPath('discovery-finder-v2.png'),animations:'disabled'});
   if(isMobile)await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
   expect(errors,'guided discovery runtime page errors').toEqual([]);
+});
+
+
+
+test('@regional collection deep link opens the same filtered interactive catalog',async({page,isMobile},testInfo)=>{
+  test.setTimeout(90000);
+  const errors=capturePageErrors(page);
+  await page.goto('/?collection=great-rail-journeys&lang=en',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:15000});
+  const context=page.locator('#platformHomeCollectionContext');
+  await expect(context).toBeVisible();
+  await expect(context).toContainText('Great Rail Journeys');
+  const definition=collectionCatalog.collections.find(item=>item.id==='great-rail-journeys');
+  const expected=catalog.trips.filter(trip=>trip.id!==catalog.defaultTripId&&(!definition.filters.mode||(trip.discovery?.modes||[]).includes(definition.filters.mode)));
+  const cards=page.locator('#platformHomeResults .platform-home-card');
+  await expect(cards).toHaveCount(expected.length);
+  for(const trip of expected)await expect(cards.filter({hasText:trip.title.en})).toHaveCount(1);
+  await context.screenshot({path:testInfo.outputPath('collection-handoff.png'),animations:'disabled'});
+  if(isMobile)await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
+  expect(errors,'collection deep-link runtime errors').toEqual([]);
 });
 
 test('@regional traveller start region changes transparent journey recommendations',async({page})=>{
