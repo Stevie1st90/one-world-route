@@ -4,7 +4,7 @@ import {createReadStream,existsSync} from 'node:fs';
 import {extname,join,normalize,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
-import {validateTripDraft,normalizeCatalogEntry,validatePublicationReadiness,scaffoldTripDraft,journeyArchetypes} from '../one-world-route-public-mvp/scripts/trip-draft-contract.mjs';
+import {validateTripDraft,normalizeCatalogEntry,normalizeDraftMetadata,validatePublicationReadiness,scaffoldTripDraft,journeyArchetypes} from '../one-world-route-public-mvp/scripts/trip-draft-contract.mjs';
 import {buildExperienceCoverage} from '../one-world-route-public-mvp/scripts/experience-coverage-model.mjs';
 import {buildMaintenanceQueue} from '../one-world-route-public-mvp/scripts/maintenance-queue-model.mjs';
 
@@ -108,9 +108,9 @@ async function listDrafts(){
 }
 async function saveDraft(slug,payload){
   slug=safeSlug(slug);if(payload.trip?.id!==slug)throw new Error('Trip ID must match draft slug');
-  const catalog=await json(catalogPath),result=validateTripDraft({trip:payload.trip,catalogEntry:payload.catalogEntry,catalog}),p=paths(slug);
-  await mkdir(draftsDir,{recursive:true});await atomic(p.trip,payload.trip);await atomic(p.catalog,result.catalogEntry);
-  return{...result,trip:payload.trip,catalogEntry:result.catalogEntry};
+  const catalog=await json(catalogPath),normalized=normalizeDraftMetadata(payload),result=validateTripDraft({...normalized,catalog}),p=paths(slug);
+  await mkdir(draftsDir,{recursive:true});await atomic(p.trip,normalized.trip);await atomic(p.catalog,result.catalogEntry);
+  return{...result,trip:normalized.trip,catalogEntry:result.catalogEntry};
 }
 async function clonePublic(slug){
   slug=safeSlug(slug);const catalog=await json(catalogPath),entry=(catalog.trips||[]).find(t=>t.id===slug);
@@ -120,12 +120,12 @@ async function clonePublic(slug){
   await atomic(p.trip,{...trip,status:'draft'});await atomic(p.catalog,{...entry,status:'draft'});return loadDraft(slug);
 }
 async function validateSlug(slug){
-  const d=await loadDraft(slug),catalog=await json(catalogPath);return validateTripDraft({trip:d.trip,catalogEntry:d.catalogEntry,catalog});
+  const d=normalizeDraftMetadata(await loadDraft(slug)),catalog=await json(catalogPath);return validateTripDraft({...d,catalog});
 }
 async function publish(slug){
   slug=safeSlug(slug);
-  const d=await loadDraft(slug),catalog=await json(catalogPath);
-  const gate=validateTripDraft({trip:d.trip,catalogEntry:d.catalogEntry,catalog});
+  const d=normalizeDraftMetadata(await loadDraft(slug)),catalog=await json(catalogPath);
+  const gate=validateTripDraft({...d,catalog});
   const publication=validatePublicationReadiness(d);
   if(!gate.valid||!publication.valid){
     return {published:false,validation:{...gate,valid:false,errors:[...gate.errors,...publication.errors]},publication};
@@ -193,7 +193,7 @@ async function handler(req,res){
     if(pathname==='/data/platform/trips.json'){
       const slug=cookieDraft(req);
       if(slug&&slugPattern.test(slug)&&await exists(paths(slug).trip)){
-        const catalog=await json(catalogPath),d=await loadDraft(slug),entry={...normalizeCatalogEntry(d.catalogEntry,d.trip),dataset:'./data/platform/drafts/'+slug+'.trip.json'};
+        const catalog=await json(catalogPath),d=normalizeDraftMetadata(await loadDraft(slug)),entry={...normalizeCatalogEntry(d.catalogEntry,d.trip),dataset:'./data/platform/drafts/'+slug+'.trip.json'};
         return send(res,200,{...catalog,trips:[...(catalog.trips||[]).filter(t=>t.id!==slug),entry]});
       }
     }
