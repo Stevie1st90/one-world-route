@@ -26,8 +26,8 @@ The server binds only to \`127.0.0.1\`. It is intentionally outside the Vercel R
 
 ## Workflow
 
-0. Open **Experience coverage** to see current destination-content coverage and the transparent editorial priority queue.
-1. Create a new draft or clone an existing reusable public trip.
+0. Open **Experience coverage** for destination-content coverage and **Maintenance queue** for source/review work across all journeys.
+1. Create a new draft from a journey archetype (rail, road trip, camper, cruise, island hopping, round trip or multimodal) or clone an existing reusable public trip.
 2. Edit identity/discovery metadata and the place → stop → segment graph.
 3. Add source evidence and namespaced extension data.
 4. Save and run the publication gate.
@@ -40,12 +40,15 @@ The server binds only to \`127.0.0.1\`. It is intentionally outside the Vercel R
 - Drafts live in \`one-world-route-public-mvp/data/platform/drafts/\` and are gitignored.
 - Publish does not commit or deploy.
 - Catalog metrics are recomputed from the trip graph.
-- Publication runs the non-mutating platform quality suite: public/platform validation, model, locale, formatter, share, navigation, regional runtime, rail, story and continuity tests.
+- New drafts start globally neutral; regions are not silently defaulted to Europe.
+- Archetypes provide generic route-policy, maintenance cadence, capabilities, discovery mode and visual-theme defaults without trip-specific runtime code.
+- Publication runs the non-mutating platform quality suite, including draft contracts and maintenance queue tests, before public files are kept.
 - A failed quality check rolls the catalog/trip publication back transactionally.
 - Placeholder or missing trip summaries, titles, place names and required source evidence block publication.
 - Duplicate segment IDs, broken graph sequences, invalid coordinates and malformed country codes block publication.
 - The flagship 195/194 invariants remain under the existing platform validator.
 - Experience coverage is calculated live from published journeys and reusable place profiles; it is advisory and never blocks a valid new route.
+- Maintenance queue deduplicates identical source URLs across journeys and exposes expiry/review state, reuse count and the next review date. The weekly workflow uploads the JSON queue and refreshes a single maintenance issue.
 
 ## Production verification
 

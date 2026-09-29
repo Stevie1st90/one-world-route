@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {computeTripMetrics,normalizeCatalogEntry,validateTripDraft} from './trip-draft-contract.mjs';
+import {computeTripMetrics,normalizeCatalogEntry,validateTripDraft,journeyArchetype,journeyArchetypes,scaffoldTripDraft} from './trip-draft-contract.mjs';
 
 const catalog={supportedLocales:['en','de']};
 function valid(){
@@ -82,4 +82,35 @@ test('publish gate rejects out-of-range coordinates and malformed country codes'
   assert.equal(r.valid,false);
   assert.match(r.errors.join('\n'),/coordinates are out of range/);
   assert.match(r.errors.join('\n'),/countryCode must be ISO alpha-2/);
+});
+
+
+test('journey archetypes provide generic scalable defaults without Europe bias',()=>{
+  const kinds=journeyArchetypes();
+  assert.ok(kinds.includes('rail'));
+  assert.ok(kinds.includes('road-trip'));
+  assert.ok(kinds.includes('cruise'));
+  const rail=journeyArchetype('rail');
+  assert.equal(rail.mode,'rail');
+  assert.equal(rail.routePolicy.startMode,'endpoints');
+  assert.equal(rail.routePolicy.reversible,true);
+  assert.ok(rail.capabilities.includes('trip-planning'));
+  assert.ok(rail.capabilities.includes('source-evidence'));
+  const road=journeyArchetype('road-trip');
+  assert.ok(road.capabilities.includes('vehicle-context'));
+  assert.equal(road.accessibility,'vehicle-dependent');
+});
+
+test('scaffold uses archetype defaults and stays globally neutral until authored',()=>{
+  const fullCatalog={defaultLocale:'en',supportedLocales:['en','de','it','es','fr','pt']};
+  const {trip,catalogEntry}=scaffoldTripDraft({slug:'global-rail-proof',kind:'rail',days:12,catalog:fullCatalog});
+  assert.equal(trip.maintenance.tier,'live-dependent');
+  assert.equal(trip.maintenance.sourceReviewDays,90);
+  assert.equal(trip.routePolicy.reversible,true);
+  assert.deepEqual(catalogEntry.discovery.regions,['global']);
+  assert.equal(catalogEntry.discovery.fit.startRegion,'global');
+  assert.deepEqual(catalogEntry.discovery.modes,['rail']);
+  assert.equal(catalogEntry.discovery.durationBand,'7-14');
+  assert.ok(catalogEntry.capabilities.includes('regional-stops'));
+  assert.equal(catalogEntry.visual.mediaState,'art-directed');
 });

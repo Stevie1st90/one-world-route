@@ -4,8 +4,9 @@ import {createReadStream,existsSync} from 'node:fs';
 import {extname,join,normalize,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
-import {validateTripDraft,normalizeCatalogEntry} from '../one-world-route-public-mvp/scripts/trip-draft-contract.mjs';
+import {validateTripDraft,normalizeCatalogEntry,scaffoldTripDraft,journeyArchetypes} from '../one-world-route-public-mvp/scripts/trip-draft-contract.mjs';
 import {buildExperienceCoverage} from '../one-world-route-public-mvp/scripts/experience-coverage-model.mjs';
+import {buildMaintenanceQueue} from '../one-world-route-public-mvp/scripts/maintenance-queue-model.mjs';
 
 const here=resolve(fileURLToPath(new URL('.',import.meta.url)));
 const publicRoot=resolve(here,'../one-world-route-public-mvp');
@@ -24,10 +25,6 @@ async function exists(p){try{await access(p);return true}catch{return false}}
 async function readBody(req){let s='';for await(const c of req){s+=c;if(s.length>3000000)throw new Error('Payload too large')}return s?JSON.parse(s):{}}
 async function atomic(p,v){const tmp=p+'.tmp';await writeFile(tmp,JSON.stringify(v,null,2)+'\n');await rename(tmp,p)}
 async function loadDraft(s){const p=paths(s);return{trip:await json(p.trip),catalogEntry:await json(p.catalog)}}
-const localized=(locales,v)=>Object.fromEntries(locales.map(l=>[l,v]));
-const band=d=>d==null?'7-14':d<=14?'7-14':d<=30?'15-30':d<=89?'31-89':'90-plus';
-
-
 const publishChecks=[
   ['Platform data validation',['scripts/validate-platform-data.mjs']],
   ['Public data validation',['scripts/validate-public-data.mjs']],
@@ -36,6 +33,9 @@ const publishChecks=[
   ['Platform formatter tests',['--test','scripts/test-platform-formatters.mjs']],
   ['Share page tests',['--test','scripts/test-share-pages.mjs']],
   ['Platform navigation tests',['--test','scripts/test-platform-navigation.mjs']],
+  ['Trip draft contract tests',['--test','scripts/test-trip-draft-contract.mjs']],
+  ['Maintenance queue tests',['--test','scripts/test-maintenance-queue.mjs']],
+  ['Journey maintenance contract',['scripts/audit-platform-maintenance.mjs']],
   ['Experience coverage tests',['--test','scripts/test-experience-coverage.mjs']],
   ['Regional runtime integration',['--test','scripts/test-regional-runtime.mjs']],
   ['Rail validator tests',['--test','scripts/test-platform-rail-validator.mjs']],
@@ -70,13 +70,28 @@ async function experienceCoverage(){
   return buildExperienceCoverage({catalog,datasets,profiles});
 }
 
+async function maintenanceQueue(){
+  const catalog=await json(catalogPath),datasets=new Map(),profiles=[];
+  const shared=await json(join(publicRoot,'data/platform/shared-knowledge.json')).catch(()=>({items:[],reviewPolicies:{}}));
+  for(const meta of catalog.trips||[]){
+    if(meta.renderer!=='regional-globe')continue;
+    const relative=String(meta.dataset||'').replace(/^\.\//,'');
+    datasets.set(meta.id,await json(join(publicRoot,relative)));
+  }
+  const index=await json(experienceIndexPath);
+  for(const shardMeta of index.shards||[]){
+    const relative=String(shardMeta.dataset||'').replace(/^\.\//,'');
+    const shard=await json(join(publicRoot,relative));
+    profiles.push(...(shard.profiles||[]));
+  }
+  return buildMaintenanceQueue({catalog,datasets,shared,profiles,now:new Date()});
+}
+
 async function scaffold(input){
   const slug=safeSlug(input.slug),kind=safeSlug(input.kind||'custom'),catalog=await json(catalogPath),p=paths(slug);
   if(await exists(p.trip)||(catalog.trips||[]).some(t=>t.id===slug))throw new Error('Draft or public trip already exists');
-  const locales=catalog.supportedLocales||['en'],human=slug.split('-').map(x=>x[0].toUpperCase()+x.slice(1)).join(' '),days=input.days?Number(input.days):null;
-  const trip={schemaVersion:1,id:slug,slug,kind,status:'draft',defaultLocale:catalog.defaultLocale||'en',supportedLocales:[...locales],title:localized(locales,human),summary:localized(locales,'TODO — editorial summary'),geography:{regions:[],countries:[]},planning:{days,currency:'EUR'},rendering:{},places:[],stops:[],segments:[],chapters:[],travellerContext:{scope:[]},sources:[],extensions:{}};
-  const catalogEntry={id:slug,slug,kind,status:'draft',renderer:'regional-globe',dataset:'./data/platform/trips/'+slug+'.json',title:localized(locales,human),subtitle:localized(locales,'TODO — discovery subtitle'),metrics:{},capabilities:['globe','story','terrain'],discovery:{regions:['europe'],themes:[kind],modes:[kind==='road-trip'?'road':kind],durationBand:band(days),fit:{pace:'balanced',seasons:['multi-season'],party:['solo','couples','friends'],startRegion:'europe',accessibility:'standard-check'}}};
-  await mkdir(draftsDir,{recursive:true});await atomic(p.trip,trip);await atomic(p.catalog,catalogEntry);return{trip,catalogEntry};
+  const result=scaffoldTripDraft({slug,kind,days:input.days||null,catalog});
+  await mkdir(draftsDir,{recursive:true});await atomic(p.trip,result.trip);await atomic(p.catalog,result.catalogEntry);return result;
 }
 async function listDrafts(){
   await mkdir(draftsDir,{recursive:true});const files=await readdir(draftsDir),out=[];
@@ -125,8 +140,9 @@ async function handler(req,res){
     if(pathname==='/__builder'||pathname==='/__builder/')return void await file(res,join(here,'index.html'));
     if(pathname==='/__builder/app.js')return void await file(res,join(here,'app.js'));
     if(pathname==='/__builder/styles.css')return void await file(res,join(here,'styles.css'));
-    if(pathname==='/__builder/api/state'&&req.method==='GET')return send(res,200,{ok:true,catalog:await json(catalogPath),drafts:await listDrafts()});
+    if(pathname==='/__builder/api/state'&&req.method==='GET')return send(res,200,{ok:true,catalog:await json(catalogPath),drafts:await listDrafts(),archetypes:journeyArchetypes()});
     if(pathname==='/__builder/api/experience-coverage'&&req.method==='GET')return send(res,200,{ok:true,coverage:await experienceCoverage()});
+    if(pathname==='/__builder/api/maintenance-queue'&&req.method==='GET')return send(res,200,{ok:true,queue:await maintenanceQueue()});
     if(pathname==='/__builder/api/scaffold'&&req.method==='POST')return send(res,201,{ok:true,...await scaffold(await readBody(req))});
     if(pathname==='/__builder/api/clone'&&req.method==='POST'){const b=await readBody(req);return send(res,201,{ok:true,...await clonePublic(b.slug)})}
     const m=pathname.match(/^\/__builder\/api\/draft\/([a-z0-9-]+)(?:\/(validate|publish))?$/);

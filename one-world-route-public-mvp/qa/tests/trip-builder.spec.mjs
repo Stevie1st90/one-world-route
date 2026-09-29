@@ -28,6 +28,21 @@ test('internal builder authors a draft and previews it with the regional engine'
     await page.locator('#coverageDialog').screenshot({path:testInfo.outputPath('experience-coverage-'+testInfo.project.name+'.png'),animations:'disabled'});
     await page.locator('#coverageDialog [data-close="coverageDialog"]').click();
     await expect(page.locator('#coverageDialog')).not.toBeVisible();
+    if(isMobile)await page.locator('#mobileMaintenanceBtn').click();else await page.locator('#maintenanceBtn').click();
+    await expect(page.locator('#maintenanceDialog')).toBeVisible();
+    await expect(page.locator('#maintenanceSummary')).toContainText('External sources');
+    await expect(page.locator('#maintenanceSummary')).toContainText('Reused sources');
+    await expect(page.locator('#maintenanceQueue .maintenance-item').first()).toBeVisible();
+    await page.locator('#maintenanceDialog').screenshot({path:testInfo.outputPath('maintenance-queue-'+testInfo.project.name+'.png'),animations:'disabled'});
+    await page.locator('#maintenanceDialog [data-close="maintenanceDialog"]').click();
+    await expect(page.locator('#maintenanceDialog')).not.toBeVisible();
+
+    if(isMobile)await page.locator('#mobileNewBtn').click();else await page.locator('#newBtn').click();
+    await expect(page.locator('#newDialog')).toBeVisible();
+    await expect(page.locator('#newKind option')).toHaveCount(7);
+    await expect(page.locator('#newKind')).toContainText('rail');
+    await page.locator('#newDialog [data-close="newDialog"]').click();
+
     await page.request.post('/__builder/api/scaffold',{data:{slug,kind:'island-hopping',days:8}});
     await page.reload({waitUntil:'domcontentloaded'});
     if(isMobile){await page.locator('#mobileDraftSelect').selectOption(slug)}else{await page.locator('[data-slug="'+slug+'"]').click()}

@@ -27,6 +27,18 @@ jobs:
           node-version: '22'
       - name: Validate journey data contracts
         run: node scripts/validate-platform-data.mjs
+      - name: Build deduplicated maintenance queue
+        run: |
+          node scripts/build-maintenance-queue.mjs --out=journey-maintenance-queue.json | tee journey-maintenance-queue.txt
+      - name: Upload maintenance queue
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: journey-maintenance-queue-${{ github.run_id }}
+          path: |
+            one-world-route-public-mvp/journey-maintenance-queue.json
+            one-world-route-public-mvp/journey-maintenance-queue.txt
+          retention-days: 30
       - name: Audit stale or expired review candidates
         id: maintenance-audit
         continue-on-error: true
@@ -40,7 +52,9 @@ jobs:
             echo "## Journey maintenance"
             echo
             echo '~~~text'
-            cat journey-maintenance-report.txt 2>/dev/null || echo "No maintenance report was produced."
+            cat journey-maintenance-queue.txt 2>/dev/null || echo "No maintenance queue was produced."
+            echo
+            cat journey-maintenance-report.txt 2>/dev/null || echo "No maintenance audit was produced."
             echo '~~~'
           } >> "$GITHUB_STEP_SUMMARY"
       - name: Open or refresh maintenance issue
@@ -56,6 +70,8 @@ jobs:
             echo "This issue is maintained automatically. Update the affected source-backed facts once, then the shared knowledge and every journey that depends on it remain aligned."
             echo
             echo '~~~text'
+            cat journey-maintenance-queue.txt 2>/dev/null || true
+            echo
             cat journey-maintenance-report.txt
             echo '~~~'
             echo
