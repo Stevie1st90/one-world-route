@@ -85,6 +85,9 @@ export function normalizeDraftMetadata({trip={},catalogEntry={}}={}){
     if(stopDays.length)nextTrip.planning.days=Math.max(...stopDays);
   }
   const normalized=normalizeCatalogEntry(nextEntry,nextTrip);
+  const archetype=journeyArchetype(nextTrip.kind);
+  const existingCapabilities=Array.isArray(normalized.capabilities)?normalized.capabilities:[];
+  normalized.capabilities=[...new Set([...archetype.capabilities,...existingCapabilities])];
   const actualModes=[...new Set((nextTrip.segments||[]).map(segment=>segment.transport?.mode).filter(mode=>allowedModes.has(mode)))];
   const existingModes=Array.isArray(normalized.discovery?.modes)?normalized.discovery.modes:[];
   normalized.discovery={
