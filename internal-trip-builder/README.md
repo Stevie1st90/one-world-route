@@ -30,11 +30,12 @@ The server binds only to \`127.0.0.1\`. It is intentionally outside the Vercel R
 1. Create a new draft from a journey archetype (rail, road trip, camper, cruise, island hopping, round trip or multimodal) or clone an existing reusable public trip.
 2. Build the route quickly with **Route skeleton** (`Place | CC | latitude | longitude | nights`) or edit the place → stop → segment graph directly.
 3. Add source evidence with **Evidence source** by explicitly selecting the affected segment numbers and verification status; use raw JSON only for advanced cases.
-4. Add namespaced extension data where the journey type requires it.
-5. Save and run the publication gate.
-5. Preview using the actual production regional renderer. The local server injects the draft into the catalog only for that preview session.
-6. Publish locally. The builder writes the trip into \`data/platform/trips/\` and updates \`trips.json\` only after validation succeeds.
-7. Review the resulting Git diff and use the normal branch, CI, visual QA and deployment workflow.
+4. Complete title, discovery subtitle and journey summary for every supported language in **Localization workspace**.
+5. Add namespaced extension data where the journey type requires it.
+6. Save and run the publication gate.
+7. Preview using the actual production regional renderer. The local server injects the draft into the catalog only for that preview session.
+8. Publish locally. The builder writes the trip into \`data/platform/trips/\` and updates \`trips.json\` only after validation succeeds.
+9. Review the resulting Git diff and use the normal branch, CI, visual QA and deployment workflow.
 
 ## Safety
 
