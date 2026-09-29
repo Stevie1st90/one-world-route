@@ -563,3 +563,16 @@ body.platform-ready #app>.topbar,body.platform-ready #app>.left-panel,body.platf
 .platform-journey-variant>span{color:#6f8399;font-size:7px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
 .platform-journey-variant select{width:100%;height:36px;border:1px solid rgba(255,255,255,.09);border-radius:9px;background:#0d1826;color:#dcebf5;padding:0 9px;font-size:9px}
 .platform-journey-variant small{color:#71859a;font-size:7px;line-height:1.45}
+
+
+/* Planning workspace v3 */
+.platform-mytrips-group{display:grid;gap:10px;margin-top:14px}
+.platform-mytrips-group>h3{margin:0;color:#91a6ba;font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.platform-mytrip-recent{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px;border:1px solid rgba(255,255,255,.07);border-radius:13px;background:rgba(255,255,255,.022)}
+.platform-mytrip-recent>div:first-child{display:grid;gap:3px;min-width:0}
+.platform-mytrip-recent span{color:#72dff8;font-size:7px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.platform-mytrip-recent b{color:#d5e3ee;font-size:11px}
+.platform-mytrip-recent small{color:#74879b;font-size:8px;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.platform-mytrip-recent>div:last-child{display:flex;gap:6px;flex:0 0 auto}
+.platform-mytrip-recent button{min-height:31px;padding:0 9px;border:1px solid rgba(89,221,255,.14);border-radius:8px;background:rgba(89,221,255,.045);color:#cbeff8;font-size:8px;font-weight:750;cursor:pointer}
+@media(max-width:620px){.platform-mytrip-recent{align-items:stretch;flex-direction:column}.platform-mytrip-recent>div:last-child{display:grid;grid-template-columns:1fr 1fr}.platform-mytrip-recent button{width:100%}.platform-mytrip-recent small{white-space:normal}}
