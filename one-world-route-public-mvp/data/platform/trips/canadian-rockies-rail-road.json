@@ -264,7 +264,35 @@
       }
     }
   ],
-  "sources": [],
+  "sources": [
+    {
+      "id": "canada-visit-requirements",
+      "title": "Visit Canada",
+      "issuer": "Immigration, Refugees and Citizenship Canada",
+      "issuerType": "government",
+      "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada.html",
+      "checkedAt": "2026-09-30",
+      "claims": [
+        "official visitor guidance provides a check for whether a traveller needs a visitor visa or electronic travel authorization"
+      ]
+    }
+  ],
+  "entryGuidance": {
+    "personalizationRequired": true,
+    "destinationCountry": "CA",
+    "tripPurpose": "tourism",
+    "stayDays": 14,
+    "officialResolverSourceId": "canada-visit-requirements",
+    "supportingSourceIds": [],
+    "message": {
+      "en": "Visitor visa or eTA requirements depend on the traveller’s citizenship, passport and travel circumstances. Use the official Visit Canada checker for the actual trip.",
+      "de": "Ob ein Besuchervisum oder eine eTA erforderlich ist, hängt von Staatsangehörigkeit, Pass und Reiseumständen ab. Nutze den offiziellen Visit-Canada-Check für die konkrete Reise.",
+      "it": "I requisiti per visto visitatore o eTA dipendono da cittadinanza, passaporto e circostanze del viaggio. Usa il controllo ufficiale Visit Canada per il viaggio concreto.",
+      "es": "Los requisitos de visado de visitante o eTA dependen de la ciudadanía, el pasaporte y las circunstancias del viaje. Utiliza el comprobador oficial de Visit Canada para el viaje concreto.",
+      "fr": "Les exigences de visa visiteur ou d’AVE dépendent de la citoyenneté, du passeport et des circonstances du voyage. Utilisez l’outil officiel Visiter le Canada pour le voyage concerné.",
+      "pt": "Os requisitos de visto de visitante ou eTA dependem da cidadania, do passaporte e das circunstâncias da viagem. Use o verificador oficial Visit Canada para a viagem concreta."
+    }
+  },
   "routePolicy": {
     "startMode": "endpoints",
     "reversible": true,

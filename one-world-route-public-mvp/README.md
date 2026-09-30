@@ -132,6 +132,7 @@ Current platform features:
 - Practical planning capability across all published regional journeys; missing transport prices stay explicitly unknown rather than being inferred
 - Neutral side-by-side journey comparison for up to three routes, including duration, countries, transport, seasons, Route Fit, editorial status and Traveller Context checks
 - Crawlable localized trip pages with real itinerary, planning/evidence summaries and source links instead of metadata-only auto redirects
+- Traveller-specific official entry-check links now cover Italy, Japan, New Zealand, Canada and Australia. The app stores only country-level passport/residence context and does not infer visa or entry eligibility.
 
 Traveller Context is planning context, not an identity profile. The public app never asks for passport numbers, booking references, payment data or exact home addresses. Entry, visa and safety claims must remain source-backed and traveller-specific rather than assuming a German traveller.
 

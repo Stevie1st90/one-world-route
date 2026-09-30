@@ -136,7 +136,71 @@
       "type": [
         "object",
         "null"
-      ]
+      ],
+      "required": [
+        "personalizationRequired",
+        "tripPurpose",
+        "officialResolverSourceId",
+        "message"
+      ],
+      "anyOf": [
+        {
+          "required": [
+            "destinationCountry"
+          ]
+        },
+        {
+          "required": [
+            "destinations"
+          ]
+        }
+      ],
+      "properties": {
+        "personalizationRequired": {
+          "const": true
+        },
+        "destinationCountry": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "destinations": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}$"
+          }
+        },
+        "tripPurpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "stayDays": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "officialResolverSourceId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "supportingSourceIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "message": {
+          "type": [
+            "object",
+            "string"
+          ]
+        }
+      }
     },
     "cruise": {
       "type": [

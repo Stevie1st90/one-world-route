@@ -307,7 +307,35 @@
       }
     }
   ],
-  "sources": [],
+  "sources": [
+    {
+      "id": "nz-visa-nzeta-check",
+      "title": "Check if you need a visa or an NZeTA",
+      "issuer": "Immigration New Zealand",
+      "issuerType": "government",
+      "url": "https://www.immigration.govt.nz/visit/what-you-need-to-visit-new-zealand/visa-tool-test/",
+      "checkedAt": "2026-09-30",
+      "claims": [
+        "official checker determines whether a traveller needs a visa or NZeTA from the traveller's circumstances"
+      ]
+    }
+  ],
+  "entryGuidance": {
+    "personalizationRequired": true,
+    "destinationCountry": "NZ",
+    "tripPurpose": "tourism",
+    "stayDays": 21,
+    "officialResolverSourceId": "nz-visa-nzeta-check",
+    "supportingSourceIds": [],
+    "message": {
+      "en": "Whether you need a visa or an NZeTA depends on your passport and travel circumstances. Use Immigration New Zealand’s official checker for the traveller’s actual situation.",
+      "de": "Ob du ein Visum oder eine NZeTA benötigst, hängt von deinem Pass und deinen Reiseumständen ab. Nutze den offiziellen Check von Immigration New Zealand für den konkreten Reisekontext.",
+      "it": "La necessità di un visto o di una NZeTA dipende dal passaporto e dalle circostanze del viaggio. Usa il controllo ufficiale di Immigration New Zealand per il caso concreto.",
+      "es": "La necesidad de visado o NZeTA depende del pasaporte y de las circunstancias del viaje. Utiliza el comprobador oficial de Immigration New Zealand para tu situación concreta.",
+      "fr": "Le besoin d’un visa ou d’une NZeTA dépend du passeport et des circonstances du voyage. Utilisez l’outil officiel d’Immigration New Zealand pour votre situation.",
+      "pt": "A necessidade de visto ou NZeTA depende do passaporte e das circunstâncias da viagem. Use o verificador oficial da Immigration New Zealand para o seu caso."
+    }
+  },
   "routePolicy": {
     "startMode": "endpoints",
     "reversible": true,

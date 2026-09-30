@@ -76,8 +76,10 @@ for (const item of catalog.trips || []) {
   const trip = await readJson(rel);
   if (trip.id !== item.id || trip.slug !== item.slug) fail('Catalog/dataset identity mismatch for '+item.id);
   const sourceIds = new Set();
+  const sourceById = new Map();
   for (const src of trip.sources || []) {
     if (!src.id || sourceIds.has(src.id)) fail(item.id+': duplicate source '+src.id); else sourceIds.add(src.id);
+    sourceById.set(src.id,src);
     if (!/^https:\/\//.test(String(src.url||''))) fail(item.id+': source '+src.id+' requires https URL');
     if (!/^\d{4}-\d{2}-\d{2}$/.test(String(src.checkedAt||''))) fail(item.id+': source '+src.id+' requires checkedAt date');
   }
@@ -184,6 +186,13 @@ for (const item of catalog.trips || []) {
   if (entry) {
     for (const id of [entry.officialResolverSourceId,...(entry.supportingSourceIds||[])].filter(Boolean)) if (!sourceIds.has(id)) fail(item.id+': entry guidance references missing source '+id);
     if (entry.personalizationRequired !== true) fail(item.id+': entry guidance must require traveller personalization');
+    const entryDestinations=Array.isArray(entry.destinations)&&entry.destinations.length?entry.destinations:[entry.destinationCountry].filter(Boolean);
+    if (!entryDestinations.length) fail(item.id+': entry guidance requires destinationCountry or destinations');
+    for (const code of entryDestinations) if (!(trip.geography?.countries||[]).includes(code)) fail(item.id+': entry guidance destination '+code+' must be part of trip geography');
+    if (!String(entry.tripPurpose||'').trim()) fail(item.id+': entry guidance requires tripPurpose');
+    if (!entry.message || (typeof entry.message==='object'&&!Object.keys(entry.message).length)) fail(item.id+': entry guidance requires a user-facing message');
+    const resolver=sourceById.get(entry.officialResolverSourceId);
+    if (resolver&&!['government','international-organization'].includes(resolver.issuerType)) fail(item.id+': entry guidance resolver must be a government or international-organization source');
   }
 }
 

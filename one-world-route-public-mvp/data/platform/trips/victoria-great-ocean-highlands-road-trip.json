@@ -638,8 +638,35 @@
       "claims": [
         "Parks Victoria publishes current access, road, fire-recovery and visitor-condition information for Gariwerd (Grampians) National Park."
       ]
+    },
+    {
+      "id": "australia-visa-finder",
+      "title": "Explore visa options",
+      "issuer": "Australian Department of Home Affairs",
+      "issuerType": "government",
+      "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-finder",
+      "checkedAt": "2026-09-30",
+      "claims": [
+        "official visa finder presents visa options based on the traveller's circumstances and purpose"
+      ]
     }
   ],
+  "entryGuidance": {
+    "personalizationRequired": true,
+    "destinationCountry": "AU",
+    "tripPurpose": "tourism",
+    "stayDays": 10,
+    "officialResolverSourceId": "australia-visa-finder",
+    "supportingSourceIds": [],
+    "message": {
+      "en": "Australian visa options depend on the traveller’s passport, citizenship, purpose and circumstances. Use the Department of Home Affairs official visa finder for the actual trip.",
+      "de": "Australische Visaoptionen hängen von Pass, Staatsangehörigkeit, Reisezweck und Umständen ab. Nutze den offiziellen Visa Finder des Department of Home Affairs für die konkrete Reise.",
+      "it": "Le opzioni di visto australiane dipendono da passaporto, cittadinanza, scopo e circostanze del viaggio. Usa il visa finder ufficiale del Department of Home Affairs.",
+      "es": "Las opciones de visado australianas dependen del pasaporte, la ciudadanía, el motivo y las circunstancias del viaje. Utiliza el buscador oficial de visados del Department of Home Affairs.",
+      "fr": "Les options de visa australien dépendent du passeport, de la citoyenneté, du motif et des circonstances du voyage. Utilisez l’outil officiel du Department of Home Affairs.",
+      "pt": "As opções de visto australiano dependem do passaporte, da cidadania, do objetivo e das circunstâncias da viagem. Use o localizador oficial de vistos do Department of Home Affairs."
+    }
+  },
   "extensions": {
     "roadTrip": {
       "vehicleContextRequired": true,
