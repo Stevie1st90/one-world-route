@@ -1,0 +1,252 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-29",
+  "summary": {
+    "journeys": 21,
+    "artDirected": 12,
+    "licensedLocal": 0,
+    "missing": 9
+  },
+  "journeys": [
+    {
+      "id": "canadian-rockies-rail-road",
+      "slug": "canadian-rockies-rail-road",
+      "status": "art-directed",
+      "hero": {
+        "type": "art-directed",
+        "theme": "rockies",
+        "asset": null,
+        "attribution": null,
+        "license": "original-ui-art"
+      },
+      "galleryCount": 0,
+      "licensedImageCount": 0
+    },
+    {
+      "id": "central-europe-rail-journey",
+      "slug": "central-europe-rail-journey",
+      "status": "missing",
+      "hero": null,
+      "galleryCount": 0,
+      "licensedImageCount": 0
+    },
+    {
+      "id": "costa-rica-nature-loop",
+      "slug": "costa-rica-nature-loop",
+      "status": "art-directed",
+      "hero": {
+        "type": "art-directed",
+        "theme": "rainforest",
+        "asset": null,
+        "attribution": null,
+        "license": "original-ui-art"
+      },
+      "galleryCount": 0,
+      "licensedImageCount": 0
+    },
+    {
+      "id": "greek-island-hopping",
+      "slug": "greek-island-hopping",
+      "status": "art-directed",
+      "hero": {
+        "type": "art-directed",
+        "theme": "aegean",
+        "asset": null,
+        "attribution": null,
+        "license": "original-ui-art"
+      },
+      "galleryCount": 0,
+      "licensedImageCount": 0
+    },
+    {
+      "id": "iceland-ring-road",
+      "slug": "iceland-ring-road",
+      "status": "art-directed",
+      "hero": {
+        "type": "art-directed",
+        "theme": "volcanic",
+        "asset": null,
+        "attribution": null,
+        "license": "original-ui-art"
+      },
+      "galleryCount": 0,
+      "licensedImageCount": 0
+    },
+    {
+      "id": "india-golden-triangle-rail",
+      "slug": "india-golden-triangle-rail",
+      "status": "missing",
+      "hero": null,
+      "galleryCount": 0,
+      "licensedImageCount": 0
+    },
+    {
+      "id": "italy-grand-tour",
+      "slug": "italy-grand-tour",
+      "status": "missing",
+      "hero": null,
+      "galleryCount": 0,
+      "licensedImageCount": 0
+    },
+    {
+      "id": "japan-by-rail",
+      "slug": "japan-by-rail",
+      "status": "art-directed",
+      "hero": {
+        "type": "art-directed",
+        "theme": "sakura",
+        "asset": null,
+        "attribution": null,
+        "license": "original-ui-art"
+      },
+      "galleryCount": 0,
+      "licensedImageCount": 0
+    },
+    {
+      "id": "jordan-heritage-desert-drive",
+      "slug": "jordan-heritage-desert-drive",
+      "status": "missing",
+      "hero": null,
+      "galleryCount": 0,
+      "licensedImageCount": 0
+    },
+    {
+      "id": "morocco-atlas-desert",
+      "slug": "morocco-atlas-desert",
+      "status": "art-directed",
+      "hero": {
+        "type": "art-directed",
+        "theme": "desert",
+        "asset": null,
+        "attribution": null,
+        "license": "original-ui-art"
+      },
+      "galleryCount": 0,
+      "licensedImageCount": 0
+    },
+    {
+      "id": "new-zealand-camper-loop",
+      "slug": "new-zealand-camper-loop",
+      "status": "art-directed",
+      "hero": {
+        "type": "art-directed",
+        "theme": "fern",
+        "asset": null,
+        "attribution": null,
+        "license": "original-ui-art"
+      },
+      "galleryCount": 0,
+      "licensedImageCount": 0
+    },
+    {
+      "id": "norway-arctic-road-trip",
+      "slug": "norway-arctic-road-trip",
+      "status": "art-directed",
+      "hero": {
+        "type": "art-directed",
+        "theme": "aurora",
+        "asset": null,
+        "attribution": null,
+        "license": "original-ui-art"
+      },
+      "galleryCount": 0,
+      "licensedImageCount": 0
+    },
+    {
+      "id": "patagonia-road-trip",
+      "slug": "patagonia-road-trip",
+      "status": "art-directed",
+      "hero": {
+        "type": "art-directed",
+        "theme": "glacier",
+        "asset": null,
+        "attribution": null,
+        "license": "original-ui-art"
+      },
+      "galleryCount": 0,
+      "licensedImageCount": 0
+    },
+    {
+      "id": "peru-andes-journey",
+      "slug": "peru-andes-journey",
+      "status": "art-directed",
+      "hero": {
+        "type": "art-directed",
+        "theme": "andes",
+        "asset": null,
+        "attribution": null,
+        "license": "original-ui-art"
+      },
+      "galleryCount": 0,
+      "licensedImageCount": 0
+    },
+    {
+      "id": "south-africa-garden-safari",
+      "slug": "south-africa-garden-safari",
+      "status": "art-directed",
+      "hero": {
+        "type": "art-directed",
+        "theme": "savanna",
+        "asset": null,
+        "attribution": null,
+        "license": "original-ui-art"
+      },
+      "galleryCount": 0,
+      "licensedImageCount": 0
+    },
+    {
+      "id": "southern-europe-road-trip",
+      "slug": "southern-europe-road-trip",
+      "status": "missing",
+      "hero": null,
+      "galleryCount": 0,
+      "licensedImageCount": 0
+    },
+    {
+      "id": "utah-national-parks-road-trip",
+      "slug": "utah-national-parks-road-trip",
+      "status": "missing",
+      "hero": null,
+      "galleryCount": 0,
+      "licensedImageCount": 0
+    },
+    {
+      "id": "victoria-great-ocean-highlands-road-trip",
+      "slug": "victoria-great-ocean-highlands-road-trip",
+      "status": "missing",
+      "hero": null,
+      "galleryCount": 0,
+      "licensedImageCount": 0
+    },
+    {
+      "id": "vietnam-north-south",
+      "slug": "vietnam-north-south",
+      "status": "art-directed",
+      "hero": {
+        "type": "art-directed",
+        "theme": "tropical",
+        "asset": null,
+        "attribution": null,
+        "license": "original-ui-art"
+      },
+      "galleryCount": 0,
+      "licensedImageCount": 0
+    },
+    {
+      "id": "western-mediterranean-cruise-loop",
+      "slug": "western-mediterranean-cruise-loop",
+      "status": "missing",
+      "hero": null,
+      "galleryCount": 0,
+      "licensedImageCount": 0
+    },
+    {
+      "id": "world-195",
+      "slug": "world-195",
+      "status": "missing",
+      "hero": null,
+      "galleryCount": 0,
+      "licensedImageCount": 0
+    }
+  ]
+}

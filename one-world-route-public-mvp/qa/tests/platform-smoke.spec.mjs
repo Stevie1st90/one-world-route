@@ -94,6 +94,9 @@ test('@discovery @mobile-critical guided discovery exposes a simple finder befor
   await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:15000});
   await expect(page.locator('.platform-home-hero h1')).toHaveText('One world. Many ways to travel.');
   await expect(page.locator('#platformHomeFinder')).toBeVisible();
+  await expect(page.locator('#homeFinderPace')).toBeHidden();
+  await page.locator('.platform-finder-preferences summary').click();
+  await expect(page.locator('#homeFinderPace')).toBeVisible();
   await expect(page.locator('#homeFinderPace option')).not.toHaveCount(1);
   await expect(page.locator('#homeFinderTheme option')).not.toHaveCount(1);
   await expect(page.locator('#homeFinderParty option')).not.toHaveCount(1);
@@ -102,6 +105,9 @@ test('@discovery @mobile-critical guided discovery exposes a simple finder befor
   if(isMobile){
     await expect(page.locator('.platform-home-nav [data-home-traveller]')).toBeVisible();
     await expect(page.locator('.platform-home-nav [data-home-method]')).toBeHidden();
+    await page.locator('.platform-home-overflow summary').click();
+    await expect(page.locator('.platform-home-nav [data-home-method]')).toBeVisible();
+    await page.locator('.platform-home-overflow summary').click();
   }else{
     await expect(page.locator('.platform-home-nav [data-home-traveller]')).toBeVisible();
     await expect(page.locator('.platform-home-nav [data-home-method]')).toBeVisible();
@@ -181,6 +187,7 @@ test('@discovery @mobile-critical traveller origin country derives recommendatio
   else await page.locator('.platform-home-nav [data-home-traveller]').click();
   await expect(page.locator('#platformTravellerForm')).toBeVisible();
   await expect(page.locator('#platformTravellerForm select[name="originRegion"]')).toHaveCount(0);
+  await page.locator('#platformTravellerForm details:not(.traveller-vehicle)>summary').click();
   for(const name of ['durationBand','pace','season','mode','theme']){
     await expect(page.locator('#platformTravellerForm [name="'+name+'"]')).toBeVisible();
   }
@@ -235,6 +242,7 @@ test('@regional starting country applies the closest supported journey entry and
   await expect(page.locator('body')).not.toHaveClass(/platform-booting/,{timeout:15000});
   if(isMobile){await page.locator('#mobileDetails').click();await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);}
   await expect(page.locator('.platform-journey-flow-stop').first()).toContainText('Hiroshima');
+  await page.locator('.platform-personalization-details>summary').click();
   await expect(page.locator('[data-entry-suggestion]')).toContainText('Seoul / ICN → Hiroshima');
   await expect(page.locator('[data-trip-route-start]')).toHaveValue('japan-by-rail-stop-06');
   await page.locator('.platform-journey-personalize').screenshot({path:testInfo.outputPath('journey-entry-suggestion.png'),animations:'disabled'});
@@ -248,6 +256,7 @@ test('@regional starting country applies the closest supported journey entry and
     await page.locator('#mobileDetails').click();
     await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);
   }
+  await page.locator('.platform-personalization-details>summary').click();
   await expect(page.locator('[data-trip-entry-suggest]')).toBeVisible();
 
   await page.locator('[data-trip-entry-suggest]').click();
@@ -382,6 +391,7 @@ test('@regional editorial preview journey uses the generic visual detail shell',
     await page.locator('#mobileDetails').click();
     await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);
   }
+  await page.locator('.platform-personalization-details>summary').click();
   await expect(page.locator('.platform-journey-personalize')).toBeVisible();
   await page.locator('.platform-journey-guide').screenshot({path:testInfo.outputPath('journey-guide.png'),animations:'disabled'});
   await expect(page.locator('.platform-route-access')).toContainText('Tokyo');
@@ -393,7 +403,8 @@ test('@regional editorial preview journey uses the generic visual detail shell',
   await page.screenshot({path:testInfo.outputPath('editorial-journey.png'),fullPage:true});
   if(isMobile&&await page.locator('#rightPanel').evaluate(node=>node.classList.contains('mobile-open')))await page.locator('#closeDetails').click();
   await page.locator('#platformRouteBtn').click();
-  await expect(page.locator('#platformRouteModal:not(.hidden) .platform-route-card-visual')).toHaveCount(catalog.trips.length);
+  await expect(page.locator('#platformRouteModal:not(.hidden) .platform-route-card')).toHaveCount(catalog.trips.length);
+  await expect(page.locator('#platformRouteModal [data-library-discovery]')).toBeVisible();
   await expect(page.locator('#platformRouteModal .platform-route-card').first().locator('h3')).toHaveText(discoveryPreview.title.en);
   if(isMobile){
     await expect(page.locator('#platformPrimaryFilterToggle')).toBeVisible();
@@ -414,6 +425,7 @@ test('@regional editorial preview journey uses the generic visual detail shell',
     await expect(page.locator('#rightPanel')).toHaveClass(/mobile-open/);
   }
   const lastStop=discoveryPreviewData.stops.at(-1);
+  if(!(await page.locator('.platform-personalization-details').getAttribute('open')!==null))await page.locator('.platform-personalization-details>summary').click();
   await page.locator('[data-trip-route-start]').selectOption(lastStop.id);
   await page.waitForLoadState('domcontentloaded');
   await expect(page.locator('.platform-journey-flow-stop').first()).toContainText('Hiroshima',{timeout:15000});
@@ -567,6 +579,7 @@ test('@regional @mobile-critical journey variant and planning state stay consist
   await expect(page.locator('[data-trip-planning-status]')).toBeVisible();
   await page.locator('[data-trip-save]').click();
 
+  await page.locator('.platform-personalization-details>summary').click();
   await page.locator('[data-trip-variant]').selectOption('northern-italy-tuscany');
   await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:15000});
   if(isMobile&&!await page.locator('#rightPanel').evaluate(node=>node.classList.contains('mobile-open'))){

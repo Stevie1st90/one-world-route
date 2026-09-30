@@ -12,7 +12,7 @@ ONE WORLD ROUTE is **inspiration first, planning second**:
 - operations, evidence and recheck controls remain available as deeper infrastructure instead of defining the public experience;
 - visual media is a separate presentation layer and never counts as route evidence.
 
-The discovery catalog currently contains **17 journeys**, including 12 new worldwide editorial-preview routes. Editorial previews deliberately keep schedules, fares, operators and date-sensitive access facts unknown until source-backed planning is added.
+The discovery catalog is generated from `data/platform/trips.json`; journey, region and type counts in the interface are derived from the current catalog. It includes worldwide editorial-preview routes. Editorial previews deliberately keep schedules, fares, operators and date-sensitive access facts unknown until source-backed planning is added.
 
 ## Implemented
 - Public multi-trip homepage with a shared world Globe and catalog-driven Journey Discovery
@@ -283,3 +283,17 @@ Discovery remains deterministic and explainable:
 Curated collections live in `data/platform/collections.json` and are filter definitions rather than manually maintained arrays of trip IDs. New matching journeys therefore appear automatically in collections such as rail journeys, road trips or nature routes.
 
 If a future commercial phase needs true "best gateway from my exact city" recommendations, the current personalization contract can accept a geocoder/routing provider. That provider should remain optional so the core product and catalog do not depend on per-request API spend.
+
+
+### Product Experience & Visual QA v1
+
+- The homepage leads from one inspiration CTA to a three-field finder and the shared discovery catalog. Additional finder preferences are disclosed progressively.
+- Sticky section offsets share a measured header token; the mobile More menu keeps Methodology reachable.
+- Journey cards use bookmark and comparison SVG actions with labels, titles, pressed states and 44px targets. Featured cards and discovery results share saved/selected state.
+- The generated rights-aware media manifest supplies journey visuals. Actual route coordinates and theme metadata provide the fallback; no unlicensed photography is introduced.
+- Collections use travel-character symbols and theme tokens; regions use geographic centroid maps. Both remain metadata-driven.
+- Traveller Context groups essentials, preferences and optional vehicle details, without changing the stored profile schema.
+- The Route Library is a compact journey switcher with the current route first, optional filters and a link to full discovery.
+- Regional details disclose personalization, planning, evidence, entry checks and sources progressively. Journey Guide uses readable rhythm and focus rows.
+- My Trips promotes the existing planning status's next step to a contextual action. Dialogs support Escape, tab containment and focus restoration.
+- All additional UI strings are translated through the existing six-locale dictionaries. Flagship itinerary and planning invariants are unchanged.

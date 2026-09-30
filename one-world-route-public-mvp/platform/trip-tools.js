@@ -311,7 +311,7 @@
       '<span>'+esc(t('localTravel'))+'<b>'+esc(money(e.local,currency,locale))+'</b></span>'+
       '</div>';
     const planningWorkspace=planningWorkspaceMarkup({trip,meta,profile,storage,t,esc,journeyAdapter});
-    return planningWorkspace+personalization+'<section class="platform-trip-utility">'+
+    return planningWorkspace+'<details class="platform-detail-disclosure platform-personalization-details"><summary>'+esc(t('personalizeJourneyTitle'))+'</summary><div>'+personalization+'</div></details>'+'<section class="platform-trip-utility">'+
       '<button class="platform-save-trip '+(saved?'active':'')+'" type="button" data-trip-save>'+esc(saved?t('removeSaved'):t('saveTrip'))+'</button>'+
       '<details class="platform-trip-tools"><summary>'+esc(t('tripTools'))+' <span>+</span></summary>'+
         '<div class="platform-tool-actions"><button type="button" data-trip-export-json>'+esc(t('exportJson'))+'</button><button type="button" data-trip-export-csv>'+esc(t('exportCsv'))+'</button></div>'+
@@ -350,6 +350,7 @@
       }
       if(step==='origin'){onTraveller?.();return}
       if(step==='routeStart'){
+        const details=host.querySelector('.platform-personalization-details');if(details)details.open=true;
         const selected=host.querySelector('[data-trip-route-start]')?.value||eligible[0]?.id||'';
         if(selected){setRouteStart(storage,id,selected);toast?.(t('routeStartUpdated'));onRouteVariantChange?.({})}
         return;
