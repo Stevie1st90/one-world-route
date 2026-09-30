@@ -211,3 +211,29 @@ test('planning workspace import rejects invalid payloads without replacing state
   assert.deepEqual(Array.from(tools.load(s).savedTrips),['italy-grand-tour']);
 });
 
+
+
+test('planning workspace tracks a revision timestamp for deterministic sync',()=>{
+  const tools=load(),s=storage();
+  assert.equal(tools.workspaceUpdatedAt(s),'');
+  tools.toggleSaved(s,'italy-grand-tour');
+  const first=tools.workspaceUpdatedAt(s);
+  assert.match(first,/^\d{4}-\d{2}-\d{2}T/);
+  const payload=tools.workspacePayload(s);
+  assert.equal(payload.schemaVersion,1);
+  assert.equal(payload.updatedAt,first);
+  assert.deepEqual(Array.from(payload.workspace.savedTrips),['italy-grand-tour']);
+});
+
+test('cloud restore can preserve the remote workspace revision timestamp',()=>{
+  const tools=load(),s=storage(),stamp='2026-09-30T08:30:00.000Z';
+  const result=tools.importWorkspace(s,{
+    schemaVersion:1,
+    updatedAt:stamp,
+    workspace:{savedTrips:['italy-grand-tour']}
+  },['italy-grand-tour'],stamp);
+  assert.equal(result.ok,true);
+  assert.equal(result.updatedAt,stamp);
+  assert.equal(tools.workspaceUpdatedAt(s),stamp);
+  assert.deepEqual(Array.from(tools.load(s).savedTrips),['italy-grand-tour']);
+});
