@@ -54,7 +54,7 @@
     const disclosure=config.disclosureRequired?'<p class="platform-partner-disclosure">'+esc(t('partnerDisclosure'))+'</p>':'';
     return '<section class="platform-partner-links"><div class="platform-overview-section-head"><span>'+esc(t('partnerOptions'))+'</span></div>'+disclosure+
       '<div class="platform-tool-actions">'+items.map(item=>
-        '<a href="'+esc(item.url)+'" target="_blank" rel="sponsored noopener noreferrer" data-partner-id="'+esc(item.id)+'">'+
+        '<a href="'+esc(item.url)+'" target="_blank" rel="sponsored noopener noreferrer" referrerpolicy="no-referrer" data-partner-id="'+esc(item.id)+'">'+
         esc(local(item.label))+' · '+esc(facetLabel(item.category))+' ↗</a>'
       ).join('')+'</div></section>';
   }
