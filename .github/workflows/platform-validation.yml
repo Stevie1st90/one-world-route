@@ -196,6 +196,7 @@ jobs:
           node --check platform/trip-compare.js
           node --check platform/home.js
           node --check platform/media.js
+          node --check platform/pwa-install.js
           node --check platform/route-library.js
           node --check platform/regional-shell.js
           node --check platform/regional-detail.js
