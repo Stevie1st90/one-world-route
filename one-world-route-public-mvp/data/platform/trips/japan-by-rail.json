@@ -307,7 +307,36 @@
       }
     }
   ],
-  "sources": [],
+  "sources": [
+    {
+      "id": "japan-mofa-visa",
+      "title": "VISA",
+      "issuer": "Ministry of Foreign Affairs of Japan",
+      "issuerType": "government",
+      "url": "https://www.mofa.go.jp/j_info/visit/visa/index.html",
+      "checkedAt": "2026-09-30",
+      "claims": [
+        "official visa information for foreign visitors",
+        "short-term stay guidance directs travellers to nationality- and residence-appropriate official information"
+      ]
+    }
+  ],
+  "entryGuidance": {
+    "personalizationRequired": true,
+    "destinationCountry": "JP",
+    "tripPurpose": "tourism",
+    "stayDays": 14,
+    "officialResolverSourceId": "japan-mofa-visa",
+    "supportingSourceIds": [],
+    "message": {
+      "en": "Visa and entry requirements depend on the passport used, place of residence, purpose and length of stay. Use Japan’s Ministry of Foreign Affairs visa information for the traveller’s actual circumstances.",
+      "de": "Visa- und Einreisebestimmungen hängen vom verwendeten Pass, Wohnsitz, Reisezweck und der Aufenthaltsdauer ab. Nutze die Visa-Informationen des japanischen Außenministeriums für den konkreten Reisekontext.",
+      "it": "I requisiti di visto e ingresso dipendono dal passaporto utilizzato, dal paese di residenza, dallo scopo e dalla durata del soggiorno. Usa le informazioni ufficiali sui visti del Ministero degli Affari Esteri giapponese per il caso concreto.",
+      "es": "Los requisitos de visado y entrada dependen del pasaporte utilizado, el país de residencia, el motivo y la duración de la estancia. Utiliza la información oficial de visados del Ministerio de Asuntos Exteriores de Japón para tu caso concreto.",
+      "fr": "Les exigences de visa et d’entrée dépendent du passeport utilisé, du pays de résidence, du motif et de la durée du séjour. Utilisez les informations officielles du ministère japonais des Affaires étrangères pour votre situation.",
+      "pt": "Os requisitos de visto e entrada dependem do passaporte usado, do país de residência, do objetivo e da duração da estadia. Use as informações oficiais de vistos do Ministério dos Negócios Estrangeiros do Japão para o seu caso."
+    }
+  },
   "routePolicy": {
     "startMode": "endpoints",
     "reversible": true,
