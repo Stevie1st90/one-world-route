@@ -67,10 +67,12 @@
   function persistSession(session){
     if(!deps?.storage)return null;
     if(!session){deps.storage.removeItem(SESSION_KEY);emit();return null}
+    const expiresIn=Number(session.expires_in||0);
+    const expiresAt=Number(session.expires_at||0)||(expiresIn?Math.floor(Date.now()/1000)+expiresIn:0);
     const normalized={
       access_token:String(session.access_token||''),
       refresh_token:String(session.refresh_token||''),
-      expires_at:Number(session.expires_at||0),
+      expires_at:expiresAt,
       user:{id:String(session.user?.id||''),email:String(session.user?.email||'')}
     };
     deps.storage.setItem(SESSION_KEY,JSON.stringify(normalized));
