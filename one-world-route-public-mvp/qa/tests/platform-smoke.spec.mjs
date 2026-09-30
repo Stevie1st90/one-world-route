@@ -427,7 +427,7 @@ test('@regional editorial preview journey uses the generic visual detail shell',
   expect(errors,'editorial preview runtime page errors').toEqual([]);
 });
 
-test('@regional reusable place experience content renders from a shared country shard',async({page,isMobile},testInfo)=>{
+test('@experience reusable place experience content renders from a shared country shard',async({page,isMobile},testInfo)=>{
   test.setTimeout(60000);
   const errors=capturePageErrors(page);
   await page.goto('/?trip=japan-by-rail&lang=en',{waitUntil:'domcontentloaded'});
@@ -448,7 +448,7 @@ test('@regional reusable place experience content renders from a shared country 
   expect(errors,'place experience runtime page errors').toEqual([]);
 });
 
-test('@regional country-sharded place experiences load across Patagonia and New Zealand',async({page,isMobile},testInfo)=>{
+test('@experience country-sharded place experiences load across Patagonia and New Zealand',async({page,isMobile},testInfo)=>{
   test.setTimeout(120000);
   const errors=capturePageErrors(page);
 
@@ -479,7 +479,7 @@ test('@regional country-sharded place experiences load across Patagonia and New 
   expect(errors,'country-sharded place experience page errors').toEqual([]);
 });
 
-test('@regional major experience batch loads cruise and island country shards',async({page,isMobile},testInfo)=>{
+test('@experience major experience batch loads cruise and island country shards',async({page,isMobile},testInfo)=>{
   test.setTimeout(150000);
   const errors=capturePageErrors(page);
 
@@ -501,7 +501,7 @@ test('@regional major experience batch loads cruise and island country shards',a
   expect(errors,'major experience batch runtime page errors').toEqual([]);
 });
 
-test('@regional final experience completion batch loads remaining regional shards',async({page,isMobile},testInfo)=>{
+test('@experience final experience completion batch loads remaining regional shards',async({page,isMobile},testInfo)=>{
   test.setTimeout(180000);
   const errors=capturePageErrors(page);
 
