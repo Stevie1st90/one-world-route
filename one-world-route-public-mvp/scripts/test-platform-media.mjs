@@ -46,3 +46,12 @@ test('journey visuals project the public place coordinates',()=>{
   assert.match(api.routeArt(preview),/<path d="M/);
   assert.equal(api.routeArt({arcs:[{start:{lat:null,lng:null},end:{lat:0,lng:0}}]}),'');
 });
+
+ test('generated assets require approval and use format-specific focal points',()=>{
+ const api=load(),entry={type:'image',sourceType:'generated',status:'planned',rightsStatus:'pending',asset:'./assets/example.webp',license:'reviewed-terms',attribution:'ONE WORLD ROUTE',focalPoint:{x:.2,y:.3},derivatives:{vertical:{asset:'./assets/example-vertical.webp',focalPoint:{x:2,y:-1}}}};
+ assert.equal(api.descriptor(entry).type,'art-directed');
+ entry.status='published';entry.rightsStatus='approved';
+ const result=api.descriptor(entry,'ocean','vertical');
+ assert.equal(result.asset,'./assets/example-vertical.webp');
+ assert.equal(result.focalPoint.x,1);assert.equal(result.focalPoint.y,0);
+ });

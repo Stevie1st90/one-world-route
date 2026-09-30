@@ -1,3 +1,5 @@
+> **Product direction:** ONE WORLD ROUTE is a global travel inspiration and planning platform. The 195-country journey is a showcase journey in the published catalog. See [GLOBAL_PLATFORM.md](GLOBAL_PLATFORM.md), [MEDIA_STYLE_GUIDE.md](MEDIA_STYLE_GUIDE.md) and [GRAPHICS_NEEDED.md](GRAPHICS_NEEDED.md). Legacy operational document names describe the original journey, not a platform-wide release gate.
+
 # ONE WORLD ROUTE — Public Explorer
 
 A production-oriented visual journey discovery platform for extraordinary trips worldwide. The original 195-country route remains the flagship journey, while the public product is designed for many kinds of travel rather than for one itinerary.

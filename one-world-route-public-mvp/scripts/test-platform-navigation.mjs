@@ -221,15 +221,15 @@ test('regional overlays share safe-area layout tokens',()=>{
   assert.match(cssSource,/platform-story-hud\{[^}]*bottom:var\(--map-overlay-safe-bottom,82px\)/);
 });
 
-test('regional terrain uses branded readable dark map styling',()=>{
+test('regional terrain uses brighter readable terrain map styling',()=>{
   const mapStyle=moduleSources['map-style.js'];
   const terrain=moduleSources['terrain.js'];
-  assert.match(terrain,/mapStyle\.brandDark\(mapStyle\.localize/);
-  assert.match(mapStyle,/background-color'\]='#0c1822'/);
-  assert.match(mapStyle,/fill-color'\]='#123b53'/);
-  assert.match(mapStyle,/fill-color'\]='#1b2b34'/);
+  assert.match(terrain,/mapStyle\.brandTerrain\(mapStyle\.localize/);
+  assert.match(mapStyle,/background-color'\]='#425f6b'/);
+  assert.match(mapStyle,/fill-color'\]='#287b98'/);
+  assert.match(mapStyle,/fill-color'\]='#71857b'/);
   assert.match(mapStyle,/text-halo-color'\]='#0b1720'/);
-  assert.match(mapStyle,/hillshade-highlight-color'\]='#d9d1bc'/);
+  assert.match(mapStyle,/hillshade-highlight-color'\]='#f0e3bf'/);
 });
 
 test('regional copy is visually reduced without removing overview content',()=>{
@@ -551,7 +551,7 @@ test('terrain branding is shared by world and regional renderers',()=>{
   assert.match(mapStyle,/function brandDark/);
   assert.match(mapStyle,/function localize/);
   assert.match(terrain,/root\.mapStyle/);
-  assert.match(terrain,/mapStyle\.brandDark\(mapStyle\.localize/);
+  assert.match(terrain,/mapStyle\.brandTerrain\(mapStyle\.localize/);
   assert.match((iteration2Source+appSource+mapStyle+terrain),/ONE_WORLD_PLATFORM_MODULES|brandDark/);
 });
 
@@ -566,7 +566,7 @@ test('homepage is catalog-driven and reuses shared Discovery and Route Fit',()=>
   assert.match(home,/trip-index\.json/);
   assert.match(home,/found\.slice\(0,resultLimit\)/);
   assert.doesNotMatch(home,/Promise\.all\(metas\.map/);
-  assert.match(home,/d\.catalog\.defaultTripId/);
+  assert.match(home,/item\.showcase/);
   assert.doesNotMatch(home,/italy-grand-tour|western-mediterranean-cruise-loop|central-europe-rail-journey/);
   assert.match(discovery,/fit\.accessibility===filters\.accessibility/);
 });

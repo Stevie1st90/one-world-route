@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "catalogUpdatedAt": "2026-09-29",
+  "catalogUpdatedAt": "2026-09-30",
   "trips": [
     {
       "id": "world-195",
@@ -9,38 +9,49 @@
       "status": "planned",
       "renderer": "legacy-world",
       "title": {
-        "en": "One World · 195 Countries",
-        "de": "Eine Welt · 195 Länder",
-        "it": "Un mondo · 195 paesi",
-        "es": "Un mundo · 195 países",
-        "fr": "Un monde · 195 pays",
-        "pt": "Um mundo · 195 países"
+        "en": "One World Journey",
+        "de": "Eine Reise um die Welt",
+        "it": "Un viaggio intorno al mondo",
+        "es": "Un viaje por el mundo",
+        "fr": "Un voyage autour du monde",
+        "pt": "Uma viagem pelo mundo"
       },
       "subtitle": {
-        "en": "The flagship continuous world journey",
-        "de": "Die zusammenhängende Weltreise als Flagship-Route",
-        "it": "Il viaggio continuo intorno al mondo",
-        "es": "El viaje continuo alrededor del mundo",
-        "fr": "Le voyage continu autour du monde",
-        "pt": "A viagem contínua pelo mundo"
+        "en": "195 countries. One connected journey. Choose when to begin.",
+        "de": "195 Länder. Eine zusammenhängende Reise. Du wählst den Beginn.",
+        "it": "195 paesi. Un viaggio connesso. Scegli quando partire.",
+        "es": "195 países. Un viaje conectado. Elige cuándo empezar.",
+        "fr": "195 pays. Un voyage continu. Choisissez quand partir.",
+        "pt": "195 países. Uma viagem conectada. Escolha quando começar."
       },
       "summary": {
-        "en": "The flagship continuous world journey",
-        "de": "Die zusammenhängende Weltreise als Flagship-Route",
-        "it": "Il viaggio continuo intorno al mondo",
-        "es": "El viaje continuo alrededor del mundo",
-        "fr": "Le voyage continu autour du monde",
-        "pt": "A viagem contínua pelo mundo"
+        "en": "195 countries. One connected journey. Choose when to begin.",
+        "de": "195 Länder. Eine zusammenhängende Reise. Du wählst den Beginn.",
+        "it": "195 paesi. Un viaggio connesso. Scegli quando partire.",
+        "es": "195 países. Un viaje conectado. Elige cuándo empezar.",
+        "fr": "195 pays. Un voyage continu. Choisissez quand partir.",
+        "pt": "195 países. Uma viagem conectada. Escolha quando começar."
       },
       "metrics": {
         "days": 379,
-        "startDate": "2026-10-21",
         "countries": 195,
         "internationalLegs": 194,
         "budget": {
           "amount": 90600,
           "currency": "EUR"
         }
+      },
+      "defaultPlanningScenario": {
+        "id": "original-planning-snapshot",
+        "startDate": "2026-10-21",
+        "status": "example",
+        "routeRotation": "not-supported",
+        "preserveCoreRoute": true
+      },
+      "visual": {
+        "theme": "ocean",
+        "visualFamily": "planetary",
+        "featurePriority": 60
       },
       "discovery": {
         "regions": [
@@ -78,14 +89,14 @@
         "knownPublishedMinimumScope": null
       },
       "itinerary": [],
+      "preview": null,
       "evidence": {
         "segments": 194,
         "sourcedSegments": 194,
         "verifiedSegments": 194,
         "latestEvidenceCheck": "2026-09-27"
       },
-      "sources": [],
-      "preview": null
+      "sources": []
     },
     {
       "id": "italy-grand-tour",
@@ -126,6 +137,8 @@
         "sourcedSegments": 10,
         "verifiedSegments": 4
       },
+      "defaultPlanningScenario": null,
+      "visual": {},
       "discovery": {
         "regions": [
           "europe",
@@ -358,119 +371,6 @@
           },
           "countryCode": "IT",
           "type": "city"
-        }
-      ],
-      "evidence": {
-        "segments": 10,
-        "sourcedSegments": 10,
-        "verifiedSegments": 4,
-        "latestEvidenceCheck": "2026-09-21"
-      },
-      "sources": [
-        {
-          "id": "italo-rome-naples",
-          "issuer": "Italo",
-          "title": "Rome → Naples high-speed train",
-          "url": "https://www.italotreno.com/en/destinations-timetable/rome-naples-tickets",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "italo-naples-network",
-          "issuer": "Italo",
-          "title": "Naples high-speed train connections",
-          "url": "https://www.italotreno.com/en/destinations-timetable/naples-tickets",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "travelmar-2026",
-          "issuer": "Travelmar",
-          "title": "Travelmar Amalfi Coast ferries — timetable and fares from 6 June 2026",
-          "url": "https://www.travelmar.it/_download/orari-travelmar-dal-6-giugno-2026.pdf",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "marinobus-2026",
-          "issuer": "MarinoBus",
-          "title": "MarinoBus 2026 mobility charter",
-          "url": "https://marinobus.it/wp-content/uploads/2026/02/Marino-Carta-della-mobilita-ed.-2026-Soc.-Marino-s.r.l.pdf",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "fal-current",
-          "issuer": "Ferrovie Appulo Lucane",
-          "title": "FAL current timetables and fares",
-          "url": "https://ferrovieappulolucane.it/tratta/orari/",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "fal-sep-2026",
-          "issuer": "Ferrovie Appulo Lucane",
-          "title": "FAL school-service programme from September 2026",
-          "url": "https://ferrovieappulolucane.it/en/comunic-di-servizio/introduction-of-school-bus-schedule_11092026_0945/",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "italo-bari-bologna",
-          "issuer": "Italo",
-          "title": "Bari → Bologna high-speed train",
-          "url": "https://www.italotreno.com/en/destinations-timetable/bari-bologna-tickets",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "italo-bologna-venice",
-          "issuer": "Italo",
-          "title": "Bologna → Venice high-speed train",
-          "url": "https://www.italotreno.com/en/destinations-timetable/bologna-venice-tickets",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "cortina-express-winter-2026",
-          "issuer": "Cortina Express / Dolomiti Bus",
-          "title": "Cortina Express Venice–Cortina timetable",
-          "url": "https://www.cortinaexpress.it/en/timetable/timetable-cortina-treviso-venezia-1-october-2026-to-8-june-2027/",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "italo-venice-florence",
-          "issuer": "Italo",
-          "title": "Venice → Florence high-speed train",
-          "url": "https://www.italotreno.com/en/destinations-timetable/venice-florence-tickets",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "at-131r",
-          "issuer": "Autolinee Toscane",
-          "title": "Regional bus 131R Siena ↔ Florence",
-          "url": "https://www.at-bus.it/it/linee-e-orari/regionali-131r",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "italo-florence-rome",
-          "issuer": "Italo",
-          "title": "Florence → Rome high-speed train",
-          "url": "https://www.italotreno.com/en/destinations-timetable/florence-rome-tickets",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "italy-visa-official",
-          "issuer": "Italian Ministry of Foreign Affairs and International Cooperation",
-          "title": "Entry into Italy — official visa guidance",
-          "url": "https://www.esteri.it/en/ministero/sportello_info/domandefrequenti/sezione_visti_entrare_in_italia/",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "visa-for-italy",
-          "issuer": "Italian Ministry of Foreign Affairs and International Cooperation",
-          "title": "Visa for Italy",
-          "url": "https://vistoperitalia.esteri.it/",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "eu-travel-docs",
-          "issuer": "European Union — Your Europe",
-          "title": "Travel documents for EU nationals",
-          "url": "https://europa.eu/youreurope/citizens/travel/entry-exit/eu-citizen/index_en.htm",
-          "checkedAt": "2026-09-21"
         }
       ],
       "preview": {
@@ -878,7 +778,120 @@
             }
           }
         ]
-      }
+      },
+      "evidence": {
+        "segments": 10,
+        "sourcedSegments": 10,
+        "verifiedSegments": 4,
+        "latestEvidenceCheck": "2026-09-21"
+      },
+      "sources": [
+        {
+          "id": "italo-rome-naples",
+          "issuer": "Italo",
+          "title": "Rome → Naples high-speed train",
+          "url": "https://www.italotreno.com/en/destinations-timetable/rome-naples-tickets",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "italo-naples-network",
+          "issuer": "Italo",
+          "title": "Naples high-speed train connections",
+          "url": "https://www.italotreno.com/en/destinations-timetable/naples-tickets",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "travelmar-2026",
+          "issuer": "Travelmar",
+          "title": "Travelmar Amalfi Coast ferries — timetable and fares from 6 June 2026",
+          "url": "https://www.travelmar.it/_download/orari-travelmar-dal-6-giugno-2026.pdf",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "marinobus-2026",
+          "issuer": "MarinoBus",
+          "title": "MarinoBus 2026 mobility charter",
+          "url": "https://marinobus.it/wp-content/uploads/2026/02/Marino-Carta-della-mobilita-ed.-2026-Soc.-Marino-s.r.l.pdf",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "fal-current",
+          "issuer": "Ferrovie Appulo Lucane",
+          "title": "FAL current timetables and fares",
+          "url": "https://ferrovieappulolucane.it/tratta/orari/",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "fal-sep-2026",
+          "issuer": "Ferrovie Appulo Lucane",
+          "title": "FAL school-service programme from September 2026",
+          "url": "https://ferrovieappulolucane.it/en/comunic-di-servizio/introduction-of-school-bus-schedule_11092026_0945/",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "italo-bari-bologna",
+          "issuer": "Italo",
+          "title": "Bari → Bologna high-speed train",
+          "url": "https://www.italotreno.com/en/destinations-timetable/bari-bologna-tickets",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "italo-bologna-venice",
+          "issuer": "Italo",
+          "title": "Bologna → Venice high-speed train",
+          "url": "https://www.italotreno.com/en/destinations-timetable/bologna-venice-tickets",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "cortina-express-winter-2026",
+          "issuer": "Cortina Express / Dolomiti Bus",
+          "title": "Cortina Express Venice–Cortina timetable",
+          "url": "https://www.cortinaexpress.it/en/timetable/timetable-cortina-treviso-venezia-1-october-2026-to-8-june-2027/",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "italo-venice-florence",
+          "issuer": "Italo",
+          "title": "Venice → Florence high-speed train",
+          "url": "https://www.italotreno.com/en/destinations-timetable/venice-florence-tickets",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "at-131r",
+          "issuer": "Autolinee Toscane",
+          "title": "Regional bus 131R Siena ↔ Florence",
+          "url": "https://www.at-bus.it/it/linee-e-orari/regionali-131r",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "italo-florence-rome",
+          "issuer": "Italo",
+          "title": "Florence → Rome high-speed train",
+          "url": "https://www.italotreno.com/en/destinations-timetable/florence-rome-tickets",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "italy-visa-official",
+          "issuer": "Italian Ministry of Foreign Affairs and International Cooperation",
+          "title": "Entry into Italy — official visa guidance",
+          "url": "https://www.esteri.it/en/ministero/sportello_info/domandefrequenti/sezione_visti_entrare_in_italia/",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "visa-for-italy",
+          "issuer": "Italian Ministry of Foreign Affairs and International Cooperation",
+          "title": "Visa for Italy",
+          "url": "https://vistoperitalia.esteri.it/",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "eu-travel-docs",
+          "issuer": "European Union — Your Europe",
+          "title": "Travel documents for EU nationals",
+          "url": "https://europa.eu/youreurope/citizens/travel/entry-exit/eu-citizen/index_en.htm",
+          "checkedAt": "2026-09-21"
+        }
+      ]
     },
     {
       "id": "western-mediterranean-cruise-loop",
@@ -919,6 +932,8 @@
         "seaDays": 1,
         "budget": null
       },
+      "defaultPlanningScenario": null,
+      "visual": {},
       "discovery": {
         "regions": [
           "europe",
@@ -1078,77 +1093,6 @@
           },
           "countryCode": "ES",
           "type": "cruise-port"
-        }
-      ],
-      "evidence": {
-        "segments": 6,
-        "sourcedSegments": 6,
-        "verifiedSegments": 0,
-        "latestEvidenceCheck": "2026-09-21"
-      },
-      "sources": [
-        {
-          "id": "barcelona-port-cruise",
-          "issuer": "Port de Barcelona",
-          "title": "Cruise passenger information and terminals",
-          "url": "https://www.portdebarcelona.cat/en/business-and-services/cruise-ships/information-passenger",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "marseille-port-cruise",
-          "issuer": "Port of Marseille Fos",
-          "title": "Cruise passengers — Marseille Provence Cruise Terminal",
-          "url": "https://www.marseille-port.fr/en/node/343",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "civitavecchia-port-cruise",
-          "issuer": "Porti di Roma e del Lazio",
-          "title": "Cruises — Port of Civitavecchia",
-          "url": "https://www.portidiroma.it/crociere",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "naples-terminal-cruise",
-          "issuer": "Terminal Napoli S.p.A.",
-          "title": "Terminal Crociere",
-          "url": "https://www.terminalnapoli.it/?page_id=59",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "la-goulette-port-cruise",
-          "issuer": "Office de la Marine Marchande et des Ports",
-          "title": "Port of La Goulette",
-          "url": "https://www.ommp.nat.tn/ports/goulette/",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "palma-port-cruise",
-          "issuer": "Autoritat Portuària de Balears",
-          "title": "Port of Palma / cruise traffic evidence",
-          "url": "https://www.portsdebalears.com/index.php/en/location-port-palma",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "eu-schengen-external-border",
-          "issuer": "European Union — Your Europe",
-          "title": "Travel documents for non-EU nationals",
-          "url": "https://europa.eu/youreurope/citizens/travel/entry-exit/non-eu-nationals/index_en.htm",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "eu-entry-exit-system",
-          "issuer": "European Commission — Migration and Home Affairs",
-          "title": "Entry/Exit System",
-          "url": "https://home-affairs.ec.europa.eu/policies/schengen/smart-borders/entry-exit-system_en",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "tunisia-econsulat-visa",
-          "issuer": "Tunisia E-CONSULAT — Ministry of Foreign Affairs, Migration and Tunisians Abroad",
-          "title": "Visa application",
-          "url": "https://www.econsulat.tn/fr/services-de-chancellerie/demande-visa",
-          "checkedAt": "2026-09-21"
         }
       ],
       "preview": {
@@ -1396,7 +1340,78 @@
             }
           }
         ]
-      }
+      },
+      "evidence": {
+        "segments": 6,
+        "sourcedSegments": 6,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-09-21"
+      },
+      "sources": [
+        {
+          "id": "barcelona-port-cruise",
+          "issuer": "Port de Barcelona",
+          "title": "Cruise passenger information and terminals",
+          "url": "https://www.portdebarcelona.cat/en/business-and-services/cruise-ships/information-passenger",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "marseille-port-cruise",
+          "issuer": "Port of Marseille Fos",
+          "title": "Cruise passengers — Marseille Provence Cruise Terminal",
+          "url": "https://www.marseille-port.fr/en/node/343",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "civitavecchia-port-cruise",
+          "issuer": "Porti di Roma e del Lazio",
+          "title": "Cruises — Port of Civitavecchia",
+          "url": "https://www.portidiroma.it/crociere",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "naples-terminal-cruise",
+          "issuer": "Terminal Napoli S.p.A.",
+          "title": "Terminal Crociere",
+          "url": "https://www.terminalnapoli.it/?page_id=59",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "la-goulette-port-cruise",
+          "issuer": "Office de la Marine Marchande et des Ports",
+          "title": "Port of La Goulette",
+          "url": "https://www.ommp.nat.tn/ports/goulette/",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "palma-port-cruise",
+          "issuer": "Autoritat Portuària de Balears",
+          "title": "Port of Palma / cruise traffic evidence",
+          "url": "https://www.portsdebalears.com/index.php/en/location-port-palma",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "eu-schengen-external-border",
+          "issuer": "European Union — Your Europe",
+          "title": "Travel documents for non-EU nationals",
+          "url": "https://europa.eu/youreurope/citizens/travel/entry-exit/non-eu-nationals/index_en.htm",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "eu-entry-exit-system",
+          "issuer": "European Commission — Migration and Home Affairs",
+          "title": "Entry/Exit System",
+          "url": "https://home-affairs.ec.europa.eu/policies/schengen/smart-borders/entry-exit-system_en",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "tunisia-econsulat-visa",
+          "issuer": "Tunisia E-CONSULAT — Ministry of Foreign Affairs, Migration and Tunisians Abroad",
+          "title": "Visa application",
+          "url": "https://www.econsulat.tn/fr/services-de-chancellerie/demande-visa",
+          "checkedAt": "2026-09-21"
+        }
+      ]
     },
     {
       "id": "southern-europe-road-trip",
@@ -1435,6 +1450,8 @@
         "segments": 10,
         "budget": null
       },
+      "defaultPlanningScenario": null,
+      "visual": {},
       "discovery": {
         "regions": [
           "europe",
@@ -1662,63 +1679,6 @@
           },
           "countryCode": "IT",
           "type": "city"
-        }
-      ],
-      "evidence": {
-        "segments": 10,
-        "sourcedSegments": 10,
-        "verifiedSegments": 0,
-        "latestEvidenceCheck": "2026-09-21"
-      },
-      "sources": [
-        {
-          "id": "eu-driving-2026",
-          "issuer": "European Union — Your Europe",
-          "title": "Driving licence and car insurance validity in the EU",
-          "url": "https://europa.eu/youreurope/citizens/travel/driving-abroad/driving-licence-and-insurance/index_en.htm",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "eu-rental-2026",
-          "issuer": "European Union — Your Europe",
-          "title": "Hiring and driving a car in another EU country",
-          "url": "https://europa.eu/youreurope/citizens/travel/driving-abroad/car-rental-abroad/index_en.htm",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "pt-tolls-2026",
-          "issuer": "Infraestruturas de Portugal",
-          "title": "Portugal road tolls and foreign registrations",
-          "url": "https://servicos.infraestruturasdeportugal.pt/portagens-ips",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "es-urban-zbe-2026",
-          "issuer": "Dirección General de Tráfico",
-          "title": "Driving in Spanish cities and low-emission zones",
-          "url": "https://www.dgt.es/muevete-con-seguridad/viaja-seguro/consejos-extranjeros/en-ciudad/",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "fr-critair-2026",
-          "issuer": "Ministère de la Transition écologique",
-          "title": "Crit'Air vehicle air-quality certificate",
-          "url": "https://www.certificat-air.gouv.fr/",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "it-tolls-2026",
-          "issuer": "Autostrade per l'Italia",
-          "title": "How Italian motorway tolls are calculated",
-          "url": "https://www.autostrade.it/en/servizi-al-cliente/pedaggio/come-si-calcola-il-pedaggio",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "rome-ztl-2026",
-          "issuer": "Roma Servizi per la Mobilità",
-          "title": "Central Rome ZTL",
-          "url": "https://romamobilita.it/muoversi-a-roma/ztl-in-centro/",
-          "checkedAt": "2026-09-21"
         }
       ],
       "preview": {
@@ -2139,7 +2099,64 @@
             }
           }
         ]
-      }
+      },
+      "evidence": {
+        "segments": 10,
+        "sourcedSegments": 10,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-09-21"
+      },
+      "sources": [
+        {
+          "id": "eu-driving-2026",
+          "issuer": "European Union — Your Europe",
+          "title": "Driving licence and car insurance validity in the EU",
+          "url": "https://europa.eu/youreurope/citizens/travel/driving-abroad/driving-licence-and-insurance/index_en.htm",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "eu-rental-2026",
+          "issuer": "European Union — Your Europe",
+          "title": "Hiring and driving a car in another EU country",
+          "url": "https://europa.eu/youreurope/citizens/travel/driving-abroad/car-rental-abroad/index_en.htm",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "pt-tolls-2026",
+          "issuer": "Infraestruturas de Portugal",
+          "title": "Portugal road tolls and foreign registrations",
+          "url": "https://servicos.infraestruturasdeportugal.pt/portagens-ips",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "es-urban-zbe-2026",
+          "issuer": "Dirección General de Tráfico",
+          "title": "Driving in Spanish cities and low-emission zones",
+          "url": "https://www.dgt.es/muevete-con-seguridad/viaja-seguro/consejos-extranjeros/en-ciudad/",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "fr-critair-2026",
+          "issuer": "Ministère de la Transition écologique",
+          "title": "Crit'Air vehicle air-quality certificate",
+          "url": "https://www.certificat-air.gouv.fr/",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "it-tolls-2026",
+          "issuer": "Autostrade per l'Italia",
+          "title": "How Italian motorway tolls are calculated",
+          "url": "https://www.autostrade.it/en/servizi-al-cliente/pedaggio/come-si-calcola-il-pedaggio",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "rome-ztl-2026",
+          "issuer": "Roma Servizi per la Mobilità",
+          "title": "Central Rome ZTL",
+          "url": "https://romamobilita.it/muoversi-a-roma/ztl-in-centro/",
+          "checkedAt": "2026-09-21"
+        }
+      ]
     },
     {
       "id": "central-europe-rail-journey",
@@ -2180,6 +2197,8 @@
         "sourcedSegments": 9,
         "verifiedSegments": 8
       },
+      "defaultPlanningScenario": null,
+      "visual": {},
       "discovery": {
         "regions": [
           "europe"
@@ -2386,84 +2405,6 @@
           },
           "countryCode": "DE",
           "type": "city"
-        }
-      ],
-      "evidence": {
-        "segments": 9,
-        "sourcedSegments": 9,
-        "verifiedSegments": 8,
-        "latestEvidenceCheck": "2026-09-21"
-      },
-      "sources": [
-        {
-          "id": "eurostar-paris-brussels",
-          "issuer": "Eurostar",
-          "title": "Paris → Brussels by Eurostar",
-          "url": "https://www.eurostar.com/de-de/zug/paris-bruessel",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "eurostar-brussels-amsterdam",
-          "issuer": "Eurostar",
-          "title": "Brussels → Amsterdam by Eurostar",
-          "url": "https://www.eurostar.com/de-de/zug/bruessel-amsterdam",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "ns-amsterdam-cologne",
-          "issuer": "NS International",
-          "title": "Amsterdam → Cologne by ICE International",
-          "url": "https://www.nsinternational.com/en/train/amsterdam-cologne",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "db-cologne-frankfurt",
-          "issuer": "Deutsche Bahn",
-          "title": "Cologne → Frankfurt by train",
-          "url": "https://www.bahn.de/reisen/view/verbindung/koeln/frankfurt.shtml",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "db-frankfurt-munich",
-          "issuer": "Deutsche Bahn",
-          "title": "Frankfurt → Munich by train",
-          "url": "https://www.bahn.de/reisen/view/verbindung/frankfurt/muenchen.shtml",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "oebb-munich-vienna",
-          "issuer": "ÖBB",
-          "title": "Munich international rail connections",
-          "url": "https://www.oebb.at/de/reiseplanung-services/oebb-zugverbindungen/zugverbindungen-europa/muenchen",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "oebb-vienna-budapest",
-          "issuer": "ÖBB",
-          "title": "Vienna → Budapest by train",
-          "url": "https://www.oebb.at/de/reiseplanung-services/oebb-zugverbindungen/zugverbindungen-europa/budapest",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "cd-budapest-prague-corridor",
-          "issuer": "České dráhy",
-          "title": "Prague ↔ Budapest by EuroCity Metropolitan",
-          "url": "https://www.cd.cz/trasy/trasy-madarsko/praha-budapest/-30120/",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "cd-budapest-prague-rj274",
-          "issuer": "České dráhy",
-          "title": "2026 rj 274 Metropolitan · Budapest → Prague",
-          "url": "https://www.cd.cz/vlak/274/7.5.2026/5500728/13.30/5457076/20.23/",
-          "checkedAt": "2026-09-21"
-        },
-        {
-          "id": "cd-prague-berlin",
-          "issuer": "České dráhy",
-          "title": "Prague → Berlin by direct train",
-          "url": "https://www.cd.cz/trasy/nemecko/praha-berlin/-30009/",
-          "checkedAt": "2026-09-21"
         }
       ],
       "preview": {
@@ -2844,7 +2785,85 @@
             }
           }
         ]
-      }
+      },
+      "evidence": {
+        "segments": 9,
+        "sourcedSegments": 9,
+        "verifiedSegments": 8,
+        "latestEvidenceCheck": "2026-09-21"
+      },
+      "sources": [
+        {
+          "id": "eurostar-paris-brussels",
+          "issuer": "Eurostar",
+          "title": "Paris → Brussels by Eurostar",
+          "url": "https://www.eurostar.com/de-de/zug/paris-bruessel",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "eurostar-brussels-amsterdam",
+          "issuer": "Eurostar",
+          "title": "Brussels → Amsterdam by Eurostar",
+          "url": "https://www.eurostar.com/de-de/zug/bruessel-amsterdam",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "ns-amsterdam-cologne",
+          "issuer": "NS International",
+          "title": "Amsterdam → Cologne by ICE International",
+          "url": "https://www.nsinternational.com/en/train/amsterdam-cologne",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "db-cologne-frankfurt",
+          "issuer": "Deutsche Bahn",
+          "title": "Cologne → Frankfurt by train",
+          "url": "https://www.bahn.de/reisen/view/verbindung/koeln/frankfurt.shtml",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "db-frankfurt-munich",
+          "issuer": "Deutsche Bahn",
+          "title": "Frankfurt → Munich by train",
+          "url": "https://www.bahn.de/reisen/view/verbindung/frankfurt/muenchen.shtml",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "oebb-munich-vienna",
+          "issuer": "ÖBB",
+          "title": "Munich international rail connections",
+          "url": "https://www.oebb.at/de/reiseplanung-services/oebb-zugverbindungen/zugverbindungen-europa/muenchen",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "oebb-vienna-budapest",
+          "issuer": "ÖBB",
+          "title": "Vienna → Budapest by train",
+          "url": "https://www.oebb.at/de/reiseplanung-services/oebb-zugverbindungen/zugverbindungen-europa/budapest",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "cd-budapest-prague-corridor",
+          "issuer": "České dráhy",
+          "title": "Prague ↔ Budapest by EuroCity Metropolitan",
+          "url": "https://www.cd.cz/trasy/trasy-madarsko/praha-budapest/-30120/",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "cd-budapest-prague-rj274",
+          "issuer": "České dráhy",
+          "title": "2026 rj 274 Metropolitan · Budapest → Prague",
+          "url": "https://www.cd.cz/vlak/274/7.5.2026/5500728/13.30/5457076/20.23/",
+          "checkedAt": "2026-09-21"
+        },
+        {
+          "id": "cd-prague-berlin",
+          "issuer": "České dráhy",
+          "title": "Prague → Berlin by direct train",
+          "url": "https://www.cd.cz/trasy/nemecko/praha-berlin/-30009/",
+          "checkedAt": "2026-09-21"
+        }
+      ]
     },
     {
       "id": "japan-by-rail",
@@ -2884,6 +2903,12 @@
         "budget": null,
         "sourcedSegments": 0,
         "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "sakura",
+        "featurePriority": 100,
+        "mediaState": "art-directed"
       },
       "discovery": {
         "regions": [
@@ -2998,21 +3023,6 @@
           },
           "countryCode": "JP",
           "type": "place"
-        }
-      ],
-      "evidence": {
-        "segments": 5,
-        "sourcedSegments": 0,
-        "verifiedSegments": 0,
-        "latestEvidenceCheck": "2026-09-30"
-      },
-      "sources": [
-        {
-          "id": "japan-mofa-visa",
-          "issuer": "Ministry of Foreign Affairs of Japan",
-          "title": "VISA",
-          "url": "https://www.mofa.go.jp/j_info/visit/visa/index.html",
-          "checkedAt": "2026-09-30"
         }
       ],
       "preview": {
@@ -3153,7 +3163,22 @@
             }
           }
         ]
-      }
+      },
+      "evidence": {
+        "segments": 5,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-09-30"
+      },
+      "sources": [
+        {
+          "id": "japan-mofa-visa",
+          "issuer": "Ministry of Foreign Affairs of Japan",
+          "title": "VISA",
+          "url": "https://www.mofa.go.jp/j_info/visit/visa/index.html",
+          "checkedAt": "2026-09-30"
+        }
+      ]
     },
     {
       "id": "patagonia-road-trip",
@@ -3193,6 +3218,12 @@
         "budget": null,
         "sourcedSegments": 0,
         "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "glacier",
+        "featurePriority": 95,
+        "mediaState": "art-directed"
       },
       "discovery": {
         "regions": [
@@ -3295,13 +3326,6 @@
           "type": "place"
         }
       ],
-      "evidence": {
-        "segments": 4,
-        "sourcedSegments": 0,
-        "verifiedSegments": 0,
-        "latestEvidenceCheck": null
-      },
-      "sources": [],
       "preview": {
         "points": [
           {
@@ -3415,7 +3439,14 @@
             }
           }
         ]
-      }
+      },
+      "evidence": {
+        "segments": 4,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": null
+      },
+      "sources": []
     },
     {
       "id": "norway-arctic-road-trip",
@@ -3455,6 +3486,12 @@
         "budget": null,
         "sourcedSegments": 0,
         "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "aurora",
+        "featurePriority": 90,
+        "mediaState": "art-directed"
       },
       "discovery": {
         "regions": [
@@ -3556,21 +3593,6 @@
           },
           "countryCode": "NO",
           "type": "place"
-        }
-      ],
-      "evidence": {
-        "segments": 4,
-        "sourcedSegments": 0,
-        "verifiedSegments": 0,
-        "latestEvidenceCheck": "2026-09-30"
-      },
-      "sources": [
-        {
-          "id": "no-udi-visitor-visa",
-          "issuer": "Norwegian Directorate of Immigration (UDI)",
-          "title": "Visitor visas for Norway",
-          "url": "https://www.udi.no/en/want-to-apply/visit-and-holiday/visitors-visa-to-norway/",
-          "checkedAt": "2026-09-30"
         }
       ],
       "preview": {
@@ -3686,7 +3708,22 @@
             }
           }
         ]
-      }
+      },
+      "evidence": {
+        "segments": 4,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-09-30"
+      },
+      "sources": [
+        {
+          "id": "no-udi-visitor-visa",
+          "issuer": "Norwegian Directorate of Immigration (UDI)",
+          "title": "Visitor visas for Norway",
+          "url": "https://www.udi.no/en/want-to-apply/visit-and-holiday/visitors-visa-to-norway/",
+          "checkedAt": "2026-09-30"
+        }
+      ]
     },
     {
       "id": "new-zealand-camper-loop",
@@ -3726,6 +3763,12 @@
         "budget": null,
         "sourcedSegments": 0,
         "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "fern",
+        "featurePriority": 92,
+        "mediaState": "art-directed"
       },
       "discovery": {
         "regions": [
@@ -3838,21 +3881,6 @@
           },
           "countryCode": "NZ",
           "type": "place"
-        }
-      ],
-      "evidence": {
-        "segments": 5,
-        "sourcedSegments": 0,
-        "verifiedSegments": 0,
-        "latestEvidenceCheck": "2026-09-30"
-      },
-      "sources": [
-        {
-          "id": "nz-visa-nzeta-check",
-          "issuer": "Immigration New Zealand",
-          "title": "Check if you need a visa or an NZeTA",
-          "url": "https://www.immigration.govt.nz/visit/what-you-need-to-visit-new-zealand/visa-tool-test/",
-          "checkedAt": "2026-09-30"
         }
       ],
       "preview": {
@@ -3993,7 +4021,22 @@
             }
           }
         ]
-      }
+      },
+      "evidence": {
+        "segments": 5,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-09-30"
+      },
+      "sources": [
+        {
+          "id": "nz-visa-nzeta-check",
+          "issuer": "Immigration New Zealand",
+          "title": "Check if you need a visa or an NZeTA",
+          "url": "https://www.immigration.govt.nz/visit/what-you-need-to-visit-new-zealand/visa-tool-test/",
+          "checkedAt": "2026-09-30"
+        }
+      ]
     },
     {
       "id": "greek-island-hopping",
@@ -4033,6 +4076,12 @@
         "budget": null,
         "sourcedSegments": 0,
         "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "aegean",
+        "featurePriority": 89,
+        "mediaState": "art-directed"
       },
       "discovery": {
         "regions": [
@@ -4138,13 +4187,6 @@
           "type": "place"
         }
       ],
-      "evidence": {
-        "segments": 4,
-        "sourcedSegments": 0,
-        "verifiedSegments": 0,
-        "latestEvidenceCheck": null
-      },
-      "sources": [],
       "preview": {
         "points": [
           {
@@ -4258,7 +4300,14 @@
             }
           }
         ]
-      }
+      },
+      "evidence": {
+        "segments": 4,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": null
+      },
+      "sources": []
     },
     {
       "id": "morocco-atlas-desert",
@@ -4298,6 +4347,12 @@
         "budget": null,
         "sourcedSegments": 0,
         "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "desert",
+        "featurePriority": 88,
+        "mediaState": "art-directed"
       },
       "discovery": {
         "regions": [
@@ -4399,21 +4454,6 @@
           },
           "countryCode": "MA",
           "type": "place"
-        }
-      ],
-      "evidence": {
-        "segments": 4,
-        "sourcedSegments": 0,
-        "verifiedSegments": 0,
-        "latestEvidenceCheck": "2026-09-30"
-      },
-      "sources": [
-        {
-          "id": "ma-acces-maroc",
-          "issuer": "Kingdom of Morocco — Accès Maroc",
-          "title": "Accès Maroc",
-          "url": "https://www.acces-maroc.ma/",
-          "checkedAt": "2026-09-30"
         }
       ],
       "preview": {
@@ -4529,7 +4569,22 @@
             }
           }
         ]
-      }
+      },
+      "evidence": {
+        "segments": 4,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-09-30"
+      },
+      "sources": [
+        {
+          "id": "ma-acces-maroc",
+          "issuer": "Kingdom of Morocco — Accès Maroc",
+          "title": "Accès Maroc",
+          "url": "https://www.acces-maroc.ma/",
+          "checkedAt": "2026-09-30"
+        }
+      ]
     },
     {
       "id": "south-africa-garden-safari",
@@ -4569,6 +4624,12 @@
         "budget": null,
         "sourcedSegments": 0,
         "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "savanna",
+        "featurePriority": 84,
+        "mediaState": "art-directed"
       },
       "discovery": {
         "regions": [
@@ -4670,21 +4731,6 @@
           },
           "countryCode": "ZA",
           "type": "place"
-        }
-      ],
-      "evidence": {
-        "segments": 4,
-        "sourcedSegments": 0,
-        "verifiedSegments": 0,
-        "latestEvidenceCheck": "2026-09-30"
-      },
-      "sources": [
-        {
-          "id": "za-dha-eta",
-          "issuer": "South African Department of Home Affairs",
-          "title": "South African ETA",
-          "url": "https://eta.dha.gov.za/",
-          "checkedAt": "2026-09-30"
         }
       ],
       "preview": {
@@ -4800,7 +4846,22 @@
             }
           }
         ]
-      }
+      },
+      "evidence": {
+        "segments": 4,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-09-30"
+      },
+      "sources": [
+        {
+          "id": "za-dha-eta",
+          "issuer": "South African Department of Home Affairs",
+          "title": "South African ETA",
+          "url": "https://eta.dha.gov.za/",
+          "checkedAt": "2026-09-30"
+        }
+      ]
     },
     {
       "id": "canadian-rockies-rail-road",
@@ -4840,6 +4901,12 @@
         "budget": null,
         "sourcedSegments": 0,
         "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "rockies",
+        "featurePriority": 86,
+        "mediaState": "art-directed"
       },
       "discovery": {
         "regions": [
@@ -4940,21 +5007,6 @@
           },
           "countryCode": "CA",
           "type": "place"
-        }
-      ],
-      "evidence": {
-        "segments": 4,
-        "sourcedSegments": 0,
-        "verifiedSegments": 0,
-        "latestEvidenceCheck": "2026-09-30"
-      },
-      "sources": [
-        {
-          "id": "canada-visit-requirements",
-          "issuer": "Immigration, Refugees and Citizenship Canada",
-          "title": "Visit Canada",
-          "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada.html",
-          "checkedAt": "2026-09-30"
         }
       ],
       "preview": {
@@ -5070,7 +5122,22 @@
             }
           }
         ]
-      }
+      },
+      "evidence": {
+        "segments": 4,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-09-30"
+      },
+      "sources": [
+        {
+          "id": "canada-visit-requirements",
+          "issuer": "Immigration, Refugees and Citizenship Canada",
+          "title": "Visit Canada",
+          "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada.html",
+          "checkedAt": "2026-09-30"
+        }
+      ]
     },
     {
       "id": "vietnam-north-south",
@@ -5110,6 +5177,12 @@
         "budget": null,
         "sourcedSegments": 0,
         "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "tropical",
+        "featurePriority": 81,
+        "mediaState": "art-directed"
       },
       "discovery": {
         "regions": [
@@ -5223,21 +5296,6 @@
           },
           "countryCode": "VN",
           "type": "place"
-        }
-      ],
-      "evidence": {
-        "segments": 5,
-        "sourcedSegments": 0,
-        "verifiedSegments": 0,
-        "latestEvidenceCheck": "2026-09-30"
-      },
-      "sources": [
-        {
-          "id": "vn-official-evisa",
-          "issuer": "Vietnam Immigration Department — Ministry of Public Security",
-          "title": "Vietnam National Electronic Visa system",
-          "url": "https://evisa.gov.vn/",
-          "checkedAt": "2026-09-30"
         }
       ],
       "preview": {
@@ -5378,7 +5436,22 @@
             }
           }
         ]
-      }
+      },
+      "evidence": {
+        "segments": 5,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-09-30"
+      },
+      "sources": [
+        {
+          "id": "vn-official-evisa",
+          "issuer": "Vietnam Immigration Department — Ministry of Public Security",
+          "title": "Vietnam National Electronic Visa system",
+          "url": "https://evisa.gov.vn/",
+          "checkedAt": "2026-09-30"
+        }
+      ]
     },
     {
       "id": "costa-rica-nature-loop",
@@ -5418,6 +5491,12 @@
         "budget": null,
         "sourcedSegments": 0,
         "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "rainforest",
+        "featurePriority": 82,
+        "mediaState": "art-directed"
       },
       "discovery": {
         "regions": [
@@ -5519,13 +5598,6 @@
           "type": "place"
         }
       ],
-      "evidence": {
-        "segments": 4,
-        "sourcedSegments": 0,
-        "verifiedSegments": 0,
-        "latestEvidenceCheck": null
-      },
-      "sources": [],
       "preview": {
         "points": [
           {
@@ -5639,7 +5711,14 @@
             }
           }
         ]
-      }
+      },
+      "evidence": {
+        "segments": 4,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": null
+      },
+      "sources": []
     },
     {
       "id": "iceland-ring-road",
@@ -5679,6 +5758,12 @@
         "budget": null,
         "sourcedSegments": 0,
         "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "volcanic",
+        "featurePriority": 83,
+        "mediaState": "art-directed"
       },
       "discovery": {
         "regions": [
@@ -5791,21 +5876,6 @@
           },
           "countryCode": "IS",
           "type": "place"
-        }
-      ],
-      "evidence": {
-        "segments": 5,
-        "sourcedSegments": 0,
-        "verifiedSegments": 0,
-        "latestEvidenceCheck": "2026-09-30"
-      },
-      "sources": [
-        {
-          "id": "is-official-visa-check",
-          "issuer": "Ísland.is — Icelandic authorities",
-          "title": "Check if you need a visa to travel to Iceland",
-          "url": "https://island.is/en/do-you-need-a-visa",
-          "checkedAt": "2026-09-30"
         }
       ],
       "preview": {
@@ -5946,7 +6016,22 @@
             }
           }
         ]
-      }
+      },
+      "evidence": {
+        "segments": 5,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-09-30"
+      },
+      "sources": [
+        {
+          "id": "is-official-visa-check",
+          "issuer": "Ísland.is — Icelandic authorities",
+          "title": "Check if you need a visa to travel to Iceland",
+          "url": "https://island.is/en/do-you-need-a-visa",
+          "checkedAt": "2026-09-30"
+        }
+      ]
     },
     {
       "id": "peru-andes-journey",
@@ -5986,6 +6071,12 @@
         "budget": null,
         "sourcedSegments": 0,
         "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "andes",
+        "featurePriority": 80,
+        "mediaState": "art-directed"
       },
       "discovery": {
         "regions": [
@@ -6086,21 +6177,6 @@
           },
           "countryCode": "PE",
           "type": "place"
-        }
-      ],
-      "evidence": {
-        "segments": 4,
-        "sourcedSegments": 0,
-        "verifiedSegments": 0,
-        "latestEvidenceCheck": "2026-09-30"
-      },
-      "sources": [
-        {
-          "id": "pe-tourist-visa",
-          "issuer": "Ministry of Foreign Affairs of Peru — Plataforma del Estado Peruano",
-          "title": "Solicitar visa de turista para ingresar al Perú",
-          "url": "https://www.gob.pe/36240-solicitar-visa-de-turista-para-ingresar-al-peru",
-          "checkedAt": "2026-09-30"
         }
       ],
       "preview": {
@@ -6216,7 +6292,22 @@
             }
           }
         ]
-      }
+      },
+      "evidence": {
+        "segments": 4,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-09-30"
+      },
+      "sources": [
+        {
+          "id": "pe-tourist-visa",
+          "issuer": "Ministry of Foreign Affairs of Peru — Plataforma del Estado Peruano",
+          "title": "Solicitar visa de turista para ingresar al Perú",
+          "url": "https://www.gob.pe/36240-solicitar-visa-de-turista-para-ingresar-al-peru",
+          "checkedAt": "2026-09-30"
+        }
+      ]
     },
     {
       "id": "jordan-heritage-desert-drive",
@@ -6255,6 +6346,11 @@
         "segments": 5,
         "sourcedSegments": 5,
         "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "desert",
+        "mediaState": "art-directed"
       },
       "discovery": {
         "regions": [
@@ -6722,6 +6818,11 @@
         "sourcedSegments": 2,
         "verifiedSegments": 0
       },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "rockies",
+        "mediaState": "art-directed"
+      },
       "discovery": {
         "regions": [
           "asia",
@@ -6994,6 +7095,11 @@
         "segments": 4,
         "sourcedSegments": 4,
         "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "desert",
+        "mediaState": "art-directed"
       },
       "discovery": {
         "regions": [
@@ -7397,6 +7503,11 @@
         "segments": 7,
         "sourcedSegments": 7,
         "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "coast",
+        "mediaState": "art-directed"
       },
       "discovery": {
         "regions": [

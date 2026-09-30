@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const NASA_BMNG = 'https://eoimages.gsfc.nasa.gov/images/imagerecords/73000/73909/world.topo.bathy.200412.3x5400x2700.jpg';
+  const DETAIL_EARTH = 'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg';
   const STANDARD_EARTH = 'https://unpkg.com/three-globe/example/img/earth-dark.jpg';
   const runtime = { applied:false, retries:0, highDetail:true, preload:null };
 
@@ -74,21 +74,8 @@
       return;
     }
 
-    const img = new Image();
-    runtime.preload=img;
-    img.crossOrigin = 'anonymous';
-    img.onload = () => {
-      if(!highDetailEnabled()) return;
-      try{
-        globe.globeImageUrl?.(NASA_BMNG);
-        setTimeout(() => tuneMaterial(globe), 120);
-        setTimeout(() => tuneMaterial(globe), 700);
-      }catch(err){
-        console.warn('High-detail NASA globe texture could not be applied', err);
-      }
-    };
-    img.onerror = () => console.warn('High-detail NASA globe texture unavailable; keeping standard globe texture.');
-    img.src = NASA_BMNG;
+    try{globe.globeImageUrl?.(DETAIL_EARTH)}catch{}
+    setTimeout(()=>tuneMaterial(globe),120);
   }
 
   function wireToggle(globe){

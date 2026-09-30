@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-29",
+  "updatedAt": "2026-09-30",
   "defaultLocale": "en",
   "supportedLocales": [
     "en",
@@ -20,24 +20,23 @@
       "renderer": "legacy-world",
       "dataset": "./data/public-route.json",
       "title": {
-        "en": "One World · 195 Countries",
-        "de": "Eine Welt · 195 Länder",
-        "it": "Un mondo · 195 paesi",
-        "es": "Un mundo · 195 países",
-        "fr": "Un monde · 195 pays",
-        "pt": "Um mundo · 195 países"
+        "en": "One World Journey",
+        "de": "Eine Reise um die Welt",
+        "it": "Un viaggio intorno al mondo",
+        "es": "Un viaje por el mundo",
+        "fr": "Un voyage autour du monde",
+        "pt": "Uma viagem pelo mundo"
       },
       "subtitle": {
-        "en": "The flagship continuous world journey",
-        "de": "Die zusammenhängende Weltreise als Flagship-Route",
-        "it": "Il viaggio continuo intorno al mondo",
-        "es": "El viaje continuo alrededor del mundo",
-        "fr": "Le voyage continu autour du monde",
-        "pt": "A viagem contínua pelo mundo"
+        "en": "195 countries. One connected journey. Choose when to begin.",
+        "de": "195 Länder. Eine zusammenhängende Reise. Du wählst den Beginn.",
+        "it": "195 paesi. Un viaggio connesso. Scegli quando partire.",
+        "es": "195 países. Un viaje conectado. Elige cuándo empezar.",
+        "fr": "195 pays. Un voyage continu. Choisissez quand partir.",
+        "pt": "195 países. Uma viagem conectada. Escolha quando começar."
       },
       "metrics": {
         "days": 379,
-        "startDate": "2026-10-21",
         "countries": 195,
         "internationalLegs": 194,
         "budget": {
@@ -79,6 +78,19 @@
           "startRegion": "europe",
           "accessibility": "complex-planning"
         }
+      },
+      "defaultPlanningScenario": {
+        "id": "original-planning-snapshot",
+        "startDate": "2026-10-21",
+        "status": "example",
+        "routeRotation": "not-supported",
+        "preserveCoreRoute": true
+      },
+      "showcase": true,
+      "visual": {
+        "theme": "ocean",
+        "visualFamily": "planetary",
+        "featurePriority": 60
       }
     },
     {

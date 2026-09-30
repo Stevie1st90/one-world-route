@@ -391,7 +391,7 @@
     const urlVariant=new URLSearchParams(location.search).get('variant');
     const requestedVariant=String(change?.variantId||urlVariant||TripTools.getVariant(localStorage,meta.id)||'base');
     if(urlVariant&&!change?.variantId)TripTools.setVariant(localStorage,meta.id,urlVariant);
-    const variantTrip=JourneyVariants.apply(baseTrip,requestedVariant);
+    const variantTrip=JourneyVariants.apply(await window.ONE_WORLD_PLATFORM_MODULES.media.resolveReference(meta,baseTrip),requestedVariant);
     const storedStart=TripTools.getRouteStart(localStorage,meta.id);
     const entrySuggestion=JourneyAdapter.recommendEntry(variantTrip,profile,countryCentroids);
     const suggestedStart=!storedStart&&entrySuggestion?.available?entrySuggestion.stopId:'';
@@ -451,7 +451,10 @@
         toast:Ui.toast
       });
       Ui.ensureGlobalActions({t,esc,onHome:goHome,onRoutes:openRouteLibrary,onMyTrips:openMyTrips,onTraveller:openTraveller});
-      Share.configure({t,toast:Ui.toast,title:()=>currentTripMeta?local(currentTripMeta.title):t('homeTitle')});
+      const socialDeps={t,esc,local,facetLabel,locale:()=>locale,ensureDialog:Ui.ensureDialog,toast:Ui.toast,url:meta=>meta.id===currentTripMeta?.id?location.href:location.origin+buildTripUrl(meta.id),onOpen:setQueryTrip};
+      PLATFORM_MODULES.socialStory?.configure(socialDeps);
+      const openPlanning=()=>PLATFORM_MODULES.planningContext?.open(currentTripMeta,{...socialDeps,tripTools:TripTools,storage:localStorage});
+      Share.configure({...socialDeps,title:()=>currentTripMeta?local(currentTripMeta.title):t('homeTitle'),getMeta:()=>currentTripMeta,getTrip:()=>currentTrip,onPlanning:openPlanning});
       Share.bind();
       if(HOME_REQUEST){
         currentTripMeta=null;
@@ -491,6 +494,11 @@
       else {
         await waitForCore();
         LegacyLocalization.configure({getLocale:()=>locale,t}).activate();
+        const titleNode=document.querySelector('.brand small');if(titleNode)titleNode.textContent=local(currentTripMeta.title);
+        const panel=document.querySelector('.left-panel');
+        if(panel){const note=document.createElement('div');note.className='platform-scenario-note';note.innerHTML='<p>'+esc(t('snapshotOnly'))+'</p><button type="button" data-context-planning>'+esc(t('chooseStartDate'))+' →</button>';panel.prepend(note);note.querySelector('button').onclick=openPlanning}
+        if(p.get('planStep')==='startDate')openPlanning();
+        window.__ONE_WORLD_ROUTE_APP__?.refreshPlanning?.();
         window.__ONE_WORLD_ROUTE_APP__?.refreshGlobe?.();
       }
     }catch(e){

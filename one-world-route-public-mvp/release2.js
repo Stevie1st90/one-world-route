@@ -78,7 +78,7 @@
     $('#journeyHubContent').innerHTML='<section class="journey-stat-grid">'+
       statCard('Countries',s.countries,'sovereign states')+
       statCard('Route legs',s.segments,'executable segments')+
-      statCard('Planned duration',s.days+' days','21 Oct 2026 → 2027')+
+      statCard('Planned duration',s.days+' days',window.ONE_WORLD_PLATFORM_MODULES?.i18n?.messages?.[document.documentElement.lang]?.planningContext||'Planning context')+
       statCard('Route distance',km(s.distance),'corridor / geodesic estimate')+
       statCard('Transport model',euro(s.budget),'public segment budget')+
       statCard('Chapters','12','continuous route')+
@@ -91,10 +91,11 @@
   }
 
   function renderLive(){
-    const a=runtime.actual||{},d=daysUntil(a.journeyStart||'2026-10-21'),pre=a.status==='pretrip';
-    const status=pre?(d>0?'Starts in '+d+' days':'Ready to depart'):(a.status||'Live');
-    $('#journeyHubContent').innerHTML='<section class="live-hero"><span>PLAN ↔ ACTUAL</span><h3>'+esc(status)+'</h3><p>'+esc(pre?'The public live layer is ready. Actual check-ins will appear here once the journey begins.':'Actual journey data is being compared with the public plan.')+'</p></section><section class="journey-stat-grid">'+
-      statCard('Planned start','21 Oct 2026')+
+    const a=runtime.actual||{},modules=window.ONE_WORLD_PLATFORM_MODULES,meta=window.ONE_WORLD_PLATFORM?.getTrip?.();
+    const text=key=>modules?.i18n?.messages?.[document.documentElement.lang]?.[key]||key;
+    const start=meta&&modules?.tripTools?.getStartDate(localStorage,meta.id);
+    $('#journeyHubContent').innerHTML='<section class="live-hero"><span>'+esc(text('historicalScenario'))+'</span><h3>'+esc(text('snapshotOnly'))+'</h3><p>'+esc(text('dateRecheckLead'))+'</p></section><section class="journey-stat-grid">'+
+      statCard(text('startDate'),start||text('chooseStartDate'))+
       statCard('Actual status',String(a.status||'—').toUpperCase())+
       statCard('Visited',String(a.visitedCountries||0)+' / 195')+
       statCard('Current leg',a.currentSegment?String(a.currentSegment)+' / 194':'Not started')+
