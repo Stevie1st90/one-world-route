@@ -109,7 +109,7 @@
 
   async function waitForCore(max=70){
     for(let i=0;i<max;i++){
-      if(window.__ONE_WORLD_ROUTE_APP__ && window.__ONE_WORLD_ROUTE_GLOBE__) return true;
+      if(window.__ONE_WORLD_ROUTE_APP__) return true;
       await sleep(80);
     }
     return false;
