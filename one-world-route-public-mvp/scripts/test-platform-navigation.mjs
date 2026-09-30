@@ -166,6 +166,8 @@ test('regional route focus fits the whole trip and terrain labels localize',()=>
   const terrain=moduleSources['terrain.js'];
   assert.match(terrain,/function focusRoute/);
   assert.match(terrain,/fitBounds\(bounds/);
+  assert.match(terrain,/getComputedStyle\(document\.body\)/);
+  assert.match(terrain,/--map-fit-right/);
   assert.match(source,/focusRoute:\(\)=>\{if\(document\.body\.classList\.contains\('platform-home'\)\)return Home\.renderGlobe\(\);if\(document\.body\.classList\.contains\('terrain-view'\)\)Terrain\.focusRoute\(\)/);
   assert.match(terrain,/mapStyle\.localize/);
   assert.match(mapStyle,/name:\$\{lang\}/);
@@ -181,8 +183,9 @@ test('regional terrain attribution stays compact and clear of mobile controls',(
   const terrain=moduleSources['terrain.js'];
   assert.match(terrain,/attributionControl:false/);
   assert.match(terrain,/AttributionControl\(\{compact:true\}\)/);
-  assert.match(cssSource,/maplibregl-ctrl-bottom-left\{left:316px;bottom:88px\}/);
-  assert.match(cssSource,/@media\(max-width:820px\)[\s\S]*maplibregl-ctrl-bottom-left\{left:8px;bottom:56px\}/);
+  assert.match(cssSource,/maplibregl-ctrl-top-right\{top:var\(--map-safe-top\);right:var\(--map-safe-right\)\}/);
+  assert.match(cssSource,/maplibregl-ctrl-bottom-left\{left:var\(--map-safe-left\);bottom:var\(--map-safe-bottom\)\}/);
+  assert.match(cssSource,/@media\(max-width:820px\)[\s\S]*--map-safe-bottom:56px/);
 });
 
 test('regional stop counters override inherited gradient text styles',()=>{
@@ -205,6 +208,17 @@ test('regional UX detail modes keep sparse panels compact',()=>{
   assert.doesNotMatch(source,/function setRegionalDetailMode/);
   assert.match(cssSource,/platform-detail-overview \.right-panel/);
   assert.match(cssSource,/platform-detail-stop \.right-panel/);
+  assert.match(cssSource,/max-height:calc\(100dvh - var\(--panel-top\) - var\(--panel-safe-bottom\)\)/);
+});
+
+test('regional overlays share safe-area layout tokens',()=>{
+  assert.match(cssSource,/--header-height:68px/);
+  assert.match(cssSource,/--left-panel-width:282px/);
+  assert.match(cssSource,/--right-panel-width:318px/);
+  assert.match(cssSource,/--story-bar-height:84px/);
+  assert.match(cssSource,/--map-safe-top:72px/);
+  assert.match(cssSource,/--map-overlay-safe-bottom:116px/);
+  assert.match(cssSource,/platform-story-hud\{[^}]*bottom:var\(--map-overlay-safe-bottom,82px\)/);
 });
 
 test('regional terrain uses branded readable dark map styling',()=>{

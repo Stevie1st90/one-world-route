@@ -5069,11 +5069,21 @@
     };
   }
 
+  function cssLength(name,fallback){
+    const value=parseFloat(getComputedStyle(document.body).getPropertyValue(name));
+    return Number.isFinite(value)?value:fallback;
+  }
+
   function focusRoute(){
     const d=context(),bounds=d.routeBounds();
     if(!state.map||!bounds)return;
     const mobile=innerWidth<=820;
-    const padding=mobile?{top:90,right:26,bottom:132,left:26}:{top:78,right:380,bottom:90,left:330};
+    const padding={
+      top:cssLength('--map-fit-top',mobile?90:78),
+      right:cssLength('--map-fit-right',mobile?26:380),
+      bottom:cssLength('--map-fit-bottom',mobile?132:90),
+      left:cssLength('--map-fit-left',mobile?26:330)
+    };
     const [[west,south],[east,north]]=bounds;
     const midLat=(Number(south)+Number(north))/2;
     const lngSpan=Math.abs(Number(east)-Number(west))*Math.max(.35,Math.cos((Number.isFinite(midLat)?midLat:0)*Math.PI/180));
