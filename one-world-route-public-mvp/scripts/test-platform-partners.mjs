@@ -55,3 +55,17 @@ test('unsafe partner URLs are discarded',async()=>{
   assert.equal(partners.status().enabled,false);
   assert.equal(partners.linksFor({kind:'rail',discovery:{}}).length,0);
 });
+
+
+test('partner matching is read-only and does not change journey metadata',async()=>{
+  const partners=load();
+  await partners.load(async()=>({ok:true,json:async()=>({
+    schemaVersion:1,enabled:true,disclosureRequired:true,
+    partners:[{id:'rail-pass',label:{en:'Rail partner'},url:'https://partner.example/rail',category:'transport',modes:['rail'],regions:['europe']}]
+  })}));
+  const meta={kind:'rail',discovery:{regions:['europe'],modes:['rail'],themes:['culture']},featured:true};
+  const before=JSON.stringify(meta);
+  const links=partners.linksFor(meta);
+  assert.equal(links.length,1);
+  assert.equal(JSON.stringify(meta),before);
+});
