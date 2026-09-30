@@ -436,7 +436,7 @@ test('regional globe renderer owns Globe.gl interactions and stays trip-generic'
   assert.match(globe,/d\.selectStop/);
   assert.doesNotMatch(globe,/trip\.id\s*===|trip\.kind\s*===|currentTrip/);
   assert.doesNotMatch(source,/function routeCamera|function isolateRegionalRuntime|function regionalHtmlLabel|function routeGeometry|function renderRegionalGlobe|function focusSegment/);
-  assert.equal((source.match(/__ONE_WORLD_ROUTE_GLOBE__/g)||[]).length,1);
+  assert.equal((source.match(/__ONE_WORLD_ROUTE_GLOBE__/g)||[]).length,0);
 });
 
 test('regional shell stays data-driven and renderer-agnostic',()=>{
