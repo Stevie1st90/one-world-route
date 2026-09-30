@@ -71,7 +71,7 @@ test('@regional @discovery @mobile-critical global discovery home exposes a broa
   await expect(page.locator('.platform-home-card-visual').first()).toBeVisible();
   await expect(page.locator('.platform-home-quick button')).toHaveCount(5);
   await expect(page.locator('.platform-home-region-card')).toHaveCount(6);
-  await expect(page.locator('.platform-home-collection')).toHaveCount(6);
+  await expect(page.locator('.platform-home-collection')).toHaveCount(collectionCatalog.collections.length);
   await expect(page.locator('#platformHome')).toContainText('Japan by Rail');
   await expect(page.locator('#platformHome')).toContainText('Patagonia Road Trip');
   if(isMobile)await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
