@@ -829,6 +829,14 @@ body.platform-regional-trip .detail-copy{font-size:13px;color:#b1c5d5;line-heigh
 @media(prefers-reduced-motion:reduce){.platform-home-shell *{scroll-behavior:auto!important;transition:none!important}}
 @media(min-width:821px){.platform-home-overflow summary{display:none}.platform-home-overflow>div{position:static;padding:0;background:none;border:0;box-shadow:none;min-width:0}}
 /* Reading text in existing map tools keeps the same safe-area geometry. */
+.platform-home-hero-copy{isolation:isolate}
+.platform-home-hero-copy:before{content:'';position:absolute;z-index:-1;inset:-32px -28px;pointer-events:none;background:radial-gradient(ellipse at 30% 52%,rgba(5,10,18,.96),rgba(5,10,18,.85) 52%,transparent 78%)}
+.platform-home-hero p{color:#becedd}
+.platform-home-section-head{position:relative;isolation:isolate}
+.platform-home-section-head:before{content:'';position:absolute;z-index:-1;inset:-18px -16px;pointer-events:none;background:linear-gradient(90deg,rgba(5,10,18,.96),rgba(5,10,18,.86) 70%,rgba(5,10,18,.65));border-radius:18px}
+.platform-home-method{background:rgba(5,10,18,.96);border-radius:22px;padding:32px;margin-bottom:40px}
+.platform-home-method>p,.platform-home-method article span{color:#b6c8d9;font-size:13px;line-height:1.65}
+@media(max-width:820px){.platform-home-method{padding:24px 18px}.platform-home-hero-copy:before{background:radial-gradient(ellipse at 25% 55%,rgba(5,10,18,.94),rgba(5,10,18,.72) 55%,transparent 80%)}}
 body.platform-regional-trip .hero-copy p{font-size:12px!important;color:#a9bed0;line-height:1.55}
 body.platform-regional-trip .panel-title,body.platform-regional-trip .panel-section h3,body.platform-regional-trip .detail-header .eyebrow{font-size:11px}
 body.platform-regional-trip .data-card span,body.platform-regional-trip .data-card b{font-size:11px}
