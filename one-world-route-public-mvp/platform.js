@@ -109,7 +109,7 @@
 
   async function waitForCore(max=70){
     for(let i=0;i<max;i++){
-      if(window.__ONE_WORLD_ROUTE_APP__ && window.__ONE_WORLD_ROUTE_GLOBE__) return true;
+      if(window.__ONE_WORLD_ROUTE_APP__) return true;
       await sleep(80);
     }
     return false;
@@ -482,10 +482,8 @@
     }catch(e){
       console.warn('ONE WORLD ROUTE platform layer unavailable',e);
     }finally{
-      requestAnimationFrame(()=>{
-        document.body.classList.remove('platform-booting');
-        document.body.classList.add('platform-ready');
-      });
+      document.body.classList.remove('platform-booting');
+      document.body.classList.add('platform-ready');
     }
   }
 

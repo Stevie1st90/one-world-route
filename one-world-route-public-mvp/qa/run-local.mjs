@@ -3,9 +3,11 @@ import http from 'node:http';
 import {readFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
-import {spawn} from 'node:child_process';
+import {spawn,spawnSync} from 'node:child_process';
 const root=fileURLToPath(new URL('../',import.meta.url));
 const types={'.js':'text/javascript','.css':'text/css','.json':'application/json','.html':'text/html','.svg':'image/svg+xml','.webmanifest':'application/manifest+json'};
+const bundleBuild=spawnSync(process.execPath,[fileURLToPath(new URL('../scripts/build-bundles.mjs',import.meta.url))],{cwd:root,stdio:'inherit'});
+if(bundleBuild.status!==0)process.exit(bundleBuild.status||1);
 const server=http.createServer(async(req,res)=>{
   const url=new URL(req.url,'http://localhost');
   let name=path.resolve(root,'.'+decodeURIComponent(url.pathname));

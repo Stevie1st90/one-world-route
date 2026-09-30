@@ -171,12 +171,12 @@ test('recent journeys are deduplicated, newest first and bounded locally',()=>{
   assert.equal(recent.length,12);
   assert.equal(new Set(recent).size,recent.length);
   const workspace=JSON.parse(tools.workspaceJson(s));
-  assert.deepEqual(workspace.workspace.recentTrips,recent);
+  assert.deepEqual(workspace.workspace.recentTrips,Array.from(recent));
 });
 
 test('planning workspace import validates schema and filters unknown trips',()=>{
   const tools=load();
-  const storage=memoryStorage();
+  const s=storage();
   const payload=JSON.stringify({
     schemaVersion:1,
     workspace:{
@@ -190,11 +190,11 @@ test('planning workspace import validates schema and filters unknown trips',()=>
       planningChecks:{'italy-grand-tour':{accessCheckedAt:'2026-09-29T12:00:00.000Z'}}
     }
   });
-  const result=tools.importWorkspace(storage,payload,['italy-grand-tour']);
+  const result=tools.importWorkspace(s,payload,['italy-grand-tour']);
   assert.equal(result.ok,true);
-  const state=tools.load(storage);
-  assert.deepEqual(state.savedTrips,['italy-grand-tour']);
-  assert.deepEqual(state.recentTrips,['italy-grand-tour']);
+  const state=tools.load(s);
+  assert.deepEqual(Array.from(state.savedTrips),['italy-grand-tour']);
+  assert.deepEqual(Array.from(state.recentTrips),['italy-grand-tour']);
   assert.equal(state.budgets['italy-grand-tour'].lodgingPerNight,120);
   assert.equal(state.startDates['italy-grand-tour'],'2027-05-04');
   assert.equal(state.routeStarts['italy-grand-tour'],'it-stop-03');
@@ -204,10 +204,10 @@ test('planning workspace import validates schema and filters unknown trips',()=>
 
 test('planning workspace import rejects invalid payloads without replacing state',()=>{
   const tools=load();
-  const storage=memoryStorage();
-  tools.toggleSaved(storage,'italy-grand-tour');
-  assert.equal(tools.importWorkspace(storage,'not json',['italy-grand-tour']).ok,false);
-  assert.equal(tools.importWorkspace(storage,JSON.stringify({schemaVersion:2,workspace:{}}),['italy-grand-tour']).ok,false);
-  assert.deepEqual(tools.load(storage).savedTrips,['italy-grand-tour']);
+  const s=storage();
+  tools.toggleSaved(s,'italy-grand-tour');
+  assert.equal(tools.importWorkspace(s,'not json',['italy-grand-tour']).ok,false);
+  assert.equal(tools.importWorkspace(s,JSON.stringify({schemaVersion:2,workspace:{}}),['italy-grand-tour']).ok,false);
+  assert.deepEqual(Array.from(tools.load(s).savedTrips),['italy-grand-tour']);
 });
 
