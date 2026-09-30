@@ -512,8 +512,36 @@
       "claims": [
         "Aqaba is presented as Jordan's southern Red Sea destination."
       ]
+    },
+    {
+      "id": "jo-moi-visa-services",
+      "title": "E-Applications for Visa and Residence Permits",
+      "issuer": "Jordan Ministry of Interior",
+      "issuerType": "government",
+      "url": "https://moi.gov.jo/EN/Pages/E_Applications_for_Visa_and_Residence_Permits",
+      "checkedAt": "2026-09-30",
+      "claims": [
+        "Jordan's Ministry of Interior provides official electronic visa services and residence-permit services",
+        "visa applications from clients outside Jordan are handled through the government electronic system"
+      ]
     }
   ],
+  "entryGuidance": {
+    "personalizationRequired": true,
+    "destinationCountry": "JO",
+    "tripPurpose": "tourism",
+    "stayDays": 10,
+    "officialResolverSourceId": "jo-moi-visa-services",
+    "supportingSourceIds": [],
+    "message": {
+      "en": "Jordanian visa requirements and the correct application route depend on nationality and the traveller’s circumstances. Use the Jordan Ministry of Interior’s official visa services for the actual trip.",
+      "de": "Jordanische Visabestimmungen und der richtige Antragsweg hängen von Staatsangehörigkeit und Reisekontext ab. Nutze für die konkrete Reise die offiziellen Visa-Dienste des jordanischen Innenministeriums.",
+      "it": "I requisiti di visto per la Giordania e la procedura corretta dipendono dalla nazionalità e dalle circostanze del viaggiatore. Usa i servizi ufficiali del Ministero dell’Interno giordano.",
+      "es": "Los requisitos de visado de Jordania y la vía de solicitud correcta dependen de la nacionalidad y de las circunstancias del viajero. Utiliza los servicios oficiales del Ministerio del Interior de Jordania.",
+      "fr": "Les exigences de visa jordanien et la procédure appropriée dépendent de la nationalité et de la situation du voyageur. Utilisez les services officiels du ministère jordanien de l’Intérieur.",
+      "pt": "Os requisitos de visto da Jordânia e o processo correto dependem da nacionalidade e das circunstâncias do viajante. Use os serviços oficiais do Ministério do Interior da Jordânia."
+    }
+  },
   "extensions": {
     "roadTrip": {
       "vehicleContextRequired": true,

@@ -478,8 +478,36 @@
       "claims": [
         "NPS provides current visitor planning and road-condition guidance for Canyonlands National Park."
       ]
+    },
+    {
+      "id": "us-state-tourism-visit",
+      "title": "Tourism & Visit",
+      "issuer": "U.S. Department of State",
+      "issuerType": "government",
+      "url": "https://travel.state.gov/content/travel/en/us-visas/tourism-visit.html",
+      "checkedAt": "2026-09-30",
+      "claims": [
+        "official tourism and visit guidance distinguishes visitor visas from travel under the Visa Waiver Program",
+        "the appropriate route depends on the traveller's circumstances"
+      ]
     }
   ],
+  "entryGuidance": {
+    "personalizationRequired": true,
+    "destinationCountry": "US",
+    "tripPurpose": "tourism",
+    "stayDays": 10,
+    "officialResolverSourceId": "us-state-tourism-visit",
+    "supportingSourceIds": [],
+    "message": {
+      "en": "U.S. travel authorization can involve a visitor visa or, for qualifying travellers, the Visa Waiver Program and ESTA. Use the U.S. Department of State’s official tourism and visit guidance for the traveller’s actual circumstances.",
+      "de": "Für die USA kann je nach Reisekontext ein Besuchervisum oder – bei entsprechender Berechtigung – das Visa Waiver Program mit ESTA relevant sein. Nutze die offiziellen Tourismus- und Besuchshinweise des U.S. Department of State.",
+      "it": "Per gli Stati Uniti possono essere rilevanti un visto visitatore oppure, per i viaggiatori idonei, il Visa Waiver Program con ESTA. Usa le indicazioni ufficiali del Dipartimento di Stato per il caso concreto.",
+      "es": "Para Estados Unidos puede corresponder un visado de visitante o, para viajeros que cumplan los requisitos, el Visa Waiver Program con ESTA. Utiliza la guía oficial del Departamento de Estado para el caso concreto.",
+      "fr": "Pour les États-Unis, un visa visiteur ou, pour les voyageurs éligibles, le Visa Waiver Program avec ESTA peut s’appliquer. Utilisez les indications officielles du Département d’État pour la situation réelle.",
+      "pt": "Para os Estados Unidos pode ser necessário um visto de visitante ou, para viajantes elegíveis, o Visa Waiver Program com ESTA. Use as orientações oficiais do Departamento de Estado para o caso concreto."
+    }
+  },
   "extensions": {
     "roadTrip": {
       "vehicleContextRequired": true,

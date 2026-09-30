@@ -3562,9 +3562,17 @@
         "segments": 4,
         "sourcedSegments": 0,
         "verifiedSegments": 0,
-        "latestEvidenceCheck": null
+        "latestEvidenceCheck": "2026-09-30"
       },
-      "sources": [],
+      "sources": [
+        {
+          "id": "no-udi-visitor-visa",
+          "issuer": "Norwegian Directorate of Immigration (UDI)",
+          "title": "Visitor visas for Norway",
+          "url": "https://www.udi.no/en/want-to-apply/visit-and-holiday/visitors-visa-to-norway/",
+          "checkedAt": "2026-09-30"
+        }
+      ],
       "preview": {
         "points": [
           {
@@ -5765,9 +5773,17 @@
         "segments": 5,
         "sourcedSegments": 0,
         "verifiedSegments": 0,
-        "latestEvidenceCheck": null
+        "latestEvidenceCheck": "2026-09-30"
       },
-      "sources": [],
+      "sources": [
+        {
+          "id": "is-official-visa-check",
+          "issuer": "Ísland.is — Icelandic authorities",
+          "title": "Check if you need a visa to travel to Iceland",
+          "url": "https://island.is/en/do-you-need-a-visa",
+          "checkedAt": "2026-09-30"
+        }
+      ],
       "preview": {
         "points": [
           {
@@ -6575,7 +6591,7 @@
         "segments": 5,
         "sourcedSegments": 5,
         "verifiedSegments": 0,
-        "latestEvidenceCheck": "2026-09-29"
+        "latestEvidenceCheck": "2026-09-30"
       },
       "sources": [
         {
@@ -6626,6 +6642,13 @@
           "title": "Aqaba",
           "url": "https://international.visitjordan.com/wheretogo/aqaba/",
           "checkedAt": "2026-09-29"
+        },
+        {
+          "id": "jo-moi-visa-services",
+          "issuer": "Jordan Ministry of Interior",
+          "title": "E-Applications for Visa and Residence Permits",
+          "url": "https://moi.gov.jo/EN/Pages/E_Applications_for_Visa_and_Residence_Permits",
+          "checkedAt": "2026-09-30"
         }
       ]
     },
@@ -6862,7 +6885,7 @@
         "segments": 2,
         "sourcedSegments": 2,
         "verifiedSegments": 0,
-        "latestEvidenceCheck": "2026-09-29"
+        "latestEvidenceCheck": "2026-09-30"
       },
       "sources": [
         {
@@ -6892,6 +6915,13 @@
           "title": "Jaipur",
           "url": "https://www.incredibleindia.gov.in/en/rajasthan/jaipur",
           "checkedAt": "2026-09-29"
+        },
+        {
+          "id": "in-official-visa-portal",
+          "issuer": "Bureau of Immigration, Ministry of Home Affairs, Government of India",
+          "title": "India Visa Online",
+          "url": "https://indianvisaonline.gov.in/",
+          "checkedAt": "2026-09-30"
         }
       ]
     },
@@ -7244,7 +7274,7 @@
         "segments": 4,
         "sourcedSegments": 4,
         "verifiedSegments": 0,
-        "latestEvidenceCheck": "2026-09-29"
+        "latestEvidenceCheck": "2026-09-30"
       },
       "sources": [
         {
@@ -7288,6 +7318,13 @@
           "title": "Canyonlands National Park — Plan Your Visit",
           "url": "https://www.nps.gov/cany/planyourvisit/index.htm",
           "checkedAt": "2026-09-29"
+        },
+        {
+          "id": "us-state-tourism-visit",
+          "issuer": "U.S. Department of State",
+          "title": "Tourism & Visit",
+          "url": "https://travel.state.gov/content/travel/en/us-visas/tourism-visit.html",
+          "checkedAt": "2026-09-30"
         }
       ]
     },

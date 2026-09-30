@@ -53,7 +53,7 @@ Implemented foundation:
 - Vercel-free local preview server with CI smoke tests
 
 Next product layers:
-- expand the source-backed nationality/passport and residence rule engine beyond the first official-check coverage for Italy, Japan, New Zealand, Canada and Australia; continue country by country without inferring eligibility
+- expand the source-backed nationality/passport and residence rule engine beyond the current official-check coverage for Italy, Japan, New Zealand, Canada, Australia, Norway, Iceland, the United States, India and Jordan; continue country by country without inferring eligibility
 - origin-market relevance now uses a structured starting country with an automatically derived broad region; seasonality and accessibility filters remain catalog-driven
 - practical trip-planning layer (implemented first on Italy): day-by-day itinerary, known transport minimum, fare/evidence coverage and Route Fit
 - browser-local save, saved-only discovery, JSON/CSV/ICS export and explicit-assumption budget estimator
