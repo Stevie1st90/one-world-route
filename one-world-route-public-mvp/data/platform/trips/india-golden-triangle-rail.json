@@ -291,8 +291,36 @@
       "claims": [
         "Jaipur is presented as one of the three points of India's Golden Triangle with Delhi and Agra."
       ]
+    },
+    {
+      "id": "in-official-visa-portal",
+      "title": "India Visa Online",
+      "issuer": "Bureau of Immigration, Ministry of Home Affairs, Government of India",
+      "issuerType": "government",
+      "url": "https://indianvisaonline.gov.in/",
+      "checkedAt": "2026-09-30",
+      "claims": [
+        "authorized Government of India portal routes foreign travellers to regular visa, eVisa or other applicable official entry channels",
+        "the portal states that eVisa is limited to specified categories and nationalities"
+      ]
     }
   ],
+  "entryGuidance": {
+    "personalizationRequired": true,
+    "destinationCountry": "IN",
+    "tripPurpose": "tourism",
+    "stayDays": 7,
+    "officialResolverSourceId": "in-official-visa-portal",
+    "supportingSourceIds": [],
+    "message": {
+      "en": "India’s visa route depends on nationality, passport, travel purpose and eligibility for specific visa channels. Use the Government of India’s authorized visa portal to identify the official route for the actual traveller.",
+      "de": "Der passende Visaweg für Indien hängt von Staatsangehörigkeit, Pass, Reisezweck und der Berechtigung für bestimmte Visaverfahren ab. Nutze das autorisierte Visa-Portal der indischen Regierung für den konkreten Reisekontext.",
+      "it": "Il percorso di visto per l’India dipende da cittadinanza, passaporto, scopo del viaggio e idoneità ai diversi canali. Usa il portale visti autorizzato dal Governo indiano per il caso concreto.",
+      "es": "La vía de visado para India depende de la ciudadanía, el pasaporte, el motivo del viaje y la elegibilidad para los distintos canales. Utiliza el portal de visados autorizado por el Gobierno de India.",
+      "fr": "La procédure de visa pour l’Inde dépend de la citoyenneté, du passeport, du motif du voyage et de l’éligibilité aux différents dispositifs. Utilisez le portail officiel autorisé par le gouvernement indien.",
+      "pt": "O caminho de visto para a Índia depende da cidadania, do passaporte, do objetivo da viagem e da elegibilidade para os diferentes canais. Use o portal de vistos autorizado pelo Governo da Índia."
+    }
+  },
   "extensions": {
     "rail": {
       "scope": "rail-only",
