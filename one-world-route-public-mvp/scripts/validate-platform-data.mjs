@@ -186,7 +186,9 @@ for (const item of catalog.trips || []) {
   if (entry) {
     for (const id of [entry.officialResolverSourceId,...(entry.supportingSourceIds||[])].filter(Boolean)) if (!sourceIds.has(id)) fail(item.id+': entry guidance references missing source '+id);
     if (entry.personalizationRequired !== true) fail(item.id+': entry guidance must require traveller personalization');
-    if (!(trip.geography?.countries||[]).includes(entry.destinationCountry)) fail(item.id+': entry guidance destinationCountry must be part of trip geography');
+    const entryDestinations=Array.isArray(entry.destinations)&&entry.destinations.length?entry.destinations:[entry.destinationCountry].filter(Boolean);
+    if (!entryDestinations.length) fail(item.id+': entry guidance requires destinationCountry or destinations');
+    for (const code of entryDestinations) if (!(trip.geography?.countries||[]).includes(code)) fail(item.id+': entry guidance destination '+code+' must be part of trip geography');
     if (!String(entry.tripPurpose||'').trim()) fail(item.id+': entry guidance requires tripPurpose');
     if (!entry.message || (typeof entry.message==='object'&&!Object.keys(entry.message).length)) fail(item.id+': entry guidance requires a user-facing message');
     const resolver=sourceById.get(entry.officialResolverSourceId);
