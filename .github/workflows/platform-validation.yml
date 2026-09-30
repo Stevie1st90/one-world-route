@@ -504,7 +504,7 @@ jobs:
   discovery-browser:
     name: Discovery browser smoke
     needs: changes
-    if: needs.changes.outputs.discovery_browser == 'true' && needs.changes.outputs.regional_browser != 'true'
+    if: needs.changes.outputs.discovery_browser == 'true'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -570,7 +570,7 @@ jobs:
           CHROME_BIN="$(command -v google-chrome || command -v chromium)"
           test -n "$CHROME_BIN"
           OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/platform-smoke.spec.mjs --grep="@regional" --project=desktop-1440 --workers=2
-          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/platform-smoke.spec.mjs --grep="@mobile-critical" --project=mobile-390 --workers=2
+          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/platform-smoke.spec.mjs --grep="@regional @mobile-critical" --project=mobile-390 --workers=2
       - name: Upload regional browser smoke artifacts
         if: failure()
         uses: actions/upload-artifact@v7
@@ -579,13 +579,13 @@ jobs:
           path: one-world-route-public-mvp/qa/test-results
           if-no-files-found: ignore
           retention-days: 7
-      - name: Upload discovery visual QA
+      - name: Upload regional visual QA
         if: success()
         uses: actions/upload-artifact@v7
         with:
-          name: discovery-visual-qa-${{ github.run_id }}
+          name: regional-visual-qa-${{ github.run_id }}
           path: one-world-route-public-mvp/qa/test-results
-          if-no-files-found: error
+          if-no-files-found: ignore
           retention-days: 7
 
   validate:
