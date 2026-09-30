@@ -20,6 +20,7 @@
   const JourneyGuide=PLATFORM_MODULES.journeyGuide;
   const PlaceExperiences=PLATFORM_MODULES.placeExperiences;
   const MyTrips=PLATFORM_MODULES.myTrips;
+  const Share=PLATFORM_MODULES.share||{configure:()=>({bind:()=>false}),bind:()=>false};
   const ServiceWorker=PLATFORM_MODULES.serviceWorker;
   const TripPlanning=PLATFORM_MODULES.tripPlanning;
   const Extensions=PLATFORM_MODULES.extensions;
@@ -439,6 +440,8 @@
         toast:Ui.toast
       });
       Ui.ensureGlobalActions({t,esc,onHome:goHome,onRoutes:openRouteLibrary,onMyTrips:openMyTrips,onTraveller:openTraveller});
+      Share.configure({t,toast:Ui.toast,title:()=>currentTripMeta?local(currentTripMeta.title):t('homeTitle')});
+      Share.bind();
       if(HOME_REQUEST){
         currentTripMeta=null;
         currentTrip=null;
