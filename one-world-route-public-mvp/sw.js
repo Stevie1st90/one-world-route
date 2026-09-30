@@ -1,5 +1,5 @@
 const LOCAL_PREVIEW=['127.0.0.1','localhost','::1'].includes(self.location.hostname);
-const CACHE='one-world-route-pwa-offline-20260929a';
+const CACHE='one-world-route-pwa-offline-20260930-inspiration';
 const MIGRATION_CACHE=/^one-world-route-(regional-hardening|homepage|utility-readiness|compare-calendar)-/;
 const SHELL=[
   '/index.html',
@@ -32,8 +32,10 @@ async function remember(request,response){
 }
 
 async function networkFirst(request,{fallback}={}){
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),15000);
   try{
-    const response=await fetch(request,{cache:'no-store'});
+    const response=await fetch(request,{cache:'no-store',signal:controller.signal});
     return remember(request,response);
   }catch(error){
     const cached=await caches.match(request);
@@ -43,7 +45,7 @@ async function networkFirst(request,{fallback}={}){
       if(fallbackResponse)return fallbackResponse;
     }
     throw error;
-  }
+  }finally{clearTimeout(timer)}
 }
 
 async function staleWhileRevalidate(request){

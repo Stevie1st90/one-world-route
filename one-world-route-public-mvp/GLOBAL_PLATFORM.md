@@ -23,3 +23,7 @@ Candidate events: journey_view, journey_open, journey_save, journey_compare, jou
 ## Content and SEO
 
 Keep own structured summaries, source links, checked dates, uncertainty and current-check-required states. Do not mirror foreign guides, blogs, articles or photography. Existing canonical, hreflang, TouristTrip JSON-LD and sitemap remain. Social is an acquisition channel; direct links and search pages stay independent of social platforms.
+
+## Offline delivery
+
+Existing network-first application delivery aborts stalled same-origin requests after 15 seconds and falls back to the existing cached resource/shell. This prevents an active service worker from holding a navigation indefinitely. It remains network-first; cached evidence retains its source dates and is not represented as newly checked. The release advances the shell-cache version. External tile/texture requests remain outside this policy.

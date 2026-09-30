@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
+import vm from 'node:vm';
 
 const root=new URL('../',import.meta.url);
 const read=path=>readFile(new URL(path,root),'utf8');
@@ -10,7 +11,7 @@ test('delivery policy keeps navigations and mutable app resources network-first'
   assert.match(sw,/request\.mode==='navigate'/);
   assert.match(sw,/networkFirst\(event\.request,\{fallback:'\/index\.html'\}\)/);
   assert.match(sw,/isFreshApplicationResource/);
-  assert.match(sw,/fetch\(request,\{cache:'no-store'\}\)/);
+  assert.match(sw,/fetch\(request,\{cache:'no-store',signal:controller\.signal\}\)/);
   assert.match(sw,/MIGRATION_CACHE/);
   assert.match(sw,/client\.navigate\(client\.url\)/);
   assert.match(sw,/CACHE_URLS/);
@@ -47,4 +48,12 @@ test('production feature bundle contains the update manager',async()=>{
   assert.match(build,/platform\/service-worker\.js/);
   assert.match(bundle,/===== platform\/service-worker\.js =====/);
   assert.match(bundle,/updateViaCache:'none'/);
+});
+
+test('a stalled network-first navigation aborts and returns the cached shell',async()=>{
+  const source=await read('sw.js'),shell={cached:true};let aborted=false,delay=null;
+  const context=vm.createContext({URL,AbortController,self:{location:{hostname:'one-world-route.vercel.app',origin:'https://one-world-route.vercel.app'},addEventListener(){}},caches:{match:async key=>key==='/index.html'?shell:undefined},fetch:async(request,options)=>new Promise((resolve,reject)=>options.signal.addEventListener('abort',()=>{aborted=true;reject(new Error('aborted'))},{once:true})),setTimeout:(fn,ms)=>{delay=ms;return setTimeout(fn,5)},clearTimeout});
+  vm.runInContext(source,context);
+  const result=await vm.runInContext("networkFirst({url:'https://one-world-route.vercel.app/?trip=world-195'},{fallback:'/index.html'})",context);
+  assert.equal(result,shell);assert.equal(aborted,true);assert.equal(delay,15000);
 });
