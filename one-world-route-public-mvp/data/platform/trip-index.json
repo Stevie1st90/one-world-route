@@ -4405,9 +4405,17 @@
         "segments": 4,
         "sourcedSegments": 0,
         "verifiedSegments": 0,
-        "latestEvidenceCheck": null
+        "latestEvidenceCheck": "2026-09-30"
       },
-      "sources": [],
+      "sources": [
+        {
+          "id": "ma-acces-maroc",
+          "issuer": "Kingdom of Morocco — Accès Maroc",
+          "title": "Accès Maroc",
+          "url": "https://www.acces-maroc.ma/",
+          "checkedAt": "2026-09-30"
+        }
+      ],
       "preview": {
         "points": [
           {
@@ -4668,9 +4676,17 @@
         "segments": 4,
         "sourcedSegments": 0,
         "verifiedSegments": 0,
-        "latestEvidenceCheck": null
+        "latestEvidenceCheck": "2026-09-30"
       },
-      "sources": [],
+      "sources": [
+        {
+          "id": "za-dha-eta",
+          "issuer": "South African Department of Home Affairs",
+          "title": "South African ETA",
+          "url": "https://eta.dha.gov.za/",
+          "checkedAt": "2026-09-30"
+        }
+      ],
       "preview": {
         "points": [
           {
@@ -5213,9 +5229,17 @@
         "segments": 5,
         "sourcedSegments": 0,
         "verifiedSegments": 0,
-        "latestEvidenceCheck": null
+        "latestEvidenceCheck": "2026-09-30"
       },
-      "sources": [],
+      "sources": [
+        {
+          "id": "vn-official-evisa",
+          "issuer": "Vietnam Immigration Department — Ministry of Public Security",
+          "title": "Vietnam National Electronic Visa system",
+          "url": "https://evisa.gov.vn/",
+          "checkedAt": "2026-09-30"
+        }
+      ],
       "preview": {
         "points": [
           {
@@ -6068,9 +6092,17 @@
         "segments": 4,
         "sourcedSegments": 0,
         "verifiedSegments": 0,
-        "latestEvidenceCheck": null
+        "latestEvidenceCheck": "2026-09-30"
       },
-      "sources": [],
+      "sources": [
+        {
+          "id": "pe-tourist-visa",
+          "issuer": "Ministry of Foreign Affairs of Peru — Plataforma del Estado Peruano",
+          "title": "Solicitar visa de turista para ingresar al Perú",
+          "url": "https://www.gob.pe/36240-solicitar-visa-de-turista-para-ingresar-al-peru",
+          "checkedAt": "2026-09-30"
+        }
+      ],
       "preview": {
         "points": [
           {

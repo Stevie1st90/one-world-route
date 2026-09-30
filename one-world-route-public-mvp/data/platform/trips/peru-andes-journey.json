@@ -264,7 +264,36 @@
       }
     }
   ],
-  "sources": [],
+  "sources": [
+    {
+      "id": "pe-tourist-visa",
+      "title": "Solicitar visa de turista para ingresar al Perú",
+      "issuer": "Ministry of Foreign Affairs of Peru — Plataforma del Estado Peruano",
+      "issuerType": "government",
+      "url": "https://www.gob.pe/36240-solicitar-visa-de-turista-para-ingresar-al-peru",
+      "checkedAt": "2026-09-30",
+      "claims": [
+        "the official government service states that tourist-visa requirements depend on country of origin",
+        "the page notes that citizens of some countries do not need a tourist visa and that applications are assessed individually"
+      ]
+    }
+  ],
+  "entryGuidance": {
+    "personalizationRequired": true,
+    "destinationCountry": "PE",
+    "tripPurpose": "tourism",
+    "stayDays": 13,
+    "officialResolverSourceId": "pe-tourist-visa",
+    "supportingSourceIds": [],
+    "message": {
+      "en": "Peru’s tourist-visa requirement depends on country of origin and the traveller’s circumstances. Use Peru’s official government tourist-visa service to resolve the actual traveller’s requirement.",
+      "de": "Ob für Peru ein Touristenvisum erforderlich ist, hängt vom Herkunftsland und vom konkreten Reisekontext ab. Nutze den offiziellen staatlichen Touristenvisa-Dienst Perus für die reisende Person.",
+      "it": "L’obbligo di visto turistico per il Perù dipende dal paese di origine e dalle circostanze del viaggiatore. Usa il servizio ufficiale del governo peruviano.",
+      "es": "La necesidad de visa de turismo para Perú depende del país de origen y de las circunstancias del viajero. Utiliza el servicio oficial del Estado peruano.",
+      "fr": "L’obligation de visa touristique pour le Pérou dépend du pays d’origine et de la situation du voyageur. Utilisez le service officiel de l’État péruvien.",
+      "pt": "A exigência de visto de turismo para o Peru depende do país de origem e das circunstâncias do viajante. Use o serviço oficial do governo peruano."
+    }
+  },
   "routePolicy": {
     "startMode": "endpoints",
     "reversible": true,
