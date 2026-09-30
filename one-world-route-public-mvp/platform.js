@@ -20,6 +20,7 @@
   const JourneyGuide=PLATFORM_MODULES.journeyGuide;
   const PlaceExperiences=PLATFORM_MODULES.placeExperiences;
   const MyTrips=PLATFORM_MODULES.myTrips;
+  const CloudSync=PLATFORM_MODULES.cloudSync||{init:async()=>({available:false}),status:()=>({available:false,signedIn:false}),subscribe:()=>()=>{},requestCode:async()=>({ok:false,reason:'unavailable'}),verifyCode:async()=>({ok:false,reason:'unavailable'}),signOut:async()=>({ok:true}),sync:async()=>({ok:false,reason:'unavailable'})};
   const PwaInstall=PLATFORM_MODULES.pwaInstall||{status:()=>({available:false,installed:false}),prompt:async()=>({ok:false,outcome:'unavailable'}),subscribe:()=>()=>{}};
   const ServiceWorker=PLATFORM_MODULES.serviceWorker;
   const TripPlanning=PLATFORM_MODULES.tripPlanning;
@@ -415,6 +416,7 @@
     try{
       catalog=await fetch(CATALOG_URL,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Trip catalog '+r.status);return r.json()});
       await SharedKnowledge.load();
+      await CloudSync.init({storage:localStorage,TripTools,catalog}).catch(error=>console.warn('Cloud sync init failed',error));
       const p=new URLSearchParams(location.search);
       const profile=loadProfile();
       const explicitLang=new URLSearchParams(location.search).get('lang');
@@ -438,6 +440,7 @@
         onOpenTrip:setQueryTrip,
         serviceWorker:ServiceWorker,
         pwaInstall:PwaInstall,
+        cloudSync:CloudSync,
         toast:Ui.toast
       });
       Ui.ensureGlobalActions({t,esc,onHome:goHome,onRoutes:openRouteLibrary,onMyTrips:openMyTrips,onTraveller:openTraveller});
