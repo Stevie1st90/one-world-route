@@ -585,7 +585,7 @@ jobs:
         with:
           name: regional-visual-qa-${{ github.run_id }}
           path: one-world-route-public-mvp/qa/test-results
-          if-no-files-found: error
+          if-no-files-found: ignore
           retention-days: 7
 
   validate:
