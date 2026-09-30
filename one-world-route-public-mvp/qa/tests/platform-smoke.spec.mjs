@@ -640,11 +640,12 @@ test('@discovery @mobile-critical inspiration selects published routes and keeps
  await page.emulateMedia({reducedMotion:'reduce'});
  await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
  await expect(page.locator('#platformHomeMoment .platform-home-card')).toHaveCount(1);
- await page.waitForFunction(()=>window.__ONE_WORLD_ROUTE_GLOBE__?.arcsData()?.some(a=>a.tripId==='japan-by-rail'));
+ await page.waitForFunction(()=>{const g=window.__ONE_WORLD_ROUTE_GLOBE__;return g?.arcsData()?.some(a=>a.tripId==='japan-by-rail')&&g.globeMaterial()?.map?.image?.complete});
  const defaults=await page.evaluate(()=>{const g=window.__ONE_WORLD_ROUTE_GLOBE__;return [...new Set(g.arcsData().map(g.arcStroke()))]});
  expect(defaults).toEqual([.23]);
  await page.evaluate(()=>{const g=window.__ONE_WORLD_ROUTE_GLOBE__;g.onArcClick()(g.arcsData().find(a=>a.tripId==='japan-by-rail'))});
  await expect(page.locator('#platformHomeGlobePreview')).toContainText('Japan by Rail');
+ await page.screenshot({path:testInfo.outputPath('globe-selection.png')});
  expect(await page.evaluate(()=>{const g=window.__ONE_WORLD_ROUTE_GLOBE__;return g.arcStroke()(g.arcsData().find(a=>a.tripId==='japan-by-rail'))})).toBe(.42);
  await page.locator('.platform-home-hero [data-home-inspire]').click();
  const first=await page.locator('#platformHomeMoment .platform-home-card').getAttribute('data-home-trip');
