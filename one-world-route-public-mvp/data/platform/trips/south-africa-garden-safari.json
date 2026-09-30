@@ -264,7 +264,36 @@
       }
     }
   ],
-  "sources": [],
+  "sources": [
+    {
+      "id": "za-dha-eta",
+      "title": "South African ETA",
+      "issuer": "South African Department of Home Affairs",
+      "issuerType": "government",
+      "url": "https://eta.dha.gov.za/",
+      "checkedAt": "2026-09-30",
+      "claims": [
+        "the official government ETA service supports tourism or visitor travel for eligible travellers",
+        "the service states that eligibility and the applicable authorization depend on passport and immigration requirements"
+      ]
+    }
+  ],
+  "entryGuidance": {
+    "personalizationRequired": true,
+    "destinationCountry": "ZA",
+    "tripPurpose": "tourism",
+    "stayDays": 16,
+    "officialResolverSourceId": "za-dha-eta",
+    "supportingSourceIds": [],
+    "message": {
+      "en": "South African entry authorization depends on passport, nationality and the traveller’s immigration circumstances; an ETA is only one possible official route. Use the Department of Home Affairs service for the actual traveller.",
+      "de": "Die passende Einreisegenehmigung für Südafrika hängt von Pass, Staatsangehörigkeit und dem konkreten Einreisekontext ab; eine ETA ist nur ein möglicher offizieller Weg. Nutze den Dienst des Department of Home Affairs für die reisende Person.",
+      "it": "L’autorizzazione d’ingresso in Sudafrica dipende da passaporto, nazionalità e circostanze migratorie; l’ETA è solo uno dei possibili canali ufficiali. Usa il servizio del Department of Home Affairs.",
+      "es": "La autorización de entrada a Sudáfrica depende del pasaporte, la nacionalidad y las circunstancias migratorias; la ETA es solo una posible vía oficial. Utiliza el servicio del Department of Home Affairs.",
+      "fr": "L’autorisation d’entrée en Afrique du Sud dépend du passeport, de la nationalité et de la situation migratoire; l’ETA n’est qu’une voie officielle possible. Utilisez le service du Department of Home Affairs.",
+      "pt": "A autorização de entrada na África do Sul depende do passaporte, da nacionalidade e das circunstâncias migratórias; a ETA é apenas uma possível via oficial. Use o serviço do Department of Home Affairs."
+    }
+  },
   "routePolicy": {
     "startMode": "endpoints",
     "reversible": true,
