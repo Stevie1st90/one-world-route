@@ -32,3 +32,17 @@ test('media credit is emitted only for licensed image assets',()=>{
   assert.match(api.credit({type:'image',asset:'./assets/example.webp',attribution:'Photo team',license:'owned'},v=>String(v)),/Photo team · owned/);
   assert.equal(api.credit({type:'art-directed',theme:'ocean'},v=>String(v)),'');
 });
+
+// Reject unlicensed assets and traversal even if an entry bypasses the data validator.
+test('media rendering requires credit, rights and a contained asset path',()=>{
+  const api=load();
+  assert.equal(api.descriptor({type:'image',asset:'./assets/example.webp'}).type,'art-directed');
+  assert.equal(api.descriptor({type:'image',asset:'./assets/../example.webp',license:'owned',attribution:'Team'}).type,'art-directed');
+});
+
+test('journey visuals project the public place coordinates',()=>{
+  const api=load();
+  const preview=api.tripPreview({places:[{id:'a',coordinates:{lat:35,lng:139}},{id:'b',coordinates:{lat:34,lng:135}}],stops:[{placeId:'a'},{placeId:'b'}]});
+  assert.match(api.routeArt(preview),/<path d="M/);
+  assert.equal(api.routeArt({arcs:[{start:{lat:null,lng:null},end:{lat:0,lng:0}}]}),'');
+});

@@ -155,7 +155,8 @@
       facetLabel,
       statusLabel,
       pluralLabel,
-      onOpenTrip:setQueryTrip
+      onOpenTrip:setQueryTrip,
+      onDiscovery:()=>location.assign('/'+(locale?'?lang='+encodeURIComponent(locale):'')+'#platformHomeExplore')
     });
   }
 
@@ -335,6 +336,7 @@
   function configureRegionalShell(){
     RegionalShell.configure({
       getTrip:()=>currentTrip,
+      getTripMeta:()=>currentTripMeta,
       getLocale:()=>locale,
       t,
       local,
@@ -441,7 +443,8 @@
         facetLabel,
         statusLabel,
         locale:()=>locale,
-        onOpenTrip:setQueryTrip,
+        onOpenTrip:(id,step)=>{const url=buildTripUrl(id);location.assign(url+(step?'&planStep='+encodeURIComponent(step):''))},
+        onTraveller:openTraveller,
         serviceWorker:ServiceWorker,
         pwaInstall:PwaInstall,
         cloudSync:CloudSync,

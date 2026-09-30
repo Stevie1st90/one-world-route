@@ -73,7 +73,8 @@
     const actionText=checks.accessCheckedAt?d.t('markForRecheck'):d.t('recordCurrentCheck');
     return '<section class="platform-mytrip-plan">'+
       '<div class="platform-mytrip-plan-head"><div><span>'+d.esc(d.t('planningStatus'))+'</span><b>'+d.esc(next)+'</b></div><strong>'+d.esc(String(plan.completed))+' / '+d.esc(String(plan.total))+'</strong></div>'+
-      '<div class="platform-mytrip-plan-list">'+steps+'</div>'+
+      '<button type="button" class="platform-mytrip-next" data-mytrip-next="'+d.esc(plan.next||'open')+'" data-trip-id="'+d.esc(id)+'">'+d.esc(plan.complete?d.t('continuePlanning'):d.t('nextAction')+': '+planningLabel(plan.next))+' →</button>'+
+      '<details class="platform-mytrip-status"><summary>'+d.esc(d.t('planningStatus'))+'</summary><div class="platform-mytrip-plan-list">'+steps+'</div></details>'+
       '<div class="platform-mytrip-plan-foot"><small>'+d.esc(d.t('planningStatusLead'))+'</small><button type="button" data-mytrip-access-check="'+d.esc(id)+'" data-checked="'+(checks.accessCheckedAt?'true':'false')+'">'+d.esc(actionText)+'</button></div>'+
     '</section>';
   }
@@ -280,6 +281,11 @@
           offlineBtn.textContent=original;
         }
         return;
+      }
+      const nextBtn=event.target.closest('[data-mytrip-next]');
+      if(nextBtn){
+        if(nextBtn.dataset.mytripNext==='origin'){d.onTraveller?.();return}
+        d.onOpenTrip(nextBtn.dataset.tripId,nextBtn.dataset.mytripNext);return;
       }
       const openBtn=event.target.closest('[data-mytrip-open]');
       if(openBtn){d.onOpenTrip(openBtn.dataset.mytripOpen);return}

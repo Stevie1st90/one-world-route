@@ -74,12 +74,8 @@
     const modeText=s.modes.length?s.modes.map(facetLabel).join(' · '):'—';
     return '<section class="platform-journey-guide">'+
       '<div class="platform-overview-section-head"><span>'+esc(t('journeyGuide'))+'</span><b>'+esc(t('guideDataDriven'))+'</b></div>'+
-      '<p class="detail-copy">'+esc(t('journeyGuideLead'))+'</p>'+
-      '<div class="platform-guide-rhythm">'+
-        '<div><span>'+esc(t('averageStay'))+'</span><b>'+esc(format(s.averageStayDays))+' '+esc(t('days'))+'</b></div>'+
-        '<div><span>'+esc(t('routeMovements'))+'</span><b>'+esc(s.totalSegments)+'</b></div>'+
-        '<div><span>'+esc(t('transportModes'))+'</span><b>'+esc(modeText)+'</b></div>'+
-      '</div>'+
+      '<p class="platform-guide-summary">'+esc(interpolate(t('guideRhythmSummary'),{days:format(s.averageStayDays),count:s.totalSegments}))+'</p>'+
+      '<p class="platform-guide-modes"><span>'+esc(t('transportModes'))+'</span> '+esc(modeText)+'</p>'+
       (focus?'<div class="platform-guide-subhead">'+esc(t('timeFocus'))+'</div><div class="platform-guide-focus">'+focus+'</div>':'')+
       (checks.length?'<details class="platform-guide-checks"><summary>'+esc(t('beforeBooking'))+' <span>'+esc(checks.length)+'</span></summary><ul>'+checks.map(item=>'<li>'+esc(item)+'</li>').join('')+'</ul></details>':'')+
     '</section>';

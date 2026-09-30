@@ -2,6 +2,12 @@
   'use strict';
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
   const $=(s,r=document)=>r.querySelector(s);
+  const dialogStack=[];
+  function syncDialogStack(){
+    const top=dialogStack.at(-1);
+    for(const modal of document.querySelectorAll('.platform-modal'))modal.inert=Boolean(top&&modal!==top);
+    const app=$('#app');if(app)app.inert=Boolean(top);
+  }
 
   function ensureDialog(id,cls='platform-modal'){
     let modal=$('#'+id);
@@ -11,8 +17,32 @@
     modal.className=`${cls} hidden`;
     modal.setAttribute('role','dialog');
     modal.setAttribute('aria-modal','true');
-    modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.add('hidden')});
+    modal.addEventListener('click',e=>{if(e.target===modal){modal.querySelector('.platform-x')?.click();modal.classList.add('hidden')}});
     document.body.appendChild(modal);
+    modal.tabIndex=-1;
+    let returnFocus=null,wasOpen=false;
+    const focusables=()=>[...modal.querySelectorAll('button,input,select,textarea,a[href],summary,[tabindex="0"]')].filter(node=>!node.disabled&&node.getClientRects().length);
+    const observer=new MutationObserver(()=>{
+      const isOpen=!modal.classList.contains('hidden');
+      if(isOpen===wasOpen)return;
+      wasOpen=isOpen;
+      if(!isOpen){const index=dialogStack.indexOf(modal);if(index>=0)dialogStack.splice(index,1);syncDialogStack();if(returnFocus?.isConnected)returnFocus.focus();return}
+      returnFocus=document.activeElement;
+      dialogStack.push(modal);modal.style.zIndex=String(160+dialogStack.length);syncDialogStack();
+      const title=modal.querySelector('h2');
+      if(title){title.id=id+'Title';modal.setAttribute('aria-labelledby',title.id)}
+      (focusables()[0]||modal).focus();
+    });
+    observer.observe(modal,{attributes:true,attributeFilter:['class']});
+    modal.addEventListener('keydown',event=>{
+      if(event.key==='Escape'){event.preventDefault();event.stopPropagation();modal.querySelector('.platform-x')?.click();modal.classList.add('hidden')}
+      if(event.key==='Tab'){
+        const nodes=focusables(),first=nodes[0],last=nodes.at(-1);
+        if(!first){event.preventDefault();modal.focus();return}
+        if(event.shiftKey&&(document.activeElement===first||document.activeElement===modal)){event.preventDefault();last.focus()}
+        else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
+      }
+    });
     return modal;
   }
 

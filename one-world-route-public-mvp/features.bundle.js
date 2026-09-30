@@ -273,6 +273,7 @@
   async function init(){ensureStyles();await loadData();wire();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
+
 /* ===== iteration7.js ===== */
 (() => {
   'use strict';
@@ -281,7 +282,7 @@
   const runtime={launchSegment:null,launchTimer:null,exiting:false,cameraTimer:null};
 
   function phaseFor(id){
-    const ranges=[[1,29],[30,39],[40,52],[53,64],[65,78],[79,95],[96,112],[113,120],[121,145],[146,169],[170,181],[182,194]];
+    const ranges=[[1,29],[30,39],[40,52],[53,64],[65,78],[79,95],[96,113],[114,121],[122,146],[147,170],[171,182],[183,194]];
     const i=ranges.findIndex(([a,b])=>id>=a&&id<=b);
     return i<0?1:i+1;
   }
@@ -554,6 +555,38 @@
 
   const LOCAL_PREVIEW=['127.0.0.1','localhost','::1'].includes(location.hostname);
 
+  async function cacheUrls(urls){
+    if(LOCAL_PREVIEW||!('serviceWorker' in navigator))return {ok:false,reason:LOCAL_PREVIEW?'local-preview':'unsupported'};
+    const registration=await navigator.serviceWorker.ready;
+    const worker=navigator.serviceWorker.controller||registration.active;
+    if(!worker)return {ok:false,reason:'inactive'};
+    const list=[...new Set((urls||[]).map(value=>String(value||'')).filter(value=>value.startsWith('/')))];
+    if(!list.length)return {ok:true,cached:0,total:0};
+    return new Promise(resolve=>{
+      const channel=new MessageChannel();
+      const timer=setTimeout(()=>resolve({ok:false,reason:'timeout',cached:0,total:list.length}),8000);
+      channel.port1.onmessage=event=>{clearTimeout(timer);resolve(event.data||{ok:false,reason:'empty-response'})};
+      worker.postMessage({type:'CACHE_URLS',urls:list},[channel.port2]);
+    });
+  }
+
+  async function cacheTrip(meta){
+    const dataset=String(meta?.dataset||'').replace(/^\.\//,'/');
+    const urls=['/data/platform/trips.json','/data/platform/place-experiences/index.json'];
+    if(dataset.startsWith('/')){
+      urls.push(dataset);
+      try{
+        const response=await fetch(dataset,{cache:'no-cache'});
+        if(response.ok){
+          const trip=await response.json();
+          const countries=[...new Set((trip.places||[]).map(place=>String(place.experienceRef||'').split(':')[0]).filter(code=>/^[A-Z]{2}$/.test(code)))];
+          for(const code of countries)urls.push('/data/platform/place-experiences/'+code+'.json');
+        }
+      }catch{}
+    }
+    return cacheUrls(urls);
+  }
+
   async function register(){
     if(LOCAL_PREVIEW||!('serviceWorker' in navigator))return {supported:false,reason:LOCAL_PREVIEW?'local-preview':'unsupported'};
     const hadController=Boolean(navigator.serviceWorker.controller);
@@ -583,7 +616,7 @@
     return {supported:true,registration};
   }
 
-  const api={register};
+  const api={register,cacheUrls,cacheTrip};
   window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
   window.ONE_WORLD_PLATFORM_MODULES.serviceWorker=api;
 
@@ -836,7 +869,7 @@
   }
 
   function phaseIdFor(id){
-    const ranges=[[1,29],[30,39],[40,52],[53,64],[65,78],[79,95],[96,112],[113,120],[121,145],[146,169],[170,181],[182,194]];
+    const ranges=[[1,29],[30,39],[40,52],[53,64],[65,78],[79,95],[96,113],[114,121],[122,146],[147,170],[171,182],[183,194]];
     const i=ranges.findIndex(([a,b])=>id>=a&&id<=b);return i<0?1:i+1;
   }
 
@@ -1559,14 +1592,120 @@
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
   const SUPPORTED_LOCALES=['en','de','it','es','fr','pt'];
   const I18N = {
-    en:{routes:'Routes',traveller:'Traveller',flagship:'Flagship',template:'Template',open:'Open route',days:'days',stops:'stops',segments:'segments',global:'Global perspective',contextTitle:'Traveller context',contextLead:'Used to adapt entry rules, language, currency and departure assumptions. Stored only on this device.',passports:'Passport country',secondPassport:'Second passport (optional)',residence:'Residence',language:'Language',currency:'Currency',originRegion:"Start region (derived)",originCountry:'Starting country',recommendedForYou:"Recommended for you",recommendationContextLead:"Ordered using your traveller context, starting country and journey fit. No hidden ranking model and no invented live transport.",origin:'Starting city / airport',adults:'Adults',children:'Children',mobility:'Reduced mobility',save:'Save context',clear:'Clear',close:'Close',notSet:'Not set',currentCheck:'Current check required',routeLibrary:'Explore routes',routeLibraryLead:'One platform for world journeys, round trips, road trips, rail, cruises and more.',editorial:'Editorial template — verify transport, prices and entry requirements for your dates.',overview:'Route overview',day:'Day',nights:'nights',transport:'Transport',verification:'Verification',backWorld:'World route',private:'Private on this device. Passport numbers, booking references and payment details are never requested.',sourcedBeta:'Sourced beta',sources:'Sources',lastChecked:'Last checked',publishedFrom:'from',verified:'Verified',routeEvidence:'Route evidence',entryGuidance:'Entry guidance',officialCheck:'Official check',connectionRequired:'connection required',minimumTravel:'minimum travel',cruiseTemplate:'Cruise template',onboardNights:'onboard nights',seaDays:'sea days',portCall:'Port call',embarkation:'Embarkation',disembarkation:'Disembarkation',border:'Border context',schengenExit:'Schengen exit',schengenEntry:'Schengen re-entry',sailingNeeded:'Select a real sailing for ship, operator, times, berth and price.',illustrative:'Illustrative',searchRoutes:'Search routes',filters:"Filters",hideFilters:"Hide filters",filterType:'Travel type',filterRegion:'Region',filterDuration:'Duration',all:'All',loadMoreJourneys:"Show {count} more journeys",showingJourneys:"Showing {shown} of {total} journeys",routeAccess:"Access to the route",routeAccessLead:"Your origin is separate from the curated core route. We adapt the route only where the itinerary safely supports it.",noRoutes:'No routes match these filters.',vehicleSection:'Vehicle context (optional)',vehicleType:'Vehicle',registrationCountry:'Registration country',fuelType:'Fuel / powertrain',euroClass:'Euro emissions class',rentalCrossBorder:'Rental approved for cross-border travel',privateCar:'Private car',rentalCar:'Rental car',camper:'Camper',motorcycle:'Motorcycle',otherVehicle:'Other',petrol:'Petrol',diesel:'Diesel',hybrid:'Hybrid',pluginHybrid:'Plug-in hybrid',electric:'Electric',hydrogen:'Hydrogen',unknown:'Unknown',roadRules:'Road context',crossBorder:'Cross-border',urbanAccess:'Urban access checks',vehicleNeeded:'Vehicle context required for toll, LEZ and access checks.',facet_world:'World',facet_round_trip:'Round trip',facet_road_trip:'Road trip',facet_cruise:'Cruise',facet_global:'Global',facet_europe:'Europe',facet_southern_europe:'Southern Europe',facet_italy:'Italy',facet_mediterranean:'Mediterranean',facet_north_africa:'North Africa',filterMode:'Transport',filterTheme:'Theme',results:'routes found',resetFilters:'Reset',details:'Details',start:'Start',finish:'Finish',previous:'Previous',next:'Next',type:'Type',country:'Country',duration:'Duration',cost:'Cost',segment:'Segment',stop:'Stop',currency:'Currency',facet_rail:'Rail',facet_bus:'Bus',facet_car:'Car',facet_ferry:'Ferry',facet_multimodal:'Multimodal',facet_road:'Road',facet_coach:'Coach',facet_ground_transfer:'Ground transfer',story:'Story',storyPlay:'Play story',storyExit:'Exit story',storyComplete:'Route complete',chapter:'Chapter',settings:'Settings',methodology:'Methodology',share:'Share',autoRotate:'Auto rotate',highDetail:'High detail globe',terrain:'Real 3D globe terrain',showPoints:'Stop points',routeGlow:'Route glow',arcThickness:'Route thickness',reducedMotion:'Reduced motion',terrainLoading:'Loading 3D terrain…',terrainUnavailable:'3D terrain unavailable',terrainHint:'Drag to rotate · scroll to zoom · real elevation appears as you move closer',routeMethodTitle:'Route methodology',routeMethodText:'This curated route uses publication-safe trip data and source-backed evidence where available. Volatile schedules, prices and traveller-specific rules remain explicitly unresolved until dates and context are known.',evidenceCoverage:'Evidence coverage',editorialStatus:'Editorial status',storyRoute:'Route story',routeFit:'Route Fit',showFit:'More fit filters',hideFit:'Hide fit filters',fitPace:'Pace',fitSeason:'Season',fitParty:'Travelling as',fitStart:'Route starts in',facet_relaxed:'Relaxed',facet_balanced:'Balanced',facet_active:'Active',facet_spring:'Spring',facet_summer:'Summer',facet_autumn:'Autumn',facet_winter:'Winter',facet_multi_season:'Multi-season',facet_solo:'Solo',facet_couples:'Couple',facet_friends:'Friends',facet_families:'Family',resultOne:'route found',countryUnit:'country',countriesUnit:'countries',facet_city:'City',facet_cruise_port:'Cruise port',facet_port:'Port',facet_rail_station:'Rail station',facet_airport:'Airport',facet_island:'Island',facet_park:'Park',facet_camper:"Camper",facet_island_hopping:"Island hopping",facet_asia:"Asia",facet_east_asia:"East Asia",facet_japan:"Japan",facet_south_america:"South America",facet_patagonia:"Patagonia",facet_argentina:"Argentina",facet_chile:"Chile",facet_northern_europe:"Northern Europe",facet_norway:"Norway",facet_oceania:"Oceania",facet_new_zealand:"New Zealand",facet_greece:"Greece",facet_africa:"Africa",facet_morocco:"Morocco",facet_southern_africa:"Southern Africa",facet_south_africa:"South Africa",facet_north_america:"North America",facet_canada:"Canada",facet_south_east_asia:"Southeast Asia",facet_vietnam:"Vietnam",facet_central_america:"Central America",facet_costa_rica:"Costa Rica",facet_iceland:"Iceland",facet_peru:"Peru",facet_andes:"Andes",facet_culture:"Culture",facet_food:"Food",facet_cities:"Cities",facet_mountains:"Mountains",facet_nature:"Nature",facet_adventure:"Adventure",facet_coast:"Coast",facet_arctic:"Arctic",facet_islands:"Islands",facet_desert:"Desert",facet_wildlife:"Wildlife",facet_tropical:"Tropical",facet_volcanic:"Volcanic",facet_history:"History",status_editorial_preview:"Editorial preview",status_planned:'Planned',status_sourced_beta:'Sourced beta',status_illustrative_template:'Illustrative template',status_draft:'Draft',home:'Home',homeNavSub:'Journeys on one world map',homeEyebrow:'Journey discovery',homeTitle:'One world. Many ways to travel.',homeLead:'Discover rail journeys, road trips, island escapes, cruises and longer adventures — then adapt them to your starting point, pace and plans.',exploreJourneys:'Explore journeys',openFlagship:'Open flagship journey',homeGlobeLabel:'Live route atlas',homeGlobeHint:'Select a line or stop to open its journey.',flagshipJourney:'Flagship journey',homeStates:'sovereign states',homeLegs:'international legs',homePlannedDays:'planned days',homeStart:'start',homeBaseModel:'base model',curatedCollections:"Curated collections",collectionsLead:"Browse by travel idea instead of starting with a long filter form.",journeyDiscovery:'Journey discovery',journeyDiscoveryLead:'Filter the published catalog by region, transport, theme, duration and Route Fit.',featuredJourneys:'Featured journeys',findJourneyEyebrow:'Start simple',findJourneyTitle:'Find your next journey',findJourneyLead:'Choose where, how and how long you want to travel. You can refine the details later.',whereTravel:'Where',howTravel:'Journey type',howLong:'How long',anywhere:'Anywhere',anyStyle:'Any journey type',anyDuration:'Any duration',showJourneys:'Show journeys',personalizeRecommendations:'Personalize recommendations',personalizeLead:'Add your starting country and travel preferences for more relevant suggestions.',tunePreferences:'Adjust preferences',recommendationsActive:'Recommendations use your saved traveller context on this device.',curatedJourneys:'curated journeys',worldRegions:'world regions',journeyTypes:'journey types',localPlanning:'planning stays local',moreFilters:'More filters',fewerFilters:'Fewer filters',filterAccessibility:'Accessibility',homeMethodTitle:'Data first. Uncertainty stays visible.',homeMethodText:'Every normal journey uses the same place → stop → segment model. Published routes stay source-aware and date-sensitive facts are not filled in by guesswork.',homeSourceRuleTitle:'Source-backed',homeSourceRule:'Evidence stays attached to the route data where available.',homeUnknownRuleTitle:'Unknown stays unknown',homeUnknownRule:'Schedules, fares and traveller-specific rules remain unresolved until they can be checked.',homeDeepLinkRuleTitle:'Direct by design',homeDeepLinkRule:'Every journey remains directly linkable and shareable.',exploreByRegion:"Explore by region",featuredLead:"Rail, road, islands, nature, cities and once-in-a-lifetime routes — curated as visual journeys before they become planning spreadsheets.",allJourneys:"All journeys",inspirationMethodTitle:"Inspiration first. Planning when it matters.",inspirationMethodText:"Journey pages lead with route, place and experience. Evidence, live schedules, prices and traveller-specific rules stay available as a deeper planning layer instead of defining the product.",globalDesignTitle:"Global by design",globalDesignText:"One reusable journey model supports rail, road, islands, cruises, camper routes and future trip types across the world.",homeFooter:'A public journey discovery platform.',facet_standard_check:'Standard check',facet_operator_dependent:'Operator dependent',facet_vehicle_dependent:'Vehicle dependent',facet_complex_planning:'Complex planning',journeyUpdates:"Journey updates",journeyUpdatesLead:"Shared planning guidance is maintained once and reused across every relevant journey.",checkBeforeTravel:"Check before travel",contextDependent:"Depends on your context",personalizeJourney:"Personalize",personalizeJourneyTitle:"Make this journey yours",personalizeJourneyLead:"Set your home starting point once and choose an alternative route entry when this itinerary supports it.",originPoint:"Your starting point",routeStart:"Start this route at",routeStartFlexibleLead:"This route can be reversed. Transport, fares and access are rechecked for the chosen direction.",routeStartFixedLead:"This itinerary uses a fixed route start. Your personal origin is still used for arrival planning.",routeStartUpdated:"Route start updated",entrySuggestion:"Suggested route entry · country-level",entrySuggestionApplied:"Applied",useSuggestedEntry:"Use suggestion",change:"Change",whatToExpect:'What to expect',experienceRoleStart:'Route opening',experienceRoleAnchor:'Longer stay',experienceRoleChapter:'Journey chapter',experienceRoleFinale:'Route finale',journeyGuide:'Journey guide',guideDataDriven:'From this route',journeyGuideLead:'See how the trip uses its time and what still needs checking before you book.',averageStay:'Average stay',routeMovements:'Route movements',timeFocus:'Where you spend more time',beforeBooking:'Before you book',guideReviewSegments:'{count} of {total} route movements still need a current-date check.',guideFareCoverage:'Published transport pricing exists for {known} of {total} route movements.',guideEntryContext:'Entry guidance depends on your Traveller Context.',guideVehicleContext:'Vehicle details can change toll, access or cross-border checks.',guideOriginAccess:'Travel from your origin to the curated route is planned separately.',guideEvidenceReady:'All route movements currently carry verified evidence.',planningGuide:'Practical planning',planThisTrip:'Plan this trip',planningLead:'A practical view of the published itinerary, known transport costs and evidence coverage.',knownTransportMinimum:'Known transport minimum',fareCoverage:'Fare coverage',transportModes:'Transport modes',lastEvidenceCheck:'Latest evidence check',dayByDay:'Day-by-day itinerary',planningBudgetScope:'Known published fares only — not a complete trip budget.',planningStartHere:'Start here',planningOrigin:'Your origin',saved:'Saved',saveTrip:'Save trip',removeSaved:'Remove saved',removedSaved:'Removed from saved trips',savedLocally:'Saved on this device',tripTools:'Trip tools',exportJson:'Export JSON',exportCsv:'Export CSV',budgetEstimate:'Budget estimate',budgetLead:'Use your own daily assumptions. Only published transport minimums are prefilled.',lodgingNight:'Lodging / night',foodPersonDay:'Food / person / day',localPersonDay:'Local travel / person / day',extras:'Extra fixed costs',contingency:'Contingency %',updateEstimate:'Update estimate',estimatedTripTotal:'Estimated trip total',budgetEstimateScope:'Personal estimate, not a quote.',travellers:'travellers',estimateUpdated:'Estimate updated',compare:'Compare',compareTrips:'Compare journeys',compareSelected:'Compare ({count})',compareLimit:'Compare up to three journeys at a time.',compareLead:'Side-by-side planning facts only — no ranking or winner.',savedOnly:'Saved only',travellerParty:'Traveller context',listedForContext:'listed for this party',contextCheckNeeded:'check suitability',mobilityCheck:'Mobility check',startDate:'Start date',exportCalendar:'Export calendar',calendarNeedsStartDate:'Choose a start date first.',transportMinimum:'Known transport',lodging:'Lodging',food:'Food',localTravel:'Local travel',transportMultiplier:'Transport fare multiplier',transportAssumption:'Published minimum fares are multiplied by this explicit traveller count; adjust it for child discounts, passes or non-per-person pricing.',myTrips:'My Trips',myTripsLead:'Your saved journeys and planning setup on this device.',myTripsEmptyTitle:'No saved journeys yet',myTripsEmptyLead:'Save a journey from discovery or a route page to build your personal planning workspace.',loading:'Loading…',planningSeason:'Planning season',planningSeasonLead:'A local planning preference only. It does not change published schedules or fares.',planningSeasonSaved:'Planning season saved',travellerFit:'Traveller fit context',vehicleContextMissing:'Vehicle context not set',transportUnknownBudget:'Published transport pricing is incomplete; this estimate currently treats unknown transport as zero.',exportWorkspace:'Export planning backup',planningStatus:'Planning status',nextPlanningStep:'Next planning step',planningCoreRecorded:'Core planning setup recorded',recordCurrentCheck:'Record current check',markForRecheck:'Mark for recheck',manualCheckRecorded:'Manual check recorded',continuePlanning:'Continue planning',planningAccessCheck:'Route access check',planningStatusLead:'Built from your saved setup. Manual checks are recorded here, not verified by ONE WORLD ROUTE.',planningWorkspaceLead:'Work through the essential setup in one place. Live access remains a manual current check.'},
-    de:{routes:'Routen',traveller:'Reisekontext',flagship:'Flagship',template:'Vorlage',open:'Route öffnen',days:'Tage',stops:'Stopps',segments:'Segmente',global:'Globale Perspektive',contextTitle:'Reisekontext',contextLead:'Passt Einreisehinweise, Sprache, Währung und Startannahmen an. Wird nur auf diesem Gerät gespeichert.',passports:'Passland',secondPassport:'Zweiter Pass (optional)',residence:'Wohnsitz',language:'Sprache',currency:'Währung',originRegion:"Startregion (abgeleitet)",originCountry:'Startland',recommendedForYou:"Für dich passend",recommendationContextLead:"Sortiert anhand deines Reisekontexts, deines Startlands und Route Fit. Kein verborgenes Ranking und keine erfundenen Live-Verbindungen.",origin:'Startstadt / Flughafen',adults:'Erwachsene',children:'Kinder',mobility:'Eingeschränkte Mobilität',save:'Kontext speichern',clear:'Zurücksetzen',close:'Schließen',notSet:'Nicht gesetzt',currentCheck:'Aktuelle Prüfung erforderlich',routeLibrary:'Routen entdecken',routeLibraryLead:'Eine Plattform für Weltreisen, Rundreisen, Roadtrips, Bahnreisen, Kreuzfahrten und mehr.',editorial:'Redaktionelle Vorlage — Verkehr, Preise und Einreisebedingungen für die eigenen Daten prüfen.',overview:'Routenübersicht',day:'Tag',nights:'Nächte',transport:'Verkehr',verification:'Prüfstatus',backWorld:'Weltreise',private:'Privat auf diesem Gerät. Passnummern, Buchungsreferenzen und Zahlungsdaten werden niemals abgefragt.',sourcedBeta:'Quellen-Beta',sources:'Quellen',lastChecked:'Zuletzt geprüft',publishedFrom:'ab',verified:'Verifiziert',routeEvidence:'Routenbelege',entryGuidance:'Einreisehinweise',officialCheck:'Offiziell prüfen',connectionRequired:'Umstieg einplanen',minimumTravel:'Mindestfahrzeit',cruiseTemplate:'Kreuzfahrt-Vorlage',onboardNights:'Nächte an Bord',seaDays:'Seetage',portCall:'Hafenstopp',embarkation:'Einschiffung',disembarkation:'Ausschiffung',border:'Grenzkontext',schengenExit:'Schengen-Ausreise',schengenEntry:'Schengen-Wiedereinreise',sailingNeeded:'Für Schiff, Reederei, Zeiten, Liegeplatz und Preis muss eine konkrete Abfahrt gewählt werden.',illustrative:'Illustrativ',searchRoutes:'Routen suchen',filters:"Filter",hideFilters:"Filter ausblenden",filterType:'Reiseart',filterRegion:'Region',filterDuration:'Dauer',all:'Alle',loadMoreJourneys:"{count} weitere Reisen anzeigen",showingJourneys:"{shown} von {total} Reisen angezeigt",routeAccess:"Anreise zur Route",routeAccessLead:"Dein Ausgangspunkt bleibt getrennt von der kuratierten Kernroute. Die Route wird nur angepasst, wenn die Reise das fachlich sicher unterstützt.",noRoutes:'Keine Route passt zu diesen Filtern.',vehicleSection:'Fahrzeugkontext (optional)',vehicleType:'Fahrzeug',registrationCountry:'Zulassungsland',fuelType:'Kraftstoff / Antrieb',euroClass:'Euro-Abgasnorm',rentalCrossBorder:'Mietwagen für Grenzübertritte freigegeben',privateCar:'Privatwagen',rentalCar:'Mietwagen',camper:'Camper',motorcycle:'Motorrad',otherVehicle:'Anderes',petrol:'Benzin',diesel:'Diesel',hybrid:'Hybrid',pluginHybrid:'Plug-in-Hybrid',electric:'Elektro',hydrogen:'Wasserstoff',unknown:'Unbekannt',roadRules:'Straßenkontext',crossBorder:'Grenzübertritt',urbanAccess:'Stadtzufahrt prüfen',vehicleNeeded:'Für Maut-, Umweltzonen- und Zufahrtsprüfungen wird ein Fahrzeugkontext benötigt.',facet_world:'Weltreise',facet_round_trip:'Rundreise',facet_road_trip:'Roadtrip',facet_cruise:'Kreuzfahrt',facet_global:'Global',facet_europe:'Europa',facet_southern_europe:'Südeuropa',facet_italy:'Italien',facet_mediterranean:'Mittelmeer',facet_north_africa:'Nordafrika',filterMode:'Verkehrsmittel',filterTheme:'Reisethema',results:'Routen gefunden',resetFilters:'Filter zurücksetzen',details:'Details',start:'Start',finish:'Ziel',previous:'Zurück',next:'Weiter',type:'Typ',country:'Land',duration:'Dauer',cost:'Kosten',segment:'Segment',stop:'Stopp',currency:'Währung',facet_rail:'Bahn',facet_bus:'Bus',facet_car:'Auto',facet_ferry:'Fähre',facet_multimodal:'Multimodal',facet_road:'Straße',facet_coach:'Fernbus',facet_ground_transfer:'Bodentransfer',story:'Story',storyPlay:'Story starten',storyExit:'Story beenden',storyComplete:'Route abgeschlossen',chapter:'Kapitel',settings:'Einstellungen',methodology:'Methodik',share:'Teilen',autoRotate:'Automatisch drehen',highDetail:'Hochauflösender Globus',terrain:'Echtes 3D-Globus-Terrain',showPoints:'Stopppunkte',routeGlow:'Routenleuchten',arcThickness:'Linienstärke',reducedMotion:'Reduzierte Bewegung',terrainLoading:'3D-Terrain wird geladen…',terrainUnavailable:'3D-Terrain nicht verfügbar',terrainHint:'Ziehen zum Drehen · scrollen zum Zoomen · echtes Relief erscheint beim Annähern',routeMethodTitle:'Routenmethodik',routeMethodText:'Diese kuratierte Route verwendet veröffentlichungssichere Reisedaten und, wo verfügbar, quellenbasierte Belege. Veränderliche Fahrpläne, Preise und reisendenspezifische Regeln bleiben ausdrücklich offen, bis Datum und Kontext feststehen.',evidenceCoverage:'Quellenabdeckung',editorialStatus:'Redaktioneller Status',storyRoute:'Routen-Story',routeFit:'Route Fit',showFit:'Weitere passende Filter',hideFit:'Passende Filter ausblenden',fitPace:'Reisetempo',fitSeason:'Reisezeit',fitParty:'Reisekonstellation',fitStart:'Routenstart',facet_relaxed:'Entspannt',facet_balanced:'Ausgewogen',facet_active:'Aktiv',facet_spring:'Frühling',facet_summer:'Sommer',facet_autumn:'Herbst',facet_winter:'Winter',facet_multi_season:'Mehrere Jahreszeiten',facet_solo:'Allein',facet_couples:'Paar',facet_friends:'Freunde',facet_families:'Familie',resultOne:'Route gefunden',countryUnit:'Land',countriesUnit:'Länder',facet_city:'Stadt',facet_cruise_port:'Kreuzfahrthafen',facet_port:'Hafen',facet_rail_station:'Bahnhof',facet_airport:'Flughafen',facet_island:'Insel',facet_park:'Park',facet_camper:"Camper",facet_island_hopping:"Inselhopping",facet_asia:"Asien",facet_east_asia:"Ostasien",facet_japan:"Japan",facet_south_america:"Südamerika",facet_patagonia:"Patagonien",facet_argentina:"Argentinien",facet_chile:"Chile",facet_northern_europe:"Nordeuropa",facet_norway:"Norwegen",facet_oceania:"Ozeanien",facet_new_zealand:"Neuseeland",facet_greece:"Griechenland",facet_africa:"Afrika",facet_morocco:"Marokko",facet_southern_africa:"Südliches Afrika",facet_south_africa:"Südafrika",facet_north_america:"Nordamerika",facet_canada:"Kanada",facet_south_east_asia:"Südostasien",facet_vietnam:"Vietnam",facet_central_america:"Mittelamerika",facet_costa_rica:"Costa Rica",facet_iceland:"Island",facet_peru:"Peru",facet_andes:"Anden",facet_culture:"Kultur",facet_food:"Kulinarik",facet_cities:"Städte",facet_mountains:"Berge",facet_nature:"Natur",facet_adventure:"Abenteuer",facet_coast:"Küste",facet_arctic:"Arktis",facet_islands:"Inseln",facet_desert:"Wüste",facet_wildlife:"Tierwelt",facet_tropical:"Tropisch",facet_volcanic:"Vulkanlandschaft",facet_history:"Geschichte",status_editorial_preview:"Redaktionelle Vorschau",status_planned:'Geplant',status_sourced_beta:'Quellen-Beta',status_illustrative_template:'Illustrative Vorlage',status_draft:'Entwurf',home:'Start',homeNavSub:'Reisen auf einer Weltkarte',homeEyebrow:'Reisen entdecken',homeTitle:'Eine Welt. Viele Arten zu reisen.',homeLead:'Entdecke Bahnreisen, Roadtrips, Inselreisen, Kreuzfahrten und längere Abenteuer – und passe sie anschließend an deinen Startpunkt, dein Tempo und deine Planung an.',exploreJourneys:'Reisen entdecken',openFlagship:'Flagship-Reise öffnen',homeGlobeLabel:'Live-Routenatlas',homeGlobeHint:'Eine Linie oder einen Stopp wählen, um die Reise zu öffnen.',flagshipJourney:'Flagship-Reise',homeStates:'souveräne Staaten',homeLegs:'internationale Etappen',homePlannedDays:'geplante Tage',homeStart:'Start',homeBaseModel:'Basismodell',curatedCollections:"Kuratierte Sammlungen",collectionsLead:"Nach Reiseidee entdecken, statt mit einem langen Filterformular zu beginnen.",journeyDiscovery:'Reisen entdecken',journeyDiscoveryLead:'Den veröffentlichten Katalog nach Region, Verkehr, Thema, Dauer und Route Fit filtern.',featuredJourneys:'Ausgewählte Reisen',findJourneyEyebrow:'Einfach starten',findJourneyTitle:'Finde deine nächste Reise',findJourneyLead:'Wähle, wohin, wie und wie lange du reisen möchtest. Die Details kannst du danach verfeinern.',whereTravel:'Wohin',howTravel:'Reiseart',howLong:'Wie lange',anywhere:'Überall',anyStyle:'Alle Reisearten',anyDuration:'Beliebige Dauer',showJourneys:'Reisen anzeigen',personalizeRecommendations:'Empfehlungen personalisieren',personalizeLead:'Hinterlege Startland und Reisevorlieben für passendere Vorschläge.',tunePreferences:'Vorlieben anpassen',recommendationsActive:'Empfehlungen nutzen deinen auf diesem Gerät gespeicherten Reisekontext.',curatedJourneys:'kuratierte Reisen',worldRegions:'Weltregionen',journeyTypes:'Reisearten',localPlanning:'Planung bleibt lokal',moreFilters:'Mehr Filter',fewerFilters:'Weniger Filter',filterAccessibility:'Zugänglichkeit',homeMethodTitle:'Daten zuerst. Unsicherheit bleibt sichtbar.',homeMethodText:'Jede normale Reise nutzt dasselbe Modell Ort → Stopp → Segment. Veröffentlichte Routen bleiben quellenbewusst; zeitabhängige Fakten werden nicht geraten.',homeSourceRuleTitle:'Quellenbasiert',homeSourceRule:'Belege bleiben, soweit verfügbar, direkt mit den Routendaten verknüpft.',homeUnknownRuleTitle:'Unbekannt bleibt unbekannt',homeUnknownRule:'Fahrpläne, Preise und reisendenspezifische Regeln bleiben offen, bis sie geprüft werden können.',homeDeepLinkRuleTitle:'Direkt verlinkbar',homeDeepLinkRule:'Jede Reise bleibt direkt aufrufbar und teilbar.',exploreByRegion:"Nach Region entdecken",featuredLead:"Bahn, Roadtrips, Inseln, Natur, Städte und einmalige Routen – zuerst als visuelle Reisen kuratiert, bevor sie zu Planungslisten werden.",allJourneys:"Alle Reisen",inspirationMethodTitle:"Inspiration zuerst. Planung, wenn sie wichtig wird.",inspirationMethodText:"Reiseseiten beginnen mit Route, Orten und Erlebnis. Quellen, Live-Fahrpläne, Preise und reisendenspezifische Regeln bleiben als tiefere Planungsebene verfügbar, statt das Produkt zu bestimmen.",globalDesignTitle:"Global gedacht",globalDesignText:"Ein wiederverwendbares Reisemodell unterstützt Bahn, Straße, Inseln, Kreuzfahrten, Camperrouten und zukünftige Reisearten weltweit.",homeFooter:'Eine öffentliche Plattform zum Entdecken von Reisen.',facet_standard_check:'Standardprüfung',facet_operator_dependent:'Anbieterabhängig',facet_vehicle_dependent:'Fahrzeugabhängig',facet_complex_planning:'Komplexe Planung',journeyUpdates:"Reise-Updates",journeyUpdatesLead:"Gemeinsame Planungshinweise werden einmal zentral gepflegt und automatisch in allen passenden Reisen wiederverwendet.",checkBeforeTravel:"Vor der Reise prüfen",contextDependent:"Abhängig von deinem Kontext",personalizeJourney:"Personalisieren",personalizeJourneyTitle:"Passe die Reise an dich an",personalizeJourneyLead:"Lege deinen persönlichen Ausgangsort einmal fest und wähle bei geeigneten Reisen einen alternativen Routeneinstieg.",originPoint:"Dein Ausgangspunkt",routeStart:"Route starten in",routeStartFlexibleLead:"Diese Route kann umgedreht werden. Verkehr, Preise und Zugangsbedingungen müssen für die gewählte Richtung aktuell geprüft werden.",routeStartFixedLead:"Diese Reise hat einen festen Routeneinstieg. Dein persönlicher Ausgangsort wird trotzdem für die Anreiseplanung verwendet.",routeStartUpdated:"Routenstart aktualisiert",entrySuggestion:"Empfohlener Routeneinstieg · Länderebene",entrySuggestionApplied:"Übernommen",useSuggestedEntry:"Empfehlung nutzen",change:"Ändern",whatToExpect:'Was dich erwartet',experienceRoleStart:'Auftakt der Route',experienceRoleAnchor:'Längerer Aufenthalt',experienceRoleChapter:'Etappe der Reise',experienceRoleFinale:'Finale der Route',journeyGuide:'Reise-Guide',guideDataDriven:'Aus dieser Route',journeyGuideLead:'Sieh auf einen Blick, wo die Reise Zeit verbringt und was vor der Buchung noch geprüft werden muss.',averageStay:'Ø Aufenthalt',routeMovements:'Routenetappen',timeFocus:'Hier verbringst du mehr Zeit',beforeBooking:'Vor der Buchung',guideReviewSegments:'{count} von {total} Routenetappen benötigen noch eine Prüfung für dein Reisedatum.',guideFareCoverage:'Für {known} von {total} Routenetappen liegen veröffentlichte Transportpreise vor.',guideEntryContext:'Einreisehinweise hängen von deinem Reisekontext ab.',guideVehicleContext:'Fahrzeugdaten können Maut-, Zufahrts- oder Grenzprüfungen verändern.',guideOriginAccess:'Die Anreise von deinem Startpunkt zur kuratierten Route wird separat geplant.',guideEvidenceReady:'Für alle Routenetappen liegen aktuell verifizierte Nachweise vor.',planningGuide:'Praktische Planung',planThisTrip:'Diese Reise planen',planningLead:'Praktischer Überblick über Reiseablauf, bekannte Verkehrskosten und Quellenabdeckung.',knownTransportMinimum:'Bekanntes Verkehrsminimum',fareCoverage:'Preisabdeckung',transportModes:'Verkehrsmittel',lastEvidenceCheck:'Letzte Quellenprüfung',dayByDay:'Reiseplan nach Tagen',planningBudgetScope:'Nur bekannte veröffentlichte Fahrpreise — kein vollständiges Reisebudget.',planningStartHere:'Start',planningOrigin:'Dein Startort',saved:'Gespeichert',saveTrip:'Reise speichern',removeSaved:'Aus Gespeichert entfernen',removedSaved:'Aus gespeicherten Reisen entfernt',savedLocally:'Auf diesem Gerät gespeichert',tripTools:'Reisewerkzeuge',exportJson:'JSON exportieren',exportCsv:'CSV exportieren',budgetEstimate:'Budgetschätzung',budgetLead:'Nutze eigene Tagesannahmen. Vorbelegt werden nur veröffentlichte Mindest-Verkehrskosten.',lodgingNight:'Unterkunft / Nacht',foodPersonDay:'Essen / Person / Tag',localPersonDay:'Nahverkehr / Person / Tag',extras:'Weitere Fixkosten',contingency:'Puffer %',updateEstimate:'Schätzung aktualisieren',estimatedTripTotal:'Geschätztes Reisebudget',budgetEstimateScope:'Persönliche Schätzung, kein Preisangebot.',travellers:'Reisende',estimateUpdated:'Schätzung aktualisiert',compare:'Vergleichen',compareTrips:'Reisen vergleichen',compareSelected:'Vergleichen ({count})',compareLimit:'Es können gleichzeitig bis zu drei Reisen verglichen werden.',compareLead:'Nur Planungsfakten im direkten Vergleich — ohne Ranking oder Sieger.',savedOnly:'Nur gespeichert',travellerParty:'Reisekontext',listedForContext:'für diese Konstellation vorgesehen',contextCheckNeeded:'Eignung prüfen',mobilityCheck:'Mobilität prüfen',startDate:'Startdatum',exportCalendar:'Kalender exportieren',calendarNeedsStartDate:'Bitte zuerst ein Startdatum wählen.',transportMinimum:'Bekannter Verkehr',lodging:'Unterkunft',food:'Essen',localTravel:'Nahverkehr',transportMultiplier:'Fahrpreis-Multiplikator',transportAssumption:'Veröffentlichte Mindestfahrpreise werden mit dieser ausdrücklich gesetzten Personenzahl multipliziert. Bei Kinderermäßigungen, Pässen oder nicht personenbezogenen Preisen bitte anpassen.',myTrips:'Meine Reisen',myTripsLead:'Deine gespeicherten Reisen und Planungsstände auf diesem Gerät.',myTripsEmptyTitle:'Noch keine Reisen gespeichert',myTripsEmptyLead:'Speichere eine Reise aus der Übersicht oder einer Routenseite, um deinen persönlichen Planungsbereich aufzubauen.',loading:'Wird geladen…',planningSeason:'Planungs-Reisezeit',planningSeasonLead:'Nur eine lokale Planungspräferenz. Veröffentlichte Fahrpläne oder Preise werden dadurch nicht verändert.',planningSeasonSaved:'Planungs-Reisezeit gespeichert',travellerFit:'Passung zum Reisekontext',vehicleContextMissing:'Fahrzeugkontext nicht gesetzt',transportUnknownBudget:'Veröffentlichte Verkehrspreise sind unvollständig; unbekannte Verkehrskosten werden in dieser Schätzung derzeit mit null angesetzt.',exportWorkspace:'Planungs-Backup exportieren',planningStatus:'Planungsstatus',nextPlanningStep:'Nächster Planungsschritt',planningCoreRecorded:'Grundlegende Planung erfasst',recordCurrentCheck:'Aktuelle Prüfung erfassen',markForRecheck:'Erneut prüfen',manualCheckRecorded:'Manuelle Prüfung erfasst',continuePlanning:'Weiter planen',planningAccessCheck:'Anreiseprüfung',planningStatusLead:'Aus deinen gespeicherten Angaben. Manuelle Prüfungen werden hier nur dokumentiert und nicht von ONE WORLD ROUTE verifiziert.',planningWorkspaceLead:'Arbeite die wichtigsten Planungsschritte an einem Ort ab. Aktuelle Anreise bleibt eine manuelle Prüfung.'},
-    it:{routes:'Itinerari',traveller:'Viaggiatore',flagship:'Flagship',template:'Modello',open:'Apri itinerario',days:'giorni',stops:'tappe',segments:'tratte',global:'Prospettiva globale',contextTitle:'Profilo viaggiatore',contextLead:'Adatta requisiti d’ingresso, lingua, valuta e partenza. Salvato solo su questo dispositivo.',passports:'Paese del passaporto',secondPassport:'Secondo passaporto (opzionale)',residence:'Residenza',language:'Lingua',currency:'Valuta',originRegion:"Regione di partenza (derivata)",originCountry:'Paese di partenza',recommendedForYou:"Consigliati per te",recommendationContextLead:"Ordinati in base al tuo contesto, al paese di partenza e al profilo del viaggio, senza inventare collegamenti live.",origin:'Città / aeroporto di partenza',adults:'Adulti',children:'Bambini',mobility:'Mobilità ridotta',save:'Salva',clear:'Cancella',close:'Chiudi',notSet:'Non impostato',currentCheck:'Verifica attuale richiesta',routeLibrary:'Esplora itinerari',routeLibraryLead:'Una piattaforma per giri del mondo, road trip, treni, crociere e altro.',editorial:'Modello editoriale — verifica trasporti, prezzi e requisiti per le tue date.',overview:'Panoramica',day:'Giorno',nights:'notti',transport:'Trasporto',verification:'Verifica',backWorld:'Giro del mondo',private:'Privato su questo dispositivo. Non chiediamo numeri di passaporto, prenotazioni o dati di pagamento.',sourcedBeta:'Beta con fonti',sources:'Fonti',lastChecked:'Ultima verifica',publishedFrom:'da',verified:'Verificato',routeEvidence:'Fonti del percorso',entryGuidance:'Ingresso',officialCheck:'Verifica ufficiale',connectionRequired:'coincidenza necessaria',minimumTravel:'tempo minimo',cruiseTemplate:'Modello crociera',onboardNights:'notti a bordo',seaDays:'giorni in mare',portCall:'Scalo',embarkation:'Imbarco',disembarkation:'Sbarco',border:'Contesto di frontiera',schengenExit:'Uscita Schengen',schengenEntry:'Rientro Schengen',sailingNeeded:'Seleziona una partenza reale per nave, operatore, orari, ormeggio e prezzo.',illustrative:'Illustrativo',searchRoutes:'Cerca itinerari',filters:"Filtri",hideFilters:"Nascondi filtri",filterType:'Tipo di viaggio',filterRegion:'Regione',filterDuration:'Durata',all:'Tutti',loadMoreJourneys:"Mostra altri {count} viaggi",showingJourneys:"Mostrati {shown} di {total} viaggi",routeAccess:"Accesso al percorso",routeAccessLead:"Il tuo punto di partenza resta separato dal percorso curato. Adattiamo la rotta solo quando l'itinerario lo consente in modo affidabile.",noRoutes:'Nessun itinerario corrisponde ai filtri.',vehicleSection:'Profilo veicolo (opzionale)',vehicleType:'Veicolo',registrationCountry:'Paese di immatricolazione',fuelType:'Carburante / propulsione',euroClass:'Classe Euro',rentalCrossBorder:'Noleggio autorizzato oltre confine',privateCar:'Auto privata',rentalCar:'Auto a noleggio',camper:'Camper',motorcycle:'Moto',otherVehicle:'Altro',petrol:'Benzina',diesel:'Diesel',hybrid:'Ibrido',pluginHybrid:'Ibrido plug-in',electric:'Elettrico',hydrogen:'Idrogeno',unknown:'Sconosciuto',roadRules:'Contesto stradale',crossBorder:'Transfrontaliero',urbanAccess:'Verifica accesso urbano',vehicleNeeded:'Il profilo veicolo è necessario per pedaggi, ZFE e accessi.',facet_world:'Giro del mondo',facet_round_trip:'Tour',facet_road_trip:'Road trip',facet_cruise:'Crociera',facet_global:'Globale',facet_europe:'Europa',facet_southern_europe:'Europa meridionale',facet_italy:'Italia',facet_mediterranean:'Mediterraneo',facet_north_africa:'Nord Africa',filterMode:'Trasporto',filterTheme:'Tema',results:'itinerari trovati',resetFilters:'Reimposta',details:'Dettagli',start:'Partenza',finish:'Arrivo',previous:'Indietro',next:'Avanti',type:'Tipo',country:'Paese',duration:'Durata',cost:'Costo',segment:'Tratta',stop:'Tappa',currency:'Valuta',facet_rail:'Treno',facet_bus:'Bus',facet_car:'Auto',facet_ferry:'Traghetto',facet_multimodal:'Multimodale',facet_road:'Strada',facet_coach:'Pullman',facet_ground_transfer:'Trasferimento terrestre',story:'Storia',storyPlay:'Avvia storia',storyExit:'Esci dalla storia',storyComplete:'Itinerario completato',chapter:'Capitolo',settings:'Impostazioni',methodology:'Metodologia',share:'Condividi',autoRotate:'Rotazione automatica',highDetail:'Globo ad alta definizione',terrain:'Terreno 3D reale',showPoints:'Punti delle tappe',routeGlow:'Bagliore itinerario',arcThickness:'Spessore linea',reducedMotion:'Movimento ridotto',terrainLoading:'Caricamento terreno 3D…',terrainUnavailable:'Terreno 3D non disponibile',terrainHint:'Trascina per ruotare · scorri per zoomare · il rilievo reale appare avvicinandoti',routeMethodTitle:'Metodologia itinerario',routeMethodText:'Questo itinerario curato usa dati pubblicabili e fonti verificabili quando disponibili. Orari, prezzi e regole personali variabili restano aperti finché non sono noti date e contesto.',evidenceCoverage:'Copertura fonti',editorialStatus:'Stato editoriale',storyRoute:'Storia itinerario',routeFit:'Route Fit',showFit:'Altri filtri di compatibilità',hideFit:'Nascondi filtri',fitPace:'Ritmo',fitSeason:'Stagione',fitParty:'Compagnia',fitStart:'Partenza itinerario',facet_relaxed:'Rilassato',facet_balanced:'Equilibrato',facet_active:'Attivo',facet_spring:'Primavera',facet_summer:'Estate',facet_autumn:'Autunno',facet_winter:'Inverno',facet_multi_season:'Più stagioni',facet_solo:'Solo',facet_couples:'Coppia',facet_friends:'Amici',facet_families:'Famiglia',resultOne:'itinerario trovato',countryUnit:'paese',countriesUnit:'paesi',facet_city:'Città',facet_cruise_port:'Porto crocieristico',facet_port:'Porto',facet_rail_station:'Stazione ferroviaria',facet_airport:'Aeroporto',facet_island:'Isola',facet_park:'Parco',facet_camper:"Camper",facet_island_hopping:"Da un'isola all'altra",facet_asia:"Asia",facet_east_asia:"Asia orientale",facet_japan:"Giappone",facet_south_america:"Sud America",facet_patagonia:"Patagonia",facet_argentina:"Argentina",facet_chile:"Cile",facet_northern_europe:"Europa settentrionale",facet_norway:"Norvegia",facet_oceania:"Oceania",facet_new_zealand:"Nuova Zelanda",facet_greece:"Grecia",facet_africa:"Africa",facet_morocco:"Marocco",facet_southern_africa:"Africa australe",facet_south_africa:"Sudafrica",facet_north_america:"Nord America",facet_canada:"Canada",facet_south_east_asia:"Sud-est asiatico",facet_vietnam:"Vietnam",facet_central_america:"America Centrale",facet_costa_rica:"Costa Rica",facet_iceland:"Islanda",facet_peru:"Perù",facet_andes:"Ande",facet_culture:"Cultura",facet_food:"Gastronomia",facet_cities:"Città",facet_mountains:"Montagne",facet_nature:"Natura",facet_adventure:"Avventura",facet_coast:"Costa",facet_arctic:"Artico",facet_islands:"Isole",facet_desert:"Deserto",facet_wildlife:"Fauna",facet_tropical:"Tropicale",facet_volcanic:"Vulcanico",facet_history:"Storia",status_editorial_preview:"Anteprima editoriale",status_planned:'Pianificato',status_sourced_beta:'Beta con fonti',status_illustrative_template:'Modello illustrativo',status_draft:'Bozza',home:'Home',homeNavSub:'Viaggi su una sola mappa del mondo',homeEyebrow:'Scopri i viaggi',homeTitle:'Un solo mondo. Tanti modi di viaggiare.',homeLead:'Scopri viaggi in treno, road trip, fughe tra le isole, crociere e avventure più lunghe, poi adattale al tuo punto di partenza, ritmo e piano.',exploreJourneys:'Scopri i viaggi',openFlagship:'Apri il viaggio flagship',homeGlobeLabel:'Atlante live degli itinerari',homeGlobeHint:'Seleziona una linea o una tappa per aprire il viaggio.',flagshipJourney:'Viaggio flagship',homeStates:'stati sovrani',homeLegs:'tratte internazionali',homePlannedDays:'giorni pianificati',homeStart:'partenza',homeBaseModel:'modello base',curatedCollections:"Collezioni curate",collectionsLead:"Esplora per idea di viaggio invece di iniziare con un lungo modulo di filtri.",journeyDiscovery:'Scopri i viaggi',journeyDiscoveryLead:'Filtra il catalogo pubblicato per regione, trasporto, tema, durata e Route Fit.',featuredJourneys:'Viaggi in evidenza',findJourneyEyebrow:'Inizia in modo semplice',findJourneyTitle:'Trova il tuo prossimo viaggio',findJourneyLead:'Scegli dove, come e per quanto tempo vuoi viaggiare. Potrai affinare i dettagli in seguito.',whereTravel:'Dove',howTravel:'Tipo di viaggio',howLong:'Quanto tempo',anywhere:'Ovunque',anyStyle:'Qualsiasi tipo di viaggio',anyDuration:'Qualsiasi durata',showJourneys:'Mostra viaggi',personalizeRecommendations:'Personalizza i consigli',personalizeLead:'Aggiungi il paese di partenza e le preferenze di viaggio per suggerimenti più pertinenti.',tunePreferences:'Modifica preferenze',recommendationsActive:'I consigli usano il contesto viaggiatore salvato su questo dispositivo.',curatedJourneys:'viaggi curati',worldRegions:'regioni del mondo',journeyTypes:'tipi di viaggio',localPlanning:'pianificazione locale',moreFilters:'Altri filtri',fewerFilters:'Meno filtri',filterAccessibility:'Accessibilità',homeMethodTitle:'Prima i dati. L’incertezza resta visibile.',homeMethodText:'Ogni viaggio normale usa lo stesso modello luogo → tappa → segmento. Gli itinerari pubblicati restano legati alle fonti e i dati sensibili alla data non vengono inventati.',homeSourceRuleTitle:'Basato su fonti',homeSourceRule:'Le prove restano collegate ai dati dell’itinerario quando disponibili.',homeUnknownRuleTitle:'Ciò che è ignoto resta ignoto',homeUnknownRule:'Orari, prezzi e regole specifiche del viaggiatore restano irrisolti finché non possono essere verificati.',homeDeepLinkRuleTitle:'Link diretto',homeDeepLinkRule:'Ogni viaggio resta direttamente raggiungibile e condivisibile.',exploreByRegion:"Esplora per regione",featuredLead:"Treno, strada, isole, natura, città e itinerari unici: prima esperienze visive, poi strumenti di pianificazione.",allJourneys:"Tutti i viaggi",inspirationMethodTitle:"Prima l'ispirazione. La pianificazione quando serve.",inspirationMethodText:"Le pagine dei viaggi partono da percorso, luoghi ed esperienza. Fonti, orari live, prezzi e regole personali restano in un livello di pianificazione più profondo.",globalDesignTitle:"Globale per design",globalDesignText:"Un unico modello riutilizzabile supporta treno, strada, isole, crociere, camper e futuri tipi di viaggio in tutto il mondo.",homeFooter:'Una piattaforma pubblica per scoprire viaggi.',facet_standard_check:'Controllo standard',facet_operator_dependent:'Dipende dall’operatore',facet_vehicle_dependent:'Dipende dal veicolo',facet_complex_planning:'Pianificazione complessa',journeyUpdates:"Aggiornamenti viaggio",journeyUpdatesLead:"Le indicazioni condivise vengono mantenute centralmente e riutilizzate in tutti i viaggi pertinenti.",checkBeforeTravel:"Verifica prima del viaggio",contextDependent:"Dipende dal tuo contesto",personalizeJourney:"Personalizza",personalizeJourneyTitle:"Adatta il viaggio a te",personalizeJourneyLead:"Imposta una volta il tuo punto di partenza e scegli un ingresso alternativo quando l'itinerario lo consente.",originPoint:"Il tuo punto di partenza",routeStart:"Inizia il percorso da",routeStartFlexibleLead:"Questo percorso può essere invertito. Trasporti, tariffe e accessi vanno ricontrollati per la direzione scelta.",routeStartFixedLead:"Questo itinerario ha un inizio fisso. Il tuo punto di partenza personale resta valido per pianificare l'arrivo.",routeStartUpdated:"Inizio percorso aggiornato",entrySuggestion:"Ingresso consigliato · livello paese",entrySuggestionApplied:"Applicato",useSuggestedEntry:"Usa suggerimento",change:"Modifica",whatToExpect:'Cosa aspettarsi',experienceRoleStart:'Inizio del percorso',experienceRoleAnchor:'Soggiorno più lungo',experienceRoleChapter:'Tappa del viaggio',experienceRoleFinale:'Finale del percorso',journeyGuide:'Guida al viaggio',guideDataDriven:'Da questo itinerario',journeyGuideLead:'Vedi come il viaggio distribuisce il tempo e cosa va ancora verificato prima di prenotare.',averageStay:'Permanenza media',routeMovements:'Spostamenti',timeFocus:'Dove trascorri più tempo',beforeBooking:'Prima di prenotare',guideReviewSegments:'{count} di {total} spostamenti richiedono ancora una verifica aggiornata.',guideFareCoverage:'Sono disponibili prezzi di trasporto pubblicati per {known} di {total} spostamenti.',guideEntryContext:'Le indicazioni di ingresso dipendono dal tuo profilo viaggiatore.',guideVehicleContext:'I dati del veicolo possono cambiare verifiche su pedaggi, accessi o frontiere.',guideOriginAccess:'Il viaggio dal tuo punto di partenza all’itinerario curato viene pianificato separatamente.',guideEvidenceReady:'Tutti gli spostamenti hanno attualmente evidenze verificate.',planningGuide:'Pianificazione pratica',planThisTrip:'Pianifica questo viaggio',planningLead:'Una vista pratica dell’itinerario pubblicato, dei costi di trasporto noti e della copertura delle fonti.',knownTransportMinimum:'Minimo trasporti noto',fareCoverage:'Copertura tariffe',transportModes:'Mezzi di trasporto',lastEvidenceCheck:'Ultima verifica fonti',dayByDay:'Itinerario giorno per giorno',planningBudgetScope:'Solo tariffe pubblicate note — non è un budget completo del viaggio.',planningStartHere:'Inizio',planningOrigin:'La tua partenza',saved:'Salvato',saveTrip:'Salva viaggio',removeSaved:'Rimuovi dai salvati',removedSaved:'Rimosso dai viaggi salvati',savedLocally:'Salvato su questo dispositivo',tripTools:'Strumenti di viaggio',exportJson:'Esporta JSON',exportCsv:'Esporta CSV',budgetEstimate:'Stima del budget',budgetLead:'Usa le tue ipotesi giornaliere. Sono precompilati solo i minimi di trasporto pubblicati.',lodgingNight:'Alloggio / notte',foodPersonDay:'Cibo / persona / giorno',localPersonDay:'Trasporti locali / persona / giorno',extras:'Altri costi fissi',contingency:'Margine %',updateEstimate:'Aggiorna stima',estimatedTripTotal:'Totale stimato',budgetEstimateScope:'Stima personale, non un preventivo.',travellers:'viaggiatori',estimateUpdated:'Stima aggiornata',compare:'Confronta',compareTrips:'Confronta viaggi',compareSelected:'Confronta ({count})',compareLimit:'Puoi confrontare fino a tre viaggi alla volta.',compareLead:'Solo fatti di pianificazione affiancati — nessuna classifica o vincitore.',savedOnly:'Solo salvati',travellerParty:'Profilo viaggiatore',listedForContext:'previsto per questo gruppo',contextCheckNeeded:'verifica idoneità',mobilityCheck:'Verifica mobilità',startDate:'Data di partenza',exportCalendar:'Esporta calendario',calendarNeedsStartDate:'Scegli prima una data di partenza.',transportMinimum:'Trasporto noto',lodging:'Alloggio',food:'Cibo',localTravel:'Trasporto locale',transportMultiplier:'Moltiplicatore tariffa trasporto',transportAssumption:'Le tariffe minime pubblicate vengono moltiplicate per questo numero esplicito di viaggiatori; regolalo per sconti bambini, pass o prezzi non individuali.',myTrips:'I miei viaggi',myTripsLead:'I viaggi salvati e lo stato della pianificazione su questo dispositivo.',myTripsEmptyTitle:'Nessun viaggio salvato',myTripsEmptyLead:'Salva un viaggio dalla scoperta o da una pagina itinerario per creare il tuo spazio di pianificazione personale.',loading:'Caricamento…',planningSeason:'Stagione di pianificazione',planningSeasonLead:'Solo una preferenza locale di pianificazione. Non modifica orari o tariffe pubblicate.',planningSeasonSaved:'Stagione di pianificazione salvata',travellerFit:'Contesto di compatibilità',vehicleContextMissing:'Contesto veicolo non impostato',transportUnknownBudget:'I prezzi pubblicati dei trasporti sono incompleti; questa stima considera temporaneamente a zero i costi di trasporto sconosciuti.',exportWorkspace:'Esporta backup pianificazione',planningStatus:'Stato della pianificazione',nextPlanningStep:'Prossimo passo di pianificazione',planningCoreRecorded:'Impostazione di base registrata',recordCurrentCheck:'Registra controllo attuale',markForRecheck:'Segna da ricontrollare',manualCheckRecorded:'Controllo manuale registrato',continuePlanning:'Continua a pianificare',planningAccessCheck:'Controllo accesso al percorso',planningStatusLead:'Basato sui dati salvati. I controlli manuali vengono registrati qui, non verificati da ONE WORLD ROUTE.',planningWorkspaceLead:'Completa la configurazione essenziale in un solo posto. L’accesso attuale resta un controllo manuale.'},
-    es:{routes:'Rutas',traveller:'Viajero',flagship:'Flagship',template:'Plantilla',open:'Abrir ruta',days:'días',stops:'paradas',segments:'tramos',global:'Perspectiva global',contextTitle:'Contexto del viajero',contextLead:'Adapta requisitos de entrada, idioma, moneda y origen. Solo se guarda en este dispositivo.',passports:'País del pasaporte',secondPassport:'Segundo pasaporte (opcional)',residence:'Residencia',language:'Idioma',currency:'Moneda',originRegion:"Región de salida (derivada)",originCountry:'País de salida',recommendedForYou:"Recomendados para ti",recommendationContextLead:"Ordenados según tu contexto, país de salida y encaje del viaje, sin inventar conexiones en vivo.",origin:'Ciudad / aeropuerto de salida',adults:'Adultos',children:'Niños',mobility:'Movilidad reducida',save:'Guardar',clear:'Borrar',close:'Cerrar',notSet:'Sin definir',currentCheck:'Revisión actual necesaria',routeLibrary:'Explorar rutas',routeLibraryLead:'Una plataforma para vueltas al mundo, road trips, trenes, cruceros y más.',editorial:'Plantilla editorial — verifica transporte, precios y requisitos para tus fechas.',overview:'Resumen de ruta',day:'Día',nights:'noches',transport:'Transporte',verification:'Verificación',backWorld:'Ruta mundial',private:'Privado en este dispositivo. Nunca pedimos números de pasaporte, reservas ni pagos.',sourcedBeta:'Beta con fuentes',sources:'Fuentes',lastChecked:'Última revisión',publishedFrom:'desde',verified:'Verificado',routeEvidence:'Fuentes de ruta',entryGuidance:'Entrada',officialCheck:'Comprobación oficial',connectionRequired:'conexión necesaria',minimumTravel:'tiempo mínimo',cruiseTemplate:'Plantilla de crucero',onboardNights:'noches a bordo',seaDays:'días de navegación',portCall:'Escala',embarkation:'Embarque',disembarkation:'Desembarque',border:'Contexto fronterizo',schengenExit:'Salida de Schengen',schengenEntry:'Reentrada a Schengen',sailingNeeded:'Selecciona una salida real para barco, operador, horarios, atraque y precio.',illustrative:'Ilustrativo',searchRoutes:'Buscar rutas',filters:"Filtros",hideFilters:"Ocultar filtros",filterType:'Tipo de viaje',filterRegion:'Región',filterDuration:'Duración',all:'Todas',loadMoreJourneys:"Mostrar {count} viajes más",showingJourneys:"Mostrando {shown} de {total} viajes",routeAccess:"Acceso a la ruta",routeAccessLead:"Tu origen se mantiene separado de la ruta principal curada. Solo adaptamos la ruta cuando el itinerario lo permite de forma segura.",noRoutes:'Ninguna ruta coincide con los filtros.',vehicleSection:'Contexto del vehículo (opcional)',vehicleType:'Vehículo',registrationCountry:'País de matriculación',fuelType:'Combustible / propulsión',euroClass:'Clase Euro',rentalCrossBorder:'Alquiler autorizado para cruzar fronteras',privateCar:'Coche privado',rentalCar:'Coche de alquiler',camper:'Camper',motorcycle:'Moto',otherVehicle:'Otro',petrol:'Gasolina',diesel:'Diésel',hybrid:'Híbrido',pluginHybrid:'Híbrido enchufable',electric:'Eléctrico',hydrogen:'Hidrógeno',unknown:'Desconocido',roadRules:'Contexto vial',crossBorder:'Transfronterizo',urbanAccess:'Comprobar acceso urbano',vehicleNeeded:'Se requiere contexto del vehículo para peajes, ZBE y accesos.',facet_world:'Vuelta al mundo',facet_round_trip:'Ruta circular',facet_road_trip:'Road trip',facet_cruise:'Crucero',facet_global:'Global',facet_europe:'Europa',facet_southern_europe:'Sur de Europa',facet_italy:'Italia',facet_mediterranean:'Mediterráneo',facet_north_africa:'Norte de África',filterMode:'Transporte',filterTheme:'Tema',results:'rutas encontradas',resetFilters:'Restablecer',details:'Detalles',start:'Inicio',finish:'Final',previous:'Anterior',next:'Siguiente',type:'Tipo',country:'País',duration:'Duración',cost:'Coste',segment:'Tramo',stop:'Parada',currency:'Moneda',facet_rail:'Tren',facet_bus:'Bus',facet_car:'Coche',facet_ferry:'Ferry',facet_multimodal:'Multimodal',facet_road:'Carretera',facet_coach:'Autocar',facet_ground_transfer:'Traslado terrestre',story:'Historia',storyPlay:'Reproducir historia',storyExit:'Salir de la historia',storyComplete:'Ruta completada',chapter:'Capítulo',settings:'Ajustes',methodology:'Metodología',share:'Compartir',autoRotate:'Rotación automática',highDetail:'Globo de alta definición',terrain:'Terreno 3D real',showPoints:'Puntos de parada',routeGlow:'Brillo de ruta',arcThickness:'Grosor de ruta',reducedMotion:'Movimiento reducido',terrainLoading:'Cargando terreno 3D…',terrainUnavailable:'Terreno 3D no disponible',terrainHint:'Arrastra para girar · desplázate para acercar · el relieve real aparece al aproximarte',routeMethodTitle:'Metodología de ruta',routeMethodText:'Esta ruta curada usa datos publicables y evidencia con fuentes cuando está disponible. Horarios, precios y reglas personales variables permanecen abiertos hasta conocer fechas y contexto.',evidenceCoverage:'Cobertura de fuentes',editorialStatus:'Estado editorial',storyRoute:'Historia de la ruta',routeFit:'Route Fit',showFit:'Más filtros de ajuste',hideFit:'Ocultar filtros',fitPace:'Ritmo',fitSeason:'Temporada',fitParty:'Compañía',fitStart:'Inicio de ruta',facet_relaxed:'Relajado',facet_balanced:'Equilibrado',facet_active:'Activo',facet_spring:'Primavera',facet_summer:'Verano',facet_autumn:'Otoño',facet_winter:'Invierno',facet_multi_season:'Varias estaciones',facet_solo:'Solo',facet_couples:'Pareja',facet_friends:'Amigos',facet_families:'Familia',resultOne:'ruta encontrada',countryUnit:'país',countriesUnit:'países',facet_city:'Ciudad',facet_cruise_port:'Puerto de cruceros',facet_port:'Puerto',facet_rail_station:'Estación de tren',facet_airport:'Aeropuerto',facet_island:'Isla',facet_park:'Parque',facet_camper:"Camper",facet_island_hopping:"De isla en isla",facet_asia:"Asia",facet_east_asia:"Asia Oriental",facet_japan:"Japón",facet_south_america:"Sudamérica",facet_patagonia:"Patagonia",facet_argentina:"Argentina",facet_chile:"Chile",facet_northern_europe:"Europa del Norte",facet_norway:"Noruega",facet_oceania:"Oceanía",facet_new_zealand:"Nueva Zelanda",facet_greece:"Grecia",facet_africa:"África",facet_morocco:"Marruecos",facet_southern_africa:"África Austral",facet_south_africa:"Sudáfrica",facet_north_america:"Norteamérica",facet_canada:"Canadá",facet_south_east_asia:"Sudeste Asiático",facet_vietnam:"Vietnam",facet_central_america:"Centroamérica",facet_costa_rica:"Costa Rica",facet_iceland:"Islandia",facet_peru:"Perú",facet_andes:"Andes",facet_culture:"Cultura",facet_food:"Gastronomía",facet_cities:"Ciudades",facet_mountains:"Montañas",facet_nature:"Naturaleza",facet_adventure:"Aventura",facet_coast:"Costa",facet_arctic:"Ártico",facet_islands:"Islas",facet_desert:"Desierto",facet_wildlife:"Fauna",facet_tropical:"Tropical",facet_volcanic:"Volcánico",facet_history:"Historia",status_editorial_preview:"Vista previa editorial",status_planned:'Planificado',status_sourced_beta:'Beta con fuentes',status_illustrative_template:'Plantilla ilustrativa',status_draft:'Borrador',home:'Inicio',homeNavSub:'Viajes en un solo mapa del mundo',homeEyebrow:'Descubre viajes',homeTitle:'Un mundo. Muchas formas de viajar.',homeLead:'Descubre viajes en tren, road trips, escapadas por islas, cruceros y aventuras más largas, y adáptalos a tu punto de partida, ritmo y plan.',exploreJourneys:'Descubrir viajes',openFlagship:'Abrir viaje insignia',homeGlobeLabel:'Atlas de rutas en vivo',homeGlobeHint:'Selecciona una línea o parada para abrir su viaje.',flagshipJourney:'Viaje insignia',homeStates:'estados soberanos',homeLegs:'tramos internacionales',homePlannedDays:'días planificados',homeStart:'inicio',homeBaseModel:'modelo base',curatedCollections:"Colecciones seleccionadas",collectionsLead:"Explora por idea de viaje en lugar de empezar con un largo formulario de filtros.",journeyDiscovery:'Descubrir viajes',journeyDiscoveryLead:'Filtra el catálogo publicado por región, transporte, tema, duración y Route Fit.',featuredJourneys:'Viajes destacados',findJourneyEyebrow:'Empieza fácil',findJourneyTitle:'Encuentra tu próximo viaje',findJourneyLead:'Elige dónde, cómo y cuánto tiempo quieres viajar. Después podrás afinar los detalles.',whereTravel:'Dónde',howTravel:'Tipo de viaje',howLong:'Cuánto tiempo',anywhere:'Cualquier lugar',anyStyle:'Cualquier tipo de viaje',anyDuration:'Cualquier duración',showJourneys:'Mostrar viajes',personalizeRecommendations:'Personalizar recomendaciones',personalizeLead:'Añade tu país de salida y preferencias de viaje para recibir sugerencias más relevantes.',tunePreferences:'Ajustar preferencias',recommendationsActive:'Las recomendaciones usan el contexto del viajero guardado en este dispositivo.',curatedJourneys:'viajes seleccionados',worldRegions:'regiones del mundo',journeyTypes:'tipos de viaje',localPlanning:'planificación local',moreFilters:'Más filtros',fewerFilters:'Menos filtros',filterAccessibility:'Accesibilidad',homeMethodTitle:'Primero los datos. La incertidumbre sigue visible.',homeMethodText:'Cada viaje normal usa el mismo modelo lugar → parada → segmento. Las rutas publicadas conservan sus fuentes y los datos sensibles a la fecha no se inventan.',homeSourceRuleTitle:'Con fuentes',homeSourceRule:'La evidencia permanece vinculada a los datos de la ruta cuando está disponible.',homeUnknownRuleTitle:'Lo desconocido sigue desconocido',homeUnknownRule:'Horarios, precios y reglas específicas del viajero quedan abiertos hasta poder verificarlos.',homeDeepLinkRuleTitle:'Enlace directo',homeDeepLinkRule:'Cada viaje sigue siendo accesible y compartible mediante un enlace directo.',exploreByRegion:"Explora por región",featuredLead:"Tren, carretera, islas, naturaleza, ciudades y rutas únicas: primero viajes visuales, después herramientas de planificación.",allJourneys:"Todos los viajes",inspirationMethodTitle:"Primero inspiración. Planificación cuando importa.",inspirationMethodText:"Las páginas empiezan por la ruta, los lugares y la experiencia. Fuentes, horarios en vivo, precios y reglas personales quedan en una capa de planificación más profunda.",globalDesignTitle:"Global desde el diseño",globalDesignText:"Un único modelo reutilizable admite tren, carretera, islas, cruceros, camper y futuros tipos de viaje en todo el mundo.",homeFooter:'Una plataforma pública para descubrir viajes.',facet_standard_check:'Comprobación estándar',facet_operator_dependent:'Depende del operador',facet_vehicle_dependent:'Depende del vehículo',facet_complex_planning:'Planificación compleja',journeyUpdates:"Actualizaciones del viaje",journeyUpdatesLead:"La orientación compartida se mantiene de forma central y se reutiliza en todos los viajes pertinentes.",checkBeforeTravel:"Comprobar antes del viaje",contextDependent:"Depende de tu contexto",personalizeJourney:"Personalizar",personalizeJourneyTitle:"Adapta el viaje a ti",personalizeJourneyLead:"Define una vez tu punto de partida y elige una entrada alternativa cuando el itinerario lo permita.",originPoint:"Tu punto de partida",routeStart:"Comenzar la ruta en",routeStartFlexibleLead:"Esta ruta puede invertirse. Transporte, tarifas y accesos deben volver a comprobarse para la dirección elegida.",routeStartFixedLead:"Este itinerario tiene un inicio fijo. Tu punto de partida personal sigue usándose para planificar la llegada.",routeStartUpdated:"Inicio de ruta actualizado",entrySuggestion:"Entrada sugerida · nivel país",entrySuggestionApplied:"Aplicada",useSuggestedEntry:"Usar sugerencia",change:"Cambiar",whatToExpect:'Qué esperar',experienceRoleStart:'Inicio de la ruta',experienceRoleAnchor:'Estancia más larga',experienceRoleChapter:'Etapa del viaje',experienceRoleFinale:'Final de la ruta',journeyGuide:'Guía del viaje',guideDataDriven:'Desde esta ruta',journeyGuideLead:'Consulta cómo se reparte el tiempo del viaje y qué falta comprobar antes de reservar.',averageStay:'Estancia media',routeMovements:'Desplazamientos',timeFocus:'Dónde pasas más tiempo',beforeBooking:'Antes de reservar',guideReviewSegments:'{count} de {total} desplazamientos aún necesitan una comprobación actualizada.',guideFareCoverage:'Hay precios de transporte publicados para {known} de {total} desplazamientos.',guideEntryContext:'La información de entrada depende de tu contexto de viajero.',guideVehicleContext:'Los datos del vehículo pueden cambiar las comprobaciones de peajes, acceso o fronteras.',guideOriginAccess:'El trayecto desde tu origen hasta la ruta curada se planifica por separado.',guideEvidenceReady:'Todos los desplazamientos cuentan actualmente con evidencia verificada.',planningGuide:'Planificación práctica',planThisTrip:'Planifica este viaje',planningLead:'Una visión práctica del itinerario publicado, los costes de transporte conocidos y la cobertura de fuentes.',knownTransportMinimum:'Mínimo de transporte conocido',fareCoverage:'Cobertura de tarifas',transportModes:'Transportes',lastEvidenceCheck:'Última revisión de fuentes',dayByDay:'Itinerario día a día',planningBudgetScope:'Solo tarifas publicadas conocidas — no es un presupuesto completo del viaje.',planningStartHere:'Inicio',planningOrigin:'Tu origen',saved:'Guardado',saveTrip:'Guardar viaje',removeSaved:'Quitar de guardados',removedSaved:'Eliminado de viajes guardados',savedLocally:'Guardado en este dispositivo',tripTools:'Herramientas de viaje',exportJson:'Exportar JSON',exportCsv:'Exportar CSV',budgetEstimate:'Estimación de presupuesto',budgetLead:'Usa tus propios supuestos diarios. Solo se precargan mínimos de transporte publicados.',lodgingNight:'Alojamiento / noche',foodPersonDay:'Comida / persona / día',localPersonDay:'Transporte local / persona / día',extras:'Otros costes fijos',contingency:'Margen %',updateEstimate:'Actualizar estimación',estimatedTripTotal:'Total estimado',budgetEstimateScope:'Estimación personal, no es una oferta.',travellers:'viajeros',estimateUpdated:'Estimación actualizada',compare:'Comparar',compareTrips:'Comparar viajes',compareSelected:'Comparar ({count})',compareLimit:'Puedes comparar hasta tres viajes a la vez.',compareLead:'Solo hechos de planificación en paralelo — sin clasificación ni ganador.',savedOnly:'Solo guardados',travellerParty:'Contexto del viajero',listedForContext:'incluido para este grupo',contextCheckNeeded:'revisar idoneidad',mobilityCheck:'Revisar movilidad',startDate:'Fecha de inicio',exportCalendar:'Exportar calendario',calendarNeedsStartDate:'Elige primero una fecha de inicio.',transportMinimum:'Transporte conocido',lodging:'Alojamiento',food:'Comida',localTravel:'Transporte local',transportMultiplier:'Multiplicador de tarifa',transportAssumption:'Las tarifas mínimas publicadas se multiplican por este número explícito de viajeros; ajústalo para descuentos infantiles, pases o precios no individuales.',myTrips:'Mis viajes',myTripsLead:'Tus viajes guardados y su estado de planificación en este dispositivo.',myTripsEmptyTitle:'Aún no hay viajes guardados',myTripsEmptyLead:'Guarda un viaje desde el buscador o una página de ruta para crear tu espacio personal de planificación.',loading:'Cargando…',planningSeason:'Temporada de planificación',planningSeasonLead:'Solo es una preferencia local de planificación. No modifica horarios ni tarifas publicadas.',planningSeasonSaved:'Temporada de planificación guardada',travellerFit:'Contexto de adecuación',vehicleContextMissing:'Contexto del vehículo no configurado',transportUnknownBudget:'Los precios publicados del transporte están incompletos; esta estimación trata temporalmente los costes desconocidos como cero.',exportWorkspace:'Exportar copia de planificación',planningStatus:'Estado de planificación',nextPlanningStep:'Siguiente paso de planificación',planningCoreRecorded:'Configuración básica registrada',recordCurrentCheck:'Registrar comprobación actual',markForRecheck:'Marcar para volver a comprobar',manualCheckRecorded:'Comprobación manual registrada',continuePlanning:'Seguir planificando',planningAccessCheck:'Comprobación de acceso a la ruta',planningStatusLead:'Basado en tu configuración guardada. Las comprobaciones manuales se registran aquí, no las verifica ONE WORLD ROUTE.',planningWorkspaceLead:'Completa la configuración esencial en un solo lugar. El acceso actual sigue siendo una comprobación manual.'},
-    fr:{routes:'Itinéraires',traveller:'Voyageur',flagship:'Flagship',template:'Modèle',open:'Ouvrir',days:'jours',stops:'étapes',segments:'segments',global:'Perspective globale',contextTitle:'Contexte voyageur',contextLead:'Adapte formalités, langue, devise et départ. Stocké uniquement sur cet appareil.',passports:'Pays du passeport',secondPassport:'Deuxième passeport (facultatif)',residence:'Résidence',language:'Langue',currency:'Devise',originRegion:"Région de départ (dérivée)",originCountry:'Pays de départ',recommendedForYou:"Recommandés pour vous",recommendationContextLead:"Classés selon votre contexte, votre pays de départ et l'adéquation du voyage, sans inventer de liaisons en direct.",origin:'Ville / aéroport de départ',adults:'Adultes',children:'Enfants',mobility:'Mobilité réduite',save:'Enregistrer',clear:'Effacer',close:'Fermer',notSet:'Non défini',currentCheck:'Vérification actuelle requise',routeLibrary:'Explorer les itinéraires',routeLibraryLead:'Une plateforme pour tours du monde, road trips, train, croisières et plus.',editorial:'Modèle éditorial — vérifiez transports, prix et formalités pour vos dates.',overview:'Aperçu',day:'Jour',nights:'nuits',transport:'Transport',verification:'Vérification',backWorld:'Tour du monde',private:'Privé sur cet appareil. Aucun numéro de passeport, référence de réservation ou paiement n’est demandé.',sourcedBeta:'Bêta sourcée',sources:'Sources',lastChecked:'Dernière vérification',publishedFrom:'à partir de',verified:'Vérifié',routeEvidence:'Sources de l’itinéraire',entryGuidance:'Entrée',officialCheck:'Vérification officielle',connectionRequired:'correspondance nécessaire',minimumTravel:'temps minimum',cruiseTemplate:'Modèle croisière',onboardNights:'nuits à bord',seaDays:'jours en mer',portCall:'Escale',embarkation:'Embarquement',disembarkation:'Débarquement',border:'Contexte frontalier',schengenExit:'Sortie Schengen',schengenEntry:'Rentrée Schengen',sailingNeeded:'Sélectionnez un départ réel pour le navire, l’opérateur, les horaires, le quai et le prix.',illustrative:'Illustratif',searchRoutes:'Rechercher des itinéraires',filters:"Filtres",hideFilters:"Masquer les filtres",filterType:'Type de voyage',filterRegion:'Région',filterDuration:'Durée',all:'Tous',loadMoreJourneys:"Afficher {count} voyages de plus",showingJourneys:"{shown} voyages affichés sur {total}",routeAccess:"Accès à l’itinéraire",routeAccessLead:"Votre point de départ reste distinct de l’itinéraire principal. Nous n’adaptons la route que lorsque l’itinéraire le permet de manière fiable.",noRoutes:'Aucun itinéraire ne correspond aux filtres.',vehicleSection:'Contexte véhicule (facultatif)',vehicleType:'Véhicule',registrationCountry:'Pays d’immatriculation',fuelType:'Carburant / motorisation',euroClass:'Classe Euro',rentalCrossBorder:'Location autorisée à franchir les frontières',privateCar:'Voiture privée',rentalCar:'Voiture de location',camper:'Camping-car',motorcycle:'Moto',otherVehicle:'Autre',petrol:'Essence',diesel:'Diesel',hybrid:'Hybride',pluginHybrid:'Hybride rechargeable',electric:'Électrique',hydrogen:'Hydrogène',unknown:'Inconnu',roadRules:'Contexte routier',crossBorder:'Transfrontalier',urbanAccess:'Vérifier l’accès urbain',vehicleNeeded:'Le contexte véhicule est requis pour péages, ZFE et accès.',facet_world:'Tour du monde',facet_round_trip:'Circuit',facet_road_trip:'Road trip',facet_cruise:'Croisière',facet_global:'Mondial',facet_europe:'Europe',facet_southern_europe:'Europe du Sud',facet_italy:'Italie',facet_mediterranean:'Méditerranée',facet_north_africa:'Afrique du Nord',filterMode:'Transport',filterTheme:'Thème',results:'itinéraires trouvés',resetFilters:'Réinitialiser',details:'Détails',start:'Départ',finish:'Arrivée',previous:'Précédent',next:'Suivant',type:'Type',country:'Pays',duration:'Durée',cost:'Coût',segment:'Segment',stop:'Étape',currency:'Devise',facet_rail:'Train',facet_bus:'Bus',facet_car:'Voiture',facet_ferry:'Ferry',facet_multimodal:'Multimodal',facet_road:'Route',facet_coach:'Autocar',facet_ground_transfer:'Transfert terrestre',story:'Récit',storyPlay:'Lire le récit',storyExit:'Quitter le récit',storyComplete:'Itinéraire terminé',chapter:'Chapitre',settings:'Réglages',methodology:'Méthodologie',share:'Partager',autoRotate:'Rotation automatique',highDetail:'Globe haute définition',terrain:'Relief 3D réel',showPoints:'Points d’étape',routeGlow:'Lueur de route',arcThickness:'Épaisseur de route',reducedMotion:'Mouvement réduit',terrainLoading:'Chargement du relief 3D…',terrainUnavailable:'Relief 3D indisponible',terrainHint:'Faites glisser pour tourner · faites défiler pour zoomer · le relief réel apparaît en vous rapprochant',routeMethodTitle:'Méthodologie de l’itinéraire',routeMethodText:'Cet itinéraire éditorialisé utilise des données publiables et des preuves sourcées lorsque disponibles. Horaires, prix et règles personnelles variables restent ouverts jusqu’à connaître les dates et le contexte.',evidenceCoverage:'Couverture des sources',editorialStatus:'Statut éditorial',storyRoute:'Récit de l’itinéraire',routeFit:'Route Fit',showFit:'Plus de filtres adaptés',hideFit:'Masquer les filtres',fitPace:'Rythme',fitSeason:'Saison',fitParty:'Avec qui',fitStart:'Départ de l’itinéraire',facet_relaxed:'Détendu',facet_balanced:'Équilibré',facet_active:'Actif',facet_spring:'Printemps',facet_summer:'Été',facet_autumn:'Automne',facet_winter:'Hiver',facet_multi_season:'Plusieurs saisons',facet_solo:'Solo',facet_couples:'Couple',facet_friends:'Amis',facet_families:'Famille',resultOne:'itinéraire trouvé',countryUnit:'pays',countriesUnit:'pays',facet_city:'Ville',facet_cruise_port:'Port de croisière',facet_port:'Port',facet_rail_station:'Gare',facet_airport:'Aéroport',facet_island:'Île',facet_park:'Parc',facet_camper:"Camping-car",facet_island_hopping:"D'île en île",facet_asia:"Asie",facet_east_asia:"Asie de l'Est",facet_japan:"Japon",facet_south_america:"Amérique du Sud",facet_patagonia:"Patagonie",facet_argentina:"Argentine",facet_chile:"Chili",facet_northern_europe:"Europe du Nord",facet_norway:"Norvège",facet_oceania:"Océanie",facet_new_zealand:"Nouvelle-Zélande",facet_greece:"Grèce",facet_africa:"Afrique",facet_morocco:"Maroc",facet_southern_africa:"Afrique australe",facet_south_africa:"Afrique du Sud",facet_north_america:"Amérique du Nord",facet_canada:"Canada",facet_south_east_asia:"Asie du Sud-Est",facet_vietnam:"Vietnam",facet_central_america:"Amérique centrale",facet_costa_rica:"Costa Rica",facet_iceland:"Islande",facet_peru:"Pérou",facet_andes:"Andes",facet_culture:"Culture",facet_food:"Gastronomie",facet_cities:"Villes",facet_mountains:"Montagnes",facet_nature:"Nature",facet_adventure:"Aventure",facet_coast:"Côte",facet_arctic:"Arctique",facet_islands:"Îles",facet_desert:"Désert",facet_wildlife:"Faune",facet_tropical:"Tropical",facet_volcanic:"Volcanique",facet_history:"Histoire",status_editorial_preview:"Aperçu éditorial",status_planned:'Planifié',status_sourced_beta:'Bêta sourcée',status_illustrative_template:'Modèle illustratif',status_draft:'Brouillon',home:'Accueil',homeNavSub:'Des voyages sur une seule carte du monde',homeEyebrow:'Découvrir les voyages',homeTitle:'Un monde. Mille façons de voyager.',homeLead:'Découvrez des voyages en train, road trips, escapades insulaires, croisières et aventures plus longues, puis adaptez-les à votre point de départ, votre rythme et votre projet.',exploreJourneys:'Découvrir les voyages',openFlagship:'Ouvrir le voyage phare',homeGlobeLabel:'Atlas des itinéraires en direct',homeGlobeHint:'Sélectionnez une ligne ou une étape pour ouvrir son voyage.',flagshipJourney:'Voyage phare',homeStates:'États souverains',homeLegs:'étapes internationales',homePlannedDays:'jours prévus',homeStart:'départ',homeBaseModel:'modèle de base',curatedCollections:"Collections sélectionnées",collectionsLead:"Explorez par idée de voyage plutôt que par un long formulaire de filtres.",journeyDiscovery:'Découvrir les voyages',journeyDiscoveryLead:'Filtrez le catalogue publié par région, transport, thème, durée et Route Fit.',featuredJourneys:'Voyages à découvrir',findJourneyEyebrow:'Commencez simplement',findJourneyTitle:'Trouvez votre prochain voyage',findJourneyLead:'Choisissez où, comment et combien de temps vous souhaitez voyager. Vous pourrez affiner ensuite.',whereTravel:'Où',howTravel:'Type de voyage',howLong:'Combien de temps',anywhere:'Partout',anyStyle:'Tous les types de voyage',anyDuration:'Toute durée',showJourneys:'Afficher les voyages',personalizeRecommendations:'Personnaliser les recommandations',personalizeLead:'Ajoutez votre pays de départ et vos préférences pour des suggestions plus pertinentes.',tunePreferences:'Ajuster les préférences',recommendationsActive:'Les recommandations utilisent le contexte voyageur enregistré sur cet appareil.',curatedJourneys:'voyages sélectionnés',worldRegions:'régions du monde',journeyTypes:'types de voyage',localPlanning:'planification locale',moreFilters:'Plus de filtres',fewerFilters:'Moins de filtres',filterAccessibility:'Accessibilité',homeMethodTitle:'Les données d’abord. L’incertitude reste visible.',homeMethodText:'Chaque voyage normal utilise le même modèle lieu → étape → segment. Les itinéraires publiés restent liés à leurs sources et les informations sensibles à la date ne sont pas inventées.',homeSourceRuleTitle:'Appuyé par des sources',homeSourceRule:'Les preuves restent liées aux données de l’itinéraire lorsqu’elles sont disponibles.',homeUnknownRuleTitle:'L’inconnu reste inconnu',homeUnknownRule:'Horaires, prix et règles propres au voyageur restent non résolus jusqu’à vérification.',homeDeepLinkRuleTitle:'Lien direct',homeDeepLinkRule:'Chaque voyage reste directement accessible et partageable.',exploreByRegion:"Explorer par région",featuredLead:"Train, route, îles, nature, villes et itinéraires uniques : d'abord des voyages visuels, puis les outils de planification.",allJourneys:"Tous les voyages",inspirationMethodTitle:"L'inspiration d'abord. La planification quand elle compte.",inspirationMethodText:"Les pages mettent d'abord en avant l'itinéraire, les lieux et l'expérience. Sources, horaires en direct, prix et règles personnelles restent dans une couche de planification plus profonde.",globalDesignTitle:"Pensé pour le monde",globalDesignText:"Un modèle réutilisable prend en charge train, route, îles, croisières, camper et futurs types de voyage partout dans le monde.",homeFooter:'Une plateforme publique de découverte de voyages.',facet_standard_check:'Vérification standard',facet_operator_dependent:'Dépend de l’opérateur',facet_vehicle_dependent:'Dépend du véhicule',facet_complex_planning:'Planification complexe',journeyUpdates:"Mises à jour du voyage",journeyUpdatesLead:"Les conseils partagés sont maintenus une seule fois et réutilisés dans tous les voyages concernés.",checkBeforeTravel:"Vérifier avant le voyage",contextDependent:"Dépend de votre contexte",personalizeJourney:"Personnaliser",personalizeJourneyTitle:"Adaptez ce voyage à vos besoins",personalizeJourneyLead:"Définissez une fois votre point de départ et choisissez une entrée alternative lorsque l'itinéraire le permet.",originPoint:"Votre point de départ",routeStart:"Commencer l'itinéraire à",routeStartFlexibleLead:"Cet itinéraire peut être inversé. Transport, tarifs et accès doivent être revérifiés pour le sens choisi.",routeStartFixedLead:"Cet itinéraire conserve un départ fixe. Votre origine personnelle reste utilisée pour préparer l'arrivée.",routeStartUpdated:"Départ de l'itinéraire mis à jour",entrySuggestion:"Entrée conseillée · niveau pays",entrySuggestionApplied:"Appliquée",useSuggestedEntry:"Utiliser",change:"Modifier",whatToExpect:'À quoi s’attendre',experienceRoleStart:'Début de l’itinéraire',experienceRoleAnchor:'Séjour plus long',experienceRoleChapter:'Étape du voyage',experienceRoleFinale:'Finale de l’itinéraire',journeyGuide:'Guide du voyage',guideDataDriven:'À partir de cet itinéraire',journeyGuideLead:'Voyez comment le voyage répartit son temps et ce qui reste à vérifier avant de réserver.',averageStay:'Séjour moyen',routeMovements:'Déplacements',timeFocus:'Où vous passez plus de temps',beforeBooking:'Avant de réserver',guideReviewSegments:'{count} déplacements sur {total} nécessitent encore une vérification à jour.',guideFareCoverage:'Des tarifs de transport publiés existent pour {known} déplacements sur {total}.',guideEntryContext:'Les formalités d’entrée dépendent de votre contexte voyageur.',guideVehicleContext:'Les données du véhicule peuvent modifier les contrôles de péage, d’accès ou de frontière.',guideOriginAccess:'Le trajet depuis votre point de départ jusqu’à l’itinéraire sélectionné est planifié séparément.',guideEvidenceReady:'Tous les déplacements disposent actuellement de preuves vérifiées.',planningGuide:'Planification pratique',planThisTrip:'Planifier ce voyage',planningLead:'Une vue pratique de l’itinéraire publié, des coûts de transport connus et de la couverture des sources.',knownTransportMinimum:'Minimum transport connu',fareCoverage:'Couverture des tarifs',transportModes:'Transports',lastEvidenceCheck:'Dernière vérification des sources',dayByDay:'Itinéraire jour par jour',planningBudgetScope:'Uniquement les tarifs publiés connus — pas un budget complet du voyage.',planningStartHere:'Départ',planningOrigin:'Votre point de départ',saved:'Enregistré',saveTrip:'Enregistrer le voyage',removeSaved:'Retirer des favoris',removedSaved:'Retiré des voyages enregistrés',savedLocally:'Enregistré sur cet appareil',tripTools:'Outils de voyage',exportJson:'Exporter JSON',exportCsv:'Exporter CSV',budgetEstimate:'Estimation du budget',budgetLead:'Utilisez vos propres hypothèses quotidiennes. Seuls les minima de transport publiés sont préremplis.',lodgingNight:'Hébergement / nuit',foodPersonDay:'Repas / personne / jour',localPersonDay:'Transport local / personne / jour',extras:'Autres coûts fixes',contingency:'Marge %',updateEstimate:'Mettre à jour',estimatedTripTotal:'Total estimé',budgetEstimateScope:'Estimation personnelle, pas un devis.',travellers:'voyageurs',estimateUpdated:'Estimation mise à jour',compare:'Comparer',compareTrips:'Comparer les voyages',compareSelected:'Comparer ({count})',compareLimit:'Vous pouvez comparer jusqu’à trois voyages à la fois.',compareLead:'Uniquement des faits de planification côte à côte — aucun classement ni gagnant.',savedOnly:'Enregistrés uniquement',travellerParty:'Contexte voyageur',listedForContext:'prévu pour ce groupe',contextCheckNeeded:'vérifier l’adéquation',mobilityCheck:'Vérifier la mobilité',startDate:'Date de départ',exportCalendar:'Exporter le calendrier',calendarNeedsStartDate:'Choisissez d’abord une date de départ.',transportMinimum:'Transport connu',lodging:'Hébergement',food:'Repas',localTravel:'Transport local',transportMultiplier:'Multiplicateur tarif transport',transportAssumption:'Les tarifs minimums publiés sont multipliés par ce nombre explicite de voyageurs ; ajustez-le pour les réductions enfants, pass ou prix non individuels.',myTrips:'Mes voyages',myTripsLead:'Vos voyages enregistrés et leur état de planification sur cet appareil.',myTripsEmptyTitle:'Aucun voyage enregistré',myTripsEmptyLead:'Enregistrez un voyage depuis la découverte ou une page d’itinéraire pour créer votre espace personnel de planification.',loading:'Chargement…',planningSeason:'Saison de planification',planningSeasonLead:'Il s’agit uniquement d’une préférence locale. Elle ne modifie ni horaires ni tarifs publiés.',planningSeasonSaved:'Saison de planification enregistrée',travellerFit:'Contexte d’adéquation',vehicleContextMissing:'Contexte véhicule non défini',transportUnknownBudget:'Les prix publiés des transports sont incomplets ; cette estimation traite actuellement les coûts inconnus comme nuls.',exportWorkspace:'Exporter la sauvegarde de planification',planningStatus:'État de la planification',nextPlanningStep:'Prochaine étape de planification',planningCoreRecorded:'Configuration de base enregistrée',recordCurrentCheck:'Enregistrer la vérification actuelle',markForRecheck:'Marquer à revérifier',manualCheckRecorded:'Vérification manuelle enregistrée',continuePlanning:'Continuer la planification',planningAccessCheck:'Vérification de l’accès à l’itinéraire',planningStatusLead:'Basé sur vos réglages enregistrés. Les vérifications manuelles sont consignées ici, pas vérifiées par ONE WORLD ROUTE.',planningWorkspaceLead:'Rassemblez les étapes essentielles de planification au même endroit. L’accès actuel reste une vérification manuelle.'},
-    pt:{routes:'Rotas',traveller:'Viajante',flagship:'Flagship',template:'Modelo',open:'Abrir rota',days:'dias',stops:'paradas',segments:'trechos',global:'Perspectiva global',contextTitle:'Contexto do viajante',contextLead:'Adapta entrada, idioma, moeda e origem. Guardado apenas neste dispositivo.',passports:'País do passaporte',secondPassport:'Segundo passaporte (opcional)',residence:'Residência',language:'Idioma',currency:'Moeda',originRegion:"Região de partida (derivada)",originCountry:'País de partida',recommendedForYou:"Recomendados para você",recommendationContextLead:"Ordenados pelo seu contexto, país de partida e adequação da viagem, sem inventar conexões ao vivo.",origin:'Cidade / aeroporto de partida',adults:'Adultos',children:'Crianças',mobility:'Mobilidade reduzida',save:'Salvar',clear:'Limpar',close:'Fechar',notSet:'Não definido',currentCheck:'Verificação atual necessária',routeLibrary:'Explorar rotas',routeLibraryLead:'Uma plataforma para voltas ao mundo, road trips, trem, cruzeiros e mais.',editorial:'Modelo editorial — verifique transporte, preços e entrada para suas datas.',overview:'Visão geral',day:'Dia',nights:'noites',transport:'Transporte',verification:'Verificação',backWorld:'Rota mundial',private:'Privado neste dispositivo. Nunca pedimos número de passaporte, referência de reserva ou pagamento.',sourcedBeta:'Beta com fontes',sources:'Fontes',lastChecked:'Última verificação',publishedFrom:'a partir de',verified:'Verificado',routeEvidence:'Fontes da rota',entryGuidance:'Entrada',officialCheck:'Verificação oficial',connectionRequired:'conexão necessária',minimumTravel:'tempo mínimo',cruiseTemplate:'Modelo de cruzeiro',onboardNights:'noites a bordo',seaDays:'dias no mar',portCall:'Escala',embarkation:'Embarque',disembarkation:'Desembarque',border:'Contexto de fronteira',schengenExit:'Saída de Schengen',schengenEntry:'Reentrada em Schengen',sailingNeeded:'Selecione uma partida real para navio, operadora, horários, cais e preço.',illustrative:'Ilustrativo',searchRoutes:'Pesquisar rotas',filters:"Filtros",hideFilters:"Ocultar filtros",filterType:'Tipo de viagem',filterRegion:'Região',filterDuration:'Duração',all:'Todas',loadMoreJourneys:"Mostrar mais {count} viagens",showingJourneys:"Mostrando {shown} de {total} viagens",routeAccess:"Acesso à rota",routeAccessLead:"Seu ponto de partida fica separado da rota principal curada. A rota só é adaptada quando o itinerário permite isso com segurança.",noRoutes:'Nenhuma rota corresponde aos filtros.',vehicleSection:'Contexto do veículo (opcional)',vehicleType:'Veículo',registrationCountry:'País de matrícula',fuelType:'Combustível / motorização',euroClass:'Classe Euro',rentalCrossBorder:'Aluguel autorizado para cruzar fronteiras',privateCar:'Carro particular',rentalCar:'Carro alugado',camper:'Motorhome',motorcycle:'Moto',otherVehicle:'Outro',petrol:'Gasolina',diesel:'Diesel',hybrid:'Híbrido',pluginHybrid:'Híbrido plug-in',electric:'Elétrico',hydrogen:'Hidrogênio',unknown:'Desconhecido',roadRules:'Contexto rodoviário',crossBorder:'Transfronteiriço',urbanAccess:'Verificar acesso urbano',vehicleNeeded:'O contexto do veículo é necessário para portagens, ZBE e acessos.',facet_world:'Volta ao mundo',facet_round_trip:'Roteiro circular',facet_road_trip:'Road trip',facet_cruise:'Cruzeiro',facet_global:'Global',facet_europe:'Europa',facet_southern_europe:'Sul da Europa',facet_italy:'Itália',facet_mediterranean:'Mediterrâneo',facet_north_africa:'Norte da África',filterMode:'Transporte',filterTheme:'Tema',results:'rotas encontradas',resetFilters:'Redefinir',details:'Detalhes',start:'Início',finish:'Fim',previous:'Anterior',next:'Seguinte',type:'Tipo',country:'País',duration:'Duração',cost:'Custo',segment:'Trecho',stop:'Parada',currency:'Moeda',facet_rail:'Trem',facet_bus:'Ônibus',facet_car:'Carro',facet_ferry:'Balsa',facet_multimodal:'Multimodal',facet_road:'Estrada',facet_coach:'Ônibus rodoviário',facet_ground_transfer:'Transfer terrestre',story:'História',storyPlay:'Reproduzir história',storyExit:'Sair da história',storyComplete:'Rota concluída',chapter:'Capítulo',settings:'Definições',methodology:'Metodologia',share:'Partilhar',autoRotate:'Rotação automática',highDetail:'Globo de alta definição',terrain:'Terreno 3D real',showPoints:'Pontos de paragem',routeGlow:'Brilho da rota',arcThickness:'Espessura da rota',reducedMotion:'Movimento reduzido',terrainLoading:'A carregar terreno 3D…',terrainUnavailable:'Terreno 3D indisponível',terrainHint:'Arraste para rodar · desloque para ampliar · o relevo real aparece ao aproximar',routeMethodTitle:'Metodologia da rota',routeMethodText:'Esta rota curada usa dados publicáveis e evidência com fontes quando disponível. Horários, preços e regras pessoais variáveis permanecem em aberto até serem conhecidas as datas e o contexto.',evidenceCoverage:'Cobertura de fontes',editorialStatus:'Estado editorial',storyRoute:'História da rota',routeFit:'Route Fit',showFit:'Mais filtros de adequação',hideFit:'Ocultar filtros',fitPace:'Ritmo',fitSeason:'Estação',fitParty:'Com quem viaja',fitStart:'Início da rota',facet_relaxed:'Relaxado',facet_balanced:'Equilibrado',facet_active:'Ativo',facet_spring:'Primavera',facet_summer:'Verão',facet_autumn:'Outono',facet_winter:'Inverno',facet_multi_season:'Várias estações',facet_solo:'Solo',facet_couples:'Casal',facet_friends:'Amigos',facet_families:'Família',resultOne:'rota encontrada',countryUnit:'país',countriesUnit:'países',facet_city:'Cidade',facet_cruise_port:'Porto de cruzeiros',facet_port:'Porto',facet_rail_station:'Estação ferroviária',facet_airport:'Aeroporto',facet_island:'Ilha',facet_park:'Parque',facet_camper:"Motorhome",facet_island_hopping:"De ilha em ilha",facet_asia:"Ásia",facet_east_asia:"Ásia Oriental",facet_japan:"Japão",facet_south_america:"América do Sul",facet_patagonia:"Patagônia",facet_argentina:"Argentina",facet_chile:"Chile",facet_northern_europe:"Norte da Europa",facet_norway:"Noruega",facet_oceania:"Oceania",facet_new_zealand:"Nova Zelândia",facet_greece:"Grécia",facet_africa:"África",facet_morocco:"Marrocos",facet_southern_africa:"África Austral",facet_south_africa:"África do Sul",facet_north_america:"América do Norte",facet_canada:"Canadá",facet_south_east_asia:"Sudeste Asiático",facet_vietnam:"Vietnã",facet_central_america:"América Central",facet_costa_rica:"Costa Rica",facet_iceland:"Islândia",facet_peru:"Peru",facet_andes:"Andes",facet_culture:"Cultura",facet_food:"Gastronomia",facet_cities:"Cidades",facet_mountains:"Montanhas",facet_nature:"Natureza",facet_adventure:"Aventura",facet_coast:"Costa",facet_arctic:"Ártico",facet_islands:"Ilhas",facet_desert:"Deserto",facet_wildlife:"Vida selvagem",facet_tropical:"Tropical",facet_volcanic:"Vulcânico",facet_history:"História",status_editorial_preview:"Prévia editorial",status_planned:'Planeado',status_sourced_beta:'Beta com fontes',status_illustrative_template:'Modelo ilustrativo',status_draft:'Rascunho',home:'Início',homeNavSub:'Viagens num único mapa-múndi',homeEyebrow:'Descobrir viagens',homeTitle:'Um mundo. Muitas formas de viajar.',homeLead:'Descubra viagens de trem, road trips, ilhas, cruzeiros e aventuras mais longas e adapte-as ao seu ponto de partida, ritmo e plano.',exploreJourneys:'Descobrir viagens',openFlagship:'Abrir viagem principal',homeGlobeLabel:'Atlas de rotas ao vivo',homeGlobeHint:'Selecione uma linha ou parada para abrir a viagem.',flagshipJourney:'Viagem principal',homeStates:'Estados soberanos',homeLegs:'trechos internacionais',homePlannedDays:'dias planejados',homeStart:'início',homeBaseModel:'modelo base',curatedCollections:"Coleções selecionadas",collectionsLead:"Explore por ideia de viagem em vez de começar com um longo formulário de filtros.",journeyDiscovery:'Descobrir viagens',journeyDiscoveryLead:'Filtre o catálogo publicado por região, transporte, tema, duração e Route Fit.',featuredJourneys:'Viagens em destaque',findJourneyEyebrow:'Comece de forma simples',findJourneyTitle:'Encontre a sua próxima viagem',findJourneyLead:'Escolha onde, como e durante quanto tempo quer viajar. Pode refinar os detalhes depois.',whereTravel:'Onde',howTravel:'Tipo de viagem',howLong:'Quanto tempo',anywhere:'Qualquer lugar',anyStyle:'Qualquer tipo de viagem',anyDuration:'Qualquer duração',showJourneys:'Mostrar viagens',personalizeRecommendations:'Personalizar recomendações',personalizeLead:'Adicione o país de partida e as preferências de viagem para sugestões mais relevantes.',tunePreferences:'Ajustar preferências',recommendationsActive:'As recomendações usam o contexto do viajante guardado neste dispositivo.',curatedJourneys:'viagens selecionadas',worldRegions:'regiões do mundo',journeyTypes:'tipos de viagem',localPlanning:'planejamento local',moreFilters:'Mais filtros',fewerFilters:'Menos filtros',filterAccessibility:'Acessibilidade',homeMethodTitle:'Dados primeiro. A incerteza permanece visível.',homeMethodText:'Cada viagem normal usa o mesmo modelo lugar → parada → segmento. As rotas publicadas continuam ligadas às fontes e fatos sensíveis à data não são inventados.',homeSourceRuleTitle:'Baseado em fontes',homeSourceRule:'As evidências permanecem ligadas aos dados da rota quando disponíveis.',homeUnknownRuleTitle:'O desconhecido continua desconhecido',homeUnknownRule:'Horários, preços e regras específicas do viajante ficam em aberto até poderem ser verificados.',homeDeepLinkRuleTitle:'Link direto',homeDeepLinkRule:'Cada viagem continua diretamente acessível e compartilhável.',exploreByRegion:"Explorar por região",featuredLead:"Trem, estrada, ilhas, natureza, cidades e rotas únicas: primeiro viagens visuais, depois ferramentas de planejamento.",allJourneys:"Todas as viagens",inspirationMethodTitle:"Primeiro inspiração. Planejamento quando importa.",inspirationMethodText:"As páginas começam pela rota, lugares e experiência. Fontes, horários ao vivo, preços e regras pessoais ficam numa camada de planejamento mais profunda.",globalDesignTitle:"Global por design",globalDesignText:"Um único modelo reutilizável suporta trem, estrada, ilhas, cruzeiros, camper e futuros tipos de viagem no mundo todo.",homeFooter:'Uma plataforma pública para descobrir viagens.',facet_standard_check:'Verificação padrão',facet_operator_dependent:'Dependente do operador',facet_vehicle_dependent:'Dependente do veículo',facet_complex_planning:'Planejamento complexo',journeyUpdates:"Atualizações da viagem",journeyUpdatesLead:"As orientações compartilhadas são mantidas centralmente e reutilizadas em todas as viagens relevantes.",checkBeforeTravel:"Verificar antes da viagem",contextDependent:"Depende do seu contexto",personalizeJourney:"Personalizar",personalizeJourneyTitle:"Adapte a viagem a você",personalizeJourneyLead:"Defina uma vez o seu ponto de partida e escolha uma entrada alternativa quando o roteiro permitir.",originPoint:"Seu ponto de partida",routeStart:"Começar a rota em",routeStartFlexibleLead:"Esta rota pode ser invertida. Transporte, tarifas e acessos precisam ser verificados novamente para a direção escolhida.",routeStartFixedLead:"Este roteiro tem início fixo. Seu ponto de partida pessoal continua sendo usado no planejamento da chegada.",routeStartUpdated:"Início da rota atualizado",entrySuggestion:"Entrada sugerida · nível do país",entrySuggestionApplied:"Aplicada",useSuggestedEntry:"Usar sugestão",change:"Alterar",whatToExpect:'O que esperar',experienceRoleStart:'Início da rota',experienceRoleAnchor:'Estadia mais longa',experienceRoleChapter:'Etapa da viagem',experienceRoleFinale:'Final da rota',journeyGuide:'Guia da viagem',guideDataDriven:'A partir desta rota',journeyGuideLead:'Veja como a viagem distribui o tempo e o que ainda precisa ser verificado antes da reserva.',averageStay:'Estadia média',routeMovements:'Deslocamentos',timeFocus:'Onde você passa mais tempo',beforeBooking:'Antes de reservar',guideReviewSegments:'{count} de {total} deslocamentos ainda precisam de uma verificação atualizada.',guideFareCoverage:'Há preços de transporte publicados para {known} de {total} deslocamentos.',guideEntryContext:'As orientações de entrada dependem do seu contexto de viajante.',guideVehicleContext:'Os dados do veículo podem alterar verificações de pedágio, acesso ou fronteira.',guideOriginAccess:'O trajeto da sua origem até a rota selecionada é planejado separadamente.',guideEvidenceReady:'Todos os deslocamentos têm atualmente evidências verificadas.',planningGuide:'Planejamento prático',planThisTrip:'Planejar esta viagem',planningLead:'Uma visão prática do itinerário publicado, dos custos de transporte conhecidos e da cobertura das fontes.',knownTransportMinimum:'Mínimo de transporte conhecido',fareCoverage:'Cobertura de tarifas',transportModes:'Transportes',lastEvidenceCheck:'Última verificação das fontes',dayByDay:'Itinerário dia a dia',planningBudgetScope:'Apenas tarifas publicadas conhecidas — não é um orçamento completo da viagem.',planningStartHere:'Início',planningOrigin:'Sua origem',saved:'Salvo',saveTrip:'Salvar viagem',removeSaved:'Remover dos salvos',removedSaved:'Removido das viagens salvas',savedLocally:'Salvo neste dispositivo',tripTools:'Ferramentas de viagem',exportJson:'Exportar JSON',exportCsv:'Exportar CSV',budgetEstimate:'Estimativa de orçamento',budgetLead:'Use suas próprias premissas diárias. Apenas mínimos de transporte publicados são pré-preenchidos.',lodgingNight:'Hospedagem / noite',foodPersonDay:'Comida / pessoa / dia',localPersonDay:'Transporte local / pessoa / dia',extras:'Outros custos fixos',contingency:'Margem %',updateEstimate:'Atualizar estimativa',estimatedTripTotal:'Total estimado',budgetEstimateScope:'Estimativa pessoal, não é uma cotação.',travellers:'viajantes',estimateUpdated:'Estimativa atualizada',compare:'Comparar',compareTrips:'Comparar viagens',compareSelected:'Comparar ({count})',compareLimit:'Você pode comparar até três viagens por vez.',compareLead:'Apenas fatos de planejamento lado a lado — sem ranking ou vencedor.',savedOnly:'Somente salvas',travellerParty:'Contexto do viajante',listedForContext:'previsto para este grupo',contextCheckNeeded:'verificar adequação',mobilityCheck:'Verificar mobilidade',startDate:'Data de início',exportCalendar:'Exportar calendário',calendarNeedsStartDate:'Escolha primeiro uma data de início.',transportMinimum:'Transporte conhecido',lodging:'Hospedagem',food:'Comida',localTravel:'Transporte local',transportMultiplier:'Multiplicador de tarifa',transportAssumption:'As tarifas mínimas publicadas são multiplicadas por este número explícito de viajantes; ajuste para descontos infantis, passes ou preços não individuais.',myTrips:'Minhas viagens',myTripsLead:'Suas viagens salvas e o estado do planejamento neste dispositivo.',myTripsEmptyTitle:'Nenhuma viagem salva ainda',myTripsEmptyLead:'Salve uma viagem pela descoberta ou por uma página de rota para criar seu espaço pessoal de planejamento.',loading:'Carregando…',planningSeason:'Estação de planejamento',planningSeasonLead:'É apenas uma preferência local de planejamento. Não altera horários nem tarifas publicadas.',planningSeasonSaved:'Estação de planejamento salva',travellerFit:'Contexto de adequação',vehicleContextMissing:'Contexto do veículo não definido',transportUnknownBudget:'Os preços publicados de transporte estão incompletos; esta estimativa considera temporariamente os custos desconhecidos como zero.',exportWorkspace:'Exportar backup de planejamento',planningStatus:'Estado do planeamento',nextPlanningStep:'Próximo passo de planeamento',planningCoreRecorded:'Configuração base registada',recordCurrentCheck:'Registar verificação atual',markForRecheck:'Marcar para reverificação',manualCheckRecorded:'Verificação manual registada',continuePlanning:'Continuar planeamento',planningAccessCheck:'Verificação de acesso à rota',planningStatusLead:'Com base na configuração guardada. As verificações manuais são apenas registadas aqui, não verificadas pela ONE WORLD ROUTE.',planningWorkspaceLead:'Conclua a configuração essencial num só lugar. O acesso atual continua a ser uma verificação manual.'}
+    en:{routes:'Routes',traveller:'Traveller',flagship:'Flagship',template:'Template',open:'Open route',days:'days',stops:'stops',segments:'segments',global:'Global perspective',contextTitle:'Traveller context',contextLead:'Used to adapt entry rules, language, currency and departure assumptions. Stored only on this device.',passports:'Passport country',secondPassport:'Second passport (optional)',residence:'Residence',language:'Language',currency:'Currency',originRegion:"Start region (derived)",originCountry:'Starting country',recommendedForYou:"Recommended for you",recommendationContextLead:"Ordered using your traveller context, starting country and journey fit. No hidden ranking model and no invented live transport.",origin:'Starting city / airport',adults:'Adults',children:'Children',mobility:'Reduced mobility',save:'Save context',clear:'Clear',close:'Close',notSet:'Not set',currentCheck:'Current check required',routeLibrary:'Explore routes',routeLibraryLead:'One platform for world journeys, round trips, road trips, rail, cruises and more.',editorial:'Editorial template — verify transport, prices and entry requirements for your dates.',overview:'Route overview',day:'Day',nights:'nights',transport:'Transport',verification:'Verification',backWorld:'World route',private:'Private on this device. Passport numbers, booking references and payment details are never requested.',sourcedBeta:'Sourced beta',sources:'Sources',lastChecked:'Last checked',publishedFrom:'from',verified:'Verified',routeEvidence:'Route evidence',entryGuidance:'Entry guidance',officialCheck:'Official check',connectionRequired:'connection required',minimumTravel:'minimum travel',cruiseTemplate:'Cruise template',onboardNights:'onboard nights',seaDays:'sea days',portCall:'Port call',embarkation:'Embarkation',disembarkation:'Disembarkation',border:'Border context',schengenExit:'Schengen exit',schengenEntry:'Schengen re-entry',sailingNeeded:'Select a real sailing for ship, operator, times, berth and price.',illustrative:'Illustrative',searchRoutes:'Search routes',filters:"Filters",hideFilters:"Hide filters",filterType:'Travel type',filterRegion:'Region',filterDuration:'Duration',all:'All',loadMoreJourneys:"Show {count} more journeys",showingJourneys:"Showing {shown} of {total} journeys",routeAccess:"Access to the route",routeAccessLead:"Your origin is separate from the curated core route. We adapt the route only where the itinerary safely supports it.",noRoutes:'No routes match these filters.',vehicleSection:'Vehicle context (optional)',vehicleType:'Vehicle',registrationCountry:'Registration country',fuelType:'Fuel / powertrain',euroClass:'Euro emissions class',rentalCrossBorder:'Rental approved for cross-border travel',privateCar:'Private car',rentalCar:'Rental car',camper:'Camper',motorcycle:'Motorcycle',otherVehicle:'Other',petrol:'Petrol',diesel:'Diesel',hybrid:'Hybrid',pluginHybrid:'Plug-in hybrid',electric:'Electric',hydrogen:'Hydrogen',unknown:'Unknown',roadRules:'Road context',crossBorder:'Cross-border',urbanAccess:'Urban access checks',vehicleNeeded:'Vehicle context required for toll, LEZ and access checks.',facet_world:'World',facet_round_trip:'Round trip',facet_road_trip:'Road trip',facet_cruise:'Cruise',facet_global:'Global',facet_europe:'Europe',facet_southern_europe:'Southern Europe',facet_italy:'Italy',facet_mediterranean:'Mediterranean',facet_north_africa:'North Africa',filterMode:'Transport',filterTheme:'Theme',results:'routes found',resetFilters:'Reset',details:'Details',start:'Start',finish:'Finish',previous:'Previous',next:'Next',type:'Type',country:'Country',duration:'Duration',cost:'Cost',segment:'Segment',stop:'Stop',currency:'Currency',facet_rail:'Rail',facet_bus:'Bus',facet_car:'Car',facet_ferry:'Ferry',facet_multimodal:'Multimodal',facet_road:'Road',facet_coach:'Coach',facet_ground_transfer:'Ground transfer',story:'Story',storyPlay:'Play story',storyExit:'Exit story',storyComplete:'Route complete',chapter:'Chapter',settings:'Settings',methodology:'Methodology',share:'Share',shareCopied:"Share link copied",shareCopyFallback:"Copy the URL from your browser",autoRotate:'Auto rotate',highDetail:'High detail globe',terrain:'Real 3D globe terrain',showPoints:'Stop points',routeGlow:'Route glow',arcThickness:'Route thickness',reducedMotion:'Reduced motion',terrainLoading:'Loading 3D terrain…',terrainUnavailable:'3D terrain unavailable',terrainHint:'Drag to rotate · scroll to zoom · real elevation appears as you move closer',routeMethodTitle:'Route methodology',routeMethodText:'This curated route uses publication-safe trip data and source-backed evidence where available. Volatile schedules, prices and traveller-specific rules remain explicitly unresolved until dates and context are known.',evidenceCoverage:'Evidence coverage',editorialStatus:'Editorial status',storyRoute:'Route story',routeFit:'Route Fit',showFit:'More fit filters',hideFit:'Hide fit filters',fitPace:'Pace',fitSeason:'Season',fitParty:'Travelling as',fitStart:'Route starts in',facet_relaxed:'Relaxed',facet_balanced:'Balanced',facet_active:'Active',facet_spring:'Spring',facet_summer:'Summer',facet_autumn:'Autumn',facet_winter:'Winter',facet_multi_season:'Multi-season',facet_solo:'Solo',facet_couples:'Couple',facet_friends:'Friends',facet_families:'Family',resultOne:'route found',countryUnit:'country',countriesUnit:'countries',facet_city:'City',facet_cruise_port:'Cruise port',facet_port:'Port',facet_rail_station:'Rail station',facet_airport:'Airport',facet_island:'Island',facet_park:'Park',facet_camper:"Camper",facet_island_hopping:"Island hopping",facet_asia:"Asia",facet_east_asia:"East Asia",facet_japan:"Japan",facet_south_america:"South America",facet_patagonia:"Patagonia",facet_argentina:"Argentina",facet_chile:"Chile",facet_northern_europe:"Northern Europe",facet_norway:"Norway",facet_oceania:"Oceania",facet_new_zealand:"New Zealand",facet_greece:"Greece",facet_africa:"Africa",facet_morocco:"Morocco",facet_southern_africa:"Southern Africa",facet_south_africa:"South Africa",facet_north_america:"North America",facet_canada:"Canada",facet_south_east_asia:"Southeast Asia",facet_vietnam:"Vietnam",facet_central_america:"Central America",facet_costa_rica:"Costa Rica",facet_iceland:"Iceland",facet_peru:"Peru",facet_andes:"Andes",facet_culture:"Culture",facet_food:"Food",facet_cities:"Cities",facet_mountains:"Mountains",facet_nature:"Nature",facet_adventure:"Adventure",facet_coast:"Coast",facet_arctic:"Arctic",facet_islands:"Islands",facet_desert:"Desert",facet_wildlife:"Wildlife",facet_tropical:"Tropical",facet_volcanic:"Volcanic",facet_history:"History",status_editorial_preview:"Editorial preview",status_planned:'Planned',status_sourced_beta:'Sourced beta',status_illustrative_template:'Illustrative template',status_draft:'Draft',home:'Home',homeNavSub:'Journeys on one world map',homeEyebrow:'Journey discovery',homeTitle:'One world. Many ways to travel.',homeLead:'Discover rail journeys, road trips, island escapes, cruises and longer adventures — then adapt them to your starting point, pace and plans.',exploreJourneys:'Explore journeys',openFlagship:'Open flagship journey',homeGlobeLabel:'Live route atlas',homeGlobeHint:'Select a line or stop to open its journey.',flagshipJourney:'Flagship journey',homeStates:'sovereign states',homeLegs:'international legs',homePlannedDays:'planned days',homeStart:'start',homeBaseModel:'base model',curatedCollections:"Curated collections",collectionsLead:"Browse by travel idea instead of starting with a long filter form.",journeyDiscovery:'Journey discovery',journeyDiscoveryLead:'Filter the published catalog by region, transport, theme, duration and Route Fit.',featuredJourneys:'Featured journeys',findJourneyEyebrow:'Start simple',findJourneyTitle:'Find your next journey',findJourneyLead:'Choose where, how and how long you want to travel. You can refine the details later.',whereTravel:'Where',howTravel:'Journey type',howLong:'How long',anywhere:'Anywhere',anyStyle:'Any journey type',anyDuration:'Any duration',showJourneys:'Show journeys',personalizeRecommendations:'Personalize recommendations',personalizeLead:'Add your starting country and travel preferences for more relevant suggestions.',tunePreferences:'Adjust preferences',recommendationsActive:'Recommendations use your saved traveller context on this device.',curatedJourneys:'curated journeys',worldRegions:'world regions',journeyTypes:'journey types',localPlanning:'planning stays local',moreFilters:'More filters',fewerFilters:'Fewer filters',filterAccessibility:'Accessibility',homeMethodTitle:'Data first. Uncertainty stays visible.',homeMethodText:'Every normal journey uses the same place → stop → segment model. Published routes stay source-aware and date-sensitive facts are not filled in by guesswork.',homeSourceRuleTitle:'Source-backed',homeSourceRule:'Evidence stays attached to the route data where available.',homeUnknownRuleTitle:'Unknown stays unknown',homeUnknownRule:'Schedules, fares and traveller-specific rules remain unresolved until they can be checked.',homeDeepLinkRuleTitle:'Direct by design',homeDeepLinkRule:'Every journey remains directly linkable and shareable.',exploreByRegion:"Explore by region",featuredLead:"Rail, road, islands, nature, cities and once-in-a-lifetime routes — curated as visual journeys before they become planning spreadsheets.",allJourneys:"All journeys",inspirationMethodTitle:"Inspiration first. Planning when it matters.",inspirationMethodText:"Journey pages lead with route, place and experience. Evidence, live schedules, prices and traveller-specific rules stay available as a deeper planning layer instead of defining the product.",globalDesignTitle:"Global by design",globalDesignText:"One reusable journey model supports rail, road, islands, cruises, camper routes and future trip types across the world.",homeFooter:'A public journey discovery platform.',partnerOptions:"Partner options",partnerDisclosure:"Partner links are clearly marked. If you use one, it may support ONE WORLD ROUTE at no extra cost to you.",facet_standard_check:'Standard check',facet_operator_dependent:'Operator dependent',facet_vehicle_dependent:'Vehicle dependent',facet_complex_planning:'Complex planning',journeyUpdates:"Journey updates",journeyUpdatesLead:"Shared planning guidance is maintained once and reused across every relevant journey.",checkBeforeTravel:"Check before travel",contextDependent:"Depends on your context",personalizeJourney:"Personalize",personalizeJourneyTitle:"Make this journey yours",personalizeJourneyLead:"Set your home starting point once and choose an alternative route entry when this itinerary supports it.",originPoint:"Your starting point",routeStart:"Start this route at",routeStartFlexibleLead:"This route can be reversed. Transport, fares and access are rechecked for the chosen direction.",routeStartFixedLead:"This itinerary uses a fixed route start. Your personal origin is still used for arrival planning.",routeStartUpdated:"Route start updated",entrySuggestion:"Suggested route entry · country-level",entrySuggestionApplied:"Applied",useSuggestedEntry:"Use suggestion",change:"Change",whatToExpect:'What to expect',experienceRoleStart:'Route opening',experienceRoleAnchor:'Longer stay',experienceRoleChapter:'Journey chapter',experienceRoleFinale:'Route finale',journeyGuide:'Journey guide',guideDataDriven:'From this route',journeyGuideLead:'See how the trip uses its time and what still needs checking before you book.',averageStay:'Average stay',routeMovements:'Route movements',timeFocus:'Where you spend more time',beforeBooking:'Before you book',guideReviewSegments:'{count} of {total} route movements still need a current-date check.',guideFareCoverage:'Published transport pricing exists for {known} of {total} route movements.',guideEntryContext:'Entry guidance depends on your Traveller Context.',guideVehicleContext:'Vehicle details can change toll, access or cross-border checks.',guideOriginAccess:'Travel from your origin to the curated route is planned separately.',guideEvidenceReady:'All route movements currently carry verified evidence.',planningGuide:'Practical planning',planThisTrip:'Plan this trip',planningLead:'A practical view of the published itinerary, known transport costs and evidence coverage.',knownTransportMinimum:'Known transport minimum',fareCoverage:'Fare coverage',transportModes:'Transport modes',lastEvidenceCheck:'Latest evidence check',dayByDay:'Day-by-day itinerary',planningBudgetScope:'Known published fares only — not a complete trip budget.',planningStartHere:'Start here',planningOrigin:'Your origin',saved:'Saved',saveTrip:'Save trip',removeSaved:'Remove saved',removedSaved:'Removed from saved trips',savedLocally:'Saved on this device',tripTools:'Trip tools',exportJson:'Export JSON',exportCsv:'Export CSV',budgetEstimate:'Budget estimate',budgetLead:'Use your own daily assumptions. Only published transport minimums are prefilled.',lodgingNight:'Lodging / night',foodPersonDay:'Food / person / day',localPersonDay:'Local travel / person / day',extras:'Extra fixed costs',contingency:'Contingency %',updateEstimate:'Update estimate',estimatedTripTotal:'Estimated trip total',budgetEstimateScope:'Personal estimate, not a quote.',travellers:'travellers',estimateUpdated:'Estimate updated',compare:'Compare',compareTrips:'Compare journeys',compareSelected:'Compare ({count})',compareLimit:'Compare up to three journeys at a time.',compareLead:'Side-by-side planning facts only — no ranking or winner.',savedOnly:'Saved only',travellerParty:'Traveller context',listedForContext:'listed for this party',contextCheckNeeded:'check suitability',mobilityCheck:'Mobility check',startDate:'Start date',exportCalendar:'Export calendar',calendarNeedsStartDate:'Choose a start date first.',transportMinimum:'Known transport',lodging:'Lodging',food:'Food',localTravel:'Local travel',transportMultiplier:'Transport fare multiplier',transportAssumption:'Published minimum fares are multiplied by this explicit traveller count; adjust it for child discounts, passes or non-per-person pricing.',myTrips:'My Trips',myTripsLead:'Your saved journeys and planning setup on this device.',myTripsEmptyTitle:'No saved journeys yet',myTripsEmptyLead:'Save a journey from discovery or a route page to build your personal planning workspace.',loading:'Loading…',planningSeason:'Planning season',planningSeasonLead:'A local planning preference only. It does not change published schedules or fares.',planningSeasonSaved:'Planning season saved',travellerFit:'Traveller fit context',vehicleContextMissing:'Vehicle context not set',transportUnknownBudget:'Published transport pricing is incomplete; this estimate currently treats unknown transport as zero.',exportWorkspace:'Export planning backup',importWorkspace:'Import planning backup',workspaceImported:'Planning backup restored',workspaceImportFailed:'Planning backup could not be restored',planningStatus:'Planning status',nextPlanningStep:'Next planning step',planningCoreRecorded:'Core planning setup recorded',recordCurrentCheck:'Record current check',markForRecheck:'Mark for recheck',manualCheckRecorded:'Manual check recorded',continuePlanning:'Continue planning',saveOffline:'Save planning offline',offlineSaving:'Saving offline…',offlineReady:'Trip data saved for offline planning',offlineUnavailable:'Offline save is unavailable right now',installApp:"Install app",installingApp:"Opening install…",installAppDone:"App installation started",installAppUnavailable:"App installation is unavailable in this browser right now",cloudSync:"Cloud sync",cloudSyncLead:"Optionally keep your planning workspace in sync across devices. Traveller Context stays on this device.",cloudEmail:"Email",cloudCode:"Email code",cloudSendCode:"Send code",cloudVerifyCode:"Sign in",cloudSignedInAs:"Signed in as",cloudSyncNow:"Sync now",cloudSignOut:"Sign out",cloudCodeSent:"Check your email for the sign-in code",cloudSignedIn:"Cloud sync signed in",cloudSyncUploaded:"Local planning uploaded",cloudSyncDownloaded:"Newer cloud planning restored",cloudSyncCurrent:"Planning is already in sync",cloudSyncFailed:"Cloud sync failed",cloudUnavailable:"Cloud sync is not configured",cloudLastSync:"Last sync",cloudPrivacy:"Only your planning workspace is synced. Traveller Context and passport/residence details stay local.",cloudInvalidEmail:"Enter a valid email address",cloudSignedOut:"Signed out of cloud sync",planningAccessCheck:'Route access check',planningStatusLead:'Built from your saved setup. Manual checks are recorded here, not verified by ONE WORLD ROUTE.',planningWorkspaceLead:'Work through the essential setup in one place. Live access remains a manual current check.',howFast:"Pace",whatTheme:"Interests",whoTravels:"Travelling as",sortBy:"Sort",sortRecommended:"Recommended",sortFeatured:"Featured",sortShortest:"Shortest first",sortLongest:"Longest first",sortAlphabetical:"A–Z",fitMatches:"{matched}/{total} preferences match · {checks} checks",entryApproximation:"Approximation from your starting country to eligible route entries; not a live transport recommendation.",journeyVariant:"Journey variant",fullJourney:"Full journey",variantLead:"Choose a curated version of this journey without duplicating the underlying trip data.",variantUpdated:"Journey variant updated",savedJourneys:"Saved journeys",recentlyViewed:"Recently viewed",planningComplexity:"Planning complexity",vehicleRequirement:"Vehicle context",yes:"Yes",no:"No",currentChecks:"Current checks needed"},
+    de:{routes:'Routen',traveller:'Reisekontext',flagship:'Flagship',template:'Vorlage',open:'Route öffnen',days:'Tage',stops:'Stopps',segments:'Segmente',global:'Globale Perspektive',contextTitle:'Reisekontext',contextLead:'Passt Einreisehinweise, Sprache, Währung und Startannahmen an. Wird nur auf diesem Gerät gespeichert.',passports:'Passland',secondPassport:'Zweiter Pass (optional)',residence:'Wohnsitz',language:'Sprache',currency:'Währung',originRegion:"Startregion (abgeleitet)",originCountry:'Startland',recommendedForYou:"Für dich passend",recommendationContextLead:"Sortiert anhand deines Reisekontexts, deines Startlands und Route Fit. Kein verborgenes Ranking und keine erfundenen Live-Verbindungen.",origin:'Startstadt / Flughafen',adults:'Erwachsene',children:'Kinder',mobility:'Eingeschränkte Mobilität',save:'Kontext speichern',clear:'Zurücksetzen',close:'Schließen',notSet:'Nicht gesetzt',currentCheck:'Aktuelle Prüfung erforderlich',routeLibrary:'Routen entdecken',routeLibraryLead:'Eine Plattform für Weltreisen, Rundreisen, Roadtrips, Bahnreisen, Kreuzfahrten und mehr.',editorial:'Redaktionelle Vorlage — Verkehr, Preise und Einreisebedingungen für die eigenen Daten prüfen.',overview:'Routenübersicht',day:'Tag',nights:'Nächte',transport:'Verkehr',verification:'Prüfstatus',backWorld:'Weltreise',private:'Privat auf diesem Gerät. Passnummern, Buchungsreferenzen und Zahlungsdaten werden niemals abgefragt.',sourcedBeta:'Quellen-Beta',sources:'Quellen',lastChecked:'Zuletzt geprüft',publishedFrom:'ab',verified:'Verifiziert',routeEvidence:'Routenbelege',entryGuidance:'Einreisehinweise',officialCheck:'Offiziell prüfen',connectionRequired:'Umstieg einplanen',minimumTravel:'Mindestfahrzeit',cruiseTemplate:'Kreuzfahrt-Vorlage',onboardNights:'Nächte an Bord',seaDays:'Seetage',portCall:'Hafenstopp',embarkation:'Einschiffung',disembarkation:'Ausschiffung',border:'Grenzkontext',schengenExit:'Schengen-Ausreise',schengenEntry:'Schengen-Wiedereinreise',sailingNeeded:'Für Schiff, Reederei, Zeiten, Liegeplatz und Preis muss eine konkrete Abfahrt gewählt werden.',illustrative:'Illustrativ',searchRoutes:'Routen suchen',filters:"Filter",hideFilters:"Filter ausblenden",filterType:'Reiseart',filterRegion:'Region',filterDuration:'Dauer',all:'Alle',loadMoreJourneys:"{count} weitere Reisen anzeigen",showingJourneys:"{shown} von {total} Reisen angezeigt",routeAccess:"Anreise zur Route",routeAccessLead:"Dein Ausgangspunkt bleibt getrennt von der kuratierten Kernroute. Die Route wird nur angepasst, wenn die Reise das fachlich sicher unterstützt.",noRoutes:'Keine Route passt zu diesen Filtern.',vehicleSection:'Fahrzeugkontext (optional)',vehicleType:'Fahrzeug',registrationCountry:'Zulassungsland',fuelType:'Kraftstoff / Antrieb',euroClass:'Euro-Abgasnorm',rentalCrossBorder:'Mietwagen für Grenzübertritte freigegeben',privateCar:'Privatwagen',rentalCar:'Mietwagen',camper:'Camper',motorcycle:'Motorrad',otherVehicle:'Anderes',petrol:'Benzin',diesel:'Diesel',hybrid:'Hybrid',pluginHybrid:'Plug-in-Hybrid',electric:'Elektro',hydrogen:'Wasserstoff',unknown:'Unbekannt',roadRules:'Straßenkontext',crossBorder:'Grenzübertritt',urbanAccess:'Stadtzufahrt prüfen',vehicleNeeded:'Für Maut-, Umweltzonen- und Zufahrtsprüfungen wird ein Fahrzeugkontext benötigt.',facet_world:'Weltreise',facet_round_trip:'Rundreise',facet_road_trip:'Roadtrip',facet_cruise:'Kreuzfahrt',facet_global:'Global',facet_europe:'Europa',facet_southern_europe:'Südeuropa',facet_italy:'Italien',facet_mediterranean:'Mittelmeer',facet_north_africa:'Nordafrika',filterMode:'Verkehrsmittel',filterTheme:'Reisethema',results:'Routen gefunden',resetFilters:'Filter zurücksetzen',details:'Details',start:'Start',finish:'Ziel',previous:'Zurück',next:'Weiter',type:'Typ',country:'Land',duration:'Dauer',cost:'Kosten',segment:'Segment',stop:'Stopp',currency:'Währung',facet_rail:'Bahn',facet_bus:'Bus',facet_car:'Auto',facet_ferry:'Fähre',facet_multimodal:'Multimodal',facet_road:'Straße',facet_coach:'Fernbus',facet_ground_transfer:'Bodentransfer',story:'Story',storyPlay:'Story starten',storyExit:'Story beenden',storyComplete:'Route abgeschlossen',chapter:'Kapitel',settings:'Einstellungen',methodology:'Methodik',share:'Teilen',shareCopied:"Link zum Teilen kopiert",shareCopyFallback:"Kopiere die URL aus deinem Browser",autoRotate:'Automatisch drehen',highDetail:'Hochauflösender Globus',terrain:'Echtes 3D-Globus-Terrain',showPoints:'Stopppunkte',routeGlow:'Routenleuchten',arcThickness:'Linienstärke',reducedMotion:'Reduzierte Bewegung',terrainLoading:'3D-Terrain wird geladen…',terrainUnavailable:'3D-Terrain nicht verfügbar',terrainHint:'Ziehen zum Drehen · scrollen zum Zoomen · echtes Relief erscheint beim Annähern',routeMethodTitle:'Routenmethodik',routeMethodText:'Diese kuratierte Route verwendet veröffentlichungssichere Reisedaten und, wo verfügbar, quellenbasierte Belege. Veränderliche Fahrpläne, Preise und reisendenspezifische Regeln bleiben ausdrücklich offen, bis Datum und Kontext feststehen.',evidenceCoverage:'Quellenabdeckung',editorialStatus:'Redaktioneller Status',storyRoute:'Routen-Story',routeFit:'Route Fit',showFit:'Weitere passende Filter',hideFit:'Passende Filter ausblenden',fitPace:'Reisetempo',fitSeason:'Reisezeit',fitParty:'Reisekonstellation',fitStart:'Routenstart',facet_relaxed:'Entspannt',facet_balanced:'Ausgewogen',facet_active:'Aktiv',facet_spring:'Frühling',facet_summer:'Sommer',facet_autumn:'Herbst',facet_winter:'Winter',facet_multi_season:'Mehrere Jahreszeiten',facet_solo:'Allein',facet_couples:'Paar',facet_friends:'Freunde',facet_families:'Familie',resultOne:'Route gefunden',countryUnit:'Land',countriesUnit:'Länder',facet_city:'Stadt',facet_cruise_port:'Kreuzfahrthafen',facet_port:'Hafen',facet_rail_station:'Bahnhof',facet_airport:'Flughafen',facet_island:'Insel',facet_park:'Park',facet_camper:"Camper",facet_island_hopping:"Inselhopping",facet_asia:"Asien",facet_east_asia:"Ostasien",facet_japan:"Japan",facet_south_america:"Südamerika",facet_patagonia:"Patagonien",facet_argentina:"Argentinien",facet_chile:"Chile",facet_northern_europe:"Nordeuropa",facet_norway:"Norwegen",facet_oceania:"Ozeanien",facet_new_zealand:"Neuseeland",facet_greece:"Griechenland",facet_africa:"Afrika",facet_morocco:"Marokko",facet_southern_africa:"Südliches Afrika",facet_south_africa:"Südafrika",facet_north_america:"Nordamerika",facet_canada:"Kanada",facet_south_east_asia:"Südostasien",facet_vietnam:"Vietnam",facet_central_america:"Mittelamerika",facet_costa_rica:"Costa Rica",facet_iceland:"Island",facet_peru:"Peru",facet_andes:"Anden",facet_culture:"Kultur",facet_food:"Kulinarik",facet_cities:"Städte",facet_mountains:"Berge",facet_nature:"Natur",facet_adventure:"Abenteuer",facet_coast:"Küste",facet_arctic:"Arktis",facet_islands:"Inseln",facet_desert:"Wüste",facet_wildlife:"Tierwelt",facet_tropical:"Tropisch",facet_volcanic:"Vulkanlandschaft",facet_history:"Geschichte",status_editorial_preview:"Redaktionelle Vorschau",status_planned:'Geplant',status_sourced_beta:'Quellen-Beta',status_illustrative_template:'Illustrative Vorlage',status_draft:'Entwurf',home:'Start',homeNavSub:'Reisen auf einer Weltkarte',homeEyebrow:'Reisen entdecken',homeTitle:'Eine Welt. Viele Arten zu reisen.',homeLead:'Entdecke Bahnreisen, Roadtrips, Inselreisen, Kreuzfahrten und längere Abenteuer – und passe sie anschließend an deinen Startpunkt, dein Tempo und deine Planung an.',exploreJourneys:'Reisen entdecken',openFlagship:'Flagship-Reise öffnen',homeGlobeLabel:'Live-Routenatlas',homeGlobeHint:'Eine Linie oder einen Stopp wählen, um die Reise zu öffnen.',flagshipJourney:'Flagship-Reise',homeStates:'souveräne Staaten',homeLegs:'internationale Etappen',homePlannedDays:'geplante Tage',homeStart:'Start',homeBaseModel:'Basismodell',curatedCollections:"Kuratierte Sammlungen",collectionsLead:"Nach Reiseidee entdecken, statt mit einem langen Filterformular zu beginnen.",journeyDiscovery:'Reisen entdecken',journeyDiscoveryLead:'Den veröffentlichten Katalog nach Region, Verkehr, Thema, Dauer und Route Fit filtern.',featuredJourneys:'Ausgewählte Reisen',findJourneyEyebrow:'Einfach starten',findJourneyTitle:'Finde deine nächste Reise',findJourneyLead:'Wähle, wohin, wie und wie lange du reisen möchtest. Die Details kannst du danach verfeinern.',whereTravel:'Wohin',howTravel:'Reiseart',howLong:'Wie lange',anywhere:'Überall',anyStyle:'Alle Reisearten',anyDuration:'Beliebige Dauer',showJourneys:'Reisen anzeigen',personalizeRecommendations:'Empfehlungen personalisieren',personalizeLead:'Hinterlege Startland und Reisevorlieben für passendere Vorschläge.',tunePreferences:'Vorlieben anpassen',recommendationsActive:'Empfehlungen nutzen deinen auf diesem Gerät gespeicherten Reisekontext.',curatedJourneys:'kuratierte Reisen',worldRegions:'Weltregionen',journeyTypes:'Reisearten',localPlanning:'Planung bleibt lokal',moreFilters:'Mehr Filter',fewerFilters:'Weniger Filter',filterAccessibility:'Zugänglichkeit',homeMethodTitle:'Daten zuerst. Unsicherheit bleibt sichtbar.',homeMethodText:'Jede normale Reise nutzt dasselbe Modell Ort → Stopp → Segment. Veröffentlichte Routen bleiben quellenbewusst; zeitabhängige Fakten werden nicht geraten.',homeSourceRuleTitle:'Quellenbasiert',homeSourceRule:'Belege bleiben, soweit verfügbar, direkt mit den Routendaten verknüpft.',homeUnknownRuleTitle:'Unbekannt bleibt unbekannt',homeUnknownRule:'Fahrpläne, Preise und reisendenspezifische Regeln bleiben offen, bis sie geprüft werden können.',homeDeepLinkRuleTitle:'Direkt verlinkbar',homeDeepLinkRule:'Jede Reise bleibt direkt aufrufbar und teilbar.',exploreByRegion:"Nach Region entdecken",featuredLead:"Bahn, Roadtrips, Inseln, Natur, Städte und einmalige Routen – zuerst als visuelle Reisen kuratiert, bevor sie zu Planungslisten werden.",allJourneys:"Alle Reisen",inspirationMethodTitle:"Inspiration zuerst. Planung, wenn sie wichtig wird.",inspirationMethodText:"Reiseseiten beginnen mit Route, Orten und Erlebnis. Quellen, Live-Fahrpläne, Preise und reisendenspezifische Regeln bleiben als tiefere Planungsebene verfügbar, statt das Produkt zu bestimmen.",globalDesignTitle:"Global gedacht",globalDesignText:"Ein wiederverwendbares Reisemodell unterstützt Bahn, Straße, Inseln, Kreuzfahrten, Camperrouten und zukünftige Reisearten weltweit.",homeFooter:'Eine öffentliche Plattform zum Entdecken von Reisen.',partnerOptions:"Partneroptionen",partnerDisclosure:"Partnerlinks sind klar gekennzeichnet. Wenn du einen nutzt, kann dies ONE WORLD ROUTE unterstützen, ohne Mehrkosten für dich.",facet_standard_check:'Standardprüfung',facet_operator_dependent:'Anbieterabhängig',facet_vehicle_dependent:'Fahrzeugabhängig',facet_complex_planning:'Komplexe Planung',journeyUpdates:"Reise-Updates",journeyUpdatesLead:"Gemeinsame Planungshinweise werden einmal zentral gepflegt und automatisch in allen passenden Reisen wiederverwendet.",checkBeforeTravel:"Vor der Reise prüfen",contextDependent:"Abhängig von deinem Kontext",personalizeJourney:"Personalisieren",personalizeJourneyTitle:"Passe die Reise an dich an",personalizeJourneyLead:"Lege deinen persönlichen Ausgangsort einmal fest und wähle bei geeigneten Reisen einen alternativen Routeneinstieg.",originPoint:"Dein Ausgangspunkt",routeStart:"Route starten in",routeStartFlexibleLead:"Diese Route kann umgedreht werden. Verkehr, Preise und Zugangsbedingungen müssen für die gewählte Richtung aktuell geprüft werden.",routeStartFixedLead:"Diese Reise hat einen festen Routeneinstieg. Dein persönlicher Ausgangsort wird trotzdem für die Anreiseplanung verwendet.",routeStartUpdated:"Routenstart aktualisiert",entrySuggestion:"Empfohlener Routeneinstieg · Länderebene",entrySuggestionApplied:"Übernommen",useSuggestedEntry:"Empfehlung nutzen",change:"Ändern",whatToExpect:'Was dich erwartet',experienceRoleStart:'Auftakt der Route',experienceRoleAnchor:'Längerer Aufenthalt',experienceRoleChapter:'Etappe der Reise',experienceRoleFinale:'Finale der Route',journeyGuide:'Reise-Guide',guideDataDriven:'Aus dieser Route',journeyGuideLead:'Sieh auf einen Blick, wo die Reise Zeit verbringt und was vor der Buchung noch geprüft werden muss.',averageStay:'Ø Aufenthalt',routeMovements:'Routenetappen',timeFocus:'Hier verbringst du mehr Zeit',beforeBooking:'Vor der Buchung',guideReviewSegments:'{count} von {total} Routenetappen benötigen noch eine Prüfung für dein Reisedatum.',guideFareCoverage:'Für {known} von {total} Routenetappen liegen veröffentlichte Transportpreise vor.',guideEntryContext:'Einreisehinweise hängen von deinem Reisekontext ab.',guideVehicleContext:'Fahrzeugdaten können Maut-, Zufahrts- oder Grenzprüfungen verändern.',guideOriginAccess:'Die Anreise von deinem Startpunkt zur kuratierten Route wird separat geplant.',guideEvidenceReady:'Für alle Routenetappen liegen aktuell verifizierte Nachweise vor.',planningGuide:'Praktische Planung',planThisTrip:'Diese Reise planen',planningLead:'Praktischer Überblick über Reiseablauf, bekannte Verkehrskosten und Quellenabdeckung.',knownTransportMinimum:'Bekanntes Verkehrsminimum',fareCoverage:'Preisabdeckung',transportModes:'Verkehrsmittel',lastEvidenceCheck:'Letzte Quellenprüfung',dayByDay:'Reiseplan nach Tagen',planningBudgetScope:'Nur bekannte veröffentlichte Fahrpreise — kein vollständiges Reisebudget.',planningStartHere:'Start',planningOrigin:'Dein Startort',saved:'Gespeichert',saveTrip:'Reise speichern',removeSaved:'Aus Gespeichert entfernen',removedSaved:'Aus gespeicherten Reisen entfernt',savedLocally:'Auf diesem Gerät gespeichert',tripTools:'Reisewerkzeuge',exportJson:'JSON exportieren',exportCsv:'CSV exportieren',budgetEstimate:'Budgetschätzung',budgetLead:'Nutze eigene Tagesannahmen. Vorbelegt werden nur veröffentlichte Mindest-Verkehrskosten.',lodgingNight:'Unterkunft / Nacht',foodPersonDay:'Essen / Person / Tag',localPersonDay:'Nahverkehr / Person / Tag',extras:'Weitere Fixkosten',contingency:'Puffer %',updateEstimate:'Schätzung aktualisieren',estimatedTripTotal:'Geschätztes Reisebudget',budgetEstimateScope:'Persönliche Schätzung, kein Preisangebot.',travellers:'Reisende',estimateUpdated:'Schätzung aktualisiert',compare:'Vergleichen',compareTrips:'Reisen vergleichen',compareSelected:'Vergleichen ({count})',compareLimit:'Es können gleichzeitig bis zu drei Reisen verglichen werden.',compareLead:'Nur Planungsfakten im direkten Vergleich — ohne Ranking oder Sieger.',savedOnly:'Nur gespeichert',travellerParty:'Reisekontext',listedForContext:'für diese Konstellation vorgesehen',contextCheckNeeded:'Eignung prüfen',mobilityCheck:'Mobilität prüfen',startDate:'Startdatum',exportCalendar:'Kalender exportieren',calendarNeedsStartDate:'Bitte zuerst ein Startdatum wählen.',transportMinimum:'Bekannter Verkehr',lodging:'Unterkunft',food:'Essen',localTravel:'Nahverkehr',transportMultiplier:'Fahrpreis-Multiplikator',transportAssumption:'Veröffentlichte Mindestfahrpreise werden mit dieser ausdrücklich gesetzten Personenzahl multipliziert. Bei Kinderermäßigungen, Pässen oder nicht personenbezogenen Preisen bitte anpassen.',myTrips:'Meine Reisen',myTripsLead:'Deine gespeicherten Reisen und Planungsstände auf diesem Gerät.',myTripsEmptyTitle:'Noch keine Reisen gespeichert',myTripsEmptyLead:'Speichere eine Reise aus der Übersicht oder einer Routenseite, um deinen persönlichen Planungsbereich aufzubauen.',loading:'Wird geladen…',planningSeason:'Planungs-Reisezeit',planningSeasonLead:'Nur eine lokale Planungspräferenz. Veröffentlichte Fahrpläne oder Preise werden dadurch nicht verändert.',planningSeasonSaved:'Planungs-Reisezeit gespeichert',travellerFit:'Passung zum Reisekontext',vehicleContextMissing:'Fahrzeugkontext nicht gesetzt',transportUnknownBudget:'Veröffentlichte Verkehrspreise sind unvollständig; unbekannte Verkehrskosten werden in dieser Schätzung derzeit mit null angesetzt.',exportWorkspace:'Planungs-Backup exportieren',importWorkspace:'Planungs-Backup importieren',workspaceImported:'Planungs-Backup wiederhergestellt',workspaceImportFailed:'Planungs-Backup konnte nicht wiederhergestellt werden',planningStatus:'Planungsstatus',nextPlanningStep:'Nächster Planungsschritt',planningCoreRecorded:'Grundlegende Planung erfasst',recordCurrentCheck:'Aktuelle Prüfung erfassen',markForRecheck:'Erneut prüfen',manualCheckRecorded:'Manuelle Prüfung erfasst',continuePlanning:'Weiter planen',saveOffline:'Planung offline speichern',offlineSaving:'Offline wird gespeichert…',offlineReady:'Reisedaten für Offline-Planung gespeichert',offlineUnavailable:'Offline-Speichern ist derzeit nicht verfügbar',installApp:"App installieren",installingApp:"Installation wird geöffnet…",installAppDone:"App-Installation gestartet",installAppUnavailable:"Die App-Installation ist in diesem Browser derzeit nicht verfügbar",cloudSync:"Cloud-Sync",cloudSyncLead:"Optional kannst du deinen Planungsbereich geräteübergreifend synchronisieren. Der Reisekontext bleibt auf diesem Gerät.",cloudEmail:"E-Mail",cloudCode:"E-Mail-Code",cloudSendCode:"Code senden",cloudVerifyCode:"Anmelden",cloudSignedInAs:"Angemeldet als",cloudSyncNow:"Jetzt synchronisieren",cloudSignOut:"Abmelden",cloudCodeSent:"Prüfe deine E-Mail auf den Anmeldecode",cloudSignedIn:"Cloud-Sync angemeldet",cloudSyncUploaded:"Lokale Planung hochgeladen",cloudSyncDownloaded:"Neuere Cloud-Planung wiederhergestellt",cloudSyncCurrent:"Planung ist bereits synchron",cloudSyncFailed:"Cloud-Sync fehlgeschlagen",cloudUnavailable:"Cloud-Sync ist nicht konfiguriert",cloudLastSync:"Letzte Synchronisierung",cloudPrivacy:"Synchronisiert wird nur dein Planungsbereich. Reisekontext sowie Pass- und Wohnsitzdaten bleiben lokal.",cloudInvalidEmail:"Gib eine gültige E-Mail-Adresse ein",cloudSignedOut:"Vom Cloud-Sync abgemeldet",planningAccessCheck:'Anreiseprüfung',planningStatusLead:'Aus deinen gespeicherten Angaben. Manuelle Prüfungen werden hier nur dokumentiert und nicht von ONE WORLD ROUTE verifiziert.',planningWorkspaceLead:'Arbeite die wichtigsten Planungsschritte an einem Ort ab. Aktuelle Anreise bleibt eine manuelle Prüfung.',howFast:"Reisetempo",whatTheme:"Interessen",whoTravels:"Reisegruppe",sortBy:"Sortieren",sortRecommended:"Für dich passend",sortFeatured:"Hervorgehoben",sortShortest:"Kürzeste zuerst",sortLongest:"Längste zuerst",sortAlphabetical:"A–Z",fitMatches:"{matched}/{total} Präferenzen passen · {checks} Prüfungen",entryApproximation:"Näherung vom Startland zu zulässigen Routeneinstiegen; keine Live-Verbindungsempfehlung.",journeyVariant:"Reisevariante",fullJourney:"Gesamte Reise",variantLead:"Wähle eine kuratierte Variante dieser Reise, ohne die zugrunde liegenden Reisedaten zu duplizieren.",variantUpdated:"Reisevariante aktualisiert",savedJourneys:"Gespeicherte Reisen",recentlyViewed:"Zuletzt angesehen",planningComplexity:"Planungskomplexität",vehicleRequirement:"Fahrzeugkontext",yes:"Ja",no:"Nein",currentChecks:"Aktuelle Prüfungen nötig"},
+    it:{routes:'Itinerari',traveller:'Viaggiatore',flagship:'Flagship',template:'Modello',open:'Apri itinerario',days:'giorni',stops:'tappe',segments:'tratte',global:'Prospettiva globale',contextTitle:'Profilo viaggiatore',contextLead:'Adatta requisiti d’ingresso, lingua, valuta e partenza. Salvato solo su questo dispositivo.',passports:'Paese del passaporto',secondPassport:'Secondo passaporto (opzionale)',residence:'Residenza',language:'Lingua',currency:'Valuta',originRegion:"Regione di partenza (derivata)",originCountry:'Paese di partenza',recommendedForYou:"Consigliati per te",recommendationContextLead:"Ordinati in base al tuo contesto, al paese di partenza e al profilo del viaggio, senza inventare collegamenti live.",origin:'Città / aeroporto di partenza',adults:'Adulti',children:'Bambini',mobility:'Mobilità ridotta',save:'Salva',clear:'Cancella',close:'Chiudi',notSet:'Non impostato',currentCheck:'Verifica attuale richiesta',routeLibrary:'Esplora itinerari',routeLibraryLead:'Una piattaforma per giri del mondo, road trip, treni, crociere e altro.',editorial:'Modello editoriale — verifica trasporti, prezzi e requisiti per le tue date.',overview:'Panoramica',day:'Giorno',nights:'notti',transport:'Trasporto',verification:'Verifica',backWorld:'Giro del mondo',private:'Privato su questo dispositivo. Non chiediamo numeri di passaporto, prenotazioni o dati di pagamento.',sourcedBeta:'Beta con fonti',sources:'Fonti',lastChecked:'Ultima verifica',publishedFrom:'da',verified:'Verificato',routeEvidence:'Fonti del percorso',entryGuidance:'Ingresso',officialCheck:'Verifica ufficiale',connectionRequired:'coincidenza necessaria',minimumTravel:'tempo minimo',cruiseTemplate:'Modello crociera',onboardNights:'notti a bordo',seaDays:'giorni in mare',portCall:'Scalo',embarkation:'Imbarco',disembarkation:'Sbarco',border:'Contesto di frontiera',schengenExit:'Uscita Schengen',schengenEntry:'Rientro Schengen',sailingNeeded:'Seleziona una partenza reale per nave, operatore, orari, ormeggio e prezzo.',illustrative:'Illustrativo',searchRoutes:'Cerca itinerari',filters:"Filtri",hideFilters:"Nascondi filtri",filterType:'Tipo di viaggio',filterRegion:'Regione',filterDuration:'Durata',all:'Tutti',loadMoreJourneys:"Mostra altri {count} viaggi",showingJourneys:"Mostrati {shown} di {total} viaggi",routeAccess:"Accesso al percorso",routeAccessLead:"Il tuo punto di partenza resta separato dal percorso curato. Adattiamo la rotta solo quando l'itinerario lo consente in modo affidabile.",noRoutes:'Nessun itinerario corrisponde ai filtri.',vehicleSection:'Profilo veicolo (opzionale)',vehicleType:'Veicolo',registrationCountry:'Paese di immatricolazione',fuelType:'Carburante / propulsione',euroClass:'Classe Euro',rentalCrossBorder:'Noleggio autorizzato oltre confine',privateCar:'Auto privata',rentalCar:'Auto a noleggio',camper:'Camper',motorcycle:'Moto',otherVehicle:'Altro',petrol:'Benzina',diesel:'Diesel',hybrid:'Ibrido',pluginHybrid:'Ibrido plug-in',electric:'Elettrico',hydrogen:'Idrogeno',unknown:'Sconosciuto',roadRules:'Contesto stradale',crossBorder:'Transfrontaliero',urbanAccess:'Verifica accesso urbano',vehicleNeeded:'Il profilo veicolo è necessario per pedaggi, ZFE e accessi.',facet_world:'Giro del mondo',facet_round_trip:'Tour',facet_road_trip:'Road trip',facet_cruise:'Crociera',facet_global:'Globale',facet_europe:'Europa',facet_southern_europe:'Europa meridionale',facet_italy:'Italia',facet_mediterranean:'Mediterraneo',facet_north_africa:'Nord Africa',filterMode:'Trasporto',filterTheme:'Tema',results:'itinerari trovati',resetFilters:'Reimposta',details:'Dettagli',start:'Partenza',finish:'Arrivo',previous:'Indietro',next:'Avanti',type:'Tipo',country:'Paese',duration:'Durata',cost:'Costo',segment:'Tratta',stop:'Tappa',currency:'Valuta',facet_rail:'Treno',facet_bus:'Bus',facet_car:'Auto',facet_ferry:'Traghetto',facet_multimodal:'Multimodale',facet_road:'Strada',facet_coach:'Pullman',facet_ground_transfer:'Trasferimento terrestre',story:'Storia',storyPlay:'Avvia storia',storyExit:'Esci dalla storia',storyComplete:'Itinerario completato',chapter:'Capitolo',settings:'Impostazioni',methodology:'Metodologia',share:'Condividi',shareCopied:"Link di condivisione copiato",shareCopyFallback:"Copia l'URL dal browser",autoRotate:'Rotazione automatica',highDetail:'Globo ad alta definizione',terrain:'Terreno 3D reale',showPoints:'Punti delle tappe',routeGlow:'Bagliore itinerario',arcThickness:'Spessore linea',reducedMotion:'Movimento ridotto',terrainLoading:'Caricamento terreno 3D…',terrainUnavailable:'Terreno 3D non disponibile',terrainHint:'Trascina per ruotare · scorri per zoomare · il rilievo reale appare avvicinandoti',routeMethodTitle:'Metodologia itinerario',routeMethodText:'Questo itinerario curato usa dati pubblicabili e fonti verificabili quando disponibili. Orari, prezzi e regole personali variabili restano aperti finché non sono noti date e contesto.',evidenceCoverage:'Copertura fonti',editorialStatus:'Stato editoriale',storyRoute:'Storia itinerario',routeFit:'Route Fit',showFit:'Altri filtri di compatibilità',hideFit:'Nascondi filtri',fitPace:'Ritmo',fitSeason:'Stagione',fitParty:'Compagnia',fitStart:'Partenza itinerario',facet_relaxed:'Rilassato',facet_balanced:'Equilibrato',facet_active:'Attivo',facet_spring:'Primavera',facet_summer:'Estate',facet_autumn:'Autunno',facet_winter:'Inverno',facet_multi_season:'Più stagioni',facet_solo:'Solo',facet_couples:'Coppia',facet_friends:'Amici',facet_families:'Famiglia',resultOne:'itinerario trovato',countryUnit:'paese',countriesUnit:'paesi',facet_city:'Città',facet_cruise_port:'Porto crocieristico',facet_port:'Porto',facet_rail_station:'Stazione ferroviaria',facet_airport:'Aeroporto',facet_island:'Isola',facet_park:'Parco',facet_camper:"Camper",facet_island_hopping:"Da un'isola all'altra",facet_asia:"Asia",facet_east_asia:"Asia orientale",facet_japan:"Giappone",facet_south_america:"Sud America",facet_patagonia:"Patagonia",facet_argentina:"Argentina",facet_chile:"Cile",facet_northern_europe:"Europa settentrionale",facet_norway:"Norvegia",facet_oceania:"Oceania",facet_new_zealand:"Nuova Zelanda",facet_greece:"Grecia",facet_africa:"Africa",facet_morocco:"Marocco",facet_southern_africa:"Africa australe",facet_south_africa:"Sudafrica",facet_north_america:"Nord America",facet_canada:"Canada",facet_south_east_asia:"Sud-est asiatico",facet_vietnam:"Vietnam",facet_central_america:"America Centrale",facet_costa_rica:"Costa Rica",facet_iceland:"Islanda",facet_peru:"Perù",facet_andes:"Ande",facet_culture:"Cultura",facet_food:"Gastronomia",facet_cities:"Città",facet_mountains:"Montagne",facet_nature:"Natura",facet_adventure:"Avventura",facet_coast:"Costa",facet_arctic:"Artico",facet_islands:"Isole",facet_desert:"Deserto",facet_wildlife:"Fauna",facet_tropical:"Tropicale",facet_volcanic:"Vulcanico",facet_history:"Storia",status_editorial_preview:"Anteprima editoriale",status_planned:'Pianificato',status_sourced_beta:'Beta con fonti',status_illustrative_template:'Modello illustrativo',status_draft:'Bozza',home:'Home',homeNavSub:'Viaggi su una sola mappa del mondo',homeEyebrow:'Scopri i viaggi',homeTitle:'Un solo mondo. Tanti modi di viaggiare.',homeLead:'Scopri viaggi in treno, road trip, fughe tra le isole, crociere e avventure più lunghe, poi adattale al tuo punto di partenza, ritmo e piano.',exploreJourneys:'Scopri i viaggi',openFlagship:'Apri il viaggio flagship',homeGlobeLabel:'Atlante live degli itinerari',homeGlobeHint:'Seleziona una linea o una tappa per aprire il viaggio.',flagshipJourney:'Viaggio flagship',homeStates:'stati sovrani',homeLegs:'tratte internazionali',homePlannedDays:'giorni pianificati',homeStart:'partenza',homeBaseModel:'modello base',curatedCollections:"Collezioni curate",collectionsLead:"Esplora per idea di viaggio invece di iniziare con un lungo modulo di filtri.",journeyDiscovery:'Scopri i viaggi',journeyDiscoveryLead:'Filtra il catalogo pubblicato per regione, trasporto, tema, durata e Route Fit.',featuredJourneys:'Viaggi in evidenza',findJourneyEyebrow:'Inizia in modo semplice',findJourneyTitle:'Trova il tuo prossimo viaggio',findJourneyLead:'Scegli dove, come e per quanto tempo vuoi viaggiare. Potrai affinare i dettagli in seguito.',whereTravel:'Dove',howTravel:'Tipo di viaggio',howLong:'Quanto tempo',anywhere:'Ovunque',anyStyle:'Qualsiasi tipo di viaggio',anyDuration:'Qualsiasi durata',showJourneys:'Mostra viaggi',personalizeRecommendations:'Personalizza i consigli',personalizeLead:'Aggiungi il paese di partenza e le preferenze di viaggio per suggerimenti più pertinenti.',tunePreferences:'Modifica preferenze',recommendationsActive:'I consigli usano il contesto viaggiatore salvato su questo dispositivo.',curatedJourneys:'viaggi curati',worldRegions:'regioni del mondo',journeyTypes:'tipi di viaggio',localPlanning:'pianificazione locale',moreFilters:'Altri filtri',fewerFilters:'Meno filtri',filterAccessibility:'Accessibilità',homeMethodTitle:'Prima i dati. L’incertezza resta visibile.',homeMethodText:'Ogni viaggio normale usa lo stesso modello luogo → tappa → segmento. Gli itinerari pubblicati restano legati alle fonti e i dati sensibili alla data non vengono inventati.',homeSourceRuleTitle:'Basato su fonti',homeSourceRule:'Le prove restano collegate ai dati dell’itinerario quando disponibili.',homeUnknownRuleTitle:'Ciò che è ignoto resta ignoto',homeUnknownRule:'Orari, prezzi e regole specifiche del viaggiatore restano irrisolti finché non possono essere verificati.',homeDeepLinkRuleTitle:'Link diretto',homeDeepLinkRule:'Ogni viaggio resta direttamente raggiungibile e condivisibile.',exploreByRegion:"Esplora per regione",featuredLead:"Treno, strada, isole, natura, città e itinerari unici: prima esperienze visive, poi strumenti di pianificazione.",allJourneys:"Tutti i viaggi",inspirationMethodTitle:"Prima l'ispirazione. La pianificazione quando serve.",inspirationMethodText:"Le pagine dei viaggi partono da percorso, luoghi ed esperienza. Fonti, orari live, prezzi e regole personali restano in un livello di pianificazione più profondo.",globalDesignTitle:"Globale per design",globalDesignText:"Un unico modello riutilizzabile supporta treno, strada, isole, crociere, camper e futuri tipi di viaggio in tutto il mondo.",homeFooter:'Una piattaforma pubblica per scoprire viaggi.',partnerOptions:"Opzioni partner",partnerDisclosure:"I link partner sono chiaramente indicati. Se ne utilizzi uno, può sostenere ONE WORLD ROUTE senza costi aggiuntivi per te.",facet_standard_check:'Controllo standard',facet_operator_dependent:'Dipende dall’operatore',facet_vehicle_dependent:'Dipende dal veicolo',facet_complex_planning:'Pianificazione complessa',journeyUpdates:"Aggiornamenti viaggio",journeyUpdatesLead:"Le indicazioni condivise vengono mantenute centralmente e riutilizzate in tutti i viaggi pertinenti.",checkBeforeTravel:"Verifica prima del viaggio",contextDependent:"Dipende dal tuo contesto",personalizeJourney:"Personalizza",personalizeJourneyTitle:"Adatta il viaggio a te",personalizeJourneyLead:"Imposta una volta il tuo punto di partenza e scegli un ingresso alternativo quando l'itinerario lo consente.",originPoint:"Il tuo punto di partenza",routeStart:"Inizia il percorso da",routeStartFlexibleLead:"Questo percorso può essere invertito. Trasporti, tariffe e accessi vanno ricontrollati per la direzione scelta.",routeStartFixedLead:"Questo itinerario ha un inizio fisso. Il tuo punto di partenza personale resta valido per pianificare l'arrivo.",routeStartUpdated:"Inizio percorso aggiornato",entrySuggestion:"Ingresso consigliato · livello paese",entrySuggestionApplied:"Applicato",useSuggestedEntry:"Usa suggerimento",change:"Modifica",whatToExpect:'Cosa aspettarsi',experienceRoleStart:'Inizio del percorso',experienceRoleAnchor:'Soggiorno più lungo',experienceRoleChapter:'Tappa del viaggio',experienceRoleFinale:'Finale del percorso',journeyGuide:'Guida al viaggio',guideDataDriven:'Da questo itinerario',journeyGuideLead:'Vedi come il viaggio distribuisce il tempo e cosa va ancora verificato prima di prenotare.',averageStay:'Permanenza media',routeMovements:'Spostamenti',timeFocus:'Dove trascorri più tempo',beforeBooking:'Prima di prenotare',guideReviewSegments:'{count} di {total} spostamenti richiedono ancora una verifica aggiornata.',guideFareCoverage:'Sono disponibili prezzi di trasporto pubblicati per {known} di {total} spostamenti.',guideEntryContext:'Le indicazioni di ingresso dipendono dal tuo profilo viaggiatore.',guideVehicleContext:'I dati del veicolo possono cambiare verifiche su pedaggi, accessi o frontiere.',guideOriginAccess:'Il viaggio dal tuo punto di partenza all’itinerario curato viene pianificato separatamente.',guideEvidenceReady:'Tutti gli spostamenti hanno attualmente evidenze verificate.',planningGuide:'Pianificazione pratica',planThisTrip:'Pianifica questo viaggio',planningLead:'Una vista pratica dell’itinerario pubblicato, dei costi di trasporto noti e della copertura delle fonti.',knownTransportMinimum:'Minimo trasporti noto',fareCoverage:'Copertura tariffe',transportModes:'Mezzi di trasporto',lastEvidenceCheck:'Ultima verifica fonti',dayByDay:'Itinerario giorno per giorno',planningBudgetScope:'Solo tariffe pubblicate note — non è un budget completo del viaggio.',planningStartHere:'Inizio',planningOrigin:'La tua partenza',saved:'Salvato',saveTrip:'Salva viaggio',removeSaved:'Rimuovi dai salvati',removedSaved:'Rimosso dai viaggi salvati',savedLocally:'Salvato su questo dispositivo',tripTools:'Strumenti di viaggio',exportJson:'Esporta JSON',exportCsv:'Esporta CSV',budgetEstimate:'Stima del budget',budgetLead:'Usa le tue ipotesi giornaliere. Sono precompilati solo i minimi di trasporto pubblicati.',lodgingNight:'Alloggio / notte',foodPersonDay:'Cibo / persona / giorno',localPersonDay:'Trasporti locali / persona / giorno',extras:'Altri costi fissi',contingency:'Margine %',updateEstimate:'Aggiorna stima',estimatedTripTotal:'Totale stimato',budgetEstimateScope:'Stima personale, non un preventivo.',travellers:'viaggiatori',estimateUpdated:'Stima aggiornata',compare:'Confronta',compareTrips:'Confronta viaggi',compareSelected:'Confronta ({count})',compareLimit:'Puoi confrontare fino a tre viaggi alla volta.',compareLead:'Solo fatti di pianificazione affiancati — nessuna classifica o vincitore.',savedOnly:'Solo salvati',travellerParty:'Profilo viaggiatore',listedForContext:'previsto per questo gruppo',contextCheckNeeded:'verifica idoneità',mobilityCheck:'Verifica mobilità',startDate:'Data di partenza',exportCalendar:'Esporta calendario',calendarNeedsStartDate:'Scegli prima una data di partenza.',transportMinimum:'Trasporto noto',lodging:'Alloggio',food:'Cibo',localTravel:'Trasporto locale',transportMultiplier:'Moltiplicatore tariffa trasporto',transportAssumption:'Le tariffe minime pubblicate vengono moltiplicate per questo numero esplicito di viaggiatori; regolalo per sconti bambini, pass o prezzi non individuali.',myTrips:'I miei viaggi',myTripsLead:'I viaggi salvati e lo stato della pianificazione su questo dispositivo.',myTripsEmptyTitle:'Nessun viaggio salvato',myTripsEmptyLead:'Salva un viaggio dalla scoperta o da una pagina itinerario per creare il tuo spazio di pianificazione personale.',loading:'Caricamento…',planningSeason:'Stagione di pianificazione',planningSeasonLead:'Solo una preferenza locale di pianificazione. Non modifica orari o tariffe pubblicate.',planningSeasonSaved:'Stagione di pianificazione salvata',travellerFit:'Contesto di compatibilità',vehicleContextMissing:'Contesto veicolo non impostato',transportUnknownBudget:'I prezzi pubblicati dei trasporti sono incompleti; questa stima considera temporaneamente a zero i costi di trasporto sconosciuti.',exportWorkspace:'Esporta backup di pianificazione',importWorkspace:'Importa backup di pianificazione',workspaceImported:'Backup di pianificazione ripristinato',workspaceImportFailed:'Impossibile ripristinare il backup di pianificazione',planningStatus:'Stato della pianificazione',nextPlanningStep:'Prossimo passo di pianificazione',planningCoreRecorded:'Impostazione di base registrata',recordCurrentCheck:'Registra controllo attuale',markForRecheck:'Segna da ricontrollare',manualCheckRecorded:'Controllo manuale registrato',continuePlanning:'Continua a pianificare',saveOffline:'Salva pianificazione offline',offlineSaving:'Salvataggio offline…',offlineReady:'Dati del viaggio salvati per la pianificazione offline',offlineUnavailable:'Il salvataggio offline non è disponibile al momento',installApp:"Installa app",installingApp:"Apertura installazione…",installAppDone:"Installazione dell'app avviata",installAppUnavailable:"L'installazione dell'app non è al momento disponibile in questo browser",cloudSync:"Sincronizzazione cloud",cloudSyncLead:"Puoi sincronizzare facoltativamente lo spazio di pianificazione tra dispositivi. Il contesto del viaggiatore resta su questo dispositivo.",cloudEmail:"Email",cloudCode:"Codice email",cloudSendCode:"Invia codice",cloudVerifyCode:"Accedi",cloudSignedInAs:"Accesso come",cloudSyncNow:"Sincronizza ora",cloudSignOut:"Esci",cloudCodeSent:"Controlla l'email per il codice di accesso",cloudSignedIn:"Accesso alla sincronizzazione cloud effettuato",cloudSyncUploaded:"Pianificazione locale caricata",cloudSyncDownloaded:"Pianificazione cloud più recente ripristinata",cloudSyncCurrent:"La pianificazione è già sincronizzata",cloudSyncFailed:"Sincronizzazione cloud non riuscita",cloudUnavailable:"La sincronizzazione cloud non è configurata",cloudLastSync:"Ultima sincronizzazione",cloudPrivacy:"Viene sincronizzato solo lo spazio di pianificazione. Contesto del viaggiatore e dati di passaporto/residenza restano locali.",cloudInvalidEmail:"Inserisci un indirizzo email valido",cloudSignedOut:"Disconnesso dalla sincronizzazione cloud",planningAccessCheck:'Controllo accesso al percorso',planningStatusLead:'Basato sui dati salvati. I controlli manuali vengono registrati qui, non verificati da ONE WORLD ROUTE.',planningWorkspaceLead:'Completa la configurazione essenziale in un solo posto. L’accesso attuale resta un controllo manuale.',howFast:"Ritmo",whatTheme:"Interessi",whoTravels:"Con chi viaggi",sortBy:"Ordina",sortRecommended:"Consigliati",sortFeatured:"In evidenza",sortShortest:"Più brevi",sortLongest:"Più lunghi",sortAlphabetical:"A–Z",fitMatches:"{matched}/{total} preferenze corrispondono · {checks} verifiche",entryApproximation:"Stima dal paese di partenza ai punti di ingresso consentiti; non è una raccomandazione di trasporto in tempo reale.",journeyVariant:"Variante del viaggio",fullJourney:"Viaggio completo",variantLead:"Scegli una versione curata di questo viaggio senza duplicare i dati di base.",variantUpdated:"Variante del viaggio aggiornata",savedJourneys:"Viaggi salvati",recentlyViewed:"Visti di recente",planningComplexity:"Complessità di pianificazione",vehicleRequirement:"Contesto veicolo",yes:"Sì",no:"No",currentChecks:"Verifiche attuali necessarie"},
+    es:{routes:'Rutas',traveller:'Viajero',flagship:'Flagship',template:'Plantilla',open:'Abrir ruta',days:'días',stops:'paradas',segments:'tramos',global:'Perspectiva global',contextTitle:'Contexto del viajero',contextLead:'Adapta requisitos de entrada, idioma, moneda y origen. Solo se guarda en este dispositivo.',passports:'País del pasaporte',secondPassport:'Segundo pasaporte (opcional)',residence:'Residencia',language:'Idioma',currency:'Moneda',originRegion:"Región de salida (derivada)",originCountry:'País de salida',recommendedForYou:"Recomendados para ti",recommendationContextLead:"Ordenados según tu contexto, país de salida y encaje del viaje, sin inventar conexiones en vivo.",origin:'Ciudad / aeropuerto de salida',adults:'Adultos',children:'Niños',mobility:'Movilidad reducida',save:'Guardar',clear:'Borrar',close:'Cerrar',notSet:'Sin definir',currentCheck:'Revisión actual necesaria',routeLibrary:'Explorar rutas',routeLibraryLead:'Una plataforma para vueltas al mundo, road trips, trenes, cruceros y más.',editorial:'Plantilla editorial — verifica transporte, precios y requisitos para tus fechas.',overview:'Resumen de ruta',day:'Día',nights:'noches',transport:'Transporte',verification:'Verificación',backWorld:'Ruta mundial',private:'Privado en este dispositivo. Nunca pedimos números de pasaporte, reservas ni pagos.',sourcedBeta:'Beta con fuentes',sources:'Fuentes',lastChecked:'Última revisión',publishedFrom:'desde',verified:'Verificado',routeEvidence:'Fuentes de ruta',entryGuidance:'Entrada',officialCheck:'Comprobación oficial',connectionRequired:'conexión necesaria',minimumTravel:'tiempo mínimo',cruiseTemplate:'Plantilla de crucero',onboardNights:'noches a bordo',seaDays:'días de navegación',portCall:'Escala',embarkation:'Embarque',disembarkation:'Desembarque',border:'Contexto fronterizo',schengenExit:'Salida de Schengen',schengenEntry:'Reentrada a Schengen',sailingNeeded:'Selecciona una salida real para barco, operador, horarios, atraque y precio.',illustrative:'Ilustrativo',searchRoutes:'Buscar rutas',filters:"Filtros",hideFilters:"Ocultar filtros",filterType:'Tipo de viaje',filterRegion:'Región',filterDuration:'Duración',all:'Todas',loadMoreJourneys:"Mostrar {count} viajes más",showingJourneys:"Mostrando {shown} de {total} viajes",routeAccess:"Acceso a la ruta",routeAccessLead:"Tu origen se mantiene separado de la ruta principal curada. Solo adaptamos la ruta cuando el itinerario lo permite de forma segura.",noRoutes:'Ninguna ruta coincide con los filtros.',vehicleSection:'Contexto del vehículo (opcional)',vehicleType:'Vehículo',registrationCountry:'País de matriculación',fuelType:'Combustible / propulsión',euroClass:'Clase Euro',rentalCrossBorder:'Alquiler autorizado para cruzar fronteras',privateCar:'Coche privado',rentalCar:'Coche de alquiler',camper:'Camper',motorcycle:'Moto',otherVehicle:'Otro',petrol:'Gasolina',diesel:'Diésel',hybrid:'Híbrido',pluginHybrid:'Híbrido enchufable',electric:'Eléctrico',hydrogen:'Hidrógeno',unknown:'Desconocido',roadRules:'Contexto vial',crossBorder:'Transfronterizo',urbanAccess:'Comprobar acceso urbano',vehicleNeeded:'Se requiere contexto del vehículo para peajes, ZBE y accesos.',facet_world:'Vuelta al mundo',facet_round_trip:'Ruta circular',facet_road_trip:'Road trip',facet_cruise:'Crucero',facet_global:'Global',facet_europe:'Europa',facet_southern_europe:'Sur de Europa',facet_italy:'Italia',facet_mediterranean:'Mediterráneo',facet_north_africa:'Norte de África',filterMode:'Transporte',filterTheme:'Tema',results:'rutas encontradas',resetFilters:'Restablecer',details:'Detalles',start:'Inicio',finish:'Final',previous:'Anterior',next:'Siguiente',type:'Tipo',country:'País',duration:'Duración',cost:'Coste',segment:'Tramo',stop:'Parada',currency:'Moneda',facet_rail:'Tren',facet_bus:'Bus',facet_car:'Coche',facet_ferry:'Ferry',facet_multimodal:'Multimodal',facet_road:'Carretera',facet_coach:'Autocar',facet_ground_transfer:'Traslado terrestre',story:'Historia',storyPlay:'Reproducir historia',storyExit:'Salir de la historia',storyComplete:'Ruta completada',chapter:'Capítulo',settings:'Ajustes',methodology:'Metodología',share:'Compartir',shareCopied:"Enlace para compartir copiado",shareCopyFallback:"Copia la URL desde tu navegador",autoRotate:'Rotación automática',highDetail:'Globo de alta definición',terrain:'Terreno 3D real',showPoints:'Puntos de parada',routeGlow:'Brillo de ruta',arcThickness:'Grosor de ruta',reducedMotion:'Movimiento reducido',terrainLoading:'Cargando terreno 3D…',terrainUnavailable:'Terreno 3D no disponible',terrainHint:'Arrastra para girar · desplázate para acercar · el relieve real aparece al aproximarte',routeMethodTitle:'Metodología de ruta',routeMethodText:'Esta ruta curada usa datos publicables y evidencia con fuentes cuando está disponible. Horarios, precios y reglas personales variables permanecen abiertos hasta conocer fechas y contexto.',evidenceCoverage:'Cobertura de fuentes',editorialStatus:'Estado editorial',storyRoute:'Historia de la ruta',routeFit:'Route Fit',showFit:'Más filtros de ajuste',hideFit:'Ocultar filtros',fitPace:'Ritmo',fitSeason:'Temporada',fitParty:'Compañía',fitStart:'Inicio de ruta',facet_relaxed:'Relajado',facet_balanced:'Equilibrado',facet_active:'Activo',facet_spring:'Primavera',facet_summer:'Verano',facet_autumn:'Otoño',facet_winter:'Invierno',facet_multi_season:'Varias estaciones',facet_solo:'Solo',facet_couples:'Pareja',facet_friends:'Amigos',facet_families:'Familia',resultOne:'ruta encontrada',countryUnit:'país',countriesUnit:'países',facet_city:'Ciudad',facet_cruise_port:'Puerto de cruceros',facet_port:'Puerto',facet_rail_station:'Estación de tren',facet_airport:'Aeropuerto',facet_island:'Isla',facet_park:'Parque',facet_camper:"Camper",facet_island_hopping:"De isla en isla",facet_asia:"Asia",facet_east_asia:"Asia Oriental",facet_japan:"Japón",facet_south_america:"Sudamérica",facet_patagonia:"Patagonia",facet_argentina:"Argentina",facet_chile:"Chile",facet_northern_europe:"Europa del Norte",facet_norway:"Noruega",facet_oceania:"Oceanía",facet_new_zealand:"Nueva Zelanda",facet_greece:"Grecia",facet_africa:"África",facet_morocco:"Marruecos",facet_southern_africa:"África Austral",facet_south_africa:"Sudáfrica",facet_north_america:"Norteamérica",facet_canada:"Canadá",facet_south_east_asia:"Sudeste Asiático",facet_vietnam:"Vietnam",facet_central_america:"Centroamérica",facet_costa_rica:"Costa Rica",facet_iceland:"Islandia",facet_peru:"Perú",facet_andes:"Andes",facet_culture:"Cultura",facet_food:"Gastronomía",facet_cities:"Ciudades",facet_mountains:"Montañas",facet_nature:"Naturaleza",facet_adventure:"Aventura",facet_coast:"Costa",facet_arctic:"Ártico",facet_islands:"Islas",facet_desert:"Desierto",facet_wildlife:"Fauna",facet_tropical:"Tropical",facet_volcanic:"Volcánico",facet_history:"Historia",status_editorial_preview:"Vista previa editorial",status_planned:'Planificado',status_sourced_beta:'Beta con fuentes',status_illustrative_template:'Plantilla ilustrativa',status_draft:'Borrador',home:'Inicio',homeNavSub:'Viajes en un solo mapa del mundo',homeEyebrow:'Descubre viajes',homeTitle:'Un mundo. Muchas formas de viajar.',homeLead:'Descubre viajes en tren, road trips, escapadas por islas, cruceros y aventuras más largas, y adáptalos a tu punto de partida, ritmo y plan.',exploreJourneys:'Descubrir viajes',openFlagship:'Abrir viaje insignia',homeGlobeLabel:'Atlas de rutas en vivo',homeGlobeHint:'Selecciona una línea o parada para abrir su viaje.',flagshipJourney:'Viaje insignia',homeStates:'estados soberanos',homeLegs:'tramos internacionales',homePlannedDays:'días planificados',homeStart:'inicio',homeBaseModel:'modelo base',curatedCollections:"Colecciones seleccionadas",collectionsLead:"Explora por idea de viaje en lugar de empezar con un largo formulario de filtros.",journeyDiscovery:'Descubrir viajes',journeyDiscoveryLead:'Filtra el catálogo publicado por región, transporte, tema, duración y Route Fit.',featuredJourneys:'Viajes destacados',findJourneyEyebrow:'Empieza fácil',findJourneyTitle:'Encuentra tu próximo viaje',findJourneyLead:'Elige dónde, cómo y cuánto tiempo quieres viajar. Después podrás afinar los detalles.',whereTravel:'Dónde',howTravel:'Tipo de viaje',howLong:'Cuánto tiempo',anywhere:'Cualquier lugar',anyStyle:'Cualquier tipo de viaje',anyDuration:'Cualquier duración',showJourneys:'Mostrar viajes',personalizeRecommendations:'Personalizar recomendaciones',personalizeLead:'Añade tu país de salida y preferencias de viaje para recibir sugerencias más relevantes.',tunePreferences:'Ajustar preferencias',recommendationsActive:'Las recomendaciones usan el contexto del viajero guardado en este dispositivo.',curatedJourneys:'viajes seleccionados',worldRegions:'regiones del mundo',journeyTypes:'tipos de viaje',localPlanning:'planificación local',moreFilters:'Más filtros',fewerFilters:'Menos filtros',filterAccessibility:'Accesibilidad',homeMethodTitle:'Primero los datos. La incertidumbre sigue visible.',homeMethodText:'Cada viaje normal usa el mismo modelo lugar → parada → segmento. Las rutas publicadas conservan sus fuentes y los datos sensibles a la fecha no se inventan.',homeSourceRuleTitle:'Con fuentes',homeSourceRule:'La evidencia permanece vinculada a los datos de la ruta cuando está disponible.',homeUnknownRuleTitle:'Lo desconocido sigue desconocido',homeUnknownRule:'Horarios, precios y reglas específicas del viajero quedan abiertos hasta poder verificarlos.',homeDeepLinkRuleTitle:'Enlace directo',homeDeepLinkRule:'Cada viaje sigue siendo accesible y compartible mediante un enlace directo.',exploreByRegion:"Explora por región",featuredLead:"Tren, carretera, islas, naturaleza, ciudades y rutas únicas: primero viajes visuales, después herramientas de planificación.",allJourneys:"Todos los viajes",inspirationMethodTitle:"Primero inspiración. Planificación cuando importa.",inspirationMethodText:"Las páginas empiezan por la ruta, los lugares y la experiencia. Fuentes, horarios en vivo, precios y reglas personales quedan en una capa de planificación más profunda.",globalDesignTitle:"Global desde el diseño",globalDesignText:"Un único modelo reutilizable admite tren, carretera, islas, cruceros, camper y futuros tipos de viaje en todo el mundo.",homeFooter:'Una plataforma pública para descubrir viajes.',partnerOptions:"Opciones de socios",partnerDisclosure:"Los enlaces de socios están claramente identificados. Si utilizas uno, puede apoyar ONE WORLD ROUTE sin coste adicional para ti.",facet_standard_check:'Comprobación estándar',facet_operator_dependent:'Depende del operador',facet_vehicle_dependent:'Depende del vehículo',facet_complex_planning:'Planificación compleja',journeyUpdates:"Actualizaciones del viaje",journeyUpdatesLead:"La orientación compartida se mantiene de forma central y se reutiliza en todos los viajes pertinentes.",checkBeforeTravel:"Comprobar antes del viaje",contextDependent:"Depende de tu contexto",personalizeJourney:"Personalizar",personalizeJourneyTitle:"Adapta el viaje a ti",personalizeJourneyLead:"Define una vez tu punto de partida y elige una entrada alternativa cuando el itinerario lo permita.",originPoint:"Tu punto de partida",routeStart:"Comenzar la ruta en",routeStartFlexibleLead:"Esta ruta puede invertirse. Transporte, tarifas y accesos deben volver a comprobarse para la dirección elegida.",routeStartFixedLead:"Este itinerario tiene un inicio fijo. Tu punto de partida personal sigue usándose para planificar la llegada.",routeStartUpdated:"Inicio de ruta actualizado",entrySuggestion:"Entrada sugerida · nivel país",entrySuggestionApplied:"Aplicada",useSuggestedEntry:"Usar sugerencia",change:"Cambiar",whatToExpect:'Qué esperar',experienceRoleStart:'Inicio de la ruta',experienceRoleAnchor:'Estancia más larga',experienceRoleChapter:'Etapa del viaje',experienceRoleFinale:'Final de la ruta',journeyGuide:'Guía del viaje',guideDataDriven:'Desde esta ruta',journeyGuideLead:'Consulta cómo se reparte el tiempo del viaje y qué falta comprobar antes de reservar.',averageStay:'Estancia media',routeMovements:'Desplazamientos',timeFocus:'Dónde pasas más tiempo',beforeBooking:'Antes de reservar',guideReviewSegments:'{count} de {total} desplazamientos aún necesitan una comprobación actualizada.',guideFareCoverage:'Hay precios de transporte publicados para {known} de {total} desplazamientos.',guideEntryContext:'La información de entrada depende de tu contexto de viajero.',guideVehicleContext:'Los datos del vehículo pueden cambiar las comprobaciones de peajes, acceso o fronteras.',guideOriginAccess:'El trayecto desde tu origen hasta la ruta curada se planifica por separado.',guideEvidenceReady:'Todos los desplazamientos cuentan actualmente con evidencia verificada.',planningGuide:'Planificación práctica',planThisTrip:'Planifica este viaje',planningLead:'Una visión práctica del itinerario publicado, los costes de transporte conocidos y la cobertura de fuentes.',knownTransportMinimum:'Mínimo de transporte conocido',fareCoverage:'Cobertura de tarifas',transportModes:'Transportes',lastEvidenceCheck:'Última revisión de fuentes',dayByDay:'Itinerario día a día',planningBudgetScope:'Solo tarifas publicadas conocidas — no es un presupuesto completo del viaje.',planningStartHere:'Inicio',planningOrigin:'Tu origen',saved:'Guardado',saveTrip:'Guardar viaje',removeSaved:'Quitar de guardados',removedSaved:'Eliminado de viajes guardados',savedLocally:'Guardado en este dispositivo',tripTools:'Herramientas de viaje',exportJson:'Exportar JSON',exportCsv:'Exportar CSV',budgetEstimate:'Estimación de presupuesto',budgetLead:'Usa tus propios supuestos diarios. Solo se precargan mínimos de transporte publicados.',lodgingNight:'Alojamiento / noche',foodPersonDay:'Comida / persona / día',localPersonDay:'Transporte local / persona / día',extras:'Otros costes fijos',contingency:'Margen %',updateEstimate:'Actualizar estimación',estimatedTripTotal:'Total estimado',budgetEstimateScope:'Estimación personal, no es una oferta.',travellers:'viajeros',estimateUpdated:'Estimación actualizada',compare:'Comparar',compareTrips:'Comparar viajes',compareSelected:'Comparar ({count})',compareLimit:'Puedes comparar hasta tres viajes a la vez.',compareLead:'Solo hechos de planificación en paralelo — sin clasificación ni ganador.',savedOnly:'Solo guardados',travellerParty:'Contexto del viajero',listedForContext:'incluido para este grupo',contextCheckNeeded:'revisar idoneidad',mobilityCheck:'Revisar movilidad',startDate:'Fecha de inicio',exportCalendar:'Exportar calendario',calendarNeedsStartDate:'Elige primero una fecha de inicio.',transportMinimum:'Transporte conocido',lodging:'Alojamiento',food:'Comida',localTravel:'Transporte local',transportMultiplier:'Multiplicador de tarifa',transportAssumption:'Las tarifas mínimas publicadas se multiplican por este número explícito de viajeros; ajústalo para descuentos infantiles, pases o precios no individuales.',myTrips:'Mis viajes',myTripsLead:'Tus viajes guardados y su estado de planificación en este dispositivo.',myTripsEmptyTitle:'Aún no hay viajes guardados',myTripsEmptyLead:'Guarda un viaje desde el buscador o una página de ruta para crear tu espacio personal de planificación.',loading:'Cargando…',planningSeason:'Temporada de planificación',planningSeasonLead:'Solo es una preferencia local de planificación. No modifica horarios ni tarifas publicadas.',planningSeasonSaved:'Temporada de planificación guardada',travellerFit:'Contexto de adecuación',vehicleContextMissing:'Contexto del vehículo no configurado',transportUnknownBudget:'Los precios publicados del transporte están incompletos; esta estimación trata temporalmente los costes desconocidos como cero.',exportWorkspace:'Exportar copia de planificación',importWorkspace:'Importar copia de planificación',workspaceImported:'Copia de planificación restaurada',workspaceImportFailed:'No se pudo restaurar la copia de planificación',planningStatus:'Estado de planificación',nextPlanningStep:'Siguiente paso de planificación',planningCoreRecorded:'Configuración básica registrada',recordCurrentCheck:'Registrar comprobación actual',markForRecheck:'Marcar para volver a comprobar',manualCheckRecorded:'Comprobación manual registrada',continuePlanning:'Seguir planificando',saveOffline:'Guardar planificación offline',offlineSaving:'Guardando offline…',offlineReady:'Datos del viaje guardados para planificar offline',offlineUnavailable:'El guardado offline no está disponible ahora',installApp:"Instalar app",installingApp:"Abriendo instalación…",installAppDone:"Instalación de la app iniciada",installAppUnavailable:"La instalación de la app no está disponible ahora mismo en este navegador",cloudSync:"Sincronización en la nube",cloudSyncLead:"Opcionalmente puedes sincronizar tu espacio de planificación entre dispositivos. El contexto del viajero permanece en este dispositivo.",cloudEmail:"Correo electrónico",cloudCode:"Código por correo",cloudSendCode:"Enviar código",cloudVerifyCode:"Iniciar sesión",cloudSignedInAs:"Sesión iniciada como",cloudSyncNow:"Sincronizar ahora",cloudSignOut:"Cerrar sesión",cloudCodeSent:"Revisa tu correo para ver el código de acceso",cloudSignedIn:"Sesión de sincronización iniciada",cloudSyncUploaded:"Planificación local subida",cloudSyncDownloaded:"Planificación más reciente de la nube restaurada",cloudSyncCurrent:"La planificación ya está sincronizada",cloudSyncFailed:"Error de sincronización en la nube",cloudUnavailable:"La sincronización en la nube no está configurada",cloudLastSync:"Última sincronización",cloudPrivacy:"Solo se sincroniza tu espacio de planificación. El contexto del viajero y los datos de pasaporte/residencia permanecen locales.",cloudInvalidEmail:"Introduce un correo electrónico válido",cloudSignedOut:"Sesión de sincronización cerrada",planningAccessCheck:'Comprobación de acceso a la ruta',planningStatusLead:'Basado en tu configuración guardada. Las comprobaciones manuales se registran aquí, no las verifica ONE WORLD ROUTE.',planningWorkspaceLead:'Completa la configuración esencial en un solo lugar. El acceso actual sigue siendo una comprobación manual.',howFast:"Ritmo",whatTheme:"Intereses",whoTravels:"Con quién viajas",sortBy:"Ordenar",sortRecommended:"Recomendados",sortFeatured:"Destacados",sortShortest:"Más cortos primero",sortLongest:"Más largos primero",sortAlphabetical:"A–Z",fitMatches:"{matched}/{total} preferencias coinciden · {checks} comprobaciones",entryApproximation:"Aproximación desde tu país de partida a las entradas permitidas de la ruta; no es una recomendación de transporte en tiempo real.",journeyVariant:"Variante del viaje",fullJourney:"Viaje completo",variantLead:"Elige una versión curada de este viaje sin duplicar los datos base.",variantUpdated:"Variante del viaje actualizada",savedJourneys:"Viajes guardados",recentlyViewed:"Vistos recientemente",planningComplexity:"Complejidad de planificación",vehicleRequirement:"Contexto del vehículo",yes:"Sí",no:"No",currentChecks:"Comprobaciones actuales necesarias"},
+    fr:{routes:'Itinéraires',traveller:'Voyageur',flagship:'Flagship',template:'Modèle',open:'Ouvrir',days:'jours',stops:'étapes',segments:'segments',global:'Perspective globale',contextTitle:'Contexte voyageur',contextLead:'Adapte formalités, langue, devise et départ. Stocké uniquement sur cet appareil.',passports:'Pays du passeport',secondPassport:'Deuxième passeport (facultatif)',residence:'Résidence',language:'Langue',currency:'Devise',originRegion:"Région de départ (dérivée)",originCountry:'Pays de départ',recommendedForYou:"Recommandés pour vous",recommendationContextLead:"Classés selon votre contexte, votre pays de départ et l'adéquation du voyage, sans inventer de liaisons en direct.",origin:'Ville / aéroport de départ',adults:'Adultes',children:'Enfants',mobility:'Mobilité réduite',save:'Enregistrer',clear:'Effacer',close:'Fermer',notSet:'Non défini',currentCheck:'Vérification actuelle requise',routeLibrary:'Explorer les itinéraires',routeLibraryLead:'Une plateforme pour tours du monde, road trips, train, croisières et plus.',editorial:'Modèle éditorial — vérifiez transports, prix et formalités pour vos dates.',overview:'Aperçu',day:'Jour',nights:'nuits',transport:'Transport',verification:'Vérification',backWorld:'Tour du monde',private:'Privé sur cet appareil. Aucun numéro de passeport, référence de réservation ou paiement n’est demandé.',sourcedBeta:'Bêta sourcée',sources:'Sources',lastChecked:'Dernière vérification',publishedFrom:'à partir de',verified:'Vérifié',routeEvidence:'Sources de l’itinéraire',entryGuidance:'Entrée',officialCheck:'Vérification officielle',connectionRequired:'correspondance nécessaire',minimumTravel:'temps minimum',cruiseTemplate:'Modèle croisière',onboardNights:'nuits à bord',seaDays:'jours en mer',portCall:'Escale',embarkation:'Embarquement',disembarkation:'Débarquement',border:'Contexte frontalier',schengenExit:'Sortie Schengen',schengenEntry:'Rentrée Schengen',sailingNeeded:'Sélectionnez un départ réel pour le navire, l’opérateur, les horaires, le quai et le prix.',illustrative:'Illustratif',searchRoutes:'Rechercher des itinéraires',filters:"Filtres",hideFilters:"Masquer les filtres",filterType:'Type de voyage',filterRegion:'Région',filterDuration:'Durée',all:'Tous',loadMoreJourneys:"Afficher {count} voyages de plus",showingJourneys:"{shown} voyages affichés sur {total}",routeAccess:"Accès à l’itinéraire",routeAccessLead:"Votre point de départ reste distinct de l’itinéraire principal. Nous n’adaptons la route que lorsque l’itinéraire le permet de manière fiable.",noRoutes:'Aucun itinéraire ne correspond aux filtres.',vehicleSection:'Contexte véhicule (facultatif)',vehicleType:'Véhicule',registrationCountry:'Pays d’immatriculation',fuelType:'Carburant / motorisation',euroClass:'Classe Euro',rentalCrossBorder:'Location autorisée à franchir les frontières',privateCar:'Voiture privée',rentalCar:'Voiture de location',camper:'Camping-car',motorcycle:'Moto',otherVehicle:'Autre',petrol:'Essence',diesel:'Diesel',hybrid:'Hybride',pluginHybrid:'Hybride rechargeable',electric:'Électrique',hydrogen:'Hydrogène',unknown:'Inconnu',roadRules:'Contexte routier',crossBorder:'Transfrontalier',urbanAccess:'Vérifier l’accès urbain',vehicleNeeded:'Le contexte véhicule est requis pour péages, ZFE et accès.',facet_world:'Tour du monde',facet_round_trip:'Circuit',facet_road_trip:'Road trip',facet_cruise:'Croisière',facet_global:'Mondial',facet_europe:'Europe',facet_southern_europe:'Europe du Sud',facet_italy:'Italie',facet_mediterranean:'Méditerranée',facet_north_africa:'Afrique du Nord',filterMode:'Transport',filterTheme:'Thème',results:'itinéraires trouvés',resetFilters:'Réinitialiser',details:'Détails',start:'Départ',finish:'Arrivée',previous:'Précédent',next:'Suivant',type:'Type',country:'Pays',duration:'Durée',cost:'Coût',segment:'Segment',stop:'Étape',currency:'Devise',facet_rail:'Train',facet_bus:'Bus',facet_car:'Voiture',facet_ferry:'Ferry',facet_multimodal:'Multimodal',facet_road:'Route',facet_coach:'Autocar',facet_ground_transfer:'Transfert terrestre',story:'Récit',storyPlay:'Lire le récit',storyExit:'Quitter le récit',storyComplete:'Itinéraire terminé',chapter:'Chapitre',settings:'Réglages',methodology:'Méthodologie',share:'Partager',shareCopied:"Lien de partage copié",shareCopyFallback:"Copiez l’URL depuis votre navigateur",autoRotate:'Rotation automatique',highDetail:'Globe haute définition',terrain:'Relief 3D réel',showPoints:'Points d’étape',routeGlow:'Lueur de route',arcThickness:'Épaisseur de route',reducedMotion:'Mouvement réduit',terrainLoading:'Chargement du relief 3D…',terrainUnavailable:'Relief 3D indisponible',terrainHint:'Faites glisser pour tourner · faites défiler pour zoomer · le relief réel apparaît en vous rapprochant',routeMethodTitle:'Méthodologie de l’itinéraire',routeMethodText:'Cet itinéraire éditorialisé utilise des données publiables et des preuves sourcées lorsque disponibles. Horaires, prix et règles personnelles variables restent ouverts jusqu’à connaître les dates et le contexte.',evidenceCoverage:'Couverture des sources',editorialStatus:'Statut éditorial',storyRoute:'Récit de l’itinéraire',routeFit:'Route Fit',showFit:'Plus de filtres adaptés',hideFit:'Masquer les filtres',fitPace:'Rythme',fitSeason:'Saison',fitParty:'Avec qui',fitStart:'Départ de l’itinéraire',facet_relaxed:'Détendu',facet_balanced:'Équilibré',facet_active:'Actif',facet_spring:'Printemps',facet_summer:'Été',facet_autumn:'Automne',facet_winter:'Hiver',facet_multi_season:'Plusieurs saisons',facet_solo:'Solo',facet_couples:'Couple',facet_friends:'Amis',facet_families:'Famille',resultOne:'itinéraire trouvé',countryUnit:'pays',countriesUnit:'pays',facet_city:'Ville',facet_cruise_port:'Port de croisière',facet_port:'Port',facet_rail_station:'Gare',facet_airport:'Aéroport',facet_island:'Île',facet_park:'Parc',facet_camper:"Camping-car",facet_island_hopping:"D'île en île",facet_asia:"Asie",facet_east_asia:"Asie de l'Est",facet_japan:"Japon",facet_south_america:"Amérique du Sud",facet_patagonia:"Patagonie",facet_argentina:"Argentine",facet_chile:"Chili",facet_northern_europe:"Europe du Nord",facet_norway:"Norvège",facet_oceania:"Océanie",facet_new_zealand:"Nouvelle-Zélande",facet_greece:"Grèce",facet_africa:"Afrique",facet_morocco:"Maroc",facet_southern_africa:"Afrique australe",facet_south_africa:"Afrique du Sud",facet_north_america:"Amérique du Nord",facet_canada:"Canada",facet_south_east_asia:"Asie du Sud-Est",facet_vietnam:"Vietnam",facet_central_america:"Amérique centrale",facet_costa_rica:"Costa Rica",facet_iceland:"Islande",facet_peru:"Pérou",facet_andes:"Andes",facet_culture:"Culture",facet_food:"Gastronomie",facet_cities:"Villes",facet_mountains:"Montagnes",facet_nature:"Nature",facet_adventure:"Aventure",facet_coast:"Côte",facet_arctic:"Arctique",facet_islands:"Îles",facet_desert:"Désert",facet_wildlife:"Faune",facet_tropical:"Tropical",facet_volcanic:"Volcanique",facet_history:"Histoire",status_editorial_preview:"Aperçu éditorial",status_planned:'Planifié',status_sourced_beta:'Bêta sourcée',status_illustrative_template:'Modèle illustratif',status_draft:'Brouillon',home:'Accueil',homeNavSub:'Des voyages sur une seule carte du monde',homeEyebrow:'Découvrir les voyages',homeTitle:'Un monde. Mille façons de voyager.',homeLead:'Découvrez des voyages en train, road trips, escapades insulaires, croisières et aventures plus longues, puis adaptez-les à votre point de départ, votre rythme et votre projet.',exploreJourneys:'Découvrir les voyages',openFlagship:'Ouvrir le voyage phare',homeGlobeLabel:'Atlas des itinéraires en direct',homeGlobeHint:'Sélectionnez une ligne ou une étape pour ouvrir son voyage.',flagshipJourney:'Voyage phare',homeStates:'États souverains',homeLegs:'étapes internationales',homePlannedDays:'jours prévus',homeStart:'départ',homeBaseModel:'modèle de base',curatedCollections:"Collections sélectionnées",collectionsLead:"Explorez par idée de voyage plutôt que par un long formulaire de filtres.",journeyDiscovery:'Découvrir les voyages',journeyDiscoveryLead:'Filtrez le catalogue publié par région, transport, thème, durée et Route Fit.',featuredJourneys:'Voyages à découvrir',findJourneyEyebrow:'Commencez simplement',findJourneyTitle:'Trouvez votre prochain voyage',findJourneyLead:'Choisissez où, comment et combien de temps vous souhaitez voyager. Vous pourrez affiner ensuite.',whereTravel:'Où',howTravel:'Type de voyage',howLong:'Combien de temps',anywhere:'Partout',anyStyle:'Tous les types de voyage',anyDuration:'Toute durée',showJourneys:'Afficher les voyages',personalizeRecommendations:'Personnaliser les recommandations',personalizeLead:'Ajoutez votre pays de départ et vos préférences pour des suggestions plus pertinentes.',tunePreferences:'Ajuster les préférences',recommendationsActive:'Les recommandations utilisent le contexte voyageur enregistré sur cet appareil.',curatedJourneys:'voyages sélectionnés',worldRegions:'régions du monde',journeyTypes:'types de voyage',localPlanning:'planification locale',moreFilters:'Plus de filtres',fewerFilters:'Moins de filtres',filterAccessibility:'Accessibilité',homeMethodTitle:'Les données d’abord. L’incertitude reste visible.',homeMethodText:'Chaque voyage normal utilise le même modèle lieu → étape → segment. Les itinéraires publiés restent liés à leurs sources et les informations sensibles à la date ne sont pas inventées.',homeSourceRuleTitle:'Appuyé par des sources',homeSourceRule:'Les preuves restent liées aux données de l’itinéraire lorsqu’elles sont disponibles.',homeUnknownRuleTitle:'L’inconnu reste inconnu',homeUnknownRule:'Horaires, prix et règles propres au voyageur restent non résolus jusqu’à vérification.',homeDeepLinkRuleTitle:'Lien direct',homeDeepLinkRule:'Chaque voyage reste directement accessible et partageable.',exploreByRegion:"Explorer par région",featuredLead:"Train, route, îles, nature, villes et itinéraires uniques : d'abord des voyages visuels, puis les outils de planification.",allJourneys:"Tous les voyages",inspirationMethodTitle:"L'inspiration d'abord. La planification quand elle compte.",inspirationMethodText:"Les pages mettent d'abord en avant l'itinéraire, les lieux et l'expérience. Sources, horaires en direct, prix et règles personnelles restent dans une couche de planification plus profonde.",globalDesignTitle:"Pensé pour le monde",globalDesignText:"Un modèle réutilisable prend en charge train, route, îles, croisières, camper et futurs types de voyage partout dans le monde.",homeFooter:'Une plateforme publique de découverte de voyages.',partnerOptions:"Options partenaires",partnerDisclosure:"Les liens partenaires sont clairement indiqués. Si vous en utilisez un, cela peut soutenir ONE WORLD ROUTE sans coût supplémentaire pour vous.",facet_standard_check:'Vérification standard',facet_operator_dependent:'Dépend de l’opérateur',facet_vehicle_dependent:'Dépend du véhicule',facet_complex_planning:'Planification complexe',journeyUpdates:"Mises à jour du voyage",journeyUpdatesLead:"Les conseils partagés sont maintenus une seule fois et réutilisés dans tous les voyages concernés.",checkBeforeTravel:"Vérifier avant le voyage",contextDependent:"Dépend de votre contexte",personalizeJourney:"Personnaliser",personalizeJourneyTitle:"Adaptez ce voyage à vos besoins",personalizeJourneyLead:"Définissez une fois votre point de départ et choisissez une entrée alternative lorsque l'itinéraire le permet.",originPoint:"Votre point de départ",routeStart:"Commencer l'itinéraire à",routeStartFlexibleLead:"Cet itinéraire peut être inversé. Transport, tarifs et accès doivent être revérifiés pour le sens choisi.",routeStartFixedLead:"Cet itinéraire conserve un départ fixe. Votre origine personnelle reste utilisée pour préparer l'arrivée.",routeStartUpdated:"Départ de l'itinéraire mis à jour",entrySuggestion:"Entrée conseillée · niveau pays",entrySuggestionApplied:"Appliquée",useSuggestedEntry:"Utiliser",change:"Modifier",whatToExpect:'À quoi s’attendre',experienceRoleStart:'Début de l’itinéraire',experienceRoleAnchor:'Séjour plus long',experienceRoleChapter:'Étape du voyage',experienceRoleFinale:'Finale de l’itinéraire',journeyGuide:'Guide du voyage',guideDataDriven:'À partir de cet itinéraire',journeyGuideLead:'Voyez comment le voyage répartit son temps et ce qui reste à vérifier avant de réserver.',averageStay:'Séjour moyen',routeMovements:'Déplacements',timeFocus:'Où vous passez plus de temps',beforeBooking:'Avant de réserver',guideReviewSegments:'{count} déplacements sur {total} nécessitent encore une vérification à jour.',guideFareCoverage:'Des tarifs de transport publiés existent pour {known} déplacements sur {total}.',guideEntryContext:'Les formalités d’entrée dépendent de votre contexte voyageur.',guideVehicleContext:'Les données du véhicule peuvent modifier les contrôles de péage, d’accès ou de frontière.',guideOriginAccess:'Le trajet depuis votre point de départ jusqu’à l’itinéraire sélectionné est planifié séparément.',guideEvidenceReady:'Tous les déplacements disposent actuellement de preuves vérifiées.',planningGuide:'Planification pratique',planThisTrip:'Planifier ce voyage',planningLead:'Une vue pratique de l’itinéraire publié, des coûts de transport connus et de la couverture des sources.',knownTransportMinimum:'Minimum transport connu',fareCoverage:'Couverture des tarifs',transportModes:'Transports',lastEvidenceCheck:'Dernière vérification des sources',dayByDay:'Itinéraire jour par jour',planningBudgetScope:'Uniquement les tarifs publiés connus — pas un budget complet du voyage.',planningStartHere:'Départ',planningOrigin:'Votre point de départ',saved:'Enregistré',saveTrip:'Enregistrer le voyage',removeSaved:'Retirer des favoris',removedSaved:'Retiré des voyages enregistrés',savedLocally:'Enregistré sur cet appareil',tripTools:'Outils de voyage',exportJson:'Exporter JSON',exportCsv:'Exporter CSV',budgetEstimate:'Estimation du budget',budgetLead:'Utilisez vos propres hypothèses quotidiennes. Seuls les minima de transport publiés sont préremplis.',lodgingNight:'Hébergement / nuit',foodPersonDay:'Repas / personne / jour',localPersonDay:'Transport local / personne / jour',extras:'Autres coûts fixes',contingency:'Marge %',updateEstimate:'Mettre à jour',estimatedTripTotal:'Total estimé',budgetEstimateScope:'Estimation personnelle, pas un devis.',travellers:'voyageurs',estimateUpdated:'Estimation mise à jour',compare:'Comparer',compareTrips:'Comparer les voyages',compareSelected:'Comparer ({count})',compareLimit:'Vous pouvez comparer jusqu’à trois voyages à la fois.',compareLead:'Uniquement des faits de planification côte à côte — aucun classement ni gagnant.',savedOnly:'Enregistrés uniquement',travellerParty:'Contexte voyageur',listedForContext:'prévu pour ce groupe',contextCheckNeeded:'vérifier l’adéquation',mobilityCheck:'Vérifier la mobilité',startDate:'Date de départ',exportCalendar:'Exporter le calendrier',calendarNeedsStartDate:'Choisissez d’abord une date de départ.',transportMinimum:'Transport connu',lodging:'Hébergement',food:'Repas',localTravel:'Transport local',transportMultiplier:'Multiplicateur tarif transport',transportAssumption:'Les tarifs minimums publiés sont multipliés par ce nombre explicite de voyageurs ; ajustez-le pour les réductions enfants, pass ou prix non individuels.',myTrips:'Mes voyages',myTripsLead:'Vos voyages enregistrés et leur état de planification sur cet appareil.',myTripsEmptyTitle:'Aucun voyage enregistré',myTripsEmptyLead:'Enregistrez un voyage depuis la découverte ou une page d’itinéraire pour créer votre espace personnel de planification.',loading:'Chargement…',planningSeason:'Saison de planification',planningSeasonLead:'Il s’agit uniquement d’une préférence locale. Elle ne modifie ni horaires ni tarifs publiés.',planningSeasonSaved:'Saison de planification enregistrée',travellerFit:'Contexte d’adéquation',vehicleContextMissing:'Contexte véhicule non défini',transportUnknownBudget:'Les prix publiés des transports sont incomplets ; cette estimation traite actuellement les coûts inconnus comme nuls.',exportWorkspace:'Exporter la sauvegarde de planification',importWorkspace:'Importer la sauvegarde de planification',workspaceImported:'Sauvegarde de planification restaurée',workspaceImportFailed:'Impossible de restaurer la sauvegarde de planification',planningStatus:'État de la planification',nextPlanningStep:'Prochaine étape de planification',planningCoreRecorded:'Configuration de base enregistrée',recordCurrentCheck:'Enregistrer la vérification actuelle',markForRecheck:'Marquer à revérifier',manualCheckRecorded:'Vérification manuelle enregistrée',continuePlanning:'Continuer la planification',saveOffline:'Enregistrer la planification hors ligne',offlineSaving:'Enregistrement hors ligne…',offlineReady:'Données du voyage enregistrées pour la planification hors ligne',offlineUnavailable:'L’enregistrement hors ligne est indisponible pour le moment',installApp:"Installer l’app",installingApp:"Ouverture de l’installation…",installAppDone:"Installation de l’app lancée",installAppUnavailable:"L’installation de l’app n’est pas disponible pour le moment dans ce navigateur",cloudSync:"Synchronisation cloud",cloudSyncLead:"Vous pouvez synchroniser votre espace de planification entre appareils. Le contexte voyageur reste sur cet appareil.",cloudEmail:"E-mail",cloudCode:"Code e-mail",cloudSendCode:"Envoyer le code",cloudVerifyCode:"Se connecter",cloudSignedInAs:"Connecté en tant que",cloudSyncNow:"Synchroniser",cloudSignOut:"Se déconnecter",cloudCodeSent:"Consultez votre e-mail pour le code de connexion",cloudSignedIn:"Connexion à la synchronisation cloud réussie",cloudSyncUploaded:"Planification locale envoyée",cloudSyncDownloaded:"Planification cloud plus récente restaurée",cloudSyncCurrent:"La planification est déjà synchronisée",cloudSyncFailed:"Échec de la synchronisation cloud",cloudUnavailable:"La synchronisation cloud n'est pas configurée",cloudLastSync:"Dernière synchronisation",cloudPrivacy:"Seul votre espace de planification est synchronisé. Le contexte voyageur et les données de passeport/résidence restent locaux.",cloudInvalidEmail:"Saisissez une adresse e-mail valide",cloudSignedOut:"Déconnecté de la synchronisation cloud",planningAccessCheck:'Vérification de l’accès à l’itinéraire',planningStatusLead:'Basé sur vos réglages enregistrés. Les vérifications manuelles sont consignées ici, pas vérifiées par ONE WORLD ROUTE.',planningWorkspaceLead:'Rassemblez les étapes essentielles de planification au même endroit. L’accès actuel reste une vérification manuelle.',howFast:"Rythme",whatTheme:"Centres d’intérêt",whoTravels:"Avec qui voyagez-vous",sortBy:"Trier",sortRecommended:"Recommandés",sortFeatured:"À la une",sortShortest:"Les plus courts",sortLongest:"Les plus longs",sortAlphabetical:"A–Z",fitMatches:"{matched}/{total} préférences correspondent · {checks} vérifications",entryApproximation:"Estimation depuis votre pays de départ vers les entrées d’itinéraire possibles ; ce n’est pas une recommandation de transport en temps réel.",journeyVariant:"Variante du voyage",fullJourney:"Voyage complet",variantLead:"Choisissez une version organisée de ce voyage sans dupliquer les données de base.",variantUpdated:"Variante du voyage mise à jour",savedJourneys:"Voyages enregistrés",recentlyViewed:"Consultés récemment",planningComplexity:"Complexité de planification",vehicleRequirement:"Contexte véhicule",yes:"Oui",no:"Non",currentChecks:"Vérifications actuelles nécessaires"},
+    pt:{routes:'Rotas',traveller:'Viajante',flagship:'Flagship',template:'Modelo',open:'Abrir rota',days:'dias',stops:'paradas',segments:'trechos',global:'Perspectiva global',contextTitle:'Contexto do viajante',contextLead:'Adapta entrada, idioma, moeda e origem. Guardado apenas neste dispositivo.',passports:'País do passaporte',secondPassport:'Segundo passaporte (opcional)',residence:'Residência',language:'Idioma',currency:'Moeda',originRegion:"Região de partida (derivada)",originCountry:'País de partida',recommendedForYou:"Recomendados para você",recommendationContextLead:"Ordenados pelo seu contexto, país de partida e adequação da viagem, sem inventar conexões ao vivo.",origin:'Cidade / aeroporto de partida',adults:'Adultos',children:'Crianças',mobility:'Mobilidade reduzida',save:'Salvar',clear:'Limpar',close:'Fechar',notSet:'Não definido',currentCheck:'Verificação atual necessária',routeLibrary:'Explorar rotas',routeLibraryLead:'Uma plataforma para voltas ao mundo, road trips, trem, cruzeiros e mais.',editorial:'Modelo editorial — verifique transporte, preços e entrada para suas datas.',overview:'Visão geral',day:'Dia',nights:'noites',transport:'Transporte',verification:'Verificação',backWorld:'Rota mundial',private:'Privado neste dispositivo. Nunca pedimos número de passaporte, referência de reserva ou pagamento.',sourcedBeta:'Beta com fontes',sources:'Fontes',lastChecked:'Última verificação',publishedFrom:'a partir de',verified:'Verificado',routeEvidence:'Fontes da rota',entryGuidance:'Entrada',officialCheck:'Verificação oficial',connectionRequired:'conexão necessária',minimumTravel:'tempo mínimo',cruiseTemplate:'Modelo de cruzeiro',onboardNights:'noites a bordo',seaDays:'dias no mar',portCall:'Escala',embarkation:'Embarque',disembarkation:'Desembarque',border:'Contexto de fronteira',schengenExit:'Saída de Schengen',schengenEntry:'Reentrada em Schengen',sailingNeeded:'Selecione uma partida real para navio, operadora, horários, cais e preço.',illustrative:'Ilustrativo',searchRoutes:'Pesquisar rotas',filters:"Filtros",hideFilters:"Ocultar filtros",filterType:'Tipo de viagem',filterRegion:'Região',filterDuration:'Duração',all:'Todas',loadMoreJourneys:"Mostrar mais {count} viagens",showingJourneys:"Mostrando {shown} de {total} viagens",routeAccess:"Acesso à rota",routeAccessLead:"Seu ponto de partida fica separado da rota principal curada. A rota só é adaptada quando o itinerário permite isso com segurança.",noRoutes:'Nenhuma rota corresponde aos filtros.',vehicleSection:'Contexto do veículo (opcional)',vehicleType:'Veículo',registrationCountry:'País de matrícula',fuelType:'Combustível / motorização',euroClass:'Classe Euro',rentalCrossBorder:'Aluguel autorizado para cruzar fronteiras',privateCar:'Carro particular',rentalCar:'Carro alugado',camper:'Motorhome',motorcycle:'Moto',otherVehicle:'Outro',petrol:'Gasolina',diesel:'Diesel',hybrid:'Híbrido',pluginHybrid:'Híbrido plug-in',electric:'Elétrico',hydrogen:'Hidrogênio',unknown:'Desconhecido',roadRules:'Contexto rodoviário',crossBorder:'Transfronteiriço',urbanAccess:'Verificar acesso urbano',vehicleNeeded:'O contexto do veículo é necessário para portagens, ZBE e acessos.',facet_world:'Volta ao mundo',facet_round_trip:'Roteiro circular',facet_road_trip:'Road trip',facet_cruise:'Cruzeiro',facet_global:'Global',facet_europe:'Europa',facet_southern_europe:'Sul da Europa',facet_italy:'Itália',facet_mediterranean:'Mediterrâneo',facet_north_africa:'Norte da África',filterMode:'Transporte',filterTheme:'Tema',results:'rotas encontradas',resetFilters:'Redefinir',details:'Detalhes',start:'Início',finish:'Fim',previous:'Anterior',next:'Seguinte',type:'Tipo',country:'País',duration:'Duração',cost:'Custo',segment:'Trecho',stop:'Parada',currency:'Moeda',facet_rail:'Trem',facet_bus:'Ônibus',facet_car:'Carro',facet_ferry:'Balsa',facet_multimodal:'Multimodal',facet_road:'Estrada',facet_coach:'Ônibus rodoviário',facet_ground_transfer:'Transfer terrestre',story:'História',storyPlay:'Reproduzir história',storyExit:'Sair da história',storyComplete:'Rota concluída',chapter:'Capítulo',settings:'Definições',methodology:'Metodologia',share:'Partilhar',shareCopied:"Link de compartilhamento copiado",shareCopyFallback:"Copie a URL do navegador",autoRotate:'Rotação automática',highDetail:'Globo de alta definição',terrain:'Terreno 3D real',showPoints:'Pontos de paragem',routeGlow:'Brilho da rota',arcThickness:'Espessura da rota',reducedMotion:'Movimento reduzido',terrainLoading:'A carregar terreno 3D…',terrainUnavailable:'Terreno 3D indisponível',terrainHint:'Arraste para rodar · desloque para ampliar · o relevo real aparece ao aproximar',routeMethodTitle:'Metodologia da rota',routeMethodText:'Esta rota curada usa dados publicáveis e evidência com fontes quando disponível. Horários, preços e regras pessoais variáveis permanecem em aberto até serem conhecidas as datas e o contexto.',evidenceCoverage:'Cobertura de fontes',editorialStatus:'Estado editorial',storyRoute:'História da rota',routeFit:'Route Fit',showFit:'Mais filtros de adequação',hideFit:'Ocultar filtros',fitPace:'Ritmo',fitSeason:'Estação',fitParty:'Com quem viaja',fitStart:'Início da rota',facet_relaxed:'Relaxado',facet_balanced:'Equilibrado',facet_active:'Ativo',facet_spring:'Primavera',facet_summer:'Verão',facet_autumn:'Outono',facet_winter:'Inverno',facet_multi_season:'Várias estações',facet_solo:'Solo',facet_couples:'Casal',facet_friends:'Amigos',facet_families:'Família',resultOne:'rota encontrada',countryUnit:'país',countriesUnit:'países',facet_city:'Cidade',facet_cruise_port:'Porto de cruzeiros',facet_port:'Porto',facet_rail_station:'Estação ferroviária',facet_airport:'Aeroporto',facet_island:'Ilha',facet_park:'Parque',facet_camper:"Motorhome",facet_island_hopping:"De ilha em ilha",facet_asia:"Ásia",facet_east_asia:"Ásia Oriental",facet_japan:"Japão",facet_south_america:"América do Sul",facet_patagonia:"Patagônia",facet_argentina:"Argentina",facet_chile:"Chile",facet_northern_europe:"Norte da Europa",facet_norway:"Noruega",facet_oceania:"Oceania",facet_new_zealand:"Nova Zelândia",facet_greece:"Grécia",facet_africa:"África",facet_morocco:"Marrocos",facet_southern_africa:"África Austral",facet_south_africa:"África do Sul",facet_north_america:"América do Norte",facet_canada:"Canadá",facet_south_east_asia:"Sudeste Asiático",facet_vietnam:"Vietnã",facet_central_america:"América Central",facet_costa_rica:"Costa Rica",facet_iceland:"Islândia",facet_peru:"Peru",facet_andes:"Andes",facet_culture:"Cultura",facet_food:"Gastronomia",facet_cities:"Cidades",facet_mountains:"Montanhas",facet_nature:"Natureza",facet_adventure:"Aventura",facet_coast:"Costa",facet_arctic:"Ártico",facet_islands:"Ilhas",facet_desert:"Deserto",facet_wildlife:"Vida selvagem",facet_tropical:"Tropical",facet_volcanic:"Vulcânico",facet_history:"História",status_editorial_preview:"Prévia editorial",status_planned:'Planeado',status_sourced_beta:'Beta com fontes',status_illustrative_template:'Modelo ilustrativo',status_draft:'Rascunho',home:'Início',homeNavSub:'Viagens num único mapa-múndi',homeEyebrow:'Descobrir viagens',homeTitle:'Um mundo. Muitas formas de viajar.',homeLead:'Descubra viagens de trem, road trips, ilhas, cruzeiros e aventuras mais longas e adapte-as ao seu ponto de partida, ritmo e plano.',exploreJourneys:'Descobrir viagens',openFlagship:'Abrir viagem principal',homeGlobeLabel:'Atlas de rotas ao vivo',homeGlobeHint:'Selecione uma linha ou parada para abrir a viagem.',flagshipJourney:'Viagem principal',homeStates:'Estados soberanos',homeLegs:'trechos internacionais',homePlannedDays:'dias planejados',homeStart:'início',homeBaseModel:'modelo base',curatedCollections:"Coleções selecionadas",collectionsLead:"Explore por ideia de viagem em vez de começar com um longo formulário de filtros.",journeyDiscovery:'Descobrir viagens',journeyDiscoveryLead:'Filtre o catálogo publicado por região, transporte, tema, duração e Route Fit.',featuredJourneys:'Viagens em destaque',findJourneyEyebrow:'Comece de forma simples',findJourneyTitle:'Encontre a sua próxima viagem',findJourneyLead:'Escolha onde, como e durante quanto tempo quer viajar. Pode refinar os detalhes depois.',whereTravel:'Onde',howTravel:'Tipo de viagem',howLong:'Quanto tempo',anywhere:'Qualquer lugar',anyStyle:'Qualquer tipo de viagem',anyDuration:'Qualquer duração',showJourneys:'Mostrar viagens',personalizeRecommendations:'Personalizar recomendações',personalizeLead:'Adicione o país de partida e as preferências de viagem para sugestões mais relevantes.',tunePreferences:'Ajustar preferências',recommendationsActive:'As recomendações usam o contexto do viajante guardado neste dispositivo.',curatedJourneys:'viagens selecionadas',worldRegions:'regiões do mundo',journeyTypes:'tipos de viagem',localPlanning:'planejamento local',moreFilters:'Mais filtros',fewerFilters:'Menos filtros',filterAccessibility:'Acessibilidade',homeMethodTitle:'Dados primeiro. A incerteza permanece visível.',homeMethodText:'Cada viagem normal usa o mesmo modelo lugar → parada → segmento. As rotas publicadas continuam ligadas às fontes e fatos sensíveis à data não são inventados.',homeSourceRuleTitle:'Baseado em fontes',homeSourceRule:'As evidências permanecem ligadas aos dados da rota quando disponíveis.',homeUnknownRuleTitle:'O desconhecido continua desconhecido',homeUnknownRule:'Horários, preços e regras específicas do viajante ficam em aberto até poderem ser verificados.',homeDeepLinkRuleTitle:'Link direto',homeDeepLinkRule:'Cada viagem continua diretamente acessível e compartilhável.',exploreByRegion:"Explorar por região",featuredLead:"Trem, estrada, ilhas, natureza, cidades e rotas únicas: primeiro viagens visuais, depois ferramentas de planejamento.",allJourneys:"Todas as viagens",inspirationMethodTitle:"Primeiro inspiração. Planejamento quando importa.",inspirationMethodText:"As páginas começam pela rota, lugares e experiência. Fontes, horários ao vivo, preços e regras pessoais ficam numa camada de planejamento mais profunda.",globalDesignTitle:"Global por design",globalDesignText:"Um único modelo reutilizável suporta trem, estrada, ilhas, cruzeiros, camper e futuros tipos de viagem no mundo todo.",homeFooter:'Uma plataforma pública para descobrir viagens.',partnerOptions:"Opções de parceiros",partnerDisclosure:"Os links de parceiros são claramente identificados. Se você usar um deles, isso pode apoiar a ONE WORLD ROUTE sem custo adicional.",facet_standard_check:'Verificação padrão',facet_operator_dependent:'Dependente do operador',facet_vehicle_dependent:'Dependente do veículo',facet_complex_planning:'Planejamento complexo',journeyUpdates:"Atualizações da viagem",journeyUpdatesLead:"As orientações compartilhadas são mantidas centralmente e reutilizadas em todas as viagens relevantes.",checkBeforeTravel:"Verificar antes da viagem",contextDependent:"Depende do seu contexto",personalizeJourney:"Personalizar",personalizeJourneyTitle:"Adapte a viagem a você",personalizeJourneyLead:"Defina uma vez o seu ponto de partida e escolha uma entrada alternativa quando o roteiro permitir.",originPoint:"Seu ponto de partida",routeStart:"Começar a rota em",routeStartFlexibleLead:"Esta rota pode ser invertida. Transporte, tarifas e acessos precisam ser verificados novamente para a direção escolhida.",routeStartFixedLead:"Este roteiro tem início fixo. Seu ponto de partida pessoal continua sendo usado no planejamento da chegada.",routeStartUpdated:"Início da rota atualizado",entrySuggestion:"Entrada sugerida · nível do país",entrySuggestionApplied:"Aplicada",useSuggestedEntry:"Usar sugestão",change:"Alterar",whatToExpect:'O que esperar',experienceRoleStart:'Início da rota',experienceRoleAnchor:'Estadia mais longa',experienceRoleChapter:'Etapa da viagem',experienceRoleFinale:'Final da rota',journeyGuide:'Guia da viagem',guideDataDriven:'A partir desta rota',journeyGuideLead:'Veja como a viagem distribui o tempo e o que ainda precisa ser verificado antes da reserva.',averageStay:'Estadia média',routeMovements:'Deslocamentos',timeFocus:'Onde você passa mais tempo',beforeBooking:'Antes de reservar',guideReviewSegments:'{count} de {total} deslocamentos ainda precisam de uma verificação atualizada.',guideFareCoverage:'Há preços de transporte publicados para {known} de {total} deslocamentos.',guideEntryContext:'As orientações de entrada dependem do seu contexto de viajante.',guideVehicleContext:'Os dados do veículo podem alterar verificações de pedágio, acesso ou fronteira.',guideOriginAccess:'O trajeto da sua origem até a rota selecionada é planejado separadamente.',guideEvidenceReady:'Todos os deslocamentos têm atualmente evidências verificadas.',planningGuide:'Planejamento prático',planThisTrip:'Planejar esta viagem',planningLead:'Uma visão prática do itinerário publicado, dos custos de transporte conhecidos e da cobertura das fontes.',knownTransportMinimum:'Mínimo de transporte conhecido',fareCoverage:'Cobertura de tarifas',transportModes:'Transportes',lastEvidenceCheck:'Última verificação das fontes',dayByDay:'Itinerário dia a dia',planningBudgetScope:'Apenas tarifas publicadas conhecidas — não é um orçamento completo da viagem.',planningStartHere:'Início',planningOrigin:'Sua origem',saved:'Salvo',saveTrip:'Salvar viagem',removeSaved:'Remover dos salvos',removedSaved:'Removido das viagens salvas',savedLocally:'Salvo neste dispositivo',tripTools:'Ferramentas de viagem',exportJson:'Exportar JSON',exportCsv:'Exportar CSV',budgetEstimate:'Estimativa de orçamento',budgetLead:'Use suas próprias premissas diárias. Apenas mínimos de transporte publicados são pré-preenchidos.',lodgingNight:'Hospedagem / noite',foodPersonDay:'Comida / pessoa / dia',localPersonDay:'Transporte local / pessoa / dia',extras:'Outros custos fixos',contingency:'Margem %',updateEstimate:'Atualizar estimativa',estimatedTripTotal:'Total estimado',budgetEstimateScope:'Estimativa pessoal, não é uma cotação.',travellers:'viajantes',estimateUpdated:'Estimativa atualizada',compare:'Comparar',compareTrips:'Comparar viagens',compareSelected:'Comparar ({count})',compareLimit:'Você pode comparar até três viagens por vez.',compareLead:'Apenas fatos de planejamento lado a lado — sem ranking ou vencedor.',savedOnly:'Somente salvas',travellerParty:'Contexto do viajante',listedForContext:'previsto para este grupo',contextCheckNeeded:'verificar adequação',mobilityCheck:'Verificar mobilidade',startDate:'Data de início',exportCalendar:'Exportar calendário',calendarNeedsStartDate:'Escolha primeiro uma data de início.',transportMinimum:'Transporte conhecido',lodging:'Hospedagem',food:'Comida',localTravel:'Transporte local',transportMultiplier:'Multiplicador de tarifa',transportAssumption:'As tarifas mínimas publicadas são multiplicadas por este número explícito de viajantes; ajuste para descontos infantis, passes ou preços não individuais.',myTrips:'Minhas viagens',myTripsLead:'Suas viagens salvas e o estado do planejamento neste dispositivo.',myTripsEmptyTitle:'Nenhuma viagem salva ainda',myTripsEmptyLead:'Salve uma viagem pela descoberta ou por uma página de rota para criar seu espaço pessoal de planejamento.',loading:'Carregando…',planningSeason:'Estação de planejamento',planningSeasonLead:'É apenas uma preferência local de planejamento. Não altera horários nem tarifas publicadas.',planningSeasonSaved:'Estação de planejamento salva',travellerFit:'Contexto de adequação',vehicleContextMissing:'Contexto do veículo não definido',transportUnknownBudget:'Os preços publicados de transporte estão incompletos; esta estimativa considera temporariamente os custos desconhecidos como zero.',exportWorkspace:'Exportar backup de planejamento',importWorkspace:'Importar backup de planejamento',workspaceImported:'Backup de planejamento restaurado',workspaceImportFailed:'Não foi possível restaurar o backup de planejamento',planningStatus:'Estado do planeamento',nextPlanningStep:'Próximo passo de planeamento',planningCoreRecorded:'Configuração base registada',recordCurrentCheck:'Registar verificação atual',markForRecheck:'Marcar para reverificação',manualCheckRecorded:'Verificação manual registada',continuePlanning:'Continuar planeamento',saveOffline:'Salvar planejamento offline',offlineSaving:'Salvando offline…',offlineReady:'Dados da viagem salvos para planejamento offline',offlineUnavailable:'O salvamento offline não está disponível agora',installApp:"Instalar app",installingApp:"Abrindo instalação…",installAppDone:"Instalação do app iniciada",installAppUnavailable:"A instalação do app não está disponível neste navegador agora",cloudSync:"Sincronização na nuvem",cloudSyncLead:"Opcionalmente, sincronize seu espaço de planejamento entre dispositivos. O contexto do viajante permanece neste dispositivo.",cloudEmail:"E-mail",cloudCode:"Código por e-mail",cloudSendCode:"Enviar código",cloudVerifyCode:"Entrar",cloudSignedInAs:"Conectado como",cloudSyncNow:"Sincronizar agora",cloudSignOut:"Sair",cloudCodeSent:"Confira o e-mail para obter o código de acesso",cloudSignedIn:"Conectado à sincronização na nuvem",cloudSyncUploaded:"Planejamento local enviado",cloudSyncDownloaded:"Planejamento mais recente da nuvem restaurado",cloudSyncCurrent:"O planejamento já está sincronizado",cloudSyncFailed:"Falha na sincronização na nuvem",cloudUnavailable:"A sincronização na nuvem não está configurada",cloudLastSync:"Última sincronização",cloudPrivacy:"Somente seu espaço de planejamento é sincronizado. Contexto do viajante e dados de passaporte/residência permanecem locais.",cloudInvalidEmail:"Digite um e-mail válido",cloudSignedOut:"Desconectado da sincronização na nuvem",planningAccessCheck:'Verificação de acesso à rota',planningStatusLead:'Com base na configuração guardada. As verificações manuais são apenas registadas aqui, não verificadas pela ONE WORLD ROUTE.',planningWorkspaceLead:'Conclua a configuração essencial num só lugar. O acesso atual continua a ser uma verificação manual.',howFast:"Ritmo",whatTheme:"Interesses",whoTravels:"Com quem viaja",sortBy:"Ordenar",sortRecommended:"Recomendados",sortFeatured:"Destaques",sortShortest:"Mais curtos",sortLongest:"Mais longos",sortAlphabetical:"A–Z",fitMatches:"{matched}/{total} preferências correspondem · {checks} verificações",entryApproximation:"Estimativa do país de partida até entradas de rota elegíveis; não é uma recomendação de transporte em tempo real.",journeyVariant:"Variante da viagem",fullJourney:"Viagem completa",variantLead:"Escolha uma versão curada desta viagem sem duplicar os dados de base.",variantUpdated:"Variante da viagem atualizada",savedJourneys:"Viagens salvas",recentlyViewed:"Vistos recentemente",planningComplexity:"Complexidade de planejamento",vehicleRequirement:"Contexto do veículo",yes:"Sim",no:"Não",currentChecks:"Verificações atuais necessárias"}
   };
 
+
+  const EXPERIENCE_TEXT = {
+  "en": {
+    "morePreferences": "More preferences",
+    "essentials": "Essentials",
+    "travelPreferences": "Travel preferences",
+    "more": "More",
+    "openDiscovery": "Explore all journeys",
+    "switchJourney": "Switch journey",
+    "switchJourneyLead": "Quickly switch routes. Explore the full catalog in discovery.",
+    "currentJourney": "Current journey",
+    "planningDetails": "Planning details",
+    "evidenceDetails": "Evidence & sources",
+    "selected": "Selected",
+    "openJourney": "Open journey",
+    "guideRhythmSummary": "Around {days} days per stop · {count} route movements",
+    "nextAction": "Next action",
+    "originExample": "City or airport"
+  },
+  "de": {
+    "morePreferences": "Weitere Wünsche",
+    "essentials": "Grundangaben",
+    "travelPreferences": "Reisewünsche",
+    "more": "Mehr",
+    "openDiscovery": "Alle Reisen entdecken",
+    "switchJourney": "Reise wechseln",
+    "switchJourneyLead": "Schnell die Route wechseln. Den gesamten Katalog findest du in der Entdeckung.",
+    "currentJourney": "Aktuelle Reise",
+    "planningDetails": "Planungsdetails",
+    "evidenceDetails": "Nachweise & Quellen",
+    "selected": "Ausgewählt",
+    "openJourney": "Reise öffnen",
+    "guideRhythmSummary": "Etwa {days} Tage je Stopp · {count} Bewegungen auf der Route",
+    "nextAction": "Nächster Schritt",
+    "originExample": "Stadt oder Flughafen"
+  },
+  "it": {
+    "morePreferences": "Altre preferenze",
+    "essentials": "Dati essenziali",
+    "travelPreferences": "Preferenze di viaggio",
+    "more": "Altro",
+    "openDiscovery": "Scopri tutti i viaggi",
+    "switchJourney": "Cambia viaggio",
+    "switchJourneyLead": "Cambia rapidamente itinerario. Esplora il catalogo completo nella scoperta.",
+    "currentJourney": "Viaggio attuale",
+    "planningDetails": "Dettagli di pianificazione",
+    "evidenceDetails": "Fonti e verifiche",
+    "selected": "Selezionato",
+    "openJourney": "Apri viaggio",
+    "guideRhythmSummary": "Circa {days} giorni per tappa · {count} spostamenti",
+    "nextAction": "Prossima azione",
+    "originExample": "Città o aeroporto"
+  },
+  "es": {
+    "morePreferences": "Más preferencias",
+    "essentials": "Datos esenciales",
+    "travelPreferences": "Preferencias de viaje",
+    "more": "Más",
+    "openDiscovery": "Descubre todos los viajes",
+    "switchJourney": "Cambiar viaje",
+    "switchJourneyLead": "Cambia rápidamente de ruta. Explora el catálogo completo en descubrimiento.",
+    "currentJourney": "Viaje actual",
+    "planningDetails": "Detalles de planificación",
+    "evidenceDetails": "Fuentes y verificaciones",
+    "selected": "Seleccionado",
+    "openJourney": "Abrir viaje",
+    "guideRhythmSummary": "Unos {days} días por parada · {count} desplazamientos",
+    "nextAction": "Siguiente acción",
+    "originExample": "Ciudad o aeropuerto"
+  },
+  "fr": {
+    "morePreferences": "Plus de préférences",
+    "essentials": "Informations essentielles",
+    "travelPreferences": "Préférences de voyage",
+    "more": "Plus",
+    "openDiscovery": "Découvrir tous les voyages",
+    "switchJourney": "Changer de voyage",
+    "switchJourneyLead": "Changez rapidement de route. Explorez le catalogue complet dans la découverte.",
+    "currentJourney": "Voyage actuel",
+    "planningDetails": "Détails de planification",
+    "evidenceDetails": "Sources et vérifications",
+    "selected": "Sélectionné",
+    "openJourney": "Ouvrir le voyage",
+    "guideRhythmSummary": "Environ {days} jours par étape · {count} déplacements",
+    "nextAction": "Prochaine action",
+    "originExample": "Ville ou aéroport"
+  },
+  "pt": {
+    "morePreferences": "Mais preferências",
+    "essentials": "Dados essenciais",
+    "travelPreferences": "Preferências de viagem",
+    "more": "Mais",
+    "openDiscovery": "Descubra todas as viagens",
+    "switchJourney": "Trocar de viagem",
+    "switchJourneyLead": "Troque rapidamente de rota. Explore o catálogo completo na descoberta.",
+    "currentJourney": "Viagem atual",
+    "planningDetails": "Detalhes de planejamento",
+    "evidenceDetails": "Fontes e verificações",
+    "selected": "Selecionado",
+    "openJourney": "Abrir viagem",
+    "guideRhythmSummary": "Cerca de {days} dias por parada · {count} deslocamentos",
+    "nextAction": "Próxima ação",
+    "originExample": "Cidade ou aeroporto"
+  }
+};
+  for(const locale of SUPPORTED_LOCALES)Object.assign(I18N[locale],EXPERIENCE_TEXT[locale]);
 
   const LEGACY_WORLD_TEXT = {
     de:{
@@ -1859,6 +1998,7 @@
   };
 })();
 
+
 /* ===== platform/formatters.js ===== */
 (() => {
   'use strict';
@@ -2144,6 +2284,7 @@
   root.traveller={defaults,normalize,load,save,clear,allowedKeys:[...ALLOWED]};
 })();
 
+
 /* ===== platform/traveller-ui.js ===== */
 (() => {
   'use strict';
@@ -2204,8 +2345,14 @@
       ['90-plus','90+ '+t('days')]
     ];
 
-    modal.innerHTML=`<form id="platformTravellerForm" class="platform-modal-card traveller-card glass"><button class="platform-x" type="button" aria-label="${esc(t('close'))}">×</button><div class="platform-eyebrow">${esc(t('global'))}</div><h2>${esc(t('contextTitle'))}</h2><p class="platform-lead">${esc(t('contextLead'))}</p><div class="traveller-grid"><label>${esc(t('passports'))}<select name="passport">${countryOptions(profile.passports?.[0]||null)}</select></label><label>${esc(t('secondPassport'))}<select name="passport2">${countryOptions(profile.passports?.[1]||null)}</select></label><label>${esc(t('residence'))}<select name="residence">${countryOptions(profile.residenceCountry)}</select></label><label>${esc(t('language'))}<select name="language">${supportedLocales.map(l=>`<option value="${esc(l)}" ${profile.language===l?'selected':''}>${esc(l.toUpperCase())}</option>`).join('')}</select></label><label>${esc(t('currency'))}<select name="currency">${currencies.map(c=>`<option value="${esc(c)}" ${profile.currency===c?'selected':''}>${esc(c)}</option>`).join('')}</select></label><label>${esc(t('origin'))}<input name="origin" value="${esc(profile.origin||'')}" autocomplete="off" placeholder="e.g. Toronto / YYZ"></label><label>${esc(t('originCountry'))}<select name="originCountry">${countryOptions(profile.originCountry||null)}</select></label><label>${esc(t('adults'))}<input name="adults" type="number" min="1" max="20" value="${Number(profile.party?.adults||1)}"></label><label>${esc(t('children'))}<input name="children" type="number" min="0" max="20" value="${Number(profile.party?.children||0)}"></label><label class="check span-2"><input name="mobility" type="checkbox" ${profile.accessibility?.reducedMobility?'checked':''}><span>${esc(t('mobility'))}</span></label><div class="traveller-subhead span-2">${esc(t('routeFit'))}</div><p class="platform-privacy span-2">${esc(t('recommendationContextLead'))}</p><label>${esc(t('filterDuration'))}<select name="durationBand"><option value="">${esc(t('notSet'))}</option>${durationOptions.map(([value,label])=>`<option value="${esc(value)}" ${profile.preferences?.durationBand===value?'selected':''}>${esc(label)}</option>`).join('')}</select></label><label>${esc(t('fitPace'))}<select name="pace">${preferenceSelect(preferenceOptions.paces,profile.preferences?.pace)}</select></label><label>${esc(t('fitSeason'))}<select name="season">${preferenceSelect(preferenceOptions.seasons,profile.preferences?.season)}</select></label><label>${esc(t('filterMode'))}<select name="mode">${preferenceSelect(preferenceOptions.modes,profile.preferences?.mode)}</select></label><label class="span-2">${esc(t('filterTheme'))}<select name="theme">${preferenceSelect(preferenceOptions.themes,profile.preferences?.theme)}</select></label><div class="traveller-subhead span-2">${esc(t('vehicleSection'))}</div><label>${esc(t('vehicleType'))}<select name="vehicleType"><option value="">${esc(t('notSet'))}</option><option value="private-car" ${profile.vehicle?.type==='private-car'?'selected':''}>${esc(t('privateCar'))}</option><option value="rental-car" ${profile.vehicle?.type==='rental-car'?'selected':''}>${esc(t('rentalCar'))}</option><option value="camper" ${profile.vehicle?.type==='camper'?'selected':''}>${esc(t('camper'))}</option><option value="motorcycle" ${profile.vehicle?.type==='motorcycle'?'selected':''}>${esc(t('motorcycle'))}</option><option value="other" ${profile.vehicle?.type==='other'?'selected':''}>${esc(t('otherVehicle'))}</option></select></label><label>${esc(t('registrationCountry'))}<select name="vehicleRegistration">${countryOptions(profile.vehicle?.registrationCountry||null)}</select></label><label>${esc(t('fuelType'))}<select name="vehicleFuel"><option value="unknown">${esc(t('unknown'))}</option><option value="petrol" ${profile.vehicle?.fuelType==='petrol'?'selected':''}>${esc(t('petrol'))}</option><option value="diesel" ${profile.vehicle?.fuelType==='diesel'?'selected':''}>${esc(t('diesel'))}</option><option value="hybrid" ${profile.vehicle?.fuelType==='hybrid'?'selected':''}>${esc(t('hybrid'))}</option><option value="plug-in-hybrid" ${profile.vehicle?.fuelType==='plug-in-hybrid'?'selected':''}>${esc(t('pluginHybrid'))}</option><option value="electric" ${profile.vehicle?.fuelType==='electric'?'selected':''}>${esc(t('electric'))}</option><option value="hydrogen" ${profile.vehicle?.fuelType==='hydrogen'?'selected':''}>${esc(t('hydrogen'))}</option><option value="other" ${profile.vehicle?.fuelType==='other'?'selected':''}>${esc(t('otherVehicle'))}</option></select></label><label>${esc(t('euroClass'))}<select name="vehicleEuro"><option value="unknown">${esc(t('unknown'))}</option>${['Euro 1','Euro 2','Euro 3','Euro 4','Euro 5','Euro 6'].map(v=>`<option value="${esc(v)}" ${profile.vehicle?.euroClass===v?'selected':''}>${esc(v)}</option>`).join('')}</select></label><label class="check span-2"><input name="rentalCrossBorder" type="checkbox" ${profile.vehicle?.rentalCrossBorderApproved===true?'checked':''}><span>${esc(t('rentalCrossBorder'))}</span></label></div><p class="platform-privacy">${esc(t('private'))}</p><div class="platform-form-actions"><button class="ghost" type="button" id="platformClearTraveller">${esc(t('clear'))}</button><button class="primary" type="submit">${esc(t('save'))}</button></div></form>`;
+    modal.innerHTML=`<form id="platformTravellerForm" class="platform-modal-card traveller-card glass"><button class="platform-x" type="button" aria-label="${esc(t('close'))}">×</button><div class="platform-eyebrow">${esc(t('global'))}</div><h2>${esc(t('contextTitle'))}</h2><p class="platform-lead">${esc(t('contextLead'))}</p><section class="traveller-section"><h3>${esc(t('essentials'))}</h3><div class="traveller-grid"><label>${esc(t('passports'))}<select name="passport">${countryOptions(profile.passports?.[0]||null)}</select></label><label>${esc(t('secondPassport'))}<select name="passport2">${countryOptions(profile.passports?.[1]||null)}</select></label><label>${esc(t('residence'))}<select name="residence">${countryOptions(profile.residenceCountry)}</select></label><label>${esc(t('language'))}<select name="language">${supportedLocales.map(l=>`<option value="${esc(l)}" ${profile.language===l?'selected':''}>${esc(l.toUpperCase())}</option>`).join('')}</select></label><label>${esc(t('currency'))}<select name="currency">${currencies.map(c=>`<option value="${esc(c)}" ${profile.currency===c?'selected':''}>${esc(c)}</option>`).join('')}</select></label><label>${esc(t('origin'))}<input name="origin" value="${esc(profile.origin||'')}" autocomplete="off" placeholder="${esc(t('originExample'))}"></label><label>${esc(t('originCountry'))}<select name="originCountry">${countryOptions(profile.originCountry||null)}</select></label><label>${esc(t('adults'))}<input name="adults" type="number" min="1" max="20" value="${Number(profile.party?.adults||1)}"></label><label>${esc(t('children'))}<input name="children" type="number" min="0" max="20" value="${Number(profile.party?.children||0)}"></label><label class="check span-2"><input name="mobility" type="checkbox" ${profile.accessibility?.reducedMobility?'checked':''}><span>${esc(t('mobility'))}</span></label></div></section><details class="traveller-section" ${profile.preferences?.mode||profile.preferences?.pace||profile.preferences?.theme||profile.preferences?.season||profile.preferences?.durationBand?'open':''}><summary>${esc(t('travelPreferences'))}</summary><div class="traveller-grid"><p class="platform-privacy span-2">${esc(t('recommendationContextLead'))}</p><label>${esc(t('filterDuration'))}<select name="durationBand"><option value="">${esc(t('notSet'))}</option>${durationOptions.map(([value,label])=>`<option value="${esc(value)}" ${profile.preferences?.durationBand===value?'selected':''}>${esc(label)}</option>`).join('')}</select></label><label>${esc(t('fitPace'))}<select name="pace">${preferenceSelect(preferenceOptions.paces,profile.preferences?.pace)}</select></label><label>${esc(t('fitSeason'))}<select name="season">${preferenceSelect(preferenceOptions.seasons,profile.preferences?.season)}</select></label><label>${esc(t('filterMode'))}<select name="mode">${preferenceSelect(preferenceOptions.modes,profile.preferences?.mode)}</select></label><label class="span-2">${esc(t('filterTheme'))}<select name="theme">${preferenceSelect(preferenceOptions.themes,profile.preferences?.theme)}</select></label></div></details><details class="traveller-section traveller-vehicle" ${profile.vehicle?.type?'open':''}><summary>${esc(t('vehicleSection'))}</summary><div class="traveller-grid"><label>${esc(t('vehicleType'))}<select name="vehicleType"><option value="">${esc(t('notSet'))}</option><option value="private-car" ${profile.vehicle?.type==='private-car'?'selected':''}>${esc(t('privateCar'))}</option><option value="rental-car" ${profile.vehicle?.type==='rental-car'?'selected':''}>${esc(t('rentalCar'))}</option><option value="camper" ${profile.vehicle?.type==='camper'?'selected':''}>${esc(t('camper'))}</option><option value="motorcycle" ${profile.vehicle?.type==='motorcycle'?'selected':''}>${esc(t('motorcycle'))}</option><option value="other" ${profile.vehicle?.type==='other'?'selected':''}>${esc(t('otherVehicle'))}</option></select></label><label>${esc(t('registrationCountry'))}<select name="vehicleRegistration">${countryOptions(profile.vehicle?.registrationCountry||null)}</select></label><label>${esc(t('fuelType'))}<select name="vehicleFuel"><option value="unknown">${esc(t('unknown'))}</option><option value="petrol" ${profile.vehicle?.fuelType==='petrol'?'selected':''}>${esc(t('petrol'))}</option><option value="diesel" ${profile.vehicle?.fuelType==='diesel'?'selected':''}>${esc(t('diesel'))}</option><option value="hybrid" ${profile.vehicle?.fuelType==='hybrid'?'selected':''}>${esc(t('hybrid'))}</option><option value="plug-in-hybrid" ${profile.vehicle?.fuelType==='plug-in-hybrid'?'selected':''}>${esc(t('pluginHybrid'))}</option><option value="electric" ${profile.vehicle?.fuelType==='electric'?'selected':''}>${esc(t('electric'))}</option><option value="hydrogen" ${profile.vehicle?.fuelType==='hydrogen'?'selected':''}>${esc(t('hydrogen'))}</option><option value="other" ${profile.vehicle?.fuelType==='other'?'selected':''}>${esc(t('otherVehicle'))}</option></select></label><label>${esc(t('euroClass'))}<select name="vehicleEuro"><option value="unknown">${esc(t('unknown'))}</option>${['Euro 1','Euro 2','Euro 3','Euro 4','Euro 5','Euro 6'].map(v=>`<option value="${esc(v)}" ${profile.vehicle?.euroClass===v?'selected':''}>${esc(v)}</option>`).join('')}</select></label><label class="check span-2"><input name="rentalCrossBorder" type="checkbox" ${profile.vehicle?.rentalCrossBorderApproved===true?'checked':''}><span>${esc(t('rentalCrossBorder'))}</span></label></div></details><p class="platform-privacy">${esc(t('private'))}</p><div class="platform-form-actions"><button class="ghost" type="button" id="platformClearTraveller">${esc(t('clear'))}</button><button class="primary" type="submit">${esc(t('save'))}</button></div></form>`;
     modal.classList.remove('hidden');
+    const form=$('#platformTravellerForm',modal),vehicle=$('.traveller-vehicle',modal);
+    const updateVehicle=()=>{
+      if(['car','road','camper','motorcycle'].includes(form.elements.mode.value)||form.elements.vehicleType.value)vehicle.open=true;
+    };
+    form.elements.mode.addEventListener('change',updateVehicle);
+    updateVehicle();
     $('.platform-x',modal).onclick=()=>modal.classList.add('hidden');
     $('#platformClearTraveller',modal).onclick=()=>{
       modal.classList.add('hidden');
@@ -2256,11 +2403,18 @@
   root.travellerUi={open};
 })();
 
+
 /* ===== platform/ui.js ===== */
 (() => {
   'use strict';
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
   const $=(s,r=document)=>r.querySelector(s);
+  const dialogStack=[];
+  function syncDialogStack(){
+    const top=dialogStack.at(-1);
+    for(const modal of document.querySelectorAll('.platform-modal'))modal.inert=Boolean(top&&modal!==top);
+    const app=$('#app');if(app)app.inert=Boolean(top);
+  }
 
   function ensureDialog(id,cls='platform-modal'){
     let modal=$('#'+id);
@@ -2270,8 +2424,32 @@
     modal.className=`${cls} hidden`;
     modal.setAttribute('role','dialog');
     modal.setAttribute('aria-modal','true');
-    modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.add('hidden')});
+    modal.addEventListener('click',e=>{if(e.target===modal){modal.querySelector('.platform-x')?.click();modal.classList.add('hidden')}});
     document.body.appendChild(modal);
+    modal.tabIndex=-1;
+    let returnFocus=null,wasOpen=false;
+    const focusables=()=>[...modal.querySelectorAll('button,input,select,textarea,a[href],summary,[tabindex="0"]')].filter(node=>!node.disabled&&node.getClientRects().length);
+    const observer=new MutationObserver(()=>{
+      const isOpen=!modal.classList.contains('hidden');
+      if(isOpen===wasOpen)return;
+      wasOpen=isOpen;
+      if(!isOpen){const index=dialogStack.indexOf(modal);if(index>=0)dialogStack.splice(index,1);syncDialogStack();if(returnFocus?.isConnected)returnFocus.focus();return}
+      returnFocus=document.activeElement;
+      dialogStack.push(modal);modal.style.zIndex=String(160+dialogStack.length);syncDialogStack();
+      const title=modal.querySelector('h2');
+      if(title){title.id=id+'Title';modal.setAttribute('aria-labelledby',title.id)}
+      (focusables()[0]||modal).focus();
+    });
+    observer.observe(modal,{attributes:true,attributeFilter:['class']});
+    modal.addEventListener('keydown',event=>{
+      if(event.key==='Escape'){event.preventDefault();event.stopPropagation();modal.querySelector('.platform-x')?.click();modal.classList.add('hidden')}
+      if(event.key==='Tab'){
+        const nodes=focusables(),first=nodes[0],last=nodes.at(-1);
+        if(!first){event.preventDefault();modal.focus();return}
+        if(event.shiftKey&&(document.activeElement===first||document.activeElement===modal)){event.preventDefault();last.focus()}
+        else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
+      }
+    });
     return modal;
   }
 
@@ -2320,16 +2498,17 @@
   function buildTripUrl({id,defaultTripId='world-195',search=''}) {
     const params=new URLSearchParams(search);
     params.set('trip',id);
-    for(const key of ['segment','country','phase','view'])params.delete(key);
+    for(const key of ['segment','country','phase','view','variant'])params.delete(key);
     return `/${params.toString()?`?${params}`:''}`;
   }
 
-  function regionalUrl({tripId,locale,search='',pathname='/',terrainActive=false}) {
+  function regionalUrl({tripId,locale,search='',pathname='/',terrainActive=false,variantId=null}) {
     const existing=new URLSearchParams(search);
     const params=new URLSearchParams();
     params.set('trip',tripId);
     params.set('lang',locale);
     if(existing.get('view')==='terrain'||terrainActive)params.set('view','terrain');
+    if(variantId&&variantId!=='base')params.set('variant',variantId);
     return `${pathname}?${params.toString()}`;
   }
 
@@ -2555,6 +2734,105 @@
 })();
 
 
+/* ===== platform/journey-variants.js ===== */
+(() => {
+  'use strict';
+  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  const clone=value=>{
+    if(typeof structuredClone==='function')return structuredClone(value);
+    return JSON.parse(JSON.stringify(value));
+  };
+
+  function definitions(trip){
+    if(!Array.isArray(trip?.variants))return [];
+    const seen=new Set(),out=[];
+    for(const item of trip.variants){
+      const id=typeof item?.id==='string'?item.id.trim():'';
+      if(!id||id==='base'||seen.has(id))continue;
+      seen.add(id);
+      out.push({...item,id});
+    }
+    return out;
+  }
+
+  function list(trip){
+    return [
+      {id:'base',title:trip?.title||null,summary:trip?.summary||null,base:true},
+      ...definitions(trip).map(item=>({...item,base:false}))
+    ];
+  }
+
+  function normalizeStops(stops){
+    let day=1;
+    return (stops||[]).map((stop,index)=>{
+      const span=Math.max(1,Number(stop.dayEnd||stop.dayStart||day)-Number(stop.dayStart||day)+1);
+      const nights=Math.max(0,Number(stop.nights||0));
+      const next={...clone(stop),sequence:index+1,dayStart:day,dayEnd:day+span-1,nights};
+      day+=span;
+      return next;
+    });
+  }
+
+  function windowStops(trip,definition){
+    const stops=trip?.stops||[];
+    const start=definition.startStopId?stops.findIndex(stop=>stop.id===definition.startStopId):0;
+    const end=definition.endStopId?stops.findIndex(stop=>stop.id===definition.endStopId):stops.length-1;
+    if(start<0||end<0||end<start)return null;
+    return stops.slice(start,end+1);
+  }
+
+  function apply(trip,variantId='base'){
+    if(!trip)return trip;
+    const id=String(variantId||'base').trim()||'base';
+    if(id==='base'){
+      const next=clone(trip);
+      next._variant={id:'base',base:true,adapted:false};
+      return next;
+    }
+    const definition=definitions(trip).find(item=>item.id===id);
+    if(!definition)return apply(trip,'base');
+    const selected=windowStops(trip,definition);
+    if(!selected?.length)return apply(trip,'base');
+
+    const next=clone(trip);
+    next.stops=normalizeStops(selected);
+    const selectedIds=new Set(next.stops.map(stop=>stop.id));
+    const orderedSegments=[];
+    for(let index=0;index<next.stops.length-1;index++){
+      const from=next.stops[index].id,to=next.stops[index+1].id;
+      const segment=(trip.segments||[]).find(item=>item.fromStopId===from&&item.toStopId===to);
+      if(!segment)return apply(trip,'base');
+      orderedSegments.push({...clone(segment),sequence:index+1});
+    }
+    next.segments=orderedSegments;
+    const placeIds=new Set(next.stops.map(stop=>stop.placeId));
+    next.places=(trip.places||[]).filter(place=>placeIds.has(place.id)).map(clone);
+    next.chapters=(trip.chapters||[]).map(chapter=>{
+      const stopIds=(chapter.stopIds||[]).filter(stopId=>selectedIds.has(stopId));
+      return stopIds.length?{...clone(chapter),stopIds}:null;
+    }).filter(Boolean);
+    next.planning={...(next.planning||{}),days:next.stops.at(-1)?.dayEnd||next.stops.length};
+    if(definition.pace)next.planning.pace=definition.pace;
+    if(definition.title)next.title=clone(definition.title);
+    if(definition.summary)next.summary=clone(definition.summary);
+    if(definition.highlights)next.highlights=clone(definition.highlights);
+    if(definition.routePolicy)next.routePolicy={...(next.routePolicy||{}),...clone(definition.routePolicy)};
+    next._variant={
+      id:definition.id,
+      base:false,
+      adapted:true,
+      title:clone(definition.title||null),
+      sourceTripId:trip.id,
+      startStopId:next.stops[0]?.id||null,
+      endStopId:next.stops.at(-1)?.id||null
+    };
+    return next;
+  }
+
+  root.journeyVariants={definitions,list,apply,normalizeStops};
+})();
+
+
 /* ===== platform/shared-knowledge.js ===== */
 (() => {
   'use strict';
@@ -2600,33 +2878,56 @@
   root.sharedKnowledge={load,forTrip,render,getData:()=>data};
 })();
 
+
 /* ===== platform/trip-tools.js ===== */
 (() => {
   'use strict';
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
   const KEY='one-world-route:trip-tools:v1';
+  const META_KEY='one-world-route:trip-tools-meta:v1';
 
   const number=(value,min=0,max=100000)=>{
     const parsed=Number(value);
     return Number.isFinite(parsed)?Math.min(max,Math.max(min,parsed)):0;
   };
-  function defaults(){return {savedTrips:[],budgets:{},startDates:{},seasons:{},routeStarts:{},planningChecks:{}}}
+  function defaults(){return {savedTrips:[],recentTrips:[],budgets:{},startDates:{},seasons:{},routeStarts:{},variants:{},planningChecks:{}}}
   function load(storage){
     try{
       const raw=JSON.parse(storage.getItem(KEY)||'{}');
       return {
         savedTrips:Array.isArray(raw.savedTrips)?[...new Set(raw.savedTrips.filter(v=>typeof v==='string'))]:[],
+        recentTrips:Array.isArray(raw.recentTrips)?[...new Set(raw.recentTrips.filter(v=>typeof v==='string'))].slice(0,12):[],
         budgets:raw.budgets&&typeof raw.budgets==='object'?raw.budgets:{},
         startDates:raw.startDates&&typeof raw.startDates==='object'?raw.startDates:{},
         seasons:raw.seasons&&typeof raw.seasons==='object'?raw.seasons:{},
         routeStarts:raw.routeStarts&&typeof raw.routeStarts==='object'?raw.routeStarts:{},
+        variants:raw.variants&&typeof raw.variants==='object'?raw.variants:{},
         planningChecks:raw.planningChecks&&typeof raw.planningChecks==='object'?raw.planningChecks:{}
       };
     }catch{return defaults()}
   }
-  function persist(storage,state){storage.setItem(KEY,JSON.stringify(state));return state}
+  function workspaceUpdatedAt(storage){
+    const raw=String(storage.getItem(META_KEY)||'').trim();
+    const parsed=raw?new Date(raw):null;
+    return parsed&&Number.isFinite(parsed.getTime())?parsed.toISOString():'';
+  }
+  function persist(storage,state,updatedAt=null){
+    storage.setItem(KEY,JSON.stringify(state));
+    const stamp=updatedAt?new Date(updatedAt):new Date();
+    storage.setItem(META_KEY,Number.isFinite(stamp.getTime())?stamp.toISOString():new Date().toISOString());
+    return state;
+  }
   function notify(tripId){if(typeof window?.dispatchEvent==='function'&&typeof CustomEvent==='function')window.dispatchEvent(new CustomEvent('one-world-route:trip-tools-changed',{detail:{tripId}}))}
   function isSaved(storage,tripId){return load(storage).savedTrips.includes(tripId)}
+  function getRecent(storage){return load(storage).recentTrips}
+  function markViewed(storage,tripId){
+    const id=String(tripId||'').trim();
+    if(!id)return getRecent(storage);
+    const state=load(storage);
+    state.recentTrips=[id,...state.recentTrips.filter(value=>value!==id)].slice(0,12);
+    persist(storage,state);
+    return [...state.recentTrips];
+  }
   function toggleSaved(storage,tripId){
     const state=load(storage),saved=new Set(state.savedTrips);
     if(saved.has(tripId))saved.delete(tripId);else saved.add(tripId);
@@ -2664,6 +2965,12 @@
     const state=load(storage),start=String(value||'').trim();
     if(start)state.routeStarts[tripId]=start;else delete state.routeStarts[tripId];
     persist(storage,state);notify(tripId);return start;
+  }
+  function getVariant(storage,tripId){return String(load(storage).variants[tripId]||'base')}
+  function setVariant(storage,tripId,value){
+    const state=load(storage),variant=String(value||'base').trim()||'base';
+    if(variant==='base')delete state.variants[tripId];else state.variants[tripId]=variant;
+    persist(storage,state);notify(tripId);return variant;
   }
   function normalizePlanningChecks(input={}){
     const raw=String(input?.accessCheckedAt||'').trim();
@@ -2759,7 +3066,7 @@
   function jsonPack({trip,meta,local,facetLabel,snapshot,assumptions,profile,startDate,season,journeyPlan=null,planningWorkspace=null}){
     return JSON.stringify({
       schemaVersion:1,exportedAt:new Date().toISOString(),
-      trip:{id:meta?.id||trip?.id,title:local(trip?.title),summary:local(trip?.summary),planning:trip?.planning||null,startDate:validDate(startDate)||null,seasonPreference:String(season||'')||null},
+      trip:{id:meta?.id||trip?.id,title:local(trip?.title),summary:local(trip?.summary),variantId:trip?._variant?.id||'base',planning:trip?.planning||null,startDate:validDate(startDate)||null,seasonPreference:String(season||'')||null},
       itinerary:itineraryRows(trip,local,facetLabel),
       journeyPlan,
       planningWorkspace,
@@ -2767,8 +3074,47 @@
       sources:trip?.sources||[]
     },null,2)+'\n';
   }
+  function workspacePayload(storage){
+    return {schemaVersion:1,updatedAt:workspaceUpdatedAt(storage)||new Date(0).toISOString(),workspace:load(storage)};
+  }
   function workspaceJson(storage){
-    return JSON.stringify({schemaVersion:1,exportedAt:new Date().toISOString(),workspace:load(storage)},null,2)+'\n';
+    const payload=workspacePayload(storage);
+    return JSON.stringify({...payload,exportedAt:new Date().toISOString()},null,2)+'\n';
+  }
+  function normalizeWorkspace(input={},allowedTripIds=null){
+    const allowed=allowedTripIds?new Set(allowedTripIds):null;
+    const validId=id=>typeof id==='string'&&(!allowed||allowed.has(id));
+    const source=input&&typeof input==='object'?input:{};
+    const pickMap=(value,normalizer=null)=>{
+      const out={};
+      if(!value||typeof value!=='object'||Array.isArray(value))return out;
+      for(const [id,current] of Object.entries(value)){
+        if(!validId(id))continue;
+        const normalized=normalizer?normalizer(current):current;
+        if(normalized!==undefined&&normalized!==null&&normalized!=='')out[id]=normalized;
+      }
+      return out;
+    };
+    return {
+      savedTrips:[...new Set((Array.isArray(source.savedTrips)?source.savedTrips:[]).filter(validId))],
+      recentTrips:[...new Set((Array.isArray(source.recentTrips)?source.recentTrips:[]).filter(validId))].slice(0,12),
+      budgets:pickMap(source.budgets,normalizeBudget),
+      startDates:pickMap(source.startDates,value=>validDate(value)||undefined),
+      seasons:pickMap(source.seasons,value=>String(value||'').trim()||undefined),
+      routeStarts:pickMap(source.routeStarts,value=>String(value||'').trim()||undefined),
+      variants:pickMap(source.variants,value=>{const v=String(value||'base').trim();return v&&v!=='base'?v:undefined}),
+      planningChecks:pickMap(source.planningChecks,value=>{const v=normalizePlanningChecks(value);return v.accessCheckedAt?v:undefined})
+    };
+  }
+  function importWorkspace(storage,text,allowedTripIds=null,updatedAt=null){
+    let payload;
+    try{payload=typeof text==='string'?JSON.parse(text):text}catch{return {ok:false,reason:'invalid-json'}}
+    if(Number(payload?.schemaVersion)!==1||!payload?.workspace||typeof payload.workspace!=='object')return {ok:false,reason:'invalid-schema'};
+    const workspace=normalizeWorkspace(payload.workspace,allowedTripIds);
+    const stamp=updatedAt||payload.updatedAt||null;
+    persist(storage,workspace,stamp);
+    notify(null);
+    return {ok:true,workspace,updatedAt:workspaceUpdatedAt(storage)};
   }
   function download(name,text,type='text/plain'){
     const blob=new Blob([text],{type:type+';charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
@@ -2822,17 +3168,24 @@
     const suggestionSelected=Boolean(suggestedStop&&selectedStop?.id===suggestedStop.id);
     const origin=String(profile?.origin||profile?.originCountry||'').trim();
     const journeyPlan=journeyAdapter?.originPlan?.(trip,profile)||null;
+    const variantService=window.ONE_WORLD_PLATFORM_MODULES?.journeyVariants;
+    const variants=variantService?.list?.(trip)||[{id:'base',title:trip?.title,base:true}];
+    const activeVariant=trip?._variant?.id||getVariant(storage,id)||'base';
+    const variantMarkup=variants.length>1?'<label class="platform-journey-variant"><span>'+esc(t('journeyVariant'))+'</span><select data-trip-variant>'+variants.map(variant=>'<option value="'+esc(variant.id)+'" '+(variant.id===activeVariant?'selected':'')+'>'+esc(variant.base?t('fullJourney'):local(variant.title))+'</option>').join('')+'</select><small>'+esc(t('variantLead'))+'</small></label>':'';
     const coreStartPlace=places.get(journeyPlan?.core?.startPlaceId)||selectedPlace;
     const coreEndPlace=places.get(journeyPlan?.core?.endPlaceId)||places.get(trip?.stops?.at(-1)?.placeId);
     const coreStartName=local(coreStartPlace?.name)||'—',coreEndName=local(coreEndPlace?.name)||'—';
     const originMarkup='<div class="platform-origin-summary"><span>'+esc(t('originPoint'))+'</span><b>'+esc(origin||t('notSet'))+'</b><button type="button" data-trip-origin-edit>'+esc(t('change'))+'</button></div>';
-    const suggestionMarkup=entrySuggestion?.available&&suggestedName?'<div class="platform-origin-summary platform-entry-suggestion" data-entry-suggestion><span>'+esc(t('entrySuggestion'))+'</span><b>'+esc((origin||entrySuggestion.originCountry||t('originPoint'))+' → '+suggestedName)+'</b><button type="button" '+(suggestionSelected?'disabled':'data-trip-entry-suggest')+'>'+esc(suggestionSelected?t('entrySuggestionApplied'):t('useSuggestedEntry'))+'</button></div>':'';
+    const suggestionDetail=entrySuggestion?.available
+      ?((Number.isFinite(Number(entrySuggestion.distanceKm))?'≈ '+Math.round(Number(entrySuggestion.distanceKm))+' km · ':'')+t('entryApproximation'))
+      :'';
+    const suggestionMarkup=entrySuggestion?.available&&suggestedName?'<div class="platform-origin-summary platform-entry-suggestion" data-entry-suggestion><span>'+esc(t('entrySuggestion'))+'</span><b>'+esc((origin||entrySuggestion.originCountry||t('originPoint'))+' → '+suggestedName)+'</b><small>'+esc(suggestionDetail)+'</small><button type="button" '+(suggestionSelected?'disabled':'data-trip-entry-suggest')+'>'+esc(suggestionSelected?t('entrySuggestionApplied'):t('useSuggestedEntry'))+'</button></div>':'';
     const accessMarkup='<div class="platform-route-access platform-route-access-grid">'+
       '<div class="platform-route-access-step"><span>1 · '+esc(t('routeAccess'))+'</span><strong>'+esc(origin||t('originPoint'))+' → '+esc(coreStartName)+'</strong><small>'+esc(origin?t('currentCheck'):t('personalizeJourneyLead'))+'</small></div>'+
       '<div class="platform-route-access-step"><span>2 · '+esc(t('overview'))+'</span><strong>'+esc(coreStartName)+' → '+esc(coreEndName)+'</strong><small>'+esc(t('routeAccessLead'))+'</small></div>'+
       '<div class="platform-route-access-step"><span>3 · '+esc(t('routeAccess'))+'</span><strong>'+esc(coreEndName)+' → '+esc(origin||t('originPoint'))+'</strong><small>'+esc(origin?t('currentCheck'):t('personalizeJourneyLead'))+'</small></div>'+
     '</div>';
-    const personalization='<section class="platform-journey-personalize"><div class="platform-personalize-head"><span>'+esc(t('personalizeJourney'))+'</span><h3>'+esc(t('personalizeJourneyTitle'))+'</h3></div><p>'+esc(t('personalizeJourneyLead'))+'</p>'+originMarkup+suggestionMarkup+accessMarkup+'<div class="platform-route-start-control">'+routeStartSelect+'</div></section>';
+    const personalization='<section class="platform-journey-personalize"><div class="platform-personalize-head"><span>'+esc(t('personalizeJourney'))+'</span><h3>'+esc(t('personalizeJourneyTitle'))+'</h3></div><p>'+esc(t('personalizeJourneyLead'))+'</p>'+variantMarkup+originMarkup+suggestionMarkup+accessMarkup+'<div class="platform-route-start-control">'+routeStartSelect+'</div></section>';
     const breakdown='<div class="platform-budget-breakdown">'+
       '<span>'+esc(t('transportMinimum'))+'<b>'+esc(money(e.transport,currency,locale))+'</b></span>'+
       '<span>'+esc(t('lodging'))+'<b>'+esc(money(e.lodging,currency,locale))+'</b></span>'+
@@ -2840,7 +3193,7 @@
       '<span>'+esc(t('localTravel'))+'<b>'+esc(money(e.local,currency,locale))+'</b></span>'+
       '</div>';
     const planningWorkspace=planningWorkspaceMarkup({trip,meta,profile,storage,t,esc,journeyAdapter});
-    return planningWorkspace+personalization+'<section class="platform-trip-utility">'+
+    return planningWorkspace+'<details class="platform-detail-disclosure platform-personalization-details"><summary>'+esc(t('personalizeJourneyTitle'))+'</summary><div>'+personalization+'</div></details>'+'<section class="platform-trip-utility">'+
       '<button class="platform-save-trip '+(saved?'active':'')+'" type="button" data-trip-save>'+esc(saved?t('removeSaved'):t('saveTrip'))+'</button>'+
       '<details class="platform-trip-tools"><summary>'+esc(t('tripTools'))+' <span>+</span></summary>'+
         '<div class="platform-tool-actions"><button type="button" data-trip-export-json>'+esc(t('exportJson'))+'</button><button type="button" data-trip-export-csv>'+esc(t('exportCsv'))+'</button></div>'+
@@ -2879,8 +3232,9 @@
       }
       if(step==='origin'){onTraveller?.();return}
       if(step==='routeStart'){
+        const details=host.querySelector('.platform-personalization-details');if(details)details.open=true;
         const selected=host.querySelector('[data-trip-route-start]')?.value||eligible[0]?.id||'';
-        if(selected){setRouteStart(storage,id,selected);toast?.(t('routeStartUpdated'));onRouteVariantChange?.()}
+        if(selected){setRouteStart(storage,id,selected);toast?.(t('routeStartUpdated'));onRouteVariantChange?.({})}
         return;
       }
       const details=host.querySelector('.platform-trip-tools');
@@ -2908,10 +3262,16 @@
       toast?.(t('routeStartUpdated'));
       onRouteVariantChange?.();
     });
+    host.querySelector('[data-trip-variant]')?.addEventListener('change',event=>{
+      const variantId=setVariant(storage,id,event.currentTarget.value);
+      setRouteStart(storage,id,'');
+      toast?.(t('variantUpdated'));
+      onRouteVariantChange?.({variantId});
+    });
     host.querySelector('[data-trip-route-start]')?.addEventListener('change',event=>{
       setRouteStart(storage,id,event.currentTarget.value);
       toast?.(t('routeStartUpdated'));
-      onRouteVariantChange?.();
+      onRouteVariantChange?.({});
     });
     const save=host.querySelector('[data-trip-save]');
     if(save)save.onclick=()=>{const active=toggleSaved(storage,id);save.classList.toggle('active',active);save.textContent=active?t('removeSaved'):t('saveTrip');toast?.(active?t('savedLocally'):t('removedSaved'));refreshPlanning()};
@@ -2936,8 +3296,9 @@
       toast?.(t('estimateUpdated'));refreshPlanning();
     };
   }
-  root.tripTools={load,isSaved,toggleSaved,normalizeBudget,getBudget,setBudget,getStartDate,setStartDate,getSeason,setSeason,getRouteStart,setRouteStart,normalizePlanningChecks,getPlanningChecks,setAccessChecked,hasBudgetAssumptions,planningStatus,estimate,itineraryRows,csv,calendar,jsonPack,workspaceJson,download,render,bind};
+  root.tripTools={load,isSaved,getRecent,markViewed,toggleSaved,normalizeBudget,getBudget,setBudget,getStartDate,setStartDate,getSeason,setSeason,getRouteStart,setRouteStart,getVariant,setVariant,normalizePlanningChecks,getPlanningChecks,setAccessChecked,hasBudgetAssumptions,planningStatus,estimate,itineraryRows,csv,calendar,jsonPack,workspaceUpdatedAt,workspacePayload,workspaceJson,normalizeWorkspace,importWorkspace,download,render,bind};
 })();
+
 
 /* ===== platform/traveller-fit.js ===== */
 (() => {
@@ -3049,8 +3410,27 @@
     return reasons.slice(0,3);
   }
 
-  root.travellerFit={partyKey,preferences,evaluate,recommendationSignals,recommendationReasons,configuredPreferenceCount,orderRecommendations};
+  function recommendationSummary(meta,profile){
+    const configured=configuredPreferenceCount(profile);
+    const signals=recommendationSignals(meta,profile);
+    const preferenceMatches=signals.filter(signal=>signal.source==='preference').length;
+    const fit=evaluate(meta,profile),checks=[];
+    if(!fit.partyListed)checks.push('party');
+    if(fit.needsMobilityCheck)checks.push('mobility');
+    if(fit.vehicleContextMissing)checks.push('vehicle');
+    return {
+      configured,
+      preferenceMatches,
+      preferenceMisses:Math.max(0,configured-preferenceMatches),
+      contextMatches:signals.filter(signal=>signal.source==='context').length,
+      checks,
+      signals
+    };
+  }
+
+  root.travellerFit={partyKey,preferences,evaluate,recommendationSignals,recommendationReasons,recommendationSummary,configuredPreferenceCount,orderRecommendations};
 })();
+
 
 /* ===== platform/trip-compare.js ===== */
 (() => {
@@ -3098,6 +3478,16 @@
       row(t('fitSeason'),values(trip=>(trip.discovery?.fit?.seasons||[]).map(facetLabel).join(' · ')),esc)+
       row(t('travellerParty'),partyValues,esc)+
       row(t('filterAccessibility'),accessValues,esc)+
+      row(t('planningComplexity'),values(trip=>facetLabel(trip.discovery?.fit?.accessibility||'standard-check')),esc)+
+      row(t('vehicleRequirement'),values(trip=>(trip.capabilities||[]).includes('vehicle-context')?t('yes'):t('no')),esc)+
+      row(t('evidenceCoverage'),values(trip=>{
+        const total=Number(trip.metrics?.segments||trip.metrics?.internationalLegs||0),sourced=Number(trip.metrics?.sourcedSegments||0);
+        return total?String(sourced)+' / '+String(total):'—';
+      }),esc)+
+      row(t('currentChecks'),values(trip=>{
+        const total=Number(trip.metrics?.segments||trip.metrics?.internationalLegs||0),verified=Number(trip.metrics?.verifiedSegments||0);
+        return total?String(Math.max(0,total-verified)):'—';
+      }),esc)+
       row(t('editorialStatus'),values(trip=>statusLabel(trip)),esc)+
       row(t('homeBaseModel'),values(trip=>{
         const budget=trip.metrics?.budget;
@@ -3193,12 +3583,8 @@
     const modeText=s.modes.length?s.modes.map(facetLabel).join(' · '):'—';
     return '<section class="platform-journey-guide">'+
       '<div class="platform-overview-section-head"><span>'+esc(t('journeyGuide'))+'</span><b>'+esc(t('guideDataDriven'))+'</b></div>'+
-      '<p class="detail-copy">'+esc(t('journeyGuideLead'))+'</p>'+
-      '<div class="platform-guide-rhythm">'+
-        '<div><span>'+esc(t('averageStay'))+'</span><b>'+esc(format(s.averageStayDays))+' '+esc(t('days'))+'</b></div>'+
-        '<div><span>'+esc(t('routeMovements'))+'</span><b>'+esc(s.totalSegments)+'</b></div>'+
-        '<div><span>'+esc(t('transportModes'))+'</span><b>'+esc(modeText)+'</b></div>'+
-      '</div>'+
+      '<p class="platform-guide-summary">'+esc(interpolate(t('guideRhythmSummary'),{days:format(s.averageStayDays),count:s.totalSegments}))+'</p>'+
+      '<p class="platform-guide-modes"><span>'+esc(t('transportModes'))+'</span> '+esc(modeText)+'</p>'+
       (focus?'<div class="platform-guide-subhead">'+esc(t('timeFocus'))+'</div><div class="platform-guide-focus">'+focus+'</div>':'')+
       (checks.length?'<details class="platform-guide-checks"><summary>'+esc(t('beforeBooking'))+' <span>'+esc(checks.length)+'</span></summary><ul>'+checks.map(item=>'<li>'+esc(item)+'</li>').join('')+'</ul></details>':'')+
     '</section>';
@@ -3206,6 +3592,7 @@
 
   root.journeyGuide={snapshot,render};
 })();
+
 
 /* ===== platform/place-experiences.js ===== */
 (() => {
@@ -3302,6 +3689,187 @@
   root.placeExperiences={loadForTrip,resolve,routeRole,coverage,render};
 })();
 
+
+/* ===== platform/media.js ===== */
+(() => {
+  'use strict';
+  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  const SAFE_ASSET=/^\.\/assets\/[a-z0-9_./-]+$/i;
+
+  function descriptor(entry,fallbackTheme='ocean'){
+    const theme=String(entry?.theme||fallbackTheme||'ocean').replace(/[^a-z0-9-]/gi,'')||'ocean';
+    if(entry?.type==='image'&&entry.license&&entry.attribution&&SAFE_ASSET.test(String(entry.asset||''))&&!String(entry.asset).split('/').includes('..')){
+      const asset=String(entry.asset);
+      return {
+        type:'image',
+        theme,
+        className:'platform-media-image visual-'+theme,
+        style:'background-image:linear-gradient(180deg,rgba(5,10,17,.08),rgba(5,10,17,.5)),url("'+asset.replace(/"/g,'')+'")',
+        attribution:String(entry.attribution||''),
+        license:String(entry.license||'')
+      };
+    }
+    return {type:'art-directed',theme,className:'visual-'+theme,style:'',attribution:'',license:String(entry?.license||'original-ui-art')};
+  }
+
+  function credit(entry,esc=value=>String(value??'')){
+    const media=descriptor(entry);
+    if(media.type!=='image'||!media.attribution)return '';
+    return '<small class="platform-media-credit">'+esc(media.attribution)+(media.license?' · '+esc(media.license):'')+'</small>';
+  }
+
+
+  function routeArt(preview){
+    const arcs=(preview?.arcs||[]).filter(arc=>[arc.start?.lat,arc.start?.lng,arc.end?.lat,arc.end?.lng].every(value=>Number.isFinite(value)));
+    if(!arcs.length)return '';
+    const points=arcs.flatMap(arc=>[arc.start,arc.end]);
+    const center=points.reduce((sum,p)=>sum+Number(p.lat),0)/points.length;
+    const scale=Math.max(.2,Math.cos(center*Math.PI/180));
+    const xs=points.map(p=>Number(p.lng)*scale),ys=points.map(p=>Number(p.lat));
+    const minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys);
+    const span=Math.max((maxX-minX)/240,(maxY-minY)/100,.01);
+    const project=p=>[160+(Number(p.lng)*scale-(minX+maxX)/2)/span,90-(Number(p.lat)-(minY+maxY)/2)/span].map(v=>Math.round(v*10)/10);
+    return '<svg class="platform-route-art" viewBox="0 0 320 180" aria-hidden="true" focusable="false">'+arcs.map(arc=>{
+      const [x,y]=project(arc.start),[ex,ey]=project(arc.end);
+      return '<path d="M'+x+' '+y+' L'+ex+' '+ey+'"/><circle cx="'+x+'" cy="'+y+'" r="2.5"/><circle cx="'+ex+'" cy="'+ey+'" r="2.5"/>';
+    }).join('')+'</svg>';
+  }
+  function tripPreview(trip){
+    const places=new Map((trip?.places||[]).map(place=>[place.id,place]));
+    const points=(trip?.stops||[]).map(stop=>places.get(stop.placeId)?.coordinates).filter(Boolean);
+    return {arcs:points.slice(1).map((point,index)=>({start:points[index],end:point}))};
+  }
+
+  root.media={descriptor,credit,routeArt,tripPreview};
+})();
+
+/* ===== platform/partners.js ===== */
+(() => {
+  'use strict';
+  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  const CONFIG_URL='./data/platform/commercial-config.json';
+  let config={schemaVersion:1,enabled:false,disclosureRequired:true,partners:[]};
+
+  const https=value=>/^https:\/\//i.test(String(value||''));
+  function normalize(input={}){
+    const partners=Array.isArray(input.partners)?input.partners.filter(item=>
+      item&&typeof item==='object'&&
+      /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(String(item.id||''))&&
+      https(item.url)&&
+      item.label&&typeof item.label==='object'
+    ).map(item=>({
+      id:String(item.id),
+      label:item.label,
+      url:String(item.url),
+      category:String(item.category||'other'),
+      regions:Array.isArray(item.regions)?item.regions.map(String):[],
+      kinds:Array.isArray(item.kinds)?item.kinds.map(String):[],
+      modes:Array.isArray(item.modes)?item.modes.map(String):[],
+      themes:Array.isArray(item.themes)?item.themes.map(String):[]
+    })):[];
+    return {
+      schemaVersion:Number(input.schemaVersion||1),
+      enabled:Boolean(input.enabled)&&partners.length>0,
+      disclosureRequired:input.disclosureRequired!==false,
+      partners
+    };
+  }
+  async function load(fetcher=fetch){
+    try{
+      const response=await fetcher(CONFIG_URL,{cache:'no-cache'});
+      if(response.ok)config=normalize(await response.json());
+    }catch(error){console.warn('Commercial config unavailable',error)}
+    return status();
+  }
+  function status(){return {enabled:config.enabled,count:config.partners.length}}
+  function intersects(a,b){return !a.length||a.some(value=>b.includes(value))}
+  function linksFor(meta){
+    if(!config.enabled)return [];
+    const discovery=meta?.discovery||{},fit=discovery.fit||{};
+    const regions=discovery.regions||[],modes=discovery.modes||[],themes=discovery.themes||[];
+    return config.partners.filter(item=>
+      (!item.kinds.length||item.kinds.includes(meta?.kind))&&
+      intersects(item.regions,regions)&&
+      intersects(item.modes,modes)&&
+      intersects(item.themes,themes)
+    ).slice(0,3);
+  }
+  function render(meta,{t,esc,local,facetLabel}={}){
+    const items=linksFor(meta);
+    if(!items.length)return '';
+    const disclosure=config.disclosureRequired?'<p class="platform-partner-disclosure">'+esc(t('partnerDisclosure'))+'</p>':'';
+    return '<section class="platform-partner-links"><div class="platform-overview-section-head"><span>'+esc(t('partnerOptions'))+'</span></div>'+disclosure+
+      '<div class="platform-tool-actions">'+items.map(item=>
+        '<a href="'+esc(item.url)+'" target="_blank" rel="sponsored noopener noreferrer" referrerpolicy="no-referrer" data-partner-id="'+esc(item.id)+'">'+
+        esc(local(item.label))+' · '+esc(facetLabel(item.category))+' ↗</a>'
+      ).join('')+'</div></section>';
+  }
+  root.partners={load,status,linksFor,render,normalize};
+})();
+
+
+/* ===== platform/share.js ===== */
+(() => {
+  'use strict';
+  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  let deps=null;
+
+  function configure(next){deps=next;return api}
+  function context(){return deps||{}}
+  async function shareCurrent(){
+    const d=context();
+    const title=String(d.title?.()||document.title||'ONE WORLD ROUTE');
+    const url=String(location.href);
+    if(typeof navigator.share==='function'){
+      try{
+        await navigator.share({title,url});
+        return {ok:true,method:'native'};
+      }catch(error){
+        if(error?.name==='AbortError')return {ok:false,method:'native',reason:'cancelled'};
+        console.warn('Native share failed, falling back to clipboard',error);
+      }
+    }
+    if(navigator.clipboard?.writeText){
+      try{
+        await navigator.clipboard.writeText(url);
+        d.toast?.(d.t?.('shareCopied')||'Share link copied');
+        return {ok:true,method:'clipboard'};
+      }catch(error){console.warn('Clipboard share failed',error)}
+    }
+    d.toast?.(d.t?.('shareCopyFallback')||'Copy the URL from your browser');
+    return {ok:false,method:'manual'};
+  }
+  function bind(){
+    const d=context();
+    const handler=async()=>{
+      const result=await shareCurrent();
+      if(result.reason==='cancelled')return;
+    };
+    const desktop=document.querySelector('#shareBtn');
+    if(desktop){
+      desktop.title=d.t?.('share')||'Share';
+      desktop.setAttribute('aria-label',d.t?.('share')||'Share');
+      desktop.onclick=handler;
+    }
+    const mobile=document.querySelector('#mobileShareBtn');
+    if(mobile){
+      const label=d.t?.('share')||'Share';
+      mobile.textContent=label;
+      mobile.title=label;
+      mobile.setAttribute('aria-label',label);
+      mobile.onclick=()=>{
+        document.querySelector('#settingsPopover')?.classList.add('hidden');
+        return handler();
+      };
+    }
+    return Boolean(desktop||mobile);
+  }
+
+  const api={configure,shareCurrent,bind};
+  root.share=api;
+})();
+
+
 /* ===== platform/trip-planning.js ===== */
 (() => {
   'use strict';
@@ -3394,6 +3962,295 @@
 })();
 
 
+/* ===== platform/cloud-sync.js ===== */
+(() => {
+  'use strict';
+  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  const CONFIG_URL='./data/platform/sync-config.json';
+  const SESSION_KEY='one-world-route:cloud-session:v1';
+  const STATE_KEY='one-world-route:cloud-sync-state:v1';
+  let deps=null;
+  let config={schemaVersion:1,provider:'supabase',enabled:false,projectUrl:null,publishableKey:null};
+  const listeners=new Set();
+
+  function cleanUrl(value){return String(value||'').trim().replace(/\/+$/,'')}
+  function parseJson(storage,key,fallback=null){
+    try{return JSON.parse(storage.getItem(key)||'null')??fallback}catch{return fallback}
+  }
+  function emit(){
+    const current=status();
+    for(const listener of listeners){
+      try{listener(current)}catch(error){console.warn('Cloud sync listener failed',error)}
+    }
+  }
+  function subscribe(listener){
+    if(typeof listener!=='function')return ()=>{};
+    listeners.add(listener);
+    listener(status());
+    return ()=>listeners.delete(listener);
+  }
+  function available(){
+    return Boolean(config?.enabled&&config?.provider==='supabase'&&cleanUrl(config.projectUrl)&&String(config.publishableKey||'').trim());
+  }
+  function storedSession(){
+    if(!deps?.storage)return null;
+    const session=parseJson(deps.storage,SESSION_KEY,null);
+    return session&&typeof session==='object'&&session.access_token&&session.user?.id?session:null;
+  }
+  function state(){
+    return deps?.storage?parseJson(deps.storage,STATE_KEY,{lastSyncedAt:'',lastDirection:''}):{lastSyncedAt:'',lastDirection:''};
+  }
+  function status(){
+    const session=storedSession(),syncState=state();
+    return {
+      available:available(),
+      signedIn:Boolean(session),
+      email:session?.user?.email||'',
+      userId:session?.user?.id||'',
+      lastSyncedAt:syncState.lastSyncedAt||'',
+      lastDirection:syncState.lastDirection||''
+    };
+  }
+  function baseHeaders(accessToken=null){
+    const headers={'Content-Type':'application/json','apikey':String(config.publishableKey||'')};
+    if(accessToken)headers.Authorization='Bearer '+accessToken;
+    return headers;
+  }
+  async function jsonRequest(url,options={}){
+    const response=await (deps?.fetcher||fetch)(url,options);
+    const text=await response.text();
+    let payload=null;
+    try{payload=text?JSON.parse(text):null}catch{payload=text||null}
+    if(!response.ok){
+      const message=payload?.msg||payload?.message||payload?.error_description||payload?.error||('HTTP '+response.status);
+      const error=new Error(String(message));
+      error.status=response.status;
+      throw error;
+    }
+    return payload;
+  }
+  function persistSession(session){
+    if(!deps?.storage)return null;
+    if(!session){deps.storage.removeItem(SESSION_KEY);emit();return null}
+    const expiresIn=Number(session.expires_in||0);
+    const expiresAt=Number(session.expires_at||0)||(expiresIn?Math.floor(Date.now()/1000)+expiresIn:0);
+    const normalized={
+      access_token:String(session.access_token||''),
+      refresh_token:String(session.refresh_token||''),
+      expires_at:expiresAt,
+      user:{id:String(session.user?.id||''),email:String(session.user?.email||'')}
+    };
+    deps.storage.setItem(SESSION_KEY,JSON.stringify(normalized));
+    emit();
+    return normalized;
+  }
+  async function refreshSession(session){
+    if(!available()||!session?.refresh_token)return null;
+    const payload=await jsonRequest(cleanUrl(config.projectUrl)+'/auth/v1/token?grant_type=refresh_token',{
+      method:'POST',headers:baseHeaders(),body:JSON.stringify({refresh_token:session.refresh_token})
+    });
+    return persistSession(payload);
+  }
+  async function ensureSession(){
+    let session=storedSession();
+    if(!session)return null;
+    const expiresAt=Number(session.expires_at||0);
+    if(expiresAt&&expiresAt*1000>Date.now()+60000)return session;
+    try{return await refreshSession(session)}
+    catch(error){
+      console.warn('Cloud session refresh failed',error);
+      persistSession(null);
+      return null;
+    }
+  }
+  async function init(next={}){
+    deps={
+      storage:next.storage||localStorage,
+      TripTools:next.TripTools,
+      catalog:next.catalog,
+      fetcher:next.fetcher||fetch
+    };
+    try{
+      const response=await deps.fetcher(CONFIG_URL,{cache:'no-cache'});
+      if(response.ok){
+        const loaded=await response.json();
+        config={
+          schemaVersion:Number(loaded?.schemaVersion||1),
+          provider:String(loaded?.provider||'supabase'),
+          enabled:Boolean(loaded?.enabled),
+          projectUrl:cleanUrl(loaded?.projectUrl),
+          publishableKey:String(loaded?.publishableKey||'').trim()
+        };
+      }
+    }catch(error){console.warn('Cloud sync config unavailable',error)}
+    if(available())await ensureSession();
+    emit();
+    return status();
+  }
+  async function requestCode(email){
+    if(!available())return {ok:false,reason:'unavailable'};
+    const normalized=String(email||'').trim().toLowerCase();
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(normalized))return {ok:false,reason:'invalid-email'};
+    try{
+      await jsonRequest(cleanUrl(config.projectUrl)+'/auth/v1/otp',{
+        method:'POST',headers:baseHeaders(),body:JSON.stringify({email:normalized,create_user:true})
+      });
+      return {ok:true,email:normalized};
+    }catch(error){return {ok:false,reason:'request-failed',message:error.message}}
+  }
+  async function verifyCode(email,token){
+    if(!available())return {ok:false,reason:'unavailable'};
+    const normalized=String(email||'').trim().toLowerCase();
+    const code=String(token||'').trim();
+    if(!normalized||!code)return {ok:false,reason:'missing-code'};
+    try{
+      const payload=await jsonRequest(cleanUrl(config.projectUrl)+'/auth/v1/verify',{
+        method:'POST',headers:baseHeaders(),body:JSON.stringify({email:normalized,token:code,type:'email'})
+      });
+      const session=persistSession(payload);
+      return {ok:Boolean(session),session};
+    }catch(error){return {ok:false,reason:'verify-failed',message:error.message}}
+  }
+  async function signOut(){
+    const session=await ensureSession();
+    if(session){
+      try{
+        await jsonRequest(cleanUrl(config.projectUrl)+'/auth/v1/logout',{method:'POST',headers:baseHeaders(session.access_token)});
+      }catch(error){console.warn('Cloud sign out request failed',error)}
+    }
+    persistSession(null);
+    return {ok:true};
+  }
+  async function remoteWorkspace(session){
+    const uid=encodeURIComponent(session.user.id);
+    const url=cleanUrl(config.projectUrl)+'/rest/v1/planning_workspaces?select=workspace,client_updated_at,updated_at&user_id=eq.'+uid+'&limit=1';
+    const payload=await jsonRequest(url,{headers:baseHeaders(session.access_token)});
+    return Array.isArray(payload)&&payload.length?payload[0]:null;
+  }
+  async function uploadWorkspace(session,payload){
+    const row={
+      user_id:session.user.id,
+      workspace:payload.workspace,
+      client_updated_at:payload.updatedAt
+    };
+    const result=await jsonRequest(cleanUrl(config.projectUrl)+'/rest/v1/planning_workspaces',{
+      method:'POST',
+      headers:{...baseHeaders(session.access_token),Prefer:'resolution=merge-duplicates,return=representation'},
+      body:JSON.stringify(row)
+    });
+    return Array.isArray(result)&&result.length?result[0]:row;
+  }
+  function remember(direction,stamp){
+    if(!deps?.storage)return;
+    deps.storage.setItem(STATE_KEY,JSON.stringify({lastSyncedAt:stamp||new Date().toISOString(),lastDirection:direction||''}));
+    emit();
+  }
+  function allowedTripIds(){return (deps?.catalog?.trips||[]).map(item=>item.id)}
+  async function sync(){
+    if(!available()||!deps?.TripTools)return {ok:false,reason:'unavailable'};
+    const session=await ensureSession();
+    if(!session)return {ok:false,reason:'signed-out'};
+    try{
+      const local=deps.TripTools.workspacePayload(deps.storage);
+      const remote=await remoteWorkspace(session);
+      if(!remote){
+        await uploadWorkspace(session,local);
+        remember('uploaded',new Date().toISOString());
+        return {ok:true,direction:'uploaded',updatedAt:local.updatedAt};
+      }
+      const localTime=new Date(local.updatedAt||0).getTime()||0;
+      const remoteStamp=String(remote.client_updated_at||remote.updated_at||'');
+      const remoteTime=new Date(remoteStamp||0).getTime()||0;
+      if(remoteTime>localTime){
+        const imported=deps.TripTools.importWorkspace(
+          deps.storage,
+          {schemaVersion:1,updatedAt:remoteStamp,workspace:remote.workspace},
+          allowedTripIds(),
+          remoteStamp
+        );
+        if(!imported.ok)return {ok:false,reason:'invalid-remote'};
+        remember('downloaded',new Date().toISOString());
+        return {ok:true,direction:'downloaded',updatedAt:remoteStamp};
+      }
+      if(localTime>remoteTime){
+        await uploadWorkspace(session,local);
+        remember('uploaded',new Date().toISOString());
+        return {ok:true,direction:'uploaded',updatedAt:local.updatedAt};
+      }
+      remember('current',new Date().toISOString());
+      return {ok:true,direction:'current',updatedAt:local.updatedAt};
+    }catch(error){
+      console.warn('Cloud workspace sync failed',error);
+      return {ok:false,reason:'sync-failed',message:error.message};
+    }
+  }
+
+  root.cloudSync={init,status,subscribe,requestCode,verifyCode,signOut,sync};
+})();
+
+
+/* ===== platform/pwa-install.js ===== */
+(() => {
+  'use strict';
+  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  let deferred=null;
+  let installed=window.matchMedia?.('(display-mode: standalone)')?.matches===true;
+  const listeners=new Set();
+
+  function emit(){
+    const state=status();
+    for(const listener of listeners){
+      try{listener(state)}catch(error){console.warn('PWA install listener failed',error)}
+    }
+  }
+
+  function status(){
+    return {available:Boolean(deferred)&&!installed,installed};
+  }
+
+  async function prompt(){
+    if(installed)return {ok:true,outcome:'installed'};
+    if(!deferred)return {ok:false,outcome:'unavailable'};
+    const request=deferred;
+    deferred=null;
+    emit();
+    try{
+      await request.prompt();
+      const choice=await request.userChoice;
+      if(choice?.outcome==='accepted')installed=true;
+      emit();
+      return {ok:choice?.outcome==='accepted',outcome:choice?.outcome||'dismissed'};
+    }catch(error){
+      console.warn('PWA install prompt failed',error);
+      emit();
+      return {ok:false,outcome:'error'};
+    }
+  }
+
+  function subscribe(listener){
+    if(typeof listener!=='function')return ()=>{};
+    listeners.add(listener);
+    listener(status());
+    return ()=>listeners.delete(listener);
+  }
+
+  window.addEventListener('beforeinstallprompt',event=>{
+    event.preventDefault();
+    deferred=event;
+    installed=false;
+    emit();
+  });
+
+  window.addEventListener('appinstalled',()=>{
+    deferred=null;
+    installed=true;
+    emit();
+  });
+
+  root.pwaInstall={status,prompt,subscribe};
+})();
+
+
 /* ===== platform/my-trips.js ===== */
 (() => {
   'use strict';
@@ -3470,7 +4327,8 @@
     const actionText=checks.accessCheckedAt?d.t('markForRecheck'):d.t('recordCurrentCheck');
     return '<section class="platform-mytrip-plan">'+
       '<div class="platform-mytrip-plan-head"><div><span>'+d.esc(d.t('planningStatus'))+'</span><b>'+d.esc(next)+'</b></div><strong>'+d.esc(String(plan.completed))+' / '+d.esc(String(plan.total))+'</strong></div>'+
-      '<div class="platform-mytrip-plan-list">'+steps+'</div>'+
+      '<button type="button" class="platform-mytrip-next" data-mytrip-next="'+d.esc(plan.next||'open')+'" data-trip-id="'+d.esc(id)+'">'+d.esc(plan.complete?d.t('continuePlanning'):d.t('nextAction')+': '+planningLabel(plan.next))+' →</button>'+
+      '<details class="platform-mytrip-status"><summary>'+d.esc(d.t('planningStatus'))+'</summary><div class="platform-mytrip-plan-list">'+steps+'</div></details>'+
       '<div class="platform-mytrip-plan-foot"><small>'+d.esc(d.t('planningStatusLead'))+'</small><button type="button" data-mytrip-access-check="'+d.esc(id)+'" data-checked="'+(checks.accessCheckedAt?'true':'false')+'">'+d.esc(actionText)+'</button></div>'+
     '</section>';
   }
@@ -3482,6 +4340,8 @@
     let trip=null,snapshot=null,budget=null;
     try{
       trip=await loadTrip(meta);
+      const variantId=d.TripTools.getVariant(d.storage,id);
+      if(d.journeyVariants?.apply)trip=d.journeyVariants.apply(trip,variantId);
       if((meta.capabilities||[]).includes('trip-planning')){
         snapshot=d.TripPlanning.snapshot(trip,meta);
         const assumptions=d.TripTools.getBudget(d.storage,id);
@@ -3489,47 +4349,160 @@
       }
     }catch(error){console.warn('My Trips dataset unavailable',id,error)}
     const currency=snapshot?.currency||trip?.planning?.currency||meta.metrics?.budget?.currency||'EUR';
+    const activeVariant=trip?._variant?.id||'base';
     const setup=[
+      '<span class="'+(activeVariant!=='base'?'ok':'')+'">'+d.esc(d.t('journeyVariant'))+': <b>'+d.esc(activeVariant==='base'?d.t('fullJourney'):d.local(trip?.title))+'</b></span>',
       '<span class="'+(start?'ok':'')+'">'+d.esc(d.t('startDate'))+': <b>'+d.esc(start||d.t('notSet'))+'</b></span>',
       '<span class="'+(season?(seasonListed?'ok':'check'):'')+'">'+d.esc(d.t('fitSeason'))+': <b>'+d.esc(season?d.facetLabel(season)+(seasonListed?'':' · '+d.t('contextCheckNeeded')):d.t('notSet'))+'</b></span>',
       '<span class="'+(budget?'ok':'')+'">'+d.esc(d.t('budgetEstimate'))+': <b>'+d.esc(budget?money(budget.total,currency,d.locale()):d.t('notSet'))+'</b></span>'
     ].join('');
     return '<article class="platform-mytrip-card" data-mytrip="'+d.esc(id)+'">'+
-      '<div class="platform-mytrip-head"><div><span>'+d.esc(d.statusLabel(meta))+'</span><h3>'+d.esc(d.local(meta.title))+'</h3></div><button type="button" data-mytrip-remove="'+d.esc(id)+'" aria-label="'+d.esc(d.t('removeSaved'))+'">×</button></div>'+
-      '<p>'+d.esc(d.local(meta.subtitle))+'</p>'+
+      '<div class="platform-mytrip-head"><div><span>'+d.esc(d.statusLabel(meta))+'</span><h3>'+d.esc(d.local(trip?.title||meta.title))+'</h3></div><button type="button" data-mytrip-remove="'+d.esc(id)+'" aria-label="'+d.esc(d.t('removeSaved'))+'">×</button></div>'+
+      '<p>'+d.esc(d.local((trip?._variant?.id&&trip._variant.id!=='base')?trip.summary:meta.subtitle))+'</p>'+
       '<div class="platform-mytrip-setup">'+setup+'</div>'+
       planningMarkup({meta,trip,profile,budget,currency,start})+
       '<div class="platform-mytrip-fit">'+fitMarkup(meta,profile)+'</div>'+
-      '<div class="platform-mytrip-actions"><button type="button" data-mytrip-open="'+d.esc(id)+'">'+d.esc(d.t('continuePlanning'))+' →</button></div>'+
+      '<div class="platform-mytrip-actions"><button type="button" data-mytrip-offline="'+d.esc(id)+'">'+d.esc(d.t('saveOffline'))+'</button><button type="button" data-mytrip-open="'+d.esc(id)+'">'+d.esc(d.t('continuePlanning'))+' →</button></div>'+
+    '</article>';
+  }
+
+  function recentCard(meta){
+    const d=context(),id=meta.id;
+    return '<article class="platform-mytrip-recent" data-mytrip-recent="'+d.esc(id)+'">'+
+      '<div><span>'+d.esc(d.facetLabel(meta.kind))+'</span><b>'+d.esc(d.local(meta.title))+'</b><small>'+d.esc(d.local(meta.subtitle))+'</small></div>'+
+      '<div><button type="button" data-mytrip-save="'+d.esc(id)+'">'+d.esc(d.t('saveTrip'))+'</button><button type="button" data-mytrip-open="'+d.esc(id)+'">'+d.esc(d.t('open'))+' →</button></div>'+
     '</article>';
   }
 
   async function render(modal){
-    const d=context(),profile=d.loadProfile(),saved=d.TripTools.load(d.storage).savedTrips;
+    const d=context(),profile=d.loadProfile(),state=d.TripTools.load(d.storage),saved=state.savedTrips,recent=d.TripTools.getRecent(d.storage);
     const metas=(d.catalog.trips||[]).filter(meta=>saved.includes(meta.id)).sort((a,b)=>{
       const aDate=d.TripTools.getStartDate(d.storage,a.id)||'9999-12-31';
       const bDate=d.TripTools.getStartDate(d.storage,b.id)||'9999-12-31';
       return aDate.localeCompare(bDate)||d.local(a.title).localeCompare(d.local(b.title));
     });
+    const recentMetas=recent.map(id=>(d.catalog.trips||[]).find(meta=>meta.id===id)).filter(meta=>meta&&!saved.includes(meta.id)).slice(0,6);
     const body=$('[data-mytrips-body]',modal);
     const count=$('[data-mytrips-count]',modal);
     if(count)count.textContent=String(metas.length);
-    if(!metas.length){
+    if(!metas.length&&!recentMetas.length){
       body.innerHTML='<div class="platform-mytrips-empty"><b>'+d.esc(d.t('myTripsEmptyTitle'))+'</b><span>'+d.esc(d.t('myTripsEmptyLead'))+'</span></div>';
       return;
     }
     body.innerHTML='<div class="platform-mytrips-loading">'+d.esc(d.t('loading'))+'</div>';
-    body.innerHTML=(await Promise.all(metas.map(meta=>buildCard(meta,profile)))).join('');
+    const savedMarkup=metas.length?'<section class="platform-mytrips-group"><h3>'+d.esc(d.t('savedJourneys'))+'</h3>'+(await Promise.all(metas.map(meta=>buildCard(meta,profile)))).join('')+'</section>':'';
+    const recentMarkup=recentMetas.length?'<section class="platform-mytrips-group platform-mytrips-recent-group"><h3>'+d.esc(d.t('recentlyViewed'))+'</h3>'+recentMetas.map(recentCard).join('')+'</section>':'';
+    body.innerHTML=savedMarkup+recentMarkup;
+  }
+
+  async function openCloudSync(parentModal){
+    const d=context(),cloud=d.cloudSync;
+    if(!cloud?.status?.().available){d.toast(d.t('cloudUnavailable'));return}
+    const modal=d.ensureDialog('platformCloudSyncModal');
+    const renderCloud=()=>{
+      const state=cloud.status();
+      const last=state.lastSyncedAt?dateLabel(state.lastSyncedAt,d.locale()):d.t('notSet');
+      if(state.signedIn){
+        modal.innerHTML='<div class="platform-modal-card glass"><button class="platform-x" type="button" aria-label="'+d.esc(d.t('close'))+'">×</button>'+
+          '<div class="platform-eyebrow">'+d.esc(d.t('cloudSync'))+'</div><h2>'+d.esc(d.t('cloudSync'))+'</h2><p class="platform-lead">'+d.esc(d.t('cloudSyncLead'))+'</p>'+
+          '<div class="platform-mytrip-plan"><div class="platform-mytrip-plan-head"><div><span>'+d.esc(d.t('cloudSignedInAs'))+'</span><b>'+d.esc(state.email)+'</b></div></div>'+
+          '<div class="platform-mytrip-plan-list"><span class="platform-mytrip-plan-step ok"><i aria-hidden="true">✓</i><span><b>'+d.esc(d.t('cloudLastSync'))+'</b><small>'+d.esc(last)+'</small></span></span></div>'+
+          '<div class="platform-mytrip-plan-foot"><small>'+d.esc(d.t('cloudPrivacy'))+'</small><button type="button" data-cloud-sync-now>'+d.esc(d.t('cloudSyncNow'))+'</button><button type="button" data-cloud-signout>'+d.esc(d.t('cloudSignOut'))+'</button></div></div></div>';
+      }else{
+        modal.innerHTML='<div class="platform-modal-card glass"><button class="platform-x" type="button" aria-label="'+d.esc(d.t('close'))+'">×</button>'+
+          '<div class="platform-eyebrow">'+d.esc(d.t('cloudSync'))+'</div><h2>'+d.esc(d.t('cloudSync'))+'</h2><p class="platform-lead">'+d.esc(d.t('cloudSyncLead'))+'</p>'+
+          '<div class="platform-budget-grid"><label><span>'+d.esc(d.t('cloudEmail'))+'</span><input type="email" autocomplete="email" data-cloud-email></label>'+
+          '<button type="button" data-cloud-send>'+d.esc(d.t('cloudSendCode'))+'</button>'+
+          '<label><span>'+d.esc(d.t('cloudCode'))+'</span><input inputmode="numeric" autocomplete="one-time-code" data-cloud-code></label>'+
+          '<button type="button" data-cloud-verify>'+d.esc(d.t('cloudVerifyCode'))+'</button></div>'+
+          '<p class="platform-budget-assumption">'+d.esc(d.t('cloudPrivacy'))+'</p></div>';
+      }
+      modal.querySelector('.platform-x').onclick=()=>modal.classList.add('hidden');
+      modal.querySelector('[data-cloud-send]')?.addEventListener('click',async event=>{
+        const email=modal.querySelector('[data-cloud-email]')?.value||'';
+        event.currentTarget.disabled=true;
+        const result=await cloud.requestCode(email);
+        event.currentTarget.disabled=false;
+        d.toast(result.ok?d.t('cloudCodeSent'):d.t(result.reason==='invalid-email'?'cloudInvalidEmail':'cloudSyncFailed'));
+      });
+      modal.querySelector('[data-cloud-verify]')?.addEventListener('click',async event=>{
+        const email=modal.querySelector('[data-cloud-email]')?.value||'';
+        const code=modal.querySelector('[data-cloud-code]')?.value||'';
+        event.currentTarget.disabled=true;
+        const result=await cloud.verifyCode(email,code);
+        event.currentTarget.disabled=false;
+        if(result.ok){d.toast(d.t('cloudSignedIn'));renderCloud()}
+        else d.toast(d.t('cloudSyncFailed'));
+      });
+      modal.querySelector('[data-cloud-sync-now]')?.addEventListener('click',async event=>{
+        event.currentTarget.disabled=true;
+        const result=await cloud.sync();
+        event.currentTarget.disabled=false;
+        if(!result.ok){d.toast(d.t('cloudSyncFailed'));return}
+        const key=result.direction==='downloaded'?'cloudSyncDownloaded':result.direction==='uploaded'?'cloudSyncUploaded':'cloudSyncCurrent';
+        d.toast(d.t(key));
+        if(result.direction==='downloaded'&&parentModal)await render(parentModal);
+        renderCloud();
+      });
+      modal.querySelector('[data-cloud-signout]')?.addEventListener('click',async()=>{
+        await cloud.signOut();
+        d.toast(d.t('cloudSignedOut'));
+        renderCloud();
+      });
+    };
+    renderCloud();
+    modal.classList.remove('hidden');
+    return modal;
   }
 
   async function open(){
     const d=context(),modal=d.ensureDialog('platformMyTripsModal');
     modal.innerHTML='<div class="platform-modal-card platform-mytrips-card glass"><button class="platform-x" type="button" aria-label="'+d.esc(d.t('close'))+'">×</button>'+
-      '<div class="platform-eyebrow">'+d.esc(d.t('myTrips'))+'</div><div class="platform-mytrips-title"><h2>'+d.esc(d.t('myTrips'))+' <span data-mytrips-count></span></h2><button type="button" data-mytrips-export>'+d.esc(d.t('exportWorkspace'))+'</button></div><p class="platform-lead">'+d.esc(d.t('myTripsLead'))+'</p>'+
+      '<div class="platform-eyebrow">'+d.esc(d.t('myTrips'))+'</div><div class="platform-mytrips-title"><h2>'+d.esc(d.t('myTrips'))+' <span data-mytrips-count></span></h2><div class="platform-mytrips-portability"><button type="button" data-mytrips-cloud hidden>'+d.esc(d.t('cloudSync'))+'</button><button type="button" data-mytrips-install hidden>'+d.esc(d.t('installApp'))+'</button><button type="button" data-mytrips-import>'+d.esc(d.t('importWorkspace'))+'</button><button type="button" data-mytrips-export>'+d.esc(d.t('exportWorkspace'))+'</button><input type="file" accept="application/json,.json" data-mytrips-import-file hidden></div></div><p class="platform-lead">'+d.esc(d.t('myTripsLead'))+'</p>'+
       '<div data-mytrips-body></div></div>';
     modal.classList.remove('hidden');
-    $('.platform-x',modal).onclick=()=>modal.classList.add('hidden');
+    const installBtn=$('[data-mytrips-install]',modal);
+    const refreshInstall=state=>{
+      if(!installBtn)return;
+      const next=state||d.pwaInstall?.status?.()||{};
+      installBtn.hidden=!next.available;
+      installBtn.disabled=false;
+      installBtn.textContent=d.t('installApp');
+    };
+    const unsubscribeInstall=d.pwaInstall?.subscribe?.(refreshInstall)||(()=>{});
+    const cloudBtn=$('[data-mytrips-cloud]',modal);
+    const refreshCloud=state=>{
+      if(!cloudBtn)return;
+      const next=state||d.cloudSync?.status?.()||{};
+      cloudBtn.hidden=!next.available;
+      cloudBtn.textContent=next.signedIn?(d.t('cloudSync')+' ✓'):d.t('cloudSync');
+    };
+    const unsubscribeCloud=d.cloudSync?.subscribe?.(refreshCloud)||(()=>{});
+    $('.platform-x',modal).onclick=()=>{unsubscribeInstall();unsubscribeCloud();modal.classList.add('hidden')};
+    const importFile=$('[data-mytrips-import-file]',modal);
+    $('[data-mytrips-import]',modal).onclick=()=>importFile?.click();
+    if(importFile)importFile.onchange=async()=>{
+      const file=importFile.files?.[0];
+      if(!file)return;
+      const result=d.TripTools.importWorkspace(d.storage,await file.text(),(d.catalog.trips||[]).map(item=>item.id));
+      importFile.value='';
+      d.toast(result.ok?d.t('workspaceImported'):d.t('workspaceImportFailed'));
+      if(result.ok)await render(modal);
+    };
     modal.onclick=async event=>{
+      const cloudTarget=event.target.closest('[data-mytrips-cloud]');
+      if(cloudTarget){await openCloudSync(modal);return}
+      const installTarget=event.target.closest('[data-mytrips-install]');
+      if(installTarget){
+        if(!d.pwaInstall?.prompt){d.toast(d.t('installAppUnavailable'));return}
+        installTarget.disabled=true;
+        installTarget.textContent=d.t('installingApp');
+        const result=await d.pwaInstall.prompt();
+        if(result?.ok)d.toast(d.t('installAppDone'));
+        else if(result?.outcome==='unavailable'||result?.outcome==='error')d.toast(d.t('installAppUnavailable'));
+        refreshInstall();
+        return;
+      }
       const exportBtn=event.target.closest('[data-mytrips-export]');
       if(exportBtn){d.TripTools.download('one-world-route-planning-workspace.json',d.TripTools.workspaceJson(d.storage),'application/json');return}
       const checkBtn=event.target.closest('[data-mytrip-access-check]');
@@ -3537,6 +4510,36 @@
         d.TripTools.setAccessChecked(d.storage,checkBtn.dataset.mytripAccessCheck,checkBtn.dataset.checked!=='true');
         await render(modal);
         return;
+      }
+      const saveBtn=event.target.closest('[data-mytrip-save]');
+      if(saveBtn){
+        if(!d.TripTools.isSaved(d.storage,saveBtn.dataset.mytripSave))d.TripTools.toggleSaved(d.storage,saveBtn.dataset.mytripSave);
+        await render(modal);
+        return;
+      }
+      const offlineBtn=event.target.closest('[data-mytrip-offline]');
+      if(offlineBtn){
+        const meta=(d.catalog.trips||[]).find(item=>item.id===offlineBtn.dataset.mytripOffline);
+        if(!meta||!d.serviceWorker?.cacheTrip){d.toast(d.t('offlineUnavailable'));return}
+        offlineBtn.disabled=true;
+        const original=offlineBtn.textContent;
+        offlineBtn.textContent=d.t('offlineSaving');
+        try{
+          const result=await d.serviceWorker.cacheTrip(meta);
+          d.toast(result?.ok?d.t('offlineReady'):d.t('offlineUnavailable'));
+        }catch(error){
+          console.warn('Offline trip cache failed',error);
+          d.toast(d.t('offlineUnavailable'));
+        }finally{
+          offlineBtn.disabled=false;
+          offlineBtn.textContent=original;
+        }
+        return;
+      }
+      const nextBtn=event.target.closest('[data-mytrip-next]');
+      if(nextBtn){
+        if(nextBtn.dataset.mytripNext==='origin'){d.onTraveller?.();return}
+        d.onOpenTrip(nextBtn.dataset.tripId,nextBtn.dataset.mytripNext);return;
       }
       const openBtn=event.target.closest('[data-mytrip-open]');
       if(openBtn){d.onOpenTrip(openBtn.dataset.mytripOpen);return}
@@ -3563,6 +4566,7 @@
   const compareSelection=new Set();
   let collections=[];
   let tripIndex=[];
+  let mediaManifest=[];
   let activeCollection=null;
   const PAGE_SIZE=24;
   const PRIMARY_REGIONS=['europe','asia','africa','north-america','south-america','oceania'];
@@ -3629,30 +4633,36 @@
       if(reason.kind==='party')return d.t('fitParty')+' · '+d.facetLabel(reason.value);
       return d.t('transportModes')+' · '+d.facetLabel(reason.value);
     };
-    return '<div class="platform-home-card-fit">'+reasons.map(reason=>'<span data-recommendation-kind="'+d.esc(reason.kind)+'">'+d.esc(label(reason))+'</span>').join('')+'</div>';
+    const summary=d.travellerFit?.recommendationSummary?.(trip,d.loadProfile())||null;
+    const summaryText=summary&&summary.configured
+      ?d.t('fitMatches').replace('{matched}',String(summary.preferenceMatches)).replace('{total}',String(summary.configured)).replace('{checks}',String(summary.checks.length))
+      :'';
+    return '<div class="platform-home-card-fit">'+reasons.map(reason=>'<span data-recommendation-kind="'+d.esc(reason.kind)+'">'+d.esc(label(reason))+'</span>').join('')+(summaryText?'<small>'+d.esc(summaryText)+'</small>':'')+'</div>';
   }
 
   function visualMarkup(trip){
-    const d=context(),theme=visualTheme(trip);
-    return '<div class="platform-home-card-visual visual-'+d.esc(theme)+'"><div class="platform-home-card-visual-top"><span>'+d.esc(d.facetLabel(primaryRegion(trip)))+'</span><b>'+d.esc(d.facetLabel(trip.kind))+'</b></div><div class="platform-home-card-route-art" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="platform-home-card-visual-bottom"><strong>'+d.esc(String(trip.metrics?.days||'—'))+'</strong><span>'+d.esc(d.t('days'))+'</span></div></div>';
+    const d=context(),entry=mediaManifest.find(item=>item.id===trip.id)?.hero;
+    const media=root.media.descriptor(entry,visualTheme(trip));
+    const preview=tripIndex.find(item=>item.id===trip.id)?.preview;
+    const art=media.type==='image'?'':root.media.routeArt(preview);
+    return '<div class="platform-home-card-visual '+d.esc(media.className)+'" data-media-type="'+media.type+'"'+(media.style?' style="'+d.esc(media.style)+'"':'')+'><div class="platform-home-card-visual-top"><span>'+d.esc(d.facetLabel(primaryRegion(trip)))+'</span><b>'+d.esc(d.facetLabel(trip.kind))+'</b></div>'+art+root.media.credit(entry,d.esc)+'</div>';
+  }
+
+  function actionIcon(kind){
+    const paths=kind==='save'?'<path d="M7 4h10v16l-5-3-5 3z"/>':'<path d="M8 4v16M16 4v16M4 8l4-4 4 4M12 16l4 4 4-4"/>';
+    return '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">'+paths+'</svg>';
   }
 
   function card(trip,{featured=false}={}){
     const d=context(),saved=d.tripTools?.isSaved(d.storage,trip.id)===true,compared=compareSelection.has(trip.id);
-    return '<article class="platform-home-card'+(featured?' platform-home-card-featured':'')+'" data-home-trip="'+d.esc(trip.id)+'">'+
-      visualMarkup(trip)+
-      '<div class="platform-home-card-body">'+
-        '<div class="platform-home-card-top"><span>'+d.esc(d.facetLabel(trip.kind))+'</span><b>'+(saved?'★ '+d.esc(d.t('saved'))+' · ':'')+d.esc(d.statusLabel(trip))+'</b></div>'+
-        '<h3>'+d.esc(d.local(trip.title))+'</h3>'+
-        '<p>'+d.esc(d.local(trip.subtitle))+'</p>'+
-        '<div class="platform-home-card-metrics">'+metricChips(trip).map(v=>'<span>'+d.esc(v)+'</span>').join('')+'</div>'+recommendationReasonMarkup(trip)+
-        '<div class="platform-home-card-actions">'+
-          '<button type="button" class="'+(saved?'active':'')+'" data-home-save-trip="'+d.esc(trip.id)+'">'+d.esc(saved?d.t('removeSaved'):d.t('saveTrip'))+'</button>'+
-          '<button type="button" class="'+(compared?'active':'')+'" data-home-compare-trip="'+d.esc(trip.id)+'">'+d.esc(d.t('compare'))+'</button>'+
-          '<button type="button" class="primary" data-open-home-trip="'+d.esc(trip.id)+'">'+d.esc(d.t('open'))+' →</button>'+
-        '</div>'+
-      '</div>'+
-    '</article>';
+    const saveLabel=d.t(saved?'removeSaved':'saveTrip'),compareLabel=d.t('compare')+(compared?' · '+d.t('selected'):'');
+    return '<article class="platform-home-card'+(featured?' platform-home-card-featured':'')+'" data-home-trip="'+d.esc(trip.id)+'">'+visualMarkup(trip)+
+      '<div class="platform-home-card-body"><h3>'+d.esc(d.local(trip.title))+'</h3>'+
+      '<div class="platform-home-card-metrics">'+metricChips(trip).slice(0,4).map(v=>'<span>'+d.esc(v)+'</span>').join('')+'</div>'+
+      '<p>'+d.esc(d.local(trip.subtitle))+'</p><small class="platform-card-status">'+d.esc(d.statusLabel(trip))+'</small>'+recommendationReasonMarkup(trip)+
+      '<div class="platform-home-card-actions"><button type="button" class="primary" data-open-home-trip="'+d.esc(trip.id)+'">'+d.esc(d.t('openJourney'))+' →</button>'+
+      '<button type="button" class="platform-card-icon'+(saved?' active':'')+'" data-home-save-trip="'+d.esc(trip.id)+'" aria-pressed="'+saved+'" aria-label="'+d.esc(saveLabel)+'" title="'+d.esc(saveLabel)+'">'+actionIcon('save')+'</button>'+
+      '<button type="button" class="platform-card-icon'+(compared?' active':'')+'" data-home-compare-trip="'+d.esc(trip.id)+'" aria-pressed="'+compared+'" aria-label="'+d.esc(compareLabel)+'" title="'+d.esc(compareLabel)+'">'+actionIcon('compare')+'</button></div></div></article>';
   }
 
   function quickExploreMarkup(){
@@ -3683,11 +4693,18 @@
     const d=context(),facets=d.Discovery.facets(d.catalog);
     const kinds=facets.kinds.filter(value=>value!=='world');
     const regions=PRIMARY_REGIONS.filter(region=>(d.catalog.trips||[]).some(trip=>trip.id!==d.catalog.defaultTripId&&(trip.discovery?.regions||[]).includes(region)));
+    const finderSelect=(id,label,values,emptyLabel=d.t('all'))=>'<label><span>'+d.esc(label)+'</span><select id="'+id+'"><option value="">'+d.esc(emptyLabel)+'</option>'+values.map(v=>option(v,d.facetLabel(v))).join('')+'</select></label>';
     return '<section class="platform-home-finder" id="platformHomeFinder"><div class="platform-home-finder-copy"><div class="platform-home-section-kicker">'+d.esc(d.t('findJourneyEyebrow'))+'</div><h2>'+d.esc(d.t('findJourneyTitle'))+'</h2><p>'+d.esc(d.t('findJourneyLead'))+'</p></div>'+
       '<div class="platform-home-finder-grid">'+
-        '<label><span>'+d.esc(d.t('whereTravel'))+'</span><select id="homeFinderRegion"><option value="">'+d.esc(d.t('anywhere'))+'</option>'+regions.map(v=>option(v,d.facetLabel(v))).join('')+'</select></label>'+
-        '<label><span>'+d.esc(d.t('howTravel'))+'</span><select id="homeFinderKind"><option value="">'+d.esc(d.t('anyStyle'))+'</option>'+kinds.map(v=>option(v,d.facetLabel(v))).join('')+'</select></label>'+
+        finderSelect('homeFinderRegion',d.t('whereTravel'),regions,d.t('anywhere'))+
+        finderSelect('homeFinderKind',d.t('howTravel'),kinds,d.t('anyStyle'))+
         '<label><span>'+d.esc(d.t('howLong'))+'</span><select id="homeFinderDuration"><option value="">'+d.esc(d.t('anyDuration'))+'</option><option value="7-14">7–14 '+d.esc(d.t('days'))+'</option><option value="15-30">15–30 '+d.esc(d.t('days'))+'</option><option value="31-89">31–89 '+d.esc(d.t('days'))+'</option><option value="90-plus">90+ '+d.esc(d.t('days'))+'</option></select></label>'+
+        '<details class="platform-finder-preferences"><summary>'+d.esc(d.t('morePreferences'))+'</summary><div class="platform-home-finder-grid">'+
+        finderSelect('homeFinderPace',d.t('howFast'),facets.paces)+
+        finderSelect('homeFinderTheme',d.t('whatTheme'),facets.themes)+
+        finderSelect('homeFinderParty',d.t('whoTravels'),facets.parties)+
+        finderSelect('homeFinderSeason',d.t('fitSeason'),facets.seasons)+
+        finderSelect('homeFinderAccessibility',d.t('filterAccessibility'),facets.accessibilities)+'</div></details>'+
         '<button class="primary" type="button" data-home-finder-apply>'+d.esc(d.t('showJourneys'))+' →</button>'+
       '</div>'+
       '<div class="platform-home-finder-personal"><span>'+d.esc(d.profileConfigured?.()?d.t('recommendationsActive'):d.t('personalizeLead'))+'</span><button type="button" data-home-traveller>'+d.esc(d.profileConfigured?.()?d.t('tunePreferences'):d.t('personalizeRecommendations'))+'</button></div>'+
@@ -3706,7 +4723,7 @@
     ];
     return '<div class="platform-home-region-grid">'+regions.map(([region,theme])=>{
       const count=(d.catalog.trips||[]).filter(trip=>(trip.discovery?.regions||[]).includes(region)).length;
-      return '<button type="button" class="platform-home-region-card visual-'+d.esc(theme)+'" data-home-quick-type="region" data-home-quick-value="'+d.esc(region)+'"><span>'+d.esc(String(count))+' '+d.esc(d.pluralLabel(count,'resultOne','results'))+'</span><strong>'+d.esc(d.facetLabel(region))+'</strong><i aria-hidden="true">↗</i></button>';
+      return '<button type="button" class="platform-home-region-card visual-'+d.esc(theme)+'" data-home-quick-type="region" data-home-quick-value="'+d.esc(region)+'"><svg class="platform-region-map" viewBox="0 0 320 180" aria-hidden="true" data-region-map="'+d.esc(region)+'"></svg><span>'+d.esc(String(count))+' '+d.esc(d.pluralLabel(count,'resultOne','results'))+'</span><strong>'+d.esc(d.facetLabel(region))+'</strong><i aria-hidden="true">↗</i></button>';
     }).join('')+'</div>';
   }
 
@@ -3723,11 +4740,17 @@
 
   function collectionMatches(trip,definition){
     const filters=definition?.filters||{};
-    if(filters.mode&&!(trip.discovery?.modes||[]).includes(filters.mode))return false;
-    if(filters.theme&&!(trip.discovery?.themes||[]).includes(filters.theme))return false;
-    if(filters.region&&!(trip.discovery?.regions||[]).includes(filters.region))return false;
-    if(filters.duration&&trip.discovery?.durationBand!==filters.duration)return false;
-    if(filters.themeAny?.length&&!filters.themeAny.some(value=>(trip.discovery?.themes||[]).includes(value)))return false;
+    const discovery=trip.discovery||{},fit=discovery.fit||{};
+    if(filters.kind&&trip.kind!==filters.kind)return false;
+    if(filters.mode&&!(discovery.modes||[]).includes(filters.mode))return false;
+    if(filters.modeAny?.length&&!filters.modeAny.some(value=>(discovery.modes||[]).includes(value)))return false;
+    if(filters.theme&&!(discovery.themes||[]).includes(filters.theme))return false;
+    if(filters.region&&!(discovery.regions||[]).includes(filters.region))return false;
+    if(filters.duration&&discovery.durationBand!==filters.duration)return false;
+    if(filters.themeAny?.length&&!filters.themeAny.some(value=>(discovery.themes||[]).includes(value)))return false;
+    if(filters.pace&&fit.pace!==filters.pace)return false;
+    if(filters.party&&!(fit.party||[]).includes(filters.party))return false;
+    if(filters.accessibility&&fit.accessibility!==filters.accessibility)return false;
     return true;
   }
 
@@ -3735,8 +4758,11 @@
     const d=context();
     if(!collections.length)return '';
     return '<section class="platform-home-collections"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('journeyDiscovery'))+'</div><h2>'+d.esc(d.t('curatedCollections'))+'</h2><p>'+d.esc(d.t('collectionsLead'))+'</p></div></div><div class="platform-home-collection-grid">'+collections.map(item=>{
-      const count=(d.catalog.trips||[]).filter(trip=>trip.id!==d.catalog.defaultTripId&&collectionMatches(trip,item)).length;
-      return '<button type="button" class="platform-home-collection visual-'+d.esc(String(item.theme||'ocean'))+'" data-home-collection="'+d.esc(item.id)+'"><span>'+count+' '+d.esc(d.pluralLabel(count,'resultOne','results'))+'</span><strong>'+d.esc(d.local(item.title))+'</strong><small>'+d.esc(d.local(item.description))+'</small></button>';
+      const members=(d.catalog.trips||[]).filter(trip=>trip.id!==d.catalog.defaultTripId&&collectionMatches(trip,item)),count=members.length;
+      const symbol=item.filters?.pace||item.filters?.mode||item.filters?.theme||item.filters?.themeAny?.[0]||'journey';
+      const icons={rail:'M4 5h16v12H4z M8 9h8 M8 13h1 M15 13h1 M8 17l-3 4 M16 17l3 4', 'road-trip':'M8 2 5 22 M16 2l3 20 M12 4v4 M12 12v4 M12 20v2',islands:'M2 17q5-4 10 0t10 0 M5 12l4-6 5 6 M12 12l5-9 5 9',nature:'M12 3 4 15h5v6h6v-6h5z',wildlife:'M12 3 4 15h5v6h6v-6h5z',culture:'M3 8l9-5 9 5 M5 10v9 M12 10v9 M19 10v9 M3 21h18',active:'M3 20 10 5l4 7 3-5 5 13',relaxed:'M4 12a8 8 0 1 0 16 0 M12 4v8l4 3',journey:'M12 3a9 9 0 1 0 0 18 9 9 0 1 0 0-18 M15 8l-2 6-5 2 2-6z'};
+      const icon='<svg class="platform-collection-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="'+(icons[symbol]||icons.journey)+'"/></svg>';
+      return '<button type="button" class="platform-home-collection visual-'+d.esc(String(item.theme||'ocean'))+'" data-home-collection="'+d.esc(item.id)+'">'+icon+'<span>'+count+' '+d.esc(d.pluralLabel(count,'resultOne','results'))+'</span><strong>'+d.esc(d.local(item.title))+'</strong><small>'+d.esc(d.local(item.description))+'</small></button>';
     }).join('')+'</div></section>';
   }
 
@@ -3797,7 +4823,12 @@
       if(definition)found=found.filter(trip=>collectionMatches(trip,definition));
     }
     if($('#homeRouteSavedOnly')?.checked)found=found.filter(trip=>d.tripTools.isSaved(d.storage,trip.id));
-    if(d.profileConfigured?.())found=d.travellerFit.orderRecommendations(found,d.loadProfile()).map(result=>result.trip);
+    const sort=$('#homeRouteSort')?.value||(d.profileConfigured?.()?'recommended':'featured');
+    if(sort==='recommended'&&d.profileConfigured?.())found=d.travellerFit.orderRecommendations(found,d.loadProfile()).map(result=>result.trip);
+    else if(sort==='shortest')found=[...found].sort((a,b)=>Number(a.metrics?.days||9999)-Number(b.metrics?.days||9999)||d.local(a.title).localeCompare(d.local(b.title)));
+    else if(sort==='longest')found=[...found].sort((a,b)=>Number(b.metrics?.days||0)-Number(a.metrics?.days||0)||d.local(a.title).localeCompare(d.local(b.title)));
+    else if(sort==='alphabetical')found=[...found].sort((a,b)=>d.local(a.title).localeCompare(d.local(b.title)));
+    else found=[...found].sort((a,b)=>Number(b.visual?.featurePriority||0)-Number(a.visual?.featurePriority||0)||d.local(a.title).localeCompare(d.local(b.title)));
     const visible=found.slice(0,resultLimit);
     renderCollectionContext();
     host.innerHTML=found.length?visible.map(card).join(''):'<div class="platform-home-empty">'+d.esc(d.t('noRoutes'))+'</div>';
@@ -3923,30 +4954,64 @@
     }catch(error){console.warn('Homepage globe render failed',error)}
   }
 
+
+  async function renderRegionMaps(){
+    try{
+      const response=await fetch('./data/country-centroids.json',{cache:'force-cache'});
+      if(!response.ok)return;
+      const countries=await response.json();
+      document.querySelectorAll('[data-region-map]').forEach(svg=>{
+        const region=svg.dataset.regionMap;
+        const members=countries.filter(country=>{
+          const broad=String(country.region).toLowerCase();
+          if(region==='south-america')return country.subregion==='South America';
+          if(region==='north-america')return broad==='americas'&&country.subregion!=='South America';
+          return broad===region;
+        }).filter(country=>Number.isFinite(Number(country.lat))&&Number.isFinite(Number(country.lng)));
+        if(!members.length)return;
+        const longitude=country=>region==='oceania'&&Number(country.lng)<0?Number(country.lng)+360:Number(country.lng);
+        const xs=members.map(longitude),ys=members.map(country=>Number(country.lat));
+        const left=Math.min(...xs),right=Math.max(...xs),bottom=Math.min(...ys),top=Math.max(...ys);
+        const span=Math.max((right-left)/260,(top-bottom)/115,1);
+        svg.innerHTML=members.map(country=>'<circle cx="'+(160+(longitude(country)-(left+right)/2)/span)+'" cy="'+(90-(Number(country.lat)-(bottom+top)/2)/span)+'" r="3"/>').join('');
+      });
+    }catch(error){console.warn('Region visuals unavailable',error)}
+  }
+
+  function refreshCardAction(button){
+    const scope=button.closest('#platformHomeFeatured')?'#platformHomeFeatured':'#platformHomeResults';
+    const attr=button.hasAttribute('data-home-save-trip')?'data-home-save-trip':'data-home-compare-trip';
+    const id=button.getAttribute(attr);
+    renderFeatured();renderCards();
+    $(scope+' ['+attr+'="'+id+'"]')?.focus({preventScroll:true});
+  }
+
   function bind(){
     const d=context(),host=$('#platformHome');
     host?.addEventListener('click',event=>{
       const open=event.target.closest('[data-open-home-trip]');
       if(open){d.onOpenTrip(open.dataset.openHomeTrip);return}
       const save=event.target.closest('[data-home-save-trip]');
-      if(save){d.tripTools.toggleSaved(d.storage,save.dataset.homeSaveTrip);renderCards();return}
+      if(save){d.tripTools.toggleSaved(d.storage,save.dataset.homeSaveTrip);refreshCardAction(save);return}
       const compare=event.target.closest('[data-home-compare-trip]');
       if(compare){
         const result=d.tripCompare.toggle(compareSelection,compare.dataset.homeCompareTrip,3);
         if(result.limit)d.toast(d.t('compareLimit'));
-        renderCards();return
+        refreshCardAction(compare);return
       }
       if(event.target.closest('[data-home-compare-open]')){
         d.tripCompare.open({catalog:d.catalog,selectedIds:[...compareSelection],profile:d.loadProfile(),ensureDialog:d.ensureDialog,t:d.t,esc:d.esc,local:d.local,facetLabel:d.facetLabel,statusLabel:d.statusLabel,onOpenTrip:d.onOpenTrip});
         return
       }
-      if(event.target.closest('[data-home-explore]')){$('#platformHomeExplore')?.scrollIntoView({behavior:'smooth',block:'start'});return}
-      if(event.target.closest('[data-home-find]')){$('#platformHomeFinder')?.scrollIntoView({behavior:'smooth',block:'center'});return}
+      if(event.target.closest('[data-home-explore]')){$('#platformHomeExplore')?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});return}
+      if(event.target.closest('[data-home-find]')){$('#platformHomeFinder')?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});return}
       if(event.target.closest('[data-home-finder-apply]')){
         activeCollection=null;
-        const pairs=[['homeFinderRegion','homeRouteRegion'],['homeFinderKind','homeRouteKind'],['homeFinderDuration','homeRouteDuration']];
+        const pairs=[['homeFinderRegion','homeRouteRegion'],['homeFinderKind','homeRouteKind'],['homeFinderDuration','homeRouteDuration'],['homeFinderPace','homeRoutePace'],['homeFinderTheme','homeRouteTheme'],['homeFinderParty','homeRouteParty'],['homeFinderSeason','homeRouteSeason'],['homeFinderAccessibility','homeRouteAccessibility']];
+        const targets=new Set(pairs.map(([,targetId])=>targetId));
+        host.querySelectorAll('[id^=homeRoute]').forEach(node=>{if(!targets.has(node.id)&&node.id!=='homeRouteSort'){if(node.type==='checkbox')node.checked=false;else node.value=''}});
         for(const [sourceId,targetId] of pairs){const source=$('#'+sourceId),target=$('#'+targetId);if(source&&target)target.value=source.value}
-        $('#platformHomeExplore')?.scrollIntoView({behavior:'smooth',block:'start'});
+        $('#platformHomeExplore')?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
         renderCards({preserveLimit:false});
         return
       }
@@ -3959,8 +5024,8 @@
       }
       if(event.target.closest('[data-home-mytrips]')){d.onMyTrips();return}
       if(event.target.closest('[data-home-traveller]')){d.onTraveller();return}
-      if(event.target.closest('[data-home-method]')){$('#platformHomeMethodology')?.scrollIntoView({behavior:'smooth',block:'start'});return}
-      if(event.target.closest('[data-home-top]')){host.scrollTo({top:0,behavior:'smooth'});return}
+      if(event.target.closest('[data-home-method]')){if(matchMedia('(max-width:820px)').matches)host.querySelector('.platform-home-overflow').open=false;$('#platformHomeMethodology')?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});return}
+      if(event.target.closest('[data-home-top]')){host.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});return}
       const loadMore=event.target.closest('[data-home-load-more]');
       if(loadMore){
         resultLimit+=PAGE_SIZE;
@@ -3970,7 +5035,7 @@
       const collection=event.target.closest('[data-home-collection]');
       if(collection){
         activeCollection=collection.dataset.homeCollection||null;
-        $('#platformHomeExplore')?.scrollIntoView({behavior:'smooth',block:'start'});
+        $('#platformHomeExplore')?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
         renderCards({preserveLimit:false});
         return;
       }
@@ -3979,7 +5044,7 @@
         const targetId={region:'homeRouteRegion',mode:'homeRouteMode',theme:'homeRouteTheme',kind:'homeRouteKind'}[quick.dataset.homeQuickType];
         const node=targetId?$('#'+targetId):null;
         if(node&&[...node.options].some(option=>option.value===quick.dataset.homeQuickValue))node.value=quick.dataset.homeQuickValue;
-        $('#platformHomeExplore')?.scrollIntoView({behavior:'smooth',block:'start'});
+        $('#platformHomeExplore')?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
         renderCards({preserveLimit:false});
         return;
       }
@@ -3989,10 +5054,12 @@
           const node=$('#'+id);if(node)node.value='';
         }
         const savedOnly=$('#homeRouteSavedOnly');if(savedOnly)savedOnly.checked=false;
+        host.querySelectorAll('[id^=homeFinder]').forEach(node=>{if(node.tagName==='SELECT')node.value=''});
+        const sort=$('#homeRouteSort');if(sort)sort.value=d.profileConfigured?.()?'recommended':'featured';
         renderCards({preserveLimit:false});
       }
     });
-    for(const id of ['homeRouteSearch','homeRouteKind','homeRouteRegion','homeRouteMode','homeRouteTheme','homeRouteDuration','homeRoutePace','homeRouteSeason','homeRouteParty','homeRouteStart','homeRouteAccessibility','homeRouteSavedOnly']){
+    for(const id of ['homeRouteSearch','homeRouteKind','homeRouteRegion','homeRouteMode','homeRouteTheme','homeRouteDuration','homeRoutePace','homeRouteSeason','homeRouteParty','homeRouteStart','homeRouteAccessibility','homeRouteSavedOnly','homeRouteSort']){
       $('#'+id)?.addEventListener(id==='homeRouteSearch'?'input':'change',()=>renderCards({preserveLimit:false}));
     }
   }
@@ -4001,12 +5068,14 @@
     const d=context(),flagship=(d.catalog.trips||[]).find(item=>item.id===d.catalog.defaultTripId);
     if(!flagship)throw new Error('Flagship trip missing from catalog');
     try{
-      const [collectionResponse,indexResponse]=await Promise.all([
+      const [collectionResponse,indexResponse,mediaResponse]=await Promise.all([
         fetch('./data/platform/collections.json',{cache:'no-cache'}),
-        fetch('./data/platform/trip-index.json',{cache:'force-cache'})
+        fetch('./data/platform/trip-index.json',{cache:'force-cache'}),
+        fetch('./data/platform/media-manifest.json',{cache:'force-cache'})
       ]);
       collections=collectionResponse.ok?(await collectionResponse.json()).collections||[]:[];
       tripIndex=indexResponse.ok?(await indexResponse.json()).trips||[]:[];
+      mediaManifest=mediaResponse.ok?(await mediaResponse.json()).journeys||[]:[];
     }catch(error){console.warn('Journey discovery support data unavailable',error);collections=[];tripIndex=[]}
     const requestedCollection=new URLSearchParams(location.search).get('collection');
     activeCollection=collections.some(item=>item.id===requestedCollection)?requestedCollection:null;
@@ -4018,22 +5087,28 @@
     host.id='platformHome';
     host.className='platform-home-shell';
     host.innerHTML=
-      '<header class="platform-home-nav"><button class="platform-home-brand" data-home-top type="button"><span class="brand-orbit"><i></i></span><span><strong>ONE WORLD ROUTE</strong><small>'+d.esc(d.t('homeNavSub'))+'</small></span></button><nav><button data-home-explore type="button">'+d.esc(d.t('routes'))+'</button><button data-home-mytrips type="button">'+d.esc(d.t('myTrips'))+'</button><button data-home-traveller type="button">'+d.esc(d.t('traveller'))+'</button><button data-home-method type="button">'+d.esc(d.t('methodology'))+'</button></nav></header>'+
+      '<header class="platform-home-nav"><button class="platform-home-brand" data-home-top type="button"><span class="brand-orbit"><i></i></span><span><strong>ONE WORLD ROUTE</strong><small>'+d.esc(d.t('homeNavSub'))+'</small></span></button><nav><button data-home-explore type="button">'+d.esc(d.t('routes'))+'</button><button data-home-mytrips type="button">'+d.esc(d.t('myTrips'))+'</button><button data-home-traveller type="button">'+d.esc(d.t('traveller'))+'</button><details class="platform-home-overflow"'+(matchMedia('(min-width:821px)').matches?' open':'')+'><summary>'+d.esc(d.t('more'))+'</summary><div><button data-home-method type="button">'+d.esc(d.t('methodology'))+'</button></div></details></nav></header>'+
       '<main>'+
-        '<section class="platform-home-hero"><div class="platform-home-hero-copy"><div class="platform-home-kicker">ONE WORLD ROUTE · '+d.esc(d.t('homeEyebrow'))+'</div><h1>'+d.esc(d.t('homeTitle'))+'</h1><p>'+d.esc(d.t('homeLead'))+'</p><div class="platform-home-hero-actions"><button class="primary" data-home-find type="button">'+d.esc(d.t('findJourneyTitle'))+'</button><button type="button" data-home-traveller>'+d.esc(d.profileConfigured?.()?d.t('tunePreferences'):d.t('personalizeRecommendations'))+'</button></div>'+quickExploreMarkup()+platformProofMarkup()+'</div><div class="platform-home-globe-caption"><span>'+d.esc(d.t('homeGlobeLabel'))+'</span><b>'+d.esc(d.t('homeGlobeHint'))+'</b></div></section>'+
+        '<section class="platform-home-hero"><div class="platform-home-hero-copy"><div class="platform-home-kicker">ONE WORLD ROUTE · '+d.esc(d.t('homeEyebrow'))+'</div><h1>'+d.esc(d.t('homeTitle'))+'</h1><p>'+d.esc(d.t('homeLead'))+'</p><div class="platform-home-hero-actions"><button class="primary" data-home-find type="button">'+d.esc(d.t('findJourneyTitle'))+'</button></div></div><div class="platform-home-globe-caption"><span>'+d.esc(d.t('homeGlobeLabel'))+'</span><b>'+d.esc(d.t('homeGlobeHint'))+'</b></div></section>'+
         finderMarkup()+
-        '<section class="platform-home-featured"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('journeyDiscovery'))+'</div><h2>'+d.esc(d.profileConfigured?.()?d.t('recommendedForYou'):d.t('featuredJourneys'))+'</h2><p>'+d.esc(d.profileConfigured?.()?d.t('recommendationContextLead'):d.t('featuredLead'))+'</p></div></div><div class="platform-home-featured-grid" id="platformHomeFeatured"></div></section>'+
+        '<section class="platform-home-featured"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('journeyDiscovery'))+'</div><h2>'+d.esc(d.profileConfigured?.()?d.t('recommendedForYou'):d.t('featuredJourneys'))+'</h2><p>'+d.esc(d.profileConfigured?.()?d.t('recommendationContextLead'):d.t('featuredLead'))+'</p></div></div><div class="platform-home-featured-grid" id="platformHomeFeatured"></div>'+platformProofMarkup()+'</section>'+
         collectionsMarkup()+
         '<section class="platform-home-regions"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('filterRegion'))+'</div><h2>'+d.esc(d.t('exploreByRegion'))+'</h2></div></div>'+regionCollectionsMarkup()+'</section>'+
         '<section class="platform-home-flagship"><div><div class="platform-home-section-kicker">'+d.esc(d.t('flagshipJourney'))+'</div><h2>'+d.esc(d.local(flagship.title))+'</h2><p>'+d.esc(d.local(flagship.subtitle))+'</p><button type="button" data-open-home-trip="'+d.esc(flagship.id)+'">'+d.esc(d.t('openFlagship'))+' →</button></div><div class="platform-home-flagship-metrics"><article><b>'+d.esc(flagship.metrics?.countries??'—')+'</b><span>'+d.esc(d.t('homeStates'))+'</span></article><article><b>'+d.esc(flagship.metrics?.internationalLegs??'—')+'</b><span>'+d.esc(d.t('homeLegs'))+'</span></article><article><b>'+d.esc(flagship.metrics?.days??'—')+'</b><span>'+d.esc(d.t('homePlannedDays'))+'</span></article><article><b>'+d.esc(formatDate(flagship.metrics?.startDate))+'</b><span>'+d.esc(d.t('homeStart'))+'</span></article><article><b>'+d.esc(formatBudget(flagship.metrics?.budget))+'</b><span>'+d.esc(d.t('homeBaseModel'))+'</span></article></div></section>'+
-        '<section class="platform-home-explore" id="platformHomeExplore"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('journeyDiscovery'))+'</div><h2>'+d.esc(d.t('allJourneys'))+'</h2><p>'+d.esc(d.t('journeyDiscoveryLead'))+'</p></div><div class="platform-home-resultbar"><span id="platformHomeCount"></span><button id="platformHomeCompare" data-home-compare-open type="button" disabled>'+d.esc(d.t('compareSelected').replace('{count}','0'))+'</button><button data-home-reset type="button">'+d.esc(d.t('resetFilters'))+'</button></div></div>'+'<div id="platformHomeCollectionContext" class="platform-home-collection-context" hidden></div>'+filtersMarkup()+'<div class="platform-home-grid" id="platformHomeResults"></div><button class="platform-home-more" id="platformHomeMore" data-home-load-more type="button" hidden>'+d.esc(d.t('loadMoreJourneys').replace('{count}',String(PAGE_SIZE)))+'</button></section>'+
+        '<section class="platform-home-explore" id="platformHomeExplore"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('journeyDiscovery'))+'</div><h2>'+d.esc(d.t('allJourneys'))+'</h2><p>'+d.esc(d.t('journeyDiscoveryLead'))+'</p></div><div class="platform-home-resultbar"><span id="platformHomeCount"></span><label class="platform-home-sort"><span>'+d.esc(d.t('sortBy'))+'</span><select id="homeRouteSort"><option value="recommended">'+d.esc(d.t('sortRecommended'))+'</option><option value="featured">'+d.esc(d.t('sortFeatured'))+'</option><option value="shortest">'+d.esc(d.t('sortShortest'))+'</option><option value="longest">'+d.esc(d.t('sortLongest'))+'</option><option value="alphabetical">'+d.esc(d.t('sortAlphabetical'))+'</option></select></label><button id="platformHomeCompare" data-home-compare-open type="button" disabled>'+d.esc(d.t('compareSelected').replace('{count}','0'))+'</button><button data-home-reset type="button">'+d.esc(d.t('resetFilters'))+'</button></div></div>'+quickExploreMarkup()+'<div id="platformHomeCollectionContext" class="platform-home-collection-context" hidden></div>'+filtersMarkup()+'<div class="platform-home-grid" id="platformHomeResults"></div><button class="platform-home-more" id="platformHomeMore" data-home-load-more type="button" hidden>'+d.esc(d.t('loadMoreJourneys').replace('{count}',String(PAGE_SIZE)))+'</button></section>'+
         '<section class="platform-home-method" id="platformHomeMethodology"><div class="platform-home-section-kicker">'+d.esc(d.t('methodology'))+'</div><h2>'+d.esc(d.t('inspirationMethodTitle'))+'</h2><p>'+d.esc(d.t('inspirationMethodText'))+'</p><div><article><b>'+d.esc(d.t('homeSourceRuleTitle'))+'</b><span>'+d.esc(d.t('homeSourceRule'))+'</span></article><article><b>'+d.esc(d.t('homeUnknownRuleTitle'))+'</b><span>'+d.esc(d.t('homeUnknownRule'))+'</span></article><article><b>'+d.esc(d.t('globalDesignTitle'))+'</b><span>'+d.esc(d.t('globalDesignText'))+'</span></article></div></section>'+
       '</main><footer class="platform-home-footer"><strong>ONE WORLD ROUTE</strong><span>'+d.esc(d.t('homeFooter'))+'</span></footer>';
     document.querySelector('#app')?.appendChild(host);
     bind();
-    window.addEventListener('one-world-route:trip-tools-changed',renderCards);
+    window.addEventListener('one-world-route:trip-tools-changed',()=>{renderFeatured();renderCards()});
+    const nav=host.querySelector('.platform-home-nav');
+    const observer=new ResizeObserver(()=>host.style.setProperty('--home-header-height',nav.getBoundingClientRect().height+'px'));
+    observer.observe(nav);
+    host.querySelectorAll('main>section').forEach(section=>section.classList.add('platform-scroll-target'));
+    renderRegionMaps();
     renderFeatured();
     renderCards();
+    if(location.hash==='#platformHomeExplore')requestAnimationFrame(()=>$('#platformHomeExplore')?.scrollIntoView({block:'start'}));
     if(activeCollection)requestAnimationFrame(()=>$('#platformHomeExplore')?.scrollIntoView({block:'start'}));
     await renderGlobe();
   }
@@ -4041,28 +5116,19 @@
   const api={configure,open,renderCards,renderFeatured,renderGlobe};
   root.home=api;
 })();
+
 /* ===== platform/route-library.js ===== */
 (() => {
   'use strict';
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
 
   function open(deps){
-    const {catalog,currentTripMeta,Discovery,travellerFit,loadProfile,profileConfigured,ensureDialog,t,local,esc,facetLabel,statusLabel,pluralLabel,onOpenTrip}=deps;
+    const {catalog,currentTripMeta,Discovery,travellerFit,loadProfile,profileConfigured,ensureDialog,t,local,esc,facetLabel,statusLabel,pluralLabel,onOpenTrip,onDiscovery}=deps;
     const $=(s,r=document)=>r.querySelector(s);
     const modal=ensureDialog('platformRouteModal');
     const PAGE_SIZE=36;
     let visibleLimit=PAGE_SIZE;
     const {kinds,regions,modes,themes,paces,seasons,parties,starts,accessibilities}=Discovery.facets(catalog);
-    const durationLabel=value=>({'7-14':'7–14','15-30':'15–30','31-89':'31–89','90-plus':'90+'}[value]||value);
-    const reasonLabel=reason=>{
-      if(reason.kind==='duration')return t('filterDuration')+' · '+durationLabel(reason.value)+' '+t('days');
-      if(reason.kind==='pace')return t('fitPace')+' · '+facetLabel(reason.value);
-      if(reason.kind==='season')return t('fitSeason')+' · '+facetLabel(reason.value);
-      if(reason.kind==='theme')return t('filterTheme')+' · '+facetLabel(reason.value);
-      if(reason.kind==='origin')return t('fitStart')+' · '+facetLabel(reason.value);
-      if(reason.kind==='party')return t('fitParty')+' · '+facetLabel(reason.value);
-      return t('transportModes')+' · '+facetLabel(reason.value);
-    };
     const card=r=>{
       const metrics=[];
       if(r.metrics?.days)metrics.push(`${r.metrics.days} ${t('days')}`);
@@ -4070,15 +5136,11 @@
       if(r.metrics?.countries)metrics.push(`${r.metrics.countries} ${pluralLabel(r.metrics.countries,'countryUnit','countriesUnit')}`);
       if(r.metrics?.nights)metrics.push(`${r.metrics.nights} ${t('onboardNights')}`);
       if(r.metrics?.seaDays)metrics.push(`${r.metrics.seaDays} ${t('seaDays')}`);
-      const fallbackTheme={world:'ocean','round-trip':'aegean','road-trip':'desert',rail:'rockies',cruise:'ocean',camper:'fern','island-hopping':'aegean',multimodal:'andes'}[r.kind]||'ocean';
-      const theme=String(r.visual?.theme||fallbackTheme).replace(/[^a-z0-9-]/gi,'');
-      const region=(r.discovery?.regions||[]).find(value=>!['global','europe','asia','africa','north-america','south-america','oceania'].includes(value))||r.discovery?.regions?.[0]||r.kind;
-      const reasons=profileConfigured?.()?(travellerFit?.recommendationReasons?.(r,loadProfile())||[]):[];
-      const reasonMarkup=reasons.length?'<div class="platform-home-card-fit">'+reasons.map(reason=>'<span data-recommendation-kind="'+esc(reason.kind)+'">'+esc(reasonLabel(reason))+'</span>').join('')+'</div>':'';
-      return `<article class="platform-route-card ${r.id===currentTripMeta?.id?'active':''}"><div class="platform-route-card-visual visual-${esc(theme)}"><span>${esc(facetLabel(region))}</span><b>${esc(facetLabel(r.kind))}</b><div class="platform-home-card-route-art" aria-hidden="true"><i></i><i></i><i></i><i></i></div></div><div class="platform-route-card-body"><div class="platform-route-top"><span>${esc(facetLabel(r.kind))}</span><b>${esc(statusLabel(r))}</b></div><h3>${esc(local(r.title))}</h3><p>${esc(local(r.subtitle))}</p><div class="platform-route-metrics">${metrics.map(x=>`<span>${esc(x)}</span>`).join('')}</div>${reasonMarkup}<button type="button" data-platform-trip="${esc(r.id)}">${esc(t('open'))} →</button></div></article>`;
+      const current=r.id===currentTripMeta?.id;
+      return `<article class="platform-route-card ${current?'active':''}"><div class="platform-route-card-body"><div class="platform-route-top"><span>${esc(facetLabel(r.kind))}</span><b>${esc(current?t('currentJourney'):statusLabel(r))}</b></div><h3>${esc(local(r.title))}</h3><div class="platform-route-metrics">${metrics.slice(0,3).map(x=>`<span>${esc(x)}</span>`).join('')}</div><button type="button" data-platform-trip="${esc(r.id)}" aria-label="${esc(t('openJourney')+': '+local(r.title))}" title="${esc(t('openJourney')+': '+local(r.title))}" ${current?'aria-current="true"':''}>${esc(t('openJourney'))} →</button></div></article>`;
     };
 
-    modal.innerHTML=`<div class="platform-modal-card route-library-card glass"><button class="platform-x" aria-label="Close">×</button><div class="platform-eyebrow">ONE WORLD ROUTE</div><h2>${esc(t('routeLibrary'))}</h2><p class="platform-lead">${esc(t('routeLibraryLead'))}</p><div class="platform-route-filters"><label class="route-search"><span>${esc(t('searchRoutes'))}</span><input id="platformRouteSearch" type="search" autocomplete="off" placeholder="${esc(t('searchRoutes'))}"></label><button id="platformPrimaryFilterToggle" class="platform-route-mobile-filter-toggle" type="button" aria-expanded="false">${esc(t('filters'))} <span>＋</span></button><label><span>${esc(t('filterType'))}</span><select id="platformRouteKind"><option value="">${esc(t('all'))}</option>${kinds.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('filterRegion'))}</span><select id="platformRouteRegion"><option value="">${esc(t('all'))}</option>${regions.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('filterDuration'))}</span><select id="platformRouteDuration"><option value="">${esc(t('all'))}</option><option value="7-14">7–14 ${esc(t('days'))}</option><option value="15-30">15–30 ${esc(t('days'))}</option><option value="31-89">31–89 ${esc(t('days'))}</option><option value="90-plus">90+ ${esc(t('days'))}</option></select></label><label><span>${esc(t('filterMode'))}</span><select id="platformRouteMode"><option value="">${esc(t('all'))}</option>${modes.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('filterTheme'))}</span><select id="platformRouteTheme"><option value="">${esc(t('all'))}</option>${themes.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label></div><div class="platform-fit-head"><button id="platformFitToggle" type="button" aria-expanded="false">${esc(t('showFit'))}</button></div><div id="platformFitFilters" class="platform-fit-filters hidden"><div class="platform-fit-title">${esc(t('routeFit'))}</div><label><span>${esc(t('fitPace'))}</span><select id="platformRoutePace"><option value="">${esc(t('all'))}</option>${paces.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('fitSeason'))}</span><select id="platformRouteSeason"><option value="">${esc(t('all'))}</option>${seasons.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('fitParty'))}</span><select id="platformRouteParty"><option value="">${esc(t('all'))}</option>${parties.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('fitStart'))}</span><select id="platformRouteStart"><option value="">${esc(t('all'))}</option>${starts.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('filterAccessibility'))}</span><select id="platformRouteAccessibility"><option value="">${esc(t('all'))}</option>${accessibilities.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label></div><div class="platform-route-resultbar"><span id="platformRouteCount"></span><button id="platformRouteReset" type="button">${esc(t('resetFilters'))}</button></div><div id="platformRouteResults" class="platform-route-grid"></div><button id="platformRouteMore" class="platform-route-more" type="button" hidden>${esc(t('loadMoreJourneys').replace('{count}',String(PAGE_SIZE)))}</button></div>`;
+    modal.innerHTML=`<div class="platform-modal-card route-library-card glass"><button class="platform-x" aria-label="${esc(t('close'))}">×</button><div class="platform-eyebrow">ONE WORLD ROUTE</div><h2>${esc(t('switchJourney'))}</h2><p class="platform-lead">${esc(t('switchJourneyLead'))}</p><button class="platform-discovery-link" type="button" data-library-discovery>${esc(t('openDiscovery'))} →</button><div class="platform-route-filters"><label class="route-search"><span>${esc(t('searchRoutes'))}</span><input id="platformRouteSearch" type="search" autocomplete="off" placeholder="${esc(t('searchRoutes'))}"></label><button id="platformPrimaryFilterToggle" class="platform-route-mobile-filter-toggle" type="button" aria-expanded="false">${esc(t('filters'))} <span>＋</span></button><label><span>${esc(t('filterType'))}</span><select id="platformRouteKind"><option value="">${esc(t('all'))}</option>${kinds.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('filterRegion'))}</span><select id="platformRouteRegion"><option value="">${esc(t('all'))}</option>${regions.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('filterDuration'))}</span><select id="platformRouteDuration"><option value="">${esc(t('all'))}</option><option value="7-14">7–14 ${esc(t('days'))}</option><option value="15-30">15–30 ${esc(t('days'))}</option><option value="31-89">31–89 ${esc(t('days'))}</option><option value="90-plus">90+ ${esc(t('days'))}</option></select></label></div><div class="platform-fit-head"><button id="platformFitToggle" type="button" aria-expanded="false">${esc(t('showFit'))}</button></div><div id="platformFitFilters" class="platform-fit-filters hidden"><div class="platform-fit-title">${esc(t('routeFit'))}</div><label><span>${esc(t('filterMode'))}</span><select id="platformRouteMode"><option value="">${esc(t('all'))}</option>${modes.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('filterTheme'))}</span><select id="platformRouteTheme"><option value="">${esc(t('all'))}</option>${themes.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('fitPace'))}</span><select id="platformRoutePace"><option value="">${esc(t('all'))}</option>${paces.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('fitSeason'))}</span><select id="platformRouteSeason"><option value="">${esc(t('all'))}</option>${seasons.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('fitParty'))}</span><select id="platformRouteParty"><option value="">${esc(t('all'))}</option>${parties.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('fitStart'))}</span><select id="platformRouteStart"><option value="">${esc(t('all'))}</option>${starts.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label><label><span>${esc(t('filterAccessibility'))}</span><select id="platformRouteAccessibility"><option value="">${esc(t('all'))}</option>${accessibilities.map(v=>`<option value="${esc(v)}">${esc(facetLabel(v))}</option>`).join('')}</select></label></div><div class="platform-route-resultbar"><span id="platformRouteCount"></span><button id="platformRouteReset" type="button">${esc(t('resetFilters'))}</button></div><div id="platformRouteResults" class="platform-route-grid"></div><button id="platformRouteMore" class="platform-route-more" type="button" hidden>${esc(t('loadMoreJourneys').replace('{count}',String(PAGE_SIZE)))}</button></div>`;
     modal.classList.remove('hidden');
     $('.platform-x',modal).onclick=()=>modal.classList.add('hidden');
 
@@ -4098,9 +5160,10 @@
       };
       const filtered=Discovery.filter(catalog,filters,r=>[local(r.title),local(r.subtitle),r.kind,...(r.discovery?.regions||[]),...(r.discovery?.themes||[]),...(r.discovery?.modes||[])].join(' '));
       const personalized=profileConfigured?.()?travellerFit.orderRecommendations(filtered,loadProfile()).map(result=>result.trip):null;
-      const ordered=personalized||[...filtered].sort((a,b)=>{
+      const ordered=[...(personalized||filtered)].sort((a,b)=>{
         const currentA=a.id===currentTripMeta?.id?1:0,currentB=b.id===currentTripMeta?.id?1:0;
         if(currentA!==currentB)return currentB-currentA;
+        if(personalized)return 0;
         const priority=Number(b.visual?.featurePriority||0)-Number(a.visual?.featurePriority||0);
         if(priority)return priority;
         return local(a.title).localeCompare(local(b.title));
@@ -4143,12 +5206,14 @@
       ['platformRouteKind','platformRouteRegion','platformRouteDuration','platformRouteMode','platformRouteTheme','platformRoutePace','platformRouteSeason','platformRouteParty','platformRouteStart','platformRouteAccessibility'].forEach(id=>{const el=$('#'+id,modal);if(el)el.value=''});
       render();
     });
+    $('[data-library-discovery]',modal).onclick=()=>{modal.classList.add('hidden');onDiscovery?.()};
     render();
     return modal;
   }
 
   root.routeLibrary={open};
 })();
+
 
 /* ===== platform/regional-shell.js ===== */
 (() => {
@@ -4218,10 +5283,11 @@
     if(brandSmall)brandSmall.textContent=d.local(trip.title);
     const hero=$('.hero-copy');
     if(hero){
-      const theme=String(trip.media?.hero?.theme||'ocean').replace(/[^a-z0-9-]/gi,'');
+      const media=root.media?.descriptor?.(trip.media?.hero,d.getTripMeta()?.visual?.theme||'ocean')||{className:'visual-ocean',style:'',type:'art-directed'};
+      const credit=root.media?.credit?.(trip.media?.hero,d.esc)||'';
       const first=trip.stops?.[0]?d.stopPlace(trip,trip.stops[0]):null;
       const last=trip.stops?.at(-1)?d.stopPlace(trip,trip.stops.at(-1)):null;
-      hero.innerHTML=`<div class="platform-journey-hero-art visual-${d.esc(theme)}"><div><span>${d.esc(d.facetLabel(trip.kind))}</span><span>${trip.stops?.length||0} ${d.esc(d.t('stops'))}</span></div><strong>${d.esc(d.local(first?.name)||'')} → ${d.esc(d.local(last?.name)||'')}</strong></div><div class="eyebrow"><span class="live-dot"></span>${d.esc(d.facetLabel(trip.kind))} · ${trip.planning?.days||''} ${d.esc(d.t('days'))}</div><h1>${d.esc(d.local(trip.title))}</h1><p>${d.esc(d.local(trip.summary))}</p><div class="platform-template-note">${d.esc(d.t('editorial'))}</div>`;
+      hero.innerHTML=`<div class="platform-journey-hero-art ${d.esc(media.className)}" data-media-type="${d.esc(media.type)}"${media.style?` style="${d.esc(media.style)}"`:''}><div><span>${d.esc(d.facetLabel(trip.kind))}</span><span>${trip.stops?.length||0} ${d.esc(d.t('stops'))}</span></div><strong>${d.esc(d.local(first?.name)||'')} → ${d.esc(d.local(last?.name)||'')}</strong>${media.type==='image'?'':root.media?.routeArt?.(root.media.tripPreview(trip))||''}${credit}</div><div class="eyebrow"><span class="live-dot"></span>${d.esc(d.facetLabel(trip.kind))} · ${trip.planning?.days||''} ${d.esc(d.t('days'))}</div><h1>${d.esc(d.local(trip.title))}</h1><p>${d.esc(d.local(trip.summary))}</p><div class="platform-template-note">${d.esc(d.t('editorial'))}</div>`;
     }
     const kpis=$('#topKpis');
     if(kpis)kpis.innerHTML=`<div class="kpi"><b>${trip.planning?.days||'—'}</b><span>${d.esc(d.t('days'))}</span></div><div class="kpi"><b>${trip.stops?.length||0}</b><span>${d.esc(d.t('stops'))}</span></div><div class="kpi"><b>${trip.segments?.length||0}</b><span>${d.esc(d.t('segments'))}</span></div>`;
@@ -4241,6 +5307,7 @@
   const api={configure,apply,buildLeftNavigation,buildChapterRail};
   root.regionalShell=api;
 })();
+
 
 /* ===== platform/regional-detail.js ===== */
 (() => {
@@ -4294,8 +5361,8 @@
   }
 
   function stopVisualMarkup(trip,stop,place){
-    const d=context(),theme=String(trip.media?.hero?.theme||'ocean').replace(/[^a-z0-9-]/gi,'');
-    return '<div class="platform-stop-visual visual-'+d.esc(theme)+'"><div><span>'+d.esc(d.t('stop'))+' '+stop.sequence+'</span><span>'+d.esc(d.t('day'))+' '+stop.dayStart+(stop.dayEnd!==stop.dayStart?'–'+stop.dayEnd:'')+'</span></div><strong>'+d.esc(d.local(place.name))+'</strong></div>';
+    const d=context(),media=root.media?.descriptor?.(trip.media?.hero,d.getTripMeta()?.visual?.theme||'ocean')||{className:'visual-ocean',style:'',type:'art-directed'};
+    return '<div class="platform-stop-visual '+d.esc(media.className)+'" data-media-type="'+d.esc(media.type)+'"'+(media.style?' style="'+d.esc(media.style)+'"':'')+'><div><span>'+d.esc(d.t('stop'))+' '+stop.sequence+'</span><span>'+d.esc(d.t('day'))+' '+stop.dayStart+(stop.dayEnd!==stop.dayStart?'–'+stop.dayEnd:'')+'</span></div><strong>'+d.esc(d.local(place.name))+'</strong>'+root.media.credit(trip.media?.hero,d.esc)+'</div>';
   }
 
   function renderTripOverview(){
@@ -4323,13 +5390,25 @@
     const planning=d.tripPlanning.render({trip,meta,profile,travellerFit:d.travellerFit,locale:d.locale(),t:d.t,esc:d.esc,local:d.local,facetLabel:d.facetLabel});
     const tools=d.tripTools.render({trip,meta,profile,storage:d.storage,t:d.t,esc:d.esc,local:d.local,facetLabel:d.facetLabel,planningSnapshot,locale:d.locale(),journeyAdapter:d.journeyAdapter});
     const sharedGuidance=d.sharedKnowledge?.render?.({trip,t:d.t,esc:d.esc,local:d.local})||'';
+    const partnerLinks=d.partners?.render?.(meta,{t:d.t,esc:d.esc,local:d.local,facetLabel:d.facetLabel})||'';
     const highlights=(trip.highlights||[]).filter(Boolean).slice(0,5);
     const highlightMarkup=highlights.length?`<div class="platform-journey-highlights">${highlights.map(item=>'<span>'+d.esc(d.local(item))+'</span>').join('')}</div>`:'';
 
+    const media=root.media.descriptor(trip.media?.hero,meta?.visual?.theme||'ocean');
+    const visual='<div class="platform-overview-visual '+d.esc(media.className)+'" data-media-type="'+media.type+'"'+(media.style?' style="'+d.esc(media.style)+'"':'')+'>'+(media.type==='image'?'':root.media.routeArt(root.media.tripPreview(trip)))+root.media.credit(trip.media?.hero,d.esc)+'</div>';
+    const disclosure=(key,body)=>body?'<details class="platform-detail-disclosure"><summary>'+d.esc(d.t(key))+'</summary><div>'+body+'</div></details>':'';
     const countries=Number(meta?.metrics?.countries||new Set((trip.places||[]).map(place=>place.countryCode).filter(Boolean)).size)||0;
-    content.innerHTML=`<div class="platform-journey-overview-intro"><div class="overview-number platform-duration-number">${trip.planning?.days||'—'}<small>${d.esc(d.t('days'))}</small></div><p class="detail-copy">${d.esc(d.local(trip.summary))}</p>${highlightMarkup}<div class="platform-overview-metrics"><div><span>${d.esc(d.t('stops'))}</span><b>${trip.stops.length}</b></div><div><span>${d.esc(d.pluralLabel?d.pluralLabel(countries,'countryUnit','countriesUnit'):d.t('country'))}</span><b>${countries||'—'}</b></div><div><span>${d.esc(d.t('currency'))}</span><b>${d.esc(trip.planning?.currency||'—')}</b></div></div></div>${journeyFlowMarkup(trip)}${guide}${journeyFitMarkup(meta)}${editorialStatusMarkup(meta,sourced,verified,trip.segments.length)}${extension.cards?`<div class="data-grid platform-extension-cards">${extension.cards}</div>`:''}${extension.notices}${tools}${planning}${sharedGuidance}${entry?`<div class="platform-entry"><b>${d.esc(d.t('entryGuidance'))}</b><p>${d.esc(d.local(entry.message))}</p>${entrySource?`<a href="${d.esc(entrySource.url)}" target="_blank" rel="noopener noreferrer">${d.esc(d.t('officialCheck'))} →</a>`:''}</div>`:''}<button class="platform-context-inline" id="regionalTravellerBtn" type="button">${d.esc(d.t('traveller'))} →</button>`;
+    content.innerHTML=`${visual}<div class="platform-journey-overview-intro"><div class="overview-number platform-duration-number">${trip.planning?.days||'—'}<small>${d.esc(d.t('days'))}</small></div><p class="detail-copy">${d.esc(d.local(trip.summary))}</p>${highlightMarkup}<div class="platform-overview-metrics"><div><span>${d.esc(d.t('stops'))}</span><b>${trip.stops.length}</b></div><div><span>${d.esc(d.pluralLabel?d.pluralLabel(countries,'countryUnit','countriesUnit'):d.t('country'))}</span><b>${countries||'—'}</b></div><div><span>${d.esc(d.t('currency'))}</span><b>${d.esc(trip.planning?.currency||'—')}</b></div></div></div>${journeyFlowMarkup(trip)}${tools}${guide}${disclosure('routeFit',journeyFitMarkup(meta))}${disclosure('evidenceDetails',editorialStatusMarkup(meta,sourced,verified,trip.segments.length)+(extension.cards?`<div class="data-grid platform-extension-cards">${extension.cards}</div>`:'')+extension.notices)}${disclosure('planningDetails',planning)}${sharedGuidance}${disclosure('partnerOptions',partnerLinks)}${entry?`<details class="platform-detail-disclosure"><summary>${d.esc(d.t('entryGuidance'))}</summary><div class="platform-entry"><b>${d.esc(d.t('entryGuidance'))}</b><p>${d.esc(d.local(entry.message))}</p>${entrySource?`<a href="${d.esc(entrySource.url)}" target="_blank" rel="noopener noreferrer">${d.esc(d.t('officialCheck'))} →</a>`:''}</div></details>`:''}<button class="platform-context-inline" id="regionalTravellerBtn" type="button">${d.esc(d.t('traveller'))} →</button>`;
     $('#regionalTravellerBtn')?.addEventListener('click',d.openTraveller);
     content.querySelectorAll('[data-journey-stop-index]').forEach(button=>button.addEventListener('click',()=>d.selectStop(Number(button.dataset.journeyStopIndex),true)));
+    const requestedStep=new URLSearchParams(location.search).get('planStep');
+    if(requestedStep){
+      requestAnimationFrame(()=>{
+        const target=requestedStep==='routeStart'?content.querySelector('[data-trip-route-start]'):requestedStep==='access'?content.querySelector('.platform-entry a'):content.querySelector(requestedStep==='startDate'?'[data-trip-start-date]':requestedStep==='budget'?'[data-trip-budget] input':'[data-trip-plan-next]');
+        if(target){for(let node=target.parentElement;node&&node!==content;node=node.parentElement)if(node.tagName==='DETAILS')node.open=true;target.scrollIntoView({block:'nearest'});target.focus()}
+        const url=new URL(location.href);url.searchParams.delete('planStep');history.replaceState(null,'',url);
+      });
+    }
     d.tripTools.bind({host:content,trip,meta,profile,storage:d.storage,t:d.t,esc:d.esc,local:d.local,facetLabel:d.facetLabel,planningSnapshot,locale:d.locale(),toast:d.toast,onTraveller:d.openTraveller,onRouteVariantChange:d.onRouteVariantChange,journeyAdapter:d.journeyAdapter});
   }
 
@@ -4348,7 +5427,7 @@
     const experience=d.placeExperiences.render({trip,stop,place,t:d.t,esc:d.esc,local:d.local,facetLabel:d.facetLabel});
     const notices=extension.notices||`<p class="detail-copy">${d.esc(d.t('editorial'))}</p>`;
     const index=trip.stops.findIndex(item=>item.id===stop.id);
-    content.innerHTML=`${stopVisualMarkup(trip,stop,place)}<div class="data-grid"><div class="data-card"><span>${d.esc(d.t('day'))}</span><b>${stop.dayStart}${stop.dayEnd!==stop.dayStart?`–${stop.dayEnd}`:''}</b></div>${extension.cards}<div class="data-card"><span>${d.esc(d.t('type'))}</span><b>${d.esc(d.facetLabel(place.type))}</b></div><div class="data-card"><span>${d.esc(d.t('country'))}</span><b>${d.esc(d.countryDisplay(place.countryCode))}</b></div></div>${experience}${notices}${extension.sourceIds.length?`<div class="platform-evidence"><div class="ops-mini-title">${d.esc(d.t('sources'))}</div>${d.sourceLinks(extension.sourceIds)}</div>`:''}<div class="platform-stop-nav"><button type="button" data-stop-nav="-1" ${index<=0?'disabled':''}>← ${d.esc(d.t('previous'))}</button><button type="button" data-stop-nav="1" ${index>=trip.stops.length-1?'disabled':''}>${d.esc(d.t('next'))} →</button></div>`;
+    content.innerHTML=`${stopVisualMarkup(trip,stop,place)}<div class="data-grid"><div class="data-card"><span>${d.esc(d.t('day'))}</span><b>${stop.dayStart}${stop.dayEnd!==stop.dayStart?`–${stop.dayEnd}`:''}</b></div>${extension.cards}<div class="data-card"><span>${d.esc(d.t('type'))}</span><b>${d.esc(d.facetLabel(place.type))}</b></div><div class="data-card"><span>${d.esc(d.t('country'))}</span><b>${d.esc(d.countryDisplay(place.countryCode))}</b></div></div>${experience}${notices}${extension.sourceIds.length?`<details class="platform-detail-disclosure"><summary>${d.esc(d.t('sources'))}</summary><div class="platform-evidence">${d.sourceLinks(extension.sourceIds)}</div></details>`:''}<div class="platform-stop-nav"><button type="button" data-stop-nav="-1" ${index<=0?'disabled':''}>← ${d.esc(d.t('previous'))}</button><button type="button" data-stop-nav="1" ${index>=trip.stops.length-1?'disabled':''}>${d.esc(d.t('next'))} →</button></div>`;
     content.querySelectorAll('[data-stop-nav]').forEach(button=>button.addEventListener('click',()=>d.selectStop(index+Number(button.dataset.stopNav),true)));
   }
 
@@ -4372,12 +5451,13 @@
     const extension=d.extensions.composeSegmentDetail({trip,segment,profile:d.loadProfile(),t:d.t,esc:d.esc,local:d.local});
     const refs=[...new Set([...baseRefs,...extension.sourceIds])];
 
-    content.innerHTML=`<div class="data-grid"><div class="data-card"><span>${d.esc(d.t('transport'))}</span><b>${d.esc(d.facetLabel(String(segment.transport?.mode||'—')))}</b></div><div class="data-card"><span>${d.esc(d.t('verification'))}</span><b class="${segment.verification?.status==='verified'?'evidence-ok':(segment.verification?.status==='illustrative'?'evidence-info':'evidence-watch')}">${d.esc(d.verificationLabel(segment))}</b></div><div class="data-card"><span>${d.esc(d.t('duration'))}</span><b>${d.esc(d.durationLabel(segment.planning))}</b></div><div class="data-card"><span>${d.esc(d.t('cost'))}</span><b>${d.esc(d.costLabel(segment.planning))}</b></div></div>${extension.panels}${stages?`<div class="platform-stages">${stages}</div>`:''}${segment.verification?.notes?`<div class="op-callout">${d.esc(d.editorialNote(segment.verification.notes))}</div>`:''}${refs.length?`<div class="platform-evidence"><div class="ops-mini-title">${d.esc(d.t('sources'))}</div>${d.sourceLinks(refs)}</div>`:''}`;
+    content.innerHTML=`<div class="data-grid"><div class="data-card"><span>${d.esc(d.t('transport'))}</span><b>${d.esc(d.facetLabel(String(segment.transport?.mode||'—')))}</b></div><div class="data-card"><span>${d.esc(d.t('verification'))}</span><b class="${segment.verification?.status==='verified'?'evidence-ok':(segment.verification?.status==='illustrative'?'evidence-info':'evidence-watch')}">${d.esc(d.verificationLabel(segment))}</b></div><div class="data-card"><span>${d.esc(d.t('duration'))}</span><b>${d.esc(d.durationLabel(segment.planning))}</b></div><div class="data-card"><span>${d.esc(d.t('cost'))}</span><b>${d.esc(d.costLabel(segment.planning))}</b></div></div>${extension.panels}${stages?`<div class="platform-stages">${stages}</div>`:''}${segment.verification?.notes?`<div class="op-callout">${d.esc(d.editorialNote(segment.verification.notes))}</div>`:''}${refs.length?`<details class="platform-detail-disclosure"><summary>${d.esc(d.t('sources'))}</summary><div class="platform-evidence">${d.sourceLinks(refs)}</div></details>`:''}`;
   }
 
   const api={configure,setMode,renderTripOverview,renderStopDetail,renderSegmentDetail};
   root.regionalDetail=api;
 })();
+
 
 /* ===== platform/regional-globe.js ===== */
 (() => {
@@ -4591,6 +5671,7 @@
   const api={configure,routeCamera,isolate,routeGeometry,arcAltitude,render,updateAutoRotate,focusRoute,focusPlace,focusSegment};
   root.regionalGlobe=api;
 })();
+
 
 /* ===== platform/regional-timeline.js ===== */
 (() => {
@@ -5412,12 +6493,18 @@
   const Discovery=PLATFORM_MODULES.discovery;
   const TripTools=PLATFORM_MODULES.tripTools;
   const JourneyAdapter=PLATFORM_MODULES.journeyAdapter;
+  const JourneyVariants=PLATFORM_MODULES.journeyVariants;
   const SharedKnowledge=PLATFORM_MODULES.sharedKnowledge;
   const TravellerFit=PLATFORM_MODULES.travellerFit;
   const TripCompare=PLATFORM_MODULES.tripCompare;
   const JourneyGuide=PLATFORM_MODULES.journeyGuide;
   const PlaceExperiences=PLATFORM_MODULES.placeExperiences;
   const MyTrips=PLATFORM_MODULES.myTrips;
+  const Share=PLATFORM_MODULES.share||{configure:()=>({bind:()=>false}),bind:()=>false};
+  const Partners=PLATFORM_MODULES.partners||{load:async()=>({enabled:false}),render:()=>''};
+  const CloudSync=PLATFORM_MODULES.cloudSync||{init:async()=>({available:false}),status:()=>({available:false,signedIn:false}),subscribe:()=>()=>{},requestCode:async()=>({ok:false,reason:'unavailable'}),verifyCode:async()=>({ok:false,reason:'unavailable'}),signOut:async()=>({ok:true}),sync:async()=>({ok:false,reason:'unavailable'})};
+  const PwaInstall=PLATFORM_MODULES.pwaInstall||{status:()=>({available:false,installed:false}),prompt:async()=>({ok:false,outcome:'unavailable'}),subscribe:()=>()=>{}};
+  const ServiceWorker=PLATFORM_MODULES.serviceWorker;
   const TripPlanning=PLATFORM_MODULES.tripPlanning;
   const Extensions=PLATFORM_MODULES.extensions;
   const Home=PLATFORM_MODULES.home;
@@ -5433,7 +6520,7 @@
   const Ui=PLATFORM_MODULES.ui;
   const Navigation=PLATFORM_MODULES.navigation;
   const LegacyLocalization=PLATFORM_MODULES.legacyLocalization;
-  if(!LocaleData||!Formatters||!Model||!Traveller||!TravellerUi||!Discovery||!TripTools||!JourneyAdapter||!SharedKnowledge||!TravellerFit||!TripCompare||!JourneyGuide||!PlaceExperiences||!MyTrips||!TripPlanning||!Extensions||!Home||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!RegionalSelection||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
+  if(!LocaleData||!Formatters||!Model||!Traveller||!TravellerUi||!Discovery||!TripTools||!JourneyAdapter||!JourneyVariants||!SharedKnowledge||!TravellerFit||!TripCompare||!JourneyGuide||!PlaceExperiences||!MyTrips||!TripPlanning||!Extensions||!Home||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!RegionalSelection||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
   const HOME_REQUEST=location.pathname==='/'&&!new URLSearchParams(location.search).has('trip');
   if(HOME_REQUEST){
     window.ONE_WORLD_ROUTE_OWNERSHIP='home';
@@ -5506,7 +6593,7 @@
 
   async function waitForCore(max=70){
     for(let i=0;i<max;i++){
-      if(window.__ONE_WORLD_ROUTE_APP__ && window.__ONE_WORLD_ROUTE_GLOBE__) return true;
+      if(window.__ONE_WORLD_ROUTE_APP__) return true;
       await sleep(80);
     }
     return false;
@@ -5548,7 +6635,8 @@
       facetLabel,
       statusLabel,
       pluralLabel,
-      onOpenTrip:setQueryTrip
+      onOpenTrip:setQueryTrip,
+      onDiscovery:()=>location.assign('/'+(locale?'?lang='+encodeURIComponent(locale):'')+'#platformHomeExplore')
     });
   }
 
@@ -5587,7 +6675,8 @@
       locale,
       search:location.search,
       pathname:location.pathname,
-      terrainActive:document.body.classList.contains('terrain-view')
+      terrainActive:document.body.classList.contains('terrain-view'),
+      variantId:currentTrip?._variant?.id||null
     }));
   }
 
@@ -5690,10 +6779,11 @@
       tripTools:TripTools,
       journeyAdapter:JourneyAdapter,
       sharedKnowledge:SharedKnowledge,
+      partners:Partners,
       travellerFit:TravellerFit,
       storage:localStorage,
       toast:Ui.toast,
-      onRouteVariantChange:()=>activateRegionalTrip(currentTripMeta).catch(error=>console.warn('Regional route variant refresh failed',error)),
+      onRouteVariantChange:change=>activateRegionalTrip(currentTripMeta,change||{}).catch(error=>console.warn('Regional route variant refresh failed',error)),
       extensions:Extensions,
       stopMap,
       placeMap
@@ -5726,6 +6816,7 @@
   function configureRegionalShell(){
     RegionalShell.configure({
       getTrip:()=>currentTrip,
+      getTripMeta:()=>currentTripMeta,
       getLocale:()=>locale,
       t,
       local,
@@ -5770,17 +6861,21 @@
     });
   }
 
-  async function activateRegionalTrip(meta){
+  async function activateRegionalTrip(meta,change={}){
     currentTripMeta=meta;
     const [baseTrip,countryCentroids]=await Promise.all([
       fetch(meta.dataset,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Trip dataset '+r.status);return r.json()}),
       loadCountryCentroids()
     ]);
     const profile=loadProfile();
+    const urlVariant=new URLSearchParams(location.search).get('variant');
+    const requestedVariant=String(change?.variantId||urlVariant||TripTools.getVariant(localStorage,meta.id)||'base');
+    if(urlVariant&&!change?.variantId)TripTools.setVariant(localStorage,meta.id,urlVariant);
+    const variantTrip=JourneyVariants.apply(baseTrip,requestedVariant);
     const storedStart=TripTools.getRouteStart(localStorage,meta.id);
-    const entrySuggestion=JourneyAdapter.recommendEntry(baseTrip,profile,countryCentroids);
+    const entrySuggestion=JourneyAdapter.recommendEntry(variantTrip,profile,countryCentroids);
     const suggestedStart=!storedStart&&entrySuggestion?.available?entrySuggestion.stopId:'';
-    currentTrip=JourneyAdapter.apply(baseTrip,{
+    currentTrip=JourneyAdapter.apply(variantTrip,{
       startStopId:storedStart||suggestedStart,
       startSource:storedStart?'saved':(suggestedStart?'suggested':'default'),
       entrySuggestion
@@ -5806,6 +6901,8 @@
     try{
       catalog=await fetch(CATALOG_URL,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Trip catalog '+r.status);return r.json()});
       await SharedKnowledge.load();
+      await Partners.load().catch(error=>console.warn('Commercial config unavailable',error));
+      await CloudSync.init({storage:localStorage,TripTools,catalog}).catch(error=>console.warn('Cloud sync init failed',error));
       const p=new URLSearchParams(location.search);
       const profile=loadProfile();
       const explicitLang=new URLSearchParams(location.search).get('lang');
@@ -5816,6 +6913,7 @@
         TripPlanning,
         TravellerFit,
         journeyAdapter:JourneyAdapter,
+        journeyVariants:JourneyVariants,
         storage:localStorage,
         loadProfile,
         ensureDialog:Ui.ensureDialog,
@@ -5825,10 +6923,16 @@
         facetLabel,
         statusLabel,
         locale:()=>locale,
-        onOpenTrip:setQueryTrip,
+        onOpenTrip:(id,step)=>{const url=buildTripUrl(id);location.assign(url+(step?'&planStep='+encodeURIComponent(step):''))},
+        onTraveller:openTraveller,
+        serviceWorker:ServiceWorker,
+        pwaInstall:PwaInstall,
+        cloudSync:CloudSync,
         toast:Ui.toast
       });
       Ui.ensureGlobalActions({t,esc,onHome:goHome,onRoutes:openRouteLibrary,onMyTrips:openMyTrips,onTraveller:openTraveller});
+      Share.configure({t,toast:Ui.toast,title:()=>currentTripMeta?local(currentTripMeta.title):t('homeTitle')});
+      Share.bind();
       if(HOME_REQUEST){
         currentTripMeta=null;
         currentTrip=null;
@@ -5861,6 +6965,7 @@
       }
       const wanted=p.get('trip')||catalog.defaultTripId;
       currentTripMeta=catalog.trips.find(x=>x.id===wanted||x.slug===wanted)||catalog.trips.find(x=>x.id===catalog.defaultTripId);
+      TripTools.markViewed(localStorage,currentTripMeta.id);
       window.ONE_WORLD_ROUTE_OWNERSHIP=currentTripMeta.renderer==='legacy-world'?'legacy':'regional';
       if(currentTripMeta.renderer!=='legacy-world') await activateRegionalTrip(currentTripMeta);
       else {
@@ -5868,7 +6973,12 @@
         LegacyLocalization.configure({getLocale:()=>locale,t}).activate();
         window.__ONE_WORLD_ROUTE_APP__?.refreshGlobe?.();
       }
-    }catch(e){console.warn('ONE WORLD ROUTE platform layer unavailable',e)}
+    }catch(e){
+      console.warn('ONE WORLD ROUTE platform layer unavailable',e);
+    }finally{
+      document.body.classList.remove('platform-booting');
+      document.body.classList.add('platform-ready');
+    }
   }
 
   window.ONE_WORLD_PLATFORM={openHome:goHome,openRoutes:openRouteLibrary,openMyTrips,openTraveller,getProfile:loadProfile,getTrip:()=>currentTripMeta,buildTripUrl,setTerrain:active=>Terrain.setActive(active),startStory:()=>Story.start(),stopStory:()=>Story.stop(),focusRoute:()=>{if(document.body.classList.contains('platform-home'))return Home.renderGlobe();if(document.body.classList.contains('terrain-view'))Terrain.focusRoute();else RegionalGlobe.focusRoute()}};

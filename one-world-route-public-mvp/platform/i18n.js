@@ -12,6 +12,112 @@
   };
 
 
+  const EXPERIENCE_TEXT = {
+  "en": {
+    "morePreferences": "More preferences",
+    "essentials": "Essentials",
+    "travelPreferences": "Travel preferences",
+    "more": "More",
+    "openDiscovery": "Explore all journeys",
+    "switchJourney": "Switch journey",
+    "switchJourneyLead": "Quickly switch routes. Explore the full catalog in discovery.",
+    "currentJourney": "Current journey",
+    "planningDetails": "Planning details",
+    "evidenceDetails": "Evidence & sources",
+    "selected": "Selected",
+    "openJourney": "Open journey",
+    "guideRhythmSummary": "Around {days} days per stop · {count} route movements",
+    "nextAction": "Next action",
+    "originExample": "City or airport"
+  },
+  "de": {
+    "morePreferences": "Weitere Wünsche",
+    "essentials": "Grundangaben",
+    "travelPreferences": "Reisewünsche",
+    "more": "Mehr",
+    "openDiscovery": "Alle Reisen entdecken",
+    "switchJourney": "Reise wechseln",
+    "switchJourneyLead": "Schnell die Route wechseln. Den gesamten Katalog findest du in der Entdeckung.",
+    "currentJourney": "Aktuelle Reise",
+    "planningDetails": "Planungsdetails",
+    "evidenceDetails": "Nachweise & Quellen",
+    "selected": "Ausgewählt",
+    "openJourney": "Reise öffnen",
+    "guideRhythmSummary": "Etwa {days} Tage je Stopp · {count} Bewegungen auf der Route",
+    "nextAction": "Nächster Schritt",
+    "originExample": "Stadt oder Flughafen"
+  },
+  "it": {
+    "morePreferences": "Altre preferenze",
+    "essentials": "Dati essenziali",
+    "travelPreferences": "Preferenze di viaggio",
+    "more": "Altro",
+    "openDiscovery": "Scopri tutti i viaggi",
+    "switchJourney": "Cambia viaggio",
+    "switchJourneyLead": "Cambia rapidamente itinerario. Esplora il catalogo completo nella scoperta.",
+    "currentJourney": "Viaggio attuale",
+    "planningDetails": "Dettagli di pianificazione",
+    "evidenceDetails": "Fonti e verifiche",
+    "selected": "Selezionato",
+    "openJourney": "Apri viaggio",
+    "guideRhythmSummary": "Circa {days} giorni per tappa · {count} spostamenti",
+    "nextAction": "Prossima azione",
+    "originExample": "Città o aeroporto"
+  },
+  "es": {
+    "morePreferences": "Más preferencias",
+    "essentials": "Datos esenciales",
+    "travelPreferences": "Preferencias de viaje",
+    "more": "Más",
+    "openDiscovery": "Descubre todos los viajes",
+    "switchJourney": "Cambiar viaje",
+    "switchJourneyLead": "Cambia rápidamente de ruta. Explora el catálogo completo en descubrimiento.",
+    "currentJourney": "Viaje actual",
+    "planningDetails": "Detalles de planificación",
+    "evidenceDetails": "Fuentes y verificaciones",
+    "selected": "Seleccionado",
+    "openJourney": "Abrir viaje",
+    "guideRhythmSummary": "Unos {days} días por parada · {count} desplazamientos",
+    "nextAction": "Siguiente acción",
+    "originExample": "Ciudad o aeropuerto"
+  },
+  "fr": {
+    "morePreferences": "Plus de préférences",
+    "essentials": "Informations essentielles",
+    "travelPreferences": "Préférences de voyage",
+    "more": "Plus",
+    "openDiscovery": "Découvrir tous les voyages",
+    "switchJourney": "Changer de voyage",
+    "switchJourneyLead": "Changez rapidement de route. Explorez le catalogue complet dans la découverte.",
+    "currentJourney": "Voyage actuel",
+    "planningDetails": "Détails de planification",
+    "evidenceDetails": "Sources et vérifications",
+    "selected": "Sélectionné",
+    "openJourney": "Ouvrir le voyage",
+    "guideRhythmSummary": "Environ {days} jours par étape · {count} déplacements",
+    "nextAction": "Prochaine action",
+    "originExample": "Ville ou aéroport"
+  },
+  "pt": {
+    "morePreferences": "Mais preferências",
+    "essentials": "Dados essenciais",
+    "travelPreferences": "Preferências de viagem",
+    "more": "Mais",
+    "openDiscovery": "Descubra todas as viagens",
+    "switchJourney": "Trocar de viagem",
+    "switchJourneyLead": "Troque rapidamente de rota. Explore o catálogo completo na descoberta.",
+    "currentJourney": "Viagem atual",
+    "planningDetails": "Detalhes de planejamento",
+    "evidenceDetails": "Fontes e verificações",
+    "selected": "Selecionado",
+    "openJourney": "Abrir viagem",
+    "guideRhythmSummary": "Cerca de {days} dias por parada · {count} deslocamentos",
+    "nextAction": "Próxima ação",
+    "originExample": "Cidade ou aeroporto"
+  }
+};
+  for(const locale of SUPPORTED_LOCALES)Object.assign(I18N[locale],EXPERIENCE_TEXT[locale]);
+
   const LEGACY_WORLD_TEXT = {
     de:{
       '195 countries · one continuous journey':'195 Länder · eine zusammenhängende Reise',
