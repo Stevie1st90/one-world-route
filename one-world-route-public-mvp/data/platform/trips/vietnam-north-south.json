@@ -307,7 +307,36 @@
       }
     }
   ],
-  "sources": [],
+  "sources": [
+    {
+      "id": "vn-official-evisa",
+      "title": "Vietnam National Electronic Visa system",
+      "issuer": "Vietnam Immigration Department — Ministry of Public Security",
+      "issuerType": "government",
+      "url": "https://evisa.gov.vn/",
+      "checkedAt": "2026-09-30",
+      "claims": [
+        "the official Vietnam Immigration Department portal accepts eVisa applications from foreigners outside Vietnam",
+        "the government portal is the current electronic visa application and result service"
+      ]
+    }
+  ],
+  "entryGuidance": {
+    "personalizationRequired": true,
+    "destinationCountry": "VN",
+    "tripPurpose": "tourism",
+    "stayDays": 18,
+    "officialResolverSourceId": "vn-official-evisa",
+    "supportingSourceIds": [],
+    "message": {
+      "en": "Vietnamese visa or visa-exemption requirements depend on nationality, passport and travel circumstances. Use the Vietnam Immigration Department’s official eVisa service for the traveller’s applicable official route.",
+      "de": "Ob für Vietnam ein Visum, eine Befreiung oder ein eVisa-Verfahren relevant ist, hängt von Staatsangehörigkeit, Pass und Reisekontext ab. Nutze den offiziellen eVisa-Dienst der vietnamesischen Einwanderungsbehörde.",
+      "it": "I requisiti di visto, esenzione o eVisa per il Vietnam dipendono da nazionalità, passaporto e circostanze del viaggio. Usa il servizio eVisa ufficiale dell’Immigration Department.",
+      "es": "Los requisitos de visado, exención o eVisa para Vietnam dependen de la nacionalidad, el pasaporte y las circunstancias del viaje. Utiliza el servicio eVisa oficial del Immigration Department.",
+      "fr": "Les exigences de visa, d’exemption ou d’eVisa pour le Vietnam dépendent de la nationalité, du passeport et des circonstances du voyage. Utilisez le service eVisa officiel de l’Immigration Department.",
+      "pt": "Os requisitos de visto, isenção ou eVisa para o Vietnã dependem da nacionalidade, do passaporte e das circunstâncias da viagem. Use o serviço eVisa oficial do Immigration Department."
+    }
+  },
   "routePolicy": {
     "startMode": "endpoints",
     "reversible": true,
