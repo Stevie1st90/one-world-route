@@ -177,12 +177,15 @@ test('regional Story control is not hidden behind desktop side panels',()=>{
 });
 
 
-test('regional terrain attribution stays compact and clear of mobile controls',()=>{
+test('regional terrain controls respect desktop and mobile safe areas',()=>{
   const terrain=moduleSources['terrain.js'];
   assert.match(terrain,/attributionControl:false/);
   assert.match(terrain,/AttributionControl\(\{compact:true\}\)/);
   assert.match(cssSource,/maplibregl-ctrl-bottom-left\{left:316px;bottom:88px\}/);
+  assert.match(cssSource,/@media\(min-width:821px\)[\s\S]*maplibregl-ctrl-top-right\{right:344px;top:8px\}/);
+  assert.match(cssSource,/@media\(max-width:820px\)[\s\S]*maplibregl-ctrl-top-right\{right:8px;top:52px\}/);
   assert.match(cssSource,/@media\(max-width:820px\)[\s\S]*maplibregl-ctrl-bottom-left\{left:8px;bottom:56px\}/);
+  assert.match(cssSource,/maplibregl-ctrl-group\{[^}]*background:rgba\(8,16,27,.86\)/);
 });
 
 test('regional stop counters override inherited gradient text styles',()=>{
