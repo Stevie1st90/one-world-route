@@ -14,6 +14,7 @@ test('@flagship flagship shell boots cleanly',async({page,isMobile})=>{
   const errors=capturePageErrors(page);
   await page.goto('/?trip='+encodeURIComponent(flagship.id)+'&lang=en',{waitUntil:'domcontentloaded'});
   await expect(page.locator('body')).not.toHaveClass(/platform-regional-trip/,{timeout:15000});
+  await expect(page.locator('body')).not.toHaveClass(/platform-booting/,{timeout:15000});
   await expect(page.locator('#routeRange')).toHaveAttribute('max',String(flagship.metrics.internationalLegs),{timeout:15000});
   await expect(page.locator('#filterCount')).toContainText(String(flagship.metrics.internationalLegs));
   await expect(page.locator('#settingsBtn')).toBeVisible();
