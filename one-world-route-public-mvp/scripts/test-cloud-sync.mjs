@@ -35,7 +35,9 @@ test('cloud sync stays unavailable when deployment config is disabled',async()=>
   const state=await sync.init({storage:s,TripTools,catalog:{trips:[]},fetcher});
   assert.equal(state.available,false);
   assert.equal(state.signedIn,false);
-  assert.deepEqual(await sync.requestCode('person@example.com'),{ok:false,reason:'unavailable'});
+  const unavailable=await sync.requestCode('person@example.com');
+  assert.equal(unavailable.ok,false);
+  assert.equal(unavailable.reason,'unavailable');
 });
 
 test('cloud sync uploads newer local workspace and restores newer remote workspace',async()=>{
@@ -101,8 +103,8 @@ test('cloud sync uploads newer local workspace and restores newer remote workspa
   assert.equal(downloaded.ok,true);
   assert.equal(downloaded.direction,'downloaded');
   assert.equal(imported.updatedAt,'2026-09-30T09:00:00.000Z');
-  assert.deepEqual(imported.allowed,['trip-a','trip-b']);
-  assert.deepEqual(imported.payload.workspace.savedTrips,['trip-b']);
+  assert.deepEqual(Array.from(imported.allowed),['trip-a','trip-b']);
+  assert.deepEqual(Array.from(imported.payload.workspace.savedTrips),['trip-b']);
 
   await sync.signOut();
   assert.equal(sync.status().signedIn,false);
