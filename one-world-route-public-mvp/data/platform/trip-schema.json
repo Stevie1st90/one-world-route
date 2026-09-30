@@ -139,10 +139,21 @@
       ],
       "required": [
         "personalizationRequired",
-        "destinationCountry",
         "tripPurpose",
         "officialResolverSourceId",
         "message"
+      ],
+      "anyOf": [
+        {
+          "required": [
+            "destinationCountry"
+          ]
+        },
+        {
+          "required": [
+            "destinations"
+          ]
+        }
       ],
       "properties": {
         "personalizationRequired": {
@@ -151,6 +162,15 @@
         "destinationCountry": {
           "type": "string",
           "pattern": "^[A-Z]{2}$"
+        },
+        "destinations": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}$"
+          }
         },
         "tripPurpose": {
           "type": "string",
