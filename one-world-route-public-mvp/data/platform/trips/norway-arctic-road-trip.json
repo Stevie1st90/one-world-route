@@ -264,7 +264,36 @@
       }
     }
   ],
-  "sources": [],
+  "sources": [
+    {
+      "id": "no-udi-visitor-visa",
+      "title": "Visitor visas for Norway",
+      "issuer": "Norwegian Directorate of Immigration (UDI)",
+      "issuerType": "government",
+      "url": "https://www.udi.no/en/want-to-apply/visit-and-holiday/visitors-visa-to-norway/",
+      "checkedAt": "2026-09-30",
+      "claims": [
+        "official visitor-visa guidance asks for the applicant's citizenship to determine relevant information",
+        "some travellers may be exempt from a visitor visa depending on passport or residence circumstances"
+      ]
+    }
+  ],
+  "entryGuidance": {
+    "personalizationRequired": true,
+    "destinationCountry": "NO",
+    "tripPurpose": "tourism",
+    "stayDays": 12,
+    "officialResolverSourceId": "no-udi-visitor-visa",
+    "supportingSourceIds": [],
+    "message": {
+      "en": "Whether you need a visitor visa for Norway depends on citizenship, passport and travel circumstances. Use UDI’s official citizenship-aware guidance for the traveller’s actual situation.",
+      "de": "Ob du für Norwegen ein Besuchervisum benötigst, hängt von Staatsangehörigkeit, Pass und Reiseumständen ab. Nutze die offizielle, auf die Staatsangehörigkeit abgestimmte UDI-Information für den konkreten Reisekontext.",
+      "it": "La necessità di un visto per visitare la Norvegia dipende da cittadinanza, passaporto e circostanze del viaggio. Usa le indicazioni ufficiali UDI personalizzate per cittadinanza.",
+      "es": "La necesidad de visado para visitar Noruega depende de la ciudadanía, el pasaporte y las circunstancias del viaje. Utiliza la guía oficial de UDI adaptada a la ciudadanía.",
+      "fr": "Le besoin d’un visa pour visiter la Norvège dépend de la citoyenneté, du passeport et des circonstances du voyage. Utilisez les indications officielles de l’UDI adaptées à la citoyenneté.",
+      "pt": "A necessidade de visto para visitar a Noruega depende da cidadania, do passaporte e das circunstâncias da viagem. Use as orientações oficiais da UDI adaptadas à cidadania."
+    }
+  },
   "routePolicy": {
     "startMode": "endpoints",
     "reversible": true,
