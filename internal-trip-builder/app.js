@@ -78,7 +78,7 @@ function renderMaintenance(queue){
  }).join(''):'<div class="coverage-empty">No maintenance items found.</div>';
  const health=queue.journeyHealth||[];
  $('#journeyHealth').innerHTML=health.map(item=>'<article class="maintenance-item state-'+esc(item.state)+'"><div><span>'+esc(item.state.replaceAll('-',' '))+'</span><b>'+esc(item.title)+'</b><small>'+esc(item.totalSources)+' sources · '+esc(item.currentChecks)+' current checks</small></div><div><strong>'+esc(item.staleSources?item.staleSources+' stale':item.dueSoonSources?item.dueSoonSources+' due soon':'')+'</strong></div></article>').join('')||'<div class="coverage-empty">No journey health data.</div>';
- $('[data-source-sync]').forEach(button=>button.onclick=()=>openSourceSync(state.maintenanceItems[Number(button.dataset.sourceSync)]));
+ $$('[data-source-sync]').forEach(button=>button.onclick=()=>openSourceSync(state.maintenanceItems[Number(button.dataset.sourceSync)]));
 }
 async function openMaintenance(){
  const dialog=$('#maintenanceDialog');dialog.showModal();
