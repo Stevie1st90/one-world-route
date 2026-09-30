@@ -934,3 +934,6 @@ body.platform-regional-trip .terrain-toolbar button,body.platform-regional-trip 
 [data-media-type="image"]:before{display:none}[data-media-type="image"]:after{inset:0;height:100%;border-radius:0;background:linear-gradient(180deg,rgba(3,8,14,.3),transparent 40%,rgba(3,8,14,.35));box-shadow:none}
 @media(max-width:820px){.platform-cover-image img{object-position:var(--cover-portrait,50% 50%)}}
 
+/* Keep the longer global discovery lead readable over bright land textures. */
+.platform-home-hero-copy>p{background:linear-gradient(90deg,rgba(5,10,18,.94),rgba(5,10,18,.86));padding:10px 12px;margin-left:-12px;border-radius:12px}
+
