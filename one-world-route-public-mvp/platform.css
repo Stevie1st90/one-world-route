@@ -583,3 +583,11 @@ body.platform-ready #app>.topbar,body.platform-ready #app>.left-panel,body.platf
 .platform-mytrips-portability{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.platform-mytrips-portability button{height:34px;padding:0 10px;border:1px solid rgba(255,255,255,.1);border-radius:9px;background:rgba(255,255,255,.045);color:#c8d9e8;font-size:8px;font-weight:750;cursor:pointer}
 @media(max-width:520px){.platform-mytrips-portability{width:100%}.platform-mytrips-portability button{flex:1;min-width:0}}
 
+
+/* Keep platform navigation and legacy flagship tools visible together on desktop. */
+@media(min-width:821px) and (max-width:1500px){
+  body:not(.platform-home):not(.platform-regional-trip) .topbar .platform-pill-label{display:none}
+  body:not(.platform-home):not(.platform-regional-trip) .topbar .platform-pill{width:36px;padding:0;justify-content:center}
+  body:not(.platform-home):not(.platform-regional-trip) .topbar .platform-actions{flex:0 0 auto;gap:5px;margin-left:8px}
+  body:not(.platform-home):not(.platform-regional-trip) .topbar .top-actions{flex:0 0 auto}
+}
