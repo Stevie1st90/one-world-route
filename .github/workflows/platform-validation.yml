@@ -179,7 +179,10 @@ jobs:
           node --check platform.js
           node --check platform/runtime.js
           node --check platform/service-worker.js
+          node --check platform/cloud-sync.js
           node --check platform/pwa-install.js
+          node --check scripts/build-sync-config.mjs
+          node --check scripts/test-cloud-sync.mjs
           node --check platform/map-style.js
           node --check platform/i18n.js
           node --check platform/formatters.js
@@ -291,6 +294,8 @@ jobs:
         run: node --test scripts/test-platform-media.mjs
       - name: Platform locale tests
         run: node --test scripts/test-platform-i18n.mjs
+      - name: Cloud workspace sync tests
+        run: node --test scripts/test-cloud-sync.mjs
       - name: Platform formatter tests
         run: node --test scripts/test-platform-formatters.mjs
       - name: Public trip index tests
