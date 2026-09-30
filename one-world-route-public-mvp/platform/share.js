@@ -31,6 +31,7 @@
   function bind(){
     const d=context();
     const handler=async()=>{
+      if(d.getMeta?.()&&d.ensureDialog)return openMenu();
       const result=await shareCurrent();
       if(result.reason==='cancelled')return;
     };
@@ -54,6 +55,20 @@
     return Boolean(desktop||mobile);
   }
 
-  const api={configure,shareCurrent,bind};
+  function openMenu(){
+    const d=context(),meta=d.getMeta?.();if(!meta)return shareCurrent();
+    const modal=d.ensureDialog('platformShareMenu'),e=d.esc;
+    modal.innerHTML='<div class="platform-modal-card share-menu-card"><button type="button" class="platform-x" aria-label="'+e(d.t('close'))+'">×</button><h2>'+e(d.t('shareJourney'))+'</h2><p>'+e(d.title())+'</p><div class="platform-share-actions"><button type="button" data-share-native>'+e(d.t('share'))+'</button><button type="button" data-share-link>'+e(d.t('copyLink'))+'</button><button type="button" data-share-story>'+e(d.t('socialStory'))+'</button><button type="button" data-share-caption>'+e(d.t('copyCaption'))+'</button><button type="button" data-share-planning>'+e(d.t('chooseStartDate'))+'</button></div></div>';
+    modal.querySelector('.platform-x').onclick=()=>modal.classList.add('hidden');
+    modal.querySelector('[data-share-native]').onclick=shareCurrent;
+    const copy=async value=>{try{await navigator.clipboard.writeText(value);d.toast(d.t('shareCopied'))}catch{d.toast(d.t('shareCopyFallback'))}};
+    modal.querySelector('[data-share-link]').onclick=()=>copy(d.url(meta));
+    modal.querySelector('[data-share-caption]').onclick=()=>copy(root.socialStory.caption(meta,d));
+    modal.querySelector('[data-share-story]').onclick=()=>root.socialStory.open(meta,d.getTrip?.()).catch(()=>d.toast(d.t('socialUnavailable')));
+    modal.querySelector('[data-share-planning]').onclick=d.onPlanning;
+    modal.classList.remove('hidden');
+  }
+
+  const api={configure,shareCurrent,bind,openMenu};
   root.share=api;
 })();

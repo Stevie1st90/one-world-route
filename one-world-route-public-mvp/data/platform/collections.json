@@ -217,6 +217,31 @@
         "fr": "Road trips et voyages plus longs en Australie, Nouvelle-Zélande et dans le Pacifique, au rythme du catalogue.",
         "pt": "Road trips e viagens mais longas pela Austrália, Nova Zelândia e Pacífico, ampliadas com o catálogo."
       }
+    },
+    {
+      "id": "around-the-world",
+      "title": {
+        "en": "Around the world",
+        "de": "Um die Welt",
+        "it": "Intorno al mondo",
+        "es": "Alrededor del mundo",
+        "fr": "Autour du monde",
+        "pt": "Ao redor do mundo"
+      },
+      "description": {
+        "en": "Connected journeys across continents.",
+        "de": "Zusammenhängende Reisen über Kontinente.",
+        "it": "Viaggi connessi tra continenti.",
+        "es": "Viajes conectados entre continentes.",
+        "fr": "Voyages continus entre continents.",
+        "pt": "Viagens conectadas entre continentes."
+      },
+      "filters": {
+        "kind": "world"
+      },
+      "visual": {
+        "theme": "ocean"
+      }
     }
   ]
 }

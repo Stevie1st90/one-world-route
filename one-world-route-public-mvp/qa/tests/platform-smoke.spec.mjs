@@ -92,7 +92,7 @@ test('@discovery @mobile-critical guided discovery exposes a simple finder befor
   const errors=capturePageErrors(page);
   await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
   await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:15000});
-  await expect(page.locator('.platform-home-hero h1')).toHaveText('One world. Many ways to travel.');
+  await expect(page.locator('.platform-home-hero h1')).toHaveText('Remarkable journeys. One world.');
   await expect(page.locator('#platformHomeFinder')).toBeVisible();
   await expect(page.locator('#homeFinderPace')).toBeHidden();
   await page.locator('.platform-finder-preferences summary').click();
@@ -633,3 +633,55 @@ test('@discovery curated collection deep link supports combined metadata filters
   }
 });
 
+
+
+test('@discovery @mobile-critical inspiration selects published routes and keeps globe widths uniform',async({page},testInfo)=>{
+ test.setTimeout(90000);const errors=capturePageErrors(page);
+ await page.emulateMedia({reducedMotion:'reduce'});
+ await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
+ await expect(page.locator('#platformHomeMoment .platform-home-card')).toHaveCount(1);
+ await page.waitForFunction(()=>window.__ONE_WORLD_ROUTE_GLOBE__?.arcsData()?.some(a=>a.tripId==='japan-by-rail'));
+ const defaults=await page.evaluate(()=>{const g=window.__ONE_WORLD_ROUTE_GLOBE__;return [...new Set(g.arcsData().map(g.arcStroke()))]});
+ expect(defaults).toEqual([.23]);
+ await page.evaluate(()=>{const g=window.__ONE_WORLD_ROUTE_GLOBE__;g.onArcClick()(g.arcsData().find(a=>a.tripId==='japan-by-rail'))});
+ await expect(page.locator('#platformHomeGlobePreview')).toContainText('Japan by Rail');
+ expect(await page.evaluate(()=>{const g=window.__ONE_WORLD_ROUTE_GLOBE__;return g.arcStroke()(g.arcsData().find(a=>a.tripId==='japan-by-rail'))})).toBe(.42);
+ await page.locator('.platform-home-hero [data-home-inspire]').click();
+ const first=await page.locator('#platformHomeMoment .platform-home-card').getAttribute('data-home-trip');
+ await page.locator('#platformHomeInspiration [data-home-inspire]').click();
+ expect(await page.locator('#platformHomeMoment .platform-home-card').getAttribute('data-home-trip')).not.toBe(first);
+ await page.screenshot({path:testInfo.outputPath('inspiration.png')});
+ await page.locator('#platformHomeMoment [data-open-home-trip]').click();
+ await expect(page.locator('body')).not.toHaveClass(/platform-home/);
+ await page.locator('#platformHomeBtn').click();
+ await expect(page.locator('.platform-home-recent')).toBeVisible();
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth)).toBe(false);
+ expect(errors).toEqual([]);
+});
+
+test('@discovery @mobile-critical social story presents five factual vertical scenes and a user planning date',async({page,isMobile},testInfo)=>{
+ test.setTimeout(90000);const errors=capturePageErrors(page);
+ await page.emulateMedia({reducedMotion:'reduce'});
+ await page.goto('/?trip=japan-by-rail&lang=en&stop=2',{waitUntil:'domcontentloaded'});
+ await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:20000});
+ if(isMobile){await page.locator('#settingsBtn').click();await page.locator('#mobileShareBtn').click()}else await page.locator('#shareBtn').click();
+ await page.locator('[data-share-story]').click();
+ await expect(page.locator('#platformSocialStory')).toBeVisible();
+ const b=await page.locator('.social-story-stage').boundingBox();expect(Math.abs(b.width/b.height-9/16)).toBeLessThan(.01);
+ await expect(page.locator('.social-story-copy')).toContainText('Japan by Rail');
+ await page.screenshot({path:testInfo.outputPath('social-story.png')});
+ for(let i=1;i<5;i++)await page.locator('[data-social-next]').click();
+ await expect(page.locator('[data-social-open]')).toBeVisible();
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth)).toBe(false);
+ await page.keyboard.press('Escape');await page.keyboard.press('Escape');
+ await page.goto('/?trip=world-195&lang=en&segment=1',{waitUntil:'domcontentloaded'});
+ await expect(page.locator('.platform-scenario-note')).toBeAttached({timeout:20000});
+ if(isMobile)await page.locator('#mobileDetails').click();
+ await expect(page.locator('#detailContent')).toContainText('Day 1');
+ if(isMobile){await page.locator('#settingsBtn').click();await page.locator('#mobileShareBtn').click();await page.locator('[data-share-planning]').click()}else await page.locator('.platform-scenario-note button').click();
+ await page.locator('#platformPlanningContext input').fill('2030-04-12');
+ await page.locator('#platformPlanningContext [type=submit]').click();
+ await expect(page.locator('#detailContent')).toContainText(/Apr 12, 2030|12 Apr 2030/,{timeout:20000});
+ const original=await page.evaluate(async()=>{const meta=window.ONE_WORLD_PLATFORM.getTrip();return (await fetch(meta.dataset).then(r=>r.json())).segments[0].planDeparture});
+ expect(original).not.toBe('2030-04-12');expect(errors).toEqual([]);
+});

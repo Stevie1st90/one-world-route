@@ -73,6 +73,8 @@ export function buildTripIndex(catalog,datasets){
         subtitle:meta.subtitle,
         summary:trip.summary||meta.subtitle,
         metrics:meta.metrics||{},
+        defaultPlanningScenario:meta.defaultPlanningScenario||null,
+        visual:meta.visual||{},
         discovery:meta.discovery||{},
         planning:{
           days:Number(trip.planning?.days||meta.metrics?.days||0)||null,

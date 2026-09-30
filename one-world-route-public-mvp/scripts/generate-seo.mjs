@@ -5,7 +5,7 @@ const platform=JSON.parse(await readFile(new URL('../data/platform/trips.json',i
 const collections=JSON.parse(await readFile(new URL('../data/platform/collections.json',import.meta.url),'utf8'));
 const TAXONOMY_REGIONS=new Set(['europe','asia','africa','north-america','south-america','oceania','central-america']);
 const taxonomyPages=()=>{
-  const trips=(platform.trips||[]).filter(t=>t.id!==platform.defaultTripId);
+  const trips=(platform.trips||[]);
   const pages=[];
   const push=(facet,value,count)=>{if(count>=2)pages.push({facet,value})};
   const counts=values=>values.reduce((m,v)=>(m.set(v,(m.get(v)||0)+1),m),new Map());

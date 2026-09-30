@@ -357,7 +357,7 @@
   function widthExpr(a,b,c0){const scale=clamp(Number($('#arcWidth')?.value||.55)/.55,.35,2.4);return ['interpolate',['linear'],['zoom'],2,a*scale,6,b*scale,12,c0*scale];}
 
   const localizeTerrainStyle=style=>window.ONE_WORLD_PLATFORM_MODULES?.mapStyle?.localize(style,String(document.documentElement.lang||'en').toLowerCase().split('-')[0])||style;
-  const brandTerrainStyle=style=>window.ONE_WORLD_PLATFORM_MODULES?.mapStyle?.brandDark(style)||style;
+  const brandTerrainStyle=style=>window.ONE_WORLD_PLATFORM_MODULES?.mapStyle?.brandTerrain(style)||style;
 
   async function terrainStyle(){
     const phase=activeTerrainPhase();

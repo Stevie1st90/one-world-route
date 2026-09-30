@@ -3,15 +3,22 @@
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
   const SAFE_ASSET=/^\.\/assets\/[a-z0-9_./-]+$/i;
 
-  function descriptor(entry,fallbackTheme='ocean'){
+  function descriptor(entry,fallbackTheme='ocean',ratio='landscape'){
     const theme=String(entry?.theme||fallbackTheme||'ocean').replace(/[^a-z0-9-]/gi,'')||'ocean';
-    if(entry?.type==='image'&&entry.license&&entry.attribution&&SAFE_ASSET.test(String(entry.asset||''))&&!String(entry.asset).split('/').includes('..')){
-      const asset=String(entry.asset);
+    const derivative=entry?.derivatives?.[ratio];
+    const asset=String(derivative?.asset||entry?.asset||'');
+    const generatedApproved=entry?.sourceType!=='generated'||(entry.rightsStatus==='approved'&&entry.status==='published');
+    if(entry?.type==='image'&&generatedApproved&&entry.license&&entry.attribution&&SAFE_ASSET.test(asset)&&!asset.split('/').includes('..')){
+      const focal=derivative?.focalPoint||entry.focalPoint||{x:.5,y:.5};
+      const x=Number.isFinite(focal.x)?Math.max(0,Math.min(1,focal.x)):.5,y=Number.isFinite(focal.y)?Math.max(0,Math.min(1,focal.y)):.5;
       return {
         type:'image',
+        asset,
+        alt:entry.alt||'',
+        focalPoint:{x,y},
         theme,
         className:'platform-media-image visual-'+theme,
-        style:'background-image:linear-gradient(180deg,rgba(5,10,17,.08),rgba(5,10,17,.5)),url("'+asset.replace(/"/g,'')+'")',
+        style:'background-image:linear-gradient(180deg,rgba(5,10,17,.08),rgba(5,10,17,.5)),url("'+asset.replace(/"/g,'')+'");background-position:'+Math.round(x*100)+'% '+Math.round(y*100)+'%',
         attribution:String(entry.attribution||''),
         license:String(entry.license||'')
       };
@@ -47,5 +54,15 @@
     return {arcs:points.slice(1).map((point,index)=>({start:points[index],end:point}))};
   }
 
-  root.media={descriptor,credit,routeArt,tripPreview};
+  let registryPromise;
+  async function resolveReference(meta,trip){
+    const reference=trip.media?.heroAssetId||meta.visual?.coverAssetId;
+    if(!reference)return trip;
+    registryPromise=registryPromise||fetch('./data/platform/generated-media.json').then(r=>{if(!r.ok)throw Error('Media registry unavailable');return r.json()}).catch(()=>({assets:[]}));
+    const registry=await registryPromise;
+    const candidate=(registry.assets||[]).find(a=>a.assetId===reference&&a.status==='published'&&a.rightsStatus==='approved');
+    if(!candidate||descriptor(candidate).type!=='image')return trip;
+    return {...trip,media:{...trip.media,hero:candidate}};
+  }
+  root.media={descriptor,credit,routeArt,tripPreview,resolveReference};
 })();

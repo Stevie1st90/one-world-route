@@ -93,7 +93,7 @@
     }catch{
       base={version:8,sources:{},layers:[{id:'background',type:'background',paint:{'background-color':'#d9e5e8'}}]};
     }
-    base=mapStyle.brandDark(mapStyle.localize(base,d.locale()));
+    base=mapStyle.brandTerrain(mapStyle.localize(base,d.locale()));
     base.version=8;
     base.projection={type:'globe'};
     base.sources={...(base.sources||{}),
@@ -106,7 +106,7 @@
     const selected=d.getSelectedIndex();
     base.layers.push(
       {id:'regional-route-shadow',type:'line',source:'regionalRoute',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(1,8,15,.68)','line-width':['interpolate',['linear'],['zoom'],2,3,7,6,12,9],'line-opacity':.58}},
-      {id:'regional-route',type:'line',source:'regionalRoute',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#6c8eaa','line-width':['interpolate',['linear'],['zoom'],2,1.4,7,2.8,12,4.2],'line-opacity':.78}},
+      {id:'regional-route',type:'line',source:'regionalRoute',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#d2e7ec','line-width':['interpolate',['linear'],['zoom'],2,1.4,7,2.8,12,4.2],'line-opacity':.78}},
       {id:'regional-selected-shadow',type:'line',source:'regionalRoute',filter:['==',['get','id'],selected+1],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(2,8,14,.88)','line-width':['interpolate',['linear'],['zoom'],2,6,7,10,12,15]}},
       {id:'regional-selected',type:'line',source:'regionalRoute',filter:['==',['get','id'],selected+1],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#59ddff','line-width':['interpolate',['linear'],['zoom'],2,2.8,7,5.2,12,7.5]}},
       {id:'regional-route-hit',type:'line',source:'regionalRoute',paint:{'line-color':'rgba(0,0,0,.001)','line-width':18,'line-opacity':.001}},

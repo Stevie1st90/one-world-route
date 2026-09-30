@@ -779,7 +779,14 @@
   const fmtDate = v => { const d = v instanceof Date ? v : excelDate(v); return d ? new Intl.DateTimeFormat(UI_LOCALE,{day:'2-digit',month:'short',year:'numeric',timeZone:'UTC'}).format(d) : '—'; };
   const eur = v => Number.isFinite(Number(v)) ? new Intl.NumberFormat(UI_LOCALE,{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(v)) : '—';
   const phaseFor = id => PHASES.find(p => id >= p.range[0] && id <= p.range[1]) || PHASES[0];
-  const daysFromStart = v => { const d=excelDate(v), s=new Date(Date.UTC(2026,9,21)); return d ? Math.max(1,Math.round((d-s)/86400000)+1) : null; };
+  const daysFromStart = v => { const d=excelDate(v), s=excelDate(state.raw?.segments?.[0]?.planDeparture); return d&&s ? Math.max(1,Math.round((d-s)/86400000)+1) : null; };
+  const fmtPlanDate=v=>{
+    const day=daysFromStart(v);if(!day)return '—';
+    const meta=window.ONE_WORLD_PLATFORM?.getTrip?.(),tools=window.ONE_WORLD_PLATFORM_MODULES?.tripTools;
+    const start=meta&&tools?.getStartDate(localStorage,meta.id);
+    if(!start)return (window.ONE_WORLD_PLATFORM_MODULES?.i18n?.messages?.[document.documentElement.lang]?.day||'Day')+' '+day;
+    const date=new Date(start+'T00:00:00Z');date.setUTCDate(date.getUTCDate()+day-1);return fmtDate(date);
+  };
   const statusColor = a => ({RED:colors.red,ORANGE:colors.orange,WATCH:colors.amber,GREEN:colors.green}[a] || colors.muted);
   const readinessColor = r => r === 'READY' ? colors.green : r === 'BLOCKED' ? colors.red : colors.amber;
   const sourceList = s => String(s||'').split(/\s*;\s*/).filter(x=>/^https?:/.test(x));
@@ -1157,11 +1164,11 @@
     $('#detailEyebrow').textContent=`SEGMENT ${s.id} · ${s.phaseName}`; $('#detailTitle').textContent=`${segmentFrom(s)} → ${segmentTo(s)}`;
     if(state.activeTab==='overview'){
       box.innerHTML=`<div class="overview-number">${String(s.id).padStart(2,'0')}<small>/194</small></div><p class="detail-copy">${escapeHtml(englishText(s.corridor||''))}</p>
-      <div class="data-grid">${dataCard('Departure',fmtDate(s.planDeparture),`Day ${daysFromStart(s.planDeparture)||'—'}`)}${dataCard('Transport',segmentMode(s))}${dataCard('Phase',s.phaseName)}${dataCard('Plan budget',eur(s.transportBudgetEur))}</div>
+      <div class="data-grid">${dataCard('Departure',fmtPlanDate(s.planDeparture),`Day ${daysFromStart(s.planDeparture)||'—'}`)}${dataCard('Transport',segmentMode(s))}${dataCard('Phase',s.phaseName)}${dataCard('Plan budget',eur(s.transportBudgetEur))}</div>
       <div style="display:flex;gap:6px;flex-wrap:wrap">${badge(s.alertLevel,statusColor(s.alertLevel))}${badge(englishValue(s.feasibility),s.feasibility==='Kritisch'?colors.red:s.feasibility==='Bedingt'?colors.orange:colors.green)}</div>
       <div class="op-callout"><b>Why this route?</b><br>${escapeHtml(s.planB ? `Primary corridor: ${s.corridor}. A documented fallback exists and is shown under Operations.` : `This is the current operational corridor in the public master plan.`)}</div>`;
     } else if(state.activeTab==='details'){
-      box.innerHTML=`<div class="data-grid">${dataCard('From',segmentFrom(s))}${dataCard('To',segmentTo(s))}${dataCard('Plan depart',fmtDate(s.planDeparture))}${dataCard('Plan arrive',fmtDate(s.planArrival))}${dataCard('Booking tier',s.bookingTier||'—')}${dataCard('Data quality',englishValue(s.dataQuality)||'—')}${dataCard('Plan status',englishText(s.planStatus)||'—')}${dataCard('Budget',eur(s.transportBudgetEur))}</div><h3>Corridor</h3><p class="detail-copy">${escapeHtml(englishText(s.corridor||'—'))}</p>`;
+      box.innerHTML=`<div class="data-grid">${dataCard('From',segmentFrom(s))}${dataCard('To',segmentTo(s))}${dataCard('Plan depart',fmtPlanDate(s.planDeparture))}${dataCard('Plan arrive',fmtPlanDate(s.planArrival))}${dataCard('Booking tier',s.bookingTier||'—')}${dataCard('Data quality',englishValue(s.dataQuality)||'—')}${dataCard('Plan status',englishText(s.planStatus)||'—')}${dataCard('Budget',eur(s.transportBudgetEur))}</div><h3>Corridor</h3><p class="detail-copy">${escapeHtml(englishText(s.corridor||'—'))}</p>`;
     } else if(state.activeTab==='operations'){
       const recheck=recheckForSegment(s);
       const liveRecheck=runtimeRecheckState(recheck);
@@ -1180,7 +1187,7 @@
     $('#detailEyebrow').textContent=`COUNTRY ${c.number} · ${c.region||'WORLD'}`; $('#detailTitle').innerHTML=`<span style="display:inline-flex;align-items:center;gap:9px">${flagMarkup(c,24,18)}<span>${escapeHtml(countryDisplay(c))}</span></span>`;
     const rel=relatedSegments(c); const incoming=rel.find(s=>s.to===c.name), outgoing=rel.find(s=>s.from===c.name);
     if(state.activeTab==='overview'){
-      box.innerHTML=`<div class="overview-number">${c.number}<small>/195</small></div><p class="detail-copy">Planned entry ${fmtDate(c.planEntry)} · ${escapeHtml(c.subregion||c.region||'')}</p><div class="data-grid">${dataCard('Readiness',englishValue(c.readiness))}${dataCard('Visa',englishValue(c.visaType)||'—',englishValue(c.visaStatus)||'')}${dataCard('Health',`Priority ${c.healthPriority??'—'}`,englishValue(c.healthStatus)||'')}${dataCard('Planned entry',fmtDate(c.planEntry))}</div><div style="display:flex;gap:6px">${badge(englishValue(c.readiness),readinessColor(c.readiness))}</div>${incoming?`<h3>Arrival</h3><div class="route-row" data-segment="${incoming.id}"><span class="route-id">#${incoming.id}</span><div><div class="route-name">${segmentFrom(incoming)} → ${segmentTo(incoming)}</div><div class="route-sub">${segmentMode(incoming)} · ${fmtDate(incoming.planDeparture)}</div></div><span>›</span></div>`:''}${outgoing?`<h3>Next</h3><div class="route-row" data-segment="${outgoing.id}"><span class="route-id">#${outgoing.id}</span><div><div class="route-name">${segmentFrom(outgoing)} → ${segmentTo(outgoing)}</div><div class="route-sub">${segmentMode(outgoing)} · ${fmtDate(outgoing.planDeparture)}</div></div><span>›</span></div>`:''}`;
+      box.innerHTML=`<div class="overview-number">${c.number}<small>/195</small></div><p class="detail-copy">Planned entry ${fmtPlanDate(c.planEntry)} · ${escapeHtml(c.subregion||c.region||'')}</p><div class="data-grid">${dataCard('Readiness',englishValue(c.readiness))}${dataCard('Visa',englishValue(c.visaType)||'—',englishValue(c.visaStatus)||'')}${dataCard('Health',`Priority ${c.healthPriority??'—'}`,englishValue(c.healthStatus)||'')}${dataCard('Planned entry',fmtPlanDate(c.planEntry))}</div><div style="display:flex;gap:6px">${badge(englishValue(c.readiness),readinessColor(c.readiness))}</div>${incoming?`<h3>Arrival</h3><div class="route-row" data-segment="${incoming.id}"><span class="route-id">#${incoming.id}</span><div><div class="route-name">${segmentFrom(incoming)} → ${segmentTo(incoming)}</div><div class="route-sub">${segmentMode(incoming)} · ${fmtPlanDate(incoming.planDeparture)}</div></div><span>›</span></div>`:''}${outgoing?`<h3>Next</h3><div class="route-row" data-segment="${outgoing.id}"><span class="route-id">#${outgoing.id}</span><div><div class="route-name">${segmentFrom(outgoing)} → ${segmentTo(outgoing)}</div><div class="route-sub">${segmentMode(outgoing)} · ${fmtPlanDate(outgoing.planDeparture)}</div></div><span>›</span></div>`:''}`;
     } else if(state.activeTab==='details'){
       box.innerHTML=`<h3>Entry planning</h3><p class="detail-copy">${escapeHtml(englishText(c.visaAction||'No public action recorded.'))}</p><div class="data-grid">${dataCard('Visa priority',c.visaPriority??'—')}${dataCard('Health priority',c.healthPriority??'—')}${dataCard('Entry docs',englishValue(c.entryDocs)||'—')}${dataCard('Visited',c.visited||'No')}</div>${c.entryConflict?`<div class="op-callout">${escapeHtml(englishText(c.entryConflict))}</div>`:''}`;
     } else if(state.activeTab==='operations'){
@@ -1345,6 +1352,7 @@
     selectCountry:(name,focus=true)=>selectCountry(String(name),Boolean(focus)),
     openDetails:()=>openMobilePanel('details'),
     refreshGlobe:()=>updateGlobe(),
+    refreshPlanning:()=>{renderDetail();updateTimeline()},
     setPhase:(phase,{jump=false,focus=true}={})=>{
       const next=String(phase)==='all'?'all':String(Math.max(1,Math.min(12,Number(phase)||1)));
       state.phase=next;renderChrome();updateGlobe();renderDetail();updateUrl();

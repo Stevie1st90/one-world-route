@@ -399,7 +399,7 @@
 (() => {
   'use strict';
 
-  const NASA_BMNG = 'https://eoimages.gsfc.nasa.gov/images/imagerecords/73000/73909/world.topo.bathy.200412.3x5400x2700.jpg';
+  const DETAIL_EARTH = 'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg';
   const STANDARD_EARTH = 'https://unpkg.com/three-globe/example/img/earth-dark.jpg';
   const runtime = { applied:false, retries:0, highDetail:true, preload:null };
 
@@ -472,21 +472,8 @@
       return;
     }
 
-    const img = new Image();
-    runtime.preload=img;
-    img.crossOrigin = 'anonymous';
-    img.onload = () => {
-      if(!highDetailEnabled()) return;
-      try{
-        globe.globeImageUrl?.(NASA_BMNG);
-        setTimeout(() => tuneMaterial(globe), 120);
-        setTimeout(() => tuneMaterial(globe), 700);
-      }catch(err){
-        console.warn('High-detail NASA globe texture could not be applied', err);
-      }
-    };
-    img.onerror = () => console.warn('High-detail NASA globe texture unavailable; keeping standard globe texture.');
-    img.src = NASA_BMNG;
+    try{globe.globeImageUrl?.(DETAIL_EARTH)}catch{}
+    setTimeout(()=>tuneMaterial(globe),120);
   }
 
   function wireToggle(globe){
@@ -546,6 +533,28 @@
     getExtension(id){return extensions.get(id)||null},
     listExtensions(){return [...extensions.values()]}
   };
+})();
+
+
+/* ===== platform/visual-identity.js ===== */
+(() => {
+  'use strict';
+  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  const palette=Object.freeze({europe:'#67c9ef',asia:'#bca0ed',africa:'#e7b46a','north-america':'#79adc9','south-america':'#7bc6a1',oceania:'#72d2cf',polar:'#c1def1',global:'#bdd0e1'});
+  function region(value,subregion=''){
+    const key=String(value||'').toLowerCase().replace(/\s+/g,'-');
+    if(palette[key])return key;
+    if(key==='americas')return /south/i.test(subregion)?'south-america':'north-america';
+    if(/arctic|antarctic|polar/.test(key))return 'polar';
+    return Object.keys(palette).find(r=>key.includes(r))||null;
+  }
+  function identity(meta={},hint){
+    const primary=region(hint)||region(meta.visual?.primaryRegion)||(meta.discovery?.regions||[]).map(v=>region(v)).find(Boolean)||'global';
+    const themes=meta.discovery?.themes||[],kind=meta.kind||'';
+    const family=meta.visual?.visualFamily||(/world/.test(kind)?'planetary':/rail/.test(kind)?'rail-cinematic':/island|cruise/.test(kind)?'coastal-editorial':/road|camper|motorcycle/.test(kind)?'road-cinematic':themes.some(t=>/nature|expedition|adventure/.test(t))?'nature-atmospheric':'culture-editorial');
+    return {primaryRegion:primary,color:palette[primary],visualFamily:family};
+  }
+  root.visualIdentity={palette,region,identity};
 })();
 
 
@@ -647,29 +656,29 @@
       const id=String(layer.id||'').toLowerCase(),type=layer.type;
       layer.paint=layer.paint||{};
       if(type==='background'){
-        layer.paint['background-color']='#0c1822';
+        layer.paint['background-color']='#425f6b';
         continue;
       }
       if(type==='fill'){
         if(/water|ocean|lake|river/.test(id)){
-          layer.paint['fill-color']='#123b53';layer.paint['fill-opacity']=.98;
+          layer.paint['fill-color']='#287b98';layer.paint['fill-opacity']=.98;
         }else if(/park|wood|forest|grass|nature|landcover/.test(id)){
-          layer.paint['fill-color']='#20382b';layer.paint['fill-opacity']=.82;
+          layer.paint['fill-color']='#63856f';layer.paint['fill-opacity']=.82;
         }else if(/building/.test(id)){
-          layer.paint['fill-color']='#283943';layer.paint['fill-outline-color']='#40515d';layer.paint['fill-opacity']=.82;
+          layer.paint['fill-color']='#758589';layer.paint['fill-outline-color']='#adb9bc';layer.paint['fill-opacity']=.82;
         }else{
-          layer.paint['fill-color']='#1b2b34';
+          layer.paint['fill-color']='#71857b';
           if(layer.paint['fill-opacity']===undefined)layer.paint['fill-opacity']=.94;
         }
       }else if(type==='line'){
         if(/boundary|admin/.test(id)){
-          layer.paint['line-color']='#7891a6';layer.paint['line-opacity']=.58;
+          layer.paint['line-color']='#bbccca';layer.paint['line-opacity']=.58;
         }else if(/motorway|trunk|primary/.test(id)){
-          layer.paint['line-color']='#9ca9b5';layer.paint['line-opacity']=.74;
+          layer.paint['line-color']='#d5cfb9';layer.paint['line-opacity']=.74;
         }else if(/road|street|transport/.test(id)){
-          layer.paint['line-color']='#596b78';layer.paint['line-opacity']=.66;
+          layer.paint['line-color']='#a8b5ad';layer.paint['line-opacity']=.66;
         }else if(/water|river/.test(id)){
-          layer.paint['line-color']='#4c91ad';layer.paint['line-opacity']=.78;
+          layer.paint['line-color']='#64b2c7';layer.paint['line-opacity']=.78;
         }else{
           layer.paint['line-color']=layer.paint['line-color']||'#485b68';
           if(layer.paint['line-opacity']===undefined)layer.paint['line-opacity']=.48;
@@ -683,16 +692,16 @@
       }else if(type==='fill-extrusion'){
         layer.paint['fill-extrusion-color']='#30434c';layer.paint['fill-extrusion-opacity']=.76;
       }else if(type==='hillshade'){
-        layer.paint['hillshade-shadow-color']='#071015';
-        layer.paint['hillshade-highlight-color']='#d9d1bc';
-        layer.paint['hillshade-accent-color']='#6f8b7c';
+        layer.paint['hillshade-shadow-color']='#304f58';
+        layer.paint['hillshade-highlight-color']='#f0e3bf';
+        layer.paint['hillshade-accent-color']='#849e81';
         layer.paint['hillshade-exaggeration']=.48;
       }
     }
     return style;
   }
 
-  root.mapStyle={localize,brandDark};
+  root.mapStyle={localize,brandDark,brandTerrain:brandDark};
 })();
 
 
@@ -1056,7 +1065,7 @@
   function widthExpr(a,b,c0){const scale=clamp(Number($('#arcWidth')?.value||.55)/.55,.35,2.4);return ['interpolate',['linear'],['zoom'],2,a*scale,6,b*scale,12,c0*scale];}
 
   const localizeTerrainStyle=style=>window.ONE_WORLD_PLATFORM_MODULES?.mapStyle?.localize(style,String(document.documentElement.lang||'en').toLowerCase().split('-')[0])||style;
-  const brandTerrainStyle=style=>window.ONE_WORLD_PLATFORM_MODULES?.mapStyle?.brandDark(style)||style;
+  const brandTerrainStyle=style=>window.ONE_WORLD_PLATFORM_MODULES?.mapStyle?.brandTerrain(style)||style;
 
   async function terrainStyle(){
     const phase=activeTerrainPhase();
@@ -1523,7 +1532,7 @@
     $('#journeyHubContent').innerHTML='<section class="journey-stat-grid">'+
       statCard('Countries',s.countries,'sovereign states')+
       statCard('Route legs',s.segments,'executable segments')+
-      statCard('Planned duration',s.days+' days','21 Oct 2026 → 2027')+
+      statCard('Planned duration',s.days+' days',window.ONE_WORLD_PLATFORM_MODULES?.i18n?.messages?.[document.documentElement.lang]?.planningContext||'Planning context')+
       statCard('Route distance',km(s.distance),'corridor / geodesic estimate')+
       statCard('Transport model',euro(s.budget),'public segment budget')+
       statCard('Chapters','12','continuous route')+
@@ -1536,10 +1545,11 @@
   }
 
   function renderLive(){
-    const a=runtime.actual||{},d=daysUntil(a.journeyStart||'2026-10-21'),pre=a.status==='pretrip';
-    const status=pre?(d>0?'Starts in '+d+' days':'Ready to depart'):(a.status||'Live');
-    $('#journeyHubContent').innerHTML='<section class="live-hero"><span>PLAN ↔ ACTUAL</span><h3>'+esc(status)+'</h3><p>'+esc(pre?'The public live layer is ready. Actual check-ins will appear here once the journey begins.':'Actual journey data is being compared with the public plan.')+'</p></section><section class="journey-stat-grid">'+
-      statCard('Planned start','21 Oct 2026')+
+    const a=runtime.actual||{},modules=window.ONE_WORLD_PLATFORM_MODULES,meta=window.ONE_WORLD_PLATFORM?.getTrip?.();
+    const text=key=>modules?.i18n?.messages?.[document.documentElement.lang]?.[key]||key;
+    const start=meta&&modules?.tripTools?.getStartDate(localStorage,meta.id);
+    $('#journeyHubContent').innerHTML='<section class="live-hero"><span>'+esc(text('historicalScenario'))+'</span><h3>'+esc(text('snapshotOnly'))+'</h3><p>'+esc(text('dateRecheckLead'))+'</p></section><section class="journey-stat-grid">'+
+      statCard(text('startDate'),start||text('chooseStartDate'))+
       statCard('Actual status',String(a.status||'—').toUpperCase())+
       statCard('Visited',String(a.visitedCountries||0)+' / 195')+
       statCard('Current leg',a.currentSegment?String(a.currentSegment)+' / 194':'Not started')+
@@ -1985,6 +1995,226 @@
     catch{}
     return forms?.[category]??forms?.other??forms?.one??'';
   }
+
+  const INSPIRATION_TEXT={
+  "en": {
+    "homeTitle": "Remarkable journeys. One world.",
+    "homeLead": "Discover rail adventures, open roads, islands and journeys across continents. Explore visually, compare, save and plan when you are ready.",
+    "homeNavSub": "Discover remarkable journeys",
+    "homeGlobeHint": "Select a route, then open its journey.",
+    "inspireMe": "Inspire me",
+    "inspireLead": "A different published journey each day. Surprise yourself, or continue where you left off.",
+    "journeyOfMoment": "Journey of the moment",
+    "unexpectedJourneys": "Somewhere unexpected",
+    "recentlyViewed": "Recently viewed",
+    "showcaseJourney": "One journey connecting the world",
+    "chooseStartDate": "Choose your start date",
+    "planningContext": "Planning context",
+    "planningDateLead": "Your travel date is a local planning choice. The route stays intact.",
+    "historicalScenario": "Original planning scenario",
+    "snapshotOnly": "Historical example scenario; not a fixed departure or current booking plan.",
+    "dateRecheckLead": "Changing dates does not revalidate transport, prices, entry rules or seasonal suitability. Check them for your dates.",
+    "selectedJourney": "Selected journey",
+    "socialStory": "Social story",
+    "socialStoryLead": "Explore the full route, save it and check planning details for your own journey.",
+    "discoverJourney": "Discover",
+    "theRoute": "The route",
+    "keyStops": "Key stops",
+    "understandJourney": "Understand the journey",
+    "exploreFullJourney": "Explore the full journey",
+    "illustratedRoute": "Illustrated route · not to scale",
+    "copyCaption": "Copy caption",
+    "captionCopied": "Caption copied",
+    "shareJourney": "Share journey",
+    "copyLink": "Copy link",
+    "previous": "Previous",
+    "next": "Next",
+    "socialUnavailable": "Social story unavailable",
+    "flagship": "Showcase journey",
+    "homeEyebrow": "Global travel discovery"
+  },
+  "de": {
+    "homeTitle": "Außergewöhnliche Reisen. Eine Welt.",
+    "homeLead": "Entdecke Bahnabenteuer, weite Straßen, Inseln und Reisen über Kontinente. Visuell erkunden, vergleichen, speichern und planen, wenn du bereit bist.",
+    "homeNavSub": "Außergewöhnliche Reisen entdecken",
+    "homeGlobeHint": "Route auswählen, dann die Reise öffnen.",
+    "inspireMe": "Inspiriere mich",
+    "inspireLead": "Jeden Tag eine andere veröffentlichte Reise. Lass dich überraschen oder entdecke weiter.",
+    "journeyOfMoment": "Reise des Moments",
+    "unexpectedJourneys": "Unerwartete Reiseideen",
+    "recentlyViewed": "Zuletzt angesehen",
+    "showcaseJourney": "Eine Reise verbindet die Welt",
+    "chooseStartDate": "Startdatum wählen",
+    "planningContext": "Planungskontext",
+    "planningDateLead": "Dein Reisedatum ist eine lokale Planungswahl. Die Route bleibt erhalten.",
+    "historicalScenario": "Ursprüngliches Planungsszenario",
+    "snapshotOnly": "Historisches Beispielszenario; kein fester Abfahrtstermin und kein aktueller Buchungsplan.",
+    "dateRecheckLead": "Neue Daten bestätigen keine Verbindungen, Preise, Einreiseregeln oder Saisonempfehlungen. Prüfe sie für deine Termine.",
+    "selectedJourney": "Ausgewählte Reise",
+    "socialStory": "Social Story",
+    "socialStoryLead": "Erkunde die ganze Route, speichere sie und prüfe die Planung für deine eigene Reise.",
+    "discoverJourney": "Entdecken",
+    "theRoute": "Die Route",
+    "keyStops": "Wichtige Stopps",
+    "understandJourney": "Reise verstehen",
+    "exploreFullJourney": "Die ganze Reise entdecken",
+    "illustratedRoute": "Illustrierte Route · nicht maßstabsgetreu",
+    "copyCaption": "Beschreibung kopieren",
+    "captionCopied": "Beschreibung kopiert",
+    "shareJourney": "Reise teilen",
+    "copyLink": "Link kopieren",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "socialUnavailable": "Social Story nicht verfügbar",
+    "flagship": "Showcase-Reise",
+    "homeEyebrow": "Globale Reiseentdeckung"
+  },
+  "it": {
+    "homeTitle": "Viaggi straordinari. Un mondo.",
+    "homeLead": "Scopri avventure in treno, strade aperte, isole e viaggi tra continenti. Esplora, confronta, salva e pianifica quando sei pronto.",
+    "homeNavSub": "Scopri viaggi straordinari",
+    "homeGlobeHint": "Seleziona un itinerario, poi apri il viaggio.",
+    "inspireMe": "Ispirami",
+    "inspireLead": "Un viaggio pubblicato diverso ogni giorno. Lasciati sorprendere o continua a esplorare.",
+    "journeyOfMoment": "Viaggio del momento",
+    "unexpectedJourneys": "Idee inaspettate",
+    "recentlyViewed": "Visti di recente",
+    "showcaseJourney": "Un viaggio che unisce il mondo",
+    "chooseStartDate": "Scegli la data di partenza",
+    "planningContext": "Contesto di pianificazione",
+    "planningDateLead": "La data è una scelta locale di pianificazione. L’itinerario resta invariato.",
+    "historicalScenario": "Scenario di pianificazione originale",
+    "snapshotOnly": "Scenario storico di esempio; non una partenza fissa o un piano di prenotazione attuale.",
+    "dateRecheckLead": "Cambiare date non verifica trasporti, prezzi, regole di ingresso o stagionalità. Controllali per le tue date.",
+    "selectedJourney": "Viaggio selezionato",
+    "socialStory": "Storia social",
+    "socialStoryLead": "Esplora l’intero itinerario, salvalo e verifica la pianificazione del tuo viaggio.",
+    "discoverJourney": "Scopri",
+    "theRoute": "L’itinerario",
+    "keyStops": "Tappe principali",
+    "understandJourney": "Comprendi il viaggio",
+    "exploreFullJourney": "Esplora l’intero viaggio",
+    "illustratedRoute": "Itinerario illustrato · non in scala",
+    "copyCaption": "Copia didascalia",
+    "captionCopied": "Didascalia copiata",
+    "shareJourney": "Condividi viaggio",
+    "copyLink": "Copia link",
+    "previous": "Precedente",
+    "next": "Avanti",
+    "socialUnavailable": "Storia social non disponibile",
+    "flagship": "Viaggio dimostrativo",
+    "homeEyebrow": "Scoperta globale di viaggi"
+  },
+  "es": {
+    "homeTitle": "Viajes extraordinarios. Un mundo.",
+    "homeLead": "Descubre aventuras en tren, carreteras abiertas, islas y viajes entre continentes. Explora, compara, guarda y planifica cuando quieras.",
+    "homeNavSub": "Descubre viajes extraordinarios",
+    "homeGlobeHint": "Selecciona una ruta y abre el viaje.",
+    "inspireMe": "Inspírame",
+    "inspireLead": "Un viaje publicado diferente cada día. Déjate sorprender o sigue explorando.",
+    "journeyOfMoment": "Viaje del momento",
+    "unexpectedJourneys": "Ideas inesperadas",
+    "recentlyViewed": "Vistos recientemente",
+    "showcaseJourney": "Un viaje que conecta el mundo",
+    "chooseStartDate": "Elige la fecha de inicio",
+    "planningContext": "Contexto de planificación",
+    "planningDateLead": "Tu fecha es una elección local de planificación. La ruta se mantiene.",
+    "historicalScenario": "Escenario de planificación original",
+    "snapshotOnly": "Escenario histórico de ejemplo; no una salida fija ni un plan actual de reservas.",
+    "dateRecheckLead": "Cambiar fechas no verifica transportes, precios, reglas de entrada o temporada. Compruébalos para tus fechas.",
+    "selectedJourney": "Viaje seleccionado",
+    "socialStory": "Historia social",
+    "socialStoryLead": "Explora toda la ruta, guárdala y revisa la planificación de tu viaje.",
+    "discoverJourney": "Descubre",
+    "theRoute": "La ruta",
+    "keyStops": "Paradas clave",
+    "understandJourney": "Comprende el viaje",
+    "exploreFullJourney": "Explora el viaje completo",
+    "illustratedRoute": "Ruta ilustrada · no a escala",
+    "copyCaption": "Copiar descripción",
+    "captionCopied": "Descripción copiada",
+    "shareJourney": "Compartir viaje",
+    "copyLink": "Copiar enlace",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "socialUnavailable": "Historia social no disponible",
+    "flagship": "Viaje de muestra",
+    "homeEyebrow": "Descubrimiento global de viajes"
+  },
+  "fr": {
+    "homeTitle": "Voyages remarquables. Un monde.",
+    "homeLead": "Découvrez trains, grandes routes, îles et voyages entre continents. Explorez, comparez, enregistrez et planifiez à votre rythme.",
+    "homeNavSub": "Découvrez des voyages remarquables",
+    "homeGlobeHint": "Sélectionnez un itinéraire, puis ouvrez le voyage.",
+    "inspireMe": "Inspirez-moi",
+    "inspireLead": "Un voyage publié différent chaque jour. Laissez-vous surprendre ou continuez à explorer.",
+    "journeyOfMoment": "Voyage du moment",
+    "unexpectedJourneys": "Idées inattendues",
+    "recentlyViewed": "Consultés récemment",
+    "showcaseJourney": "Un voyage qui relie le monde",
+    "chooseStartDate": "Choisissez votre date de départ",
+    "planningContext": "Contexte de planification",
+    "planningDateLead": "Votre date est un choix local de planification. L’itinéraire reste intact.",
+    "historicalScenario": "Scénario de planification original",
+    "snapshotOnly": "Exemple historique ; ni départ fixe ni plan de réservation actuel.",
+    "dateRecheckLead": "Changer les dates ne vérifie ni transports, prix, règles d’entrée ni saisonnalité. Vérifiez-les pour vos dates.",
+    "selectedJourney": "Voyage sélectionné",
+    "socialStory": "Story sociale",
+    "socialStoryLead": "Explorez tout l’itinéraire, enregistrez-le et vérifiez la planification de votre voyage.",
+    "discoverJourney": "Découvrir",
+    "theRoute": "L’itinéraire",
+    "keyStops": "Étapes clés",
+    "understandJourney": "Comprendre le voyage",
+    "exploreFullJourney": "Explorer le voyage complet",
+    "illustratedRoute": "Itinéraire illustré · hors échelle",
+    "copyCaption": "Copier la légende",
+    "captionCopied": "Légende copiée",
+    "shareJourney": "Partager le voyage",
+    "copyLink": "Copier le lien",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "socialUnavailable": "Story sociale indisponible",
+    "flagship": "Voyage de démonstration",
+    "homeEyebrow": "Découverte mondiale de voyages"
+  },
+  "pt": {
+    "homeTitle": "Viagens extraordinárias. Um mundo.",
+    "homeLead": "Descubra aventuras de trem, estradas abertas, ilhas e viagens entre continentes. Explore, compare, salve e planeje quando quiser.",
+    "homeNavSub": "Descubra viagens extraordinárias",
+    "homeGlobeHint": "Selecione uma rota e abra a viagem.",
+    "inspireMe": "Inspire-me",
+    "inspireLead": "Uma viagem publicada diferente a cada dia. Surpreenda-se ou continue explorando.",
+    "journeyOfMoment": "Viagem do momento",
+    "unexpectedJourneys": "Ideias inesperadas",
+    "recentlyViewed": "Vistos recentemente",
+    "showcaseJourney": "Uma viagem que conecta o mundo",
+    "chooseStartDate": "Escolha a data de início",
+    "planningContext": "Contexto de planejamento",
+    "planningDateLead": "Sua data é uma escolha local de planejamento. A rota permanece intacta.",
+    "historicalScenario": "Cenário de planejamento original",
+    "snapshotOnly": "Exemplo histórico; não uma partida fixa ou um plano atual de reservas.",
+    "dateRecheckLead": "Alterar datas não verifica transportes, preços, regras de entrada ou sazonalidade. Confira para suas datas.",
+    "selectedJourney": "Viagem selecionada",
+    "socialStory": "Story social",
+    "socialStoryLead": "Explore toda a rota, salve e confira o planejamento da sua viagem.",
+    "discoverJourney": "Descubra",
+    "theRoute": "A rota",
+    "keyStops": "Paradas principais",
+    "understandJourney": "Entenda a viagem",
+    "exploreFullJourney": "Explore a viagem completa",
+    "illustratedRoute": "Rota ilustrada · fora de escala",
+    "copyCaption": "Copiar legenda",
+    "captionCopied": "Legenda copiada",
+    "shareJourney": "Compartilhar viagem",
+    "copyLink": "Copiar link",
+    "previous": "Anterior",
+    "next": "Próximo",
+    "socialUnavailable": "Story social indisponível",
+    "flagship": "Viagem demonstrativa",
+    "homeEyebrow": "Descoberta global de viagens"
+  }
+};
+  for(const lang of SUPPORTED_LOCALES)Object.assign(I18N[lang],INSPIRATION_TEXT[lang]);
 
   root.i18n={
     supportedLocales:[...SUPPORTED_LOCALES],
@@ -3696,15 +3926,22 @@
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
   const SAFE_ASSET=/^\.\/assets\/[a-z0-9_./-]+$/i;
 
-  function descriptor(entry,fallbackTheme='ocean'){
+  function descriptor(entry,fallbackTheme='ocean',ratio='landscape'){
     const theme=String(entry?.theme||fallbackTheme||'ocean').replace(/[^a-z0-9-]/gi,'')||'ocean';
-    if(entry?.type==='image'&&entry.license&&entry.attribution&&SAFE_ASSET.test(String(entry.asset||''))&&!String(entry.asset).split('/').includes('..')){
-      const asset=String(entry.asset);
+    const derivative=entry?.derivatives?.[ratio];
+    const asset=String(derivative?.asset||entry?.asset||'');
+    const generatedApproved=entry?.sourceType!=='generated'||(entry.rightsStatus==='approved'&&entry.status==='published');
+    if(entry?.type==='image'&&generatedApproved&&entry.license&&entry.attribution&&SAFE_ASSET.test(asset)&&!asset.split('/').includes('..')){
+      const focal=derivative?.focalPoint||entry.focalPoint||{x:.5,y:.5};
+      const x=Number.isFinite(focal.x)?Math.max(0,Math.min(1,focal.x)):.5,y=Number.isFinite(focal.y)?Math.max(0,Math.min(1,focal.y)):.5;
       return {
         type:'image',
+        asset,
+        alt:entry.alt||'',
+        focalPoint:{x,y},
         theme,
         className:'platform-media-image visual-'+theme,
-        style:'background-image:linear-gradient(180deg,rgba(5,10,17,.08),rgba(5,10,17,.5)),url("'+asset.replace(/"/g,'')+'")',
+        style:'background-image:linear-gradient(180deg,rgba(5,10,17,.08),rgba(5,10,17,.5)),url("'+asset.replace(/"/g,'')+'");background-position:'+Math.round(x*100)+'% '+Math.round(y*100)+'%',
         attribution:String(entry.attribution||''),
         license:String(entry.license||'')
       };
@@ -3740,8 +3977,19 @@
     return {arcs:points.slice(1).map((point,index)=>({start:points[index],end:point}))};
   }
 
-  root.media={descriptor,credit,routeArt,tripPreview};
+  let registryPromise;
+  async function resolveReference(meta,trip){
+    const reference=trip.media?.heroAssetId||meta.visual?.coverAssetId;
+    if(!reference)return trip;
+    registryPromise=registryPromise||fetch('./data/platform/generated-media.json').then(r=>{if(!r.ok)throw Error('Media registry unavailable');return r.json()}).catch(()=>({assets:[]}));
+    const registry=await registryPromise;
+    const candidate=(registry.assets||[]).find(a=>a.assetId===reference&&a.status==='published'&&a.rightsStatus==='approved');
+    if(!candidate||descriptor(candidate).type!=='image')return trip;
+    return {...trip,media:{...trip.media,hero:candidate}};
+  }
+  root.media={descriptor,credit,routeArt,tripPreview,resolveReference};
 })();
+
 
 /* ===== platform/partners.js ===== */
 (() => {
@@ -3842,6 +4090,7 @@
   function bind(){
     const d=context();
     const handler=async()=>{
+      if(d.getMeta?.()&&d.ensureDialog)return openMenu();
       const result=await shareCurrent();
       if(result.reason==='cancelled')return;
     };
@@ -3865,8 +4114,92 @@
     return Boolean(desktop||mobile);
   }
 
-  const api={configure,shareCurrent,bind};
+  function openMenu(){
+    const d=context(),meta=d.getMeta?.();if(!meta)return shareCurrent();
+    const modal=d.ensureDialog('platformShareMenu'),e=d.esc;
+    modal.innerHTML='<div class="platform-modal-card share-menu-card"><button type="button" class="platform-x" aria-label="'+e(d.t('close'))+'">×</button><h2>'+e(d.t('shareJourney'))+'</h2><p>'+e(d.title())+'</p><div class="platform-share-actions"><button type="button" data-share-native>'+e(d.t('share'))+'</button><button type="button" data-share-link>'+e(d.t('copyLink'))+'</button><button type="button" data-share-story>'+e(d.t('socialStory'))+'</button><button type="button" data-share-caption>'+e(d.t('copyCaption'))+'</button><button type="button" data-share-planning>'+e(d.t('chooseStartDate'))+'</button></div></div>';
+    modal.querySelector('.platform-x').onclick=()=>modal.classList.add('hidden');
+    modal.querySelector('[data-share-native]').onclick=shareCurrent;
+    const copy=async value=>{try{await navigator.clipboard.writeText(value);d.toast(d.t('shareCopied'))}catch{d.toast(d.t('shareCopyFallback'))}};
+    modal.querySelector('[data-share-link]').onclick=()=>copy(d.url(meta));
+    modal.querySelector('[data-share-caption]').onclick=()=>copy(root.socialStory.caption(meta,d));
+    modal.querySelector('[data-share-story]').onclick=()=>root.socialStory.open(meta,d.getTrip?.()).catch(()=>d.toast(d.t('socialUnavailable')));
+    modal.querySelector('[data-share-planning]').onclick=d.onPlanning;
+    modal.classList.remove('hidden');
+  }
+
+  const api={configure,shareCurrent,bind,openMenu};
   root.share=api;
+})();
+
+
+/* ===== platform/social-story.js ===== */
+(() => {
+  'use strict';
+  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  let deps=null;
+  const positive=v=>Number.isFinite(v)&&v>0;
+  function facts(meta,t){
+    const m=meta.metrics||{},parts=[];
+    if(positive(m.countries))parts.push(m.countries+' '+t(m.countries===1?'countryUnit':'countriesUnit'));
+    if(positive(m.days))parts.push(m.days+' '+t('days'));
+    if(positive(m.stops))parts.push(m.stops+' '+t('stops'));
+    return parts.join(' · ');
+  }
+  const caption=(meta,d)=>d.local(meta.title)+'\n'+facts(meta,d.t)+'\n'+d.t('exploreFullJourney')+' — ONE WORLD ROUTE\n'+d.url(meta);
+  async function open(meta,trip){
+    const d=deps;if(!d||!meta)return;
+    if(!trip)trip=await fetch(meta.dataset).then(r=>{if(!r.ok)throw Error('Journey unavailable');return r.json()});
+    trip=await root.media.resolveReference(meta,trip);
+    const modal=d.ensureDialog('platformSocialStory'),identity=root.visualIdentity.identity(meta);
+    let preview=root.media.tripPreview(trip);
+    let stops=(trip.stops||[]).map(s=>d.local((trip.places||[]).find(p=>p.id===s.placeId)?.name)).filter(Boolean);
+    if(!preview.arcs.length&&(trip.countries||[]).length){
+      const countries=await fetch('./data/country-centroids.json').then(r=>r.json());const byName=new Map(countries.map(c=>[c.name,c]));
+      const names=new Intl.DisplayNames([d.locale()],{type:'region'});
+      preview={arcs:(trip.segments||[]).map(s=>({start:byName.get(s.from),end:byName.get(s.to)})).filter(a=>a.start&&a.end)};
+      stops=(trip.countries||[]).slice(0,6).map(c=>{const geo=byName.get(c.name);return geo?.cca2?names.of(geo.cca2):c.name});
+    }
+    const visual=root.media.routeArt(preview),mode=(meta.discovery?.modes||[]).map(d.facetLabel).join(' · ');
+    const media=root.media.descriptor(trip.media?.hero,meta.visual?.theme,'vertical');
+    const scenes=[
+      {label:d.t('discoverJourney'),title:d.local(meta.title),body:facts(meta,d.t),art:visual},
+      {label:d.t('theRoute'),title:d.local(meta.title),body:mode,art:visual},
+      {label:d.t('keyStops'),title:d.t('keyStops'),body:stops.slice(0,6).join(' → '),art:visual},
+      {label:d.t('understandJourney'),title:facts(meta,d.t),body:d.local(meta.subtitle),art:visual},
+      {label:d.t('exploreFullJourney'),title:d.local(meta.title),body:d.t('socialStoryLead'),art:visual}
+    ];
+    let index=0;
+    const render=()=>{
+      const scene=scenes[index],e=d.esc;
+      modal.innerHTML='<div class="platform-modal-card social-story-card"><button type="button" class="platform-x" aria-label="'+e(d.t('close'))+'">×</button><h2 id="platformSocialStoryTitle" class="social-story-heading">'+e(d.t('socialStory'))+'</h2><div class="social-story-stage '+e(media.className)+'"'+(media.style?' style="'+e(media.style)+'"':'')+'><span class="social-story-brand">ONE WORLD ROUTE</span><div class="social-story-route" style="--journey-color:'+identity.color+'">'+scene.art+'</div><div class="social-story-copy" aria-live="polite"><span>'+e(scene.label)+'</span><h3>'+e(scene.title)+'</h3><p>'+e(scene.body)+'</p>'+(index===scenes.length-1?'<button class="primary" type="button" data-social-open>'+e(d.t('openJourney'))+' →</button>':'')+'</div><small>'+e(d.t('illustratedRoute'))+'</small></div><div class="social-story-controls"><button type="button" data-social-prev aria-label="'+e(d.t('previous'))+'" '+(index===0?'disabled':'')+'>←</button><span>'+String(index+1)+' / '+scenes.length+'</span><button type="button" data-social-next aria-label="'+e(d.t('next'))+'" '+(index===scenes.length-1?'disabled':'')+'>→</button><button type="button" data-social-copy>'+e(d.t('copyCaption'))+'</button></div></div>';
+      modal.querySelector('.platform-x').onclick=()=>modal.classList.add('hidden');
+      modal.querySelector('[data-social-prev]').onclick=()=>move(-1);
+      modal.querySelector('[data-social-next]').onclick=()=>move(1);
+      modal.querySelector('[data-social-open]')?.addEventListener('click',()=>d.onOpen(meta.id));
+      modal.querySelector('[data-social-copy]').onclick=async()=>{try{await navigator.clipboard.writeText(caption(meta,d));d.toast(d.t('captionCopied'))}catch{d.toast(d.t('shareCopyFallback'))}};
+    };
+    const move=delta=>{index=Math.max(0,Math.min(scenes.length-1,index+delta));render();modal.querySelector(delta>0?'[data-social-prev]':'[data-social-next]')?.focus()};
+    render();modal.classList.remove('hidden');
+    modal.onkeydown=event=>{if(event.key==='ArrowRight'||event.key==='ArrowLeft'){event.preventDefault();move(event.key==='ArrowRight'?1:-1)}};
+  }
+  root.socialStory={configure:d=>{deps=d},open,facts,caption};
+})();
+
+
+/* ===== platform/planning-context.js ===== */
+(() => {
+  'use strict';
+  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  function open(meta,d){
+    if(!meta)return;
+    const modal=d.ensureDialog('platformPlanningContext'),e=d.esc,date=d.tripTools.getStartDate(d.storage,meta.id),scenario=meta.defaultPlanningScenario;
+    modal.innerHTML='<form class="platform-modal-card planning-context-card"><button class="platform-x" type="button" aria-label="'+e(d.t('close'))+'">×</button><h2>'+e(d.t('chooseStartDate'))+'</h2><p>'+e(d.local(meta.title))+'</p><p class="platform-lead">'+e(d.t('planningDateLead'))+'</p><label>'+e(d.t('startDate'))+'<input type="date" name="startDate" value="'+e(date||'')+'"></label>'+(scenario?'<details><summary>'+e(d.t('historicalScenario'))+'</summary><p>'+e(scenario.startDate)+' · '+e(d.t('snapshotOnly'))+'</p></details>':'')+'<p class="platform-privacy">'+e(d.t('dateRecheckLead'))+'</p><div class="platform-form-actions"><button type="submit" class="primary">'+e(d.t('save'))+'</button></div></form>';
+    modal.querySelector('.platform-x').onclick=()=>modal.classList.add('hidden');
+    modal.querySelector('form').onsubmit=event=>{event.preventDefault();d.tripTools.setStartDate(d.storage,meta.id,new FormData(event.currentTarget).get('startDate'));location.reload()};
+    modal.classList.remove('hidden');
+  }
+  root.planningContext={open};
 })();
 
 
@@ -4571,6 +4904,28 @@
   const PAGE_SIZE=24;
   const PRIMARY_REGIONS=['europe','asia','africa','north-america','south-america','oceania'];
   let resultLimit=PAGE_SIZE;
+  let selectedJourney=null,hoverJourney=null,lastSurprise=null;
+  let globeArcs=[];
+  function selectJourney(id,hover=false){
+    if(hover)hoverJourney=id;else selectedJourney=id;
+    const active=hoverJourney||selectedJourney,globe=window.__ONE_WORLD_ROUTE_GLOBE__,d=context();
+    if(globe&&globeArcs.length)globe.arcsData([...globeArcs].sort((a,b)=>Number(a.tripId===active)-Number(b.tripId===active)));
+    const meta=d.catalog.trips.find(t=>t.id===active),host=$('#platformHomeGlobePreview');
+    if(host){host.hidden=!meta;if(meta)host.innerHTML='<span>'+d.esc(d.t('selectedJourney'))+'</span><strong>'+d.esc(d.local(meta.title))+'</strong><small>'+d.esc(metricChips(meta).slice(0,3).join(' · '))+'</small><button type="button" data-open-home-trip="'+d.esc(meta.id)+'">'+d.esc(d.t('openJourney'))+' →</button>'; }
+  }
+  function inspire(){
+    const d=context(),published=d.catalog.trips.filter(t=>t.status!=='draft'),pool=published.length>1?published.filter(t=>t.id!==lastSurprise):published;
+    const meta=pool[Math.floor(Math.random()*pool.length)];if(!meta)return;
+    lastSurprise=meta.id;selectedJourney=meta.id;hoverJourney=null;selectJourney(meta.id);
+    $('#platformHomeMoment').innerHTML=card(meta);
+    $('#platformHomeInspiration').scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+  }
+  function inspirationMarkup(){
+    const d=context(),pool=d.catalog.trips.filter(t=>t.status!=='draft').sort((a,b)=>a.id.localeCompare(b.id));
+    const day=Math.floor(Date.now()/86400000),moment=pool[day%pool.length];
+    const recent=d.tripTools.load(d.storage).recentTrips.map(id=>pool.find(t=>t.id===id)).filter(Boolean).slice(0,2);
+    return '<section id="platformHomeInspiration" class="platform-home-inspiration"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('journeyOfMoment'))+'</div><h2>'+d.esc(d.t('unexpectedJourneys'))+'</h2><p>'+d.esc(d.t('inspireLead'))+'</p></div><button type="button" data-home-inspire>'+d.esc(d.t('inspireMe'))+' →</button></div><div class="platform-home-inspiration-grid"><div id="platformHomeMoment">'+(moment?card(moment):'')+'</div>'+(recent.length?'<div class="platform-home-recent"><h3>'+d.esc(d.t('recentlyViewed'))+'</h3>'+recent.map(meta=>'<button type="button" data-open-home-trip="'+d.esc(meta.id)+'">'+d.esc(d.local(meta.title))+' →</button>').join('')+'</div>':'')+'</div></section>';
+  }
   const $=(s,r=document)=>r.querySelector(s);
 
   function configure(next){deps=next;return api}
@@ -4644,8 +4999,9 @@
     const d=context(),entry=mediaManifest.find(item=>item.id===trip.id)?.hero;
     const media=root.media.descriptor(entry,visualTheme(trip));
     const preview=tripIndex.find(item=>item.id===trip.id)?.preview;
-    const art=media.type==='image'?'':root.media.routeArt(preview);
-    return '<div class="platform-home-card-visual '+d.esc(media.className)+'" data-media-type="'+media.type+'"'+(media.style?' style="'+d.esc(media.style)+'"':'')+'><div class="platform-home-card-visual-top"><span>'+d.esc(d.facetLabel(primaryRegion(trip)))+'</span><b>'+d.esc(d.facetLabel(trip.kind))+'</b></div>'+art+root.media.credit(entry,d.esc)+'</div>';
+    const portrait=root.media.descriptor(entry,visualTheme(trip),'portrait');
+    const art=media.type==='image'?'<picture class="platform-cover-image"><source media="(max-width:820px)" srcset="'+d.esc(portrait.asset||media.asset)+'"><img loading="lazy" decoding="async" src="'+d.esc(media.asset)+'" alt="'+d.esc(d.local(media.alt)||d.local(trip.title))+'" style="--cover-landscape:'+Math.round(media.focalPoint.x*100)+'% '+Math.round(media.focalPoint.y*100)+'%;--cover-portrait:'+Math.round((portrait.focalPoint||media.focalPoint).x*100)+'% '+Math.round((portrait.focalPoint||media.focalPoint).y*100)+'%"></picture>':root.media.routeArt(preview);
+    return '<div class="platform-home-card-visual '+d.esc(media.className)+'" data-media-type="'+media.type+'" style="--journey-color:'+root.visualIdentity.identity(trip).color+';'+d.esc(media.type==='image'?'':media.style||'')+'"><div class="platform-home-card-visual-top"><span>'+d.esc(d.facetLabel(primaryRegion(trip)))+'</span><b>'+d.esc(d.facetLabel(trip.kind))+'</b></div>'+art+root.media.credit(entry,d.esc)+'</div>';
   }
 
   function actionIcon(kind){
@@ -4678,7 +5034,7 @@
   }
 
   function platformProofMarkup(){
-    const d=context(),trips=(d.catalog.trips||[]).filter(trip=>trip.id!==d.catalog.defaultTripId),facets=d.Discovery.facets({trips});
+    const d=context(),trips=(d.catalog.trips||[]),facets=d.Discovery.facets({trips});
     const regions=PRIMARY_REGIONS.filter(region=>trips.some(trip=>(trip.discovery?.regions||[]).includes(region))).length;
     const kinds=facets.kinds.length;
     return '<div class="platform-home-proof">'+
@@ -4691,8 +5047,8 @@
 
   function finderMarkup(){
     const d=context(),facets=d.Discovery.facets(d.catalog);
-    const kinds=facets.kinds.filter(value=>value!=='world');
-    const regions=PRIMARY_REGIONS.filter(region=>(d.catalog.trips||[]).some(trip=>trip.id!==d.catalog.defaultTripId&&(trip.discovery?.regions||[]).includes(region)));
+    const kinds=facets.kinds;
+    const regions=PRIMARY_REGIONS.filter(region=>(d.catalog.trips||[]).some(trip=>(trip.discovery?.regions||[]).includes(region)));
     const finderSelect=(id,label,values,emptyLabel=d.t('all'))=>'<label><span>'+d.esc(label)+'</span><select id="'+id+'"><option value="">'+d.esc(emptyLabel)+'</option>'+values.map(v=>option(v,d.facetLabel(v))).join('')+'</select></label>';
     return '<section class="platform-home-finder" id="platformHomeFinder"><div class="platform-home-finder-copy"><div class="platform-home-section-kicker">'+d.esc(d.t('findJourneyEyebrow'))+'</div><h2>'+d.esc(d.t('findJourneyTitle'))+'</h2><p>'+d.esc(d.t('findJourneyLead'))+'</p></div>'+
       '<div class="platform-home-finder-grid">'+
@@ -4723,14 +5079,14 @@
     ];
     return '<div class="platform-home-region-grid">'+regions.map(([region,theme])=>{
       const count=(d.catalog.trips||[]).filter(trip=>(trip.discovery?.regions||[]).includes(region)).length;
-      return '<button type="button" class="platform-home-region-card visual-'+d.esc(theme)+'" data-home-quick-type="region" data-home-quick-value="'+d.esc(region)+'"><svg class="platform-region-map" viewBox="0 0 320 180" aria-hidden="true" data-region-map="'+d.esc(region)+'"></svg><span>'+d.esc(String(count))+' '+d.esc(d.pluralLabel(count,'resultOne','results'))+'</span><strong>'+d.esc(d.facetLabel(region))+'</strong><i aria-hidden="true">↗</i></button>';
+      return '<button type="button" class="platform-home-region-card visual-'+d.esc(theme)+'" data-home-quick-type="region" data-home-quick-value="'+d.esc(region)+'" style="--journey-color:'+root.visualIdentity.palette[region]+'"><svg class="platform-region-map" viewBox="0 0 320 180" aria-hidden="true" data-region-map="'+d.esc(region)+'"></svg><span>'+d.esc(String(count))+' '+d.esc(d.pluralLabel(count,'resultOne','results'))+'</span><strong>'+d.esc(d.facetLabel(region))+'</strong><i aria-hidden="true">↗</i></button>';
     }).join('')+'</div>';
   }
 
   function renderFeatured(){
     const d=context(),host=$('#platformHomeFeatured');
     if(!host)return;
-    const candidates=(d.catalog.trips||[]).filter(trip=>trip.id!==d.catalog.defaultTripId);
+    const candidates=(d.catalog.trips||[]);
     const trips=(d.profileConfigured?.()
       ?d.travellerFit.orderRecommendations(candidates,d.loadProfile()).map(result=>result.trip)
       :[...candidates].sort((a,b)=>Number(b.visual?.featurePriority||0)-Number(a.visual?.featurePriority||0))
@@ -4758,7 +5114,7 @@
     const d=context();
     if(!collections.length)return '';
     return '<section class="platform-home-collections"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('journeyDiscovery'))+'</div><h2>'+d.esc(d.t('curatedCollections'))+'</h2><p>'+d.esc(d.t('collectionsLead'))+'</p></div></div><div class="platform-home-collection-grid">'+collections.map(item=>{
-      const members=(d.catalog.trips||[]).filter(trip=>trip.id!==d.catalog.defaultTripId&&collectionMatches(trip,item)),count=members.length;
+      const members=(d.catalog.trips||[]).filter(trip=>collectionMatches(trip,item)),count=members.length;
       const symbol=item.filters?.pace||item.filters?.mode||item.filters?.theme||item.filters?.themeAny?.[0]||'journey';
       const icons={rail:'M4 5h16v12H4z M8 9h8 M8 13h1 M15 13h1 M8 17l-3 4 M16 17l3 4', 'road-trip':'M8 2 5 22 M16 2l3 20 M12 4v4 M12 12v4 M12 20v2',islands:'M2 17q5-4 10 0t10 0 M5 12l4-6 5 6 M12 12l5-9 5 9',nature:'M12 3 4 15h5v6h6v-6h5z',wildlife:'M12 3 4 15h5v6h6v-6h5z',culture:'M3 8l9-5 9 5 M5 10v9 M12 10v9 M19 10v9 M3 21h18',active:'M3 20 10 5l4 7 3-5 5 13',relaxed:'M4 12a8 8 0 1 0 16 0 M12 4v8l4 3',journey:'M12 3a9 9 0 1 0 0 18 9 9 0 1 0 0-18 M15 8l-2 6-5 2 2-6z'};
       const icon='<svg class="platform-collection-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="'+(icons[symbol]||icons.journey)+'"/></svg>';
@@ -4907,7 +5263,7 @@
               ...segment,tripId:flagship.id,tripTitle,featured:true,
               start:{lat:Number(from.lat),lng:Number(from.lng)},
               end:{lat:Number(to.lat),lng:Number(to.lng)},
-              fromName:countryName(from),toName:countryName(to),previewRole:'flagship'
+              fromName:countryName(from),toName:countryName(to),startRegion:root.visualIdentity.region(from.region,from.subregion),endRegion:root.visualIdentity.region(to.region,to.subregion),previewRole:'showcase'
             });
           }
           for(const country of centroids){
@@ -4916,12 +5272,15 @@
               id:'flagship-'+country.cca3,tripId:flagship.id,tripTitle,
               displayName:countryName(country),
               coordinates:{lat:Number(country.lat),lng:Number(country.lng)},
-              previewRole:'flagship'
+              previewRole:'showcase'
             });
           }
         }
       }catch(error){console.warn('Homepage flagship route preview unavailable',error)}
     }
+    globeArcs=arcs;
+    const active=()=>hoverJourney||selectedJourney;
+    const color=item=>{const meta=metaMap.get(item.tripId),alpha=active()&&active()!==item.tripId?'35':'dd';return [root.visualIdentity.identity(meta,item.startRegion).color+alpha,root.visualIdentity.identity(meta,item.endRegion).color+alpha]};
     try{
       if(typeof globe.htmlElementsData==='function')globe.htmlElementsData([]);
       if(typeof globe.labelsData==='function')globe.labelsData([]);
@@ -4931,19 +5290,20 @@
         .arcEndLat(item=>item.end.lat).arcEndLng(item=>item.end.lng)
         .arcAltitude(item=>{
           const span=Math.max(Math.abs(item.start.lat-item.end.lat),Math.abs(item.start.lng-item.end.lng));
-          return item.previewRole==='flagship'?Math.min(.17,.025+span*.0022):Math.min(.075,.012+span*.0015);
+          return Math.min(.11,.015+span*.0015);
         })
-        .arcStroke(item=>item.previewRole==='flagship'?.16:(item.featured?.34:.22))
-        .arcColor(item=>item.previewRole==='flagship'?'rgba(89,221,255,.42)':(item.featured?['#59ddff','#9276ff']:'rgba(124,166,205,.44)'))
+        .arcStroke(item=>item.tripId===selectedJourney?.42:item.tripId===hoverJourney?.32:active()?.17:.23)
+        .arcColor(color)
         .arcDashLength(1).arcDashGap(0).arcDashAnimateTime(0)
         .arcLabel(item=>'<b>'+d.esc(item.tripTitle)+'</b><br><span>'+d.esc(item.fromName)+' → '+d.esc(item.toName)+'</span>')
-        .onArcClick(item=>d.onOpenTrip(item.tripId));
+        .onArcHover(item=>selectJourney(item?.tripId||null,true))
+        .onArcClick(item=>{hoverJourney=null;selectJourney(item.tripId)});
       globe.pointsData(points)
         .pointLat(place=>place.coordinates.lat).pointLng(place=>place.coordinates.lng)
-        .pointAltitude(.011).pointRadius(place=>place.previewRole==='flagship'?.026:.055)
-        .pointColor(place=>place.previewRole==='flagship'?'rgba(172,222,240,.42)':'rgba(207,243,255,.72)')
+        .pointAltitude(.011).pointRadius(place=>place.tripId===active()?.085:.04)
+        .pointColor(place=>root.visualIdentity.identity(metaMap.get(place.tripId)).color)
         .pointLabel(place=>'<b>'+d.esc(place.displayName)+'</b><br><span>'+d.esc(place.tripTitle)+'</span>')
-        .onPointClick(place=>d.onOpenTrip(place.tripId));
+        .onPointClick(place=>{hoverJourney=null;selectJourney(place.tripId)});
       if(typeof globe.polygonLabel==='function')globe.polygonLabel(()=> '');
       if(globe.controls()){
         globe.controls().autoRotate=!matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -5004,6 +5364,7 @@
         return
       }
       if(event.target.closest('[data-home-explore]')){$('#platformHomeExplore')?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});return}
+      if(event.target.closest('[data-home-inspire]')){inspire();return}
       if(event.target.closest('[data-home-find]')){$('#platformHomeFinder')?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});return}
       if(event.target.closest('[data-home-finder-apply]')){
         activeCollection=null;
@@ -5065,8 +5426,8 @@
   }
 
   async function open(){
-    const d=context(),flagship=(d.catalog.trips||[]).find(item=>item.id===d.catalog.defaultTripId);
-    if(!flagship)throw new Error('Flagship trip missing from catalog');
+    const d=context(),flagship=(d.catalog.trips||[]).find(item=>item.showcase)||(d.catalog.trips||[])[0];
+    if(!flagship)throw new Error('Journey catalog is empty');
     try{
       const [collectionResponse,indexResponse,mediaResponse]=await Promise.all([
         fetch('./data/platform/collections.json',{cache:'no-cache'}),
@@ -5089,12 +5450,12 @@
     host.innerHTML=
       '<header class="platform-home-nav"><button class="platform-home-brand" data-home-top type="button"><span class="brand-orbit"><i></i></span><span><strong>ONE WORLD ROUTE</strong><small>'+d.esc(d.t('homeNavSub'))+'</small></span></button><nav><button data-home-explore type="button">'+d.esc(d.t('routes'))+'</button><button data-home-mytrips type="button">'+d.esc(d.t('myTrips'))+'</button><button data-home-traveller type="button">'+d.esc(d.t('traveller'))+'</button><details class="platform-home-overflow"'+(matchMedia('(min-width:821px)').matches?' open':'')+'><summary>'+d.esc(d.t('more'))+'</summary><div><button data-home-method type="button">'+d.esc(d.t('methodology'))+'</button></div></details></nav></header>'+
       '<main>'+
-        '<section class="platform-home-hero"><div class="platform-home-hero-copy"><div class="platform-home-kicker">ONE WORLD ROUTE · '+d.esc(d.t('homeEyebrow'))+'</div><h1>'+d.esc(d.t('homeTitle'))+'</h1><p>'+d.esc(d.t('homeLead'))+'</p><div class="platform-home-hero-actions"><button class="primary" data-home-find type="button">'+d.esc(d.t('findJourneyTitle'))+'</button></div></div><div class="platform-home-globe-caption"><span>'+d.esc(d.t('homeGlobeLabel'))+'</span><b>'+d.esc(d.t('homeGlobeHint'))+'</b></div></section>'+
-        finderMarkup()+
+        '<section class="platform-home-hero"><div class="platform-home-hero-copy"><div class="platform-home-kicker">ONE WORLD ROUTE · '+d.esc(d.t('homeEyebrow'))+'</div><h1>'+d.esc(d.t('homeTitle'))+'</h1><p>'+d.esc(d.t('homeLead'))+'</p><div class="platform-home-hero-actions"><button class="primary" data-home-inspire type="button">'+d.esc(d.t('inspireMe'))+'</button><button data-home-find type="button">'+d.esc(d.t('findJourneyTitle'))+'</button></div></div><div class="platform-home-globe-caption"><span>'+d.esc(d.t('homeGlobeLabel'))+'</span><b>'+d.esc(d.t('homeGlobeHint'))+'</b></div><div id="platformHomeGlobePreview" class="platform-home-globe-preview" aria-live="polite" hidden></div></section>'+
+        finderMarkup()+inspirationMarkup()+
         '<section class="platform-home-featured"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('journeyDiscovery'))+'</div><h2>'+d.esc(d.profileConfigured?.()?d.t('recommendedForYou'):d.t('featuredJourneys'))+'</h2><p>'+d.esc(d.profileConfigured?.()?d.t('recommendationContextLead'):d.t('featuredLead'))+'</p></div></div><div class="platform-home-featured-grid" id="platformHomeFeatured"></div>'+platformProofMarkup()+'</section>'+
         collectionsMarkup()+
         '<section class="platform-home-regions"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('filterRegion'))+'</div><h2>'+d.esc(d.t('exploreByRegion'))+'</h2></div></div>'+regionCollectionsMarkup()+'</section>'+
-        '<section class="platform-home-flagship"><div><div class="platform-home-section-kicker">'+d.esc(d.t('flagshipJourney'))+'</div><h2>'+d.esc(d.local(flagship.title))+'</h2><p>'+d.esc(d.local(flagship.subtitle))+'</p><button type="button" data-open-home-trip="'+d.esc(flagship.id)+'">'+d.esc(d.t('openFlagship'))+' →</button></div><div class="platform-home-flagship-metrics"><article><b>'+d.esc(flagship.metrics?.countries??'—')+'</b><span>'+d.esc(d.t('homeStates'))+'</span></article><article><b>'+d.esc(flagship.metrics?.internationalLegs??'—')+'</b><span>'+d.esc(d.t('homeLegs'))+'</span></article><article><b>'+d.esc(flagship.metrics?.days??'—')+'</b><span>'+d.esc(d.t('homePlannedDays'))+'</span></article><article><b>'+d.esc(formatDate(flagship.metrics?.startDate))+'</b><span>'+d.esc(d.t('homeStart'))+'</span></article><article><b>'+d.esc(formatBudget(flagship.metrics?.budget))+'</b><span>'+d.esc(d.t('homeBaseModel'))+'</span></article></div></section>'+
+        '<section class="platform-home-flagship"><div><div class="platform-home-section-kicker">'+d.esc(d.t('showcaseJourney'))+'</div><h2>'+d.esc(d.local(flagship.title))+'</h2><p>'+d.esc(d.local(flagship.subtitle))+'</p><button type="button" data-open-home-trip="'+d.esc(flagship.id)+'">'+d.esc(d.t('openJourney'))+' →</button></div><div class="platform-home-flagship-metrics"><article><b>'+d.esc(flagship.metrics?.countries??'—')+'</b><span>'+d.esc(d.t('homeStates'))+'</span></article><article><b>'+d.esc(flagship.metrics?.internationalLegs??'—')+'</b><span>'+d.esc(d.t('homeLegs'))+'</span></article><article><b>'+d.esc(flagship.metrics?.days??'—')+'</b><span>'+d.esc(d.t('homePlannedDays'))+'</span></article><article><b>'+d.esc(d.t('chooseStartDate'))+'</b><span>'+d.esc(d.t('planningContext'))+'</span></article><article><b>'+d.esc(formatBudget(flagship.metrics?.budget))+'</b><span>'+d.esc(d.t('homeBaseModel'))+'</span></article></div></section>'+
         '<section class="platform-home-explore" id="platformHomeExplore"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('journeyDiscovery'))+'</div><h2>'+d.esc(d.t('allJourneys'))+'</h2><p>'+d.esc(d.t('journeyDiscoveryLead'))+'</p></div><div class="platform-home-resultbar"><span id="platformHomeCount"></span><label class="platform-home-sort"><span>'+d.esc(d.t('sortBy'))+'</span><select id="homeRouteSort"><option value="recommended">'+d.esc(d.t('sortRecommended'))+'</option><option value="featured">'+d.esc(d.t('sortFeatured'))+'</option><option value="shortest">'+d.esc(d.t('sortShortest'))+'</option><option value="longest">'+d.esc(d.t('sortLongest'))+'</option><option value="alphabetical">'+d.esc(d.t('sortAlphabetical'))+'</option></select></label><button id="platformHomeCompare" data-home-compare-open type="button" disabled>'+d.esc(d.t('compareSelected').replace('{count}','0'))+'</button><button data-home-reset type="button">'+d.esc(d.t('resetFilters'))+'</button></div></div>'+quickExploreMarkup()+'<div id="platformHomeCollectionContext" class="platform-home-collection-context" hidden></div>'+filtersMarkup()+'<div class="platform-home-grid" id="platformHomeResults"></div><button class="platform-home-more" id="platformHomeMore" data-home-load-more type="button" hidden>'+d.esc(d.t('loadMoreJourneys').replace('{count}',String(PAGE_SIZE)))+'</button></section>'+
         '<section class="platform-home-method" id="platformHomeMethodology"><div class="platform-home-section-kicker">'+d.esc(d.t('methodology'))+'</div><h2>'+d.esc(d.t('inspirationMethodTitle'))+'</h2><p>'+d.esc(d.t('inspirationMethodText'))+'</p><div><article><b>'+d.esc(d.t('homeSourceRuleTitle'))+'</b><span>'+d.esc(d.t('homeSourceRule'))+'</span></article><article><b>'+d.esc(d.t('homeUnknownRuleTitle'))+'</b><span>'+d.esc(d.t('homeUnknownRule'))+'</span></article><article><b>'+d.esc(d.t('globalDesignTitle'))+'</b><span>'+d.esc(d.t('globalDesignText'))+'</span></article></div></section>'+
       '</main><footer class="platform-home-footer"><strong>ONE WORLD ROUTE</strong><span>'+d.esc(d.t('homeFooter'))+'</span></footer>';
@@ -6203,7 +6564,7 @@
     }catch{
       base={version:8,sources:{},layers:[{id:'background',type:'background',paint:{'background-color':'#d9e5e8'}}]};
     }
-    base=mapStyle.brandDark(mapStyle.localize(base,d.locale()));
+    base=mapStyle.brandTerrain(mapStyle.localize(base,d.locale()));
     base.version=8;
     base.projection={type:'globe'};
     base.sources={...(base.sources||{}),
@@ -6216,7 +6577,7 @@
     const selected=d.getSelectedIndex();
     base.layers.push(
       {id:'regional-route-shadow',type:'line',source:'regionalRoute',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(1,8,15,.68)','line-width':['interpolate',['linear'],['zoom'],2,3,7,6,12,9],'line-opacity':.58}},
-      {id:'regional-route',type:'line',source:'regionalRoute',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#6c8eaa','line-width':['interpolate',['linear'],['zoom'],2,1.4,7,2.8,12,4.2],'line-opacity':.78}},
+      {id:'regional-route',type:'line',source:'regionalRoute',layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#d2e7ec','line-width':['interpolate',['linear'],['zoom'],2,1.4,7,2.8,12,4.2],'line-opacity':.78}},
       {id:'regional-selected-shadow',type:'line',source:'regionalRoute',filter:['==',['get','id'],selected+1],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'rgba(2,8,14,.88)','line-width':['interpolate',['linear'],['zoom'],2,6,7,10,12,15]}},
       {id:'regional-selected',type:'line',source:'regionalRoute',filter:['==',['get','id'],selected+1],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#59ddff','line-width':['interpolate',['linear'],['zoom'],2,2.8,7,5.2,12,7.5]}},
       {id:'regional-route-hit',type:'line',source:'regionalRoute',paint:{'line-color':'rgba(0,0,0,.001)','line-width':18,'line-opacity':.001}},
@@ -6871,7 +7232,7 @@
     const urlVariant=new URLSearchParams(location.search).get('variant');
     const requestedVariant=String(change?.variantId||urlVariant||TripTools.getVariant(localStorage,meta.id)||'base');
     if(urlVariant&&!change?.variantId)TripTools.setVariant(localStorage,meta.id,urlVariant);
-    const variantTrip=JourneyVariants.apply(baseTrip,requestedVariant);
+    const variantTrip=JourneyVariants.apply(await window.ONE_WORLD_PLATFORM_MODULES.media.resolveReference(meta,baseTrip),requestedVariant);
     const storedStart=TripTools.getRouteStart(localStorage,meta.id);
     const entrySuggestion=JourneyAdapter.recommendEntry(variantTrip,profile,countryCentroids);
     const suggestedStart=!storedStart&&entrySuggestion?.available?entrySuggestion.stopId:'';
@@ -6931,7 +7292,10 @@
         toast:Ui.toast
       });
       Ui.ensureGlobalActions({t,esc,onHome:goHome,onRoutes:openRouteLibrary,onMyTrips:openMyTrips,onTraveller:openTraveller});
-      Share.configure({t,toast:Ui.toast,title:()=>currentTripMeta?local(currentTripMeta.title):t('homeTitle')});
+      const socialDeps={t,esc,local,facetLabel,locale:()=>locale,ensureDialog:Ui.ensureDialog,toast:Ui.toast,url:meta=>meta.id===currentTripMeta?.id?location.href:location.origin+buildTripUrl(meta.id),onOpen:setQueryTrip};
+      PLATFORM_MODULES.socialStory?.configure(socialDeps);
+      const openPlanning=()=>PLATFORM_MODULES.planningContext?.open(currentTripMeta,{...socialDeps,tripTools:TripTools,storage:localStorage});
+      Share.configure({...socialDeps,title:()=>currentTripMeta?local(currentTripMeta.title):t('homeTitle'),getMeta:()=>currentTripMeta,getTrip:()=>currentTrip,onPlanning:openPlanning});
       Share.bind();
       if(HOME_REQUEST){
         currentTripMeta=null;
@@ -6971,6 +7335,11 @@
       else {
         await waitForCore();
         LegacyLocalization.configure({getLocale:()=>locale,t}).activate();
+        const titleNode=document.querySelector('.brand small');if(titleNode)titleNode.textContent=local(currentTripMeta.title);
+        const panel=document.querySelector('.left-panel');
+        if(panel){const note=document.createElement('div');note.className='platform-scenario-note';note.innerHTML='<p>'+esc(t('snapshotOnly'))+'</p><button type="button" data-context-planning>'+esc(t('chooseStartDate'))+' →</button>';panel.prepend(note);note.querySelector('button').onclick=openPlanning}
+        if(p.get('planStep')==='startDate')openPlanning();
+        window.__ONE_WORLD_ROUTE_APP__?.refreshPlanning?.();
         window.__ONE_WORLD_ROUTE_APP__?.refreshGlobe?.();
       }
     }catch(e){

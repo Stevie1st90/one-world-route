@@ -347,6 +347,10 @@
             "type": "object",
             "additionalProperties": true
           }
+        },
+        "heroAssetId": {
+          "type": "string",
+          "description": "Optional approved published assetId in generated-media.json. Pending media keeps the existing hero fallback."
         }
       },
       "additionalProperties": true
