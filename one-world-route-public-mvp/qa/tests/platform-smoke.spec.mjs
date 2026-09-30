@@ -46,7 +46,7 @@ test('@flagship operations exposes departure recheck controls',async({page})=>{
 });
 
 
-test('@regional @discovery homepage claims ownership before deferred feature runtime',async({page})=>{
+test('@discovery homepage claims ownership before deferred feature runtime',async({page})=>{
   test.setTimeout(30000);
   await page.route('**/features.bundle.js',async route=>{
     await new Promise(resolve=>setTimeout(resolve,1400));
@@ -60,7 +60,7 @@ test('@regional @discovery homepage claims ownership before deferred feature run
   await expect(page.locator('#platformHome')).toBeVisible({timeout:15000});
 });
 
-test('@regional @discovery @mobile-critical global discovery home exposes a broad visual journey catalog',async({page,isMobile},testInfo)=>{
+test('@discovery @mobile-critical global discovery home exposes a broad visual journey catalog',async({page,isMobile},testInfo)=>{
   test.setTimeout(90000);
   const errors=capturePageErrors(page);
   await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
@@ -87,7 +87,7 @@ test('@regional @discovery @mobile-critical global discovery home exposes a broa
 
 
 
-test('@regional @discovery @mobile-critical guided discovery exposes a simple finder before advanced filters',async({page,isMobile},testInfo)=>{
+test('@discovery @mobile-critical guided discovery exposes a simple finder before advanced filters',async({page,isMobile},testInfo)=>{
   test.setTimeout(90000);
   const errors=capturePageErrors(page);
   await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
@@ -134,7 +134,7 @@ test('@regional @discovery @mobile-critical guided discovery exposes a simple fi
 
 
 
-test('@regional @discovery @mobile-critical collection deep link opens the same filtered interactive catalog',async({page,isMobile},testInfo)=>{
+test('@discovery @mobile-critical collection deep link opens the same filtered interactive catalog',async({page,isMobile},testInfo)=>{
   test.setTimeout(90000);
   const errors=capturePageErrors(page);
   await page.goto('/?collection=great-rail-journeys&lang=en',{waitUntil:'domcontentloaded'});
@@ -152,7 +152,7 @@ test('@regional @discovery @mobile-critical collection deep link opens the same 
   expect(errors,'collection deep-link runtime errors').toEqual([]);
 });
 
-test('@regional @discovery traveller start region changes transparent journey recommendations',async({page})=>{
+test('@discovery traveller start region changes transparent journey recommendations',async({page})=>{
   test.setTimeout(60000);
   await page.addInitScript(()=>{
     localStorage.setItem('one-world-route:traveller-context:v1',JSON.stringify({
@@ -172,7 +172,7 @@ test('@regional @discovery traveller start region changes transparent journey re
   expect(errors,'personalized discovery runtime page errors').toEqual([]);
 });
 
-test('@regional @discovery @mobile-critical traveller origin country derives recommendation region without manual region selection',async({page,isMobile},testInfo)=>{
+test('@discovery @mobile-critical traveller origin country derives recommendation region without manual region selection',async({page,isMobile},testInfo)=>{
   test.setTimeout(90000);
   const errors=capturePageErrors(page);
   await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
