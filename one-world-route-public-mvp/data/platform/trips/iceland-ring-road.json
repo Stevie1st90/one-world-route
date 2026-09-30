@@ -307,7 +307,36 @@
       }
     }
   ],
-  "sources": [],
+  "sources": [
+    {
+      "id": "is-official-visa-check",
+      "title": "Check if you need a visa to travel to Iceland",
+      "issuer": "Ísland.is — Icelandic authorities",
+      "issuerType": "government",
+      "url": "https://island.is/en/do-you-need-a-visa",
+      "checkedAt": "2026-09-30",
+      "claims": [
+        "official government service provides a step-by-step check for whether a traveller visiting Iceland for less than 90 days may need a visa",
+        "Iceland participates in the Schengen Area"
+      ]
+    }
+  ],
+  "entryGuidance": {
+    "personalizationRequired": true,
+    "destinationCountry": "IS",
+    "tripPurpose": "tourism",
+    "stayDays": 10,
+    "officialResolverSourceId": "is-official-visa-check",
+    "supportingSourceIds": [],
+    "message": {
+      "en": "Visa requirements for a short visit to Iceland depend on the traveller’s circumstances and Schengen status. Use Iceland’s official step-by-step visa check for the actual traveller.",
+      "de": "Die Visumpflicht für einen kurzen Island-Aufenthalt hängt vom konkreten Reisekontext und dem Schengen-Status ab. Nutze den offiziellen schrittweisen Visa-Check Islands für die reisende Person.",
+      "it": "I requisiti di visto per una breve visita in Islanda dipendono dalle circostanze del viaggiatore e dal contesto Schengen. Usa il controllo ufficiale passo-passo dell’Islanda.",
+      "es": "Los requisitos de visado para una visita corta a Islandia dependen de las circunstancias del viajero y del contexto Schengen. Utiliza el comprobador oficial paso a paso de Islandia.",
+      "fr": "Les exigences de visa pour un court séjour en Islande dépendent de la situation du voyageur et du contexte Schengen. Utilisez le contrôle officiel étape par étape de l’Islande.",
+      "pt": "Os requisitos de visto para uma visita curta à Islândia dependem das circunstâncias do viajante e do contexto Schengen. Use a verificação oficial passo a passo da Islândia."
+    }
+  },
   "routePolicy": {
     "startMode": "endpoints",
     "reversible": true,
