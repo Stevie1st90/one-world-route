@@ -614,46 +614,46 @@
       const id=String(layer.id||'').toLowerCase(),type=layer.type;
       layer.paint=layer.paint||{};
       if(type==='background'){
-        layer.paint['background-color']='#071019';
+        layer.paint['background-color']='#0c1822';
         continue;
       }
       if(type==='fill'){
         if(/water|ocean|lake|river/.test(id)){
-          layer.paint['fill-color']='#071b2a';layer.paint['fill-opacity']=.98;
+          layer.paint['fill-color']='#123b53';layer.paint['fill-opacity']=.98;
         }else if(/park|wood|forest|grass|nature|landcover/.test(id)){
-          layer.paint['fill-color']='#102018';layer.paint['fill-opacity']=.72;
+          layer.paint['fill-color']='#20382b';layer.paint['fill-opacity']=.82;
         }else if(/building/.test(id)){
-          layer.paint['fill-color']='#16232d';layer.paint['fill-outline-color']='#20333e';layer.paint['fill-opacity']=.78;
+          layer.paint['fill-color']='#283943';layer.paint['fill-outline-color']='#40515d';layer.paint['fill-opacity']=.82;
         }else{
-          layer.paint['fill-color']='#0d1720';
+          layer.paint['fill-color']='#1b2b34';
           if(layer.paint['fill-opacity']===undefined)layer.paint['fill-opacity']=.94;
         }
       }else if(type==='line'){
         if(/boundary|admin/.test(id)){
-          layer.paint['line-color']='#466076';layer.paint['line-opacity']=.5;
+          layer.paint['line-color']='#7891a6';layer.paint['line-opacity']=.58;
         }else if(/motorway|trunk|primary/.test(id)){
-          layer.paint['line-color']='#5b6571';layer.paint['line-opacity']=.66;
+          layer.paint['line-color']='#9ca9b5';layer.paint['line-opacity']=.74;
         }else if(/road|street|transport/.test(id)){
-          layer.paint['line-color']='#33424f';layer.paint['line-opacity']=.52;
+          layer.paint['line-color']='#596b78';layer.paint['line-opacity']=.66;
         }else if(/water|river/.test(id)){
-          layer.paint['line-color']='#234f65';layer.paint['line-opacity']=.7;
+          layer.paint['line-color']='#4c91ad';layer.paint['line-opacity']=.78;
         }else{
-          layer.paint['line-color']=layer.paint['line-color']||'#2e3d49';
+          layer.paint['line-color']=layer.paint['line-color']||'#485b68';
           if(layer.paint['line-opacity']===undefined)layer.paint['line-opacity']=.48;
         }
       }else if(type==='symbol'){
-        layer.paint['text-color']=/water|marine/.test(id)?'#7098ae':(/country/.test(id)?'#dfeaf2':'#aebfcb');
-        layer.paint['text-halo-color']='#071019';
+        layer.paint['text-color']=/water|marine/.test(id)?'#9fc9da':(/country/.test(id)?'#f2f7fb':'#d2dde5');
+        layer.paint['text-halo-color']='#0b1720';
         layer.paint['text-halo-width']=1.2;
         layer.paint['text-halo-blur']=.45;
         if(layer.paint['icon-opacity']===undefined)layer.paint['icon-opacity']=.72;
       }else if(type==='fill-extrusion'){
-        layer.paint['fill-extrusion-color']='#172630';layer.paint['fill-extrusion-opacity']=.72;
+        layer.paint['fill-extrusion-color']='#30434c';layer.paint['fill-extrusion-opacity']=.76;
       }else if(type==='hillshade'){
-        layer.paint['hillshade-shadow-color']='#02070b';
-        layer.paint['hillshade-highlight-color']='#50606b';
-        layer.paint['hillshade-accent-color']='#1f3440';
-        layer.paint['hillshade-exaggeration']=.42;
+        layer.paint['hillshade-shadow-color']='#071015';
+        layer.paint['hillshade-highlight-color']='#d9d1bc';
+        layer.paint['hillshade-accent-color']='#6f8b7c';
+        layer.paint['hillshade-exaggeration']=.48;
       }
     }
     return style;

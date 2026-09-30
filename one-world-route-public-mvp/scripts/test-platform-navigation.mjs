@@ -207,13 +207,15 @@ test('regional UX detail modes keep sparse panels compact',()=>{
   assert.match(cssSource,/platform-detail-stop \.right-panel/);
 });
 
-test('regional terrain uses branded dark map styling',()=>{
+test('regional terrain uses branded readable dark map styling',()=>{
   const mapStyle=moduleSources['map-style.js'];
   const terrain=moduleSources['terrain.js'];
   assert.match(terrain,/mapStyle\.brandDark\(mapStyle\.localize/);
-  assert.match(mapStyle,/background-color'\]='#071019'/);
-  assert.match(mapStyle,/fill-color'\]='#071b2a'/);
-  assert.match(mapStyle,/text-halo-color'\]='#071019'/);
+  assert.match(mapStyle,/background-color'\]='#0c1822'/);
+  assert.match(mapStyle,/fill-color'\]='#123b53'/);
+  assert.match(mapStyle,/fill-color'\]='#1b2b34'/);
+  assert.match(mapStyle,/text-halo-color'\]='#0b1720'/);
+  assert.match(mapStyle,/hillshade-highlight-color'\]='#d9d1bc'/);
 });
 
 test('regional copy is visually reduced without removing overview content',()=>{
