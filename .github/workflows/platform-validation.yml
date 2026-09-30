@@ -196,6 +196,8 @@ jobs:
           node --check platform/trip-compare.js
           node --check platform/home.js
           node --check platform/media.js
+          node --check platform/share.js
+          node --check scripts/test-platform-share.mjs
           node --check platform/route-library.js
           node --check platform/regional-shell.js
           node --check platform/regional-detail.js
@@ -290,6 +292,8 @@ jobs:
         run: node --test scripts/test-platform-media.mjs
       - name: Platform locale tests
         run: node --test scripts/test-platform-i18n.mjs
+      - name: Sharing controller tests
+        run: node --test scripts/test-platform-share.mjs
       - name: Platform formatter tests
         run: node --test scripts/test-platform-formatters.mjs
       - name: Public trip index tests
