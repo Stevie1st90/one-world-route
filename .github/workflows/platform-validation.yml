@@ -27,6 +27,7 @@ jobs:
       discovery_browser: ${{ steps.scope.outputs.discovery_browser }}
       builder_browser: ${{ steps.scope.outputs.builder_browser }}
       content_browser: ${{ steps.scope.outputs.content_browser }}
+      experience_browser: ${{ steps.scope.outputs.experience_browser }}
       content_trip_ids: ${{ steps.scope.outputs.content_trip_ids }}
     steps:
       - uses: actions/checkout@v7
@@ -47,6 +48,7 @@ jobs:
             echo "discovery_browser=false" >> "$GITHUB_OUTPUT"
             echo "builder_browser=false" >> "$GITHUB_OUTPUT"
             echo "content_browser=false" >> "$GITHUB_OUTPUT"
+            echo "experience_browser=false" >> "$GITHUB_OUTPUT"
             echo "content_trip_ids=" >> "$GITHUB_OUTPUT"
             echo "main push: fast gate only; browser regression is not duplicated"
             exit 0
@@ -62,6 +64,7 @@ jobs:
           discovery_browser=false
           builder_browser=false
           content_browser=false
+          experience_browser=false
           content_trip_ids=""
 
           while IFS= read -r file; do
@@ -71,6 +74,7 @@ jobs:
                 regional_browser=true
                 discovery_browser=true
                 builder_browser=true
+                experience_browser=true
                 ;;
               internal-trip-builder/*)
                 if [[ "$file" != "internal-trip-builder/README.md" ]]; then
@@ -101,9 +105,9 @@ jobs:
                 # Generated from the catalog + trip datasets; Core verifies determinism.
                 ;;
               one-world-route-public-mvp/data/platform/place-experiences/*.json)
-                # Editorial experience content is schema/locale-validated in Core.
-                # When a journey adds/changes experienceRef, its trip dataset also
-                # triggers the focused content-browser smoke above.
+                # Core validates schema/locale coverage; this focused browser pass
+                # verifies that country shards still load through the real renderer.
+                experience_browser=true
                 ;;
               one-world-route-public-mvp/data/platform/*)
                 regional_browser=true
@@ -115,6 +119,7 @@ jobs:
               one-world-route-public-mvp/qa/tests/platform-smoke.spec.mjs|one-world-route-public-mvp/qa/playwright.config.mjs|one-world-route-public-mvp/qa/run-local.mjs)
                 flagship_browser=true
                 regional_browser=true
+                experience_browser=true
                 ;;
               one-world-route-public-mvp/README.md)
                 ;;
@@ -126,6 +131,10 @@ jobs:
                 ;;
               one-world-route-public-mvp/platform/home.js|one-world-route-public-mvp/platform/home.css)
                 discovery_browser=true
+                ;;
+              one-world-route-public-mvp/platform/place-experiences.js|one-world-route-public-mvp/platform/regional-detail.js)
+                regional_browser=true
+                experience_browser=true
                 ;;
               one-world-route-public-mvp/platform/regional-*|one-world-route-public-mvp/platform/extensions.js|one-world-route-public-mvp/platform/extensions/*)
                 regional_browser=true
@@ -152,6 +161,7 @@ jobs:
           echo "discovery_browser=$discovery_browser" >> "$GITHUB_OUTPUT"
           echo "builder_browser=$builder_browser" >> "$GITHUB_OUTPUT"
           echo "content_browser=$content_browser" >> "$GITHUB_OUTPUT"
+          echo "experience_browser=$experience_browser" >> "$GITHUB_OUTPUT"
           echo "content_trip_ids=$content_trip_ids" >> "$GITHUB_OUTPUT"
 
           echo "Changed files:"
@@ -161,6 +171,7 @@ jobs:
           echo "discovery_browser=$discovery_browser"
           echo "builder_browser=$builder_browser"
           echo "content_browser=$content_browser"
+          echo "experience_browser=$experience_browser"
           echo "content_trip_ids=$content_trip_ids"
 
   core:
@@ -466,6 +477,41 @@ jobs:
           if-no-files-found: ignore
           retention-days: 7
 
+  experience-browser:
+    name: Place experience browser smoke
+    needs: changes
+    if: needs.changes.outputs.experience_browser == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: one-world-route-public-mvp
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: one-world-route-public-mvp/qa/package-lock.json
+      - name: Install browser QA dependencies
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+        run: npm ci --prefix qa
+      - name: Run place experience browser smoke
+        env:
+          OWR_QA_NO_VIDEO: '1'
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          test -n "$CHROME_BIN"
+          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/platform-smoke.spec.mjs --grep="@experience" --project=desktop-1440 --workers=2
+      - name: Upload place experience browser artifacts
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: experience-browser-smoke-${{ github.run_id }}
+          path: one-world-route-public-mvp/qa/test-results
+          if-no-files-found: ignore
+          retention-days: 7
+
   flagship-browser:
     name: Flagship browser smoke
     needs: changes
@@ -597,6 +643,7 @@ jobs:
       - release
       - builder-browser
       - content-browser
+      - experience-browser
       - flagship-browser
       - discovery-browser
       - regional-browser
@@ -610,6 +657,7 @@ jobs:
           RELEASE_RESULT: ${{ needs.release.result }}
           BUILDER_RESULT: ${{ needs.builder-browser.result }}
           CONTENT_RESULT: ${{ needs.content-browser.result }}
+          EXPERIENCE_RESULT: ${{ needs.experience-browser.result }}
           FLAGSHIP_RESULT: ${{ needs.flagship-browser.result }}
           DISCOVERY_RESULT: ${{ needs.discovery-browser.result }}
           REGIONAL_RESULT: ${{ needs.regional-browser.result }}
@@ -628,6 +676,11 @@ jobs:
           case "$CONTENT_RESULT" in
             success|skipped) ;;
             *) echo "Content journey browser smoke failed: $CONTENT_RESULT"; exit 1 ;;
+          esac
+
+          case "$EXPERIENCE_RESULT" in
+            success|skipped) ;;
+            *) echo "Place experience browser smoke failed: $EXPERIENCE_RESULT"; exit 1 ;;
           esac
 
           case "$FLAGSHIP_RESULT" in
