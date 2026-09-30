@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "provider": "supabase",
+  "enabled": false,
+  "projectUrl": null,
+  "publishableKey": null
+}
