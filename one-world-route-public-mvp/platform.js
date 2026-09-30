@@ -20,6 +20,7 @@
   const JourneyGuide=PLATFORM_MODULES.journeyGuide;
   const PlaceExperiences=PLATFORM_MODULES.placeExperiences;
   const MyTrips=PLATFORM_MODULES.myTrips;
+  const PwaInstall=PLATFORM_MODULES.pwaInstall||{status:()=>({available:false,installed:false}),prompt:async()=>({ok:false,outcome:'unavailable'}),subscribe:()=>()=>{}};
   const ServiceWorker=PLATFORM_MODULES.serviceWorker;
   const TripPlanning=PLATFORM_MODULES.tripPlanning;
   const Extensions=PLATFORM_MODULES.extensions;
@@ -436,6 +437,7 @@
         locale:()=>locale,
         onOpenTrip:setQueryTrip,
         serviceWorker:ServiceWorker,
+        pwaInstall:PwaInstall,
         toast:Ui.toast
       });
       Ui.ensureGlobalActions({t,esc,onHome:goHome,onRoutes:openRouteLibrary,onMyTrips:openMyTrips,onTraveller:openTraveller});
