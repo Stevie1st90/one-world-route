@@ -3004,9 +3004,17 @@
         "segments": 5,
         "sourcedSegments": 0,
         "verifiedSegments": 0,
-        "latestEvidenceCheck": null
+        "latestEvidenceCheck": "2026-09-30"
       },
-      "sources": [],
+      "sources": [
+        {
+          "id": "japan-mofa-visa",
+          "issuer": "Ministry of Foreign Affairs of Japan",
+          "title": "VISA",
+          "url": "https://www.mofa.go.jp/j_info/visit/visa/index.html",
+          "checkedAt": "2026-09-30"
+        }
+      ],
       "preview": {
         "points": [
           {
@@ -3828,9 +3836,17 @@
         "segments": 5,
         "sourcedSegments": 0,
         "verifiedSegments": 0,
-        "latestEvidenceCheck": null
+        "latestEvidenceCheck": "2026-09-30"
       },
-      "sources": [],
+      "sources": [
+        {
+          "id": "nz-visa-nzeta-check",
+          "issuer": "Immigration New Zealand",
+          "title": "Check if you need a visa or an NZeTA",
+          "url": "https://www.immigration.govt.nz/visit/what-you-need-to-visit-new-zealand/visa-tool-test/",
+          "checkedAt": "2026-09-30"
+        }
+      ],
       "preview": {
         "points": [
           {
@@ -4906,9 +4922,17 @@
         "segments": 4,
         "sourcedSegments": 0,
         "verifiedSegments": 0,
-        "latestEvidenceCheck": null
+        "latestEvidenceCheck": "2026-09-30"
       },
-      "sources": [],
+      "sources": [
+        {
+          "id": "canada-visit-requirements",
+          "issuer": "Immigration, Refugees and Citizenship Canada",
+          "title": "Visit Canada",
+          "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada.html",
+          "checkedAt": "2026-09-30"
+        }
+      ],
       "preview": {
         "points": [
           {
@@ -7785,7 +7809,7 @@
         "segments": 7,
         "sourcedSegments": 7,
         "verifiedSegments": 0,
-        "latestEvidenceCheck": "2026-09-29"
+        "latestEvidenceCheck": "2026-09-30"
       },
       "sources": [
         {
@@ -7815,6 +7839,13 @@
           "title": "Grampians (Gariwerd) National Park",
           "url": "https://www.parks.vic.gov.au/places-to-see/parks/grampians-national-park",
           "checkedAt": "2026-09-29"
+        },
+        {
+          "id": "australia-visa-finder",
+          "issuer": "Australian Department of Home Affairs",
+          "title": "Explore visa options",
+          "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-finder",
+          "checkedAt": "2026-09-30"
         }
       ]
     }
