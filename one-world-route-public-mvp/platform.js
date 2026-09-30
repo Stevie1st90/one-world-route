@@ -20,6 +20,7 @@
   const JourneyGuide=PLATFORM_MODULES.journeyGuide;
   const PlaceExperiences=PLATFORM_MODULES.placeExperiences;
   const MyTrips=PLATFORM_MODULES.myTrips;
+  const Partners=PLATFORM_MODULES.partners||{load:async()=>({enabled:false}),render:()=>''};
   const ServiceWorker=PLATFORM_MODULES.serviceWorker;
   const TripPlanning=PLATFORM_MODULES.tripPlanning;
   const Extensions=PLATFORM_MODULES.extensions;
@@ -294,6 +295,7 @@
       tripTools:TripTools,
       journeyAdapter:JourneyAdapter,
       sharedKnowledge:SharedKnowledge,
+      partners:Partners,
       travellerFit:TravellerFit,
       storage:localStorage,
       toast:Ui.toast,
@@ -414,6 +416,7 @@
     try{
       catalog=await fetch(CATALOG_URL,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Trip catalog '+r.status);return r.json()});
       await SharedKnowledge.load();
+      await Partners.load().catch(error=>console.warn('Commercial config unavailable',error));
       const p=new URLSearchParams(location.search);
       const profile=loadProfile();
       const explicitLang=new URLSearchParams(location.search).get('lang');
