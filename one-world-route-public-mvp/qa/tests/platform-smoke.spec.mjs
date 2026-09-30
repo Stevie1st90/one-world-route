@@ -667,6 +667,7 @@ test('@discovery @mobile-critical social story presents five factual vertical sc
  if(isMobile){await page.locator('#settingsBtn').click();await page.locator('#mobileShareBtn').click()}else await page.locator('#shareBtn').click();
  await page.locator('[data-share-story]').click();
  await expect(page.locator('#platformSocialStory')).toBeVisible();
+ await expect(page.locator('.social-story-controls')).toBeInViewport({ratio:1});
  const b=await page.locator('.social-story-stage').boundingBox();expect(Math.abs(b.width/b.height-9/16)).toBeLessThan(.01);
  await expect(page.locator('.social-story-copy')).toContainText('Japan by Rail');
  await page.screenshot({path:testInfo.outputPath('social-story.png')});
