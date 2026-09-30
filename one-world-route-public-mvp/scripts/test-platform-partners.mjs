@@ -42,6 +42,7 @@ test('commercial links are filtered by journey metadata and rendered transparent
   const html=partners.render(meta,helper);
   assert.match(html,/Rail partner/);
   assert.match(html,/rel="sponsored noopener noreferrer"/);
+  assert.match(html,/referrerpolicy="no-referrer"/);
   assert.match(html,/Partner links may support this service/);
   assert.doesNotMatch(html,/Car partner/);
 });
