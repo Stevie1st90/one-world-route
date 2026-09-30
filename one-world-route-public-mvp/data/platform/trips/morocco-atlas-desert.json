@@ -264,7 +264,36 @@
       }
     }
   ],
-  "sources": [],
+  "sources": [
+    {
+      "id": "ma-acces-maroc",
+      "title": "Accès Maroc",
+      "issuer": "Kingdom of Morocco — Accès Maroc",
+      "issuerType": "government",
+      "url": "https://www.acces-maroc.ma/",
+      "checkedAt": "2026-09-30",
+      "claims": [
+        "the official eligibility checker asks for nationality, country of residence, passport type and travel purpose",
+        "the checker is designed to determine whether an eVisa route is applicable to the traveller's circumstances"
+      ]
+    }
+  ],
+  "entryGuidance": {
+    "personalizationRequired": true,
+    "destinationCountry": "MA",
+    "tripPurpose": "tourism",
+    "stayDays": 12,
+    "officialResolverSourceId": "ma-acces-maroc",
+    "supportingSourceIds": [],
+    "message": {
+      "en": "Morocco’s visa or eVisa route depends on nationality, residence, passport type and travel purpose. Use the official Accès Maroc eligibility check for the traveller’s actual circumstances.",
+      "de": "Der Visa- oder eVisa-Weg für Marokko hängt von Staatsangehörigkeit, Wohnsitz, Passart und Reisezweck ab. Nutze den offiziellen Accès-Maroc-Eligibility-Check für den konkreten Reisekontext.",
+      "it": "Il percorso visto o eVisa per il Marocco dipende da cittadinanza, residenza, tipo di passaporto e scopo del viaggio. Usa il controllo ufficiale Accès Maroc per il caso concreto.",
+      "es": "La vía de visado o eVisa para Marruecos depende de la nacionalidad, la residencia, el tipo de pasaporte y el motivo del viaje. Utiliza el comprobador oficial Accès Maroc.",
+      "fr": "La procédure de visa ou d’eVisa pour le Maroc dépend de la nationalité, de la résidence, du type de passeport et du motif du voyage. Utilisez le contrôle officiel Accès Maroc.",
+      "pt": "O processo de visto ou eVisa para Marrocos depende da nacionalidade, residência, tipo de passaporte e objetivo da viagem. Use a verificação oficial Accès Maroc."
+    }
+  },
   "routePolicy": {
     "startMode": "endpoints",
     "reversible": true,
