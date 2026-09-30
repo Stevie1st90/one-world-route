@@ -21,6 +21,7 @@
   const PlaceExperiences=PLATFORM_MODULES.placeExperiences;
   const MyTrips=PLATFORM_MODULES.myTrips;
   const Share=PLATFORM_MODULES.share||{configure:()=>({bind:()=>false}),bind:()=>false};
+  const Partners=PLATFORM_MODULES.partners||{load:async()=>({enabled:false}),render:()=>''};
   const CloudSync=PLATFORM_MODULES.cloudSync||{init:async()=>({available:false}),status:()=>({available:false,signedIn:false}),subscribe:()=>()=>{},requestCode:async()=>({ok:false,reason:'unavailable'}),verifyCode:async()=>({ok:false,reason:'unavailable'}),signOut:async()=>({ok:true}),sync:async()=>({ok:false,reason:'unavailable'})};
   const PwaInstall=PLATFORM_MODULES.pwaInstall||{status:()=>({available:false,installed:false}),prompt:async()=>({ok:false,outcome:'unavailable'}),subscribe:()=>()=>{}};
   const ServiceWorker=PLATFORM_MODULES.serviceWorker;
@@ -297,6 +298,7 @@
       tripTools:TripTools,
       journeyAdapter:JourneyAdapter,
       sharedKnowledge:SharedKnowledge,
+      partners:Partners,
       travellerFit:TravellerFit,
       storage:localStorage,
       toast:Ui.toast,
@@ -417,6 +419,7 @@
     try{
       catalog=await fetch(CATALOG_URL,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Trip catalog '+r.status);return r.json()});
       await SharedKnowledge.load();
+      await Partners.load().catch(error=>console.warn('Commercial config unavailable',error));
       await CloudSync.init({storage:localStorage,TripTools,catalog}).catch(error=>console.warn('Cloud sync init failed',error));
       const p=new URLSearchParams(location.search);
       const profile=loadProfile();
