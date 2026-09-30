@@ -42,7 +42,10 @@
     }
     const mobile=document.querySelector('#mobileShareBtn');
     if(mobile){
-      mobile.textContent=d.t?.('share')||'Share';
+      const label=d.t?.('share')||'Share';
+      mobile.textContent=label;
+      mobile.title=label;
+      mobile.setAttribute('aria-label',label);
       mobile.onclick=()=>{
         document.querySelector('#settingsPopover')?.classList.add('hidden');
         return handler();
