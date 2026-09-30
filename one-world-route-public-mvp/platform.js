@@ -20,6 +20,7 @@
   const JourneyGuide=PLATFORM_MODULES.journeyGuide;
   const PlaceExperiences=PLATFORM_MODULES.placeExperiences;
   const MyTrips=PLATFORM_MODULES.myTrips;
+  const Share=PLATFORM_MODULES.share||{configure:()=>({bind:()=>false}),bind:()=>false};
   const CloudSync=PLATFORM_MODULES.cloudSync||{init:async()=>({available:false}),status:()=>({available:false,signedIn:false}),subscribe:()=>()=>{},requestCode:async()=>({ok:false,reason:'unavailable'}),verifyCode:async()=>({ok:false,reason:'unavailable'}),signOut:async()=>({ok:true}),sync:async()=>({ok:false,reason:'unavailable'})};
   const PwaInstall=PLATFORM_MODULES.pwaInstall||{status:()=>({available:false,installed:false}),prompt:async()=>({ok:false,outcome:'unavailable'}),subscribe:()=>()=>{}};
   const ServiceWorker=PLATFORM_MODULES.serviceWorker;
@@ -444,6 +445,8 @@
         toast:Ui.toast
       });
       Ui.ensureGlobalActions({t,esc,onHome:goHome,onRoutes:openRouteLibrary,onMyTrips:openMyTrips,onTraveller:openTraveller});
+      Share.configure({t,toast:Ui.toast,title:()=>currentTripMeta?local(currentTripMeta.title):t('homeTitle')});
+      Share.bind();
       if(HOME_REQUEST){
         currentTripMeta=null;
         currentTrip=null;
