@@ -2,6 +2,7 @@
   'use strict';
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
   const KEY='one-world-route:trip-tools:v1';
+  const META_KEY='one-world-route:trip-tools-meta:v1';
 
   const number=(value,min=0,max=100000)=>{
     const parsed=Number(value);
@@ -23,7 +24,17 @@
       };
     }catch{return defaults()}
   }
-  function persist(storage,state){storage.setItem(KEY,JSON.stringify(state));return state}
+  function workspaceUpdatedAt(storage){
+    const raw=String(storage.getItem(META_KEY)||'').trim();
+    const parsed=raw?new Date(raw):null;
+    return parsed&&Number.isFinite(parsed.getTime())?parsed.toISOString():'';
+  }
+  function persist(storage,state,updatedAt=null){
+    storage.setItem(KEY,JSON.stringify(state));
+    const stamp=updatedAt?new Date(updatedAt):new Date();
+    storage.setItem(META_KEY,Number.isFinite(stamp.getTime())?stamp.toISOString():new Date().toISOString());
+    return state;
+  }
   function notify(tripId){if(typeof window?.dispatchEvent==='function'&&typeof CustomEvent==='function')window.dispatchEvent(new CustomEvent('one-world-route:trip-tools-changed',{detail:{tripId}}))}
   function isSaved(storage,tripId){return load(storage).savedTrips.includes(tripId)}
   function getRecent(storage){return load(storage).recentTrips}
@@ -181,8 +192,12 @@
       sources:trip?.sources||[]
     },null,2)+'\n';
   }
+  function workspacePayload(storage){
+    return {schemaVersion:1,updatedAt:workspaceUpdatedAt(storage)||new Date(0).toISOString(),workspace:load(storage)};
+  }
   function workspaceJson(storage){
-    return JSON.stringify({schemaVersion:1,exportedAt:new Date().toISOString(),workspace:load(storage)},null,2)+'\n';
+    const payload=workspacePayload(storage);
+    return JSON.stringify({...payload,exportedAt:new Date().toISOString()},null,2)+'\n';
   }
   function normalizeWorkspace(input={},allowedTripIds=null){
     const allowed=allowedTripIds?new Set(allowedTripIds):null;
@@ -209,14 +224,15 @@
       planningChecks:pickMap(source.planningChecks,value=>{const v=normalizePlanningChecks(value);return v.accessCheckedAt?v:undefined})
     };
   }
-  function importWorkspace(storage,text,allowedTripIds=null){
+  function importWorkspace(storage,text,allowedTripIds=null,updatedAt=null){
     let payload;
     try{payload=typeof text==='string'?JSON.parse(text):text}catch{return {ok:false,reason:'invalid-json'}}
     if(Number(payload?.schemaVersion)!==1||!payload?.workspace||typeof payload.workspace!=='object')return {ok:false,reason:'invalid-schema'};
     const workspace=normalizeWorkspace(payload.workspace,allowedTripIds);
-    persist(storage,workspace);
+    const stamp=updatedAt||payload.updatedAt||null;
+    persist(storage,workspace,stamp);
     notify(null);
-    return {ok:true,workspace};
+    return {ok:true,workspace,updatedAt:workspaceUpdatedAt(storage)};
   }
   function download(name,text,type='text/plain'){
     const blob=new Blob([text],{type:type+';charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
@@ -397,5 +413,5 @@
       toast?.(t('estimateUpdated'));refreshPlanning();
     };
   }
-  root.tripTools={load,isSaved,getRecent,markViewed,toggleSaved,normalizeBudget,getBudget,setBudget,getStartDate,setStartDate,getSeason,setSeason,getRouteStart,setRouteStart,getVariant,setVariant,normalizePlanningChecks,getPlanningChecks,setAccessChecked,hasBudgetAssumptions,planningStatus,estimate,itineraryRows,csv,calendar,jsonPack,workspaceJson,normalizeWorkspace,importWorkspace,download,render,bind};
+  root.tripTools={load,isSaved,getRecent,markViewed,toggleSaved,normalizeBudget,getBudget,setBudget,getStartDate,setStartDate,getSeason,setSeason,getRouteStart,setRouteStart,getVariant,setVariant,normalizePlanningChecks,getPlanningChecks,setAccessChecked,hasBudgetAssumptions,planningStatus,estimate,itineraryRows,csv,calendar,jsonPack,workspaceUpdatedAt,workspacePayload,workspaceJson,normalizeWorkspace,importWorkspace,download,render,bind};
 })();
