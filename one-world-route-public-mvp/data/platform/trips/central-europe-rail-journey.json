@@ -775,5 +775,8 @@
       "sourcePolicy": "official-operator",
       "crossBorder": true
     }
+  },
+  "media": {
+    "heroAssetId": "journey--central-europe-rail-journey--cover--16x9--v001"
   }
 }

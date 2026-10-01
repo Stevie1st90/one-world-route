@@ -680,5 +680,8 @@
       ],
       "rule": "Do not calculate road access, rental eligibility, park conditions or travel time without current vehicle and traveller context."
     }
+  },
+  "media": {
+    "heroAssetId": "journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001"
   }
 }

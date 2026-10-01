@@ -555,5 +555,8 @@
       ],
       "rule": "Do not calculate rental eligibility, road access, timing or route-specific restrictions without current vehicle and traveller context."
     }
+  },
+  "media": {
+    "heroAssetId": "journey--jordan-heritage-desert-drive--cover--16x9--v001"
   }
 }

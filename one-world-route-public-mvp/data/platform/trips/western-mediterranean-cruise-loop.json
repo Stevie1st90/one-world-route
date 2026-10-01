@@ -731,5 +731,8 @@
       "requiresSailingSelection": true,
       "rule": "Port capability is evidence-backed. Sea legs, call times, berth assignments, ship, operator and price are not asserted until a concrete sailing is selected."
     }
+  },
+  "media": {
+    "heroAssetId": "journey--western-mediterranean-cruise-loop--cover--16x9--v001"
   }
 }

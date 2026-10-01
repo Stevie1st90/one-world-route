@@ -521,5 +521,8 @@
       ],
       "rule": "Do not calculate road access, rental eligibility, seasonal closures, park entry or travel time without current vehicle and traveller context."
     }
+  },
+  "media": {
+    "heroAssetId": "journey--utah-national-parks-road-trip--cover--16x9--v001"
   }
 }

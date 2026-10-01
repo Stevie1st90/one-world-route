@@ -2,6 +2,126 @@
   "schemaVersion": 1,
   "assets": [
     {
+      "assetId": "journey--canadian-rockies-rail-road--cover--16x9--v001",
+      "tripId": "canadian-rockies-rail-road",
+      "type": "image",
+      "sourceType": "generated",
+      "mediaKind": "journey-cover",
+      "theme": "rockies",
+      "generator": "OpenAI Image Generation",
+      "promptVersion": "journey-cover-batch-v2",
+      "createdAt": "2026-10-01",
+      "rightsStatus": "approved",
+      "status": "published",
+      "aspectRatio": "16:9",
+      "alt": {
+        "en": "Illustrated Canadian Rockies rail and road journey beside turquoise mountain lakes and alpine peaks."
+      },
+      "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+      "attributionRequired": false,
+      "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.48
+      },
+      "asset": "./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w1600.webp",
+      "srcset": "./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w1600.webp 1600w",
+      "sourceMaster": {
+        "originalFilename": "source--journey--canadian-rockies-rail-road--cover--16x9--v001.png",
+        "sha256": "cae4c035e63e2ca44ecf04791f4f33eca04a55d8d686669f561b8dd4de63ea3a",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2961058,
+        "retainedOutsideDeliveryRepo": true
+      },
+      "delivery": {
+        "format": "webp",
+        "quality": 84,
+        "variants": [
+          {
+            "width": 480,
+            "height": 270,
+            "asset": "./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w480.webp"
+          },
+          {
+            "width": 800,
+            "height": 450,
+            "asset": "./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w800.webp"
+          },
+          {
+            "width": 1200,
+            "height": 675,
+            "asset": "./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w1200.webp"
+          },
+          {
+            "width": 1600,
+            "height": 900,
+            "asset": "./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w1600.webp"
+          }
+        ]
+      }
+    },
+    {
+      "assetId": "journey--central-europe-rail-journey--cover--16x9--v001",
+      "tripId": "central-europe-rail-journey",
+      "type": "image",
+      "sourceType": "generated",
+      "mediaKind": "journey-cover",
+      "theme": "europe",
+      "generator": "OpenAI Image Generation",
+      "promptVersion": "journey-cover-batch-v2",
+      "createdAt": "2026-10-01",
+      "rightsStatus": "approved",
+      "status": "published",
+      "aspectRatio": "16:9",
+      "alt": {
+        "en": "Illustrated Central Europe rail journey with a train crossing an urban riverside landscape in Berlin."
+      },
+      "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+      "attributionRequired": false,
+      "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.48
+      },
+      "asset": "./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w1600.webp",
+      "srcset": "./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w1600.webp 1600w",
+      "sourceMaster": {
+        "originalFilename": "source--journey--central-europe-rail-journey--cover--16x9--v001.png",
+        "sha256": "001c9a679d11f449bc172f28322964f352c9d0e4f2ba6329e4b8349198e86dce",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2563745,
+        "retainedOutsideDeliveryRepo": true
+      },
+      "delivery": {
+        "format": "webp",
+        "quality": 84,
+        "variants": [
+          {
+            "width": 480,
+            "height": 270,
+            "asset": "./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w480.webp"
+          },
+          {
+            "width": 800,
+            "height": 450,
+            "asset": "./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w800.webp"
+          },
+          {
+            "width": 1200,
+            "height": 675,
+            "asset": "./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w1200.webp"
+          },
+          {
+            "width": 1600,
+            "height": 900,
+            "asset": "./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w1600.webp"
+          }
+        ]
+      }
+    },
+    {
       "assetId": "journey--costa-rica-nature-loop--cover--16x9--v001",
       "tripId": "costa-rica-nature-loop",
       "type": "image",
@@ -122,6 +242,186 @@
       }
     },
     {
+      "assetId": "journey--iceland-ring-road--cover--16x9--v001",
+      "tripId": "iceland-ring-road",
+      "type": "image",
+      "sourceType": "generated",
+      "mediaKind": "journey-cover",
+      "theme": "arctic",
+      "generator": "OpenAI Image Generation",
+      "promptVersion": "journey-cover-batch-v2",
+      "createdAt": "2026-10-01",
+      "rightsStatus": "approved",
+      "status": "published",
+      "aspectRatio": "16:9",
+      "alt": {
+        "en": "Illustrated Iceland Ring Road journey across a volcanic landscape with mountains, mist and an open road."
+      },
+      "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+      "attributionRequired": false,
+      "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.48
+      },
+      "asset": "./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w1600.webp",
+      "srcset": "./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w1600.webp 1600w",
+      "sourceMaster": {
+        "originalFilename": "source--journey--iceland-ring-road--cover--16x9--v001.png",
+        "sha256": "91df0151d38f2f60a9c7680aa9554ac56a9abf59978b0591cafe009a024ca34d",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2490890,
+        "retainedOutsideDeliveryRepo": true
+      },
+      "delivery": {
+        "format": "webp",
+        "quality": 84,
+        "variants": [
+          {
+            "width": 480,
+            "height": 270,
+            "asset": "./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w480.webp"
+          },
+          {
+            "width": 800,
+            "height": 450,
+            "asset": "./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w800.webp"
+          },
+          {
+            "width": 1200,
+            "height": 675,
+            "asset": "./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w1200.webp"
+          },
+          {
+            "width": 1600,
+            "height": 900,
+            "asset": "./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w1600.webp"
+          }
+        ]
+      }
+    },
+    {
+      "assetId": "journey--india-golden-triangle-rail--cover--16x9--v001",
+      "tripId": "india-golden-triangle-rail",
+      "type": "image",
+      "sourceType": "generated",
+      "mediaKind": "journey-cover",
+      "theme": "india",
+      "generator": "OpenAI Image Generation",
+      "promptVersion": "journey-cover-batch-v2",
+      "createdAt": "2026-10-01",
+      "rightsStatus": "approved",
+      "status": "published",
+      "aspectRatio": "16:9",
+      "alt": {
+        "en": "Illustrated northern India rail journey through a Rajasthan-inspired landscape with a passenger train, fort architecture and lakeside cityscape."
+      },
+      "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+      "attributionRequired": false,
+      "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+      "focalPoint": {
+        "x": 0.49,
+        "y": 0.49
+      },
+      "asset": "./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w1600.webp",
+      "srcset": "./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w1600.webp 1600w",
+      "sourceMaster": {
+        "originalFilename": "source--journey--india-golden-triangle-rail--cover--16x9--v001.png",
+        "sha256": "6514624559cca88296595c83b53cea2ec0741244d0db88fee0e015982274d52a",
+        "width": 1672,
+        "height": 941,
+        "bytes": 3752575,
+        "retainedOutsideDeliveryRepo": true
+      },
+      "delivery": {
+        "format": "webp",
+        "quality": 84,
+        "variants": [
+          {
+            "width": 480,
+            "height": 270,
+            "asset": "./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w480.webp"
+          },
+          {
+            "width": 800,
+            "height": 450,
+            "asset": "./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w800.webp"
+          },
+          {
+            "width": 1200,
+            "height": 675,
+            "asset": "./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w1200.webp"
+          },
+          {
+            "width": 1600,
+            "height": 900,
+            "asset": "./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w1600.webp"
+          }
+        ]
+      }
+    },
+    {
+      "assetId": "journey--italy-grand-tour--cover--16x9--v001",
+      "tripId": "italy-grand-tour",
+      "type": "image",
+      "sourceType": "generated",
+      "mediaKind": "journey-cover",
+      "theme": "italy",
+      "generator": "OpenAI Image Generation",
+      "promptVersion": "journey-cover-batch-v2",
+      "createdAt": "2026-10-01",
+      "rightsStatus": "approved",
+      "status": "published",
+      "aspectRatio": "16:9",
+      "alt": {
+        "en": "Illustrated Italy grand tour through rolling Tuscan hills and historic countryside at warm evening light."
+      },
+      "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+      "attributionRequired": false,
+      "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.48
+      },
+      "asset": "./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w1600.webp",
+      "srcset": "./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w1600.webp 1600w",
+      "sourceMaster": {
+        "originalFilename": "source--journey--italy-grand-tour--cover--16x9--v001.png",
+        "sha256": "7d78ea1e1c2f7053cda28e16d07a20f8a7655d3e2eeddd92db5af72680ba4be6",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2650151,
+        "retainedOutsideDeliveryRepo": true
+      },
+      "delivery": {
+        "format": "webp",
+        "quality": 84,
+        "variants": [
+          {
+            "width": 480,
+            "height": 270,
+            "asset": "./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w480.webp"
+          },
+          {
+            "width": 800,
+            "height": 450,
+            "asset": "./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w800.webp"
+          },
+          {
+            "width": 1200,
+            "height": 675,
+            "asset": "./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w1200.webp"
+          },
+          {
+            "width": 1600,
+            "height": 900,
+            "asset": "./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w1600.webp"
+          }
+        ]
+      }
+    },
+    {
       "assetId": "journey--japan-by-rail--cover--16x9--v001",
       "tripId": "japan-by-rail",
       "type": "image",
@@ -177,6 +477,66 @@
             "width": 1600,
             "height": 900,
             "asset": "./assets/media/journeys/japan-by-rail/cover/v001/journey--japan-by-rail--cover--16x9--v001--w1600.webp"
+          }
+        ]
+      }
+    },
+    {
+      "assetId": "journey--jordan-heritage-desert-drive--cover--16x9--v001",
+      "tripId": "jordan-heritage-desert-drive",
+      "type": "image",
+      "sourceType": "generated",
+      "mediaKind": "journey-cover",
+      "theme": "desert",
+      "generator": "OpenAI Image Generation",
+      "promptVersion": "journey-cover-batch-v2",
+      "createdAt": "2026-10-01",
+      "rightsStatus": "approved",
+      "status": "published",
+      "aspectRatio": "16:9",
+      "alt": {
+        "en": "Illustrated Jordan road journey through desert and heritage landscapes in warm evening light."
+      },
+      "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+      "attributionRequired": false,
+      "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.48
+      },
+      "asset": "./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w1600.webp",
+      "srcset": "./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w1600.webp 1600w",
+      "sourceMaster": {
+        "originalFilename": "source--journey--jordan-heritage-desert-drive--cover--16x9--v001.png",
+        "sha256": "bf6973f2ec35488f420db88b9f804e6e6ef8cfeeb0cb1bb488ccc68e1442c1eb",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2434942,
+        "retainedOutsideDeliveryRepo": true
+      },
+      "delivery": {
+        "format": "webp",
+        "quality": 84,
+        "variants": [
+          {
+            "width": 480,
+            "height": 270,
+            "asset": "./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w480.webp"
+          },
+          {
+            "width": 800,
+            "height": 450,
+            "asset": "./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w800.webp"
+          },
+          {
+            "width": 1200,
+            "height": 675,
+            "asset": "./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w1200.webp"
+          },
+          {
+            "width": 1600,
+            "height": 900,
+            "asset": "./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w1600.webp"
           }
         ]
       }
@@ -422,6 +782,186 @@
       }
     },
     {
+      "assetId": "journey--peru-andes-journey--cover--16x9--v001",
+      "tripId": "peru-andes-journey",
+      "type": "image",
+      "sourceType": "generated",
+      "mediaKind": "journey-cover",
+      "theme": "andes",
+      "generator": "OpenAI Image Generation",
+      "promptVersion": "journey-cover-batch-v2",
+      "createdAt": "2026-10-01",
+      "rightsStatus": "approved",
+      "status": "published",
+      "aspectRatio": "16:9",
+      "alt": {
+        "en": "Illustrated Peru Andes journey with a passenger train moving through a dramatic highland landscape."
+      },
+      "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+      "attributionRequired": false,
+      "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.48
+      },
+      "asset": "./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w1600.webp",
+      "srcset": "./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w1600.webp 1600w",
+      "sourceMaster": {
+        "originalFilename": "source--journey--peru-andes-journey--cover--16x9--v001.png",
+        "sha256": "ab02df2cf6a76822d3a26f9b68d4abf24b4e45f65ceb48bad7bc508aa22ae1af",
+        "width": 1672,
+        "height": 941,
+        "bytes": 3154260,
+        "retainedOutsideDeliveryRepo": true
+      },
+      "delivery": {
+        "format": "webp",
+        "quality": 84,
+        "variants": [
+          {
+            "width": 480,
+            "height": 270,
+            "asset": "./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w480.webp"
+          },
+          {
+            "width": 800,
+            "height": 450,
+            "asset": "./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w800.webp"
+          },
+          {
+            "width": 1200,
+            "height": 675,
+            "asset": "./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w1200.webp"
+          },
+          {
+            "width": 1600,
+            "height": 900,
+            "asset": "./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w1600.webp"
+          }
+        ]
+      }
+    },
+    {
+      "assetId": "journey--utah-national-parks-road-trip--cover--16x9--v001",
+      "tripId": "utah-national-parks-road-trip",
+      "type": "image",
+      "sourceType": "generated",
+      "mediaKind": "journey-cover",
+      "theme": "desert",
+      "generator": "OpenAI Image Generation",
+      "promptVersion": "journey-cover-batch-v2",
+      "createdAt": "2026-10-01",
+      "rightsStatus": "approved",
+      "status": "published",
+      "aspectRatio": "16:9",
+      "alt": {
+        "en": "Illustrated Utah national parks road trip through red-rock canyon country and a winding desert highway."
+      },
+      "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+      "attributionRequired": false,
+      "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.48
+      },
+      "asset": "./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w1600.webp",
+      "srcset": "./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w1600.webp 1600w",
+      "sourceMaster": {
+        "originalFilename": "source--journey--utah-national-parks-road-trip--cover--16x9--v001.png",
+        "sha256": "cdb9e9633be7783350dcc403d122e7136644074bb83ea00116a0cc6e87fa33b8",
+        "width": 1672,
+        "height": 941,
+        "bytes": 3226291,
+        "retainedOutsideDeliveryRepo": true
+      },
+      "delivery": {
+        "format": "webp",
+        "quality": 84,
+        "variants": [
+          {
+            "width": 480,
+            "height": 270,
+            "asset": "./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w480.webp"
+          },
+          {
+            "width": 800,
+            "height": 450,
+            "asset": "./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w800.webp"
+          },
+          {
+            "width": 1200,
+            "height": 675,
+            "asset": "./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w1200.webp"
+          },
+          {
+            "width": 1600,
+            "height": 900,
+            "asset": "./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w1600.webp"
+          }
+        ]
+      }
+    },
+    {
+      "assetId": "journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001",
+      "tripId": "victoria-great-ocean-highlands-road-trip",
+      "type": "image",
+      "sourceType": "generated",
+      "mediaKind": "journey-cover",
+      "theme": "coast",
+      "generator": "OpenAI Image Generation",
+      "promptVersion": "journey-cover-batch-v2",
+      "createdAt": "2026-10-01",
+      "rightsStatus": "approved",
+      "status": "published",
+      "aspectRatio": "16:9",
+      "alt": {
+        "en": "Illustrated Victoria road trip along the Great Ocean Road with rugged cliffs, ocean stacks and a winding coastal highway."
+      },
+      "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+      "attributionRequired": false,
+      "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.48
+      },
+      "asset": "./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w1600.webp",
+      "srcset": "./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w1600.webp 1600w",
+      "sourceMaster": {
+        "originalFilename": "source--journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001.png",
+        "sha256": "ab6efb7a43ee2a86cf84d6646d277154127b945bb74da3ac10ba337a80e398d5",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2805588,
+        "retainedOutsideDeliveryRepo": true
+      },
+      "delivery": {
+        "format": "webp",
+        "quality": 84,
+        "variants": [
+          {
+            "width": 480,
+            "height": 270,
+            "asset": "./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w480.webp"
+          },
+          {
+            "width": 800,
+            "height": 450,
+            "asset": "./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w800.webp"
+          },
+          {
+            "width": 1200,
+            "height": 675,
+            "asset": "./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w1200.webp"
+          },
+          {
+            "width": 1600,
+            "height": 900,
+            "asset": "./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w1600.webp"
+          }
+        ]
+      }
+    },
+    {
       "assetId": "journey--vietnam-north-south--cover--16x9--v001",
       "tripId": "vietnam-north-south",
       "type": "image",
@@ -477,6 +1017,66 @@
             "width": 1600,
             "height": 900,
             "asset": "./assets/media/journeys/vietnam-north-south/cover/v001/journey--vietnam-north-south--cover--16x9--v001--w1600.webp"
+          }
+        ]
+      }
+    },
+    {
+      "assetId": "journey--western-mediterranean-cruise-loop--cover--16x9--v001",
+      "tripId": "western-mediterranean-cruise-loop",
+      "type": "image",
+      "sourceType": "generated",
+      "mediaKind": "journey-cover",
+      "theme": "ocean",
+      "generator": "OpenAI Image Generation",
+      "promptVersion": "journey-cover-batch-v2",
+      "createdAt": "2026-10-01",
+      "rightsStatus": "approved",
+      "status": "published",
+      "aspectRatio": "16:9",
+      "alt": {
+        "en": "Illustrated Western Mediterranean cruise journey with a cruise ship passing a sunlit coastal city."
+      },
+      "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+      "attributionRequired": false,
+      "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.48
+      },
+      "asset": "./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w1600.webp",
+      "srcset": "./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w1600.webp 1600w",
+      "sourceMaster": {
+        "originalFilename": "source--journey--western-mediterranean-cruise-loop--cover--16x9--v001.png",
+        "sha256": "e6b99cc99e5866812b51c3f46012047c987e51adba7608270ae7fff886eea850",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2603088,
+        "retainedOutsideDeliveryRepo": true
+      },
+      "delivery": {
+        "format": "webp",
+        "quality": 84,
+        "variants": [
+          {
+            "width": 480,
+            "height": 270,
+            "asset": "./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w480.webp"
+          },
+          {
+            "width": 800,
+            "height": 450,
+            "asset": "./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w800.webp"
+          },
+          {
+            "width": 1200,
+            "height": 675,
+            "asset": "./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w1200.webp"
+          },
+          {
+            "width": 1600,
+            "height": 900,
+            "asset": "./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w1600.webp"
           }
         ]
       }
