@@ -58,3 +58,32 @@ Camera fit uses actual stops and all available intermediate geometry. A minimum 
 Outputs: landscape 1200 × 675 plus responsive 600 × 338, portrait 800 × 1000, vertical 900 × 1600. Route images use contain rather than arbitrary cropping in the UI. Artwork can retain focal crops. Cards are ordinary lazy images; heroes load their displayed image; Social loads its native vertical image when opened. Existing interactive Globe, Terrain and Story remain separate.
 
 Build workflow, cache and storage are documented in ARCHITECTURE.md; provider rights, limitations, scaling costs and the PMTiles migration path are in ROUTE_VISUAL_PROVIDERS.md. No new country/AI artwork is required to publish a journey. The two experimental Japan images remain unapproved and are not installed.
+
+## Visual roles v2 and usage matrix
+
+A journey cover communicates how a journey feels. A route visual communicates where it runs. The latter remains the build-time baseline for every published journey; neither is evidence of current route feasibility.
+
+| Context | Preferred role | Fallback |
+| --- | --- | --- |
+| Discovery / featured / journey identity | approved journey cover | suitable destination → auto route → abstract |
+| Planning / route overview / share geography | auto route visual | interactive explorer → abstract; never a cinematic cover |
+| Social first frame | approved native 9:16 journey cover | suitable native destination → native vertical route → abstract |
+| Social route scene | native vertical route visual | existing schematic route scene |
+| Place experience | approved reusable place visual | existing place presentation |
+| Region discovery | deterministic continent-centered Earth portrait | restrained background; no six runtime globes |
+
+`resolveJourneyVisual(meta, {purpose, ratio})` remains the single resolution policy. The same media manifest carries destination assets, journey covers, route imagery and region portraits. Single-country destinations still need editorial suitability; multi-country destinations require an explicit `visualAnchor`. Orientation contexts never substitute artwork. Native 9:16 assets are required before artwork can resolve in Social. Full-bleed 16:9 cards share one renderer for featured and compact variants: route images retain their complete geometry; artwork uses focal points. Cards never promise a premium tier.
+
+### Attribution and flags
+
+Natural Earth imagery carries voluntary provenance (`attributionRequired: false`). Discovery cards and identity slots therefore omit repetitive source captions; the Methodology disclosure and source manifests retain source/license information and the schematic-not-navigation distinction. Assets requiring visible attribution continue to display their credit. SVG flags are locally vendored from flag-icons 7.5.0 under MIT, with the full license and source hashes in `assets/flags`. One country shows its flag/name; two or three show at most three flags; larger groups add a remainder and country count; world journeys use one globe. Flags are decorative alongside a single country name, otherwise have localized country labels. No per-card third-party requests.
+
+### Cover production and differentiation
+
+`build-visual-briefs.mjs` deterministically creates all current journey briefs from source data. A family follows journey kind, modes and themes, with an explicit valid override. Rail / road / nature / coastal / culture / planetary scenes remain distinct even within the same country. One coherent scene only; no landmark collage. Suggested anchors use explicit metadata, existing Place Experience references or longest listed stays; inferred anchors always need manual scene review. No capital-city assumption, season or route fact is invented. Brief-ready does not mean rights-approved or generation-approved.
+
+The graphics backlog contains optional/recommended journey covers and existing optional collection briefs. Publishing never requires three manual derivatives. 16:9 is the discovery master; separate 9:16 is recommended only by Social priority, not an automatic crop requirement. Future collection assets use the same rights-aware registry and appropriate semantic anchors; no collage engine. A cover can be registered later without a UI change. No experimental Japan artwork is approved by this release.
+
+### Scale
+
+The existing v1 hash outputs, geography and rendering remain untouched. Region portraits reuse that Earth renderer with a rotated source texture and one hemisphere extraction; build-time only, six small WebP assets, incremental checksums. At roughly 1,000 journeys or 200 MB of generated images, move immutable media to a controlled CDN/object store and shard discovery metadata before large catalogs. Keep source rights, review status, content hashes and rollback retention. The renderer is generalized relief, not detailed local DEM; future high-resolution providers require independent data-rights review.

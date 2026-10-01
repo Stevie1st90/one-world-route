@@ -642,7 +642,16 @@ test('@discovery @mobile-critical scalable static visuals load cards hero and na
  const card=page.locator('[data-home-trip="japan-by-rail"]').first();
  await card.scrollIntoViewIfNeeded();
  await expect(card.locator('[data-visual-kind="auto"]')).toBeVisible();
- await expect.poll(()=>card.locator('img').evaluate(i=>i.complete&&i.naturalWidth>0)).toBe(true);
+ await expect.poll(()=>card.locator('.platform-route-image').evaluate(i=>i.complete&&i.naturalWidth>0)).toBe(true);
+ const size=await card.locator('.platform-home-card-visual').evaluate(el=>({w:el.clientWidth,h:el.clientHeight,imgW:el.querySelector('.platform-route-image').clientWidth,imgH:el.querySelector('.platform-route-image').clientHeight}));
+ expect(Math.abs(size.w/size.h-16/9)).toBeLessThan(.02);expect(size.imgW).toBe(size.w);expect(size.imgH).toBe(size.h);
+ await expect(card.locator('.platform-country-chips img[src$="jp.svg"]')).toHaveCount(1);
+ const regions=page.locator('.platform-home-region-card img');await expect(regions).toHaveCount(6);
+ await expect(page.locator('[data-region-map]')).toHaveCount(0);
+ await page.locator('.platform-home-region-grid').scrollIntoViewIfNeeded();
+ for(const portrait of await regions.all())await portrait.scrollIntoViewIfNeeded();
+ await expect.poll(()=>regions.evaluateAll(imgs=>imgs.every(i=>i.complete&&i.naturalWidth>0))).toBe(true);
+ await page.locator('.platform-home-region-grid').screenshot({path:testInfo.outputPath('region-discovery.png')});
  await card.screenshot({path:testInfo.outputPath('auto-card.png')});
  expect(tiles,'card images must not load map tiles').toEqual([]);
  const manifest=await page.evaluate(async()=>fetch('./data/platform/media-manifest.json').then(r=>r.json()));
@@ -652,8 +661,9 @@ test('@discovery @mobile-critical scalable static visuals load cards hero and na
  await card.locator('[data-open-home-trip]').click();
  await expect(page.locator('body')).toHaveClass(/platform-regional-trip/);
  await expect(page.locator('.platform-journey-hero-art img')).toHaveCount(1);
+ await expect(page.locator('[data-journey-mode="plan"]')).toHaveCount(1);
  await page.evaluate(()=>window.ONE_WORLD_PLATFORM_MODULES.regionalDetail?.renderTripOverview?.());
- await expect(page.locator('.platform-overview-visual img')).toHaveCount(1);
+ await expect(page.locator('#detailContent .platform-overview-visual img')).toHaveCount(0);
  if(!isMobile)await page.locator('.platform-journey-hero-art').screenshot({path:testInfo.outputPath('auto-hero.png')});
  if(isMobile){await page.locator('#settingsBtn').click();await page.locator('#mobileShareBtn').click()}else await page.locator('#shareBtn').click();
  await page.locator('[data-share-story]').click();
@@ -661,6 +671,7 @@ test('@discovery @mobile-critical scalable static visuals load cards hero and na
  await expect(stage).toHaveCSS('background-image',/vertical-/);
  await expect(page.locator('.social-story-controls')).toBeInViewport({ratio:1});
  await stage.screenshot({path:testInfo.outputPath('auto-social.png')});
+ await page.locator('[data-social-next]').click();await expect(stage).toHaveAttribute('data-visual-role','routeOverview');
  await page.keyboard.press('Escape');await page.keyboard.press('Escape');
  await page.reload({waitUntil:'domcontentloaded'});
  await expect(page.locator('body')).toHaveClass(/platform-regional-trip/);

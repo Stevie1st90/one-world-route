@@ -620,6 +620,12 @@
   const routeVisualText={"en": "Geographic illustration · schematic connections, not navigation", "de": "Geografische Darstellung · schematische Verbindungen, keine Navigation", "it": "Illustrazione geografica · collegamenti schematici, non navigazione", "es": "Ilustración geográfica · conexiones esquemáticas, no navegación", "fr": "Illustration géographique · liaisons schématiques, pas de navigation", "pt": "Ilustração geográfica · conexões esquemáticas, não navegação"};
   for(const lang of SUPPORTED_LOCALES)I18N[lang].routeVisualNote=routeVisualText[lang];
 
+  const visualExperienceText={"en": {"journeyModes": "Journey modes", "exploreMode": "Explore", "planMode": "Plan", "operationsMode": "Operations", "whyThisJourney": "Why this journey?"}, "de": {"journeyModes": "Reisemodi", "exploreMode": "Entdecken", "planMode": "Planen", "operationsMode": "Operations", "whyThisJourney": "Warum diese Reise?"}, "it": {"journeyModes": "Modalità di viaggio", "exploreMode": "Esplora", "planMode": "Pianifica", "operationsMode": "Operazioni", "whyThisJourney": "Perché questo viaggio?"}, "es": {"journeyModes": "Modos de viaje", "exploreMode": "Explorar", "planMode": "Planificar", "operationsMode": "Operaciones", "whyThisJourney": "¿Por qué este viaje?"}, "fr": {"journeyModes": "Modes de voyage", "exploreMode": "Explorer", "planMode": "Planifier", "operationsMode": "Opérations", "whyThisJourney": "Pourquoi ce voyage ?"}, "pt": {"journeyModes": "Modos de viagem", "exploreMode": "Explorar", "planMode": "Planejar", "operationsMode": "Operações", "whyThisJourney": "Por que esta viagem?"}};
+  for(const lang of SUPPORTED_LOCALES)Object.assign(I18N[lang],visualExperienceText[lang]);
+
+  const visualSourcesText={en:"Visual sources",de:"Bildquellen",it:"Fonti visive",es:"Fuentes visuales",fr:"Sources visuelles",pt:"Fontes visuais"};
+  for(const lang of SUPPORTED_LOCALES)I18N[lang].visualSources=visualSourcesText[lang];
+
   root.i18n={
     supportedLocales:[...SUPPORTED_LOCALES],
     messages:I18N,

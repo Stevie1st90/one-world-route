@@ -1,0 +1,1911 @@
+{
+  "schemaVersion": 1,
+  "policyVersion": "journey-visual-experience-v2",
+  "summary": {
+    "journeys": 21,
+    "briefReady": 21,
+    "imagesGenerated": 0
+  },
+  "journeys": [
+    {
+      "tripId": "patagonia-road-trip",
+      "title": "Patagonia Road Trip",
+      "visualFamily": "road-cinematic",
+      "countries": [
+        "AR",
+        "CL"
+      ],
+      "primaryRegion": "south-america",
+      "modes": [
+        "car"
+      ],
+      "themes": [
+        "road-trip",
+        "mountains",
+        "nature",
+        "adventure"
+      ],
+      "routeCharacter": "A wide-open route across Argentine and Chilean Patagonia, linking glaciers, granite peaks and windswept national parks.",
+      "highlights": [
+        "glaciers, steppe and the Andes",
+        "road-trip · mountains · nature"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "AR:el-chalten",
+        "name": "El Chaltén",
+        "countryCode": "AR",
+        "basis": "existing-place-experience",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by El Chaltén (AR); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Patagonia Road Trip”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by El Chaltén (AR); confirm specific scene details before generation. Geography context: AR, CL. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 101,
+      "priority": "P1",
+      "landscapePriority": "first-batch",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "status": "brief-ready",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "rank": 1
+    },
+    {
+      "tripId": "new-zealand-camper-loop",
+      "title": "New Zealand Camper Loop",
+      "visualFamily": "road-cinematic",
+      "countries": [
+        "NZ"
+      ],
+      "primaryRegion": "oceania",
+      "modes": [
+        "car"
+      ],
+      "themes": [
+        "camper",
+        "road-trip",
+        "nature",
+        "mountains"
+      ],
+      "routeCharacter": "A South Island camper journey weaving from Christchurch to alpine lakes, Fiordland and the West Coast.",
+      "highlights": [
+        "mountains, fjords and wild coast",
+        "camper · road-trip · nature"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "NZ:lake-tekapo",
+        "name": "Lake Tekapo",
+        "countryCode": "NZ",
+        "basis": "existing-place-experience",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Lake Tekapo (NZ); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “New Zealand Camper Loop”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Lake Tekapo (NZ); confirm specific scene details before generation. Geography context: NZ. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 91,
+      "priority": "P1",
+      "landscapePriority": "first-batch",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "status": "brief-ready",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "rank": 2
+    },
+    {
+      "tripId": "greek-island-hopping",
+      "title": "Greek Island Hopping",
+      "visualFamily": "coastal-editorial",
+      "countries": [
+        "GR"
+      ],
+      "primaryRegion": "europe",
+      "modes": [
+        "ferry"
+      ],
+      "themes": [
+        "islands",
+        "coast",
+        "food",
+        "culture"
+      ],
+      "routeCharacter": "A slow Aegean journey from Athens through the Cyclades, pairing ferry hops with whitewashed villages and long coastal evenings.",
+      "highlights": [
+        "Athens, Cyclades and Aegean blue",
+        "islands · coast · food"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "GR:mykonos",
+        "name": "Mykonos",
+        "countryCode": "GR",
+        "basis": "existing-place-experience",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single coherent coastal travel scene; no collage of ports or islands inspired by Mykonos (GR); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Greek Island Hopping”. Visual family: coastal-editorial. Show a single coherent coastal travel scene; no collage of ports or islands inspired by Mykonos (GR); confirm specific scene details before generation. Geography context: GR. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 90,
+      "priority": "P1",
+      "landscapePriority": "first-batch",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "status": "brief-ready",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "rank": 3
+    },
+    {
+      "tripId": "norway-arctic-road-trip",
+      "title": "Norway Arctic Road Trip",
+      "visualFamily": "road-cinematic",
+      "countries": [
+        "NO"
+      ],
+      "primaryRegion": "europe",
+      "modes": [
+        "car",
+        "ferry"
+      ],
+      "themes": [
+        "road-trip",
+        "coast",
+        "nature",
+        "arctic"
+      ],
+      "routeCharacter": "An Arctic road journey from Tromsø through Senja and the Lofoten Islands, built around dramatic coastlines and long northern light.",
+      "highlights": [
+        "fjords, islands and Arctic light",
+        "road-trip · coast · nature"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "NO:andoya",
+        "name": "Andøya",
+        "countryCode": "NO",
+        "basis": "existing-place-experience",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Andøya (NO); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Norway Arctic Road Trip”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Andøya (NO); confirm specific scene details before generation. Geography context: NO. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 90,
+      "priority": "P1",
+      "landscapePriority": "first-batch",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "status": "brief-ready",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "rank": 4
+    },
+    {
+      "tripId": "morocco-atlas-desert",
+      "title": "Morocco Atlas & Desert",
+      "visualFamily": "road-cinematic",
+      "countries": [
+        "MA"
+      ],
+      "primaryRegion": "africa",
+      "modes": [
+        "car"
+      ],
+      "themes": [
+        "road-trip",
+        "desert",
+        "culture",
+        "mountains"
+      ],
+      "routeCharacter": "A high-contrast Morocco loop from Marrakech across the Atlas to desert landscapes and Atlantic light.",
+      "highlights": [
+        "medinas, mountain passes and Sahara",
+        "road-trip · desert · culture"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "MA:dades-valley",
+        "name": "Dadès Valley",
+        "countryCode": "MA",
+        "basis": "existing-place-experience",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Dadès Valley (MA); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Morocco Atlas & Desert”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Dadès Valley (MA); confirm specific scene details before generation. Geography context: MA. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 89,
+      "priority": "P1",
+      "landscapePriority": "first-batch",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "status": "brief-ready",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "rank": 5
+    },
+    {
+      "tripId": "costa-rica-nature-loop",
+      "title": "Costa Rica Nature Loop",
+      "visualFamily": "road-cinematic",
+      "countries": [
+        "CR"
+      ],
+      "primaryRegion": "central-america",
+      "modes": [
+        "car"
+      ],
+      "themes": [
+        "nature",
+        "wildlife",
+        "coast",
+        "road-trip"
+      ],
+      "routeCharacter": "A compact nature loop from San José to volcano country, cloud forest and the Pacific.",
+      "highlights": [
+        "volcanoes, rainforest and Pacific coast",
+        "nature · wildlife · coast"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "CR:arenal",
+        "name": "Arenal",
+        "countryCode": "CR",
+        "basis": "existing-place-experience",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Arenal (CR); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Costa Rica Nature Loop”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Arenal (CR); confirm specific scene details before generation. Geography context: CR. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 86,
+      "priority": "P1",
+      "landscapePriority": "first-batch",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "status": "brief-ready",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "rank": 6
+    },
+    {
+      "tripId": "vietnam-north-south",
+      "title": "Vietnam North to South",
+      "visualFamily": "rail-cinematic",
+      "countries": [
+        "VN"
+      ],
+      "primaryRegion": "asia",
+      "modes": [
+        "rail"
+      ],
+      "themes": [
+        "rail",
+        "food",
+        "culture",
+        "coast"
+      ],
+      "routeCharacter": "A long-form Vietnam journey tracing the country from Hanoi to Ho Chi Minh City with coastal and heritage stops.",
+      "highlights": [
+        "Hanoi, coast, heritage and Saigon",
+        "rail · food · culture"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "VN:hanoi",
+        "name": "Hanoi",
+        "countryCode": "VN",
+        "basis": "existing-place-experience",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single unbranded rail-travel scene with geographically credible surroundings inspired by Hanoi (VN); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Vietnam North to South”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Hanoi (VN); confirm specific scene details before generation. Geography context: VN. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 86,
+      "priority": "P1",
+      "landscapePriority": "first-batch",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "status": "brief-ready",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "rank": 7
+    },
+    {
+      "tripId": "india-golden-triangle-rail",
+      "title": "India Golden Triangle by Rail",
+      "visualFamily": "rail-cinematic",
+      "countries": [
+        "IN"
+      ],
+      "primaryRegion": "asia",
+      "modes": [
+        "rail"
+      ],
+      "themes": [
+        "rail",
+        "culture",
+        "history",
+        "cities"
+      ],
+      "routeCharacter": "A seven-day rail journey linking Delhi, Agra and Jaipur, focused on the historic cities of India's Golden Triangle.",
+      "highlights": [
+        "Delhi's layered heritage",
+        "Mughal Agra",
+        "Jaipur's forts and palaces"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "IN:jaipur",
+        "name": "Jaipur",
+        "countryCode": "IN",
+        "basis": "existing-place-experience",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single unbranded rail-travel scene with geographically credible surroundings inspired by Jaipur (IN); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “India Golden Triangle by Rail”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Jaipur (IN); confirm specific scene details before generation. Geography context: IN. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 73,
+      "priority": "P1",
+      "landscapePriority": "first-batch",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "status": "brief-ready",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "rank": 8
+    },
+    {
+      "tripId": "jordan-heritage-desert-drive",
+      "title": "Jordan Heritage & Desert Drive",
+      "visualFamily": "road-cinematic",
+      "countries": [
+        "JO"
+      ],
+      "primaryRegion": "asia",
+      "modes": [
+        "car"
+      ],
+      "themes": [
+        "road-trip",
+        "culture",
+        "history",
+        "desert",
+        "coast"
+      ],
+      "routeCharacter": "A ten-day self-drive journey from Amman through Jerash and the Dead Sea to Petra, Wadi Rum and the Red Sea at Aqaba.",
+      "highlights": [],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "JO:amman",
+        "name": "Amman",
+        "countryCode": "JO",
+        "basis": "existing-place-experience",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Amman (JO); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Jordan Heritage & Desert Drive”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Amman (JO); confirm specific scene details before generation. Geography context: JO. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 73,
+      "priority": "P1",
+      "landscapePriority": "first-batch",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "status": "brief-ready",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "rank": 9
+    },
+    {
+      "tripId": "utah-national-parks-road-trip",
+      "title": "Utah National Parks Road Trip",
+      "visualFamily": "road-cinematic",
+      "countries": [
+        "US"
+      ],
+      "primaryRegion": "north-america",
+      "modes": [
+        "car"
+      ],
+      "themes": [
+        "road-trip",
+        "nature",
+        "national-parks",
+        "desert"
+      ],
+      "routeCharacter": "A ten-day road trip through Utah's red-rock national parks, linking Zion, Bryce Canyon, Capitol Reef, Arches and Canyonlands.",
+      "highlights": [
+        "Five iconic red-rock parks",
+        "Canyons, hoodoos and natural arches",
+        "Road conditions checked live"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "US:zion-national-park",
+        "name": "Zion National Park",
+        "countryCode": "US",
+        "basis": "existing-place-experience",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Zion National Park (US); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Utah National Parks Road Trip”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Zion National Park (US); confirm specific scene details before generation. Geography context: US. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 73,
+      "priority": "P1",
+      "landscapePriority": "first-batch",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "status": "brief-ready",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "rank": 10
+    },
+    {
+      "tripId": "victoria-great-ocean-highlands-road-trip",
+      "title": "Victoria Great Ocean & Highlands Road Trip",
+      "visualFamily": "road-cinematic",
+      "countries": [
+        "AU"
+      ],
+      "primaryRegion": "oceania",
+      "modes": [
+        "car"
+      ],
+      "themes": [
+        "road-trip",
+        "coast",
+        "nature",
+        "culture"
+      ],
+      "routeCharacter": "A ten-day self-drive loop through coastal Victoria, the Great Ocean Road, Gariwerd (Grampians), Ballarat and Daylesford, finishing in Melbourne.",
+      "highlights": [
+        "Great Ocean Road coastline",
+        "Gariwerd mountain landscapes",
+        "Goldfields and mineral-springs towns"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "AU:ballarat",
+        "name": "Ballarat",
+        "countryCode": "AU",
+        "basis": "existing-place-experience",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Ballarat (AU); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Victoria Great Ocean & Highlands Road Trip”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Ballarat (AU); confirm specific scene details before generation. Geography context: AU. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 73,
+      "priority": "P1",
+      "landscapePriority": "first-batch",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "status": "brief-ready",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "rank": 11
+    },
+    {
+      "tripId": "world-195",
+      "title": "One World Journey",
+      "visualFamily": "planetary",
+      "countries": [
+        "DE",
+        "LU",
+        "BE",
+        "NL",
+        "DK",
+        "NO",
+        "SE",
+        "FI",
+        "EE",
+        "LV",
+        "LT",
+        "BY",
+        "PL",
+        "UA",
+        "MD",
+        "RO",
+        "HU",
+        "SK",
+        "CZ",
+        "AT",
+        "LI",
+        "CH",
+        "FR",
+        "MC",
+        "AD",
+        "ES",
+        "PT",
+        "GB",
+        "IE",
+        "IS",
+        "CA",
+        "US",
+        "MX",
+        "BZ",
+        "GT",
+        "SV",
+        "HN",
+        "NI",
+        "CR",
+        "PA",
+        "CU",
+        "BS",
+        "JM",
+        "HT",
+        "DO",
+        "KN",
+        "AG",
+        "DM",
+        "LC",
+        "BB",
+        "VC",
+        "GD",
+        "TT",
+        "VE",
+        "BR",
+        "GY",
+        "SR",
+        "CO",
+        "EC",
+        "PE",
+        "BO",
+        "PY",
+        "AR",
+        "UY",
+        "CL",
+        "NZ",
+        "TO",
+        "FJ",
+        "WS",
+        "TV",
+        "VU",
+        "SB",
+        "PG",
+        "AU",
+        "NR",
+        "KI",
+        "MH",
+        "FM",
+        "PW",
+        "PH",
+        "BN",
+        "MY",
+        "SG",
+        "ID",
+        "TL",
+        "TH",
+        "KH",
+        "VN",
+        "LA",
+        "MM",
+        "BD",
+        "IN",
+        "NP",
+        "BT",
+        "LK",
+        "MV",
+        "CN",
+        "KP",
+        "KR",
+        "JP",
+        "MN",
+        "RU",
+        "KZ",
+        "KG",
+        "TJ",
+        "UZ",
+        "TM",
+        "AF",
+        "PK",
+        "IR",
+        "AZ",
+        "GE",
+        "AM",
+        "TR",
+        "IQ",
+        "SY",
+        "LB",
+        "CY",
+        "LY",
+        "TN",
+        "DZ",
+        "MA",
+        "MR",
+        "ML",
+        "BF",
+        "NE",
+        "TD",
+        "CF",
+        "CM",
+        "NG",
+        "BJ",
+        "TG",
+        "GH",
+        "CI",
+        "LR",
+        "SL",
+        "GN",
+        "GW",
+        "SN",
+        "GM",
+        "CV",
+        "GQ",
+        "ST",
+        "GA",
+        "CG",
+        "CD",
+        "AO",
+        "NA",
+        "BW",
+        "ZW",
+        "ZM",
+        "MW",
+        "MZ",
+        "SZ",
+        "ZA",
+        "LS",
+        "TZ",
+        "BI",
+        "RW",
+        "UG",
+        "SS",
+        "KE",
+        "SC",
+        "MU",
+        "MG",
+        "KM",
+        "ET",
+        "SO",
+        "DJ",
+        "ER",
+        "SD",
+        "EG",
+        "SA",
+        "KW",
+        "BH",
+        "QA",
+        "AE",
+        "OM",
+        "YE",
+        "JO",
+        "IL",
+        "PS",
+        "GR",
+        "BG",
+        "MK",
+        "AL",
+        "ME",
+        "BA",
+        "RS",
+        "HR",
+        "SI",
+        "IT",
+        "SM",
+        "VA",
+        "MT"
+      ],
+      "primaryRegion": "global",
+      "modes": [
+        "multimodal"
+      ],
+      "themes": [
+        "world",
+        "expedition",
+        "long-term"
+      ],
+      "routeCharacter": "195 countries. One connected journey. Choose when to begin.",
+      "highlights": [],
+      "suggestedAnchor": null,
+      "anchorStatus": "unresolved",
+      "motif": "a single atmospheric view of Earth with recognizable continents and no invented route overlay inspired by global",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “One World Journey”. Visual family: planetary. Show a single atmospheric view of Earth with recognizable continents and no invented route overlay inspired by global. Geography context: DE, LU, BE, NL, DK, NO, SE, FI, EE, LV, LT, BY, PL, UA, MD, RO, HU, SK, CZ, AT, LI, CH, FR, MC, AD, ES, PT, GB, IE, IS, CA, US, MX, BZ, GT, SV, HN, NI, CR, PA, CU, BS, JM, HT, DO, KN, AG, DM, LC, BB, VC, GD, TT, VE, BR, GY, SR, CO, EC, PE, BO, PY, AR, UY, CL, NZ, TO, FJ, WS, TV, VU, SB, PG, AU, NR, KI, MH, FM, PW, PH, BN, MY, SG, ID, TL, TH, KH, VN, LA, MM, BD, IN, NP, BT, LK, MV, CN, KP, KR, JP, MN, RU, KZ, KG, TJ, UZ, TM, AF, PK, IR, AZ, GE, AM, TR, IQ, SY, LB, CY, LY, TN, DZ, MA, MR, ML, BF, NE, TD, CF, CM, NG, BJ, TG, GH, CI, LR, SL, GN, GW, SN, GM, CV, GQ, ST, GA, CG, CD, AO, NA, BW, ZW, ZM, MW, MZ, SZ, ZA, LS, TZ, BI, RW, UG, SS, KE, SC, MU, MG, KM, ET, SO, DJ, ER, SD, EG, SA, KW, BH, QA, AE, OM, YE, JO, IL, PS, GR, BG, MK, AL, ME, BA, RS, HR, SI, IT, SM, VA, MT. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 70,
+      "priority": "P1",
+      "landscapePriority": "first-batch",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete global geography; route density limits emotional thumbnail identity",
+      "status": "brief-ready",
+      "reason": "Differentiate a dense planetary route; Strong travel-mode social identity",
+      "rank": 12
+    },
+    {
+      "tripId": "italy-grand-tour",
+      "title": "Italy Grand Tour",
+      "visualFamily": "nature-atmospheric",
+      "countries": [
+        "IT"
+      ],
+      "primaryRegion": "europe",
+      "modes": [
+        "rail",
+        "road",
+        "ferry",
+        "bus"
+      ],
+      "themes": [
+        "culture",
+        "cities",
+        "coast",
+        "mountains",
+        "round-trip"
+      ],
+      "routeCharacter": "An 18-day sourced planning route combining major cities, the south, the Adriatic, Venice, the Dolomites and Tuscany. Published operator data is separated from schedule-dependent or still-unresolved connections.",
+      "highlights": [],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "IT:rome",
+        "name": "Rome",
+        "countryCode": "IT",
+        "basis": "existing-place-experience",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single atmospheric natural landscape grounded in the listed destination inspired by Rome (IT); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Italy Grand Tour”. Visual family: nature-atmospheric. Show a single atmospheric natural landscape grounded in the listed destination inspired by Rome (IT); confirm specific scene details before generation. Geography context: IT. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 66,
+      "priority": "P2",
+      "landscapePriority": "later",
+      "separateVerticalRecommended": false,
+      "socialPriority": "medium",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "status": "brief-ready",
+      "reason": "Improve thumbnail recognition at small geographic scale; Reusable destination character",
+      "rank": 13
+    },
+    {
+      "tripId": "japan-by-rail",
+      "title": "Japan by Rail",
+      "visualFamily": "rail-cinematic",
+      "countries": [
+        "JP"
+      ],
+      "primaryRegion": "asia",
+      "modes": [
+        "rail"
+      ],
+      "themes": [
+        "rail",
+        "culture",
+        "food",
+        "cities"
+      ],
+      "routeCharacter": "A cinematic rail journey from Tokyo through mountain towns and old capitals to Hiroshima — designed for discovery first, with live schedules intentionally left open.",
+      "highlights": [
+        "Tokyo, the Alps, Kyoto and Hiroshima",
+        "rail · culture · food"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "JP:kanazawa",
+        "name": "Kanazawa",
+        "countryCode": "JP",
+        "basis": "existing-place-experience",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single unbranded rail-travel scene with geographically credible surroundings inspired by Kanazawa (JP); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Japan by Rail”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Kanazawa (JP); confirm specific scene details before generation. Geography context: JP. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 65,
+      "priority": "P2",
+      "landscapePriority": "later",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
+      "status": "brief-ready",
+      "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
+      "rank": 14
+    },
+    {
+      "tripId": "canadian-rockies-rail-road",
+      "title": "Canadian Rockies Rail & Road",
+      "visualFamily": "rail-cinematic",
+      "countries": [
+        "CA"
+      ],
+      "primaryRegion": "north-america",
+      "modes": [
+        "rail",
+        "car"
+      ],
+      "themes": [
+        "mountains",
+        "rail",
+        "road-trip",
+        "nature"
+      ],
+      "routeCharacter": "A mountain journey linking Vancouver with the Canadian Rockies and Calgary through rail and road stages.",
+      "highlights": [
+        "Vancouver, mountain parks and Calgary",
+        "mountains · rail · road-trip"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "CA:kamloops",
+        "name": "Kamloops",
+        "countryCode": "CA",
+        "basis": "existing-place-experience",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single unbranded rail-travel scene with geographically credible surroundings inspired by Kamloops (CA); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Canadian Rockies Rail & Road”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Kamloops (CA); confirm specific scene details before generation. Geography context: CA. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 58,
+      "priority": "P2",
+      "landscapePriority": "later",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
+      "status": "brief-ready",
+      "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
+      "rank": 15
+    },
+    {
+      "tripId": "iceland-ring-road",
+      "title": "Iceland Ring Road",
+      "visualFamily": "road-cinematic",
+      "countries": [
+        "IS"
+      ],
+      "primaryRegion": "europe",
+      "modes": [
+        "car"
+      ],
+      "themes": [
+        "road-trip",
+        "nature",
+        "volcanic",
+        "coast"
+      ],
+      "routeCharacter": "A full Ring Road loop around Iceland built around waterfalls, lava landscapes, glacial coast and geothermal country.",
+      "highlights": [
+        "volcanoes, waterfalls and black-sand coast",
+        "road-trip · nature · volcanic"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "IS:vik",
+        "name": "Vík",
+        "countryCode": "IS",
+        "basis": "existing-place-experience",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Vík (IS); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Iceland Ring Road”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Vík (IS); confirm specific scene details before generation. Geography context: IS. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 57,
+      "priority": "P2",
+      "landscapePriority": "later",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
+      "status": "brief-ready",
+      "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
+      "rank": 16
+    },
+    {
+      "tripId": "south-africa-garden-safari",
+      "title": "South Africa Garden Route & Safari",
+      "visualFamily": "road-cinematic",
+      "countries": [
+        "ZA"
+      ],
+      "primaryRegion": "africa",
+      "modes": [
+        "car"
+      ],
+      "themes": [
+        "road-trip",
+        "wildlife",
+        "coast",
+        "nature"
+      ],
+      "routeCharacter": "A South African road journey from Cape Town along the Garden Route toward wildlife country.",
+      "highlights": [
+        "Cape coast, forests and wildlife",
+        "road-trip · wildlife · coast"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "ZA:addo-elephant-national-park",
+        "name": "Addo Elephant National Park",
+        "countryCode": "ZA",
+        "basis": "existing-place-experience",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Addo Elephant National Park (ZA); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “South Africa Garden Route & Safari”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Addo Elephant National Park (ZA); confirm specific scene details before generation. Geography context: ZA. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 57,
+      "priority": "P2",
+      "landscapePriority": "later",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
+      "status": "brief-ready",
+      "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
+      "rank": 17
+    },
+    {
+      "tripId": "central-europe-rail-journey",
+      "title": "Central Europe Rail Journey",
+      "visualFamily": "rail-cinematic",
+      "countries": [
+        "FR",
+        "BE",
+        "NL",
+        "DE",
+        "AT",
+        "HU",
+        "CZ"
+      ],
+      "primaryRegion": "europe",
+      "modes": [
+        "rail"
+      ],
+      "themes": [
+        "rail",
+        "cities",
+        "culture"
+      ],
+      "routeCharacter": "An 18-day rail-only city journey from Paris to Berlin through Belgium, the Netherlands, Germany, Austria, Hungary and Czechia. Stable route evidence is separated from date-sensitive timetables, fares and engineering works.",
+      "highlights": [],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "DE:berlin",
+        "name": "Berlin",
+        "countryCode": "DE",
+        "basis": "existing-place-experience",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single unbranded rail-travel scene with geographically credible surroundings inspired by Berlin (DE); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Central Europe Rail Journey”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Berlin (DE); confirm specific scene details before generation. Geography context: FR, BE, NL, DE, AT, HU, CZ. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 51,
+      "priority": "P2",
+      "landscapePriority": "later",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
+      "status": "brief-ready",
+      "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
+      "rank": 18
+    },
+    {
+      "tripId": "southern-europe-road-trip",
+      "title": "Southern Europe Road Trip",
+      "visualFamily": "road-cinematic",
+      "countries": [
+        "PT",
+        "ES",
+        "FR",
+        "IT"
+      ],
+      "primaryRegion": "europe",
+      "modes": [
+        "car"
+      ],
+      "themes": [
+        "road-trip",
+        "cities",
+        "coast",
+        "culture"
+      ],
+      "routeCharacter": "A 20-day cross-border road-trip template from Lisbon to Rome via Spain and southern France. The route is source-backed for licence, rental, toll and urban-access context; exact roads, travel times, fuel and toll totals remain date- and vehicle-dependent.",
+      "highlights": [],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "IT:rome",
+        "name": "Rome",
+        "countryCode": "IT",
+        "basis": "existing-place-experience",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Rome (IT); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Southern Europe Road Trip”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Rome (IT); confirm specific scene details before generation. Geography context: PT, ES, FR, IT. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 51,
+      "priority": "P2",
+      "landscapePriority": "later",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
+      "status": "brief-ready",
+      "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
+      "rank": 19
+    },
+    {
+      "tripId": "western-mediterranean-cruise-loop",
+      "title": "Western Mediterranean Cruise Loop",
+      "visualFamily": "coastal-editorial",
+      "countries": [
+        "ES",
+        "FR",
+        "IT",
+        "TN"
+      ],
+      "primaryRegion": "europe",
+      "modes": [
+        "cruise"
+      ],
+      "themes": [
+        "cruise",
+        "coast",
+        "ports"
+      ],
+      "routeCharacter": "An 8-day, 7-night cruise data-model demonstrator linking Barcelona, Marseille, Civitavecchia, Naples, La Goulette and Palma. Ports are source-backed; the sailing sequence is illustrative until a real operator, ship and departure date are selected.",
+      "highlights": [],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "ES:barcelona",
+        "name": "Barcelona",
+        "countryCode": "ES",
+        "basis": "existing-place-experience",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single coherent coastal travel scene; no collage of ports or islands inspired by Barcelona (ES); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Western Mediterranean Cruise Loop”. Visual family: coastal-editorial. Show a single coherent coastal travel scene; no collage of ports or islands inspired by Barcelona (ES); confirm specific scene details before generation. Geography context: ES, FR, IT, TN. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 51,
+      "priority": "P2",
+      "landscapePriority": "later",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
+      "status": "brief-ready",
+      "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
+      "rank": 20
+    },
+    {
+      "tripId": "peru-andes-journey",
+      "title": "Peru Andes Journey",
+      "visualFamily": "nature-atmospheric",
+      "countries": [
+        "PE"
+      ],
+      "primaryRegion": "south-america",
+      "modes": [
+        "rail",
+        "road"
+      ],
+      "themes": [
+        "mountains",
+        "culture",
+        "history",
+        "adventure"
+      ],
+      "routeCharacter": "A high-altitude journey from Lima to Cusco, the Sacred Valley and Lake Titicaca, with rail and road stages left open for live planning.",
+      "highlights": [
+        "Lima, Sacred Valley and high Andes",
+        "mountains · culture · history"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "PE:cusco",
+        "name": "Cusco",
+        "countryCode": "PE",
+        "basis": "existing-place-experience",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single atmospheric natural landscape grounded in the listed destination inspired by Cusco (PE); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Peru Andes Journey”. Visual family: nature-atmospheric. Show a single atmospheric natural landscape grounded in the listed destination inspired by Cusco (PE); confirm specific scene details before generation. Geography context: PE. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 48,
+      "priority": "P3",
+      "landscapePriority": "later",
+      "separateVerticalRecommended": false,
+      "socialPriority": "medium",
+      "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
+      "status": "brief-ready",
+      "reason": "Strengthen distinct journey character; Reusable destination character",
+      "rank": 21
+    }
+  ],
+  "destinationRecommendations": [
+    {
+      "type": "region",
+      "id": "europe",
+      "name": "europe",
+      "journeys": [
+        "italy-grand-tour",
+        "western-mediterranean-cruise-loop",
+        "southern-europe-road-trip",
+        "central-europe-rail-journey",
+        "norway-arctic-road-trip",
+        "greek-island-hopping",
+        "iceland-ring-road"
+      ],
+      "available": false,
+      "priority": 7,
+      "regionalJourneyUses": 7,
+      "reuseScore": 72.62,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "region",
+      "id": "asia",
+      "name": "asia",
+      "journeys": [
+        "japan-by-rail",
+        "vietnam-north-south",
+        "jordan-heritage-desert-drive",
+        "india-golden-triangle-rail"
+      ],
+      "available": false,
+      "priority": 4,
+      "regionalJourneyUses": 4,
+      "reuseScore": 41.81,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "country",
+      "id": "IT",
+      "name": "Italien",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195",
+        "italy-grand-tour",
+        "western-mediterranean-cruise-loop",
+        "southern-europe-road-trip"
+      ],
+      "eligibleJourneys": [
+        "italy-grand-tour"
+      ],
+      "available": false,
+      "priority": 1,
+      "regionalJourneyUses": 3,
+      "reuseScore": 35,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "region",
+      "id": "mediterranean",
+      "name": "mediterranean",
+      "journeys": [
+        "western-mediterranean-cruise-loop",
+        "southern-europe-road-trip",
+        "greek-island-hopping"
+      ],
+      "available": false,
+      "priority": 3,
+      "regionalJourneyUses": 3,
+      "reuseScore": 30.89,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "region",
+      "id": "southern-europe",
+      "name": "southern-europe",
+      "journeys": [
+        "italy-grand-tour",
+        "southern-europe-road-trip",
+        "greek-island-hopping"
+      ],
+      "available": false,
+      "priority": 3,
+      "regionalJourneyUses": 3,
+      "reuseScore": 30.89,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "country",
+      "id": "FR",
+      "name": "Frankreich",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195",
+        "western-mediterranean-cruise-loop",
+        "southern-europe-road-trip",
+        "central-europe-rail-journey"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0,
+      "regionalJourneyUses": 3,
+      "reuseScore": 30,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "region",
+      "id": "south-america",
+      "name": "south-america",
+      "journeys": [
+        "patagonia-road-trip",
+        "peru-andes-journey"
+      ],
+      "available": false,
+      "priority": 2,
+      "regionalJourneyUses": 2,
+      "reuseScore": 21.75,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "region",
+      "id": "northern-europe",
+      "name": "northern-europe",
+      "journeys": [
+        "norway-arctic-road-trip",
+        "iceland-ring-road"
+      ],
+      "available": false,
+      "priority": 2,
+      "regionalJourneyUses": 2,
+      "reuseScore": 21.73,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "region",
+      "id": "africa",
+      "name": "africa",
+      "journeys": [
+        "morocco-atlas-desert",
+        "south-africa-garden-safari"
+      ],
+      "available": false,
+      "priority": 2,
+      "regionalJourneyUses": 2,
+      "reuseScore": 21.72,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "region",
+      "id": "oceania",
+      "name": "oceania",
+      "journeys": [
+        "new-zealand-camper-loop",
+        "victoria-great-ocean-highlands-road-trip"
+      ],
+      "available": false,
+      "priority": 2,
+      "regionalJourneyUses": 2,
+      "reuseScore": 20.92,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "region",
+      "id": "north-africa",
+      "name": "north-africa",
+      "journeys": [
+        "western-mediterranean-cruise-loop",
+        "morocco-atlas-desert"
+      ],
+      "available": false,
+      "priority": 2,
+      "regionalJourneyUses": 2,
+      "reuseScore": 20.88,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "region",
+      "id": "north-america",
+      "name": "north-america",
+      "journeys": [
+        "canadian-rockies-rail-road",
+        "utah-national-parks-road-trip"
+      ],
+      "available": false,
+      "priority": 2,
+      "regionalJourneyUses": 2,
+      "reuseScore": 20.86,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "country",
+      "id": "ES",
+      "name": "Spanien",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195",
+        "western-mediterranean-cruise-loop",
+        "southern-europe-road-trip"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0,
+      "regionalJourneyUses": 2,
+      "reuseScore": 20,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "place",
+      "id": "ES:barcelona",
+      "parent": {
+        "type": "country",
+        "id": "ES"
+      },
+      "name": {
+        "en": "Barcelona",
+        "de": "Barcelona",
+        "it": "Barcellona",
+        "es": "Barcelona",
+        "fr": "Barcelone",
+        "pt": "Barcelona"
+      },
+      "countryCode": "ES",
+      "journeys": [
+        "western-mediterranean-cruise-loop",
+        "southern-europe-road-trip"
+      ],
+      "available": false,
+      "priority": 2,
+      "regionalJourneyUses": 2,
+      "reuseScore": 20,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "place",
+      "id": "FR:marseille",
+      "parent": {
+        "type": "country",
+        "id": "FR"
+      },
+      "name": {
+        "en": "Marseille",
+        "de": "Marseille",
+        "it": "Marsiglia",
+        "es": "Marsella",
+        "fr": "Marseille",
+        "pt": "Marselha"
+      },
+      "countryCode": "FR",
+      "journeys": [
+        "western-mediterranean-cruise-loop",
+        "southern-europe-road-trip"
+      ],
+      "available": false,
+      "priority": 2,
+      "regionalJourneyUses": 2,
+      "reuseScore": 20,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "place",
+      "id": "IT:florence",
+      "parent": {
+        "type": "country",
+        "id": "IT"
+      },
+      "name": {
+        "en": "Florence",
+        "de": "Florenz",
+        "it": "Firenze",
+        "es": "Florencia",
+        "fr": "Florence",
+        "pt": "Florença"
+      },
+      "countryCode": "IT",
+      "journeys": [
+        "italy-grand-tour",
+        "southern-europe-road-trip"
+      ],
+      "available": false,
+      "priority": 2,
+      "regionalJourneyUses": 2,
+      "reuseScore": 20,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "place",
+      "id": "IT:naples",
+      "parent": {
+        "type": "country",
+        "id": "IT"
+      },
+      "name": {
+        "en": "Naples",
+        "de": "Neapel",
+        "it": "Napoli",
+        "es": "Nápoles",
+        "fr": "Naples",
+        "pt": "Nápoles"
+      },
+      "countryCode": "IT",
+      "journeys": [
+        "italy-grand-tour",
+        "western-mediterranean-cruise-loop"
+      ],
+      "available": false,
+      "priority": 2,
+      "regionalJourneyUses": 2,
+      "reuseScore": 20,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "place",
+      "id": "IT:rome",
+      "parent": {
+        "type": "country",
+        "id": "IT"
+      },
+      "name": {
+        "en": "Rome",
+        "de": "Rom",
+        "it": "Roma",
+        "es": "Roma",
+        "fr": "Rome",
+        "pt": "Roma"
+      },
+      "countryCode": "IT",
+      "journeys": [
+        "italy-grand-tour",
+        "southern-europe-road-trip"
+      ],
+      "available": false,
+      "priority": 2,
+      "regionalJourneyUses": 2,
+      "reuseScore": 20,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "country",
+      "id": "JP",
+      "name": "Japan",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195",
+        "japan-by-rail"
+      ],
+      "eligibleJourneys": [
+        "japan-by-rail"
+      ],
+      "available": false,
+      "priority": 1,
+      "regionalJourneyUses": 1,
+      "reuseScore": 16,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "country",
+      "id": "NZ",
+      "name": "Neuseeland",
+      "parent": {
+        "type": "continent",
+        "id": "oceania"
+      },
+      "journeys": [
+        "world-195",
+        "new-zealand-camper-loop"
+      ],
+      "eligibleJourneys": [
+        "new-zealand-camper-loop"
+      ],
+      "available": false,
+      "priority": 1,
+      "regionalJourneyUses": 1,
+      "reuseScore": 15.92,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    }
+  ]
+}

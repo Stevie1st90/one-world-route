@@ -1,5 +1,5 @@
 const LOCAL_PREVIEW=['127.0.0.1','localhost','::1'].includes(self.location.hostname);
-const CACHE='one-world-route-pwa-offline-20261001-scalable-visuals-r2';
+const CACHE='one-world-route-pwa-offline-20261001-journey-visual-v2-r1';
 const MIGRATION_CACHE=/^one-world-route-(regional-hardening|homepage|utility-readiness|compare-calendar)-/;
 const SHELL=[
   '/index.html',

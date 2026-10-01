@@ -450,6 +450,53 @@
         }
       },
       "additionalProperties": false
+    },
+    "editorial": {
+      "type": "object",
+      "description": "Optional journey editorial context; no duplicate mandatory copy. Existing summary/highlights remain the default.",
+      "properties": {
+        "whyThisJourney": {
+          "type": "array",
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "required": [
+              "en",
+              "de",
+              "it",
+              "es",
+              "fr",
+              "pt"
+            ],
+            "properties": {
+              "en": {
+                "type": "string",
+                "minLength": 1
+              },
+              "de": {
+                "type": "string",
+                "minLength": 1
+              },
+              "it": {
+                "type": "string",
+                "minLength": 1
+              },
+              "es": {
+                "type": "string",
+                "minLength": 1
+              },
+              "fr": {
+                "type": "string",
+                "minLength": 1
+              },
+              "pt": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
     }
   },
   "x-oneWorldRoute": {

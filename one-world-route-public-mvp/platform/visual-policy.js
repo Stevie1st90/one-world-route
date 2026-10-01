@@ -12,12 +12,14 @@
     const {journeyCover,destinationAssets=[],autoRouteVisual,countries=[],purpose='discoveryCard',ratio='landscape'}=context;
     const broad=['CONTINENTAL','GLOBAL'].includes(autoRouteVisual?.scope);
     const destination=broad&&!(meta.visualAnchor||meta.visual?.visualAnchor)?null:destinationCandidate(meta,destinationAssets,countries);
-    const choices=purpose==='planning'?[['auto',autoRouteVisual],['bespoke',journeyCover],['destination',destination]]:[['bespoke',journeyCover],['destination',destination],['auto',autoRouteVisual]];
+    // Orientation never substitutes inspirational artwork for geographic evidence.
+    const orientation=['planning','routeOverview','socialRoute','share'].includes(purpose);
+    const choices=orientation?[['auto',autoRouteVisual]]:[['bespoke',journeyCover],['destination',destination],['auto',autoRouteVisual]];
     for(const [kind,entry] of choices){
       if(!usable(entry))continue;
       // Native vertical geometry is mandatory for automatic social visuals.
       if(kind==='auto'&&ratio!=='landscape'&&!entry.derivatives?.[ratio])continue;
-      if(purpose==='social'&&ratio==='vertical'&&kind!=='auto'&&!entry.derivatives?.vertical&&entry.aspectRatio!=='9:16')continue;
+      if(ratio==='vertical'&&kind!=='auto'&&!entry.derivatives?.vertical&&entry.aspectRatio!=='9:16')continue;
       return {kind,entry,coverageLevel:usable(journeyCover)?'JOURNEY-BESPOKE':destination?'DESTINATION-ENRICHED':'AUTO'};
     }
     return {kind:'abstract',entry:null,coverageLevel:null};

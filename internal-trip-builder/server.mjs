@@ -29,8 +29,10 @@ async function atomic(p,v){const tmp=p+'.tmp';await writeFile(tmp,JSON.stringify
 async function loadDraft(s){const p=paths(s);return{trip:await json(p.trip),catalogEntry:await json(p.catalog)}}
 const publicationGenerators=[
   ['Static journey visual generation',['scripts/build-route-visuals.mjs']],
+  ['Region globe portraits',['scripts/build-region-visuals.mjs']],
   ['Media manifest generation',['scripts/build-media-manifest.mjs']],
   ['Visual coverage generation',['scripts/build-visual-coverage.mjs']],
+  ['Journey visual briefs',['scripts/build-visual-briefs.mjs']],
   ['Trip index generation',['scripts/build-trip-index.mjs']],
   ['SEO sitemap generation',['scripts/generate-seo.mjs']]
 ];
@@ -271,7 +273,7 @@ async function publish(slug){
   const next={...catalog,updatedAt:new Date().toISOString().slice(0,10),trips};
   const target=join(tripsDir,slug+'.json');
   const snapshots=new Map();
-  for(const filePath of [catalogPath,target,tripIndexPath,sitemapPath,...["route-visuals.json","media-manifest.json","visual-coverage.json"].map(name=>join(publicRoot,"data/platform",name))]){
+  for(const filePath of [catalogPath,target,tripIndexPath,sitemapPath,join(publicRoot,"GRAPHICS_NEEDED.md"),...["route-visuals.json","region-visuals.json","media-manifest.json","visual-coverage.json","visual-briefs.json","graphics-backlog.json"].map(name=>join(publicRoot,"data/platform",name))]){
     snapshots.set(filePath,await readFile(filePath).catch(()=>null));
   }
   const restore=async()=>{
@@ -311,6 +313,7 @@ async function handler(req,res){
     if(pathname==='/__builder/app.js')return void await file(res,join(here,'app.js'));
     if(pathname==='/__builder/styles.css')return void await file(res,join(here,'styles.css'));
     if(pathname==='/__builder/api/state'&&req.method==='GET')return send(res,200,{ok:true,catalog:await json(catalogPath),drafts:await listDrafts(),archetypes:journeyArchetypes()});
+    if(pathname==='/__builder/api/visual-briefs'&&req.method==='GET')return send(res,200,{ok:true,briefs:await json(join(publicRoot,'data/platform/visual-briefs.json'))});
     if(pathname==='/__builder/api/visual-coverage'&&req.method==='GET')return send(res,200,{ok:true,coverage:await json(join(publicRoot,'data/platform/visual-coverage.json'))});
     if(pathname==='/__builder/api/experience-coverage'&&req.method==='GET')return send(res,200,{ok:true,coverage:await experienceCoverage()});
     if(pathname==='/__builder/api/maintenance-queue'&&req.method==='GET')return send(res,200,{ok:true,queue:await maintenanceQueue()});

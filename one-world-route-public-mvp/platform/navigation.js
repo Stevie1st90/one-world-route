@@ -1,6 +1,10 @@
 (() => {
   'use strict';
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  function isHomeRequest({pathname='/',search=''}={}){
+    const p=new URLSearchParams(search);
+    return pathname==='/'&&!p.has('trip')&&!['segment','country','phase','mode','story','view'].some(key=>p.has(key));
+  }
 
   function buildTripUrl({id,defaultTripId='world-195',search=''}) {
     const params=new URLSearchParams(search);
@@ -19,5 +23,5 @@
     return `${pathname}?${params.toString()}`;
   }
 
-  root.navigation={buildTripUrl,regionalUrl};
+  root.navigation={buildTripUrl,regionalUrl,isHomeRequest};
 })();

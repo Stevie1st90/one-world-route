@@ -48,7 +48,7 @@ test('operational transfers preserve macro counts and expose unknowns',async({pa
   expect(route.segments).toHaveLength(194);expect(route.countries).toHaveLength(195);
   await open(page,'/?segment=22');
   if(isMobile)await page.locator('#mobileFilters').click();
-  await page.locator('.mode-switch button[data-mode="operations"]').click();
+  await page.locator('[data-journey-mode="operations"]').click();
   await expect(page.locator('[data-movement-id="transfer-21-22"]')).toBeAttached();
   await expect(page.locator('[data-movement-id="transfer-22-23"]')).toBeAttached();
   await expect(page.locator('#selectedOpsIntel')).toContainText('Operational timeline');

@@ -86,14 +86,14 @@ test('public homepage discovers all catalog journeys and keeps the globe object-
 
 test('flagship shell and route invariants work',async({page,isMobile},testInfo)=>{
   // The flagship globe can make CI viewport screenshots comparatively expensive on mobile.
-  // Assertions complete well inside this budget; leave headroom for three visual-QA captures.
-  test.setTimeout(180000);
+  // Software GL screenshots can take 45+ seconds each; keep capture time separate from assertion deadlines.
+  test.setTimeout(240000);
   const pageErrors=capturePageErrors(page);
   await openFlagship(page);
 
   await expect(page.locator('#routeRange')).toHaveValue('1');
   await expect(page.locator('#filterCount')).toContainText(String(flagship.metrics.internationalLegs));
-  await expect(page.locator('.brand small')).toContainText('195 countries');
+  await expect(page.locator('.brand small')).toContainText(flagship.title.en);
   await expect(page.locator('#settingsBtn')).toBeVisible();
   if(isMobile){
     await expectMobilePanelsClosed(page);
@@ -132,20 +132,25 @@ test('flagship shell and route invariants work',async({page,isMobile},testInfo)=
   await page.locator('#platformRouteModal .platform-x').click();
   if(isMobile)await expectMobilePanelsClosed(page);
 
-  if(isMobile){
-    await page.locator('#mobileFilters').click();
-    await expect(page.locator('#leftPanel')).toHaveClass(/mobile-open/);
-  }
-  await page.locator('.mode-switch button[data-mode="operations"]').click();
+  await page.locator('[data-journey-mode="operations"]').click();
   await expect(page.locator('#opsIntelligence')).toHaveClass(/is-visible/);
   await expect(page.locator('#opsIntelligence')).toContainText('195/195');
   await expect(page.locator('#opsIntelligence')).toContainText('DEPARTURE BLOCKED');
   await expect(page.locator('#opsIntelligence')).toContainText('POST-TRIP RETURN');
   await captureViewport(page,testInfo,'flagship-operations-'+testInfo.project.name+'.png');
-  if(isMobile){
-    await page.locator('#closeFilters').click();
-    await expect(page.locator('#leftPanel')).not.toHaveClass(/mobile-open/);
-  }
+
+  await page.locator('[data-journey-mode="story"]').click();
+  await expect(page.locator('body')).toHaveClass(/story-mode/);
+  await page.locator('[data-journey-mode="explore"]').click();
+  await expect(page.locator('body')).not.toHaveClass(/story-mode/);
+  await page.locator('[data-journey-mode="terrain"]').click();
+  await expect(page.locator('body')).toHaveClass(/terrain-view/,{timeout:75000});
+  await page.locator('[data-journey-mode="explore"]').click();
+  await expect(page.locator('body')).not.toHaveClass(/terrain-view/);
+  await expect(page).toHaveURL(/trip=world-195/);
+  await page.reload({waitUntil:'domcontentloaded'});
+  await expect(page.locator('[data-journey-mode="operations"]')).toBeVisible();
+  await expect(page.locator('#filterCount')).toContainText('194');
 
   await page.locator('#platformTravellerBtn').click();
   await expect(page.locator('#platformTravellerModal')).toBeVisible();
