@@ -25,7 +25,8 @@
     (() => {
       const params = new URLSearchParams(location.search);
       document.body.classList.add('platform-booting');
-      if (location.pathname === '/' && !params.has('trip')) {
+      const legacyExplorer = ['segment', 'country', 'phase', 'mode', 'story', 'view'].some(key => params.has(key));
+      if (location.pathname === '/' && !params.has('trip') && !legacyExplorer) {
         document.body.classList.add('platform-home');
       }
     })();

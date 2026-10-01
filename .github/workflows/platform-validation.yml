@@ -548,7 +548,7 @@ jobs:
         run: |
           CHROME_BIN="$(command -v google-chrome || command -v chromium)"
           test -n "$CHROME_BIN"
-          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/platform-smoke.spec.mjs --grep="@flagship" --project=desktop-1440 --project=mobile-390 --workers=2
+          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/platform-smoke.spec.mjs --grep="@flagship" --project=desktop-1440 --project=mobile-390 --workers=1
       - name: Upload flagship browser smoke artifacts
         if: failure()
         uses: actions/upload-artifact@v7

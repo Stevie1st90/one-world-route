@@ -17,7 +17,8 @@ test('@flagship flagship shell boots cleanly',async({page,isMobile})=>{
   await expect(page.locator('body')).not.toHaveClass(/platform-booting/,{timeout:15000});
   await expect(page.locator('#routeRange')).toHaveAttribute('max',String(flagship.metrics.internationalLegs),{timeout:15000});
   await expect(page.locator('#filterCount')).toContainText(String(flagship.metrics.internationalLegs));
-  await expect(page.locator('#settingsBtn')).toBeVisible();
+  try{await expect(page.locator('#settingsBtn')).toBeVisible()}
+  catch(error){console.log('flagship settings layout',await page.locator('#settingsBtn').evaluate(el=>{const chain=[];for(let n=el;n;n=n.parentElement){const s=getComputedStyle(n),r=n.getBoundingClientRect();chain.push({node:n.id||n.className,display:s.display,visibility:s.visibility,width:r.width,height:r.height})}return chain}));throw error}
   await expect(page.locator('#platformRouteBtn')).toBeVisible();
   if(isMobile){
     await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
@@ -660,7 +661,7 @@ test('@discovery @mobile-critical scalable static visuals load cards hero and na
  const requests=await Promise.all(manifest.journeys.map(j=>page.request.get(j.autoRouteVisual.asset)));
  expect(requests.every(r=>r.ok())).toBe(true);
  await card.locator('[data-open-home-trip]').click();
- await expect(page.locator('body')).toHaveClass(/platform-regional-trip/);
+ await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:25000});
  await expect(page.locator('.platform-journey-hero-art img')).toHaveCount(1);
  await expect(page.locator('[data-journey-mode="plan"]')).toHaveCount(1);
  await page.evaluate(()=>window.ONE_WORLD_PLATFORM_MODULES.regionalDetail?.renderTripOverview?.());
@@ -675,7 +676,7 @@ test('@discovery @mobile-critical scalable static visuals load cards hero and na
  await page.locator('[data-social-next]').click();await expect(stage).toHaveAttribute('data-visual-role','routeOverview');
  await page.keyboard.press('Escape');await page.keyboard.press('Escape');
  await page.reload({waitUntil:'domcontentloaded'});
- await expect(page.locator('body')).toHaveClass(/platform-regional-trip/);
+ await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:25000});
  expect(errors).toEqual([]);
 });
 

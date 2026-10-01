@@ -42,6 +42,7 @@
   const LegacyLocalization=PLATFORM_MODULES.legacyLocalization;
   if(!LocaleData||!Formatters||!Model||!Traveller||!TravellerUi||!Discovery||!TripTools||!JourneyAdapter||!JourneyVariants||!SharedKnowledge||!TravellerFit||!TripCompare||!JourneyGuide||!PlaceExperiences||!MyTrips||!TripPlanning||!Extensions||!Home||!RouteLibrary||!RegionalShell||!RegionalDetail||!RegionalGlobe||!RegionalTimeline||!RegionalControls||!RegionalSelection||!Story||!Terrain||!Ui||!Navigation||!LegacyLocalization)throw new Error('ONE WORLD ROUTE platform modules unavailable');
   const HOME_REQUEST=Navigation.isHomeRequest(location);
+  document.body?.classList?.toggle?.('platform-home',HOME_REQUEST);
   if(HOME_REQUEST){
     window.ONE_WORLD_ROUTE_OWNERSHIP='home';
     document.body?.classList?.add?.('platform-home');
