@@ -33,6 +33,8 @@ test('@flagship operations exposes departure recheck controls',async({page})=>{
   const errors=capturePageErrors(page);
   await page.goto('/?segment=13&mode=operations&lang=en',{waitUntil:'domcontentloaded'});
   await expect(page.locator('#detailContent')).toContainText('Departure recheck',{timeout:15000});
+  await expect(page.locator('[data-journey-mode="operations"]')).toHaveAttribute('aria-pressed','true');
+  await expect(page.locator('[data-journey-mode="explore"]')).toHaveAttribute('aria-pressed','false');
   await expect(page.locator('#detailContent')).toContainText('Recheck status');
   await expect(page.locator('#detailContent')).toContainText('Next recheck');
   await expect(page.locator('#detailContent')).toContainText('Manual review');

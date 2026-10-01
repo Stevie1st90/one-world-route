@@ -4107,13 +4107,27 @@
       sync(mode);
     });
     const sync=active=>nav.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.journeyMode===active)));
-    const update=()=>{position();sync(document.body.classList.contains('story-mode')?'story':document.body.classList.contains('terrain-view')?'terrain':legacy&&document.querySelector('[data-mode="operations"]')?.classList.contains('active')?'operations':'explore')};
+    const legacyMode=()=>{
+      if(!legacy)return null;
+      const appMode=host.__ONE_WORLD_ROUTE_APP__?.getState?.().mode;
+      if(appMode)return appMode;
+      return panel.querySelector('.mode-switch [data-mode].active')?.dataset.mode||'explore';
+    };
+    const update=()=>{position();sync(document.body.classList.contains('story-mode')?'story':document.body.classList.contains('terrain-view')?'terrain':legacy?legacyMode():'explore')};
     const observer=new MutationObserver(update);
     observer.observe(document.body,{attributes:true,attributeFilter:['class']});
+    let legacyObserver=null;
     // Keep legacy mode controls as the adapter's event targets, not a second visible navigation.
-    if(legacy){const old=panel.querySelector('.mode-switch');if(old)old.classList.add('platform-legacy-mode-adapter');}
+    if(legacy){
+      const old=panel.querySelector('.mode-switch');
+      if(old){
+        old.classList.add('platform-legacy-mode-adapter');
+        legacyObserver=new MutationObserver(update);
+        legacyObserver.observe(old,{subtree:true,attributes:true,attributeFilter:['class']});
+      }
+    }
     update();
-    return {modes,sync,dispose:()=>{observer.disconnect();mobile.removeEventListener('change',position)}};
+    return {modes,sync,dispose:()=>{observer.disconnect();legacyObserver?.disconnect();mobile.removeEventListener('change',position)}};
   }
   root.journeyShell={capabilities,mount};
 })();
