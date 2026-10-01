@@ -102,12 +102,12 @@
   }
 
   function visualMarkup(trip){
-    const d=context(),entry=mediaManifest.find(item=>item.id===trip.id)?.hero;
+    const d=context(),result=root.media.resolveJourneyVisual(trip,{purpose:'discoveryCard'}),entry=result.entry;
     const media=root.media.descriptor(entry,visualTheme(trip));
     const preview=tripIndex.find(item=>item.id===trip.id)?.preview;
-    const portrait=root.media.descriptor(entry,visualTheme(trip),'portrait');
-    const art=media.type==='image'?'<picture class="platform-cover-image"><source media="(max-width:820px)" srcset="'+d.esc(portrait.asset||media.asset)+'"><img loading="lazy" decoding="async" src="'+d.esc(media.asset)+'" alt="'+d.esc(d.local(media.alt)||d.local(trip.title))+'" style="--cover-landscape:'+Math.round(media.focalPoint.x*100)+'% '+Math.round(media.focalPoint.y*100)+'%;--cover-portrait:'+Math.round((portrait.focalPoint||media.focalPoint).x*100)+'% '+Math.round((portrait.focalPoint||media.focalPoint).y*100)+'%"></picture>':root.media.routeArt(preview);
-    return '<div class="platform-home-card-visual '+d.esc(media.className)+'" data-media-type="'+media.type+'" style="--journey-color:'+root.visualIdentity.identity(trip).color+';'+d.esc(media.type==='image'?'':media.style||'')+'"><div class="platform-home-card-visual-top"><span>'+d.esc(d.facetLabel(primaryRegion(trip)))+'</span><b>'+d.esc(d.facetLabel(trip.kind))+'</b></div>'+art+root.media.credit(entry,d.esc)+'</div>';
+    const art=media.type==='image'?root.media.imageMarkup(entry,d.esc,d.local):root.media.routeArt(preview);
+    const automatic=entry?.sourceType==='route-render',credit=root.media.credit(entry,d.esc);
+    return '<div class="platform-home-card-visual '+d.esc(media.className)+'" data-media-type="'+media.type+'" data-visual-kind="'+result.kind+'" style="--journey-color:'+root.visualIdentity.identity(trip).color+';'+d.esc(media.type==='image'?'':media.style||'')+'"><div class="platform-home-card-visual-top"><span>'+d.esc(d.facetLabel(primaryRegion(trip)))+'</span><b>'+d.esc(d.facetLabel(trip.kind))+'</b></div>'+art+(automatic?'':credit)+'</div>'+(automatic?'<div class="platform-route-visual-caption"><span>'+d.esc(d.t('routeVisualNote'))+'</span>'+credit+'</div>':'');
   }
 
   function actionIcon(kind){
@@ -542,7 +542,8 @@
       ]);
       collections=collectionResponse.ok?(await collectionResponse.json()).collections||[]:[];
       tripIndex=indexResponse.ok?(await indexResponse.json()).trips||[]:[];
-      mediaManifest=mediaResponse.ok?(await mediaResponse.json()).journeys||[]:[];
+      const manifest=mediaResponse.ok?await mediaResponse.json():{journeys:[]};
+      mediaManifest=manifest.journeys||[];root.media.setManifest(manifest);
     }catch(error){console.warn('Journey discovery support data unavailable',error);collections=[];tripIndex=[]}
     const requestedCollection=new URLSearchParams(location.search).get('collection');
     activeCollection=collections.some(item=>item.id===requestedCollection)?requestedCollection:null;

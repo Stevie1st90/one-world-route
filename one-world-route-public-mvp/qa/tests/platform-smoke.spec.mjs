@@ -635,6 +635,38 @@ test('@discovery curated collection deep link supports combined metadata filters
 
 
 
+test('@discovery @mobile-critical scalable static visuals load cards hero and native social without card tile requests',async({page,isMobile},testInfo)=>{
+ test.setTimeout(90000);const errors=capturePageErrors(page),tiles=[];
+ page.on('request',r=>{if(/tiles\.openfreemap|tiles\.mapterhorn/.test(r.url()))tiles.push(r.url())});
+ await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
+ const card=page.locator('[data-home-trip="japan-by-rail"]').first();
+ await card.scrollIntoViewIfNeeded();
+ await expect(card.locator('[data-visual-kind="auto"]')).toBeVisible();
+ await expect.poll(()=>card.locator('img').evaluate(i=>i.complete&&i.naturalWidth>0)).toBe(true);
+ await card.screenshot({path:testInfo.outputPath('auto-card.png')});
+ expect(tiles,'card images must not load map tiles').toEqual([]);
+ const manifest=await page.evaluate(async()=>fetch('./data/platform/media-manifest.json').then(r=>r.json()));
+ expect(manifest.journeys).toHaveLength(21);
+ const requests=await Promise.all(manifest.journeys.map(j=>page.request.get(j.autoRouteVisual.asset)));
+ expect(requests.every(r=>r.ok())).toBe(true);
+ await card.locator('[data-open-home-trip]').click();
+ await expect(page.locator('body')).toHaveClass(/platform-regional-trip/);
+ await expect(page.locator('.platform-journey-hero-art img')).toHaveCount(1);
+ await page.evaluate(()=>window.ONE_WORLD_PLATFORM_MODULES.regionalDetail?.renderTripOverview?.());
+ await expect(page.locator('.platform-overview-visual img')).toHaveCount(1);
+ if(!isMobile)await page.locator('.platform-journey-hero-art').screenshot({path:testInfo.outputPath('auto-hero.png')});
+ if(isMobile){await page.locator('#settingsBtn').click();await page.locator('#mobileShareBtn').click()}else await page.locator('#shareBtn').click();
+ await page.locator('[data-share-story]').click();
+ const stage=page.locator('.social-story-stage');await expect(stage).toBeVisible();
+ await expect(stage).toHaveCSS('background-image',/vertical-/);
+ await expect(page.locator('.social-story-controls')).toBeInViewport({ratio:1});
+ await stage.screenshot({path:testInfo.outputPath('auto-social.png')});
+ await page.keyboard.press('Escape');await page.keyboard.press('Escape');
+ await page.reload({waitUntil:'domcontentloaded'});
+ await expect(page.locator('body')).toHaveClass(/platform-regional-trip/);
+ expect(errors).toEqual([]);
+});
+
 test('@discovery @mobile-critical inspiration selects published routes and keeps globe widths uniform',async({page},testInfo)=>{
  test.setTimeout(90000);const errors=capturePageErrors(page);
  await page.emulateMedia({reducedMotion:'reduce'});

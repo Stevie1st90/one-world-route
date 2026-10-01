@@ -2,12 +2,22 @@
   'use strict';
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
   const SAFE_ASSET=/^\.\/assets\/[a-z0-9_./-]+$/i;
+  let visualManifest={journeys:[],destinationAssets:[]},manifestPromise;
+  function setManifest(manifest){visualManifest=manifest||{journeys:[]};}
+  function resolveJourneyVisual(meta,context={}){
+    const record=(visualManifest.journeys||[]).find(j=>j.id===meta.id)||{};
+    return root.visualPolicy.resolveJourneyVisual({...meta,visualAnchor:meta.visualAnchor||record.visualAnchor},{journeyCover:record.journeyCover,destinationAssets:visualManifest.destinationAssets||[],autoRouteVisual:record.autoRouteVisual,countries:record.countries||[],...context});
+  }
+  async function loadManifest(){
+    manifestPromise=manifestPromise||fetch('./data/platform/media-manifest.json').then(r=>{if(!r.ok)throw Error('Media manifest unavailable');return r.json()}).then(m=>{setManifest(m);return m}).catch(()=>visualManifest);
+    return manifestPromise;
+  }
 
   function descriptor(entry,fallbackTheme='ocean',ratio='landscape'){
     const theme=String(entry?.theme||fallbackTheme||'ocean').replace(/[^a-z0-9-]/gi,'')||'ocean';
     const derivative=entry?.derivatives?.[ratio];
     const asset=String(derivative?.asset||entry?.asset||'');
-    const generatedApproved=entry?.sourceType!=='generated'||(entry.rightsStatus==='approved'&&entry.status==='published');
+    const generatedApproved=!['generated','route-render'].includes(entry?.sourceType)||(entry.rightsStatus==='approved'&&entry.status==='published');
     if(entry?.type==='image'&&generatedApproved&&entry.license&&entry.attribution&&SAFE_ASSET.test(asset)&&!asset.split('/').includes('..')){
       const focal=derivative?.focalPoint||entry.focalPoint||{x:.5,y:.5};
       const x=Number.isFinite(focal.x)?Math.max(0,Math.min(1,focal.x)):.5,y=Number.isFinite(focal.y)?Math.max(0,Math.min(1,focal.y)):.5;
@@ -20,7 +30,7 @@
         className:'platform-media-image visual-'+theme,
         style:'background-image:linear-gradient(180deg,rgba(5,10,17,.08),rgba(5,10,17,.5)),url("'+asset.replace(/"/g,'')+'");background-position:'+Math.round(x*100)+'% '+Math.round(y*100)+'%',
         attribution:String(entry.attribution||''),
-        license:String(entry.license||'')
+        license:String(entry.license||''),srcset:ratio==='landscape'?entry.srcset||'':'',assetId:entry.assetId||null,sourceType:entry.sourceType||null
       };
     }
     return {type:'art-directed',theme,className:'visual-'+theme,style:'',attribution:'',license:String(entry?.license||'original-ui-art')};
@@ -29,7 +39,7 @@
   function credit(entry,esc=value=>String(value??'')){
     const media=descriptor(entry);
     if(media.type!=='image'||!media.attribution)return '';
-    return '<small class="platform-media-credit">'+esc(media.attribution)+(media.license?' · '+esc(media.license):'')+'</small>';
+    return '<small class="platform-media-credit">'+esc(entry.sourceType==='route-render'?'Made with Natural Earth':media.attribution)+(media.license&&entry.sourceType!=='route-render'?' · '+esc(media.license):'')+'</small>';
   }
 
 
@@ -54,15 +64,16 @@
     return {arcs:points.slice(1).map((point,index)=>({start:points[index],end:point}))};
   }
 
-  let registryPromise;
   async function resolveReference(meta,trip){
-    const reference=trip.media?.heroAssetId||meta.visual?.coverAssetId;
-    if(!reference)return trip;
-    registryPromise=registryPromise||fetch('./data/platform/generated-media.json').then(r=>{if(!r.ok)throw Error('Media registry unavailable');return r.json()}).catch(()=>({assets:[]}));
-    const registry=await registryPromise;
-    const candidate=(registry.assets||[]).find(a=>a.assetId===reference&&a.status==='published'&&a.rightsStatus==='approved');
-    if(!candidate||descriptor(candidate).type!=='image')return trip;
-    return {...trip,media:{...trip.media,hero:candidate}};
+    await loadManifest();
+    const result=resolveJourneyVisual(meta,{purpose:'journeyHero'});
+    if(!result.entry)return trip;
+    return {...trip,media:{...trip.media,hero:result.entry}};
   }
-  root.media={descriptor,credit,routeArt,tripPreview,resolveReference};
+  function resolveDestinationVisual(anchor){return root.visualPolicy.destinationCandidate({visualAnchor:anchor},visualManifest.destinationAssets||[],[]);}
+  function imageMarkup(entry,esc,local=value=>value?.en||value||'',{lazy=true,ratio='landscape'}={}){
+    const d=descriptor(entry,'ocean',ratio);if(d.type!=='image')return '';
+    return '<img class="platform-route-image" style="object-position:'+Math.round(d.focalPoint.x*100)+'% '+Math.round(d.focalPoint.y*100)+'%" '+(lazy?'loading="lazy" ':'')+'decoding="async" src="'+esc(d.asset)+'"'+(d.srcset?' srcset="'+esc(d.srcset)+'" sizes="(max-width:820px) 92vw, 400px"':'')+' alt="'+esc(local(d.alt))+'">';
+  }
+  root.media={descriptor,credit,routeArt,tripPreview,resolveReference,setManifest,loadManifest,resolveJourneyVisual,resolveDestinationVisual,imageMarkup};
 })();

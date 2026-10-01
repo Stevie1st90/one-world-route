@@ -9,7 +9,7 @@
 <div class="shell">
 <aside>
 <div class="brand"><span class="orb"></span><div><b>ONE WORLD ROUTE</b><small>Internal Trip Builder</small></div></div>
-<button id="newBtn" class="primary">+ New draft</button><button id="cloneBtn">Clone public trip</button><button id="coverageBtn">Experience coverage</button><button id="localeCoverageBtn">Locale health</button><button id="maintenanceBtn">Maintenance queue</button>
+<button id="newBtn" class="primary">+ New draft</button><button id="cloneBtn">Clone public trip</button><button type="button" id="visualCoverageBtn">Visual coverage</button><button id="coverageBtn">Experience coverage</button><button id="localeCoverageBtn">Locale health</button><button id="maintenanceBtn">Maintenance queue</button>
 <div class="label">Drafts</div><div id="drafts" class="drafts"></div>
 <div class="aside-note">Local-only authoring. Drafts stay outside the public catalog until Publish passes the gate.</div>
 </aside>
@@ -67,4 +67,5 @@
 <dialog id="sourceSyncDialog"><form id="sourceSyncForm"><h2>Update reused source</h2><p class="dialog-note">Updates source metadata across every published journey that references this exact URL. Journey-specific source IDs and the URL itself stay unchanged.</p><div id="sourceSyncImpact" class="dialog-note"></div><div class="evidence-grid"><label class="span-2">URL<input name="url" type="url" readonly></label><label>Title<input name="title" required></label><label>Issuer<input name="issuer" required></label><label>Issuer type · optional<input name="issuerType"></label><label>Checked at<input name="checkedAt" type="date" required></label><label class="span-2">Claims · optional replacement<textarea class="evidence-input" name="claims" placeholder="Leave empty to preserve existing claims"></textarea></label></div><div class="dialog-actions"><button type="button" data-close="sourceSyncDialog">Cancel</button><button class="primary">Update all journeys</button></div></form></dialog>
 
 <script src="/__builder/app.js"></script>
+<dialog id="visualCoverageDialog" class="coverage-dialog"><div class="coverage-shell"><div class="coverage-head"><h2>Visual coverage</h2><button type="button" data-close="visualCoverageDialog">Close</button></div><div id="visualCoverageBody" class="coverage-list"></div></div></dialog>
 </body></html>

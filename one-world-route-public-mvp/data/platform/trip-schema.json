@@ -428,6 +428,28 @@
         }
       },
       "additionalProperties": true
+    },
+    "visualAnchor": {
+      "type": "object",
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "continent",
+            "region",
+            "country",
+            "place"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
     }
   },
   "x-oneWorldRoute": {

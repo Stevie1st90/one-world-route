@@ -25,7 +25,8 @@
       stops=(trip.countries||[]).slice(0,6).map(c=>{const geo=byName.get(c.name);return geo?.cca2?names.of(geo.cca2):c.name});
     }
     const visual=root.media.routeArt(preview),mode=(meta.discovery?.modes||[]).map(d.facetLabel).join(' · ');
-    const media=root.media.descriptor(trip.media?.hero,meta.visual?.theme,'vertical');
+    const resolved=root.media.resolveJourneyVisual(meta,{purpose:'social',ratio:'vertical'});
+    const media=root.media.descriptor(resolved.entry,meta.visual?.theme,'vertical');
     const scenes=[
       {label:d.t('discoverJourney'),title:d.local(meta.title),body:facts(meta,d.t),art:visual},
       {label:d.t('theRoute'),title:d.local(meta.title),body:mode,art:visual},
@@ -36,7 +37,7 @@
     let index=0;
     const render=()=>{
       const scene=scenes[index],e=d.esc;
-      modal.innerHTML='<div class="platform-modal-card social-story-card"><button type="button" class="platform-x" aria-label="'+e(d.t('close'))+'">×</button><h2 id="platformSocialStoryTitle" class="social-story-heading">'+e(d.t('socialStory'))+'</h2><div class="social-story-stage '+e(media.className)+'"'+(media.style?' style="'+e(media.style)+'"':'')+'><span class="social-story-brand">ONE WORLD ROUTE</span><div class="social-story-route" style="--journey-color:'+identity.color+'">'+scene.art+'</div><div class="social-story-copy" aria-live="polite"><span>'+e(scene.label)+'</span><h3>'+e(scene.title)+'</h3><p>'+e(scene.body)+'</p>'+(index===scenes.length-1?'<button class="primary" type="button" data-social-open>'+e(d.t('openJourney'))+' →</button>':'')+'</div><small>'+e(d.t('illustratedRoute'))+'</small></div><div class="social-story-controls"><button type="button" data-social-prev aria-label="'+e(d.t('previous'))+'" '+(index===0?'disabled':'')+'>←</button><span>'+String(index+1)+' / '+scenes.length+'</span><button type="button" data-social-next aria-label="'+e(d.t('next'))+'" '+(index===scenes.length-1?'disabled':'')+'>→</button><button type="button" data-social-copy>'+e(d.t('copyCaption'))+'</button></div></div>';
+      modal.innerHTML='<div class="platform-modal-card social-story-card"><button type="button" class="platform-x" aria-label="'+e(d.t('close'))+'">×</button><h2 id="platformSocialStoryTitle" class="social-story-heading">'+e(d.t('socialStory'))+'</h2><div class="social-story-stage '+e(media.className)+'"'+(media.style?' style="'+e(media.style)+'"':'')+'><span class="social-story-brand">ONE WORLD ROUTE</span><div class="social-story-route" style="--journey-color:'+identity.color+'">'+(media.type==='image'?'':scene.art)+'</div><div class="social-story-copy" aria-live="polite"><span>'+e(scene.label)+'</span><h3>'+e(scene.title)+'</h3><p>'+e(scene.body)+'</p>'+(index===scenes.length-1?'<button class="primary" type="button" data-social-open>'+e(d.t('openJourney'))+' →</button>':'')+'</div><small>'+e(d.t(media.sourceType==='route-render'?'routeVisualNote':'illustratedRoute'))+'</small></div><div class="social-story-controls"><button type="button" data-social-prev aria-label="'+e(d.t('previous'))+'" '+(index===0?'disabled':'')+'>←</button><span>'+String(index+1)+' / '+scenes.length+'</span><button type="button" data-social-next aria-label="'+e(d.t('next'))+'" '+(index===scenes.length-1?'disabled':'')+'>→</button><button type="button" data-social-copy>'+e(d.t('copyCaption'))+'</button></div></div>';
       modal.querySelector('.platform-x').onclick=()=>modal.classList.add('hidden');
       modal.querySelector('[data-social-prev]').onclick=()=>move(-1);
       modal.querySelector('[data-social-next]').onclick=()=>move(1);

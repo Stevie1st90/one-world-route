@@ -189,3 +189,29 @@ Publication recomputes catalog metrics from the trip graph and runs the same ext
 ## Post-deploy production verification
 
 `.github/workflows/production-smoke.yml` runs after every push to `main`. It waits until the GitHub commit status from Vercel reports a successful deployment, then executes Playwright against `https://one-world-route.vercel.app` on desktop and mobile. The smoke suite checks Flagship 195/194 invariants, mobile shell stability, the Cruise regional tooltip isolation contract and the Central Europe Rail shared-engine route. Screenshots/traces are retained as workflow artifacts.
+# Scalable journey visual pipeline
+
+`scripts/route-visual-model.mjs` extracts segment coordinates first, regional stop endpoints second, or existing waypoint/airport geometry for datasets with country-based segments. The existing country-centroid fallback is explicitly schematic. Available operational connector geometry supplements the geographic illustration without changing international-leg identity/counts. The 195/194 world model is never edited by visual authoring.
+
+`scripts/route-visual-provider.mjs` is an authoring-only local raster adapter, exposing `render(route, ratio, target)`. It decodes the bundled, checksum-verified Natural Earth source once, computes inverse geographic samples, applies the editorial style and overlays the route. Sharp is a pinned build dependency, not a browser library. A future offline MapLibre/PMTiles/DEM adapter can implement the same small interface; no provider SDK is loaded by cards.
+
+Authoring commands, from the public app directory after `npm ci`:
+
+```bash
+node scripts/build-route-visuals.mjs --all
+node scripts/build-route-visuals.mjs --trip=japan-by-rail
+node scripts/build-route-visuals.mjs --check
+node scripts/build-route-visuals.mjs --all --prune
+node scripts/build-media-manifest.mjs
+node scripts/build-visual-coverage.mjs
+```
+
+The input hash includes extracted route geometry, stops, country/region styling, localized title, kind, renderer/style versions, actual renderer/model code hash, aspect/output size, preset scope, provider and source checksum. A changed journey regenerates only its three native formats and small landscape derivative. Unchanged files are reused and their output checksum is checked. A source/style/renderer change intentionally invalidates affected outputs. Filenames include the first 16 hash hex characters; manifests contain complete input and output hashes. No timestamps or randomness are added to generated output.
+
+`--check` imports no Sharp and renders nothing. It rejects stale manifests, missing/corrupt native or responsive assets and invalid source approval/checksum. The release workflow generates only stale assets, then creates the existing media manifest and coverage report. CI runs `--check` and targeted geometry/policy tests. Generation and media/coverage refresh also run in the existing builder publication workflow; rollback restores these manifests as well as the catalog and original publication snapshots. Failed attempts can leave unreferenced immutable files; safe later pruning removes them.
+
+`platform/visual-policy.js` owns the single fallback rule. `platform/media.js` provides descriptors, rendering markup and cached manifest loading; it does not duplicate that rule. The browser and authoring manifest both call the policy. Hero resolution, discovery cards and Social use these descriptors. Existing Place Experience identities resolve destination visuals from the same registry without copying assets. Collection/region destination references can use that library; automatic aggregate collection rendering is deliberately not implemented as a collage.
+
+`data/platform/route-visuals.json` records formats, camera fit, source, scope, geometry basis and dimensions. The existing `media-manifest.json` gains eligible covers, destination assets and route assets while retaining its hero/gallery compatibility fields. `visual-coverage.json` records automatic, destination, bespoke, portrait, vertical, rights and resolved state, with a generated country/region/place queue. The internal builder exposes a lightweight visual coverage panel for published journeys. None of these coverage levels are public product tiers.
+
+For v1, hash-named WebP assets are under `assets/generated/routes/<trip-id>/`; the reusable source and rights descriptor are under `data/visual-sources/`. Only compressed source and delivery derivatives are committed. `--prune` removes obsolete files for the catalog's current journeys; retain versions through rollback/cache windows in a future CDN workflow. Around 1,000 journeys or 200 MB, move image objects to an approved bucket/CDN and retain code/license descriptors/manifests in Git. A future remote adapter must use an explicit URL allowlist and staged uploads; current browser assets are restricted to safe local paths. See ROUTE_VISUAL_PROVIDERS.md for costs and licensing.

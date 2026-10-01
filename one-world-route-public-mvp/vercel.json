@@ -3,6 +3,15 @@
   "trailingSlash": false,
   "headers": [
     {
+      "source": "/assets/generated/routes/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
       "source": "/sw.js",
       "headers": [
         {
@@ -149,5 +158,6 @@
       "route-platform-expansion-v2": false,
       "internal-trip-builder-v1": false
     }
-  }
+  },
+  "outputDirectory": "."
 }

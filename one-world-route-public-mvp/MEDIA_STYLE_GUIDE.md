@@ -40,3 +40,21 @@ Example record after actual generation and review:
 ## Prompt structure
 
 Original illustration + journey/concept + geographically grounded motif + family character + shared lighting/colour/depth + aspect/crop safe zones + negative constraints. Every near-final prompt is in GRAPHICS_NEEDED.md. Before generating, replace a broad itinerary brief with one coherent real landscape; never blend distant landmarks into a geographically false scene. Final approval is still necessary.
+
+## Route Visual System
+
+Every published journey receives an **AUTO** geographic visual; optional reusable destination media adds **DESTINATION-ENRICHED** coverage; an approved dedicated cover adds **JOURNEY-BESPOKE** coverage. These are internal availability labels, never public quality classes. There is no Premium Journey category.
+
+Central policy: approved bespoke cover → suitable approved destination → automatic route image → existing abstract art. Single-country journeys may use their country asset. Multi-country journeys need an explicit `visualAnchor`; continental/global journeys default to route imagery unless deliberately anchored. A social context requires a genuine vertical derivative or an original 9:16 asset; it skips a landscape-only illustration. Planning prefers the route image. `platform/visual-policy.js` is shared by the browser and manifest generator.
+
+Destination records use `destination: {type: "continent"|"region"|"country"|"place", id: "stable identity"}` in the existing registry. Country IDs are ISO codes; place IDs reuse the existing `experienceRef`, e.g. `JP:kyoto`. Region/continent IDs reuse discovery facets. No asset copies are made per journey. Optional `visualAnchor` on catalog metadata or a dataset selects one of these identities. Registry records retain rights approval, license, provenance, localized alt, focal points and native derivatives. Owned/licensed assets are also supported; generated assets continue to require generator and prompt provenance.
+
+Scope derives from minimal circular geographic bounds, latitude span, cosine-adjusted span in kilometres, continent coverage and country membership: LOCAL <80 km, REGIONAL <450 km, then NATIONAL for one country or MULTI-COUNTRY; CONTINENTAL above 6,500 km or 60° latitude; GLOBAL above 250° longitude or four continents and >10,000 km. Thresholds describe presentation extent, not travel distance. No trip ID determines the scope. Small multi-country routes can remain regional; large one-country routes can become continental.
+
+The v1 source is legally reusable generalized Natural Earth shaded relief. Local/regional presets retain more relief contrast; continental presets soften it. It is not a detailed local DEM. No labels clutter the image. Constant stroke widths, navy casing, light halo, the shared continent palette and sparse stop markers preserve readability. Schematic endpoint/centroid connectors are dashed and disclosed; they are not verified rail/road/service geometry.
+
+Camera fit uses actual stops and all available intermediate geometry. A minimum circular longitude interval avoids dateline expansion; flat views unwrap that interval. Every ratio is fitted natively with overlay padding, particularly larger bottom padding for Social. Global views show complementary orthographic hemispheres so the entire route is represented without hiding the back of the planet. Clipped path runs restart at the horizon rather than drawing false connections. These are paired planetary route views, not one cropped hemisphere.
+
+Outputs: landscape 1200 × 675 plus responsive 600 × 338, portrait 800 × 1000, vertical 900 × 1600. Route images use contain rather than arbitrary cropping in the UI. Artwork can retain focal crops. Cards are ordinary lazy images; heroes load their displayed image; Social loads its native vertical image when opened. Existing interactive Globe, Terrain and Story remain separate.
+
+Build workflow, cache and storage are documented in ARCHITECTURE.md; provider rights, limitations, scaling costs and the PMTiles migration path are in ROUTE_VISUAL_PROVIDERS.md. No new country/AI artwork is required to publish a journey. The two experimental Japan images remain unapproved and are not installed.

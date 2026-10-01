@@ -2216,6 +2216,9 @@
 };
   for(const lang of SUPPORTED_LOCALES)Object.assign(I18N[lang],INSPIRATION_TEXT[lang]);
 
+  const routeVisualText={"en": "Geographic illustration · schematic connections, not navigation", "de": "Geografische Darstellung · schematische Verbindungen, keine Navigation", "it": "Illustrazione geografica · collegamenti schematici, non navigazione", "es": "Ilustración geográfica · conexiones esquemáticas, no navegación", "fr": "Illustration géographique · liaisons schématiques, pas de navigation", "pt": "Ilustração geográfica · conexões esquemáticas, não navegação"};
+  for(const lang of SUPPORTED_LOCALES)I18N[lang].routeVisualNote=routeVisualText[lang];
+
   root.i18n={
     supportedLocales:[...SUPPORTED_LOCALES],
     messages:I18N,
@@ -3909,7 +3912,8 @@
     }[role]||'experienceRoleChapter';
     const essence=local(profile.essence);
     const tags=(profile.tags||[]).slice(0,4).map(tag=>'<span>'+esc(facetLabel(tag))+'</span>').join('');
-    return '<section class="platform-stop-experience">'+
+    const image=root.media?.resolveDestinationVisual?.({type:'place',id:profile.id});
+    return '<section class="platform-stop-experience">'+(image?'<div class="platform-overview-visual">'+root.media.imageMarkup(image,esc,local)+root.media.credit(image,esc)+'</div>':'')+
       '<div class="platform-stop-experience-head"><span>'+esc(t('whatToExpect'))+'</span><b>'+esc(t(roleKey))+'</b></div>'+
       '<p>'+esc(essence)+'</p>'+
       (tags?'<div class="platform-stop-experience-tags">'+tags+'</div>':'')+
@@ -3920,17 +3924,58 @@
 })();
 
 
+/* ===== platform/visual-policy.js ===== */
+(() => {
+  'use strict';
+  const host=typeof window==='undefined'?globalThis:window;
+  const usable=a=>a?.type==='image'&&a.status==='published'&&a.rightsStatus==='approved'&&Boolean(a.license&&a.attribution)&&/^\.\/assets\/[a-z0-9_./-]+$/i.test(a.asset||'')&&!a.asset.split('/').includes('..');
+  function destinationCandidate(meta,assets=[],countries=[]){
+    const anchor=meta.visualAnchor||meta.visual?.visualAnchor;
+    const target=anchor||(countries.length===1?{type:'country',id:countries[0]}:null);
+    if(!target)return null;
+    return assets.find(a=>usable(a)&&a.destination?.type===target.type&&a.destination?.id===target.id)||null;
+  }
+  function resolveJourneyVisual(meta={},context={}){
+    const {journeyCover,destinationAssets=[],autoRouteVisual,countries=[],purpose='discoveryCard',ratio='landscape'}=context;
+    const broad=['CONTINENTAL','GLOBAL'].includes(autoRouteVisual?.scope);
+    const destination=broad&&!(meta.visualAnchor||meta.visual?.visualAnchor)?null:destinationCandidate(meta,destinationAssets,countries);
+    const choices=purpose==='planning'?[['auto',autoRouteVisual],['bespoke',journeyCover],['destination',destination]]:[['bespoke',journeyCover],['destination',destination],['auto',autoRouteVisual]];
+    for(const [kind,entry] of choices){
+      if(!usable(entry))continue;
+      // Native vertical geometry is mandatory for automatic social visuals.
+      if(kind==='auto'&&ratio!=='landscape'&&!entry.derivatives?.[ratio])continue;
+      if(purpose==='social'&&ratio==='vertical'&&kind!=='auto'&&!entry.derivatives?.vertical&&entry.aspectRatio!=='9:16')continue;
+      return {kind,entry,coverageLevel:usable(journeyCover)?'JOURNEY-BESPOKE':destination?'DESTINATION-ENRICHED':'AUTO'};
+    }
+    return {kind:'abstract',entry:null,coverageLevel:null};
+  }
+  const api={usable,destinationCandidate,resolveJourneyVisual};
+  host.ONE_WORLD_VISUAL_POLICY=api;
+  (host.ONE_WORLD_PLATFORM_MODULES=host.ONE_WORLD_PLATFORM_MODULES||{}).visualPolicy=api;
+})();
+
+
 /* ===== platform/media.js ===== */
 (() => {
   'use strict';
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
   const SAFE_ASSET=/^\.\/assets\/[a-z0-9_./-]+$/i;
+  let visualManifest={journeys:[],destinationAssets:[]},manifestPromise;
+  function setManifest(manifest){visualManifest=manifest||{journeys:[]};}
+  function resolveJourneyVisual(meta,context={}){
+    const record=(visualManifest.journeys||[]).find(j=>j.id===meta.id)||{};
+    return root.visualPolicy.resolveJourneyVisual({...meta,visualAnchor:meta.visualAnchor||record.visualAnchor},{journeyCover:record.journeyCover,destinationAssets:visualManifest.destinationAssets||[],autoRouteVisual:record.autoRouteVisual,countries:record.countries||[],...context});
+  }
+  async function loadManifest(){
+    manifestPromise=manifestPromise||fetch('./data/platform/media-manifest.json').then(r=>{if(!r.ok)throw Error('Media manifest unavailable');return r.json()}).then(m=>{setManifest(m);return m}).catch(()=>visualManifest);
+    return manifestPromise;
+  }
 
   function descriptor(entry,fallbackTheme='ocean',ratio='landscape'){
     const theme=String(entry?.theme||fallbackTheme||'ocean').replace(/[^a-z0-9-]/gi,'')||'ocean';
     const derivative=entry?.derivatives?.[ratio];
     const asset=String(derivative?.asset||entry?.asset||'');
-    const generatedApproved=entry?.sourceType!=='generated'||(entry.rightsStatus==='approved'&&entry.status==='published');
+    const generatedApproved=!['generated','route-render'].includes(entry?.sourceType)||(entry.rightsStatus==='approved'&&entry.status==='published');
     if(entry?.type==='image'&&generatedApproved&&entry.license&&entry.attribution&&SAFE_ASSET.test(asset)&&!asset.split('/').includes('..')){
       const focal=derivative?.focalPoint||entry.focalPoint||{x:.5,y:.5};
       const x=Number.isFinite(focal.x)?Math.max(0,Math.min(1,focal.x)):.5,y=Number.isFinite(focal.y)?Math.max(0,Math.min(1,focal.y)):.5;
@@ -3943,7 +3988,7 @@
         className:'platform-media-image visual-'+theme,
         style:'background-image:linear-gradient(180deg,rgba(5,10,17,.08),rgba(5,10,17,.5)),url("'+asset.replace(/"/g,'')+'");background-position:'+Math.round(x*100)+'% '+Math.round(y*100)+'%',
         attribution:String(entry.attribution||''),
-        license:String(entry.license||'')
+        license:String(entry.license||''),srcset:ratio==='landscape'?entry.srcset||'':'',assetId:entry.assetId||null,sourceType:entry.sourceType||null
       };
     }
     return {type:'art-directed',theme,className:'visual-'+theme,style:'',attribution:'',license:String(entry?.license||'original-ui-art')};
@@ -3952,7 +3997,7 @@
   function credit(entry,esc=value=>String(value??'')){
     const media=descriptor(entry);
     if(media.type!=='image'||!media.attribution)return '';
-    return '<small class="platform-media-credit">'+esc(media.attribution)+(media.license?' · '+esc(media.license):'')+'</small>';
+    return '<small class="platform-media-credit">'+esc(entry.sourceType==='route-render'?'Made with Natural Earth':media.attribution)+(media.license&&entry.sourceType!=='route-render'?' · '+esc(media.license):'')+'</small>';
   }
 
 
@@ -3977,17 +4022,18 @@
     return {arcs:points.slice(1).map((point,index)=>({start:points[index],end:point}))};
   }
 
-  let registryPromise;
   async function resolveReference(meta,trip){
-    const reference=trip.media?.heroAssetId||meta.visual?.coverAssetId;
-    if(!reference)return trip;
-    registryPromise=registryPromise||fetch('./data/platform/generated-media.json').then(r=>{if(!r.ok)throw Error('Media registry unavailable');return r.json()}).catch(()=>({assets:[]}));
-    const registry=await registryPromise;
-    const candidate=(registry.assets||[]).find(a=>a.assetId===reference&&a.status==='published'&&a.rightsStatus==='approved');
-    if(!candidate||descriptor(candidate).type!=='image')return trip;
-    return {...trip,media:{...trip.media,hero:candidate}};
+    await loadManifest();
+    const result=resolveJourneyVisual(meta,{purpose:'journeyHero'});
+    if(!result.entry)return trip;
+    return {...trip,media:{...trip.media,hero:result.entry}};
   }
-  root.media={descriptor,credit,routeArt,tripPreview,resolveReference};
+  function resolveDestinationVisual(anchor){return root.visualPolicy.destinationCandidate({visualAnchor:anchor},visualManifest.destinationAssets||[],[]);}
+  function imageMarkup(entry,esc,local=value=>value?.en||value||'',{lazy=true,ratio='landscape'}={}){
+    const d=descriptor(entry,'ocean',ratio);if(d.type!=='image')return '';
+    return '<img class="platform-route-image" style="object-position:'+Math.round(d.focalPoint.x*100)+'% '+Math.round(d.focalPoint.y*100)+'%" '+(lazy?'loading="lazy" ':'')+'decoding="async" src="'+esc(d.asset)+'"'+(d.srcset?' srcset="'+esc(d.srcset)+'" sizes="(max-width:820px) 92vw, 400px"':'')+' alt="'+esc(local(d.alt))+'">';
+  }
+  root.media={descriptor,credit,routeArt,tripPreview,resolveReference,setManifest,loadManifest,resolveJourneyVisual,resolveDestinationVisual,imageMarkup};
 })();
 
 
@@ -4161,7 +4207,8 @@
       stops=(trip.countries||[]).slice(0,6).map(c=>{const geo=byName.get(c.name);return geo?.cca2?names.of(geo.cca2):c.name});
     }
     const visual=root.media.routeArt(preview),mode=(meta.discovery?.modes||[]).map(d.facetLabel).join(' · ');
-    const media=root.media.descriptor(trip.media?.hero,meta.visual?.theme,'vertical');
+    const resolved=root.media.resolveJourneyVisual(meta,{purpose:'social',ratio:'vertical'});
+    const media=root.media.descriptor(resolved.entry,meta.visual?.theme,'vertical');
     const scenes=[
       {label:d.t('discoverJourney'),title:d.local(meta.title),body:facts(meta,d.t),art:visual},
       {label:d.t('theRoute'),title:d.local(meta.title),body:mode,art:visual},
@@ -4172,7 +4219,7 @@
     let index=0;
     const render=()=>{
       const scene=scenes[index],e=d.esc;
-      modal.innerHTML='<div class="platform-modal-card social-story-card"><button type="button" class="platform-x" aria-label="'+e(d.t('close'))+'">×</button><h2 id="platformSocialStoryTitle" class="social-story-heading">'+e(d.t('socialStory'))+'</h2><div class="social-story-stage '+e(media.className)+'"'+(media.style?' style="'+e(media.style)+'"':'')+'><span class="social-story-brand">ONE WORLD ROUTE</span><div class="social-story-route" style="--journey-color:'+identity.color+'">'+scene.art+'</div><div class="social-story-copy" aria-live="polite"><span>'+e(scene.label)+'</span><h3>'+e(scene.title)+'</h3><p>'+e(scene.body)+'</p>'+(index===scenes.length-1?'<button class="primary" type="button" data-social-open>'+e(d.t('openJourney'))+' →</button>':'')+'</div><small>'+e(d.t('illustratedRoute'))+'</small></div><div class="social-story-controls"><button type="button" data-social-prev aria-label="'+e(d.t('previous'))+'" '+(index===0?'disabled':'')+'>←</button><span>'+String(index+1)+' / '+scenes.length+'</span><button type="button" data-social-next aria-label="'+e(d.t('next'))+'" '+(index===scenes.length-1?'disabled':'')+'>→</button><button type="button" data-social-copy>'+e(d.t('copyCaption'))+'</button></div></div>';
+      modal.innerHTML='<div class="platform-modal-card social-story-card"><button type="button" class="platform-x" aria-label="'+e(d.t('close'))+'">×</button><h2 id="platformSocialStoryTitle" class="social-story-heading">'+e(d.t('socialStory'))+'</h2><div class="social-story-stage '+e(media.className)+'"'+(media.style?' style="'+e(media.style)+'"':'')+'><span class="social-story-brand">ONE WORLD ROUTE</span><div class="social-story-route" style="--journey-color:'+identity.color+'">'+(media.type==='image'?'':scene.art)+'</div><div class="social-story-copy" aria-live="polite"><span>'+e(scene.label)+'</span><h3>'+e(scene.title)+'</h3><p>'+e(scene.body)+'</p>'+(index===scenes.length-1?'<button class="primary" type="button" data-social-open>'+e(d.t('openJourney'))+' →</button>':'')+'</div><small>'+e(d.t(media.sourceType==='route-render'?'routeVisualNote':'illustratedRoute'))+'</small></div><div class="social-story-controls"><button type="button" data-social-prev aria-label="'+e(d.t('previous'))+'" '+(index===0?'disabled':'')+'>←</button><span>'+String(index+1)+' / '+scenes.length+'</span><button type="button" data-social-next aria-label="'+e(d.t('next'))+'" '+(index===scenes.length-1?'disabled':'')+'>→</button><button type="button" data-social-copy>'+e(d.t('copyCaption'))+'</button></div></div>';
       modal.querySelector('.platform-x').onclick=()=>modal.classList.add('hidden');
       modal.querySelector('[data-social-prev]').onclick=()=>move(-1);
       modal.querySelector('[data-social-next]').onclick=()=>move(1);
@@ -4996,12 +5043,12 @@
   }
 
   function visualMarkup(trip){
-    const d=context(),entry=mediaManifest.find(item=>item.id===trip.id)?.hero;
+    const d=context(),result=root.media.resolveJourneyVisual(trip,{purpose:'discoveryCard'}),entry=result.entry;
     const media=root.media.descriptor(entry,visualTheme(trip));
     const preview=tripIndex.find(item=>item.id===trip.id)?.preview;
-    const portrait=root.media.descriptor(entry,visualTheme(trip),'portrait');
-    const art=media.type==='image'?'<picture class="platform-cover-image"><source media="(max-width:820px)" srcset="'+d.esc(portrait.asset||media.asset)+'"><img loading="lazy" decoding="async" src="'+d.esc(media.asset)+'" alt="'+d.esc(d.local(media.alt)||d.local(trip.title))+'" style="--cover-landscape:'+Math.round(media.focalPoint.x*100)+'% '+Math.round(media.focalPoint.y*100)+'%;--cover-portrait:'+Math.round((portrait.focalPoint||media.focalPoint).x*100)+'% '+Math.round((portrait.focalPoint||media.focalPoint).y*100)+'%"></picture>':root.media.routeArt(preview);
-    return '<div class="platform-home-card-visual '+d.esc(media.className)+'" data-media-type="'+media.type+'" style="--journey-color:'+root.visualIdentity.identity(trip).color+';'+d.esc(media.type==='image'?'':media.style||'')+'"><div class="platform-home-card-visual-top"><span>'+d.esc(d.facetLabel(primaryRegion(trip)))+'</span><b>'+d.esc(d.facetLabel(trip.kind))+'</b></div>'+art+root.media.credit(entry,d.esc)+'</div>';
+    const art=media.type==='image'?root.media.imageMarkup(entry,d.esc,d.local):root.media.routeArt(preview);
+    const automatic=entry?.sourceType==='route-render',credit=root.media.credit(entry,d.esc);
+    return '<div class="platform-home-card-visual '+d.esc(media.className)+'" data-media-type="'+media.type+'" data-visual-kind="'+result.kind+'" style="--journey-color:'+root.visualIdentity.identity(trip).color+';'+d.esc(media.type==='image'?'':media.style||'')+'"><div class="platform-home-card-visual-top"><span>'+d.esc(d.facetLabel(primaryRegion(trip)))+'</span><b>'+d.esc(d.facetLabel(trip.kind))+'</b></div>'+art+(automatic?'':credit)+'</div>'+(automatic?'<div class="platform-route-visual-caption"><span>'+d.esc(d.t('routeVisualNote'))+'</span>'+credit+'</div>':'');
   }
 
   function actionIcon(kind){
@@ -5436,7 +5483,8 @@
       ]);
       collections=collectionResponse.ok?(await collectionResponse.json()).collections||[]:[];
       tripIndex=indexResponse.ok?(await indexResponse.json()).trips||[]:[];
-      mediaManifest=mediaResponse.ok?(await mediaResponse.json()).journeys||[]:[];
+      const manifest=mediaResponse.ok?await mediaResponse.json():{journeys:[]};
+      mediaManifest=manifest.journeys||[];root.media.setManifest(manifest);
     }catch(error){console.warn('Journey discovery support data unavailable',error);collections=[];tripIndex=[]}
     const requestedCollection=new URLSearchParams(location.search).get('collection');
     activeCollection=collections.some(item=>item.id===requestedCollection)?requestedCollection:null;
@@ -5648,7 +5696,7 @@
       const credit=root.media?.credit?.(trip.media?.hero,d.esc)||'';
       const first=trip.stops?.[0]?d.stopPlace(trip,trip.stops[0]):null;
       const last=trip.stops?.at(-1)?d.stopPlace(trip,trip.stops.at(-1)):null;
-      hero.innerHTML=`<div class="platform-journey-hero-art ${d.esc(media.className)}" data-media-type="${d.esc(media.type)}"${media.style?` style="${d.esc(media.style)}"`:''}><div><span>${d.esc(d.facetLabel(trip.kind))}</span><span>${trip.stops?.length||0} ${d.esc(d.t('stops'))}</span></div><strong>${d.esc(d.local(first?.name)||'')} → ${d.esc(d.local(last?.name)||'')}</strong>${media.type==='image'?'':root.media?.routeArt?.(root.media.tripPreview(trip))||''}${credit}</div><div class="eyebrow"><span class="live-dot"></span>${d.esc(d.facetLabel(trip.kind))} · ${trip.planning?.days||''} ${d.esc(d.t('days'))}</div><h1>${d.esc(d.local(trip.title))}</h1><p>${d.esc(d.local(trip.summary))}</p><div class="platform-template-note">${d.esc(d.t('editorial'))}</div>`;
+      hero.innerHTML=`<div class="platform-journey-hero-art ${d.esc(media.className)}" data-media-type="${d.esc(media.type)}"${media.type==='image'?'':media.style?` style="${d.esc(media.style)}"`:''}>${media.sourceType==='route-render'?'':`<div><span>${d.esc(d.facetLabel(trip.kind))}</span><span>${trip.stops?.length||0} ${d.esc(d.t('stops'))}</span></div><strong>${d.esc(d.local(first?.name)||'')} → ${d.esc(d.local(last?.name)||'')}</strong>`}${media.type==='image'?root.media.imageMarkup(trip.media.hero,d.esc,d.local,{lazy:false}):root.media?.routeArt?.(root.media.tripPreview(trip))||''}${credit}</div><div class="eyebrow"><span class="live-dot"></span>${d.esc(d.facetLabel(trip.kind))} · ${trip.planning?.days||''} ${d.esc(d.t('days'))}</div><h1>${d.esc(d.local(trip.title))}</h1><p>${d.esc(d.local(trip.summary))}</p><div class="platform-template-note">${d.esc(d.t('editorial'))}</div>`;
     }
     const kpis=$('#topKpis');
     if(kpis)kpis.innerHTML=`<div class="kpi"><b>${trip.planning?.days||'—'}</b><span>${d.esc(d.t('days'))}</span></div><div class="kpi"><b>${trip.stops?.length||0}</b><span>${d.esc(d.t('stops'))}</span></div><div class="kpi"><b>${trip.segments?.length||0}</b><span>${d.esc(d.t('segments'))}</span></div>`;
@@ -5722,8 +5770,8 @@
   }
 
   function stopVisualMarkup(trip,stop,place){
-    const d=context(),media=root.media?.descriptor?.(trip.media?.hero,d.getTripMeta()?.visual?.theme||'ocean')||{className:'visual-ocean',style:'',type:'art-directed'};
-    return '<div class="platform-stop-visual '+d.esc(media.className)+'" data-media-type="'+d.esc(media.type)+'"'+(media.style?' style="'+d.esc(media.style)+'"':'')+'><div><span>'+d.esc(d.t('stop'))+' '+stop.sequence+'</span><span>'+d.esc(d.t('day'))+' '+stop.dayStart+(stop.dayEnd!==stop.dayStart?'–'+stop.dayEnd:'')+'</span></div><strong>'+d.esc(d.local(place.name))+'</strong>'+root.media.credit(trip.media?.hero,d.esc)+'</div>';
+    const d=context(),placeMedia=root.media.resolveDestinationVisual({type:'place',id:place.experienceRef||place.id}),media=root.media?.descriptor?.(placeMedia,d.getTripMeta()?.visual?.theme||'ocean')||{className:'visual-ocean',style:'',type:'art-directed'};
+    return '<div class="platform-stop-visual '+d.esc(media.className)+'" data-media-type="'+d.esc(media.type)+'"'+(media.style?' style="'+d.esc(media.style)+'"':'')+'><div><span>'+d.esc(d.t('stop'))+' '+stop.sequence+'</span><span>'+d.esc(d.t('day'))+' '+stop.dayStart+(stop.dayEnd!==stop.dayStart?'–'+stop.dayEnd:'')+'</span></div><strong>'+d.esc(d.local(place.name))+'</strong>'+root.media.credit(placeMedia,d.esc)+'</div>';
   }
 
   function renderTripOverview(){
@@ -5756,7 +5804,7 @@
     const highlightMarkup=highlights.length?`<div class="platform-journey-highlights">${highlights.map(item=>'<span>'+d.esc(d.local(item))+'</span>').join('')}</div>`:'';
 
     const media=root.media.descriptor(trip.media?.hero,meta?.visual?.theme||'ocean');
-    const visual='<div class="platform-overview-visual '+d.esc(media.className)+'" data-media-type="'+media.type+'"'+(media.style?' style="'+d.esc(media.style)+'"':'')+'>'+(media.type==='image'?'':root.media.routeArt(root.media.tripPreview(trip)))+root.media.credit(trip.media?.hero,d.esc)+'</div>';
+    const visual='<div class="platform-overview-visual '+d.esc(media.className)+'" data-media-type="'+media.type+'"'+(media.style?' style="'+d.esc(media.style)+'"':'')+'>'+(media.type==='image'?root.media.imageMarkup(trip.media.hero,d.esc,d.local):root.media.routeArt(root.media.tripPreview(trip)))+root.media.credit(trip.media?.hero,d.esc)+'</div>';
     const disclosure=(key,body)=>body?'<details class="platform-detail-disclosure"><summary>'+d.esc(d.t(key))+'</summary><div>'+body+'</div></details>':'';
     const countries=Number(meta?.metrics?.countries||new Set((trip.places||[]).map(place=>place.countryCode).filter(Boolean)).size)||0;
     content.innerHTML=`${visual}<div class="platform-journey-overview-intro"><div class="overview-number platform-duration-number">${trip.planning?.days||'—'}<small>${d.esc(d.t('days'))}</small></div><p class="detail-copy">${d.esc(d.local(trip.summary))}</p>${highlightMarkup}<div class="platform-overview-metrics"><div><span>${d.esc(d.t('stops'))}</span><b>${trip.stops.length}</b></div><div><span>${d.esc(d.pluralLabel?d.pluralLabel(countries,'countryUnit','countriesUnit'):d.t('country'))}</span><b>${countries||'—'}</b></div><div><span>${d.esc(d.t('currency'))}</span><b>${d.esc(trip.planning?.currency||'—')}</b></div></div></div>${journeyFlowMarkup(trip)}${tools}${guide}${disclosure('routeFit',journeyFitMarkup(meta))}${disclosure('evidenceDetails',editorialStatusMarkup(meta,sourced,verified,trip.segments.length)+(extension.cards?`<div class="data-grid platform-extension-cards">${extension.cards}</div>`:'')+extension.notices)}${disclosure('planningDetails',planning)}${sharedGuidance}${disclosure('partnerOptions',partnerLinks)}${entry?`<details class="platform-detail-disclosure"><summary>${d.esc(d.t('entryGuidance'))}</summary><div class="platform-entry"><b>${d.esc(d.t('entryGuidance'))}</b><p>${d.esc(d.local(entry.message))}</p>${entrySource?`<a href="${d.esc(entrySource.url)}" target="_blank" rel="noopener noreferrer">${d.esc(d.t('officialCheck'))} →</a>`:''}</div></details>`:''}<button class="platform-context-inline" id="regionalTravellerBtn" type="button">${d.esc(d.t('traveller'))} →</button>`;

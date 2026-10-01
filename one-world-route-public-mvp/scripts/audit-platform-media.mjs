@@ -29,15 +29,27 @@ for(const meta of catalog.trips||[]){
 }
 
 const registry=await readJson('data/platform/generated-media.json');
+const assetIds=new Set();
 for(const item of registry.assets||[]){
+  if(!item.assetId||assetIds.has(item.assetId))errors.push('Registry requires unique asset IDs');
+  assetIds.add(item.assetId);
   if(item.status!=='published')continue;
-  for(const key of ['assetId','sourceType','mediaKind','generator','promptVersion','createdAt','rightsStatus','aspectRatio','alt','attributionRequired','focalPoint'])if(item[key]===undefined||item[key]===null||item[key]==='')errors.push('Generated media missing '+key);
-  if(item.sourceType!=='generated')errors.push(item.assetId+': registry requires generated source type');
+  for(const key of ['assetId','sourceType','mediaKind','createdAt','rightsStatus','aspectRatio','alt','attributionRequired','focalPoint'])if(item[key]===undefined||item[key]===null||item[key]==='')errors.push('Generated media missing '+key);
+  if(!['generated','owned','licensed'].includes(item.sourceType))errors.push(item.assetId+': unsupported source type');
+  if(item.destination&&(!['continent','region','country','place'].includes(item.destination.type)||!String(item.destination.id||'').trim()))errors.push(item.assetId+': invalid destination identity');
+  if(item.sourceType==='generated'&&(!item.generator||!item.promptVersion))errors.push(item.assetId+': generated provenance required');
   if(!['16:9','4:5','9:16'].includes(item.aspectRatio))errors.push(item.assetId+': unsupported aspect ratio');
   if(!/^\d{4}-\d{2}-\d{2}/.test(item.createdAt||''))errors.push(item.assetId+': creation date required');
   for(const focal of [item.focalPoint,...Object.values(item.derivatives||{}).map(child=>child.focalPoint)])if(!focal||![focal.x,focal.y].every(n=>Number.isFinite(n)&&n>=0&&n<=1))errors.push(item.assetId+': normalized focal point required');
   await validateMedia(item.assetId,item);
   for(const child of Object.values(item.derivatives||{}))await validateMedia(item.assetId+' derivative',{...item,...child});
+}
+for(const meta of catalog.trips||[]){
+  const trip=await readJson(meta.dataset.replace(/^\.\//,''));
+  const ref=trip.media?.heroAssetId||meta.visual?.coverAssetId;
+  if(ref&&!assetIds.has(ref))errors.push(meta.id+': missing referenced registry asset '+ref);
+  const anchor=meta.visualAnchor||meta.visual?.visualAnchor||trip.visualAnchor;
+  if(anchor&&(!['continent','region','country','place'].includes(anchor.type)||!String(anchor.id||'').trim()))errors.push(meta.id+': invalid visual anchor');
 }
 console.log('PLATFORM MEDIA AUDIT');
 console.log('Art-directed heroes:',artDirected);

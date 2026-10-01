@@ -1,0 +1,6 @@
+{
+  "name":"one-world-route-public-mvp",
+  "private":true,
+  "scripts":{"build":"node scripts/release-build.mjs","visuals":"node scripts/build-route-visuals.mjs","visuals:check":"node scripts/build-route-visuals.mjs --check"},
+  "devDependencies":{"sharp":"0.35.4"}
+}

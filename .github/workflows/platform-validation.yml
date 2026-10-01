@@ -290,6 +290,8 @@ jobs:
           node --check qa/tests/production-smoke.spec.mjs
           node --check qa/tests/trip-builder.spec.mjs
           node --check qa/tests/content-trip-smoke.spec.mjs
+      - name: Install pinned authoring renderer
+        run: npm ci
       - name: Platform data validation
         run: node scripts/validate-platform-data.mjs
       - name: Existing public-data validation
@@ -306,6 +308,10 @@ jobs:
         run: node --test scripts/test-maintenance-queue.mjs
       - name: Journey media rights audit
         run: node scripts/audit-platform-media.mjs
+      - name: Static route visual freshness and policy
+        run: |
+          node scripts/build-route-visuals.mjs --check
+          node --test scripts/test-route-visuals.mjs
       - name: Media renderer tests
         run: node --test scripts/test-platform-media.mjs
       - name: Platform locale tests
@@ -383,6 +389,8 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: '22'
+      - name: Install pinned authoring renderer
+        run: npm ci
       - name: Release build
         run: node scripts/release-build.mjs
       - name: Local preview smoke test
@@ -678,7 +686,7 @@ jobs:
         run: |
           CHROME_BIN="$(command -v google-chrome || command -v chromium)"
           test -n "$CHROME_BIN"
-          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/node_modules/@playwright/test/cli.js test --config=qa/playwright.config.mjs tests/platform-smoke.spec.mjs --grep="inspiration selects|social story presents" --project=desktop-1440 --project=mobile-390 --project=mobile-360 --project=mobile-430 --workers=2 --output=qa/production-discovery-results
+          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/node_modules/@playwright/test/cli.js test --config=qa/playwright.config.mjs tests/platform-smoke.spec.mjs --grep="scalable static visuals|inspiration selects|social story presents" --project=desktop-1440 --project=mobile-390 --project=mobile-360 --project=mobile-430 --workers=2 --output=qa/production-discovery-results
           OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/node_modules/@playwright/test/cli.js test --config=qa/playwright.config.mjs tests/regional-platform.spec.mjs --grep="regional terrain activates" --project=desktop-1440 --project=mobile-390 --workers=2 --output=qa/production-terrain-results
       - name: Upload Production screenshots and failure evidence
         if: always()

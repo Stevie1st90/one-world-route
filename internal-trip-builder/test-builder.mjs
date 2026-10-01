@@ -19,8 +19,10 @@ const publicTrip=join(root,'data/platform/trips/'+slug+'.json');
 const originalCatalog=await readFile(catalogPath,'utf8');
 const originalTripIndex=await readFile(tripIndexPath,'utf8');
 const originalSitemap=await readFile(sitemapPath,'utf8');
+const visualPaths=['route-visuals.json','media-manifest.json','visual-coverage.json'].map(name=>join(root,'data/platform',name));
+const originalVisuals=await Promise.all(visualPaths.map(path=>readFile(path)));
 const server=spawn(process.execPath,[join(here,'server.mjs')],{stdio:['ignore','pipe','pipe']});
-const base='http://127.0.0.1:4175';
+const base='http://127.0.0.1:'+(process.env.OWR_BUILDER_PORT||4175);
 const wait=async()=>{
   for(let i=0;i<50;i++){try{const r=await fetch(base+'/__builder/api/state');if(r.ok)return}catch{}await new Promise(r=>setTimeout(r,100))}
   throw new Error('Trip Builder server did not start');
@@ -67,6 +69,9 @@ try{
   assert.equal(published.qualityChecks.every(check=>check.ok===true),true);
   assert.equal(published.qualityChecks.length>=12,true);
   const publicCatalog=JSON.parse(await readFile(catalogPath,'utf8'));assert.ok(publicCatalog.trips.some(t=>t.id===slug&&t.status==='sourced-beta'));
+  const visualCoverage=await request('/__builder/api/visual-coverage');
+  const autoJourney=visualCoverage.coverage.journeys.find(j=>j.id===slug);
+  assert.ok(autoJourney?.autoRouteVisual);assert.ok(autoJourney?.vertical);assert.ok(autoJourney?.rightsApproved);
   const tripIndex=JSON.parse(await readFile(tripIndexPath,'utf8'));assert.ok(tripIndex.trips.some(t=>t.id===slug));
   const sitemap=await readFile(sitemapPath,'utf8');assert.match(sitemap,new RegExp('/trip/'+slug));
   const cloned=await request('/__builder/api/clone-as-new',{method:'POST',body:JSON.stringify({sourceSlug:slug,targetSlug:cloneSlug})});
@@ -82,5 +87,7 @@ try{
   await writeFile(catalogPath,originalCatalog);
   await writeFile(tripIndexPath,originalTripIndex);
   await writeFile(sitemapPath,originalSitemap);
+  await Promise.all(visualPaths.map((path,i)=>writeFile(path,originalVisuals[i])));
+  await rm(join(root,'assets/generated/routes',slug),{recursive:true,force:true});
   await rm(draftTrip,{force:true});await rm(draftCatalog,{force:true});await rm(cloneDraftTrip,{force:true});await rm(cloneDraftCatalog,{force:true});await rm(publicTrip,{force:true});
 }
