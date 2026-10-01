@@ -78,6 +78,18 @@ test('@discovery @mobile-critical global discovery home exposes a broad visual j
   await expect(page.locator('.platform-home-collection')).toHaveCount(collectionCatalog.collections.length);
   await expect(page.locator('#platformHome')).toContainText('Japan by Rail');
   await expect(page.locator('#platformHome')).toContainText('Patagonia Road Trip');
+
+  const centralEurope=page.locator('#platformHomeResults .platform-home-card[data-home-trip="central-europe-rail-journey"]');
+  await expect(centralEurope.locator('.platform-country-chips')).toContainText('7 countries');
+  await expect(centralEurope.locator('.platform-home-card-metrics')).toContainText('18 days');
+  await expect(centralEurope.locator('.platform-home-card-metrics')).toContainText('10 stops');
+  await expect(centralEurope.locator('.platform-home-card-metrics')).not.toContainText('7 countries');
+  await expect(centralEurope.locator('.platform-home-card-metrics')).not.toContainText('Rail');
+  await expect(centralEurope.locator('.platform-home-card-body > p')).toHaveCount(0);
+
+  const greek=page.locator('#platformHomeResults .platform-home-card[data-home-trip="greek-island-hopping"]');
+  await expect(greek.locator('.platform-home-card-metrics')).not.toContainText('1 country');
+  await expect(greek.locator('.platform-home-card-body > p')).toHaveText('Athens, Cyclades and Aegean blue');
   if(isMobile)await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
   await page.screenshot({path:testInfo.outputPath('discovery-home.png'),fullPage:false});
   await expect(page.locator('.platform-home-collection').first()).toBeAttached();
