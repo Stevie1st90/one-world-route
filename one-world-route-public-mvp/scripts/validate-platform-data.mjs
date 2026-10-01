@@ -95,6 +95,11 @@ for (const item of catalog.trips || []) {
       else if (!String(p.experienceRef).startsWith(String(p.countryCode||'')+':')) fail(item.id+': place '+p.id+' experienceRef country mismatch');
     }
   }
+  if(trip.editorial?.whyThisJourney!==undefined){
+    const points=trip.editorial.whyThisJourney;
+    if(!Array.isArray(points)||points.length>4)fail(item.id+': whyThisJourney requires up to four localized points');
+    else for(const point of points)for(const lang of supportedLocales)if(!String(point?.[lang]||'').trim())fail(item.id+': whyThisJourney missing '+lang);
+  }
   const stopIds = new Set();
   const stopById = new Map();
   const orderedStops = [...(trip.stops || [])].sort((a,b)=>a.sequence-b.sequence);

@@ -110,7 +110,7 @@
   }
   const escapeHtml = s => String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[m]));
   const trim = (s,n=84) => String(s||'').length>n ? String(s).slice(0,n-1)+'…' : String(s||'');
-  const flagAssetUrl = c => /^[a-z]{2}$/i.test(String(c?.cca2||'')) ? `https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.5.0/flags/4x3/${String(c.cca2).toLowerCase()}.svg` : '';
+  const flagAssetUrl = c => /^[a-z]{2}$/i.test(String(c?.cca2||'')) ? `./assets/flags/${String(c.cca2).toLowerCase()}.svg` : '';
   const flagMarkup = (c,w=24,h=18) => { const u=flagAssetUrl(c); return u ? `<img src="${u}" alt="" width="${w}" height="${h}" style="display:block;object-fit:cover;box-shadow:0 0 0 1px rgba(255,255,255,.10)">` : ''; };
   const safeGlobeText = s => String(s||'').replace(/Ä/g,'Ae').replace(/Ö/g,'Oe').replace(/Ü/g,'Ue').replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss');
   function globeHtmlLabel(d){
@@ -379,6 +379,7 @@
   function updateUrl(){
     if(platformOwnsRoute())return;
     const current=new URLSearchParams(location.search),p=new URLSearchParams();
+    for(const key of ['trip','lang'])if(current.has(key))p.set(key,current.get(key));
     if(state.selectedCountry) p.set('country',state.selectedCountry.name); else p.set('segment',state.selectedSegmentId);
     if(state.layer!=='route')p.set('layer',state.layer); if(state.phase!=='all')p.set('phase',state.phase); if(state.mode!=='explore')p.set('mode',state.mode);
     if(state.filters.mode!=='all')p.set('fmode',state.filters.mode);if(state.filters.tier!=='all')p.set('tier',state.filters.tier);if(state.filters.feasibility!=='all')p.set('feasibility',state.filters.feasibility);if(state.filters.alert!=='all')p.set('alert',state.filters.alert);
@@ -386,8 +387,8 @@
     if(document.body.classList.contains('story-mode')||current.get('story')==='1')p.set('story','1');
     history.replaceState(null,'',`${location.pathname}?${p.toString()}`);
   }
-  function restoreUrl(){
-    const p=new URLSearchParams(location.search); if(p.get('trip'))return; if(p.get('layer'))state.layer=p.get('layer'); if(p.get('phase'))state.phase=p.get('phase'); if(p.get('mode'))state.mode=p.get('mode');
+  function restoreUrl({legacyAdapter=false}={}){
+    const p=new URLSearchParams(location.search); if(p.get('trip')&&!legacyAdapter)return; if(p.get('layer'))state.layer=p.get('layer'); if(p.get('phase'))state.phase=p.get('phase'); if(p.get('mode'))state.mode=p.get('mode');
     if(p.get('fmode'))state.filters.mode=p.get('fmode');if(p.get('tier'))state.filters.tier=p.get('tier');if(p.get('feasibility'))state.filters.feasibility=p.get('feasibility');if(p.get('alert'))state.filters.alert=p.get('alert');
     if(p.get('country')){
       state.selectedCountry=state.countries.find(c=>c.name===p.get('country'))||null;
@@ -636,6 +637,7 @@
   }
 
   window.__ONE_WORLD_ROUTE_APP__={
+    restoreExplorer:()=>{restoreUrl({legacyAdapter:true});renderChrome();updateRange();updateTimeline();renderDetail();updateGlobe()},
     selectSegment:(id,focus=true)=>selectSegment(Number(id),Boolean(focus)),
     selectCountry:(name,focus=true)=>selectCountry(String(name),Boolean(focus)),
     openDetails:()=>openMobilePanel('details'),

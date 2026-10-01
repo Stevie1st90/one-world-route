@@ -572,8 +572,11 @@ test('homepage is catalog-driven and reuses shared Discovery and Route Fit',()=>
 });
 
 test('root is homepage while every trip including flagship has an explicit trip URL',()=>{
-  assert.match(source,/HOME_REQUEST=location\.pathname==='\/'/);
-  assert.match(source,/!new URLSearchParams\(location\.search\)\.has\('trip'\)/);
+  const window={ONE_WORLD_PLATFORM_MODULES:{}};
+  vm.runInNewContext(moduleSources['navigation.js'],{window,URLSearchParams});
+  const isHome=window.ONE_WORLD_PLATFORM_MODULES.navigation.isHomeRequest;
+  assert.equal(isHome({pathname:'/',search:'?lang=de'}),true);
+  for(const search of ['?trip=world-195','?trip=italy-grand-tour','?segment=13&mode=operations','?view=terrain'])assert.equal(isHome({pathname:'/',search}),false);
   assert.match(source,/Home\.open\(\)/);
   const navigation=moduleSources['navigation.js'];
   assert.match(navigation,/params\.set\('trip',id\)/);

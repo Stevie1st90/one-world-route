@@ -17,7 +17,8 @@ test('@flagship flagship shell boots cleanly',async({page,isMobile})=>{
   await expect(page.locator('body')).not.toHaveClass(/platform-booting/,{timeout:15000});
   await expect(page.locator('#routeRange')).toHaveAttribute('max',String(flagship.metrics.internationalLegs),{timeout:15000});
   await expect(page.locator('#filterCount')).toContainText(String(flagship.metrics.internationalLegs));
-  await expect(page.locator('#settingsBtn')).toBeVisible();
+  try{await expect(page.locator('#settingsBtn')).toBeVisible()}
+  catch(error){console.log('flagship settings layout',await page.locator('#settingsBtn').evaluate(el=>{const chain=[];for(let n=el;n;n=n.parentElement){const s=getComputedStyle(n),r=n.getBoundingClientRect();chain.push({node:n.id||n.className,display:s.display,visibility:s.visibility,width:r.width,height:r.height})}return chain}));throw error}
   await expect(page.locator('#platformRouteBtn')).toBeVisible();
   if(isMobile){
     await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
@@ -27,7 +28,8 @@ test('@flagship flagship shell boots cleanly',async({page,isMobile})=>{
 });
 
 test('@flagship operations exposes departure recheck controls',async({page})=>{
-  test.setTimeout(30000);
+  // Two complete globe navigations and a fresh browser context share this budget.
+  test.setTimeout(60000);
   const errors=capturePageErrors(page);
   await page.goto('/?segment=13&mode=operations&lang=en',{waitUntil:'domcontentloaded'});
   await expect(page.locator('#detailContent')).toContainText('Departure recheck',{timeout:15000});
@@ -636,13 +638,24 @@ test('@discovery curated collection deep link supports combined metadata filters
 
 
 test('@discovery @mobile-critical scalable static visuals load cards hero and native social without card tile requests',async({page,isMobile},testInfo)=>{
- test.setTimeout(90000);const errors=capturePageErrors(page),tiles=[];
+ // Four software-GL captures and two journey boots share this budget.
+ test.setTimeout(180000);const errors=capturePageErrors(page),tiles=[];
+ await page.emulateMedia({reducedMotion:'reduce'});
  page.on('request',r=>{if(/tiles\.openfreemap|tiles\.mapterhorn/.test(r.url()))tiles.push(r.url())});
  await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
  const card=page.locator('[data-home-trip="japan-by-rail"]').first();
  await card.scrollIntoViewIfNeeded();
  await expect(card.locator('[data-visual-kind="auto"]')).toBeVisible();
- await expect.poll(()=>card.locator('img').evaluate(i=>i.complete&&i.naturalWidth>0)).toBe(true);
+ await expect.poll(()=>card.locator('.platform-route-image').evaluate(i=>i.complete&&i.naturalWidth>0)).toBe(true);
+ const size=await card.locator('.platform-home-card-visual').evaluate(el=>({w:el.clientWidth,h:el.clientHeight,imgW:el.querySelector('.platform-route-image').clientWidth,imgH:el.querySelector('.platform-route-image').clientHeight}));
+ expect(Math.abs(size.w/size.h-16/9)).toBeLessThan(.02);expect(size.imgW).toBe(size.w);expect(size.imgH).toBe(size.h);
+ await expect(card.locator('.platform-country-chips img[src$="jp.svg"]')).toHaveCount(1);
+ const regions=page.locator('.platform-home-region-card img');await expect(regions).toHaveCount(6);
+ await expect(page.locator('[data-region-map]')).toHaveCount(0);
+ await page.locator('.platform-home-region-grid').scrollIntoViewIfNeeded();
+ for(const portrait of await regions.all())await portrait.scrollIntoViewIfNeeded();
+ await expect.poll(()=>regions.evaluateAll(imgs=>imgs.every(i=>i.complete&&i.naturalWidth>0))).toBe(true);
+ await page.locator('.platform-home-region-grid').screenshot({path:testInfo.outputPath('region-discovery.png')});
  await card.screenshot({path:testInfo.outputPath('auto-card.png')});
  expect(tiles,'card images must not load map tiles').toEqual([]);
  const manifest=await page.evaluate(async()=>fetch('./data/platform/media-manifest.json').then(r=>r.json()));
@@ -650,10 +663,11 @@ test('@discovery @mobile-critical scalable static visuals load cards hero and na
  const requests=await Promise.all(manifest.journeys.map(j=>page.request.get(j.autoRouteVisual.asset)));
  expect(requests.every(r=>r.ok())).toBe(true);
  await card.locator('[data-open-home-trip]').click();
- await expect(page.locator('body')).toHaveClass(/platform-regional-trip/);
+ await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:25000});
  await expect(page.locator('.platform-journey-hero-art img')).toHaveCount(1);
+ await expect(page.locator('[data-journey-mode="plan"]')).toHaveCount(1);
  await page.evaluate(()=>window.ONE_WORLD_PLATFORM_MODULES.regionalDetail?.renderTripOverview?.());
- await expect(page.locator('.platform-overview-visual img')).toHaveCount(1);
+ await expect(page.locator('#detailContent .platform-overview-visual img')).toHaveCount(0);
  if(!isMobile)await page.locator('.platform-journey-hero-art').screenshot({path:testInfo.outputPath('auto-hero.png')});
  if(isMobile){await page.locator('#settingsBtn').click();await page.locator('#mobileShareBtn').click()}else await page.locator('#shareBtn').click();
  await page.locator('[data-share-story]').click();
@@ -661,9 +675,10 @@ test('@discovery @mobile-critical scalable static visuals load cards hero and na
  await expect(stage).toHaveCSS('background-image',/vertical-/);
  await expect(page.locator('.social-story-controls')).toBeInViewport({ratio:1});
  await stage.screenshot({path:testInfo.outputPath('auto-social.png')});
+ await page.locator('[data-social-next]').click();await expect(stage).toHaveAttribute('data-visual-role','routeOverview');
  await page.keyboard.press('Escape');await page.keyboard.press('Escape');
  await page.reload({waitUntil:'domcontentloaded'});
- await expect(page.locator('body')).toHaveClass(/platform-regional-trip/);
+ await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:25000});
  expect(errors).toEqual([]);
 });
 

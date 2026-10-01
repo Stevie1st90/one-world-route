@@ -1,0 +1,39 @@
+(() => {
+  'use strict';
+  const host=typeof window==='undefined'?globalThis:window;
+  const root=host.ONE_WORLD_PLATFORM_MODULES=host.ONE_WORLD_PLATFORM_MODULES||{};
+  function capabilities(meta={},trip={}){
+    const c=new Set(meta.capabilities||[]),modes=['explore'];
+    if(c.has('trip-planning')||c.has('plan-vs-actual')||trip.planning)modes.push('plan');
+    for(const id of ['story','terrain','operations'])if(c.has(id))modes.push(id);
+    return modes;
+  }
+  function mount({meta,trip,t,esc,onPlan,onStory,onTerrain,onExplore,onOperations}){
+    const modes=capabilities(meta,trip),legacy=meta.renderer==='legacy-world';
+    const panel=document.querySelector('#leftPanel');if(!panel)return;
+    panel.querySelector('.platform-journey-modes')?.remove();
+    const nav=document.createElement('nav');nav.className='platform-journey-modes';nav.setAttribute('aria-label',t('journeyModes'));
+    nav.innerHTML=modes.map(mode=>'<button type="button" data-journey-mode="'+mode+'" aria-pressed="'+(mode==='explore')+'">'+esc(t({explore:'exploreMode',plan:'planMode',story:'story',terrain:'terrain',operations:'operationsMode'}[mode]))+'</button>').join('');
+    panel.querySelector('.hero-copy')?.after(nav);
+    const mobile=matchMedia('(max-width:820px)');
+    const position=()=>{if(mobile.matches||document.body.classList.contains('story-mode'))document.querySelector('.globe-stage')?.appendChild(nav);else panel.querySelector('.hero-copy')?.after(nav)};
+    position();mobile.addEventListener('change',position);
+    nav.addEventListener('click',event=>{
+      const button=event.target.closest('[data-journey-mode]');if(!button)return;
+      const mode=button.dataset.journeyMode;
+      const actions={explore:onExplore,plan:onPlan,story:onStory,terrain:onTerrain,operations:onOperations};
+      if(actions[mode])actions[mode]();
+      if(mode==='plan')return; // Dialog is transient; the explorer remains the active mode.
+      sync(mode);
+    });
+    const sync=active=>nav.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.journeyMode===active)));
+    const update=()=>{position();sync(document.body.classList.contains('story-mode')?'story':document.body.classList.contains('terrain-view')?'terrain':legacy&&document.querySelector('[data-mode="operations"]')?.classList.contains('active')?'operations':'explore')};
+    const observer=new MutationObserver(update);
+    observer.observe(document.body,{attributes:true,attributeFilter:['class']});
+    // Keep legacy mode controls as the adapter's event targets, not a second visible navigation.
+    if(legacy){const old=panel.querySelector('.mode-switch');if(old)old.classList.add('platform-legacy-mode-adapter');}
+    update();
+    return {modes,sync,dispose:()=>{observer.disconnect();mobile.removeEventListener('change',position)}};
+  }
+  root.journeyShell={capabilities,mount};
+})();

@@ -454,7 +454,7 @@
     clearTimeout(runtime.terrainFailTimer);
     runtime.terrainFailTimer=setTimeout(()=>{
       if(runtime.terrainRequested&&!runtime.terrainBaseReady)failTerrain('3D globe terrain could not be loaded. Standard globe restored.');
-    },10000);
+    },45000);
 
     map.on('style.load',()=>{
       try{map.setProjection({type:'globe'});}catch(err){console.warn('Globe projection unavailable',err)}
@@ -633,7 +633,7 @@
   }
 
   async function setTerrainMode(active){
-    if(document.body.classList.contains('platform-regional-trip')||new URLSearchParams(location.search).has('trip')){
+    if(document.body.classList.contains('platform-regional-trip')||window.ONE_WORLD_ROUTE_OWNERSHIP==='regional'){
       const api=window.ONE_WORLD_PLATFORM;
       if(api?.setTerrain)return api.setTerrain(Boolean(active));
       setTimeout(()=>window.ONE_WORLD_PLATFORM?.setTerrain?.(Boolean(active)),120);

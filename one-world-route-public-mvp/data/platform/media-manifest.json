@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "updatedAt": "2026-09-30",
   "summary": {
     "journeys": 21,
@@ -8,6 +8,230 @@
     "missing": 0
   },
   "destinationAssets": [],
+  "regionAssets": [
+    {
+      "assetId": "region-globe-europe",
+      "regionId": "europe",
+      "type": "image",
+      "sourceType": "route-render",
+      "mediaKind": "region-visual",
+      "status": "published",
+      "rightsStatus": "approved",
+      "asset": "./assets/generated/regions/europe-e32747fcfa8e5d6b.webp",
+      "aspectRatio": "1:1",
+      "width": 720,
+      "height": 720,
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": {
+        "en": "Geographic globe portrait: Europe",
+        "de": "Geografisches Globusporträt: Europa",
+        "it": "Ritratto geografico del globo: Europa",
+        "es": "Retrato geográfico del globo: Europa",
+        "fr": "Portrait géographique du globe : Europe",
+        "pt": "Retrato geográfico do globo: Europa"
+      },
+      "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+      "attributionRequired": false,
+      "license": "Natural Earth public domain; original globe presentation",
+      "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "inputHash": "e32747fcfa8e5d6b4e7cb8823d4828564e99afddf1688004d363911a0f7457a3",
+      "outputHash": "a66a085378afd11df44f8f4444a2dec9755ef66b058abaafd50a3257fbe37253",
+      "bytes": 33922,
+      "camera": {
+        "longitude": 15,
+        "latitude": 48
+      },
+      "accent": "#67c9ef"
+    },
+    {
+      "assetId": "region-globe-asia",
+      "regionId": "asia",
+      "type": "image",
+      "sourceType": "route-render",
+      "mediaKind": "region-visual",
+      "status": "published",
+      "rightsStatus": "approved",
+      "asset": "./assets/generated/regions/asia-c0b4d922f39bbe24.webp",
+      "aspectRatio": "1:1",
+      "width": 720,
+      "height": 720,
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": {
+        "en": "Geographic globe portrait: Asia",
+        "de": "Geografisches Globusporträt: Asien",
+        "it": "Ritratto geografico del globo: Asia",
+        "es": "Retrato geográfico del globo: Asia",
+        "fr": "Portrait géographique du globe : Asie",
+        "pt": "Retrato geográfico do globo: Ásia"
+      },
+      "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+      "attributionRequired": false,
+      "license": "Natural Earth public domain; original globe presentation",
+      "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "inputHash": "c0b4d922f39bbe24b7c39bec8e2f9884afca1e7c85b8896e57d51c9d7c9747c4",
+      "outputHash": "4ed4ab852220488f7f99371eb9cb407e4b7a46154087724f992b8e7673b93b66",
+      "bytes": 33740,
+      "camera": {
+        "longitude": 92,
+        "latitude": 27
+      },
+      "accent": "#bca0ed"
+    },
+    {
+      "assetId": "region-globe-africa",
+      "regionId": "africa",
+      "type": "image",
+      "sourceType": "route-render",
+      "mediaKind": "region-visual",
+      "status": "published",
+      "rightsStatus": "approved",
+      "asset": "./assets/generated/regions/africa-8992389edbfdbeca.webp",
+      "aspectRatio": "1:1",
+      "width": 720,
+      "height": 720,
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": {
+        "en": "Geographic globe portrait: Africa",
+        "de": "Geografisches Globusporträt: Afrika",
+        "it": "Ritratto geografico del globo: Africa",
+        "es": "Retrato geográfico del globo: África",
+        "fr": "Portrait géographique du globe : Afrique",
+        "pt": "Retrato geográfico do globo: África"
+      },
+      "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+      "attributionRequired": false,
+      "license": "Natural Earth public domain; original globe presentation",
+      "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "inputHash": "8992389edbfdbeca9ef08be3e512a4bf78a7314737f604acde0b992ca82117d0",
+      "outputHash": "01e045c7923e5aadf1fcd045b3a39cb0151212ef56cfe29556a3a1e6ff36ab0a",
+      "bytes": 29970,
+      "camera": {
+        "longitude": 20,
+        "latitude": 2
+      },
+      "accent": "#e7b46a"
+    },
+    {
+      "assetId": "region-globe-north-america",
+      "regionId": "north-america",
+      "type": "image",
+      "sourceType": "route-render",
+      "mediaKind": "region-visual",
+      "status": "published",
+      "rightsStatus": "approved",
+      "asset": "./assets/generated/regions/north-america-003bf380681e93c6.webp",
+      "aspectRatio": "1:1",
+      "width": 720,
+      "height": 720,
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": {
+        "en": "Geographic globe portrait: North America",
+        "de": "Geografisches Globusporträt: Nordamerika",
+        "it": "Ritratto geografico del globo: Nord America",
+        "es": "Retrato geográfico del globo: América del Norte",
+        "fr": "Portrait géographique du globe : Amérique du Nord",
+        "pt": "Retrato geográfico do globo: América do Norte"
+      },
+      "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+      "attributionRequired": false,
+      "license": "Natural Earth public domain; original globe presentation",
+      "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "inputHash": "003bf380681e93c6bde83bc5cf72c6ecf4d570338224f3ee02ebb3cf5edfe6e2",
+      "outputHash": "3cbf4fbabb060361798851b8d193903514230d9f3543a654f9661a526cae7c4f",
+      "bytes": 29446,
+      "camera": {
+        "longitude": -100,
+        "latitude": 36
+      },
+      "accent": "#79adc9"
+    },
+    {
+      "assetId": "region-globe-south-america",
+      "regionId": "south-america",
+      "type": "image",
+      "sourceType": "route-render",
+      "mediaKind": "region-visual",
+      "status": "published",
+      "rightsStatus": "approved",
+      "asset": "./assets/generated/regions/south-america-4572618d300fd56d.webp",
+      "aspectRatio": "1:1",
+      "width": 720,
+      "height": 720,
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": {
+        "en": "Geographic globe portrait: South America",
+        "de": "Geografisches Globusporträt: Südamerika",
+        "it": "Ritratto geografico del globo: Sud America",
+        "es": "Retrato geográfico del globo: América del Sur",
+        "fr": "Portrait géographique du globe : Amérique du Sud",
+        "pt": "Retrato geográfico do globo: América do Sul"
+      },
+      "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+      "attributionRequired": false,
+      "license": "Natural Earth public domain; original globe presentation",
+      "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "inputHash": "4572618d300fd56db5f40c8361fd218e6b43b7067cc72168d59c3c2bfebc1e5c",
+      "outputHash": "e8409437b670a5d077bde0a4e9547d7d3be1afdd101b4d738c811de0f16c500a",
+      "bytes": 27476,
+      "camera": {
+        "longitude": -62,
+        "latitude": -20
+      },
+      "accent": "#7bc6a1"
+    },
+    {
+      "assetId": "region-globe-oceania",
+      "regionId": "oceania",
+      "type": "image",
+      "sourceType": "route-render",
+      "mediaKind": "region-visual",
+      "status": "published",
+      "rightsStatus": "approved",
+      "asset": "./assets/generated/regions/oceania-83ee66e73212c676.webp",
+      "aspectRatio": "1:1",
+      "width": 720,
+      "height": 720,
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": {
+        "en": "Geographic globe portrait: Oceania",
+        "de": "Geografisches Globusporträt: Ozeanien",
+        "it": "Ritratto geografico del globo: Oceania",
+        "es": "Retrato geográfico del globo: Oceanía",
+        "fr": "Portrait géographique du globe : Océanie",
+        "pt": "Retrato geográfico do globo: Oceania"
+      },
+      "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+      "attributionRequired": false,
+      "license": "Natural Earth public domain; original globe presentation",
+      "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "inputHash": "83ee66e73212c67621391eb95e7ed0ae57f13e42bbc41c9940b11d01986f9a8f",
+      "outputHash": "be8f876c4701aaec3699e9d615b46b3b7f8bb335abc29a06098448059814b58b",
+      "bytes": 28208,
+      "camera": {
+        "longitude": 150,
+        "latitude": -22
+      },
+      "accent": "#72d2cf"
+    }
+  ],
   "journeys": [
     {
       "id": "canadian-rockies-rail-road",

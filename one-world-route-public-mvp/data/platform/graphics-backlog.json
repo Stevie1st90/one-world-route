@@ -10,22 +10,23 @@
       "mediaKind": "cover",
       "aspectRatio": "16:9",
       "derivatives": [
-        "4:5",
         "9:16"
       ],
       "visualFamily": "planetary",
-      "motif": "Recognisable continents and the curve of the Earth",
-      "promptVersion": "cinematic-editorial-v1",
-      "prompt": "Create an original Cinematic Editorial Travel Illustration for the journey “One World Journey”. Motif brief: Recognisable continents and the curve of the Earth. An original planetary/topographic view of Earth with recognisable continents, atmospheric depth and an understated sense of connected travel. No invented route overlays. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.",
+      "motif": "a single atmospheric view of Earth with recognizable continents and no invented route overlay inspired by global",
+      "promptVersion": "journey-visual-experience-v2",
+      "prompt": "Create an original cinematic editorial travel illustration for “One World Journey”. Visual family: planetary. Show a single atmospheric view of Earth with recognizable continents and no invented route overlay inspired by global. Geography context: DE, LU, BE, NL, DK, NO, SE, FI, EE, LV, LT, BY, PL, UA, MD, RO, HU, SK, CZ, AT, LI, CH, FR, MC, AD, ES, PT, GB, IE, IS, CA, US, MX, BZ, GT, SV, HN, NI, CR, PA, CU, BS, JM, HT, DO, KN, AG, DM, LC, BB, VC, GD, TT, VE, BR, GY, SR, CO, EC, PE, BO, PY, AR, UY, CL, NZ, TO, FJ, WS, TV, VU, SB, PG, AU, NR, KI, MH, FM, PW, PH, BN, MY, SG, ID, TL, TH, KH, VN, LA, MM, BD, IN, NP, BT, LK, MV, CN, KP, KR, JP, MN, RU, KZ, KG, TJ, UZ, TM, AF, PK, IR, AZ, GE, AM, TR, IQ, SY, LB, CY, LY, TN, DZ, MA, MR, ML, BF, NE, TD, CF, CM, NG, BJ, TG, GH, CI, LR, SL, GN, GW, SN, GM, CV, GQ, ST, GA, CG, CD, AO, NA, BW, ZW, ZM, MW, MZ, SZ, ZA, LS, TZ, BI, RW, UG, SS, KE, SC, MU, MG, KM, ET, SO, DJ, ER, SD, EG, SA, KW, BH, QA, AE, OM, YE, JO, IL, PS, GR, BG, MK, AL, ME, BA, RS, HR, SI, IT, SM, VA, MT. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
       "priority": "P1",
       "status": "planned",
       "focalPoint": {
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
-      "strategy": "bespoke-recommended",
-      "reason": "Distinctive emotional concept; optional artwork complements the complete auto route visual."
+      "fallbackQuality": "Complete global geography; route density limits emotional thumbnail identity",
+      "strategy": "bespoke-optional",
+      "reason": "Differentiate a dense planetary route; Strong travel-mode social identity",
+      "coverGenerationStatus": "brief-ready",
+      "briefRef": "./data/platform/visual-briefs.json#world-195"
     },
     {
       "assetId": "italy-grand-tour-cover",
@@ -34,23 +35,22 @@
       "journey": "Italy Grand Tour",
       "mediaKind": "cover",
       "aspectRatio": "16:9",
-      "derivatives": [
-        "4:5",
-        "9:16"
-      ],
-      "visualFamily": "culture-editorial",
-      "motif": "Rome → Naples → Amalfi Coast → Rome",
-      "promptVersion": "cinematic-editorial-v1",
-      "prompt": "Create an original Cinematic Editorial Travel Illustration for the journey “Italy Grand Tour”. Motif brief: Rome → Naples → Amalfi Coast → Rome. Premium architectural editorial illustration, characteristic local streets and architectural forms, grounded human scale, no postcard collage. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.",
+      "derivatives": [],
+      "visualFamily": "nature-atmospheric",
+      "motif": "a single atmospheric natural landscape grounded in the listed destination inspired by Rome (IT); confirm specific scene details before generation",
+      "promptVersion": "journey-visual-experience-v2",
+      "prompt": "Create an original cinematic editorial travel illustration for “Italy Grand Tour”. Visual family: nature-atmospheric. Show a single atmospheric natural landscape grounded in the listed destination inspired by Rome (IT); confirm specific scene details before generation. Geography context: IT. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
       "priority": "P2",
       "status": "planned",
       "focalPoint": {
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
-      "strategy": "destination-asset-reusable",
-      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "strategy": "bespoke-optional",
+      "reason": "Improve thumbnail recognition at small geographic scale; Reusable destination character",
+      "coverGenerationStatus": "brief-ready",
+      "briefRef": "./data/platform/visual-briefs.json#italy-grand-tour"
     },
     {
       "assetId": "western-mediterranean-cruise-loop-cover",
@@ -60,22 +60,23 @@
       "mediaKind": "cover",
       "aspectRatio": "16:9",
       "derivatives": [
-        "4:5",
         "9:16"
       ],
       "visualFamily": "coastal-editorial",
-      "motif": "Barcelona → Marseille → Civitavecchia · Rome gateway → Barcelona",
-      "promptVersion": "cinematic-editorial-v1",
-      "prompt": "Create an original Cinematic Editorial Travel Illustration for the journey “Western Mediterranean Cruise Loop”. Motif brief: Barcelona → Marseille → Civitavecchia · Rome gateway → Barcelona. Luminous coastal or aerial editorial illustration, translucent water, clear coastline forms and spacious composition. Ships, if any, have no branding. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.",
+      "motif": "a single coherent coastal travel scene; no collage of ports or islands inspired by Barcelona (ES); confirm specific scene details before generation",
+      "promptVersion": "journey-visual-experience-v2",
+      "prompt": "Create an original cinematic editorial travel illustration for “Western Mediterranean Cruise Loop”. Visual family: coastal-editorial. Show a single coherent coastal travel scene; no collage of ports or islands inspired by Barcelona (ES); confirm specific scene details before generation. Geography context: ES, FR, IT, TN. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
       "priority": "P2",
       "status": "planned",
       "focalPoint": {
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
-      "strategy": "destination-asset-reusable",
-      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
+      "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
+      "strategy": "bespoke-optional",
+      "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
+      "coverGenerationStatus": "brief-ready",
+      "briefRef": "./data/platform/visual-briefs.json#western-mediterranean-cruise-loop"
     },
     {
       "assetId": "southern-europe-road-trip-cover",
@@ -85,22 +86,23 @@
       "mediaKind": "cover",
       "aspectRatio": "16:9",
       "derivatives": [
-        "4:5",
         "9:16"
       ],
       "visualFamily": "road-cinematic",
-      "motif": "Lisbon → Seville → Granada → Rome",
-      "promptVersion": "cinematic-editorial-v1",
-      "prompt": "Create an original Cinematic Editorial Travel Illustration for the journey “Southern Europe Road Trip”. Motif brief: Lisbon → Seville → Granada → Rome. An unbranded winding road through an expansive landscape, a strong horizon, golden or blue-hour light and a sense of movement. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Rome (IT); confirm specific scene details before generation",
+      "promptVersion": "journey-visual-experience-v2",
+      "prompt": "Create an original cinematic editorial travel illustration for “Southern Europe Road Trip”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Rome (IT); confirm specific scene details before generation. Geography context: PT, ES, FR, IT. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
       "priority": "P2",
       "status": "planned",
       "focalPoint": {
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
-      "strategy": "destination-asset-reusable",
-      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
+      "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
+      "strategy": "bespoke-optional",
+      "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
+      "coverGenerationStatus": "brief-ready",
+      "briefRef": "./data/platform/visual-briefs.json#southern-europe-road-trip"
     },
     {
       "assetId": "central-europe-rail-journey-cover",
@@ -110,22 +112,23 @@
       "mediaKind": "cover",
       "aspectRatio": "16:9",
       "derivatives": [
-        "4:5",
         "9:16"
       ],
       "visualFamily": "rail-cinematic",
-      "motif": "Paris → Brussels → Amsterdam → Berlin",
-      "promptVersion": "cinematic-editorial-v1",
-      "prompt": "Create an original Cinematic Editorial Travel Illustration for the journey “Central Europe Rail Journey”. Motif brief: Paris → Brussels → Amsterdam → Berlin. Modern editorial landscape illustration with clean graphic lines, a discreet unbranded train and a strong landscape perspective. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.",
+      "motif": "a single unbranded rail-travel scene with geographically credible surroundings inspired by Berlin (DE); confirm specific scene details before generation",
+      "promptVersion": "journey-visual-experience-v2",
+      "prompt": "Create an original cinematic editorial travel illustration for “Central Europe Rail Journey”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Berlin (DE); confirm specific scene details before generation. Geography context: FR, BE, NL, DE, AT, HU, CZ. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
       "priority": "P2",
       "status": "planned",
       "focalPoint": {
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
-      "strategy": "destination-asset-reusable",
-      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
+      "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
+      "strategy": "bespoke-optional",
+      "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
+      "coverGenerationStatus": "brief-ready",
+      "briefRef": "./data/platform/visual-briefs.json#central-europe-rail-journey"
     },
     {
       "assetId": "japan-by-rail-cover",
@@ -135,22 +138,23 @@
       "mediaKind": "cover",
       "aspectRatio": "16:9",
       "derivatives": [
-        "4:5",
         "9:16"
       ],
       "visualFamily": "rail-cinematic",
-      "motif": "Tokyo → Matsumoto → Kanazawa → Hiroshima",
-      "promptVersion": "cinematic-editorial-v1",
-      "prompt": "Create an original Cinematic Editorial Travel Illustration for the journey “Japan by Rail”. Motif brief: Tokyo → Matsumoto → Kanazawa → Hiroshima. Modern editorial landscape illustration with clean graphic lines, a discreet unbranded train and a strong landscape perspective. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.",
-      "priority": "P1",
+      "motif": "a single unbranded rail-travel scene with geographically credible surroundings inspired by Kanazawa (JP); confirm specific scene details before generation",
+      "promptVersion": "journey-visual-experience-v2",
+      "prompt": "Create an original cinematic editorial travel illustration for “Japan by Rail”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Kanazawa (JP); confirm specific scene details before generation. Geography context: JP. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priority": "P2",
       "status": "planned",
       "focalPoint": {
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
-      "strategy": "bespoke-recommended",
-      "reason": "Distinctive emotional concept; optional artwork complements the complete auto route visual."
+      "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
+      "strategy": "bespoke-optional",
+      "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
+      "coverGenerationStatus": "brief-ready",
+      "briefRef": "./data/platform/visual-briefs.json#japan-by-rail"
     },
     {
       "assetId": "patagonia-road-trip-cover",
@@ -160,22 +164,23 @@
       "mediaKind": "cover",
       "aspectRatio": "16:9",
       "derivatives": [
-        "4:5",
         "9:16"
       ],
       "visualFamily": "road-cinematic",
-      "motif": "El Calafate → El Chaltén → Torres del Paine → Punta Arenas",
-      "promptVersion": "cinematic-editorial-v1",
-      "prompt": "Create an original Cinematic Editorial Travel Illustration for the journey “Patagonia Road Trip”. Motif brief: El Calafate → El Chaltén → Torres del Paine → Punta Arenas. An unbranded winding road through an expansive landscape, a strong horizon, golden or blue-hour light and a sense of movement. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by El Chaltén (AR); confirm specific scene details before generation",
+      "promptVersion": "journey-visual-experience-v2",
+      "prompt": "Create an original cinematic editorial travel illustration for “Patagonia Road Trip”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by El Chaltén (AR); confirm specific scene details before generation. Geography context: AR, CL. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
       "priority": "P1",
       "status": "planned",
       "focalPoint": {
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "strategy": "bespoke-recommended",
-      "reason": "Distinctive emotional concept; optional artwork complements the complete auto route visual."
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "coverGenerationStatus": "brief-ready",
+      "briefRef": "./data/platform/visual-briefs.json#patagonia-road-trip"
     },
     {
       "assetId": "norway-arctic-road-trip-cover",
@@ -185,22 +190,23 @@
       "mediaKind": "cover",
       "aspectRatio": "16:9",
       "derivatives": [
-        "4:5",
         "9:16"
       ],
       "visualFamily": "road-cinematic",
-      "motif": "Tromsø → Senja → Andøya → Reine",
-      "promptVersion": "cinematic-editorial-v1",
-      "prompt": "Create an original Cinematic Editorial Travel Illustration for the journey “Norway Arctic Road Trip”. Motif brief: Tromsø → Senja → Andøya → Reine. An unbranded winding road through an expansive landscape, a strong horizon, golden or blue-hour light and a sense of movement. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Andøya (NO); confirm specific scene details before generation",
+      "promptVersion": "journey-visual-experience-v2",
+      "prompt": "Create an original cinematic editorial travel illustration for “Norway Arctic Road Trip”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Andøya (NO); confirm specific scene details before generation. Geography context: NO. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
       "priority": "P1",
       "status": "planned",
       "focalPoint": {
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "strategy": "bespoke-recommended",
-      "reason": "Distinctive emotional concept; optional artwork complements the complete auto route visual."
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "coverGenerationStatus": "brief-ready",
+      "briefRef": "./data/platform/visual-briefs.json#norway-arctic-road-trip"
     },
     {
       "assetId": "new-zealand-camper-loop-cover",
@@ -210,22 +216,23 @@
       "mediaKind": "cover",
       "aspectRatio": "16:9",
       "derivatives": [
-        "4:5",
         "9:16"
       ],
       "visualFamily": "road-cinematic",
-      "motif": "Christchurch → Lake Tekapo → Queenstown → Franz Josef",
-      "promptVersion": "cinematic-editorial-v1",
-      "prompt": "Create an original Cinematic Editorial Travel Illustration for the journey “New Zealand Camper Loop”. Motif brief: Christchurch → Lake Tekapo → Queenstown → Franz Josef. An unbranded winding road through an expansive landscape, a strong horizon, golden or blue-hour light and a sense of movement. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Lake Tekapo (NZ); confirm specific scene details before generation",
+      "promptVersion": "journey-visual-experience-v2",
+      "prompt": "Create an original cinematic editorial travel illustration for “New Zealand Camper Loop”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Lake Tekapo (NZ); confirm specific scene details before generation. Geography context: NZ. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
       "priority": "P1",
       "status": "planned",
       "focalPoint": {
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "strategy": "bespoke-recommended",
-      "reason": "Distinctive emotional concept; optional artwork complements the complete auto route visual."
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "coverGenerationStatus": "brief-ready",
+      "briefRef": "./data/platform/visual-briefs.json#new-zealand-camper-loop"
     },
     {
       "assetId": "greek-island-hopping-cover",
@@ -235,22 +242,23 @@
       "mediaKind": "cover",
       "aspectRatio": "16:9",
       "derivatives": [
-        "4:5",
         "9:16"
       ],
       "visualFamily": "coastal-editorial",
-      "motif": "Athens → Mykonos → Naxos → Santorini",
-      "promptVersion": "cinematic-editorial-v1",
-      "prompt": "Create an original Cinematic Editorial Travel Illustration for the journey “Greek Island Hopping”. Motif brief: Athens → Mykonos → Naxos → Santorini. Luminous coastal or aerial editorial illustration, translucent water, clear coastline forms and spacious composition. Ships, if any, have no branding. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.",
+      "motif": "a single coherent coastal travel scene; no collage of ports or islands inspired by Mykonos (GR); confirm specific scene details before generation",
+      "promptVersion": "journey-visual-experience-v2",
+      "prompt": "Create an original cinematic editorial travel illustration for “Greek Island Hopping”. Visual family: coastal-editorial. Show a single coherent coastal travel scene; no collage of ports or islands inspired by Mykonos (GR); confirm specific scene details before generation. Geography context: GR. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
       "priority": "P1",
       "status": "planned",
       "focalPoint": {
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "strategy": "bespoke-recommended",
-      "reason": "Distinctive emotional concept; optional artwork complements the complete auto route visual."
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "coverGenerationStatus": "brief-ready",
+      "briefRef": "./data/platform/visual-briefs.json#greek-island-hopping"
     },
     {
       "assetId": "morocco-atlas-desert-cover",
@@ -260,22 +268,23 @@
       "mediaKind": "cover",
       "aspectRatio": "16:9",
       "derivatives": [
-        "4:5",
         "9:16"
       ],
       "visualFamily": "road-cinematic",
-      "motif": "Marrakech → Aït Benhaddou → Dadès Valley → Essaouira",
-      "promptVersion": "cinematic-editorial-v1",
-      "prompt": "Create an original Cinematic Editorial Travel Illustration for the journey “Morocco Atlas & Desert”. Motif brief: Marrakech → Aït Benhaddou → Dadès Valley → Essaouira. An unbranded winding road through an expansive landscape, a strong horizon, golden or blue-hour light and a sense of movement. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Dadès Valley (MA); confirm specific scene details before generation",
+      "promptVersion": "journey-visual-experience-v2",
+      "prompt": "Create an original cinematic editorial travel illustration for “Morocco Atlas & Desert”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Dadès Valley (MA); confirm specific scene details before generation. Geography context: MA. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
       "priority": "P1",
       "status": "planned",
       "focalPoint": {
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "strategy": "bespoke-recommended",
-      "reason": "Distinctive emotional concept; optional artwork complements the complete auto route visual."
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "coverGenerationStatus": "brief-ready",
+      "briefRef": "./data/platform/visual-briefs.json#morocco-atlas-desert"
     },
     {
       "assetId": "south-africa-garden-safari-cover",
@@ -285,22 +294,23 @@
       "mediaKind": "cover",
       "aspectRatio": "16:9",
       "derivatives": [
-        "4:5",
         "9:16"
       ],
       "visualFamily": "road-cinematic",
-      "motif": "Cape Town → Hermanus → Knysna → Addo Elephant National Park",
-      "promptVersion": "cinematic-editorial-v1",
-      "prompt": "Create an original Cinematic Editorial Travel Illustration for the journey “South Africa Garden Route & Safari”. Motif brief: Cape Town → Hermanus → Knysna → Addo Elephant National Park. An unbranded winding road through an expansive landscape, a strong horizon, golden or blue-hour light and a sense of movement. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.",
-      "priority": "P1",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Addo Elephant National Park (ZA); confirm specific scene details before generation",
+      "promptVersion": "journey-visual-experience-v2",
+      "prompt": "Create an original cinematic editorial travel illustration for “South Africa Garden Route & Safari”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Addo Elephant National Park (ZA); confirm specific scene details before generation. Geography context: ZA. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priority": "P2",
       "status": "planned",
       "focalPoint": {
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
-      "strategy": "bespoke-recommended",
-      "reason": "Distinctive emotional concept; optional artwork complements the complete auto route visual."
+      "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
+      "strategy": "bespoke-optional",
+      "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
+      "coverGenerationStatus": "brief-ready",
+      "briefRef": "./data/platform/visual-briefs.json#south-africa-garden-safari"
     },
     {
       "assetId": "canadian-rockies-rail-road-cover",
@@ -310,22 +320,23 @@
       "mediaKind": "cover",
       "aspectRatio": "16:9",
       "derivatives": [
-        "4:5",
         "9:16"
       ],
-      "visualFamily": "nature-atmospheric",
-      "motif": "Vancouver → Kamloops → Jasper → Calgary",
-      "promptVersion": "cinematic-editorial-v1",
-      "prompt": "Create an original Cinematic Editorial Travel Illustration for the journey “Canadian Rockies Rail & Road”. Motif brief: Vancouver → Kamloops → Jasper → Calgary. Atmospheric cinematic landscape with strong authentic topography and minimal artificial elements. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.",
-      "priority": "P1",
+      "visualFamily": "rail-cinematic",
+      "motif": "a single unbranded rail-travel scene with geographically credible surroundings inspired by Kamloops (CA); confirm specific scene details before generation",
+      "promptVersion": "journey-visual-experience-v2",
+      "prompt": "Create an original cinematic editorial travel illustration for “Canadian Rockies Rail & Road”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Kamloops (CA); confirm specific scene details before generation. Geography context: CA. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priority": "P2",
       "status": "planned",
       "focalPoint": {
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
-      "strategy": "destination-asset-reusable",
-      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
+      "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
+      "strategy": "bespoke-optional",
+      "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
+      "coverGenerationStatus": "brief-ready",
+      "briefRef": "./data/platform/visual-briefs.json#canadian-rockies-rail-road"
     },
     {
       "assetId": "vietnam-north-south-cover",
@@ -335,22 +346,23 @@
       "mediaKind": "cover",
       "aspectRatio": "16:9",
       "derivatives": [
-        "4:5",
         "9:16"
       ],
       "visualFamily": "rail-cinematic",
-      "motif": "Hanoi → Huế → Da Nang → Ho Chi Minh City",
-      "promptVersion": "cinematic-editorial-v1",
-      "prompt": "Create an original Cinematic Editorial Travel Illustration for the journey “Vietnam North to South”. Motif brief: Hanoi → Huế → Da Nang → Ho Chi Minh City. Modern editorial landscape illustration with clean graphic lines, a discreet unbranded train and a strong landscape perspective. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.",
+      "motif": "a single unbranded rail-travel scene with geographically credible surroundings inspired by Hanoi (VN); confirm specific scene details before generation",
+      "promptVersion": "journey-visual-experience-v2",
+      "prompt": "Create an original cinematic editorial travel illustration for “Vietnam North to South”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Hanoi (VN); confirm specific scene details before generation. Geography context: VN. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
       "priority": "P1",
       "status": "planned",
       "focalPoint": {
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
-      "strategy": "destination-asset-reusable",
-      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "strategy": "bespoke-recommended",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "coverGenerationStatus": "brief-ready",
+      "briefRef": "./data/platform/visual-briefs.json#vietnam-north-south"
     },
     {
       "assetId": "costa-rica-nature-loop-cover",
@@ -360,22 +372,23 @@
       "mediaKind": "cover",
       "aspectRatio": "16:9",
       "derivatives": [
-        "4:5",
         "9:16"
       ],
       "visualFamily": "road-cinematic",
-      "motif": "San José → Arenal → Monteverde → Uvita",
-      "promptVersion": "cinematic-editorial-v1",
-      "prompt": "Create an original Cinematic Editorial Travel Illustration for the journey “Costa Rica Nature Loop”. Motif brief: San José → Arenal → Monteverde → Uvita. An unbranded winding road through an expansive landscape, a strong horizon, golden or blue-hour light and a sense of movement. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Arenal (CR); confirm specific scene details before generation",
+      "promptVersion": "journey-visual-experience-v2",
+      "prompt": "Create an original cinematic editorial travel illustration for “Costa Rica Nature Loop”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Arenal (CR); confirm specific scene details before generation. Geography context: CR. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
       "priority": "P1",
       "status": "planned",
       "focalPoint": {
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
-      "strategy": "destination-asset-reusable",
-      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "strategy": "bespoke-recommended",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "coverGenerationStatus": "brief-ready",
+      "briefRef": "./data/platform/visual-briefs.json#costa-rica-nature-loop"
     },
     {
       "assetId": "iceland-ring-road-cover",
@@ -385,22 +398,23 @@
       "mediaKind": "cover",
       "aspectRatio": "16:9",
       "derivatives": [
-        "4:5",
         "9:16"
       ],
       "visualFamily": "road-cinematic",
-      "motif": "Reykjavík → Vík → Jökulsárlón → Snæfellsnes",
-      "promptVersion": "cinematic-editorial-v1",
-      "prompt": "Create an original Cinematic Editorial Travel Illustration for the journey “Iceland Ring Road”. Motif brief: Reykjavík → Vík → Jökulsárlón → Snæfellsnes. An unbranded winding road through an expansive landscape, a strong horizon, golden or blue-hour light and a sense of movement. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.",
-      "priority": "P1",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Vík (IS); confirm specific scene details before generation",
+      "promptVersion": "journey-visual-experience-v2",
+      "prompt": "Create an original cinematic editorial travel illustration for “Iceland Ring Road”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Vík (IS); confirm specific scene details before generation. Geography context: IS. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priority": "P2",
       "status": "planned",
       "focalPoint": {
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
-      "strategy": "destination-asset-reusable",
-      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
+      "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
+      "strategy": "bespoke-optional",
+      "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
+      "coverGenerationStatus": "brief-ready",
+      "briefRef": "./data/platform/visual-briefs.json#iceland-ring-road"
     },
     {
       "assetId": "peru-andes-journey-cover",
@@ -409,23 +423,22 @@
       "journey": "Peru Andes Journey",
       "mediaKind": "cover",
       "aspectRatio": "16:9",
-      "derivatives": [
-        "4:5",
-        "9:16"
-      ],
+      "derivatives": [],
       "visualFamily": "nature-atmospheric",
-      "motif": "Lima → Cusco → Sacred Valley → Puno",
-      "promptVersion": "cinematic-editorial-v1",
-      "prompt": "Create an original Cinematic Editorial Travel Illustration for the journey “Peru Andes Journey”. Motif brief: Lima → Cusco → Sacred Valley → Puno. Atmospheric cinematic landscape with strong authentic topography and minimal artificial elements. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.",
-      "priority": "P1",
+      "motif": "a single atmospheric natural landscape grounded in the listed destination inspired by Cusco (PE); confirm specific scene details before generation",
+      "promptVersion": "journey-visual-experience-v2",
+      "prompt": "Create an original cinematic editorial travel illustration for “Peru Andes Journey”. Visual family: nature-atmospheric. Show a single atmospheric natural landscape grounded in the listed destination inspired by Cusco (PE); confirm specific scene details before generation. Geography context: PE. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priority": "P3",
       "status": "planned",
       "focalPoint": {
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
-      "strategy": "destination-asset-reusable",
-      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
+      "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
+      "strategy": "bespoke-optional",
+      "reason": "Strengthen distinct journey character; Reusable destination character",
+      "coverGenerationStatus": "brief-ready",
+      "briefRef": "./data/platform/visual-briefs.json#peru-andes-journey"
     },
     {
       "assetId": "jordan-heritage-desert-drive-cover",
@@ -435,22 +448,23 @@
       "mediaKind": "cover",
       "aspectRatio": "16:9",
       "derivatives": [
-        "4:5",
         "9:16"
       ],
       "visualFamily": "road-cinematic",
-      "motif": "Amman → Jerash → Dead Sea → Aqaba",
-      "promptVersion": "cinematic-editorial-v1",
-      "prompt": "Create an original Cinematic Editorial Travel Illustration for the journey “Jordan Heritage & Desert Drive”. Motif brief: Amman → Jerash → Dead Sea → Aqaba. An unbranded winding road through an expansive landscape, a strong horizon, golden or blue-hour light and a sense of movement. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.",
-      "priority": "P2",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Amman (JO); confirm specific scene details before generation",
+      "promptVersion": "journey-visual-experience-v2",
+      "prompt": "Create an original cinematic editorial travel illustration for “Jordan Heritage & Desert Drive”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Amman (JO); confirm specific scene details before generation. Geography context: JO. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priority": "P1",
       "status": "planned",
       "focalPoint": {
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
-      "strategy": "destination-asset-reusable",
-      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "strategy": "bespoke-optional",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "coverGenerationStatus": "brief-ready",
+      "briefRef": "./data/platform/visual-briefs.json#jordan-heritage-desert-drive"
     },
     {
       "assetId": "india-golden-triangle-rail-cover",
@@ -460,22 +474,23 @@
       "mediaKind": "cover",
       "aspectRatio": "16:9",
       "derivatives": [
-        "4:5",
         "9:16"
       ],
       "visualFamily": "rail-cinematic",
-      "motif": "Delhi → Agra → Jaipur → Jaipur",
-      "promptVersion": "cinematic-editorial-v1",
-      "prompt": "Create an original Cinematic Editorial Travel Illustration for the journey “India Golden Triangle by Rail”. Motif brief: Delhi → Agra → Jaipur → Jaipur. Modern editorial landscape illustration with clean graphic lines, a discreet unbranded train and a strong landscape perspective. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.",
-      "priority": "P2",
+      "motif": "a single unbranded rail-travel scene with geographically credible surroundings inspired by Jaipur (IN); confirm specific scene details before generation",
+      "promptVersion": "journey-visual-experience-v2",
+      "prompt": "Create an original cinematic editorial travel illustration for “India Golden Triangle by Rail”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Jaipur (IN); confirm specific scene details before generation. Geography context: IN. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priority": "P1",
       "status": "planned",
       "focalPoint": {
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
-      "strategy": "destination-asset-reusable",
-      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "strategy": "bespoke-recommended",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "coverGenerationStatus": "brief-ready",
+      "briefRef": "./data/platform/visual-briefs.json#india-golden-triangle-rail"
     },
     {
       "assetId": "utah-national-parks-road-trip-cover",
@@ -485,22 +500,23 @@
       "mediaKind": "cover",
       "aspectRatio": "16:9",
       "derivatives": [
-        "4:5",
         "9:16"
       ],
       "visualFamily": "road-cinematic",
-      "motif": "Zion National Park → Bryce Canyon National Park → Capitol Reef National Park → Canyonlands National Park",
-      "promptVersion": "cinematic-editorial-v1",
-      "prompt": "Create an original Cinematic Editorial Travel Illustration for the journey “Utah National Parks Road Trip”. Motif brief: Zion National Park → Bryce Canyon National Park → Capitol Reef National Park → Canyonlands National Park. An unbranded winding road through an expansive landscape, a strong horizon, golden or blue-hour light and a sense of movement. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.",
-      "priority": "P2",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Zion National Park (US); confirm specific scene details before generation",
+      "promptVersion": "journey-visual-experience-v2",
+      "prompt": "Create an original cinematic editorial travel illustration for “Utah National Parks Road Trip”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Zion National Park (US); confirm specific scene details before generation. Geography context: US. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priority": "P1",
       "status": "planned",
       "focalPoint": {
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
-      "strategy": "destination-asset-reusable",
-      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "strategy": "bespoke-optional",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "coverGenerationStatus": "brief-ready",
+      "briefRef": "./data/platform/visual-briefs.json#utah-national-parks-road-trip"
     },
     {
       "assetId": "victoria-great-ocean-highlands-road-trip-cover",
@@ -510,22 +526,23 @@
       "mediaKind": "cover",
       "aspectRatio": "16:9",
       "derivatives": [
-        "4:5",
         "9:16"
       ],
       "visualFamily": "road-cinematic",
-      "motif": "Bellarine Peninsula → Lorne → Cape Otway → Melbourne",
-      "promptVersion": "cinematic-editorial-v1",
-      "prompt": "Create an original Cinematic Editorial Travel Illustration for the journey “Victoria Great Ocean & Highlands Road Trip”. Motif brief: Bellarine Peninsula → Lorne → Cape Otway → Melbourne. An unbranded winding road through an expansive landscape, a strong horizon, golden or blue-hour light and a sense of movement. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.",
-      "priority": "P2",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Ballarat (AU); confirm specific scene details before generation",
+      "promptVersion": "journey-visual-experience-v2",
+      "prompt": "Create an original cinematic editorial travel illustration for “Victoria Great Ocean & Highlands Road Trip”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Ballarat (AU); confirm specific scene details before generation. Geography context: AU. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priority": "P1",
       "status": "planned",
       "focalPoint": {
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
-      "strategy": "destination-asset-reusable",
-      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "strategy": "bespoke-optional",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "coverGenerationStatus": "brief-ready",
+      "briefRef": "./data/platform/visual-briefs.json#victoria-great-ocean-highlands-road-trip"
     },
     {
       "assetId": "great-rail-journeys-collection",
@@ -778,5 +795,6 @@
       "reason": "Theme or geography already explains the collection. A dedicated campaign cover remains optional."
     }
   ],
-  "strategyVersion": "scalable-visual-v1"
+  "strategyVersion": "scalable-visual-v1",
+  "policyVersion": "journey-visual-experience-v2"
 }

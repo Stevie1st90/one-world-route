@@ -66,14 +66,17 @@
 
   async function resolveReference(meta,trip){
     await loadManifest();
-    const result=resolveJourneyVisual(meta,{purpose:'journeyHero'});
+    const result=resolveJourneyVisual(meta,{purpose:'journeyIdentity'});
     if(!result.entry)return trip;
     return {...trip,media:{...trip.media,hero:result.entry}};
   }
   function resolveDestinationVisual(anchor){return root.visualPolicy.destinationCandidate({visualAnchor:anchor},visualManifest.destinationAssets||[],[]);}
+  function resolveRegionVisual(id){return (visualManifest.regionAssets||[]).find(a=>a.regionId===id&&root.visualPolicy.usable(a))||null;}
+  function journeyCountries(meta){return (visualManifest.journeys||[]).find(j=>j.id===meta?.id)?.countries||[];}
+  function contextualCredit(entry,esc){return entry?.sourceType==='route-render'&&entry.attributionRequired===false?'':credit(entry,esc);}
   function imageMarkup(entry,esc,local=value=>value?.en||value||'',{lazy=true,ratio='landscape'}={}){
     const d=descriptor(entry,'ocean',ratio);if(d.type!=='image')return '';
     return '<img class="platform-route-image" style="object-position:'+Math.round(d.focalPoint.x*100)+'% '+Math.round(d.focalPoint.y*100)+'%" '+(lazy?'loading="lazy" ':'')+'decoding="async" src="'+esc(d.asset)+'"'+(d.srcset?' srcset="'+esc(d.srcset)+'" sizes="(max-width:820px) 92vw, 400px"':'')+' alt="'+esc(local(d.alt))+'">';
   }
-  root.media={descriptor,credit,routeArt,tripPreview,resolveReference,setManifest,loadManifest,resolveJourneyVisual,resolveDestinationVisual,imageMarkup};
+  root.media={descriptor,credit,contextualCredit,routeArt,tripPreview,resolveReference,setManifest,loadManifest,resolveJourneyVisual,resolveDestinationVisual,resolveRegionVisual,journeyCountries,imageMarkup};
 })();
