@@ -27,7 +27,7 @@ Eight approved 16:9 Journey Covers are included in this package. The installer c
 
 ## Fast future batch workflow
 
-1. `npm run covers:queue -- --limit=24 --out=/tmp/cover-batch.json`
+1. `npm run covers:queue -- --limit=10 --out=/tmp/cover-batch.json`
 2. Generate the batch using the output prompts and exact `sourceFilename` values.
 3. Place all generated PNGs in one incoming folder.
 4. `npm run covers:review -- --spec=/tmp/cover-batch.json --source-dir=/incoming --out=/tmp/review.jpg`
@@ -36,7 +36,7 @@ Eight approved 16:9 Journey Covers are included in this package. The installer c
 7. `npm run covers:ingest -- --spec=/tmp/approved-batch.json --source-dir=/incoming`
 8. Run `node scripts/release-build.mjs`.
 
-Recommended batch size: 12–24 covers. The goal is batch review, not one-image-at-a-time review.
+Production batch size is capped at 10 covers. `world-195` is excluded by default; add `--include-world=true` only for an explicit World Journey batch. The goal is one batch review, not one-image-at-a-time review.
 
 ## Scaling
 
