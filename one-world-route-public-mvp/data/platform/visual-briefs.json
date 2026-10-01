@@ -3,7 +3,7 @@
   "policyVersion": "journey-visual-experience-v2",
   "summary": {
     "journeys": 21,
-    "briefReady": 13,
+    "briefReady": 3,
     "imagesGenerated": 0
   },
   "journeys": [
@@ -510,7 +510,7 @@
       "separateVerticalRecommended": true,
       "socialPriority": "high",
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
-      "status": "brief-ready",
+      "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
       "rank": 8
     },
@@ -571,7 +571,7 @@
       "separateVerticalRecommended": true,
       "socialPriority": "high",
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
-      "status": "brief-ready",
+      "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
       "rank": 9
     },
@@ -635,7 +635,7 @@
       "separateVerticalRecommended": true,
       "socialPriority": "high",
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
-      "status": "brief-ready",
+      "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
       "rank": 10
     },
@@ -699,7 +699,7 @@
       "separateVerticalRecommended": true,
       "socialPriority": "high",
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
-      "status": "brief-ready",
+      "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
       "rank": 11
     },
@@ -1009,7 +1009,7 @@
       "separateVerticalRecommended": false,
       "socialPriority": "medium",
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
-      "status": "brief-ready",
+      "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Reusable destination character",
       "rank": 13
     },
@@ -1136,7 +1136,7 @@
       "separateVerticalRecommended": true,
       "socialPriority": "high",
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
-      "status": "brief-ready",
+      "status": "published",
       "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
       "rank": 15
     },
@@ -1199,7 +1199,7 @@
       "separateVerticalRecommended": true,
       "socialPriority": "high",
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
-      "status": "brief-ready",
+      "status": "published",
       "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
       "rank": 16
     },
@@ -1327,7 +1327,7 @@
       "separateVerticalRecommended": true,
       "socialPriority": "high",
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
-      "status": "brief-ready",
+      "status": "published",
       "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
       "rank": 18
     },
@@ -1452,7 +1452,7 @@
       "separateVerticalRecommended": true,
       "socialPriority": "high",
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
-      "status": "brief-ready",
+      "status": "published",
       "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
       "rank": 20
     },
@@ -1516,7 +1516,7 @@
       "separateVerticalRecommended": false,
       "socialPriority": "medium",
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
-      "status": "brief-ready",
+      "status": "published",
       "reason": "Strengthen distinct journey character; Reusable destination character",
       "rank": 21
     }

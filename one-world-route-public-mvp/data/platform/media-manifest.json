@@ -242,57 +242,125 @@
       ],
       "visualAnchor": null,
       "hero": {
-        "assetId": "auto-route-canadian-rockies-rail-road",
-        "type": "image",
-        "sourceType": "route-render",
-        "mediaKind": "route-visual",
+        "assetId": "journey--canadian-rockies-rail-road--cover--16x9--v001",
         "tripId": "canadian-rockies-rail-road",
-        "status": "published",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "rockies",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-batch-v2",
+        "createdAt": "2026-10-01",
         "rightsStatus": "approved",
-        "asset": "./assets/generated/routes/canadian-rockies-rail-road/landscape-c247989b0f6deb56.webp",
+        "status": "published",
         "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Canadian Rockies rail and road journey beside turquoise mountain lakes and alpine peaks."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
         "focalPoint": {
           "x": 0.5,
-          "y": 0.5
+          "y": 0.48
         },
-        "alt": {
-          "en": "Geographic route illustration: Canadian Rockies Rail & Road",
-          "de": "Geografische Routendarstellung: Kanadische Rockies · Bahn & Straße",
-          "it": "Illustrazione geografica del percorso: Rockies canadesi · treno e strada",
-          "es": "Ilustración geográfica de la ruta: Rocosas canadienses · tren y carretera",
-          "fr": "Illustration géographique du parcours : Rocheuses canadiennes · train et route",
-          "pt": "Ilustração geográfica da rota: Rochosas canadenses · trem e estrada"
+        "asset": "./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--canadian-rockies-rail-road--cover--16x9--v001.png",
+          "sha256": "cae4c035e63e2ca44ecf04791f4f33eca04a55d8d686669f561b8dd4de63ea3a",
+          "width": 1672,
+          "height": 941,
+          "bytes": 2961058,
+          "retainedOutsideDeliveryRepo": true
         },
-        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
-        "attributionRequired": false,
-        "license": "Natural Earth public domain; original route presentation",
-        "provider": "local-natural-earth",
-        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
-        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
-        "scope": "NATIONAL",
-        "derivatives": {
-          "portrait": {
-            "asset": "./assets/generated/routes/canadian-rockies-rail-road/portrait-113fdfe762dfd951.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w480.webp"
             },
-            "width": 800,
-            "height": 1000
-          },
-          "vertical": {
-            "asset": "./assets/generated/routes/canadian-rockies-rail-road/vertical-6b0fd2f0b74fc66b.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w800.webp"
             },
-            "width": 900,
-            "height": 1600
-          }
-        },
-        "srcset": "./assets/generated/routes/canadian-rockies-rail-road/landscape-c247989b0f6deb56-600.webp 600w, ./assets/generated/routes/canadian-rockies-rail-road/landscape-c247989b0f6deb56.webp 1200w"
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
       },
-      "journeyCover": null,
+      "journeyCover": {
+        "assetId": "journey--canadian-rockies-rail-road--cover--16x9--v001",
+        "tripId": "canadian-rockies-rail-road",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "rockies",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-batch-v2",
+        "createdAt": "2026-10-01",
+        "rightsStatus": "approved",
+        "status": "published",
+        "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Canadian Rockies rail and road journey beside turquoise mountain lakes and alpine peaks."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.48
+        },
+        "asset": "./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--canadian-rockies-rail-road--cover--16x9--v001.png",
+          "sha256": "cae4c035e63e2ca44ecf04791f4f33eca04a55d8d686669f561b8dd4de63ea3a",
+          "width": 1672,
+          "height": 941,
+          "bytes": 2961058,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/canadian-rockies-rail-road/cover/v001/journey--canadian-rockies-rail-road--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
+      },
       "autoRouteVisual": {
         "assetId": "auto-route-canadian-rockies-rail-road",
         "type": "image",
@@ -344,8 +412,8 @@
         },
         "srcset": "./assets/generated/routes/canadian-rockies-rail-road/landscape-c247989b0f6deb56-600.webp 600w, ./assets/generated/routes/canadian-rockies-rail-road/landscape-c247989b0f6deb56.webp 1200w"
       },
-      "coverageLevel": "AUTO",
-      "resolvedKind": "auto",
+      "coverageLevel": "JOURNEY-BESPOKE",
+      "resolvedKind": "bespoke",
       "destinationAssetId": null,
       "galleryCount": 0,
       "licensedImageCount": 1
@@ -365,57 +433,125 @@
       ],
       "visualAnchor": null,
       "hero": {
-        "assetId": "auto-route-central-europe-rail-journey",
-        "type": "image",
-        "sourceType": "route-render",
-        "mediaKind": "route-visual",
+        "assetId": "journey--central-europe-rail-journey--cover--16x9--v001",
         "tripId": "central-europe-rail-journey",
-        "status": "published",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "europe",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-batch-v2",
+        "createdAt": "2026-10-01",
         "rightsStatus": "approved",
-        "asset": "./assets/generated/routes/central-europe-rail-journey/landscape-d84dec3f9f5df42d.webp",
+        "status": "published",
         "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Central Europe rail journey with a train crossing an urban riverside landscape in Berlin."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
         "focalPoint": {
           "x": 0.5,
-          "y": 0.5
+          "y": 0.48
         },
-        "alt": {
-          "en": "Geographic route illustration: Central Europe Rail Journey",
-          "de": "Geografische Routendarstellung: Mitteleuropa mit der Bahn",
-          "it": "Illustrazione geografica del percorso: Viaggio ferroviario nell'Europa centrale",
-          "es": "Ilustración geográfica de la ruta: Viaje ferroviario por Europa Central",
-          "fr": "Illustration géographique du parcours : Voyage ferroviaire en Europe centrale",
-          "pt": "Ilustração geográfica da rota: Viagem ferroviária pela Europa Central"
+        "asset": "./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--central-europe-rail-journey--cover--16x9--v001.png",
+          "sha256": "001c9a679d11f449bc172f28322964f352c9d0e4f2ba6329e4b8349198e86dce",
+          "width": 1672,
+          "height": 941,
+          "bytes": 2563745,
+          "retainedOutsideDeliveryRepo": true
         },
-        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
-        "attributionRequired": false,
-        "license": "Natural Earth public domain; original route presentation",
-        "provider": "local-natural-earth",
-        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
-        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
-        "scope": "MULTI-COUNTRY",
-        "derivatives": {
-          "portrait": {
-            "asset": "./assets/generated/routes/central-europe-rail-journey/portrait-fcc83bf5c7b8917a.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w480.webp"
             },
-            "width": 800,
-            "height": 1000
-          },
-          "vertical": {
-            "asset": "./assets/generated/routes/central-europe-rail-journey/vertical-fddbc344e8d56427.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w800.webp"
             },
-            "width": 900,
-            "height": 1600
-          }
-        },
-        "srcset": "./assets/generated/routes/central-europe-rail-journey/landscape-d84dec3f9f5df42d-600.webp 600w, ./assets/generated/routes/central-europe-rail-journey/landscape-d84dec3f9f5df42d.webp 1200w"
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
       },
-      "journeyCover": null,
+      "journeyCover": {
+        "assetId": "journey--central-europe-rail-journey--cover--16x9--v001",
+        "tripId": "central-europe-rail-journey",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "europe",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-batch-v2",
+        "createdAt": "2026-10-01",
+        "rightsStatus": "approved",
+        "status": "published",
+        "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Central Europe rail journey with a train crossing an urban riverside landscape in Berlin."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.48
+        },
+        "asset": "./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--central-europe-rail-journey--cover--16x9--v001.png",
+          "sha256": "001c9a679d11f449bc172f28322964f352c9d0e4f2ba6329e4b8349198e86dce",
+          "width": 1672,
+          "height": 941,
+          "bytes": 2563745,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/central-europe-rail-journey/cover/v001/journey--central-europe-rail-journey--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
+      },
       "autoRouteVisual": {
         "assetId": "auto-route-central-europe-rail-journey",
         "type": "image",
@@ -467,8 +603,8 @@
         },
         "srcset": "./assets/generated/routes/central-europe-rail-journey/landscape-d84dec3f9f5df42d-600.webp 600w, ./assets/generated/routes/central-europe-rail-journey/landscape-d84dec3f9f5df42d.webp 1200w"
       },
-      "coverageLevel": "AUTO",
-      "resolvedKind": "auto",
+      "coverageLevel": "JOURNEY-BESPOKE",
+      "resolvedKind": "bespoke",
       "destinationAssetId": null,
       "galleryCount": 0,
       "licensedImageCount": 1
@@ -852,57 +988,125 @@
       ],
       "visualAnchor": null,
       "hero": {
-        "assetId": "auto-route-iceland-ring-road",
-        "type": "image",
-        "sourceType": "route-render",
-        "mediaKind": "route-visual",
+        "assetId": "journey--iceland-ring-road--cover--16x9--v001",
         "tripId": "iceland-ring-road",
-        "status": "published",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "arctic",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-batch-v2",
+        "createdAt": "2026-10-01",
         "rightsStatus": "approved",
-        "asset": "./assets/generated/routes/iceland-ring-road/landscape-f96dcfd883cdd074.webp",
+        "status": "published",
         "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Iceland Ring Road journey across a volcanic landscape with mountains, mist and an open road."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
         "focalPoint": {
           "x": 0.5,
-          "y": 0.5
+          "y": 0.48
         },
-        "alt": {
-          "en": "Geographic route illustration: Iceland Ring Road",
-          "de": "Geografische Routendarstellung: Island-Ringstraße",
-          "it": "Illustrazione geografica del percorso: Ring Road d'Islanda",
-          "es": "Ilustración geográfica de la ruta: Ring Road de Islandia",
-          "fr": "Illustration géographique du parcours : Route circulaire d'Islande",
-          "pt": "Ilustração geográfica da rota: Ring Road da Islândia"
+        "asset": "./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--iceland-ring-road--cover--16x9--v001.png",
+          "sha256": "91df0151d38f2f60a9c7680aa9554ac56a9abf59978b0591cafe009a024ca34d",
+          "width": 1672,
+          "height": 941,
+          "bytes": 2490890,
+          "retainedOutsideDeliveryRepo": true
         },
-        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
-        "attributionRequired": false,
-        "license": "Natural Earth public domain; original route presentation",
-        "provider": "local-natural-earth",
-        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
-        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
-        "scope": "REGIONAL",
-        "derivatives": {
-          "portrait": {
-            "asset": "./assets/generated/routes/iceland-ring-road/portrait-c152c8a9db82750b.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w480.webp"
             },
-            "width": 800,
-            "height": 1000
-          },
-          "vertical": {
-            "asset": "./assets/generated/routes/iceland-ring-road/vertical-b272cb95e4f91009.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w800.webp"
             },
-            "width": 900,
-            "height": 1600
-          }
-        },
-        "srcset": "./assets/generated/routes/iceland-ring-road/landscape-f96dcfd883cdd074-600.webp 600w, ./assets/generated/routes/iceland-ring-road/landscape-f96dcfd883cdd074.webp 1200w"
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
       },
-      "journeyCover": null,
+      "journeyCover": {
+        "assetId": "journey--iceland-ring-road--cover--16x9--v001",
+        "tripId": "iceland-ring-road",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "arctic",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-batch-v2",
+        "createdAt": "2026-10-01",
+        "rightsStatus": "approved",
+        "status": "published",
+        "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Iceland Ring Road journey across a volcanic landscape with mountains, mist and an open road."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.48
+        },
+        "asset": "./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--iceland-ring-road--cover--16x9--v001.png",
+          "sha256": "91df0151d38f2f60a9c7680aa9554ac56a9abf59978b0591cafe009a024ca34d",
+          "width": 1672,
+          "height": 941,
+          "bytes": 2490890,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/iceland-ring-road/cover/v001/journey--iceland-ring-road--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
+      },
       "autoRouteVisual": {
         "assetId": "auto-route-iceland-ring-road",
         "type": "image",
@@ -954,8 +1158,8 @@
         },
         "srcset": "./assets/generated/routes/iceland-ring-road/landscape-f96dcfd883cdd074-600.webp 600w, ./assets/generated/routes/iceland-ring-road/landscape-f96dcfd883cdd074.webp 1200w"
       },
-      "coverageLevel": "AUTO",
-      "resolvedKind": "auto",
+      "coverageLevel": "JOURNEY-BESPOKE",
+      "resolvedKind": "bespoke",
       "destinationAssetId": null,
       "galleryCount": 0,
       "licensedImageCount": 1
@@ -969,57 +1173,125 @@
       ],
       "visualAnchor": null,
       "hero": {
-        "assetId": "auto-route-india-golden-triangle-rail",
-        "type": "image",
-        "sourceType": "route-render",
-        "mediaKind": "route-visual",
+        "assetId": "journey--india-golden-triangle-rail--cover--16x9--v001",
         "tripId": "india-golden-triangle-rail",
-        "status": "published",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "india",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-batch-v2",
+        "createdAt": "2026-10-01",
         "rightsStatus": "approved",
-        "asset": "./assets/generated/routes/india-golden-triangle-rail/landscape-fb5f2cbc6afddb96.webp",
+        "status": "published",
         "aspectRatio": "16:9",
-        "focalPoint": {
-          "x": 0.5,
-          "y": 0.5
-        },
         "alt": {
-          "en": "Geographic route illustration: India Golden Triangle by Rail",
-          "de": "Geografische Routendarstellung: Indiens Goldenes Dreieck per Bahn",
-          "it": "Illustrazione geografica del percorso: Triangolo d'Oro dell'India in treno",
-          "es": "Ilustración geográfica de la ruta: Triángulo Dorado de India en tren",
-          "fr": "Illustration géographique du parcours : Triangle d'Or de l'Inde en train",
-          "pt": "Ilustração geográfica da rota: Triângulo Dourado da Índia de trem"
+          "en": "Illustrated northern India rail journey through a Rajasthan-inspired landscape with a passenger train, fort architecture and lakeside cityscape."
         },
-        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
         "attributionRequired": false,
-        "license": "Natural Earth public domain; original route presentation",
-        "provider": "local-natural-earth",
-        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
-        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
-        "scope": "REGIONAL",
-        "derivatives": {
-          "portrait": {
-            "asset": "./assets/generated/routes/india-golden-triangle-rail/portrait-0b7e4e46411fabcd.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
-            },
-            "width": 800,
-            "height": 1000
-          },
-          "vertical": {
-            "asset": "./assets/generated/routes/india-golden-triangle-rail/vertical-884bcdd79780d7ab.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
-            },
-            "width": 900,
-            "height": 1600
-          }
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.49,
+          "y": 0.49
         },
-        "srcset": "./assets/generated/routes/india-golden-triangle-rail/landscape-fb5f2cbc6afddb96-600.webp 600w, ./assets/generated/routes/india-golden-triangle-rail/landscape-fb5f2cbc6afddb96.webp 1200w"
+        "asset": "./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--india-golden-triangle-rail--cover--16x9--v001.png",
+          "sha256": "6514624559cca88296595c83b53cea2ec0741244d0db88fee0e015982274d52a",
+          "width": 1672,
+          "height": 941,
+          "bytes": 3752575,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
       },
-      "journeyCover": null,
+      "journeyCover": {
+        "assetId": "journey--india-golden-triangle-rail--cover--16x9--v001",
+        "tripId": "india-golden-triangle-rail",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "india",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-batch-v2",
+        "createdAt": "2026-10-01",
+        "rightsStatus": "approved",
+        "status": "published",
+        "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated northern India rail journey through a Rajasthan-inspired landscape with a passenger train, fort architecture and lakeside cityscape."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.49,
+          "y": 0.49
+        },
+        "asset": "./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--india-golden-triangle-rail--cover--16x9--v001.png",
+          "sha256": "6514624559cca88296595c83b53cea2ec0741244d0db88fee0e015982274d52a",
+          "width": 1672,
+          "height": 941,
+          "bytes": 3752575,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/india-golden-triangle-rail/cover/v001/journey--india-golden-triangle-rail--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
+      },
       "autoRouteVisual": {
         "assetId": "auto-route-india-golden-triangle-rail",
         "type": "image",
@@ -1071,8 +1343,8 @@
         },
         "srcset": "./assets/generated/routes/india-golden-triangle-rail/landscape-fb5f2cbc6afddb96-600.webp 600w, ./assets/generated/routes/india-golden-triangle-rail/landscape-fb5f2cbc6afddb96.webp 1200w"
       },
-      "coverageLevel": "AUTO",
-      "resolvedKind": "auto",
+      "coverageLevel": "JOURNEY-BESPOKE",
+      "resolvedKind": "bespoke",
       "destinationAssetId": null,
       "galleryCount": 0,
       "licensedImageCount": 1
@@ -1086,57 +1358,125 @@
       ],
       "visualAnchor": null,
       "hero": {
-        "assetId": "auto-route-italy-grand-tour",
-        "type": "image",
-        "sourceType": "route-render",
-        "mediaKind": "route-visual",
+        "assetId": "journey--italy-grand-tour--cover--16x9--v001",
         "tripId": "italy-grand-tour",
-        "status": "published",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "italy",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-batch-v2",
+        "createdAt": "2026-10-01",
         "rightsStatus": "approved",
-        "asset": "./assets/generated/routes/italy-grand-tour/landscape-32ee71da059b3063.webp",
+        "status": "published",
         "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Italy grand tour through rolling Tuscan hills and historic countryside at warm evening light."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
         "focalPoint": {
           "x": 0.5,
-          "y": 0.5
+          "y": 0.48
         },
-        "alt": {
-          "en": "Geographic route illustration: Italy Grand Tour",
-          "de": "Geografische Routendarstellung: Große Italien-Rundreise",
-          "it": "Illustrazione geografica del percorso: Gran Tour d'Italia",
-          "es": "Ilustración geográfica de la ruta: Gran ruta por Italia",
-          "fr": "Illustration géographique du parcours : Grand tour d'Italie",
-          "pt": "Ilustração geográfica da rota: Grande volta pela Itália"
+        "asset": "./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--italy-grand-tour--cover--16x9--v001.png",
+          "sha256": "7d78ea1e1c2f7053cda28e16d07a20f8a7655d3e2eeddd92db5af72680ba4be6",
+          "width": 1672,
+          "height": 941,
+          "bytes": 2650151,
+          "retainedOutsideDeliveryRepo": true
         },
-        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
-        "attributionRequired": false,
-        "license": "Natural Earth public domain; original route presentation",
-        "provider": "local-natural-earth",
-        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
-        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
-        "scope": "NATIONAL",
-        "derivatives": {
-          "portrait": {
-            "asset": "./assets/generated/routes/italy-grand-tour/portrait-1694c0062029dddd.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w480.webp"
             },
-            "width": 800,
-            "height": 1000
-          },
-          "vertical": {
-            "asset": "./assets/generated/routes/italy-grand-tour/vertical-23ccce07d81150c0.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w800.webp"
             },
-            "width": 900,
-            "height": 1600
-          }
-        },
-        "srcset": "./assets/generated/routes/italy-grand-tour/landscape-32ee71da059b3063-600.webp 600w, ./assets/generated/routes/italy-grand-tour/landscape-32ee71da059b3063.webp 1200w"
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
       },
-      "journeyCover": null,
+      "journeyCover": {
+        "assetId": "journey--italy-grand-tour--cover--16x9--v001",
+        "tripId": "italy-grand-tour",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "italy",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-batch-v2",
+        "createdAt": "2026-10-01",
+        "rightsStatus": "approved",
+        "status": "published",
+        "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Italy grand tour through rolling Tuscan hills and historic countryside at warm evening light."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.48
+        },
+        "asset": "./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--italy-grand-tour--cover--16x9--v001.png",
+          "sha256": "7d78ea1e1c2f7053cda28e16d07a20f8a7655d3e2eeddd92db5af72680ba4be6",
+          "width": 1672,
+          "height": 941,
+          "bytes": 2650151,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/italy-grand-tour/cover/v001/journey--italy-grand-tour--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
+      },
       "autoRouteVisual": {
         "assetId": "auto-route-italy-grand-tour",
         "type": "image",
@@ -1188,8 +1528,8 @@
         },
         "srcset": "./assets/generated/routes/italy-grand-tour/landscape-32ee71da059b3063-600.webp 600w, ./assets/generated/routes/italy-grand-tour/landscape-32ee71da059b3063.webp 1200w"
       },
-      "coverageLevel": "AUTO",
-      "resolvedKind": "auto",
+      "coverageLevel": "JOURNEY-BESPOKE",
+      "resolvedKind": "bespoke",
       "destinationAssetId": null,
       "galleryCount": 0,
       "licensedImageCount": 1
@@ -1388,57 +1728,125 @@
       ],
       "visualAnchor": null,
       "hero": {
-        "assetId": "auto-route-jordan-heritage-desert-drive",
-        "type": "image",
-        "sourceType": "route-render",
-        "mediaKind": "route-visual",
+        "assetId": "journey--jordan-heritage-desert-drive--cover--16x9--v001",
         "tripId": "jordan-heritage-desert-drive",
-        "status": "published",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "desert",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-batch-v2",
+        "createdAt": "2026-10-01",
         "rightsStatus": "approved",
-        "asset": "./assets/generated/routes/jordan-heritage-desert-drive/landscape-2a7093656a625390.webp",
+        "status": "published",
         "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Jordan road journey through desert and heritage landscapes in warm evening light."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
         "focalPoint": {
           "x": 0.5,
-          "y": 0.5
+          "y": 0.48
         },
-        "alt": {
-          "en": "Geographic route illustration: Jordan Heritage & Desert Drive",
-          "de": "Geografische Routendarstellung: Jordanien · Kultur & Wüste",
-          "it": "Illustrazione geografica del percorso: Giordania · Cultura e deserto",
-          "es": "Ilustración geográfica de la ruta: Jordania · Cultura y desierto",
-          "fr": "Illustration géographique du parcours : Jordanie · Culture et désert",
-          "pt": "Ilustração geográfica da rota: Jordânia · Cultura e deserto"
+        "asset": "./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--jordan-heritage-desert-drive--cover--16x9--v001.png",
+          "sha256": "bf6973f2ec35488f420db88b9f804e6e6ef8cfeeb0cb1bb488ccc68e1442c1eb",
+          "width": 1672,
+          "height": 941,
+          "bytes": 2434942,
+          "retainedOutsideDeliveryRepo": true
         },
-        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
-        "attributionRequired": false,
-        "license": "Natural Earth public domain; original route presentation",
-        "provider": "local-natural-earth",
-        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
-        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
-        "scope": "REGIONAL",
-        "derivatives": {
-          "portrait": {
-            "asset": "./assets/generated/routes/jordan-heritage-desert-drive/portrait-d4fe12ce2d4ea0d4.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w480.webp"
             },
-            "width": 800,
-            "height": 1000
-          },
-          "vertical": {
-            "asset": "./assets/generated/routes/jordan-heritage-desert-drive/vertical-5fb0c61d1811e19d.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w800.webp"
             },
-            "width": 900,
-            "height": 1600
-          }
-        },
-        "srcset": "./assets/generated/routes/jordan-heritage-desert-drive/landscape-2a7093656a625390-600.webp 600w, ./assets/generated/routes/jordan-heritage-desert-drive/landscape-2a7093656a625390.webp 1200w"
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
       },
-      "journeyCover": null,
+      "journeyCover": {
+        "assetId": "journey--jordan-heritage-desert-drive--cover--16x9--v001",
+        "tripId": "jordan-heritage-desert-drive",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "desert",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-batch-v2",
+        "createdAt": "2026-10-01",
+        "rightsStatus": "approved",
+        "status": "published",
+        "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Jordan road journey through desert and heritage landscapes in warm evening light."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.48
+        },
+        "asset": "./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--jordan-heritage-desert-drive--cover--16x9--v001.png",
+          "sha256": "bf6973f2ec35488f420db88b9f804e6e6ef8cfeeb0cb1bb488ccc68e1442c1eb",
+          "width": 1672,
+          "height": 941,
+          "bytes": 2434942,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/jordan-heritage-desert-drive/cover/v001/journey--jordan-heritage-desert-drive--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
+      },
       "autoRouteVisual": {
         "assetId": "auto-route-jordan-heritage-desert-drive",
         "type": "image",
@@ -1490,8 +1898,8 @@
         },
         "srcset": "./assets/generated/routes/jordan-heritage-desert-drive/landscape-2a7093656a625390-600.webp 600w, ./assets/generated/routes/jordan-heritage-desert-drive/landscape-2a7093656a625390.webp 1200w"
       },
-      "coverageLevel": "AUTO",
-      "resolvedKind": "auto",
+      "coverageLevel": "JOURNEY-BESPOKE",
+      "resolvedKind": "bespoke",
       "destinationAssetId": null,
       "galleryCount": 0,
       "licensedImageCount": 1
@@ -2246,57 +2654,125 @@
       ],
       "visualAnchor": null,
       "hero": {
-        "assetId": "auto-route-peru-andes-journey",
-        "type": "image",
-        "sourceType": "route-render",
-        "mediaKind": "route-visual",
+        "assetId": "journey--peru-andes-journey--cover--16x9--v001",
         "tripId": "peru-andes-journey",
-        "status": "published",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "andes",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-batch-v2",
+        "createdAt": "2026-10-01",
         "rightsStatus": "approved",
-        "asset": "./assets/generated/routes/peru-andes-journey/landscape-90e4b0180611f66c.webp",
+        "status": "published",
         "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Peru Andes journey with a passenger train moving through a dramatic highland landscape."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
         "focalPoint": {
           "x": 0.5,
-          "y": 0.5
+          "y": 0.48
         },
-        "alt": {
-          "en": "Geographic route illustration: Peru Andes Journey",
-          "de": "Geografische Routendarstellung: Peru · Andenreise",
-          "it": "Illustrazione geografica del percorso: Perù · viaggio nelle Ande",
-          "es": "Ilustración geográfica de la ruta: Perú · viaje por los Andes",
-          "fr": "Illustration géographique du parcours : Pérou · voyage dans les Andes",
-          "pt": "Ilustração geográfica da rota: Peru · viagem pelos Andes"
+        "asset": "./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--peru-andes-journey--cover--16x9--v001.png",
+          "sha256": "ab02df2cf6a76822d3a26f9b68d4abf24b4e45f65ceb48bad7bc508aa22ae1af",
+          "width": 1672,
+          "height": 941,
+          "bytes": 3154260,
+          "retainedOutsideDeliveryRepo": true
         },
-        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
-        "attributionRequired": false,
-        "license": "Natural Earth public domain; original route presentation",
-        "provider": "local-natural-earth",
-        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
-        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
-        "scope": "NATIONAL",
-        "derivatives": {
-          "portrait": {
-            "asset": "./assets/generated/routes/peru-andes-journey/portrait-710696ff0bae85f9.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w480.webp"
             },
-            "width": 800,
-            "height": 1000
-          },
-          "vertical": {
-            "asset": "./assets/generated/routes/peru-andes-journey/vertical-765d6890ff3c1ac3.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w800.webp"
             },
-            "width": 900,
-            "height": 1600
-          }
-        },
-        "srcset": "./assets/generated/routes/peru-andes-journey/landscape-90e4b0180611f66c-600.webp 600w, ./assets/generated/routes/peru-andes-journey/landscape-90e4b0180611f66c.webp 1200w"
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
       },
-      "journeyCover": null,
+      "journeyCover": {
+        "assetId": "journey--peru-andes-journey--cover--16x9--v001",
+        "tripId": "peru-andes-journey",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "andes",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-batch-v2",
+        "createdAt": "2026-10-01",
+        "rightsStatus": "approved",
+        "status": "published",
+        "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Peru Andes journey with a passenger train moving through a dramatic highland landscape."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.48
+        },
+        "asset": "./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--peru-andes-journey--cover--16x9--v001.png",
+          "sha256": "ab02df2cf6a76822d3a26f9b68d4abf24b4e45f65ceb48bad7bc508aa22ae1af",
+          "width": 1672,
+          "height": 941,
+          "bytes": 3154260,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
+      },
       "autoRouteVisual": {
         "assetId": "auto-route-peru-andes-journey",
         "type": "image",
@@ -2348,8 +2824,8 @@
         },
         "srcset": "./assets/generated/routes/peru-andes-journey/landscape-90e4b0180611f66c-600.webp 600w, ./assets/generated/routes/peru-andes-journey/landscape-90e4b0180611f66c.webp 1200w"
       },
-      "coverageLevel": "AUTO",
-      "resolvedKind": "auto",
+      "coverageLevel": "JOURNEY-BESPOKE",
+      "resolvedKind": "bespoke",
       "destinationAssetId": null,
       "galleryCount": 0,
       "licensedImageCount": 1
@@ -2600,57 +3076,125 @@
       ],
       "visualAnchor": null,
       "hero": {
-        "assetId": "auto-route-utah-national-parks-road-trip",
-        "type": "image",
-        "sourceType": "route-render",
-        "mediaKind": "route-visual",
+        "assetId": "journey--utah-national-parks-road-trip--cover--16x9--v001",
         "tripId": "utah-national-parks-road-trip",
-        "status": "published",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "desert",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-batch-v2",
+        "createdAt": "2026-10-01",
         "rightsStatus": "approved",
-        "asset": "./assets/generated/routes/utah-national-parks-road-trip/landscape-43e7968f063b3454.webp",
+        "status": "published",
         "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Utah national parks road trip through red-rock canyon country and a winding desert highway."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
         "focalPoint": {
           "x": 0.5,
-          "y": 0.5
+          "y": 0.48
         },
-        "alt": {
-          "en": "Geographic route illustration: Utah National Parks Road Trip",
-          "de": "Geografische Routendarstellung: Utahs Nationalparks · Roadtrip",
-          "it": "Illustrazione geografica del percorso: Road trip nei parchi nazionali dello Utah",
-          "es": "Ilustración geográfica de la ruta: Road trip por los parques nacionales de Utah",
-          "fr": "Illustration géographique du parcours : Road trip dans les parcs nationaux de l'Utah",
-          "pt": "Ilustração geográfica da rota: Road trip pelos parques nacionais de Utah"
+        "asset": "./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--utah-national-parks-road-trip--cover--16x9--v001.png",
+          "sha256": "cdb9e9633be7783350dcc403d122e7136644074bb83ea00116a0cc6e87fa33b8",
+          "width": 1672,
+          "height": 941,
+          "bytes": 3226291,
+          "retainedOutsideDeliveryRepo": true
         },
-        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
-        "attributionRequired": false,
-        "license": "Natural Earth public domain; original route presentation",
-        "provider": "local-natural-earth",
-        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
-        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
-        "scope": "REGIONAL",
-        "derivatives": {
-          "portrait": {
-            "asset": "./assets/generated/routes/utah-national-parks-road-trip/portrait-e0b5fb111ebce162.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w480.webp"
             },
-            "width": 800,
-            "height": 1000
-          },
-          "vertical": {
-            "asset": "./assets/generated/routes/utah-national-parks-road-trip/vertical-dae14aaec98438ed.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w800.webp"
             },
-            "width": 900,
-            "height": 1600
-          }
-        },
-        "srcset": "./assets/generated/routes/utah-national-parks-road-trip/landscape-43e7968f063b3454-600.webp 600w, ./assets/generated/routes/utah-national-parks-road-trip/landscape-43e7968f063b3454.webp 1200w"
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
       },
-      "journeyCover": null,
+      "journeyCover": {
+        "assetId": "journey--utah-national-parks-road-trip--cover--16x9--v001",
+        "tripId": "utah-national-parks-road-trip",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "desert",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-batch-v2",
+        "createdAt": "2026-10-01",
+        "rightsStatus": "approved",
+        "status": "published",
+        "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Utah national parks road trip through red-rock canyon country and a winding desert highway."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.48
+        },
+        "asset": "./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--utah-national-parks-road-trip--cover--16x9--v001.png",
+          "sha256": "cdb9e9633be7783350dcc403d122e7136644074bb83ea00116a0cc6e87fa33b8",
+          "width": 1672,
+          "height": 941,
+          "bytes": 3226291,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/utah-national-parks-road-trip/cover/v001/journey--utah-national-parks-road-trip--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
+      },
       "autoRouteVisual": {
         "assetId": "auto-route-utah-national-parks-road-trip",
         "type": "image",
@@ -2702,8 +3246,8 @@
         },
         "srcset": "./assets/generated/routes/utah-national-parks-road-trip/landscape-43e7968f063b3454-600.webp 600w, ./assets/generated/routes/utah-national-parks-road-trip/landscape-43e7968f063b3454.webp 1200w"
       },
-      "coverageLevel": "AUTO",
-      "resolvedKind": "auto",
+      "coverageLevel": "JOURNEY-BESPOKE",
+      "resolvedKind": "bespoke",
       "destinationAssetId": null,
       "galleryCount": 0,
       "licensedImageCount": 1
@@ -2717,57 +3261,125 @@
       ],
       "visualAnchor": null,
       "hero": {
-        "assetId": "auto-route-victoria-great-ocean-highlands-road-trip",
-        "type": "image",
-        "sourceType": "route-render",
-        "mediaKind": "route-visual",
+        "assetId": "journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001",
         "tripId": "victoria-great-ocean-highlands-road-trip",
-        "status": "published",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "coast",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-batch-v2",
+        "createdAt": "2026-10-01",
         "rightsStatus": "approved",
-        "asset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/landscape-69b0ef87c2026fa7.webp",
+        "status": "published",
         "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Victoria road trip along the Great Ocean Road with rugged cliffs, ocean stacks and a winding coastal highway."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
         "focalPoint": {
           "x": 0.5,
-          "y": 0.5
+          "y": 0.48
         },
-        "alt": {
-          "en": "Geographic route illustration: Victoria Great Ocean & Highlands Road Trip",
-          "de": "Geografische Routendarstellung: Victoria · Great Ocean & Highlands Roadtrip",
-          "it": "Illustrazione geografica del percorso: Victoria · Great Ocean e Highlands on the road",
-          "es": "Ilustración geográfica de la ruta: Victoria · Great Ocean y Highlands en ruta",
-          "fr": "Illustration géographique du parcours : Victoria · Great Ocean et Highlands en road trip",
-          "pt": "Ilustração geográfica da rota: Victoria · Great Ocean e Highlands de carro"
+        "asset": "./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001.png",
+          "sha256": "ab6efb7a43ee2a86cf84d6646d277154127b945bb74da3ac10ba337a80e398d5",
+          "width": 1672,
+          "height": 941,
+          "bytes": 2805588,
+          "retainedOutsideDeliveryRepo": true
         },
-        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
-        "attributionRequired": false,
-        "license": "Natural Earth public domain; original route presentation",
-        "provider": "local-natural-earth",
-        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
-        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
-        "scope": "REGIONAL",
-        "derivatives": {
-          "portrait": {
-            "asset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/portrait-28808ac31cfad801.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w480.webp"
             },
-            "width": 800,
-            "height": 1000
-          },
-          "vertical": {
-            "asset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/vertical-03fe301352f7a6f1.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w800.webp"
             },
-            "width": 900,
-            "height": 1600
-          }
-        },
-        "srcset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/landscape-69b0ef87c2026fa7-600.webp 600w, ./assets/generated/routes/victoria-great-ocean-highlands-road-trip/landscape-69b0ef87c2026fa7.webp 1200w"
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
       },
-      "journeyCover": null,
+      "journeyCover": {
+        "assetId": "journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001",
+        "tripId": "victoria-great-ocean-highlands-road-trip",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "coast",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-batch-v2",
+        "createdAt": "2026-10-01",
+        "rightsStatus": "approved",
+        "status": "published",
+        "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Victoria road trip along the Great Ocean Road with rugged cliffs, ocean stacks and a winding coastal highway."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.48
+        },
+        "asset": "./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001.png",
+          "sha256": "ab6efb7a43ee2a86cf84d6646d277154127b945bb74da3ac10ba337a80e398d5",
+          "width": 1672,
+          "height": 941,
+          "bytes": 2805588,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/victoria-great-ocean-highlands-road-trip/cover/v001/journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
+      },
       "autoRouteVisual": {
         "assetId": "auto-route-victoria-great-ocean-highlands-road-trip",
         "type": "image",
@@ -2819,8 +3431,8 @@
         },
         "srcset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/landscape-69b0ef87c2026fa7-600.webp 600w, ./assets/generated/routes/victoria-great-ocean-highlands-road-trip/landscape-69b0ef87c2026fa7.webp 1200w"
       },
-      "coverageLevel": "AUTO",
-      "resolvedKind": "auto",
+      "coverageLevel": "JOURNEY-BESPOKE",
+      "resolvedKind": "bespoke",
       "destinationAssetId": null,
       "galleryCount": 0,
       "licensedImageCount": 1
@@ -3022,57 +3634,125 @@
       ],
       "visualAnchor": null,
       "hero": {
-        "assetId": "auto-route-western-mediterranean-cruise-loop",
-        "type": "image",
-        "sourceType": "route-render",
-        "mediaKind": "route-visual",
+        "assetId": "journey--western-mediterranean-cruise-loop--cover--16x9--v001",
         "tripId": "western-mediterranean-cruise-loop",
-        "status": "published",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "ocean",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-batch-v2",
+        "createdAt": "2026-10-01",
         "rightsStatus": "approved",
-        "asset": "./assets/generated/routes/western-mediterranean-cruise-loop/landscape-8ad707fbf79a9564.webp",
+        "status": "published",
         "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Western Mediterranean cruise journey with a cruise ship passing a sunlit coastal city."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
         "focalPoint": {
           "x": 0.5,
-          "y": 0.5
+          "y": 0.48
         },
-        "alt": {
-          "en": "Geographic route illustration: Western Mediterranean Cruise Loop",
-          "de": "Geografische Routendarstellung: Westliches Mittelmeer · Kreuzfahrt-Loop",
-          "it": "Illustrazione geografica del percorso: Crociera nel Mediterraneo occidentale",
-          "es": "Ilustración geográfica de la ruta: Crucero por el Mediterráneo occidental",
-          "fr": "Illustration géographique du parcours : Croisière en Méditerranée occidentale",
-          "pt": "Ilustração geográfica da rota: Cruzeiro pelo Mediterrâneo Ocidental"
+        "asset": "./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--western-mediterranean-cruise-loop--cover--16x9--v001.png",
+          "sha256": "e6b99cc99e5866812b51c3f46012047c987e51adba7608270ae7fff886eea850",
+          "width": 1672,
+          "height": 941,
+          "bytes": 2603088,
+          "retainedOutsideDeliveryRepo": true
         },
-        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
-        "attributionRequired": false,
-        "license": "Natural Earth public domain; original route presentation",
-        "provider": "local-natural-earth",
-        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
-        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
-        "scope": "MULTI-COUNTRY",
-        "derivatives": {
-          "portrait": {
-            "asset": "./assets/generated/routes/western-mediterranean-cruise-loop/portrait-8309502a0b3a7070.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w480.webp"
             },
-            "width": 800,
-            "height": 1000
-          },
-          "vertical": {
-            "asset": "./assets/generated/routes/western-mediterranean-cruise-loop/vertical-5a1d73798c70eb02.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w800.webp"
             },
-            "width": 900,
-            "height": 1600
-          }
-        },
-        "srcset": "./assets/generated/routes/western-mediterranean-cruise-loop/landscape-8ad707fbf79a9564-600.webp 600w, ./assets/generated/routes/western-mediterranean-cruise-loop/landscape-8ad707fbf79a9564.webp 1200w"
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
       },
-      "journeyCover": null,
+      "journeyCover": {
+        "assetId": "journey--western-mediterranean-cruise-loop--cover--16x9--v001",
+        "tripId": "western-mediterranean-cruise-loop",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "ocean",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-batch-v2",
+        "createdAt": "2026-10-01",
+        "rightsStatus": "approved",
+        "status": "published",
+        "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Western Mediterranean cruise journey with a cruise ship passing a sunlit coastal city."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.48
+        },
+        "asset": "./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--western-mediterranean-cruise-loop--cover--16x9--v001.png",
+          "sha256": "e6b99cc99e5866812b51c3f46012047c987e51adba7608270ae7fff886eea850",
+          "width": 1672,
+          "height": 941,
+          "bytes": 2603088,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/western-mediterranean-cruise-loop/cover/v001/journey--western-mediterranean-cruise-loop--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
+      },
       "autoRouteVisual": {
         "assetId": "auto-route-western-mediterranean-cruise-loop",
         "type": "image",
@@ -3124,8 +3804,8 @@
         },
         "srcset": "./assets/generated/routes/western-mediterranean-cruise-loop/landscape-8ad707fbf79a9564-600.webp 600w, ./assets/generated/routes/western-mediterranean-cruise-loop/landscape-8ad707fbf79a9564.webp 1200w"
       },
-      "coverageLevel": "AUTO",
-      "resolvedKind": "auto",
+      "coverageLevel": "JOURNEY-BESPOKE",
+      "resolvedKind": "bespoke",
       "destinationAssetId": null,
       "galleryCount": 0,
       "licensedImageCount": 1

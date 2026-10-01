@@ -49,7 +49,7 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "strategy": "bespoke-optional",
       "reason": "Improve thumbnail recognition at small geographic scale; Reusable destination character",
-      "coverGenerationStatus": "brief-ready",
+      "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#italy-grand-tour"
     },
     {
@@ -75,7 +75,7 @@
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
       "strategy": "bespoke-optional",
       "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
-      "coverGenerationStatus": "brief-ready",
+      "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#western-mediterranean-cruise-loop"
     },
     {
@@ -127,7 +127,7 @@
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
       "strategy": "bespoke-optional",
       "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
-      "coverGenerationStatus": "brief-ready",
+      "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#central-europe-rail-journey"
     },
     {
@@ -335,7 +335,7 @@
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
       "strategy": "bespoke-optional",
       "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
-      "coverGenerationStatus": "brief-ready",
+      "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#canadian-rockies-rail-road"
     },
     {
@@ -413,7 +413,7 @@
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
       "strategy": "bespoke-optional",
       "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
-      "coverGenerationStatus": "brief-ready",
+      "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#iceland-ring-road"
     },
     {
@@ -437,7 +437,7 @@
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
       "strategy": "bespoke-optional",
       "reason": "Strengthen distinct journey character; Reusable destination character",
-      "coverGenerationStatus": "brief-ready",
+      "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#peru-andes-journey"
     },
     {
@@ -463,7 +463,7 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "strategy": "bespoke-optional",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
-      "coverGenerationStatus": "brief-ready",
+      "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#jordan-heritage-desert-drive"
     },
     {
@@ -489,7 +489,7 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "strategy": "bespoke-recommended",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
-      "coverGenerationStatus": "brief-ready",
+      "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#india-golden-triangle-rail"
     },
     {
@@ -515,7 +515,7 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "strategy": "bespoke-optional",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
-      "coverGenerationStatus": "brief-ready",
+      "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#utah-national-parks-road-trip"
     },
     {
@@ -541,7 +541,7 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "strategy": "bespoke-optional",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
-      "coverGenerationStatus": "brief-ready",
+      "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#victoria-great-ocean-highlands-road-trip"
     },
     {

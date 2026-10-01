@@ -116,7 +116,7 @@ Create an original cinematic editorial travel illustration for “Vietnam North 
 
 ## 8. India Golden Triangle by Rail — P1
 
-Family: `rail-cinematic` · status: `brief-ready` · 16:9: first-batch · separate 9:16: recommended
+Family: `rail-cinematic` · status: `published` · 16:9: first-batch · separate 9:16: recommended
 
 Reason: Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity
 
@@ -132,7 +132,7 @@ Create an original cinematic editorial travel illustration for “India Golden T
 
 ## 9. Jordan Heritage & Desert Drive — P1
 
-Family: `road-cinematic` · status: `brief-ready` · 16:9: first-batch · separate 9:16: recommended
+Family: `road-cinematic` · status: `published` · 16:9: first-batch · separate 9:16: recommended
 
 Reason: Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity
 
@@ -148,7 +148,7 @@ Create an original cinematic editorial travel illustration for “Jordan Heritag
 
 ## 10. Utah National Parks Road Trip — P1
 
-Family: `road-cinematic` · status: `brief-ready` · 16:9: first-batch · separate 9:16: recommended
+Family: `road-cinematic` · status: `published` · 16:9: first-batch · separate 9:16: recommended
 
 Reason: Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity
 
@@ -164,7 +164,7 @@ Create an original cinematic editorial travel illustration for “Utah National 
 
 ## 11. Victoria Great Ocean & Highlands Road Trip — P1
 
-Family: `road-cinematic` · status: `brief-ready` · 16:9: first-batch · separate 9:16: recommended
+Family: `road-cinematic` · status: `published` · 16:9: first-batch · separate 9:16: recommended
 
 Reason: Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity
 
@@ -196,7 +196,7 @@ Create an original cinematic editorial travel illustration for “One World Jour
 
 ## 13. Italy Grand Tour — P2
 
-Family: `nature-atmospheric` · status: `brief-ready` · 16:9: later · separate 9:16: optional
+Family: `nature-atmospheric` · status: `published` · 16:9: later · separate 9:16: optional
 
 Reason: Improve thumbnail recognition at small geographic scale; Reusable destination character
 
@@ -228,7 +228,7 @@ Create an original cinematic editorial travel illustration for “Japan by Rail�
 
 ## 15. Canadian Rockies Rail & Road — P2
 
-Family: `rail-cinematic` · status: `brief-ready` · 16:9: later · separate 9:16: recommended
+Family: `rail-cinematic` · status: `published` · 16:9: later · separate 9:16: recommended
 
 Reason: Strengthen distinct journey character; Strong travel-mode social identity
 
@@ -244,7 +244,7 @@ Create an original cinematic editorial travel illustration for “Canadian Rocki
 
 ## 16. Iceland Ring Road — P2
 
-Family: `road-cinematic` · status: `brief-ready` · 16:9: later · separate 9:16: recommended
+Family: `road-cinematic` · status: `published` · 16:9: later · separate 9:16: recommended
 
 Reason: Strengthen distinct journey character; Strong travel-mode social identity
 
@@ -276,7 +276,7 @@ Create an original cinematic editorial travel illustration for “South Africa G
 
 ## 18. Central Europe Rail Journey — P2
 
-Family: `rail-cinematic` · status: `brief-ready` · 16:9: later · separate 9:16: recommended
+Family: `rail-cinematic` · status: `published` · 16:9: later · separate 9:16: recommended
 
 Reason: Strengthen distinct journey character; Strong travel-mode social identity
 
@@ -308,7 +308,7 @@ Create an original cinematic editorial travel illustration for “Southern Europ
 
 ## 20. Western Mediterranean Cruise Loop — P2
 
-Family: `coastal-editorial` · status: `brief-ready` · 16:9: later · separate 9:16: recommended
+Family: `coastal-editorial` · status: `published` · 16:9: later · separate 9:16: recommended
 
 Reason: Strengthen distinct journey character; Strong travel-mode social identity
 
@@ -324,7 +324,7 @@ Create an original cinematic editorial travel illustration for “Western Medite
 
 ## 21. Peru Andes Journey — P3
 
-Family: `nature-atmospheric` · status: `brief-ready` · 16:9: later · separate 9:16: optional
+Family: `nature-atmospheric` · status: `published` · 16:9: later · separate 9:16: optional
 
 Reason: Strengthen distinct journey character; Reusable destination character
 

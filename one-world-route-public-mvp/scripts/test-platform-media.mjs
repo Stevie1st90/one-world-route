@@ -55,3 +55,19 @@ test('journey visuals project the public place coordinates',()=>{
  assert.equal(result.asset,'./assets/example-vertical.webp');
  assert.equal(result.focalPoint.x,1);assert.equal(result.focalPoint.y,0);
  });
+
+
+test('contextual media credit respects attributionRequired false',()=>{
+  const api=load();
+  const entry={
+    type:'image',
+    sourceType:'generated',
+    status:'published',
+    rightsStatus:'approved',
+    asset:'./assets/example.webp',
+    attribution:'Generated for ONE WORLD ROUTE',
+    license:'project-generated',
+    attributionRequired:false
+  };
+  assert.equal(api.contextualCredit(entry,v=>String(v)),'');
+});
