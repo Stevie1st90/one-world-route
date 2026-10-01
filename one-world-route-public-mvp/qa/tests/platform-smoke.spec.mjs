@@ -659,7 +659,7 @@ test('@discovery @mobile-critical scalable static visuals load cards hero and na
  await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
  const card=page.locator('[data-home-trip="japan-by-rail"]').first();
  await card.scrollIntoViewIfNeeded();
- await expect(card.locator('[data-visual-kind="auto"]')).toBeVisible();
+ await expect(card.locator('[data-visual-kind="bespoke"]')).toBeVisible();
  await expect.poll(()=>card.locator('.platform-route-image').evaluate(i=>i.complete&&i.naturalWidth>0)).toBe(true);
  const size=await card.locator('.platform-home-card-visual').evaluate(el=>({w:el.clientWidth,h:el.clientHeight,imgW:el.querySelector('.platform-route-image').clientWidth,imgH:el.querySelector('.platform-route-image').clientHeight}));
  expect(Math.abs(size.w/size.h-16/9)).toBeLessThan(.02);expect(size.imgW).toBe(size.w);expect(size.imgH).toBe(size.h);
