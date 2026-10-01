@@ -153,7 +153,7 @@
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
       "strategy": "bespoke-optional",
       "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
-      "coverGenerationStatus": "brief-ready",
+      "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#japan-by-rail"
     },
     {
@@ -179,7 +179,7 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "strategy": "bespoke-recommended",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
-      "coverGenerationStatus": "brief-ready",
+      "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#patagonia-road-trip"
     },
     {
@@ -205,7 +205,7 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "strategy": "bespoke-recommended",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
-      "coverGenerationStatus": "brief-ready",
+      "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#norway-arctic-road-trip"
     },
     {
@@ -231,7 +231,7 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "strategy": "bespoke-recommended",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
-      "coverGenerationStatus": "brief-ready",
+      "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#new-zealand-camper-loop"
     },
     {
@@ -257,7 +257,7 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "strategy": "bespoke-recommended",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
-      "coverGenerationStatus": "brief-ready",
+      "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#greek-island-hopping"
     },
     {
@@ -283,7 +283,7 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "strategy": "bespoke-recommended",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
-      "coverGenerationStatus": "brief-ready",
+      "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#morocco-atlas-desert"
     },
     {
@@ -361,7 +361,7 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "strategy": "bespoke-recommended",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
-      "coverGenerationStatus": "brief-ready",
+      "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#vietnam-north-south"
     },
     {
@@ -387,7 +387,7 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "strategy": "bespoke-recommended",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
-      "coverGenerationStatus": "brief-ready",
+      "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#costa-rica-nature-loop"
     },
     {

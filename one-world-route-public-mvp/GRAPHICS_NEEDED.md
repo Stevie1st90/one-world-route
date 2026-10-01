@@ -4,7 +4,7 @@ Generated from current source data. No images generated. All published journeys 
 
 ## 1. Patagonia Road Trip — P1
 
-Family: `road-cinematic` · status: `brief-ready` · 16:9: first-batch · separate 9:16: recommended
+Family: `road-cinematic` · status: `published` · 16:9: first-batch · separate 9:16: recommended
 
 Reason: Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity
 
@@ -20,7 +20,7 @@ Create an original cinematic editorial travel illustration for “Patagonia Road
 
 ## 2. New Zealand Camper Loop — P1
 
-Family: `road-cinematic` · status: `brief-ready` · 16:9: first-batch · separate 9:16: recommended
+Family: `road-cinematic` · status: `published` · 16:9: first-batch · separate 9:16: recommended
 
 Reason: Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity
 
@@ -36,7 +36,7 @@ Create an original cinematic editorial travel illustration for “New Zealand Ca
 
 ## 3. Greek Island Hopping — P1
 
-Family: `coastal-editorial` · status: `brief-ready` · 16:9: first-batch · separate 9:16: recommended
+Family: `coastal-editorial` · status: `published` · 16:9: first-batch · separate 9:16: recommended
 
 Reason: Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity
 
@@ -52,7 +52,7 @@ Create an original cinematic editorial travel illustration for “Greek Island H
 
 ## 4. Norway Arctic Road Trip — P1
 
-Family: `road-cinematic` · status: `brief-ready` · 16:9: first-batch · separate 9:16: recommended
+Family: `road-cinematic` · status: `published` · 16:9: first-batch · separate 9:16: recommended
 
 Reason: Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity
 
@@ -68,7 +68,7 @@ Create an original cinematic editorial travel illustration for “Norway Arctic 
 
 ## 5. Morocco Atlas & Desert — P1
 
-Family: `road-cinematic` · status: `brief-ready` · 16:9: first-batch · separate 9:16: recommended
+Family: `road-cinematic` · status: `published` · 16:9: first-batch · separate 9:16: recommended
 
 Reason: Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity
 
@@ -84,7 +84,7 @@ Create an original cinematic editorial travel illustration for “Morocco Atlas 
 
 ## 6. Costa Rica Nature Loop — P1
 
-Family: `road-cinematic` · status: `brief-ready` · 16:9: first-batch · separate 9:16: recommended
+Family: `road-cinematic` · status: `published` · 16:9: first-batch · separate 9:16: recommended
 
 Reason: Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity
 
@@ -100,7 +100,7 @@ Create an original cinematic editorial travel illustration for “Costa Rica Nat
 
 ## 7. Vietnam North to South — P1
 
-Family: `rail-cinematic` · status: `brief-ready` · 16:9: first-batch · separate 9:16: recommended
+Family: `rail-cinematic` · status: `published` · 16:9: first-batch · separate 9:16: recommended
 
 Reason: Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity
 
@@ -212,7 +212,7 @@ Create an original cinematic editorial travel illustration for “Italy Grand To
 
 ## 14. Japan by Rail — P2
 
-Family: `rail-cinematic` · status: `brief-ready` · 16:9: later · separate 9:16: recommended
+Family: `rail-cinematic` · status: `published` · 16:9: later · separate 9:16: recommended
 
 Reason: Strengthen distinct journey character; Strong travel-mode social identity
 

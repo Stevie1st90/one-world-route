@@ -482,57 +482,125 @@
       ],
       "visualAnchor": null,
       "hero": {
-        "assetId": "auto-route-costa-rica-nature-loop",
-        "type": "image",
-        "sourceType": "route-render",
-        "mediaKind": "route-visual",
+        "assetId": "journey--costa-rica-nature-loop--cover--16x9--v001",
         "tripId": "costa-rica-nature-loop",
-        "status": "published",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "rainforest",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-calibration-v1",
+        "createdAt": "2026-10-01",
         "rightsStatus": "approved",
-        "asset": "./assets/generated/routes/costa-rica-nature-loop/landscape-3d765bb377b4acdf.webp",
+        "status": "published",
         "aspectRatio": "16:9",
-        "focalPoint": {
-          "x": 0.5,
-          "y": 0.5
-        },
         "alt": {
-          "en": "Geographic route illustration: Costa Rica Nature Loop",
-          "de": "Geografische Routendarstellung: Costa Rica · Natur-Rundreise",
-          "it": "Illustrazione geografica del percorso: Costa Rica · circuito natura",
-          "es": "Ilustración geográfica de la ruta: Costa Rica · circuito de naturaleza",
-          "fr": "Illustration géographique du parcours : Costa Rica · boucle nature",
-          "pt": "Ilustração geográfica da rota: Costa Rica · circuito de natureza"
+          "en": "Illustrated Costa Rica nature journey with rainforest, waterfall, volcano, Pacific coast and a hiker."
         },
-        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
         "attributionRequired": false,
-        "license": "Natural Earth public domain; original route presentation",
-        "provider": "local-natural-earth",
-        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
-        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
-        "scope": "REGIONAL",
-        "derivatives": {
-          "portrait": {
-            "asset": "./assets/generated/routes/costa-rica-nature-loop/portrait-ae61d04f2c030ae7.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
-            },
-            "width": 800,
-            "height": 1000
-          },
-          "vertical": {
-            "asset": "./assets/generated/routes/costa-rica-nature-loop/vertical-1a10f494b68fe101.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
-            },
-            "width": 900,
-            "height": 1600
-          }
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.47,
+          "y": 0.48
         },
-        "srcset": "./assets/generated/routes/costa-rica-nature-loop/landscape-3d765bb377b4acdf-600.webp 600w, ./assets/generated/routes/costa-rica-nature-loop/landscape-3d765bb377b4acdf.webp 1200w"
+        "asset": "./assets/media/journeys/costa-rica-nature-loop/cover/v001/journey--costa-rica-nature-loop--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/costa-rica-nature-loop/cover/v001/journey--costa-rica-nature-loop--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/costa-rica-nature-loop/cover/v001/journey--costa-rica-nature-loop--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/costa-rica-nature-loop/cover/v001/journey--costa-rica-nature-loop--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/costa-rica-nature-loop/cover/v001/journey--costa-rica-nature-loop--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--costa-rica-nature-loop--cover--16x9--v001.png",
+          "sha256": "6917a483c26e60ad3e0f30b3c5197f269483e44a6296cadfd5619fdb9447ccf1",
+          "width": 1672,
+          "height": 941,
+          "bytes": 3907521,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/costa-rica-nature-loop/cover/v001/journey--costa-rica-nature-loop--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/costa-rica-nature-loop/cover/v001/journey--costa-rica-nature-loop--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/costa-rica-nature-loop/cover/v001/journey--costa-rica-nature-loop--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/costa-rica-nature-loop/cover/v001/journey--costa-rica-nature-loop--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
       },
-      "journeyCover": null,
+      "journeyCover": {
+        "assetId": "journey--costa-rica-nature-loop--cover--16x9--v001",
+        "tripId": "costa-rica-nature-loop",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "rainforest",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-calibration-v1",
+        "createdAt": "2026-10-01",
+        "rightsStatus": "approved",
+        "status": "published",
+        "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Costa Rica nature journey with rainforest, waterfall, volcano, Pacific coast and a hiker."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.47,
+          "y": 0.48
+        },
+        "asset": "./assets/media/journeys/costa-rica-nature-loop/cover/v001/journey--costa-rica-nature-loop--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/costa-rica-nature-loop/cover/v001/journey--costa-rica-nature-loop--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/costa-rica-nature-loop/cover/v001/journey--costa-rica-nature-loop--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/costa-rica-nature-loop/cover/v001/journey--costa-rica-nature-loop--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/costa-rica-nature-loop/cover/v001/journey--costa-rica-nature-loop--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--costa-rica-nature-loop--cover--16x9--v001.png",
+          "sha256": "6917a483c26e60ad3e0f30b3c5197f269483e44a6296cadfd5619fdb9447ccf1",
+          "width": 1672,
+          "height": 941,
+          "bytes": 3907521,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/costa-rica-nature-loop/cover/v001/journey--costa-rica-nature-loop--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/costa-rica-nature-loop/cover/v001/journey--costa-rica-nature-loop--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/costa-rica-nature-loop/cover/v001/journey--costa-rica-nature-loop--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/costa-rica-nature-loop/cover/v001/journey--costa-rica-nature-loop--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
+      },
       "autoRouteVisual": {
         "assetId": "auto-route-costa-rica-nature-loop",
         "type": "image",
@@ -584,8 +652,8 @@
         },
         "srcset": "./assets/generated/routes/costa-rica-nature-loop/landscape-3d765bb377b4acdf-600.webp 600w, ./assets/generated/routes/costa-rica-nature-loop/landscape-3d765bb377b4acdf.webp 1200w"
       },
-      "coverageLevel": "AUTO",
-      "resolvedKind": "auto",
+      "coverageLevel": "JOURNEY-BESPOKE",
+      "resolvedKind": "bespoke",
       "destinationAssetId": null,
       "galleryCount": 0,
       "licensedImageCount": 1
@@ -599,57 +667,125 @@
       ],
       "visualAnchor": null,
       "hero": {
-        "assetId": "auto-route-greek-island-hopping",
-        "type": "image",
-        "sourceType": "route-render",
-        "mediaKind": "route-visual",
+        "assetId": "journey--greek-island-hopping--cover--16x9--v001",
         "tripId": "greek-island-hopping",
-        "status": "published",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "aegean",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-calibration-v1",
+        "createdAt": "2026-10-01",
         "rightsStatus": "approved",
-        "asset": "./assets/generated/routes/greek-island-hopping/landscape-6e9c8e7de09bb937.webp",
+        "status": "published",
         "aspectRatio": "16:9",
-        "focalPoint": {
-          "x": 0.5,
-          "y": 0.5
-        },
         "alt": {
-          "en": "Geographic route illustration: Greek Island Hopping",
-          "de": "Geografische Routendarstellung: Griechisches Inselhopping",
-          "it": "Illustrazione geografica del percorso: Island hopping in Grecia",
-          "es": "Ilustración geográfica de la ruta: Island hopping por Grecia",
-          "fr": "Illustration géographique du parcours : D'île en île en Grèce",
-          "pt": "Ilustração geográfica da rota: Island hopping na Grécia"
+          "en": "Illustrated Greek island-hopping journey across the Aegean with a ferry travelling between sunlit islands."
         },
-        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
         "attributionRequired": false,
-        "license": "Natural Earth public domain; original route presentation",
-        "provider": "local-natural-earth",
-        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
-        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
-        "scope": "REGIONAL",
-        "derivatives": {
-          "portrait": {
-            "asset": "./assets/generated/routes/greek-island-hopping/portrait-2a9aecc6816a08a9.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
-            },
-            "width": 800,
-            "height": 1000
-          },
-          "vertical": {
-            "asset": "./assets/generated/routes/greek-island-hopping/vertical-07ce6a1b18492680.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
-            },
-            "width": 900,
-            "height": 1600
-          }
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.52,
+          "y": 0.48
         },
-        "srcset": "./assets/generated/routes/greek-island-hopping/landscape-6e9c8e7de09bb937-600.webp 600w, ./assets/generated/routes/greek-island-hopping/landscape-6e9c8e7de09bb937.webp 1200w"
+        "asset": "./assets/media/journeys/greek-island-hopping/cover/v001/journey--greek-island-hopping--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/greek-island-hopping/cover/v001/journey--greek-island-hopping--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/greek-island-hopping/cover/v001/journey--greek-island-hopping--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/greek-island-hopping/cover/v001/journey--greek-island-hopping--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/greek-island-hopping/cover/v001/journey--greek-island-hopping--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--greek-island-hopping--cover--16x9--v001.png",
+          "sha256": "509f05a836c3242ac336cc71cb0d591172308651a85e7768ad2ed119677ccbbf",
+          "width": 1672,
+          "height": 941,
+          "bytes": 3891063,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/greek-island-hopping/cover/v001/journey--greek-island-hopping--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/greek-island-hopping/cover/v001/journey--greek-island-hopping--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/greek-island-hopping/cover/v001/journey--greek-island-hopping--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/greek-island-hopping/cover/v001/journey--greek-island-hopping--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
       },
-      "journeyCover": null,
+      "journeyCover": {
+        "assetId": "journey--greek-island-hopping--cover--16x9--v001",
+        "tripId": "greek-island-hopping",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "aegean",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-calibration-v1",
+        "createdAt": "2026-10-01",
+        "rightsStatus": "approved",
+        "status": "published",
+        "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Greek island-hopping journey across the Aegean with a ferry travelling between sunlit islands."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.52,
+          "y": 0.48
+        },
+        "asset": "./assets/media/journeys/greek-island-hopping/cover/v001/journey--greek-island-hopping--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/greek-island-hopping/cover/v001/journey--greek-island-hopping--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/greek-island-hopping/cover/v001/journey--greek-island-hopping--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/greek-island-hopping/cover/v001/journey--greek-island-hopping--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/greek-island-hopping/cover/v001/journey--greek-island-hopping--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--greek-island-hopping--cover--16x9--v001.png",
+          "sha256": "509f05a836c3242ac336cc71cb0d591172308651a85e7768ad2ed119677ccbbf",
+          "width": 1672,
+          "height": 941,
+          "bytes": 3891063,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/greek-island-hopping/cover/v001/journey--greek-island-hopping--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/greek-island-hopping/cover/v001/journey--greek-island-hopping--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/greek-island-hopping/cover/v001/journey--greek-island-hopping--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/greek-island-hopping/cover/v001/journey--greek-island-hopping--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
+      },
       "autoRouteVisual": {
         "assetId": "auto-route-greek-island-hopping",
         "type": "image",
@@ -701,8 +837,8 @@
         },
         "srcset": "./assets/generated/routes/greek-island-hopping/landscape-6e9c8e7de09bb937-600.webp 600w, ./assets/generated/routes/greek-island-hopping/landscape-6e9c8e7de09bb937.webp 1200w"
       },
-      "coverageLevel": "AUTO",
-      "resolvedKind": "auto",
+      "coverageLevel": "JOURNEY-BESPOKE",
+      "resolvedKind": "bespoke",
       "destinationAssetId": null,
       "galleryCount": 0,
       "licensedImageCount": 1
@@ -1067,57 +1203,125 @@
       ],
       "visualAnchor": null,
       "hero": {
-        "assetId": "auto-route-japan-by-rail",
-        "type": "image",
-        "sourceType": "route-render",
-        "mediaKind": "route-visual",
+        "assetId": "journey--japan-by-rail--cover--16x9--v001",
         "tripId": "japan-by-rail",
-        "status": "published",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "sakura",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-calibration-v1",
+        "createdAt": "2026-10-01",
         "rightsStatus": "approved",
-        "asset": "./assets/generated/routes/japan-by-rail/landscape-e278c94e08a5cbda.webp",
+        "status": "published",
         "aspectRatio": "16:9",
-        "focalPoint": {
-          "x": 0.5,
-          "y": 0.5
-        },
         "alt": {
-          "en": "Geographic route illustration: Japan by Rail",
-          "de": "Geografische Routendarstellung: Japan mit der Bahn",
-          "it": "Illustrazione geografica del percorso: Giappone in treno",
-          "es": "Ilustración geográfica de la ruta: Japón en tren",
-          "fr": "Illustration géographique du parcours : Japon en train",
-          "pt": "Ilustração geográfica da rota: Japão de trem"
+          "en": "Illustrated Japanese rail journey with a high-speed train crossing a mountainous spring landscape."
         },
-        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
         "attributionRequired": false,
-        "license": "Natural Earth public domain; original route presentation",
-        "provider": "local-natural-earth",
-        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
-        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
-        "scope": "NATIONAL",
-        "derivatives": {
-          "portrait": {
-            "asset": "./assets/generated/routes/japan-by-rail/portrait-fa443d4c9336f334.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
-            },
-            "width": 800,
-            "height": 1000
-          },
-          "vertical": {
-            "asset": "./assets/generated/routes/japan-by-rail/vertical-4c5eb937ba5df2ab.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
-            },
-            "width": 900,
-            "height": 1600
-          }
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.53,
+          "y": 0.48
         },
-        "srcset": "./assets/generated/routes/japan-by-rail/landscape-e278c94e08a5cbda-600.webp 600w, ./assets/generated/routes/japan-by-rail/landscape-e278c94e08a5cbda.webp 1200w"
+        "asset": "./assets/media/journeys/japan-by-rail/cover/v001/journey--japan-by-rail--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/japan-by-rail/cover/v001/journey--japan-by-rail--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/japan-by-rail/cover/v001/journey--japan-by-rail--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/japan-by-rail/cover/v001/journey--japan-by-rail--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/japan-by-rail/cover/v001/journey--japan-by-rail--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--japan-by-rail--cover--16x9--v001.png",
+          "sha256": "a5e96bda00b66c8bfe9953faf8941785a8e7ae9fb8a0520575fb54dc8e1f8916",
+          "width": 1672,
+          "height": 941,
+          "bytes": 3741140,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/japan-by-rail/cover/v001/journey--japan-by-rail--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/japan-by-rail/cover/v001/journey--japan-by-rail--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/japan-by-rail/cover/v001/journey--japan-by-rail--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/japan-by-rail/cover/v001/journey--japan-by-rail--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
       },
-      "journeyCover": null,
+      "journeyCover": {
+        "assetId": "journey--japan-by-rail--cover--16x9--v001",
+        "tripId": "japan-by-rail",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "sakura",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-calibration-v1",
+        "createdAt": "2026-10-01",
+        "rightsStatus": "approved",
+        "status": "published",
+        "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Japanese rail journey with a high-speed train crossing a mountainous spring landscape."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.53,
+          "y": 0.48
+        },
+        "asset": "./assets/media/journeys/japan-by-rail/cover/v001/journey--japan-by-rail--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/japan-by-rail/cover/v001/journey--japan-by-rail--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/japan-by-rail/cover/v001/journey--japan-by-rail--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/japan-by-rail/cover/v001/journey--japan-by-rail--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/japan-by-rail/cover/v001/journey--japan-by-rail--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--japan-by-rail--cover--16x9--v001.png",
+          "sha256": "a5e96bda00b66c8bfe9953faf8941785a8e7ae9fb8a0520575fb54dc8e1f8916",
+          "width": 1672,
+          "height": 941,
+          "bytes": 3741140,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/japan-by-rail/cover/v001/journey--japan-by-rail--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/japan-by-rail/cover/v001/journey--japan-by-rail--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/japan-by-rail/cover/v001/journey--japan-by-rail--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/japan-by-rail/cover/v001/journey--japan-by-rail--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
+      },
       "autoRouteVisual": {
         "assetId": "auto-route-japan-by-rail",
         "type": "image",
@@ -1169,8 +1373,8 @@
         },
         "srcset": "./assets/generated/routes/japan-by-rail/landscape-e278c94e08a5cbda-600.webp 600w, ./assets/generated/routes/japan-by-rail/landscape-e278c94e08a5cbda.webp 1200w"
       },
-      "coverageLevel": "AUTO",
-      "resolvedKind": "auto",
+      "coverageLevel": "JOURNEY-BESPOKE",
+      "resolvedKind": "bespoke",
       "destinationAssetId": null,
       "galleryCount": 0,
       "licensedImageCount": 1
@@ -1301,57 +1505,125 @@
       ],
       "visualAnchor": null,
       "hero": {
-        "assetId": "auto-route-morocco-atlas-desert",
-        "type": "image",
-        "sourceType": "route-render",
-        "mediaKind": "route-visual",
+        "assetId": "journey--morocco-atlas-desert--cover--16x9--v001",
         "tripId": "morocco-atlas-desert",
-        "status": "published",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "desert",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-calibration-v1",
+        "createdAt": "2026-10-01",
         "rightsStatus": "approved",
-        "asset": "./assets/generated/routes/morocco-atlas-desert/landscape-7226806f1835d718.webp",
+        "status": "published",
         "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Morocco road journey across the Atlas toward an oasis valley and earthen settlements."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
         "focalPoint": {
           "x": 0.5,
-          "y": 0.5
+          "y": 0.48
         },
-        "alt": {
-          "en": "Geographic route illustration: Morocco Atlas & Desert",
-          "de": "Geografische Routendarstellung: Marokko · Atlas & Wüste",
-          "it": "Illustrazione geografica del percorso: Marocco · Atlante e deserto",
-          "es": "Ilustración geográfica de la ruta: Marruecos · Atlas y desierto",
-          "fr": "Illustration géographique du parcours : Maroc · Atlas et désert",
-          "pt": "Ilustração geográfica da rota: Marrocos · Atlas e deserto"
+        "asset": "./assets/media/journeys/morocco-atlas-desert/cover/v001/journey--morocco-atlas-desert--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/morocco-atlas-desert/cover/v001/journey--morocco-atlas-desert--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/morocco-atlas-desert/cover/v001/journey--morocco-atlas-desert--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/morocco-atlas-desert/cover/v001/journey--morocco-atlas-desert--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/morocco-atlas-desert/cover/v001/journey--morocco-atlas-desert--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--morocco-atlas-desert--cover--16x9--v001.png",
+          "sha256": "0ff550da1c19d43edfc80d32a19a905f5f9b547694c392c26b88f5950410f8e7",
+          "width": 1672,
+          "height": 941,
+          "bytes": 3873032,
+          "retainedOutsideDeliveryRepo": true
         },
-        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
-        "attributionRequired": false,
-        "license": "Natural Earth public domain; original route presentation",
-        "provider": "local-natural-earth",
-        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
-        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
-        "scope": "NATIONAL",
-        "derivatives": {
-          "portrait": {
-            "asset": "./assets/generated/routes/morocco-atlas-desert/portrait-cbb60c9ea3abd9ac.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/morocco-atlas-desert/cover/v001/journey--morocco-atlas-desert--cover--16x9--v001--w480.webp"
             },
-            "width": 800,
-            "height": 1000
-          },
-          "vertical": {
-            "asset": "./assets/generated/routes/morocco-atlas-desert/vertical-cae0d4b37f602bc4.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/morocco-atlas-desert/cover/v001/journey--morocco-atlas-desert--cover--16x9--v001--w800.webp"
             },
-            "width": 900,
-            "height": 1600
-          }
-        },
-        "srcset": "./assets/generated/routes/morocco-atlas-desert/landscape-7226806f1835d718-600.webp 600w, ./assets/generated/routes/morocco-atlas-desert/landscape-7226806f1835d718.webp 1200w"
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/morocco-atlas-desert/cover/v001/journey--morocco-atlas-desert--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/morocco-atlas-desert/cover/v001/journey--morocco-atlas-desert--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
       },
-      "journeyCover": null,
+      "journeyCover": {
+        "assetId": "journey--morocco-atlas-desert--cover--16x9--v001",
+        "tripId": "morocco-atlas-desert",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "desert",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-calibration-v1",
+        "createdAt": "2026-10-01",
+        "rightsStatus": "approved",
+        "status": "published",
+        "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Morocco road journey across the Atlas toward an oasis valley and earthen settlements."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.48
+        },
+        "asset": "./assets/media/journeys/morocco-atlas-desert/cover/v001/journey--morocco-atlas-desert--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/morocco-atlas-desert/cover/v001/journey--morocco-atlas-desert--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/morocco-atlas-desert/cover/v001/journey--morocco-atlas-desert--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/morocco-atlas-desert/cover/v001/journey--morocco-atlas-desert--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/morocco-atlas-desert/cover/v001/journey--morocco-atlas-desert--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--morocco-atlas-desert--cover--16x9--v001.png",
+          "sha256": "0ff550da1c19d43edfc80d32a19a905f5f9b547694c392c26b88f5950410f8e7",
+          "width": 1672,
+          "height": 941,
+          "bytes": 3873032,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/morocco-atlas-desert/cover/v001/journey--morocco-atlas-desert--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/morocco-atlas-desert/cover/v001/journey--morocco-atlas-desert--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/morocco-atlas-desert/cover/v001/journey--morocco-atlas-desert--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/morocco-atlas-desert/cover/v001/journey--morocco-atlas-desert--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
+      },
       "autoRouteVisual": {
         "assetId": "auto-route-morocco-atlas-desert",
         "type": "image",
@@ -1403,8 +1675,8 @@
         },
         "srcset": "./assets/generated/routes/morocco-atlas-desert/landscape-7226806f1835d718-600.webp 600w, ./assets/generated/routes/morocco-atlas-desert/landscape-7226806f1835d718.webp 1200w"
       },
-      "coverageLevel": "AUTO",
-      "resolvedKind": "auto",
+      "coverageLevel": "JOURNEY-BESPOKE",
+      "resolvedKind": "bespoke",
       "destinationAssetId": null,
       "galleryCount": 0,
       "licensedImageCount": 1
@@ -1418,57 +1690,125 @@
       ],
       "visualAnchor": null,
       "hero": {
-        "assetId": "auto-route-new-zealand-camper-loop",
-        "type": "image",
-        "sourceType": "route-render",
-        "mediaKind": "route-visual",
+        "assetId": "journey--new-zealand-camper-loop--cover--16x9--v001",
         "tripId": "new-zealand-camper-loop",
-        "status": "published",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "fern",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-calibration-v1",
+        "createdAt": "2026-10-01",
         "rightsStatus": "approved",
-        "asset": "./assets/generated/routes/new-zealand-camper-loop/landscape-436ebc2304a7806f.webp",
+        "status": "published",
         "aspectRatio": "16:9",
-        "focalPoint": {
-          "x": 0.5,
-          "y": 0.5
-        },
         "alt": {
-          "en": "Geographic route illustration: New Zealand Camper Loop",
-          "de": "Geografische Routendarstellung: Neuseeland-Camper-Loop",
-          "it": "Illustrazione geografica del percorso: Nuova Zelanda in camper",
-          "es": "Ilustración geográfica de la ruta: Nueva Zelanda en camper",
-          "fr": "Illustration géographique du parcours : Nouvelle-Zélande en camper",
-          "pt": "Ilustração geográfica da rota: Nova Zelândia de camper"
+          "en": "Illustrated New Zealand camper journey beside an alpine lake with a campervan and mountain landscape."
         },
-        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
         "attributionRequired": false,
-        "license": "Natural Earth public domain; original route presentation",
-        "provider": "local-natural-earth",
-        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
-        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
-        "scope": "REGIONAL",
-        "derivatives": {
-          "portrait": {
-            "asset": "./assets/generated/routes/new-zealand-camper-loop/portrait-1bfd561caa74d299.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
-            },
-            "width": 800,
-            "height": 1000
-          },
-          "vertical": {
-            "asset": "./assets/generated/routes/new-zealand-camper-loop/vertical-72cf7a67f0266c6e.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
-            },
-            "width": 900,
-            "height": 1600
-          }
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.52,
+          "y": 0.47
         },
-        "srcset": "./assets/generated/routes/new-zealand-camper-loop/landscape-436ebc2304a7806f-600.webp 600w, ./assets/generated/routes/new-zealand-camper-loop/landscape-436ebc2304a7806f.webp 1200w"
+        "asset": "./assets/media/journeys/new-zealand-camper-loop/cover/v001/journey--new-zealand-camper-loop--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/new-zealand-camper-loop/cover/v001/journey--new-zealand-camper-loop--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/new-zealand-camper-loop/cover/v001/journey--new-zealand-camper-loop--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/new-zealand-camper-loop/cover/v001/journey--new-zealand-camper-loop--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/new-zealand-camper-loop/cover/v001/journey--new-zealand-camper-loop--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--new-zealand-camper-loop--cover--16x9--v001.png",
+          "sha256": "c262da176dec7fbaec64ac7c8317c2c04c966ec28ecc856a4d21274037dee55c",
+          "width": 1672,
+          "height": 941,
+          "bytes": 3905716,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/new-zealand-camper-loop/cover/v001/journey--new-zealand-camper-loop--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/new-zealand-camper-loop/cover/v001/journey--new-zealand-camper-loop--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/new-zealand-camper-loop/cover/v001/journey--new-zealand-camper-loop--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/new-zealand-camper-loop/cover/v001/journey--new-zealand-camper-loop--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
       },
-      "journeyCover": null,
+      "journeyCover": {
+        "assetId": "journey--new-zealand-camper-loop--cover--16x9--v001",
+        "tripId": "new-zealand-camper-loop",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "fern",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-calibration-v1",
+        "createdAt": "2026-10-01",
+        "rightsStatus": "approved",
+        "status": "published",
+        "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated New Zealand camper journey beside an alpine lake with a campervan and mountain landscape."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.52,
+          "y": 0.47
+        },
+        "asset": "./assets/media/journeys/new-zealand-camper-loop/cover/v001/journey--new-zealand-camper-loop--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/new-zealand-camper-loop/cover/v001/journey--new-zealand-camper-loop--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/new-zealand-camper-loop/cover/v001/journey--new-zealand-camper-loop--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/new-zealand-camper-loop/cover/v001/journey--new-zealand-camper-loop--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/new-zealand-camper-loop/cover/v001/journey--new-zealand-camper-loop--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--new-zealand-camper-loop--cover--16x9--v001.png",
+          "sha256": "c262da176dec7fbaec64ac7c8317c2c04c966ec28ecc856a4d21274037dee55c",
+          "width": 1672,
+          "height": 941,
+          "bytes": 3905716,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/new-zealand-camper-loop/cover/v001/journey--new-zealand-camper-loop--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/new-zealand-camper-loop/cover/v001/journey--new-zealand-camper-loop--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/new-zealand-camper-loop/cover/v001/journey--new-zealand-camper-loop--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/new-zealand-camper-loop/cover/v001/journey--new-zealand-camper-loop--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
+      },
       "autoRouteVisual": {
         "assetId": "auto-route-new-zealand-camper-loop",
         "type": "image",
@@ -1520,8 +1860,8 @@
         },
         "srcset": "./assets/generated/routes/new-zealand-camper-loop/landscape-436ebc2304a7806f-600.webp 600w, ./assets/generated/routes/new-zealand-camper-loop/landscape-436ebc2304a7806f.webp 1200w"
       },
-      "coverageLevel": "AUTO",
-      "resolvedKind": "auto",
+      "coverageLevel": "JOURNEY-BESPOKE",
+      "resolvedKind": "bespoke",
       "destinationAssetId": null,
       "galleryCount": 0,
       "licensedImageCount": 1
@@ -1535,57 +1875,125 @@
       ],
       "visualAnchor": null,
       "hero": {
-        "assetId": "auto-route-norway-arctic-road-trip",
-        "type": "image",
-        "sourceType": "route-render",
-        "mediaKind": "route-visual",
+        "assetId": "journey--norway-arctic-road-trip--cover--16x9--v001",
         "tripId": "norway-arctic-road-trip",
-        "status": "published",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "aurora",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-calibration-v1",
+        "createdAt": "2026-10-01",
         "rightsStatus": "approved",
-        "asset": "./assets/generated/routes/norway-arctic-road-trip/landscape-2ee3fb47b16764ee.webp",
+        "status": "published",
         "aspectRatio": "16:9",
-        "focalPoint": {
-          "x": 0.5,
-          "y": 0.5
-        },
         "alt": {
-          "en": "Geographic route illustration: Norway Arctic Road Trip",
-          "de": "Geografische Routendarstellung: Norwegens Arktis-Roadtrip",
-          "it": "Illustrazione geografica del percorso: Road trip artico in Norvegia",
-          "es": "Ilustración geográfica de la ruta: Road trip ártico por Noruega",
-          "fr": "Illustration géographique du parcours : Road trip arctique en Norvège",
-          "pt": "Ilustração geográfica da rota: Road trip ártico na Noruega"
+          "en": "Illustrated Arctic road journey along the Norwegian coast with islands, low mountains and late northern light."
         },
-        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
         "attributionRequired": false,
-        "license": "Natural Earth public domain; original route presentation",
-        "provider": "local-natural-earth",
-        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
-        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
-        "scope": "REGIONAL",
-        "derivatives": {
-          "portrait": {
-            "asset": "./assets/generated/routes/norway-arctic-road-trip/portrait-9ca1d25f9c9f46bd.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
-            },
-            "width": 800,
-            "height": 1000
-          },
-          "vertical": {
-            "asset": "./assets/generated/routes/norway-arctic-road-trip/vertical-1b0713ff6430add7.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
-            },
-            "width": 900,
-            "height": 1600
-          }
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.51,
+          "y": 0.47
         },
-        "srcset": "./assets/generated/routes/norway-arctic-road-trip/landscape-2ee3fb47b16764ee-600.webp 600w, ./assets/generated/routes/norway-arctic-road-trip/landscape-2ee3fb47b16764ee.webp 1200w"
+        "asset": "./assets/media/journeys/norway-arctic-road-trip/cover/v001/journey--norway-arctic-road-trip--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/norway-arctic-road-trip/cover/v001/journey--norway-arctic-road-trip--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/norway-arctic-road-trip/cover/v001/journey--norway-arctic-road-trip--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/norway-arctic-road-trip/cover/v001/journey--norway-arctic-road-trip--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/norway-arctic-road-trip/cover/v001/journey--norway-arctic-road-trip--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--norway-arctic-road-trip--cover--16x9--v001.png",
+          "sha256": "ab9d4ff68561ba1bcbc5a56da5184435d8b0723418175e51860de37b8aae866c",
+          "width": 1672,
+          "height": 941,
+          "bytes": 4052844,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/norway-arctic-road-trip/cover/v001/journey--norway-arctic-road-trip--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/norway-arctic-road-trip/cover/v001/journey--norway-arctic-road-trip--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/norway-arctic-road-trip/cover/v001/journey--norway-arctic-road-trip--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/norway-arctic-road-trip/cover/v001/journey--norway-arctic-road-trip--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
       },
-      "journeyCover": null,
+      "journeyCover": {
+        "assetId": "journey--norway-arctic-road-trip--cover--16x9--v001",
+        "tripId": "norway-arctic-road-trip",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "aurora",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-calibration-v1",
+        "createdAt": "2026-10-01",
+        "rightsStatus": "approved",
+        "status": "published",
+        "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Arctic road journey along the Norwegian coast with islands, low mountains and late northern light."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.51,
+          "y": 0.47
+        },
+        "asset": "./assets/media/journeys/norway-arctic-road-trip/cover/v001/journey--norway-arctic-road-trip--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/norway-arctic-road-trip/cover/v001/journey--norway-arctic-road-trip--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/norway-arctic-road-trip/cover/v001/journey--norway-arctic-road-trip--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/norway-arctic-road-trip/cover/v001/journey--norway-arctic-road-trip--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/norway-arctic-road-trip/cover/v001/journey--norway-arctic-road-trip--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--norway-arctic-road-trip--cover--16x9--v001.png",
+          "sha256": "ab9d4ff68561ba1bcbc5a56da5184435d8b0723418175e51860de37b8aae866c",
+          "width": 1672,
+          "height": 941,
+          "bytes": 4052844,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/norway-arctic-road-trip/cover/v001/journey--norway-arctic-road-trip--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/norway-arctic-road-trip/cover/v001/journey--norway-arctic-road-trip--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/norway-arctic-road-trip/cover/v001/journey--norway-arctic-road-trip--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/norway-arctic-road-trip/cover/v001/journey--norway-arctic-road-trip--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
+      },
       "autoRouteVisual": {
         "assetId": "auto-route-norway-arctic-road-trip",
         "type": "image",
@@ -1637,8 +2045,8 @@
         },
         "srcset": "./assets/generated/routes/norway-arctic-road-trip/landscape-2ee3fb47b16764ee-600.webp 600w, ./assets/generated/routes/norway-arctic-road-trip/landscape-2ee3fb47b16764ee.webp 1200w"
       },
-      "coverageLevel": "AUTO",
-      "resolvedKind": "auto",
+      "coverageLevel": "JOURNEY-BESPOKE",
+      "resolvedKind": "bespoke",
       "destinationAssetId": null,
       "galleryCount": 0,
       "licensedImageCount": 1
@@ -1653,57 +2061,125 @@
       ],
       "visualAnchor": null,
       "hero": {
-        "assetId": "auto-route-patagonia-road-trip",
-        "type": "image",
-        "sourceType": "route-render",
-        "mediaKind": "route-visual",
+        "assetId": "journey--patagonia-road-trip--cover--16x9--v001",
         "tripId": "patagonia-road-trip",
-        "status": "published",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "glacier",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-calibration-v1",
+        "createdAt": "2026-10-01",
         "rightsStatus": "approved",
-        "asset": "./assets/generated/routes/patagonia-road-trip/landscape-1c7be855661b40d7.webp",
+        "status": "published",
         "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated road journey through Patagonia with a winding road, a vehicle, lakes and Andean peaks."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
         "focalPoint": {
           "x": 0.5,
-          "y": 0.5
+          "y": 0.47
         },
-        "alt": {
-          "en": "Geographic route illustration: Patagonia Road Trip",
-          "de": "Geografische Routendarstellung: Patagonien-Roadtrip",
-          "it": "Illustrazione geografica del percorso: Road trip in Patagonia",
-          "es": "Ilustración geográfica de la ruta: Road trip por la Patagonia",
-          "fr": "Illustration géographique du parcours : Road trip en Patagonie",
-          "pt": "Ilustração geográfica da rota: Road trip pela Patagônia"
+        "asset": "./assets/media/journeys/patagonia-road-trip/cover/v001/journey--patagonia-road-trip--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/patagonia-road-trip/cover/v001/journey--patagonia-road-trip--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/patagonia-road-trip/cover/v001/journey--patagonia-road-trip--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/patagonia-road-trip/cover/v001/journey--patagonia-road-trip--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/patagonia-road-trip/cover/v001/journey--patagonia-road-trip--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--patagonia-road-trip--cover--16x9--v001.png",
+          "sha256": "1b8cd45a1a19546f38c1820a70073031002573fdca547842f7cb9ccaeef5f935",
+          "width": 1672,
+          "height": 941,
+          "bytes": 3746120,
+          "retainedOutsideDeliveryRepo": true
         },
-        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
-        "attributionRequired": false,
-        "license": "Natural Earth public domain; original route presentation",
-        "provider": "local-natural-earth",
-        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
-        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
-        "scope": "REGIONAL",
-        "derivatives": {
-          "portrait": {
-            "asset": "./assets/generated/routes/patagonia-road-trip/portrait-dd261d28356d8048.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/patagonia-road-trip/cover/v001/journey--patagonia-road-trip--cover--16x9--v001--w480.webp"
             },
-            "width": 800,
-            "height": 1000
-          },
-          "vertical": {
-            "asset": "./assets/generated/routes/patagonia-road-trip/vertical-041532e9645d50b7.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/patagonia-road-trip/cover/v001/journey--patagonia-road-trip--cover--16x9--v001--w800.webp"
             },
-            "width": 900,
-            "height": 1600
-          }
-        },
-        "srcset": "./assets/generated/routes/patagonia-road-trip/landscape-1c7be855661b40d7-600.webp 600w, ./assets/generated/routes/patagonia-road-trip/landscape-1c7be855661b40d7.webp 1200w"
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/patagonia-road-trip/cover/v001/journey--patagonia-road-trip--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/patagonia-road-trip/cover/v001/journey--patagonia-road-trip--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
       },
-      "journeyCover": null,
+      "journeyCover": {
+        "assetId": "journey--patagonia-road-trip--cover--16x9--v001",
+        "tripId": "patagonia-road-trip",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "glacier",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-calibration-v1",
+        "createdAt": "2026-10-01",
+        "rightsStatus": "approved",
+        "status": "published",
+        "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated road journey through Patagonia with a winding road, a vehicle, lakes and Andean peaks."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.47
+        },
+        "asset": "./assets/media/journeys/patagonia-road-trip/cover/v001/journey--patagonia-road-trip--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/patagonia-road-trip/cover/v001/journey--patagonia-road-trip--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/patagonia-road-trip/cover/v001/journey--patagonia-road-trip--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/patagonia-road-trip/cover/v001/journey--patagonia-road-trip--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/patagonia-road-trip/cover/v001/journey--patagonia-road-trip--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--patagonia-road-trip--cover--16x9--v001.png",
+          "sha256": "1b8cd45a1a19546f38c1820a70073031002573fdca547842f7cb9ccaeef5f935",
+          "width": 1672,
+          "height": 941,
+          "bytes": 3746120,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/patagonia-road-trip/cover/v001/journey--patagonia-road-trip--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/patagonia-road-trip/cover/v001/journey--patagonia-road-trip--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/patagonia-road-trip/cover/v001/journey--patagonia-road-trip--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/patagonia-road-trip/cover/v001/journey--patagonia-road-trip--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
+      },
       "autoRouteVisual": {
         "assetId": "auto-route-patagonia-road-trip",
         "type": "image",
@@ -1755,8 +2231,8 @@
         },
         "srcset": "./assets/generated/routes/patagonia-road-trip/landscape-1c7be855661b40d7-600.webp 600w, ./assets/generated/routes/patagonia-road-trip/landscape-1c7be855661b40d7.webp 1200w"
       },
-      "coverageLevel": "AUTO",
-      "resolvedKind": "auto",
+      "coverageLevel": "JOURNEY-BESPOKE",
+      "resolvedKind": "bespoke",
       "destinationAssetId": null,
       "galleryCount": 0,
       "licensedImageCount": 1
@@ -2358,57 +2834,125 @@
       ],
       "visualAnchor": null,
       "hero": {
-        "assetId": "auto-route-vietnam-north-south",
-        "type": "image",
-        "sourceType": "route-render",
-        "mediaKind": "route-visual",
+        "assetId": "journey--vietnam-north-south--cover--16x9--v001",
         "tripId": "vietnam-north-south",
-        "status": "published",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "tropical",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-calibration-v1",
+        "createdAt": "2026-10-01",
         "rightsStatus": "approved",
-        "asset": "./assets/generated/routes/vietnam-north-south/landscape-adcf9bf7275bd310.webp",
+        "status": "published",
         "aspectRatio": "16:9",
-        "focalPoint": {
-          "x": 0.5,
-          "y": 0.5
-        },
         "alt": {
-          "en": "Geographic route illustration: Vietnam North to South",
-          "de": "Geografische Routendarstellung: Vietnam von Nord nach Süd",
-          "it": "Illustrazione geografica del percorso: Vietnam da nord a sud",
-          "es": "Ilustración geográfica de la ruta: Vietnam de norte a sur",
-          "fr": "Illustration géographique du parcours : Vietnam du nord au sud",
-          "pt": "Ilustração geográfica da rota: Vietnã de norte a sul"
+          "en": "Illustrated Vietnam rail journey with a passenger train travelling along a tropical coastal mountainside."
         },
-        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
         "attributionRequired": false,
-        "license": "Natural Earth public domain; original route presentation",
-        "provider": "local-natural-earth",
-        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
-        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
-        "scope": "NATIONAL",
-        "derivatives": {
-          "portrait": {
-            "asset": "./assets/generated/routes/vietnam-north-south/portrait-9d7f56857aa568ea.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
-            },
-            "width": 800,
-            "height": 1000
-          },
-          "vertical": {
-            "asset": "./assets/generated/routes/vietnam-north-south/vertical-32e38431471c6bda.webp",
-            "focalPoint": {
-              "x": 0.5,
-              "y": 0.5
-            },
-            "width": 900,
-            "height": 1600
-          }
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.46,
+          "y": 0.48
         },
-        "srcset": "./assets/generated/routes/vietnam-north-south/landscape-adcf9bf7275bd310-600.webp 600w, ./assets/generated/routes/vietnam-north-south/landscape-adcf9bf7275bd310.webp 1200w"
+        "asset": "./assets/media/journeys/vietnam-north-south/cover/v001/journey--vietnam-north-south--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/vietnam-north-south/cover/v001/journey--vietnam-north-south--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/vietnam-north-south/cover/v001/journey--vietnam-north-south--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/vietnam-north-south/cover/v001/journey--vietnam-north-south--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/vietnam-north-south/cover/v001/journey--vietnam-north-south--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--vietnam-north-south--cover--16x9--v001.png",
+          "sha256": "0492750f7860cb7ac575f3a35a73c1245381a8fc6f9537fe606fdcba9d646376",
+          "width": 1672,
+          "height": 941,
+          "bytes": 3901051,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/vietnam-north-south/cover/v001/journey--vietnam-north-south--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/vietnam-north-south/cover/v001/journey--vietnam-north-south--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/vietnam-north-south/cover/v001/journey--vietnam-north-south--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/vietnam-north-south/cover/v001/journey--vietnam-north-south--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
       },
-      "journeyCover": null,
+      "journeyCover": {
+        "assetId": "journey--vietnam-north-south--cover--16x9--v001",
+        "tripId": "vietnam-north-south",
+        "type": "image",
+        "sourceType": "generated",
+        "mediaKind": "journey-cover",
+        "theme": "tropical",
+        "generator": "OpenAI Image Generation",
+        "promptVersion": "journey-cover-calibration-v1",
+        "createdAt": "2026-10-01",
+        "rightsStatus": "approved",
+        "status": "published",
+        "aspectRatio": "16:9",
+        "alt": {
+          "en": "Illustrated Vietnam rail journey with a passenger train travelling along a tropical coastal mountainside."
+        },
+        "attribution": "Generated for ONE WORLD ROUTE with OpenAI",
+        "attributionRequired": false,
+        "license": "OpenAI-generated project asset; project usage subject to applicable law and OpenAI terms",
+        "focalPoint": {
+          "x": 0.46,
+          "y": 0.48
+        },
+        "asset": "./assets/media/journeys/vietnam-north-south/cover/v001/journey--vietnam-north-south--cover--16x9--v001--w1600.webp",
+        "srcset": "./assets/media/journeys/vietnam-north-south/cover/v001/journey--vietnam-north-south--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/vietnam-north-south/cover/v001/journey--vietnam-north-south--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/vietnam-north-south/cover/v001/journey--vietnam-north-south--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/vietnam-north-south/cover/v001/journey--vietnam-north-south--cover--16x9--v001--w1600.webp 1600w",
+        "sourceMaster": {
+          "originalFilename": "source--journey--vietnam-north-south--cover--16x9--v001.png",
+          "sha256": "0492750f7860cb7ac575f3a35a73c1245381a8fc6f9537fe606fdcba9d646376",
+          "width": 1672,
+          "height": 941,
+          "bytes": 3901051,
+          "retainedOutsideDeliveryRepo": true
+        },
+        "delivery": {
+          "format": "webp",
+          "quality": 84,
+          "variants": [
+            {
+              "width": 480,
+              "height": 270,
+              "asset": "./assets/media/journeys/vietnam-north-south/cover/v001/journey--vietnam-north-south--cover--16x9--v001--w480.webp"
+            },
+            {
+              "width": 800,
+              "height": 450,
+              "asset": "./assets/media/journeys/vietnam-north-south/cover/v001/journey--vietnam-north-south--cover--16x9--v001--w800.webp"
+            },
+            {
+              "width": 1200,
+              "height": 675,
+              "asset": "./assets/media/journeys/vietnam-north-south/cover/v001/journey--vietnam-north-south--cover--16x9--v001--w1200.webp"
+            },
+            {
+              "width": 1600,
+              "height": 900,
+              "asset": "./assets/media/journeys/vietnam-north-south/cover/v001/journey--vietnam-north-south--cover--16x9--v001--w1600.webp"
+            }
+          ]
+        }
+      },
       "autoRouteVisual": {
         "assetId": "auto-route-vietnam-north-south",
         "type": "image",
@@ -2460,8 +3004,8 @@
         },
         "srcset": "./assets/generated/routes/vietnam-north-south/landscape-adcf9bf7275bd310-600.webp 600w, ./assets/generated/routes/vietnam-north-south/landscape-adcf9bf7275bd310.webp 1200w"
       },
-      "coverageLevel": "AUTO",
-      "resolvedKind": "auto",
+      "coverageLevel": "JOURNEY-BESPOKE",
+      "resolvedKind": "bespoke",
       "destinationAssetId": null,
       "galleryCount": 0,
       "licensedImageCount": 1
