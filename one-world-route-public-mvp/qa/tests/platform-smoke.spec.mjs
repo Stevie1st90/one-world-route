@@ -78,6 +78,18 @@ test('@discovery @mobile-critical global discovery home exposes a broad visual j
   await expect(page.locator('.platform-home-collection')).toHaveCount(collectionCatalog.collections.length);
   await expect(page.locator('#platformHome')).toContainText('Japan by Rail');
   await expect(page.locator('#platformHome')).toContainText('Patagonia Road Trip');
+
+  const centralEurope=page.locator('#platformHomeResults .platform-home-card[data-home-trip="central-europe-rail-journey"]');
+  await expect(centralEurope.locator('.platform-country-chips')).toContainText('7 countries');
+  await expect(centralEurope.locator('.platform-home-card-metrics')).toContainText('18 days');
+  await expect(centralEurope.locator('.platform-home-card-metrics')).toContainText('10 stops');
+  await expect(centralEurope.locator('.platform-home-card-metrics')).not.toContainText('7 countries');
+  await expect(centralEurope.locator('.platform-home-card-metrics')).not.toContainText('Rail');
+  await expect(centralEurope.locator('.platform-home-card-body > p')).toHaveCount(0);
+
+  const greek=page.locator('#platformHomeResults .platform-home-card[data-home-trip="greek-island-hopping"]');
+  await expect(greek.locator('.platform-home-card-metrics')).not.toContainText('1 country');
+  await expect(greek.locator('.platform-home-card-body > p')).toHaveText('Athens, Cyclades and Aegean blue');
   if(isMobile)await expect.poll(()=>page.evaluate(()=>window.scrollX)).toBe(0);
   await page.screenshot({path:testInfo.outputPath('discovery-home.png'),fullPage:false});
   await expect(page.locator('.platform-home-collection').first()).toBeAttached();
@@ -647,7 +659,7 @@ test('@discovery @mobile-critical scalable static visuals load cards hero and na
  await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
  const card=page.locator('[data-home-trip="japan-by-rail"]').first();
  await card.scrollIntoViewIfNeeded();
- await expect(card.locator('[data-visual-kind="auto"]')).toBeVisible();
+ await expect(card.locator('[data-visual-kind="bespoke"]')).toBeVisible();
  await expect.poll(()=>card.locator('.platform-route-image').evaluate(i=>i.complete&&i.naturalWidth>0)).toBe(true);
  const size=await card.locator('.platform-home-card-visual').evaluate(el=>({w:el.clientWidth,h:el.clientHeight,imgW:el.querySelector('.platform-route-image').clientWidth,imgH:el.querySelector('.platform-route-image').clientHeight}));
  expect(Math.abs(size.w/size.h-16/9)).toBeLessThan(.02);expect(size.imgW).toBe(size.w);expect(size.imgH).toBe(size.h);

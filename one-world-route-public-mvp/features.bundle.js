@@ -5091,18 +5091,37 @@
     catch{return String(budget.amount)+' '+String(budget.currency||'EUR')}
   }
 
-  function metricChips(trip){
+  function metricChips(trip,{includeCountries=true,includeModes=true,includeFit=true}={}){
     const d=context(),out=[];
     if(trip.metrics?.days)out.push(trip.metrics.days+' '+d.t('days'));
     if(trip.metrics?.stops)out.push(trip.metrics.stops+' '+d.t('stops'));
-    if(trip.metrics?.countries)out.push(trip.metrics.countries+' '+d.pluralLabel(trip.metrics.countries,'countryUnit','countriesUnit'));
+    if(includeCountries&&trip.metrics?.countries)out.push(trip.metrics.countries+' '+d.pluralLabel(trip.metrics.countries,'countryUnit','countriesUnit'));
     if(trip.metrics?.internationalLegs)out.push(trip.metrics.internationalLegs+' '+d.t('homeLegs'));
     const modes=trip.discovery?.modes||[];
-    if(modes.length)out.push(modes.slice(0,2).map(d.facetLabel).join(' · '));
-    const fit=trip.discovery?.fit||{};
-    if(fit.pace)out.push(d.facetLabel(fit.pace));
-    if(fit.accessibility)out.push(d.facetLabel(fit.accessibility));
+    if(includeModes&&modes.length)out.push(modes.slice(0,2).map(d.facetLabel).join(' · '));
+    if(includeFit){
+      const fit=trip.discovery?.fit||{};
+      if(fit.pace)out.push(d.facetLabel(fit.pace));
+      if(fit.accessibility)out.push(d.facetLabel(fit.accessibility));
+    }
     return out;
+  }
+
+  function cardTeaser(trip){
+    const d=context(),raw=String(d.local(trip.subtitle)||'').trim();
+    if(!raw)return '';
+    const segments=raw.split(/\s*·\s*/).map(value=>value.trim()).filter(Boolean);
+    const days=Number(trip.metrics?.days);
+    if(segments.length>1&&Number.isFinite(days)&&new RegExp('^'+days+'\\b').test(segments[0]))segments.shift();
+    if(!segments.length)return '';
+    const modeLabels=(trip.discovery?.modes||[]).map(d.facetLabel).map(value=>String(value||'').trim().toLowerCase()).filter(Boolean);
+    const factLike=segment=>{
+      const normalized=segment.toLowerCase();
+      if(/^\d+\b/.test(segment))return true;
+      return modeLabels.some(label=>normalized.includes(label)&&normalized.length<=label.length+14);
+    };
+    if(segments.length>1&&segments.every(factLike))return '';
+    return segments.join(' · ');
   }
 
   const visualTheme=trip=>{
@@ -5154,12 +5173,13 @@
   }
 
   function card(trip,{featured=false}={}){
-    const d=context(),saved=d.tripTools?.isSaved(d.storage,trip.id)===true,compared=compareSelection.has(trip.id);
+    const d=context(),saved=d.tripTools?.isSaved(d.storage,trip.id)===true,compared=compareSelection.has(trip.id),teaser=cardTeaser(trip);
     const saveLabel=d.t(saved?'removeSaved':'saveTrip'),compareLabel=d.t('compare')+(compared?' · '+d.t('selected'):'');
+    const coreMetrics=metricChips(trip,{includeCountries:false,includeModes:false,includeFit:false});
     return '<article class="platform-home-card'+(featured?' platform-home-card-featured':'')+'" data-home-trip="'+d.esc(trip.id)+'">'+visualMarkup(trip)+
       '<div class="platform-home-card-body"><h3>'+d.esc(d.local(trip.title))+'</h3>'+
-      root.countryFlags.markup(trip,root.media.journeyCountries(trip),{esc:d.esc,locale:d.locale(),t:d.t})+'<div class="platform-home-card-metrics">'+metricChips(trip).slice(0,4).map(v=>'<span>'+d.esc(v)+'</span>').join('')+'</div>'+
-      '<p>'+d.esc(d.local(trip.subtitle))+'</p><small class="platform-card-status">'+d.esc(d.statusLabel(trip))+'</small>'+recommendationReasonMarkup(trip)+
+      root.countryFlags.markup(trip,root.media.journeyCountries(trip),{esc:d.esc,locale:d.locale(),t:d.t})+'<div class="platform-home-card-metrics">'+coreMetrics.slice(0,4).map(v=>'<span>'+d.esc(v)+'</span>').join('')+'</div>'+
+      (teaser?'<p>'+d.esc(teaser)+'</p>':'')+'<small class="platform-card-status">'+d.esc(d.statusLabel(trip))+'</small>'+recommendationReasonMarkup(trip)+
       '<div class="platform-home-card-actions"><button type="button" class="primary" data-open-home-trip="'+d.esc(trip.id)+'">'+d.esc(d.t('openJourney'))+' →</button>'+
       '<button type="button" class="platform-card-icon'+(saved?' active':'')+'" data-home-save-trip="'+d.esc(trip.id)+'" aria-pressed="'+saved+'" aria-label="'+d.esc(saveLabel)+'" title="'+d.esc(saveLabel)+'">'+actionIcon('save')+'</button>'+
       '<button type="button" class="platform-card-icon'+(compared?' active':'')+'" data-home-compare-trip="'+d.esc(trip.id)+'" aria-pressed="'+compared+'" aria-label="'+d.esc(compareLabel)+'" title="'+d.esc(compareLabel)+'">'+actionIcon('compare')+'</button></div></div></article>';
