@@ -39,7 +39,7 @@
   function credit(entry,esc=value=>String(value??'')){
     const media=descriptor(entry);
     if(media.type!=='image'||!media.attribution)return '';
-    return '<small class="platform-media-credit">'+esc(media.attribution)+(media.license&&entry.sourceType!=='route-render'?' · '+esc(media.license):'')+'</small>';
+    return '<small class="platform-media-credit">'+esc(entry.sourceType==='route-render'?'Made with Natural Earth':media.attribution)+(media.license&&entry.sourceType!=='route-render'?' · '+esc(media.license):'')+'</small>';
   }
 
 

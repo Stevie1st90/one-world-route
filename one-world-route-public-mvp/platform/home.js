@@ -106,7 +106,8 @@
     const media=root.media.descriptor(entry,visualTheme(trip));
     const preview=tripIndex.find(item=>item.id===trip.id)?.preview;
     const art=media.type==='image'?root.media.imageMarkup(entry,d.esc,d.local):root.media.routeArt(preview);
-    return '<div class="platform-home-card-visual '+d.esc(media.className)+'" data-media-type="'+media.type+'" data-visual-kind="'+result.kind+'" style="--journey-color:'+root.visualIdentity.identity(trip).color+';'+d.esc(media.type==='image'?'':media.style||'')+'"><div class="platform-home-card-visual-top"><span>'+d.esc(d.facetLabel(primaryRegion(trip)))+'</span><b>'+d.esc(d.facetLabel(trip.kind))+'</b></div>'+art+root.media.credit(entry,d.esc)+(entry?.sourceType==='route-render'?'<small class="platform-route-visual-note">'+d.esc(d.t('routeVisualNote'))+'</small>':'')+'</div>';
+    const automatic=entry?.sourceType==='route-render',credit=root.media.credit(entry,d.esc);
+    return '<div class="platform-home-card-visual '+d.esc(media.className)+'" data-media-type="'+media.type+'" data-visual-kind="'+result.kind+'" style="--journey-color:'+root.visualIdentity.identity(trip).color+';'+d.esc(media.type==='image'?'':media.style||'')+'"><div class="platform-home-card-visual-top"><span>'+d.esc(d.facetLabel(primaryRegion(trip)))+'</span><b>'+d.esc(d.facetLabel(trip.kind))+'</b></div>'+art+(automatic?'':credit)+'</div>'+(automatic?'<div class="platform-route-visual-caption"><span>'+d.esc(d.t('routeVisualNote'))+'</span>'+credit+'</div>':'');
   }
 
   function actionIcon(kind){
