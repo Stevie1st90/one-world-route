@@ -638,7 +638,9 @@ test('@discovery curated collection deep link supports combined metadata filters
 
 
 test('@discovery @mobile-critical scalable static visuals load cards hero and native social without card tile requests',async({page,isMobile},testInfo)=>{
- test.setTimeout(90000);const errors=capturePageErrors(page),tiles=[];
+ // Four software-GL captures and two journey boots share this budget.
+ test.setTimeout(180000);const errors=capturePageErrors(page),tiles=[];
+ await page.emulateMedia({reducedMotion:'reduce'});
  page.on('request',r=>{if(/tiles\.openfreemap|tiles\.mapterhorn/.test(r.url()))tiles.push(r.url())});
  await page.goto('/?lang=en',{waitUntil:'domcontentloaded'});
  const card=page.locator('[data-home-trip="japan-by-rail"]').first();

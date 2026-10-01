@@ -583,7 +583,7 @@ jobs:
         run: |
           CHROME_BIN="$(command -v google-chrome || command -v chromium)"
           test -n "$CHROME_BIN"
-          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/platform-smoke.spec.mjs tests/visual-cover-slot.spec.mjs --grep="@discovery" --project=desktop-1440 --project=mobile-390 --workers=2
+          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/platform-smoke.spec.mjs tests/visual-cover-slot.spec.mjs --grep="@discovery" --project=desktop-1440 --project=mobile-390 --workers=1
       - name: Upload discovery browser smoke artifacts
         if: failure()
         uses: actions/upload-artifact@v7
@@ -651,7 +651,7 @@ jobs:
     if: github.event_name == 'push'
     needs: release
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     defaults:
       run:
         working-directory: one-world-route-public-mvp
@@ -689,7 +689,7 @@ jobs:
         run: |
           CHROME_BIN="$(command -v google-chrome || command -v chromium)"
           test -n "$CHROME_BIN"
-          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/node_modules/@playwright/test/cli.js test --config=qa/playwright.config.mjs tests/platform-smoke.spec.mjs --grep="scalable static visuals|inspiration selects|social story presents" --project=desktop-1440 --project=mobile-390 --project=mobile-360 --project=mobile-430 --workers=2 --output=qa/production-discovery-results
+          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/node_modules/@playwright/test/cli.js test --config=qa/playwright.config.mjs tests/platform-smoke.spec.mjs --grep="scalable static visuals|inspiration selects|social story presents" --project=desktop-1440 --project=mobile-390 --project=mobile-360 --project=mobile-430 --workers=1 --output=qa/production-discovery-results
           OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/node_modules/@playwright/test/cli.js test --config=qa/playwright.config.mjs tests/regional-platform.spec.mjs --grep="flagship shell and route invariants" --project=desktop-1440 --project=mobile-390 --workers=1 --output=qa/production-world-results
           OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/node_modules/@playwright/test/cli.js test --config=qa/playwright.config.mjs tests/regional-platform.spec.mjs --grep="regional terrain activates" --project=desktop-1440 --project=mobile-390 --workers=2 --output=qa/production-terrain-results
       - name: Upload Production screenshots and failure evidence
