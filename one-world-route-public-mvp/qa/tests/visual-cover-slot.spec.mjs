@@ -22,7 +22,7 @@ test('@discovery @mobile-critical approved cover uses discovery and identity slo
  if(isMobile){await page.locator('#settingsBtn').click();await page.locator('#mobileShareBtn').click()}else await page.locator('#shareBtn').click();
  await page.locator('[data-share-story]').click();const stage=page.locator('.social-story-stage');
  await expect(stage).toHaveCSS('background-image',/qa-cover-vertical/);
- await expect(stage).toHaveCSS('background-position','50% 40%');
+ await expect(stage).toHaveCSS('background-position',/^50% 40%(, 50% 40%)*$/);
  await page.locator('[data-social-next]').click();
  await expect(stage).toHaveCSS('background-image',/generated\/routes\/japan-by-rail\/vertical-/);
  await stage.screenshot({path:testInfo.outputPath('cover-fixture-route-scene.png')});

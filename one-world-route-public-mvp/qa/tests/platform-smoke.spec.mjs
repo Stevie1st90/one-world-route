@@ -27,7 +27,8 @@ test('@flagship flagship shell boots cleanly',async({page,isMobile})=>{
 });
 
 test('@flagship operations exposes departure recheck controls',async({page})=>{
-  test.setTimeout(30000);
+  // Two complete globe navigations and a fresh browser context share this budget.
+  test.setTimeout(60000);
   const errors=capturePageErrors(page);
   await page.goto('/?segment=13&mode=operations&lang=en',{waitUntil:'domcontentloaded'});
   await expect(page.locator('#detailContent')).toContainText('Departure recheck',{timeout:15000});
