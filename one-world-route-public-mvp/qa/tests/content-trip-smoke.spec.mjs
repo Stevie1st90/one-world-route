@@ -5,7 +5,7 @@ const catalog=JSON.parse(await readFile(new URL('../../data/platform/trips.json'
 const ids=String(process.env.OWR_QA_CONTENT_TRIP_IDS||'').split(',').map(value=>value.trim()).filter(Boolean);
 
 test('@content changed journey data boots cleanly',async({page,isMobile})=>{
-  test.setTimeout(60000);
+  test.setTimeout(Math.min(240000,Math.max(60000,ids.length*18000)));
   expect(ids.length,'OWR_QA_CONTENT_TRIP_IDS must contain at least one changed trip').toBeGreaterThan(0);
   const errors=[];
   page.on('pageerror',error=>errors.push(error.message));
