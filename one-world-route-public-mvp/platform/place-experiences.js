@@ -82,7 +82,8 @@
     }[role]||'experienceRoleChapter';
     const essence=local(profile.essence);
     const tags=(profile.tags||[]).slice(0,4).map(tag=>'<span>'+esc(facetLabel(tag))+'</span>').join('');
-    return '<section class="platform-stop-experience">'+
+    const image=root.media?.resolveDestinationVisual?.({type:'place',id:profile.id});
+    return '<section class="platform-stop-experience">'+(image?'<div class="platform-overview-visual">'+root.media.imageMarkup(image,esc,local)+root.media.credit(image,esc)+'</div>':'')+
       '<div class="platform-stop-experience-head"><span>'+esc(t('whatToExpect'))+'</span><b>'+esc(t(roleKey))+'</b></div>'+
       '<p>'+esc(essence)+'</p>'+
       (tags?'<div class="platform-stop-experience-tags">'+tags+'</div>':'')+

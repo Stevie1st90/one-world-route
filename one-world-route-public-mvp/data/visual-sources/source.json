@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "provider": "local-natural-earth",
+  "asset": "data/visual-sources/natural-earth-relief.webp",
+  "source": "https://naturalearth.s3.amazonaws.com/50m_raster/NE2_50M_SR_W.zip",
+  "dataset": "Natural Earth II 1:50m shaded relief and water v3.2.0",
+  "sourceResolution": [
+    10800,
+    5400
+  ],
+  "sha256": "8c3fdbc04fe71342b12ddc1d5e3c066115f614e25667849d501fca0831a22583",
+  "rightsStatus": "approved",
+  "license": "Public domain",
+  "licenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+  "reviewedAt": "2026-10-01",
+  "limitations": "Generalized topography, roughly 3.7 km longitude grid at the equator. Not a high-resolution DEM, navigation map or current land-cover record. Local views cannot add detail absent from this source."
+}

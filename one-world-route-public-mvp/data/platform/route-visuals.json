@@ -1,0 +1,3519 @@
+{
+  "schemaVersion": 1,
+  "styleVersion": "topographic-editorial-v1",
+  "rendererVersion": "local-relief-v1",
+  "provider": "local-natural-earth",
+  "sourceHash": "8c3fdbc04fe71342b12ddc1d5e3c066115f614e25667849d501fca0831a22583",
+  "journeys": [
+    {
+      "id": "world-195",
+      "scope": "GLOBAL",
+      "bounds": {
+        "west": -99.07033000000001,
+        "east": 187.992004,
+        "south": -37.01199,
+        "north": 63.985001,
+        "longitudeSpan": 287.062334,
+        "datelineCrossing": true
+      },
+      "countries": [
+        "DE",
+        "LU",
+        "BE",
+        "NL",
+        "DK",
+        "NO",
+        "SE",
+        "FI",
+        "EE",
+        "LV",
+        "LT",
+        "BY",
+        "PL",
+        "UA",
+        "MD",
+        "RO",
+        "HU",
+        "SK",
+        "CZ",
+        "AT",
+        "LI",
+        "CH",
+        "FR",
+        "MC",
+        "AD",
+        "ES",
+        "PT",
+        "GB",
+        "IE",
+        "IS",
+        "CA",
+        "US",
+        "MX",
+        "BZ",
+        "GT",
+        "SV",
+        "HN",
+        "NI",
+        "CR",
+        "PA",
+        "CU",
+        "BS",
+        "JM",
+        "HT",
+        "DO",
+        "KN",
+        "AG",
+        "DM",
+        "LC",
+        "BB",
+        "VC",
+        "GD",
+        "TT",
+        "VE",
+        "BR",
+        "GY",
+        "SR",
+        "CO",
+        "EC",
+        "PE",
+        "BO",
+        "PY",
+        "AR",
+        "UY",
+        "CL",
+        "NZ",
+        "TO",
+        "FJ",
+        "WS",
+        "TV",
+        "VU",
+        "SB",
+        "PG",
+        "AU",
+        "NR",
+        "KI",
+        "MH",
+        "FM",
+        "PW",
+        "PH",
+        "BN",
+        "MY",
+        "SG",
+        "ID",
+        "TL",
+        "TH",
+        "KH",
+        "VN",
+        "LA",
+        "MM",
+        "BD",
+        "IN",
+        "NP",
+        "BT",
+        "LK",
+        "MV",
+        "CN",
+        "KP",
+        "KR",
+        "JP",
+        "MN",
+        "RU",
+        "KZ",
+        "KG",
+        "TJ",
+        "UZ",
+        "TM",
+        "AF",
+        "PK",
+        "IR",
+        "AZ",
+        "GE",
+        "AM",
+        "TR",
+        "IQ",
+        "SY",
+        "LB",
+        "CY",
+        "LY",
+        "TN",
+        "DZ",
+        "MA",
+        "MR",
+        "ML",
+        "BF",
+        "NE",
+        "TD",
+        "CF",
+        "CM",
+        "NG",
+        "BJ",
+        "TG",
+        "GH",
+        "CI",
+        "LR",
+        "SL",
+        "GN",
+        "GW",
+        "SN",
+        "GM",
+        "CV",
+        "GQ",
+        "ST",
+        "GA",
+        "CG",
+        "CD",
+        "AO",
+        "NA",
+        "BW",
+        "ZW",
+        "ZM",
+        "MW",
+        "MZ",
+        "SZ",
+        "ZA",
+        "LS",
+        "TZ",
+        "BI",
+        "RW",
+        "UG",
+        "SS",
+        "KE",
+        "SC",
+        "MU",
+        "MG",
+        "KM",
+        "ET",
+        "SO",
+        "DJ",
+        "ER",
+        "SD",
+        "EG",
+        "SA",
+        "KW",
+        "BH",
+        "QA",
+        "AE",
+        "OM",
+        "YE",
+        "JO",
+        "IL",
+        "PS",
+        "GR",
+        "BG",
+        "MK",
+        "AL",
+        "ME",
+        "BA",
+        "RS",
+        "HR",
+        "SI",
+        "IT",
+        "SM",
+        "VA",
+        "MT"
+      ],
+      "regions": [
+        "europe",
+        "north-america",
+        "south-america",
+        "oceania",
+        "asia",
+        "africa"
+      ],
+      "geometry": {
+        "lines": 253,
+        "detailed": 62,
+        "schematic": 132
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/world-195/landscape-e58237d09694e3dd.webp",
+          "inputHash": "e58237d09694e3ddcd0b7e4244b5e880d5cfe7c124b60da320810202902ae963",
+          "outputHash": "f6d9489e88249e7b0f0c691be01200c7d869ec9dff911fb0621c5e9013b3aa55",
+          "bytes": 78002,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.9724248752867191,
+            "scale": 3.525030077223799,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": 44.460837,
+            "centerLat": 13.4865055,
+            "zoom": 1.309488663650041
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/world-195/landscape-e58237d09694e3dd-600.webp",
+            "width": 600,
+            "outputHash": "8206e55bdf7fdcb65f649d16f66ec669f9a189d28dabac1d9ed31484cec669f6",
+            "bytes": 18788
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/world-195/portrait-829bd17c03f5a47d.webp",
+          "inputHash": "829bd17c03f5a47d49d54f35d48a384df45e647b233bd934592818cdf6c8c488",
+          "outputHash": "2e40595c2071d80dd85c2178e5d5839eefa0f01b1e4678c1d2941711e235f58e",
+          "bytes": 30992,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.9724248752867191,
+            "scale": 2.3500200514825327,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": 44.460837,
+            "centerLat": 13.4865055,
+            "zoom": 0.7245261629288849
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/world-195/vertical-ad6e34a25d960c9a.webp",
+          "inputHash": "ad6e34a25d960c9a16b0aac2a38e35d08978fa43fd4cf8f98cd193bec74652f2",
+          "outputHash": "e41ba7ef8ca9f123d378793359a07746b7859a9547a4c9ea501616eb3eab932f",
+          "bytes": 63214,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.9724248752867191,
+            "scale": 2.6437725579178495,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": 44.460837,
+            "centerLat": 13.4865055,
+            "zoom": 0.8944511643711974
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-world-195",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "world-195",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/world-195/landscape-e58237d09694e3dd.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: One World Journey",
+          "de": "Geografische Routendarstellung: Eine Reise um die Welt",
+          "it": "Illustrazione geografica del percorso: Un viaggio intorno al mondo",
+          "es": "Ilustración geográfica de la ruta: Un viaje por el mundo",
+          "fr": "Illustration géographique du parcours : Un voyage autour du monde",
+          "pt": "Ilustração geográfica da rota: Uma viagem pelo mundo"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "GLOBAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/world-195/portrait-829bd17c03f5a47d.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/world-195/vertical-ad6e34a25d960c9a.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/world-195/landscape-e58237d09694e3dd-600.webp 600w, ./assets/generated/routes/world-195/landscape-e58237d09694e3dd.webp 1200w"
+      }
+    },
+    {
+      "id": "italy-grand-tour",
+      "scope": "NATIONAL",
+      "bounds": {
+        "west": 11.255800000000022,
+        "east": 16.871899999999982,
+        "south": 40.634,
+        "north": 46.5405,
+        "longitudeSpan": 5.61609999999996,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "IT"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "geometry": {
+        "lines": 10,
+        "detailed": 0,
+        "schematic": 10
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/italy-grand-tour/landscape-32ee71da059b3063.webp",
+          "inputHash": "32ee71da059b3063e8a69b16f7b37a58201f5a4a7a442207ea6f96301490ffa4",
+          "outputHash": "3684c023d1f417a91c7887cc0e7ce4bc07283b636ba66dd09a87db3160f21975",
+          "bytes": 64458,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.7243253041841438,
+            "scale": 79.99661389994073,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": 14.063850000000002,
+            "centerLat": 43.58725,
+            "zoom": 5.8137201260526545
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/italy-grand-tour/landscape-32ee71da059b3063-600.webp",
+            "width": 600,
+            "outputHash": "c9397f57d8a672dd511ac8f7d05027c1c8e84a0084fc6cd0a8bb19d63844f52e",
+            "bytes": 25348
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/italy-grand-tour/portrait-1694c0062029dddd.webp",
+          "inputHash": "1694c0062029dddd2ed503f0ab97d0ed0d914cd32d26d6f08a402cff9126d9a0",
+          "outputHash": "c8cbf2b32f7ccef9968baaf15e1c32c62afcccb77140a22d189b057be5190c8a",
+          "bytes": 54666,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.7243253041841438,
+            "scale": 101.5830017777025,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": 14.063850000000002,
+            "centerLat": 43.58725,
+            "zoom": 6.1583682974401
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/italy-grand-tour/vertical-23ccce07d81150c0.webp",
+          "inputHash": "23ccce07d81150c04721699af271a857817d4aff8b9c9b5884bcf7a878390c93",
+          "outputHash": "cf4257b36af4c5cf28e8da4d2263d484713db5ce113f8b34217ee0eb48413e08",
+          "bytes": 75140,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.7243253041841438,
+            "scale": 119.1907220858376,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": 14.063850000000002,
+            "centerLat": 43.58725,
+            "zoom": 6.388981225581517
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-italy-grand-tour",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "italy-grand-tour",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/italy-grand-tour/landscape-32ee71da059b3063.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Italy Grand Tour",
+          "de": "Geografische Routendarstellung: Große Italien-Rundreise",
+          "it": "Illustrazione geografica del percorso: Gran Tour d'Italia",
+          "es": "Ilustración geográfica de la ruta: Gran ruta por Italia",
+          "fr": "Illustration géographique du parcours : Grand tour d'Italie",
+          "pt": "Ilustração geográfica da rota: Grande volta pela Itália"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/italy-grand-tour/portrait-1694c0062029dddd.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/italy-grand-tour/vertical-23ccce07d81150c0.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/italy-grand-tour/landscape-32ee71da059b3063-600.webp 600w, ./assets/generated/routes/italy-grand-tour/landscape-32ee71da059b3063.webp 1200w"
+      }
+    },
+    {
+      "id": "western-mediterranean-cruise-loop",
+      "scope": "MULTI-COUNTRY",
+      "bounds": {
+        "west": 2.1700000000000728,
+        "east": 14.256000000000029,
+        "south": 36.818,
+        "north": 43.338916,
+        "longitudeSpan": 12.085999999999956,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "ES",
+        "FR",
+        "IT",
+        "TN"
+      ],
+      "regions": [
+        "europe",
+        "africa"
+      ],
+      "geometry": {
+        "lines": 6,
+        "detailed": 0,
+        "schematic": 6
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/western-mediterranean-cruise-loop/landscape-8ad707fbf79a9564.webp",
+          "inputHash": "8ad707fbf79a9564de05b835913ee09e472b2c9b783d4c6d050fd7d592deeb10",
+          "outputHash": "a3ecd44ffa9e69e52f0a8af95c8f87c2999d64e192368212782ab834864466b0",
+          "bytes": 59384,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.765163523695112,
+            "scale": 72.4591453102601,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": 8.21300000000005,
+            "centerLat": 40.078458,
+            "zoom": 5.670948979841229
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/western-mediterranean-cruise-loop/landscape-8ad707fbf79a9564-600.webp",
+            "width": 600,
+            "outputHash": "9025d2440597d31ab918de26e73291daf3850ab43f97510c45b50e835a0f51bd",
+            "bytes": 22330
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/western-mediterranean-cruise-loop/portrait-8309502a0b3a7070.webp",
+          "inputHash": "8309502a0b3a70708cbcac905a689c4d10fa707238a309edc2399291598135e4",
+          "outputHash": "df69943275a6c1bbf2a278d346ce7f1ea401002573f830629aea7f78a14f62c7",
+          "bytes": 58734,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.765163523695112,
+            "scale": 70.93604826920362,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": 8.21300000000005,
+            "centerLat": 40.078458,
+            "zoom": 5.640300153556384
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/western-mediterranean-cruise-loop/vertical-5a1d73798c70eb02.webp",
+          "inputHash": "5a1d73798c70eb02df2b59063bf656f9d1c945d5d8188526303ca64640b11610",
+          "outputHash": "6d8c6ddbaaea1997d3ce5fe14ded19a3b30d611443051cc030425ee9980cfe05",
+          "bytes": 80434,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.765163523695112,
+            "scale": 79.80305430285408,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": 8.21300000000005,
+            "centerLat": 40.078458,
+            "zoom": 5.8102251549986965
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-western-mediterranean-cruise-loop",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "western-mediterranean-cruise-loop",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/western-mediterranean-cruise-loop/landscape-8ad707fbf79a9564.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Western Mediterranean Cruise Loop",
+          "de": "Geografische Routendarstellung: Westliches Mittelmeer · Kreuzfahrt-Loop",
+          "it": "Illustrazione geografica del percorso: Crociera nel Mediterraneo occidentale",
+          "es": "Ilustración geográfica de la ruta: Crucero por el Mediterráneo occidental",
+          "fr": "Illustration géographique du parcours : Croisière en Méditerranée occidentale",
+          "pt": "Ilustração geográfica da rota: Cruzeiro pelo Mediterrâneo Ocidental"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "MULTI-COUNTRY",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/western-mediterranean-cruise-loop/portrait-8309502a0b3a7070.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/western-mediterranean-cruise-loop/vertical-5a1d73798c70eb02.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/western-mediterranean-cruise-loop/landscape-8ad707fbf79a9564-600.webp 600w, ./assets/generated/routes/western-mediterranean-cruise-loop/landscape-8ad707fbf79a9564.webp 1200w"
+      }
+    },
+    {
+      "id": "southern-europe-road-trip",
+      "scope": "MULTI-COUNTRY",
+      "bounds": {
+        "west": -9.139300000000048,
+        "east": 12.496399999999937,
+        "south": 37.1773,
+        "north": 44.4056,
+        "longitudeSpan": 21.635699999999986,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "PT",
+        "ES",
+        "FR",
+        "IT"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "geometry": {
+        "lines": 10,
+        "detailed": 0,
+        "schematic": 10
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/southern-europe-road-trip/landscape-316cc128772053c2.webp",
+          "inputHash": "316cc128772053c2189c35b617071095ef57927481a2468a47b309789f9efe6b",
+          "outputHash": "31f759e71de89d2f730d05a3b6a844fbc3fb19e41e9da9adb922239a4c103dc3",
+          "bytes": 64530,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.757092554337937,
+            "scale": 60.07242618183945,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": 1.6785499999999445,
+            "centerLat": 40.79145,
+            "zoom": 5.400484123265604
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/southern-europe-road-trip/landscape-316cc128772053c2-600.webp",
+            "width": 600,
+            "outputHash": "9b179a77a22cfd3076dcb87b79333f387c7300de2ad7a83d7a2604e14005b42d",
+            "bytes": 24628
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/southern-europe-road-trip/portrait-5a839fc4ddade831.webp",
+          "inputHash": "5a839fc4ddade8311ff3ff1d5371b12959e1f7e95fbdc93f6f142af00bee0430",
+          "outputHash": "5b8c391a8e8a5b383d3fb12f161a5f33697327cf03d4db8f32881d41f37afa4c",
+          "bytes": 71060,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.757092554337937,
+            "scale": 40.0482841212263,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": 1.6785499999999445,
+            "centerLat": 40.79145,
+            "zoom": 4.8155216225444475
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/southern-europe-road-trip/vertical-5c283158aa4aff90.webp",
+          "inputHash": "5c283158aa4aff9085acefce5e4e9fc670bebe8563f1685b52a3876b9cab9c17",
+          "outputHash": "560bf1c5e0b1c724d513301568407655338084cfc219d9b25dc17182b102f1f8",
+          "bytes": 99160,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.757092554337937,
+            "scale": 45.05431963637959,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": 1.6785499999999445,
+            "centerLat": 40.79145,
+            "zoom": 4.9854466239867605
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-southern-europe-road-trip",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "southern-europe-road-trip",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/southern-europe-road-trip/landscape-316cc128772053c2.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Southern Europe Road Trip",
+          "de": "Geografische Routendarstellung: Südeuropa-Roadtrip",
+          "it": "Illustrazione geografica del percorso: Road trip nell'Europa meridionale",
+          "es": "Ilustración geográfica de la ruta: Road trip por el sur de Europa",
+          "fr": "Illustration géographique du parcours : Road trip en Europe du Sud",
+          "pt": "Ilustração geográfica da rota: Road trip pelo sul da Europa"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "MULTI-COUNTRY",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/southern-europe-road-trip/portrait-5a839fc4ddade831.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/southern-europe-road-trip/vertical-5c283158aa4aff90.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/southern-europe-road-trip/landscape-316cc128772053c2-600.webp 600w, ./assets/generated/routes/southern-europe-road-trip/landscape-316cc128772053c2.webp 1200w"
+      }
+    },
+    {
+      "id": "central-europe-rail-journey",
+      "scope": "MULTI-COUNTRY",
+      "bounds": {
+        "west": 2.352200000000039,
+        "east": 19.040200000000084,
+        "south": 47.4979,
+        "north": 52.52,
+        "longitudeSpan": 16.688000000000045,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "FR",
+        "BE",
+        "NL",
+        "DE",
+        "AT",
+        "HU",
+        "CZ"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "geometry": {
+        "lines": 9,
+        "detailed": 0,
+        "schematic": 9
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/central-europe-rail-journey/landscape-d84dec3f9f5df42d.webp",
+          "inputHash": "d84dec3f9f5df42d89a765753567ae771eca2d1dae9a75cadee63770197b603e",
+          "outputHash": "6a49604a7c041cf6f8854762d9f6d8ff3f673a61482f74ac478f8c8e65304403",
+          "bytes": 47728,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.642667940364965,
+            "scale": 91.74959836022452,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": 10.696200000000061,
+            "centerLat": 50.00895,
+            "zoom": 6.01148303369626
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/central-europe-rail-journey/landscape-d84dec3f9f5df42d-600.webp",
+            "width": 600,
+            "outputHash": "c9bcb52cd800fb3c1fbc335ff2d8dd10c85a2fdccb38d120cb7a10aaed7bef65",
+            "bytes": 18182
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/central-europe-rail-journey/portrait-fcc83bf5c7b8917a.webp",
+          "inputHash": "fcc83bf5c7b8917aa295a3a13409177b1679446283746681b2996e4162e682a1",
+          "outputHash": "e3876fc66805a0170c4404139373efe0a5f3e62b8f26d845d2e6be26bfa86af2",
+          "bytes": 58426,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.642667940364965,
+            "scale": 61.16639890681635,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": 10.696200000000061,
+            "centerLat": 50.00895,
+            "zoom": 5.426520532975104
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/central-europe-rail-journey/vertical-fddbc344e8d56427.webp",
+          "inputHash": "fddbc344e8d5642799bad549954d2c3a389fa6c93c1eaf13ab675070b1e46d16",
+          "outputHash": "aedaf685a1f31180838cf1e724add1d646b94da7bfd24973577aa7a8c316baa4",
+          "bytes": 87688,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.642667940364965,
+            "scale": 68.8121987701684,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": 10.696200000000061,
+            "centerLat": 50.00895,
+            "zoom": 5.596445534417416
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-central-europe-rail-journey",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "central-europe-rail-journey",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/central-europe-rail-journey/landscape-d84dec3f9f5df42d.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Central Europe Rail Journey",
+          "de": "Geografische Routendarstellung: Mitteleuropa mit der Bahn",
+          "it": "Illustrazione geografica del percorso: Viaggio ferroviario nell'Europa centrale",
+          "es": "Ilustración geográfica de la ruta: Viaje ferroviario por Europa Central",
+          "fr": "Illustration géographique du parcours : Voyage ferroviaire en Europe centrale",
+          "pt": "Ilustração geográfica da rota: Viagem ferroviária pela Europa Central"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "MULTI-COUNTRY",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/central-europe-rail-journey/portrait-fcc83bf5c7b8917a.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/central-europe-rail-journey/vertical-fddbc344e8d56427.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/central-europe-rail-journey/landscape-d84dec3f9f5df42d-600.webp 600w, ./assets/generated/routes/central-europe-rail-journey/landscape-d84dec3f9f5df42d.webp 1200w"
+      }
+    },
+    {
+      "id": "japan-by-rail",
+      "scope": "NATIONAL",
+      "bounds": {
+        "west": 132.45529999999997,
+        "east": 139.65030000000002,
+        "south": 34.3853,
+        "north": 36.5613,
+        "longitudeSpan": 7.19500000000005,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "JP"
+      ],
+      "regions": [
+        "asia"
+      ],
+      "geometry": {
+        "lines": 5,
+        "detailed": 0,
+        "schematic": 5
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/japan-by-rail/landscape-e278c94e08a5cbda.webp",
+          "inputHash": "e278c94e08a5cbda9fe06df7ad504a46b9152e1192af37f05dff801f75440155",
+          "outputHash": "1a73052ff630bb6c68c28a31e281fe90eff589effc87b0a56fa2a9058ced95ad",
+          "bytes": 36226,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.8143860392177587,
+            "scale": 167.93220099789488,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": 136.0528,
+            "centerLat": 35.4733,
+            "zoom": 6.883588179665227
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/japan-by-rail/landscape-e278c94e08a5cbda-600.webp",
+            "width": 600,
+            "outputHash": "785b99ec58b3ef895b47151e7bbbf43cc4bf357d0428a2cd1418083c37e0741e",
+            "bytes": 14696
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/japan-by-rail/portrait-fa443d4c9336f334.webp",
+          "inputHash": "fa443d4c9336f3347dfcc90b7b73bc6bddda7a1dbaad6400ce4e5284b379e5b7",
+          "outputHash": "8e16b0878ee95b778053c6fdacad6faaa6531b2c26488d752b8c19173b78330b",
+          "bytes": 35442,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.8143860392177587,
+            "scale": 111.95480066526325,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": 136.0528,
+            "centerLat": 35.4733,
+            "zoom": 6.298625678944071
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/japan-by-rail/vertical-4c5eb937ba5df2ab.webp",
+          "inputHash": "4c5eb937ba5df2abbb4fa7fc5d2ff9c21d2633a362ea1cb7d804f7aec4f3f4a9",
+          "outputHash": "dca26f6a753e09ce5c0b38c94a14d8947c6201a08934060febe7c0a33b8d90a4",
+          "bytes": 52206,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.8143860392177587,
+            "scale": 125.94915074842115,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": 136.0528,
+            "centerLat": 35.4733,
+            "zoom": 6.468550680386383
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-japan-by-rail",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "japan-by-rail",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/japan-by-rail/landscape-e278c94e08a5cbda.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Japan by Rail",
+          "de": "Geografische Routendarstellung: Japan mit der Bahn",
+          "it": "Illustrazione geografica del percorso: Giappone in treno",
+          "es": "Ilustración geográfica de la ruta: Japón en tren",
+          "fr": "Illustration géographique du parcours : Japon en train",
+          "pt": "Ilustração geográfica da rota: Japão de trem"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/japan-by-rail/portrait-fa443d4c9336f334.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/japan-by-rail/vertical-4c5eb937ba5df2ab.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/japan-by-rail/landscape-e278c94e08a5cbda-600.webp 600w, ./assets/generated/routes/japan-by-rail/landscape-e278c94e08a5cbda.webp 1200w"
+      }
+    },
+    {
+      "id": "patagonia-road-trip",
+      "scope": "REGIONAL",
+      "bounds": {
+        "west": -73.40679999999998,
+        "east": -70.9171,
+        "south": -53.1638,
+        "north": -49.3315,
+        "longitudeSpan": 2.4896999999999707,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "AR",
+        "CL"
+      ],
+      "regions": [
+        "south-america"
+      ],
+      "geometry": {
+        "lines": 4,
+        "detailed": 0,
+        "schematic": 4
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/patagonia-road-trip/landscape-1c7be855661b40d7.webp",
+          "inputHash": "1c7be855661b40d72521e92ce23e8d5e12b4a18fa2668dbe73e60b5166430259",
+          "outputHash": "1a00d96becd4201779eb88a931602b1884b8785e9863cfb8f68caa2472765a1d",
+          "bytes": 33114,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.625955458804806,
+            "scale": 123.29410536753375,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": -72.16194999999999,
+            "centerLat": -51.24765,
+            "zoom": 6.4378131129310106
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/patagonia-road-trip/landscape-1c7be855661b40d7-600.webp",
+            "width": 600,
+            "outputHash": "8cef12d96468eae8641083474c279d61f3d8cacbe3fd845bf2e5fe8e96fb44ec",
+            "bytes": 12906
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/patagonia-road-trip/portrait-dd261d28356d8048.webp",
+          "inputHash": "dd261d28356d80489d08cb69b05bca4a5f316aa373ca2410e291af98c3b5deac",
+          "outputHash": "e8e786c129a4d46e54e3d50b77f3b73687da88a5912b2c0bc189fa5c014edf6b",
+          "bytes": 43380,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.625955458804806,
+            "scale": 156.56394332385236,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": -72.16194999999999,
+            "centerLat": -51.24765,
+            "zoom": 6.782461284318456
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/patagonia-road-trip/vertical-041532e9645d50b7.webp",
+          "inputHash": "041532e9645d50b7347be3cf2a7e0d9f2c1fc21fa32b21e259b232efd90206bf",
+          "outputHash": "d001649e6ad7bff3aa342dbbdd9b96a6aa79213c248ff5d564c36a97b90cae7a",
+          "bytes": 60078,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.625955458804806,
+            "scale": 183.7016934999868,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": -72.16194999999999,
+            "centerLat": -51.24765,
+            "zoom": 7.013074212459873
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-patagonia-road-trip",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "patagonia-road-trip",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/patagonia-road-trip/landscape-1c7be855661b40d7.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Patagonia Road Trip",
+          "de": "Geografische Routendarstellung: Patagonien-Roadtrip",
+          "it": "Illustrazione geografica del percorso: Road trip in Patagonia",
+          "es": "Ilustración geográfica de la ruta: Road trip por la Patagonia",
+          "fr": "Illustration géographique du parcours : Road trip en Patagonie",
+          "pt": "Ilustração geográfica da rota: Road trip pela Patagônia"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/patagonia-road-trip/portrait-dd261d28356d8048.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/patagonia-road-trip/vertical-041532e9645d50b7.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/patagonia-road-trip/landscape-1c7be855661b40d7-600.webp 600w, ./assets/generated/routes/patagonia-road-trip/landscape-1c7be855661b40d7.webp 1200w"
+      }
+    },
+    {
+      "id": "norway-arctic-road-trip",
+      "scope": "REGIONAL",
+      "bounds": {
+        "west": 13.089600000000019,
+        "east": 18.955300000000022,
+        "south": 67.9325,
+        "north": 69.6492,
+        "longitudeSpan": 5.865700000000004,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "NO"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "geometry": {
+        "lines": 4,
+        "detailed": 0,
+        "schematic": 4
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/norway-arctic-road-trip/landscape-2ee3fb47b16764ee.webp",
+          "inputHash": "2ee3fb47b16764eed18ff4d413d65e93f3cc31aea6b7e607048b1787111cd948",
+          "outputHash": "6e13dfc2626e091d8a486a00581168b18926c3c362fe62e9ed443647cc1ad0ad",
+          "bytes": 30098,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.36177345536838096,
+            "scale": 275.237374031574,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": 16.02245000000002,
+            "centerLat": 68.79085,
+            "zoom": 7.596385670639452
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/norway-arctic-road-trip/landscape-2ee3fb47b16764ee-600.webp",
+            "width": 600,
+            "outputHash": "278c39780ff3c68d9d743fcd9bd9036648fc4606978a5dd942e1025859a3ce47",
+            "bytes": 11944
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/norway-arctic-road-trip/portrait-9ca1d25f9c9f46bd.webp",
+          "inputHash": "9ca1d25f9c9f46bdde01299c694ac705d20b1d6eca94880fd87b5f80b1bbc296",
+          "outputHash": "6001d20af81e6d1701d15b78560a7b3339c3955723ef84391745acaab06eeaba",
+          "bytes": 29878,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.36177345536838096,
+            "scale": 309.1343706448808,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": 16.02245000000002,
+            "centerLat": 68.79085,
+            "zoom": 7.763943353119128
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/norway-arctic-road-trip/vertical-1b0713ff6430add7.webp",
+          "inputHash": "1b0713ff6430add73716e7165b1934c1d3d46972ae759abaa29ab9c7c78b5a17",
+          "outputHash": "5e0cba1abf29eb5c492d0557772dfaeb5a1ad19aac47c26189fd543a73d1408d",
+          "bytes": 45928,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.36177345536838096,
+            "scale": 347.7761669754909,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": 16.02245000000002,
+            "centerLat": 68.79085,
+            "zoom": 7.93386835456144
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-norway-arctic-road-trip",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "norway-arctic-road-trip",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/norway-arctic-road-trip/landscape-2ee3fb47b16764ee.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Norway Arctic Road Trip",
+          "de": "Geografische Routendarstellung: Norwegens Arktis-Roadtrip",
+          "it": "Illustrazione geografica del percorso: Road trip artico in Norvegia",
+          "es": "Ilustración geográfica de la ruta: Road trip ártico por Noruega",
+          "fr": "Illustration géographique du parcours : Road trip arctique en Norvège",
+          "pt": "Ilustração geográfica da rota: Road trip ártico na Noruega"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/norway-arctic-road-trip/portrait-9ca1d25f9c9f46bd.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/norway-arctic-road-trip/vertical-1b0713ff6430add7.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/norway-arctic-road-trip/landscape-2ee3fb47b16764ee-600.webp 600w, ./assets/generated/routes/norway-arctic-road-trip/landscape-2ee3fb47b16764ee.webp 1200w"
+      }
+    },
+    {
+      "id": "new-zealand-camper-loop",
+      "scope": "REGIONAL",
+      "bounds": {
+        "west": 167.92560000000003,
+        "east": 172.63620000000003,
+        "south": -45.0312,
+        "north": -43.3896,
+        "longitudeSpan": 4.7105999999999995,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "NZ"
+      ],
+      "regions": [
+        "oceania"
+      ],
+      "geometry": {
+        "lines": 5,
+        "detailed": 0,
+        "schematic": 5
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/new-zealand-camper-loop/landscape-436ebc2304a7806f.webp",
+          "inputHash": "436ebc2304a7806f9c81365507bd8b5f5a3ecc1c5be4fcff2cdc1a67f06c67ee",
+          "outputHash": "80cb3e15bb929164ecb90cfa6ad714ee1e5fd69193b234968d0b6f7577ad6278",
+          "bytes": 35656,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.7167840504456621,
+            "scale": 287.8289473684216,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": 170.28090000000003,
+            "centerLat": -44.2104,
+            "zoom": 7.660920979380508
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/new-zealand-camper-loop/landscape-436ebc2304a7806f-600.webp",
+            "width": 600,
+            "outputHash": "e11d4b3470ee59216973e1825c614c01c854cf922329bdfaf6b10beebb6a86c5",
+            "bytes": 13820
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/new-zealand-camper-loop/portrait-1bfd561caa74d299.webp",
+          "inputHash": "1bfd561caa74d2994b40d86fdd9dc44a5340d0b8f341c0f775fd7d5174fd286f",
+          "outputHash": "c3b501079054bbd39846b2bf635594b3617073462113d37b9baaa7e5eac0a824",
+          "bytes": 32930,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.7167840504456621,
+            "scale": 194.2850030926028,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": 170.28090000000003,
+            "centerLat": -44.2104,
+            "zoom": 7.093883829338765
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/new-zealand-camper-loop/vertical-72cf7a67f0266c6e.webp",
+          "inputHash": "72cf7a67f0266c6e8108e2255c297b1863130b4a26f0157c3b3ad039c88b4c1f",
+          "outputHash": "324b44531245d335f63e4467ecec61de0e39f9baefc5c5b1ade6ed003c0ef630",
+          "bytes": 42178,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.7167840504456621,
+            "scale": 218.57062847917814,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": 170.28090000000003,
+            "centerLat": -44.2104,
+            "zoom": 7.263808830781077
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-new-zealand-camper-loop",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "new-zealand-camper-loop",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/new-zealand-camper-loop/landscape-436ebc2304a7806f.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: New Zealand Camper Loop",
+          "de": "Geografische Routendarstellung: Neuseeland-Camper-Loop",
+          "it": "Illustrazione geografica del percorso: Nuova Zelanda in camper",
+          "es": "Ilustración geográfica de la ruta: Nueva Zelanda en camper",
+          "fr": "Illustration géographique du parcours : Nouvelle-Zélande en camper",
+          "pt": "Ilustração geográfica da rota: Nova Zelândia de camper"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/new-zealand-camper-loop/portrait-1bfd561caa74d299.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/new-zealand-camper-loop/vertical-72cf7a67f0266c6e.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/new-zealand-camper-loop/landscape-436ebc2304a7806f-600.webp 600w, ./assets/generated/routes/new-zealand-camper-loop/landscape-436ebc2304a7806f.webp 1200w"
+      }
+    },
+    {
+      "id": "greek-island-hopping",
+      "scope": "REGIONAL",
+      "bounds": {
+        "west": 23.727499999999964,
+        "east": 25.461499999999944,
+        "south": 36.3932,
+        "north": 37.9838,
+        "longitudeSpan": 1.7339999999999804,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "GR"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "geometry": {
+        "lines": 4,
+        "detailed": 0,
+        "schematic": 4
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/greek-island-hopping/landscape-6e9c8e7de09bb937.webp",
+          "inputHash": "6e9c8e7de09bb93757a25fda75a692cca2a08b16607a5a3883a364ee22fbb6ab",
+          "outputHash": "5d7245eb6c195b5ebb160c92b9227ca5c4bd53381ac75ba4e63dda5d8dee7d7e",
+          "bytes": 24504,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.7966512527989207,
+            "scale": 297.0577140701618,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": 24.594499999999954,
+            "centerLat": 37.188500000000005,
+            "zoom": 7.706452539399142
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/greek-island-hopping/landscape-6e9c8e7de09bb937-600.webp",
+            "width": 600,
+            "outputHash": "d8aa10cbee798980692fc6dd87da0f512c3f4b5daf9c1f66dadac640b4a6b3cc",
+            "bytes": 9872
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/greek-island-hopping/portrait-2a9aecc6816a08a9.webp",
+          "inputHash": "2a9aecc6816a08a9221a1ac7b296f60f4df62dce35ab847285bde6fb68a87f3f",
+          "outputHash": "34e42e7fa7ddb11b3ff0042fc24b1a2d778df936a5cbd558f3dc3d59144d23a3",
+          "bytes": 19072,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.7966512527989207,
+            "scale": 377.21614485099917,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": 24.594499999999954,
+            "centerLat": 37.188500000000005,
+            "zoom": 8.051100710786589
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/greek-island-hopping/vertical-07ce6a1b18492680.webp",
+          "inputHash": "07ce6a1b1849268043182609a4a578a409468fe1910e6525eedafc8ea5635dfe",
+          "outputHash": "2a6f973faf9937f486a3ad3eec9a6c295cb39e3bcac64e1da5471b094111e33f",
+          "bytes": 29420,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.7966512527989207,
+            "scale": 442.60027662517234,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": 24.594499999999954,
+            "centerLat": 37.188500000000005,
+            "zoom": 8.281713638928004
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-greek-island-hopping",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "greek-island-hopping",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/greek-island-hopping/landscape-6e9c8e7de09bb937.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Greek Island Hopping",
+          "de": "Geografische Routendarstellung: Griechisches Inselhopping",
+          "it": "Illustrazione geografica del percorso: Island hopping in Grecia",
+          "es": "Ilustración geográfica de la ruta: Island hopping por Grecia",
+          "fr": "Illustration géographique du parcours : D'île en île en Grèce",
+          "pt": "Ilustração geográfica da rota: Island hopping na Grécia"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/greek-island-hopping/portrait-2a9aecc6816a08a9.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/greek-island-hopping/vertical-07ce6a1b18492680.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/greek-island-hopping/landscape-6e9c8e7de09bb937-600.webp 600w, ./assets/generated/routes/greek-island-hopping/landscape-6e9c8e7de09bb937.webp 1200w"
+      }
+    },
+    {
+      "id": "morocco-atlas-desert",
+      "scope": "NATIONAL",
+      "bounds": {
+        "west": -9.759500000000003,
+        "east": -4.01339999999999,
+        "south": 31.047,
+        "north": 31.6295,
+        "longitudeSpan": 5.746100000000013,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "MA"
+      ],
+      "regions": [
+        "africa"
+      ],
+      "geometry": {
+        "lines": 4,
+        "detailed": 0,
+        "schematic": 4
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/morocco-atlas-desert/landscape-7226806f1835d718.webp",
+          "inputHash": "7226806f1835d71811f76bb8a1485f46598b074f49df90da9d99333447523898",
+          "outputHash": "95817d1cfbe7cdb8faf83208df226c94ef756d09cce6919a66ce0a1ed6a23165",
+          "bytes": 33994,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.8541118148005236,
+            "scale": 200.4966816669205,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": -6.886449999999996,
+            "centerLat": 31.338250000000002,
+            "zoom": 7.13928764556617
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/morocco-atlas-desert/landscape-7226806f1835d718-600.webp",
+            "width": 600,
+            "outputHash": "bf63154e28c00060631eae39f75bf13a0337264715a28ae92d8869386e03023b",
+            "bytes": 13324
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/morocco-atlas-desert/portrait-cbb60c9ea3abd9ac.webp",
+          "inputHash": "cbb60c9ea3abd9ac864fd9497b7a57f6a0fa7a07f1ac1bf1023ae96f73d5abe2",
+          "outputHash": "4936e6ed3647ddaa19225ea4d5c1b47301e8eb8b30115411e6b11cd10bc2df3c",
+          "bytes": 33328,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.8541118148005236,
+            "scale": 133.66445444461365,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": -6.886449999999996,
+            "centerLat": 31.338250000000002,
+            "zoom": 6.554325144845014
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/morocco-atlas-desert/vertical-cae0d4b37f602bc4.webp",
+          "inputHash": "cae0d4b37f602bc4f681a4b6ab8e11b0f4c42f9fa5842d74e3b2d22fd0c1ded5",
+          "outputHash": "6834abd6995857fb6c199b01122d9b0309a8c4403d26e4ca043beeefeda9f168",
+          "bytes": 45690,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.8541118148005236,
+            "scale": 150.37251125019037,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": -6.886449999999996,
+            "centerLat": 31.338250000000002,
+            "zoom": 6.724250146287326
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-morocco-atlas-desert",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "morocco-atlas-desert",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/morocco-atlas-desert/landscape-7226806f1835d718.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Morocco Atlas & Desert",
+          "de": "Geografische Routendarstellung: Marokko · Atlas & Wüste",
+          "it": "Illustrazione geografica del percorso: Marocco · Atlante e deserto",
+          "es": "Ilustración geográfica de la ruta: Marruecos · Atlas y desierto",
+          "fr": "Illustration géographique du parcours : Maroc · Atlas et désert",
+          "pt": "Ilustração geográfica da rota: Marrocos · Atlas e deserto"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/morocco-atlas-desert/portrait-cbb60c9ea3abd9ac.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/morocco-atlas-desert/vertical-cae0d4b37f602bc4.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/morocco-atlas-desert/landscape-7226806f1835d718-600.webp 600w, ./assets/generated/routes/morocco-atlas-desert/landscape-7226806f1835d718.webp 1200w"
+      }
+    },
+    {
+      "id": "south-africa-garden-safari",
+      "scope": "NATIONAL",
+      "bounds": {
+        "west": 18.424099999999953,
+        "east": 25.749999999999943,
+        "south": -34.4187,
+        "north": -33.483,
+        "longitudeSpan": 7.32589999999999,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "ZA"
+      ],
+      "regions": [
+        "africa"
+      ],
+      "geometry": {
+        "lines": 4,
+        "detailed": 0,
+        "schematic": 4
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/south-africa-garden-safari/landscape-f3ffbe94530314e9.webp",
+          "inputHash": "f3ffbe94530314e9f9ca1279ced40a2f4038b35fa06b7f26f77034a85ad2093e",
+          "outputHash": "967feb32dff3142819aca35489128abaa045642d151d65081a7ef291a302abf6",
+          "bytes": 28856,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.8295169595360566,
+            "scale": 161.92311225722375,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": 22.087049999999948,
+            "centerLat": -33.95085,
+            "zoom": 6.831018210960919
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/south-africa-garden-safari/landscape-f3ffbe94530314e9-600.webp",
+            "width": 600,
+            "outputHash": "7e1803b53fac4ea6b780ce4aeae86e777450ff227a4348504e991e1c9584822a",
+            "bytes": 11472
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/south-africa-garden-safari/portrait-d1272fffcab8dd61.webp",
+          "inputHash": "d1272fffcab8dd619415145967bb057f4a065022ced61fe9731940e0a2580bc5",
+          "outputHash": "fcf8b3a04efdf88434eca3ebc826beb0007d7de6be756853123fd1a8c86ebf4c",
+          "bytes": 30038,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.8295169595360566,
+            "scale": 107.94874150481584,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": 22.087049999999948,
+            "centerLat": -33.95085,
+            "zoom": 6.246055710239763
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/south-africa-garden-safari/vertical-474016cccbe222a8.webp",
+          "inputHash": "474016cccbe222a866401a672fcd57273bdd80a6802875d6f39cb74a08b4b4ab",
+          "outputHash": "b964149d4479626651b78565265e5bb0547296a0cf2bd23d17c3c0fea702fc94",
+          "bytes": 41008,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.8295169595360566,
+            "scale": 121.44233419291781,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": 22.087049999999948,
+            "centerLat": -33.95085,
+            "zoom": 6.415980711682075
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-south-africa-garden-safari",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "south-africa-garden-safari",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/south-africa-garden-safari/landscape-f3ffbe94530314e9.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: South Africa Garden Route & Safari",
+          "de": "Geografische Routendarstellung: Südafrika · Garden Route & Safari",
+          "it": "Illustrazione geografica del percorso: Sudafrica · Garden Route e safari",
+          "es": "Ilustración geográfica de la ruta: Sudáfrica · Garden Route y safari",
+          "fr": "Illustration géographique du parcours : Afrique du Sud · Garden Route et safari",
+          "pt": "Ilustração geográfica da rota: África do Sul · Garden Route e safári"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/south-africa-garden-safari/portrait-d1272fffcab8dd61.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/south-africa-garden-safari/vertical-474016cccbe222a8.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/south-africa-garden-safari/landscape-f3ffbe94530314e9-600.webp 600w, ./assets/generated/routes/south-africa-garden-safari/landscape-f3ffbe94530314e9.webp 1200w"
+      }
+    },
+    {
+      "id": "canadian-rockies-rail-road",
+      "scope": "NATIONAL",
+      "bounds": {
+        "west": -123.12069999999994,
+        "east": -114.07190000000003,
+        "south": 49.2827,
+        "north": 52.8737,
+        "longitudeSpan": 9.048799999999915,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "CA"
+      ],
+      "regions": [
+        "north-america"
+      ],
+      "geometry": {
+        "lines": 4,
+        "detailed": 0,
+        "schematic": 4
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/canadian-rockies-rail-road/landscape-c247989b0f6deb56.webp",
+          "inputHash": "c247989b0f6deb5644d5dde05f511dd32f615c14736f1e10368e6875e56fc3f4",
+          "outputHash": "3c27d8c1a3a186a9b5a64c1467861760735cd0147acf6b2d414222ed04bf502b",
+          "bytes": 64832,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.6282591195242625,
+            "scale": 131.578947368421,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": -118.59629999999999,
+            "centerLat": 51.078199999999995,
+            "zoom": 6.531637962435538
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/canadian-rockies-rail-road/landscape-c247989b0f6deb56-600.webp",
+            "width": 600,
+            "outputHash": "7c6e9c4ea3957a5a3ad661dc758833dcd2872bcc590cb0f46fde6cca107f0b22",
+            "bytes": 25964
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/canadian-rockies-rail-road/portrait-113fdfe762dfd951.webp",
+          "inputHash": "113fdfe762dfd951d3151445577da90c469524a2243d3e201ad9ec8e9b0bdd0b",
+          "outputHash": "3725a3d77c5a21961962c19b0dd85429340df9e917c2d8e423310ff50e886a7e",
+          "bytes": 70588,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.6282591195242625,
+            "scale": 115.39156105371897,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": -118.59629999999999,
+            "centerLat": 51.078199999999995,
+            "zoom": 6.342247005138655
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/canadian-rockies-rail-road/vertical-6b0fd2f0b74fc66b.webp",
+          "inputHash": "6b0fd2f0b74fc66bbfb5b6e0babe21aeb09c13fb10407aff89b42a9b389c848c",
+          "outputHash": "f5d35dcaf9eddebdd7ddae7580783eff0626fbea502acdd91ce0ae22bdbdbbcd",
+          "bytes": 107792,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.6282591195242625,
+            "scale": 129.81550618543386,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": -118.59629999999999,
+            "centerLat": 51.078199999999995,
+            "zoom": 6.512172006580968
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-canadian-rockies-rail-road",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "canadian-rockies-rail-road",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/canadian-rockies-rail-road/landscape-c247989b0f6deb56.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Canadian Rockies Rail & Road",
+          "de": "Geografische Routendarstellung: Kanadische Rockies · Bahn & Straße",
+          "it": "Illustrazione geografica del percorso: Rockies canadesi · treno e strada",
+          "es": "Ilustración geográfica de la ruta: Rocosas canadienses · tren y carretera",
+          "fr": "Illustration géographique du parcours : Rocheuses canadiennes · train et route",
+          "pt": "Ilustração geográfica da rota: Rochosas canadenses · trem e estrada"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/canadian-rockies-rail-road/portrait-113fdfe762dfd951.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/canadian-rockies-rail-road/vertical-6b0fd2f0b74fc66b.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/canadian-rockies-rail-road/landscape-c247989b0f6deb56-600.webp 600w, ./assets/generated/routes/canadian-rockies-rail-road/landscape-c247989b0f6deb56.webp 1200w"
+      }
+    },
+    {
+      "id": "vietnam-north-south",
+      "scope": "NATIONAL",
+      "bounds": {
+        "west": 105.83420000000001,
+        "east": 109.19670000000002,
+        "south": 10.8231,
+        "north": 21.0278,
+        "longitudeSpan": 3.3625000000000114,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "VN"
+      ],
+      "regions": [
+        "asia"
+      ],
+      "geometry": {
+        "lines": 5,
+        "detailed": 0,
+        "schematic": 5
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/vietnam-north-south/landscape-adcf9bf7275bd310.webp",
+          "inputHash": "adcf9bf7275bd31034e939ac5ab94c027f2704a865c255bb8e8a8e592c06861d",
+          "outputHash": "4a4c1cb958deca53f61c164e1afd0fc8729d54cac0aa1639509fa705554c8a82",
+          "bytes": 59300,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.9616195257464987,
+            "scale": 46.30219408703833,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": 107.51545000000002,
+            "centerLat": 15.92545,
+            "zoom": 5.024861750220694
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/vietnam-north-south/landscape-adcf9bf7275bd310-600.webp",
+            "width": 600,
+            "outputHash": "24b3defb63818ed7d2d65547246cb5596f32dc224fb8dd10d8d8d1fe3db5c2c2",
+            "bytes": 22498
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/vietnam-north-south/portrait-9d7f56857aa568ea.webp",
+          "inputHash": "9d7f56857aa568ea1ad63128897a0e18c779b1d2589ba4fa5fbeaf98ea9c0ca2",
+          "outputHash": "11d3529f0d99fc99795a6e39d033318b0aa9684f265ab21e579f6e6803c33e0e",
+          "bytes": 47746,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.9616195257464987,
+            "scale": 58.79643693592169,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": 107.51545000000002,
+            "centerLat": 15.92545,
+            "zoom": 5.36950992160814
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/vietnam-north-south/vertical-32e38431471c6bda.webp",
+          "inputHash": "32e38431471c6bdaffbbd2dba2668355abc86f400a2e281cf40b9dbdc1482011",
+          "outputHash": "94774fc2659713e9dc9e37d409504178d4e4b549d16e07ef3db03184ff3590a4",
+          "bytes": 69300,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.9616195257464987,
+            "scale": 68.98781933814811,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": 107.51545000000002,
+            "centerLat": 15.92545,
+            "zoom": 5.600122849749556
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-vietnam-north-south",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "vietnam-north-south",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/vietnam-north-south/landscape-adcf9bf7275bd310.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Vietnam North to South",
+          "de": "Geografische Routendarstellung: Vietnam von Nord nach Süd",
+          "it": "Illustrazione geografica del percorso: Vietnam da nord a sud",
+          "es": "Ilustración geográfica de la ruta: Vietnam de norte a sur",
+          "fr": "Illustration géographique du parcours : Vietnam du nord au sud",
+          "pt": "Ilustração geográfica da rota: Vietnã de norte a sul"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/vietnam-north-south/portrait-9d7f56857aa568ea.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/vietnam-north-south/vertical-32e38431471c6bda.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/vietnam-north-south/landscape-adcf9bf7275bd310-600.webp 600w, ./assets/generated/routes/vietnam-north-south/landscape-adcf9bf7275bd310.webp 1200w"
+      }
+    },
+    {
+      "id": "costa-rica-nature-loop",
+      "scope": "REGIONAL",
+      "bounds": {
+        "west": -84.82550000000003,
+        "east": -83.738,
+        "south": 9.167,
+        "north": 10.4626,
+        "longitudeSpan": 1.087500000000034,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "CR"
+      ],
+      "regions": [
+        "north-america"
+      ],
+      "geometry": {
+        "lines": 4,
+        "detailed": 0,
+        "schematic": 4
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/costa-rica-nature-loop/landscape-3d765bb377b4acdf.webp",
+          "inputHash": "3d765bb377b4acdf90b787afb9995213943b881f49ebbc1081e5c005bcaca675",
+          "outputHash": "0abbdb520cad2d1b0ac70a3ed6c322b3094d14080e4a340edf121ba49e3e52a3",
+          "bytes": 22406,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.9853638990096532,
+            "scale": 364.6958937943809,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": -84.28175000000002,
+            "centerLat": 9.8148,
+            "zoom": 8.002403242192372
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/costa-rica-nature-loop/landscape-3d765bb377b4acdf-600.webp",
+            "width": 600,
+            "outputHash": "f392399dfa5cb9e3a51f1942f93709f45503c27bf48bf7ee16f1f56e48ef9189",
+            "bytes": 8740
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/costa-rica-nature-loop/portrait-ae61d04f2c030ae7.webp",
+          "inputHash": "ae61d04f2c030ae7995ddc11462cef267c3e12c343124ba4c27cf52576180a6c",
+          "outputHash": "388c34fa970ec0ca5fe43a68c5639c7e6bf9d3df750aa34c4dd635f581820062",
+          "bytes": 20112,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.9853638990096532,
+            "scale": 463.1058968817535,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": -84.28175000000002,
+            "centerLat": 9.8148,
+            "zoom": 8.347051413579818
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/costa-rica-nature-loop/vertical-1a10f494b68fe101.webp",
+          "inputHash": "1a10f494b68fe1015e195a7b0ada3178af5663746dd6478f54eeca82fb28b39a",
+          "outputHash": "2cfa4da63dbbc2db7beb9e535b57fb549ce559cb6d22a043ff4b57c92364e4b9",
+          "bytes": 26160,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.9853638990096532,
+            "scale": 543.3775856745908,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": -84.28175000000002,
+            "centerLat": 9.8148,
+            "zoom": 8.577664341721235
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-costa-rica-nature-loop",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "costa-rica-nature-loop",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/costa-rica-nature-loop/landscape-3d765bb377b4acdf.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Costa Rica Nature Loop",
+          "de": "Geografische Routendarstellung: Costa Rica · Natur-Rundreise",
+          "it": "Illustrazione geografica del percorso: Costa Rica · circuito natura",
+          "es": "Ilustración geográfica de la ruta: Costa Rica · circuito de naturaleza",
+          "fr": "Illustration géographique du parcours : Costa Rica · boucle nature",
+          "pt": "Ilustração geográfica da rota: Costa Rica · circuito de natureza"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/costa-rica-nature-loop/portrait-ae61d04f2c030ae7.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/costa-rica-nature-loop/vertical-1a10f494b68fe101.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/costa-rica-nature-loop/landscape-3d765bb377b4acdf-600.webp 600w, ./assets/generated/routes/costa-rica-nature-loop/landscape-3d765bb377b4acdf.webp 1200w"
+      }
+    },
+    {
+      "id": "iceland-ring-road",
+      "scope": "REGIONAL",
+      "bounds": {
+        "west": -23.773000000000025,
+        "east": -14.394799999999975,
+        "south": 63.4194,
+        "north": 65.6885,
+        "longitudeSpan": 9.37820000000005,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "IS"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "geometry": {
+        "lines": 5,
+        "detailed": 0,
+        "schematic": 5
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/iceland-ring-road/landscape-f96dcfd883cdd074.webp",
+          "inputHash": "f96dcfd883cdd0749f721e63ba633d7957dbf7ae0ebdbab0b1d20f29c8a79d29",
+          "outputHash": "423ea8b859e45eee9c4d5a34e7ae017442feee79cfa3f580e7de6dfebdbeb750",
+          "bytes": 35636,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.4296610271486575,
+            "scale": 208.23233881274498,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": -19.0839,
+            "centerLat": 64.55395,
+            "zoom": 7.193903424971253
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/iceland-ring-road/landscape-f96dcfd883cdd074-600.webp",
+            "width": 600,
+            "outputHash": "479dadeba63395d62085ca41a480cee1da4964fd7e976c6b3f63deb3eaad1f6a",
+            "bytes": 13340
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/iceland-ring-road/portrait-c152c8a9db82750b.webp",
+          "inputHash": "c152c8a9db82750b40fa12a91f05b3ad5205cb10a707ffefd9cbd16d90abd1f9",
+          "outputHash": "0cd12b41f6704b61fddf37f89dd7dbfb675c16f2a27cc15207f982af94daf8cc",
+          "bytes": 29182,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.4296610271486575,
+            "scale": 162.80149427591124,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": -19.0839,
+            "centerLat": 64.55395,
+            "zoom": 6.838823227566995
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/iceland-ring-road/vertical-b272cb95e4f91009.webp",
+          "inputHash": "b272cb95e4f91009768255d9922afb2f9d2219400a2a69ab772e56e452fb8800",
+          "outputHash": "9c622cd30cec92342cd25d73eb1d651318bcd5788642d6e1c7409e2fa7715ceb",
+          "bytes": 36736,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.4296610271486575,
+            "scale": 183.15168106040014,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": -19.0839,
+            "centerLat": 64.55395,
+            "zoom": 7.008748229009307
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-iceland-ring-road",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "iceland-ring-road",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/iceland-ring-road/landscape-f96dcfd883cdd074.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Iceland Ring Road",
+          "de": "Geografische Routendarstellung: Island-Ringstraße",
+          "it": "Illustrazione geografica del percorso: Ring Road d'Islanda",
+          "es": "Ilustración geográfica de la ruta: Ring Road de Islandia",
+          "fr": "Illustration géographique du parcours : Route circulaire d'Islande",
+          "pt": "Ilustração geográfica da rota: Ring Road da Islândia"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/iceland-ring-road/portrait-c152c8a9db82750b.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/iceland-ring-road/vertical-b272cb95e4f91009.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/iceland-ring-road/landscape-f96dcfd883cdd074-600.webp 600w, ./assets/generated/routes/iceland-ring-road/landscape-f96dcfd883cdd074.webp 1200w"
+      }
+    },
+    {
+      "id": "peru-andes-journey",
+      "scope": "NATIONAL",
+      "bounds": {
+        "west": -77.04279999999994,
+        "east": -70.02190000000002,
+        "south": -15.8402,
+        "north": -12.0464,
+        "longitudeSpan": 7.020899999999926,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "PE"
+      ],
+      "regions": [
+        "south-america"
+      ],
+      "geometry": {
+        "lines": 4,
+        "detailed": 0,
+        "schematic": 4
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/peru-andes-journey/landscape-90e4b0180611f66c.webp",
+          "inputHash": "90e4b0180611f66cf606e9f6d548cda5610e7cdf92bbe9ef0caca4feca658c57",
+          "outputHash": "6860e279ee04624202f1a9c2442dc3ef931527d86cd8f36e395ebc0b87af0382",
+          "bytes": 50090,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.9705346574418167,
+            "scale": 124.54531077020404,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": -73.53234999999998,
+            "centerLat": -13.9433,
+            "zoom": 6.452379990092408
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/peru-andes-journey/landscape-90e4b0180611f66c-600.webp",
+            "width": 600,
+            "outputHash": "8660f32fafaa741fbbfb905491628a39e3eb3a2fd7fae7dfd0fd5d182fc382d9",
+            "bytes": 20672
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/peru-andes-journey/portrait-710696ff0bae85f9.webp",
+          "inputHash": "710696ff0bae85f93c00260e83633020b28e2d934cb00fe300e039b2492adaba",
+          "outputHash": "ffbabeef56e242fb40b3c27457457500c6eaabf2d453d77c5120c62eb7560188",
+          "bytes": 52202,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.9705346574418167,
+            "scale": 96.27200208088777,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": -73.53234999999998,
+            "centerLat": -13.9433,
+            "zoom": 6.080897484280823
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/peru-andes-journey/vertical-765d6890ff3c1ac3.webp",
+          "inputHash": "765d6890ff3c1ac3da810ad00bf8408532c7346103e7c057fd8cb3a75dfe9f75",
+          "outputHash": "924d5e2af6a40eb8385c0afc51ab4cd908f446de08ef7db0971b0f2b9531785d",
+          "bytes": 70310,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.9705346574418167,
+            "scale": 108.30600234099875,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": -73.53234999999998,
+            "centerLat": -13.9433,
+            "zoom": 6.250822485723135
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-peru-andes-journey",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "peru-andes-journey",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/peru-andes-journey/landscape-90e4b0180611f66c.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Peru Andes Journey",
+          "de": "Geografische Routendarstellung: Peru · Andenreise",
+          "it": "Illustrazione geografica del percorso: Perù · viaggio nelle Ande",
+          "es": "Ilustración geográfica de la ruta: Perú · viaje por los Andes",
+          "fr": "Illustration géographique du parcours : Pérou · voyage dans les Andes",
+          "pt": "Ilustração geográfica da rota: Peru · viagem pelos Andes"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/peru-andes-journey/portrait-710696ff0bae85f9.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/peru-andes-journey/vertical-765d6890ff3c1ac3.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/peru-andes-journey/landscape-90e4b0180611f66c-600.webp 600w, ./assets/generated/routes/peru-andes-journey/landscape-90e4b0180611f66c.webp 1200w"
+      }
+    },
+    {
+      "id": "jordan-heritage-desert-drive",
+      "scope": "REGIONAL",
+      "bounds": {
+        "west": 35.00630000000001,
+        "east": 35.91059999999999,
+        "south": 29.5321,
+        "north": 32.2747,
+        "longitudeSpan": 0.9042999999999779,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "JO"
+      ],
+      "regions": [
+        "asia"
+      ],
+      "geometry": {
+        "lines": 5,
+        "detailed": 0,
+        "schematic": 5
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/jordan-heritage-desert-drive/landscape-2a7093656a625390.webp",
+          "inputHash": "2a7093656a62539058d96a18dbc73864db0c88f6aa71d87c620e87deb24784d2",
+          "outputHash": "03447e3fa73ea1d52250921364f13f015d2296df41ab94be2f710f591f96e35c",
+          "bytes": 22114,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.8580344300615202,
+            "scale": 172.28177641653886,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": 35.45845,
+            "centerLat": 30.9034,
+            "zoom": 6.920479390662367
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/jordan-heritage-desert-drive/landscape-2a7093656a625390-600.webp",
+            "width": 600,
+            "outputHash": "8147e555c8d3e796b22fdacab2d499d8b2d90aafeb5e14aceceb4bd164275c24",
+            "bytes": 8620
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/jordan-heritage-desert-drive/portrait-d4fe12ce2d4ea0d4.webp",
+          "inputHash": "d4fe12ce2d4ea0d4ee4cf8910223eb11af8e975085004e812697daa1aa20ca92",
+          "outputHash": "2e79c60aa7b57a54b6c666586af104bee4131726da5398bc45d64e1b0854a74e",
+          "bytes": 22676,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.8580344300615202,
+            "scale": 218.77050973528745,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": 35.45845,
+            "centerLat": 30.9034,
+            "zoom": 7.265127562049813
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/jordan-heritage-desert-drive/vertical-5fb0c61d1811e19d.webp",
+          "inputHash": "5fb0c61d1811e19d007be01036866c706f1f5037b67f00722977b1868a6d2a8b",
+          "outputHash": "fc2d5fe1e17ab7fb6dddf70b3566f67edcb55aded058a55e8da13dbfc5c1a359",
+          "bytes": 36062,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.8580344300615202,
+            "scale": 256.69073142273726,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": 35.45845,
+            "centerLat": 30.9034,
+            "zoom": 7.495740490191229
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-jordan-heritage-desert-drive",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "jordan-heritage-desert-drive",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/jordan-heritage-desert-drive/landscape-2a7093656a625390.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Jordan Heritage & Desert Drive",
+          "de": "Geografische Routendarstellung: Jordanien · Kultur & Wüste",
+          "it": "Illustrazione geografica del percorso: Giordania · Cultura e deserto",
+          "es": "Ilustración geográfica de la ruta: Jordania · Cultura y desierto",
+          "fr": "Illustration géographique du parcours : Jordanie · Culture et désert",
+          "pt": "Ilustração geográfica da rota: Jordânia · Cultura e deserto"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/jordan-heritage-desert-drive/portrait-d4fe12ce2d4ea0d4.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/jordan-heritage-desert-drive/vertical-5fb0c61d1811e19d.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/jordan-heritage-desert-drive/landscape-2a7093656a625390-600.webp 600w, ./assets/generated/routes/jordan-heritage-desert-drive/landscape-2a7093656a625390.webp 1200w"
+      }
+    },
+    {
+      "id": "india-golden-triangle-rail",
+      "scope": "REGIONAL",
+      "bounds": {
+        "west": 75.78729999999996,
+        "east": 78.00809999999996,
+        "south": 26.9124,
+        "north": 28.6139,
+        "longitudeSpan": 2.220799999999997,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "IN"
+      ],
+      "regions": [
+        "asia"
+      ],
+      "geometry": {
+        "lines": 2,
+        "detailed": 0,
+        "schematic": 2
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/india-golden-triangle-rail/landscape-fb5f2cbc6afddb96.webp",
+          "inputHash": "fb5f2cbc6afddb9624d1cb007204aee20b441e42b3080929f4695eccaf29fe0a",
+          "outputHash": "3640d899c5c8811ae4175a2191e46a8ead28cb99ac75e61b6bf697178bb64d6d",
+          "bytes": 11674,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.8848807505960414,
+            "scale": 277.69615045548056,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": 76.89769999999996,
+            "centerLat": 27.763150000000003,
+            "zoom": 7.609216464135189
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/india-golden-triangle-rail/landscape-fb5f2cbc6afddb96-600.webp",
+            "width": 600,
+            "outputHash": "964d93e39aab9c106d8162d741cd8576068db4e80a9342ce662c4a67af131d44",
+            "bytes": 4264
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/india-golden-triangle-rail/portrait-0b7e4e46411fabcd.webp",
+          "inputHash": "0b7e4e46411fabcd6dadd8e6beaa0f382d13797200923e28f0ef94ffd628198b",
+          "outputHash": "327e0cd03eda382c4cf5cc78d3dcfd655cf95a17288b152b89e989ddc44fa28a",
+          "bytes": 12514,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.8848807505960414,
+            "scale": 333.81791703840946,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": 76.89769999999996,
+            "centerLat": 27.763150000000003,
+            "zoom": 7.874770676780811
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/india-golden-triangle-rail/vertical-884bcdd79780d7ab.webp",
+          "inputHash": "884bcdd79780d7ab9b11e711f0b50a62af9b92b4ad6bcace7253b0b50374c625",
+          "outputHash": "295cfe13a152a1608ad51f21a192d187dcdc7c478cb0c035e5f752ab07edb49b",
+          "bytes": 17286,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.8848807505960414,
+            "scale": 375.54515666821067,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": 76.89769999999996,
+            "centerLat": 27.763150000000003,
+            "zoom": 8.044695678223123
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-india-golden-triangle-rail",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "india-golden-triangle-rail",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/india-golden-triangle-rail/landscape-fb5f2cbc6afddb96.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: India Golden Triangle by Rail",
+          "de": "Geografische Routendarstellung: Indiens Goldenes Dreieck per Bahn",
+          "it": "Illustrazione geografica del percorso: Triangolo d'Oro dell'India in treno",
+          "es": "Ilustración geográfica de la ruta: Triángulo Dorado de India en tren",
+          "fr": "Illustration géographique du parcours : Triangle d'Or de l'Inde en train",
+          "pt": "Ilustração geográfica da rota: Triângulo Dourado da Índia de trem"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/india-golden-triangle-rail/portrait-0b7e4e46411fabcd.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/india-golden-triangle-rail/vertical-884bcdd79780d7ab.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/india-golden-triangle-rail/landscape-fb5f2cbc6afddb96-600.webp 600w, ./assets/generated/routes/india-golden-triangle-rail/landscape-fb5f2cbc6afddb96.webp 1200w"
+      }
+    },
+    {
+      "id": "utah-national-parks-road-trip",
+      "scope": "REGIONAL",
+      "bounds": {
+        "west": -113.02629999999999,
+        "east": -109.59249999999997,
+        "south": 37.2982,
+        "north": 38.7331,
+        "longitudeSpan": 3.4338000000000193,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "US"
+      ],
+      "regions": [
+        "north-america"
+      ],
+      "geometry": {
+        "lines": 4,
+        "detailed": 0,
+        "schematic": 4
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/utah-national-parks-road-trip/landscape-43e7968f063b3454.webp",
+          "inputHash": "43e7968f063b3454214a248ab706d18fc5fc50eea8836e55c5647281187c9cc2",
+          "outputHash": "df23024dc5f9824eec0248cc77b746971e8d969fd970aeaedcc2b74791cbccaf",
+          "bytes": 31316,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.7878425599577779,
+            "scale": 329.29123980765235,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": -111.30939999999998,
+            "centerLat": 38.01565,
+            "zoom": 7.8550734182800985
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/utah-national-parks-road-trip/landscape-43e7968f063b3454-600.webp",
+            "width": 600,
+            "outputHash": "5390d4460b99b4771e09be5bba5e4fd9b30c72126ac42ec5cfa452614bcd5ad5",
+            "bytes": 12490
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/utah-national-parks-road-trip/portrait-e0b5fb111ebce162.webp",
+          "inputHash": "e0b5fb111ebce162b86d53921826b8d93e9f414003af3d5cb2aa07ed35d4bdc3",
+          "outputHash": "dd1b9bc84d10f129ced93a3a7d13472624123dae23f64e40446a7e40025cb752",
+          "bytes": 33186,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.7878425599577779,
+            "scale": 242.48752733322155,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": -111.30939999999998,
+            "centerLat": 38.01565,
+            "zoom": 7.413619828384457
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/utah-national-parks-road-trip/vertical-dae14aaec98438ed.webp",
+          "inputHash": "dae14aaec98438ed8423b3976c74ebdad6c44ca09a158d4483815eef71c76817",
+          "outputHash": "6630b45d180d3429b359b9b90fdf669eeec984b70f88e8c7d3b7e8a133ffd7a7",
+          "bytes": 48612,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.7878425599577779,
+            "scale": 272.79846824987425,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": -111.30939999999998,
+            "centerLat": 38.01565,
+            "zoom": 7.583544829826769
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-utah-national-parks-road-trip",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "utah-national-parks-road-trip",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/utah-national-parks-road-trip/landscape-43e7968f063b3454.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Utah National Parks Road Trip",
+          "de": "Geografische Routendarstellung: Utahs Nationalparks · Roadtrip",
+          "it": "Illustrazione geografica del percorso: Road trip nei parchi nazionali dello Utah",
+          "es": "Ilustración geográfica de la ruta: Road trip por los parques nacionales de Utah",
+          "fr": "Illustration géographique du parcours : Road trip dans les parcs nationaux de l'Utah",
+          "pt": "Ilustração geográfica da rota: Road trip pelos parques nacionais de Utah"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/utah-national-parks-road-trip/portrait-e0b5fb111ebce162.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/utah-national-parks-road-trip/vertical-dae14aaec98438ed.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/utah-national-parks-road-trip/landscape-43e7968f063b3454-600.webp 600w, ./assets/generated/routes/utah-national-parks-road-trip/landscape-43e7968f063b3454.webp 1200w"
+      }
+    },
+    {
+      "id": "victoria-great-ocean-highlands-road-trip",
+      "scope": "REGIONAL",
+      "bounds": {
+        "west": 142.23699999999997,
+        "east": 144.9631,
+        "south": -38.856,
+        "north": -37.14,
+        "longitudeSpan": 2.726100000000031,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "AU"
+      ],
+      "regions": [
+        "oceania"
+      ],
+      "geometry": {
+        "lines": 7,
+        "detailed": 0,
+        "schematic": 7
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/landscape-69b0ef87c2026fa7.webp",
+          "inputHash": "69b0ef87c2026fa721686e0cf493d3e484a98273ec572d5ca7d6a13b53da66e1",
+          "outputHash": "fd731dccd87a0798fac706520b4d69e683ceb7bc87a73a915541fdc5be8102e5",
+          "bytes": 25126,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.7880322437662781,
+            "scale": 275.3496503496502,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": 143.60004999999998,
+            "centerLat": -37.998000000000005,
+            "zoom": 7.59697406260065
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/landscape-69b0ef87c2026fa7-600.webp",
+            "width": 600,
+            "outputHash": "d2cdb1b8af98b0868a99993f737f9e2102644b9b80e35e404956ce6ee50b10fb",
+            "bytes": 9458
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/portrait-28808ac31cfad801.webp",
+          "inputHash": "28808ac31cfad801785e40b1e423725b6e82c409c956593e415404b87bdd4dfd",
+          "outputHash": "7a8faa71c297b7b8ec00056a80fa96762a5f03c0321fcd124d8cc1b9b899493f",
+          "bytes": 21946,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.7880322437662781,
+            "scale": 305.3641637940133,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": 143.60004999999998,
+            "centerLat": -37.998000000000005,
+            "zoom": 7.7462400497773825
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/vertical-03fe301352f7a6f1.webp",
+          "inputHash": "03fe301352f7a6f1e5a456002b1df32005e9099acfbb52e8a6138d14d43e3cf5",
+          "outputHash": "128d0d28da46986207433b4b7b5b2ce7ad2dfdb465fed4c62e9e6c7f1eb496cb",
+          "bytes": 27776,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.7880322437662781,
+            "scale": 343.534684268265,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": 143.60004999999998,
+            "centerLat": -37.998000000000005,
+            "zoom": 7.9161650512196955
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-victoria-great-ocean-highlands-road-trip",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "victoria-great-ocean-highlands-road-trip",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/landscape-69b0ef87c2026fa7.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Victoria Great Ocean & Highlands Road Trip",
+          "de": "Geografische Routendarstellung: Victoria · Great Ocean & Highlands Roadtrip",
+          "it": "Illustrazione geografica del percorso: Victoria · Great Ocean e Highlands on the road",
+          "es": "Ilustración geográfica de la ruta: Victoria · Great Ocean y Highlands en ruta",
+          "fr": "Illustration géographique du parcours : Victoria · Great Ocean et Highlands en road trip",
+          "pt": "Ilustração geográfica da rota: Victoria · Great Ocean e Highlands de carro"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/portrait-28808ac31cfad801.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/vertical-03fe301352f7a6f1.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/landscape-69b0ef87c2026fa7-600.webp 600w, ./assets/generated/routes/victoria-great-ocean-highlands-road-trip/landscape-69b0ef87c2026fa7.webp 1200w"
+      }
+    }
+  ]
+}

@@ -1,252 +1,2677 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "updatedAt": "2026-09-30",
   "summary": {
     "journeys": 21,
-    "artDirected": 12,
-    "licensedLocal": 0,
-    "missing": 9
+    "artDirected": 0,
+    "licensedLocal": 21,
+    "missing": 0
   },
+  "destinationAssets": [],
   "journeys": [
     {
       "id": "canadian-rockies-rail-road",
       "slug": "canadian-rockies-rail-road",
-      "status": "art-directed",
+      "status": "licensed-local",
+      "countries": [
+        "CA"
+      ],
+      "visualAnchor": null,
       "hero": {
-        "type": "art-directed",
-        "theme": "rockies",
-        "asset": null,
-        "attribution": null,
-        "license": "original-ui-art"
+        "assetId": "auto-route-canadian-rockies-rail-road",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "canadian-rockies-rail-road",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/canadian-rockies-rail-road/landscape-c247989b0f6deb56.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Canadian Rockies Rail & Road",
+          "de": "Geografische Routendarstellung: Kanadische Rockies · Bahn & Straße",
+          "it": "Illustrazione geografica del percorso: Rockies canadesi · treno e strada",
+          "es": "Ilustración geográfica de la ruta: Rocosas canadienses · tren y carretera",
+          "fr": "Illustration géographique du parcours : Rocheuses canadiennes · train et route",
+          "pt": "Ilustração geográfica da rota: Rochosas canadenses · trem e estrada"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/canadian-rockies-rail-road/portrait-113fdfe762dfd951.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/canadian-rockies-rail-road/vertical-6b0fd2f0b74fc66b.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/canadian-rockies-rail-road/landscape-c247989b0f6deb56-600.webp 600w, ./assets/generated/routes/canadian-rockies-rail-road/landscape-c247989b0f6deb56.webp 1200w"
       },
+      "journeyCover": null,
+      "autoRouteVisual": {
+        "assetId": "auto-route-canadian-rockies-rail-road",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "canadian-rockies-rail-road",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/canadian-rockies-rail-road/landscape-c247989b0f6deb56.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Canadian Rockies Rail & Road",
+          "de": "Geografische Routendarstellung: Kanadische Rockies · Bahn & Straße",
+          "it": "Illustrazione geografica del percorso: Rockies canadesi · treno e strada",
+          "es": "Ilustración geográfica de la ruta: Rocosas canadienses · tren y carretera",
+          "fr": "Illustration géographique du parcours : Rocheuses canadiennes · train et route",
+          "pt": "Ilustração geográfica da rota: Rochosas canadenses · trem e estrada"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/canadian-rockies-rail-road/portrait-113fdfe762dfd951.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/canadian-rockies-rail-road/vertical-6b0fd2f0b74fc66b.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/canadian-rockies-rail-road/landscape-c247989b0f6deb56-600.webp 600w, ./assets/generated/routes/canadian-rockies-rail-road/landscape-c247989b0f6deb56.webp 1200w"
+      },
+      "coverageLevel": "AUTO",
+      "resolvedKind": "auto",
+      "destinationAssetId": null,
       "galleryCount": 0,
-      "licensedImageCount": 0
+      "licensedImageCount": 1
     },
     {
       "id": "central-europe-rail-journey",
       "slug": "central-europe-rail-journey",
-      "status": "missing",
-      "hero": null,
+      "status": "licensed-local",
+      "countries": [
+        "FR",
+        "BE",
+        "NL",
+        "DE",
+        "AT",
+        "HU",
+        "CZ"
+      ],
+      "visualAnchor": null,
+      "hero": {
+        "assetId": "auto-route-central-europe-rail-journey",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "central-europe-rail-journey",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/central-europe-rail-journey/landscape-d84dec3f9f5df42d.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Central Europe Rail Journey",
+          "de": "Geografische Routendarstellung: Mitteleuropa mit der Bahn",
+          "it": "Illustrazione geografica del percorso: Viaggio ferroviario nell'Europa centrale",
+          "es": "Ilustración geográfica de la ruta: Viaje ferroviario por Europa Central",
+          "fr": "Illustration géographique du parcours : Voyage ferroviaire en Europe centrale",
+          "pt": "Ilustração geográfica da rota: Viagem ferroviária pela Europa Central"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "MULTI-COUNTRY",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/central-europe-rail-journey/portrait-fcc83bf5c7b8917a.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/central-europe-rail-journey/vertical-fddbc344e8d56427.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/central-europe-rail-journey/landscape-d84dec3f9f5df42d-600.webp 600w, ./assets/generated/routes/central-europe-rail-journey/landscape-d84dec3f9f5df42d.webp 1200w"
+      },
+      "journeyCover": null,
+      "autoRouteVisual": {
+        "assetId": "auto-route-central-europe-rail-journey",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "central-europe-rail-journey",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/central-europe-rail-journey/landscape-d84dec3f9f5df42d.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Central Europe Rail Journey",
+          "de": "Geografische Routendarstellung: Mitteleuropa mit der Bahn",
+          "it": "Illustrazione geografica del percorso: Viaggio ferroviario nell'Europa centrale",
+          "es": "Ilustración geográfica de la ruta: Viaje ferroviario por Europa Central",
+          "fr": "Illustration géographique du parcours : Voyage ferroviaire en Europe centrale",
+          "pt": "Ilustração geográfica da rota: Viagem ferroviária pela Europa Central"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "MULTI-COUNTRY",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/central-europe-rail-journey/portrait-fcc83bf5c7b8917a.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/central-europe-rail-journey/vertical-fddbc344e8d56427.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/central-europe-rail-journey/landscape-d84dec3f9f5df42d-600.webp 600w, ./assets/generated/routes/central-europe-rail-journey/landscape-d84dec3f9f5df42d.webp 1200w"
+      },
+      "coverageLevel": "AUTO",
+      "resolvedKind": "auto",
+      "destinationAssetId": null,
       "galleryCount": 0,
-      "licensedImageCount": 0
+      "licensedImageCount": 1
     },
     {
       "id": "costa-rica-nature-loop",
       "slug": "costa-rica-nature-loop",
-      "status": "art-directed",
+      "status": "licensed-local",
+      "countries": [
+        "CR"
+      ],
+      "visualAnchor": null,
       "hero": {
-        "type": "art-directed",
-        "theme": "rainforest",
-        "asset": null,
-        "attribution": null,
-        "license": "original-ui-art"
+        "assetId": "auto-route-costa-rica-nature-loop",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "costa-rica-nature-loop",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/costa-rica-nature-loop/landscape-3d765bb377b4acdf.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Costa Rica Nature Loop",
+          "de": "Geografische Routendarstellung: Costa Rica · Natur-Rundreise",
+          "it": "Illustrazione geografica del percorso: Costa Rica · circuito natura",
+          "es": "Ilustración geográfica de la ruta: Costa Rica · circuito de naturaleza",
+          "fr": "Illustration géographique du parcours : Costa Rica · boucle nature",
+          "pt": "Ilustração geográfica da rota: Costa Rica · circuito de natureza"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/costa-rica-nature-loop/portrait-ae61d04f2c030ae7.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/costa-rica-nature-loop/vertical-1a10f494b68fe101.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/costa-rica-nature-loop/landscape-3d765bb377b4acdf-600.webp 600w, ./assets/generated/routes/costa-rica-nature-loop/landscape-3d765bb377b4acdf.webp 1200w"
       },
+      "journeyCover": null,
+      "autoRouteVisual": {
+        "assetId": "auto-route-costa-rica-nature-loop",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "costa-rica-nature-loop",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/costa-rica-nature-loop/landscape-3d765bb377b4acdf.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Costa Rica Nature Loop",
+          "de": "Geografische Routendarstellung: Costa Rica · Natur-Rundreise",
+          "it": "Illustrazione geografica del percorso: Costa Rica · circuito natura",
+          "es": "Ilustración geográfica de la ruta: Costa Rica · circuito de naturaleza",
+          "fr": "Illustration géographique du parcours : Costa Rica · boucle nature",
+          "pt": "Ilustração geográfica da rota: Costa Rica · circuito de natureza"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/costa-rica-nature-loop/portrait-ae61d04f2c030ae7.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/costa-rica-nature-loop/vertical-1a10f494b68fe101.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/costa-rica-nature-loop/landscape-3d765bb377b4acdf-600.webp 600w, ./assets/generated/routes/costa-rica-nature-loop/landscape-3d765bb377b4acdf.webp 1200w"
+      },
+      "coverageLevel": "AUTO",
+      "resolvedKind": "auto",
+      "destinationAssetId": null,
       "galleryCount": 0,
-      "licensedImageCount": 0
+      "licensedImageCount": 1
     },
     {
       "id": "greek-island-hopping",
       "slug": "greek-island-hopping",
-      "status": "art-directed",
+      "status": "licensed-local",
+      "countries": [
+        "GR"
+      ],
+      "visualAnchor": null,
       "hero": {
-        "type": "art-directed",
-        "theme": "aegean",
-        "asset": null,
-        "attribution": null,
-        "license": "original-ui-art"
+        "assetId": "auto-route-greek-island-hopping",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "greek-island-hopping",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/greek-island-hopping/landscape-6e9c8e7de09bb937.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Greek Island Hopping",
+          "de": "Geografische Routendarstellung: Griechisches Inselhopping",
+          "it": "Illustrazione geografica del percorso: Island hopping in Grecia",
+          "es": "Ilustración geográfica de la ruta: Island hopping por Grecia",
+          "fr": "Illustration géographique du parcours : D'île en île en Grèce",
+          "pt": "Ilustração geográfica da rota: Island hopping na Grécia"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/greek-island-hopping/portrait-2a9aecc6816a08a9.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/greek-island-hopping/vertical-07ce6a1b18492680.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/greek-island-hopping/landscape-6e9c8e7de09bb937-600.webp 600w, ./assets/generated/routes/greek-island-hopping/landscape-6e9c8e7de09bb937.webp 1200w"
       },
+      "journeyCover": null,
+      "autoRouteVisual": {
+        "assetId": "auto-route-greek-island-hopping",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "greek-island-hopping",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/greek-island-hopping/landscape-6e9c8e7de09bb937.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Greek Island Hopping",
+          "de": "Geografische Routendarstellung: Griechisches Inselhopping",
+          "it": "Illustrazione geografica del percorso: Island hopping in Grecia",
+          "es": "Ilustración geográfica de la ruta: Island hopping por Grecia",
+          "fr": "Illustration géographique du parcours : D'île en île en Grèce",
+          "pt": "Ilustração geográfica da rota: Island hopping na Grécia"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/greek-island-hopping/portrait-2a9aecc6816a08a9.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/greek-island-hopping/vertical-07ce6a1b18492680.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/greek-island-hopping/landscape-6e9c8e7de09bb937-600.webp 600w, ./assets/generated/routes/greek-island-hopping/landscape-6e9c8e7de09bb937.webp 1200w"
+      },
+      "coverageLevel": "AUTO",
+      "resolvedKind": "auto",
+      "destinationAssetId": null,
       "galleryCount": 0,
-      "licensedImageCount": 0
+      "licensedImageCount": 1
     },
     {
       "id": "iceland-ring-road",
       "slug": "iceland-ring-road",
-      "status": "art-directed",
+      "status": "licensed-local",
+      "countries": [
+        "IS"
+      ],
+      "visualAnchor": null,
       "hero": {
-        "type": "art-directed",
-        "theme": "volcanic",
-        "asset": null,
-        "attribution": null,
-        "license": "original-ui-art"
+        "assetId": "auto-route-iceland-ring-road",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "iceland-ring-road",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/iceland-ring-road/landscape-f96dcfd883cdd074.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Iceland Ring Road",
+          "de": "Geografische Routendarstellung: Island-Ringstraße",
+          "it": "Illustrazione geografica del percorso: Ring Road d'Islanda",
+          "es": "Ilustración geográfica de la ruta: Ring Road de Islandia",
+          "fr": "Illustration géographique du parcours : Route circulaire d'Islande",
+          "pt": "Ilustração geográfica da rota: Ring Road da Islândia"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/iceland-ring-road/portrait-c152c8a9db82750b.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/iceland-ring-road/vertical-b272cb95e4f91009.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/iceland-ring-road/landscape-f96dcfd883cdd074-600.webp 600w, ./assets/generated/routes/iceland-ring-road/landscape-f96dcfd883cdd074.webp 1200w"
       },
+      "journeyCover": null,
+      "autoRouteVisual": {
+        "assetId": "auto-route-iceland-ring-road",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "iceland-ring-road",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/iceland-ring-road/landscape-f96dcfd883cdd074.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Iceland Ring Road",
+          "de": "Geografische Routendarstellung: Island-Ringstraße",
+          "it": "Illustrazione geografica del percorso: Ring Road d'Islanda",
+          "es": "Ilustración geográfica de la ruta: Ring Road de Islandia",
+          "fr": "Illustration géographique du parcours : Route circulaire d'Islande",
+          "pt": "Ilustração geográfica da rota: Ring Road da Islândia"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/iceland-ring-road/portrait-c152c8a9db82750b.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/iceland-ring-road/vertical-b272cb95e4f91009.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/iceland-ring-road/landscape-f96dcfd883cdd074-600.webp 600w, ./assets/generated/routes/iceland-ring-road/landscape-f96dcfd883cdd074.webp 1200w"
+      },
+      "coverageLevel": "AUTO",
+      "resolvedKind": "auto",
+      "destinationAssetId": null,
       "galleryCount": 0,
-      "licensedImageCount": 0
+      "licensedImageCount": 1
     },
     {
       "id": "india-golden-triangle-rail",
       "slug": "india-golden-triangle-rail",
-      "status": "missing",
-      "hero": null,
+      "status": "licensed-local",
+      "countries": [
+        "IN"
+      ],
+      "visualAnchor": null,
+      "hero": {
+        "assetId": "auto-route-india-golden-triangle-rail",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "india-golden-triangle-rail",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/india-golden-triangle-rail/landscape-fb5f2cbc6afddb96.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: India Golden Triangle by Rail",
+          "de": "Geografische Routendarstellung: Indiens Goldenes Dreieck per Bahn",
+          "it": "Illustrazione geografica del percorso: Triangolo d'Oro dell'India in treno",
+          "es": "Ilustración geográfica de la ruta: Triángulo Dorado de India en tren",
+          "fr": "Illustration géographique du parcours : Triangle d'Or de l'Inde en train",
+          "pt": "Ilustração geográfica da rota: Triângulo Dourado da Índia de trem"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/india-golden-triangle-rail/portrait-0b7e4e46411fabcd.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/india-golden-triangle-rail/vertical-884bcdd79780d7ab.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/india-golden-triangle-rail/landscape-fb5f2cbc6afddb96-600.webp 600w, ./assets/generated/routes/india-golden-triangle-rail/landscape-fb5f2cbc6afddb96.webp 1200w"
+      },
+      "journeyCover": null,
+      "autoRouteVisual": {
+        "assetId": "auto-route-india-golden-triangle-rail",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "india-golden-triangle-rail",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/india-golden-triangle-rail/landscape-fb5f2cbc6afddb96.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: India Golden Triangle by Rail",
+          "de": "Geografische Routendarstellung: Indiens Goldenes Dreieck per Bahn",
+          "it": "Illustrazione geografica del percorso: Triangolo d'Oro dell'India in treno",
+          "es": "Ilustración geográfica de la ruta: Triángulo Dorado de India en tren",
+          "fr": "Illustration géographique du parcours : Triangle d'Or de l'Inde en train",
+          "pt": "Ilustração geográfica da rota: Triângulo Dourado da Índia de trem"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/india-golden-triangle-rail/portrait-0b7e4e46411fabcd.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/india-golden-triangle-rail/vertical-884bcdd79780d7ab.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/india-golden-triangle-rail/landscape-fb5f2cbc6afddb96-600.webp 600w, ./assets/generated/routes/india-golden-triangle-rail/landscape-fb5f2cbc6afddb96.webp 1200w"
+      },
+      "coverageLevel": "AUTO",
+      "resolvedKind": "auto",
+      "destinationAssetId": null,
       "galleryCount": 0,
-      "licensedImageCount": 0
+      "licensedImageCount": 1
     },
     {
       "id": "italy-grand-tour",
       "slug": "italy-grand-tour",
-      "status": "missing",
-      "hero": null,
+      "status": "licensed-local",
+      "countries": [
+        "IT"
+      ],
+      "visualAnchor": null,
+      "hero": {
+        "assetId": "auto-route-italy-grand-tour",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "italy-grand-tour",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/italy-grand-tour/landscape-32ee71da059b3063.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Italy Grand Tour",
+          "de": "Geografische Routendarstellung: Große Italien-Rundreise",
+          "it": "Illustrazione geografica del percorso: Gran Tour d'Italia",
+          "es": "Ilustración geográfica de la ruta: Gran ruta por Italia",
+          "fr": "Illustration géographique du parcours : Grand tour d'Italie",
+          "pt": "Ilustração geográfica da rota: Grande volta pela Itália"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/italy-grand-tour/portrait-1694c0062029dddd.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/italy-grand-tour/vertical-23ccce07d81150c0.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/italy-grand-tour/landscape-32ee71da059b3063-600.webp 600w, ./assets/generated/routes/italy-grand-tour/landscape-32ee71da059b3063.webp 1200w"
+      },
+      "journeyCover": null,
+      "autoRouteVisual": {
+        "assetId": "auto-route-italy-grand-tour",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "italy-grand-tour",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/italy-grand-tour/landscape-32ee71da059b3063.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Italy Grand Tour",
+          "de": "Geografische Routendarstellung: Große Italien-Rundreise",
+          "it": "Illustrazione geografica del percorso: Gran Tour d'Italia",
+          "es": "Ilustración geográfica de la ruta: Gran ruta por Italia",
+          "fr": "Illustration géographique du parcours : Grand tour d'Italie",
+          "pt": "Ilustração geográfica da rota: Grande volta pela Itália"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/italy-grand-tour/portrait-1694c0062029dddd.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/italy-grand-tour/vertical-23ccce07d81150c0.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/italy-grand-tour/landscape-32ee71da059b3063-600.webp 600w, ./assets/generated/routes/italy-grand-tour/landscape-32ee71da059b3063.webp 1200w"
+      },
+      "coverageLevel": "AUTO",
+      "resolvedKind": "auto",
+      "destinationAssetId": null,
       "galleryCount": 0,
-      "licensedImageCount": 0
+      "licensedImageCount": 1
     },
     {
       "id": "japan-by-rail",
       "slug": "japan-by-rail",
-      "status": "art-directed",
+      "status": "licensed-local",
+      "countries": [
+        "JP"
+      ],
+      "visualAnchor": null,
       "hero": {
-        "type": "art-directed",
-        "theme": "sakura",
-        "asset": null,
-        "attribution": null,
-        "license": "original-ui-art"
+        "assetId": "auto-route-japan-by-rail",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "japan-by-rail",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/japan-by-rail/landscape-e278c94e08a5cbda.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Japan by Rail",
+          "de": "Geografische Routendarstellung: Japan mit der Bahn",
+          "it": "Illustrazione geografica del percorso: Giappone in treno",
+          "es": "Ilustración geográfica de la ruta: Japón en tren",
+          "fr": "Illustration géographique du parcours : Japon en train",
+          "pt": "Ilustração geográfica da rota: Japão de trem"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/japan-by-rail/portrait-fa443d4c9336f334.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/japan-by-rail/vertical-4c5eb937ba5df2ab.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/japan-by-rail/landscape-e278c94e08a5cbda-600.webp 600w, ./assets/generated/routes/japan-by-rail/landscape-e278c94e08a5cbda.webp 1200w"
       },
+      "journeyCover": null,
+      "autoRouteVisual": {
+        "assetId": "auto-route-japan-by-rail",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "japan-by-rail",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/japan-by-rail/landscape-e278c94e08a5cbda.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Japan by Rail",
+          "de": "Geografische Routendarstellung: Japan mit der Bahn",
+          "it": "Illustrazione geografica del percorso: Giappone in treno",
+          "es": "Ilustración geográfica de la ruta: Japón en tren",
+          "fr": "Illustration géographique du parcours : Japon en train",
+          "pt": "Ilustração geográfica da rota: Japão de trem"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/japan-by-rail/portrait-fa443d4c9336f334.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/japan-by-rail/vertical-4c5eb937ba5df2ab.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/japan-by-rail/landscape-e278c94e08a5cbda-600.webp 600w, ./assets/generated/routes/japan-by-rail/landscape-e278c94e08a5cbda.webp 1200w"
+      },
+      "coverageLevel": "AUTO",
+      "resolvedKind": "auto",
+      "destinationAssetId": null,
       "galleryCount": 0,
-      "licensedImageCount": 0
+      "licensedImageCount": 1
     },
     {
       "id": "jordan-heritage-desert-drive",
       "slug": "jordan-heritage-desert-drive",
-      "status": "missing",
-      "hero": null,
+      "status": "licensed-local",
+      "countries": [
+        "JO"
+      ],
+      "visualAnchor": null,
+      "hero": {
+        "assetId": "auto-route-jordan-heritage-desert-drive",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "jordan-heritage-desert-drive",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/jordan-heritage-desert-drive/landscape-2a7093656a625390.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Jordan Heritage & Desert Drive",
+          "de": "Geografische Routendarstellung: Jordanien · Kultur & Wüste",
+          "it": "Illustrazione geografica del percorso: Giordania · Cultura e deserto",
+          "es": "Ilustración geográfica de la ruta: Jordania · Cultura y desierto",
+          "fr": "Illustration géographique du parcours : Jordanie · Culture et désert",
+          "pt": "Ilustração geográfica da rota: Jordânia · Cultura e deserto"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/jordan-heritage-desert-drive/portrait-d4fe12ce2d4ea0d4.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/jordan-heritage-desert-drive/vertical-5fb0c61d1811e19d.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/jordan-heritage-desert-drive/landscape-2a7093656a625390-600.webp 600w, ./assets/generated/routes/jordan-heritage-desert-drive/landscape-2a7093656a625390.webp 1200w"
+      },
+      "journeyCover": null,
+      "autoRouteVisual": {
+        "assetId": "auto-route-jordan-heritage-desert-drive",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "jordan-heritage-desert-drive",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/jordan-heritage-desert-drive/landscape-2a7093656a625390.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Jordan Heritage & Desert Drive",
+          "de": "Geografische Routendarstellung: Jordanien · Kultur & Wüste",
+          "it": "Illustrazione geografica del percorso: Giordania · Cultura e deserto",
+          "es": "Ilustración geográfica de la ruta: Jordania · Cultura y desierto",
+          "fr": "Illustration géographique du parcours : Jordanie · Culture et désert",
+          "pt": "Ilustração geográfica da rota: Jordânia · Cultura e deserto"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/jordan-heritage-desert-drive/portrait-d4fe12ce2d4ea0d4.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/jordan-heritage-desert-drive/vertical-5fb0c61d1811e19d.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/jordan-heritage-desert-drive/landscape-2a7093656a625390-600.webp 600w, ./assets/generated/routes/jordan-heritage-desert-drive/landscape-2a7093656a625390.webp 1200w"
+      },
+      "coverageLevel": "AUTO",
+      "resolvedKind": "auto",
+      "destinationAssetId": null,
       "galleryCount": 0,
-      "licensedImageCount": 0
+      "licensedImageCount": 1
     },
     {
       "id": "morocco-atlas-desert",
       "slug": "morocco-atlas-desert",
-      "status": "art-directed",
+      "status": "licensed-local",
+      "countries": [
+        "MA"
+      ],
+      "visualAnchor": null,
       "hero": {
-        "type": "art-directed",
-        "theme": "desert",
-        "asset": null,
-        "attribution": null,
-        "license": "original-ui-art"
+        "assetId": "auto-route-morocco-atlas-desert",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "morocco-atlas-desert",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/morocco-atlas-desert/landscape-7226806f1835d718.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Morocco Atlas & Desert",
+          "de": "Geografische Routendarstellung: Marokko · Atlas & Wüste",
+          "it": "Illustrazione geografica del percorso: Marocco · Atlante e deserto",
+          "es": "Ilustración geográfica de la ruta: Marruecos · Atlas y desierto",
+          "fr": "Illustration géographique du parcours : Maroc · Atlas et désert",
+          "pt": "Ilustração geográfica da rota: Marrocos · Atlas e deserto"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/morocco-atlas-desert/portrait-cbb60c9ea3abd9ac.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/morocco-atlas-desert/vertical-cae0d4b37f602bc4.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/morocco-atlas-desert/landscape-7226806f1835d718-600.webp 600w, ./assets/generated/routes/morocco-atlas-desert/landscape-7226806f1835d718.webp 1200w"
       },
+      "journeyCover": null,
+      "autoRouteVisual": {
+        "assetId": "auto-route-morocco-atlas-desert",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "morocco-atlas-desert",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/morocco-atlas-desert/landscape-7226806f1835d718.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Morocco Atlas & Desert",
+          "de": "Geografische Routendarstellung: Marokko · Atlas & Wüste",
+          "it": "Illustrazione geografica del percorso: Marocco · Atlante e deserto",
+          "es": "Ilustración geográfica de la ruta: Marruecos · Atlas y desierto",
+          "fr": "Illustration géographique du parcours : Maroc · Atlas et désert",
+          "pt": "Ilustração geográfica da rota: Marrocos · Atlas e deserto"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/morocco-atlas-desert/portrait-cbb60c9ea3abd9ac.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/morocco-atlas-desert/vertical-cae0d4b37f602bc4.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/morocco-atlas-desert/landscape-7226806f1835d718-600.webp 600w, ./assets/generated/routes/morocco-atlas-desert/landscape-7226806f1835d718.webp 1200w"
+      },
+      "coverageLevel": "AUTO",
+      "resolvedKind": "auto",
+      "destinationAssetId": null,
       "galleryCount": 0,
-      "licensedImageCount": 0
+      "licensedImageCount": 1
     },
     {
       "id": "new-zealand-camper-loop",
       "slug": "new-zealand-camper-loop",
-      "status": "art-directed",
+      "status": "licensed-local",
+      "countries": [
+        "NZ"
+      ],
+      "visualAnchor": null,
       "hero": {
-        "type": "art-directed",
-        "theme": "fern",
-        "asset": null,
-        "attribution": null,
-        "license": "original-ui-art"
+        "assetId": "auto-route-new-zealand-camper-loop",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "new-zealand-camper-loop",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/new-zealand-camper-loop/landscape-436ebc2304a7806f.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: New Zealand Camper Loop",
+          "de": "Geografische Routendarstellung: Neuseeland-Camper-Loop",
+          "it": "Illustrazione geografica del percorso: Nuova Zelanda in camper",
+          "es": "Ilustración geográfica de la ruta: Nueva Zelanda en camper",
+          "fr": "Illustration géographique du parcours : Nouvelle-Zélande en camper",
+          "pt": "Ilustração geográfica da rota: Nova Zelândia de camper"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/new-zealand-camper-loop/portrait-1bfd561caa74d299.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/new-zealand-camper-loop/vertical-72cf7a67f0266c6e.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/new-zealand-camper-loop/landscape-436ebc2304a7806f-600.webp 600w, ./assets/generated/routes/new-zealand-camper-loop/landscape-436ebc2304a7806f.webp 1200w"
       },
+      "journeyCover": null,
+      "autoRouteVisual": {
+        "assetId": "auto-route-new-zealand-camper-loop",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "new-zealand-camper-loop",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/new-zealand-camper-loop/landscape-436ebc2304a7806f.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: New Zealand Camper Loop",
+          "de": "Geografische Routendarstellung: Neuseeland-Camper-Loop",
+          "it": "Illustrazione geografica del percorso: Nuova Zelanda in camper",
+          "es": "Ilustración geográfica de la ruta: Nueva Zelanda en camper",
+          "fr": "Illustration géographique du parcours : Nouvelle-Zélande en camper",
+          "pt": "Ilustração geográfica da rota: Nova Zelândia de camper"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/new-zealand-camper-loop/portrait-1bfd561caa74d299.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/new-zealand-camper-loop/vertical-72cf7a67f0266c6e.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/new-zealand-camper-loop/landscape-436ebc2304a7806f-600.webp 600w, ./assets/generated/routes/new-zealand-camper-loop/landscape-436ebc2304a7806f.webp 1200w"
+      },
+      "coverageLevel": "AUTO",
+      "resolvedKind": "auto",
+      "destinationAssetId": null,
       "galleryCount": 0,
-      "licensedImageCount": 0
+      "licensedImageCount": 1
     },
     {
       "id": "norway-arctic-road-trip",
       "slug": "norway-arctic-road-trip",
-      "status": "art-directed",
+      "status": "licensed-local",
+      "countries": [
+        "NO"
+      ],
+      "visualAnchor": null,
       "hero": {
-        "type": "art-directed",
-        "theme": "aurora",
-        "asset": null,
-        "attribution": null,
-        "license": "original-ui-art"
+        "assetId": "auto-route-norway-arctic-road-trip",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "norway-arctic-road-trip",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/norway-arctic-road-trip/landscape-2ee3fb47b16764ee.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Norway Arctic Road Trip",
+          "de": "Geografische Routendarstellung: Norwegens Arktis-Roadtrip",
+          "it": "Illustrazione geografica del percorso: Road trip artico in Norvegia",
+          "es": "Ilustración geográfica de la ruta: Road trip ártico por Noruega",
+          "fr": "Illustration géographique du parcours : Road trip arctique en Norvège",
+          "pt": "Ilustração geográfica da rota: Road trip ártico na Noruega"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/norway-arctic-road-trip/portrait-9ca1d25f9c9f46bd.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/norway-arctic-road-trip/vertical-1b0713ff6430add7.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/norway-arctic-road-trip/landscape-2ee3fb47b16764ee-600.webp 600w, ./assets/generated/routes/norway-arctic-road-trip/landscape-2ee3fb47b16764ee.webp 1200w"
       },
+      "journeyCover": null,
+      "autoRouteVisual": {
+        "assetId": "auto-route-norway-arctic-road-trip",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "norway-arctic-road-trip",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/norway-arctic-road-trip/landscape-2ee3fb47b16764ee.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Norway Arctic Road Trip",
+          "de": "Geografische Routendarstellung: Norwegens Arktis-Roadtrip",
+          "it": "Illustrazione geografica del percorso: Road trip artico in Norvegia",
+          "es": "Ilustración geográfica de la ruta: Road trip ártico por Noruega",
+          "fr": "Illustration géographique du parcours : Road trip arctique en Norvège",
+          "pt": "Ilustração geográfica da rota: Road trip ártico na Noruega"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/norway-arctic-road-trip/portrait-9ca1d25f9c9f46bd.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/norway-arctic-road-trip/vertical-1b0713ff6430add7.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/norway-arctic-road-trip/landscape-2ee3fb47b16764ee-600.webp 600w, ./assets/generated/routes/norway-arctic-road-trip/landscape-2ee3fb47b16764ee.webp 1200w"
+      },
+      "coverageLevel": "AUTO",
+      "resolvedKind": "auto",
+      "destinationAssetId": null,
       "galleryCount": 0,
-      "licensedImageCount": 0
+      "licensedImageCount": 1
     },
     {
       "id": "patagonia-road-trip",
       "slug": "patagonia-road-trip",
-      "status": "art-directed",
+      "status": "licensed-local",
+      "countries": [
+        "AR",
+        "CL"
+      ],
+      "visualAnchor": null,
       "hero": {
-        "type": "art-directed",
-        "theme": "glacier",
-        "asset": null,
-        "attribution": null,
-        "license": "original-ui-art"
+        "assetId": "auto-route-patagonia-road-trip",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "patagonia-road-trip",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/patagonia-road-trip/landscape-1c7be855661b40d7.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Patagonia Road Trip",
+          "de": "Geografische Routendarstellung: Patagonien-Roadtrip",
+          "it": "Illustrazione geografica del percorso: Road trip in Patagonia",
+          "es": "Ilustración geográfica de la ruta: Road trip por la Patagonia",
+          "fr": "Illustration géographique du parcours : Road trip en Patagonie",
+          "pt": "Ilustração geográfica da rota: Road trip pela Patagônia"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/patagonia-road-trip/portrait-dd261d28356d8048.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/patagonia-road-trip/vertical-041532e9645d50b7.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/patagonia-road-trip/landscape-1c7be855661b40d7-600.webp 600w, ./assets/generated/routes/patagonia-road-trip/landscape-1c7be855661b40d7.webp 1200w"
       },
+      "journeyCover": null,
+      "autoRouteVisual": {
+        "assetId": "auto-route-patagonia-road-trip",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "patagonia-road-trip",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/patagonia-road-trip/landscape-1c7be855661b40d7.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Patagonia Road Trip",
+          "de": "Geografische Routendarstellung: Patagonien-Roadtrip",
+          "it": "Illustrazione geografica del percorso: Road trip in Patagonia",
+          "es": "Ilustración geográfica de la ruta: Road trip por la Patagonia",
+          "fr": "Illustration géographique du parcours : Road trip en Patagonie",
+          "pt": "Ilustração geográfica da rota: Road trip pela Patagônia"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/patagonia-road-trip/portrait-dd261d28356d8048.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/patagonia-road-trip/vertical-041532e9645d50b7.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/patagonia-road-trip/landscape-1c7be855661b40d7-600.webp 600w, ./assets/generated/routes/patagonia-road-trip/landscape-1c7be855661b40d7.webp 1200w"
+      },
+      "coverageLevel": "AUTO",
+      "resolvedKind": "auto",
+      "destinationAssetId": null,
       "galleryCount": 0,
-      "licensedImageCount": 0
+      "licensedImageCount": 1
     },
     {
       "id": "peru-andes-journey",
       "slug": "peru-andes-journey",
-      "status": "art-directed",
+      "status": "licensed-local",
+      "countries": [
+        "PE"
+      ],
+      "visualAnchor": null,
       "hero": {
-        "type": "art-directed",
-        "theme": "andes",
-        "asset": null,
-        "attribution": null,
-        "license": "original-ui-art"
+        "assetId": "auto-route-peru-andes-journey",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "peru-andes-journey",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/peru-andes-journey/landscape-90e4b0180611f66c.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Peru Andes Journey",
+          "de": "Geografische Routendarstellung: Peru · Andenreise",
+          "it": "Illustrazione geografica del percorso: Perù · viaggio nelle Ande",
+          "es": "Ilustración geográfica de la ruta: Perú · viaje por los Andes",
+          "fr": "Illustration géographique du parcours : Pérou · voyage dans les Andes",
+          "pt": "Ilustração geográfica da rota: Peru · viagem pelos Andes"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/peru-andes-journey/portrait-710696ff0bae85f9.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/peru-andes-journey/vertical-765d6890ff3c1ac3.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/peru-andes-journey/landscape-90e4b0180611f66c-600.webp 600w, ./assets/generated/routes/peru-andes-journey/landscape-90e4b0180611f66c.webp 1200w"
       },
+      "journeyCover": null,
+      "autoRouteVisual": {
+        "assetId": "auto-route-peru-andes-journey",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "peru-andes-journey",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/peru-andes-journey/landscape-90e4b0180611f66c.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Peru Andes Journey",
+          "de": "Geografische Routendarstellung: Peru · Andenreise",
+          "it": "Illustrazione geografica del percorso: Perù · viaggio nelle Ande",
+          "es": "Ilustración geográfica de la ruta: Perú · viaje por los Andes",
+          "fr": "Illustration géographique du parcours : Pérou · voyage dans les Andes",
+          "pt": "Ilustração geográfica da rota: Peru · viagem pelos Andes"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/peru-andes-journey/portrait-710696ff0bae85f9.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/peru-andes-journey/vertical-765d6890ff3c1ac3.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/peru-andes-journey/landscape-90e4b0180611f66c-600.webp 600w, ./assets/generated/routes/peru-andes-journey/landscape-90e4b0180611f66c.webp 1200w"
+      },
+      "coverageLevel": "AUTO",
+      "resolvedKind": "auto",
+      "destinationAssetId": null,
       "galleryCount": 0,
-      "licensedImageCount": 0
+      "licensedImageCount": 1
     },
     {
       "id": "south-africa-garden-safari",
       "slug": "south-africa-garden-safari",
-      "status": "art-directed",
+      "status": "licensed-local",
+      "countries": [
+        "ZA"
+      ],
+      "visualAnchor": null,
       "hero": {
-        "type": "art-directed",
-        "theme": "savanna",
-        "asset": null,
-        "attribution": null,
-        "license": "original-ui-art"
+        "assetId": "auto-route-south-africa-garden-safari",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "south-africa-garden-safari",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/south-africa-garden-safari/landscape-f3ffbe94530314e9.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: South Africa Garden Route & Safari",
+          "de": "Geografische Routendarstellung: Südafrika · Garden Route & Safari",
+          "it": "Illustrazione geografica del percorso: Sudafrica · Garden Route e safari",
+          "es": "Ilustración geográfica de la ruta: Sudáfrica · Garden Route y safari",
+          "fr": "Illustration géographique du parcours : Afrique du Sud · Garden Route et safari",
+          "pt": "Ilustração geográfica da rota: África do Sul · Garden Route e safári"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/south-africa-garden-safari/portrait-d1272fffcab8dd61.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/south-africa-garden-safari/vertical-474016cccbe222a8.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/south-africa-garden-safari/landscape-f3ffbe94530314e9-600.webp 600w, ./assets/generated/routes/south-africa-garden-safari/landscape-f3ffbe94530314e9.webp 1200w"
       },
+      "journeyCover": null,
+      "autoRouteVisual": {
+        "assetId": "auto-route-south-africa-garden-safari",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "south-africa-garden-safari",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/south-africa-garden-safari/landscape-f3ffbe94530314e9.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: South Africa Garden Route & Safari",
+          "de": "Geografische Routendarstellung: Südafrika · Garden Route & Safari",
+          "it": "Illustrazione geografica del percorso: Sudafrica · Garden Route e safari",
+          "es": "Ilustración geográfica de la ruta: Sudáfrica · Garden Route y safari",
+          "fr": "Illustration géographique du parcours : Afrique du Sud · Garden Route et safari",
+          "pt": "Ilustração geográfica da rota: África do Sul · Garden Route e safári"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/south-africa-garden-safari/portrait-d1272fffcab8dd61.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/south-africa-garden-safari/vertical-474016cccbe222a8.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/south-africa-garden-safari/landscape-f3ffbe94530314e9-600.webp 600w, ./assets/generated/routes/south-africa-garden-safari/landscape-f3ffbe94530314e9.webp 1200w"
+      },
+      "coverageLevel": "AUTO",
+      "resolvedKind": "auto",
+      "destinationAssetId": null,
       "galleryCount": 0,
-      "licensedImageCount": 0
+      "licensedImageCount": 1
     },
     {
       "id": "southern-europe-road-trip",
       "slug": "southern-europe-road-trip",
-      "status": "missing",
-      "hero": null,
+      "status": "licensed-local",
+      "countries": [
+        "PT",
+        "ES",
+        "FR",
+        "IT"
+      ],
+      "visualAnchor": null,
+      "hero": {
+        "assetId": "auto-route-southern-europe-road-trip",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "southern-europe-road-trip",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/southern-europe-road-trip/landscape-316cc128772053c2.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Southern Europe Road Trip",
+          "de": "Geografische Routendarstellung: Südeuropa-Roadtrip",
+          "it": "Illustrazione geografica del percorso: Road trip nell'Europa meridionale",
+          "es": "Ilustración geográfica de la ruta: Road trip por el sur de Europa",
+          "fr": "Illustration géographique du parcours : Road trip en Europe du Sud",
+          "pt": "Ilustração geográfica da rota: Road trip pelo sul da Europa"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "MULTI-COUNTRY",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/southern-europe-road-trip/portrait-5a839fc4ddade831.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/southern-europe-road-trip/vertical-5c283158aa4aff90.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/southern-europe-road-trip/landscape-316cc128772053c2-600.webp 600w, ./assets/generated/routes/southern-europe-road-trip/landscape-316cc128772053c2.webp 1200w"
+      },
+      "journeyCover": null,
+      "autoRouteVisual": {
+        "assetId": "auto-route-southern-europe-road-trip",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "southern-europe-road-trip",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/southern-europe-road-trip/landscape-316cc128772053c2.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Southern Europe Road Trip",
+          "de": "Geografische Routendarstellung: Südeuropa-Roadtrip",
+          "it": "Illustrazione geografica del percorso: Road trip nell'Europa meridionale",
+          "es": "Ilustración geográfica de la ruta: Road trip por el sur de Europa",
+          "fr": "Illustration géographique du parcours : Road trip en Europe du Sud",
+          "pt": "Ilustração geográfica da rota: Road trip pelo sul da Europa"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "MULTI-COUNTRY",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/southern-europe-road-trip/portrait-5a839fc4ddade831.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/southern-europe-road-trip/vertical-5c283158aa4aff90.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/southern-europe-road-trip/landscape-316cc128772053c2-600.webp 600w, ./assets/generated/routes/southern-europe-road-trip/landscape-316cc128772053c2.webp 1200w"
+      },
+      "coverageLevel": "AUTO",
+      "resolvedKind": "auto",
+      "destinationAssetId": null,
       "galleryCount": 0,
-      "licensedImageCount": 0
+      "licensedImageCount": 1
     },
     {
       "id": "utah-national-parks-road-trip",
       "slug": "utah-national-parks-road-trip",
-      "status": "missing",
-      "hero": null,
+      "status": "licensed-local",
+      "countries": [
+        "US"
+      ],
+      "visualAnchor": null,
+      "hero": {
+        "assetId": "auto-route-utah-national-parks-road-trip",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "utah-national-parks-road-trip",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/utah-national-parks-road-trip/landscape-43e7968f063b3454.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Utah National Parks Road Trip",
+          "de": "Geografische Routendarstellung: Utahs Nationalparks · Roadtrip",
+          "it": "Illustrazione geografica del percorso: Road trip nei parchi nazionali dello Utah",
+          "es": "Ilustración geográfica de la ruta: Road trip por los parques nacionales de Utah",
+          "fr": "Illustration géographique du parcours : Road trip dans les parcs nationaux de l'Utah",
+          "pt": "Ilustração geográfica da rota: Road trip pelos parques nacionais de Utah"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/utah-national-parks-road-trip/portrait-e0b5fb111ebce162.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/utah-national-parks-road-trip/vertical-dae14aaec98438ed.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/utah-national-parks-road-trip/landscape-43e7968f063b3454-600.webp 600w, ./assets/generated/routes/utah-national-parks-road-trip/landscape-43e7968f063b3454.webp 1200w"
+      },
+      "journeyCover": null,
+      "autoRouteVisual": {
+        "assetId": "auto-route-utah-national-parks-road-trip",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "utah-national-parks-road-trip",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/utah-national-parks-road-trip/landscape-43e7968f063b3454.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Utah National Parks Road Trip",
+          "de": "Geografische Routendarstellung: Utahs Nationalparks · Roadtrip",
+          "it": "Illustrazione geografica del percorso: Road trip nei parchi nazionali dello Utah",
+          "es": "Ilustración geográfica de la ruta: Road trip por los parques nacionales de Utah",
+          "fr": "Illustration géographique du parcours : Road trip dans les parcs nationaux de l'Utah",
+          "pt": "Ilustração geográfica da rota: Road trip pelos parques nacionais de Utah"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/utah-national-parks-road-trip/portrait-e0b5fb111ebce162.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/utah-national-parks-road-trip/vertical-dae14aaec98438ed.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/utah-national-parks-road-trip/landscape-43e7968f063b3454-600.webp 600w, ./assets/generated/routes/utah-national-parks-road-trip/landscape-43e7968f063b3454.webp 1200w"
+      },
+      "coverageLevel": "AUTO",
+      "resolvedKind": "auto",
+      "destinationAssetId": null,
       "galleryCount": 0,
-      "licensedImageCount": 0
+      "licensedImageCount": 1
     },
     {
       "id": "victoria-great-ocean-highlands-road-trip",
       "slug": "victoria-great-ocean-highlands-road-trip",
-      "status": "missing",
-      "hero": null,
+      "status": "licensed-local",
+      "countries": [
+        "AU"
+      ],
+      "visualAnchor": null,
+      "hero": {
+        "assetId": "auto-route-victoria-great-ocean-highlands-road-trip",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "victoria-great-ocean-highlands-road-trip",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/landscape-69b0ef87c2026fa7.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Victoria Great Ocean & Highlands Road Trip",
+          "de": "Geografische Routendarstellung: Victoria · Great Ocean & Highlands Roadtrip",
+          "it": "Illustrazione geografica del percorso: Victoria · Great Ocean e Highlands on the road",
+          "es": "Ilustración geográfica de la ruta: Victoria · Great Ocean y Highlands en ruta",
+          "fr": "Illustration géographique du parcours : Victoria · Great Ocean et Highlands en road trip",
+          "pt": "Ilustração geográfica da rota: Victoria · Great Ocean e Highlands de carro"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/portrait-28808ac31cfad801.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/vertical-03fe301352f7a6f1.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/landscape-69b0ef87c2026fa7-600.webp 600w, ./assets/generated/routes/victoria-great-ocean-highlands-road-trip/landscape-69b0ef87c2026fa7.webp 1200w"
+      },
+      "journeyCover": null,
+      "autoRouteVisual": {
+        "assetId": "auto-route-victoria-great-ocean-highlands-road-trip",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "victoria-great-ocean-highlands-road-trip",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/landscape-69b0ef87c2026fa7.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Victoria Great Ocean & Highlands Road Trip",
+          "de": "Geografische Routendarstellung: Victoria · Great Ocean & Highlands Roadtrip",
+          "it": "Illustrazione geografica del percorso: Victoria · Great Ocean e Highlands on the road",
+          "es": "Ilustración geográfica de la ruta: Victoria · Great Ocean y Highlands en ruta",
+          "fr": "Illustration géographique du parcours : Victoria · Great Ocean et Highlands en road trip",
+          "pt": "Ilustração geográfica da rota: Victoria · Great Ocean e Highlands de carro"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/portrait-28808ac31cfad801.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/vertical-03fe301352f7a6f1.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/landscape-69b0ef87c2026fa7-600.webp 600w, ./assets/generated/routes/victoria-great-ocean-highlands-road-trip/landscape-69b0ef87c2026fa7.webp 1200w"
+      },
+      "coverageLevel": "AUTO",
+      "resolvedKind": "auto",
+      "destinationAssetId": null,
       "galleryCount": 0,
-      "licensedImageCount": 0
+      "licensedImageCount": 1
     },
     {
       "id": "vietnam-north-south",
       "slug": "vietnam-north-south",
-      "status": "art-directed",
+      "status": "licensed-local",
+      "countries": [
+        "VN"
+      ],
+      "visualAnchor": null,
       "hero": {
-        "type": "art-directed",
-        "theme": "tropical",
-        "asset": null,
-        "attribution": null,
-        "license": "original-ui-art"
+        "assetId": "auto-route-vietnam-north-south",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "vietnam-north-south",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/vietnam-north-south/landscape-adcf9bf7275bd310.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Vietnam North to South",
+          "de": "Geografische Routendarstellung: Vietnam von Nord nach Süd",
+          "it": "Illustrazione geografica del percorso: Vietnam da nord a sud",
+          "es": "Ilustración geográfica de la ruta: Vietnam de norte a sur",
+          "fr": "Illustration géographique du parcours : Vietnam du nord au sud",
+          "pt": "Ilustração geográfica da rota: Vietnã de norte a sul"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/vietnam-north-south/portrait-9d7f56857aa568ea.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/vietnam-north-south/vertical-32e38431471c6bda.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/vietnam-north-south/landscape-adcf9bf7275bd310-600.webp 600w, ./assets/generated/routes/vietnam-north-south/landscape-adcf9bf7275bd310.webp 1200w"
       },
+      "journeyCover": null,
+      "autoRouteVisual": {
+        "assetId": "auto-route-vietnam-north-south",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "vietnam-north-south",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/vietnam-north-south/landscape-adcf9bf7275bd310.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Vietnam North to South",
+          "de": "Geografische Routendarstellung: Vietnam von Nord nach Süd",
+          "it": "Illustrazione geografica del percorso: Vietnam da nord a sud",
+          "es": "Ilustración geográfica de la ruta: Vietnam de norte a sur",
+          "fr": "Illustration géographique du parcours : Vietnam du nord au sud",
+          "pt": "Ilustração geográfica da rota: Vietnã de norte a sul"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/vietnam-north-south/portrait-9d7f56857aa568ea.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/vietnam-north-south/vertical-32e38431471c6bda.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/vietnam-north-south/landscape-adcf9bf7275bd310-600.webp 600w, ./assets/generated/routes/vietnam-north-south/landscape-adcf9bf7275bd310.webp 1200w"
+      },
+      "coverageLevel": "AUTO",
+      "resolvedKind": "auto",
+      "destinationAssetId": null,
       "galleryCount": 0,
-      "licensedImageCount": 0
+      "licensedImageCount": 1
     },
     {
       "id": "western-mediterranean-cruise-loop",
       "slug": "western-mediterranean-cruise-loop",
-      "status": "missing",
-      "hero": null,
+      "status": "licensed-local",
+      "countries": [
+        "ES",
+        "FR",
+        "IT",
+        "TN"
+      ],
+      "visualAnchor": null,
+      "hero": {
+        "assetId": "auto-route-western-mediterranean-cruise-loop",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "western-mediterranean-cruise-loop",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/western-mediterranean-cruise-loop/landscape-8ad707fbf79a9564.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Western Mediterranean Cruise Loop",
+          "de": "Geografische Routendarstellung: Westliches Mittelmeer · Kreuzfahrt-Loop",
+          "it": "Illustrazione geografica del percorso: Crociera nel Mediterraneo occidentale",
+          "es": "Ilustración geográfica de la ruta: Crucero por el Mediterráneo occidental",
+          "fr": "Illustration géographique du parcours : Croisière en Méditerranée occidentale",
+          "pt": "Ilustração geográfica da rota: Cruzeiro pelo Mediterrâneo Ocidental"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "MULTI-COUNTRY",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/western-mediterranean-cruise-loop/portrait-8309502a0b3a7070.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/western-mediterranean-cruise-loop/vertical-5a1d73798c70eb02.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/western-mediterranean-cruise-loop/landscape-8ad707fbf79a9564-600.webp 600w, ./assets/generated/routes/western-mediterranean-cruise-loop/landscape-8ad707fbf79a9564.webp 1200w"
+      },
+      "journeyCover": null,
+      "autoRouteVisual": {
+        "assetId": "auto-route-western-mediterranean-cruise-loop",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "western-mediterranean-cruise-loop",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/western-mediterranean-cruise-loop/landscape-8ad707fbf79a9564.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Western Mediterranean Cruise Loop",
+          "de": "Geografische Routendarstellung: Westliches Mittelmeer · Kreuzfahrt-Loop",
+          "it": "Illustrazione geografica del percorso: Crociera nel Mediterraneo occidentale",
+          "es": "Ilustración geográfica de la ruta: Crucero por el Mediterráneo occidental",
+          "fr": "Illustration géographique du parcours : Croisière en Méditerranée occidentale",
+          "pt": "Ilustração geográfica da rota: Cruzeiro pelo Mediterrâneo Ocidental"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "MULTI-COUNTRY",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/western-mediterranean-cruise-loop/portrait-8309502a0b3a7070.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/western-mediterranean-cruise-loop/vertical-5a1d73798c70eb02.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/western-mediterranean-cruise-loop/landscape-8ad707fbf79a9564-600.webp 600w, ./assets/generated/routes/western-mediterranean-cruise-loop/landscape-8ad707fbf79a9564.webp 1200w"
+      },
+      "coverageLevel": "AUTO",
+      "resolvedKind": "auto",
+      "destinationAssetId": null,
       "galleryCount": 0,
-      "licensedImageCount": 0
+      "licensedImageCount": 1
     },
     {
       "id": "world-195",
       "slug": "world-195",
-      "status": "missing",
-      "hero": null,
+      "status": "licensed-local",
+      "countries": [
+        "DE",
+        "LU",
+        "BE",
+        "NL",
+        "DK",
+        "NO",
+        "SE",
+        "FI",
+        "EE",
+        "LV",
+        "LT",
+        "BY",
+        "PL",
+        "UA",
+        "MD",
+        "RO",
+        "HU",
+        "SK",
+        "CZ",
+        "AT",
+        "LI",
+        "CH",
+        "FR",
+        "MC",
+        "AD",
+        "ES",
+        "PT",
+        "GB",
+        "IE",
+        "IS",
+        "CA",
+        "US",
+        "MX",
+        "BZ",
+        "GT",
+        "SV",
+        "HN",
+        "NI",
+        "CR",
+        "PA",
+        "CU",
+        "BS",
+        "JM",
+        "HT",
+        "DO",
+        "KN",
+        "AG",
+        "DM",
+        "LC",
+        "BB",
+        "VC",
+        "GD",
+        "TT",
+        "VE",
+        "BR",
+        "GY",
+        "SR",
+        "CO",
+        "EC",
+        "PE",
+        "BO",
+        "PY",
+        "AR",
+        "UY",
+        "CL",
+        "NZ",
+        "TO",
+        "FJ",
+        "WS",
+        "TV",
+        "VU",
+        "SB",
+        "PG",
+        "AU",
+        "NR",
+        "KI",
+        "MH",
+        "FM",
+        "PW",
+        "PH",
+        "BN",
+        "MY",
+        "SG",
+        "ID",
+        "TL",
+        "TH",
+        "KH",
+        "VN",
+        "LA",
+        "MM",
+        "BD",
+        "IN",
+        "NP",
+        "BT",
+        "LK",
+        "MV",
+        "CN",
+        "KP",
+        "KR",
+        "JP",
+        "MN",
+        "RU",
+        "KZ",
+        "KG",
+        "TJ",
+        "UZ",
+        "TM",
+        "AF",
+        "PK",
+        "IR",
+        "AZ",
+        "GE",
+        "AM",
+        "TR",
+        "IQ",
+        "SY",
+        "LB",
+        "CY",
+        "LY",
+        "TN",
+        "DZ",
+        "MA",
+        "MR",
+        "ML",
+        "BF",
+        "NE",
+        "TD",
+        "CF",
+        "CM",
+        "NG",
+        "BJ",
+        "TG",
+        "GH",
+        "CI",
+        "LR",
+        "SL",
+        "GN",
+        "GW",
+        "SN",
+        "GM",
+        "CV",
+        "GQ",
+        "ST",
+        "GA",
+        "CG",
+        "CD",
+        "AO",
+        "NA",
+        "BW",
+        "ZW",
+        "ZM",
+        "MW",
+        "MZ",
+        "SZ",
+        "ZA",
+        "LS",
+        "TZ",
+        "BI",
+        "RW",
+        "UG",
+        "SS",
+        "KE",
+        "SC",
+        "MU",
+        "MG",
+        "KM",
+        "ET",
+        "SO",
+        "DJ",
+        "ER",
+        "SD",
+        "EG",
+        "SA",
+        "KW",
+        "BH",
+        "QA",
+        "AE",
+        "OM",
+        "YE",
+        "JO",
+        "IL",
+        "PS",
+        "GR",
+        "BG",
+        "MK",
+        "AL",
+        "ME",
+        "BA",
+        "RS",
+        "HR",
+        "SI",
+        "IT",
+        "SM",
+        "VA",
+        "MT"
+      ],
+      "visualAnchor": null,
+      "hero": {
+        "assetId": "auto-route-world-195",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "world-195",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/world-195/landscape-e58237d09694e3dd.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: One World Journey",
+          "de": "Geografische Routendarstellung: Eine Reise um die Welt",
+          "it": "Illustrazione geografica del percorso: Un viaggio intorno al mondo",
+          "es": "Ilustración geográfica de la ruta: Un viaje por el mundo",
+          "fr": "Illustration géographique du parcours : Un voyage autour du monde",
+          "pt": "Ilustração geográfica da rota: Uma viagem pelo mundo"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "GLOBAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/world-195/portrait-829bd17c03f5a47d.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/world-195/vertical-ad6e34a25d960c9a.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/world-195/landscape-e58237d09694e3dd-600.webp 600w, ./assets/generated/routes/world-195/landscape-e58237d09694e3dd.webp 1200w"
+      },
+      "journeyCover": null,
+      "autoRouteVisual": {
+        "assetId": "auto-route-world-195",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "world-195",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/world-195/landscape-e58237d09694e3dd.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: One World Journey",
+          "de": "Geografische Routendarstellung: Eine Reise um die Welt",
+          "it": "Illustrazione geografica del percorso: Un viaggio intorno al mondo",
+          "es": "Ilustración geográfica de la ruta: Un viaje por el mundo",
+          "fr": "Illustration géographique du parcours : Un voyage autour du monde",
+          "pt": "Ilustração geográfica da rota: Uma viagem pelo mundo"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "GLOBAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/world-195/portrait-829bd17c03f5a47d.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/world-195/vertical-ad6e34a25d960c9a.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/world-195/landscape-e58237d09694e3dd-600.webp 600w, ./assets/generated/routes/world-195/landscape-e58237d09694e3dd.webp 1200w"
+      },
+      "coverageLevel": "AUTO",
+      "resolvedKind": "auto",
+      "destinationAssetId": null,
       "galleryCount": 0,
-      "licensedImageCount": 0
+      "licensedImageCount": 1
     }
   ]
 }

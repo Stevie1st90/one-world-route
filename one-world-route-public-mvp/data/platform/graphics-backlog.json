@@ -23,7 +23,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration"
+      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "strategy": "bespoke-recommended",
+      "reason": "Distinctive emotional concept; optional artwork complements the complete auto route visual."
     },
     {
       "assetId": "italy-grand-tour-cover",
@@ -46,7 +48,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration"
+      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "strategy": "destination-asset-reusable",
+      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
     },
     {
       "assetId": "western-mediterranean-cruise-loop-cover",
@@ -69,7 +73,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration"
+      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "strategy": "destination-asset-reusable",
+      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
     },
     {
       "assetId": "southern-europe-road-trip-cover",
@@ -92,7 +98,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration"
+      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "strategy": "destination-asset-reusable",
+      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
     },
     {
       "assetId": "central-europe-rail-journey-cover",
@@ -115,7 +123,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration"
+      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "strategy": "destination-asset-reusable",
+      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
     },
     {
       "assetId": "japan-by-rail-cover",
@@ -138,7 +148,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration"
+      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "strategy": "bespoke-recommended",
+      "reason": "Distinctive emotional concept; optional artwork complements the complete auto route visual."
     },
     {
       "assetId": "patagonia-road-trip-cover",
@@ -161,7 +173,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration"
+      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "strategy": "bespoke-recommended",
+      "reason": "Distinctive emotional concept; optional artwork complements the complete auto route visual."
     },
     {
       "assetId": "norway-arctic-road-trip-cover",
@@ -184,7 +198,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration"
+      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "strategy": "bespoke-recommended",
+      "reason": "Distinctive emotional concept; optional artwork complements the complete auto route visual."
     },
     {
       "assetId": "new-zealand-camper-loop-cover",
@@ -207,7 +223,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration"
+      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "strategy": "bespoke-recommended",
+      "reason": "Distinctive emotional concept; optional artwork complements the complete auto route visual."
     },
     {
       "assetId": "greek-island-hopping-cover",
@@ -230,7 +248,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration"
+      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "strategy": "bespoke-recommended",
+      "reason": "Distinctive emotional concept; optional artwork complements the complete auto route visual."
     },
     {
       "assetId": "morocco-atlas-desert-cover",
@@ -253,7 +273,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration"
+      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "strategy": "bespoke-recommended",
+      "reason": "Distinctive emotional concept; optional artwork complements the complete auto route visual."
     },
     {
       "assetId": "south-africa-garden-safari-cover",
@@ -276,7 +298,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration"
+      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "strategy": "bespoke-recommended",
+      "reason": "Distinctive emotional concept; optional artwork complements the complete auto route visual."
     },
     {
       "assetId": "canadian-rockies-rail-road-cover",
@@ -299,7 +323,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration"
+      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "strategy": "destination-asset-reusable",
+      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
     },
     {
       "assetId": "vietnam-north-south-cover",
@@ -322,7 +348,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration"
+      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "strategy": "destination-asset-reusable",
+      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
     },
     {
       "assetId": "costa-rica-nature-loop-cover",
@@ -345,7 +373,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration"
+      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "strategy": "destination-asset-reusable",
+      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
     },
     {
       "assetId": "iceland-ring-road-cover",
@@ -368,7 +398,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration"
+      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "strategy": "destination-asset-reusable",
+      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
     },
     {
       "assetId": "peru-andes-journey-cover",
@@ -391,7 +423,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration"
+      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "strategy": "destination-asset-reusable",
+      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
     },
     {
       "assetId": "jordan-heritage-desert-drive-cover",
@@ -414,7 +448,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration"
+      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "strategy": "destination-asset-reusable",
+      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
     },
     {
       "assetId": "india-golden-triangle-rail-cover",
@@ -437,7 +473,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration"
+      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "strategy": "destination-asset-reusable",
+      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
     },
     {
       "assetId": "utah-national-parks-road-trip-cover",
@@ -460,7 +498,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration"
+      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "strategy": "destination-asset-reusable",
+      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
     },
     {
       "assetId": "victoria-great-ocean-highlands-road-trip-cover",
@@ -483,7 +523,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration"
+      "fallbackQuality": "Actual route geometry and shared theme; lacks destination illustration",
+      "strategy": "destination-asset-reusable",
+      "reason": "Prefer a shared place/region illustration; automatic route visual already covers the journey."
     },
     {
       "assetId": "great-rail-journeys-collection",
@@ -506,7 +548,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Character symbol and collection theme; acceptable until generated cover approval"
+      "fallbackQuality": "Character symbol and collection theme; acceptable until generated cover approval",
+      "strategy": "auto-visual-sufficient",
+      "reason": "Theme or geography already explains the collection. A dedicated campaign cover remains optional."
     },
     {
       "assetId": "epic-road-trips-collection",
@@ -529,7 +573,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Character symbol and collection theme; acceptable until generated cover approval"
+      "fallbackQuality": "Character symbol and collection theme; acceptable until generated cover approval",
+      "strategy": "auto-visual-sufficient",
+      "reason": "Theme or geography already explains the collection. A dedicated campaign cover remains optional."
     },
     {
       "assetId": "island-escapes-collection",
@@ -552,7 +598,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Character symbol and collection theme; acceptable until generated cover approval"
+      "fallbackQuality": "Character symbol and collection theme; acceptable until generated cover approval",
+      "strategy": "auto-visual-sufficient",
+      "reason": "Theme or geography already explains the collection. A dedicated campaign cover remains optional."
     },
     {
       "assetId": "nature-wildlife-collection",
@@ -575,7 +623,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Character symbol and collection theme; acceptable until generated cover approval"
+      "fallbackQuality": "Character symbol and collection theme; acceptable until generated cover approval",
+      "strategy": "auto-visual-sufficient",
+      "reason": "Theme or geography already explains the collection. A dedicated campaign cover remains optional."
     },
     {
       "assetId": "two-week-adventures-collection",
@@ -598,7 +648,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Character symbol and collection theme; acceptable until generated cover approval"
+      "fallbackQuality": "Character symbol and collection theme; acceptable until generated cover approval",
+      "strategy": "auto-visual-sufficient",
+      "reason": "Theme or geography already explains the collection. A dedicated campaign cover remains optional."
     },
     {
       "assetId": "culture-food-collection",
@@ -621,7 +673,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Character symbol and collection theme; acceptable until generated cover approval"
+      "fallbackQuality": "Character symbol and collection theme; acceptable until generated cover approval",
+      "strategy": "auto-visual-sufficient",
+      "reason": "Theme or geography already explains the collection. A dedicated campaign cover remains optional."
     },
     {
       "assetId": "active-nature-collection",
@@ -644,7 +698,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Character symbol and collection theme; acceptable until generated cover approval"
+      "fallbackQuality": "Character symbol and collection theme; acceptable until generated cover approval",
+      "strategy": "auto-visual-sufficient",
+      "reason": "Theme or geography already explains the collection. A dedicated campaign cover remains optional."
     },
     {
       "assetId": "relaxed-escapes-collection",
@@ -667,7 +723,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Character symbol and collection theme; acceptable until generated cover approval"
+      "fallbackQuality": "Character symbol and collection theme; acceptable until generated cover approval",
+      "strategy": "auto-visual-sufficient",
+      "reason": "Theme or geography already explains the collection. A dedicated campaign cover remains optional."
     },
     {
       "assetId": "oceania-journeys-collection",
@@ -690,7 +748,9 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Character symbol and collection theme; acceptable until generated cover approval"
+      "fallbackQuality": "Character symbol and collection theme; acceptable until generated cover approval",
+      "strategy": "auto-visual-sufficient",
+      "reason": "Theme or geography already explains the collection. A dedicated campaign cover remains optional."
     },
     {
       "assetId": "around-the-world-collection",
@@ -713,7 +773,10 @@
         "x": 0.5,
         "y": 0.45
       },
-      "fallbackQuality": "Character symbol and collection theme; acceptable until generated cover approval"
+      "fallbackQuality": "Character symbol and collection theme; acceptable until generated cover approval",
+      "strategy": "auto-visual-sufficient",
+      "reason": "Theme or geography already explains the collection. A dedicated campaign cover remains optional."
     }
-  ]
+  ],
+  "strategyVersion": "scalable-visual-v1"
 }

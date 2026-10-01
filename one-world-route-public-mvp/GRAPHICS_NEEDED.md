@@ -1,10 +1,13 @@
 # Graphics Needed
 
-Generated from the current published catalog. All entries are **planned**, not existing assets. Images are deliberately deferred to targeted Image Generation.
+All 21 journeys now have automatic geographic route images. The 31 briefs below are optional editorial opportunities, not a mandatory cover-production queue. Eight are bespoke-recommended, thirteen favor reusable destination media, and ten collection briefs are auto-visual-sufficient (their existing collection theme remains the current fallback). No new AI images are needed for publication.
 
 Each 16:9 master should first be reviewed for geography, quality and third-party rights, then exported to WebP with 4:5 and 9:16 focal crops. If a crop loses the principal subject, generate a matching alternate composition.
 
 ## world-195-cover — P1
+
+- Strategy: **bespoke-recommended**
+- Decision: Distinctive emotional concept; optional artwork complements the complete auto route visual.
 
 - File: `world-195-cover.webp`
 - Journey/collection: One World Journey
@@ -12,7 +15,7 @@ Each 16:9 master should first be reviewed for geography, quality and third-party
 - Ratio: 16:9; 4:5 and 9:16 derivatives
 - Family: planetary
 - Motif: Recognisable continents and the curve of the Earth
-- Current fallback: Actual route geometry and shared theme; lacks destination illustration
+- Current fallback: Automatic geographic route visual available; optional editorial enrichment
 
 Prompt:
 
@@ -20,13 +23,16 @@ Create an original Cinematic Editorial Travel Illustration for the journey “On
 
 ## italy-grand-tour-cover — P2
 
+- Strategy: **destination-asset-reusable**
+- Decision: Prefer a shared place/region illustration; automatic route visual already covers the journey.
+
 - File: `italy-grand-tour-cover.webp`
 - Journey/collection: Italy Grand Tour
 - Format: WebP delivery; retain generated master
 - Ratio: 16:9; 4:5 and 9:16 derivatives
 - Family: culture-editorial
 - Motif: Rome → Naples → Amalfi Coast → Rome
-- Current fallback: Actual route geometry and shared theme; lacks destination illustration
+- Current fallback: Automatic geographic route visual available; optional editorial enrichment
 
 Prompt:
 
@@ -34,13 +40,16 @@ Create an original Cinematic Editorial Travel Illustration for the journey “It
 
 ## western-mediterranean-cruise-loop-cover — P2
 
+- Strategy: **destination-asset-reusable**
+- Decision: Prefer a shared place/region illustration; automatic route visual already covers the journey.
+
 - File: `western-mediterranean-cruise-loop-cover.webp`
 - Journey/collection: Western Mediterranean Cruise Loop
 - Format: WebP delivery; retain generated master
 - Ratio: 16:9; 4:5 and 9:16 derivatives
 - Family: coastal-editorial
 - Motif: Barcelona → Marseille → Civitavecchia · Rome gateway → Barcelona
-- Current fallback: Actual route geometry and shared theme; lacks destination illustration
+- Current fallback: Automatic geographic route visual available; optional editorial enrichment
 
 Prompt:
 
@@ -48,13 +57,16 @@ Create an original Cinematic Editorial Travel Illustration for the journey “We
 
 ## southern-europe-road-trip-cover — P2
 
+- Strategy: **destination-asset-reusable**
+- Decision: Prefer a shared place/region illustration; automatic route visual already covers the journey.
+
 - File: `southern-europe-road-trip-cover.webp`
 - Journey/collection: Southern Europe Road Trip
 - Format: WebP delivery; retain generated master
 - Ratio: 16:9; 4:5 and 9:16 derivatives
 - Family: road-cinematic
 - Motif: Lisbon → Seville → Granada → Rome
-- Current fallback: Actual route geometry and shared theme; lacks destination illustration
+- Current fallback: Automatic geographic route visual available; optional editorial enrichment
 
 Prompt:
 
@@ -62,13 +74,16 @@ Create an original Cinematic Editorial Travel Illustration for the journey “So
 
 ## central-europe-rail-journey-cover — P2
 
+- Strategy: **destination-asset-reusable**
+- Decision: Prefer a shared place/region illustration; automatic route visual already covers the journey.
+
 - File: `central-europe-rail-journey-cover.webp`
 - Journey/collection: Central Europe Rail Journey
 - Format: WebP delivery; retain generated master
 - Ratio: 16:9; 4:5 and 9:16 derivatives
 - Family: rail-cinematic
 - Motif: Paris → Brussels → Amsterdam → Berlin
-- Current fallback: Actual route geometry and shared theme; lacks destination illustration
+- Current fallback: Automatic geographic route visual available; optional editorial enrichment
 
 Prompt:
 
@@ -76,13 +91,16 @@ Create an original Cinematic Editorial Travel Illustration for the journey “Ce
 
 ## japan-by-rail-cover — P1
 
+- Strategy: **bespoke-recommended**
+- Decision: Distinctive emotional concept; optional artwork complements the complete auto route visual.
+
 - File: `japan-by-rail-cover.webp`
 - Journey/collection: Japan by Rail
 - Format: WebP delivery; retain generated master
 - Ratio: 16:9; 4:5 and 9:16 derivatives
 - Family: rail-cinematic
 - Motif: Tokyo → Matsumoto → Kanazawa → Hiroshima
-- Current fallback: Actual route geometry and shared theme; lacks destination illustration
+- Current fallback: Automatic geographic route visual available; optional editorial enrichment
 
 Prompt:
 
@@ -90,13 +108,16 @@ Create an original Cinematic Editorial Travel Illustration for the journey “Ja
 
 ## patagonia-road-trip-cover — P1
 
+- Strategy: **bespoke-recommended**
+- Decision: Distinctive emotional concept; optional artwork complements the complete auto route visual.
+
 - File: `patagonia-road-trip-cover.webp`
 - Journey/collection: Patagonia Road Trip
 - Format: WebP delivery; retain generated master
 - Ratio: 16:9; 4:5 and 9:16 derivatives
 - Family: road-cinematic
 - Motif: El Calafate → El Chaltén → Torres del Paine → Punta Arenas
-- Current fallback: Actual route geometry and shared theme; lacks destination illustration
+- Current fallback: Automatic geographic route visual available; optional editorial enrichment
 
 Prompt:
 
@@ -104,13 +125,16 @@ Create an original Cinematic Editorial Travel Illustration for the journey “Pa
 
 ## norway-arctic-road-trip-cover — P1
 
+- Strategy: **bespoke-recommended**
+- Decision: Distinctive emotional concept; optional artwork complements the complete auto route visual.
+
 - File: `norway-arctic-road-trip-cover.webp`
 - Journey/collection: Norway Arctic Road Trip
 - Format: WebP delivery; retain generated master
 - Ratio: 16:9; 4:5 and 9:16 derivatives
 - Family: road-cinematic
 - Motif: Tromsø → Senja → Andøya → Reine
-- Current fallback: Actual route geometry and shared theme; lacks destination illustration
+- Current fallback: Automatic geographic route visual available; optional editorial enrichment
 
 Prompt:
 
@@ -118,13 +142,16 @@ Create an original Cinematic Editorial Travel Illustration for the journey “No
 
 ## new-zealand-camper-loop-cover — P1
 
+- Strategy: **bespoke-recommended**
+- Decision: Distinctive emotional concept; optional artwork complements the complete auto route visual.
+
 - File: `new-zealand-camper-loop-cover.webp`
 - Journey/collection: New Zealand Camper Loop
 - Format: WebP delivery; retain generated master
 - Ratio: 16:9; 4:5 and 9:16 derivatives
 - Family: road-cinematic
 - Motif: Christchurch → Lake Tekapo → Queenstown → Franz Josef
-- Current fallback: Actual route geometry and shared theme; lacks destination illustration
+- Current fallback: Automatic geographic route visual available; optional editorial enrichment
 
 Prompt:
 
@@ -132,13 +159,16 @@ Create an original Cinematic Editorial Travel Illustration for the journey “Ne
 
 ## greek-island-hopping-cover — P1
 
+- Strategy: **bespoke-recommended**
+- Decision: Distinctive emotional concept; optional artwork complements the complete auto route visual.
+
 - File: `greek-island-hopping-cover.webp`
 - Journey/collection: Greek Island Hopping
 - Format: WebP delivery; retain generated master
 - Ratio: 16:9; 4:5 and 9:16 derivatives
 - Family: coastal-editorial
 - Motif: Athens → Mykonos → Naxos → Santorini
-- Current fallback: Actual route geometry and shared theme; lacks destination illustration
+- Current fallback: Automatic geographic route visual available; optional editorial enrichment
 
 Prompt:
 
@@ -146,13 +176,16 @@ Create an original Cinematic Editorial Travel Illustration for the journey “Gr
 
 ## morocco-atlas-desert-cover — P1
 
+- Strategy: **bespoke-recommended**
+- Decision: Distinctive emotional concept; optional artwork complements the complete auto route visual.
+
 - File: `morocco-atlas-desert-cover.webp`
 - Journey/collection: Morocco Atlas & Desert
 - Format: WebP delivery; retain generated master
 - Ratio: 16:9; 4:5 and 9:16 derivatives
 - Family: road-cinematic
 - Motif: Marrakech → Aït Benhaddou → Dadès Valley → Essaouira
-- Current fallback: Actual route geometry and shared theme; lacks destination illustration
+- Current fallback: Automatic geographic route visual available; optional editorial enrichment
 
 Prompt:
 
@@ -160,13 +193,16 @@ Create an original Cinematic Editorial Travel Illustration for the journey “Mo
 
 ## south-africa-garden-safari-cover — P1
 
+- Strategy: **bespoke-recommended**
+- Decision: Distinctive emotional concept; optional artwork complements the complete auto route visual.
+
 - File: `south-africa-garden-safari-cover.webp`
 - Journey/collection: South Africa Garden Route & Safari
 - Format: WebP delivery; retain generated master
 - Ratio: 16:9; 4:5 and 9:16 derivatives
 - Family: road-cinematic
 - Motif: Cape Town → Hermanus → Knysna → Addo Elephant National Park
-- Current fallback: Actual route geometry and shared theme; lacks destination illustration
+- Current fallback: Automatic geographic route visual available; optional editorial enrichment
 
 Prompt:
 
@@ -174,13 +210,16 @@ Create an original Cinematic Editorial Travel Illustration for the journey “So
 
 ## canadian-rockies-rail-road-cover — P1
 
+- Strategy: **destination-asset-reusable**
+- Decision: Prefer a shared place/region illustration; automatic route visual already covers the journey.
+
 - File: `canadian-rockies-rail-road-cover.webp`
 - Journey/collection: Canadian Rockies Rail & Road
 - Format: WebP delivery; retain generated master
 - Ratio: 16:9; 4:5 and 9:16 derivatives
 - Family: nature-atmospheric
 - Motif: Vancouver → Kamloops → Jasper → Calgary
-- Current fallback: Actual route geometry and shared theme; lacks destination illustration
+- Current fallback: Automatic geographic route visual available; optional editorial enrichment
 
 Prompt:
 
@@ -188,13 +227,16 @@ Create an original Cinematic Editorial Travel Illustration for the journey “Ca
 
 ## vietnam-north-south-cover — P1
 
+- Strategy: **destination-asset-reusable**
+- Decision: Prefer a shared place/region illustration; automatic route visual already covers the journey.
+
 - File: `vietnam-north-south-cover.webp`
 - Journey/collection: Vietnam North to South
 - Format: WebP delivery; retain generated master
 - Ratio: 16:9; 4:5 and 9:16 derivatives
 - Family: rail-cinematic
 - Motif: Hanoi → Huế → Da Nang → Ho Chi Minh City
-- Current fallback: Actual route geometry and shared theme; lacks destination illustration
+- Current fallback: Automatic geographic route visual available; optional editorial enrichment
 
 Prompt:
 
@@ -202,13 +244,16 @@ Create an original Cinematic Editorial Travel Illustration for the journey “Vi
 
 ## costa-rica-nature-loop-cover — P1
 
+- Strategy: **destination-asset-reusable**
+- Decision: Prefer a shared place/region illustration; automatic route visual already covers the journey.
+
 - File: `costa-rica-nature-loop-cover.webp`
 - Journey/collection: Costa Rica Nature Loop
 - Format: WebP delivery; retain generated master
 - Ratio: 16:9; 4:5 and 9:16 derivatives
 - Family: road-cinematic
 - Motif: San José → Arenal → Monteverde → Uvita
-- Current fallback: Actual route geometry and shared theme; lacks destination illustration
+- Current fallback: Automatic geographic route visual available; optional editorial enrichment
 
 Prompt:
 
@@ -216,13 +261,16 @@ Create an original Cinematic Editorial Travel Illustration for the journey “Co
 
 ## iceland-ring-road-cover — P1
 
+- Strategy: **destination-asset-reusable**
+- Decision: Prefer a shared place/region illustration; automatic route visual already covers the journey.
+
 - File: `iceland-ring-road-cover.webp`
 - Journey/collection: Iceland Ring Road
 - Format: WebP delivery; retain generated master
 - Ratio: 16:9; 4:5 and 9:16 derivatives
 - Family: road-cinematic
 - Motif: Reykjavík → Vík → Jökulsárlón → Snæfellsnes
-- Current fallback: Actual route geometry and shared theme; lacks destination illustration
+- Current fallback: Automatic geographic route visual available; optional editorial enrichment
 
 Prompt:
 
@@ -230,13 +278,16 @@ Create an original Cinematic Editorial Travel Illustration for the journey “Ic
 
 ## peru-andes-journey-cover — P1
 
+- Strategy: **destination-asset-reusable**
+- Decision: Prefer a shared place/region illustration; automatic route visual already covers the journey.
+
 - File: `peru-andes-journey-cover.webp`
 - Journey/collection: Peru Andes Journey
 - Format: WebP delivery; retain generated master
 - Ratio: 16:9; 4:5 and 9:16 derivatives
 - Family: nature-atmospheric
 - Motif: Lima → Cusco → Sacred Valley → Puno
-- Current fallback: Actual route geometry and shared theme; lacks destination illustration
+- Current fallback: Automatic geographic route visual available; optional editorial enrichment
 
 Prompt:
 
@@ -244,13 +295,16 @@ Create an original Cinematic Editorial Travel Illustration for the journey “Pe
 
 ## jordan-heritage-desert-drive-cover — P2
 
+- Strategy: **destination-asset-reusable**
+- Decision: Prefer a shared place/region illustration; automatic route visual already covers the journey.
+
 - File: `jordan-heritage-desert-drive-cover.webp`
 - Journey/collection: Jordan Heritage & Desert Drive
 - Format: WebP delivery; retain generated master
 - Ratio: 16:9; 4:5 and 9:16 derivatives
 - Family: road-cinematic
 - Motif: Amman → Jerash → Dead Sea → Aqaba
-- Current fallback: Actual route geometry and shared theme; lacks destination illustration
+- Current fallback: Automatic geographic route visual available; optional editorial enrichment
 
 Prompt:
 
@@ -258,13 +312,16 @@ Create an original Cinematic Editorial Travel Illustration for the journey “Jo
 
 ## india-golden-triangle-rail-cover — P2
 
+- Strategy: **destination-asset-reusable**
+- Decision: Prefer a shared place/region illustration; automatic route visual already covers the journey.
+
 - File: `india-golden-triangle-rail-cover.webp`
 - Journey/collection: India Golden Triangle by Rail
 - Format: WebP delivery; retain generated master
 - Ratio: 16:9; 4:5 and 9:16 derivatives
 - Family: rail-cinematic
 - Motif: Delhi → Agra → Jaipur → Jaipur
-- Current fallback: Actual route geometry and shared theme; lacks destination illustration
+- Current fallback: Automatic geographic route visual available; optional editorial enrichment
 
 Prompt:
 
@@ -272,13 +329,16 @@ Create an original Cinematic Editorial Travel Illustration for the journey “In
 
 ## utah-national-parks-road-trip-cover — P2
 
+- Strategy: **destination-asset-reusable**
+- Decision: Prefer a shared place/region illustration; automatic route visual already covers the journey.
+
 - File: `utah-national-parks-road-trip-cover.webp`
 - Journey/collection: Utah National Parks Road Trip
 - Format: WebP delivery; retain generated master
 - Ratio: 16:9; 4:5 and 9:16 derivatives
 - Family: road-cinematic
 - Motif: Zion National Park → Bryce Canyon National Park → Capitol Reef National Park → Canyonlands National Park
-- Current fallback: Actual route geometry and shared theme; lacks destination illustration
+- Current fallback: Automatic geographic route visual available; optional editorial enrichment
 
 Prompt:
 
@@ -286,19 +346,25 @@ Create an original Cinematic Editorial Travel Illustration for the journey “Ut
 
 ## victoria-great-ocean-highlands-road-trip-cover — P2
 
+- Strategy: **destination-asset-reusable**
+- Decision: Prefer a shared place/region illustration; automatic route visual already covers the journey.
+
 - File: `victoria-great-ocean-highlands-road-trip-cover.webp`
 - Journey/collection: Victoria Great Ocean & Highlands Road Trip
 - Format: WebP delivery; retain generated master
 - Ratio: 16:9; 4:5 and 9:16 derivatives
 - Family: road-cinematic
 - Motif: Bellarine Peninsula → Lorne → Cape Otway → Melbourne
-- Current fallback: Actual route geometry and shared theme; lacks destination illustration
+- Current fallback: Automatic geographic route visual available; optional editorial enrichment
 
 Prompt:
 
 Create an original Cinematic Editorial Travel Illustration for the journey “Victoria Great Ocean & Highlands Road Trip”. Motif brief: Bellarine Peninsula → Lorne → Cape Otway → Melbourne. An unbranded winding road through an expansive landscape, a strong horizon, golden or blue-hour light and a sense of movement. Show one coherent geographically plausible scene inspired by the route, not a literal collage of distant places. Premium editorial composition, atmospheric directional light, restrained saturation, soft highlights, credible natural colours, foreground/midground/background depth, medium detail readable at thumbnail scale. Landscape 16:9 master. Keep the principal subject inside the central 55% so 4:5 and 9:16 crops remain coherent; keep top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, brand liveries, recognisable people, protected characters, copied photographs, copied posters or named-artist imitation. It must read as an illustration, not documentary photography. Do not invent route facts.
 
 ## great-rail-journeys-collection — P2
+
+- Strategy: **auto-visual-sufficient**
+- Decision: Theme or geography already explains the collection. A dedicated campaign cover remains optional.
 
 - File: `great-rail-journeys-collection.webp`
 - Journey/collection: Great Rail Journeys
@@ -314,6 +380,9 @@ Create an original Cinematic Editorial Travel Illustration representing the coll
 
 ## epic-road-trips-collection — P2
 
+- Strategy: **auto-visual-sufficient**
+- Decision: Theme or geography already explains the collection. A dedicated campaign cover remains optional.
+
 - File: `epic-road-trips-collection.webp`
 - Journey/collection: Epic Road Trips
 - Format: WebP delivery; retain generated master
@@ -327,6 +396,9 @@ Prompt:
 Create an original Cinematic Editorial Travel Illustration representing the collection “Epic Road Trips”: Routes built around freedom, landscapes and the road itself.. Premium architectural editorial illustration, characteristic local streets and architectural forms, grounded human scale, no postcard collage. Use a coherent universal travel-character scene rather than a specific undocumented itinerary. Restrained colour, atmospheric light, premium depth, original composition. 16:9 master with central 55% focal area for 4:5 and 9:16 crops. Quiet top 15% and bottom 20%. No text, labels, logos, recognisable people, brands, copied photos/posters or named-artist imitation. Clearly illustrated, not a documentary photograph.
 
 ## island-escapes-collection — P2
+
+- Strategy: **auto-visual-sufficient**
+- Decision: Theme or geography already explains the collection. A dedicated campaign cover remains optional.
 
 - File: `island-escapes-collection.webp`
 - Journey/collection: Island Escapes
@@ -342,6 +414,9 @@ Create an original Cinematic Editorial Travel Illustration representing the coll
 
 ## nature-wildlife-collection — P2
 
+- Strategy: **auto-visual-sufficient**
+- Decision: Theme or geography already explains the collection. A dedicated campaign cover remains optional.
+
 - File: `nature-wildlife-collection.webp`
 - Journey/collection: Nature & Wildlife
 - Format: WebP delivery; retain generated master
@@ -355,6 +430,9 @@ Prompt:
 Create an original Cinematic Editorial Travel Illustration representing the collection “Nature & Wildlife”: Journeys led by landscapes, ecosystems and wildlife.. Premium architectural editorial illustration, characteristic local streets and architectural forms, grounded human scale, no postcard collage. Use a coherent universal travel-character scene rather than a specific undocumented itinerary. Restrained colour, atmospheric light, premium depth, original composition. 16:9 master with central 55% focal area for 4:5 and 9:16 crops. Quiet top 15% and bottom 20%. No text, labels, logos, recognisable people, brands, copied photos/posters or named-artist imitation. Clearly illustrated, not a documentary photograph.
 
 ## two-week-adventures-collection — P2
+
+- Strategy: **auto-visual-sufficient**
+- Decision: Theme or geography already explains the collection. A dedicated campaign cover remains optional.
 
 - File: `two-week-adventures-collection.webp`
 - Journey/collection: Two Weeks or Less
@@ -370,6 +448,9 @@ Create an original Cinematic Editorial Travel Illustration representing the coll
 
 ## culture-food-collection — P2
 
+- Strategy: **auto-visual-sufficient**
+- Decision: Theme or geography already explains the collection. A dedicated campaign cover remains optional.
+
 - File: `culture-food-collection.webp`
 - Journey/collection: Culture & Food
 - Format: WebP delivery; retain generated master
@@ -383,6 +464,9 @@ Prompt:
 Create an original Cinematic Editorial Travel Illustration representing the collection “Culture & Food”: Routes shaped by cities, traditions and regional food.. Premium architectural editorial illustration, characteristic local streets and architectural forms, grounded human scale, no postcard collage. Use a coherent universal travel-character scene rather than a specific undocumented itinerary. Restrained colour, atmospheric light, premium depth, original composition. 16:9 master with central 55% focal area for 4:5 and 9:16 crops. Quiet top 15% and bottom 20%. No text, labels, logos, recognisable people, brands, copied photos/posters or named-artist imitation. Clearly illustrated, not a documentary photograph.
 
 ## active-nature-collection — P2
+
+- Strategy: **auto-visual-sufficient**
+- Decision: Theme or geography already explains the collection. A dedicated campaign cover remains optional.
 
 - File: `active-nature-collection.webp`
 - Journey/collection: Active Nature
@@ -398,6 +482,9 @@ Create an original Cinematic Editorial Travel Illustration representing the coll
 
 ## relaxed-escapes-collection — P2
 
+- Strategy: **auto-visual-sufficient**
+- Decision: Theme or geography already explains the collection. A dedicated campaign cover remains optional.
+
 - File: `relaxed-escapes-collection.webp`
 - Journey/collection: Relaxed Escapes
 - Format: WebP delivery; retain generated master
@@ -412,6 +499,9 @@ Create an original Cinematic Editorial Travel Illustration representing the coll
 
 ## oceania-journeys-collection — P2
 
+- Strategy: **auto-visual-sufficient**
+- Decision: Theme or geography already explains the collection. A dedicated campaign cover remains optional.
+
 - File: `oceania-journeys-collection.webp`
 - Journey/collection: Oceania Journeys
 - Format: WebP delivery; retain generated master
@@ -425,6 +515,9 @@ Prompt:
 Create an original Cinematic Editorial Travel Illustration representing the collection “Oceania Journeys”: Road trips and longer journeys across Australia, New Zealand and the wider Pacific region as the catalog grows.. Premium architectural editorial illustration, characteristic local streets and architectural forms, grounded human scale, no postcard collage. Use a coherent universal travel-character scene rather than a specific undocumented itinerary. Restrained colour, atmospheric light, premium depth, original composition. 16:9 master with central 55% focal area for 4:5 and 9:16 crops. Quiet top 15% and bottom 20%. No text, labels, logos, recognisable people, brands, copied photos/posters or named-artist imitation. Clearly illustrated, not a documentary photograph.
 
 ## around-the-world-collection — P2
+
+- Strategy: **auto-visual-sufficient**
+- Decision: Theme or geography already explains the collection. A dedicated campaign cover remains optional.
 
 - File: `around-the-world-collection.webp`
 - Journey/collection: Around the world

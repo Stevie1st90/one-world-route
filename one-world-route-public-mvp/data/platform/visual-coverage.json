@@ -1,0 +1,6038 @@
+{
+  "schemaVersion": 1,
+  "summary": {
+    "journeys": 21,
+    "auto": 21,
+    "destination": 0,
+    "bespoke": 0,
+    "vertical": 21
+  },
+  "journeys": [
+    {
+      "id": "canadian-rockies-rail-road",
+      "title": "Canadian Rockies Rail & Road",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "NATIONAL"
+    },
+    {
+      "id": "central-europe-rail-journey",
+      "title": "Central Europe Rail Journey",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "MULTI-COUNTRY"
+    },
+    {
+      "id": "costa-rica-nature-loop",
+      "title": "Costa Rica Nature Loop",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "REGIONAL"
+    },
+    {
+      "id": "greek-island-hopping",
+      "title": "Greek Island Hopping",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "REGIONAL"
+    },
+    {
+      "id": "iceland-ring-road",
+      "title": "Iceland Ring Road",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "REGIONAL"
+    },
+    {
+      "id": "india-golden-triangle-rail",
+      "title": "India Golden Triangle by Rail",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "REGIONAL"
+    },
+    {
+      "id": "italy-grand-tour",
+      "title": "Italy Grand Tour",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "NATIONAL"
+    },
+    {
+      "id": "japan-by-rail",
+      "title": "Japan by Rail",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "NATIONAL"
+    },
+    {
+      "id": "jordan-heritage-desert-drive",
+      "title": "Jordan Heritage & Desert Drive",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "REGIONAL"
+    },
+    {
+      "id": "morocco-atlas-desert",
+      "title": "Morocco Atlas & Desert",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "NATIONAL"
+    },
+    {
+      "id": "new-zealand-camper-loop",
+      "title": "New Zealand Camper Loop",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "REGIONAL"
+    },
+    {
+      "id": "norway-arctic-road-trip",
+      "title": "Norway Arctic Road Trip",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "REGIONAL"
+    },
+    {
+      "id": "patagonia-road-trip",
+      "title": "Patagonia Road Trip",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "REGIONAL"
+    },
+    {
+      "id": "peru-andes-journey",
+      "title": "Peru Andes Journey",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "NATIONAL"
+    },
+    {
+      "id": "south-africa-garden-safari",
+      "title": "South Africa Garden Route & Safari",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "NATIONAL"
+    },
+    {
+      "id": "southern-europe-road-trip",
+      "title": "Southern Europe Road Trip",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "MULTI-COUNTRY"
+    },
+    {
+      "id": "utah-national-parks-road-trip",
+      "title": "Utah National Parks Road Trip",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "REGIONAL"
+    },
+    {
+      "id": "victoria-great-ocean-highlands-road-trip",
+      "title": "Victoria Great Ocean & Highlands Road Trip",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "REGIONAL"
+    },
+    {
+      "id": "vietnam-north-south",
+      "title": "Vietnam North to South",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "NATIONAL"
+    },
+    {
+      "id": "western-mediterranean-cruise-loop",
+      "title": "Western Mediterranean Cruise Loop",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "MULTI-COUNTRY"
+    },
+    {
+      "id": "world-195",
+      "title": "One World Journey",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "GLOBAL"
+    }
+  ],
+  "destinationQueue": [
+    {
+      "type": "continent",
+      "id": "europe",
+      "name": "Europe",
+      "journeys": [
+        "world-195",
+        "central-europe-rail-journey",
+        "norway-arctic-road-trip",
+        "western-mediterranean-cruise-loop",
+        "southern-europe-road-trip",
+        "iceland-ring-road",
+        "greek-island-hopping",
+        "italy-grand-tour"
+      ],
+      "available": false,
+      "priority": 8
+    },
+    {
+      "type": "region",
+      "id": "europe",
+      "name": "europe",
+      "journeys": [
+        "italy-grand-tour",
+        "western-mediterranean-cruise-loop",
+        "southern-europe-road-trip",
+        "central-europe-rail-journey",
+        "norway-arctic-road-trip",
+        "greek-island-hopping",
+        "iceland-ring-road"
+      ],
+      "available": false,
+      "priority": 7
+    },
+    {
+      "type": "continent",
+      "id": "americas",
+      "name": "Americas",
+      "journeys": [
+        "world-195",
+        "canadian-rockies-rail-road",
+        "utah-national-parks-road-trip",
+        "costa-rica-nature-loop",
+        "peru-andes-journey",
+        "patagonia-road-trip"
+      ],
+      "available": false,
+      "priority": 6
+    },
+    {
+      "type": "continent",
+      "id": "asia",
+      "name": "Asia",
+      "journeys": [
+        "world-195",
+        "vietnam-north-south",
+        "india-golden-triangle-rail",
+        "japan-by-rail",
+        "jordan-heritage-desert-drive"
+      ],
+      "available": false,
+      "priority": 5
+    },
+    {
+      "type": "continent",
+      "id": "africa",
+      "name": "Africa",
+      "journeys": [
+        "world-195",
+        "western-mediterranean-cruise-loop",
+        "morocco-atlas-desert",
+        "south-africa-garden-safari"
+      ],
+      "available": false,
+      "priority": 4
+    },
+    {
+      "type": "region",
+      "id": "asia",
+      "name": "asia",
+      "journeys": [
+        "japan-by-rail",
+        "vietnam-north-south",
+        "jordan-heritage-desert-drive",
+        "india-golden-triangle-rail"
+      ],
+      "available": false,
+      "priority": 4
+    },
+    {
+      "type": "continent",
+      "id": "oceania",
+      "name": "Oceania",
+      "journeys": [
+        "world-195",
+        "new-zealand-camper-loop",
+        "victoria-great-ocean-highlands-road-trip"
+      ],
+      "available": false,
+      "priority": 3
+    },
+    {
+      "type": "region",
+      "id": "mediterranean",
+      "name": "mediterranean",
+      "journeys": [
+        "western-mediterranean-cruise-loop",
+        "southern-europe-road-trip",
+        "greek-island-hopping"
+      ],
+      "available": false,
+      "priority": 3
+    },
+    {
+      "type": "region",
+      "id": "southern-europe",
+      "name": "southern-europe",
+      "journeys": [
+        "italy-grand-tour",
+        "southern-europe-road-trip",
+        "greek-island-hopping"
+      ],
+      "available": false,
+      "priority": 3
+    },
+    {
+      "type": "place",
+      "id": "ES:barcelona",
+      "parent": {
+        "type": "country",
+        "id": "ES"
+      },
+      "name": {
+        "en": "Barcelona",
+        "de": "Barcelona",
+        "it": "Barcellona",
+        "es": "Barcelona",
+        "fr": "Barcelone",
+        "pt": "Barcelona"
+      },
+      "countryCode": "ES",
+      "journeys": [
+        "western-mediterranean-cruise-loop",
+        "southern-europe-road-trip"
+      ],
+      "available": false,
+      "priority": 2
+    },
+    {
+      "type": "place",
+      "id": "FR:marseille",
+      "parent": {
+        "type": "country",
+        "id": "FR"
+      },
+      "name": {
+        "en": "Marseille",
+        "de": "Marseille",
+        "it": "Marsiglia",
+        "es": "Marsella",
+        "fr": "Marseille",
+        "pt": "Marselha"
+      },
+      "countryCode": "FR",
+      "journeys": [
+        "western-mediterranean-cruise-loop",
+        "southern-europe-road-trip"
+      ],
+      "available": false,
+      "priority": 2
+    },
+    {
+      "type": "place",
+      "id": "IT:florence",
+      "parent": {
+        "type": "country",
+        "id": "IT"
+      },
+      "name": {
+        "en": "Florence",
+        "de": "Florenz",
+        "it": "Firenze",
+        "es": "Florencia",
+        "fr": "Florence",
+        "pt": "Florença"
+      },
+      "countryCode": "IT",
+      "journeys": [
+        "italy-grand-tour",
+        "southern-europe-road-trip"
+      ],
+      "available": false,
+      "priority": 2
+    },
+    {
+      "type": "place",
+      "id": "IT:naples",
+      "parent": {
+        "type": "country",
+        "id": "IT"
+      },
+      "name": {
+        "en": "Naples",
+        "de": "Neapel",
+        "it": "Napoli",
+        "es": "Nápoles",
+        "fr": "Naples",
+        "pt": "Nápoles"
+      },
+      "countryCode": "IT",
+      "journeys": [
+        "italy-grand-tour",
+        "western-mediterranean-cruise-loop"
+      ],
+      "available": false,
+      "priority": 2
+    },
+    {
+      "type": "place",
+      "id": "IT:rome",
+      "parent": {
+        "type": "country",
+        "id": "IT"
+      },
+      "name": {
+        "en": "Rome",
+        "de": "Rom",
+        "it": "Roma",
+        "es": "Roma",
+        "fr": "Rome",
+        "pt": "Roma"
+      },
+      "countryCode": "IT",
+      "journeys": [
+        "italy-grand-tour",
+        "southern-europe-road-trip"
+      ],
+      "available": false,
+      "priority": 2
+    },
+    {
+      "type": "region",
+      "id": "africa",
+      "name": "africa",
+      "journeys": [
+        "morocco-atlas-desert",
+        "south-africa-garden-safari"
+      ],
+      "available": false,
+      "priority": 2
+    },
+    {
+      "type": "region",
+      "id": "north-africa",
+      "name": "north-africa",
+      "journeys": [
+        "western-mediterranean-cruise-loop",
+        "morocco-atlas-desert"
+      ],
+      "available": false,
+      "priority": 2
+    },
+    {
+      "type": "region",
+      "id": "north-america",
+      "name": "north-america",
+      "journeys": [
+        "canadian-rockies-rail-road",
+        "utah-national-parks-road-trip"
+      ],
+      "available": false,
+      "priority": 2
+    },
+    {
+      "type": "region",
+      "id": "northern-europe",
+      "name": "northern-europe",
+      "journeys": [
+        "norway-arctic-road-trip",
+        "iceland-ring-road"
+      ],
+      "available": false,
+      "priority": 2
+    },
+    {
+      "type": "region",
+      "id": "oceania",
+      "name": "oceania",
+      "journeys": [
+        "new-zealand-camper-loop",
+        "victoria-great-ocean-highlands-road-trip"
+      ],
+      "available": false,
+      "priority": 2
+    },
+    {
+      "type": "region",
+      "id": "south-america",
+      "name": "south-america",
+      "journeys": [
+        "patagonia-road-trip",
+        "peru-andes-journey"
+      ],
+      "available": false,
+      "priority": 2
+    },
+    {
+      "type": "country",
+      "id": "AU",
+      "name": "Australien",
+      "parent": {
+        "type": "continent",
+        "id": "oceania"
+      },
+      "journeys": [
+        "world-195",
+        "victoria-great-ocean-highlands-road-trip"
+      ],
+      "eligibleJourneys": [
+        "victoria-great-ocean-highlands-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "country",
+      "id": "CA",
+      "name": "Kanada",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195",
+        "canadian-rockies-rail-road"
+      ],
+      "eligibleJourneys": [
+        "canadian-rockies-rail-road"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "country",
+      "id": "CR",
+      "name": "Costa Rica",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195",
+        "costa-rica-nature-loop"
+      ],
+      "eligibleJourneys": [
+        "costa-rica-nature-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "country",
+      "id": "GR",
+      "name": "Griechenland",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195",
+        "greek-island-hopping"
+      ],
+      "eligibleJourneys": [
+        "greek-island-hopping"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "country",
+      "id": "IN",
+      "name": "Indien",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195",
+        "india-golden-triangle-rail"
+      ],
+      "eligibleJourneys": [
+        "india-golden-triangle-rail"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "country",
+      "id": "IS",
+      "name": "Island",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195",
+        "iceland-ring-road"
+      ],
+      "eligibleJourneys": [
+        "iceland-ring-road"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "country",
+      "id": "IT",
+      "name": "Italien",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195",
+        "italy-grand-tour",
+        "western-mediterranean-cruise-loop",
+        "southern-europe-road-trip"
+      ],
+      "eligibleJourneys": [
+        "italy-grand-tour"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "country",
+      "id": "JO",
+      "name": "Jordanien",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195",
+        "jordan-heritage-desert-drive"
+      ],
+      "eligibleJourneys": [
+        "jordan-heritage-desert-drive"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "country",
+      "id": "JP",
+      "name": "Japan",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195",
+        "japan-by-rail"
+      ],
+      "eligibleJourneys": [
+        "japan-by-rail"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "country",
+      "id": "MA",
+      "name": "Marokko",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195",
+        "morocco-atlas-desert"
+      ],
+      "eligibleJourneys": [
+        "morocco-atlas-desert"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "country",
+      "id": "NO",
+      "name": "Norwegen",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195",
+        "norway-arctic-road-trip"
+      ],
+      "eligibleJourneys": [
+        "norway-arctic-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "country",
+      "id": "NZ",
+      "name": "Neuseeland",
+      "parent": {
+        "type": "continent",
+        "id": "oceania"
+      },
+      "journeys": [
+        "world-195",
+        "new-zealand-camper-loop"
+      ],
+      "eligibleJourneys": [
+        "new-zealand-camper-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "country",
+      "id": "PE",
+      "name": "Peru",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195",
+        "peru-andes-journey"
+      ],
+      "eligibleJourneys": [
+        "peru-andes-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "country",
+      "id": "US",
+      "name": "USA",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195",
+        "utah-national-parks-road-trip"
+      ],
+      "eligibleJourneys": [
+        "utah-national-parks-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "country",
+      "id": "VN",
+      "name": "Vietnam",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195",
+        "vietnam-north-south"
+      ],
+      "eligibleJourneys": [
+        "vietnam-north-south"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "country",
+      "id": "ZA",
+      "name": "Südafrika",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195",
+        "south-africa-garden-safari"
+      ],
+      "eligibleJourneys": [
+        "south-africa-garden-safari"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "AR:el-calafate",
+      "parent": {
+        "type": "country",
+        "id": "AR"
+      },
+      "name": {
+        "en": "El Calafate"
+      },
+      "countryCode": "AR",
+      "journeys": [
+        "patagonia-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "AR:el-chalten",
+      "parent": {
+        "type": "country",
+        "id": "AR"
+      },
+      "name": {
+        "en": "El Chaltén"
+      },
+      "countryCode": "AR",
+      "journeys": [
+        "patagonia-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "AT:vienna",
+      "parent": {
+        "type": "country",
+        "id": "AT"
+      },
+      "name": {
+        "en": "Vienna",
+        "de": "Wien",
+        "it": "Vienna",
+        "es": "Viena",
+        "fr": "Vienne",
+        "pt": "Viena"
+      },
+      "countryCode": "AT",
+      "journeys": [
+        "central-europe-rail-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "AU:ballarat",
+      "parent": {
+        "type": "country",
+        "id": "AU"
+      },
+      "name": {
+        "en": "Ballarat",
+        "de": "Ballarat",
+        "it": "Ballarat",
+        "es": "Ballarat",
+        "fr": "Ballarat",
+        "pt": "Ballarat"
+      },
+      "countryCode": "AU",
+      "journeys": [
+        "victoria-great-ocean-highlands-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "AU:bellarine-peninsula",
+      "parent": {
+        "type": "country",
+        "id": "AU"
+      },
+      "name": {
+        "en": "Bellarine Peninsula",
+        "de": "Bellarine Peninsula",
+        "it": "Bellarine Peninsula",
+        "es": "Bellarine Peninsula",
+        "fr": "Bellarine Peninsula",
+        "pt": "Bellarine Peninsula"
+      },
+      "countryCode": "AU",
+      "journeys": [
+        "victoria-great-ocean-highlands-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "AU:cape-otway",
+      "parent": {
+        "type": "country",
+        "id": "AU"
+      },
+      "name": {
+        "en": "Cape Otway",
+        "de": "Cape Otway",
+        "it": "Cape Otway",
+        "es": "Cape Otway",
+        "fr": "Cape Otway",
+        "pt": "Cape Otway"
+      },
+      "countryCode": "AU",
+      "journeys": [
+        "victoria-great-ocean-highlands-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "AU:daylesford",
+      "parent": {
+        "type": "country",
+        "id": "AU"
+      },
+      "name": {
+        "en": "Daylesford",
+        "de": "Daylesford",
+        "it": "Daylesford",
+        "es": "Daylesford",
+        "fr": "Daylesford",
+        "pt": "Daylesford"
+      },
+      "countryCode": "AU",
+      "journeys": [
+        "victoria-great-ocean-highlands-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "AU:halls-gap-gariwerd",
+      "parent": {
+        "type": "country",
+        "id": "AU"
+      },
+      "name": {
+        "en": "Halls Gap · Gariwerd",
+        "de": "Halls Gap · Gariwerd",
+        "it": "Halls Gap · Gariwerd",
+        "es": "Halls Gap · Gariwerd",
+        "fr": "Halls Gap · Gariwerd",
+        "pt": "Halls Gap · Gariwerd"
+      },
+      "countryCode": "AU",
+      "journeys": [
+        "victoria-great-ocean-highlands-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "AU:lorne",
+      "parent": {
+        "type": "country",
+        "id": "AU"
+      },
+      "name": {
+        "en": "Lorne",
+        "de": "Lorne",
+        "it": "Lorne",
+        "es": "Lorne",
+        "fr": "Lorne",
+        "pt": "Lorne"
+      },
+      "countryCode": "AU",
+      "journeys": [
+        "victoria-great-ocean-highlands-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "AU:melbourne",
+      "parent": {
+        "type": "country",
+        "id": "AU"
+      },
+      "name": {
+        "en": "Melbourne",
+        "de": "Melbourne",
+        "it": "Melbourne",
+        "es": "Melbourne",
+        "fr": "Melbourne",
+        "pt": "Melbourne"
+      },
+      "countryCode": "AU",
+      "journeys": [
+        "victoria-great-ocean-highlands-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "AU:port-fairy",
+      "parent": {
+        "type": "country",
+        "id": "AU"
+      },
+      "name": {
+        "en": "Port Fairy",
+        "de": "Port Fairy",
+        "it": "Port Fairy",
+        "es": "Port Fairy",
+        "fr": "Port Fairy",
+        "pt": "Port Fairy"
+      },
+      "countryCode": "AU",
+      "journeys": [
+        "victoria-great-ocean-highlands-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "BE:brussels",
+      "parent": {
+        "type": "country",
+        "id": "BE"
+      },
+      "name": {
+        "en": "Brussels",
+        "de": "Brüssel",
+        "it": "Bruxelles",
+        "es": "Bruselas",
+        "fr": "Bruxelles",
+        "pt": "Bruxelas"
+      },
+      "countryCode": "BE",
+      "journeys": [
+        "central-europe-rail-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "CA:banff",
+      "parent": {
+        "type": "country",
+        "id": "CA"
+      },
+      "name": {
+        "en": "Banff"
+      },
+      "countryCode": "CA",
+      "journeys": [
+        "canadian-rockies-rail-road"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "CA:calgary",
+      "parent": {
+        "type": "country",
+        "id": "CA"
+      },
+      "name": {
+        "en": "Calgary"
+      },
+      "countryCode": "CA",
+      "journeys": [
+        "canadian-rockies-rail-road"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "CA:jasper",
+      "parent": {
+        "type": "country",
+        "id": "CA"
+      },
+      "name": {
+        "en": "Jasper"
+      },
+      "countryCode": "CA",
+      "journeys": [
+        "canadian-rockies-rail-road"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "CA:kamloops",
+      "parent": {
+        "type": "country",
+        "id": "CA"
+      },
+      "name": {
+        "en": "Kamloops"
+      },
+      "countryCode": "CA",
+      "journeys": [
+        "canadian-rockies-rail-road"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "CA:vancouver",
+      "parent": {
+        "type": "country",
+        "id": "CA"
+      },
+      "name": {
+        "en": "Vancouver"
+      },
+      "countryCode": "CA",
+      "journeys": [
+        "canadian-rockies-rail-road"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "CL:puerto-natales",
+      "parent": {
+        "type": "country",
+        "id": "CL"
+      },
+      "name": {
+        "en": "Puerto Natales"
+      },
+      "countryCode": "CL",
+      "journeys": [
+        "patagonia-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "CL:punta-arenas",
+      "parent": {
+        "type": "country",
+        "id": "CL"
+      },
+      "name": {
+        "en": "Punta Arenas"
+      },
+      "countryCode": "CL",
+      "journeys": [
+        "patagonia-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "CL:torres-del-paine",
+      "parent": {
+        "type": "country",
+        "id": "CL"
+      },
+      "name": {
+        "en": "Torres del Paine"
+      },
+      "countryCode": "CL",
+      "journeys": [
+        "patagonia-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "CR:arenal",
+      "parent": {
+        "type": "country",
+        "id": "CR"
+      },
+      "name": {
+        "en": "Arenal"
+      },
+      "countryCode": "CR",
+      "journeys": [
+        "costa-rica-nature-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "CR:manuel-antonio",
+      "parent": {
+        "type": "country",
+        "id": "CR"
+      },
+      "name": {
+        "en": "Manuel Antonio"
+      },
+      "countryCode": "CR",
+      "journeys": [
+        "costa-rica-nature-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "CR:monteverde",
+      "parent": {
+        "type": "country",
+        "id": "CR"
+      },
+      "name": {
+        "en": "Monteverde"
+      },
+      "countryCode": "CR",
+      "journeys": [
+        "costa-rica-nature-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "CR:san-jose",
+      "parent": {
+        "type": "country",
+        "id": "CR"
+      },
+      "name": {
+        "en": "San José"
+      },
+      "countryCode": "CR",
+      "journeys": [
+        "costa-rica-nature-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "CR:uvita",
+      "parent": {
+        "type": "country",
+        "id": "CR"
+      },
+      "name": {
+        "en": "Uvita"
+      },
+      "countryCode": "CR",
+      "journeys": [
+        "costa-rica-nature-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "CZ:prague",
+      "parent": {
+        "type": "country",
+        "id": "CZ"
+      },
+      "name": {
+        "en": "Prague",
+        "de": "Prag",
+        "it": "Praga",
+        "es": "Praga",
+        "fr": "Prague",
+        "pt": "Praga"
+      },
+      "countryCode": "CZ",
+      "journeys": [
+        "central-europe-rail-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "DE:berlin",
+      "parent": {
+        "type": "country",
+        "id": "DE"
+      },
+      "name": {
+        "en": "Berlin",
+        "de": "Berlin",
+        "it": "Berlino",
+        "es": "Berlín",
+        "fr": "Berlin",
+        "pt": "Berlim"
+      },
+      "countryCode": "DE",
+      "journeys": [
+        "central-europe-rail-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "DE:cologne",
+      "parent": {
+        "type": "country",
+        "id": "DE"
+      },
+      "name": {
+        "en": "Cologne",
+        "de": "Köln",
+        "it": "Colonia",
+        "es": "Colonia",
+        "fr": "Cologne",
+        "pt": "Colónia"
+      },
+      "countryCode": "DE",
+      "journeys": [
+        "central-europe-rail-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "DE:frankfurt",
+      "parent": {
+        "type": "country",
+        "id": "DE"
+      },
+      "name": {
+        "en": "Frankfurt",
+        "de": "Frankfurt",
+        "it": "Francoforte",
+        "es": "Fráncfort",
+        "fr": "Francfort",
+        "pt": "Frankfurt"
+      },
+      "countryCode": "DE",
+      "journeys": [
+        "central-europe-rail-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "DE:munich",
+      "parent": {
+        "type": "country",
+        "id": "DE"
+      },
+      "name": {
+        "en": "Munich",
+        "de": "München",
+        "it": "Monaco di Baviera",
+        "es": "Múnich",
+        "fr": "Munich",
+        "pt": "Munique"
+      },
+      "countryCode": "DE",
+      "journeys": [
+        "central-europe-rail-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "ES:granada",
+      "parent": {
+        "type": "country",
+        "id": "ES"
+      },
+      "name": {
+        "en": "Granada",
+        "de": "Granada",
+        "it": "Granada",
+        "es": "Granada",
+        "fr": "Grenade",
+        "pt": "Granada"
+      },
+      "countryCode": "ES",
+      "journeys": [
+        "southern-europe-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "ES:palma-de-mallorca",
+      "parent": {
+        "type": "country",
+        "id": "ES"
+      },
+      "name": {
+        "en": "Palma de Mallorca",
+        "de": "Palma de Mallorca",
+        "it": "Palma di Maiorca",
+        "es": "Palma de Mallorca",
+        "fr": "Palma de Majorque",
+        "pt": "Palma de Maiorca"
+      },
+      "countryCode": "ES",
+      "journeys": [
+        "western-mediterranean-cruise-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "ES:seville",
+      "parent": {
+        "type": "country",
+        "id": "ES"
+      },
+      "name": {
+        "en": "Seville",
+        "de": "Sevilla",
+        "it": "Siviglia",
+        "es": "Sevilla",
+        "fr": "Séville",
+        "pt": "Sevilha"
+      },
+      "countryCode": "ES",
+      "journeys": [
+        "southern-europe-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "ES:valencia",
+      "parent": {
+        "type": "country",
+        "id": "ES"
+      },
+      "name": {
+        "en": "Valencia",
+        "de": "Valencia",
+        "it": "Valencia",
+        "es": "Valencia",
+        "fr": "Valence",
+        "pt": "Valência"
+      },
+      "countryCode": "ES",
+      "journeys": [
+        "southern-europe-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "FR:montpellier",
+      "parent": {
+        "type": "country",
+        "id": "FR"
+      },
+      "name": {
+        "en": "Montpellier",
+        "de": "Montpellier",
+        "it": "Montpellier",
+        "es": "Montpellier",
+        "fr": "Montpellier",
+        "pt": "Montpellier"
+      },
+      "countryCode": "FR",
+      "journeys": [
+        "southern-europe-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "FR:nice",
+      "parent": {
+        "type": "country",
+        "id": "FR"
+      },
+      "name": {
+        "en": "Nice",
+        "de": "Nizza",
+        "it": "Nizza",
+        "es": "Niza",
+        "fr": "Nice",
+        "pt": "Nice"
+      },
+      "countryCode": "FR",
+      "journeys": [
+        "southern-europe-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "FR:paris",
+      "parent": {
+        "type": "country",
+        "id": "FR"
+      },
+      "name": {
+        "en": "Paris",
+        "de": "Paris",
+        "it": "Parigi",
+        "es": "París",
+        "fr": "Paris",
+        "pt": "Paris"
+      },
+      "countryCode": "FR",
+      "journeys": [
+        "central-europe-rail-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "GR:athens",
+      "parent": {
+        "type": "country",
+        "id": "GR"
+      },
+      "name": {
+        "en": "Athens"
+      },
+      "countryCode": "GR",
+      "journeys": [
+        "greek-island-hopping"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "GR:mykonos",
+      "parent": {
+        "type": "country",
+        "id": "GR"
+      },
+      "name": {
+        "en": "Mykonos"
+      },
+      "countryCode": "GR",
+      "journeys": [
+        "greek-island-hopping"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "GR:naxos",
+      "parent": {
+        "type": "country",
+        "id": "GR"
+      },
+      "name": {
+        "en": "Naxos"
+      },
+      "countryCode": "GR",
+      "journeys": [
+        "greek-island-hopping"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "GR:paros",
+      "parent": {
+        "type": "country",
+        "id": "GR"
+      },
+      "name": {
+        "en": "Paros"
+      },
+      "countryCode": "GR",
+      "journeys": [
+        "greek-island-hopping"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "GR:santorini",
+      "parent": {
+        "type": "country",
+        "id": "GR"
+      },
+      "name": {
+        "en": "Santorini"
+      },
+      "countryCode": "GR",
+      "journeys": [
+        "greek-island-hopping"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "HU:budapest",
+      "parent": {
+        "type": "country",
+        "id": "HU"
+      },
+      "name": {
+        "en": "Budapest",
+        "de": "Budapest",
+        "it": "Budapest",
+        "es": "Budapest",
+        "fr": "Budapest",
+        "pt": "Budapeste"
+      },
+      "countryCode": "HU",
+      "journeys": [
+        "central-europe-rail-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "IN:agra",
+      "parent": {
+        "type": "country",
+        "id": "IN"
+      },
+      "name": {
+        "en": "Agra",
+        "de": "Agra",
+        "it": "Agra",
+        "es": "Agra",
+        "fr": "Agra",
+        "pt": "Agra"
+      },
+      "countryCode": "IN",
+      "journeys": [
+        "india-golden-triangle-rail"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "IN:delhi",
+      "parent": {
+        "type": "country",
+        "id": "IN"
+      },
+      "name": {
+        "en": "Delhi",
+        "de": "Delhi",
+        "it": "Delhi",
+        "es": "Delhi",
+        "fr": "Delhi",
+        "pt": "Delhi"
+      },
+      "countryCode": "IN",
+      "journeys": [
+        "india-golden-triangle-rail"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "IN:jaipur",
+      "parent": {
+        "type": "country",
+        "id": "IN"
+      },
+      "name": {
+        "en": "Jaipur",
+        "de": "Jaipur",
+        "it": "Jaipur",
+        "es": "Jaipur",
+        "fr": "Jaipur",
+        "pt": "Jaipur"
+      },
+      "countryCode": "IN",
+      "journeys": [
+        "india-golden-triangle-rail"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "IS:akureyri",
+      "parent": {
+        "type": "country",
+        "id": "IS"
+      },
+      "name": {
+        "en": "Akureyri"
+      },
+      "countryCode": "IS",
+      "journeys": [
+        "iceland-ring-road"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "IS:egilsstadir",
+      "parent": {
+        "type": "country",
+        "id": "IS"
+      },
+      "name": {
+        "en": "Egilsstaðir"
+      },
+      "countryCode": "IS",
+      "journeys": [
+        "iceland-ring-road"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "IS:jokulsarlon",
+      "parent": {
+        "type": "country",
+        "id": "IS"
+      },
+      "name": {
+        "en": "Jökulsárlón"
+      },
+      "countryCode": "IS",
+      "journeys": [
+        "iceland-ring-road"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "IS:reykjavik",
+      "parent": {
+        "type": "country",
+        "id": "IS"
+      },
+      "name": {
+        "en": "Reykjavík"
+      },
+      "countryCode": "IS",
+      "journeys": [
+        "iceland-ring-road"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "IS:snaefellsnes",
+      "parent": {
+        "type": "country",
+        "id": "IS"
+      },
+      "name": {
+        "en": "Snæfellsnes"
+      },
+      "countryCode": "IS",
+      "journeys": [
+        "iceland-ring-road"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "IS:vik",
+      "parent": {
+        "type": "country",
+        "id": "IS"
+      },
+      "name": {
+        "en": "Vík"
+      },
+      "countryCode": "IS",
+      "journeys": [
+        "iceland-ring-road"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "IT:amalfi-coast",
+      "parent": {
+        "type": "country",
+        "id": "IT"
+      },
+      "name": {
+        "en": "Amalfi Coast",
+        "de": "Amalfiküste",
+        "it": "Costiera Amalfitana",
+        "es": "Costa Amalfitana",
+        "fr": "Côte amalfitaine",
+        "pt": "Costa Amalfitana"
+      },
+      "countryCode": "IT",
+      "journeys": [
+        "italy-grand-tour"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "IT:bari",
+      "parent": {
+        "type": "country",
+        "id": "IT"
+      },
+      "name": {
+        "en": "Bari",
+        "de": "Bari",
+        "it": "Bari",
+        "es": "Bari",
+        "fr": "Bari",
+        "pt": "Bari"
+      },
+      "countryCode": "IT",
+      "journeys": [
+        "italy-grand-tour"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "IT:bologna",
+      "parent": {
+        "type": "country",
+        "id": "IT"
+      },
+      "name": {
+        "en": "Bologna",
+        "de": "Bologna",
+        "it": "Bologna",
+        "es": "Bolonia",
+        "fr": "Bologne",
+        "pt": "Bolonha"
+      },
+      "countryCode": "IT",
+      "journeys": [
+        "italy-grand-tour"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "IT:civitavecchia-rome-gateway",
+      "parent": {
+        "type": "country",
+        "id": "IT"
+      },
+      "name": {
+        "en": "Civitavecchia · Rome gateway",
+        "de": "Civitavecchia · Tor zu Rom",
+        "it": "Civitavecchia · porto di Roma",
+        "es": "Civitavecchia · puerta de Roma",
+        "fr": "Civitavecchia · porte de Rome",
+        "pt": "Civitavecchia · porta de Roma"
+      },
+      "countryCode": "IT",
+      "journeys": [
+        "western-mediterranean-cruise-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "IT:dolomites-cortina",
+      "parent": {
+        "type": "country",
+        "id": "IT"
+      },
+      "name": {
+        "en": "Dolomites · Cortina",
+        "de": "Dolomiten · Cortina",
+        "it": "Dolomiti · Cortina",
+        "es": "Dolomitas · Cortina",
+        "fr": "Dolomites · Cortina",
+        "pt": "Dolomitas · Cortina"
+      },
+      "countryCode": "IT",
+      "journeys": [
+        "italy-grand-tour"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "IT:genoa",
+      "parent": {
+        "type": "country",
+        "id": "IT"
+      },
+      "name": {
+        "en": "Genoa",
+        "de": "Genua",
+        "it": "Genova",
+        "es": "Génova",
+        "fr": "Gênes",
+        "pt": "Gênova"
+      },
+      "countryCode": "IT",
+      "journeys": [
+        "southern-europe-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "IT:matera",
+      "parent": {
+        "type": "country",
+        "id": "IT"
+      },
+      "name": {
+        "en": "Matera",
+        "de": "Matera",
+        "it": "Matera",
+        "es": "Matera",
+        "fr": "Matera",
+        "pt": "Matera"
+      },
+      "countryCode": "IT",
+      "journeys": [
+        "italy-grand-tour"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "IT:siena",
+      "parent": {
+        "type": "country",
+        "id": "IT"
+      },
+      "name": {
+        "en": "Siena",
+        "de": "Siena",
+        "it": "Siena",
+        "es": "Siena",
+        "fr": "Sienne",
+        "pt": "Siena"
+      },
+      "countryCode": "IT",
+      "journeys": [
+        "italy-grand-tour"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "IT:venice",
+      "parent": {
+        "type": "country",
+        "id": "IT"
+      },
+      "name": {
+        "en": "Venice",
+        "de": "Venedig",
+        "it": "Venezia",
+        "es": "Venecia",
+        "fr": "Venise",
+        "pt": "Veneza"
+      },
+      "countryCode": "IT",
+      "journeys": [
+        "italy-grand-tour"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "JO:amman",
+      "parent": {
+        "type": "country",
+        "id": "JO"
+      },
+      "name": {
+        "en": "Amman",
+        "de": "Amman",
+        "it": "Amman",
+        "es": "Amán",
+        "fr": "Amman",
+        "pt": "Amã"
+      },
+      "countryCode": "JO",
+      "journeys": [
+        "jordan-heritage-desert-drive"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "JO:aqaba",
+      "parent": {
+        "type": "country",
+        "id": "JO"
+      },
+      "name": {
+        "en": "Aqaba",
+        "de": "Aqaba",
+        "it": "Aqaba",
+        "es": "Aqaba",
+        "fr": "Aqaba",
+        "pt": "Aqaba"
+      },
+      "countryCode": "JO",
+      "journeys": [
+        "jordan-heritage-desert-drive"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "JO:dead-sea",
+      "parent": {
+        "type": "country",
+        "id": "JO"
+      },
+      "name": {
+        "en": "Dead Sea",
+        "de": "Totes Meer",
+        "it": "Mar Morto",
+        "es": "Mar Muerto",
+        "fr": "Mer Morte",
+        "pt": "Mar Morto"
+      },
+      "countryCode": "JO",
+      "journeys": [
+        "jordan-heritage-desert-drive"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "JO:jerash",
+      "parent": {
+        "type": "country",
+        "id": "JO"
+      },
+      "name": {
+        "en": "Jerash",
+        "de": "Jerash",
+        "it": "Jerash",
+        "es": "Jerash",
+        "fr": "Jerash",
+        "pt": "Jerash"
+      },
+      "countryCode": "JO",
+      "journeys": [
+        "jordan-heritage-desert-drive"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "JO:petra",
+      "parent": {
+        "type": "country",
+        "id": "JO"
+      },
+      "name": {
+        "en": "Petra",
+        "de": "Petra",
+        "it": "Petra",
+        "es": "Petra",
+        "fr": "Petra",
+        "pt": "Petra"
+      },
+      "countryCode": "JO",
+      "journeys": [
+        "jordan-heritage-desert-drive"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "JO:wadi-rum",
+      "parent": {
+        "type": "country",
+        "id": "JO"
+      },
+      "name": {
+        "en": "Wadi Rum",
+        "de": "Wadi Rum",
+        "it": "Wadi Rum",
+        "es": "Wadi Rum",
+        "fr": "Wadi Rum",
+        "pt": "Wadi Rum"
+      },
+      "countryCode": "JO",
+      "journeys": [
+        "jordan-heritage-desert-drive"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "JP:hiroshima",
+      "parent": {
+        "type": "country",
+        "id": "JP"
+      },
+      "name": {
+        "en": "Hiroshima"
+      },
+      "countryCode": "JP",
+      "journeys": [
+        "japan-by-rail"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "JP:kanazawa",
+      "parent": {
+        "type": "country",
+        "id": "JP"
+      },
+      "name": {
+        "en": "Kanazawa"
+      },
+      "countryCode": "JP",
+      "journeys": [
+        "japan-by-rail"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "JP:kyoto",
+      "parent": {
+        "type": "country",
+        "id": "JP"
+      },
+      "name": {
+        "en": "Kyoto"
+      },
+      "countryCode": "JP",
+      "journeys": [
+        "japan-by-rail"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "JP:matsumoto",
+      "parent": {
+        "type": "country",
+        "id": "JP"
+      },
+      "name": {
+        "en": "Matsumoto"
+      },
+      "countryCode": "JP",
+      "journeys": [
+        "japan-by-rail"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "JP:osaka",
+      "parent": {
+        "type": "country",
+        "id": "JP"
+      },
+      "name": {
+        "en": "Osaka"
+      },
+      "countryCode": "JP",
+      "journeys": [
+        "japan-by-rail"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "JP:tokyo",
+      "parent": {
+        "type": "country",
+        "id": "JP"
+      },
+      "name": {
+        "en": "Tokyo"
+      },
+      "countryCode": "JP",
+      "journeys": [
+        "japan-by-rail"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "MA:ait-benhaddou",
+      "parent": {
+        "type": "country",
+        "id": "MA"
+      },
+      "name": {
+        "en": "Aït Benhaddou"
+      },
+      "countryCode": "MA",
+      "journeys": [
+        "morocco-atlas-desert"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "MA:dades-valley",
+      "parent": {
+        "type": "country",
+        "id": "MA"
+      },
+      "name": {
+        "en": "Dadès Valley"
+      },
+      "countryCode": "MA",
+      "journeys": [
+        "morocco-atlas-desert"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "MA:essaouira",
+      "parent": {
+        "type": "country",
+        "id": "MA"
+      },
+      "name": {
+        "en": "Essaouira"
+      },
+      "countryCode": "MA",
+      "journeys": [
+        "morocco-atlas-desert"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "MA:marrakech",
+      "parent": {
+        "type": "country",
+        "id": "MA"
+      },
+      "name": {
+        "en": "Marrakech"
+      },
+      "countryCode": "MA",
+      "journeys": [
+        "morocco-atlas-desert"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "MA:merzouga",
+      "parent": {
+        "type": "country",
+        "id": "MA"
+      },
+      "name": {
+        "en": "Merzouga"
+      },
+      "countryCode": "MA",
+      "journeys": [
+        "morocco-atlas-desert"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "NL:amsterdam",
+      "parent": {
+        "type": "country",
+        "id": "NL"
+      },
+      "name": {
+        "en": "Amsterdam",
+        "de": "Amsterdam",
+        "it": "Amsterdam",
+        "es": "Ámsterdam",
+        "fr": "Amsterdam",
+        "pt": "Amesterdão"
+      },
+      "countryCode": "NL",
+      "journeys": [
+        "central-europe-rail-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "NO:andoya",
+      "parent": {
+        "type": "country",
+        "id": "NO"
+      },
+      "name": {
+        "en": "Andøya"
+      },
+      "countryCode": "NO",
+      "journeys": [
+        "norway-arctic-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "NO:reine",
+      "parent": {
+        "type": "country",
+        "id": "NO"
+      },
+      "name": {
+        "en": "Reine"
+      },
+      "countryCode": "NO",
+      "journeys": [
+        "norway-arctic-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "NO:senja",
+      "parent": {
+        "type": "country",
+        "id": "NO"
+      },
+      "name": {
+        "en": "Senja"
+      },
+      "countryCode": "NO",
+      "journeys": [
+        "norway-arctic-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "NO:svolvaer",
+      "parent": {
+        "type": "country",
+        "id": "NO"
+      },
+      "name": {
+        "en": "Svolvær"
+      },
+      "countryCode": "NO",
+      "journeys": [
+        "norway-arctic-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "NO:tromso",
+      "parent": {
+        "type": "country",
+        "id": "NO"
+      },
+      "name": {
+        "en": "Tromsø"
+      },
+      "countryCode": "NO",
+      "journeys": [
+        "norway-arctic-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "NZ:christchurch",
+      "parent": {
+        "type": "country",
+        "id": "NZ"
+      },
+      "name": {
+        "en": "Christchurch"
+      },
+      "countryCode": "NZ",
+      "journeys": [
+        "new-zealand-camper-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "NZ:franz-josef",
+      "parent": {
+        "type": "country",
+        "id": "NZ"
+      },
+      "name": {
+        "en": "Franz Josef"
+      },
+      "countryCode": "NZ",
+      "journeys": [
+        "new-zealand-camper-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "NZ:lake-tekapo",
+      "parent": {
+        "type": "country",
+        "id": "NZ"
+      },
+      "name": {
+        "en": "Lake Tekapo"
+      },
+      "countryCode": "NZ",
+      "journeys": [
+        "new-zealand-camper-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "NZ:milford-sound",
+      "parent": {
+        "type": "country",
+        "id": "NZ"
+      },
+      "name": {
+        "en": "Milford Sound"
+      },
+      "countryCode": "NZ",
+      "journeys": [
+        "new-zealand-camper-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "NZ:queenstown",
+      "parent": {
+        "type": "country",
+        "id": "NZ"
+      },
+      "name": {
+        "en": "Queenstown"
+      },
+      "countryCode": "NZ",
+      "journeys": [
+        "new-zealand-camper-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "NZ:wanaka",
+      "parent": {
+        "type": "country",
+        "id": "NZ"
+      },
+      "name": {
+        "en": "Wānaka"
+      },
+      "countryCode": "NZ",
+      "journeys": [
+        "new-zealand-camper-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "PE:cusco",
+      "parent": {
+        "type": "country",
+        "id": "PE"
+      },
+      "name": {
+        "en": "Cusco"
+      },
+      "countryCode": "PE",
+      "journeys": [
+        "peru-andes-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "PE:lima",
+      "parent": {
+        "type": "country",
+        "id": "PE"
+      },
+      "name": {
+        "en": "Lima"
+      },
+      "countryCode": "PE",
+      "journeys": [
+        "peru-andes-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "PE:machu-picchu",
+      "parent": {
+        "type": "country",
+        "id": "PE"
+      },
+      "name": {
+        "en": "Machu Picchu"
+      },
+      "countryCode": "PE",
+      "journeys": [
+        "peru-andes-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "PE:puno",
+      "parent": {
+        "type": "country",
+        "id": "PE"
+      },
+      "name": {
+        "en": "Puno"
+      },
+      "countryCode": "PE",
+      "journeys": [
+        "peru-andes-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "PE:sacred-valley",
+      "parent": {
+        "type": "country",
+        "id": "PE"
+      },
+      "name": {
+        "en": "Sacred Valley"
+      },
+      "countryCode": "PE",
+      "journeys": [
+        "peru-andes-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "PT:lisbon",
+      "parent": {
+        "type": "country",
+        "id": "PT"
+      },
+      "name": {
+        "en": "Lisbon",
+        "de": "Lissabon",
+        "it": "Lisbona",
+        "es": "Lisboa",
+        "fr": "Lisbonne",
+        "pt": "Lisboa"
+      },
+      "countryCode": "PT",
+      "journeys": [
+        "southern-europe-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "TN:la-goulette-tunis",
+      "parent": {
+        "type": "country",
+        "id": "TN"
+      },
+      "name": {
+        "en": "La Goulette · Tunis",
+        "de": "La Goulette · Tunis",
+        "it": "La Goulette · Tunisi",
+        "es": "La Goulette · Túnez",
+        "fr": "La Goulette · Tunis",
+        "pt": "La Goulette · Túnis"
+      },
+      "countryCode": "TN",
+      "journeys": [
+        "western-mediterranean-cruise-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "US:arches-national-park",
+      "parent": {
+        "type": "country",
+        "id": "US"
+      },
+      "name": {
+        "en": "Arches National Park",
+        "de": "Arches National Park",
+        "it": "Arches National Park",
+        "es": "Arches National Park",
+        "fr": "Arches National Park",
+        "pt": "Arches National Park"
+      },
+      "countryCode": "US",
+      "journeys": [
+        "utah-national-parks-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "US:bryce-canyon-national-park",
+      "parent": {
+        "type": "country",
+        "id": "US"
+      },
+      "name": {
+        "en": "Bryce Canyon National Park",
+        "de": "Bryce Canyon National Park",
+        "it": "Bryce Canyon National Park",
+        "es": "Bryce Canyon National Park",
+        "fr": "Bryce Canyon National Park",
+        "pt": "Bryce Canyon National Park"
+      },
+      "countryCode": "US",
+      "journeys": [
+        "utah-national-parks-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "US:canyonlands-national-park",
+      "parent": {
+        "type": "country",
+        "id": "US"
+      },
+      "name": {
+        "en": "Canyonlands National Park",
+        "de": "Canyonlands National Park",
+        "it": "Canyonlands National Park",
+        "es": "Canyonlands National Park",
+        "fr": "Canyonlands National Park",
+        "pt": "Canyonlands National Park"
+      },
+      "countryCode": "US",
+      "journeys": [
+        "utah-national-parks-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "US:capitol-reef-national-park",
+      "parent": {
+        "type": "country",
+        "id": "US"
+      },
+      "name": {
+        "en": "Capitol Reef National Park",
+        "de": "Capitol Reef National Park",
+        "it": "Capitol Reef National Park",
+        "es": "Capitol Reef National Park",
+        "fr": "Capitol Reef National Park",
+        "pt": "Capitol Reef National Park"
+      },
+      "countryCode": "US",
+      "journeys": [
+        "utah-national-parks-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "US:zion-national-park",
+      "parent": {
+        "type": "country",
+        "id": "US"
+      },
+      "name": {
+        "en": "Zion National Park",
+        "de": "Zion National Park",
+        "it": "Zion National Park",
+        "es": "Zion National Park",
+        "fr": "Zion National Park",
+        "pt": "Zion National Park"
+      },
+      "countryCode": "US",
+      "journeys": [
+        "utah-national-parks-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "VN:da-nang",
+      "parent": {
+        "type": "country",
+        "id": "VN"
+      },
+      "name": {
+        "en": "Da Nang"
+      },
+      "countryCode": "VN",
+      "journeys": [
+        "vietnam-north-south"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "VN:hanoi",
+      "parent": {
+        "type": "country",
+        "id": "VN"
+      },
+      "name": {
+        "en": "Hanoi"
+      },
+      "countryCode": "VN",
+      "journeys": [
+        "vietnam-north-south"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "VN:ho-chi-minh-city",
+      "parent": {
+        "type": "country",
+        "id": "VN"
+      },
+      "name": {
+        "en": "Ho Chi Minh City"
+      },
+      "countryCode": "VN",
+      "journeys": [
+        "vietnam-north-south"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "VN:hoi-an",
+      "parent": {
+        "type": "country",
+        "id": "VN"
+      },
+      "name": {
+        "en": "Hội An"
+      },
+      "countryCode": "VN",
+      "journeys": [
+        "vietnam-north-south"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "VN:hue",
+      "parent": {
+        "type": "country",
+        "id": "VN"
+      },
+      "name": {
+        "en": "Huế"
+      },
+      "countryCode": "VN",
+      "journeys": [
+        "vietnam-north-south"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "VN:nha-trang",
+      "parent": {
+        "type": "country",
+        "id": "VN"
+      },
+      "name": {
+        "en": "Nha Trang"
+      },
+      "countryCode": "VN",
+      "journeys": [
+        "vietnam-north-south"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "ZA:addo-elephant-national-park",
+      "parent": {
+        "type": "country",
+        "id": "ZA"
+      },
+      "name": {
+        "en": "Addo Elephant National Park"
+      },
+      "countryCode": "ZA",
+      "journeys": [
+        "south-africa-garden-safari"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "ZA:cape-town",
+      "parent": {
+        "type": "country",
+        "id": "ZA"
+      },
+      "name": {
+        "en": "Cape Town"
+      },
+      "countryCode": "ZA",
+      "journeys": [
+        "south-africa-garden-safari"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "ZA:hermanus",
+      "parent": {
+        "type": "country",
+        "id": "ZA"
+      },
+      "name": {
+        "en": "Hermanus"
+      },
+      "countryCode": "ZA",
+      "journeys": [
+        "south-africa-garden-safari"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "ZA:knysna",
+      "parent": {
+        "type": "country",
+        "id": "ZA"
+      },
+      "name": {
+        "en": "Knysna"
+      },
+      "countryCode": "ZA",
+      "journeys": [
+        "south-africa-garden-safari"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "ZA:tsitsikamma",
+      "parent": {
+        "type": "country",
+        "id": "ZA"
+      },
+      "name": {
+        "en": "Tsitsikamma"
+      },
+      "countryCode": "ZA",
+      "journeys": [
+        "south-africa-garden-safari"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "andes",
+      "name": "andes",
+      "journeys": [
+        "peru-andes-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "argentina",
+      "name": "argentina",
+      "journeys": [
+        "patagonia-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "australia",
+      "name": "australia",
+      "journeys": [
+        "victoria-great-ocean-highlands-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "canada",
+      "name": "canada",
+      "journeys": [
+        "canadian-rockies-rail-road"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "central-america",
+      "name": "central-america",
+      "journeys": [
+        "costa-rica-nature-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "chile",
+      "name": "chile",
+      "journeys": [
+        "patagonia-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "costa-rica",
+      "name": "costa-rica",
+      "journeys": [
+        "costa-rica-nature-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "east-asia",
+      "name": "east-asia",
+      "journeys": [
+        "japan-by-rail"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "global",
+      "name": "global",
+      "journeys": [
+        "world-195"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "greece",
+      "name": "greece",
+      "journeys": [
+        "greek-island-hopping"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "iceland",
+      "name": "iceland",
+      "journeys": [
+        "iceland-ring-road"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "india",
+      "name": "india",
+      "journeys": [
+        "india-golden-triangle-rail"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "italy",
+      "name": "italy",
+      "journeys": [
+        "italy-grand-tour"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "japan",
+      "name": "japan",
+      "journeys": [
+        "japan-by-rail"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "jordan",
+      "name": "jordan",
+      "journeys": [
+        "jordan-heritage-desert-drive"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "morocco",
+      "name": "morocco",
+      "journeys": [
+        "morocco-atlas-desert"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "new-zealand",
+      "name": "new-zealand",
+      "journeys": [
+        "new-zealand-camper-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "norway",
+      "name": "norway",
+      "journeys": [
+        "norway-arctic-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "patagonia",
+      "name": "patagonia",
+      "journeys": [
+        "patagonia-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "peru",
+      "name": "peru",
+      "journeys": [
+        "peru-andes-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "south-africa",
+      "name": "south-africa",
+      "journeys": [
+        "south-africa-garden-safari"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "south-asia",
+      "name": "south-asia",
+      "journeys": [
+        "india-golden-triangle-rail"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "south-east-asia",
+      "name": "south-east-asia",
+      "journeys": [
+        "vietnam-north-south"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "southern-africa",
+      "name": "southern-africa",
+      "journeys": [
+        "south-africa-garden-safari"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "united-states",
+      "name": "united-states",
+      "journeys": [
+        "utah-national-parks-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "utah",
+      "name": "utah",
+      "journeys": [
+        "utah-national-parks-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "victoria",
+      "name": "victoria",
+      "journeys": [
+        "victoria-great-ocean-highlands-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "vietnam",
+      "name": "vietnam",
+      "journeys": [
+        "vietnam-north-south"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "west-asia",
+      "name": "west-asia",
+      "journeys": [
+        "jordan-heritage-desert-drive"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "country",
+      "id": "AD",
+      "name": "Andorra",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "AE",
+      "name": "Vereinigte Arabische Emirate",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "AF",
+      "name": "Afghanistan",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "AG",
+      "name": "Antigua und Barbuda",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "AL",
+      "name": "Albanien",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "AM",
+      "name": "Armenien",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "AO",
+      "name": "Angola",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "AR",
+      "name": "Argentinien",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195",
+        "patagonia-road-trip"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "AT",
+      "name": "Österreich",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195",
+        "central-europe-rail-journey"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "AZ",
+      "name": "Aserbaidschan",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "BA",
+      "name": "Bosnien und Herzegowina",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "BB",
+      "name": "Barbados",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "BD",
+      "name": "Bangladesch",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "BE",
+      "name": "Belgien",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195",
+        "central-europe-rail-journey"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "BF",
+      "name": "Burkina Faso",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "BG",
+      "name": "Bulgarien",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "BH",
+      "name": "Bahrain",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "BI",
+      "name": "Burundi",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "BJ",
+      "name": "Benin",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "BN",
+      "name": "Brunei",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "BO",
+      "name": "Bolivien",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "BR",
+      "name": "Brasilien",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "BS",
+      "name": "Bahamas",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "BT",
+      "name": "Bhutan",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "BW",
+      "name": "Botswana",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "BY",
+      "name": "Belarus",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "BZ",
+      "name": "Belize",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "CD",
+      "name": "Demokratische Republik Kongo",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "CF",
+      "name": "Zentralafrikanische Republik",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "CG",
+      "name": "Republik Kongo",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "CH",
+      "name": "Schweiz",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "CI",
+      "name": "Côte d’Ivoire",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "CL",
+      "name": "Chile",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195",
+        "patagonia-road-trip"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "CM",
+      "name": "Kamerun",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "CN",
+      "name": "China",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "CO",
+      "name": "Kolumbien",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "CU",
+      "name": "Kuba",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "CV",
+      "name": "Cabo Verde",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "CY",
+      "name": "Zypern",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "CZ",
+      "name": "Tschechien",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195",
+        "central-europe-rail-journey"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "DE",
+      "name": "Deutschland",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195",
+        "central-europe-rail-journey"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "DJ",
+      "name": "Dschibuti",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "DK",
+      "name": "Dänemark",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "DM",
+      "name": "Dominica",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "DO",
+      "name": "Dominikanische Republik",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "DZ",
+      "name": "Algerien",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "EC",
+      "name": "Ecuador",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "EE",
+      "name": "Estland",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "EG",
+      "name": "Ägypten",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "ER",
+      "name": "Eritrea",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "ES",
+      "name": "Spanien",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195",
+        "western-mediterranean-cruise-loop",
+        "southern-europe-road-trip"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "ET",
+      "name": "Äthiopien",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "FI",
+      "name": "Finnland",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "FJ",
+      "name": "Fidschi",
+      "parent": {
+        "type": "continent",
+        "id": "oceania"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "FM",
+      "name": "Mikronesien",
+      "parent": {
+        "type": "continent",
+        "id": "oceania"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "FR",
+      "name": "Frankreich",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195",
+        "western-mediterranean-cruise-loop",
+        "southern-europe-road-trip",
+        "central-europe-rail-journey"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "GA",
+      "name": "Gabun",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "GB",
+      "name": "Vereinigtes Königreich",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "GD",
+      "name": "Grenada",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "GE",
+      "name": "Georgien",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "GH",
+      "name": "Ghana",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "GM",
+      "name": "Gambia",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "GN",
+      "name": "Guinea",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "GQ",
+      "name": "Äquatorialguinea",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "GT",
+      "name": "Guatemala",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "GW",
+      "name": "Guinea-Bissau",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "GY",
+      "name": "Guyana",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "HN",
+      "name": "Honduras",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "HR",
+      "name": "Kroatien",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "HT",
+      "name": "Haiti",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "HU",
+      "name": "Ungarn",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195",
+        "central-europe-rail-journey"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "ID",
+      "name": "Indonesien",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "IE",
+      "name": "Irland",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "IL",
+      "name": "Israel",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "IQ",
+      "name": "Irak",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "IR",
+      "name": "Iran",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "JM",
+      "name": "Jamaika",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "KE",
+      "name": "Kenia",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "KG",
+      "name": "Kirgisistan",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "KH",
+      "name": "Kambodscha",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "KI",
+      "name": "Kiribati",
+      "parent": {
+        "type": "continent",
+        "id": "oceania"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "KM",
+      "name": "Komoren",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "KN",
+      "name": "St. Kitts und Nevis",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "KP",
+      "name": "Nordkorea",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "KR",
+      "name": "Südkorea",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "KW",
+      "name": "Kuwait",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "KZ",
+      "name": "Kasachstan",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "LA",
+      "name": "Laos",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "LB",
+      "name": "Libanon",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "LC",
+      "name": "St. Lucia",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "LI",
+      "name": "Liechtenstein",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "LK",
+      "name": "Sri Lanka",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "LR",
+      "name": "Liberia",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "LS",
+      "name": "Lesotho",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "LT",
+      "name": "Litauen",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "LU",
+      "name": "Luxemburg",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "LV",
+      "name": "Lettland",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "LY",
+      "name": "Libyen",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "MC",
+      "name": "Monaco",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "MD",
+      "name": "Moldau",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "ME",
+      "name": "Montenegro",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "MG",
+      "name": "Madagaskar",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "MH",
+      "name": "Marshallinseln",
+      "parent": {
+        "type": "continent",
+        "id": "oceania"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "MK",
+      "name": "Nordmazedonien",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "ML",
+      "name": "Mali",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "MM",
+      "name": "Myanmar",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "MN",
+      "name": "Mongolei",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "MR",
+      "name": "Mauretanien",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "MT",
+      "name": "Malta",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "MU",
+      "name": "Mauritius",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "MV",
+      "name": "Malediven",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "MW",
+      "name": "Malawi",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "MX",
+      "name": "Mexiko",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "MY",
+      "name": "Malaysia",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "MZ",
+      "name": "Mosambik",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "NA",
+      "name": "Namibia",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "NE",
+      "name": "Niger",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "NG",
+      "name": "Nigeria",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "NI",
+      "name": "Nicaragua",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "NL",
+      "name": "Niederlande",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195",
+        "central-europe-rail-journey"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "NP",
+      "name": "Nepal",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "NR",
+      "name": "Nauru",
+      "parent": {
+        "type": "continent",
+        "id": "oceania"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "OM",
+      "name": "Oman",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "PA",
+      "name": "Panama",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "PG",
+      "name": "Papua-Neuguinea",
+      "parent": {
+        "type": "continent",
+        "id": "oceania"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "PH",
+      "name": "Philippinen",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "PK",
+      "name": "Pakistan",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "PL",
+      "name": "Polen",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "PS",
+      "name": "Staat Palästina",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "PT",
+      "name": "Portugal",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195",
+        "southern-europe-road-trip"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "PW",
+      "name": "Palau",
+      "parent": {
+        "type": "continent",
+        "id": "oceania"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "PY",
+      "name": "Paraguay",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "QA",
+      "name": "Katar",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "RO",
+      "name": "Rumänien",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "RS",
+      "name": "Serbien",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "RU",
+      "name": "Russland",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "RW",
+      "name": "Ruanda",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "SA",
+      "name": "Saudi-Arabien",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "SB",
+      "name": "Salomonen",
+      "parent": {
+        "type": "continent",
+        "id": "oceania"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "SC",
+      "name": "Seychellen",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "SD",
+      "name": "Sudan",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "SE",
+      "name": "Schweden",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "SG",
+      "name": "Singapur",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "SI",
+      "name": "Slowenien",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "SK",
+      "name": "Slowakei",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "SL",
+      "name": "Sierra Leone",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "SM",
+      "name": "San Marino",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "SN",
+      "name": "Senegal",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "SO",
+      "name": "Somalia",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "SR",
+      "name": "Suriname",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "SS",
+      "name": "Südsudan",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "ST",
+      "name": "São Tomé und Príncipe",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "SV",
+      "name": "El Salvador",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "SY",
+      "name": "Syrien",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "SZ",
+      "name": "Eswatini",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "TD",
+      "name": "Tschad",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "TG",
+      "name": "Togo",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "TH",
+      "name": "Thailand",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "TJ",
+      "name": "Tadschikistan",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "TL",
+      "name": "Timor-Leste",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "TM",
+      "name": "Turkmenistan",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "TN",
+      "name": "Tunesien",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195",
+        "western-mediterranean-cruise-loop"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "TO",
+      "name": "Tonga",
+      "parent": {
+        "type": "continent",
+        "id": "oceania"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "TR",
+      "name": "Türkei",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "TT",
+      "name": "Trinidad und Tobago",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "TV",
+      "name": "Tuvalu",
+      "parent": {
+        "type": "continent",
+        "id": "oceania"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "TZ",
+      "name": "Tansania",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "UA",
+      "name": "Ukraine",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "UG",
+      "name": "Uganda",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "UY",
+      "name": "Uruguay",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "UZ",
+      "name": "Usbekistan",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "VA",
+      "name": "Vatikanstadt",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "VC",
+      "name": "St. Vincent und die Grenadinen",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "VE",
+      "name": "Venezuela",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "VU",
+      "name": "Vanuatu",
+      "parent": {
+        "type": "continent",
+        "id": "oceania"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "WS",
+      "name": "Samoa",
+      "parent": {
+        "type": "continent",
+        "id": "oceania"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "YE",
+      "name": "Jemen",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "ZM",
+      "name": "Sambia",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    },
+    {
+      "type": "country",
+      "id": "ZW",
+      "name": "Simbabwe",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195"
+      ],
+      "eligibleJourneys": [],
+      "available": false,
+      "priority": 0
+    }
+  ]
+}
