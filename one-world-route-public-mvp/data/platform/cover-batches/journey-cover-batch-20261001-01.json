@@ -46,7 +46,7 @@
       "sourceFilename": "source--journey--western-mediterranean-cruise-loop--cover--16x9--v001.png",
       "prompt": "Create one original cinematic editorial 16:9 travel cover for “Western Mediterranean Cruise Loop”. Show an unbranded cruise vessel moving through open Mediterranean water just beyond a Barcelona-inspired harbor, with a layered dry Mediterranean coast and low city silhouette behind it. Elevated coastal overview; ship on the lower-right third, open sea creating a clear leading path to the horizon. Clear early-morning blue-gold light, realistic atmospheric depth, premium travel-inspiration mood. The cruise travel mode must read instantly at card size, while the scene stays geographically credible and uncluttered. Keep the principal subject in the central 55% and leave the top 15% and bottom 20% relatively quiet for HTML overlays. Pure single image only: no text, logos, badges, map lines, UI, browser frames, collage, infographic, watermark or brand livery. Avoid Santorini-style white-village clichés and avoid copying any existing OWR cover. Relatively realistic and cinematic, not surreal or kitschy.",
       "version": "v001",
-      "reviewStatus": "pending",
+      "reviewStatus": "approved",
       "qa": [
         "journey character readable at thumbnail size",
         "one coherent scene",
@@ -54,7 +54,9 @@
         "no map or route overlay",
         "geography plausible",
         "visually distinct from published OWR covers and other batch items"
-      ]
+      ],
+      "qaVerdict": "ACCEPT",
+      "generationAttempt": 1
     },
     {
       "tripId": "italy-grand-tour",
@@ -84,7 +86,7 @@
       "sourceFilename": "source--journey--italy-grand-tour--cover--16x9--v001.png",
       "prompt": "Create one original cinematic editorial 16:9 travel cover for “Italy Grand Tour”. Use a Tuscan hill-town approach near Siena as the single visual anchor: cypress-lined rolling terrain, warm stone medieval skyline in the distance, and a foreground road or walking path sweeping from lower-left toward the town. Warm late-afternoon directional light with natural haze and credible depth. The image should communicate an expansive Italian grand journey without assembling multiple landmarks. Strong card readability through one clear hill-town silhouette and layered countryside. Keep the principal subject in the central 55%, with the top 15% and bottom 20% relatively quiet for HTML overlays. No Colosseum postcard framing, no Venice gondola cliché, no Amalfi cliff-village cliché, no landmark collage. No text, logos, badges, map lines, UI, browser frames, infographic, watermark or brand livery. Relatively realistic, cinematic, elegant and geographically credible.",
       "version": "v001",
-      "reviewStatus": "pending",
+      "reviewStatus": "approved",
       "qa": [
         "journey character readable at thumbnail size",
         "one coherent scene",
@@ -92,7 +94,9 @@
         "no map or route overlay",
         "geography plausible",
         "visually distinct from published OWR covers and other batch items"
-      ]
+      ],
+      "qaVerdict": "ACCEPT",
+      "generationAttempt": 1
     },
     {
       "tripId": "india-golden-triangle-rail",
@@ -122,7 +126,7 @@
       "sourceFilename": "source--journey--india-golden-triangle-rail--cover--16x9--v001.png",
       "prompt": "Create one original cinematic editorial 16:9 travel cover for “India Golden Triangle by Rail”. Show an unbranded Indian passenger train crossing a dry Rajasthan landscape inspired by Jaipur, with low Aravalli hills and restrained pink-sandstone architecture in the distance. Use a three-quarter train passage on a diagonal track; the train must be large enough to identify as rail travel while the landscape remains dominant. Soft warm morning light with light atmospheric dust, realistic materials and credible scale. Avoid a Taj Mahal hero shot and avoid a crowded station; this should feel like a journey in motion, not a landmark postcard. Keep the principal subject within the central 55% and the top 15% and bottom 20% relatively quiet. No readable signs, text, logos, badges, maps, UI, collage, infographic, watermark or brand livery. Relatively realistic and cinematic, not surreal.",
       "version": "v001",
-      "reviewStatus": "pending",
+      "reviewStatus": "approved",
       "qa": [
         "journey character readable at thumbnail size",
         "one coherent scene",
@@ -130,7 +134,9 @@
         "no map or route overlay",
         "geography plausible",
         "visually distinct from published OWR covers and other batch items"
-      ]
+      ],
+      "qaVerdict": "ACCEPT",
+      "generationAttempt": 1
     },
     {
       "tripId": "jordan-heritage-desert-drive",
@@ -160,7 +166,7 @@
       "sourceFilename": "source--journey--jordan-heritage-desert-drive--cover--16x9--v001.png",
       "prompt": "Create one original cinematic editorial 16:9 travel cover for “Jordan Heritage & Desert Drive”. Show a small unbranded SUV on a desert road approaching the monumental sandstone massifs of Wadi Rum, with a vast red-sand basin and strong open-space scale. Low-horizon composition; the road should act as a leading line and the vehicle should remain secondary but clearly readable as self-drive travel. Use a blue-hour transition with warm residual light grazing the sandstone, realistic atmospheric depth and restrained color. Do not use Petra’s Treasury as a postcard hero, do not add Moroccan kasbah cues, and do not make a camel caravan the main subject. Keep the main scene inside the central 55% with quiet top and bottom overlay zones. No text, logos, badges, map lines, UI, browser frames, collage, infographic, watermark or brand livery.",
       "version": "v001",
-      "reviewStatus": "pending",
+      "reviewStatus": "approved",
       "qa": [
         "journey character readable at thumbnail size",
         "one coherent scene",
@@ -168,7 +174,9 @@
         "no map or route overlay",
         "geography plausible",
         "visually distinct from published OWR covers and other batch items"
-      ]
+      ],
+      "qaVerdict": "ACCEPT",
+      "generationAttempt": 1
     },
     {
       "tripId": "peru-andes-journey",
@@ -198,7 +206,7 @@
       "sourceFilename": "source--journey--peru-andes-journey--cover--16x9--v001.png",
       "prompt": "Create one original cinematic editorial 16:9 travel cover for “Peru Andes Journey”. Anchor the image in Peru’s Sacred Valley: terraced mountain slopes, the Urubamba River and a small unbranded train threading through the valley. Build a layered atmospheric landscape where the river and rail line lead the eye toward the high Andes. Crisp high-altitude morning light with soft cloud shadow, natural earth and green tones, credible depth and scale. The image should communicate mountains, culture and journey without using Machu Picchu as a postcard hero or a llama close-up. Keep the principal focus in the central 55%, with quiet top 15% and bottom 20%. No text, logos, badges, map lines, UI, browser frames, collage, infographic, watermark or brand livery. Relatively realistic and cinematic.",
       "version": "v001",
-      "reviewStatus": "pending",
+      "reviewStatus": "approved",
       "qa": [
         "journey character readable at thumbnail size",
         "one coherent scene",
@@ -206,7 +214,9 @@
         "no map or route overlay",
         "geography plausible",
         "visually distinct from published OWR covers and other batch items"
-      ]
+      ],
+      "qaVerdict": "ACCEPT",
+      "generationAttempt": 1
     },
     {
       "tripId": "canadian-rockies-rail-road",
@@ -236,7 +246,7 @@
       "sourceFilename": "source--journey--canadian-rockies-rail-road--cover--16x9--v001.png",
       "prompt": "Create one original cinematic editorial 16:9 travel cover for “Canadian Rockies Rail & Road”. Show an unbranded passenger train beside a turquoise mountain river under jagged Canadian Rockies, with dense conifer forest and only a subtle parallel road cue in the mid-distance. Use a wide rail-in-landscape composition with the train crossing left-to-right through the lower third, leaving the mountain scale dominant. Cool clear early-morning light and mild mountain haze; realistic color, no oversaturated turquoise. Do not imitate recognizable commercial rail liveries and avoid a Lake Louise hotel postcard composition. Keep the principal subject in the central 55%, top 15% and bottom 20% relatively quiet. No text, logos, badges, map lines, UI, browser frames, collage, infographic or watermark.",
       "version": "v001",
-      "reviewStatus": "pending",
+      "reviewStatus": "approved",
       "qa": [
         "journey character readable at thumbnail size",
         "one coherent scene",
@@ -244,7 +254,9 @@
         "no map or route overlay",
         "geography plausible",
         "visually distinct from published OWR covers and other batch items"
-      ]
+      ],
+      "qaVerdict": "ACCEPT",
+      "generationAttempt": 1
     },
     {
       "tripId": "utah-national-parks-road-trip",
@@ -274,7 +286,7 @@
       "sourceFilename": "source--journey--utah-national-parks-road-trip--cover--16x9--v001.png",
       "prompt": "Create one original cinematic editorial 16:9 travel cover for “Utah National Parks Road Trip”. Show a small unbranded car on a winding high-desert road beneath massive Zion-like red sandstone walls, with credible pinyon-juniper vegetation and layered canyon depth. Use an elevated route overview and an S-curve road as the main leading line. Clear directional daylight with crisp geological texture and restrained warm tones. Make it recognizably Utah rather than a generic desert: avoid Delicate Arch postcard framing, avoid a Monument Valley lookalike, and keep it visually distinct from a Jordan/Wadi Rum desert cover. Principal subject in the central 55%; keep top and bottom overlay zones relatively quiet. No text, logos, badges, map lines, UI, browser frames, collage, infographic, watermark or brand livery.",
       "version": "v001",
-      "reviewStatus": "pending",
+      "reviewStatus": "approved",
       "qa": [
         "journey character readable at thumbnail size",
         "one coherent scene",
@@ -282,7 +294,9 @@
         "no map or route overlay",
         "geography plausible",
         "visually distinct from published OWR covers and other batch items"
-      ]
+      ],
+      "qaVerdict": "ACCEPT",
+      "generationAttempt": 1
     },
     {
       "tripId": "central-europe-rail-journey",
@@ -311,7 +325,7 @@
       "sourceFilename": "source--journey--central-europe-rail-journey--cover--16x9--v001.png",
       "prompt": "Create one original cinematic editorial 16:9 travel cover for “Central Europe Rail Journey”. Show a modern unbranded intercity train approaching Berlin across the Spree, with restrained city depth, green riverbanks and a subtly recognizable Berlin silhouette without readable signs. Use an urban rail-arrival composition with diagonal bridge lines; this must look clearly different from mountain or rural train covers. Diffuse bright overcast light with cool-neutral city tones and realistic atmospheric depth. Avoid station-platform close-ups, avoid visible operator branding, and do not combine multiple European landmarks or cities. Keep the principal subject within the central 55%, with top 15% and bottom 20% relatively quiet. No text, logos, badges, map lines, UI, browser frames, collage, infographic or watermark.",
       "version": "v001",
-      "reviewStatus": "pending",
+      "reviewStatus": "approved",
       "qa": [
         "journey character readable at thumbnail size",
         "one coherent scene",
@@ -319,7 +333,9 @@
         "no map or route overlay",
         "geography plausible",
         "visually distinct from published OWR covers and other batch items"
-      ]
+      ],
+      "qaVerdict": "ACCEPT",
+      "generationAttempt": 2
     },
     {
       "tripId": "victoria-great-ocean-highlands-road-trip",
@@ -349,7 +365,7 @@
       "sourceFilename": "source--journey--victoria-great-ocean-highlands-road-trip--cover--16x9--v001.png",
       "prompt": "Create one original cinematic editorial 16:9 travel cover for “Victoria Great Ocean & Highlands Road Trip”. Show a compact unbranded car on the Great Ocean Road above a rugged Southern Ocean coastline, with eucalyptus foreground and limestone cliffs in the distance. Use a three-quarter coastal road composition with the ocean occupying roughly half the frame and the road sweeping naturally along the cliff. Late directional light after a passing shower, clean air, textured clouds and realistic coastal color. Make it distinctly southern Australia without using Sydney landmarks, a generic tropical beach or a Twelve Apostles postcard clone. Keep principal action in the central 55%, with quiet top and bottom overlay zones. No text, logos, badges, maps, UI, browser frames, collage, infographic, watermark or brand livery.",
       "version": "v001",
-      "reviewStatus": "pending",
+      "reviewStatus": "approved",
       "qa": [
         "journey character readable at thumbnail size",
         "one coherent scene",
@@ -357,7 +373,9 @@
         "no map or route overlay",
         "geography plausible",
         "visually distinct from published OWR covers and other batch items"
-      ]
+      ],
+      "qaVerdict": "ACCEPT",
+      "generationAttempt": 1
     },
     {
       "tripId": "iceland-ring-road",
@@ -387,7 +405,7 @@
       "sourceFilename": "source--journey--iceland-ring-road--cover--16x9--v001.png",
       "prompt": "Create one original cinematic editorial 16:9 travel cover for “Iceland Ring Road”. Show a small unbranded car on the Ring Road crossing a black volcanic plain near Vík, with moss, storm-lit mountains and distant sea stacks. Use a wide environmental journey composition: the road vanishes toward the center and the vehicle remains small against the landscape. Misty storm-break light with cool air and one restrained shaft of directional light; dramatic but meteorologically plausible. Avoid northern-lights cliché, ice-cave fantasy and oversaturated teal-orange grading. Keep principal focus within the central 55%, top 15% and bottom 20% relatively quiet. No text, logos, badges, map lines, UI, browser frames, collage, infographic, watermark or brand livery.",
       "version": "v001",
-      "reviewStatus": "pending",
+      "reviewStatus": "approved",
       "qa": [
         "journey character readable at thumbnail size",
         "one coherent scene",
@@ -395,7 +413,16 @@
         "no map or route overlay",
         "geography plausible",
         "visually distinct from published OWR covers and other batch items"
-      ]
+      ],
+      "qaVerdict": "ACCEPT",
+      "generationAttempt": 1
     }
-  ]
+  ],
+  "reviewedAt": "2026-10-01",
+  "batchReview": {
+    "accepted": 10,
+    "regenerated": 1,
+    "rejectedFinal": 0,
+    "note": "Single batch review. Central Europe Rail Journey was regenerated once because the first train treatment read too closely as branded high-speed livery; regenerated version uses a neutral unbranded train. All ten final assets accepted."
+  }
 }
