@@ -15,7 +15,7 @@ Preferred pattern:
 3. Run install/build/tests inside that worktree.
 4. Stage only an explicit allowlist of expected files.
 5. Commit in the detached worktree.
-6. Push with `git push origin HEAD:<remote-branch>`.
+6. Push with `git push origin HEAD:refs/heads/<remote-branch>`.
 7. Remove the worktree.
 
 This avoids:
@@ -222,9 +222,41 @@ For Windows production operation, do not create one-off helper scripts for each 
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\one-world-route-public-mvp\scripts\apply-cover-batch.ps1" -BundleZip "<approved-cover-batch.zip>"
 ```
 
-The runner extracts the approved bundle, validates 1-10 approved unique Journeys, creates an isolated **detached** worktree from current `origin/main`, calls the Node release runner directly (not through npm argument forwarding), stages the explicit cover-release allowlist, commits, rebases and pushes `HEAD:<remote-batch-branch>`. It never creates or deletes a local branch with the remote batch name, so stale local retry branches cannot block a new run.
+The runner extracts the approved bundle, validates 1-10 approved unique Journeys, creates an isolated **detached** worktree from current `origin/main`, calls the Node release runner directly (not through npm argument forwarding), stages the explicit cover-release allowlist, commits, rebases and pushes `HEAD:refs/heads/<remote-batch-branch>`. It never creates or deletes a local branch with the remote batch name, so stale local retry branches cannot block a new run.
 
 The release allowlist is tested against real Git porcelain output. Use `--untracked-files=all` so Git reports individual WebP files rather than collapsing a newly-created Journey directory. Paths are normalized whether Git reports them relative to the application directory or repository root.
+
+### World-195 showcase visual
+
+`world-195` is intentionally excluded from ordinary 10-Journey cover batches.
+
+Its production contract is:
+
+1. Preserve the public invariant: **195 sovereign countries / 194 international legs**.
+2. Generate only one compact cinematic **deep-space atmosphere base**. The image model must not draw an Earth globe, route, pins, labels, borders, text or numbers.
+3. Build/check the deterministic production spec:
+
+```powershell
+npm run world:visual:spec
+npm run world:visual:check
+```
+
+4. Create a preview by compositing the approved atmosphere base with the existing factual `auto-route-world-195` layer:
+
+```powershell
+npm run world:visual:preview -- --base="<approved-space-base.png>" --out-dir="<preview-folder>"
+```
+
+5. Perform one visual QA on the resulting composite. The Earth/route layer is always sourced from the verified route renderer; the image model never invents journey geometry.
+6. After approval, publish:
+
+```powershell
+npm run world:visual:publish -- --base="<approved-space-base.png>" --approved=true
+```
+
+Publishing creates responsive 480/800/1200/1600 WebPs, registers `journey--world-195--cover--16x9--v001`, writes its provenance (AI base + Natural Earth route layer), and sets `data/public-route.json#media.heroAssetId`.
+
+The committed `data/platform/world-showcase-visual.json` is the machine-readable contract. CI verifies the 195/194 invariants, prompt compactness, factual route identity and compositor output. Do not replace this process with a free-form all-in-one image prompt.
 
 ### Scaling rule
 
