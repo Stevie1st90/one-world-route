@@ -53,14 +53,12 @@ export async function renderPremiumWorldOverlay({sourcePath,route,width,height})
     .png()
     .toBuffer();
 
-  const alpha=Buffer.alloc(mapW*mapH,Math.round(255*.82));
   const reliefAlpha=await sharp(relief)
-    .removeAlpha()
-    .joinChannel(alpha,{raw:{width:mapW,height:mapH,channels:1}})
+    .ensureAlpha()
     .composite([{
       input:Buffer.from(
         '<svg xmlns="http://www.w3.org/2000/svg" width="'+mapW+'" height="'+mapH+'">'+
-        '<rect x="0" y="0" width="'+mapW+'" height="'+mapH+'" rx="'+radius+'" ry="'+radius+'" fill="#fff"/>'+
+        '<rect x="0" y="0" width="'+mapW+'" height="'+mapH+'" rx="'+radius+'" ry="'+radius+'" fill="#fff" fill-opacity=".82"/>'+
         '</svg>'
       ),
       blend:'dest-in'
