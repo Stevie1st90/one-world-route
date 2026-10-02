@@ -245,6 +245,8 @@ jobs:
           node --check scripts/build-cover-generation-queue.mjs
           node --check scripts/stage-cover-generation-results.mjs
           node --check scripts/release-cover-batch.mjs
+          node --check scripts/cover-release-policy.mjs
+          node --check scripts/test-cover-release-policy.mjs
           node --check scripts/test-cloud-sync.mjs
           node --check platform/map-style.js
           node --check platform/i18n.js
@@ -361,6 +363,8 @@ jobs:
         run: node --test scripts/test-maintenance-queue.mjs
       - name: Journey media rights audit
         run: node scripts/audit-platform-media.mjs
+      - name: Cover release policy tests
+        run: node --test scripts/test-cover-release-policy.mjs
       - name: Cover generation batch contract
         run: |
           node scripts/build-cover-generation-queue.mjs --out="$RUNNER_TEMP/cover-generation-queue.json" --prompt-out="$RUNNER_TEMP/cover-generation-operator-prompt.md"
