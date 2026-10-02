@@ -314,17 +314,19 @@ Reason: Differentiate a dense planetary route; Strong travel-mode social identit
 
 Fallback: Complete global geography; route density limits emotional thumbnail identity
 
-Production strategy: `hybrid-earth-base-plus-factual-route`
+Production strategy: `hybrid-space-base-plus-factual-flat-world`
 
 Factual route layer: `auto-route-world-195` · 195 countries / 194 international legs
 
-Motif: a cinematic deep-space atmosphere designed to receive the verified Earth-and-route overlay inspired by global
+Projection: `equirectangular-flat-world`
+
+Motif: a cinematic deep-space atmosphere designed to receive the verified flat world map and route overlay inspired by global
 
 Base-image prompt:
 
-Create exactly one original premium cinematic 16:9 deep-space atmosphere background for “One World Journey”. Use restrained dark space, subtle blue orbital glow, faint atmospheric haze and enough quiet negative space for interface overlays. Do not draw a standalone Earth globe, route, pins, labels, borders, text, numbers or logos. The recognizable Earth globes and factual 195-country journey route will be composited separately from verified ONE WORLD ROUTE geometry.
+Create exactly one original premium cinematic 16:9 deep-space atmosphere background for “One World Journey”. Use restrained dark space, subtle blue orbital glow, faint atmospheric haze and enough quiet negative space for interface overlays. Do not draw a standalone Earth globe, route, pins, labels, borders, text, numbers or logos. The recognizable flat world map and factual 195-country journey route will be composited separately from verified ONE WORLD ROUTE geometry.
 
-The image model creates only the cinematic atmosphere base. The recognizable Earth globes and route are composited from verified ONE WORLD ROUTE geometry; the model must never invent the 195-country route.
+The image model creates only the cinematic atmosphere base. The flat world map and route are rendered from verified ONE WORLD ROUTE geometry; the model must never invent the 195-country route.
 
 ## 21. Italy Grand Tour — P2
 
