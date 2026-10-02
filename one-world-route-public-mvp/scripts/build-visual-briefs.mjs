@@ -23,7 +23,8 @@ await writeFile(new URL('data/platform/visual-briefs.json',ROOT),JSON.stringify(
 // Update the existing editorial registry, retaining all collection briefs.
 for(const asset of backlog.assets||[]){
  const brief=briefs.find(b=>b.tripId===asset.tripId);if(!brief)continue;
- Object.assign(asset,{visualFamily:brief.visualFamily,motif:brief.motif,prompt:brief.imagePrompt,promptVersion:'journey-visual-experience-v2',priority:brief.priority,coverGenerationStatus:brief.status,strategy:brief.rank<=8?'bespoke-recommended':'bespoke-optional',reason:brief.reason,fallbackQuality:brief.fallbackQuality,derivatives:brief.separateVerticalRecommended?['9:16']:[],briefRef:'./data/platform/visual-briefs.json#'+brief.tripId});
+ const hybrid=brief.productionStrategy==='hybrid-earth-base-plus-factual-route';
+ Object.assign(asset,{visualFamily:brief.visualFamily,motif:brief.motif,prompt:brief.imagePrompt,promptVersion:hybrid?'world-showcase-hybrid-v1':'journey-visual-experience-v2',priority:brief.priority,coverGenerationStatus:brief.status,strategy:hybrid?brief.productionStrategy:(brief.rank<=8?'bespoke-recommended':'bespoke-optional'),reason:brief.reason,fallbackQuality:brief.fallbackQuality,derivatives:brief.separateVerticalRecommended?['9:16']:[],briefRef:'./data/platform/visual-briefs.json#'+brief.tripId});
 }
 backlog.policyVersion='journey-visual-experience-v2';
 await writeFile(new URL('data/platform/graphics-backlog.json',ROOT),JSON.stringify(backlog,null,2)+'\n');
