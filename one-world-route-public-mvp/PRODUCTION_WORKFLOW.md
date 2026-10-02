@@ -187,16 +187,32 @@ Use only:
 
 Regenerate only outliers. Never regenerate accepted covers merely to create extra variants.
 
-### Ingest
+### Ingest + release
 
-After every accepted item has explicit `reviewStatus=approved`:
+After every accepted item has explicit `reviewStatus=approved`, use the one-command release runner from a clean isolated worktree:
 
-1. preserve PNG masters outside the delivery repo,
-2. ingest accepted masters,
-3. create responsive WebPs,
-4. update registry and `heroAssetId`,
-5. run release build and media tests,
-6. commit only delivery assets/metadata.
+```powershell
+npm run covers:release -- --spec="<approved-batch.json>" --source-dir="<approved-master-folder>"
+```
+
+The runner performs the repetitive production steps in one deterministic pass:
+
+1. refuses a dirty worktree by default,
+2. verifies 1-10 unique approved Journey items and source masters,
+3. runs `npm ci` unless explicitly skipped,
+4. ingests the approved masters,
+5. creates responsive WebPs,
+6. updates the generated-media registry and each Journey `heroAssetId`,
+7. runs the release build,
+8. validates platform data,
+9. audits media rights/contracts,
+10. runs the media unit tests,
+11. runs `git diff --check`,
+12. rejects unexpected changed paths and prints the exact release allowlist.
+
+Source PNG masters remain outside the delivery repository. Only approved delivery WebPs, Journey/media metadata and deterministic release outputs are staged and committed.
+
+Do not rebuild this command sequence manually for every batch. If a recurring release failure is discovered, fix `release-cover-batch.mjs` and this runbook so the next batch inherits the correction.
 
 ### Scaling rule
 
