@@ -2,6 +2,8 @@ import {readFile,writeFile,mkdir,access} from 'node:fs/promises';
 import {resolve,dirname,relative} from 'node:path';
 import {createHash} from 'node:crypto';
 import sharp from 'sharp';
+import {extractRoute} from './route-visual-model.mjs';
+import {renderPremiumWorldOverlay} from './world-showcase-renderer.mjs';
 
 const argv=Object.fromEntries(process.argv.slice(2).map(arg=>{
   const m=arg.match(/^--([^=]+)(?:=(.*))?$/);
@@ -20,11 +22,16 @@ const hash=buf=>createHash('sha256').update(buf).digest('hex');
 const posix=p=>p.split('\\').join('/');
 const relAsset=p=>'./'+posix(relative(ROOT,p));
 
-const [spec,catalog,registry,publicRoute]=await Promise.all([
+const [spec,catalog,registry,publicRoute,source,countries,waypoints,flights,movements]=await Promise.all([
   readJson('data/platform/world-showcase-visual.json'),
   readJson('data/platform/trips.json'),
   readJson('data/platform/generated-media.json'),
-  readJson('data/public-route.json')
+  readJson('data/public-route.json'),
+  readJson('data/visual-sources/source.json'),
+  readJson('data/country-centroids.json'),
+  readJson('data/route-waypoints.json'),
+  readJson('data/flight-geometries.json'),
+  readJson('data/operational-movements.json')
 ]);
 
 if(spec.tripId!=='world-195')throw Error('World showcase spec tripId mismatch');
@@ -40,10 +47,14 @@ const ratio=baseMeta.width/baseMeta.height;
 if(Math.abs(ratio-16/9)>.03)throw Error('World showcase base must be approximately 16:9');
 if(baseMeta.width<1600)throw Error('World showcase base must be at least 1600px wide');
 
-const factualPath=resolve(ROOT,String(spec.factualLayer.asset).replace(/^\.\//,''));
-if(!(await exists(factualPath)))throw Error('Factual world route layer missing: '+factualPath);
-const factualBytes=await readFile(factualPath);
-const factualHash=hash(factualBytes);
+const sourcePath=resolve(ROOT,String(source.asset).replace(/^\.\//,''));
+if(!(await exists(sourcePath)))throw Error('Natural Earth source missing: '+sourcePath);
+const sourceBytes=await readFile(sourcePath);
+if(hash(sourceBytes)!==source.sha256||source.rightsStatus!=='approved')throw Error('Natural Earth source provenance invalid');
+
+const route=extractRoute(meta,publicRoute,{countries,waypoints,flights,movements});
+if(route.scope!=='GLOBAL'||route.countries.length!==195)throw Error('Premium world route extraction invariant failed');
+const factualHash=hash({publicRoute,routeLines:route.lines,renderer:'premium-world-showcase-v2',sourceSha256:source.sha256});
 
 const widths=[480,800,1200,1600];
 const outDir=publish
@@ -60,10 +71,12 @@ for(const width of widths){
     .modulate({brightness:.78,saturation:.82})
     .toBuffer();
 
-  const routeLayer=await sharp(factualBytes)
-    .resize(width,height,{fit:'fill'})
-    .modulate({brightness:1.08,saturation:1.05})
-    .toBuffer();
+  const routeLayer=await renderPremiumWorldOverlay({
+    sourcePath,
+    route,
+    width,
+    height
+  });
 
   const shade=Buffer.from(
     '<svg xmlns="http://www.w3.org/2000/svg" width="'+width+'" height="'+height+'">'+
@@ -88,7 +101,7 @@ for(const width of widths){
   const target=resolve(outDir,file);
   await sharp(background)
     .composite([
-      {input:routeLayer,blend:'screen'},
+      {input:routeLayer,blend:'over'},
       {input:shade,blend:'over'}
     ])
     .webp({quality:84,effort:5,smartSubsample:true})
@@ -103,6 +116,7 @@ const report={
   baseSha256:hash(baseBytes),
   factualLayerSha256:factualHash,
   factualLayerAsset:spec.factualLayer.asset,
+  renderStyle:'premium-world-showcase-v2',
   invariants:{countries:195,internationalLegs:194},
   variants
 };
@@ -150,6 +164,7 @@ const entry={
     assetId:spec.factualLayer.assetId,
     asset:spec.factualLayer.asset,
     sha256:factualHash,
+    renderStyle:'premium-world-showcase-v2',
     provider:spec.factualLayer.provider,
     countries:195,
     internationalLegs:194,
