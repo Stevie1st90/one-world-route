@@ -1,5 +1,6 @@
 import {readFile,access} from 'node:fs/promises';
-import {resolve,dirname,basename} from 'node:path';
+import {resolve,dirname} from 'node:path';
+import {classifyCoverReleaseChanges} from './cover-release-policy.mjs';
 import {spawnSync} from 'node:child_process';
 
 const argv=Object.fromEntries(process.argv.slice(2).map(arg=>{
@@ -53,32 +54,8 @@ run(process.execPath,['scripts/audit-platform-media.mjs']);
 run(process.execPath,['--test','scripts/test-platform-media.mjs']);
 run('git',['diff','--check']);
 
-const changed=git(['status','--porcelain']).split(/\r?\n/).filter(Boolean);
-const canonicalPrefixes=tripIds.map(id=>`assets/media/journeys/${id}/cover/`);
-const exactAllowed=new Set([
-  'data/platform/generated-media.json',
-  'data/platform/trip-index.json',
-  'data/platform/visual-briefs.json',
-  'data/platform/visual-coverage.json',
-  'data/platform/graphics-backlog.json',
-  'data/platform/media-manifest.json',
-  'GRAPHICS_NEEDED.md',
-  'sitemap.xml',
-  ...tripIds.map(id=>`data/platform/trips/${id}.json`)
-]);
-const normalize=statusLine=>{
-  let p=statusLine.slice(3).trim().replaceAll('\\','/');
-  const prefix=basename(ROOT)+'/';
-  const at=p.indexOf(prefix);
-  if(at>=0)p=p.slice(at+prefix.length);
-  return p;
-};
-const classified=changed.map(line=>{
-  const path=normalize(line);
-  const allowed=exactAllowed.has(path)||canonicalPrefixes.some(prefix=>path.startsWith(prefix));
-  const knownBuildDrift=['features.bundle.js','features.bundle.css','core.bundle.js','core.bundle.css'].includes(path);
-  return {line,path,allowed,knownBuildDrift};
-});
+const changed=git(['status','--porcelain=v1','--untracked-files=all']).split(/\r?\n/).filter(Boolean);
+const classified=classifyCoverReleaseChanges({statusLines:changed,root:ROOT,tripIds});
 const unexpected=classified.filter(x=>!x.allowed&&!x.knownBuildDrift);
 if(unexpected.length){
   throw Error('Cover release produced unexpected changed paths:\n'+unexpected.map(x=>x.line).join('\n'));
