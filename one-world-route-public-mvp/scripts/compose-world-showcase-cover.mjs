@@ -54,7 +54,7 @@ if(hash(sourceBytes)!==source.sha256||source.rightsStatus!=='approved')throw Err
 
 const route=extractRoute(meta,publicRoute,{countries,waypoints,flights,movements});
 if(route.scope!=='GLOBAL'||route.countries.length!==195)throw Error('Premium world route extraction invariant failed');
-const factualHash=hash(JSON.stringify({publicRoute,routeLines:route.lines,renderer:'premium-world-showcase-v2',sourceSha256:source.sha256}));
+const factualHash=hash(JSON.stringify({publicRoute,routeLines:route.lines,renderer:'premium-flat-world-v3',sourceSha256:source.sha256}));
 
 const widths=[480,800,1200,1600];
 const outDir=publish
@@ -116,7 +116,7 @@ const report={
   baseSha256:hash(baseBytes),
   factualLayerSha256:factualHash,
   factualLayerAsset:spec.factualLayer.asset,
-  renderStyle:'premium-world-showcase-v2',
+  renderStyle:'premium-flat-world-v3',
   invariants:{countries:195,internationalLegs:194},
   variants
 };
@@ -164,7 +164,7 @@ const entry={
     assetId:spec.factualLayer.assetId,
     asset:spec.factualLayer.asset,
     sha256:factualHash,
-    renderStyle:'premium-world-showcase-v2',
+    renderStyle:'premium-flat-world-v3',
     provider:spec.factualLayer.provider,
     countries:195,
     internationalLegs:194,
