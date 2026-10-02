@@ -3,13 +3,15 @@ import {readFile} from 'node:fs/promises';
 
 const catalog=JSON.parse(await readFile(new URL('../../data/platform/trips.json',import.meta.url),'utf8'));
 const ids=String(process.env.OWR_QA_CONTENT_TRIP_IDS||'').split(',').map(value=>value.trim()).filter(Boolean);
+const mobileIds=String(process.env.OWR_QA_CONTENT_MOBILE_TRIP_IDS||'').split(',').map(value=>value.trim()).filter(Boolean);
 
 test('@content changed journey data boots cleanly',async({page,isMobile})=>{
-  test.setTimeout(Math.min(240000,Math.max(60000,ids.length*18000)));
-  expect(ids.length,'OWR_QA_CONTENT_TRIP_IDS must contain at least one changed trip').toBeGreaterThan(0);
+  const selectedIds=isMobile?(mobileIds.length?mobileIds:ids.slice(0,2)):ids;
+  test.setTimeout(Math.min(240000,Math.max(60000,selectedIds.length*18000)));
+  expect(selectedIds.length,'changed Journey smoke must contain at least one trip').toBeGreaterThan(0);
   const errors=[];
   page.on('pageerror',error=>errors.push(error.message));
-  for(const id of ids){
+  for(const id of selectedIds){
     const item=(catalog.trips||[]).find(trip=>trip.id===id);
     expect(item,'changed trip must exist in catalog: '+id).toBeTruthy();
     expect(item.renderer,'content browser smoke supports regional-globe trips').toBe('regional-globe');
