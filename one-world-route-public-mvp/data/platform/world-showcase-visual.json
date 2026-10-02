@@ -36,10 +36,10 @@
     "geometrySource": "data/public-route.json",
     "basemapSource": "data/visual-sources/natural-earth-relief.webp",
     "renderStyle": "premium-flat-world-v3",
+    "projection": "equirectangular-flat-world",
     "routeVisualReferenceOnly": true,
     "countries": 195,
-    "routeLines": 253,
-    "projection": "equirectangular-flat-world"
+    "routeLines": 253
   },
   "finalCover": {
     "assetId": "journey--world-195--cover--16x9--v001",
