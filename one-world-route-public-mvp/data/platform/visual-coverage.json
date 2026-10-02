@@ -1,13 +1,26 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "journeys": 21,
-    "auto": 21,
+    "journeys": 29,
+    "auto": 29,
     "destination": 0,
     "bespoke": 18,
-    "vertical": 21
+    "vertical": 29
   },
   "journeys": [
+    {
+      "id": "alaska-inside-passage-ferry",
+      "title": "Alaska Inside Passage by Ferry",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "NATIONAL"
+    },
     {
       "id": "canadian-rockies-rail-road",
       "title": "Canadian Rockies Rail & Road",
@@ -113,6 +126,19 @@
       "scope": "NATIONAL"
     },
     {
+      "id": "java-rail-volcano-journey",
+      "title": "Java Rail & Volcano Journey",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "NATIONAL"
+    },
+    {
       "id": "jordan-heritage-desert-drive",
       "title": "Jordan Heritage & Desert Drive",
       "autoRouteVisual": true,
@@ -136,6 +162,19 @@
       "rightsApproved": true,
       "currentResolvedVisual": "bespoke",
       "coverageLevel": "JOURNEY-BESPOKE",
+      "scope": "NATIONAL"
+    },
+    {
+      "id": "namibia-desert-wildlife-road-trip",
+      "title": "Namibia Desert & Wildlife Road Trip",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
       "scope": "NATIONAL"
     },
     {
@@ -191,6 +230,19 @@
       "scope": "NATIONAL"
     },
     {
+      "id": "scotland-highlands-hebrides",
+      "title": "Scottish Highlands & Hebrides Journey",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "REGIONAL"
+    },
+    {
       "id": "south-africa-garden-safari",
       "title": "South Africa Garden Route & Safari",
       "autoRouteVisual": true,
@@ -215,6 +267,58 @@
       "currentResolvedVisual": "auto",
       "coverageLevel": "AUTO",
       "scope": "MULTI-COUNTRY"
+    },
+    {
+      "id": "sri-lanka-hill-country-rail",
+      "title": "Sri Lanka Hill Country by Rail",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "REGIONAL"
+    },
+    {
+      "id": "swiss-scenic-rail-journey",
+      "title": "Swiss Scenic Rail Journey",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "REGIONAL"
+    },
+    {
+      "id": "taiwan-rail-coast-loop",
+      "title": "Taiwan Rail & Coast Loop",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "REGIONAL"
+    },
+    {
+      "id": "tasmania-wild-coast-road-loop",
+      "title": "Tasmania Wild Coast Road Loop",
+      "autoRouteVisual": true,
+      "destinationVisual": false,
+      "journeyCover": false,
+      "portrait": true,
+      "vertical": true,
+      "rightsApproved": true,
+      "currentResolvedVisual": "auto",
+      "coverageLevel": "AUTO",
+      "scope": "REGIONAL"
     },
     {
       "id": "utah-national-parks-road-trip",
@@ -291,14 +395,16 @@
         "world-195",
         "central-europe-rail-journey",
         "norway-arctic-road-trip",
+        "swiss-scenic-rail-journey",
         "western-mediterranean-cruise-loop",
         "southern-europe-road-trip",
+        "scotland-highlands-hebrides",
         "iceland-ring-road",
         "greek-island-hopping",
         "italy-grand-tour"
       ],
       "available": false,
-      "priority": 8
+      "priority": 10
     },
     {
       "type": "region",
@@ -311,10 +417,12 @@
         "central-europe-rail-journey",
         "norway-arctic-road-trip",
         "greek-island-hopping",
-        "iceland-ring-road"
+        "iceland-ring-road",
+        "swiss-scenic-rail-journey",
+        "scotland-highlands-hebrides"
       ],
       "available": false,
-      "priority": 7
+      "priority": 9
     },
     {
       "type": "continent",
@@ -324,12 +432,13 @@
         "world-195",
         "canadian-rockies-rail-road",
         "utah-national-parks-road-trip",
+        "alaska-inside-passage-ferry",
         "costa-rica-nature-loop",
         "peru-andes-journey",
         "patagonia-road-trip"
       ],
       "available": false,
-      "priority": 6
+      "priority": 7
     },
     {
       "type": "continent",
@@ -337,26 +446,15 @@
       "name": "Asia",
       "journeys": [
         "world-195",
+        "java-rail-volcano-journey",
         "vietnam-north-south",
         "india-golden-triangle-rail",
+        "sri-lanka-hill-country-rail",
         "japan-by-rail",
         "jordan-heritage-desert-drive"
       ],
       "available": false,
-      "priority": 5
-    },
-    {
-      "type": "continent",
-      "id": "africa",
-      "name": "Africa",
-      "journeys": [
-        "world-195",
-        "western-mediterranean-cruise-loop",
-        "morocco-atlas-desert",
-        "south-africa-garden-safari"
-      ],
-      "available": false,
-      "priority": 4
+      "priority": 7
     },
     {
       "type": "region",
@@ -366,10 +464,27 @@
         "japan-by-rail",
         "vietnam-north-south",
         "jordan-heritage-desert-drive",
-        "india-golden-triangle-rail"
+        "india-golden-triangle-rail",
+        "sri-lanka-hill-country-rail",
+        "taiwan-rail-coast-loop",
+        "java-rail-volcano-journey"
       ],
       "available": false,
-      "priority": 4
+      "priority": 7
+    },
+    {
+      "type": "continent",
+      "id": "africa",
+      "name": "Africa",
+      "journeys": [
+        "world-195",
+        "western-mediterranean-cruise-loop",
+        "morocco-atlas-desert",
+        "namibia-desert-wildlife-road-trip",
+        "south-africa-garden-safari"
+      ],
+      "available": false,
+      "priority": 5
     },
     {
       "type": "continent",
@@ -378,7 +493,20 @@
       "journeys": [
         "world-195",
         "new-zealand-camper-loop",
-        "victoria-great-ocean-highlands-road-trip"
+        "victoria-great-ocean-highlands-road-trip",
+        "tasmania-wild-coast-road-loop"
+      ],
+      "available": false,
+      "priority": 4
+    },
+    {
+      "type": "region",
+      "id": "africa",
+      "name": "africa",
+      "journeys": [
+        "morocco-atlas-desert",
+        "south-africa-garden-safari",
+        "namibia-desert-wildlife-road-trip"
       ],
       "available": false,
       "priority": 3
@@ -397,6 +525,42 @@
     },
     {
       "type": "region",
+      "id": "north-america",
+      "name": "north-america",
+      "journeys": [
+        "canadian-rockies-rail-road",
+        "utah-national-parks-road-trip",
+        "alaska-inside-passage-ferry"
+      ],
+      "available": false,
+      "priority": 3
+    },
+    {
+      "type": "region",
+      "id": "northern-europe",
+      "name": "northern-europe",
+      "journeys": [
+        "norway-arctic-road-trip",
+        "iceland-ring-road",
+        "scotland-highlands-hebrides"
+      ],
+      "available": false,
+      "priority": 3
+    },
+    {
+      "type": "region",
+      "id": "oceania",
+      "name": "oceania",
+      "journeys": [
+        "new-zealand-camper-loop",
+        "victoria-great-ocean-highlands-road-trip",
+        "tasmania-wild-coast-road-loop"
+      ],
+      "available": false,
+      "priority": 3
+    },
+    {
+      "type": "region",
       "id": "southern-europe",
       "name": "southern-europe",
       "journeys": [
@@ -406,6 +570,46 @@
       ],
       "available": false,
       "priority": 3
+    },
+    {
+      "type": "country",
+      "id": "AU",
+      "name": "Australien",
+      "parent": {
+        "type": "continent",
+        "id": "oceania"
+      },
+      "journeys": [
+        "world-195",
+        "victoria-great-ocean-highlands-road-trip",
+        "tasmania-wild-coast-road-loop"
+      ],
+      "eligibleJourneys": [
+        "victoria-great-ocean-highlands-road-trip",
+        "tasmania-wild-coast-road-loop"
+      ],
+      "available": false,
+      "priority": 2
+    },
+    {
+      "type": "country",
+      "id": "US",
+      "name": "USA",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195",
+        "utah-national-parks-road-trip",
+        "alaska-inside-passage-ferry"
+      ],
+      "eligibleJourneys": [
+        "utah-national-parks-road-trip",
+        "alaska-inside-passage-ferry"
+      ],
+      "available": false,
+      "priority": 2
     },
     {
       "type": "place",
@@ -524,11 +728,22 @@
     },
     {
       "type": "region",
-      "id": "africa",
-      "name": "africa",
+      "id": "australia",
+      "name": "australia",
       "journeys": [
-        "morocco-atlas-desert",
-        "south-africa-garden-safari"
+        "victoria-great-ocean-highlands-road-trip",
+        "tasmania-wild-coast-road-loop"
+      ],
+      "available": false,
+      "priority": 2
+    },
+    {
+      "type": "region",
+      "id": "east-asia",
+      "name": "east-asia",
+      "journeys": [
+        "japan-by-rail",
+        "taiwan-rail-coast-loop"
       ],
       "available": false,
       "priority": 2
@@ -546,39 +761,6 @@
     },
     {
       "type": "region",
-      "id": "north-america",
-      "name": "north-america",
-      "journeys": [
-        "canadian-rockies-rail-road",
-        "utah-national-parks-road-trip"
-      ],
-      "available": false,
-      "priority": 2
-    },
-    {
-      "type": "region",
-      "id": "northern-europe",
-      "name": "northern-europe",
-      "journeys": [
-        "norway-arctic-road-trip",
-        "iceland-ring-road"
-      ],
-      "available": false,
-      "priority": 2
-    },
-    {
-      "type": "region",
-      "id": "oceania",
-      "name": "oceania",
-      "journeys": [
-        "new-zealand-camper-loop",
-        "victoria-great-ocean-highlands-road-trip"
-      ],
-      "available": false,
-      "priority": 2
-    },
-    {
-      "type": "region",
       "id": "south-america",
       "name": "south-america",
       "journeys": [
@@ -589,22 +771,48 @@
       "priority": 2
     },
     {
-      "type": "country",
-      "id": "AU",
-      "name": "Australien",
-      "parent": {
-        "type": "continent",
-        "id": "oceania"
-      },
+      "type": "region",
+      "id": "south-asia",
+      "name": "south-asia",
       "journeys": [
-        "world-195",
-        "victoria-great-ocean-highlands-road-trip"
-      ],
-      "eligibleJourneys": [
-        "victoria-great-ocean-highlands-road-trip"
+        "india-golden-triangle-rail",
+        "sri-lanka-hill-country-rail"
       ],
       "available": false,
-      "priority": 1
+      "priority": 2
+    },
+    {
+      "type": "region",
+      "id": "south-east-asia",
+      "name": "south-east-asia",
+      "journeys": [
+        "vietnam-north-south",
+        "java-rail-volcano-journey"
+      ],
+      "available": false,
+      "priority": 2
+    },
+    {
+      "type": "region",
+      "id": "southern-africa",
+      "name": "southern-africa",
+      "journeys": [
+        "south-africa-garden-safari",
+        "namibia-desert-wildlife-road-trip"
+      ],
+      "available": false,
+      "priority": 2
+    },
+    {
+      "type": "region",
+      "id": "united-states",
+      "name": "united-states",
+      "journeys": [
+        "utah-national-parks-road-trip",
+        "alaska-inside-passage-ferry"
+      ],
+      "available": false,
+      "priority": 2
     },
     {
       "type": "country",
@@ -620,6 +828,24 @@
       ],
       "eligibleJourneys": [
         "canadian-rockies-rail-road"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "country",
+      "id": "CH",
+      "name": "Schweiz",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195",
+        "swiss-scenic-rail-journey"
+      ],
+      "eligibleJourneys": [
+        "swiss-scenic-rail-journey"
       ],
       "available": false,
       "priority": 1
@@ -644,6 +870,24 @@
     },
     {
       "type": "country",
+      "id": "GB",
+      "name": "Vereinigtes Königreich",
+      "parent": {
+        "type": "continent",
+        "id": "europe"
+      },
+      "journeys": [
+        "world-195",
+        "scotland-highlands-hebrides"
+      ],
+      "eligibleJourneys": [
+        "scotland-highlands-hebrides"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "country",
       "id": "GR",
       "name": "Griechenland",
       "parent": {
@@ -656,6 +900,24 @@
       ],
       "eligibleJourneys": [
         "greek-island-hopping"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "country",
+      "id": "ID",
+      "name": "Indonesien",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195",
+        "java-rail-volcano-journey"
+      ],
+      "eligibleJourneys": [
+        "java-rail-volcano-journey"
       ],
       "available": false,
       "priority": 1
@@ -754,6 +1016,24 @@
     },
     {
       "type": "country",
+      "id": "LK",
+      "name": "Sri Lanka",
+      "parent": {
+        "type": "continent",
+        "id": "asia"
+      },
+      "journeys": [
+        "world-195",
+        "sri-lanka-hill-country-rail"
+      ],
+      "eligibleJourneys": [
+        "sri-lanka-hill-country-rail"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "country",
       "id": "MA",
       "name": "Marokko",
       "parent": {
@@ -766,6 +1046,24 @@
       ],
       "eligibleJourneys": [
         "morocco-atlas-desert"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "country",
+      "id": "NA",
+      "name": "Namibia",
+      "parent": {
+        "type": "continent",
+        "id": "africa"
+      },
+      "journeys": [
+        "world-195",
+        "namibia-desert-wildlife-road-trip"
+      ],
+      "eligibleJourneys": [
+        "namibia-desert-wildlife-road-trip"
       ],
       "available": false,
       "priority": 1
@@ -820,24 +1118,6 @@
       ],
       "eligibleJourneys": [
         "peru-andes-journey"
-      ],
-      "available": false,
-      "priority": 1
-    },
-    {
-      "type": "country",
-      "id": "US",
-      "name": "USA",
-      "parent": {
-        "type": "continent",
-        "id": "americas"
-      },
-      "journeys": [
-        "world-195",
-        "utah-national-parks-road-trip"
-      ],
-      "eligibleJourneys": [
-        "utah-national-parks-road-trip"
       ],
       "available": false,
       "priority": 1
@@ -1112,6 +1392,57 @@
     },
     {
       "type": "place",
+      "id": "badulla",
+      "parent": {
+        "type": "country",
+        "id": "LK"
+      },
+      "name": {
+        "en": "Badulla"
+      },
+      "countryCode": "LK",
+      "journeys": [
+        "sri-lanka-hill-country-rail"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "bandung",
+      "parent": {
+        "type": "country",
+        "id": "ID"
+      },
+      "name": {
+        "en": "Bandung"
+      },
+      "countryCode": "ID",
+      "journeys": [
+        "java-rail-volcano-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "bay-of-fires",
+      "parent": {
+        "type": "country",
+        "id": "AU"
+      },
+      "name": {
+        "en": "Bay of Fires"
+      },
+      "countryCode": "AU",
+      "journeys": [
+        "tasmania-wild-coast-road-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
       "id": "BE:brussels",
       "parent": {
         "type": "country",
@@ -1270,6 +1601,23 @@
     },
     {
       "type": "place",
+      "id": "colombo",
+      "parent": {
+        "type": "country",
+        "id": "LK"
+      },
+      "name": {
+        "en": "Colombo"
+      },
+      "countryCode": "LK",
+      "journeys": [
+        "sri-lanka-hill-country-rail"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
       "id": "CR:arenal",
       "parent": {
         "type": "country",
@@ -1349,6 +1697,23 @@
       "countryCode": "CR",
       "journeys": [
         "costa-rica-nature-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "cradle-mountain",
+      "parent": {
+        "type": "country",
+        "id": "AU"
+      },
+      "name": {
+        "en": "Cradle Mountain"
+      },
+      "countryCode": "AU",
+      "journeys": [
+        "tasmania-wild-coast-road-loop"
       ],
       "available": false,
       "priority": 1
@@ -1465,6 +1830,23 @@
     },
     {
       "type": "place",
+      "id": "ella",
+      "parent": {
+        "type": "country",
+        "id": "LK"
+      },
+      "name": {
+        "en": "Ella"
+      },
+      "countryCode": "LK",
+      "journeys": [
+        "sri-lanka-hill-country-rail"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
       "id": "ES:granada",
       "parent": {
         "type": "country",
@@ -1553,6 +1935,40 @@
     },
     {
       "type": "place",
+      "id": "etosha",
+      "parent": {
+        "type": "country",
+        "id": "NA"
+      },
+      "name": {
+        "en": "Etosha National Park"
+      },
+      "countryCode": "NA",
+      "journeys": [
+        "namibia-desert-wildlife-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "fort-william",
+      "parent": {
+        "type": "country",
+        "id": "GB"
+      },
+      "name": {
+        "en": "Fort William"
+      },
+      "countryCode": "GB",
+      "journeys": [
+        "scotland-highlands-hebrides"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
       "id": "FR:montpellier",
       "parent": {
         "type": "country",
@@ -1613,6 +2029,23 @@
       "countryCode": "FR",
       "journeys": [
         "central-europe-rail-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "freycinet",
+      "parent": {
+        "type": "country",
+        "id": "AU"
+      },
+      "name": {
+        "en": "Freycinet"
+      },
+      "countryCode": "AU",
+      "journeys": [
+        "tasmania-wild-coast-road-loop"
       ],
       "available": false,
       "priority": 1
@@ -1704,6 +2137,57 @@
     },
     {
       "type": "place",
+      "id": "haines",
+      "parent": {
+        "type": "country",
+        "id": "US"
+      },
+      "name": {
+        "en": "Haines"
+      },
+      "countryCode": "US",
+      "journeys": [
+        "alaska-inside-passage-ferry"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "hobart",
+      "parent": {
+        "type": "country",
+        "id": "AU"
+      },
+      "name": {
+        "en": "Hobart"
+      },
+      "countryCode": "AU",
+      "journeys": [
+        "tasmania-wild-coast-road-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "hobart-return",
+      "parent": {
+        "type": "country",
+        "id": "AU"
+      },
+      "name": {
+        "en": "Hobart"
+      },
+      "countryCode": "AU",
+      "journeys": [
+        "tasmania-wild-coast-road-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
       "id": "HU:budapest",
       "parent": {
         "type": "country",
@@ -1720,6 +2204,23 @@
       "countryCode": "HU",
       "journeys": [
         "central-europe-rail-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "hualien",
+      "parent": {
+        "type": "country",
+        "id": "TW"
+      },
+      "name": {
+        "en": "Hualien"
+      },
+      "countryCode": "TW",
+      "journeys": [
+        "taiwan-rail-coast-loop"
       ],
       "available": false,
       "priority": 1
@@ -1786,6 +2287,40 @@
       "countryCode": "IN",
       "journeys": [
         "india-golden-triangle-rail"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "interlaken",
+      "parent": {
+        "type": "country",
+        "id": "CH"
+      },
+      "name": {
+        "en": "Interlaken"
+      },
+      "countryCode": "CH",
+      "journeys": [
+        "swiss-scenic-rail-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "inverness",
+      "parent": {
+        "type": "country",
+        "id": "GB"
+      },
+      "name": {
+        "en": "Inverness"
+      },
+      "countryCode": "GB",
+      "journeys": [
+        "scotland-highlands-hebrides"
       ],
       "available": false,
       "priority": 1
@@ -2092,6 +2627,23 @@
     },
     {
       "type": "place",
+      "id": "jakarta",
+      "parent": {
+        "type": "country",
+        "id": "ID"
+      },
+      "name": {
+        "en": "Jakarta"
+      },
+      "countryCode": "ID",
+      "journeys": [
+        "java-rail-volcano-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
       "id": "JO:amman",
       "parent": {
         "type": "country",
@@ -2326,6 +2878,125 @@
     },
     {
       "type": "place",
+      "id": "juneau",
+      "parent": {
+        "type": "country",
+        "id": "US"
+      },
+      "name": {
+        "en": "Juneau"
+      },
+      "countryCode": "US",
+      "journeys": [
+        "alaska-inside-passage-ferry"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "kandy",
+      "parent": {
+        "type": "country",
+        "id": "LK"
+      },
+      "name": {
+        "en": "Kandy"
+      },
+      "countryCode": "LK",
+      "journeys": [
+        "sri-lanka-hill-country-rail"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "kaohsiung",
+      "parent": {
+        "type": "country",
+        "id": "TW"
+      },
+      "name": {
+        "en": "Kaohsiung"
+      },
+      "countryCode": "TW",
+      "journeys": [
+        "taiwan-rail-coast-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "ketchikan",
+      "parent": {
+        "type": "country",
+        "id": "US"
+      },
+      "name": {
+        "en": "Ketchikan"
+      },
+      "countryCode": "US",
+      "journeys": [
+        "alaska-inside-passage-ferry"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "lake-st-clair",
+      "parent": {
+        "type": "country",
+        "id": "AU"
+      },
+      "name": {
+        "en": "Lake St Clair"
+      },
+      "countryCode": "AU",
+      "journeys": [
+        "tasmania-wild-coast-road-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "launceston",
+      "parent": {
+        "type": "country",
+        "id": "AU"
+      },
+      "name": {
+        "en": "Launceston"
+      },
+      "countryCode": "AU",
+      "journeys": [
+        "tasmania-wild-coast-road-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "lucerne",
+      "parent": {
+        "type": "country",
+        "id": "CH"
+      },
+      "name": {
+        "en": "Lucerne"
+      },
+      "countryCode": "CH",
+      "journeys": [
+        "swiss-scenic-rail-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
       "id": "MA:ait-benhaddou",
       "parent": {
         "type": "country",
@@ -2405,6 +3076,40 @@
       "countryCode": "MA",
       "journeys": [
         "morocco-atlas-desert"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "malang",
+      "parent": {
+        "type": "country",
+        "id": "ID"
+      },
+      "name": {
+        "en": "Malang"
+      },
+      "countryCode": "ID",
+      "journeys": [
+        "java-rail-volcano-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "montreux",
+      "parent": {
+        "type": "country",
+        "id": "CH"
+      },
+      "name": {
+        "en": "Montreux"
+      },
+      "countryCode": "CH",
+      "journeys": [
+        "swiss-scenic-rail-journey"
       ],
       "available": false,
       "priority": 1
@@ -2512,6 +3217,23 @@
       "countryCode": "NO",
       "journeys": [
         "norway-arctic-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "nuwara-eliya",
+      "parent": {
+        "type": "country",
+        "id": "LK"
+      },
+      "name": {
+        "en": "Nuwara Eliya"
+      },
+      "countryCode": "LK",
+      "journeys": [
+        "sri-lanka-hill-country-rail"
       ],
       "available": false,
       "priority": 1
@@ -2705,6 +3427,40 @@
     },
     {
       "type": "place",
+      "id": "petersburg",
+      "parent": {
+        "type": "country",
+        "id": "US"
+      },
+      "name": {
+        "en": "Petersburg"
+      },
+      "countryCode": "US",
+      "journeys": [
+        "alaska-inside-passage-ferry"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "portree",
+      "parent": {
+        "type": "country",
+        "id": "GB"
+      },
+      "name": {
+        "en": "Portree"
+      },
+      "countryCode": "GB",
+      "journeys": [
+        "scotland-highlands-hebrides"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
       "id": "PT:lisbon",
       "parent": {
         "type": "country",
@@ -2727,6 +3483,261 @@
     },
     {
       "type": "place",
+      "id": "skagway",
+      "parent": {
+        "type": "country",
+        "id": "US"
+      },
+      "name": {
+        "en": "Skagway"
+      },
+      "countryCode": "US",
+      "journeys": [
+        "alaska-inside-passage-ferry"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "solo",
+      "parent": {
+        "type": "country",
+        "id": "ID"
+      },
+      "name": {
+        "en": "Surakarta (Solo)"
+      },
+      "countryCode": "ID",
+      "journeys": [
+        "java-rail-volcano-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "sossusvlei",
+      "parent": {
+        "type": "country",
+        "id": "NA"
+      },
+      "name": {
+        "en": "Sossusvlei"
+      },
+      "countryCode": "NA",
+      "journeys": [
+        "namibia-desert-wildlife-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "spitzkoppe",
+      "parent": {
+        "type": "country",
+        "id": "NA"
+      },
+      "name": {
+        "en": "Spitzkoppe"
+      },
+      "countryCode": "NA",
+      "journeys": [
+        "namibia-desert-wildlife-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "st-moritz",
+      "parent": {
+        "type": "country",
+        "id": "CH"
+      },
+      "name": {
+        "en": "St. Moritz"
+      },
+      "countryCode": "CH",
+      "journeys": [
+        "swiss-scenic-rail-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "stornoway",
+      "parent": {
+        "type": "country",
+        "id": "GB"
+      },
+      "name": {
+        "en": "Stornoway"
+      },
+      "countryCode": "GB",
+      "journeys": [
+        "scotland-highlands-hebrides"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "strahan",
+      "parent": {
+        "type": "country",
+        "id": "AU"
+      },
+      "name": {
+        "en": "Strahan"
+      },
+      "countryCode": "AU",
+      "journeys": [
+        "tasmania-wild-coast-road-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "surabaya",
+      "parent": {
+        "type": "country",
+        "id": "ID"
+      },
+      "name": {
+        "en": "Surabaya"
+      },
+      "countryCode": "ID",
+      "journeys": [
+        "java-rail-volcano-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "swakopmund",
+      "parent": {
+        "type": "country",
+        "id": "NA"
+      },
+      "name": {
+        "en": "Swakopmund"
+      },
+      "countryCode": "NA",
+      "journeys": [
+        "namibia-desert-wildlife-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "taichung",
+      "parent": {
+        "type": "country",
+        "id": "TW"
+      },
+      "name": {
+        "en": "Taichung"
+      },
+      "countryCode": "TW",
+      "journeys": [
+        "taiwan-rail-coast-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "tainan",
+      "parent": {
+        "type": "country",
+        "id": "TW"
+      },
+      "name": {
+        "en": "Tainan"
+      },
+      "countryCode": "TW",
+      "journeys": [
+        "taiwan-rail-coast-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "taipei",
+      "parent": {
+        "type": "country",
+        "id": "TW"
+      },
+      "name": {
+        "en": "Taipei"
+      },
+      "countryCode": "TW",
+      "journeys": [
+        "taiwan-rail-coast-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "taipei-return",
+      "parent": {
+        "type": "country",
+        "id": "TW"
+      },
+      "name": {
+        "en": "Taipei"
+      },
+      "countryCode": "TW",
+      "journeys": [
+        "taiwan-rail-coast-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "taitung",
+      "parent": {
+        "type": "country",
+        "id": "TW"
+      },
+      "name": {
+        "en": "Taitung"
+      },
+      "countryCode": "TW",
+      "journeys": [
+        "taiwan-rail-coast-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "tarbert-harris",
+      "parent": {
+        "type": "country",
+        "id": "GB"
+      },
+      "name": {
+        "en": "Tarbert, Harris"
+      },
+      "countryCode": "GB",
+      "journeys": [
+        "scotland-highlands-hebrides"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
       "id": "TN:la-goulette-tunis",
       "parent": {
         "type": "country",
@@ -2743,6 +3754,40 @@
       "countryCode": "TN",
       "journeys": [
         "western-mediterranean-cruise-loop"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "twyfelfontein",
+      "parent": {
+        "type": "country",
+        "id": "NA"
+      },
+      "name": {
+        "en": "Twyfelfontein"
+      },
+      "countryCode": "NA",
+      "journeys": [
+        "namibia-desert-wildlife-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "ullapool",
+      "parent": {
+        "type": "country",
+        "id": "GB"
+      },
+      "name": {
+        "en": "Ullapool"
+      },
+      "countryCode": "GB",
+      "journeys": [
+        "scotland-highlands-hebrides"
       ],
       "available": false,
       "priority": 1
@@ -2961,6 +4006,74 @@
     },
     {
       "type": "place",
+      "id": "windhoek",
+      "parent": {
+        "type": "country",
+        "id": "NA"
+      },
+      "name": {
+        "en": "Windhoek"
+      },
+      "countryCode": "NA",
+      "journeys": [
+        "namibia-desert-wildlife-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "windhoek-return",
+      "parent": {
+        "type": "country",
+        "id": "NA"
+      },
+      "name": {
+        "en": "Windhoek"
+      },
+      "countryCode": "NA",
+      "journeys": [
+        "namibia-desert-wildlife-road-trip"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "wrangell",
+      "parent": {
+        "type": "country",
+        "id": "US"
+      },
+      "name": {
+        "en": "Wrangell"
+      },
+      "countryCode": "US",
+      "journeys": [
+        "alaska-inside-passage-ferry"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "yogyakarta",
+      "parent": {
+        "type": "country",
+        "id": "ID"
+      },
+      "name": {
+        "en": "Yogyakarta"
+      },
+      "countryCode": "ID",
+      "journeys": [
+        "java-rail-volcano-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
       "id": "ZA:addo-elephant-national-park",
       "parent": {
         "type": "country",
@@ -3045,6 +4158,50 @@
       "priority": 1
     },
     {
+      "type": "place",
+      "id": "zermatt",
+      "parent": {
+        "type": "country",
+        "id": "CH"
+      },
+      "name": {
+        "en": "Zermatt"
+      },
+      "countryCode": "CH",
+      "journeys": [
+        "swiss-scenic-rail-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "place",
+      "id": "zurich",
+      "parent": {
+        "type": "country",
+        "id": "CH"
+      },
+      "name": {
+        "en": "Zürich"
+      },
+      "countryCode": "CH",
+      "journeys": [
+        "swiss-scenic-rail-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "alaska",
+      "name": "alaska",
+      "journeys": [
+        "alaska-inside-passage-ferry"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
       "type": "region",
       "id": "andes",
       "name": "andes",
@@ -3060,16 +4217,6 @@
       "name": "argentina",
       "journeys": [
         "patagonia-road-trip"
-      ],
-      "available": false,
-      "priority": 1
-    },
-    {
-      "type": "region",
-      "id": "australia",
-      "name": "australia",
-      "journeys": [
-        "victoria-great-ocean-highlands-road-trip"
       ],
       "available": false,
       "priority": 1
@@ -3096,6 +4243,16 @@
     },
     {
       "type": "region",
+      "id": "central-europe",
+      "name": "central-europe",
+      "journeys": [
+        "swiss-scenic-rail-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
       "id": "chile",
       "name": "chile",
       "journeys": [
@@ -3110,16 +4267,6 @@
       "name": "costa-rica",
       "journeys": [
         "costa-rica-nature-loop"
-      ],
-      "available": false,
-      "priority": 1
-    },
-    {
-      "type": "region",
-      "id": "east-asia",
-      "name": "east-asia",
-      "journeys": [
-        "japan-by-rail"
       ],
       "available": false,
       "priority": 1
@@ -3166,6 +4313,16 @@
     },
     {
       "type": "region",
+      "id": "indonesia",
+      "name": "indonesia",
+      "journeys": [
+        "java-rail-volcano-journey"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
       "id": "italy",
       "name": "italy",
       "journeys": [
@@ -3200,6 +4357,16 @@
       "name": "morocco",
       "journeys": [
         "morocco-atlas-desert"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
+      "id": "namibia",
+      "name": "namibia",
+      "journeys": [
+        "namibia-desert-wildlife-road-trip"
       ],
       "available": false,
       "priority": 1
@@ -3246,6 +4413,16 @@
     },
     {
       "type": "region",
+      "id": "scotland",
+      "name": "scotland",
+      "journeys": [
+        "scotland-highlands-hebrides"
+      ],
+      "available": false,
+      "priority": 1
+    },
+    {
+      "type": "region",
       "id": "south-africa",
       "name": "south-africa",
       "journeys": [
@@ -3256,40 +4433,40 @@
     },
     {
       "type": "region",
-      "id": "south-asia",
-      "name": "south-asia",
+      "id": "sri-lanka",
+      "name": "sri-lanka",
       "journeys": [
-        "india-golden-triangle-rail"
+        "sri-lanka-hill-country-rail"
       ],
       "available": false,
       "priority": 1
     },
     {
       "type": "region",
-      "id": "south-east-asia",
-      "name": "south-east-asia",
+      "id": "switzerland",
+      "name": "switzerland",
       "journeys": [
-        "vietnam-north-south"
+        "swiss-scenic-rail-journey"
       ],
       "available": false,
       "priority": 1
     },
     {
       "type": "region",
-      "id": "southern-africa",
-      "name": "southern-africa",
+      "id": "taiwan",
+      "name": "taiwan",
       "journeys": [
-        "south-africa-garden-safari"
+        "taiwan-rail-coast-loop"
       ],
       "available": false,
       "priority": 1
     },
     {
       "type": "region",
-      "id": "united-states",
-      "name": "united-states",
+      "id": "tasmania",
+      "name": "tasmania",
       "journeys": [
-        "utah-national-parks-road-trip"
+        "tasmania-wild-coast-road-loop"
       ],
       "available": false,
       "priority": 1
@@ -3789,21 +4966,6 @@
     },
     {
       "type": "country",
-      "id": "CH",
-      "name": "Schweiz",
-      "parent": {
-        "type": "continent",
-        "id": "europe"
-      },
-      "journeys": [
-        "world-195"
-      ],
-      "eligibleJourneys": [],
-      "available": false,
-      "priority": 0
-    },
-    {
-      "type": "country",
       "id": "CI",
       "name": "Côte d’Ivoire",
       "parent": {
@@ -4202,21 +5364,6 @@
     },
     {
       "type": "country",
-      "id": "GB",
-      "name": "Vereinigtes Königreich",
-      "parent": {
-        "type": "continent",
-        "id": "europe"
-      },
-      "journeys": [
-        "world-195"
-      ],
-      "eligibleJourneys": [],
-      "available": false,
-      "priority": 0
-    },
-    {
-      "type": "country",
       "id": "GD",
       "name": "Grenada",
       "parent": {
@@ -4406,21 +5553,6 @@
       "journeys": [
         "world-195",
         "central-europe-rail-journey"
-      ],
-      "eligibleJourneys": [],
-      "available": false,
-      "priority": 0
-    },
-    {
-      "type": "country",
-      "id": "ID",
-      "name": "Indonesien",
-      "parent": {
-        "type": "continent",
-        "id": "asia"
-      },
-      "journeys": [
-        "world-195"
       ],
       "eligibleJourneys": [],
       "available": false,
@@ -4703,21 +5835,6 @@
       "parent": {
         "type": "continent",
         "id": "europe"
-      },
-      "journeys": [
-        "world-195"
-      ],
-      "eligibleJourneys": [],
-      "available": false,
-      "priority": 0
-    },
-    {
-      "type": "country",
-      "id": "LK",
-      "name": "Sri Lanka",
-      "parent": {
-        "type": "continent",
-        "id": "asia"
       },
       "journeys": [
         "world-195"
@@ -5060,21 +6177,6 @@
       "type": "country",
       "id": "MZ",
       "name": "Mosambik",
-      "parent": {
-        "type": "continent",
-        "id": "africa"
-      },
-      "journeys": [
-        "world-195"
-      ],
-      "eligibleJourneys": [],
-      "available": false,
-      "priority": 0
-    },
-    {
-      "type": "country",
-      "id": "NA",
-      "name": "Namibia",
       "parent": {
         "type": "continent",
         "id": "africa"

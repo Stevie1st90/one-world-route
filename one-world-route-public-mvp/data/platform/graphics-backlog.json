@@ -359,7 +359,7 @@
         "y": 0.45
       },
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
-      "strategy": "bespoke-recommended",
+      "strategy": "bespoke-optional",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
       "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#vietnam-north-south"
@@ -385,7 +385,7 @@
         "y": 0.45
       },
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
-      "strategy": "bespoke-recommended",
+      "strategy": "bespoke-optional",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
       "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#costa-rica-nature-loop"
@@ -487,7 +487,7 @@
         "y": 0.45
       },
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
-      "strategy": "bespoke-recommended",
+      "strategy": "bespoke-optional",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
       "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#india-golden-triangle-rail"
