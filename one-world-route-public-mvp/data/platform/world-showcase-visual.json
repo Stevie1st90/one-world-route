@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "policyVersion": "world-showcase-hybrid-v2",
+  "policyVersion": "world-showcase-flat-v3",
   "tripId": "world-195",
-  "strategy": "cinematic-atmosphere-plus-premium-factual-earth-route",
+  "strategy": "cinematic-atmosphere-plus-premium-flat-world-route",
   "status": "base-image-needed",
   "invariants": {
     "sovereignCountries": 195,
@@ -15,14 +15,14 @@
   "baseImage": {
     "sourceFilename": "source--journey--world-195--space-base--16x9--v001.png",
     "aspectRatio": "16:9",
-    "promptVersion": "world-showcase-hybrid-v2",
-    "prompt": "Create exactly one original premium cinematic 16:9 deep-space atmosphere background for “One World Journey”. Use restrained dark space, subtle blue orbital glow, faint atmospheric haze and enough quiet negative space for interface overlays. Do not draw a standalone Earth globe, route, pins, labels, borders, text, numbers or logos. The recognizable Earth globes and factual 195-country journey route will be composited separately from verified ONE WORLD ROUTE geometry.",
+    "promptVersion": "world-showcase-flat-v3",
+    "prompt": "Create exactly one original premium cinematic 16:9 deep-space atmosphere background for “One World Journey”. Use restrained dark space, subtle blue orbital glow, faint atmospheric haze and enough quiet negative space for interface overlays. Do not draw a standalone Earth globe, route, pins, labels, borders, text, numbers or logos. The recognizable flat world map and factual 195-country journey route will be composited separately from verified ONE WORLD ROUTE geometry.",
     "rules": [
       "one cinematic background only",
       "no standalone Earth globe",
       "no route lines, pins, borders or labels",
       "no text, numbers or logos",
-      "quiet central and edge zones for deterministic Earth/route compositing"
+      "quiet central and edge zones for deterministic flat-world route compositing"
     ]
   },
   "factualLayer": {
@@ -35,10 +35,11 @@
     "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
     "geometrySource": "data/public-route.json",
     "basemapSource": "data/visual-sources/natural-earth-relief.webp",
-    "renderStyle": "premium-world-showcase-v2",
+    "renderStyle": "premium-flat-world-v3",
     "routeVisualReferenceOnly": true,
     "countries": 195,
-    "routeLines": 253
+    "routeLines": 253,
+    "projection": "equirectangular-flat-world"
   },
   "finalCover": {
     "assetId": "journey--world-195--cover--16x9--v001",
