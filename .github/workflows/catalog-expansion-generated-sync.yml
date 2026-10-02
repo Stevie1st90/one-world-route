@@ -1,0 +1,54 @@
+name: Catalog expansion generated sync
+
+on:
+  push:
+    branches:
+      - catalog-expansion-v1
+
+permissions:
+  contents: read
+
+jobs:
+  build-generated-sync:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: one-world-route-public-mvp
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: one-world-route-public-mvp/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+      - name: Run release build
+        run: node scripts/release-build.mjs
+      - name: Collect generated changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd ..
+          rm -rf generated-sync
+          mkdir -p generated-sync/files
+          {
+            git diff --name-only
+            git ls-files --others --exclude-standard
+          } | sort -u | grep '^one-world-route-public-mvp/' > generated-sync/changed-files.txt || true
+          while IFS= read -r file; do
+            [ -f "$file" ] || continue
+            mkdir -p "generated-sync/files/$(dirname "$file")"
+            cp "$file" "generated-sync/files/$file"
+          done < generated-sync/changed-files.txt
+          echo "Generated files:"
+          cat generated-sync/changed-files.txt
+      - name: Upload generated sync
+        uses: actions/upload-artifact@v7
+        with:
+          name: catalog-expansion-generated-sync
+          path: generated-sync
+          if-no-files-found: error
+          retention-days: 3
