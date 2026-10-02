@@ -251,6 +251,7 @@ jobs:
           node --check scripts/build-world-showcase-visual-spec.mjs
           node --check scripts/test-world-showcase-visual.mjs
           node --check scripts/compose-world-showcase-cover.mjs
+          node --check scripts/world-showcase-renderer.mjs
           node --check scripts/test-world-showcase-compositor.mjs
           node --check scripts/test-cloud-sync.mjs
           node --check platform/map-style.js
