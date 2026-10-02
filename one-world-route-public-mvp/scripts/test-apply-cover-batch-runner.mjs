@@ -9,7 +9,7 @@ test('Windows cover runner uses detached worktree and remote-only target branch'
   assert.match(script,/worktree add --detach/);
   assert.doesNotMatch(script,/worktree add -b \$Branch/);
   assert.doesNotMatch(script,/branch -D \$Branch/);
-  assert.match(script,/push -u origin \("HEAD:" \+ \$Branch\)/);
+  assert.match(script,/push origin \("HEAD:refs\/heads\/" \+ \$Branch\)/);
 });
 
 test('Windows cover runner uses direct Node release invocation',()=>{
