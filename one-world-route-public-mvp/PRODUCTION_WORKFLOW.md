@@ -160,7 +160,7 @@ PR browser rules:
 - Media renderer/cover-slot changes additionally run the focused media-slot browser fixture.
 - Target budget: Discovery PR smoke <= 60 s; Content Journey browser smoke <= 90 s; overall PR wall clock <= 2-3 minutes where runner availability permits.
 
-Broad `@discovery` browser coverage remains available through the scheduled/manual confidence run. Production smoke remains the post-merge live-deployment gate.
+Broad `@discovery` browser coverage remains available through the scheduled/manual confidence run. The standalone `Production smoke` workflow is the single post-merge live-deployment gate. The broader Production browser confidence suite runs only on scheduled/manual validation so main pushes do not execute two overlapping live-browser suites.
 
 Do not repeatedly run large test suites when the failure is clearly isolated to one deterministic contract. Do not remove important assertions merely to meet a timing target; move exhaustive validation to the cheapest correct abstraction layer instead.
 
