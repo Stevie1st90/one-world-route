@@ -1,0 +1,331 @@
+{
+  "schemaVersion": 1,
+  "id": "alaska-inside-passage-ferry",
+  "slug": "alaska-inside-passage-ferry",
+  "kind": "island-hopping",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Alaska Inside Passage by Ferry",
+    "de": "Alaska · Inside Passage per Fähre",
+    "it": "Alaska · Inside Passage in traghetto",
+    "es": "Alaska · Inside Passage en ferry",
+    "fr": "Alaska · Inside Passage en ferry",
+    "pt": "Alasca · Inside Passage de balsa"
+  },
+  "summary": {
+    "en": "An independent ferry journey through Southeast Alaska’s Inside Passage, linking coastal communities between Ketchikan and Skagway.",
+    "de": "Eine unabhängige Fährreise durch Alaskas Inside Passage mit Küstenorten zwischen Ketchikan und Skagway.",
+    "it": "Un viaggio indipendente in traghetto lungo l'Inside Passage dell'Alaska sud-orientale, da Ketchikan a Skagway.",
+    "es": "Un viaje independiente en ferry por el Inside Passage del sureste de Alaska, de Ketchikan a Skagway.",
+    "fr": "Un voyage indépendant en ferry dans l'Inside Passage du sud-est de l'Alaska, de Ketchikan à Skagway.",
+    "pt": "Uma viagem independente de balsa pelo Inside Passage do sudeste do Alasca, de Ketchikan a Skagway."
+  },
+  "geography": {
+    "countries": [
+      "US"
+    ],
+    "primaryCountry": "US"
+  },
+  "planning": {
+    "days": 12,
+    "currency": "USD",
+    "pace": "relaxed",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 57.60358,
+      "lng": -133.69283,
+      "altitude": 0.72
+    }
+  },
+  "media": {
+    "hero": {
+      "type": "art-directed",
+      "theme": "inside-passage",
+      "asset": null,
+      "attribution": null,
+      "license": "original-ui-art"
+    },
+    "gallery": []
+  },
+  "highlights": [
+    "Temperate rainforest, fjords and independent ferry travel",
+    "ferry · coast · wildlife"
+  ],
+  "places": [
+    {
+      "id": "ketchikan",
+      "type": "place",
+      "countryCode": "US",
+      "name": {
+        "en": "Ketchikan"
+      },
+      "coordinates": {
+        "lat": 55.3422,
+        "lng": -131.6461
+      }
+    },
+    {
+      "id": "wrangell",
+      "type": "place",
+      "countryCode": "US",
+      "name": {
+        "en": "Wrangell"
+      },
+      "coordinates": {
+        "lat": 56.4708,
+        "lng": -132.3767
+      }
+    },
+    {
+      "id": "petersburg",
+      "type": "place",
+      "countryCode": "US",
+      "name": {
+        "en": "Petersburg"
+      },
+      "coordinates": {
+        "lat": 56.8125,
+        "lng": -132.9556
+      }
+    },
+    {
+      "id": "juneau",
+      "type": "place",
+      "countryCode": "US",
+      "name": {
+        "en": "Juneau"
+      },
+      "coordinates": {
+        "lat": 58.3019,
+        "lng": -134.4197
+      }
+    },
+    {
+      "id": "haines",
+      "type": "place",
+      "countryCode": "US",
+      "name": {
+        "en": "Haines"
+      },
+      "coordinates": {
+        "lat": 59.2358,
+        "lng": -135.445
+      }
+    },
+    {
+      "id": "skagway",
+      "type": "place",
+      "countryCode": "US",
+      "name": {
+        "en": "Skagway"
+      },
+      "coordinates": {
+        "lat": 59.4583,
+        "lng": -135.3139
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "alaska-inside-passage-ferry-stop-01",
+      "sequence": 1,
+      "placeId": "ketchikan",
+      "dayStart": 1,
+      "dayEnd": 2,
+      "nights": 2
+    },
+    {
+      "id": "alaska-inside-passage-ferry-stop-02",
+      "sequence": 2,
+      "placeId": "wrangell",
+      "dayStart": 3,
+      "dayEnd": 4,
+      "nights": 2
+    },
+    {
+      "id": "alaska-inside-passage-ferry-stop-03",
+      "sequence": 3,
+      "placeId": "petersburg",
+      "dayStart": 5,
+      "dayEnd": 5,
+      "nights": 1
+    },
+    {
+      "id": "alaska-inside-passage-ferry-stop-04",
+      "sequence": 4,
+      "placeId": "juneau",
+      "dayStart": 6,
+      "dayEnd": 8,
+      "nights": 3
+    },
+    {
+      "id": "alaska-inside-passage-ferry-stop-05",
+      "sequence": 5,
+      "placeId": "haines",
+      "dayStart": 9,
+      "dayEnd": 10,
+      "nights": 2
+    },
+    {
+      "id": "alaska-inside-passage-ferry-stop-06",
+      "sequence": 6,
+      "placeId": "skagway",
+      "dayStart": 11,
+      "dayEnd": 12,
+      "nights": 2
+    }
+  ],
+  "segments": [
+    {
+      "id": "alaska-inside-passage-ferry-leg-01",
+      "sequence": 1,
+      "fromStopId": "alaska-inside-passage-ferry-stop-01",
+      "toStopId": "alaska-inside-passage-ferry-stop-02",
+      "transport": {
+        "mode": "ferry",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "alaska-inside-passage-ferry-leg-02",
+      "sequence": 2,
+      "fromStopId": "alaska-inside-passage-ferry-stop-02",
+      "toStopId": "alaska-inside-passage-ferry-stop-03",
+      "transport": {
+        "mode": "ferry",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "alaska-inside-passage-ferry-leg-03",
+      "sequence": 3,
+      "fromStopId": "alaska-inside-passage-ferry-stop-03",
+      "toStopId": "alaska-inside-passage-ferry-stop-04",
+      "transport": {
+        "mode": "ferry",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "alaska-inside-passage-ferry-leg-04",
+      "sequence": 4,
+      "fromStopId": "alaska-inside-passage-ferry-stop-04",
+      "toStopId": "alaska-inside-passage-ferry-stop-05",
+      "transport": {
+        "mode": "ferry",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "alaska-inside-passage-ferry-leg-05",
+      "sequence": 5,
+      "fromStopId": "alaska-inside-passage-ferry-stop-05",
+      "toStopId": "alaska-inside-passage-ferry-stop-06",
+      "transport": {
+        "mode": "ferry",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "ak-amhs-route",
+      "title": "Alaska Marine Highway System — Our Route",
+      "issuer": "Alaska Department of Transportation and Public Facilities",
+      "issuerType": "government",
+      "url": "https://dot.alaska.gov/amhs/route.shtml",
+      "checkedAt": "2026-10-02",
+      "claims": [
+        "official source supports the destination or transport character used for this editorial journey concept",
+        "exact schedules, fares and operating conditions must be checked for the actual travel date"
+      ]
+    }
+  ],
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context"
+  },
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true,
+    "notes": "Editorial route structure is stable; transport, access, price and traveller-specific details require periodic or live verification."
+  }
+}
