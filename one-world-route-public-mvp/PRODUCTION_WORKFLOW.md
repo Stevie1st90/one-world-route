@@ -89,35 +89,120 @@ For a catalog expansion:
 
 ## 5. Journey-cover workflow
 
-Standard generation batch: up to 10 Journeys.
+Standard production batch: up to 10 Journeys.
 
-A batch means up to 10 isolated single-image generations followed by one shared review.
+### Dispatch contract
 
-Never ask the image model to produce multiple Journeys in one collage.
+The operator sends **one batch instruction**, but the image system must execute **one independent image-generation call per Journey**.
 
-For each Journey:
+For a 10-Journey batch the only valid topology is:
 
-- one `tripId`
-- one exact source filename
-- one prompt
-- one independent image generation
-- no previous screenshot/image as reference unless explicitly intended
+- 1 operator prompt,
+- 10 unique queue items,
+- 10 separate image-generation tool calls,
+- exactly 1 image per tool call,
+- fixed queue order,
+- no approval pause between calls,
+- stop after call 10.
 
-Already published bespoke covers are excluded from future generation queues.
+Never implement a multi-Journey batch as one image call with `n=10`. A multi-image call shares one effective prompt and can produce ten variants of the first Journey (the observed “10× Alaska” failure mode).
 
-`world-195` is excluded from ordinary cover batches and uses the separate hybrid strategy:
-cinematic Earth base + factual route geometry rendered from platform data.
+The queue builder encodes this contract in `dispatchContract` and emits a single operator prompt that explicitly requires separate `n=1` calls.
 
-After review:
+### Generate the batch
 
-1. accept/reject the batch once,
-2. regenerate only outliers,
-3. preserve PNG masters outside the delivery repo,
-4. ingest accepted masters,
-5. create responsive WebPs,
-6. update registry and `heroAssetId`,
-7. run release build and media tests,
-8. commit only delivery assets/metadata.
+Run:
+
+```powershell
+npm run covers:batch
+```
+
+This produces local, ignored artifacts:
+
+- `data/platform/cover-generation-queue.json`
+- `data/platform/cover-generation-operator-prompt.md`
+
+The prompt is designed to be pasted once into the image-generation chat. The image orchestrator must then advance through the numbered queue without asking the operator for ten separate messages.
+
+Each queue item contains:
+
+- one sequence number,
+- one `callId`,
+- one unique `tripId`,
+- one exact source filename,
+- one concise production prompt,
+- `imagesPerToolCall: 1`.
+
+Queue construction fails on duplicate `tripId`, `callId` or source filename.
+
+Already published approved bespoke covers are excluded from future queues.
+
+`world-195` is excluded from ordinary cover batches and uses the separate hybrid strategy: cinematic Earth base + factual route geometry rendered from platform data.
+
+### Stage downloaded results
+
+Image-chat downloads may arrive with generic names such as `...-1.png` through `...-10.png`. Do not rename ten files manually.
+
+Stage them with:
+
+```powershell
+npm run covers:stage -- --spec="data/platform/cover-generation-queue.json" --source-dir="<download-folder>"
+```
+
+The staging script:
+
+- requires exactly the expected number of images,
+- natural-sorts numbered filenames so `-10` does not sort before `-9`,
+- maps them to the locked queue order,
+- rejects exact duplicate files,
+- verifies readable dimensions,
+- verifies approximately 16:9,
+- requires at least 1200 px source width,
+- writes canonical source-master filenames,
+- writes a machine-readable staging report.
+
+Semantic correctness is deliberately **not** auto-approved. A technically valid image can still depict the wrong Journey.
+
+### Shared visual QA
+
+Run one shared review after the entire batch, not ten individual approval loops.
+
+Review every cover for:
+
+- correct Journey identity,
+- geographic plausibility,
+- travel-mode plausibility,
+- no text/logos/brand livery,
+- no invented route/map overlay,
+- crop safety,
+- obvious image-generation artifacts,
+- differentiation from adjacent covers,
+- consistency with the product family.
+
+Use only:
+
+- `ACCEPT`
+- `REGENERATE`
+- `REJECT`
+
+Regenerate only outliers. Never regenerate accepted covers merely to create extra variants.
+
+### Ingest
+
+After every accepted item has explicit `reviewStatus=approved`:
+
+1. preserve PNG masters outside the delivery repo,
+2. ingest accepted masters,
+3. create responsive WebPs,
+4. update registry and `heroAssetId`,
+5. run release build and media tests,
+6. commit only delivery assets/metadata.
+
+### Scaling rule
+
+The workflow must scale by **batches**, not by operator messages.
+
+For 1,000 Journeys the target is roughly 100 unattended 10-Journey dispatches, not 1,000 manually written prompts. The current chat-based orchestration is the compatibility layer; a future provider/API worker can consume the same queue contract without changing Journey data, filenames, QA states or ingestion.
 
 ## 6. Stable naming
 
