@@ -7,3 +7,5 @@ qa/qa-artifacts-*/
 data/platform/drafts/
 qa/builder-test-results/
 qa/production-smoke-results/
+# Local release-build report; never commit
+data/platform/locale-coverage.json
