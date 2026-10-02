@@ -28,10 +28,10 @@ test('similar country trips produce different families without inventing landmar
  const brief=buildVisualBrief({id:'unknown',kind:'rail',title:{en:'Test'},discovery:{regions:['asia']}},{},{countries:['JP']});
  assert.equal(brief.suggestedAnchor,null);assert.equal(brief.anchorStatus,'unresolved');assert.match(brief.imagePrompt,/One coherent/);assert.doesNotMatch(brief.imagePrompt,/Fuji|Tokyo/);
 });
-test('published catalog has 21 briefs, six unique region cameras and local flags',async()=>{
+test('published catalog has one visual brief per journey, six unique region cameras and local flags',async()=>{
  const read=async p=>JSON.parse(await readFile(new URL('../'+p,import.meta.url),'utf8'));
- const briefs=await read('data/platform/visual-briefs.json'),regions=await read('data/platform/region-visuals.json'),source=await read('assets/flags/SOURCE.json');
- assert.equal(briefs.journeys.length,21);assert.equal(briefs.destinationRecommendations.length,20);assert.equal(briefs.summary.imagesGenerated,0);
+ const catalog=await read('data/platform/trips.json'),briefs=await read('data/platform/visual-briefs.json'),regions=await read('data/platform/region-visuals.json'),source=await read('assets/flags/SOURCE.json');
+ assert.equal(briefs.journeys.length,catalog.trips.length);assert.equal(briefs.summary.journeys,catalog.trips.length);assert.equal(briefs.destinationRecommendations.length,20);assert.equal(briefs.summary.imagesGenerated,0);
  assert.equal(new Set(regions.assets.map(a=>a.outputHash)).size,6);
  assert.equal(source.countries,195);
  for(const b of briefs.journeys)assert.ok(b.imagePrompt&&b.visualFamily&&b.status);
