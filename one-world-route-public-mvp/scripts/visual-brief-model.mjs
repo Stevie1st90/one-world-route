@@ -25,7 +25,7 @@ export function buildVisualBrief(meta,trip,visual){
   'nature-atmospheric':'a single atmospheric natural landscape grounded in the listed destination',
   'coastal-editorial':'a single coherent coastal travel scene; no collage of ports or islands',
   'culture-editorial':'a single street-level cultural travel scene; no collage of landmarks',
-  'planetary':'a single atmospheric view of Earth with recognizable continents and no invented route overlay'
+  'planetary':'a cinematic deep-space atmosphere designed to receive the verified Earth-and-route overlay'
  }[family];
  const motif=scene+(anchor?.name?' inspired by '+anchor.name+' ('+anchor.countryCode+'); confirm specific scene details before generation':anchor?.type==='country'?' inspired by '+anchor.id:' inspired by '+region);
  const span=visual?.bounds?.longitudeSpan||0,weak=visual?.scope==='LOCAL'||span>0&&span<6;
