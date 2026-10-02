@@ -9,6 +9,9 @@ on:
     branches: [main]
     paths-ignore:
       - '**/*.md'
+  schedule:
+    - cron: '23 3 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -28,6 +31,7 @@ jobs:
       builder_browser: ${{ steps.scope.outputs.builder_browser }}
       content_browser: ${{ steps.scope.outputs.content_browser }}
       experience_browser: ${{ steps.scope.outputs.experience_browser }}
+      media_browser: ${{ steps.scope.outputs.media_browser }}
       content_trip_ids: ${{ steps.scope.outputs.content_trip_ids }}
     steps:
       - uses: actions/checkout@v7
@@ -39,9 +43,24 @@ jobs:
         run: |
           set -euo pipefail
 
-          # main only receives fast-forwarded, already validated PR commits in the
-          # normal delivery workflow. Re-running browser QA there duplicates the
-          # exact same commit. Production smoke remains the live deployment gate.
+          # Scheduled/manual confidence runs keep the broad browser suites available
+          # without making every pull request pay their full cost.
+          if [[ "${{ github.event_name }}" == "schedule" || "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "flagship_browser=true" >> "$GITHUB_OUTPUT"
+            echo "regional_browser=true" >> "$GITHUB_OUTPUT"
+            echo "discovery_browser=true" >> "$GITHUB_OUTPUT"
+            echo "builder_browser=true" >> "$GITHUB_OUTPUT"
+            echo "content_browser=false" >> "$GITHUB_OUTPUT"
+            echo "experience_browser=true" >> "$GITHUB_OUTPUT"
+            echo "media_browser=true" >> "$GITHUB_OUTPUT"
+            echo "content_trip_ids=" >> "$GITHUB_OUTPUT"
+            echo "confidence run: broad generic browser suites enabled"
+            exit 0
+          fi
+
+          # main only receives already validated PR commits in the normal delivery
+          # workflow. Production smoke remains the live post-merge gate, so the
+          # expensive generic browser regression is not duplicated on every push.
           if [[ "${{ github.event_name }}" == "push" ]]; then
             echo "flagship_browser=false" >> "$GITHUB_OUTPUT"
             echo "regional_browser=false" >> "$GITHUB_OUTPUT"
@@ -49,6 +68,7 @@ jobs:
             echo "builder_browser=false" >> "$GITHUB_OUTPUT"
             echo "content_browser=false" >> "$GITHUB_OUTPUT"
             echo "experience_browser=false" >> "$GITHUB_OUTPUT"
+            echo "media_browser=false" >> "$GITHUB_OUTPUT"
             echo "content_trip_ids=" >> "$GITHUB_OUTPUT"
             echo "main push: fast gate only; browser regression is not duplicated"
             exit 0
@@ -65,6 +85,7 @@ jobs:
           builder_browser=false
           content_browser=false
           experience_browser=false
+          media_browser=false
           content_trip_ids=""
 
           while IFS= read -r file; do
@@ -75,6 +96,7 @@ jobs:
                 discovery_browser=true
                 builder_browser=true
                 experience_browser=true
+                media_browser=true
                 ;;
               internal-trip-builder/*)
                 if [[ "$file" != "internal-trip-builder/README.md" ]]; then
@@ -104,6 +126,23 @@ jobs:
               one-world-route-public-mvp/data/platform/trip-index.json)
                 # Generated from the catalog + trip datasets; Core verifies determinism.
                 ;;
+              one-world-route-public-mvp/data/platform/media-manifest.json|one-world-route-public-mvp/data/platform/route-visuals.json)
+                # Shared media/route registries affect discovery rendering, but do not
+                # imply Builder, Flagship or Regional component changes.
+                discovery_browser=true
+                media_browser=true
+                ;;
+              one-world-route-public-mvp/data/platform/visual-briefs.json|one-world-route-public-mvp/data/platform/visual-coverage.json|one-world-route-public-mvp/data/platform/graphics-backlog.json)
+                # Editorial/generated reports are exhaustively validated by Core.
+                ;;
+              one-world-route-public-mvp/assets/generated/routes/*)
+                # Generic static-route rendering is exercised once by Discovery.
+                discovery_browser=true
+                ;;
+              one-world-route-public-mvp/assets/media/journeys/*)
+                discovery_browser=true
+                media_browser=true
+                ;;
               one-world-route-public-mvp/data/platform/place-experiences/*.json)
                 # Core validates schema/locale coverage; this focused browser pass
                 # verifies that country shards still load through the real renderer.
@@ -119,7 +158,15 @@ jobs:
               one-world-route-public-mvp/qa/tests/platform-smoke.spec.mjs|one-world-route-public-mvp/qa/playwright.config.mjs|one-world-route-public-mvp/qa/run-local.mjs)
                 flagship_browser=true
                 regional_browser=true
+                discovery_browser=true
                 experience_browser=true
+                ;;
+              one-world-route-public-mvp/qa/tests/discovery-fast.spec.mjs)
+                discovery_browser=true
+                ;;
+              one-world-route-public-mvp/qa/tests/visual-cover-slot.spec.mjs|one-world-route-public-mvp/platform/media.js)
+                discovery_browser=true
+                media_browser=true
                 ;;
               one-world-route-public-mvp/README.md)
                 ;;
@@ -162,6 +209,7 @@ jobs:
           echo "builder_browser=$builder_browser" >> "$GITHUB_OUTPUT"
           echo "content_browser=$content_browser" >> "$GITHUB_OUTPUT"
           echo "experience_browser=$experience_browser" >> "$GITHUB_OUTPUT"
+          echo "media_browser=$media_browser" >> "$GITHUB_OUTPUT"
           echo "content_trip_ids=$content_trip_ids" >> "$GITHUB_OUTPUT"
 
           echo "Changed files:"
@@ -172,6 +220,7 @@ jobs:
           echo "builder_browser=$builder_browser"
           echo "content_browser=$content_browser"
           echo "experience_browser=$experience_browser"
+          echo "media_browser=$media_browser"
           echo "content_trip_ids=$content_trip_ids"
 
   core:
@@ -478,7 +527,18 @@ jobs:
         run: |
           CHROME_BIN="$(command -v google-chrome || command -v chromium)"
           test -n "$CHROME_BIN"
-          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/content-trip-smoke.spec.mjs --project=desktop-1440 --project=mobile-390 --workers=2
+          START_SECONDS=$(date +%s)
+          STATUS=0
+          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/content-trip-smoke.spec.mjs --project=desktop-1440 --workers=1 || STATUS=$?
+          DURATION=$(( $(date +%s) - START_SECONDS ))
+          {
+            echo "### Content journey browser smoke"
+            echo "- Duration: ${DURATION}s"
+            echo "- Budget: <= 90s"
+            echo "- Strategy: all changed IDs contract-checked; max 3 representative journeys browser-rendered"
+          } >> "$GITHUB_STEP_SUMMARY"
+          if (( DURATION > 90 )); then echo "::warning::Content browser smoke exceeded 90s budget (${DURATION}s)"; fi
+          exit "$STATUS"
       - name: Upload content journey browser artifacts
         if: failure()
         uses: actions/upload-artifact@v7
@@ -561,7 +621,7 @@ jobs:
   discovery-browser:
     name: Discovery browser smoke
     needs: changes
-    if: needs.changes.outputs.discovery_browser == 'true'
+    if: needs.changes.outputs.discovery_browser == 'true' || needs.changes.outputs.media_browser == 'true'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -577,7 +637,45 @@ jobs:
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
         run: npm ci --prefix qa
-      - name: Run discovery browser smoke
+      - name: Run bounded discovery PR fast smoke
+        if: github.event_name == 'pull_request'
+        env:
+          OWR_QA_NO_VIDEO: '1'
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          test -n "$CHROME_BIN"
+          START_SECONDS=$(date +%s)
+          STATUS=0
+          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/discovery-fast.spec.mjs --project=desktop-1440 --project=mobile-390 --workers=2 || STATUS=$?
+          DURATION=$(( $(date +%s) - START_SECONDS ))
+          {
+            echo "### Discovery PR fast smoke"
+            echo "- Duration: ${DURATION}s"
+            echo "- Budget: <= 60s"
+            echo "- Strategy: all catalog card IDs asserted in DOM; one shared renderer journey opened per viewport"
+          } >> "$GITHUB_STEP_SUMMARY"
+          if (( DURATION > 60 )); then echo "::warning::Discovery PR fast smoke exceeded 60s budget (${DURATION}s)"; fi
+          exit "$STATUS"
+      - name: Run media slot PR smoke
+        if: github.event_name == 'pull_request' && needs.changes.outputs.media_browser == 'true'
+        env:
+          OWR_QA_NO_VIDEO: '1'
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          test -n "$CHROME_BIN"
+          START_SECONDS=$(date +%s)
+          STATUS=0
+          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/visual-cover-slot.spec.mjs --project=desktop-1440 --project=mobile-390 --workers=2 || STATUS=$?
+          DURATION=$(( $(date +%s) - START_SECONDS ))
+          {
+            echo "### Media slot PR smoke"
+            echo "- Duration: ${DURATION}s"
+            echo "- Budget: <= 60s"
+          } >> "$GITHUB_STEP_SUMMARY"
+          if (( DURATION > 60 )); then echo "::warning::Media slot smoke exceeded 60s budget (${DURATION}s)"; fi
+          exit "$STATUS"
+      - name: Run scheduled/manual discovery confidence suite
+        if: github.event_name != 'pull_request'
         env:
           OWR_QA_NO_VIDEO: '1'
         run: |
