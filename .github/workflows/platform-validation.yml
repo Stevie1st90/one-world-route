@@ -242,6 +242,8 @@ jobs:
           node --check platform/cloud-sync.js
           node --check platform/pwa-install.js
           node --check scripts/build-sync-config.mjs
+          node --check scripts/build-cover-generation-queue.mjs
+          node --check scripts/stage-cover-generation-results.mjs
           node --check scripts/test-cloud-sync.mjs
           node --check platform/map-style.js
           node --check platform/i18n.js
