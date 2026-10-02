@@ -46,3 +46,10 @@ test('allows only expected cover release outputs',()=>{
   assert.equal(byPath['random-output.txt'].allowed,false);
   assert.equal(byPath['random-output.txt'].knownBuildDrift,false);
 });
+
+test('handles accidentally trimmed first porcelain line defensively',()=>{
+  assert.equal(
+    normalizeGitStatusPath('M one-world-route-public-mvp/GRAPHICS_NEEDED.md',ROOT),
+    'GRAPHICS_NEEDED.md'
+  );
+});
