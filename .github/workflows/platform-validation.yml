@@ -250,6 +250,8 @@ jobs:
           node --check scripts/test-apply-cover-batch-runner.mjs
           node --check scripts/build-world-showcase-visual-spec.mjs
           node --check scripts/test-world-showcase-visual.mjs
+          node --check scripts/compose-world-showcase-cover.mjs
+          node --check scripts/test-world-showcase-compositor.mjs
           node --check scripts/test-cloud-sync.mjs
           node --check platform/map-style.js
           node --check platform/i18n.js
@@ -374,6 +376,8 @@ jobs:
         run: |
           node --test scripts/test-world-showcase-visual.mjs
           node scripts/build-world-showcase-visual-spec.mjs --check
+      - name: World showcase compositor smoke
+        run: node --test scripts/test-world-showcase-compositor.mjs
       - name: Cover generation batch contract
         run: |
           node scripts/build-cover-generation-queue.mjs --out="$RUNNER_TEMP/cover-generation-queue.json" --prompt-out="$RUNNER_TEMP/cover-generation-operator-prompt.md"
