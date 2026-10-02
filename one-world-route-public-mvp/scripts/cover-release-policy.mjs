@@ -1,5 +1,7 @@
 export const normalizeGitStatusPath=(statusLine,root)=>{
-  let path=String(statusLine||'').slice(3).trim().replaceAll('\\','/');
+  const raw=String(statusLine||'');
+  const payload=/^[ MARCUD?!]{2} /.test(raw)?raw.slice(3):/^[MARCUD?!] /.test(raw)?raw.slice(2):raw;
+  let path=payload.trim().replaceAll('\\','/');
   if(path.includes(' -> '))path=path.split(' -> ').at(-1);
   path=path.replace(/^\.\//,'');
   const normalizedRoot=String(root||'').replaceAll('\\','/').replace(/\/+$/,'');
