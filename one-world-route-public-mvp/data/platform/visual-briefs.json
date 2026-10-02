@@ -1422,7 +1422,7 @@
       "highlights": [],
       "suggestedAnchor": null,
       "anchorStatus": "unresolved",
-      "motif": "a cinematic deep-space atmosphere designed to receive the verified Earth-and-route overlay inspired by global",
+      "motif": "a cinematic deep-space atmosphere designed to receive the verified flat world map and route overlay inspired by global",
       "mood": "restrained cinematic travel editorial",
       "lighting": "atmospheric directional light; season only if verified",
       "safeZones": {
@@ -1443,7 +1443,7 @@
         "landmark collage",
         "documentary-photo claims"
       ],
-      "imagePrompt": "Create exactly one original premium cinematic 16:9 deep-space atmosphere background for “One World Journey”. Use restrained dark space, subtle blue orbital glow, faint atmospheric haze and enough quiet negative space for interface overlays. Do not draw a standalone Earth globe, route, pins, labels, borders, text, numbers or logos. The recognizable Earth globes and factual 195-country journey route will be composited separately from verified ONE WORLD ROUTE geometry.",
+      "imagePrompt": "Create exactly one original premium cinematic 16:9 deep-space atmosphere background for “One World Journey”. Use restrained dark space, subtle blue orbital glow, faint atmospheric haze and enough quiet negative space for interface overlays. Do not draw a standalone Earth globe, route, pins, labels, borders, text, numbers or logos. The recognizable flat world map and factual 195-country journey route will be composited separately from verified ONE WORLD ROUTE geometry.",
       "priorityScore": 70,
       "priority": "P1",
       "landscapePriority": "first-batch",
@@ -1453,7 +1453,7 @@
       "status": "brief-ready",
       "reason": "Differentiate a dense planetary route; Strong travel-mode social identity",
       "rank": 20,
-      "productionStrategy": "hybrid-earth-base-plus-factual-route",
+      "productionStrategy": "hybrid-space-base-plus-factual-flat-world",
       "routeOverlayRequired": true,
       "routeOverlayAssetId": "auto-route-world-195"
     },

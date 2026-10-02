@@ -54,7 +54,7 @@ if(hash(sourceBytes)!==source.sha256||source.rightsStatus!=='approved')throw Err
 
 const route=extractRoute(meta,publicRoute,{countries,waypoints,flights,movements});
 if(route.scope!=='GLOBAL'||route.countries.length!==195)throw Error('Premium world route extraction invariant failed');
-const factualHash=hash(JSON.stringify({publicRoute,routeLines:route.lines,renderer:'premium-world-showcase-v2',sourceSha256:source.sha256}));
+const factualHash=hash(JSON.stringify({publicRoute,routeLines:route.lines,renderer:'premium-flat-world-v3',sourceSha256:source.sha256}));
 
 const widths=[480,800,1200,1600];
 const outDir=publish
@@ -116,7 +116,8 @@ const report={
   baseSha256:hash(baseBytes),
   factualLayerSha256:factualHash,
   factualLayerAsset:spec.factualLayer.asset,
-  renderStyle:'premium-world-showcase-v2',
+  renderStyle:'premium-flat-world-v3',
+  projection:'equirectangular-flat-world',
   invariants:{countries:195,internationalLegs:194},
   variants
 };
@@ -139,14 +140,14 @@ const entry={
   sourceType:'generated',
   mediaKind:'journey-cover',
   theme:meta.visual?.theme||'ocean',
-  generator:'OpenAI Image Generation + ONE WORLD ROUTE factual route compositor',
+  generator:'OpenAI Image Generation + ONE WORLD ROUTE factual flat-world compositor',
   promptVersion:spec.baseImage.promptVersion,
   createdAt:new Date().toISOString().slice(0,10),
   rightsStatus:'approved',
   status:'published',
   aspectRatio:'16:9',
   alt,
-  attribution:'Generated for ONE WORLD ROUTE · factual route layer made with Natural Earth',
+  attribution:'Generated for ONE WORLD ROUTE · factual flat world and route layer made with Natural Earth',
   attributionRequired:false,
   license:'project-generated base; Natural Earth public-domain route layer',
   focalPoint:{x:.5,y:.5},
@@ -164,7 +165,8 @@ const entry={
     assetId:spec.factualLayer.assetId,
     asset:spec.factualLayer.asset,
     sha256:factualHash,
-    renderStyle:'premium-world-showcase-v2',
+    renderStyle:'premium-flat-world-v3',
+    projection:'equirectangular-flat-world',
     provider:spec.factualLayer.provider,
     countries:195,
     internationalLegs:194,

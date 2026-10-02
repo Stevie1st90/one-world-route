@@ -13,9 +13,9 @@
         "9:16"
       ],
       "visualFamily": "planetary",
-      "motif": "a cinematic deep-space atmosphere designed to receive the verified Earth-and-route overlay inspired by global",
-      "promptVersion": "world-showcase-hybrid-v2",
-      "prompt": "Create exactly one original premium cinematic 16:9 deep-space atmosphere background for “One World Journey”. Use restrained dark space, subtle blue orbital glow, faint atmospheric haze and enough quiet negative space for interface overlays. Do not draw a standalone Earth globe, route, pins, labels, borders, text, numbers or logos. The recognizable Earth globes and factual 195-country journey route will be composited separately from verified ONE WORLD ROUTE geometry.",
+      "motif": "a cinematic deep-space atmosphere designed to receive the verified flat world map and route overlay inspired by global",
+      "promptVersion": "world-showcase-flat-v3",
+      "prompt": "Create exactly one original premium cinematic 16:9 deep-space atmosphere background for “One World Journey”. Use restrained dark space, subtle blue orbital glow, faint atmospheric haze and enough quiet negative space for interface overlays. Do not draw a standalone Earth globe, route, pins, labels, borders, text, numbers or logos. The recognizable flat world map and factual 195-country journey route will be composited separately from verified ONE WORLD ROUTE geometry.",
       "priority": "P1",
       "status": "planned",
       "focalPoint": {
@@ -23,7 +23,7 @@
         "y": 0.45
       },
       "fallbackQuality": "Complete global geography; route density limits emotional thumbnail identity",
-      "strategy": "hybrid-earth-base-plus-factual-route",
+      "strategy": "hybrid-space-base-plus-factual-flat-world",
       "reason": "Differentiate a dense planetary route; Strong travel-mode social identity",
       "coverGenerationStatus": "brief-ready",
       "briefRef": "./data/platform/visual-briefs.json#world-195"

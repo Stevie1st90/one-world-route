@@ -23,7 +23,7 @@ if(route.countries?.length!==195)throw Error('world-195 route visual must cover 
 if(route.media.assetId!=='auto-route-world-195')throw Error('world-195 route visual identity changed unexpectedly');
 
 const brief=buildVisualBrief(meta,publicRoute,route);
-if(brief.productionStrategy!=='hybrid-earth-base-plus-factual-route'||!brief.routeOverlayRequired){
+if(brief.productionStrategy!=='hybrid-space-base-plus-factual-flat-world'||!brief.routeOverlayRequired){
   throw Error('world-195 must use the hybrid showcase strategy');
 }
 if(/\bDE,\s*LU,\s*BE\b/.test(brief.imagePrompt)||brief.imagePrompt.length>1200){
@@ -34,9 +34,9 @@ const published=(registry.assets||[]).find(a=>a.assetId==='journey--world-195--c
 
 const report={
   schemaVersion:1,
-  policyVersion:'world-showcase-hybrid-v2',
+  policyVersion:'world-showcase-flat-v3',
   tripId:'world-195',
-  strategy:'cinematic-atmosphere-plus-premium-factual-earth-route',
+  strategy:'cinematic-atmosphere-plus-premium-flat-world-route',
   status:published?'published':'base-image-needed',
   invariants:{
     sovereignCountries:195,
@@ -49,14 +49,14 @@ const report={
   baseImage:{
     sourceFilename:'source--journey--world-195--space-base--16x9--v001.png',
     aspectRatio:'16:9',
-    promptVersion:'world-showcase-hybrid-v2',
+    promptVersion:'world-showcase-flat-v3',
     prompt:brief.imagePrompt,
     rules:[
       'one cinematic background only',
       'no standalone Earth globe',
       'no route lines, pins, borders or labels',
       'no text, numbers or logos',
-      'quiet central and edge zones for deterministic Earth/route compositing'
+      'quiet central and edge zones for deterministic flat-world route compositing'
     ]
   },
   factualLayer:{
@@ -69,7 +69,8 @@ const report={
     geometryBasis:route.media.geometryBasis,
     geometrySource:'data/public-route.json',
     basemapSource:'data/visual-sources/natural-earth-relief.webp',
-    renderStyle:'premium-world-showcase-v2',
+    renderStyle:'premium-flat-world-v3',
+    projection:'equirectangular-flat-world',
     routeVisualReferenceOnly:true,
     countries:route.countries.length,
     routeLines:route.geometry.lines
