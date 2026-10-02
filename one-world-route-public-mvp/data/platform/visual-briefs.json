@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "policyVersion": "journey-visual-experience-v2",
   "summary": {
-    "journeys": 21,
-    "briefReady": 3,
+    "journeys": 29,
+    "briefReady": 11,
     "imagesGenerated": 0
   },
   "journeys": [
@@ -135,6 +135,69 @@
       "rank": 2
     },
     {
+      "tripId": "alaska-inside-passage-ferry",
+      "title": "Alaska Inside Passage by Ferry",
+      "visualFamily": "coastal-editorial",
+      "countries": [
+        "US"
+      ],
+      "primaryRegion": "north-america",
+      "modes": [
+        "ferry"
+      ],
+      "themes": [
+        "ferry",
+        "coast",
+        "fjords",
+        "wildlife"
+      ],
+      "routeCharacter": "An independent ferry journey through Southeast Alaska’s Inside Passage, linking coastal communities between Ketchikan and Skagway.",
+      "highlights": [
+        "Temperate rainforest, fjords and independent ferry travel",
+        "ferry · coast · wildlife"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "juneau",
+        "name": "Juneau",
+        "countryCode": "US",
+        "basis": "longest-listed-stay",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single coherent coastal travel scene; no collage of ports or islands inspired by Juneau (US); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Alaska Inside Passage by Ferry”. Visual family: coastal-editorial. Show a single coherent coastal travel scene; no collage of ports or islands inspired by Juneau (US); confirm specific scene details before generation. Geography context: US. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 90,
+      "priority": "P1",
+      "landscapePriority": "first-batch",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "status": "brief-ready",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "rank": 3
+    },
+    {
       "tripId": "greek-island-hopping",
       "title": "Greek Island Hopping",
       "visualFamily": "coastal-editorial",
@@ -195,7 +258,70 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
-      "rank": 3
+      "rank": 4
+    },
+    {
+      "tripId": "namibia-desert-wildlife-road-trip",
+      "title": "Namibia Desert & Wildlife Road Trip",
+      "visualFamily": "road-cinematic",
+      "countries": [
+        "NA"
+      ],
+      "primaryRegion": "africa",
+      "modes": [
+        "car"
+      ],
+      "themes": [
+        "road-trip",
+        "desert",
+        "wildlife",
+        "coast"
+      ],
+      "routeCharacter": "A self-drive loop from Windhoek through the Namib, Swakopmund, granite and desert country, Damaraland and Etosha.",
+      "highlights": [
+        "Namib dunes, Atlantic fog, Damaraland and Etosha",
+        "road-trip · desert · wildlife"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "sossusvlei",
+        "name": "Sossusvlei",
+        "countryCode": "NA",
+        "basis": "longest-listed-stay",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Sossusvlei (NA); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Namibia Desert & Wildlife Road Trip”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Sossusvlei (NA); confirm specific scene details before generation. Geography context: NA. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 90,
+      "priority": "P1",
+      "landscapePriority": "first-batch",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "status": "brief-ready",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "rank": 5
     },
     {
       "tripId": "norway-arctic-road-trip",
@@ -259,7 +385,7 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
-      "rank": 4
+      "rank": 6
     },
     {
       "tripId": "morocco-atlas-desert",
@@ -322,7 +448,386 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
-      "rank": 5
+      "rank": 7
+    },
+    {
+      "tripId": "sri-lanka-hill-country-rail",
+      "title": "Sri Lanka Hill Country by Rail",
+      "visualFamily": "rail-cinematic",
+      "countries": [
+        "LK"
+      ],
+      "primaryRegion": "asia",
+      "modes": [
+        "rail"
+      ],
+      "themes": [
+        "rail",
+        "mountains",
+        "tea",
+        "culture"
+      ],
+      "routeCharacter": "A slow rail journey from Colombo into Sri Lanka’s central highlands, through Kandy, tea country and the mountain corridor toward Ella and Badulla.",
+      "highlights": [
+        "Misty highlands, tea country and mountain rail",
+        "rail · tea · mountains"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "colombo",
+        "name": "Colombo",
+        "countryCode": "LK",
+        "basis": "longest-listed-stay",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single unbranded rail-travel scene with geographically credible surroundings inspired by Colombo (LK); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Sri Lanka Hill Country by Rail”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Colombo (LK); confirm specific scene details before generation. Geography context: LK. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 89,
+      "priority": "P1",
+      "landscapePriority": "first-batch",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "status": "brief-ready",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "rank": 8
+    },
+    {
+      "tripId": "swiss-scenic-rail-journey",
+      "title": "Swiss Scenic Rail Journey",
+      "visualFamily": "rail-cinematic",
+      "countries": [
+        "CH"
+      ],
+      "primaryRegion": "europe",
+      "modes": [
+        "rail"
+      ],
+      "themes": [
+        "rail",
+        "mountains",
+        "lakes",
+        "culture"
+      ],
+      "routeCharacter": "A rail-first journey linking Zürich, Lucerne, the Bernese Oberland, Lake Geneva, Zermatt and the Engadin, inspired by Switzerland’s panoramic rail network.",
+      "highlights": [
+        "Alpine lakes, panoramic lines and high mountain valleys",
+        "rail · mountains · lakes"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "zurich",
+        "name": "Zürich",
+        "countryCode": "CH",
+        "basis": "longest-listed-stay",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single unbranded rail-travel scene with geographically credible surroundings inspired by Zürich (CH); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Swiss Scenic Rail Journey”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Zürich (CH); confirm specific scene details before generation. Geography context: CH. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 89,
+      "priority": "P1",
+      "landscapePriority": "first-batch",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "status": "brief-ready",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "rank": 9
+    },
+    {
+      "tripId": "tasmania-wild-coast-road-loop",
+      "title": "Tasmania Wild Coast Road Loop",
+      "visualFamily": "road-cinematic",
+      "countries": [
+        "AU"
+      ],
+      "primaryRegion": "oceania",
+      "modes": [
+        "car"
+      ],
+      "themes": [
+        "road-trip",
+        "coast",
+        "nature",
+        "mountains"
+      ],
+      "routeCharacter": "A self-drive loop from Hobart around Tasmania’s east coast, northern food country, alpine interior and remote western landscapes.",
+      "highlights": [
+        "Wild beaches, alpine interior and remote western landscapes",
+        "road-trip · coast · nature"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "hobart",
+        "name": "Hobart",
+        "countryCode": "AU",
+        "basis": "longest-listed-stay",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Hobart (AU); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Tasmania Wild Coast Road Loop”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Hobart (AU); confirm specific scene details before generation. Geography context: AU. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 89,
+      "priority": "P1",
+      "landscapePriority": "first-batch",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "status": "brief-ready",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "rank": 10
+    },
+    {
+      "tripId": "scotland-highlands-hebrides",
+      "title": "Scottish Highlands & Hebrides Journey",
+      "visualFamily": "coastal-editorial",
+      "countries": [
+        "GB"
+      ],
+      "primaryRegion": "europe",
+      "modes": [
+        "car",
+        "ferry"
+      ],
+      "themes": [
+        "coast",
+        "islands",
+        "road-trip",
+        "culture"
+      ],
+      "routeCharacter": "A road-and-ferry journey from Inverness to the northwest Highlands, across Lewis and Harris and onward to Skye and Lochaber.",
+      "highlights": [
+        "Highland roads, sea lochs and island crossings",
+        "coast · islands · road · ferry"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "portree",
+        "name": "Portree",
+        "countryCode": "GB",
+        "basis": "longest-listed-stay",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single coherent coastal travel scene; no collage of ports or islands inspired by Portree (GB); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Scottish Highlands & Hebrides Journey”. Visual family: coastal-editorial. Show a single coherent coastal travel scene; no collage of ports or islands inspired by Portree (GB); confirm specific scene details before generation. Geography context: GB. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 88,
+      "priority": "P1",
+      "landscapePriority": "first-batch",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "status": "brief-ready",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "rank": 11
+    },
+    {
+      "tripId": "taiwan-rail-coast-loop",
+      "title": "Taiwan Rail & Coast Loop",
+      "visualFamily": "rail-cinematic",
+      "countries": [
+        "TW"
+      ],
+      "primaryRegion": "asia",
+      "modes": [
+        "rail"
+      ],
+      "themes": [
+        "rail",
+        "coast",
+        "cities",
+        "nature"
+      ],
+      "routeCharacter": "A clockwise rail loop from Taipei down Taiwan’s dramatic east coast, through the south and back north along the western corridor.",
+      "highlights": [
+        "Pacific coast, mountain backdrops and city stops",
+        "rail · coast · cities"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "taipei",
+        "name": "Taipei",
+        "countryCode": "TW",
+        "basis": "longest-listed-stay",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single unbranded rail-travel scene with geographically credible surroundings inspired by Taipei (TW); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Taiwan Rail & Coast Loop”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Taipei (TW); confirm specific scene details before generation. Geography context: TW. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 88,
+      "priority": "P1",
+      "landscapePriority": "first-batch",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "status": "brief-ready",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "rank": 12
+    },
+    {
+      "tripId": "java-rail-volcano-journey",
+      "title": "Java Rail & Volcano Journey",
+      "visualFamily": "rail-cinematic",
+      "countries": [
+        "ID"
+      ],
+      "primaryRegion": "asia",
+      "modes": [
+        "rail"
+      ],
+      "themes": [
+        "rail",
+        "culture",
+        "volcanic",
+        "cities"
+      ],
+      "routeCharacter": "A rail-led crossing of Java from Jakarta through Bandung and Yogyakarta to East Java, combining cities, heritage and volcanic landscapes.",
+      "highlights": [
+        "Javanese cities, heritage and volcanic horizons",
+        "rail · culture · volcanoes"
+      ],
+      "suggestedAnchor": {
+        "type": "place",
+        "id": "yogyakarta",
+        "name": "Yogyakarta",
+        "countryCode": "ID",
+        "basis": "longest-listed-stay",
+        "reviewRequired": true
+      },
+      "anchorStatus": "manual-review",
+      "motif": "a single unbranded rail-travel scene with geographically credible surroundings inspired by Yogyakarta (ID); confirm specific scene details before generation",
+      "mood": "restrained cinematic travel editorial",
+      "lighting": "atmospheric directional light; season only if verified",
+      "safeZones": {
+        "principalSubject": "central 55%",
+        "quietTop": "15%",
+        "quietBottom": "20%"
+      },
+      "avoid": [
+        "text",
+        "numbers",
+        "labels",
+        "logos",
+        "brand livery",
+        "copied photographs",
+        "copied posters",
+        "named living artist imitation",
+        "invented route facts",
+        "landmark collage",
+        "documentary-photo claims"
+      ],
+      "imagePrompt": "Create an original cinematic editorial travel illustration for “Java Rail & Volcano Journey”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Yogyakarta (ID); confirm specific scene details before generation. Geography context: ID. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "priorityScore": 87,
+      "priority": "P1",
+      "landscapePriority": "first-batch",
+      "separateVerticalRecommended": true,
+      "socialPriority": "high",
+      "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
+      "status": "brief-ready",
+      "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
+      "rank": 13
     },
     {
       "tripId": "costa-rica-nature-loop",
@@ -385,7 +890,7 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
-      "rank": 6
+      "rank": 14
     },
     {
       "tripId": "vietnam-north-south",
@@ -448,7 +953,7 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
-      "rank": 7
+      "rank": 15
     },
     {
       "tripId": "india-golden-triangle-rail",
@@ -512,7 +1017,7 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
-      "rank": 8
+      "rank": 16
     },
     {
       "tripId": "jordan-heritage-desert-drive",
@@ -573,7 +1078,7 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
-      "rank": 9
+      "rank": 17
     },
     {
       "tripId": "utah-national-parks-road-trip",
@@ -637,7 +1142,7 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
-      "rank": 10
+      "rank": 18
     },
     {
       "tripId": "victoria-great-ocean-highlands-road-trip",
@@ -701,7 +1206,7 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
-      "rank": 11
+      "rank": 19
     },
     {
       "tripId": "world-195",
@@ -947,7 +1452,7 @@
       "fallbackQuality": "Complete global geography; route density limits emotional thumbnail identity",
       "status": "brief-ready",
       "reason": "Differentiate a dense planetary route; Strong travel-mode social identity",
-      "rank": 12
+      "rank": 20
     },
     {
       "tripId": "italy-grand-tour",
@@ -1011,7 +1516,7 @@
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
       "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Reusable destination character",
-      "rank": 13
+      "rank": 21
     },
     {
       "tripId": "japan-by-rail",
@@ -1074,7 +1579,7 @@
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
       "status": "published",
       "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
-      "rank": 14
+      "rank": 22
     },
     {
       "tripId": "canadian-rockies-rail-road",
@@ -1138,7 +1643,7 @@
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
       "status": "published",
       "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
-      "rank": 15
+      "rank": 23
     },
     {
       "tripId": "iceland-ring-road",
@@ -1201,7 +1706,7 @@
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
       "status": "published",
       "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
-      "rank": 16
+      "rank": 24
     },
     {
       "tripId": "south-africa-garden-safari",
@@ -1264,7 +1769,7 @@
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
       "status": "brief-ready",
       "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
-      "rank": 17
+      "rank": 25
     },
     {
       "tripId": "central-europe-rail-journey",
@@ -1329,7 +1834,7 @@
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
       "status": "published",
       "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
-      "rank": 18
+      "rank": 26
     },
     {
       "tripId": "southern-europe-road-trip",
@@ -1392,7 +1897,7 @@
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
       "status": "brief-ready",
       "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
-      "rank": 19
+      "rank": 27
     },
     {
       "tripId": "western-mediterranean-cruise-loop",
@@ -1454,7 +1959,7 @@
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
       "status": "published",
       "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
-      "rank": 20
+      "rank": 28
     },
     {
       "tripId": "peru-andes-journey",
@@ -1518,7 +2023,7 @@
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
       "status": "published",
       "reason": "Strengthen distinct journey character; Reusable destination character",
-      "rank": 21
+      "rank": 29
     }
   ],
   "destinationRecommendations": [
@@ -1533,12 +2038,14 @@
         "central-europe-rail-journey",
         "norway-arctic-road-trip",
         "greek-island-hopping",
-        "iceland-ring-road"
+        "iceland-ring-road",
+        "swiss-scenic-rail-journey",
+        "scotland-highlands-hebrides"
       ],
       "available": false,
-      "priority": 7,
-      "regionalJourneyUses": 7,
-      "reuseScore": 72.62,
+      "priority": 9,
+      "regionalJourneyUses": 9,
+      "reuseScore": 94.36,
       "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
     },
     {
@@ -1549,12 +2056,15 @@
         "japan-by-rail",
         "vietnam-north-south",
         "jordan-heritage-desert-drive",
-        "india-golden-triangle-rail"
+        "india-golden-triangle-rail",
+        "sri-lanka-hill-country-rail",
+        "taiwan-rail-coast-loop",
+        "java-rail-volcano-journey"
       ],
       "available": false,
-      "priority": 4,
-      "regionalJourneyUses": 4,
-      "reuseScore": 41.81,
+      "priority": 7,
+      "regionalJourneyUses": 7,
+      "reuseScore": 74.37,
       "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
     },
     {
@@ -1578,6 +2088,89 @@
       "priority": 1,
       "regionalJourneyUses": 3,
       "reuseScore": 35,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "region",
+      "id": "africa",
+      "name": "africa",
+      "journeys": [
+        "morocco-atlas-desert",
+        "south-africa-garden-safari",
+        "namibia-desert-wildlife-road-trip"
+      ],
+      "available": false,
+      "priority": 3,
+      "regionalJourneyUses": 3,
+      "reuseScore": 32.61,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "region",
+      "id": "northern-europe",
+      "name": "northern-europe",
+      "journeys": [
+        "norway-arctic-road-trip",
+        "iceland-ring-road",
+        "scotland-highlands-hebrides"
+      ],
+      "available": false,
+      "priority": 3,
+      "regionalJourneyUses": 3,
+      "reuseScore": 32.59,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "region",
+      "id": "oceania",
+      "name": "oceania",
+      "journeys": [
+        "new-zealand-camper-loop",
+        "victoria-great-ocean-highlands-road-trip",
+        "tasmania-wild-coast-road-loop"
+      ],
+      "available": false,
+      "priority": 3,
+      "regionalJourneyUses": 3,
+      "reuseScore": 31.79,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "region",
+      "id": "north-america",
+      "name": "north-america",
+      "journeys": [
+        "canadian-rockies-rail-road",
+        "utah-national-parks-road-trip",
+        "alaska-inside-passage-ferry"
+      ],
+      "available": false,
+      "priority": 3,
+      "regionalJourneyUses": 3,
+      "reuseScore": 31.76,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "country",
+      "id": "US",
+      "name": "USA",
+      "parent": {
+        "type": "continent",
+        "id": "americas"
+      },
+      "journeys": [
+        "world-195",
+        "utah-national-parks-road-trip",
+        "alaska-inside-passage-ferry"
+      ],
+      "eligibleJourneys": [
+        "utah-national-parks-road-trip",
+        "alaska-inside-passage-ferry"
+      ],
+      "available": false,
+      "priority": 2,
+      "regionalJourneyUses": 2,
+      "reuseScore": 30.9,
       "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
     },
     {
@@ -1612,6 +2205,29 @@
     },
     {
       "type": "country",
+      "id": "AU",
+      "name": "Australien",
+      "parent": {
+        "type": "continent",
+        "id": "oceania"
+      },
+      "journeys": [
+        "world-195",
+        "victoria-great-ocean-highlands-road-trip",
+        "tasmania-wild-coast-road-loop"
+      ],
+      "eligibleJourneys": [
+        "victoria-great-ocean-highlands-road-trip",
+        "tasmania-wild-coast-road-loop"
+      ],
+      "available": false,
+      "priority": 2,
+      "regionalJourneyUses": 2,
+      "reuseScore": 30.87,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "country",
       "id": "FR",
       "name": "Frankreich",
       "parent": {
@@ -1633,6 +2249,20 @@
     },
     {
       "type": "region",
+      "id": "east-asia",
+      "name": "east-asia",
+      "journeys": [
+        "japan-by-rail",
+        "taiwan-rail-coast-loop"
+      ],
+      "available": false,
+      "priority": 2,
+      "regionalJourneyUses": 2,
+      "reuseScore": 21.85,
+      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
+    },
+    {
+      "type": "region",
       "id": "south-america",
       "name": "south-america",
       "journeys": [
@@ -1647,11 +2277,11 @@
     },
     {
       "type": "region",
-      "id": "northern-europe",
-      "name": "northern-europe",
+      "id": "southern-africa",
+      "name": "southern-africa",
       "journeys": [
-        "norway-arctic-road-trip",
-        "iceland-ring-road"
+        "south-africa-garden-safari",
+        "namibia-desert-wildlife-road-trip"
       ],
       "available": false,
       "priority": 2,
@@ -1661,30 +2291,30 @@
     },
     {
       "type": "region",
-      "id": "africa",
-      "name": "africa",
+      "id": "south-east-asia",
+      "name": "south-east-asia",
       "journeys": [
-        "morocco-atlas-desert",
-        "south-africa-garden-safari"
+        "vietnam-north-south",
+        "java-rail-volcano-journey"
       ],
       "available": false,
       "priority": 2,
       "regionalJourneyUses": 2,
-      "reuseScore": 21.72,
+      "reuseScore": 21.65,
       "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
     },
     {
       "type": "region",
-      "id": "oceania",
-      "name": "oceania",
+      "id": "united-states",
+      "name": "united-states",
       "journeys": [
-        "new-zealand-camper-loop",
-        "victoria-great-ocean-highlands-road-trip"
+        "utah-national-parks-road-trip",
+        "alaska-inside-passage-ferry"
       ],
       "available": false,
       "priority": 2,
       "regionalJourneyUses": 2,
-      "reuseScore": 20.92,
+      "reuseScore": 20.9,
       "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
     },
     {
@@ -1703,208 +2333,30 @@
     },
     {
       "type": "region",
-      "id": "north-america",
-      "name": "north-america",
+      "id": "australia",
+      "name": "australia",
       "journeys": [
-        "canadian-rockies-rail-road",
-        "utah-national-parks-road-trip"
+        "victoria-great-ocean-highlands-road-trip",
+        "tasmania-wild-coast-road-loop"
       ],
       "available": false,
       "priority": 2,
       "regionalJourneyUses": 2,
-      "reuseScore": 20.86,
+      "reuseScore": 20.87,
       "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
     },
     {
-      "type": "country",
-      "id": "ES",
-      "name": "Spanien",
-      "parent": {
-        "type": "continent",
-        "id": "europe"
-      },
+      "type": "region",
+      "id": "south-asia",
+      "name": "south-asia",
       "journeys": [
-        "world-195",
-        "western-mediterranean-cruise-loop",
-        "southern-europe-road-trip"
-      ],
-      "eligibleJourneys": [],
-      "available": false,
-      "priority": 0,
-      "regionalJourneyUses": 2,
-      "reuseScore": 20,
-      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
-    },
-    {
-      "type": "place",
-      "id": "ES:barcelona",
-      "parent": {
-        "type": "country",
-        "id": "ES"
-      },
-      "name": {
-        "en": "Barcelona",
-        "de": "Barcelona",
-        "it": "Barcellona",
-        "es": "Barcelona",
-        "fr": "Barcelone",
-        "pt": "Barcelona"
-      },
-      "countryCode": "ES",
-      "journeys": [
-        "western-mediterranean-cruise-loop",
-        "southern-europe-road-trip"
+        "india-golden-triangle-rail",
+        "sri-lanka-hill-country-rail"
       ],
       "available": false,
       "priority": 2,
       "regionalJourneyUses": 2,
-      "reuseScore": 20,
-      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
-    },
-    {
-      "type": "place",
-      "id": "FR:marseille",
-      "parent": {
-        "type": "country",
-        "id": "FR"
-      },
-      "name": {
-        "en": "Marseille",
-        "de": "Marseille",
-        "it": "Marsiglia",
-        "es": "Marsella",
-        "fr": "Marseille",
-        "pt": "Marselha"
-      },
-      "countryCode": "FR",
-      "journeys": [
-        "western-mediterranean-cruise-loop",
-        "southern-europe-road-trip"
-      ],
-      "available": false,
-      "priority": 2,
-      "regionalJourneyUses": 2,
-      "reuseScore": 20,
-      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
-    },
-    {
-      "type": "place",
-      "id": "IT:florence",
-      "parent": {
-        "type": "country",
-        "id": "IT"
-      },
-      "name": {
-        "en": "Florence",
-        "de": "Florenz",
-        "it": "Firenze",
-        "es": "Florencia",
-        "fr": "Florence",
-        "pt": "Florença"
-      },
-      "countryCode": "IT",
-      "journeys": [
-        "italy-grand-tour",
-        "southern-europe-road-trip"
-      ],
-      "available": false,
-      "priority": 2,
-      "regionalJourneyUses": 2,
-      "reuseScore": 20,
-      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
-    },
-    {
-      "type": "place",
-      "id": "IT:naples",
-      "parent": {
-        "type": "country",
-        "id": "IT"
-      },
-      "name": {
-        "en": "Naples",
-        "de": "Neapel",
-        "it": "Napoli",
-        "es": "Nápoles",
-        "fr": "Naples",
-        "pt": "Nápoles"
-      },
-      "countryCode": "IT",
-      "journeys": [
-        "italy-grand-tour",
-        "western-mediterranean-cruise-loop"
-      ],
-      "available": false,
-      "priority": 2,
-      "regionalJourneyUses": 2,
-      "reuseScore": 20,
-      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
-    },
-    {
-      "type": "place",
-      "id": "IT:rome",
-      "parent": {
-        "type": "country",
-        "id": "IT"
-      },
-      "name": {
-        "en": "Rome",
-        "de": "Rom",
-        "it": "Roma",
-        "es": "Roma",
-        "fr": "Rome",
-        "pt": "Roma"
-      },
-      "countryCode": "IT",
-      "journeys": [
-        "italy-grand-tour",
-        "southern-europe-road-trip"
-      ],
-      "available": false,
-      "priority": 2,
-      "regionalJourneyUses": 2,
-      "reuseScore": 20,
-      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
-    },
-    {
-      "type": "country",
-      "id": "JP",
-      "name": "Japan",
-      "parent": {
-        "type": "continent",
-        "id": "asia"
-      },
-      "journeys": [
-        "world-195",
-        "japan-by-rail"
-      ],
-      "eligibleJourneys": [
-        "japan-by-rail"
-      ],
-      "available": false,
-      "priority": 1,
-      "regionalJourneyUses": 1,
-      "reuseScore": 16,
-      "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
-    },
-    {
-      "type": "country",
-      "id": "NZ",
-      "name": "Neuseeland",
-      "parent": {
-        "type": "continent",
-        "id": "oceania"
-      },
-      "journeys": [
-        "world-195",
-        "new-zealand-camper-loop"
-      ],
-      "eligibleJourneys": [
-        "new-zealand-camper-loop"
-      ],
-      "available": false,
-      "priority": 1,
-      "regionalJourneyUses": 1,
-      "reuseScore": 15.92,
+      "reuseScore": 20.87,
       "reason": "Existing catalog references; country fallback still requires suitability and multi-country anchor review"
     }
   ]

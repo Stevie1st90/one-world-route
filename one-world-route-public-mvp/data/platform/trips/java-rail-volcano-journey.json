@@ -1,0 +1,331 @@
+{
+  "schemaVersion": 1,
+  "id": "java-rail-volcano-journey",
+  "slug": "java-rail-volcano-journey",
+  "kind": "rail",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Java Rail & Volcano Journey",
+    "de": "Java · Bahn & Vulkane",
+    "it": "Giava · treni e vulcani",
+    "es": "Java · trenes y volcanes",
+    "fr": "Java · trains et volcans",
+    "pt": "Java · trens e vulcões"
+  },
+  "summary": {
+    "en": "A rail-led crossing of Java from Jakarta through Bandung and Yogyakarta to East Java, combining cities, heritage and volcanic landscapes.",
+    "de": "Eine bahnorientierte Java-Durchquerung von Jakarta über Bandung und Yogyakarta nach Ostjava – mit Städten, Kultur und Vulkanlandschaften.",
+    "it": "Un attraversamento ferroviario di Giava da Giacarta via Bandung e Yogyakarta fino a Giava orientale, tra città, cultura e vulcani.",
+    "es": "Una travesía ferroviaria de Java desde Yakarta por Bandung y Yogyakarta hasta Java Oriental, entre ciudades, cultura y volcanes.",
+    "fr": "Une traversée ferroviaire de Java de Jakarta via Bandung et Yogyakarta jusqu'à Java oriental, entre villes, culture et volcans.",
+    "pt": "Uma travessia ferroviária de Java de Jacarta via Bandung e Yogyakarta até Java Oriental, entre cidades, cultura e vulcões."
+  },
+  "geography": {
+    "countries": [
+      "ID"
+    ],
+    "primaryCountry": "ID"
+  },
+  "planning": {
+    "days": 12,
+    "currency": "IDR",
+    "pace": "active",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": -7.28692,
+      "lng": 110.17387,
+      "altitude": 0.72
+    }
+  },
+  "media": {
+    "hero": {
+      "type": "art-directed",
+      "theme": "java-volcano",
+      "asset": null,
+      "attribution": null,
+      "license": "original-ui-art"
+    },
+    "gallery": []
+  },
+  "highlights": [
+    "Javanese cities, heritage and volcanic horizons",
+    "rail · culture · volcanoes"
+  ],
+  "places": [
+    {
+      "id": "jakarta",
+      "type": "place",
+      "countryCode": "ID",
+      "name": {
+        "en": "Jakarta"
+      },
+      "coordinates": {
+        "lat": -6.2088,
+        "lng": 106.8456
+      }
+    },
+    {
+      "id": "bandung",
+      "type": "place",
+      "countryCode": "ID",
+      "name": {
+        "en": "Bandung"
+      },
+      "coordinates": {
+        "lat": -6.9175,
+        "lng": 107.6191
+      }
+    },
+    {
+      "id": "yogyakarta",
+      "type": "place",
+      "countryCode": "ID",
+      "name": {
+        "en": "Yogyakarta"
+      },
+      "coordinates": {
+        "lat": -7.7956,
+        "lng": 110.3695
+      }
+    },
+    {
+      "id": "solo",
+      "type": "place",
+      "countryCode": "ID",
+      "name": {
+        "en": "Surakarta (Solo)"
+      },
+      "coordinates": {
+        "lat": -7.5755,
+        "lng": 110.8243
+      }
+    },
+    {
+      "id": "surabaya",
+      "type": "place",
+      "countryCode": "ID",
+      "name": {
+        "en": "Surabaya"
+      },
+      "coordinates": {
+        "lat": -7.2575,
+        "lng": 112.7521
+      }
+    },
+    {
+      "id": "malang",
+      "type": "place",
+      "countryCode": "ID",
+      "name": {
+        "en": "Malang"
+      },
+      "coordinates": {
+        "lat": -7.9666,
+        "lng": 112.6326
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "java-rail-volcano-journey-stop-01",
+      "sequence": 1,
+      "placeId": "jakarta",
+      "dayStart": 1,
+      "dayEnd": 2,
+      "nights": 2
+    },
+    {
+      "id": "java-rail-volcano-journey-stop-02",
+      "sequence": 2,
+      "placeId": "bandung",
+      "dayStart": 3,
+      "dayEnd": 4,
+      "nights": 2
+    },
+    {
+      "id": "java-rail-volcano-journey-stop-03",
+      "sequence": 3,
+      "placeId": "yogyakarta",
+      "dayStart": 5,
+      "dayEnd": 7,
+      "nights": 3
+    },
+    {
+      "id": "java-rail-volcano-journey-stop-04",
+      "sequence": 4,
+      "placeId": "solo",
+      "dayStart": 8,
+      "dayEnd": 8,
+      "nights": 1
+    },
+    {
+      "id": "java-rail-volcano-journey-stop-05",
+      "sequence": 5,
+      "placeId": "surabaya",
+      "dayStart": 9,
+      "dayEnd": 10,
+      "nights": 2
+    },
+    {
+      "id": "java-rail-volcano-journey-stop-06",
+      "sequence": 6,
+      "placeId": "malang",
+      "dayStart": 11,
+      "dayEnd": 12,
+      "nights": 2
+    }
+  ],
+  "segments": [
+    {
+      "id": "java-rail-volcano-journey-leg-01",
+      "sequence": 1,
+      "fromStopId": "java-rail-volcano-journey-stop-01",
+      "toStopId": "java-rail-volcano-journey-stop-02",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "java-rail-volcano-journey-leg-02",
+      "sequence": 2,
+      "fromStopId": "java-rail-volcano-journey-stop-02",
+      "toStopId": "java-rail-volcano-journey-stop-03",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "java-rail-volcano-journey-leg-03",
+      "sequence": 3,
+      "fromStopId": "java-rail-volcano-journey-stop-03",
+      "toStopId": "java-rail-volcano-journey-stop-04",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "java-rail-volcano-journey-leg-04",
+      "sequence": 4,
+      "fromStopId": "java-rail-volcano-journey-stop-04",
+      "toStopId": "java-rail-volcano-journey-stop-05",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "java-rail-volcano-journey-leg-05",
+      "sequence": 5,
+      "fromStopId": "java-rail-volcano-journey-stop-05",
+      "toStopId": "java-rail-volcano-journey-stop-06",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "id-java",
+      "title": "Java: Rich Culture & Scenic Beauty",
+      "issuer": "Indonesia Travel",
+      "issuerType": "tourism-board",
+      "url": "https://www.indonesia.travel/gb/en/destination/java",
+      "checkedAt": "2026-10-02",
+      "claims": [
+        "official source supports the destination or transport character used for this editorial journey concept",
+        "exact schedules, fares and operating conditions must be checked for the actual travel date"
+      ]
+    }
+  ],
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context"
+  },
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true,
+    "notes": "Editorial route structure is stable; transport, access, price and traveller-specific details require periodic or live verification."
+  }
+}

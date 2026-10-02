@@ -7,8 +7,8 @@ const read=async p=>JSON.parse(await readFile(new URL('../'+p,import.meta.url),'
 const catalog=await read('data/platform/trips.json');
 const deps={countries:await read('data/country-centroids.json'),waypoints:await read('data/route-waypoints.json'),flights:await read('data/flight-geometries.json'),movements:await read('data/operational-movements.json')};
 const routes=await Promise.all(catalog.trips.map(async m=>extractRoute(m,await read(m.dataset.slice(2)),deps)));
-test('all 21 journeys preserve route coordinates inside native ratio safe bounds',()=>{
- assert.equal(routes.length,21);
+test('all catalog journeys preserve route coordinates inside native ratio safe bounds',()=>{
+ assert.equal(routes.length,catalog.trips.length);
  for(const route of routes)for(const ratio of Object.keys(RATIOS)){
   const c=cameraFit(route,ratio);
   for(const p of [...route.lines.flatMap(l=>l.coordinates),...route.markers]){

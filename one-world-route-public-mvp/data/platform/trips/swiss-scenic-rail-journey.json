@@ -1,0 +1,331 @@
+{
+  "schemaVersion": 1,
+  "id": "swiss-scenic-rail-journey",
+  "slug": "swiss-scenic-rail-journey",
+  "kind": "rail",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Swiss Scenic Rail Journey",
+    "de": "Schweiz · Panoramabahn-Reise",
+    "it": "Svizzera · viaggio panoramico in treno",
+    "es": "Suiza · viaje panorámico en tren",
+    "fr": "Suisse · voyage panoramique en train",
+    "pt": "Suíça · viagem panorâmica de trem"
+  },
+  "summary": {
+    "en": "A rail-first journey linking Zürich, Lucerne, the Bernese Oberland, Lake Geneva, Zermatt and the Engadin, inspired by Switzerland’s panoramic rail network.",
+    "de": "Eine bahnorientierte Reise von Zürich über Luzern, Berner Oberland, Genfersee und Zermatt bis ins Engadin.",
+    "it": "Un viaggio ferroviario tra Zurigo, Lucerna, Oberland bernese, Lago di Ginevra, Zermatt ed Engadina.",
+    "es": "Un viaje ferroviario entre Zúrich, Lucerna, Oberland bernés, Lago Lemán, Zermatt y Engadina.",
+    "fr": "Un voyage ferroviaire entre Zurich, Lucerne, Oberland bernois, Léman, Zermatt et Engadine.",
+    "pt": "Uma viagem ferroviária entre Zurique, Lucerna, Oberland Bernês, Lago Léman, Zermatt e Engadina."
+  },
+  "geography": {
+    "countries": [
+      "CH"
+    ],
+    "primaryCountry": "CH"
+  },
+  "planning": {
+    "days": 12,
+    "currency": "CHF",
+    "pace": "balanced",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 46.67602,
+      "lng": 8.20158,
+      "altitude": 0.72
+    }
+  },
+  "media": {
+    "hero": {
+      "type": "art-directed",
+      "theme": "alpine-rail",
+      "asset": null,
+      "attribution": null,
+      "license": "original-ui-art"
+    },
+    "gallery": []
+  },
+  "highlights": [
+    "Alpine lakes, panoramic lines and high mountain valleys",
+    "rail · mountains · lakes"
+  ],
+  "places": [
+    {
+      "id": "zurich",
+      "type": "place",
+      "countryCode": "CH",
+      "name": {
+        "en": "Zürich"
+      },
+      "coordinates": {
+        "lat": 47.3769,
+        "lng": 8.5417
+      }
+    },
+    {
+      "id": "lucerne",
+      "type": "place",
+      "countryCode": "CH",
+      "name": {
+        "en": "Lucerne"
+      },
+      "coordinates": {
+        "lat": 47.0502,
+        "lng": 8.3093
+      }
+    },
+    {
+      "id": "interlaken",
+      "type": "place",
+      "countryCode": "CH",
+      "name": {
+        "en": "Interlaken"
+      },
+      "coordinates": {
+        "lat": 46.6863,
+        "lng": 7.8632
+      }
+    },
+    {
+      "id": "montreux",
+      "type": "place",
+      "countryCode": "CH",
+      "name": {
+        "en": "Montreux"
+      },
+      "coordinates": {
+        "lat": 46.4312,
+        "lng": 6.9107
+      }
+    },
+    {
+      "id": "zermatt",
+      "type": "place",
+      "countryCode": "CH",
+      "name": {
+        "en": "Zermatt"
+      },
+      "coordinates": {
+        "lat": 46.0207,
+        "lng": 7.7491
+      }
+    },
+    {
+      "id": "st-moritz",
+      "type": "place",
+      "countryCode": "CH",
+      "name": {
+        "en": "St. Moritz"
+      },
+      "coordinates": {
+        "lat": 46.4908,
+        "lng": 9.8355
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "swiss-scenic-rail-journey-stop-01",
+      "sequence": 1,
+      "placeId": "zurich",
+      "dayStart": 1,
+      "dayEnd": 2,
+      "nights": 2
+    },
+    {
+      "id": "swiss-scenic-rail-journey-stop-02",
+      "sequence": 2,
+      "placeId": "lucerne",
+      "dayStart": 3,
+      "dayEnd": 4,
+      "nights": 2
+    },
+    {
+      "id": "swiss-scenic-rail-journey-stop-03",
+      "sequence": 3,
+      "placeId": "interlaken",
+      "dayStart": 5,
+      "dayEnd": 6,
+      "nights": 2
+    },
+    {
+      "id": "swiss-scenic-rail-journey-stop-04",
+      "sequence": 4,
+      "placeId": "montreux",
+      "dayStart": 7,
+      "dayEnd": 8,
+      "nights": 2
+    },
+    {
+      "id": "swiss-scenic-rail-journey-stop-05",
+      "sequence": 5,
+      "placeId": "zermatt",
+      "dayStart": 9,
+      "dayEnd": 10,
+      "nights": 2
+    },
+    {
+      "id": "swiss-scenic-rail-journey-stop-06",
+      "sequence": 6,
+      "placeId": "st-moritz",
+      "dayStart": 11,
+      "dayEnd": 12,
+      "nights": 2
+    }
+  ],
+  "segments": [
+    {
+      "id": "swiss-scenic-rail-journey-leg-01",
+      "sequence": 1,
+      "fromStopId": "swiss-scenic-rail-journey-stop-01",
+      "toStopId": "swiss-scenic-rail-journey-stop-02",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "swiss-scenic-rail-journey-leg-02",
+      "sequence": 2,
+      "fromStopId": "swiss-scenic-rail-journey-stop-02",
+      "toStopId": "swiss-scenic-rail-journey-stop-03",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "swiss-scenic-rail-journey-leg-03",
+      "sequence": 3,
+      "fromStopId": "swiss-scenic-rail-journey-stop-03",
+      "toStopId": "swiss-scenic-rail-journey-stop-04",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "swiss-scenic-rail-journey-leg-04",
+      "sequence": 4,
+      "fromStopId": "swiss-scenic-rail-journey-stop-04",
+      "toStopId": "swiss-scenic-rail-journey-stop-05",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "swiss-scenic-rail-journey-leg-05",
+      "sequence": 5,
+      "fromStopId": "swiss-scenic-rail-journey-stop-05",
+      "toStopId": "swiss-scenic-rail-journey-stop-06",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "ch-grand-train-tour",
+      "title": "Grand Train Tour of Switzerland",
+      "issuer": "Switzerland Tourism",
+      "issuerType": "tourism-board",
+      "url": "https://www.myswitzerland.com/en-ch/microsites/in/swiss-travel-system/",
+      "checkedAt": "2026-10-02",
+      "claims": [
+        "official source supports the destination or transport character used for this editorial journey concept",
+        "exact schedules, fares and operating conditions must be checked for the actual travel date"
+      ]
+    }
+  ],
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context"
+  },
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true,
+    "notes": "Editorial route structure is stable; transport, access, price and traveller-specific details require periodic or live verification."
+  }
+}

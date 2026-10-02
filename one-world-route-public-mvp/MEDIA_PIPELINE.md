@@ -49,3 +49,7 @@ The goal is batch review, not one-image-at-a-time review.
 For thousands of Journeys, generated Source Masters should move to object storage. The delivery repository should contain only optimized derivatives until CDN/object-storage delivery is introduced.
 
 Destination media should not be generated for every Place. User-owned, creator-authorized and licensed real media can later populate Place media pools; generated Destination Visuals should be selective.
+
+## Operations
+
+Repository-changing media runs must follow [`PRODUCTION_WORKFLOW.md`](./PRODUCTION_WORKFLOW.md), including isolated worktrees, explicit generated-file allowlists and repository-root-aware Git path checks.

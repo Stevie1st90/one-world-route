@@ -71,7 +71,13 @@ test('@discovery @mobile-critical global discovery home exposes a broad visual j
   await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:15000});
   await expect(page.locator('body')).not.toHaveClass(/platform-booting/,{timeout:15000});
   await expect(page.locator('#platformHomeFeatured .platform-home-card')).toHaveCount(6,{timeout:15000});
-  await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(catalog.trips.length,{timeout:15000});
+  const initialResultCount=Math.min(24,catalog.trips.length);
+  await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(initialResultCount,{timeout:15000});
+  if(catalog.trips.length>initialResultCount){
+    await expect(page.locator('#platformHomeMore')).toBeVisible();
+    await page.locator('#platformHomeMore').click();
+    await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(catalog.trips.length,{timeout:15000});
+  }
   await expect(page.locator('.platform-home-card-visual').first()).toBeVisible();
   await expect(page.locator('.platform-home-quick button')).toHaveCount(5);
   await expect(page.locator('.platform-home-region-card')).toHaveCount(6);
@@ -641,11 +647,18 @@ test('@regional journey variant deep link derives a smaller route from the sourc
 });
 
 test('@discovery curated collection deep link supports combined metadata filters',async({page})=>{
+  const definition=collectionCatalog.collections.find(item=>item.id==='active-nature');
+  const expected=catalog.trips.filter(trip=>{
+    const filters=definition?.filters||{};
+    const themes=trip.discovery?.themes||[];
+    return (!filters.themeAny||filters.themeAny.some(theme=>themes.includes(theme)))
+      &&(!filters.pace||trip.discovery?.fit?.pace===filters.pace);
+  });
   await page.goto('/?collection=active-nature&lang=en',{waitUntil:'domcontentloaded'});
   await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:15000});
-  await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(3);
-  for(const title of ['Patagonia Road Trip','Iceland Ring Road','Utah National Parks Road Trip']){
-    await expect(page.locator('#platformHomeResults .platform-home-card').filter({hasText:title})).toHaveCount(1);
+  await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(expected.length);
+  for(const trip of expected){
+    await expect(page.locator('#platformHomeResults .platform-home-card[data-home-trip="'+trip.id+'"]')).toHaveCount(1);
   }
 });
 
@@ -672,8 +685,11 @@ test('@discovery @mobile-critical scalable static visuals load cards hero and na
  await page.locator('.platform-home-region-grid').screenshot({path:testInfo.outputPath('region-discovery.png')});
  await card.screenshot({path:testInfo.outputPath('auto-card.png')});
  expect(tiles,'card images must not load map tiles').toEqual([]);
- const manifest=await page.evaluate(async()=>fetch('./data/platform/media-manifest.json').then(r=>r.json()));
- expect(manifest.journeys).toHaveLength(21);
+ const [manifest,catalog]=await page.evaluate(async()=>Promise.all([
+  fetch('./data/platform/media-manifest.json').then(r=>r.json()),
+  fetch('./data/platform/trips.json').then(r=>r.json())
+ ]));
+ expect(manifest.journeys).toHaveLength(catalog.trips.length);
  const requests=await Promise.all(manifest.journeys.map(j=>page.request.get(j.autoRouteVisual.asset)));
  expect(requests.every(r=>r.ok())).toBe(true);
  await card.locator('[data-open-home-trip]').click();

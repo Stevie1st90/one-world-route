@@ -3514,6 +3514,1260 @@
         },
         "srcset": "./assets/generated/routes/victoria-great-ocean-highlands-road-trip/landscape-69b0ef87c2026fa7-600.webp 600w, ./assets/generated/routes/victoria-great-ocean-highlands-road-trip/landscape-69b0ef87c2026fa7.webp 1200w"
       }
+    },
+    {
+      "id": "swiss-scenic-rail-journey",
+      "scope": "REGIONAL",
+      "bounds": {
+        "west": 6.91070000000002,
+        "east": 9.835500000000025,
+        "south": 46.0207,
+        "north": 47.3769,
+        "longitudeSpan": 2.9248000000000047,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "CH"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "geometry": {
+        "lines": 5,
+        "detailed": 0,
+        "schematic": 5
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/swiss-scenic-rail-journey/landscape-0ffc51c93121e428.webp",
+          "inputHash": "0ffc51c93121e42867b9d4168791cbc93a8c0ffd173a53cf492511da29da4fd8",
+          "outputHash": "d97f4bbb0a4e805d9ad59c4b4c57c581e0c5ff33fae2ea486f0027ee2201f238",
+          "bytes": 36142,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.6858335952139513,
+            "scale": 348.3999410116499,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": 8.373100000000022,
+            "centerLat": 46.6988,
+            "zoom": 7.936453665775369
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/swiss-scenic-rail-journey/landscape-0ffc51c93121e428-600.webp",
+            "width": 600,
+            "outputHash": "e17e3a1b07b8710e002972cab542e5eed28a7fc0d69eccc0cf8b455b040de819",
+            "bytes": 14536
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/swiss-scenic-rail-journey/portrait-264ce2147ce65c46.webp",
+          "inputHash": "264ce2147ce65c46925b3d79c4caea1095e35aeaa16fe3f9c257f3b87f17d8de",
+          "outputHash": "e88f7ec80a8983984d79dc473713b5ed67e2c2e900eb837c34b71155ea6f3919",
+          "bytes": 32778,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.6858335952139513,
+            "scale": 327.0309909397381,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": 8.373100000000022,
+            "centerLat": 46.6988,
+            "zoom": 7.845136644630577
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/swiss-scenic-rail-journey/vertical-927560b4c0f36aa8.webp",
+          "inputHash": "927560b4c0f36aa8fdd12b0d1255f1c71b43effcc79362d9993b6f353b336a77",
+          "outputHash": "dd0bc03ad47956dd741ad08e2a23b34d749ff8d6fcbe106ea4d0be4fbbdd03b9",
+          "bytes": 48008,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.6858335952139513,
+            "scale": 367.9098648072054,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": 8.373100000000022,
+            "centerLat": 46.6988,
+            "zoom": 8.015061646072889
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-swiss-scenic-rail-journey",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "swiss-scenic-rail-journey",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/swiss-scenic-rail-journey/landscape-0ffc51c93121e428.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Swiss Scenic Rail Journey",
+          "de": "Geografische Routendarstellung: Schweiz · Panoramabahn-Reise",
+          "it": "Illustrazione geografica del percorso: Svizzera · viaggio panoramico in treno",
+          "es": "Ilustración geográfica de la ruta: Suiza · viaje panorámico en tren",
+          "fr": "Illustration géographique du parcours : Suisse · voyage panoramique en train",
+          "pt": "Ilustração geográfica da rota: Suíça · viagem panorâmica de trem"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/swiss-scenic-rail-journey/portrait-264ce2147ce65c46.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/swiss-scenic-rail-journey/vertical-927560b4c0f36aa8.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/swiss-scenic-rail-journey/landscape-0ffc51c93121e428-600.webp 600w, ./assets/generated/routes/swiss-scenic-rail-journey/landscape-0ffc51c93121e428.webp 1200w"
+      }
+    },
+    {
+      "id": "scotland-highlands-hebrides",
+      "scope": "REGIONAL",
+      "bounds": {
+        "west": -6.798000000000002,
+        "east": -4.224699999999984,
+        "south": 56.8198,
+        "north": 58.2093,
+        "longitudeSpan": 2.5733000000000175,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "GB"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "geometry": {
+        "lines": 5,
+        "detailed": 0,
+        "schematic": 5
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/scotland-highlands-hebrides/landscape-6ef2a425a3a6c996.webp",
+          "inputHash": "6ef2a425a3a6c9968f94321871fc32b7f03061834aa38250b74ee8d6e52d0b22",
+          "outputHash": "3a38410c3c50ac45f5de38b6b18c8a1383357884827f328ae72a003d57fa2430",
+          "bytes": 25390,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.5370854156411018,
+            "scale": 340.0503778337536,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": -5.511349999999993,
+            "centerLat": 57.51455,
+            "zoom": 7.901457780899637
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/scotland-highlands-hebrides/landscape-6ef2a425a3a6c996-600.webp",
+            "width": 600,
+            "outputHash": "5d12f53a33a38fa35f066ade614c642f629470cf9ee59f350aa523a47428e8c3",
+            "bytes": 9908
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/scotland-highlands-hebrides/portrait-e5078a2d02081627.webp",
+          "inputHash": "e5078a2d02081627a80fb884457c68b9a137ae1cd66f65c4a8b845afd38795b3",
+          "outputHash": "f781240b188673523c4cfa4a5c8791ee6afd90cab9ec2ba67ff6b4bbe45ad0e6",
+          "bytes": 27472,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.5370854156411018,
+            "scale": 431.81000359841727,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": -5.511349999999993,
+            "centerLat": 57.51455,
+            "zoom": 8.246105952287083
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/scotland-highlands-hebrides/vertical-63ad4cc66e74f666.webp",
+          "inputHash": "63ad4cc66e74f6664a556c9087b60da74badf740436e5d43436ae38cc74aaf73",
+          "outputHash": "abb8412d7016206cf2fd68da3244514267d4a4e9ff9a2cd0aa2869743f75c678",
+          "bytes": 38788,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.5370854156411018,
+            "scale": 506.6570708888096,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": -5.511349999999993,
+            "centerLat": 57.51455,
+            "zoom": 8.4767188804285
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-scotland-highlands-hebrides",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "scotland-highlands-hebrides",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/scotland-highlands-hebrides/landscape-6ef2a425a3a6c996.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Scottish Highlands & Hebrides Journey",
+          "de": "Geografische Routendarstellung: Schottische Highlands & Hebriden",
+          "it": "Illustrazione geografica del percorso: Highlands scozzesi e Ebridi",
+          "es": "Ilustración geográfica de la ruta: Highlands escocesas y Hébridas",
+          "fr": "Illustration géographique du parcours : Highlands écossais et Hébrides",
+          "pt": "Ilustração geográfica da rota: Highlands escocesas e Hébridas"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/scotland-highlands-hebrides/portrait-e5078a2d02081627.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/scotland-highlands-hebrides/vertical-63ad4cc66e74f666.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/scotland-highlands-hebrides/landscape-6ef2a425a3a6c996-600.webp 600w, ./assets/generated/routes/scotland-highlands-hebrides/landscape-6ef2a425a3a6c996.webp 1200w"
+      }
+    },
+    {
+      "id": "sri-lanka-hill-country-rail",
+      "scope": "REGIONAL",
+      "bounds": {
+        "west": 79.86120000000005,
+        "east": 81.05500000000006,
+        "south": 6.8667,
+        "north": 7.2906,
+        "longitudeSpan": 1.1938000000000102,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "LK"
+      ],
+      "regions": [
+        "asia"
+      ],
+      "geometry": {
+        "lines": 4,
+        "detailed": 0,
+        "schematic": 4
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/sri-lanka-hill-country-rail/landscape-cfeb5f8f0effdf64.webp",
+          "inputHash": "cfeb5f8f0effdf6452be3c2d0cb88a791f00f224bcc151277c0ced8cc5f6d067",
+          "outputHash": "b63bb8122316933976a6f5bd252d9a2aeda0f21c738436d285b3780c80146aed",
+          "bytes": 16776,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.9923779263368213,
+            "scale": 830.5894840250286,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": 80.45810000000006,
+            "centerLat": 7.07865,
+            "zoom": 9.189844892226628
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/sri-lanka-hill-country-rail/landscape-cfeb5f8f0effdf64-600.webp",
+            "width": 600,
+            "outputHash": "5806ad700677ae32ec8b178514149c316ac1ab17fb8746a43262304d2ff1ffb5",
+            "bytes": 6558
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/sri-lanka-hill-country-rail/portrait-33344ad7625ea63f.webp",
+          "inputHash": "33344ad7625ea63f7c680027528b0f2c69fddf70db79484b89fa9bc61773d04e",
+          "outputHash": "e8b614e082d4d079da126f17e1b24673721168c4defd6669438ca1ff0b7a271a",
+          "bytes": 15234,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.9923779263368213,
+            "scale": 553.7263226833525,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": 80.45810000000006,
+            "centerLat": 7.07865,
+            "zoom": 8.604882391505472
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/sri-lanka-hill-country-rail/vertical-e85e550504493f45.webp",
+          "inputHash": "e85e550504493f45c1e9d79764f6e57d4f63886bc50a99f7f079170f5639ec91",
+          "outputHash": "e4eca8397b99055622412f1926011d8f782a201f8bd29cd3096e9eb91301b0f2",
+          "bytes": 21126,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.9923779263368213,
+            "scale": 622.9421130187715,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": 80.45810000000006,
+            "centerLat": 7.07865,
+            "zoom": 8.774807392947784
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-sri-lanka-hill-country-rail",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "sri-lanka-hill-country-rail",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/sri-lanka-hill-country-rail/landscape-cfeb5f8f0effdf64.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Sri Lanka Hill Country by Rail",
+          "de": "Geografische Routendarstellung: Sri Lanka · Hochland per Bahn",
+          "it": "Illustrazione geografica del percorso: Sri Lanka · altopiani in treno",
+          "es": "Ilustración geográfica de la ruta: Sri Lanka · tierras altas en tren",
+          "fr": "Illustration géographique du parcours : Sri Lanka · hauts plateaux en train",
+          "pt": "Ilustração geográfica da rota: Sri Lanka · terras altas de trem"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/sri-lanka-hill-country-rail/portrait-33344ad7625ea63f.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/sri-lanka-hill-country-rail/vertical-e85e550504493f45.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/sri-lanka-hill-country-rail/landscape-cfeb5f8f0effdf64-600.webp 600w, ./assets/generated/routes/sri-lanka-hill-country-rail/landscape-cfeb5f8f0effdf64.webp 1200w"
+      }
+    },
+    {
+      "id": "taiwan-rail-coast-loop",
+      "scope": "REGIONAL",
+      "bounds": {
+        "west": 120.2269,
+        "east": 121.6112,
+        "south": 22.6273,
+        "north": 25.033,
+        "longitudeSpan": 1.384299999999996,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "TW"
+      ],
+      "regions": [],
+      "geometry": {
+        "lines": 6,
+        "detailed": 0,
+        "schematic": 6
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/taiwan-rail-coast-loop/landscape-4fb3ba2d0504a1a6.webp",
+          "inputHash": "4fb3ba2d0504a1a613801c550b27852610698b7e44c03e4cde2fd5b04d130b85",
+          "outputHash": "a57abdf1f865a6a807d49e986c341c90912d89b1cfb17633bc48efdc637c9119",
+          "bytes": 24334,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.9147471888794075,
+            "scale": 196.4085297418631,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": 120.91905,
+            "centerLat": 23.830150000000003,
+            "zoom": 7.109566871302169
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/taiwan-rail-coast-loop/landscape-4fb3ba2d0504a1a6-600.webp",
+            "width": 600,
+            "outputHash": "ec0603edc80216f0380d1e5bf77c4c2cf2e27092487454138401a1c2934d21b1",
+            "bytes": 9706
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/taiwan-rail-coast-loop/portrait-397bd3308f53173c.webp",
+          "inputHash": "397bd3308f53173c639912e6efe67e40af50c5fad94e4028b452b18489acbfc3",
+          "outputHash": "c729f5a84813644a64b5550c109394825f7fd3efd5f741b5272d1a3edc8c4bb4",
+          "bytes": 23072,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.9147471888794075,
+            "scale": 249.40765681506429,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": 120.91905,
+            "centerLat": 23.830150000000003,
+            "zoom": 7.454215042689615
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/taiwan-rail-coast-loop/vertical-eea8bffedbdae208.webp",
+          "inputHash": "eea8bffedbdae20851df2d26d61004898e077bdeb7aa502f1387550746ec7cc6",
+          "outputHash": "782f917e2c1cd2fbea9c17c363851874fb85326264a4157cf605dc8a5112b4c4",
+          "bytes": 32102,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.9147471888794075,
+            "scale": 292.63831732967543,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": 120.91905,
+            "centerLat": 23.830150000000003,
+            "zoom": 7.684827970831031
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-taiwan-rail-coast-loop",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "taiwan-rail-coast-loop",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/taiwan-rail-coast-loop/landscape-4fb3ba2d0504a1a6.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Taiwan Rail & Coast Loop",
+          "de": "Geografische Routendarstellung: Taiwan · Bahn- & Küstenrunde",
+          "it": "Illustrazione geografica del percorso: Taiwan · circuito ferrovia e costa",
+          "es": "Ilustración geográfica de la ruta: Taiwán · circuito ferroviario y costero",
+          "fr": "Illustration géographique du parcours : Taïwan · boucle ferroviaire et côtière",
+          "pt": "Ilustração geográfica da rota: Taiwan · circuito ferroviário e costeiro"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/taiwan-rail-coast-loop/portrait-397bd3308f53173c.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/taiwan-rail-coast-loop/vertical-eea8bffedbdae208.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/taiwan-rail-coast-loop/landscape-4fb3ba2d0504a1a6-600.webp 600w, ./assets/generated/routes/taiwan-rail-coast-loop/landscape-4fb3ba2d0504a1a6.webp 1200w"
+      }
+    },
+    {
+      "id": "java-rail-volcano-journey",
+      "scope": "NATIONAL",
+      "bounds": {
+        "west": 106.84559999999999,
+        "east": 112.75209999999998,
+        "south": -7.9666,
+        "north": -6.2088,
+        "longitudeSpan": 5.906499999999994,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "ID"
+      ],
+      "regions": [
+        "asia"
+      ],
+      "geometry": {
+        "lines": 5,
+        "detailed": 0,
+        "schematic": 5
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/java-rail-volcano-journey/landscape-1d810b165ea5dd36.webp",
+          "inputHash": "1d810b165ea5dd364967771e7e8ad6e6d8be49be2ccb926d5a87700ffb18fb57",
+          "outputHash": "af914d9c597f88b19fa72fe12f426a75014a5a8424881f4cc6e60600be96ebe6",
+          "bytes": 23278,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.992358449227766,
+            "scale": 167.87897865441082,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": 109.79884999999999,
+            "centerLat": -7.0877,
+            "zoom": 6.883130877369744
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/java-rail-volcano-journey/landscape-1d810b165ea5dd36-600.webp",
+            "width": 600,
+            "outputHash": "246b5dde0ea8d22b09494c883925a1a87b0a60580fd46f283fbe6996fd6621f6",
+            "bytes": 9042
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/java-rail-volcano-journey/portrait-4fc5fefa80e77112.webp",
+          "inputHash": "4fc5fefa80e7711225771a500d12e1cb22a9479e965ccaa7746edc65054c7fd4",
+          "outputHash": "a85e3a68a0026f24ca772be31178f0d0bfa249697bb4f12e376e08a81f3d32d7",
+          "bytes": 23426,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.992358449227766,
+            "scale": 111.91931910294053,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": 109.79884999999999,
+            "centerLat": -7.0877,
+            "zoom": 6.298168376648588
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/java-rail-volcano-journey/vertical-c161ff7372889951.webp",
+          "inputHash": "c161ff7372889951e2348e821249a3f942551075d78660496ba8f147e6c39ff0",
+          "outputHash": "5bb073bef1cc264e861b9ca9b1049e24ae6a809f0342f39eecf81fb1ccf0a588",
+          "bytes": 36442,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.992358449227766,
+            "scale": 125.9092339908081,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": 109.79884999999999,
+            "centerLat": -7.0877,
+            "zoom": 6.4680933780909005
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-java-rail-volcano-journey",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "java-rail-volcano-journey",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/java-rail-volcano-journey/landscape-1d810b165ea5dd36.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Java Rail & Volcano Journey",
+          "de": "Geografische Routendarstellung: Java · Bahn & Vulkane",
+          "it": "Illustrazione geografica del percorso: Giava · treni e vulcani",
+          "es": "Ilustración geográfica de la ruta: Java · trenes y volcanes",
+          "fr": "Illustration géographique du parcours : Java · trains et volcans",
+          "pt": "Ilustração geográfica da rota: Java · trens e vulcões"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/java-rail-volcano-journey/portrait-4fc5fefa80e77112.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/java-rail-volcano-journey/vertical-c161ff7372889951.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/java-rail-volcano-journey/landscape-1d810b165ea5dd36-600.webp 600w, ./assets/generated/routes/java-rail-volcano-journey/landscape-1d810b165ea5dd36.webp 1200w"
+      }
+    },
+    {
+      "id": "namibia-desert-wildlife-road-trip",
+      "scope": "NATIONAL",
+      "bounds": {
+        "west": 14.372000000000071,
+        "east": 17.06580000000008,
+        "south": -24.7286,
+        "north": -18.8556,
+        "longitudeSpan": 2.69380000000001,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "NA"
+      ],
+      "regions": [
+        "africa"
+      ],
+      "geometry": {
+        "lines": 6,
+        "detailed": 0,
+        "schematic": 6
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/namibia-desert-wildlife-road-trip/landscape-08d3c4badc0f9940.webp",
+          "inputHash": "08d3c4badc0f99405d08cd0db9006c3488386f24fe66149df25bb24252312550",
+          "outputHash": "557ea5f76b372616855a058bda647c24dba9b64d17b839f177ea6f7e9b145293",
+          "bytes": 25978,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.9285370226275331,
+            "scale": 80.4529201430274,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": 15.718900000000076,
+            "centerLat": -21.792099999999998,
+            "zoom": 5.821925977602769
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/namibia-desert-wildlife-road-trip/landscape-08d3c4badc0f9940-600.webp",
+            "width": 600,
+            "outputHash": "02326a1d888d3c85390c26d136d94a96e27ec0804e931f782d329f67f03b9121",
+            "bytes": 9088
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/namibia-desert-wildlife-road-trip/portrait-bb87467e2587ed04.webp",
+          "inputHash": "bb87467e2587ed04bda242e353ecaf74dbe269897af2225067965e28b65f8ea8",
+          "outputHash": "7984e0993252fbac198f727a3e74597b14d53c056324b3712e940393cf4de4c2",
+          "bytes": 29098,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.9285370226275331,
+            "scale": 102.16243827686019,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": 15.718900000000076,
+            "centerLat": -21.792099999999998,
+            "zoom": 6.166574148990215
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/namibia-desert-wildlife-road-trip/vertical-1de684c9fdd37f46.webp",
+          "inputHash": "1de684c9fdd37f46c7f2b6c213360e963f27a461d5a5eac932f199c5e59c2a7d",
+          "outputHash": "0ad9850d895103ca4de3d3bed213a828e26d479dd699ceefbc7a2a5aeff9fe1e",
+          "bytes": 43764,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.9285370226275331,
+            "scale": 119.87059424484929,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": 15.718900000000076,
+            "centerLat": -21.792099999999998,
+            "zoom": 6.3971870771316315
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-namibia-desert-wildlife-road-trip",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "namibia-desert-wildlife-road-trip",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/namibia-desert-wildlife-road-trip/landscape-08d3c4badc0f9940.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Namibia Desert & Wildlife Road Trip",
+          "de": "Geografische Routendarstellung: Namibia · Wüste & Wildlife Roadtrip",
+          "it": "Illustrazione geografica del percorso: Namibia · deserto e fauna on the road",
+          "es": "Ilustración geográfica de la ruta: Namibia · desierto y fauna en ruta",
+          "fr": "Illustration géographique du parcours : Namibie · désert et faune en road trip",
+          "pt": "Ilustração geográfica da rota: Namíbia · deserto e vida selvagem de carro"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/namibia-desert-wildlife-road-trip/portrait-bb87467e2587ed04.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/namibia-desert-wildlife-road-trip/vertical-1de684c9fdd37f46.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/namibia-desert-wildlife-road-trip/landscape-08d3c4badc0f9940-600.webp 600w, ./assets/generated/routes/namibia-desert-wildlife-road-trip/landscape-08d3c4badc0f9940.webp 1200w"
+      }
+    },
+    {
+      "id": "alaska-inside-passage-ferry",
+      "scope": "NATIONAL",
+      "bounds": {
+        "west": -135.44499999999994,
+        "east": -131.6461,
+        "south": 55.3422,
+        "north": 59.4583,
+        "longitudeSpan": 3.7988999999999464,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "US"
+      ],
+      "regions": [
+        "north-america"
+      ],
+      "geometry": {
+        "lines": 5,
+        "detailed": 0,
+        "schematic": 5
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/alaska-inside-passage-ferry/landscape-274397005bd41245.webp",
+          "inputHash": "274397005bd41245471db68af47abb80d4679470d4ca868604d75adc69d705f3",
+          "outputHash": "e24c65c018be637c607f98dee7f1522b579c045dd4904fdbff28667cf5410aaf",
+          "bytes": 58682,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.5387671091097046,
+            "scale": 114.79312941862435,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": -133.54554999999996,
+            "centerLat": 57.40025,
+            "zoom": 6.334745582732085
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/alaska-inside-passage-ferry/landscape-274397005bd41245-600.webp",
+            "width": 600,
+            "outputHash": "2f81ab21e629db1421476e2bcf7baf4a09fa9ab4adbcae9efb637f9a93b29ea1",
+            "bytes": 24500
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/alaska-inside-passage-ferry/portrait-8f327e6f5d71687f.webp",
+          "inputHash": "8f327e6f5d71687ff10ee608deee784066ba09badf1d94f237703db79b71808c",
+          "outputHash": "934fac83215e325f8a417c7a5ddef62d9a1671f188f99c8fd5c1eb2a84b50469",
+          "bytes": 51816,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.5387671091097046,
+            "scale": 145.76905322999917,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": -133.54554999999996,
+            "centerLat": 57.40025,
+            "zoom": 6.6793937541195305
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/alaska-inside-passage-ferry/vertical-842960461b6a1d67.webp",
+          "inputHash": "842960461b6a1d6705f9bb32d42ddcfefba45679ba2aafa6e6cd53271d4d19a8",
+          "outputHash": "ef027058fac9c6653b7b3f42151e60d3ac131dae0c2653bea97f0c9a510db956",
+          "bytes": 70862,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.5387671091097046,
+            "scale": 171.03568912319903,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": -133.54554999999996,
+            "centerLat": 57.40025,
+            "zoom": 6.9100066822609465
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-alaska-inside-passage-ferry",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "alaska-inside-passage-ferry",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/alaska-inside-passage-ferry/landscape-274397005bd41245.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Alaska Inside Passage by Ferry",
+          "de": "Geografische Routendarstellung: Alaska · Inside Passage per Fähre",
+          "it": "Illustrazione geografica del percorso: Alaska · Inside Passage in traghetto",
+          "es": "Ilustración geográfica de la ruta: Alaska · Inside Passage en ferry",
+          "fr": "Illustration géographique du parcours : Alaska · Inside Passage en ferry",
+          "pt": "Ilustração geográfica da rota: Alasca · Inside Passage de balsa"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "NATIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/alaska-inside-passage-ferry/portrait-8f327e6f5d71687f.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/alaska-inside-passage-ferry/vertical-842960461b6a1d67.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/alaska-inside-passage-ferry/landscape-274397005bd41245-600.webp 600w, ./assets/generated/routes/alaska-inside-passage-ferry/landscape-274397005bd41245.webp 1200w"
+      }
+    },
+    {
+      "id": "tasmania-wild-coast-road-loop",
+      "scope": "REGIONAL",
+      "bounds": {
+        "west": 145.32899999999995,
+        "east": 148.29999999999995,
+        "south": -42.8821,
+        "north": -41.25,
+        "longitudeSpan": 2.9710000000000036,
+        "datelineCrossing": false
+      },
+      "countries": [
+        "AU"
+      ],
+      "regions": [
+        "oceania"
+      ],
+      "geometry": {
+        "lines": 7,
+        "detailed": 0,
+        "schematic": 7
+      },
+      "formats": {
+        "landscape": {
+          "asset": "./assets/generated/routes/tasmania-wild-coast-road-loop/landscape-29044f8e1e32f7d4.webp",
+          "inputHash": "29044f8e1e32f7d431d73d911a2b95eb73aef3c28bb5f6cc141daa4e1efc4c39",
+          "outputHash": "d2594fe032c42795c23cf3cd228f766648583c7e16d22f944c2d983318cf5fa1",
+          "bytes": 27782,
+          "width": 1200,
+          "height": 675,
+          "camera": {
+            "width": 1200,
+            "height": 675,
+            "padding": {
+              "left": 108,
+              "right": 108,
+              "top": 114.75000000000001,
+              "bottom": 87.75
+            },
+            "cos": 0.7423729648042725,
+            "scale": 289.50431958826033,
+            "cx": 600,
+            "cy": 351,
+            "centerLng": 146.81449999999995,
+            "centerLat": -42.066050000000004,
+            "zoom": 7.669294160405509
+          },
+          "responsive": {
+            "asset": "./assets/generated/routes/tasmania-wild-coast-road-loop/landscape-29044f8e1e32f7d4-600.webp",
+            "width": 600,
+            "outputHash": "d9cf220afeef29f41a66501c08c15caf0ac70ff0abdd8e6da01177a079f7551e",
+            "bytes": 10706
+          }
+        },
+        "portrait": {
+          "asset": "./assets/generated/routes/tasmania-wild-coast-road-loop/portrait-a5e1b026c2481800.webp",
+          "inputHash": "a5e1b026c2481800a2e10affd93e24c933c3503b77df29c9f0df18f3e6bd8aaf",
+          "outputHash": "fc7ed4be076a6ab6a86fd44e0723af95e8aa5da865a5b8ea026dba55a1728f9f",
+          "bytes": 28376,
+          "width": 800,
+          "height": 1000,
+          "camera": {
+            "width": 800,
+            "height": 1000,
+            "padding": {
+              "left": 72,
+              "right": 72,
+              "top": 180,
+              "bottom": 220
+            },
+            "cos": 0.7423729648042725,
+            "scale": 297.4260749603657,
+            "cx": 400,
+            "cy": 480,
+            "centerLng": 146.81449999999995,
+            "centerLat": -42.066050000000004,
+            "zoom": 7.708240418252608
+          }
+        },
+        "vertical": {
+          "asset": "./assets/generated/routes/tasmania-wild-coast-road-loop/vertical-f87757c68dcdf6bb.webp",
+          "inputHash": "f87757c68dcdf6bbfc1821a390193ad2bdc11ac2fb174e88a29825a8096dac99",
+          "outputHash": "632d5ae6c29b89fcae436f45d383ef0f164dfe8851681c2f81113776bb8a628b",
+          "bytes": 36328,
+          "width": 900,
+          "height": 1600,
+          "camera": {
+            "width": 900,
+            "height": 1600,
+            "padding": {
+              "left": 81,
+              "right": 81,
+              "top": 288,
+              "bottom": 608
+            },
+            "cos": 0.7423729648042725,
+            "scale": 334.6043343304114,
+            "cx": 450,
+            "cy": 640,
+            "centerLng": 146.81449999999995,
+            "centerLat": -42.066050000000004,
+            "zoom": 7.87816541969492
+          }
+        }
+      },
+      "media": {
+        "assetId": "auto-route-tasmania-wild-coast-road-loop",
+        "type": "image",
+        "sourceType": "route-render",
+        "mediaKind": "route-visual",
+        "tripId": "tasmania-wild-coast-road-loop",
+        "status": "published",
+        "rightsStatus": "approved",
+        "asset": "./assets/generated/routes/tasmania-wild-coast-road-loop/landscape-29044f8e1e32f7d4.webp",
+        "aspectRatio": "16:9",
+        "focalPoint": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "alt": {
+          "en": "Geographic route illustration: Tasmania Wild Coast Road Loop",
+          "de": "Geografische Routendarstellung: Tasmanien · Wild Coast Road Loop",
+          "it": "Illustrazione geografica del percorso: Tasmania · circuito Wild Coast",
+          "es": "Ilustración geográfica de la ruta: Tasmania · circuito por la costa salvaje",
+          "fr": "Illustration géographique du parcours : Tasmanie · boucle de la côte sauvage",
+          "pt": "Ilustração geográfica da rota: Tasmânia · circuito pela costa selvagem"
+        },
+        "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+        "attributionRequired": false,
+        "license": "Natural Earth public domain; original route presentation",
+        "provider": "local-natural-earth",
+        "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+        "scope": "REGIONAL",
+        "derivatives": {
+          "portrait": {
+            "asset": "./assets/generated/routes/tasmania-wild-coast-road-loop/portrait-a5e1b026c2481800.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 800,
+            "height": 1000
+          },
+          "vertical": {
+            "asset": "./assets/generated/routes/tasmania-wild-coast-road-loop/vertical-f87757c68dcdf6bb.webp",
+            "focalPoint": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "width": 900,
+            "height": 1600
+          }
+        },
+        "srcset": "./assets/generated/routes/tasmania-wild-coast-road-loop/landscape-29044f8e1e32f7d4-600.webp 600w, ./assets/generated/routes/tasmania-wild-coast-road-loop/landscape-29044f8e1e32f7d4.webp 1200w"
+      }
     }
   ]
 }

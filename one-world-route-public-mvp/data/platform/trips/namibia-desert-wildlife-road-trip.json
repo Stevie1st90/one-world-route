@@ -1,0 +1,373 @@
+{
+  "schemaVersion": 1,
+  "id": "namibia-desert-wildlife-road-trip",
+  "slug": "namibia-desert-wildlife-road-trip",
+  "kind": "road-trip",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Namibia Desert & Wildlife Road Trip",
+    "de": "Namibia · Wüste & Wildlife Roadtrip",
+    "it": "Namibia · deserto e fauna on the road",
+    "es": "Namibia · desierto y fauna en ruta",
+    "fr": "Namibie · désert et faune en road trip",
+    "pt": "Namíbia · deserto e vida selvagem de carro"
+  },
+  "summary": {
+    "en": "A self-drive loop from Windhoek through the Namib, Swakopmund, granite and desert country, Damaraland and Etosha.",
+    "de": "Eine Selbstfahrer-Runde ab Windhoek durch die Namib, Swakopmund, Granit- und Wüstenlandschaften, Damaraland und Etosha.",
+    "it": "Un circuito self-drive da Windhoek attraverso Namib, Swakopmund, paesaggi desertici e granitici, Damaraland ed Etosha.",
+    "es": "Un circuito en coche desde Windhoek por el Namib, Swakopmund, paisajes desérticos y de granito, Damaraland y Etosha.",
+    "fr": "Une boucle en voiture depuis Windhoek à travers le Namib, Swakopmund, paysages désertiques et granitiques, Damaraland et Etosha.",
+    "pt": "Um circuito de carro desde Windhoek pelo Namib, Swakopmund, paisagens desérticas e graníticas, Damaraland e Etosha."
+  },
+  "geography": {
+    "countries": [
+      "NA"
+    ],
+    "primaryCountry": "NA"
+  },
+  "planning": {
+    "days": 14,
+    "currency": "NAD",
+    "pace": "active",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": -21.97206,
+      "lng": 15.69794,
+      "altitude": 0.72
+    }
+  },
+  "media": {
+    "hero": {
+      "type": "art-directed",
+      "theme": "namib",
+      "asset": null,
+      "attribution": null,
+      "license": "original-ui-art"
+    },
+    "gallery": []
+  },
+  "highlights": [
+    "Namib dunes, Atlantic fog, Damaraland and Etosha",
+    "road-trip · desert · wildlife"
+  ],
+  "places": [
+    {
+      "id": "windhoek",
+      "type": "place",
+      "countryCode": "NA",
+      "name": {
+        "en": "Windhoek"
+      },
+      "coordinates": {
+        "lat": -22.5609,
+        "lng": 17.0658
+      }
+    },
+    {
+      "id": "sossusvlei",
+      "type": "place",
+      "countryCode": "NA",
+      "name": {
+        "en": "Sossusvlei"
+      },
+      "coordinates": {
+        "lat": -24.7286,
+        "lng": 15.3428
+      }
+    },
+    {
+      "id": "swakopmund",
+      "type": "place",
+      "countryCode": "NA",
+      "name": {
+        "en": "Swakopmund"
+      },
+      "coordinates": {
+        "lat": -22.6784,
+        "lng": 14.5266
+      }
+    },
+    {
+      "id": "spitzkoppe",
+      "type": "place",
+      "countryCode": "NA",
+      "name": {
+        "en": "Spitzkoppe"
+      },
+      "coordinates": {
+        "lat": -21.825,
+        "lng": 15.1833
+      }
+    },
+    {
+      "id": "twyfelfontein",
+      "type": "place",
+      "countryCode": "NA",
+      "name": {
+        "en": "Twyfelfontein"
+      },
+      "coordinates": {
+        "lat": -20.595,
+        "lng": 14.372
+      }
+    },
+    {
+      "id": "etosha",
+      "type": "place",
+      "countryCode": "NA",
+      "name": {
+        "en": "Etosha National Park"
+      },
+      "coordinates": {
+        "lat": -18.8556,
+        "lng": 16.3293
+      }
+    },
+    {
+      "id": "windhoek-return",
+      "type": "place",
+      "countryCode": "NA",
+      "name": {
+        "en": "Windhoek"
+      },
+      "coordinates": {
+        "lat": -22.5609,
+        "lng": 17.0658
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "namibia-desert-wildlife-road-trip-stop-01",
+      "sequence": 1,
+      "placeId": "windhoek",
+      "dayStart": 1,
+      "dayEnd": 1,
+      "nights": 1
+    },
+    {
+      "id": "namibia-desert-wildlife-road-trip-stop-02",
+      "sequence": 2,
+      "placeId": "sossusvlei",
+      "dayStart": 2,
+      "dayEnd": 4,
+      "nights": 3
+    },
+    {
+      "id": "namibia-desert-wildlife-road-trip-stop-03",
+      "sequence": 3,
+      "placeId": "swakopmund",
+      "dayStart": 5,
+      "dayEnd": 6,
+      "nights": 2
+    },
+    {
+      "id": "namibia-desert-wildlife-road-trip-stop-04",
+      "sequence": 4,
+      "placeId": "spitzkoppe",
+      "dayStart": 7,
+      "dayEnd": 7,
+      "nights": 1
+    },
+    {
+      "id": "namibia-desert-wildlife-road-trip-stop-05",
+      "sequence": 5,
+      "placeId": "twyfelfontein",
+      "dayStart": 8,
+      "dayEnd": 9,
+      "nights": 2
+    },
+    {
+      "id": "namibia-desert-wildlife-road-trip-stop-06",
+      "sequence": 6,
+      "placeId": "etosha",
+      "dayStart": 10,
+      "dayEnd": 12,
+      "nights": 3
+    },
+    {
+      "id": "namibia-desert-wildlife-road-trip-stop-07",
+      "sequence": 7,
+      "placeId": "windhoek-return",
+      "dayStart": 13,
+      "dayEnd": 14,
+      "nights": 2
+    }
+  ],
+  "segments": [
+    {
+      "id": "namibia-desert-wildlife-road-trip-leg-01",
+      "sequence": 1,
+      "fromStopId": "namibia-desert-wildlife-road-trip-stop-01",
+      "toStopId": "namibia-desert-wildlife-road-trip-stop-02",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "namibia-desert-wildlife-road-trip-leg-02",
+      "sequence": 2,
+      "fromStopId": "namibia-desert-wildlife-road-trip-stop-02",
+      "toStopId": "namibia-desert-wildlife-road-trip-stop-03",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "namibia-desert-wildlife-road-trip-leg-03",
+      "sequence": 3,
+      "fromStopId": "namibia-desert-wildlife-road-trip-stop-03",
+      "toStopId": "namibia-desert-wildlife-road-trip-stop-04",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "namibia-desert-wildlife-road-trip-leg-04",
+      "sequence": 4,
+      "fromStopId": "namibia-desert-wildlife-road-trip-stop-04",
+      "toStopId": "namibia-desert-wildlife-road-trip-stop-05",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "namibia-desert-wildlife-road-trip-leg-05",
+      "sequence": 5,
+      "fromStopId": "namibia-desert-wildlife-road-trip-stop-05",
+      "toStopId": "namibia-desert-wildlife-road-trip-stop-06",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "namibia-desert-wildlife-road-trip-leg-06",
+      "sequence": 6,
+      "fromStopId": "namibia-desert-wildlife-road-trip-stop-06",
+      "toStopId": "namibia-desert-wildlife-road-trip-stop-07",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "na-transportation",
+      "title": "Transportation",
+      "issuer": "Namibia Tourism Board",
+      "issuerType": "tourism-board",
+      "url": "https://visitnamibia.com.na/transportation/",
+      "checkedAt": "2026-10-02",
+      "claims": [
+        "official source supports the destination or transport character used for this editorial journey concept",
+        "exact schedules, fares and operating conditions must be checked for the actual travel date"
+      ]
+    }
+  ],
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context"
+  },
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true,
+    "notes": "Editorial route structure is stable; transport, access, price and traveller-specific details require periodic or live verification."
+  }
+}

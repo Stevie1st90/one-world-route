@@ -1,0 +1,289 @@
+{
+  "schemaVersion": 1,
+  "id": "sri-lanka-hill-country-rail",
+  "slug": "sri-lanka-hill-country-rail",
+  "kind": "rail",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Sri Lanka Hill Country by Rail",
+    "de": "Sri Lanka · Hochland per Bahn",
+    "it": "Sri Lanka · altopiani in treno",
+    "es": "Sri Lanka · tierras altas en tren",
+    "fr": "Sri Lanka · hauts plateaux en train",
+    "pt": "Sri Lanka · terras altas de trem"
+  },
+  "summary": {
+    "en": "A slow rail journey from Colombo into Sri Lanka’s central highlands, through Kandy, tea country and the mountain corridor toward Ella and Badulla.",
+    "de": "Eine langsame Bahnreise von Colombo ins zentrale Hochland Sri Lankas über Kandy, Teeplantagen und Ella bis Badulla.",
+    "it": "Un lento viaggio in treno da Colombo agli altopiani centrali via Kandy, piantagioni di tè, Ella e Badulla.",
+    "es": "Un viaje ferroviario pausado de Colombo a las tierras altas vía Kandy, plantaciones de té, Ella y Badulla.",
+    "fr": "Un voyage ferroviaire lent de Colombo vers les hauts plateaux via Kandy, plantations de thé, Ella et Badulla.",
+    "pt": "Uma viagem de trem tranquila de Colombo às terras altas via Kandy, plantações de chá, Ella e Badulla."
+  },
+  "geography": {
+    "countries": [
+      "LK"
+    ],
+    "primaryCountry": "LK"
+  },
+  "planning": {
+    "days": 10,
+    "currency": "LKR",
+    "pace": "balanced",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 7.0055,
+      "lng": 80.67712,
+      "altitude": 0.72
+    }
+  },
+  "media": {
+    "hero": {
+      "type": "art-directed",
+      "theme": "tea-country",
+      "asset": null,
+      "attribution": null,
+      "license": "original-ui-art"
+    },
+    "gallery": []
+  },
+  "highlights": [
+    "Misty highlands, tea country and mountain rail",
+    "rail · tea · mountains"
+  ],
+  "places": [
+    {
+      "id": "colombo",
+      "type": "place",
+      "countryCode": "LK",
+      "name": {
+        "en": "Colombo"
+      },
+      "coordinates": {
+        "lat": 6.9271,
+        "lng": 79.8612
+      }
+    },
+    {
+      "id": "kandy",
+      "type": "place",
+      "countryCode": "LK",
+      "name": {
+        "en": "Kandy"
+      },
+      "coordinates": {
+        "lat": 7.2906,
+        "lng": 80.6337
+      }
+    },
+    {
+      "id": "nuwara-eliya",
+      "type": "place",
+      "countryCode": "LK",
+      "name": {
+        "en": "Nuwara Eliya"
+      },
+      "coordinates": {
+        "lat": 6.9497,
+        "lng": 80.7891
+      }
+    },
+    {
+      "id": "ella",
+      "type": "place",
+      "countryCode": "LK",
+      "name": {
+        "en": "Ella"
+      },
+      "coordinates": {
+        "lat": 6.8667,
+        "lng": 81.0466
+      }
+    },
+    {
+      "id": "badulla",
+      "type": "place",
+      "countryCode": "LK",
+      "name": {
+        "en": "Badulla"
+      },
+      "coordinates": {
+        "lat": 6.9934,
+        "lng": 81.055
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "sri-lanka-hill-country-rail-stop-01",
+      "sequence": 1,
+      "placeId": "colombo",
+      "dayStart": 1,
+      "dayEnd": 2,
+      "nights": 2
+    },
+    {
+      "id": "sri-lanka-hill-country-rail-stop-02",
+      "sequence": 2,
+      "placeId": "kandy",
+      "dayStart": 3,
+      "dayEnd": 4,
+      "nights": 2
+    },
+    {
+      "id": "sri-lanka-hill-country-rail-stop-03",
+      "sequence": 3,
+      "placeId": "nuwara-eliya",
+      "dayStart": 5,
+      "dayEnd": 6,
+      "nights": 2
+    },
+    {
+      "id": "sri-lanka-hill-country-rail-stop-04",
+      "sequence": 4,
+      "placeId": "ella",
+      "dayStart": 7,
+      "dayEnd": 8,
+      "nights": 2
+    },
+    {
+      "id": "sri-lanka-hill-country-rail-stop-05",
+      "sequence": 5,
+      "placeId": "badulla",
+      "dayStart": 9,
+      "dayEnd": 10,
+      "nights": 2
+    }
+  ],
+  "segments": [
+    {
+      "id": "sri-lanka-hill-country-rail-leg-01",
+      "sequence": 1,
+      "fromStopId": "sri-lanka-hill-country-rail-stop-01",
+      "toStopId": "sri-lanka-hill-country-rail-stop-02",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "sri-lanka-hill-country-rail-leg-02",
+      "sequence": 2,
+      "fromStopId": "sri-lanka-hill-country-rail-stop-02",
+      "toStopId": "sri-lanka-hill-country-rail-stop-03",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "sri-lanka-hill-country-rail-leg-03",
+      "sequence": 3,
+      "fromStopId": "sri-lanka-hill-country-rail-stop-03",
+      "toStopId": "sri-lanka-hill-country-rail-stop-04",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "sri-lanka-hill-country-rail-leg-04",
+      "sequence": 4,
+      "fromStopId": "sri-lanka-hill-country-rail-stop-04",
+      "toStopId": "sri-lanka-hill-country-rail-stop-05",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "lk-scenic",
+      "title": "Scenic beauty",
+      "issuer": "Sri Lanka Tourism",
+      "issuerType": "tourism-board",
+      "url": "https://www.srilanka.travel/scenic-beauty",
+      "checkedAt": "2026-10-02",
+      "claims": [
+        "official source supports the destination or transport character used for this editorial journey concept",
+        "exact schedules, fares and operating conditions must be checked for the actual travel date"
+      ]
+    }
+  ],
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context"
+  },
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true,
+    "notes": "Editorial route structure is stable; transport, access, price and traveller-specific details require periodic or live verification."
+  }
+}

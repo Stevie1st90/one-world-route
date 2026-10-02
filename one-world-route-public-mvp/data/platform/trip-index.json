@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "catalogUpdatedAt": "2026-09-30",
+  "catalogUpdatedAt": "2026-10-02",
   "trips": [
     {
       "id": "world-195",
@@ -8026,6 +8026,2644 @@
           "title": "Explore visa options",
           "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-finder",
           "checkedAt": "2026-09-30"
+        }
+      ]
+    },
+    {
+      "id": "swiss-scenic-rail-journey",
+      "slug": "swiss-scenic-rail-journey",
+      "kind": "rail",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "title": {
+        "en": "Swiss Scenic Rail Journey",
+        "de": "Schweiz · Panoramabahn-Reise",
+        "it": "Svizzera · viaggio panoramico in treno",
+        "es": "Suiza · viaje panorámico en tren",
+        "fr": "Suisse · voyage panoramique en train",
+        "pt": "Suíça · viagem panorâmica de trem"
+      },
+      "subtitle": {
+        "en": "12 days · lakes, Alpine passes and panoramic rail",
+        "de": "12 Tage · Seen, Alpenpässe und Panoramabahnen",
+        "it": "12 giorni · laghi, passi alpini e treni panoramici",
+        "es": "12 días · lagos, pasos alpinos y trenes panorámicos",
+        "fr": "12 jours · lacs, cols alpins et trains panoramiques",
+        "pt": "12 dias · lagos, passos alpinos e trens panorâmicos"
+      },
+      "summary": {
+        "en": "A rail-first journey linking Zürich, Lucerne, the Bernese Oberland, Lake Geneva, Zermatt and the Engadin, inspired by Switzerland’s panoramic rail network.",
+        "de": "Eine bahnorientierte Reise von Zürich über Luzern, Berner Oberland, Genfersee und Zermatt bis ins Engadin.",
+        "it": "Un viaggio ferroviario tra Zurigo, Lucerna, Oberland bernese, Lago di Ginevra, Zermatt ed Engadina.",
+        "es": "Un viaje ferroviario entre Zúrich, Lucerna, Oberland bernés, Lago Lemán, Zermatt y Engadina.",
+        "fr": "Un voyage ferroviaire entre Zurich, Lucerne, Oberland bernois, Léman, Zermatt et Engadine.",
+        "pt": "Uma viagem ferroviária entre Zurique, Lucerna, Oberland Bernês, Lago Léman, Zermatt e Engadina."
+      },
+      "metrics": {
+        "days": 12,
+        "countries": 1,
+        "stops": 6,
+        "segments": 5,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "alpine-rail",
+        "visualFamily": "rail-cinematic",
+        "featurePriority": 88,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "europe",
+          "central-europe",
+          "switzerland"
+        ],
+        "themes": [
+          "rail",
+          "mountains",
+          "lakes",
+          "culture"
+        ],
+        "modes": [
+          "rail"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn",
+            "winter"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "europe",
+          "accessibility": "standard-check"
+        }
+      },
+      "planning": {
+        "days": 12,
+        "currency": "CHF",
+        "pace": "balanced",
+        "knownPublishedMinimumEur": null,
+        "knownPublishedMinimumScope": null
+      },
+      "itinerary": [
+        {
+          "id": "swiss-scenic-rail-journey-stop-01",
+          "sequence": 1,
+          "dayStart": 1,
+          "dayEnd": 2,
+          "nights": 2,
+          "name": {
+            "en": "Zürich"
+          },
+          "countryCode": "CH",
+          "type": "place"
+        },
+        {
+          "id": "swiss-scenic-rail-journey-stop-02",
+          "sequence": 2,
+          "dayStart": 3,
+          "dayEnd": 4,
+          "nights": 2,
+          "name": {
+            "en": "Lucerne"
+          },
+          "countryCode": "CH",
+          "type": "place"
+        },
+        {
+          "id": "swiss-scenic-rail-journey-stop-03",
+          "sequence": 3,
+          "dayStart": 5,
+          "dayEnd": 6,
+          "nights": 2,
+          "name": {
+            "en": "Interlaken"
+          },
+          "countryCode": "CH",
+          "type": "place"
+        },
+        {
+          "id": "swiss-scenic-rail-journey-stop-04",
+          "sequence": 4,
+          "dayStart": 7,
+          "dayEnd": 8,
+          "nights": 2,
+          "name": {
+            "en": "Montreux"
+          },
+          "countryCode": "CH",
+          "type": "place"
+        },
+        {
+          "id": "swiss-scenic-rail-journey-stop-05",
+          "sequence": 5,
+          "dayStart": 9,
+          "dayEnd": 10,
+          "nights": 2,
+          "name": {
+            "en": "Zermatt"
+          },
+          "countryCode": "CH",
+          "type": "place"
+        },
+        {
+          "id": "swiss-scenic-rail-journey-stop-06",
+          "sequence": 6,
+          "dayStart": 11,
+          "dayEnd": 12,
+          "nights": 2,
+          "name": {
+            "en": "St. Moritz"
+          },
+          "countryCode": "CH",
+          "type": "place"
+        }
+      ],
+      "preview": {
+        "points": [
+          {
+            "id": "zurich",
+            "name": {
+              "en": "Zürich"
+            },
+            "lat": 47.3769,
+            "lng": 8.5417
+          },
+          {
+            "id": "lucerne",
+            "name": {
+              "en": "Lucerne"
+            },
+            "lat": 47.0502,
+            "lng": 8.3093
+          },
+          {
+            "id": "interlaken",
+            "name": {
+              "en": "Interlaken"
+            },
+            "lat": 46.6863,
+            "lng": 7.8632
+          },
+          {
+            "id": "montreux",
+            "name": {
+              "en": "Montreux"
+            },
+            "lat": 46.4312,
+            "lng": 6.9107
+          },
+          {
+            "id": "zermatt",
+            "name": {
+              "en": "Zermatt"
+            },
+            "lat": 46.0207,
+            "lng": 7.7491
+          },
+          {
+            "id": "st-moritz",
+            "name": {
+              "en": "St. Moritz"
+            },
+            "lat": 46.4908,
+            "lng": 9.8355
+          }
+        ],
+        "arcs": [
+          {
+            "id": "swiss-scenic-rail-journey-leg-01",
+            "fromName": {
+              "en": "Zürich"
+            },
+            "toName": {
+              "en": "Lucerne"
+            },
+            "start": {
+              "lat": 47.3769,
+              "lng": 8.5417
+            },
+            "end": {
+              "lat": 47.0502,
+              "lng": 8.3093
+            }
+          },
+          {
+            "id": "swiss-scenic-rail-journey-leg-02",
+            "fromName": {
+              "en": "Lucerne"
+            },
+            "toName": {
+              "en": "Interlaken"
+            },
+            "start": {
+              "lat": 47.0502,
+              "lng": 8.3093
+            },
+            "end": {
+              "lat": 46.6863,
+              "lng": 7.8632
+            }
+          },
+          {
+            "id": "swiss-scenic-rail-journey-leg-03",
+            "fromName": {
+              "en": "Interlaken"
+            },
+            "toName": {
+              "en": "Montreux"
+            },
+            "start": {
+              "lat": 46.6863,
+              "lng": 7.8632
+            },
+            "end": {
+              "lat": 46.4312,
+              "lng": 6.9107
+            }
+          },
+          {
+            "id": "swiss-scenic-rail-journey-leg-04",
+            "fromName": {
+              "en": "Montreux"
+            },
+            "toName": {
+              "en": "Zermatt"
+            },
+            "start": {
+              "lat": 46.4312,
+              "lng": 6.9107
+            },
+            "end": {
+              "lat": 46.0207,
+              "lng": 7.7491
+            }
+          },
+          {
+            "id": "swiss-scenic-rail-journey-leg-05",
+            "fromName": {
+              "en": "Zermatt"
+            },
+            "toName": {
+              "en": "St. Moritz"
+            },
+            "start": {
+              "lat": 46.0207,
+              "lng": 7.7491
+            },
+            "end": {
+              "lat": 46.4908,
+              "lng": 9.8355
+            }
+          }
+        ]
+      },
+      "evidence": {
+        "segments": 5,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-10-02"
+      },
+      "sources": [
+        {
+          "id": "ch-grand-train-tour",
+          "issuer": "Switzerland Tourism",
+          "title": "Grand Train Tour of Switzerland",
+          "url": "https://www.myswitzerland.com/en-ch/microsites/in/swiss-travel-system/",
+          "checkedAt": "2026-10-02"
+        }
+      ]
+    },
+    {
+      "id": "scotland-highlands-hebrides",
+      "slug": "scotland-highlands-hebrides",
+      "kind": "multimodal",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "title": {
+        "en": "Scottish Highlands & Hebrides Journey",
+        "de": "Schottische Highlands & Hebriden",
+        "it": "Highlands scozzesi e Ebridi",
+        "es": "Highlands escocesas y Hébridas",
+        "fr": "Highlands écossais et Hébrides",
+        "pt": "Highlands escocesas e Hébridas"
+      },
+      "subtitle": {
+        "en": "12 days · Highlands roads, Outer Hebrides and ferries",
+        "de": "12 Tage · Highlands, Äußere Hebriden und Fähren",
+        "it": "12 giorni · Highlands, Ebridi Esterne e traghetti",
+        "es": "12 días · Highlands, Hébridas Exteriores y ferris",
+        "fr": "12 jours · Highlands, Hébrides extérieures et ferries",
+        "pt": "12 dias · Highlands, Hébridas Exteriores e balsas"
+      },
+      "summary": {
+        "en": "A road-and-ferry journey from Inverness to the northwest Highlands, across Lewis and Harris and onward to Skye and Lochaber.",
+        "de": "Eine Straßen- und Fährreise von Inverness durch die nordwestlichen Highlands über Lewis und Harris bis Skye und Lochaber.",
+        "it": "Un viaggio su strada e traghetto da Inverness alle Highlands nord-occidentali, Lewis e Harris, Skye e Lochaber.",
+        "es": "Un viaje por carretera y ferry desde Inverness por las Highlands del noroeste, Lewis y Harris, Skye y Lochaber.",
+        "fr": "Un voyage route et ferry depuis Inverness vers les Highlands du nord-ouest, Lewis et Harris, Skye et Lochaber.",
+        "pt": "Uma viagem de estrada e balsa de Inverness às Highlands do noroeste, Lewis e Harris, Skye e Lochaber."
+      },
+      "metrics": {
+        "days": 12,
+        "countries": 1,
+        "stops": 6,
+        "segments": 5,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "hebrides",
+        "visualFamily": "coastal-editorial",
+        "featurePriority": 86,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "europe",
+          "northern-europe",
+          "scotland"
+        ],
+        "themes": [
+          "coast",
+          "islands",
+          "road-trip",
+          "culture"
+        ],
+        "modes": [
+          "car",
+          "ferry"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "europe",
+          "accessibility": "operator-dependent"
+        }
+      },
+      "planning": {
+        "days": 12,
+        "currency": "GBP",
+        "pace": "balanced",
+        "knownPublishedMinimumEur": null,
+        "knownPublishedMinimumScope": null
+      },
+      "itinerary": [
+        {
+          "id": "scotland-highlands-hebrides-stop-01",
+          "sequence": 1,
+          "dayStart": 1,
+          "dayEnd": 2,
+          "nights": 2,
+          "name": {
+            "en": "Inverness"
+          },
+          "countryCode": "GB",
+          "type": "place"
+        },
+        {
+          "id": "scotland-highlands-hebrides-stop-02",
+          "sequence": 2,
+          "dayStart": 3,
+          "dayEnd": 3,
+          "nights": 1,
+          "name": {
+            "en": "Ullapool"
+          },
+          "countryCode": "GB",
+          "type": "place"
+        },
+        {
+          "id": "scotland-highlands-hebrides-stop-03",
+          "sequence": 3,
+          "dayStart": 4,
+          "dayEnd": 5,
+          "nights": 2,
+          "name": {
+            "en": "Stornoway"
+          },
+          "countryCode": "GB",
+          "type": "place"
+        },
+        {
+          "id": "scotland-highlands-hebrides-stop-04",
+          "sequence": 4,
+          "dayStart": 6,
+          "dayEnd": 6,
+          "nights": 1,
+          "name": {
+            "en": "Tarbert, Harris"
+          },
+          "countryCode": "GB",
+          "type": "place"
+        },
+        {
+          "id": "scotland-highlands-hebrides-stop-05",
+          "sequence": 5,
+          "dayStart": 7,
+          "dayEnd": 9,
+          "nights": 3,
+          "name": {
+            "en": "Portree"
+          },
+          "countryCode": "GB",
+          "type": "place"
+        },
+        {
+          "id": "scotland-highlands-hebrides-stop-06",
+          "sequence": 6,
+          "dayStart": 10,
+          "dayEnd": 12,
+          "nights": 3,
+          "name": {
+            "en": "Fort William"
+          },
+          "countryCode": "GB",
+          "type": "place"
+        }
+      ],
+      "preview": {
+        "points": [
+          {
+            "id": "inverness",
+            "name": {
+              "en": "Inverness"
+            },
+            "lat": 57.4778,
+            "lng": -4.2247
+          },
+          {
+            "id": "ullapool",
+            "name": {
+              "en": "Ullapool"
+            },
+            "lat": 57.8954,
+            "lng": -5.1601
+          },
+          {
+            "id": "stornoway",
+            "name": {
+              "en": "Stornoway"
+            },
+            "lat": 58.2093,
+            "lng": -6.3865
+          },
+          {
+            "id": "tarbert-harris",
+            "name": {
+              "en": "Tarbert, Harris"
+            },
+            "lat": 57.8977,
+            "lng": -6.798
+          },
+          {
+            "id": "portree",
+            "name": {
+              "en": "Portree"
+            },
+            "lat": 57.4125,
+            "lng": -6.194
+          },
+          {
+            "id": "fort-william",
+            "name": {
+              "en": "Fort William"
+            },
+            "lat": 56.8198,
+            "lng": -5.1052
+          }
+        ],
+        "arcs": [
+          {
+            "id": "scotland-highlands-hebrides-leg-01",
+            "fromName": {
+              "en": "Inverness"
+            },
+            "toName": {
+              "en": "Ullapool"
+            },
+            "start": {
+              "lat": 57.4778,
+              "lng": -4.2247
+            },
+            "end": {
+              "lat": 57.8954,
+              "lng": -5.1601
+            }
+          },
+          {
+            "id": "scotland-highlands-hebrides-leg-02",
+            "fromName": {
+              "en": "Ullapool"
+            },
+            "toName": {
+              "en": "Stornoway"
+            },
+            "start": {
+              "lat": 57.8954,
+              "lng": -5.1601
+            },
+            "end": {
+              "lat": 58.2093,
+              "lng": -6.3865
+            }
+          },
+          {
+            "id": "scotland-highlands-hebrides-leg-03",
+            "fromName": {
+              "en": "Stornoway"
+            },
+            "toName": {
+              "en": "Tarbert, Harris"
+            },
+            "start": {
+              "lat": 58.2093,
+              "lng": -6.3865
+            },
+            "end": {
+              "lat": 57.8977,
+              "lng": -6.798
+            }
+          },
+          {
+            "id": "scotland-highlands-hebrides-leg-04",
+            "fromName": {
+              "en": "Tarbert, Harris"
+            },
+            "toName": {
+              "en": "Portree"
+            },
+            "start": {
+              "lat": 57.8977,
+              "lng": -6.798
+            },
+            "end": {
+              "lat": 57.4125,
+              "lng": -6.194
+            }
+          },
+          {
+            "id": "scotland-highlands-hebrides-leg-05",
+            "fromName": {
+              "en": "Portree"
+            },
+            "toName": {
+              "en": "Fort William"
+            },
+            "start": {
+              "lat": 57.4125,
+              "lng": -6.194
+            },
+            "end": {
+              "lat": 56.8198,
+              "lng": -5.1052
+            }
+          }
+        ]
+      },
+      "evidence": {
+        "segments": 5,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-10-02"
+      },
+      "sources": [
+        {
+          "id": "scotland-ferry",
+          "issuer": "VisitScotland",
+          "title": "Getting around Scotland by ferry",
+          "url": "https://www.visitscotland.com/travel-planning/ferry",
+          "checkedAt": "2026-10-02"
+        }
+      ]
+    },
+    {
+      "id": "sri-lanka-hill-country-rail",
+      "slug": "sri-lanka-hill-country-rail",
+      "kind": "rail",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "title": {
+        "en": "Sri Lanka Hill Country by Rail",
+        "de": "Sri Lanka · Hochland per Bahn",
+        "it": "Sri Lanka · altopiani in treno",
+        "es": "Sri Lanka · tierras altas en tren",
+        "fr": "Sri Lanka · hauts plateaux en train",
+        "pt": "Sri Lanka · terras altas de trem"
+      },
+      "subtitle": {
+        "en": "10 days · Colombo, Kandy, tea country and Ella",
+        "de": "10 Tage · Colombo, Kandy, Teeland und Ella",
+        "it": "10 giorni · Colombo, Kandy, tè ed Ella",
+        "es": "10 días · Colombo, Kandy, té y Ella",
+        "fr": "10 jours · Colombo, Kandy, thé et Ella",
+        "pt": "10 dias · Colombo, Kandy, chá e Ella"
+      },
+      "summary": {
+        "en": "A slow rail journey from Colombo into Sri Lanka’s central highlands, through Kandy, tea country and the mountain corridor toward Ella and Badulla.",
+        "de": "Eine langsame Bahnreise von Colombo ins zentrale Hochland Sri Lankas über Kandy, Teeplantagen und Ella bis Badulla.",
+        "it": "Un lento viaggio in treno da Colombo agli altopiani centrali via Kandy, piantagioni di tè, Ella e Badulla.",
+        "es": "Un viaje ferroviario pausado de Colombo a las tierras altas vía Kandy, plantaciones de té, Ella y Badulla.",
+        "fr": "Un voyage ferroviaire lent de Colombo vers les hauts plateaux via Kandy, plantations de thé, Ella et Badulla.",
+        "pt": "Uma viagem de trem tranquila de Colombo às terras altas via Kandy, plantações de chá, Ella e Badulla."
+      },
+      "metrics": {
+        "days": 10,
+        "countries": 1,
+        "stops": 5,
+        "segments": 4,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "tea-country",
+        "visualFamily": "rail-cinematic",
+        "featurePriority": 87,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "asia",
+          "south-asia",
+          "sri-lanka"
+        ],
+        "themes": [
+          "rail",
+          "mountains",
+          "tea",
+          "culture"
+        ],
+        "modes": [
+          "rail"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "winter",
+            "spring",
+            "summer"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends"
+          ],
+          "startRegion": "asia",
+          "accessibility": "operator-dependent"
+        }
+      },
+      "planning": {
+        "days": 10,
+        "currency": "LKR",
+        "pace": "balanced",
+        "knownPublishedMinimumEur": null,
+        "knownPublishedMinimumScope": null
+      },
+      "itinerary": [
+        {
+          "id": "sri-lanka-hill-country-rail-stop-01",
+          "sequence": 1,
+          "dayStart": 1,
+          "dayEnd": 2,
+          "nights": 2,
+          "name": {
+            "en": "Colombo"
+          },
+          "countryCode": "LK",
+          "type": "place"
+        },
+        {
+          "id": "sri-lanka-hill-country-rail-stop-02",
+          "sequence": 2,
+          "dayStart": 3,
+          "dayEnd": 4,
+          "nights": 2,
+          "name": {
+            "en": "Kandy"
+          },
+          "countryCode": "LK",
+          "type": "place"
+        },
+        {
+          "id": "sri-lanka-hill-country-rail-stop-03",
+          "sequence": 3,
+          "dayStart": 5,
+          "dayEnd": 6,
+          "nights": 2,
+          "name": {
+            "en": "Nuwara Eliya"
+          },
+          "countryCode": "LK",
+          "type": "place"
+        },
+        {
+          "id": "sri-lanka-hill-country-rail-stop-04",
+          "sequence": 4,
+          "dayStart": 7,
+          "dayEnd": 8,
+          "nights": 2,
+          "name": {
+            "en": "Ella"
+          },
+          "countryCode": "LK",
+          "type": "place"
+        },
+        {
+          "id": "sri-lanka-hill-country-rail-stop-05",
+          "sequence": 5,
+          "dayStart": 9,
+          "dayEnd": 10,
+          "nights": 2,
+          "name": {
+            "en": "Badulla"
+          },
+          "countryCode": "LK",
+          "type": "place"
+        }
+      ],
+      "preview": {
+        "points": [
+          {
+            "id": "colombo",
+            "name": {
+              "en": "Colombo"
+            },
+            "lat": 6.9271,
+            "lng": 79.8612
+          },
+          {
+            "id": "kandy",
+            "name": {
+              "en": "Kandy"
+            },
+            "lat": 7.2906,
+            "lng": 80.6337
+          },
+          {
+            "id": "nuwara-eliya",
+            "name": {
+              "en": "Nuwara Eliya"
+            },
+            "lat": 6.9497,
+            "lng": 80.7891
+          },
+          {
+            "id": "ella",
+            "name": {
+              "en": "Ella"
+            },
+            "lat": 6.8667,
+            "lng": 81.0466
+          },
+          {
+            "id": "badulla",
+            "name": {
+              "en": "Badulla"
+            },
+            "lat": 6.9934,
+            "lng": 81.055
+          }
+        ],
+        "arcs": [
+          {
+            "id": "sri-lanka-hill-country-rail-leg-01",
+            "fromName": {
+              "en": "Colombo"
+            },
+            "toName": {
+              "en": "Kandy"
+            },
+            "start": {
+              "lat": 6.9271,
+              "lng": 79.8612
+            },
+            "end": {
+              "lat": 7.2906,
+              "lng": 80.6337
+            }
+          },
+          {
+            "id": "sri-lanka-hill-country-rail-leg-02",
+            "fromName": {
+              "en": "Kandy"
+            },
+            "toName": {
+              "en": "Nuwara Eliya"
+            },
+            "start": {
+              "lat": 7.2906,
+              "lng": 80.6337
+            },
+            "end": {
+              "lat": 6.9497,
+              "lng": 80.7891
+            }
+          },
+          {
+            "id": "sri-lanka-hill-country-rail-leg-03",
+            "fromName": {
+              "en": "Nuwara Eliya"
+            },
+            "toName": {
+              "en": "Ella"
+            },
+            "start": {
+              "lat": 6.9497,
+              "lng": 80.7891
+            },
+            "end": {
+              "lat": 6.8667,
+              "lng": 81.0466
+            }
+          },
+          {
+            "id": "sri-lanka-hill-country-rail-leg-04",
+            "fromName": {
+              "en": "Ella"
+            },
+            "toName": {
+              "en": "Badulla"
+            },
+            "start": {
+              "lat": 6.8667,
+              "lng": 81.0466
+            },
+            "end": {
+              "lat": 6.9934,
+              "lng": 81.055
+            }
+          }
+        ]
+      },
+      "evidence": {
+        "segments": 4,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-10-02"
+      },
+      "sources": [
+        {
+          "id": "lk-scenic",
+          "issuer": "Sri Lanka Tourism",
+          "title": "Scenic beauty",
+          "url": "https://www.srilanka.travel/scenic-beauty",
+          "checkedAt": "2026-10-02"
+        }
+      ]
+    },
+    {
+      "id": "taiwan-rail-coast-loop",
+      "slug": "taiwan-rail-coast-loop",
+      "kind": "rail",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "title": {
+        "en": "Taiwan Rail & Coast Loop",
+        "de": "Taiwan · Bahn- & Küstenrunde",
+        "it": "Taiwan · circuito ferrovia e costa",
+        "es": "Taiwán · circuito ferroviario y costero",
+        "fr": "Taïwan · boucle ferroviaire et côtière",
+        "pt": "Taiwan · circuito ferroviário e costeiro"
+      },
+      "subtitle": {
+        "en": "12 days · east-coast mountains, cities and island rail",
+        "de": "12 Tage · Ostküste, Berge, Städte und Inselbahn",
+        "it": "12 giorni · costa orientale, montagne, città e ferrovia",
+        "es": "12 días · costa este, montañas, ciudades y tren",
+        "fr": "12 jours · côte est, montagnes, villes et train",
+        "pt": "12 dias · costa leste, montanhas, cidades e trem"
+      },
+      "summary": {
+        "en": "A clockwise rail loop from Taipei down Taiwan’s dramatic east coast, through the south and back north along the western corridor.",
+        "de": "Eine Bahn-Rundreise ab Taipei entlang Taiwans dramatischer Ostküste, durch den Süden und über den Westkorridor zurück nach Norden.",
+        "it": "Un anello ferroviario da Taipei lungo la costa orientale, attraverso il sud e di nuovo a nord sul corridoio occidentale.",
+        "es": "Un circuito ferroviario desde Taipéi por la costa este, el sur y de regreso al norte por el corredor occidental.",
+        "fr": "Une boucle ferroviaire depuis Taipei le long de la côte est, à travers le sud puis vers le nord par le corridor ouest.",
+        "pt": "Um circuito ferroviário desde Taipei pela costa leste, sul e retorno ao norte pelo corredor oeste."
+      },
+      "metrics": {
+        "days": 12,
+        "countries": 1,
+        "stops": 7,
+        "segments": 6,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "pacific-rail",
+        "visualFamily": "rail-cinematic",
+        "featurePriority": 85,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "asia",
+          "east-asia",
+          "taiwan"
+        ],
+        "themes": [
+          "rail",
+          "coast",
+          "cities",
+          "nature"
+        ],
+        "modes": [
+          "rail"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "spring",
+            "autumn",
+            "winter"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "asia",
+          "accessibility": "standard-check"
+        }
+      },
+      "planning": {
+        "days": 12,
+        "currency": "TWD",
+        "pace": "balanced",
+        "knownPublishedMinimumEur": null,
+        "knownPublishedMinimumScope": null
+      },
+      "itinerary": [
+        {
+          "id": "taiwan-rail-coast-loop-stop-01",
+          "sequence": 1,
+          "dayStart": 1,
+          "dayEnd": 2,
+          "nights": 2,
+          "name": {
+            "en": "Taipei"
+          },
+          "countryCode": "TW",
+          "type": "place"
+        },
+        {
+          "id": "taiwan-rail-coast-loop-stop-02",
+          "sequence": 2,
+          "dayStart": 3,
+          "dayEnd": 4,
+          "nights": 2,
+          "name": {
+            "en": "Hualien"
+          },
+          "countryCode": "TW",
+          "type": "place"
+        },
+        {
+          "id": "taiwan-rail-coast-loop-stop-03",
+          "sequence": 3,
+          "dayStart": 5,
+          "dayEnd": 6,
+          "nights": 2,
+          "name": {
+            "en": "Taitung"
+          },
+          "countryCode": "TW",
+          "type": "place"
+        },
+        {
+          "id": "taiwan-rail-coast-loop-stop-04",
+          "sequence": 4,
+          "dayStart": 7,
+          "dayEnd": 8,
+          "nights": 2,
+          "name": {
+            "en": "Kaohsiung"
+          },
+          "countryCode": "TW",
+          "type": "place"
+        },
+        {
+          "id": "taiwan-rail-coast-loop-stop-05",
+          "sequence": 5,
+          "dayStart": 9,
+          "dayEnd": 9,
+          "nights": 1,
+          "name": {
+            "en": "Tainan"
+          },
+          "countryCode": "TW",
+          "type": "place"
+        },
+        {
+          "id": "taiwan-rail-coast-loop-stop-06",
+          "sequence": 6,
+          "dayStart": 10,
+          "dayEnd": 11,
+          "nights": 2,
+          "name": {
+            "en": "Taichung"
+          },
+          "countryCode": "TW",
+          "type": "place"
+        },
+        {
+          "id": "taiwan-rail-coast-loop-stop-07",
+          "sequence": 7,
+          "dayStart": 12,
+          "dayEnd": 12,
+          "nights": 1,
+          "name": {
+            "en": "Taipei"
+          },
+          "countryCode": "TW",
+          "type": "place"
+        }
+      ],
+      "preview": {
+        "points": [
+          {
+            "id": "taipei",
+            "name": {
+              "en": "Taipei"
+            },
+            "lat": 25.033,
+            "lng": 121.5654
+          },
+          {
+            "id": "hualien",
+            "name": {
+              "en": "Hualien"
+            },
+            "lat": 23.9911,
+            "lng": 121.6112
+          },
+          {
+            "id": "taitung",
+            "name": {
+              "en": "Taitung"
+            },
+            "lat": 22.7554,
+            "lng": 121.15
+          },
+          {
+            "id": "kaohsiung",
+            "name": {
+              "en": "Kaohsiung"
+            },
+            "lat": 22.6273,
+            "lng": 120.3014
+          },
+          {
+            "id": "tainan",
+            "name": {
+              "en": "Tainan"
+            },
+            "lat": 22.9999,
+            "lng": 120.2269
+          },
+          {
+            "id": "taichung",
+            "name": {
+              "en": "Taichung"
+            },
+            "lat": 24.1477,
+            "lng": 120.6736
+          },
+          {
+            "id": "taipei-return",
+            "name": {
+              "en": "Taipei"
+            },
+            "lat": 25.033,
+            "lng": 121.5654
+          }
+        ],
+        "arcs": [
+          {
+            "id": "taiwan-rail-coast-loop-leg-01",
+            "fromName": {
+              "en": "Taipei"
+            },
+            "toName": {
+              "en": "Hualien"
+            },
+            "start": {
+              "lat": 25.033,
+              "lng": 121.5654
+            },
+            "end": {
+              "lat": 23.9911,
+              "lng": 121.6112
+            }
+          },
+          {
+            "id": "taiwan-rail-coast-loop-leg-02",
+            "fromName": {
+              "en": "Hualien"
+            },
+            "toName": {
+              "en": "Taitung"
+            },
+            "start": {
+              "lat": 23.9911,
+              "lng": 121.6112
+            },
+            "end": {
+              "lat": 22.7554,
+              "lng": 121.15
+            }
+          },
+          {
+            "id": "taiwan-rail-coast-loop-leg-03",
+            "fromName": {
+              "en": "Taitung"
+            },
+            "toName": {
+              "en": "Kaohsiung"
+            },
+            "start": {
+              "lat": 22.7554,
+              "lng": 121.15
+            },
+            "end": {
+              "lat": 22.6273,
+              "lng": 120.3014
+            }
+          },
+          {
+            "id": "taiwan-rail-coast-loop-leg-04",
+            "fromName": {
+              "en": "Kaohsiung"
+            },
+            "toName": {
+              "en": "Tainan"
+            },
+            "start": {
+              "lat": 22.6273,
+              "lng": 120.3014
+            },
+            "end": {
+              "lat": 22.9999,
+              "lng": 120.2269
+            }
+          },
+          {
+            "id": "taiwan-rail-coast-loop-leg-05",
+            "fromName": {
+              "en": "Tainan"
+            },
+            "toName": {
+              "en": "Taichung"
+            },
+            "start": {
+              "lat": 22.9999,
+              "lng": 120.2269
+            },
+            "end": {
+              "lat": 24.1477,
+              "lng": 120.6736
+            }
+          },
+          {
+            "id": "taiwan-rail-coast-loop-leg-06",
+            "fromName": {
+              "en": "Taichung"
+            },
+            "toName": {
+              "en": "Taipei"
+            },
+            "start": {
+              "lat": 24.1477,
+              "lng": 120.6736
+            },
+            "end": {
+              "lat": 25.033,
+              "lng": 121.5654
+            }
+          }
+        ]
+      },
+      "evidence": {
+        "segments": 6,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-10-02"
+      },
+      "sources": [
+        {
+          "id": "tw-round-island-rail",
+          "issuer": "Taiwan Railway Corporation",
+          "title": "Round-the-island railway",
+          "url": "https://www.railway.gov.tw/tra-tip-web/tip/tip00N/tipN01/journey/index?lang=EN_US",
+          "checkedAt": "2026-10-02"
+        }
+      ]
+    },
+    {
+      "id": "java-rail-volcano-journey",
+      "slug": "java-rail-volcano-journey",
+      "kind": "rail",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "title": {
+        "en": "Java Rail & Volcano Journey",
+        "de": "Java · Bahn & Vulkane",
+        "it": "Giava · treni e vulcani",
+        "es": "Java · trenes y volcanes",
+        "fr": "Java · trains et volcans",
+        "pt": "Java · trens e vulcões"
+      },
+      "subtitle": {
+        "en": "12 days · Jakarta, Yogyakarta, East Java and volcano country",
+        "de": "12 Tage · Jakarta, Yogyakarta, Ostjava und Vulkanland",
+        "it": "12 giorni · Giacarta, Yogyakarta, Giava orientale e vulcani",
+        "es": "12 días · Yakarta, Yogyakarta, Java Oriental y volcanes",
+        "fr": "12 jours · Jakarta, Yogyakarta, Java oriental et volcans",
+        "pt": "12 dias · Jacarta, Yogyakarta, Java Oriental e vulcões"
+      },
+      "summary": {
+        "en": "A rail-led crossing of Java from Jakarta through Bandung and Yogyakarta to East Java, combining cities, heritage and volcanic landscapes.",
+        "de": "Eine bahnorientierte Java-Durchquerung von Jakarta über Bandung und Yogyakarta nach Ostjava – mit Städten, Kultur und Vulkanlandschaften.",
+        "it": "Un attraversamento ferroviario di Giava da Giacarta via Bandung e Yogyakarta fino a Giava orientale, tra città, cultura e vulcani.",
+        "es": "Una travesía ferroviaria de Java desde Yakarta por Bandung y Yogyakarta hasta Java Oriental, entre ciudades, cultura y volcanes.",
+        "fr": "Une traversée ferroviaire de Java de Jakarta via Bandung et Yogyakarta jusqu'à Java oriental, entre villes, culture et volcans.",
+        "pt": "Uma travessia ferroviária de Java de Jacarta via Bandung e Yogyakarta até Java Oriental, entre cidades, cultura e vulcões."
+      },
+      "metrics": {
+        "days": 12,
+        "countries": 1,
+        "stops": 6,
+        "segments": 5,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "java-volcano",
+        "visualFamily": "rail-cinematic",
+        "featurePriority": 84,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "asia",
+          "south-east-asia",
+          "indonesia"
+        ],
+        "themes": [
+          "rail",
+          "culture",
+          "volcanic",
+          "cities"
+        ],
+        "modes": [
+          "rail"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "active",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends"
+          ],
+          "startRegion": "asia",
+          "accessibility": "operator-dependent"
+        }
+      },
+      "planning": {
+        "days": 12,
+        "currency": "IDR",
+        "pace": "active",
+        "knownPublishedMinimumEur": null,
+        "knownPublishedMinimumScope": null
+      },
+      "itinerary": [
+        {
+          "id": "java-rail-volcano-journey-stop-01",
+          "sequence": 1,
+          "dayStart": 1,
+          "dayEnd": 2,
+          "nights": 2,
+          "name": {
+            "en": "Jakarta"
+          },
+          "countryCode": "ID",
+          "type": "place"
+        },
+        {
+          "id": "java-rail-volcano-journey-stop-02",
+          "sequence": 2,
+          "dayStart": 3,
+          "dayEnd": 4,
+          "nights": 2,
+          "name": {
+            "en": "Bandung"
+          },
+          "countryCode": "ID",
+          "type": "place"
+        },
+        {
+          "id": "java-rail-volcano-journey-stop-03",
+          "sequence": 3,
+          "dayStart": 5,
+          "dayEnd": 7,
+          "nights": 3,
+          "name": {
+            "en": "Yogyakarta"
+          },
+          "countryCode": "ID",
+          "type": "place"
+        },
+        {
+          "id": "java-rail-volcano-journey-stop-04",
+          "sequence": 4,
+          "dayStart": 8,
+          "dayEnd": 8,
+          "nights": 1,
+          "name": {
+            "en": "Surakarta (Solo)"
+          },
+          "countryCode": "ID",
+          "type": "place"
+        },
+        {
+          "id": "java-rail-volcano-journey-stop-05",
+          "sequence": 5,
+          "dayStart": 9,
+          "dayEnd": 10,
+          "nights": 2,
+          "name": {
+            "en": "Surabaya"
+          },
+          "countryCode": "ID",
+          "type": "place"
+        },
+        {
+          "id": "java-rail-volcano-journey-stop-06",
+          "sequence": 6,
+          "dayStart": 11,
+          "dayEnd": 12,
+          "nights": 2,
+          "name": {
+            "en": "Malang"
+          },
+          "countryCode": "ID",
+          "type": "place"
+        }
+      ],
+      "preview": {
+        "points": [
+          {
+            "id": "jakarta",
+            "name": {
+              "en": "Jakarta"
+            },
+            "lat": -6.2088,
+            "lng": 106.8456
+          },
+          {
+            "id": "bandung",
+            "name": {
+              "en": "Bandung"
+            },
+            "lat": -6.9175,
+            "lng": 107.6191
+          },
+          {
+            "id": "yogyakarta",
+            "name": {
+              "en": "Yogyakarta"
+            },
+            "lat": -7.7956,
+            "lng": 110.3695
+          },
+          {
+            "id": "solo",
+            "name": {
+              "en": "Surakarta (Solo)"
+            },
+            "lat": -7.5755,
+            "lng": 110.8243
+          },
+          {
+            "id": "surabaya",
+            "name": {
+              "en": "Surabaya"
+            },
+            "lat": -7.2575,
+            "lng": 112.7521
+          },
+          {
+            "id": "malang",
+            "name": {
+              "en": "Malang"
+            },
+            "lat": -7.9666,
+            "lng": 112.6326
+          }
+        ],
+        "arcs": [
+          {
+            "id": "java-rail-volcano-journey-leg-01",
+            "fromName": {
+              "en": "Jakarta"
+            },
+            "toName": {
+              "en": "Bandung"
+            },
+            "start": {
+              "lat": -6.2088,
+              "lng": 106.8456
+            },
+            "end": {
+              "lat": -6.9175,
+              "lng": 107.6191
+            }
+          },
+          {
+            "id": "java-rail-volcano-journey-leg-02",
+            "fromName": {
+              "en": "Bandung"
+            },
+            "toName": {
+              "en": "Yogyakarta"
+            },
+            "start": {
+              "lat": -6.9175,
+              "lng": 107.6191
+            },
+            "end": {
+              "lat": -7.7956,
+              "lng": 110.3695
+            }
+          },
+          {
+            "id": "java-rail-volcano-journey-leg-03",
+            "fromName": {
+              "en": "Yogyakarta"
+            },
+            "toName": {
+              "en": "Surakarta (Solo)"
+            },
+            "start": {
+              "lat": -7.7956,
+              "lng": 110.3695
+            },
+            "end": {
+              "lat": -7.5755,
+              "lng": 110.8243
+            }
+          },
+          {
+            "id": "java-rail-volcano-journey-leg-04",
+            "fromName": {
+              "en": "Surakarta (Solo)"
+            },
+            "toName": {
+              "en": "Surabaya"
+            },
+            "start": {
+              "lat": -7.5755,
+              "lng": 110.8243
+            },
+            "end": {
+              "lat": -7.2575,
+              "lng": 112.7521
+            }
+          },
+          {
+            "id": "java-rail-volcano-journey-leg-05",
+            "fromName": {
+              "en": "Surabaya"
+            },
+            "toName": {
+              "en": "Malang"
+            },
+            "start": {
+              "lat": -7.2575,
+              "lng": 112.7521
+            },
+            "end": {
+              "lat": -7.9666,
+              "lng": 112.6326
+            }
+          }
+        ]
+      },
+      "evidence": {
+        "segments": 5,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-10-02"
+      },
+      "sources": [
+        {
+          "id": "id-java",
+          "issuer": "Indonesia Travel",
+          "title": "Java: Rich Culture & Scenic Beauty",
+          "url": "https://www.indonesia.travel/gb/en/destination/java",
+          "checkedAt": "2026-10-02"
+        }
+      ]
+    },
+    {
+      "id": "namibia-desert-wildlife-road-trip",
+      "slug": "namibia-desert-wildlife-road-trip",
+      "kind": "road-trip",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "title": {
+        "en": "Namibia Desert & Wildlife Road Trip",
+        "de": "Namibia · Wüste & Wildlife Roadtrip",
+        "it": "Namibia · deserto e fauna on the road",
+        "es": "Namibia · desierto y fauna en ruta",
+        "fr": "Namibie · désert et faune en road trip",
+        "pt": "Namíbia · deserto e vida selvagem de carro"
+      },
+      "subtitle": {
+        "en": "14 days · dunes, Atlantic coast, Damaraland and Etosha",
+        "de": "14 Tage · Dünen, Atlantikküste, Damaraland und Etosha",
+        "it": "14 giorni · dune, costa atlantica, Damaraland ed Etosha",
+        "es": "14 días · dunas, costa atlántica, Damaraland y Etosha",
+        "fr": "14 jours · dunes, côte atlantique, Damaraland et Etosha",
+        "pt": "14 dias · dunas, costa atlântica, Damaraland e Etosha"
+      },
+      "summary": {
+        "en": "A self-drive loop from Windhoek through the Namib, Swakopmund, granite and desert country, Damaraland and Etosha.",
+        "de": "Eine Selbstfahrer-Runde ab Windhoek durch die Namib, Swakopmund, Granit- und Wüstenlandschaften, Damaraland und Etosha.",
+        "it": "Un circuito self-drive da Windhoek attraverso Namib, Swakopmund, paesaggi desertici e granitici, Damaraland ed Etosha.",
+        "es": "Un circuito en coche desde Windhoek por el Namib, Swakopmund, paisajes desérticos y de granito, Damaraland y Etosha.",
+        "fr": "Une boucle en voiture depuis Windhoek à travers le Namib, Swakopmund, paysages désertiques et granitiques, Damaraland et Etosha.",
+        "pt": "Um circuito de carro desde Windhoek pelo Namib, Swakopmund, paisagens desérticas e graníticas, Damaraland e Etosha."
+      },
+      "metrics": {
+        "days": 14,
+        "countries": 1,
+        "stops": 7,
+        "segments": 6,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "namib",
+        "visualFamily": "road-cinematic",
+        "featurePriority": 89,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "africa",
+          "southern-africa",
+          "namibia"
+        ],
+        "themes": [
+          "road-trip",
+          "desert",
+          "wildlife",
+          "coast"
+        ],
+        "modes": [
+          "car"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "active",
+          "seasons": [
+            "summer",
+            "autumn",
+            "winter"
+          ],
+          "party": [
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "africa",
+          "accessibility": "vehicle-dependent"
+        }
+      },
+      "planning": {
+        "days": 14,
+        "currency": "NAD",
+        "pace": "active",
+        "knownPublishedMinimumEur": null,
+        "knownPublishedMinimumScope": null
+      },
+      "itinerary": [
+        {
+          "id": "namibia-desert-wildlife-road-trip-stop-01",
+          "sequence": 1,
+          "dayStart": 1,
+          "dayEnd": 1,
+          "nights": 1,
+          "name": {
+            "en": "Windhoek"
+          },
+          "countryCode": "NA",
+          "type": "place"
+        },
+        {
+          "id": "namibia-desert-wildlife-road-trip-stop-02",
+          "sequence": 2,
+          "dayStart": 2,
+          "dayEnd": 4,
+          "nights": 3,
+          "name": {
+            "en": "Sossusvlei"
+          },
+          "countryCode": "NA",
+          "type": "place"
+        },
+        {
+          "id": "namibia-desert-wildlife-road-trip-stop-03",
+          "sequence": 3,
+          "dayStart": 5,
+          "dayEnd": 6,
+          "nights": 2,
+          "name": {
+            "en": "Swakopmund"
+          },
+          "countryCode": "NA",
+          "type": "place"
+        },
+        {
+          "id": "namibia-desert-wildlife-road-trip-stop-04",
+          "sequence": 4,
+          "dayStart": 7,
+          "dayEnd": 7,
+          "nights": 1,
+          "name": {
+            "en": "Spitzkoppe"
+          },
+          "countryCode": "NA",
+          "type": "place"
+        },
+        {
+          "id": "namibia-desert-wildlife-road-trip-stop-05",
+          "sequence": 5,
+          "dayStart": 8,
+          "dayEnd": 9,
+          "nights": 2,
+          "name": {
+            "en": "Twyfelfontein"
+          },
+          "countryCode": "NA",
+          "type": "place"
+        },
+        {
+          "id": "namibia-desert-wildlife-road-trip-stop-06",
+          "sequence": 6,
+          "dayStart": 10,
+          "dayEnd": 12,
+          "nights": 3,
+          "name": {
+            "en": "Etosha National Park"
+          },
+          "countryCode": "NA",
+          "type": "place"
+        },
+        {
+          "id": "namibia-desert-wildlife-road-trip-stop-07",
+          "sequence": 7,
+          "dayStart": 13,
+          "dayEnd": 14,
+          "nights": 2,
+          "name": {
+            "en": "Windhoek"
+          },
+          "countryCode": "NA",
+          "type": "place"
+        }
+      ],
+      "preview": {
+        "points": [
+          {
+            "id": "windhoek",
+            "name": {
+              "en": "Windhoek"
+            },
+            "lat": -22.5609,
+            "lng": 17.0658
+          },
+          {
+            "id": "sossusvlei",
+            "name": {
+              "en": "Sossusvlei"
+            },
+            "lat": -24.7286,
+            "lng": 15.3428
+          },
+          {
+            "id": "swakopmund",
+            "name": {
+              "en": "Swakopmund"
+            },
+            "lat": -22.6784,
+            "lng": 14.5266
+          },
+          {
+            "id": "spitzkoppe",
+            "name": {
+              "en": "Spitzkoppe"
+            },
+            "lat": -21.825,
+            "lng": 15.1833
+          },
+          {
+            "id": "twyfelfontein",
+            "name": {
+              "en": "Twyfelfontein"
+            },
+            "lat": -20.595,
+            "lng": 14.372
+          },
+          {
+            "id": "etosha",
+            "name": {
+              "en": "Etosha National Park"
+            },
+            "lat": -18.8556,
+            "lng": 16.3293
+          },
+          {
+            "id": "windhoek-return",
+            "name": {
+              "en": "Windhoek"
+            },
+            "lat": -22.5609,
+            "lng": 17.0658
+          }
+        ],
+        "arcs": [
+          {
+            "id": "namibia-desert-wildlife-road-trip-leg-01",
+            "fromName": {
+              "en": "Windhoek"
+            },
+            "toName": {
+              "en": "Sossusvlei"
+            },
+            "start": {
+              "lat": -22.5609,
+              "lng": 17.0658
+            },
+            "end": {
+              "lat": -24.7286,
+              "lng": 15.3428
+            }
+          },
+          {
+            "id": "namibia-desert-wildlife-road-trip-leg-02",
+            "fromName": {
+              "en": "Sossusvlei"
+            },
+            "toName": {
+              "en": "Swakopmund"
+            },
+            "start": {
+              "lat": -24.7286,
+              "lng": 15.3428
+            },
+            "end": {
+              "lat": -22.6784,
+              "lng": 14.5266
+            }
+          },
+          {
+            "id": "namibia-desert-wildlife-road-trip-leg-03",
+            "fromName": {
+              "en": "Swakopmund"
+            },
+            "toName": {
+              "en": "Spitzkoppe"
+            },
+            "start": {
+              "lat": -22.6784,
+              "lng": 14.5266
+            },
+            "end": {
+              "lat": -21.825,
+              "lng": 15.1833
+            }
+          },
+          {
+            "id": "namibia-desert-wildlife-road-trip-leg-04",
+            "fromName": {
+              "en": "Spitzkoppe"
+            },
+            "toName": {
+              "en": "Twyfelfontein"
+            },
+            "start": {
+              "lat": -21.825,
+              "lng": 15.1833
+            },
+            "end": {
+              "lat": -20.595,
+              "lng": 14.372
+            }
+          },
+          {
+            "id": "namibia-desert-wildlife-road-trip-leg-05",
+            "fromName": {
+              "en": "Twyfelfontein"
+            },
+            "toName": {
+              "en": "Etosha National Park"
+            },
+            "start": {
+              "lat": -20.595,
+              "lng": 14.372
+            },
+            "end": {
+              "lat": -18.8556,
+              "lng": 16.3293
+            }
+          },
+          {
+            "id": "namibia-desert-wildlife-road-trip-leg-06",
+            "fromName": {
+              "en": "Etosha National Park"
+            },
+            "toName": {
+              "en": "Windhoek"
+            },
+            "start": {
+              "lat": -18.8556,
+              "lng": 16.3293
+            },
+            "end": {
+              "lat": -22.5609,
+              "lng": 17.0658
+            }
+          }
+        ]
+      },
+      "evidence": {
+        "segments": 6,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-10-02"
+      },
+      "sources": [
+        {
+          "id": "na-transportation",
+          "issuer": "Namibia Tourism Board",
+          "title": "Transportation",
+          "url": "https://visitnamibia.com.na/transportation/",
+          "checkedAt": "2026-10-02"
+        }
+      ]
+    },
+    {
+      "id": "alaska-inside-passage-ferry",
+      "slug": "alaska-inside-passage-ferry",
+      "kind": "island-hopping",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "title": {
+        "en": "Alaska Inside Passage by Ferry",
+        "de": "Alaska · Inside Passage per Fähre",
+        "it": "Alaska · Inside Passage in traghetto",
+        "es": "Alaska · Inside Passage en ferry",
+        "fr": "Alaska · Inside Passage en ferry",
+        "pt": "Alasca · Inside Passage de balsa"
+      },
+      "subtitle": {
+        "en": "12 days · rainforest ports, fjords and state ferries",
+        "de": "12 Tage · Regenwaldhäfen, Fjorde und Staatsfähren",
+        "it": "12 giorni · porti nella foresta, fiordi e traghetti",
+        "es": "12 días · puertos de selva, fiordos y ferris",
+        "fr": "12 jours · ports forestiers, fjords et ferries",
+        "pt": "12 dias · portos de floresta, fiordes e balsas"
+      },
+      "summary": {
+        "en": "An independent ferry journey through Southeast Alaska’s Inside Passage, linking coastal communities between Ketchikan and Skagway.",
+        "de": "Eine unabhängige Fährreise durch Alaskas Inside Passage mit Küstenorten zwischen Ketchikan und Skagway.",
+        "it": "Un viaggio indipendente in traghetto lungo l'Inside Passage dell'Alaska sud-orientale, da Ketchikan a Skagway.",
+        "es": "Un viaje independiente en ferry por el Inside Passage del sureste de Alaska, de Ketchikan a Skagway.",
+        "fr": "Un voyage indépendant en ferry dans l'Inside Passage du sud-est de l'Alaska, de Ketchikan à Skagway.",
+        "pt": "Uma viagem independente de balsa pelo Inside Passage do sudeste do Alasca, de Ketchikan a Skagway."
+      },
+      "metrics": {
+        "days": 12,
+        "countries": 1,
+        "stops": 6,
+        "segments": 5,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "inside-passage",
+        "visualFamily": "coastal-editorial",
+        "featurePriority": 90,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "north-america",
+          "united-states",
+          "alaska"
+        ],
+        "themes": [
+          "ferry",
+          "coast",
+          "fjords",
+          "wildlife"
+        ],
+        "modes": [
+          "ferry"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "relaxed",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "north-america",
+          "accessibility": "operator-dependent"
+        }
+      },
+      "planning": {
+        "days": 12,
+        "currency": "USD",
+        "pace": "relaxed",
+        "knownPublishedMinimumEur": null,
+        "knownPublishedMinimumScope": null
+      },
+      "itinerary": [
+        {
+          "id": "alaska-inside-passage-ferry-stop-01",
+          "sequence": 1,
+          "dayStart": 1,
+          "dayEnd": 2,
+          "nights": 2,
+          "name": {
+            "en": "Ketchikan"
+          },
+          "countryCode": "US",
+          "type": "place"
+        },
+        {
+          "id": "alaska-inside-passage-ferry-stop-02",
+          "sequence": 2,
+          "dayStart": 3,
+          "dayEnd": 4,
+          "nights": 2,
+          "name": {
+            "en": "Wrangell"
+          },
+          "countryCode": "US",
+          "type": "place"
+        },
+        {
+          "id": "alaska-inside-passage-ferry-stop-03",
+          "sequence": 3,
+          "dayStart": 5,
+          "dayEnd": 5,
+          "nights": 1,
+          "name": {
+            "en": "Petersburg"
+          },
+          "countryCode": "US",
+          "type": "place"
+        },
+        {
+          "id": "alaska-inside-passage-ferry-stop-04",
+          "sequence": 4,
+          "dayStart": 6,
+          "dayEnd": 8,
+          "nights": 3,
+          "name": {
+            "en": "Juneau"
+          },
+          "countryCode": "US",
+          "type": "place"
+        },
+        {
+          "id": "alaska-inside-passage-ferry-stop-05",
+          "sequence": 5,
+          "dayStart": 9,
+          "dayEnd": 10,
+          "nights": 2,
+          "name": {
+            "en": "Haines"
+          },
+          "countryCode": "US",
+          "type": "place"
+        },
+        {
+          "id": "alaska-inside-passage-ferry-stop-06",
+          "sequence": 6,
+          "dayStart": 11,
+          "dayEnd": 12,
+          "nights": 2,
+          "name": {
+            "en": "Skagway"
+          },
+          "countryCode": "US",
+          "type": "place"
+        }
+      ],
+      "preview": {
+        "points": [
+          {
+            "id": "ketchikan",
+            "name": {
+              "en": "Ketchikan"
+            },
+            "lat": 55.3422,
+            "lng": -131.6461
+          },
+          {
+            "id": "wrangell",
+            "name": {
+              "en": "Wrangell"
+            },
+            "lat": 56.4708,
+            "lng": -132.3767
+          },
+          {
+            "id": "petersburg",
+            "name": {
+              "en": "Petersburg"
+            },
+            "lat": 56.8125,
+            "lng": -132.9556
+          },
+          {
+            "id": "juneau",
+            "name": {
+              "en": "Juneau"
+            },
+            "lat": 58.3019,
+            "lng": -134.4197
+          },
+          {
+            "id": "haines",
+            "name": {
+              "en": "Haines"
+            },
+            "lat": 59.2358,
+            "lng": -135.445
+          },
+          {
+            "id": "skagway",
+            "name": {
+              "en": "Skagway"
+            },
+            "lat": 59.4583,
+            "lng": -135.3139
+          }
+        ],
+        "arcs": [
+          {
+            "id": "alaska-inside-passage-ferry-leg-01",
+            "fromName": {
+              "en": "Ketchikan"
+            },
+            "toName": {
+              "en": "Wrangell"
+            },
+            "start": {
+              "lat": 55.3422,
+              "lng": -131.6461
+            },
+            "end": {
+              "lat": 56.4708,
+              "lng": -132.3767
+            }
+          },
+          {
+            "id": "alaska-inside-passage-ferry-leg-02",
+            "fromName": {
+              "en": "Wrangell"
+            },
+            "toName": {
+              "en": "Petersburg"
+            },
+            "start": {
+              "lat": 56.4708,
+              "lng": -132.3767
+            },
+            "end": {
+              "lat": 56.8125,
+              "lng": -132.9556
+            }
+          },
+          {
+            "id": "alaska-inside-passage-ferry-leg-03",
+            "fromName": {
+              "en": "Petersburg"
+            },
+            "toName": {
+              "en": "Juneau"
+            },
+            "start": {
+              "lat": 56.8125,
+              "lng": -132.9556
+            },
+            "end": {
+              "lat": 58.3019,
+              "lng": -134.4197
+            }
+          },
+          {
+            "id": "alaska-inside-passage-ferry-leg-04",
+            "fromName": {
+              "en": "Juneau"
+            },
+            "toName": {
+              "en": "Haines"
+            },
+            "start": {
+              "lat": 58.3019,
+              "lng": -134.4197
+            },
+            "end": {
+              "lat": 59.2358,
+              "lng": -135.445
+            }
+          },
+          {
+            "id": "alaska-inside-passage-ferry-leg-05",
+            "fromName": {
+              "en": "Haines"
+            },
+            "toName": {
+              "en": "Skagway"
+            },
+            "start": {
+              "lat": 59.2358,
+              "lng": -135.445
+            },
+            "end": {
+              "lat": 59.4583,
+              "lng": -135.3139
+            }
+          }
+        ]
+      },
+      "evidence": {
+        "segments": 5,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-10-02"
+      },
+      "sources": [
+        {
+          "id": "ak-amhs-route",
+          "issuer": "Alaska Department of Transportation and Public Facilities",
+          "title": "Alaska Marine Highway System — Our Route",
+          "url": "https://dot.alaska.gov/amhs/route.shtml",
+          "checkedAt": "2026-10-02"
+        }
+      ]
+    },
+    {
+      "id": "tasmania-wild-coast-road-loop",
+      "slug": "tasmania-wild-coast-road-loop",
+      "kind": "road-trip",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "title": {
+        "en": "Tasmania Wild Coast Road Loop",
+        "de": "Tasmanien · Wild Coast Road Loop",
+        "it": "Tasmania · circuito Wild Coast",
+        "es": "Tasmania · circuito por la costa salvaje",
+        "fr": "Tasmanie · boucle de la côte sauvage",
+        "pt": "Tasmânia · circuito pela costa selvagem"
+      },
+      "subtitle": {
+        "en": "14 days · east coast, alpine wilderness and western wilds",
+        "de": "14 Tage · Ostküste, Alpenwildnis und wilder Westen",
+        "it": "14 giorni · costa est, natura alpina e ovest selvaggio",
+        "es": "14 días · costa este, naturaleza alpina y oeste salvaje",
+        "fr": "14 jours · côte est, nature alpine et ouest sauvage",
+        "pt": "14 dias · costa leste, natureza alpina e oeste selvagem"
+      },
+      "summary": {
+        "en": "A self-drive loop from Hobart around Tasmania’s east coast, northern food country, alpine interior and remote western landscapes.",
+        "de": "Eine Selbstfahrer-Runde ab Hobart über Tasmaniens Ostküste, den Norden, das alpine Inselinnere und die abgelegenen Landschaften des Westens.",
+        "it": "Un circuito self-drive da Hobart lungo la costa est, il nord, l'interno alpino e i paesaggi remoti dell'ovest.",
+        "es": "Un circuito en coche desde Hobart por la costa este, el norte, el interior alpino y los paisajes remotos del oeste.",
+        "fr": "Une boucle en voiture depuis Hobart par la côte est, le nord, l'intérieur alpin et les paysages reculés de l'ouest.",
+        "pt": "Um circuito de carro desde Hobart pela costa leste, norte, interior alpino e paisagens remotas do oeste."
+      },
+      "metrics": {
+        "days": 14,
+        "countries": 1,
+        "stops": 8,
+        "segments": 7,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "defaultPlanningScenario": null,
+      "visual": {
+        "theme": "tasmania",
+        "visualFamily": "road-cinematic",
+        "featurePriority": 87,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "oceania",
+          "australia",
+          "tasmania"
+        ],
+        "themes": [
+          "road-trip",
+          "coast",
+          "nature",
+          "mountains"
+        ],
+        "modes": [
+          "car"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "oceania",
+          "accessibility": "vehicle-dependent"
+        }
+      },
+      "planning": {
+        "days": 14,
+        "currency": "AUD",
+        "pace": "balanced",
+        "knownPublishedMinimumEur": null,
+        "knownPublishedMinimumScope": null
+      },
+      "itinerary": [
+        {
+          "id": "tasmania-wild-coast-road-loop-stop-01",
+          "sequence": 1,
+          "dayStart": 1,
+          "dayEnd": 2,
+          "nights": 2,
+          "name": {
+            "en": "Hobart"
+          },
+          "countryCode": "AU",
+          "type": "place"
+        },
+        {
+          "id": "tasmania-wild-coast-road-loop-stop-02",
+          "sequence": 2,
+          "dayStart": 3,
+          "dayEnd": 4,
+          "nights": 2,
+          "name": {
+            "en": "Freycinet"
+          },
+          "countryCode": "AU",
+          "type": "place"
+        },
+        {
+          "id": "tasmania-wild-coast-road-loop-stop-03",
+          "sequence": 3,
+          "dayStart": 5,
+          "dayEnd": 5,
+          "nights": 1,
+          "name": {
+            "en": "Bay of Fires"
+          },
+          "countryCode": "AU",
+          "type": "place"
+        },
+        {
+          "id": "tasmania-wild-coast-road-loop-stop-04",
+          "sequence": 4,
+          "dayStart": 6,
+          "dayEnd": 7,
+          "nights": 2,
+          "name": {
+            "en": "Launceston"
+          },
+          "countryCode": "AU",
+          "type": "place"
+        },
+        {
+          "id": "tasmania-wild-coast-road-loop-stop-05",
+          "sequence": 5,
+          "dayStart": 8,
+          "dayEnd": 9,
+          "nights": 2,
+          "name": {
+            "en": "Cradle Mountain"
+          },
+          "countryCode": "AU",
+          "type": "place"
+        },
+        {
+          "id": "tasmania-wild-coast-road-loop-stop-06",
+          "sequence": 6,
+          "dayStart": 10,
+          "dayEnd": 11,
+          "nights": 2,
+          "name": {
+            "en": "Strahan"
+          },
+          "countryCode": "AU",
+          "type": "place"
+        },
+        {
+          "id": "tasmania-wild-coast-road-loop-stop-07",
+          "sequence": 7,
+          "dayStart": 12,
+          "dayEnd": 12,
+          "nights": 1,
+          "name": {
+            "en": "Lake St Clair"
+          },
+          "countryCode": "AU",
+          "type": "place"
+        },
+        {
+          "id": "tasmania-wild-coast-road-loop-stop-08",
+          "sequence": 8,
+          "dayStart": 13,
+          "dayEnd": 14,
+          "nights": 2,
+          "name": {
+            "en": "Hobart"
+          },
+          "countryCode": "AU",
+          "type": "place"
+        }
+      ],
+      "preview": {
+        "points": [
+          {
+            "id": "hobart",
+            "name": {
+              "en": "Hobart"
+            },
+            "lat": -42.8821,
+            "lng": 147.3272
+          },
+          {
+            "id": "freycinet",
+            "name": {
+              "en": "Freycinet"
+            },
+            "lat": -42.12,
+            "lng": 148.3
+          },
+          {
+            "id": "bay-of-fires",
+            "name": {
+              "en": "Bay of Fires"
+            },
+            "lat": -41.25,
+            "lng": 148.3
+          },
+          {
+            "id": "launceston",
+            "name": {
+              "en": "Launceston"
+            },
+            "lat": -41.4332,
+            "lng": 147.1441
+          },
+          {
+            "id": "cradle-mountain",
+            "name": {
+              "en": "Cradle Mountain"
+            },
+            "lat": -41.685,
+            "lng": 145.951
+          },
+          {
+            "id": "strahan",
+            "name": {
+              "en": "Strahan"
+            },
+            "lat": -42.151,
+            "lng": 145.329
+          },
+          {
+            "id": "lake-st-clair",
+            "name": {
+              "en": "Lake St Clair"
+            },
+            "lat": -42.112,
+            "lng": 146.167
+          },
+          {
+            "id": "hobart-return",
+            "name": {
+              "en": "Hobart"
+            },
+            "lat": -42.8821,
+            "lng": 147.3272
+          }
+        ],
+        "arcs": [
+          {
+            "id": "tasmania-wild-coast-road-loop-leg-01",
+            "fromName": {
+              "en": "Hobart"
+            },
+            "toName": {
+              "en": "Freycinet"
+            },
+            "start": {
+              "lat": -42.8821,
+              "lng": 147.3272
+            },
+            "end": {
+              "lat": -42.12,
+              "lng": 148.3
+            }
+          },
+          {
+            "id": "tasmania-wild-coast-road-loop-leg-02",
+            "fromName": {
+              "en": "Freycinet"
+            },
+            "toName": {
+              "en": "Bay of Fires"
+            },
+            "start": {
+              "lat": -42.12,
+              "lng": 148.3
+            },
+            "end": {
+              "lat": -41.25,
+              "lng": 148.3
+            }
+          },
+          {
+            "id": "tasmania-wild-coast-road-loop-leg-03",
+            "fromName": {
+              "en": "Bay of Fires"
+            },
+            "toName": {
+              "en": "Launceston"
+            },
+            "start": {
+              "lat": -41.25,
+              "lng": 148.3
+            },
+            "end": {
+              "lat": -41.4332,
+              "lng": 147.1441
+            }
+          },
+          {
+            "id": "tasmania-wild-coast-road-loop-leg-04",
+            "fromName": {
+              "en": "Launceston"
+            },
+            "toName": {
+              "en": "Cradle Mountain"
+            },
+            "start": {
+              "lat": -41.4332,
+              "lng": 147.1441
+            },
+            "end": {
+              "lat": -41.685,
+              "lng": 145.951
+            }
+          },
+          {
+            "id": "tasmania-wild-coast-road-loop-leg-05",
+            "fromName": {
+              "en": "Cradle Mountain"
+            },
+            "toName": {
+              "en": "Strahan"
+            },
+            "start": {
+              "lat": -41.685,
+              "lng": 145.951
+            },
+            "end": {
+              "lat": -42.151,
+              "lng": 145.329
+            }
+          },
+          {
+            "id": "tasmania-wild-coast-road-loop-leg-06",
+            "fromName": {
+              "en": "Strahan"
+            },
+            "toName": {
+              "en": "Lake St Clair"
+            },
+            "start": {
+              "lat": -42.151,
+              "lng": 145.329
+            },
+            "end": {
+              "lat": -42.112,
+              "lng": 146.167
+            }
+          },
+          {
+            "id": "tasmania-wild-coast-road-loop-leg-07",
+            "fromName": {
+              "en": "Lake St Clair"
+            },
+            "toName": {
+              "en": "Hobart"
+            },
+            "start": {
+              "lat": -42.112,
+              "lng": 146.167
+            },
+            "end": {
+              "lat": -42.8821,
+              "lng": 147.3272
+            }
+          }
+        ]
+      },
+      "evidence": {
+        "segments": 7,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0,
+        "latestEvidenceCheck": "2026-10-02"
+      },
+      "sources": [
+        {
+          "id": "tas-road",
+          "issuer": "Tourism Tasmania",
+          "title": "Discover Tasmania — road trip inspiration",
+          "url": "https://www.discovertasmania.com.au/",
+          "checkedAt": "2026-10-02"
         }
       ]
     }
