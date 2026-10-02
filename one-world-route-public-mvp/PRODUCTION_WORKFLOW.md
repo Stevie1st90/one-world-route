@@ -241,7 +241,7 @@ npm run world:visual:spec
 npm run world:visual:check
 ```
 
-4. Create a preview by compositing the approved atmosphere base with a deterministic flat world map rendered from `data/public-route.json` and the approved Natural Earth source:
+4. Create a preview by compositing the approved atmosphere base with a deterministic **Robinson-like compromise world map** rendered from `data/public-route.json` and the approved Natural Earth source. The cover map has no visible rectangular/card container; polar width contracts naturally and both map/route edges fade before the projection seam:
 
 ```powershell
 npm run world:visual:preview -- --base="<approved-space-base.png>" --out-dir="<preview-folder>"
@@ -256,7 +256,7 @@ npm run world:visual:publish -- --base="<approved-space-base.png>" --approved=tr
 
 Publishing creates responsive 480/800/1200/1600 WebPs, registers `journey--world-195--cover--16x9--v001`, writes its provenance (AI base + Natural Earth flat-map route layer), and sets `data/public-route.json#media.heroAssetId`.
 
-The committed `data/platform/world-showcase-visual.json` is the machine-readable contract. CI verifies the 195/194 invariants, prompt compactness, factual route identity, flat-map projection and compositor output. Do not replace this process with a free-form all-in-one image prompt.
+The committed `data/platform/world-showcase-visual.json` is the machine-readable contract. CI verifies the 195/194 invariants, prompt compactness, factual route identity, `robinson-like-compromise-v4` projection, soft-edge/container-free rendering and compositor output. Do not replace this process with a free-form all-in-one image prompt.
 
 ### Scaling rule
 

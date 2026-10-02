@@ -40,8 +40,10 @@ test('world showcase uses the verified route-render layer',()=>{
   assert.equal(spec.factualLayer.assetId,'auto-route-world-195');
   assert.equal(spec.factualLayer.geometrySource,'data/public-route.json');
   assert.equal(spec.factualLayer.basemapSource,'data/visual-sources/natural-earth-relief.webp');
-  assert.equal(spec.factualLayer.renderStyle,'premium-flat-world-v3');
-  assert.equal(spec.factualLayer.projection,'equirectangular-flat-world');
+  assert.equal(spec.factualLayer.renderStyle,'premium-flat-world-v4');
+  assert.equal(spec.factualLayer.projection,'robinson-like-compromise-v4');
+  assert.equal(spec.factualLayer.edgeBlend,'soft-envelope');
+  assert.equal(spec.factualLayer.visibleContainer,false);
   assert.equal(spec.factualLayer.routeVisualReferenceOnly,true);
   assert.equal(spec.factualLayer.asset,route.media.asset);
   assert.equal(spec.factualLayer.provider,'local-natural-earth');
