@@ -1,10 +1,9 @@
-import {basename} from 'node:path';
-
 export const normalizeGitStatusPath=(statusLine,root)=>{
   let path=String(statusLine||'').slice(3).trim().replaceAll('\\','/');
   if(path.includes(' -> '))path=path.split(' -> ').at(-1);
   path=path.replace(/^\.\//,'');
-  const rootName=basename(String(root||'')).replaceAll('\\','/');
+  const normalizedRoot=String(root||'').replaceAll('\\','/').replace(/\/+$/,'');
+  const rootName=normalizedRoot.split('/').at(-1)||'';
   const marker=rootName+'/';
   if(path.startsWith(marker))path=path.slice(marker.length);
   else{
