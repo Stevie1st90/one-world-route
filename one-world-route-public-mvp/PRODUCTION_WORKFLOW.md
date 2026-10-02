@@ -137,7 +137,7 @@ Queue construction fails on duplicate `tripId`, `callId` or source filename.
 
 Already published approved bespoke covers are excluded from future queues.
 
-`world-195` is excluded from ordinary cover batches and uses the separate hybrid strategy: cinematic Earth base + factual route geometry rendered from platform data.
+`world-195` is excluded from ordinary cover batches and uses the separate hybrid strategy: cinematic deep-space base + factual flat world map and route geometry rendered from platform data.
 
 ### Stage downloaded results
 
@@ -241,22 +241,22 @@ npm run world:visual:spec
 npm run world:visual:check
 ```
 
-4. Create a preview by compositing the approved atmosphere base with the existing factual `auto-route-world-195` layer:
+4. Create a preview by compositing the approved atmosphere base with a deterministic flat world map rendered from `data/public-route.json` and the approved Natural Earth source:
 
 ```powershell
 npm run world:visual:preview -- --base="<approved-space-base.png>" --out-dir="<preview-folder>"
 ```
 
-5. Perform one visual QA on the resulting composite. The Earth/route layer is always sourced from the verified route renderer; the image model never invents journey geometry.
+5. Perform one visual QA on the resulting composite. The flat world map and route are always rendered from verified platform geometry; the image model never invents journey geometry.
 6. After approval, publish:
 
 ```powershell
 npm run world:visual:publish -- --base="<approved-space-base.png>" --approved=true
 ```
 
-Publishing creates responsive 480/800/1200/1600 WebPs, registers `journey--world-195--cover--16x9--v001`, writes its provenance (AI base + Natural Earth route layer), and sets `data/public-route.json#media.heroAssetId`.
+Publishing creates responsive 480/800/1200/1600 WebPs, registers `journey--world-195--cover--16x9--v001`, writes its provenance (AI base + Natural Earth flat-map route layer), and sets `data/public-route.json#media.heroAssetId`.
 
-The committed `data/platform/world-showcase-visual.json` is the machine-readable contract. CI verifies the 195/194 invariants, prompt compactness, factual route identity and compositor output. Do not replace this process with a free-form all-in-one image prompt.
+The committed `data/platform/world-showcase-visual.json` is the machine-readable contract. CI verifies the 195/194 invariants, prompt compactness, factual route identity, flat-map projection and compositor output. Do not replace this process with a free-form all-in-one image prompt.
 
 ### Scaling rule
 
