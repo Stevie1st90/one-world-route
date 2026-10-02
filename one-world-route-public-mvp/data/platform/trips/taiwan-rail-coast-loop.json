@@ -1,0 +1,373 @@
+{
+  "schemaVersion": 1,
+  "id": "taiwan-rail-coast-loop",
+  "slug": "taiwan-rail-coast-loop",
+  "kind": "rail",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Taiwan Rail & Coast Loop",
+    "de": "Taiwan · Bahn- & Küstenrunde",
+    "it": "Taiwan · circuito ferrovia e costa",
+    "es": "Taiwán · circuito ferroviario y costero",
+    "fr": "Taïwan · boucle ferroviaire et côtière",
+    "pt": "Taiwan · circuito ferroviário e costeiro"
+  },
+  "summary": {
+    "en": "A clockwise rail loop from Taipei down Taiwan’s dramatic east coast, through the south and back north along the western corridor.",
+    "de": "Eine Bahn-Rundreise ab Taipei entlang Taiwans dramatischer Ostküste, durch den Süden und über den Westkorridor zurück nach Norden.",
+    "it": "Un anello ferroviario da Taipei lungo la costa orientale, attraverso il sud e di nuovo a nord sul corridoio occidentale.",
+    "es": "Un circuito ferroviario desde Taipéi por la costa este, el sur y de regreso al norte por el corredor occidental.",
+    "fr": "Une boucle ferroviaire depuis Taipei le long de la côte est, à travers le sud puis vers le nord par le corridor ouest.",
+    "pt": "Um circuito ferroviário desde Taipei pela costa leste, sul e retorno ao norte pelo corredor oeste."
+  },
+  "geography": {
+    "countries": [
+      "TW"
+    ],
+    "primaryCountry": "TW"
+  },
+  "planning": {
+    "days": 12,
+    "currency": "TWD",
+    "pace": "balanced",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 23.7982,
+      "lng": 121.01341,
+      "altitude": 0.72
+    }
+  },
+  "media": {
+    "hero": {
+      "type": "art-directed",
+      "theme": "pacific-rail",
+      "asset": null,
+      "attribution": null,
+      "license": "original-ui-art"
+    },
+    "gallery": []
+  },
+  "highlights": [
+    "Pacific coast, mountain backdrops and city stops",
+    "rail · coast · cities"
+  ],
+  "places": [
+    {
+      "id": "taipei",
+      "type": "place",
+      "countryCode": "TW",
+      "name": {
+        "en": "Taipei"
+      },
+      "coordinates": {
+        "lat": 25.033,
+        "lng": 121.5654
+      }
+    },
+    {
+      "id": "hualien",
+      "type": "place",
+      "countryCode": "TW",
+      "name": {
+        "en": "Hualien"
+      },
+      "coordinates": {
+        "lat": 23.9911,
+        "lng": 121.6112
+      }
+    },
+    {
+      "id": "taitung",
+      "type": "place",
+      "countryCode": "TW",
+      "name": {
+        "en": "Taitung"
+      },
+      "coordinates": {
+        "lat": 22.7554,
+        "lng": 121.15
+      }
+    },
+    {
+      "id": "kaohsiung",
+      "type": "place",
+      "countryCode": "TW",
+      "name": {
+        "en": "Kaohsiung"
+      },
+      "coordinates": {
+        "lat": 22.6273,
+        "lng": 120.3014
+      }
+    },
+    {
+      "id": "tainan",
+      "type": "place",
+      "countryCode": "TW",
+      "name": {
+        "en": "Tainan"
+      },
+      "coordinates": {
+        "lat": 22.9999,
+        "lng": 120.2269
+      }
+    },
+    {
+      "id": "taichung",
+      "type": "place",
+      "countryCode": "TW",
+      "name": {
+        "en": "Taichung"
+      },
+      "coordinates": {
+        "lat": 24.1477,
+        "lng": 120.6736
+      }
+    },
+    {
+      "id": "taipei-return",
+      "type": "place",
+      "countryCode": "TW",
+      "name": {
+        "en": "Taipei"
+      },
+      "coordinates": {
+        "lat": 25.033,
+        "lng": 121.5654
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "taiwan-rail-coast-loop-stop-01",
+      "sequence": 1,
+      "placeId": "taipei",
+      "dayStart": 1,
+      "dayEnd": 2,
+      "nights": 2
+    },
+    {
+      "id": "taiwan-rail-coast-loop-stop-02",
+      "sequence": 2,
+      "placeId": "hualien",
+      "dayStart": 3,
+      "dayEnd": 4,
+      "nights": 2
+    },
+    {
+      "id": "taiwan-rail-coast-loop-stop-03",
+      "sequence": 3,
+      "placeId": "taitung",
+      "dayStart": 5,
+      "dayEnd": 6,
+      "nights": 2
+    },
+    {
+      "id": "taiwan-rail-coast-loop-stop-04",
+      "sequence": 4,
+      "placeId": "kaohsiung",
+      "dayStart": 7,
+      "dayEnd": 8,
+      "nights": 2
+    },
+    {
+      "id": "taiwan-rail-coast-loop-stop-05",
+      "sequence": 5,
+      "placeId": "tainan",
+      "dayStart": 9,
+      "dayEnd": 9,
+      "nights": 1
+    },
+    {
+      "id": "taiwan-rail-coast-loop-stop-06",
+      "sequence": 6,
+      "placeId": "taichung",
+      "dayStart": 10,
+      "dayEnd": 11,
+      "nights": 2
+    },
+    {
+      "id": "taiwan-rail-coast-loop-stop-07",
+      "sequence": 7,
+      "placeId": "taipei-return",
+      "dayStart": 12,
+      "dayEnd": 12,
+      "nights": 1
+    }
+  ],
+  "segments": [
+    {
+      "id": "taiwan-rail-coast-loop-leg-01",
+      "sequence": 1,
+      "fromStopId": "taiwan-rail-coast-loop-stop-01",
+      "toStopId": "taiwan-rail-coast-loop-stop-02",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "taiwan-rail-coast-loop-leg-02",
+      "sequence": 2,
+      "fromStopId": "taiwan-rail-coast-loop-stop-02",
+      "toStopId": "taiwan-rail-coast-loop-stop-03",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "taiwan-rail-coast-loop-leg-03",
+      "sequence": 3,
+      "fromStopId": "taiwan-rail-coast-loop-stop-03",
+      "toStopId": "taiwan-rail-coast-loop-stop-04",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "taiwan-rail-coast-loop-leg-04",
+      "sequence": 4,
+      "fromStopId": "taiwan-rail-coast-loop-stop-04",
+      "toStopId": "taiwan-rail-coast-loop-stop-05",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "taiwan-rail-coast-loop-leg-05",
+      "sequence": 5,
+      "fromStopId": "taiwan-rail-coast-loop-stop-05",
+      "toStopId": "taiwan-rail-coast-loop-stop-06",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "taiwan-rail-coast-loop-leg-06",
+      "sequence": 6,
+      "fromStopId": "taiwan-rail-coast-loop-stop-06",
+      "toStopId": "taiwan-rail-coast-loop-stop-07",
+      "transport": {
+        "mode": "rail",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "tw-round-island-rail",
+      "title": "Round-the-island railway",
+      "issuer": "Taiwan Railway Corporation",
+      "issuerType": "operator",
+      "url": "https://www.railway.gov.tw/tra-tip-web/tip/tip00N/tipN01/journey/index?lang=EN_US",
+      "checkedAt": "2026-10-02",
+      "claims": [
+        "official source supports the destination or transport character used for this editorial journey concept",
+        "exact schedules, fares and operating conditions must be checked for the actual travel date"
+      ]
+    }
+  ],
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context"
+  },
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true,
+    "notes": "Editorial route structure is stable; transport, access, price and traveller-specific details require periodic or live verification."
+  }
+}
