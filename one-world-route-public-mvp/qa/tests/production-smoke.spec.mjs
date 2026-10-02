@@ -26,7 +26,16 @@ test('production critical public surfaces boot cleanly',async({page,request,isMo
 
   await open(page,'/?lang=en');
   await expect(page.locator('body')).toHaveClass(/platform-home/,{timeout:15000});
-  await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(catalog.trips.length);
+  const cards=page.locator('#platformHomeResults .platform-home-card');
+  const initialCount=Math.min(24,catalog.trips.length);
+  await expect(cards).toHaveCount(initialCount);
+  if(catalog.trips.length>initialCount){
+    await expect(page.locator('#platformHomeMore')).toBeVisible();
+    await page.locator('#platformHomeMore').click();
+    await expect(cards).toHaveCount(catalog.trips.length);
+  }
+  const renderedIds=(await cards.evaluateAll(nodes=>nodes.map(node=>node.getAttribute('data-home-trip')).filter(Boolean))).sort();
+  expect(renderedIds).toEqual(catalog.trips.map(item=>item.id).sort());
   await expect(page.locator('#platformHome')).not.toContainText('[object');
   await expect(page.locator('#platformHome')).not.toContainText(/\bundefined\b/i);
 
