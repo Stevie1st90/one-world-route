@@ -25,13 +25,14 @@ test('world showcase preserves the 195/194 public invariants',()=>{
 });
 
 test('world showcase AI prompt is compact and route-free',()=>{
-  assert.equal(brief.productionStrategy,'hybrid-earth-base-plus-factual-route');
+  assert.equal(brief.productionStrategy,'hybrid-space-base-plus-factual-flat-world');
   assert.equal(brief.routeOverlayRequired,true);
   assert.equal(brief.routeOverlayAssetId,'auto-route-world-195');
   assert.ok(brief.imagePrompt.length<1200);
   assert.doesNotMatch(brief.imagePrompt,/Geography context:/);
   assert.doesNotMatch(brief.imagePrompt,/\bDE,\s*LU,\s*BE\b/);
   assert.match(brief.imagePrompt,/do not draw a standalone Earth globe/i);
+  assert.match(brief.imagePrompt,/flat world map/i);
   assert.match(brief.imagePrompt,/factual 195-country journey route/i);
 });
 
@@ -39,7 +40,8 @@ test('world showcase uses the verified route-render layer',()=>{
   assert.equal(spec.factualLayer.assetId,'auto-route-world-195');
   assert.equal(spec.factualLayer.geometrySource,'data/public-route.json');
   assert.equal(spec.factualLayer.basemapSource,'data/visual-sources/natural-earth-relief.webp');
-  assert.equal(spec.factualLayer.renderStyle,'premium-world-showcase-v2');
+  assert.equal(spec.factualLayer.renderStyle,'premium-flat-world-v3');
+  assert.equal(spec.factualLayer.projection,'equirectangular-flat-world');
   assert.equal(spec.factualLayer.routeVisualReferenceOnly,true);
   assert.equal(spec.factualLayer.asset,route.media.asset);
   assert.equal(spec.factualLayer.provider,'local-natural-earth');
