@@ -9,3 +9,6 @@ qa/builder-test-results/
 qa/production-smoke-results/
 # Local release-build report; never commit
 data/platform/locale-coverage.json
+data/platform/cover-generation-queue.json
+data/platform/cover-generation-operator-prompt.md
+data/platform/staged-cover-masters/

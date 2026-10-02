@@ -242,6 +242,8 @@ jobs:
           node --check platform/cloud-sync.js
           node --check platform/pwa-install.js
           node --check scripts/build-sync-config.mjs
+          node --check scripts/build-cover-generation-queue.mjs
+          node --check scripts/stage-cover-generation-results.mjs
           node --check scripts/test-cloud-sync.mjs
           node --check platform/map-style.js
           node --check platform/i18n.js
@@ -358,6 +360,10 @@ jobs:
         run: node --test scripts/test-maintenance-queue.mjs
       - name: Journey media rights audit
         run: node scripts/audit-platform-media.mjs
+      - name: Cover generation batch contract
+        run: |
+          node scripts/build-cover-generation-queue.mjs --out="$RUNNER_TEMP/cover-generation-queue.json" --prompt-out="$RUNNER_TEMP/cover-generation-operator-prompt.md"
+          node -e "const fs=require('fs');const q=JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP+'/cover-generation-queue.json','utf8'));if(q.items.length!==q.dispatchContract.imageToolCallsRequired)throw Error('imageToolCallsRequired mismatch');if(q.items.some(x=>x.imagesPerToolCall!==1))throw Error('imagesPerToolCall must be 1');if(new Set(q.items.map(x=>x.tripId)).size!==q.items.length)throw Error('duplicate tripId');if(new Set(q.items.map(x=>x.sourceFilename)).size!==q.items.length)throw Error('duplicate sourceFilename');console.log('cover batch contract ok:',q.items.length,'separate calls × 1 image');"
       - name: Static route visual freshness and policy
         run: |
           node scripts/build-route-visuals.mjs --check
