@@ -672,8 +672,11 @@ test('@discovery @mobile-critical scalable static visuals load cards hero and na
  await page.locator('.platform-home-region-grid').screenshot({path:testInfo.outputPath('region-discovery.png')});
  await card.screenshot({path:testInfo.outputPath('auto-card.png')});
  expect(tiles,'card images must not load map tiles').toEqual([]);
- const manifest=await page.evaluate(async()=>fetch('./data/platform/media-manifest.json').then(r=>r.json()));
- expect(manifest.journeys).toHaveLength(21);
+ const [manifest,catalog]=await page.evaluate(async()=>Promise.all([
+  fetch('./data/platform/media-manifest.json').then(r=>r.json()),
+  fetch('./data/platform/trips.json').then(r=>r.json())
+ ]));
+ expect(manifest.journeys).toHaveLength(catalog.trips.length);
  const requests=await Promise.all(manifest.journeys.map(j=>page.request.get(j.autoRouteVisual.asset)));
  expect(requests.every(r=>r.ok())).toBe(true);
  await card.locator('[data-open-home-trip]').click();
