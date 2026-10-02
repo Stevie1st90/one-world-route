@@ -214,6 +214,18 @@ Source PNG masters remain outside the delivery repository. Only approved deliver
 
 Do not rebuild this command sequence manually for every batch. If a recurring release failure is discovered, fix `release-cover-batch.mjs` and this runbook so the next batch inherits the correction.
 
+### Windows apply runner
+
+For Windows production operation, do not create one-off helper scripts for each batch. Use the repository-owned runner:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\one-world-route-public-mvp\scripts\apply-cover-batch.ps1" -BundleZip "<approved-cover-batch.zip>"
+```
+
+The runner extracts the approved bundle, validates 1-10 approved unique Journeys, removes only a stale local retry branch when no remote branch exists, creates an isolated worktree from current `origin/main`, calls the Node release runner directly (not through npm argument forwarding), stages the explicit cover-release allowlist, commits, rebases and pushes the batch branch.
+
+The release allowlist is tested against real Git porcelain output. Use `--untracked-files=all` so Git reports individual WebP files rather than collapsing a newly-created Journey directory. Paths are normalized whether Git reports them relative to the application directory or repository root.
+
 ### Scaling rule
 
 The workflow must scale by **batches**, not by operator messages.
