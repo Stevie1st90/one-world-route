@@ -5,10 +5,11 @@ const ROOT=new URL('../',import.meta.url);
 const read=async p=>JSON.parse(await readFile(new URL(p,ROOT),'utf8'));
 const check=process.argv.includes('--check');
 
-const [catalog,publicRoute,routeVisuals]=await Promise.all([
+const [catalog,publicRoute,routeVisuals,registry]=await Promise.all([
   read('data/platform/trips.json'),
   read('data/public-route.json'),
-  read('data/platform/route-visuals.json')
+  read('data/platform/route-visuals.json'),
+  read('data/platform/generated-media.json')
 ]);
 
 const meta=(catalog.trips||[]).find(t=>t.id==='world-195');
@@ -29,12 +30,14 @@ if(/\bDE,\s*LU,\s*BE\b/.test(brief.imagePrompt)||brief.imagePrompt.length>1200){
   throw Error('world-195 base prompt is overloaded; keep it compact and route-free');
 }
 
+const published=(registry.assets||[]).find(a=>a.assetId==='journey--world-195--cover--16x9--v001'&&a.tripId==='world-195'&&a.mediaKind==='journey-cover'&&a.status==='published'&&a.rightsStatus==='approved');
+
 const report={
   schemaVersion:1,
   policyVersion:'world-showcase-hybrid-v1',
   tripId:'world-195',
   strategy:'cinematic-atmosphere-plus-factual-earth-route',
-  status:'base-image-needed',
+  status:published?'published':'base-image-needed',
   invariants:{
     sovereignCountries:195,
     internationalLegs:194,
@@ -77,7 +80,8 @@ const report={
       'data/platform/generated-media.json',
       'data/public-route.json#media.heroAssetId'
     ]
-  }
+  },
+  ...(published?{publishedAssetId:published.assetId,baseImageSha256:published.sourceMaster?.sha256||null,factualLayerSha256:published.factualRouteLayer?.sha256||null}:{})
 };
 
 const target=new URL('data/platform/world-showcase-visual.json',ROOT);
