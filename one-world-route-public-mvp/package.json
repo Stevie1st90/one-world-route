@@ -9,7 +9,8 @@
     "covers:review": "node scripts/build-cover-review-sheet.mjs",
     "covers:ingest": "node scripts/ingest-journey-covers.mjs",
     "covers:batch": "node scripts/build-cover-generation-queue.mjs --prompt-out=data/platform/cover-generation-operator-prompt.md",
-    "covers:stage": "node scripts/stage-cover-generation-results.mjs"
+    "covers:stage": "node scripts/stage-cover-generation-results.mjs",
+    "covers:release": "node scripts/release-cover-batch.mjs"
   },
   "devDependencies": {
     "sharp": "0.35.4"
