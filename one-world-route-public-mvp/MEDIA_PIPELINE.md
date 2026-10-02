@@ -1,4 +1,4 @@
-# ONE WORLD ROUTE — Production Media Pipeline v1
+# ONE WORLD ROUTE — Production Media Pipeline v2
 
 ## Stable naming
 
@@ -21,13 +21,13 @@ The trip ID is therefore present in the directory, asset ID and every delivery f
 - `heroAssetId`: points a Journey to the approved registry entry.
 - Auto Route Visual remains the fallback and geographic/orientation visual.
 
-## First batch
+## Current coverage
 
-Eight approved 16:9 Journey Covers are included in this package. The installer creates 480/800/1200/1600 WebP derivatives at quality 84 and registers them.
+After Journey Cover Batch 0001, 18 of the current 21 Journeys have an approved bespoke 16:9 cover. The standard queue therefore contains only the remaining non-special Journeys. `world-195` is intentionally handled as a separate planetary/hybrid visual because factual route geometry must come from route data, not image generation.
 
 ## Fast future batch workflow
 
-1. `npm run covers:queue -- --limit=24 --out=/tmp/cover-batch.json`
+1. `npm run covers:queue -- --limit=10 --out=/tmp/cover-batch.json`
 2. Generate the batch using the output prompts and exact `sourceFilename` values.
 3. Place all generated PNGs in one incoming folder.
 4. `npm run covers:review -- --spec=/tmp/cover-batch.json --source-dir=/incoming --out=/tmp/review.jpg`
@@ -36,7 +36,13 @@ Eight approved 16:9 Journey Covers are included in this package. The installer c
 7. `npm run covers:ingest -- --spec=/tmp/approved-batch.json --source-dir=/incoming`
 8. Run `node scripts/release-build.mjs`.
 
-Recommended batch size: 12–24 covers. The goal is batch review, not one-image-at-a-time review.
+Recommended batch size: **up to 10 covers** per generation pass. The generator queue hard-caps the standard batch at 10.
+
+A batch means **up to 10 isolated single-asset generations followed by one shared review**. Do not ask the image model to combine multiple Journeys into one collage or multi-scene output. Each queue item has one exact `tripId`, one exact `sourceFilename` and one prompt.
+
+Published approved Journey Covers are automatically excluded from future queues. `world-195` is excluded from the normal queue by default; use `--include-special=true` only for an explicit special-visual production pass.
+
+The goal is batch review, not one-image-at-a-time review.
 
 ## Scaling
 
