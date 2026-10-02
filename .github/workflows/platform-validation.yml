@@ -248,6 +248,8 @@ jobs:
           node --check scripts/cover-release-policy.mjs
           node --check scripts/test-cover-release-policy.mjs
           node --check scripts/test-apply-cover-batch-runner.mjs
+          node --check scripts/build-world-showcase-visual-spec.mjs
+          node --check scripts/test-world-showcase-visual.mjs
           node --check scripts/test-cloud-sync.mjs
           node --check platform/map-style.js
           node --check platform/i18n.js
@@ -368,6 +370,10 @@ jobs:
         run: node --test scripts/test-cover-release-policy.mjs
       - name: Cover apply runner tests
         run: node --test scripts/test-apply-cover-batch-runner.mjs
+      - name: World showcase visual tests
+        run: |
+          node --test scripts/test-world-showcase-visual.mjs
+          node scripts/build-world-showcase-visual-spec.mjs --check
       - name: Cover generation batch contract
         run: |
           node scripts/build-cover-generation-queue.mjs --out="$RUNNER_TEMP/cover-generation-queue.json" --prompt-out="$RUNNER_TEMP/cover-generation-operator-prompt.md"
