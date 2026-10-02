@@ -2,6 +2,66 @@
   "schemaVersion": 1,
   "assets": [
     {
+      "assetId": "journey--alaska-inside-passage-ferry--cover--16x9--v001",
+      "tripId": "alaska-inside-passage-ferry",
+      "type": "image",
+      "sourceType": "generated",
+      "mediaKind": "journey-cover",
+      "theme": "inside-passage",
+      "generator": "OpenAI Image Generation",
+      "promptVersion": "journey-cover-batch-v3",
+      "createdAt": "2026-10-02",
+      "rightsStatus": "approved",
+      "status": "published",
+      "aspectRatio": "16:9",
+      "alt": {
+        "en": "Alaska Inside Passage by Ferry travel illustration"
+      },
+      "attribution": "Generated for ONE WORLD ROUTE",
+      "attributionRequired": false,
+      "license": "project-generated-asset",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "asset": "./assets/media/journeys/alaska-inside-passage-ferry/cover/v001/journey--alaska-inside-passage-ferry--cover--16x9--v001--w1600.webp",
+      "srcset": "./assets/media/journeys/alaska-inside-passage-ferry/cover/v001/journey--alaska-inside-passage-ferry--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/alaska-inside-passage-ferry/cover/v001/journey--alaska-inside-passage-ferry--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/alaska-inside-passage-ferry/cover/v001/journey--alaska-inside-passage-ferry--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/alaska-inside-passage-ferry/cover/v001/journey--alaska-inside-passage-ferry--cover--16x9--v001--w1600.webp 1600w",
+      "sourceMaster": {
+        "originalFilename": "source--journey--alaska-inside-passage-ferry--cover--16x9--v001.png",
+        "sha256": "6fcc845385ab5ffd5f90f59e1ab06fd9757dd67066735c8389bba1301a0c0574",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2574562,
+        "retainedOutsideDeliveryRepo": true
+      },
+      "delivery": {
+        "format": "webp",
+        "quality": 84,
+        "variants": [
+          {
+            "width": 480,
+            "height": 270,
+            "asset": "./assets/media/journeys/alaska-inside-passage-ferry/cover/v001/journey--alaska-inside-passage-ferry--cover--16x9--v001--w480.webp"
+          },
+          {
+            "width": 800,
+            "height": 450,
+            "asset": "./assets/media/journeys/alaska-inside-passage-ferry/cover/v001/journey--alaska-inside-passage-ferry--cover--16x9--v001--w800.webp"
+          },
+          {
+            "width": 1200,
+            "height": 675,
+            "asset": "./assets/media/journeys/alaska-inside-passage-ferry/cover/v001/journey--alaska-inside-passage-ferry--cover--16x9--v001--w1200.webp"
+          },
+          {
+            "width": 1600,
+            "height": 900,
+            "asset": "./assets/media/journeys/alaska-inside-passage-ferry/cover/v001/journey--alaska-inside-passage-ferry--cover--16x9--v001--w1600.webp"
+          }
+        ]
+      }
+    },
+    {
       "assetId": "journey--canadian-rockies-rail-road--cover--16x9--v001",
       "tripId": "canadian-rockies-rail-road",
       "type": "image",
@@ -482,6 +542,66 @@
       }
     },
     {
+      "assetId": "journey--java-rail-volcano-journey--cover--16x9--v001",
+      "tripId": "java-rail-volcano-journey",
+      "type": "image",
+      "sourceType": "generated",
+      "mediaKind": "journey-cover",
+      "theme": "java-volcano",
+      "generator": "OpenAI Image Generation",
+      "promptVersion": "journey-cover-batch-v3",
+      "createdAt": "2026-10-02",
+      "rightsStatus": "approved",
+      "status": "published",
+      "aspectRatio": "16:9",
+      "alt": {
+        "en": "Java Rail & Volcano Journey travel illustration"
+      },
+      "attribution": "Generated for ONE WORLD ROUTE",
+      "attributionRequired": false,
+      "license": "project-generated-asset",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "asset": "./assets/media/journeys/java-rail-volcano-journey/cover/v001/journey--java-rail-volcano-journey--cover--16x9--v001--w1600.webp",
+      "srcset": "./assets/media/journeys/java-rail-volcano-journey/cover/v001/journey--java-rail-volcano-journey--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/java-rail-volcano-journey/cover/v001/journey--java-rail-volcano-journey--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/java-rail-volcano-journey/cover/v001/journey--java-rail-volcano-journey--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/java-rail-volcano-journey/cover/v001/journey--java-rail-volcano-journey--cover--16x9--v001--w1600.webp 1600w",
+      "sourceMaster": {
+        "originalFilename": "source--journey--java-rail-volcano-journey--cover--16x9--v001.png",
+        "sha256": "2370a7ff88094888a7b2ce98a3e758ad01de2fc3ba354023f21ea4b78d90cc7e",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2584761,
+        "retainedOutsideDeliveryRepo": true
+      },
+      "delivery": {
+        "format": "webp",
+        "quality": 84,
+        "variants": [
+          {
+            "width": 480,
+            "height": 270,
+            "asset": "./assets/media/journeys/java-rail-volcano-journey/cover/v001/journey--java-rail-volcano-journey--cover--16x9--v001--w480.webp"
+          },
+          {
+            "width": 800,
+            "height": 450,
+            "asset": "./assets/media/journeys/java-rail-volcano-journey/cover/v001/journey--java-rail-volcano-journey--cover--16x9--v001--w800.webp"
+          },
+          {
+            "width": 1200,
+            "height": 675,
+            "asset": "./assets/media/journeys/java-rail-volcano-journey/cover/v001/journey--java-rail-volcano-journey--cover--16x9--v001--w1200.webp"
+          },
+          {
+            "width": 1600,
+            "height": 900,
+            "asset": "./assets/media/journeys/java-rail-volcano-journey/cover/v001/journey--java-rail-volcano-journey--cover--16x9--v001--w1600.webp"
+          }
+        ]
+      }
+    },
+    {
       "assetId": "journey--jordan-heritage-desert-drive--cover--16x9--v001",
       "tripId": "jordan-heritage-desert-drive",
       "type": "image",
@@ -597,6 +717,66 @@
             "width": 1600,
             "height": 900,
             "asset": "./assets/media/journeys/morocco-atlas-desert/cover/v001/journey--morocco-atlas-desert--cover--16x9--v001--w1600.webp"
+          }
+        ]
+      }
+    },
+    {
+      "assetId": "journey--namibia-desert-wildlife-road-trip--cover--16x9--v001",
+      "tripId": "namibia-desert-wildlife-road-trip",
+      "type": "image",
+      "sourceType": "generated",
+      "mediaKind": "journey-cover",
+      "theme": "namib",
+      "generator": "OpenAI Image Generation",
+      "promptVersion": "journey-cover-batch-v3",
+      "createdAt": "2026-10-02",
+      "rightsStatus": "approved",
+      "status": "published",
+      "aspectRatio": "16:9",
+      "alt": {
+        "en": "Namibia Desert & Wildlife Road Trip travel illustration"
+      },
+      "attribution": "Generated for ONE WORLD ROUTE",
+      "attributionRequired": false,
+      "license": "project-generated-asset",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "asset": "./assets/media/journeys/namibia-desert-wildlife-road-trip/cover/v001/journey--namibia-desert-wildlife-road-trip--cover--16x9--v001--w1600.webp",
+      "srcset": "./assets/media/journeys/namibia-desert-wildlife-road-trip/cover/v001/journey--namibia-desert-wildlife-road-trip--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/namibia-desert-wildlife-road-trip/cover/v001/journey--namibia-desert-wildlife-road-trip--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/namibia-desert-wildlife-road-trip/cover/v001/journey--namibia-desert-wildlife-road-trip--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/namibia-desert-wildlife-road-trip/cover/v001/journey--namibia-desert-wildlife-road-trip--cover--16x9--v001--w1600.webp 1600w",
+      "sourceMaster": {
+        "originalFilename": "source--journey--namibia-desert-wildlife-road-trip--cover--16x9--v001.png",
+        "sha256": "b7614c0826a46d335964dcc1435c34278640a82fbd2c20c4e87a951e638919b9",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2460526,
+        "retainedOutsideDeliveryRepo": true
+      },
+      "delivery": {
+        "format": "webp",
+        "quality": 84,
+        "variants": [
+          {
+            "width": 480,
+            "height": 270,
+            "asset": "./assets/media/journeys/namibia-desert-wildlife-road-trip/cover/v001/journey--namibia-desert-wildlife-road-trip--cover--16x9--v001--w480.webp"
+          },
+          {
+            "width": 800,
+            "height": 450,
+            "asset": "./assets/media/journeys/namibia-desert-wildlife-road-trip/cover/v001/journey--namibia-desert-wildlife-road-trip--cover--16x9--v001--w800.webp"
+          },
+          {
+            "width": 1200,
+            "height": 675,
+            "asset": "./assets/media/journeys/namibia-desert-wildlife-road-trip/cover/v001/journey--namibia-desert-wildlife-road-trip--cover--16x9--v001--w1200.webp"
+          },
+          {
+            "width": 1600,
+            "height": 900,
+            "asset": "./assets/media/journeys/namibia-desert-wildlife-road-trip/cover/v001/journey--namibia-desert-wildlife-road-trip--cover--16x9--v001--w1600.webp"
           }
         ]
       }
@@ -837,6 +1017,426 @@
             "width": 1600,
             "height": 900,
             "asset": "./assets/media/journeys/peru-andes-journey/cover/v001/journey--peru-andes-journey--cover--16x9--v001--w1600.webp"
+          }
+        ]
+      }
+    },
+    {
+      "assetId": "journey--scotland-highlands-hebrides--cover--16x9--v001",
+      "tripId": "scotland-highlands-hebrides",
+      "type": "image",
+      "sourceType": "generated",
+      "mediaKind": "journey-cover",
+      "theme": "hebrides",
+      "generator": "OpenAI Image Generation",
+      "promptVersion": "journey-cover-batch-v3",
+      "createdAt": "2026-10-02",
+      "rightsStatus": "approved",
+      "status": "published",
+      "aspectRatio": "16:9",
+      "alt": {
+        "en": "Scottish Highlands & Hebrides Journey travel illustration"
+      },
+      "attribution": "Generated for ONE WORLD ROUTE",
+      "attributionRequired": false,
+      "license": "project-generated-asset",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "asset": "./assets/media/journeys/scotland-highlands-hebrides/cover/v001/journey--scotland-highlands-hebrides--cover--16x9--v001--w1600.webp",
+      "srcset": "./assets/media/journeys/scotland-highlands-hebrides/cover/v001/journey--scotland-highlands-hebrides--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/scotland-highlands-hebrides/cover/v001/journey--scotland-highlands-hebrides--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/scotland-highlands-hebrides/cover/v001/journey--scotland-highlands-hebrides--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/scotland-highlands-hebrides/cover/v001/journey--scotland-highlands-hebrides--cover--16x9--v001--w1600.webp 1600w",
+      "sourceMaster": {
+        "originalFilename": "source--journey--scotland-highlands-hebrides--cover--16x9--v001.png",
+        "sha256": "6ad4ba27a3f7f4796cc5f5c0c7f532645a4aa49652fee4eb18dd6946ea9c4133",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2800439,
+        "retainedOutsideDeliveryRepo": true
+      },
+      "delivery": {
+        "format": "webp",
+        "quality": 84,
+        "variants": [
+          {
+            "width": 480,
+            "height": 270,
+            "asset": "./assets/media/journeys/scotland-highlands-hebrides/cover/v001/journey--scotland-highlands-hebrides--cover--16x9--v001--w480.webp"
+          },
+          {
+            "width": 800,
+            "height": 450,
+            "asset": "./assets/media/journeys/scotland-highlands-hebrides/cover/v001/journey--scotland-highlands-hebrides--cover--16x9--v001--w800.webp"
+          },
+          {
+            "width": 1200,
+            "height": 675,
+            "asset": "./assets/media/journeys/scotland-highlands-hebrides/cover/v001/journey--scotland-highlands-hebrides--cover--16x9--v001--w1200.webp"
+          },
+          {
+            "width": 1600,
+            "height": 900,
+            "asset": "./assets/media/journeys/scotland-highlands-hebrides/cover/v001/journey--scotland-highlands-hebrides--cover--16x9--v001--w1600.webp"
+          }
+        ]
+      }
+    },
+    {
+      "assetId": "journey--south-africa-garden-safari--cover--16x9--v001",
+      "tripId": "south-africa-garden-safari",
+      "type": "image",
+      "sourceType": "generated",
+      "mediaKind": "journey-cover",
+      "theme": "savanna",
+      "generator": "OpenAI Image Generation",
+      "promptVersion": "journey-cover-batch-v3",
+      "createdAt": "2026-10-02",
+      "rightsStatus": "approved",
+      "status": "published",
+      "aspectRatio": "16:9",
+      "alt": {
+        "en": "South Africa Garden Route & Safari travel illustration"
+      },
+      "attribution": "Generated for ONE WORLD ROUTE",
+      "attributionRequired": false,
+      "license": "project-generated-asset",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "asset": "./assets/media/journeys/south-africa-garden-safari/cover/v001/journey--south-africa-garden-safari--cover--16x9--v001--w1600.webp",
+      "srcset": "./assets/media/journeys/south-africa-garden-safari/cover/v001/journey--south-africa-garden-safari--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/south-africa-garden-safari/cover/v001/journey--south-africa-garden-safari--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/south-africa-garden-safari/cover/v001/journey--south-africa-garden-safari--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/south-africa-garden-safari/cover/v001/journey--south-africa-garden-safari--cover--16x9--v001--w1600.webp 1600w",
+      "sourceMaster": {
+        "originalFilename": "source--journey--south-africa-garden-safari--cover--16x9--v001.png",
+        "sha256": "6a318dd9b2abd183d914267223fe328812d0adbfe65dfaedc6f91250f7935e95",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2804803,
+        "retainedOutsideDeliveryRepo": true
+      },
+      "delivery": {
+        "format": "webp",
+        "quality": 84,
+        "variants": [
+          {
+            "width": 480,
+            "height": 270,
+            "asset": "./assets/media/journeys/south-africa-garden-safari/cover/v001/journey--south-africa-garden-safari--cover--16x9--v001--w480.webp"
+          },
+          {
+            "width": 800,
+            "height": 450,
+            "asset": "./assets/media/journeys/south-africa-garden-safari/cover/v001/journey--south-africa-garden-safari--cover--16x9--v001--w800.webp"
+          },
+          {
+            "width": 1200,
+            "height": 675,
+            "asset": "./assets/media/journeys/south-africa-garden-safari/cover/v001/journey--south-africa-garden-safari--cover--16x9--v001--w1200.webp"
+          },
+          {
+            "width": 1600,
+            "height": 900,
+            "asset": "./assets/media/journeys/south-africa-garden-safari/cover/v001/journey--south-africa-garden-safari--cover--16x9--v001--w1600.webp"
+          }
+        ]
+      }
+    },
+    {
+      "assetId": "journey--southern-europe-road-trip--cover--16x9--v001",
+      "tripId": "southern-europe-road-trip",
+      "type": "image",
+      "sourceType": "generated",
+      "mediaKind": "journey-cover",
+      "theme": "ocean",
+      "generator": "OpenAI Image Generation",
+      "promptVersion": "journey-cover-batch-v3",
+      "createdAt": "2026-10-02",
+      "rightsStatus": "approved",
+      "status": "published",
+      "aspectRatio": "16:9",
+      "alt": {
+        "en": "Southern Europe Road Trip travel illustration"
+      },
+      "attribution": "Generated for ONE WORLD ROUTE",
+      "attributionRequired": false,
+      "license": "project-generated-asset",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "asset": "./assets/media/journeys/southern-europe-road-trip/cover/v001/journey--southern-europe-road-trip--cover--16x9--v001--w1600.webp",
+      "srcset": "./assets/media/journeys/southern-europe-road-trip/cover/v001/journey--southern-europe-road-trip--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/southern-europe-road-trip/cover/v001/journey--southern-europe-road-trip--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/southern-europe-road-trip/cover/v001/journey--southern-europe-road-trip--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/southern-europe-road-trip/cover/v001/journey--southern-europe-road-trip--cover--16x9--v001--w1600.webp 1600w",
+      "sourceMaster": {
+        "originalFilename": "source--journey--southern-europe-road-trip--cover--16x9--v001.png",
+        "sha256": "00cc0950acf5e85b6cfe6aa04e45f3db0057bbbb2b7f1304a5aa2edc38627c20",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2573386,
+        "retainedOutsideDeliveryRepo": true
+      },
+      "delivery": {
+        "format": "webp",
+        "quality": 84,
+        "variants": [
+          {
+            "width": 480,
+            "height": 270,
+            "asset": "./assets/media/journeys/southern-europe-road-trip/cover/v001/journey--southern-europe-road-trip--cover--16x9--v001--w480.webp"
+          },
+          {
+            "width": 800,
+            "height": 450,
+            "asset": "./assets/media/journeys/southern-europe-road-trip/cover/v001/journey--southern-europe-road-trip--cover--16x9--v001--w800.webp"
+          },
+          {
+            "width": 1200,
+            "height": 675,
+            "asset": "./assets/media/journeys/southern-europe-road-trip/cover/v001/journey--southern-europe-road-trip--cover--16x9--v001--w1200.webp"
+          },
+          {
+            "width": 1600,
+            "height": 900,
+            "asset": "./assets/media/journeys/southern-europe-road-trip/cover/v001/journey--southern-europe-road-trip--cover--16x9--v001--w1600.webp"
+          }
+        ]
+      }
+    },
+    {
+      "assetId": "journey--sri-lanka-hill-country-rail--cover--16x9--v001",
+      "tripId": "sri-lanka-hill-country-rail",
+      "type": "image",
+      "sourceType": "generated",
+      "mediaKind": "journey-cover",
+      "theme": "tea-country",
+      "generator": "OpenAI Image Generation",
+      "promptVersion": "journey-cover-batch-v3",
+      "createdAt": "2026-10-02",
+      "rightsStatus": "approved",
+      "status": "published",
+      "aspectRatio": "16:9",
+      "alt": {
+        "en": "Sri Lanka Hill Country by Rail travel illustration"
+      },
+      "attribution": "Generated for ONE WORLD ROUTE",
+      "attributionRequired": false,
+      "license": "project-generated-asset",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "asset": "./assets/media/journeys/sri-lanka-hill-country-rail/cover/v001/journey--sri-lanka-hill-country-rail--cover--16x9--v001--w1600.webp",
+      "srcset": "./assets/media/journeys/sri-lanka-hill-country-rail/cover/v001/journey--sri-lanka-hill-country-rail--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/sri-lanka-hill-country-rail/cover/v001/journey--sri-lanka-hill-country-rail--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/sri-lanka-hill-country-rail/cover/v001/journey--sri-lanka-hill-country-rail--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/sri-lanka-hill-country-rail/cover/v001/journey--sri-lanka-hill-country-rail--cover--16x9--v001--w1600.webp 1600w",
+      "sourceMaster": {
+        "originalFilename": "source--journey--sri-lanka-hill-country-rail--cover--16x9--v001.png",
+        "sha256": "f2c12e49faa42664fc1a8e9e4532b0edf2bde823cbceb9e0b6d28f1c0b195992",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2661919,
+        "retainedOutsideDeliveryRepo": true
+      },
+      "delivery": {
+        "format": "webp",
+        "quality": 84,
+        "variants": [
+          {
+            "width": 480,
+            "height": 270,
+            "asset": "./assets/media/journeys/sri-lanka-hill-country-rail/cover/v001/journey--sri-lanka-hill-country-rail--cover--16x9--v001--w480.webp"
+          },
+          {
+            "width": 800,
+            "height": 450,
+            "asset": "./assets/media/journeys/sri-lanka-hill-country-rail/cover/v001/journey--sri-lanka-hill-country-rail--cover--16x9--v001--w800.webp"
+          },
+          {
+            "width": 1200,
+            "height": 675,
+            "asset": "./assets/media/journeys/sri-lanka-hill-country-rail/cover/v001/journey--sri-lanka-hill-country-rail--cover--16x9--v001--w1200.webp"
+          },
+          {
+            "width": 1600,
+            "height": 900,
+            "asset": "./assets/media/journeys/sri-lanka-hill-country-rail/cover/v001/journey--sri-lanka-hill-country-rail--cover--16x9--v001--w1600.webp"
+          }
+        ]
+      }
+    },
+    {
+      "assetId": "journey--swiss-scenic-rail-journey--cover--16x9--v001",
+      "tripId": "swiss-scenic-rail-journey",
+      "type": "image",
+      "sourceType": "generated",
+      "mediaKind": "journey-cover",
+      "theme": "alpine-rail",
+      "generator": "OpenAI Image Generation",
+      "promptVersion": "journey-cover-batch-v3",
+      "createdAt": "2026-10-02",
+      "rightsStatus": "approved",
+      "status": "published",
+      "aspectRatio": "16:9",
+      "alt": {
+        "en": "Swiss Scenic Rail Journey travel illustration"
+      },
+      "attribution": "Generated for ONE WORLD ROUTE",
+      "attributionRequired": false,
+      "license": "project-generated-asset",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "asset": "./assets/media/journeys/swiss-scenic-rail-journey/cover/v001/journey--swiss-scenic-rail-journey--cover--16x9--v001--w1600.webp",
+      "srcset": "./assets/media/journeys/swiss-scenic-rail-journey/cover/v001/journey--swiss-scenic-rail-journey--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/swiss-scenic-rail-journey/cover/v001/journey--swiss-scenic-rail-journey--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/swiss-scenic-rail-journey/cover/v001/journey--swiss-scenic-rail-journey--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/swiss-scenic-rail-journey/cover/v001/journey--swiss-scenic-rail-journey--cover--16x9--v001--w1600.webp 1600w",
+      "sourceMaster": {
+        "originalFilename": "source--journey--swiss-scenic-rail-journey--cover--16x9--v001.png",
+        "sha256": "f4a8148b07db806fb50033dea85b15f022268d703697ddbbb4aad2777759f529",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2845833,
+        "retainedOutsideDeliveryRepo": true
+      },
+      "delivery": {
+        "format": "webp",
+        "quality": 84,
+        "variants": [
+          {
+            "width": 480,
+            "height": 270,
+            "asset": "./assets/media/journeys/swiss-scenic-rail-journey/cover/v001/journey--swiss-scenic-rail-journey--cover--16x9--v001--w480.webp"
+          },
+          {
+            "width": 800,
+            "height": 450,
+            "asset": "./assets/media/journeys/swiss-scenic-rail-journey/cover/v001/journey--swiss-scenic-rail-journey--cover--16x9--v001--w800.webp"
+          },
+          {
+            "width": 1200,
+            "height": 675,
+            "asset": "./assets/media/journeys/swiss-scenic-rail-journey/cover/v001/journey--swiss-scenic-rail-journey--cover--16x9--v001--w1200.webp"
+          },
+          {
+            "width": 1600,
+            "height": 900,
+            "asset": "./assets/media/journeys/swiss-scenic-rail-journey/cover/v001/journey--swiss-scenic-rail-journey--cover--16x9--v001--w1600.webp"
+          }
+        ]
+      }
+    },
+    {
+      "assetId": "journey--taiwan-rail-coast-loop--cover--16x9--v001",
+      "tripId": "taiwan-rail-coast-loop",
+      "type": "image",
+      "sourceType": "generated",
+      "mediaKind": "journey-cover",
+      "theme": "pacific-rail",
+      "generator": "OpenAI Image Generation",
+      "promptVersion": "journey-cover-batch-v3",
+      "createdAt": "2026-10-02",
+      "rightsStatus": "approved",
+      "status": "published",
+      "aspectRatio": "16:9",
+      "alt": {
+        "en": "Taiwan Rail & Coast Loop travel illustration"
+      },
+      "attribution": "Generated for ONE WORLD ROUTE",
+      "attributionRequired": false,
+      "license": "project-generated-asset",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "asset": "./assets/media/journeys/taiwan-rail-coast-loop/cover/v001/journey--taiwan-rail-coast-loop--cover--16x9--v001--w1600.webp",
+      "srcset": "./assets/media/journeys/taiwan-rail-coast-loop/cover/v001/journey--taiwan-rail-coast-loop--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/taiwan-rail-coast-loop/cover/v001/journey--taiwan-rail-coast-loop--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/taiwan-rail-coast-loop/cover/v001/journey--taiwan-rail-coast-loop--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/taiwan-rail-coast-loop/cover/v001/journey--taiwan-rail-coast-loop--cover--16x9--v001--w1600.webp 1600w",
+      "sourceMaster": {
+        "originalFilename": "source--journey--taiwan-rail-coast-loop--cover--16x9--v001.png",
+        "sha256": "637d61a114fd7ac23d1691635510640a1af79720e45b9beaabcff7a2024e719c",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2742452,
+        "retainedOutsideDeliveryRepo": true
+      },
+      "delivery": {
+        "format": "webp",
+        "quality": 84,
+        "variants": [
+          {
+            "width": 480,
+            "height": 270,
+            "asset": "./assets/media/journeys/taiwan-rail-coast-loop/cover/v001/journey--taiwan-rail-coast-loop--cover--16x9--v001--w480.webp"
+          },
+          {
+            "width": 800,
+            "height": 450,
+            "asset": "./assets/media/journeys/taiwan-rail-coast-loop/cover/v001/journey--taiwan-rail-coast-loop--cover--16x9--v001--w800.webp"
+          },
+          {
+            "width": 1200,
+            "height": 675,
+            "asset": "./assets/media/journeys/taiwan-rail-coast-loop/cover/v001/journey--taiwan-rail-coast-loop--cover--16x9--v001--w1200.webp"
+          },
+          {
+            "width": 1600,
+            "height": 900,
+            "asset": "./assets/media/journeys/taiwan-rail-coast-loop/cover/v001/journey--taiwan-rail-coast-loop--cover--16x9--v001--w1600.webp"
+          }
+        ]
+      }
+    },
+    {
+      "assetId": "journey--tasmania-wild-coast-road-loop--cover--16x9--v001",
+      "tripId": "tasmania-wild-coast-road-loop",
+      "type": "image",
+      "sourceType": "generated",
+      "mediaKind": "journey-cover",
+      "theme": "tasmania",
+      "generator": "OpenAI Image Generation",
+      "promptVersion": "journey-cover-batch-v3",
+      "createdAt": "2026-10-02",
+      "rightsStatus": "approved",
+      "status": "published",
+      "aspectRatio": "16:9",
+      "alt": {
+        "en": "Tasmania Wild Coast Road Loop travel illustration"
+      },
+      "attribution": "Generated for ONE WORLD ROUTE",
+      "attributionRequired": false,
+      "license": "project-generated-asset",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "asset": "./assets/media/journeys/tasmania-wild-coast-road-loop/cover/v001/journey--tasmania-wild-coast-road-loop--cover--16x9--v001--w1600.webp",
+      "srcset": "./assets/media/journeys/tasmania-wild-coast-road-loop/cover/v001/journey--tasmania-wild-coast-road-loop--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/tasmania-wild-coast-road-loop/cover/v001/journey--tasmania-wild-coast-road-loop--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/tasmania-wild-coast-road-loop/cover/v001/journey--tasmania-wild-coast-road-loop--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/tasmania-wild-coast-road-loop/cover/v001/journey--tasmania-wild-coast-road-loop--cover--16x9--v001--w1600.webp 1600w",
+      "sourceMaster": {
+        "originalFilename": "source--journey--tasmania-wild-coast-road-loop--cover--16x9--v001.png",
+        "sha256": "c6f51722f6eef227f942657706ca3728d5c7d8115ab072b1562da443047e0305",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2932665,
+        "retainedOutsideDeliveryRepo": true
+      },
+      "delivery": {
+        "format": "webp",
+        "quality": 84,
+        "variants": [
+          {
+            "width": 480,
+            "height": 270,
+            "asset": "./assets/media/journeys/tasmania-wild-coast-road-loop/cover/v001/journey--tasmania-wild-coast-road-loop--cover--16x9--v001--w480.webp"
+          },
+          {
+            "width": 800,
+            "height": 450,
+            "asset": "./assets/media/journeys/tasmania-wild-coast-road-loop/cover/v001/journey--tasmania-wild-coast-road-loop--cover--16x9--v001--w800.webp"
+          },
+          {
+            "width": 1200,
+            "height": 675,
+            "asset": "./assets/media/journeys/tasmania-wild-coast-road-loop/cover/v001/journey--tasmania-wild-coast-road-loop--cover--16x9--v001--w1200.webp"
+          },
+          {
+            "width": 1600,
+            "height": 900,
+            "asset": "./assets/media/journeys/tasmania-wild-coast-road-loop/cover/v001/journey--tasmania-wild-coast-road-loop--cover--16x9--v001--w1600.webp"
           }
         ]
       }

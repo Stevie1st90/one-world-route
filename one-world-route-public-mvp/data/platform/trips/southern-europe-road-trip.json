@@ -879,5 +879,8 @@
       ],
       "rule": "Do not calculate toll, low-emission-zone eligibility, rental permissions or road access without the relevant vehicle and traveller context."
     }
+  },
+  "media": {
+    "heroAssetId": "journey--southern-europe-road-trip--cover--16x9--v001"
   }
 }

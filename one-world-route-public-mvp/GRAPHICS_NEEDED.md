@@ -36,7 +36,7 @@ Create an original cinematic editorial travel illustration for “New Zealand Ca
 
 ## 3. Alaska Inside Passage by Ferry — P1
 
-Family: `coastal-editorial` · status: `brief-ready` · 16:9: first-batch · separate 9:16: recommended
+Family: `coastal-editorial` · status: `published` · 16:9: first-batch · separate 9:16: recommended
 
 Reason: Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity
 
@@ -68,7 +68,7 @@ Create an original cinematic editorial travel illustration for “Greek Island H
 
 ## 5. Namibia Desert & Wildlife Road Trip — P1
 
-Family: `road-cinematic` · status: `brief-ready` · 16:9: first-batch · separate 9:16: recommended
+Family: `road-cinematic` · status: `published` · 16:9: first-batch · separate 9:16: recommended
 
 Reason: Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity
 
@@ -116,7 +116,7 @@ Create an original cinematic editorial travel illustration for “Morocco Atlas 
 
 ## 8. Sri Lanka Hill Country by Rail — P1
 
-Family: `rail-cinematic` · status: `brief-ready` · 16:9: first-batch · separate 9:16: recommended
+Family: `rail-cinematic` · status: `published` · 16:9: first-batch · separate 9:16: recommended
 
 Reason: Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity
 
@@ -132,7 +132,7 @@ Create an original cinematic editorial travel illustration for “Sri Lanka Hill
 
 ## 9. Swiss Scenic Rail Journey — P1
 
-Family: `rail-cinematic` · status: `brief-ready` · 16:9: first-batch · separate 9:16: recommended
+Family: `rail-cinematic` · status: `published` · 16:9: first-batch · separate 9:16: recommended
 
 Reason: Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity
 
@@ -148,7 +148,7 @@ Create an original cinematic editorial travel illustration for “Swiss Scenic R
 
 ## 10. Tasmania Wild Coast Road Loop — P1
 
-Family: `road-cinematic` · status: `brief-ready` · 16:9: first-batch · separate 9:16: recommended
+Family: `road-cinematic` · status: `published` · 16:9: first-batch · separate 9:16: recommended
 
 Reason: Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity
 
@@ -164,7 +164,7 @@ Create an original cinematic editorial travel illustration for “Tasmania Wild 
 
 ## 11. Scottish Highlands & Hebrides Journey — P1
 
-Family: `coastal-editorial` · status: `brief-ready` · 16:9: first-batch · separate 9:16: recommended
+Family: `coastal-editorial` · status: `published` · 16:9: first-batch · separate 9:16: recommended
 
 Reason: Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity
 
@@ -180,7 +180,7 @@ Create an original cinematic editorial travel illustration for “Scottish Highl
 
 ## 12. Taiwan Rail & Coast Loop — P1
 
-Family: `rail-cinematic` · status: `brief-ready` · 16:9: first-batch · separate 9:16: recommended
+Family: `rail-cinematic` · status: `published` · 16:9: first-batch · separate 9:16: recommended
 
 Reason: Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity
 
@@ -196,7 +196,7 @@ Create an original cinematic editorial travel illustration for “Taiwan Rail & 
 
 ## 13. Java Rail & Volcano Journey — P1
 
-Family: `rail-cinematic` · status: `brief-ready` · 16:9: first-batch · separate 9:16: recommended
+Family: `rail-cinematic` · status: `published` · 16:9: first-batch · separate 9:16: recommended
 
 Reason: Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity
 
@@ -388,7 +388,7 @@ Create an original cinematic editorial travel illustration for “Iceland Ring R
 
 ## 25. South Africa Garden Route & Safari — P2
 
-Family: `road-cinematic` · status: `brief-ready` · 16:9: later · separate 9:16: recommended
+Family: `road-cinematic` · status: `published` · 16:9: later · separate 9:16: recommended
 
 Reason: Strengthen distinct journey character; Strong travel-mode social identity
 
@@ -420,7 +420,7 @@ Create an original cinematic editorial travel illustration for “Central Europe
 
 ## 27. Southern Europe Road Trip — P2
 
-Family: `road-cinematic` · status: `brief-ready` · 16:9: later · separate 9:16: recommended
+Family: `road-cinematic` · status: `published` · 16:9: later · separate 9:16: recommended
 
 Reason: Strengthen distinct journey character; Strong travel-mode social identity
 
