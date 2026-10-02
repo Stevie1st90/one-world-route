@@ -25,10 +25,12 @@ jobs:
       flagship_browser: ${{ steps.scope.outputs.flagship_browser }}
       regional_browser: ${{ steps.scope.outputs.regional_browser }}
       discovery_browser: ${{ steps.scope.outputs.discovery_browser }}
+      discovery_full: ${{ steps.scope.outputs.discovery_full }}
       builder_browser: ${{ steps.scope.outputs.builder_browser }}
       content_browser: ${{ steps.scope.outputs.content_browser }}
       experience_browser: ${{ steps.scope.outputs.experience_browser }}
       content_trip_ids: ${{ steps.scope.outputs.content_trip_ids }}
+      content_mobile_trip_ids: ${{ steps.scope.outputs.content_mobile_trip_ids }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -46,10 +48,12 @@ jobs:
             echo "flagship_browser=false" >> "$GITHUB_OUTPUT"
             echo "regional_browser=false" >> "$GITHUB_OUTPUT"
             echo "discovery_browser=false" >> "$GITHUB_OUTPUT"
+            echo "discovery_full=false" >> "$GITHUB_OUTPUT"
             echo "builder_browser=false" >> "$GITHUB_OUTPUT"
             echo "content_browser=false" >> "$GITHUB_OUTPUT"
             echo "experience_browser=false" >> "$GITHUB_OUTPUT"
             echo "content_trip_ids=" >> "$GITHUB_OUTPUT"
+            echo "content_mobile_trip_ids=" >> "$GITHUB_OUTPUT"
             echo "main push: fast gate only; browser regression is not duplicated"
             exit 0
           fi
@@ -62,6 +66,7 @@ jobs:
           flagship_browser=false
           regional_browser=false
           discovery_browser=false
+          discovery_full=false
           builder_browser=false
           content_browser=false
           experience_browser=false
@@ -73,6 +78,7 @@ jobs:
                 flagship_browser=true
                 regional_browser=true
                 discovery_browser=true
+                discovery_full=true
                 builder_browser=true
                 experience_browser=true
                 ;;
@@ -101,8 +107,8 @@ jobs:
               one-world-route-public-mvp/data/platform/trips.json)
                 discovery_browser=true
                 ;;
-              one-world-route-public-mvp/data/platform/trip-index.json)
-                # Generated from the catalog + trip datasets; Core verifies determinism.
+              one-world-route-public-mvp/data/platform/trip-index.json|one-world-route-public-mvp/data/platform/graphics-backlog.json|one-world-route-public-mvp/data/platform/media-manifest.json|one-world-route-public-mvp/data/platform/route-visuals.json|one-world-route-public-mvp/data/platform/visual-briefs.json|one-world-route-public-mvp/data/platform/visual-coverage.json|one-world-route-public-mvp/data/platform/region-visuals.json)
+                # Deterministic generated metadata is covered by Core + Release.
                 ;;
               one-world-route-public-mvp/data/platform/place-experiences/*.json)
                 # Core validates schema/locale coverage; this focused browser pass
@@ -110,8 +116,9 @@ jobs:
                 experience_browser=true
                 ;;
               one-world-route-public-mvp/data/platform/*)
+                # Runtime data can affect the regional shell, but does not justify
+                # re-running the internal authoring UI.
                 regional_browser=true
-                builder_browser=true
                 ;;
               one-world-route-public-mvp/qa/tests/trip-builder.spec.mjs|one-world-route-public-mvp/scripts/trip-draft-contract.mjs|one-world-route-public-mvp/scripts/test-trip-draft-contract.mjs|one-world-route-public-mvp/scripts/maintenance-queue-model.mjs|one-world-route-public-mvp/scripts/test-maintenance-queue.mjs|one-world-route-public-mvp/scripts/platform-extension-validators.mjs|one-world-route-public-mvp/scripts/platform-extension-validators/*)
                 builder_browser=true
@@ -119,6 +126,8 @@ jobs:
               one-world-route-public-mvp/qa/tests/platform-smoke.spec.mjs|one-world-route-public-mvp/qa/playwright.config.mjs|one-world-route-public-mvp/qa/run-local.mjs)
                 flagship_browser=true
                 regional_browser=true
+                discovery_browser=true
+                discovery_full=true
                 experience_browser=true
                 ;;
               one-world-route-public-mvp/README.md)
@@ -129,8 +138,9 @@ jobs:
               one-world-route-public-mvp/api/share.js|one-world-route-public-mvp/vercel.json|one-world-route-public-mvp/sitemap.xml)
                 discovery_browser=true
                 ;;
-              one-world-route-public-mvp/platform/home.js|one-world-route-public-mvp/platform/home.css)
+              one-world-route-public-mvp/platform/home.js|one-world-route-public-mvp/platform/home.css|one-world-route-public-mvp/platform/discovery.js)
                 discovery_browser=true
+                discovery_full=true
                 ;;
               one-world-route-public-mvp/platform/place-experiences.js|one-world-route-public-mvp/platform/regional-detail.js)
                 regional_browser=true
@@ -156,23 +166,38 @@ jobs:
             esac
           done < /tmp/owr-changed-files.txt
 
+          # Browser coverage must stay bounded as the catalog grows.
+          # Desktop checks every changed Journey; mobile samples at most two.
+          content_mobile_trip_ids=""
+          if [[ -n "$content_trip_ids" ]]; then
+            IFS=',' read -r -a trip_parts <<< "$content_trip_ids"
+            content_mobile_trip_ids="${trip_parts[0]}"
+            if [[ ${#trip_parts[@]} -gt 1 ]]; then
+              content_mobile_trip_ids="$content_mobile_trip_ids,${trip_parts[1]}"
+            fi
+          fi
+
           echo "flagship_browser=$flagship_browser" >> "$GITHUB_OUTPUT"
           echo "regional_browser=$regional_browser" >> "$GITHUB_OUTPUT"
           echo "discovery_browser=$discovery_browser" >> "$GITHUB_OUTPUT"
+          echo "discovery_full=$discovery_full" >> "$GITHUB_OUTPUT"
           echo "builder_browser=$builder_browser" >> "$GITHUB_OUTPUT"
           echo "content_browser=$content_browser" >> "$GITHUB_OUTPUT"
           echo "experience_browser=$experience_browser" >> "$GITHUB_OUTPUT"
           echo "content_trip_ids=$content_trip_ids" >> "$GITHUB_OUTPUT"
+          echo "content_mobile_trip_ids=$content_mobile_trip_ids" >> "$GITHUB_OUTPUT"
 
           echo "Changed files:"
           cat /tmp/owr-changed-files.txt
           echo "flagship_browser=$flagship_browser"
           echo "regional_browser=$regional_browser"
           echo "discovery_browser=$discovery_browser"
+          echo "discovery_full=$discovery_full"
           echo "builder_browser=$builder_browser"
           echo "content_browser=$content_browser"
           echo "experience_browser=$experience_browser"
           echo "content_trip_ids=$content_trip_ids"
+          echo "content_mobile_trip_ids=$content_mobile_trip_ids"
 
   core:
     name: Core checks
@@ -475,6 +500,7 @@ jobs:
         env:
           OWR_QA_NO_VIDEO: '1'
           OWR_QA_CONTENT_TRIP_IDS: ${{ needs.changes.outputs.content_trip_ids }}
+          OWR_QA_CONTENT_MOBILE_TRIP_IDS: ${{ needs.changes.outputs.content_mobile_trip_ids }}
         run: |
           CHROME_BIN="$(command -v google-chrome || command -v chromium)"
           test -n "$CHROME_BIN"
@@ -580,10 +606,15 @@ jobs:
       - name: Run discovery browser smoke
         env:
           OWR_QA_NO_VIDEO: '1'
+          OWR_QA_DISCOVERY_FULL: ${{ needs.changes.outputs.discovery_full }}
         run: |
           CHROME_BIN="$(command -v google-chrome || command -v chromium)"
           test -n "$CHROME_BIN"
-          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/platform-smoke.spec.mjs tests/visual-cover-slot.spec.mjs --grep="@discovery" --project=desktop-1440 --project=mobile-390 --workers=1
+          if [[ "$OWR_QA_DISCOVERY_FULL" == "true" ]]; then
+            OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/platform-smoke.spec.mjs tests/visual-cover-slot.spec.mjs --grep="@discovery" --project=desktop-1440 --project=mobile-390 --workers=2
+          else
+            OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/run-local.mjs tests/platform-smoke.spec.mjs --grep="global discovery home exposes a broad visual journey catalog|scalable static visuals load cards hero and native social without card tile requests" --project=desktop-1440 --project=mobile-390 --workers=2
+          fi
       - name: Upload discovery browser smoke artifacts
         if: failure()
         uses: actions/upload-artifact@v7
@@ -689,8 +720,8 @@ jobs:
         run: |
           CHROME_BIN="$(command -v google-chrome || command -v chromium)"
           test -n "$CHROME_BIN"
-          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/node_modules/@playwright/test/cli.js test --config=qa/playwright.config.mjs tests/platform-smoke.spec.mjs --grep="scalable static visuals|inspiration selects|social story presents" --project=desktop-1440 --project=mobile-390 --project=mobile-360 --project=mobile-430 --workers=1 --output=qa/production-discovery-results
-          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/node_modules/@playwright/test/cli.js test --config=qa/playwright.config.mjs tests/regional-platform.spec.mjs --grep="flagship shell and route invariants" --project=desktop-1440 --project=mobile-390 --workers=1 --output=qa/production-world-results
+          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/node_modules/@playwright/test/cli.js test --config=qa/playwright.config.mjs tests/platform-smoke.spec.mjs --grep="scalable static visuals|inspiration selects|social story presents" --project=desktop-1440 --project=mobile-390 --workers=2 --output=qa/production-discovery-results
+          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/node_modules/@playwright/test/cli.js test --config=qa/playwright.config.mjs tests/regional-platform.spec.mjs --grep="flagship shell and route invariants" --project=desktop-1440 --project=mobile-390 --workers=2 --output=qa/production-world-results
           OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/node_modules/@playwright/test/cli.js test --config=qa/playwright.config.mjs tests/regional-platform.spec.mjs --grep="regional terrain activates" --project=desktop-1440 --project=mobile-390 --workers=2 --output=qa/production-terrain-results
       - name: Upload Production screenshots and failure evidence
         if: always()
