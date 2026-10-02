@@ -56,7 +56,7 @@ const report={
       'no standalone Earth globe',
       'no route lines, pins, borders or labels',
       'no text, numbers or logos',
-      'quiet central and edge zones for deterministic Earth/route compositing'
+      'quiet central and edge zones for deterministic flat-world route compositing'
     ]
   },
   factualLayer:{
@@ -70,6 +70,7 @@ const report={
     geometrySource:'data/public-route.json',
     basemapSource:'data/visual-sources/natural-earth-relief.webp',
     renderStyle:'premium-flat-world-v3',
+    projection:'equirectangular-flat-world',
     routeVisualReferenceOnly:true,
     countries:route.countries.length,
     routeLines:route.geometry.lines
