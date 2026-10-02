@@ -2,25 +2,94 @@ import {createRequire} from 'node:module';
 import {wrap} from './route-visual-model.mjs';
 
 const require=createRequire(import.meta.url);
+const DEG=Math.PI/180;
+const CENTRAL_MERIDIAN=12;
 
 const routePalette={
-  '#67c9ef':'#72c7df',
-  '#bca0ed':'#93a9d2',
-  '#e7b46a':'#c9a16e',
-  '#79adc9':'#75a9bd',
-  '#7bc6a1':'#74af98',
-  '#72d2cf':'#70b6ba',
-  '#c1def1':'#a0bdcc',
-  '#bdd0e1':'#8ea9b8'
+  '#67c9ef':'#75d0e7',
+  '#bca0ed':'#9eb4d9',
+  '#e7b46a':'#d2aa72',
+  '#79adc9':'#7db7c8',
+  '#7bc6a1':'#79bca0',
+  '#72d2cf':'#75c4c5',
+  '#c1def1':'#a9c9d5',
+  '#bdd0e1':'#98b6c3'
 };
 
-const safeColor=value=>routePalette[String(value||'').toLowerCase()]||'#82bfd2';
+const safeColor=value=>routePalette[String(value||'').toLowerCase()]||'#86c9d8';
+const clamp01=v=>Math.max(0,Math.min(1,v));
+const smoothstep=(a,b,v)=>{
+  const t=clamp01((v-a)/(b-a));
+  return t*t*(3-2*t);
+};
+const fmt=n=>Number(n.toFixed(2));
+
+const mix=(a,b,t)=>{
+  const parse=x=>[1,3,5].map(i=>parseInt(x.slice(i,i+2),16));
+  const A=parse(a),B=parse(b);
+  return '#'+A.map((v,i)=>Math.round(v+(B[i]-v)*t).toString(16).padStart(2,'0')).join('');
+};
+
+// Robinson-like compromise projection.
+// We intentionally use a compact deterministic approximation instead of claiming
+// an exact Robinson/Winkel Tripel implementation. Longitude width contracts toward
+// the poles while latitude remains monotonic, which gives a natural world silhouette
+// and avoids the technical rectangle of an equirectangular cover.
+const latWidth=lat=>{
+  const c=Math.max(0,Math.cos(Math.abs(lat)*DEG));
+  return .58+.42*Math.pow(c,.48);
+};
+
+const projectedY=lat=>{
+  const n=lat/90;
+  return n*(.92+.08*Math.cos(Math.abs(lat)*DEG));
+};
+
+const inverseProjectedY=yNorm=>{
+  let lat=Math.max(-90,Math.min(90,yNorm*90));
+  for(let i=0;i<5;i++){
+    const abs=Math.abs(lat);
+    const c=Math.cos(abs*DEG);
+    const sign=lat<0?-1:1;
+    const f=(lat/90)*(.92+.08*c)-yNorm;
+    const deriv=(.92+.08*c)/90-(lat/90)*.08*Math.sin(abs*DEG)*DEG*sign;
+    lat-=f/(Math.abs(deriv)<1e-6?1e-6:deriv);
+  }
+  return Math.max(-90,Math.min(90,lat));
+};
+
+const project=(point,layout)=>{
+  const lon=wrap(point[0]-CENTRAL_MERIDIAN);
+  const lat=Math.max(-90,Math.min(90,point[1]));
+  const xNorm=(lon/180)*latWidth(lat);
+  const yNorm=projectedY(lat);
+  return [
+    layout.cx+xNorm*(layout.mapW/2),
+    layout.cy-yNorm*(layout.mapH/2),
+    {lon,lat,xNorm,yNorm}
+  ];
+};
+
+const envelopeAlpha=(x,y,layout)=>{
+  const yNorm=(layout.cy-y)/(layout.mapH/2);
+  if(Math.abs(yNorm)>1)return 0;
+  const lat=inverseProjectedY(yNorm);
+  const width=latWidth(lat);
+  const xNorm=(x-layout.cx)/(layout.mapW/2);
+  const edge=Math.abs(xNorm)/width;
+  if(edge>=1)return 0;
+
+  const side=1-smoothstep(.91,1,edge);
+  const polar=1-smoothstep(.88,1,Math.abs(yNorm));
+  const antarctic=lat<-63?1-smoothstep(-63,-86,lat):1;
+  return clamp01(side*polar*antarctic);
+};
 
 const dense=coords=>{
   const points=[];
   for(let i=1;i<coords.length;i++){
     const a=coords[i-1],b=coords[i],dl=wrap(b[0]-a[0]);
-    const count=Math.max(1,Math.ceil(Math.max(Math.abs(dl),Math.abs(b[1]-a[1]))/.45));
+    const count=Math.max(1,Math.ceil(Math.max(Math.abs(dl),Math.abs(b[1]-a[1]))/.42));
     for(let j=0;j<count;j++){
       const t=j/count;
       points.push([a[0]+dl*t,a[1]+(b[1]-a[1])*t]);
@@ -29,83 +98,108 @@ const dense=coords=>{
   return [...points,coords.at(-1)];
 };
 
-const fmt=n=>Number(n.toFixed(2));
-const mix=(a,b,t)=>{
-  const parse=x=>[1,3,5].map(i=>parseInt(x.slice(i,i+2),16));
-  const A=parse(a),B=parse(b);
-  return '#'+A.map((v,i)=>Math.round(v+(B[i]-v)*t).toString(16).padStart(2,'0')).join('');
-};
-
 export async function renderPremiumWorldOverlay({sourcePath,route,width,height}){
   const sharp=require('sharp');
+  const layout={
+    cx:width*.5,
+    cy:height*.515,
+    mapW:width*.92,
+    mapH:height*.69
+  };
 
-  const mapW=Math.round(width*.82);
-  const mapH=Math.round(mapW/2);
-  const left=Math.round((width-mapW)/2);
-  const top=Math.round((height-mapH)/2+height*.015);
-  const radius=Math.max(16,Math.round(width*.022));
-
-  const relief=await sharp(sourcePath)
-    .resize(mapW,mapH,{fit:'fill'})
+  const {data:source,info}=await sharp(sourcePath)
     .removeAlpha()
-    .modulate({brightness:.70,saturation:.48})
-    .linear([.86,.90,.96],[5,10,14])
-    .png()
-    .toBuffer();
+    .raw()
+    .toBuffer({resolveWithObject:true});
 
-  const reliefAlpha=await sharp(relief)
-    .ensureAlpha()
-    .composite([{
-      input:Buffer.from(
-        '<svg xmlns="http://www.w3.org/2000/svg" width="'+mapW+'" height="'+mapH+'">'+
-        '<rect x="0" y="0" width="'+mapW+'" height="'+mapH+'" rx="'+radius+'" ry="'+radius+'" fill="#fff" fill-opacity=".82"/>'+
-        '</svg>'
-      ),
-      blend:'dest-in'
-    }])
-    .png()
-    .toBuffer();
+  const sample=(lon,lat)=>{
+    const sx=((wrap(lon)+180)/360)*(info.width-1);
+    const sy=((90-lat)/180)*(info.height-1);
+    const x0=Math.max(0,Math.min(info.width-1,Math.floor(sx)));
+    const y0=Math.max(0,Math.min(info.height-1,Math.floor(sy)));
+    const x1=Math.min(info.width-1,x0+1);
+    const y1=Math.min(info.height-1,y0+1);
+    const dx=sx-x0,dy=sy-y0;
+    const out=[0,0,0];
+    for(let k=0;k<3;k++){
+      const p=(x,y)=>source[(y*info.width+x)*info.channels+k];
+      const top=p(x0,y0)*(1-dx)+p(x1,y0)*dx;
+      const bottom=p(x0,y1)*(1-dx)+p(x1,y1)*dx;
+      out[k]=top*(1-dy)+bottom*dy;
+    }
+    return out;
+  };
 
-  const project=p=>[
-    left+((wrap(p[0])+180)/360)*mapW,
-    top+((90-p[1])/180)*mapH
-  ];
+  const pixels=Buffer.alloc(width*height*4);
+  const mask=Buffer.alloc(width*height*4);
+  for(let y=0;y<height;y++){
+    const yNorm=(layout.cy-y)/(layout.mapH/2);
+    if(Math.abs(yNorm)>1)continue;
+    const lat=inverseProjectedY(yNorm);
+    const widthFactor=latWidth(lat);
+    const xHalf=(layout.mapW/2)*widthFactor;
+    const x0=Math.max(0,Math.floor(layout.cx-xHalf));
+    const x1=Math.min(width-1,Math.ceil(layout.cx+xHalf));
+
+    for(let x=x0;x<=x1;x++){
+      const at=(y*width+x)*4;
+      const alpha=envelopeAlpha(x,y,layout);
+      if(alpha<=0)continue;
+
+      const xNorm=(x-layout.cx)/(layout.mapW/2);
+      const lon=CENTRAL_MERIDIAN+(xNorm/widthFactor)*180;
+      const raw=sample(lon,lat);
+      const lum=.2126*raw[0]+.7152*raw[1]+.0722*raw[2];
+      const desat=raw.map(v=>lum+(v-lum)*.50);
+      const polarShade=.93-.12*smoothstep(.62,1,Math.abs(yNorm));
+
+      pixels[at]=Math.round((desat[0]*.72+15)*polarShade);
+      pixels[at+1]=Math.round((desat[1]*.77+27)*polarShade);
+      pixels[at+2]=Math.round((desat[2]*.83+38)*polarShade);
+      pixels[at+3]=Math.round(255*.77*alpha);
+
+      mask[at]=255;
+      mask[at+1]=255;
+      mask[at+2]=255;
+      mask[at+3]=Math.round(255*alpha);
+    }
+  }
 
   const defs=[
-    '<filter id="routeGlow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="'+fmt(Math.max(.6,width/2100))+'"/></filter>',
-    '<filter id="mapGlow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="'+fmt(Math.max(2,width/650))+'"/></filter>'
+    '<filter id="routeGlow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="'+fmt(Math.max(.75,width/1900))+'"/></filter>'
   ];
-  const lines=[];
-  let routeId=0;
-  const core=Math.max(.9,width/1150);
-  const glow=Math.max(2.4,width/500);
+  const paths=[];
+  let id=0;
+  const core=Math.max(1.15,width/900);
+  const glow=Math.max(2.6,width/470);
 
   const draw=(coords,line)=>{
     if(coords.length<2)return;
-    const id='g'+routeId++;
+    const gid='r'+id++;
     const d=coords.map((p,i)=>(i?'L':'M')+fmt(p[0])+','+fmt(p[1])).join(' ');
-    const c1=mix(safeColor(line.color),'#d6edf2',.10);
-    const c2=mix(safeColor(line.endColor),'#d6edf2',.10);
-    defs.push('<linearGradient id="'+id+'" gradientUnits="userSpaceOnUse" x1="'+fmt(coords[0][0])+'" y1="'+fmt(coords[0][1])+'" x2="'+fmt(coords.at(-1)[0])+'" y2="'+fmt(coords.at(-1)[1])+'"><stop stop-color="'+c1+'"/><stop offset="1" stop-color="'+c2+'"/></linearGradient>');
-    const opacity=line.schematic?.48:.72;
-    lines.push(
-      '<path d="'+d+'" fill="none" stroke="url(#'+id+')" stroke-opacity=".15" stroke-width="'+fmt(glow)+'" filter="url(#routeGlow)"/>',
-      '<path d="'+d+'" fill="none" stroke="url(#'+id+')" stroke-opacity="'+opacity+'" stroke-width="'+fmt(core)+'"/>'
+    const c1=mix(safeColor(line.color),'#d7eef2',.09);
+    const c2=mix(safeColor(line.endColor),'#d7eef2',.09);
+    defs.push('<linearGradient id="'+gid+'" gradientUnits="userSpaceOnUse" x1="'+fmt(coords[0][0])+'" y1="'+fmt(coords[0][1])+'" x2="'+fmt(coords.at(-1)[0])+'" y2="'+fmt(coords.at(-1)[1])+'"><stop stop-color="'+c1+'"/><stop offset="1" stop-color="'+c2+'"/></linearGradient>');
+    const opacity=line.schematic?.57:.82;
+    paths.push(
+      '<path d="'+d+'" fill="none" stroke="url(#'+gid+')" stroke-opacity=".17" stroke-width="'+fmt(glow)+'" filter="url(#routeGlow)"/>',
+      '<path d="'+d+'" fill="none" stroke="url(#'+gid+')" stroke-opacity="'+opacity+'" stroke-width="'+fmt(core)+'"/>'
     );
   };
 
   for(const line of route.lines){
     const points=dense(line.coordinates);
     let run=[];
-    let prev=null;
+    let previous=null;
     for(const p of points){
-      const q=project(p);
-      if(prev&&Math.abs(q[0]-prev[0])>mapW*.48){
+      const q=project(p,layout);
+      const xy=[q[0],q[1]];
+      if(previous&&Math.abs(xy[0]-previous[0])>layout.mapW*.42){
         draw(run,line);
         run=[];
       }
-      run.push(q);
-      prev=q;
+      run.push(xy);
+      previous=xy;
     }
     draw(run,line);
   }
@@ -113,27 +207,40 @@ export async function renderPremiumWorldOverlay({sourcePath,route,width,height})
   const endpoints=[
     route.lines[0]?.coordinates?.[0],
     route.lines.at(-1)?.coordinates?.at(-1)
-  ].filter(Boolean).map(project);
+  ].filter(Boolean).map(p=>project(p,layout));
 
   const endpointSvg=endpoints.map(q=>
-    '<circle cx="'+fmt(q[0])+'" cy="'+fmt(q[1])+'" r="'+fmt(Math.max(1.8,width/780))+'" fill="#dff6fb" fill-opacity=".92" stroke="#73bdd0" stroke-opacity=".7" stroke-width="'+fmt(Math.max(.7,width/2200))+'"/>'
+    '<circle cx="'+fmt(q[0])+'" cy="'+fmt(q[1])+'" r="'+fmt(Math.max(1.7,width/790))+'" fill="#e4f8fb" fill-opacity=".90" stroke="#79c6d7" stroke-opacity=".68" stroke-width="'+fmt(Math.max(.7,width/2200))+'"/>'
   ).join('');
 
-  const frame=Buffer.from(
+  const routeSvg=Buffer.from(
     '<svg xmlns="http://www.w3.org/2000/svg" width="'+width+'" height="'+height+'">'+
       '<defs>'+defs.join('')+'</defs>'+
-      '<rect x="'+left+'" y="'+top+'" width="'+mapW+'" height="'+mapH+'" rx="'+radius+'" ry="'+radius+'" fill="#5cc7ea" fill-opacity=".025" stroke="#89d6e8" stroke-opacity=".18" stroke-width="'+fmt(Math.max(.8,width/1900))+'" filter="url(#mapGlow)"/>'+
-      '<rect x="'+left+'" y="'+top+'" width="'+mapW+'" height="'+mapH+'" rx="'+radius+'" ry="'+radius+'" fill="none" stroke="#b6e6ef" stroke-opacity=".13" stroke-width="'+fmt(Math.max(.7,width/2300))+'"/>'+
-      '<g stroke-linecap="round" stroke-linejoin="round">'+lines.join('')+endpointSvg+'</g>'+
+      '<g stroke-linecap="round" stroke-linejoin="round">'+paths.join('')+endpointSvg+'</g>'+
     '</svg>'
   );
 
-  return sharp({
-    create:{width,height,channels:4,background:{r:0,g:0,b:0,alpha:0}}
-  })
+  const routeLayer=await sharp(routeSvg)
+    .ensureAlpha()
+    .composite([{
+      input:mask,
+      raw:{width,height,channels:4},
+      blend:'dest-in'
+    }])
+    .png()
+    .toBuffer();
+
+  const atmosphere=Buffer.from(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="'+width+'" height="'+height+'">'+
+      '<defs><radialGradient id="a" cx=".5" cy=".52" r=".56"><stop offset=".45" stop-color="#79d7ea" stop-opacity=".045"/><stop offset=".82" stop-color="#4ba2bc" stop-opacity=".018"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>'+
+      '<ellipse cx="'+fmt(layout.cx)+'" cy="'+fmt(layout.cy)+'" rx="'+fmt(layout.mapW*.49)+'" ry="'+fmt(layout.mapH*.54)+'" fill="url(#a)"/>'+
+    '</svg>'
+  );
+
+  return sharp(pixels,{raw:{width,height,channels:4}})
     .composite([
-      {input:reliefAlpha,left,top,blend:'over'},
-      {input:frame,blend:'over'}
+      {input:atmosphere,blend:'over'},
+      {input:routeLayer,blend:'over'}
     ])
     .png()
     .toBuffer();
