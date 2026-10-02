@@ -14,7 +14,7 @@
       ],
       "visualFamily": "planetary",
       "motif": "a cinematic deep-space atmosphere designed to receive the verified Earth-and-route overlay inspired by global",
-      "promptVersion": "world-showcase-hybrid-v1",
+      "promptVersion": "world-showcase-hybrid-v2",
       "prompt": "Create exactly one original premium cinematic 16:9 deep-space atmosphere background for “One World Journey”. Use restrained dark space, subtle blue orbital glow, faint atmospheric haze and enough quiet negative space for interface overlays. Do not draw a standalone Earth globe, route, pins, labels, borders, text, numbers or logos. The recognizable Earth globes and factual 195-country journey route will be composited separately from verified ONE WORLD ROUTE geometry.",
       "priority": "P1",
       "status": "planned",
