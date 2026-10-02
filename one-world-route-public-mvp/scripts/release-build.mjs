@@ -12,6 +12,7 @@ for (const script of [
   'build-media-manifest.mjs',
   'build-visual-coverage.mjs',
   'build-visual-briefs.mjs',
+  'build-world-showcase-visual-spec.mjs',
   'audit-platform-maintenance.mjs',
   'audit-route-continuity.mjs',
   'audit-flagship-readiness.mjs',
