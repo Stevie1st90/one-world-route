@@ -198,6 +198,14 @@ When a runner fails:
 5. Preserve generated assets that already passed validation.
 6. Fix the root cause in repository scripts/docs when the failure pattern can recur.
 
+### Windows line-ending recovery
+
+If a tracked bundle remains dirty after `git restore --worktree -- .` and Git reports a CRLF/LF warning, do not keep trying to normalize the user's active worktree during the release.
+
+Use a temporary isolated worktree from the current remote feature branch and cherry-pick the already-created task commit into that worktree. Then push from the temporary worktree.
+
+This is the preferred recovery for completed commits blocked only by local line-ending drift.
+
 ## 10. Definition of done
 
 A product block is done only when:
