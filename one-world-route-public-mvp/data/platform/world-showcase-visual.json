@@ -33,12 +33,12 @@
     "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
     "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
     "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
-    "countries": 195,
-    "routeLines": 253,
     "geometrySource": "data/public-route.json",
     "basemapSource": "data/visual-sources/natural-earth-relief.webp",
     "renderStyle": "premium-world-showcase-v2",
-    "routeVisualReferenceOnly": true
+    "routeVisualReferenceOnly": true,
+    "countries": 195,
+    "routeLines": 253
   },
   "finalCover": {
     "assetId": "journey--world-195--cover--16x9--v001",
