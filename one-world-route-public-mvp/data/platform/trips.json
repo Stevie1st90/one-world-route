@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-30",
+  "updatedAt": "2026-10-02",
   "defaultLocale": "en",
   "supportedLocales": [
     "en",
@@ -1635,6 +1635,668 @@
           "pace": "balanced",
           "seasons": [
             "multi-season"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "oceania",
+          "accessibility": "vehicle-dependent"
+        }
+      }
+    },
+    {
+      "id": "swiss-scenic-rail-journey",
+      "slug": "swiss-scenic-rail-journey",
+      "kind": "rail",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/swiss-scenic-rail-journey.json",
+      "title": {
+        "en": "Swiss Scenic Rail Journey",
+        "de": "Schweiz · Panoramabahn-Reise",
+        "it": "Svizzera · viaggio panoramico in treno",
+        "es": "Suiza · viaje panorámico en tren",
+        "fr": "Suisse · voyage panoramique en train",
+        "pt": "Suíça · viagem panorâmica de trem"
+      },
+      "subtitle": {
+        "en": "12 days · lakes, Alpine passes and panoramic rail",
+        "de": "12 Tage · Seen, Alpenpässe und Panoramabahnen",
+        "it": "12 giorni · laghi, passi alpini e treni panoramici",
+        "es": "12 días · lagos, pasos alpinos y trenes panorámicos",
+        "fr": "12 jours · lacs, cols alpins et trains panoramiques",
+        "pt": "12 dias · lagos, passos alpinos e trens panorâmicos"
+      },
+      "metrics": {
+        "days": 12,
+        "countries": 1,
+        "stops": 6,
+        "segments": 5,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "source-evidence",
+        "trip-planning",
+        "story",
+        "terrain"
+      ],
+      "visual": {
+        "theme": "alpine-rail",
+        "visualFamily": "rail-cinematic",
+        "featurePriority": 88,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "europe",
+          "central-europe",
+          "switzerland"
+        ],
+        "themes": [
+          "rail",
+          "mountains",
+          "lakes",
+          "culture"
+        ],
+        "modes": [
+          "rail"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn",
+            "winter"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "europe",
+          "accessibility": "standard-check"
+        }
+      }
+    },
+    {
+      "id": "scotland-highlands-hebrides",
+      "slug": "scotland-highlands-hebrides",
+      "kind": "multimodal",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/scotland-highlands-hebrides.json",
+      "title": {
+        "en": "Scottish Highlands & Hebrides Journey",
+        "de": "Schottische Highlands & Hebriden",
+        "it": "Highlands scozzesi e Ebridi",
+        "es": "Highlands escocesas y Hébridas",
+        "fr": "Highlands écossais et Hébrides",
+        "pt": "Highlands escocesas e Hébridas"
+      },
+      "subtitle": {
+        "en": "12 days · Highlands roads, Outer Hebrides and ferries",
+        "de": "12 Tage · Highlands, Äußere Hebriden und Fähren",
+        "it": "12 giorni · Highlands, Ebridi Esterne e traghetti",
+        "es": "12 días · Highlands, Hébridas Exteriores y ferris",
+        "fr": "12 jours · Highlands, Hébrides extérieures et ferries",
+        "pt": "12 dias · Highlands, Hébridas Exteriores e balsas"
+      },
+      "metrics": {
+        "days": 12,
+        "countries": 1,
+        "stops": 6,
+        "segments": 5,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "source-evidence",
+        "trip-planning",
+        "story",
+        "terrain",
+        "vehicle-context",
+        "road-rules"
+      ],
+      "visual": {
+        "theme": "hebrides",
+        "visualFamily": "coastal-editorial",
+        "featurePriority": 86,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "europe",
+          "northern-europe",
+          "scotland"
+        ],
+        "themes": [
+          "coast",
+          "islands",
+          "road-trip",
+          "culture"
+        ],
+        "modes": [
+          "car",
+          "ferry"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "europe",
+          "accessibility": "operator-dependent"
+        }
+      }
+    },
+    {
+      "id": "sri-lanka-hill-country-rail",
+      "slug": "sri-lanka-hill-country-rail",
+      "kind": "rail",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/sri-lanka-hill-country-rail.json",
+      "title": {
+        "en": "Sri Lanka Hill Country by Rail",
+        "de": "Sri Lanka · Hochland per Bahn",
+        "it": "Sri Lanka · altopiani in treno",
+        "es": "Sri Lanka · tierras altas en tren",
+        "fr": "Sri Lanka · hauts plateaux en train",
+        "pt": "Sri Lanka · terras altas de trem"
+      },
+      "subtitle": {
+        "en": "10 days · Colombo, Kandy, tea country and Ella",
+        "de": "10 Tage · Colombo, Kandy, Teeland und Ella",
+        "it": "10 giorni · Colombo, Kandy, tè ed Ella",
+        "es": "10 días · Colombo, Kandy, té y Ella",
+        "fr": "10 jours · Colombo, Kandy, thé et Ella",
+        "pt": "10 dias · Colombo, Kandy, chá e Ella"
+      },
+      "metrics": {
+        "days": 10,
+        "countries": 1,
+        "stops": 5,
+        "segments": 4,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "source-evidence",
+        "trip-planning",
+        "story",
+        "terrain"
+      ],
+      "visual": {
+        "theme": "tea-country",
+        "visualFamily": "rail-cinematic",
+        "featurePriority": 87,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "asia",
+          "south-asia",
+          "sri-lanka"
+        ],
+        "themes": [
+          "rail",
+          "mountains",
+          "tea",
+          "culture"
+        ],
+        "modes": [
+          "rail"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "winter",
+            "spring",
+            "summer"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends"
+          ],
+          "startRegion": "asia",
+          "accessibility": "operator-dependent"
+        }
+      }
+    },
+    {
+      "id": "taiwan-rail-coast-loop",
+      "slug": "taiwan-rail-coast-loop",
+      "kind": "rail",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/taiwan-rail-coast-loop.json",
+      "title": {
+        "en": "Taiwan Rail & Coast Loop",
+        "de": "Taiwan · Bahn- & Küstenrunde",
+        "it": "Taiwan · circuito ferrovia e costa",
+        "es": "Taiwán · circuito ferroviario y costero",
+        "fr": "Taïwan · boucle ferroviaire et côtière",
+        "pt": "Taiwan · circuito ferroviário e costeiro"
+      },
+      "subtitle": {
+        "en": "12 days · east-coast mountains, cities and island rail",
+        "de": "12 Tage · Ostküste, Berge, Städte und Inselbahn",
+        "it": "12 giorni · costa orientale, montagne, città e ferrovia",
+        "es": "12 días · costa este, montañas, ciudades y tren",
+        "fr": "12 jours · côte est, montagnes, villes et train",
+        "pt": "12 dias · costa leste, montanhas, cidades e trem"
+      },
+      "metrics": {
+        "days": 12,
+        "countries": 1,
+        "stops": 7,
+        "segments": 6,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "source-evidence",
+        "trip-planning",
+        "story",
+        "terrain"
+      ],
+      "visual": {
+        "theme": "pacific-rail",
+        "visualFamily": "rail-cinematic",
+        "featurePriority": 85,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "asia",
+          "east-asia",
+          "taiwan"
+        ],
+        "themes": [
+          "rail",
+          "coast",
+          "cities",
+          "nature"
+        ],
+        "modes": [
+          "rail"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "spring",
+            "autumn",
+            "winter"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "asia",
+          "accessibility": "standard-check"
+        }
+      }
+    },
+    {
+      "id": "java-rail-volcano-journey",
+      "slug": "java-rail-volcano-journey",
+      "kind": "rail",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/java-rail-volcano-journey.json",
+      "title": {
+        "en": "Java Rail & Volcano Journey",
+        "de": "Java · Bahn & Vulkane",
+        "it": "Giava · treni e vulcani",
+        "es": "Java · trenes y volcanes",
+        "fr": "Java · trains et volcans",
+        "pt": "Java · trens e vulcões"
+      },
+      "subtitle": {
+        "en": "12 days · Jakarta, Yogyakarta, East Java and volcano country",
+        "de": "12 Tage · Jakarta, Yogyakarta, Ostjava und Vulkanland",
+        "it": "12 giorni · Giacarta, Yogyakarta, Giava orientale e vulcani",
+        "es": "12 días · Yakarta, Yogyakarta, Java Oriental y volcanes",
+        "fr": "12 jours · Jakarta, Yogyakarta, Java oriental et volcans",
+        "pt": "12 dias · Jacarta, Yogyakarta, Java Oriental e vulcões"
+      },
+      "metrics": {
+        "days": 12,
+        "countries": 1,
+        "stops": 6,
+        "segments": 5,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "source-evidence",
+        "trip-planning",
+        "story",
+        "terrain"
+      ],
+      "visual": {
+        "theme": "java-volcano",
+        "visualFamily": "rail-cinematic",
+        "featurePriority": 84,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "asia",
+          "south-east-asia",
+          "indonesia"
+        ],
+        "themes": [
+          "rail",
+          "culture",
+          "volcanic",
+          "cities"
+        ],
+        "modes": [
+          "rail"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "active",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends"
+          ],
+          "startRegion": "asia",
+          "accessibility": "operator-dependent"
+        }
+      }
+    },
+    {
+      "id": "namibia-desert-wildlife-road-trip",
+      "slug": "namibia-desert-wildlife-road-trip",
+      "kind": "road-trip",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/namibia-desert-wildlife-road-trip.json",
+      "title": {
+        "en": "Namibia Desert & Wildlife Road Trip",
+        "de": "Namibia · Wüste & Wildlife Roadtrip",
+        "it": "Namibia · deserto e fauna on the road",
+        "es": "Namibia · desierto y fauna en ruta",
+        "fr": "Namibie · désert et faune en road trip",
+        "pt": "Namíbia · deserto e vida selvagem de carro"
+      },
+      "subtitle": {
+        "en": "14 days · dunes, Atlantic coast, Damaraland and Etosha",
+        "de": "14 Tage · Dünen, Atlantikküste, Damaraland und Etosha",
+        "it": "14 giorni · dune, costa atlantica, Damaraland ed Etosha",
+        "es": "14 días · dunas, costa atlántica, Damaraland y Etosha",
+        "fr": "14 jours · dunes, côte atlantique, Damaraland et Etosha",
+        "pt": "14 dias · dunas, costa atlântica, Damaraland e Etosha"
+      },
+      "metrics": {
+        "days": 14,
+        "countries": 1,
+        "stops": 7,
+        "segments": 6,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "source-evidence",
+        "trip-planning",
+        "story",
+        "terrain",
+        "vehicle-context",
+        "road-rules"
+      ],
+      "visual": {
+        "theme": "namib",
+        "visualFamily": "road-cinematic",
+        "featurePriority": 89,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "africa",
+          "southern-africa",
+          "namibia"
+        ],
+        "themes": [
+          "road-trip",
+          "desert",
+          "wildlife",
+          "coast"
+        ],
+        "modes": [
+          "car"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "active",
+          "seasons": [
+            "summer",
+            "autumn",
+            "winter"
+          ],
+          "party": [
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "africa",
+          "accessibility": "vehicle-dependent"
+        }
+      }
+    },
+    {
+      "id": "alaska-inside-passage-ferry",
+      "slug": "alaska-inside-passage-ferry",
+      "kind": "island-hopping",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/alaska-inside-passage-ferry.json",
+      "title": {
+        "en": "Alaska Inside Passage by Ferry",
+        "de": "Alaska · Inside Passage per Fähre",
+        "it": "Alaska · Inside Passage in traghetto",
+        "es": "Alaska · Inside Passage en ferry",
+        "fr": "Alaska · Inside Passage en ferry",
+        "pt": "Alasca · Inside Passage de balsa"
+      },
+      "subtitle": {
+        "en": "12 days · rainforest ports, fjords and state ferries",
+        "de": "12 Tage · Regenwaldhäfen, Fjorde und Staatsfähren",
+        "it": "12 giorni · porti nella foresta, fiordi e traghetti",
+        "es": "12 días · puertos de selva, fiordos y ferris",
+        "fr": "12 jours · ports forestiers, fjords et ferries",
+        "pt": "12 dias · portos de floresta, fiordes e balsas"
+      },
+      "metrics": {
+        "days": 12,
+        "countries": 1,
+        "stops": 6,
+        "segments": 5,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "source-evidence",
+        "trip-planning",
+        "story",
+        "terrain",
+        "border-context"
+      ],
+      "visual": {
+        "theme": "inside-passage",
+        "visualFamily": "coastal-editorial",
+        "featurePriority": 90,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "north-america",
+          "united-states",
+          "alaska"
+        ],
+        "themes": [
+          "ferry",
+          "coast",
+          "fjords",
+          "wildlife"
+        ],
+        "modes": [
+          "ferry"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "relaxed",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
+          ],
+          "party": [
+            "solo",
+            "couples",
+            "friends",
+            "families"
+          ],
+          "startRegion": "north-america",
+          "accessibility": "operator-dependent"
+        }
+      }
+    },
+    {
+      "id": "tasmania-wild-coast-road-loop",
+      "slug": "tasmania-wild-coast-road-loop",
+      "kind": "road-trip",
+      "status": "editorial-preview",
+      "renderer": "regional-globe",
+      "dataset": "./data/platform/trips/tasmania-wild-coast-road-loop.json",
+      "title": {
+        "en": "Tasmania Wild Coast Road Loop",
+        "de": "Tasmanien · Wild Coast Road Loop",
+        "it": "Tasmania · circuito Wild Coast",
+        "es": "Tasmania · circuito por la costa salvaje",
+        "fr": "Tasmanie · boucle de la côte sauvage",
+        "pt": "Tasmânia · circuito pela costa selvagem"
+      },
+      "subtitle": {
+        "en": "14 days · east coast, alpine wilderness and western wilds",
+        "de": "14 Tage · Ostküste, Alpenwildnis und wilder Westen",
+        "it": "14 giorni · costa est, natura alpina e ovest selvaggio",
+        "es": "14 días · costa este, naturaleza alpina y oeste salvaje",
+        "fr": "14 jours · côte est, nature alpine et ouest sauvage",
+        "pt": "14 dias · costa leste, natureza alpina e oeste selvagem"
+      },
+      "metrics": {
+        "days": 14,
+        "countries": 1,
+        "stops": 8,
+        "segments": 7,
+        "budget": null,
+        "sourcedSegments": 0,
+        "verifiedSegments": 0
+      },
+      "capabilities": [
+        "globe",
+        "regional-stops",
+        "traveller-context",
+        "source-evidence",
+        "trip-planning",
+        "story",
+        "terrain",
+        "vehicle-context",
+        "road-rules"
+      ],
+      "visual": {
+        "theme": "tasmania",
+        "visualFamily": "road-cinematic",
+        "featurePriority": 87,
+        "mediaState": "art-directed"
+      },
+      "discovery": {
+        "regions": [
+          "oceania",
+          "australia",
+          "tasmania"
+        ],
+        "themes": [
+          "road-trip",
+          "coast",
+          "nature",
+          "mountains"
+        ],
+        "modes": [
+          "car"
+        ],
+        "durationBand": "7-14",
+        "featured": false,
+        "fit": {
+          "pace": "balanced",
+          "seasons": [
+            "spring",
+            "summer",
+            "autumn"
           ],
           "party": [
             "solo",
