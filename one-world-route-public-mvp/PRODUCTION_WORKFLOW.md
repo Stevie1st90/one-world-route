@@ -222,7 +222,7 @@ For Windows production operation, do not create one-off helper scripts for each 
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\one-world-route-public-mvp\scripts\apply-cover-batch.ps1" -BundleZip "<approved-cover-batch.zip>"
 ```
 
-The runner extracts the approved bundle, validates 1-10 approved unique Journeys, removes only a stale local retry branch when no remote branch exists, creates an isolated worktree from current `origin/main`, calls the Node release runner directly (not through npm argument forwarding), stages the explicit cover-release allowlist, commits, rebases and pushes the batch branch.
+The runner extracts the approved bundle, validates 1-10 approved unique Journeys, creates an isolated **detached** worktree from current `origin/main`, calls the Node release runner directly (not through npm argument forwarding), stages the explicit cover-release allowlist, commits, rebases and pushes `HEAD:<remote-batch-branch>`. It never creates or deletes a local branch with the remote batch name, so stale local retry branches cannot block a new run.
 
 The release allowlist is tested against real Git porcelain output. Use `--untracked-files=all` so Git reports individual WebP files rather than collapsing a newly-created Journey directory. Paths are normalized whether Git reports them relative to the application directory or repository root.
 
