@@ -1,0 +1,331 @@
+{
+  "schemaVersion": 1,
+  "id": "scotland-highlands-hebrides",
+  "slug": "scotland-highlands-hebrides",
+  "kind": "multimodal",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Scottish Highlands & Hebrides Journey",
+    "de": "Schottische Highlands & Hebriden",
+    "it": "Highlands scozzesi e Ebridi",
+    "es": "Highlands escocesas y Hébridas",
+    "fr": "Highlands écossais et Hébrides",
+    "pt": "Highlands escocesas e Hébridas"
+  },
+  "summary": {
+    "en": "A road-and-ferry journey from Inverness to the northwest Highlands, across Lewis and Harris and onward to Skye and Lochaber.",
+    "de": "Eine Straßen- und Fährreise von Inverness durch die nordwestlichen Highlands über Lewis und Harris bis Skye und Lochaber.",
+    "it": "Un viaggio su strada e traghetto da Inverness alle Highlands nord-occidentali, Lewis e Harris, Skye e Lochaber.",
+    "es": "Un viaje por carretera y ferry desde Inverness por las Highlands del noroeste, Lewis y Harris, Skye y Lochaber.",
+    "fr": "Un voyage route et ferry depuis Inverness vers les Highlands du nord-ouest, Lewis et Harris, Skye et Lochaber.",
+    "pt": "Uma viagem de estrada e balsa de Inverness às Highlands do noroeste, Lewis e Harris, Skye e Lochaber."
+  },
+  "geography": {
+    "countries": [
+      "GB"
+    ],
+    "primaryCountry": "GB"
+  },
+  "planning": {
+    "days": 12,
+    "currency": "GBP",
+    "pace": "balanced",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": 57.61875,
+      "lng": -5.64475,
+      "altitude": 0.72
+    }
+  },
+  "media": {
+    "hero": {
+      "type": "art-directed",
+      "theme": "hebrides",
+      "asset": null,
+      "attribution": null,
+      "license": "original-ui-art"
+    },
+    "gallery": []
+  },
+  "highlights": [
+    "Highland roads, sea lochs and island crossings",
+    "coast · islands · road · ferry"
+  ],
+  "places": [
+    {
+      "id": "inverness",
+      "type": "place",
+      "countryCode": "GB",
+      "name": {
+        "en": "Inverness"
+      },
+      "coordinates": {
+        "lat": 57.4778,
+        "lng": -4.2247
+      }
+    },
+    {
+      "id": "ullapool",
+      "type": "place",
+      "countryCode": "GB",
+      "name": {
+        "en": "Ullapool"
+      },
+      "coordinates": {
+        "lat": 57.8954,
+        "lng": -5.1601
+      }
+    },
+    {
+      "id": "stornoway",
+      "type": "place",
+      "countryCode": "GB",
+      "name": {
+        "en": "Stornoway"
+      },
+      "coordinates": {
+        "lat": 58.2093,
+        "lng": -6.3865
+      }
+    },
+    {
+      "id": "tarbert-harris",
+      "type": "place",
+      "countryCode": "GB",
+      "name": {
+        "en": "Tarbert, Harris"
+      },
+      "coordinates": {
+        "lat": 57.8977,
+        "lng": -6.798
+      }
+    },
+    {
+      "id": "portree",
+      "type": "place",
+      "countryCode": "GB",
+      "name": {
+        "en": "Portree"
+      },
+      "coordinates": {
+        "lat": 57.4125,
+        "lng": -6.194
+      }
+    },
+    {
+      "id": "fort-william",
+      "type": "place",
+      "countryCode": "GB",
+      "name": {
+        "en": "Fort William"
+      },
+      "coordinates": {
+        "lat": 56.8198,
+        "lng": -5.1052
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "scotland-highlands-hebrides-stop-01",
+      "sequence": 1,
+      "placeId": "inverness",
+      "dayStart": 1,
+      "dayEnd": 2,
+      "nights": 2
+    },
+    {
+      "id": "scotland-highlands-hebrides-stop-02",
+      "sequence": 2,
+      "placeId": "ullapool",
+      "dayStart": 3,
+      "dayEnd": 3,
+      "nights": 1
+    },
+    {
+      "id": "scotland-highlands-hebrides-stop-03",
+      "sequence": 3,
+      "placeId": "stornoway",
+      "dayStart": 4,
+      "dayEnd": 5,
+      "nights": 2
+    },
+    {
+      "id": "scotland-highlands-hebrides-stop-04",
+      "sequence": 4,
+      "placeId": "tarbert-harris",
+      "dayStart": 6,
+      "dayEnd": 6,
+      "nights": 1
+    },
+    {
+      "id": "scotland-highlands-hebrides-stop-05",
+      "sequence": 5,
+      "placeId": "portree",
+      "dayStart": 7,
+      "dayEnd": 9,
+      "nights": 3
+    },
+    {
+      "id": "scotland-highlands-hebrides-stop-06",
+      "sequence": 6,
+      "placeId": "fort-william",
+      "dayStart": 10,
+      "dayEnd": 12,
+      "nights": 3
+    }
+  ],
+  "segments": [
+    {
+      "id": "scotland-highlands-hebrides-leg-01",
+      "sequence": 1,
+      "fromStopId": "scotland-highlands-hebrides-stop-01",
+      "toStopId": "scotland-highlands-hebrides-stop-02",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "scotland-highlands-hebrides-leg-02",
+      "sequence": 2,
+      "fromStopId": "scotland-highlands-hebrides-stop-02",
+      "toStopId": "scotland-highlands-hebrides-stop-03",
+      "transport": {
+        "mode": "ferry",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "scotland-highlands-hebrides-leg-03",
+      "sequence": 3,
+      "fromStopId": "scotland-highlands-hebrides-stop-03",
+      "toStopId": "scotland-highlands-hebrides-stop-04",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "scotland-highlands-hebrides-leg-04",
+      "sequence": 4,
+      "fromStopId": "scotland-highlands-hebrides-stop-04",
+      "toStopId": "scotland-highlands-hebrides-stop-05",
+      "transport": {
+        "mode": "ferry",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "scotland-highlands-hebrides-leg-05",
+      "sequence": 5,
+      "fromStopId": "scotland-highlands-hebrides-stop-05",
+      "toStopId": "scotland-highlands-hebrides-stop-06",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "scotland-ferry",
+      "title": "Getting around Scotland by ferry",
+      "issuer": "VisitScotland",
+      "issuerType": "tourism-board",
+      "url": "https://www.visitscotland.com/travel-planning/ferry",
+      "checkedAt": "2026-10-02",
+      "claims": [
+        "official source supports the destination or transport character used for this editorial journey concept",
+        "exact schedules, fares and operating conditions must be checked for the actual travel date"
+      ]
+    }
+  ],
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context"
+  },
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true,
+    "notes": "Editorial route structure is stable; transport, access, price and traveller-specific details require periodic or live verification."
+  }
+}
