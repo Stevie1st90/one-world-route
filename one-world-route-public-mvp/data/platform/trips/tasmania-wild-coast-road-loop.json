@@ -1,0 +1,415 @@
+{
+  "schemaVersion": 1,
+  "id": "tasmania-wild-coast-road-loop",
+  "slug": "tasmania-wild-coast-road-loop",
+  "kind": "road-trip",
+  "status": "editorial-preview",
+  "defaultLocale": "en",
+  "supportedLocales": [
+    "en",
+    "de",
+    "it",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "title": {
+    "en": "Tasmania Wild Coast Road Loop",
+    "de": "Tasmanien · Wild Coast Road Loop",
+    "it": "Tasmania · circuito Wild Coast",
+    "es": "Tasmania · circuito por la costa salvaje",
+    "fr": "Tasmanie · boucle de la côte sauvage",
+    "pt": "Tasmânia · circuito pela costa selvagem"
+  },
+  "summary": {
+    "en": "A self-drive loop from Hobart around Tasmania’s east coast, northern food country, alpine interior and remote western landscapes.",
+    "de": "Eine Selbstfahrer-Runde ab Hobart über Tasmaniens Ostküste, den Norden, das alpine Inselinnere und die abgelegenen Landschaften des Westens.",
+    "it": "Un circuito self-drive da Hobart lungo la costa est, il nord, l'interno alpino e i paesaggi remoti dell'ovest.",
+    "es": "Un circuito en coche desde Hobart por la costa este, el norte, el interior alpino y los paisajes remotos del oeste.",
+    "fr": "Une boucle en voiture depuis Hobart par la côte est, le nord, l'intérieur alpin et les paysages reculés de l'ouest.",
+    "pt": "Um circuito de carro desde Hobart pela costa leste, norte, interior alpino e paisagens remotas do oeste."
+  },
+  "geography": {
+    "countries": [
+      "AU"
+    ],
+    "primaryCountry": "AU"
+  },
+  "planning": {
+    "days": 14,
+    "currency": "AUD",
+    "pace": "balanced",
+    "distanceKm": null,
+    "priceModel": "live-source-check-required"
+  },
+  "rendering": {
+    "preferred": "standard-globe",
+    "terrainOptional": true,
+    "camera": {
+      "lat": -42.06442,
+      "lng": 146.98069,
+      "altitude": 0.72
+    }
+  },
+  "media": {
+    "hero": {
+      "type": "art-directed",
+      "theme": "tasmania",
+      "asset": null,
+      "attribution": null,
+      "license": "original-ui-art"
+    },
+    "gallery": []
+  },
+  "highlights": [
+    "Wild beaches, alpine interior and remote western landscapes",
+    "road-trip · coast · nature"
+  ],
+  "places": [
+    {
+      "id": "hobart",
+      "type": "place",
+      "countryCode": "AU",
+      "name": {
+        "en": "Hobart"
+      },
+      "coordinates": {
+        "lat": -42.8821,
+        "lng": 147.3272
+      }
+    },
+    {
+      "id": "freycinet",
+      "type": "place",
+      "countryCode": "AU",
+      "name": {
+        "en": "Freycinet"
+      },
+      "coordinates": {
+        "lat": -42.12,
+        "lng": 148.3
+      }
+    },
+    {
+      "id": "bay-of-fires",
+      "type": "place",
+      "countryCode": "AU",
+      "name": {
+        "en": "Bay of Fires"
+      },
+      "coordinates": {
+        "lat": -41.25,
+        "lng": 148.3
+      }
+    },
+    {
+      "id": "launceston",
+      "type": "place",
+      "countryCode": "AU",
+      "name": {
+        "en": "Launceston"
+      },
+      "coordinates": {
+        "lat": -41.4332,
+        "lng": 147.1441
+      }
+    },
+    {
+      "id": "cradle-mountain",
+      "type": "place",
+      "countryCode": "AU",
+      "name": {
+        "en": "Cradle Mountain"
+      },
+      "coordinates": {
+        "lat": -41.685,
+        "lng": 145.951
+      }
+    },
+    {
+      "id": "strahan",
+      "type": "place",
+      "countryCode": "AU",
+      "name": {
+        "en": "Strahan"
+      },
+      "coordinates": {
+        "lat": -42.151,
+        "lng": 145.329
+      }
+    },
+    {
+      "id": "lake-st-clair",
+      "type": "place",
+      "countryCode": "AU",
+      "name": {
+        "en": "Lake St Clair"
+      },
+      "coordinates": {
+        "lat": -42.112,
+        "lng": 146.167
+      }
+    },
+    {
+      "id": "hobart-return",
+      "type": "place",
+      "countryCode": "AU",
+      "name": {
+        "en": "Hobart"
+      },
+      "coordinates": {
+        "lat": -42.8821,
+        "lng": 147.3272
+      }
+    }
+  ],
+  "stops": [
+    {
+      "id": "tasmania-wild-coast-road-loop-stop-01",
+      "sequence": 1,
+      "placeId": "hobart",
+      "dayStart": 1,
+      "dayEnd": 2,
+      "nights": 2
+    },
+    {
+      "id": "tasmania-wild-coast-road-loop-stop-02",
+      "sequence": 2,
+      "placeId": "freycinet",
+      "dayStart": 3,
+      "dayEnd": 4,
+      "nights": 2
+    },
+    {
+      "id": "tasmania-wild-coast-road-loop-stop-03",
+      "sequence": 3,
+      "placeId": "bay-of-fires",
+      "dayStart": 5,
+      "dayEnd": 5,
+      "nights": 1
+    },
+    {
+      "id": "tasmania-wild-coast-road-loop-stop-04",
+      "sequence": 4,
+      "placeId": "launceston",
+      "dayStart": 6,
+      "dayEnd": 7,
+      "nights": 2
+    },
+    {
+      "id": "tasmania-wild-coast-road-loop-stop-05",
+      "sequence": 5,
+      "placeId": "cradle-mountain",
+      "dayStart": 8,
+      "dayEnd": 9,
+      "nights": 2
+    },
+    {
+      "id": "tasmania-wild-coast-road-loop-stop-06",
+      "sequence": 6,
+      "placeId": "strahan",
+      "dayStart": 10,
+      "dayEnd": 11,
+      "nights": 2
+    },
+    {
+      "id": "tasmania-wild-coast-road-loop-stop-07",
+      "sequence": 7,
+      "placeId": "lake-st-clair",
+      "dayStart": 12,
+      "dayEnd": 12,
+      "nights": 1
+    },
+    {
+      "id": "tasmania-wild-coast-road-loop-stop-08",
+      "sequence": 8,
+      "placeId": "hobart-return",
+      "dayStart": 13,
+      "dayEnd": 14,
+      "nights": 2
+    }
+  ],
+  "segments": [
+    {
+      "id": "tasmania-wild-coast-road-loop-leg-01",
+      "sequence": 1,
+      "fromStopId": "tasmania-wild-coast-road-loop-stop-01",
+      "toStopId": "tasmania-wild-coast-road-loop-stop-02",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "tasmania-wild-coast-road-loop-leg-02",
+      "sequence": 2,
+      "fromStopId": "tasmania-wild-coast-road-loop-stop-02",
+      "toStopId": "tasmania-wild-coast-road-loop-stop-03",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "tasmania-wild-coast-road-loop-leg-03",
+      "sequence": 3,
+      "fromStopId": "tasmania-wild-coast-road-loop-stop-03",
+      "toStopId": "tasmania-wild-coast-road-loop-stop-04",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "tasmania-wild-coast-road-loop-leg-04",
+      "sequence": 4,
+      "fromStopId": "tasmania-wild-coast-road-loop-stop-04",
+      "toStopId": "tasmania-wild-coast-road-loop-stop-05",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "tasmania-wild-coast-road-loop-leg-05",
+      "sequence": 5,
+      "fromStopId": "tasmania-wild-coast-road-loop-stop-05",
+      "toStopId": "tasmania-wild-coast-road-loop-stop-06",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "tasmania-wild-coast-road-loop-leg-06",
+      "sequence": 6,
+      "fromStopId": "tasmania-wild-coast-road-loop-stop-06",
+      "toStopId": "tasmania-wild-coast-road-loop-stop-07",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    },
+    {
+      "id": "tasmania-wild-coast-road-loop-leg-07",
+      "sequence": 7,
+      "fromStopId": "tasmania-wild-coast-road-loop-stop-07",
+      "toStopId": "tasmania-wild-coast-road-loop-stop-08",
+      "transport": {
+        "mode": "car",
+        "stages": []
+      },
+      "planning": {
+        "durationMinutes": null,
+        "durationBasis": "live-source-check-required",
+        "distanceKm": null,
+        "cost": null
+      },
+      "verification": {
+        "status": "draft",
+        "lastVerified": null,
+        "sourceIds": [],
+        "notes": "Editorial route preview. Exact transport, timing, fares, access conditions and operating patterns require source-backed planning for the actual travel date."
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "tas-road",
+      "title": "Discover Tasmania — road trip inspiration",
+      "issuer": "Tourism Tasmania",
+      "issuerType": "tourism-board",
+      "url": "https://www.discovertasmania.com.au/",
+      "checkedAt": "2026-10-02",
+      "claims": [
+        "official source supports the destination or transport character used for this editorial journey concept",
+        "exact schedules, fares and operating conditions must be checked for the actual travel date"
+      ]
+    }
+  ],
+  "routePolicy": {
+    "startMode": "endpoints",
+    "reversible": true,
+    "reverseEvidenceReusable": false,
+    "reversePlanningReusable": false,
+    "originMode": "traveller-context"
+  },
+  "maintenance": {
+    "tier": "live-dependent",
+    "sourceReviewDays": 90,
+    "sharedKnowledge": true,
+    "notes": "Editorial route structure is stable; transport, access, price and traveller-specific details require periodic or live verification."
+  }
+}
