@@ -691,7 +691,7 @@ jobs:
           if-no-files-found: ignore
           retention-days: 7
       - name: Upload discovery visual QA
-        if: success()
+        if: success() && (github.event_name != 'pull_request' || needs.changes.outputs.media_browser == 'true')
         uses: actions/upload-artifact@v7
         with:
           name: discovery-visual-qa-${{ github.run_id }}
