@@ -100,7 +100,7 @@ try {
     if ($remaining.Count -gt 0) { throw "Worktree is not clean after commit:`n$($remaining -join "`n")" }
     Invoke-Native git -C $worktree fetch origin
     Invoke-Native git -C $worktree rebase origin/main
-    Invoke-Native git -C $worktree push -u origin ("HEAD:" + $Branch)
+    Invoke-Native git -C $worktree push origin ("HEAD:refs/heads/" + $Branch)
     $commit = [string](& git -C $worktree rev-parse HEAD)
     if ($LASTEXITCODE -ne 0 -or -not $commit) { throw "Could not resolve final commit." }
     Write-Host ""
