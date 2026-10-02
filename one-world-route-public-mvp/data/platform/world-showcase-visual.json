@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "policyVersion": "world-showcase-hybrid-v1",
+  "policyVersion": "world-showcase-hybrid-v2",
   "tripId": "world-195",
-  "strategy": "cinematic-atmosphere-plus-factual-earth-route",
+  "strategy": "cinematic-atmosphere-plus-premium-factual-earth-route",
   "status": "base-image-needed",
   "invariants": {
     "sovereignCountries": 195,
@@ -15,7 +15,7 @@
   "baseImage": {
     "sourceFilename": "source--journey--world-195--space-base--16x9--v001.png",
     "aspectRatio": "16:9",
-    "promptVersion": "world-showcase-hybrid-v1",
+    "promptVersion": "world-showcase-hybrid-v2",
     "prompt": "Create exactly one original premium cinematic 16:9 deep-space atmosphere background for “One World Journey”. Use restrained dark space, subtle blue orbital glow, faint atmospheric haze and enough quiet negative space for interface overlays. Do not draw a standalone Earth globe, route, pins, labels, borders, text, numbers or logos. The recognizable Earth globes and factual 195-country journey route will be composited separately from verified ONE WORLD ROUTE geometry.",
     "rules": [
       "one cinematic background only",
@@ -34,7 +34,11 @@
     "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
     "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
     "countries": 195,
-    "routeLines": 253
+    "routeLines": 253,
+    "geometrySource": "data/public-route.json",
+    "basemapSource": "data/visual-sources/natural-earth-relief.webp",
+    "renderStyle": "premium-world-showcase-v2",
+    "routeVisualReferenceOnly": true
   },
   "finalCover": {
     "assetId": "journey--world-195--cover--16x9--v001",
