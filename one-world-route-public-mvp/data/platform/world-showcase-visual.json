@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "policyVersion": "world-showcase-flat-v3",
+  "policyVersion": "world-showcase-flat-v4",
   "tripId": "world-195",
   "strategy": "cinematic-atmosphere-plus-premium-flat-world-route",
   "status": "base-image-needed",
@@ -35,8 +35,10 @@
     "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
     "geometrySource": "data/public-route.json",
     "basemapSource": "data/visual-sources/natural-earth-relief.webp",
-    "renderStyle": "premium-flat-world-v3",
-    "projection": "equirectangular-flat-world",
+    "renderStyle": "premium-flat-world-v4",
+    "projection": "robinson-like-compromise-v4",
+    "edgeBlend": "soft-envelope",
+    "visibleContainer": false,
     "routeVisualReferenceOnly": true,
     "countries": 195,
     "routeLines": 253
