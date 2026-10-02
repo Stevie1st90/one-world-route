@@ -745,8 +745,8 @@ jobs:
 
 
   production-browser:
-    name: Production browser smoke
-    if: github.event_name == 'push'
+    name: Production browser confidence
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     needs: release
     runs-on: ubuntu-latest
     timeout-minutes: 25
