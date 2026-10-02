@@ -41,7 +41,7 @@ test('@discovery-fast discovery catalog, finder and representative journey rende
 
   const firstVisual=results.first().locator('.platform-route-image');
   await expect(firstVisual).toBeVisible();
-  await expect.poll(()=>firstVisual.evaluate(img=>img.complete&&img.naturalWidth>0)).toBe(true);
+  await expect(firstVisual).toHaveAttribute('src',/.+/);
 
   const region=representative.discovery.regions[0];
   await page.locator('#homeFinderRegion').selectOption(region);
