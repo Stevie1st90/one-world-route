@@ -3,7 +3,7 @@
   "policyVersion": "journey-visual-experience-v2",
   "summary": {
     "journeys": 29,
-    "briefReady": 11,
+    "briefReady": 1,
     "imagesGenerated": 0
   },
   "journeys": [
@@ -193,7 +193,7 @@
       "separateVerticalRecommended": true,
       "socialPriority": "high",
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
-      "status": "brief-ready",
+      "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
       "rank": 3
     },
@@ -319,7 +319,7 @@
       "separateVerticalRecommended": true,
       "socialPriority": "high",
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
-      "status": "brief-ready",
+      "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
       "rank": 5
     },
@@ -509,7 +509,7 @@
       "separateVerticalRecommended": true,
       "socialPriority": "high",
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
-      "status": "brief-ready",
+      "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
       "rank": 8
     },
@@ -572,7 +572,7 @@
       "separateVerticalRecommended": true,
       "socialPriority": "high",
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
-      "status": "brief-ready",
+      "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
       "rank": 9
     },
@@ -635,7 +635,7 @@
       "separateVerticalRecommended": true,
       "socialPriority": "high",
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
-      "status": "brief-ready",
+      "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
       "rank": 10
     },
@@ -699,7 +699,7 @@
       "separateVerticalRecommended": true,
       "socialPriority": "high",
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
-      "status": "brief-ready",
+      "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
       "rank": 11
     },
@@ -762,7 +762,7 @@
       "separateVerticalRecommended": true,
       "socialPriority": "high",
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
-      "status": "brief-ready",
+      "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
       "rank": 12
     },
@@ -825,7 +825,7 @@
       "separateVerticalRecommended": true,
       "socialPriority": "high",
       "fallbackQuality": "Complete geographic route; coarse source limits local recognition",
-      "status": "brief-ready",
+      "status": "published",
       "reason": "Improve thumbnail recognition at small geographic scale; Strong travel-mode social identity",
       "rank": 13
     },
@@ -1767,7 +1767,7 @@
       "separateVerticalRecommended": true,
       "socialPriority": "high",
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
-      "status": "brief-ready",
+      "status": "published",
       "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
       "rank": 25
     },
@@ -1895,7 +1895,7 @@
       "separateVerticalRecommended": true,
       "socialPriority": "high",
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
-      "status": "brief-ready",
+      "status": "published",
       "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
       "rank": 27
     },

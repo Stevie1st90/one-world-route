@@ -101,7 +101,7 @@
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
       "strategy": "bespoke-optional",
       "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
-      "coverGenerationStatus": "brief-ready",
+      "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#southern-europe-road-trip"
     },
     {
@@ -309,7 +309,7 @@
       "fallbackQuality": "Complete recognizable regional geography; orientation rather than cinematic inspiration",
       "strategy": "bespoke-optional",
       "reason": "Strengthen distinct journey character; Strong travel-mode social identity",
-      "coverGenerationStatus": "brief-ready",
+      "coverGenerationStatus": "published",
       "briefRef": "./data/platform/visual-briefs.json#south-africa-garden-safari"
     },
     {
