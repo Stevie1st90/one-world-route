@@ -37,6 +37,10 @@ test('world showcase AI prompt is compact and route-free',()=>{
 
 test('world showcase uses the verified route-render layer',()=>{
   assert.equal(spec.factualLayer.assetId,'auto-route-world-195');
+  assert.equal(spec.factualLayer.geometrySource,'data/public-route.json');
+  assert.equal(spec.factualLayer.basemapSource,'data/visual-sources/natural-earth-relief.webp');
+  assert.equal(spec.factualLayer.renderStyle,'premium-world-showcase-v2');
+  assert.equal(spec.factualLayer.routeVisualReferenceOnly,true);
   assert.equal(spec.factualLayer.asset,route.media.asset);
   assert.equal(spec.factualLayer.provider,'local-natural-earth');
   assert.equal(spec.factualLayer.countries,195);
