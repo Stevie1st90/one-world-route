@@ -23,7 +23,7 @@ const run=(cmd,args,{cwd=ROOT,quiet=false}={})=>{
     const detail=quiet?[r.stdout,r.stderr].filter(Boolean).join('\n'):'';
     throw Error(`${cmd} ${args.join(' ')} failed with exit code ${r.status}${detail?'\n'+detail:''}`);
   }
-  return quiet?String(r.stdout||'').trim():'';
+  return quiet?String(r.stdout||'').trimEnd():'';
 };
 const git=args=>run('git',args,{quiet:true});
 
