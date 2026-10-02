@@ -156,6 +156,37 @@ Do not repeatedly run large test suites when the failure is clearly isolated to 
 
 For changed-Journey browser tests, the total test timeout must scale with the number of changed Journeys; do not weaken individual assertions merely to avoid timeout failures.
 
+## 9. Post-build cleanup before fetch/rebase
+
+A release build may rewrite deterministic tracked outputs such as the four runtime bundles even when those files are intentionally outside the current task's staged allowlist.
+
+Therefore the required order is:
+
+1. start from a verified clean worktree,
+2. run the build,
+3. stage the explicit task allowlist,
+4. verify and commit the intended staged outputs,
+5. inspect remaining unstaged changes,
+6. if the run started clean and the remaining changes are build-only drift outside the task allowlist, restore those unstaged tracked changes,
+7. only then fetch/rebase/push.
+
+Never run `git rebase` with a dirty worktree.
+
+For Windows runner flows, the safe pattern after the intended commit is:
+
+```powershell
+$remaining = @(git status --porcelain)
+if ($remaining.Count -gt 0) {
+    # Only after the runner has proved that it started from a clean tree
+    # and that these are build-only unstaged changes.
+    git restore --worktree -- .
+}
+git fetch origin
+git rebase origin/<feature-branch>
+```
+
+Do not use this cleanup pattern when unrelated user changes were present before the build.
+
 ## 9. Failure recovery
 
 When a runner fails:
