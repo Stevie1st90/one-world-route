@@ -128,9 +128,9 @@ jobs:
                 ;;
               one-world-route-public-mvp/data/platform/media-manifest.json|one-world-route-public-mvp/data/platform/route-visuals.json)
                 # Shared media/route registries affect discovery rendering, but do not
-                # imply Builder, Flagship or Regional component changes.
+                # imply Builder, Flagship, Regional or bespoke-cover fixture changes.
+                # Core media contracts validate every registry entry.
                 discovery_browser=true
-                media_browser=true
                 ;;
               one-world-route-public-mvp/data/platform/visual-briefs.json|one-world-route-public-mvp/data/platform/visual-coverage.json|one-world-route-public-mvp/data/platform/graphics-backlog.json)
                 # Editorial/generated reports are exhaustively validated by Core.
