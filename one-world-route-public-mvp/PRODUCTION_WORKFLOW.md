@@ -144,17 +144,25 @@ Auto Route Visuals remain build-generated and are keyed by Journey ID plus conte
 
 Optimize for speed + correctness.
 
+The PR fast gate is intentionally bounded. Browser E2E must validate shared renderers and representative interaction paths; it must not grow linearly with the Journey catalog.
+
 Use focused checks first:
-- data validator,
+- data validator across the full catalog,
 - media validator when media changes,
 - generated-asset exact-file verification,
 - targeted browser smoke based on changed scope.
 
-Then rely on repository CI for broader validation.
+PR browser rules:
+- Discovery asserts every catalog Journey ID in the rendered DOM, then opens one representative shared renderer per viewport.
+- Changed-Journey browser smoke validates every changed ID at contract level and opens at most three representative Journeys, preferring rail, road/car and ferry when present.
+- Content-only Journey changes run the browser sample on desktop; responsive/mobile coverage belongs to UI/component changes.
+- Generated route/media registries do not imply Builder, Flagship or Regional browser scope.
+- Media renderer/cover-slot changes additionally run the focused media-slot browser fixture.
+- Target budget: Discovery PR smoke <= 60 s; Content Journey browser smoke <= 90 s; overall PR wall clock <= 2-3 minutes where runner availability permits.
 
-Do not repeatedly run large test suites when the failure is clearly isolated to one deterministic contract.
+Broad `@discovery` browser coverage remains available through the scheduled/manual confidence run. Production smoke remains the post-merge live-deployment gate.
 
-For changed-Journey browser tests, the total test timeout must scale with the number of changed Journeys; do not weaken individual assertions merely to avoid timeout failures.
+Do not repeatedly run large test suites when the failure is clearly isolated to one deterministic contract. Do not remove important assertions merely to meet a timing target; move exhaustive validation to the cheapest correct abstraction layer instead.
 
 ## 9. Post-build cleanup before fetch/rebase
 
