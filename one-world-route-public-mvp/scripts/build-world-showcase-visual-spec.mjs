@@ -34,9 +34,9 @@ const published=(registry.assets||[]).find(a=>a.assetId==='journey--world-195--c
 
 const report={
   schemaVersion:1,
-  policyVersion:'world-showcase-hybrid-v1',
+  policyVersion:'world-showcase-hybrid-v2',
   tripId:'world-195',
-  strategy:'cinematic-atmosphere-plus-factual-earth-route',
+  strategy:'cinematic-atmosphere-plus-premium-factual-earth-route',
   status:published?'published':'base-image-needed',
   invariants:{
     sovereignCountries:195,
@@ -49,7 +49,7 @@ const report={
   baseImage:{
     sourceFilename:'source--journey--world-195--space-base--16x9--v001.png',
     aspectRatio:'16:9',
-    promptVersion:'world-showcase-hybrid-v1',
+    promptVersion:'world-showcase-hybrid-v2',
     prompt:brief.imagePrompt,
     rules:[
       'one cinematic background only',
@@ -67,6 +67,10 @@ const report={
     sourceLicenseUrl:route.media.sourceLicenseUrl,
     attribution:route.media.attribution,
     geometryBasis:route.media.geometryBasis,
+    geometrySource:'data/public-route.json',
+    basemapSource:'data/visual-sources/natural-earth-relief.webp',
+    renderStyle:'premium-world-showcase-v2',
+    routeVisualReferenceOnly:true,
     countries:route.countries.length,
     routeLines:route.geometry.lines
   },
