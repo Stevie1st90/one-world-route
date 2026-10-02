@@ -314,13 +314,17 @@ Reason: Differentiate a dense planetary route; Strong travel-mode social identit
 
 Fallback: Complete global geography; route density limits emotional thumbnail identity
 
-Suggested anchor: unresolved; unresolved
+Production strategy: `hybrid-earth-base-plus-factual-route`
 
-Motif: a single atmospheric view of Earth with recognizable continents and no invented route overlay inspired by global
+Factual route layer: `auto-route-world-195` · 195 countries / 194 international legs
 
-Prompt:
+Motif: a cinematic deep-space atmosphere designed to receive the verified Earth-and-route overlay inspired by global
 
-Create an original cinematic editorial travel illustration for “One World Journey”. Visual family: planetary. Show a single atmospheric view of Earth with recognizable continents and no invented route overlay inspired by global. Geography context: DE, LU, BE, NL, DK, NO, SE, FI, EE, LV, LT, BY, PL, UA, MD, RO, HU, SK, CZ, AT, LI, CH, FR, MC, AD, ES, PT, GB, IE, IS, CA, US, MX, BZ, GT, SV, HN, NI, CR, PA, CU, BS, JM, HT, DO, KN, AG, DM, LC, BB, VC, GD, TT, VE, BR, GY, SR, CO, EC, PE, BO, PY, AR, UY, CL, NZ, TO, FJ, WS, TV, VU, SB, PG, AU, NR, KI, MH, FM, PW, PH, BN, MY, SG, ID, TL, TH, KH, VN, LA, MM, BD, IN, NP, BT, LK, MV, CN, KP, KR, JP, MN, RU, KZ, KG, TJ, UZ, TM, AF, PK, IR, AZ, GE, AM, TR, IQ, SY, LB, CY, LY, TN, DZ, MA, MR, ML, BF, NE, TD, CF, CM, NG, BJ, TG, GH, CI, LR, SL, GN, GW, SN, GM, CV, GQ, ST, GA, CG, CD, AO, NA, BW, ZW, ZM, MW, MZ, SZ, ZA, LS, TZ, BI, RW, UG, SS, KE, SC, MU, MG, KM, ET, SO, DJ, ER, SD, EG, SA, KW, BH, QA, AE, OM, YE, JO, IL, PS, GR, BG, MK, AL, ME, BA, RS, HR, SI, IT, SM, VA, MT. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.
+Base-image prompt:
+
+Create exactly one original premium cinematic 16:9 deep-space atmosphere background for “One World Journey”. Use restrained dark space, subtle blue orbital glow, faint atmospheric haze and enough quiet negative space for interface overlays. Do not draw a standalone Earth globe, route, pins, labels, borders, text, numbers or logos. The recognizable Earth globes and factual 195-country journey route will be composited separately from verified ONE WORLD ROUTE geometry.
+
+The image model creates only the cinematic atmosphere base. The recognizable Earth globes and route are composited from verified ONE WORLD ROUTE geometry; the model must never invent the 195-country route.
 
 ## 21. Italy Grand Tour — P2
 

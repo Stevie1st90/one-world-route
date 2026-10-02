@@ -10,7 +10,11 @@
     "covers:ingest": "node scripts/ingest-journey-covers.mjs",
     "covers:batch": "node scripts/build-cover-generation-queue.mjs --prompt-out=data/platform/cover-generation-operator-prompt.md",
     "covers:stage": "node scripts/stage-cover-generation-results.mjs",
-    "covers:release": "node scripts/release-cover-batch.mjs"
+    "covers:release": "node scripts/release-cover-batch.mjs",
+    "world:visual:spec": "node scripts/build-world-showcase-visual-spec.mjs",
+    "world:visual:check": "node scripts/build-world-showcase-visual-spec.mjs --check",
+    "world:visual:preview": "node scripts/compose-world-showcase-cover.mjs",
+    "world:visual:publish": "node scripts/compose-world-showcase-cover.mjs --publish=true"
   },
   "devDependencies": {
     "sharp": "0.35.4"

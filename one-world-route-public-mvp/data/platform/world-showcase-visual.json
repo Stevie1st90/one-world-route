@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "policyVersion": "world-showcase-hybrid-v1",
+  "tripId": "world-195",
+  "strategy": "cinematic-atmosphere-plus-factual-earth-route",
+  "status": "base-image-needed",
+  "invariants": {
+    "sovereignCountries": 195,
+    "internationalLegs": 194,
+    "routeVisualScope": "GLOBAL",
+    "routeLines": 253,
+    "detailedRouteLines": 62,
+    "schematicRouteLines": 132
+  },
+  "baseImage": {
+    "sourceFilename": "source--journey--world-195--space-base--16x9--v001.png",
+    "aspectRatio": "16:9",
+    "promptVersion": "world-showcase-hybrid-v1",
+    "prompt": "Create exactly one original premium cinematic 16:9 deep-space atmosphere background for “One World Journey”. Use restrained dark space, subtle blue orbital glow, faint atmospheric haze and enough quiet negative space for interface overlays. Do not draw a standalone Earth globe, route, pins, labels, borders, text, numbers or logos. The recognizable Earth globes and factual 195-country journey route will be composited separately from verified ONE WORLD ROUTE geometry.",
+    "rules": [
+      "one cinematic background only",
+      "no standalone Earth globe",
+      "no route lines, pins, borders or labels",
+      "no text, numbers or logos",
+      "quiet central and edge zones for deterministic Earth/route compositing"
+    ]
+  },
+  "factualLayer": {
+    "assetId": "auto-route-world-195",
+    "asset": "./assets/generated/routes/world-195/landscape-e58237d09694e3dd.webp",
+    "provider": "local-natural-earth",
+    "license": "Natural Earth public domain; original route presentation",
+    "sourceLicenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+    "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+    "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
+    "countries": 195,
+    "routeLines": 253
+  },
+  "finalCover": {
+    "assetId": "journey--world-195--cover--16x9--v001",
+    "sourceType": "generated",
+    "mediaKind": "journey-cover",
+    "outputWidths": [
+      480,
+      800,
+      1200,
+      1600
+    ],
+    "approvalRequired": true,
+    "registrationTargets": [
+      "data/platform/generated-media.json",
+      "data/public-route.json#media.heroAssetId"
+    ]
+  }
+}

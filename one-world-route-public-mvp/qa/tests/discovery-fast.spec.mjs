@@ -66,7 +66,11 @@ test('@discovery-fast discovery catalog, finder and representative journey rende
   await expect(page.locator('body')).not.toHaveClass(/platform-booting/,{timeout:15000});
   await expect(page.locator('#detailTitle')).toHaveText(representative.title.en);
   await expect(page.locator('#regionalRouteRange')).toHaveAttribute('max',String(representative.metrics?.segments||0));
-  await expect(page.locator('#settingsBtn')).toBeVisible();
+  if(isMobile){
+    await expect(page.locator('#platformTravellerBtn')).toBeVisible();
+  }else{
+    await expect(page.locator('#settingsBtn')).toBeVisible();
+  }
   await expect(page.locator('#platformRouteBtn')).toBeVisible();
 
   if(isMobile){
