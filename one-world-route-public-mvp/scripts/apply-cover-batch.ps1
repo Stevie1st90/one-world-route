@@ -17,7 +17,6 @@ if (-not (Test-Path -LiteralPath $RepoRoot)) { throw "Repository not found: $Rep
 $BundleZip = (Resolve-Path -LiteralPath $BundleZip).Path
 $extractRoot = Join-Path $env:TEMP ("owr-cover-bundle-" + [guid]::NewGuid().ToString("N"))
 $worktree = $null
-$createdBranch = $false
 
 try {
     New-Item -ItemType Directory -Path $extractRoot | Out-Null
@@ -44,8 +43,8 @@ try {
     }
 
     Write-Host ""
-    Write-Host "=== ONE WORLD ROUTE · APPROVED COVER BATCH ===" -ForegroundColor Cyan
-    Write-Host "Batch: $($batch.batchId) · Journeys: $($items.Count) · Branch: $Branch"
+    Write-Host "=== ONE WORLD ROUTE - APPROVED COVER BATCH ===" -ForegroundColor Cyan
+    Write-Host "Batch: $($batch.batchId) | Journeys: $($items.Count) | Remote branch: $Branch"
 
     Invoke-Native git -C $RepoRoot fetch origin
     Invoke-Native git -C $RepoRoot worktree prune
@@ -54,23 +53,12 @@ try {
     if ($LASTEXITCODE -ne 0) { throw "Could not query remote branch state." }
     if ($remoteBranch.Count -gt 0) { throw "Remote branch already exists: $Branch" }
 
-    $localBranch = @(& git -C $RepoRoot branch --list $Branch 2>$null)
-    if ($LASTEXITCODE -ne 0) { throw "Could not query local branch state." }
-    if ($localBranch.Count -gt 0) {
-        $active = [string](& git -C $RepoRoot branch --show-current)
-        if ($LASTEXITCODE -ne 0) { throw "Could not determine active branch." }
-        if ($active.Trim() -eq $Branch) { throw "Retry branch is active in the developer worktree: $Branch" }
-        Write-Host "Removing stale local retry branch: $Branch" -ForegroundColor Yellow
-        Invoke-Native git -C $RepoRoot branch -D $Branch
-    }
-
     $originMain = [string](& git -C $RepoRoot rev-parse origin/main)
     if ($LASTEXITCODE -ne 0 -or -not $originMain) { throw "Could not resolve origin/main." }
     $originMain = $originMain.Trim()
     $worktree = Join-Path $env:TEMP ("owr-" + [string]$batch.batchId + "-" + $PID)
     if (Test-Path -LiteralPath $worktree) { Remove-Item -LiteralPath $worktree -Recurse -Force }
-    Invoke-Native git -C $RepoRoot worktree add -b $Branch $worktree $originMain
-    $createdBranch = $true
+    Invoke-Native git -C $RepoRoot worktree add --detach $worktree $originMain
 
     $app = Join-Path $worktree "one-world-route-public-mvp"
     Push-Location $app
@@ -124,13 +112,5 @@ try {
 finally {
     if ($worktree -and (Test-Path -LiteralPath $worktree)) { & git -C $RepoRoot worktree remove --force $worktree 2>$null }
     & git -C $RepoRoot worktree prune 2>$null
-    if ($createdBranch) {
-        $remoteNow = @(& git -C $RepoRoot ls-remote --heads origin $Branch 2>$null)
-        $localNow = @(& git -C $RepoRoot branch --list $Branch 2>$null)
-        if ($localNow.Count -gt 0) {
-            $activeNow = [string](& git -C $RepoRoot branch --show-current 2>$null)
-            if ($activeNow.Trim() -ne $Branch) { & git -C $RepoRoot branch -D $Branch 2>$null }
-        }
-    }
     if (Test-Path -LiteralPath $extractRoot) { Remove-Item -LiteralPath $extractRoot -Recurse -Force -ErrorAction SilentlyContinue }
 }
