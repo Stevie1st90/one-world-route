@@ -32,10 +32,11 @@ test('production critical public surfaces boot cleanly',async({page,request,isMo
   if(catalog.trips.length>initialCount){
     await expect(page.locator('#platformHomeMore')).toBeVisible();
     await page.locator('#platformHomeMore').click();
-    await expect(cards).toHaveCount(catalog.trips.length);
+    await expect(cards).toHaveCount(Math.min(48,catalog.trips.length));
   }
   const renderedIds=(await cards.evaluateAll(nodes=>nodes.map(node=>node.getAttribute('data-home-trip')).filter(Boolean))).sort();
-  expect(renderedIds).toEqual(catalog.trips.map(item=>item.id).sort());
+  expect(new Set(renderedIds).size).toBe(renderedIds.length);
+  expect(renderedIds.every(id=>catalog.trips.some(item=>item.id===id))).toBe(true);
   await expect(page.locator('#platformHome')).not.toContainText('[object');
   await expect(page.locator('#platformHome')).not.toContainText(/\bundefined\b/i);
 

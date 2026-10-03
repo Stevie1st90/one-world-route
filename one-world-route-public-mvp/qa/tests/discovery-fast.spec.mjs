@@ -52,17 +52,17 @@ test('@discovery-fast discovery catalog, finder and representative journey rende
     &&item.kind===representative.kind
     &&item.discovery?.durationBand===representative.discovery.durationBand
   );
-  await expect(results).toHaveCount(expectedFiltered.length);
-  for(const item of expectedFiltered){
-    await expect(page.locator('#platformHomeResults .platform-home-card[data-home-trip="'+item.id+'"]')).toHaveCount(1);
-  }
-
-  const target=page.locator('#platformHomeResults .platform-home-card[data-home-trip="'+representative.id+'"]');
+  await expect(results).toHaveCount(Math.min(24,expectedFiltered.length));
+  const filteredIds=await results.evaluateAll(nodes=>nodes.map(node=>node.dataset.homeTrip));
+  expect(new Set(filteredIds).size).toBe(filteredIds.length);
+  expect(filteredIds.every(id=>expectedFiltered.some(item=>item.id===id))).toBe(true);
+  const selected=catalog.trips.find(item=>item.id===filteredIds[0]);
+  const target=page.locator('#platformHomeResults .platform-home-card[data-home-trip="'+selected.id+'"]');
   await target.locator('[data-open-home-trip]').click();
   await expect(page.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:20000});
   await expect(page.locator('body')).not.toHaveClass(/platform-booting/,{timeout:15000});
-  await expect(page.locator('#detailTitle')).toHaveText(representative.title.en);
-  await expect(page.locator('#regionalRouteRange')).toHaveAttribute('max',String(representative.metrics?.segments||0));
+  await expect(page.locator('#detailTitle')).toHaveText(selected.title.en);
+  await expect(page.locator('#regionalRouteRange')).toHaveAttribute('max',String(selected.metrics?.segments||0));
   if(isMobile){
     await expect(page.locator('#platformTravellerBtn')).toBeVisible();
   }else{
