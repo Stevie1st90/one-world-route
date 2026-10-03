@@ -72,7 +72,12 @@
       "type": "place",
       "countryCode": "JP",
       "name": {
-        "en": "Tokyo"
+        "en": "Tokyo",
+        "de": "Tokio",
+        "it": "Tokyo",
+        "es": "Tokio",
+        "fr": "Tokyo",
+        "pt": "Tóquio"
       },
       "coordinates": {
         "lat": 35.6762,
@@ -85,7 +90,12 @@
       "type": "place",
       "countryCode": "JP",
       "name": {
-        "en": "Matsumoto"
+        "en": "Matsumoto",
+        "de": "Matsumoto",
+        "it": "Matsumoto",
+        "es": "Matsumoto",
+        "fr": "Matsumoto",
+        "pt": "Matsumoto"
       },
       "coordinates": {
         "lat": 36.238,
@@ -98,7 +108,12 @@
       "type": "place",
       "countryCode": "JP",
       "name": {
-        "en": "Kanazawa"
+        "en": "Kanazawa",
+        "de": "Kanazawa",
+        "it": "Kanazawa",
+        "es": "Kanazawa",
+        "fr": "Kanazawa",
+        "pt": "Kanazawa"
       },
       "coordinates": {
         "lat": 36.5613,
@@ -111,7 +126,12 @@
       "type": "place",
       "countryCode": "JP",
       "name": {
-        "en": "Kyoto"
+        "en": "Kyoto",
+        "de": "Kyoto",
+        "it": "Kyoto",
+        "es": "Kioto",
+        "fr": "Kyoto",
+        "pt": "Quioto"
       },
       "coordinates": {
         "lat": 35.0116,
@@ -124,7 +144,12 @@
       "type": "place",
       "countryCode": "JP",
       "name": {
-        "en": "Osaka"
+        "en": "Osaka",
+        "de": "Osaka",
+        "it": "Osaka",
+        "es": "Osaka",
+        "fr": "Osaka",
+        "pt": "Osaka"
       },
       "coordinates": {
         "lat": 34.6937,
@@ -137,7 +162,12 @@
       "type": "place",
       "countryCode": "JP",
       "name": {
-        "en": "Hiroshima"
+        "en": "Hiroshima",
+        "de": "Hiroshima",
+        "it": "Hiroshima",
+        "es": "Hiroshima",
+        "fr": "Hiroshima",
+        "pt": "Hiroshima"
       },
       "coordinates": {
         "lat": 34.3853,

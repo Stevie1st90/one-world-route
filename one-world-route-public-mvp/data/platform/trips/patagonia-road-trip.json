@@ -73,7 +73,12 @@
       "type": "place",
       "countryCode": "AR",
       "name": {
-        "en": "El Calafate"
+        "en": "El Calafate",
+        "de": "El Calafate",
+        "it": "El Calafate",
+        "es": "El Calafate",
+        "fr": "El Calafate",
+        "pt": "El Calafate"
       },
       "coordinates": {
         "lat": -50.337,
@@ -86,7 +91,12 @@
       "type": "place",
       "countryCode": "AR",
       "name": {
-        "en": "El Chaltén"
+        "en": "El Chaltén",
+        "de": "El Chaltén",
+        "it": "El Chaltén",
+        "es": "El Chaltén",
+        "fr": "El Chaltén",
+        "pt": "El Chaltén"
       },
       "coordinates": {
         "lat": -49.3315,
@@ -99,7 +109,12 @@
       "type": "place",
       "countryCode": "CL",
       "name": {
-        "en": "Torres del Paine"
+        "en": "Torres del Paine",
+        "de": "Torres del Paine",
+        "it": "Torres del Paine",
+        "es": "Torres del Paine",
+        "fr": "Torres del Paine",
+        "pt": "Torres del Paine"
       },
       "coordinates": {
         "lat": -50.9423,
@@ -112,7 +127,12 @@
       "type": "place",
       "countryCode": "CL",
       "name": {
-        "en": "Puerto Natales"
+        "en": "Puerto Natales",
+        "de": "Puerto Natales",
+        "it": "Puerto Natales",
+        "es": "Puerto Natales",
+        "fr": "Puerto Natales",
+        "pt": "Puerto Natales"
       },
       "coordinates": {
         "lat": -51.726,
@@ -125,7 +145,12 @@
       "type": "place",
       "countryCode": "CL",
       "name": {
-        "en": "Punta Arenas"
+        "en": "Punta Arenas",
+        "de": "Punta Arenas",
+        "it": "Punta Arenas",
+        "es": "Punta Arenas",
+        "fr": "Punta Arenas",
+        "pt": "Punta Arenas"
       },
       "coordinates": {
         "lat": -53.1638,

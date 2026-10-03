@@ -14,7 +14,7 @@ jobs:
   visual:
     name: Desktop and mobile product review
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     defaults:
       run:
         working-directory: one-world-route-public-mvp
@@ -45,12 +45,31 @@ jobs:
             sleep 1
           done
           OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/node_modules/@playwright/test/cli.js test --config=qa/playwright.config.mjs tests/product-review.spec.mjs --project=desktop-1440 --project=desktop-1920 --project=mobile-390 --project=mobile-430 --workers=2 --output=qa/product-review-results
-      - name: Publish review screenshots
+      - name: Publish desktop-1440 screenshots
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: product-visual-review-${{ github.run_id }}
-          path: |
-            one-world-route-public-mvp/qa/product-review-results
-            /tmp/owr-product-review.log
+          name: product-review-desktop-1440-${{ github.run_id }}
+          path: one-world-route-public-mvp/qa/product-review-results/*desktop-1440/*.png
+          retention-days: 7
+      - name: Publish desktop-1920 screenshots
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: product-review-desktop-1920-${{ github.run_id }}
+          path: one-world-route-public-mvp/qa/product-review-results/*desktop-1920/*.png
+          retention-days: 7
+      - name: Publish mobile-390 screenshots
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: product-review-mobile-390-${{ github.run_id }}
+          path: one-world-route-public-mvp/qa/product-review-results/*mobile-390/*.png
+          retention-days: 7
+      - name: Publish mobile-430 screenshots
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: product-review-mobile-430-${{ github.run_id }}
+          path: one-world-route-public-mvp/qa/product-review-results/*mobile-430/*.png
           retention-days: 7

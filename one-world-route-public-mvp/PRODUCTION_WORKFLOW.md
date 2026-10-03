@@ -371,3 +371,7 @@ The Builder derives workflow stage with `scripts/authoring-pipeline-model.mjs`; 
 For a substantial shared consumer UI change, run `Product visual review` to capture 1440/1920/390/430px screenshots and the actual 1080×1920 story PNG export. Review the screenshot artifact before merge. The workflow runs automatically when its bounded review contract changes and is otherwise manual; adding catalog content never adds browser cases.
 
 Country destination landing pages use `/[locale]/destination/[ISO alpha-2]`. Legacy `/country/...` links retain their world-route deep-link meaning. Collection and taxonomy memberships reuse the same Discovery contract as the browser. Unknown landing routes return 404/noindex, rather than redirecting to an unrelated route.
+
+### Screenshot evidence delivery
+
+The fixed product review pauses globe animation only during each screenshot, then resumes it. Screens remain browser-rendered and actions use real UI controls. Upload screenshots by viewport; keep each artifact independently downloadable and omit retained failure traces from the screenshot bundle. Failure logs and traces remain available from the Actions run. Locale coverage uses the catalog summary for the legacy world dataset because that dataset contains countries/legs, not the generic journey summary field. Names that remain identical in several locales are intentional proper names; use conventional localized names where appropriate.

@@ -72,7 +72,12 @@
       "type": "place",
       "countryCode": "TW",
       "name": {
-        "en": "Taipei"
+        "en": "Taipei",
+        "de": "Taipeh",
+        "it": "Taipei",
+        "es": "Taipéi",
+        "fr": "Taipei",
+        "pt": "Taipé"
       },
       "coordinates": {
         "lat": 25.033,
@@ -84,7 +89,12 @@
       "type": "place",
       "countryCode": "TW",
       "name": {
-        "en": "Hualien"
+        "en": "Hualien",
+        "de": "Hualien",
+        "it": "Hualien",
+        "es": "Hualien",
+        "fr": "Hualien",
+        "pt": "Hualien"
       },
       "coordinates": {
         "lat": 23.9911,
@@ -96,7 +106,12 @@
       "type": "place",
       "countryCode": "TW",
       "name": {
-        "en": "Taitung"
+        "en": "Taitung",
+        "de": "Taitung",
+        "it": "Taitung",
+        "es": "Taitung",
+        "fr": "Taitung",
+        "pt": "Taitung"
       },
       "coordinates": {
         "lat": 22.7554,
@@ -108,7 +123,12 @@
       "type": "place",
       "countryCode": "TW",
       "name": {
-        "en": "Kaohsiung"
+        "en": "Kaohsiung",
+        "de": "Kaohsiung",
+        "it": "Kaohsiung",
+        "es": "Kaohsiung",
+        "fr": "Kaohsiung",
+        "pt": "Kaohsiung"
       },
       "coordinates": {
         "lat": 22.6273,
@@ -120,7 +140,12 @@
       "type": "place",
       "countryCode": "TW",
       "name": {
-        "en": "Tainan"
+        "en": "Tainan",
+        "de": "Tainan",
+        "it": "Tainan",
+        "es": "Tainan",
+        "fr": "Tainan",
+        "pt": "Tainan"
       },
       "coordinates": {
         "lat": 22.9999,
@@ -132,7 +157,12 @@
       "type": "place",
       "countryCode": "TW",
       "name": {
-        "en": "Taichung"
+        "en": "Taichung",
+        "de": "Taichung",
+        "it": "Taichung",
+        "es": "Taichung",
+        "fr": "Taichung",
+        "pt": "Taichung"
       },
       "coordinates": {
         "lat": 24.1477,
@@ -144,7 +174,12 @@
       "type": "place",
       "countryCode": "TW",
       "name": {
-        "en": "Taipei"
+        "en": "Taipei",
+        "de": "Taipeh",
+        "it": "Taipei",
+        "es": "Taipéi",
+        "fr": "Taipei",
+        "pt": "Taipé"
       },
       "coordinates": {
         "lat": 25.033,

@@ -21,7 +21,7 @@ for(const meta of catalog.trips||[]){
   let trip;
   try{trip=JSON.parse(await readFile(datasetUrl(meta.dataset),'utf8'))}
   catch{continue}
-  addField(rows,{tripId:meta.id,field:'trip.summary',value:trip.summary});
+  addField(rows,{tripId:meta.id,field:'trip.summary',value:trip.summary||(meta.kind==='world'?meta.subtitle:undefined)});
   for(const place of trip.places||[])addField(rows,{tripId:meta.id,field:'place.'+place.id+'.name',value:place.name});
   for(const chapter of trip.chapters||[])addField(rows,{tripId:meta.id,field:'chapter.'+chapter.id+'.title',value:chapter.title});
   for(let i=0;i<(trip.highlights||[]).length;i++){

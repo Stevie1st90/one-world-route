@@ -2959,7 +2959,12 @@
           "dayEnd": 2,
           "nights": 2,
           "name": {
-            "en": "Tokyo"
+            "en": "Tokyo",
+            "de": "Tokio",
+            "it": "Tokyo",
+            "es": "Tokio",
+            "fr": "Tokyo",
+            "pt": "Tóquio"
           },
           "countryCode": "JP",
           "type": "place"
@@ -2971,7 +2976,12 @@
           "dayEnd": 4,
           "nights": 2,
           "name": {
-            "en": "Matsumoto"
+            "en": "Matsumoto",
+            "de": "Matsumoto",
+            "it": "Matsumoto",
+            "es": "Matsumoto",
+            "fr": "Matsumoto",
+            "pt": "Matsumoto"
           },
           "countryCode": "JP",
           "type": "place"
@@ -2983,7 +2993,12 @@
           "dayEnd": 7,
           "nights": 3,
           "name": {
-            "en": "Kanazawa"
+            "en": "Kanazawa",
+            "de": "Kanazawa",
+            "it": "Kanazawa",
+            "es": "Kanazawa",
+            "fr": "Kanazawa",
+            "pt": "Kanazawa"
           },
           "countryCode": "JP",
           "type": "place"
@@ -2995,7 +3010,12 @@
           "dayEnd": 9,
           "nights": 2,
           "name": {
-            "en": "Kyoto"
+            "en": "Kyoto",
+            "de": "Kyoto",
+            "it": "Kyoto",
+            "es": "Kioto",
+            "fr": "Kyoto",
+            "pt": "Quioto"
           },
           "countryCode": "JP",
           "type": "place"
@@ -3007,7 +3027,12 @@
           "dayEnd": 11,
           "nights": 2,
           "name": {
-            "en": "Osaka"
+            "en": "Osaka",
+            "de": "Osaka",
+            "it": "Osaka",
+            "es": "Osaka",
+            "fr": "Osaka",
+            "pt": "Osaka"
           },
           "countryCode": "JP",
           "type": "place"
@@ -3019,7 +3044,12 @@
           "dayEnd": 14,
           "nights": 3,
           "name": {
-            "en": "Hiroshima"
+            "en": "Hiroshima",
+            "de": "Hiroshima",
+            "it": "Hiroshima",
+            "es": "Hiroshima",
+            "fr": "Hiroshima",
+            "pt": "Hiroshima"
           },
           "countryCode": "JP",
           "type": "place"
@@ -3030,7 +3060,12 @@
           {
             "id": "tokyo",
             "name": {
-              "en": "Tokyo"
+              "en": "Tokyo",
+              "de": "Tokio",
+              "it": "Tokyo",
+              "es": "Tokio",
+              "fr": "Tokyo",
+              "pt": "Tóquio"
             },
             "lat": 35.6762,
             "lng": 139.6503
@@ -3038,7 +3073,12 @@
           {
             "id": "matsumoto",
             "name": {
-              "en": "Matsumoto"
+              "en": "Matsumoto",
+              "de": "Matsumoto",
+              "it": "Matsumoto",
+              "es": "Matsumoto",
+              "fr": "Matsumoto",
+              "pt": "Matsumoto"
             },
             "lat": 36.238,
             "lng": 137.972
@@ -3046,7 +3086,12 @@
           {
             "id": "kanazawa",
             "name": {
-              "en": "Kanazawa"
+              "en": "Kanazawa",
+              "de": "Kanazawa",
+              "it": "Kanazawa",
+              "es": "Kanazawa",
+              "fr": "Kanazawa",
+              "pt": "Kanazawa"
             },
             "lat": 36.5613,
             "lng": 136.6562
@@ -3054,7 +3099,12 @@
           {
             "id": "kyoto",
             "name": {
-              "en": "Kyoto"
+              "en": "Kyoto",
+              "de": "Kyoto",
+              "it": "Kyoto",
+              "es": "Kioto",
+              "fr": "Kyoto",
+              "pt": "Quioto"
             },
             "lat": 35.0116,
             "lng": 135.7681
@@ -3062,7 +3112,12 @@
           {
             "id": "osaka",
             "name": {
-              "en": "Osaka"
+              "en": "Osaka",
+              "de": "Osaka",
+              "it": "Osaka",
+              "es": "Osaka",
+              "fr": "Osaka",
+              "pt": "Osaka"
             },
             "lat": 34.6937,
             "lng": 135.5023
@@ -3070,7 +3125,12 @@
           {
             "id": "hiroshima",
             "name": {
-              "en": "Hiroshima"
+              "en": "Hiroshima",
+              "de": "Hiroshima",
+              "it": "Hiroshima",
+              "es": "Hiroshima",
+              "fr": "Hiroshima",
+              "pt": "Hiroshima"
             },
             "lat": 34.3853,
             "lng": 132.4553
@@ -3080,10 +3140,20 @@
           {
             "id": "japan-by-rail-leg-01",
             "fromName": {
-              "en": "Tokyo"
+              "en": "Tokyo",
+              "de": "Tokio",
+              "it": "Tokyo",
+              "es": "Tokio",
+              "fr": "Tokyo",
+              "pt": "Tóquio"
             },
             "toName": {
-              "en": "Matsumoto"
+              "en": "Matsumoto",
+              "de": "Matsumoto",
+              "it": "Matsumoto",
+              "es": "Matsumoto",
+              "fr": "Matsumoto",
+              "pt": "Matsumoto"
             },
             "start": {
               "lat": 35.6762,
@@ -3097,10 +3167,20 @@
           {
             "id": "japan-by-rail-leg-02",
             "fromName": {
-              "en": "Matsumoto"
+              "en": "Matsumoto",
+              "de": "Matsumoto",
+              "it": "Matsumoto",
+              "es": "Matsumoto",
+              "fr": "Matsumoto",
+              "pt": "Matsumoto"
             },
             "toName": {
-              "en": "Kanazawa"
+              "en": "Kanazawa",
+              "de": "Kanazawa",
+              "it": "Kanazawa",
+              "es": "Kanazawa",
+              "fr": "Kanazawa",
+              "pt": "Kanazawa"
             },
             "start": {
               "lat": 36.238,
@@ -3114,10 +3194,20 @@
           {
             "id": "japan-by-rail-leg-03",
             "fromName": {
-              "en": "Kanazawa"
+              "en": "Kanazawa",
+              "de": "Kanazawa",
+              "it": "Kanazawa",
+              "es": "Kanazawa",
+              "fr": "Kanazawa",
+              "pt": "Kanazawa"
             },
             "toName": {
-              "en": "Kyoto"
+              "en": "Kyoto",
+              "de": "Kyoto",
+              "it": "Kyoto",
+              "es": "Kioto",
+              "fr": "Kyoto",
+              "pt": "Quioto"
             },
             "start": {
               "lat": 36.5613,
@@ -3131,10 +3221,20 @@
           {
             "id": "japan-by-rail-leg-04",
             "fromName": {
-              "en": "Kyoto"
+              "en": "Kyoto",
+              "de": "Kyoto",
+              "it": "Kyoto",
+              "es": "Kioto",
+              "fr": "Kyoto",
+              "pt": "Quioto"
             },
             "toName": {
-              "en": "Osaka"
+              "en": "Osaka",
+              "de": "Osaka",
+              "it": "Osaka",
+              "es": "Osaka",
+              "fr": "Osaka",
+              "pt": "Osaka"
             },
             "start": {
               "lat": 35.0116,
@@ -3148,10 +3248,20 @@
           {
             "id": "japan-by-rail-leg-05",
             "fromName": {
-              "en": "Osaka"
+              "en": "Osaka",
+              "de": "Osaka",
+              "it": "Osaka",
+              "es": "Osaka",
+              "fr": "Osaka",
+              "pt": "Osaka"
             },
             "toName": {
-              "en": "Hiroshima"
+              "en": "Hiroshima",
+              "de": "Hiroshima",
+              "it": "Hiroshima",
+              "es": "Hiroshima",
+              "fr": "Hiroshima",
+              "pt": "Hiroshima"
             },
             "start": {
               "lat": 34.6937,
@@ -3272,7 +3382,12 @@
           "dayEnd": 3,
           "nights": 3,
           "name": {
-            "en": "El Calafate"
+            "en": "El Calafate",
+            "de": "El Calafate",
+            "it": "El Calafate",
+            "es": "El Calafate",
+            "fr": "El Calafate",
+            "pt": "El Calafate"
           },
           "countryCode": "AR",
           "type": "place"
@@ -3284,7 +3399,12 @@
           "dayEnd": 7,
           "nights": 4,
           "name": {
-            "en": "El Chaltén"
+            "en": "El Chaltén",
+            "de": "El Chaltén",
+            "it": "El Chaltén",
+            "es": "El Chaltén",
+            "fr": "El Chaltén",
+            "pt": "El Chaltén"
           },
           "countryCode": "AR",
           "type": "place"
@@ -3296,7 +3416,12 @@
           "dayEnd": 10,
           "nights": 3,
           "name": {
-            "en": "Torres del Paine"
+            "en": "Torres del Paine",
+            "de": "Torres del Paine",
+            "it": "Torres del Paine",
+            "es": "Torres del Paine",
+            "fr": "Torres del Paine",
+            "pt": "Torres del Paine"
           },
           "countryCode": "CL",
           "type": "place"
@@ -3308,7 +3433,12 @@
           "dayEnd": 14,
           "nights": 4,
           "name": {
-            "en": "Puerto Natales"
+            "en": "Puerto Natales",
+            "de": "Puerto Natales",
+            "it": "Puerto Natales",
+            "es": "Puerto Natales",
+            "fr": "Puerto Natales",
+            "pt": "Puerto Natales"
           },
           "countryCode": "CL",
           "type": "place"
@@ -3320,7 +3450,12 @@
           "dayEnd": 18,
           "nights": 4,
           "name": {
-            "en": "Punta Arenas"
+            "en": "Punta Arenas",
+            "de": "Punta Arenas",
+            "it": "Punta Arenas",
+            "es": "Punta Arenas",
+            "fr": "Punta Arenas",
+            "pt": "Punta Arenas"
           },
           "countryCode": "CL",
           "type": "place"
@@ -3331,7 +3466,12 @@
           {
             "id": "el-calafate",
             "name": {
-              "en": "El Calafate"
+              "en": "El Calafate",
+              "de": "El Calafate",
+              "it": "El Calafate",
+              "es": "El Calafate",
+              "fr": "El Calafate",
+              "pt": "El Calafate"
             },
             "lat": -50.337,
             "lng": -72.2648
@@ -3339,7 +3479,12 @@
           {
             "id": "el-chalten",
             "name": {
-              "en": "El Chaltén"
+              "en": "El Chaltén",
+              "de": "El Chaltén",
+              "it": "El Chaltén",
+              "es": "El Chaltén",
+              "fr": "El Chaltén",
+              "pt": "El Chaltén"
             },
             "lat": -49.3315,
             "lng": -72.8863
@@ -3347,7 +3492,12 @@
           {
             "id": "torres",
             "name": {
-              "en": "Torres del Paine"
+              "en": "Torres del Paine",
+              "de": "Torres del Paine",
+              "it": "Torres del Paine",
+              "es": "Torres del Paine",
+              "fr": "Torres del Paine",
+              "pt": "Torres del Paine"
             },
             "lat": -50.9423,
             "lng": -73.4068
@@ -3355,7 +3505,12 @@
           {
             "id": "puerto-natales",
             "name": {
-              "en": "Puerto Natales"
+              "en": "Puerto Natales",
+              "de": "Puerto Natales",
+              "it": "Puerto Natales",
+              "es": "Puerto Natales",
+              "fr": "Puerto Natales",
+              "pt": "Puerto Natales"
             },
             "lat": -51.726,
             "lng": -72.506
@@ -3363,7 +3518,12 @@
           {
             "id": "punta-arenas",
             "name": {
-              "en": "Punta Arenas"
+              "en": "Punta Arenas",
+              "de": "Punta Arenas",
+              "it": "Punta Arenas",
+              "es": "Punta Arenas",
+              "fr": "Punta Arenas",
+              "pt": "Punta Arenas"
             },
             "lat": -53.1638,
             "lng": -70.9171
@@ -3373,10 +3533,20 @@
           {
             "id": "patagonia-road-trip-leg-01",
             "fromName": {
-              "en": "El Calafate"
+              "en": "El Calafate",
+              "de": "El Calafate",
+              "it": "El Calafate",
+              "es": "El Calafate",
+              "fr": "El Calafate",
+              "pt": "El Calafate"
             },
             "toName": {
-              "en": "El Chaltén"
+              "en": "El Chaltén",
+              "de": "El Chaltén",
+              "it": "El Chaltén",
+              "es": "El Chaltén",
+              "fr": "El Chaltén",
+              "pt": "El Chaltén"
             },
             "start": {
               "lat": -50.337,
@@ -3390,10 +3560,20 @@
           {
             "id": "patagonia-road-trip-leg-02",
             "fromName": {
-              "en": "El Chaltén"
+              "en": "El Chaltén",
+              "de": "El Chaltén",
+              "it": "El Chaltén",
+              "es": "El Chaltén",
+              "fr": "El Chaltén",
+              "pt": "El Chaltén"
             },
             "toName": {
-              "en": "Torres del Paine"
+              "en": "Torres del Paine",
+              "de": "Torres del Paine",
+              "it": "Torres del Paine",
+              "es": "Torres del Paine",
+              "fr": "Torres del Paine",
+              "pt": "Torres del Paine"
             },
             "start": {
               "lat": -49.3315,
@@ -3407,10 +3587,20 @@
           {
             "id": "patagonia-road-trip-leg-03",
             "fromName": {
-              "en": "Torres del Paine"
+              "en": "Torres del Paine",
+              "de": "Torres del Paine",
+              "it": "Torres del Paine",
+              "es": "Torres del Paine",
+              "fr": "Torres del Paine",
+              "pt": "Torres del Paine"
             },
             "toName": {
-              "en": "Puerto Natales"
+              "en": "Puerto Natales",
+              "de": "Puerto Natales",
+              "it": "Puerto Natales",
+              "es": "Puerto Natales",
+              "fr": "Puerto Natales",
+              "pt": "Puerto Natales"
             },
             "start": {
               "lat": -50.9423,
@@ -3424,10 +3614,20 @@
           {
             "id": "patagonia-road-trip-leg-04",
             "fromName": {
-              "en": "Puerto Natales"
+              "en": "Puerto Natales",
+              "de": "Puerto Natales",
+              "it": "Puerto Natales",
+              "es": "Puerto Natales",
+              "fr": "Puerto Natales",
+              "pt": "Puerto Natales"
             },
             "toName": {
-              "en": "Punta Arenas"
+              "en": "Punta Arenas",
+              "de": "Punta Arenas",
+              "it": "Punta Arenas",
+              "es": "Punta Arenas",
+              "fr": "Punta Arenas",
+              "pt": "Punta Arenas"
             },
             "start": {
               "lat": -51.726,
@@ -3541,7 +3741,12 @@
           "dayEnd": 2,
           "nights": 2,
           "name": {
-            "en": "Tromsø"
+            "en": "Tromsø",
+            "de": "Tromsø",
+            "it": "Tromsø",
+            "es": "Tromsø",
+            "fr": "Tromsø",
+            "pt": "Tromsø"
           },
           "countryCode": "NO",
           "type": "place"
@@ -3553,7 +3758,12 @@
           "dayEnd": 4,
           "nights": 2,
           "name": {
-            "en": "Senja"
+            "en": "Senja",
+            "de": "Senja",
+            "it": "Senja",
+            "es": "Senja",
+            "fr": "Senja",
+            "pt": "Senja"
           },
           "countryCode": "NO",
           "type": "place"
@@ -3565,7 +3775,12 @@
           "dayEnd": 7,
           "nights": 3,
           "name": {
-            "en": "Andøya"
+            "en": "Andøya",
+            "de": "Andøya",
+            "it": "Andøya",
+            "es": "Andøya",
+            "fr": "Andøya",
+            "pt": "Andøya"
           },
           "countryCode": "NO",
           "type": "place"
@@ -3577,7 +3792,12 @@
           "dayEnd": 9,
           "nights": 2,
           "name": {
-            "en": "Svolvær"
+            "en": "Svolvær",
+            "de": "Svolvær",
+            "it": "Svolvær",
+            "es": "Svolvær",
+            "fr": "Svolvær",
+            "pt": "Svolvær"
           },
           "countryCode": "NO",
           "type": "place"
@@ -3589,7 +3809,12 @@
           "dayEnd": 12,
           "nights": 3,
           "name": {
-            "en": "Reine"
+            "en": "Reine",
+            "de": "Reine",
+            "it": "Reine",
+            "es": "Reine",
+            "fr": "Reine",
+            "pt": "Reine"
           },
           "countryCode": "NO",
           "type": "place"
@@ -3600,7 +3825,12 @@
           {
             "id": "tromso",
             "name": {
-              "en": "Tromsø"
+              "en": "Tromsø",
+              "de": "Tromsø",
+              "it": "Tromsø",
+              "es": "Tromsø",
+              "fr": "Tromsø",
+              "pt": "Tromsø"
             },
             "lat": 69.6492,
             "lng": 18.9553
@@ -3608,7 +3838,12 @@
           {
             "id": "senja",
             "name": {
-              "en": "Senja"
+              "en": "Senja",
+              "de": "Senja",
+              "it": "Senja",
+              "es": "Senja",
+              "fr": "Senja",
+              "pt": "Senja"
             },
             "lat": 69.2748,
             "lng": 17.5179
@@ -3616,7 +3851,12 @@
           {
             "id": "andoya",
             "name": {
-              "en": "Andøya"
+              "en": "Andøya",
+              "de": "Andøya",
+              "it": "Andøya",
+              "es": "Andøya",
+              "fr": "Andøya",
+              "pt": "Andøya"
             },
             "lat": 69.3142,
             "lng": 16.1194
@@ -3624,7 +3864,12 @@
           {
             "id": "svolvaer",
             "name": {
-              "en": "Svolvær"
+              "en": "Svolvær",
+              "de": "Svolvær",
+              "it": "Svolvær",
+              "es": "Svolvær",
+              "fr": "Svolvær",
+              "pt": "Svolvær"
             },
             "lat": 68.2343,
             "lng": 14.5684
@@ -3632,7 +3877,12 @@
           {
             "id": "reine",
             "name": {
-              "en": "Reine"
+              "en": "Reine",
+              "de": "Reine",
+              "it": "Reine",
+              "es": "Reine",
+              "fr": "Reine",
+              "pt": "Reine"
             },
             "lat": 67.9325,
             "lng": 13.0896
@@ -3642,10 +3892,20 @@
           {
             "id": "norway-arctic-road-trip-leg-01",
             "fromName": {
-              "en": "Tromsø"
+              "en": "Tromsø",
+              "de": "Tromsø",
+              "it": "Tromsø",
+              "es": "Tromsø",
+              "fr": "Tromsø",
+              "pt": "Tromsø"
             },
             "toName": {
-              "en": "Senja"
+              "en": "Senja",
+              "de": "Senja",
+              "it": "Senja",
+              "es": "Senja",
+              "fr": "Senja",
+              "pt": "Senja"
             },
             "start": {
               "lat": 69.6492,
@@ -3659,10 +3919,20 @@
           {
             "id": "norway-arctic-road-trip-leg-02",
             "fromName": {
-              "en": "Senja"
+              "en": "Senja",
+              "de": "Senja",
+              "it": "Senja",
+              "es": "Senja",
+              "fr": "Senja",
+              "pt": "Senja"
             },
             "toName": {
-              "en": "Andøya"
+              "en": "Andøya",
+              "de": "Andøya",
+              "it": "Andøya",
+              "es": "Andøya",
+              "fr": "Andøya",
+              "pt": "Andøya"
             },
             "start": {
               "lat": 69.2748,
@@ -3676,10 +3946,20 @@
           {
             "id": "norway-arctic-road-trip-leg-03",
             "fromName": {
-              "en": "Andøya"
+              "en": "Andøya",
+              "de": "Andøya",
+              "it": "Andøya",
+              "es": "Andøya",
+              "fr": "Andøya",
+              "pt": "Andøya"
             },
             "toName": {
-              "en": "Svolvær"
+              "en": "Svolvær",
+              "de": "Svolvær",
+              "it": "Svolvær",
+              "es": "Svolvær",
+              "fr": "Svolvær",
+              "pt": "Svolvær"
             },
             "start": {
               "lat": 69.3142,
@@ -3693,10 +3973,20 @@
           {
             "id": "norway-arctic-road-trip-leg-04",
             "fromName": {
-              "en": "Svolvær"
+              "en": "Svolvær",
+              "de": "Svolvær",
+              "it": "Svolvær",
+              "es": "Svolvær",
+              "fr": "Svolvær",
+              "pt": "Svolvær"
             },
             "toName": {
-              "en": "Reine"
+              "en": "Reine",
+              "de": "Reine",
+              "it": "Reine",
+              "es": "Reine",
+              "fr": "Reine",
+              "pt": "Reine"
             },
             "start": {
               "lat": 68.2343,
@@ -3817,7 +4107,12 @@
           "dayEnd": 3,
           "nights": 3,
           "name": {
-            "en": "Christchurch"
+            "en": "Christchurch",
+            "de": "Christchurch",
+            "it": "Christchurch",
+            "es": "Christchurch",
+            "fr": "Christchurch",
+            "pt": "Christchurch"
           },
           "countryCode": "NZ",
           "type": "place"
@@ -3829,7 +4124,12 @@
           "dayEnd": 7,
           "nights": 4,
           "name": {
-            "en": "Lake Tekapo"
+            "en": "Lake Tekapo",
+            "de": "Lake Tekapo",
+            "it": "Lago Tekapo",
+            "es": "Lago Tekapo",
+            "fr": "Lac Tekapo",
+            "pt": "Lago Tekapo"
           },
           "countryCode": "NZ",
           "type": "place"
@@ -3841,7 +4141,12 @@
           "dayEnd": 10,
           "nights": 3,
           "name": {
-            "en": "Queenstown"
+            "en": "Queenstown",
+            "de": "Queenstown",
+            "it": "Queenstown",
+            "es": "Queenstown",
+            "fr": "Queenstown",
+            "pt": "Queenstown"
           },
           "countryCode": "NZ",
           "type": "place"
@@ -3853,7 +4158,12 @@
           "dayEnd": 14,
           "nights": 4,
           "name": {
-            "en": "Milford Sound"
+            "en": "Milford Sound",
+            "de": "Milford Sound",
+            "it": "Milford Sound",
+            "es": "Milford Sound",
+            "fr": "Milford Sound",
+            "pt": "Milford Sound"
           },
           "countryCode": "NZ",
           "type": "place"
@@ -3865,7 +4175,12 @@
           "dayEnd": 17,
           "nights": 3,
           "name": {
-            "en": "Wānaka"
+            "en": "Wānaka",
+            "de": "Wānaka",
+            "it": "Wānaka",
+            "es": "Wānaka",
+            "fr": "Wānaka",
+            "pt": "Wānaka"
           },
           "countryCode": "NZ",
           "type": "place"
@@ -3877,7 +4192,12 @@
           "dayEnd": 21,
           "nights": 4,
           "name": {
-            "en": "Franz Josef"
+            "en": "Franz Josef",
+            "de": "Franz Josef",
+            "it": "Franz Josef",
+            "es": "Franz Josef",
+            "fr": "Franz Josef",
+            "pt": "Franz Josef"
           },
           "countryCode": "NZ",
           "type": "place"
@@ -3888,7 +4208,12 @@
           {
             "id": "christchurch",
             "name": {
-              "en": "Christchurch"
+              "en": "Christchurch",
+              "de": "Christchurch",
+              "it": "Christchurch",
+              "es": "Christchurch",
+              "fr": "Christchurch",
+              "pt": "Christchurch"
             },
             "lat": -43.5321,
             "lng": 172.6362
@@ -3896,7 +4221,12 @@
           {
             "id": "tekapo",
             "name": {
-              "en": "Lake Tekapo"
+              "en": "Lake Tekapo",
+              "de": "Lake Tekapo",
+              "it": "Lago Tekapo",
+              "es": "Lago Tekapo",
+              "fr": "Lac Tekapo",
+              "pt": "Lago Tekapo"
             },
             "lat": -44.0047,
             "lng": 170.4771
@@ -3904,7 +4234,12 @@
           {
             "id": "queenstown",
             "name": {
-              "en": "Queenstown"
+              "en": "Queenstown",
+              "de": "Queenstown",
+              "it": "Queenstown",
+              "es": "Queenstown",
+              "fr": "Queenstown",
+              "pt": "Queenstown"
             },
             "lat": -45.0312,
             "lng": 168.6626
@@ -3912,7 +4247,12 @@
           {
             "id": "milford",
             "name": {
-              "en": "Milford Sound"
+              "en": "Milford Sound",
+              "de": "Milford Sound",
+              "it": "Milford Sound",
+              "es": "Milford Sound",
+              "fr": "Milford Sound",
+              "pt": "Milford Sound"
             },
             "lat": -44.6717,
             "lng": 167.9256
@@ -3920,7 +4260,12 @@
           {
             "id": "wanaka",
             "name": {
-              "en": "Wānaka"
+              "en": "Wānaka",
+              "de": "Wānaka",
+              "it": "Wānaka",
+              "es": "Wānaka",
+              "fr": "Wānaka",
+              "pt": "Wānaka"
             },
             "lat": -44.694,
             "lng": 169.141
@@ -3928,7 +4273,12 @@
           {
             "id": "west-coast",
             "name": {
-              "en": "Franz Josef"
+              "en": "Franz Josef",
+              "de": "Franz Josef",
+              "it": "Franz Josef",
+              "es": "Franz Josef",
+              "fr": "Franz Josef",
+              "pt": "Franz Josef"
             },
             "lat": -43.3896,
             "lng": 170.183
@@ -3938,10 +4288,20 @@
           {
             "id": "new-zealand-camper-loop-leg-01",
             "fromName": {
-              "en": "Christchurch"
+              "en": "Christchurch",
+              "de": "Christchurch",
+              "it": "Christchurch",
+              "es": "Christchurch",
+              "fr": "Christchurch",
+              "pt": "Christchurch"
             },
             "toName": {
-              "en": "Lake Tekapo"
+              "en": "Lake Tekapo",
+              "de": "Lake Tekapo",
+              "it": "Lago Tekapo",
+              "es": "Lago Tekapo",
+              "fr": "Lac Tekapo",
+              "pt": "Lago Tekapo"
             },
             "start": {
               "lat": -43.5321,
@@ -3955,10 +4315,20 @@
           {
             "id": "new-zealand-camper-loop-leg-02",
             "fromName": {
-              "en": "Lake Tekapo"
+              "en": "Lake Tekapo",
+              "de": "Lake Tekapo",
+              "it": "Lago Tekapo",
+              "es": "Lago Tekapo",
+              "fr": "Lac Tekapo",
+              "pt": "Lago Tekapo"
             },
             "toName": {
-              "en": "Queenstown"
+              "en": "Queenstown",
+              "de": "Queenstown",
+              "it": "Queenstown",
+              "es": "Queenstown",
+              "fr": "Queenstown",
+              "pt": "Queenstown"
             },
             "start": {
               "lat": -44.0047,
@@ -3972,10 +4342,20 @@
           {
             "id": "new-zealand-camper-loop-leg-03",
             "fromName": {
-              "en": "Queenstown"
+              "en": "Queenstown",
+              "de": "Queenstown",
+              "it": "Queenstown",
+              "es": "Queenstown",
+              "fr": "Queenstown",
+              "pt": "Queenstown"
             },
             "toName": {
-              "en": "Milford Sound"
+              "en": "Milford Sound",
+              "de": "Milford Sound",
+              "it": "Milford Sound",
+              "es": "Milford Sound",
+              "fr": "Milford Sound",
+              "pt": "Milford Sound"
             },
             "start": {
               "lat": -45.0312,
@@ -3989,10 +4369,20 @@
           {
             "id": "new-zealand-camper-loop-leg-04",
             "fromName": {
-              "en": "Milford Sound"
+              "en": "Milford Sound",
+              "de": "Milford Sound",
+              "it": "Milford Sound",
+              "es": "Milford Sound",
+              "fr": "Milford Sound",
+              "pt": "Milford Sound"
             },
             "toName": {
-              "en": "Wānaka"
+              "en": "Wānaka",
+              "de": "Wānaka",
+              "it": "Wānaka",
+              "es": "Wānaka",
+              "fr": "Wānaka",
+              "pt": "Wānaka"
             },
             "start": {
               "lat": -44.6717,
@@ -4006,10 +4396,20 @@
           {
             "id": "new-zealand-camper-loop-leg-05",
             "fromName": {
-              "en": "Wānaka"
+              "en": "Wānaka",
+              "de": "Wānaka",
+              "it": "Wānaka",
+              "es": "Wānaka",
+              "fr": "Wānaka",
+              "pt": "Wānaka"
             },
             "toName": {
-              "en": "Franz Josef"
+              "en": "Franz Josef",
+              "de": "Franz Josef",
+              "it": "Franz Josef",
+              "es": "Franz Josef",
+              "fr": "Franz Josef",
+              "pt": "Franz Josef"
             },
             "start": {
               "lat": -44.694,
@@ -4133,7 +4533,12 @@
           "dayEnd": 2,
           "nights": 2,
           "name": {
-            "en": "Athens"
+            "en": "Athens",
+            "de": "Athen",
+            "it": "Atene",
+            "es": "Atenas",
+            "fr": "Athènes",
+            "pt": "Atenas"
           },
           "countryCode": "GR",
           "type": "place"
@@ -4145,7 +4550,12 @@
           "dayEnd": 5,
           "nights": 3,
           "name": {
-            "en": "Mykonos"
+            "en": "Mykonos",
+            "de": "Mykonos",
+            "it": "Mykonos",
+            "es": "Miconos",
+            "fr": "Mykonos",
+            "pt": "Míconos"
           },
           "countryCode": "GR",
           "type": "place"
@@ -4157,7 +4567,12 @@
           "dayEnd": 8,
           "nights": 3,
           "name": {
-            "en": "Naxos"
+            "en": "Naxos",
+            "de": "Naxos",
+            "it": "Naxos",
+            "es": "Naxos",
+            "fr": "Naxos",
+            "pt": "Naxos"
           },
           "countryCode": "GR",
           "type": "place"
@@ -4169,7 +4584,12 @@
           "dayEnd": 11,
           "nights": 3,
           "name": {
-            "en": "Paros"
+            "en": "Paros",
+            "de": "Paros",
+            "it": "Paros",
+            "es": "Paros",
+            "fr": "Paros",
+            "pt": "Paros"
           },
           "countryCode": "GR",
           "type": "place"
@@ -4181,7 +4601,12 @@
           "dayEnd": 14,
           "nights": 3,
           "name": {
-            "en": "Santorini"
+            "en": "Santorini",
+            "de": "Santorin",
+            "it": "Santorini",
+            "es": "Santorini",
+            "fr": "Santorin",
+            "pt": "Santorini"
           },
           "countryCode": "GR",
           "type": "place"
@@ -4192,7 +4617,12 @@
           {
             "id": "athens",
             "name": {
-              "en": "Athens"
+              "en": "Athens",
+              "de": "Athen",
+              "it": "Atene",
+              "es": "Atenas",
+              "fr": "Athènes",
+              "pt": "Atenas"
             },
             "lat": 37.9838,
             "lng": 23.7275
@@ -4200,7 +4630,12 @@
           {
             "id": "mykonos",
             "name": {
-              "en": "Mykonos"
+              "en": "Mykonos",
+              "de": "Mykonos",
+              "it": "Mykonos",
+              "es": "Miconos",
+              "fr": "Mykonos",
+              "pt": "Míconos"
             },
             "lat": 37.4467,
             "lng": 25.3289
@@ -4208,7 +4643,12 @@
           {
             "id": "naxos",
             "name": {
-              "en": "Naxos"
+              "en": "Naxos",
+              "de": "Naxos",
+              "it": "Naxos",
+              "es": "Naxos",
+              "fr": "Naxos",
+              "pt": "Naxos"
             },
             "lat": 37.1036,
             "lng": 25.3764
@@ -4216,7 +4656,12 @@
           {
             "id": "paros",
             "name": {
-              "en": "Paros"
+              "en": "Paros",
+              "de": "Paros",
+              "it": "Paros",
+              "es": "Paros",
+              "fr": "Paros",
+              "pt": "Paros"
             },
             "lat": 37.0853,
             "lng": 25.1489
@@ -4224,7 +4669,12 @@
           {
             "id": "santorini",
             "name": {
-              "en": "Santorini"
+              "en": "Santorini",
+              "de": "Santorin",
+              "it": "Santorini",
+              "es": "Santorini",
+              "fr": "Santorin",
+              "pt": "Santorini"
             },
             "lat": 36.3932,
             "lng": 25.4615
@@ -4234,10 +4684,20 @@
           {
             "id": "greek-island-hopping-leg-01",
             "fromName": {
-              "en": "Athens"
+              "en": "Athens",
+              "de": "Athen",
+              "it": "Atene",
+              "es": "Atenas",
+              "fr": "Athènes",
+              "pt": "Atenas"
             },
             "toName": {
-              "en": "Mykonos"
+              "en": "Mykonos",
+              "de": "Mykonos",
+              "it": "Mykonos",
+              "es": "Miconos",
+              "fr": "Mykonos",
+              "pt": "Míconos"
             },
             "start": {
               "lat": 37.9838,
@@ -4251,10 +4711,20 @@
           {
             "id": "greek-island-hopping-leg-02",
             "fromName": {
-              "en": "Mykonos"
+              "en": "Mykonos",
+              "de": "Mykonos",
+              "it": "Mykonos",
+              "es": "Miconos",
+              "fr": "Mykonos",
+              "pt": "Míconos"
             },
             "toName": {
-              "en": "Naxos"
+              "en": "Naxos",
+              "de": "Naxos",
+              "it": "Naxos",
+              "es": "Naxos",
+              "fr": "Naxos",
+              "pt": "Naxos"
             },
             "start": {
               "lat": 37.4467,
@@ -4268,10 +4738,20 @@
           {
             "id": "greek-island-hopping-leg-03",
             "fromName": {
-              "en": "Naxos"
+              "en": "Naxos",
+              "de": "Naxos",
+              "it": "Naxos",
+              "es": "Naxos",
+              "fr": "Naxos",
+              "pt": "Naxos"
             },
             "toName": {
-              "en": "Paros"
+              "en": "Paros",
+              "de": "Paros",
+              "it": "Paros",
+              "es": "Paros",
+              "fr": "Paros",
+              "pt": "Paros"
             },
             "start": {
               "lat": 37.1036,
@@ -4285,10 +4765,20 @@
           {
             "id": "greek-island-hopping-leg-04",
             "fromName": {
-              "en": "Paros"
+              "en": "Paros",
+              "de": "Paros",
+              "it": "Paros",
+              "es": "Paros",
+              "fr": "Paros",
+              "pt": "Paros"
             },
             "toName": {
-              "en": "Santorini"
+              "en": "Santorini",
+              "de": "Santorin",
+              "it": "Santorini",
+              "es": "Santorini",
+              "fr": "Santorin",
+              "pt": "Santorini"
             },
             "start": {
               "lat": 37.0853,
@@ -4402,7 +4892,12 @@
           "dayEnd": 2,
           "nights": 2,
           "name": {
-            "en": "Marrakech"
+            "en": "Marrakech",
+            "de": "Marrakesch",
+            "it": "Marrakech",
+            "es": "Marrakech",
+            "fr": "Marrakech",
+            "pt": "Marraquexe"
           },
           "countryCode": "MA",
           "type": "place"
@@ -4414,7 +4909,12 @@
           "dayEnd": 4,
           "nights": 2,
           "name": {
-            "en": "Aït Benhaddou"
+            "en": "Aït Benhaddou",
+            "de": "Aït Benhaddou",
+            "it": "Aït Benhaddou",
+            "es": "Aït Benhaddou",
+            "fr": "Aït Benhaddou",
+            "pt": "Aït Benhaddou"
           },
           "countryCode": "MA",
           "type": "place"
@@ -4426,7 +4926,12 @@
           "dayEnd": 7,
           "nights": 3,
           "name": {
-            "en": "Dadès Valley"
+            "en": "Dadès Valley",
+            "de": "Dadès-Tal",
+            "it": "Valle del Dadès",
+            "es": "Valle del Dadès",
+            "fr": "Vallée du Dadès",
+            "pt": "Vale do Dadès"
           },
           "countryCode": "MA",
           "type": "place"
@@ -4438,7 +4943,12 @@
           "dayEnd": 9,
           "nights": 2,
           "name": {
-            "en": "Merzouga"
+            "en": "Merzouga",
+            "de": "Merzouga",
+            "it": "Merzouga",
+            "es": "Merzouga",
+            "fr": "Merzouga",
+            "pt": "Merzouga"
           },
           "countryCode": "MA",
           "type": "place"
@@ -4450,7 +4960,12 @@
           "dayEnd": 12,
           "nights": 3,
           "name": {
-            "en": "Essaouira"
+            "en": "Essaouira",
+            "de": "Essaouira",
+            "it": "Essaouira",
+            "es": "Essaouira",
+            "fr": "Essaouira",
+            "pt": "Essaouira"
           },
           "countryCode": "MA",
           "type": "place"
@@ -4461,7 +4976,12 @@
           {
             "id": "marrakech",
             "name": {
-              "en": "Marrakech"
+              "en": "Marrakech",
+              "de": "Marrakesch",
+              "it": "Marrakech",
+              "es": "Marrakech",
+              "fr": "Marrakech",
+              "pt": "Marraquexe"
             },
             "lat": 31.6295,
             "lng": -7.9811
@@ -4469,7 +4989,12 @@
           {
             "id": "ait-benhaddou",
             "name": {
-              "en": "Aït Benhaddou"
+              "en": "Aït Benhaddou",
+              "de": "Aït Benhaddou",
+              "it": "Aït Benhaddou",
+              "es": "Aït Benhaddou",
+              "fr": "Aït Benhaddou",
+              "pt": "Aït Benhaddou"
             },
             "lat": 31.047,
             "lng": -7.129
@@ -4477,7 +5002,12 @@
           {
             "id": "dades",
             "name": {
-              "en": "Dadès Valley"
+              "en": "Dadès Valley",
+              "de": "Dadès-Tal",
+              "it": "Valle del Dadès",
+              "es": "Valle del Dadès",
+              "fr": "Vallée du Dadès",
+              "pt": "Vale do Dadès"
             },
             "lat": 31.3707,
             "lng": -5.988
@@ -4485,7 +5015,12 @@
           {
             "id": "merzouga",
             "name": {
-              "en": "Merzouga"
+              "en": "Merzouga",
+              "de": "Merzouga",
+              "it": "Merzouga",
+              "es": "Merzouga",
+              "fr": "Merzouga",
+              "pt": "Merzouga"
             },
             "lat": 31.0802,
             "lng": -4.0134
@@ -4493,7 +5028,12 @@
           {
             "id": "essaouira",
             "name": {
-              "en": "Essaouira"
+              "en": "Essaouira",
+              "de": "Essaouira",
+              "it": "Essaouira",
+              "es": "Essaouira",
+              "fr": "Essaouira",
+              "pt": "Essaouira"
             },
             "lat": 31.5085,
             "lng": -9.7595
@@ -4503,10 +5043,20 @@
           {
             "id": "morocco-atlas-desert-leg-01",
             "fromName": {
-              "en": "Marrakech"
+              "en": "Marrakech",
+              "de": "Marrakesch",
+              "it": "Marrakech",
+              "es": "Marrakech",
+              "fr": "Marrakech",
+              "pt": "Marraquexe"
             },
             "toName": {
-              "en": "Aït Benhaddou"
+              "en": "Aït Benhaddou",
+              "de": "Aït Benhaddou",
+              "it": "Aït Benhaddou",
+              "es": "Aït Benhaddou",
+              "fr": "Aït Benhaddou",
+              "pt": "Aït Benhaddou"
             },
             "start": {
               "lat": 31.6295,
@@ -4520,10 +5070,20 @@
           {
             "id": "morocco-atlas-desert-leg-02",
             "fromName": {
-              "en": "Aït Benhaddou"
+              "en": "Aït Benhaddou",
+              "de": "Aït Benhaddou",
+              "it": "Aït Benhaddou",
+              "es": "Aït Benhaddou",
+              "fr": "Aït Benhaddou",
+              "pt": "Aït Benhaddou"
             },
             "toName": {
-              "en": "Dadès Valley"
+              "en": "Dadès Valley",
+              "de": "Dadès-Tal",
+              "it": "Valle del Dadès",
+              "es": "Valle del Dadès",
+              "fr": "Vallée du Dadès",
+              "pt": "Vale do Dadès"
             },
             "start": {
               "lat": 31.047,
@@ -4537,10 +5097,20 @@
           {
             "id": "morocco-atlas-desert-leg-03",
             "fromName": {
-              "en": "Dadès Valley"
+              "en": "Dadès Valley",
+              "de": "Dadès-Tal",
+              "it": "Valle del Dadès",
+              "es": "Valle del Dadès",
+              "fr": "Vallée du Dadès",
+              "pt": "Vale do Dadès"
             },
             "toName": {
-              "en": "Merzouga"
+              "en": "Merzouga",
+              "de": "Merzouga",
+              "it": "Merzouga",
+              "es": "Merzouga",
+              "fr": "Merzouga",
+              "pt": "Merzouga"
             },
             "start": {
               "lat": 31.3707,
@@ -4554,10 +5124,20 @@
           {
             "id": "morocco-atlas-desert-leg-04",
             "fromName": {
-              "en": "Merzouga"
+              "en": "Merzouga",
+              "de": "Merzouga",
+              "it": "Merzouga",
+              "es": "Merzouga",
+              "fr": "Merzouga",
+              "pt": "Merzouga"
             },
             "toName": {
-              "en": "Essaouira"
+              "en": "Essaouira",
+              "de": "Essaouira",
+              "it": "Essaouira",
+              "es": "Essaouira",
+              "fr": "Essaouira",
+              "pt": "Essaouira"
             },
             "start": {
               "lat": 31.0802,
@@ -4679,7 +5259,12 @@
           "dayEnd": 3,
           "nights": 3,
           "name": {
-            "en": "Cape Town"
+            "en": "Cape Town",
+            "de": "Kapstadt",
+            "it": "Città del Capo",
+            "es": "Ciudad del Cabo",
+            "fr": "Le Cap",
+            "pt": "Cidade do Cabo"
           },
           "countryCode": "ZA",
           "type": "place"
@@ -4691,7 +5276,12 @@
           "dayEnd": 6,
           "nights": 3,
           "name": {
-            "en": "Hermanus"
+            "en": "Hermanus",
+            "de": "Hermanus",
+            "it": "Hermanus",
+            "es": "Hermanus",
+            "fr": "Hermanus",
+            "pt": "Hermanus"
           },
           "countryCode": "ZA",
           "type": "place"
@@ -4703,7 +5293,12 @@
           "dayEnd": 9,
           "nights": 3,
           "name": {
-            "en": "Knysna"
+            "en": "Knysna",
+            "de": "Knysna",
+            "it": "Knysna",
+            "es": "Knysna",
+            "fr": "Knysna",
+            "pt": "Knysna"
           },
           "countryCode": "ZA",
           "type": "place"
@@ -4715,7 +5310,12 @@
           "dayEnd": 12,
           "nights": 3,
           "name": {
-            "en": "Tsitsikamma"
+            "en": "Tsitsikamma",
+            "de": "Tsitsikamma",
+            "it": "Tsitsikamma",
+            "es": "Tsitsikamma",
+            "fr": "Tsitsikamma",
+            "pt": "Tsitsikamma"
           },
           "countryCode": "ZA",
           "type": "place"
@@ -4727,7 +5327,12 @@
           "dayEnd": 16,
           "nights": 4,
           "name": {
-            "en": "Addo Elephant National Park"
+            "en": "Addo Elephant National Park",
+            "de": "Addo-Elephant-Nationalpark",
+            "it": "Parco nazionale Addo Elephant",
+            "es": "Parque nacional de elefantes de Addo",
+            "fr": "Parc national des éléphants d’Addo",
+            "pt": "Parque Nacional dos Elefantes de Addo"
           },
           "countryCode": "ZA",
           "type": "place"
@@ -4738,7 +5343,12 @@
           {
             "id": "cape-town",
             "name": {
-              "en": "Cape Town"
+              "en": "Cape Town",
+              "de": "Kapstadt",
+              "it": "Città del Capo",
+              "es": "Ciudad del Cabo",
+              "fr": "Le Cap",
+              "pt": "Cidade do Cabo"
             },
             "lat": -33.9249,
             "lng": 18.4241
@@ -4746,7 +5356,12 @@
           {
             "id": "hermanus",
             "name": {
-              "en": "Hermanus"
+              "en": "Hermanus",
+              "de": "Hermanus",
+              "it": "Hermanus",
+              "es": "Hermanus",
+              "fr": "Hermanus",
+              "pt": "Hermanus"
             },
             "lat": -34.4187,
             "lng": 19.2345
@@ -4754,7 +5369,12 @@
           {
             "id": "knysna",
             "name": {
-              "en": "Knysna"
+              "en": "Knysna",
+              "de": "Knysna",
+              "it": "Knysna",
+              "es": "Knysna",
+              "fr": "Knysna",
+              "pt": "Knysna"
             },
             "lat": -34.0351,
             "lng": 23.0465
@@ -4762,7 +5382,12 @@
           {
             "id": "tsitsikamma",
             "name": {
-              "en": "Tsitsikamma"
+              "en": "Tsitsikamma",
+              "de": "Tsitsikamma",
+              "it": "Tsitsikamma",
+              "es": "Tsitsikamma",
+              "fr": "Tsitsikamma",
+              "pt": "Tsitsikamma"
             },
             "lat": -34.0318,
             "lng": 23.895
@@ -4770,7 +5395,12 @@
           {
             "id": "addo",
             "name": {
-              "en": "Addo Elephant National Park"
+              "en": "Addo Elephant National Park",
+              "de": "Addo-Elephant-Nationalpark",
+              "it": "Parco nazionale Addo Elephant",
+              "es": "Parque nacional de elefantes de Addo",
+              "fr": "Parc national des éléphants d’Addo",
+              "pt": "Parque Nacional dos Elefantes de Addo"
             },
             "lat": -33.483,
             "lng": 25.75
@@ -4780,10 +5410,20 @@
           {
             "id": "south-africa-garden-safari-leg-01",
             "fromName": {
-              "en": "Cape Town"
+              "en": "Cape Town",
+              "de": "Kapstadt",
+              "it": "Città del Capo",
+              "es": "Ciudad del Cabo",
+              "fr": "Le Cap",
+              "pt": "Cidade do Cabo"
             },
             "toName": {
-              "en": "Hermanus"
+              "en": "Hermanus",
+              "de": "Hermanus",
+              "it": "Hermanus",
+              "es": "Hermanus",
+              "fr": "Hermanus",
+              "pt": "Hermanus"
             },
             "start": {
               "lat": -33.9249,
@@ -4797,10 +5437,20 @@
           {
             "id": "south-africa-garden-safari-leg-02",
             "fromName": {
-              "en": "Hermanus"
+              "en": "Hermanus",
+              "de": "Hermanus",
+              "it": "Hermanus",
+              "es": "Hermanus",
+              "fr": "Hermanus",
+              "pt": "Hermanus"
             },
             "toName": {
-              "en": "Knysna"
+              "en": "Knysna",
+              "de": "Knysna",
+              "it": "Knysna",
+              "es": "Knysna",
+              "fr": "Knysna",
+              "pt": "Knysna"
             },
             "start": {
               "lat": -34.4187,
@@ -4814,10 +5464,20 @@
           {
             "id": "south-africa-garden-safari-leg-03",
             "fromName": {
-              "en": "Knysna"
+              "en": "Knysna",
+              "de": "Knysna",
+              "it": "Knysna",
+              "es": "Knysna",
+              "fr": "Knysna",
+              "pt": "Knysna"
             },
             "toName": {
-              "en": "Tsitsikamma"
+              "en": "Tsitsikamma",
+              "de": "Tsitsikamma",
+              "it": "Tsitsikamma",
+              "es": "Tsitsikamma",
+              "fr": "Tsitsikamma",
+              "pt": "Tsitsikamma"
             },
             "start": {
               "lat": -34.0351,
@@ -4831,10 +5491,20 @@
           {
             "id": "south-africa-garden-safari-leg-04",
             "fromName": {
-              "en": "Tsitsikamma"
+              "en": "Tsitsikamma",
+              "de": "Tsitsikamma",
+              "it": "Tsitsikamma",
+              "es": "Tsitsikamma",
+              "fr": "Tsitsikamma",
+              "pt": "Tsitsikamma"
             },
             "toName": {
-              "en": "Addo Elephant National Park"
+              "en": "Addo Elephant National Park",
+              "de": "Addo-Elephant-Nationalpark",
+              "it": "Parco nazionale Addo Elephant",
+              "es": "Parque nacional de elefantes de Addo",
+              "fr": "Parc national des éléphants d’Addo",
+              "pt": "Parque Nacional dos Elefantes de Addo"
             },
             "start": {
               "lat": -34.0318,
@@ -4955,7 +5625,12 @@
           "dayEnd": 2,
           "nights": 2,
           "name": {
-            "en": "Vancouver"
+            "en": "Vancouver",
+            "de": "Vancouver",
+            "it": "Vancouver",
+            "es": "Vancouver",
+            "fr": "Vancouver",
+            "pt": "Vancouver"
           },
           "countryCode": "CA",
           "type": "place"
@@ -4967,7 +5642,12 @@
           "dayEnd": 5,
           "nights": 3,
           "name": {
-            "en": "Kamloops"
+            "en": "Kamloops",
+            "de": "Kamloops",
+            "it": "Kamloops",
+            "es": "Kamloops",
+            "fr": "Kamloops",
+            "pt": "Kamloops"
           },
           "countryCode": "CA",
           "type": "place"
@@ -4979,7 +5659,12 @@
           "dayEnd": 8,
           "nights": 3,
           "name": {
-            "en": "Jasper"
+            "en": "Jasper",
+            "de": "Jasper",
+            "it": "Jasper",
+            "es": "Jasper",
+            "fr": "Jasper",
+            "pt": "Jasper"
           },
           "countryCode": "CA",
           "type": "place"
@@ -4991,7 +5676,12 @@
           "dayEnd": 11,
           "nights": 3,
           "name": {
-            "en": "Banff"
+            "en": "Banff",
+            "de": "Banff",
+            "it": "Banff",
+            "es": "Banff",
+            "fr": "Banff",
+            "pt": "Banff"
           },
           "countryCode": "CA",
           "type": "place"
@@ -5003,7 +5693,12 @@
           "dayEnd": 14,
           "nights": 3,
           "name": {
-            "en": "Calgary"
+            "en": "Calgary",
+            "de": "Calgary",
+            "it": "Calgary",
+            "es": "Calgary",
+            "fr": "Calgary",
+            "pt": "Calgary"
           },
           "countryCode": "CA",
           "type": "place"
@@ -5014,7 +5709,12 @@
           {
             "id": "vancouver",
             "name": {
-              "en": "Vancouver"
+              "en": "Vancouver",
+              "de": "Vancouver",
+              "it": "Vancouver",
+              "es": "Vancouver",
+              "fr": "Vancouver",
+              "pt": "Vancouver"
             },
             "lat": 49.2827,
             "lng": -123.1207
@@ -5022,7 +5722,12 @@
           {
             "id": "kamloops",
             "name": {
-              "en": "Kamloops"
+              "en": "Kamloops",
+              "de": "Kamloops",
+              "it": "Kamloops",
+              "es": "Kamloops",
+              "fr": "Kamloops",
+              "pt": "Kamloops"
             },
             "lat": 50.6745,
             "lng": -120.3273
@@ -5030,7 +5735,12 @@
           {
             "id": "jasper",
             "name": {
-              "en": "Jasper"
+              "en": "Jasper",
+              "de": "Jasper",
+              "it": "Jasper",
+              "es": "Jasper",
+              "fr": "Jasper",
+              "pt": "Jasper"
             },
             "lat": 52.8737,
             "lng": -118.0814
@@ -5038,7 +5748,12 @@
           {
             "id": "banff",
             "name": {
-              "en": "Banff"
+              "en": "Banff",
+              "de": "Banff",
+              "it": "Banff",
+              "es": "Banff",
+              "fr": "Banff",
+              "pt": "Banff"
             },
             "lat": 51.1784,
             "lng": -115.5708
@@ -5046,7 +5761,12 @@
           {
             "id": "calgary",
             "name": {
-              "en": "Calgary"
+              "en": "Calgary",
+              "de": "Calgary",
+              "it": "Calgary",
+              "es": "Calgary",
+              "fr": "Calgary",
+              "pt": "Calgary"
             },
             "lat": 51.0447,
             "lng": -114.0719
@@ -5056,10 +5776,20 @@
           {
             "id": "canadian-rockies-rail-road-leg-01",
             "fromName": {
-              "en": "Vancouver"
+              "en": "Vancouver",
+              "de": "Vancouver",
+              "it": "Vancouver",
+              "es": "Vancouver",
+              "fr": "Vancouver",
+              "pt": "Vancouver"
             },
             "toName": {
-              "en": "Kamloops"
+              "en": "Kamloops",
+              "de": "Kamloops",
+              "it": "Kamloops",
+              "es": "Kamloops",
+              "fr": "Kamloops",
+              "pt": "Kamloops"
             },
             "start": {
               "lat": 49.2827,
@@ -5073,10 +5803,20 @@
           {
             "id": "canadian-rockies-rail-road-leg-02",
             "fromName": {
-              "en": "Kamloops"
+              "en": "Kamloops",
+              "de": "Kamloops",
+              "it": "Kamloops",
+              "es": "Kamloops",
+              "fr": "Kamloops",
+              "pt": "Kamloops"
             },
             "toName": {
-              "en": "Jasper"
+              "en": "Jasper",
+              "de": "Jasper",
+              "it": "Jasper",
+              "es": "Jasper",
+              "fr": "Jasper",
+              "pt": "Jasper"
             },
             "start": {
               "lat": 50.6745,
@@ -5090,10 +5830,20 @@
           {
             "id": "canadian-rockies-rail-road-leg-03",
             "fromName": {
-              "en": "Jasper"
+              "en": "Jasper",
+              "de": "Jasper",
+              "it": "Jasper",
+              "es": "Jasper",
+              "fr": "Jasper",
+              "pt": "Jasper"
             },
             "toName": {
-              "en": "Banff"
+              "en": "Banff",
+              "de": "Banff",
+              "it": "Banff",
+              "es": "Banff",
+              "fr": "Banff",
+              "pt": "Banff"
             },
             "start": {
               "lat": 52.8737,
@@ -5107,10 +5857,20 @@
           {
             "id": "canadian-rockies-rail-road-leg-04",
             "fromName": {
-              "en": "Banff"
+              "en": "Banff",
+              "de": "Banff",
+              "it": "Banff",
+              "es": "Banff",
+              "fr": "Banff",
+              "pt": "Banff"
             },
             "toName": {
-              "en": "Calgary"
+              "en": "Calgary",
+              "de": "Calgary",
+              "it": "Calgary",
+              "es": "Calgary",
+              "fr": "Calgary",
+              "pt": "Calgary"
             },
             "start": {
               "lat": 51.1784,
@@ -5232,7 +5992,12 @@
           "dayEnd": 3,
           "nights": 3,
           "name": {
-            "en": "Hanoi"
+            "en": "Hanoi",
+            "de": "Hanoi",
+            "it": "Hanoi",
+            "es": "Hanoi",
+            "fr": "Hanoi",
+            "pt": "Hanoi"
           },
           "countryCode": "VN",
           "type": "place"
@@ -5244,7 +6009,12 @@
           "dayEnd": 6,
           "nights": 3,
           "name": {
-            "en": "Huế"
+            "en": "Huế",
+            "de": "Huế",
+            "it": "Huế",
+            "es": "Huế",
+            "fr": "Huế",
+            "pt": "Huế"
           },
           "countryCode": "VN",
           "type": "place"
@@ -5256,7 +6026,12 @@
           "dayEnd": 9,
           "nights": 3,
           "name": {
-            "en": "Da Nang"
+            "en": "Da Nang",
+            "de": "Da Nang",
+            "it": "Da Nang",
+            "es": "Da Nang",
+            "fr": "Da Nang",
+            "pt": "Da Nang"
           },
           "countryCode": "VN",
           "type": "place"
@@ -5268,7 +6043,12 @@
           "dayEnd": 12,
           "nights": 3,
           "name": {
-            "en": "Hội An"
+            "en": "Hội An",
+            "de": "Hội An",
+            "it": "Hội An",
+            "es": "Hội An",
+            "fr": "Hội An",
+            "pt": "Hội An"
           },
           "countryCode": "VN",
           "type": "place"
@@ -5280,7 +6060,12 @@
           "dayEnd": 15,
           "nights": 3,
           "name": {
-            "en": "Nha Trang"
+            "en": "Nha Trang",
+            "de": "Nha Trang",
+            "it": "Nha Trang",
+            "es": "Nha Trang",
+            "fr": "Nha Trang",
+            "pt": "Nha Trang"
           },
           "countryCode": "VN",
           "type": "place"
@@ -5292,7 +6077,12 @@
           "dayEnd": 18,
           "nights": 3,
           "name": {
-            "en": "Ho Chi Minh City"
+            "en": "Ho Chi Minh City",
+            "de": "Ho-Chi-Minh-Stadt",
+            "it": "Città di Ho Chi Minh",
+            "es": "Ciudad Ho Chi Minh",
+            "fr": "Hô Chi Minh-Ville",
+            "pt": "Cidade de Ho Chi Minh"
           },
           "countryCode": "VN",
           "type": "place"
@@ -5303,7 +6093,12 @@
           {
             "id": "hanoi",
             "name": {
-              "en": "Hanoi"
+              "en": "Hanoi",
+              "de": "Hanoi",
+              "it": "Hanoi",
+              "es": "Hanoi",
+              "fr": "Hanoi",
+              "pt": "Hanoi"
             },
             "lat": 21.0278,
             "lng": 105.8342
@@ -5311,7 +6106,12 @@
           {
             "id": "hue",
             "name": {
-              "en": "Huế"
+              "en": "Huế",
+              "de": "Huế",
+              "it": "Huế",
+              "es": "Huế",
+              "fr": "Huế",
+              "pt": "Huế"
             },
             "lat": 16.4637,
             "lng": 107.5909
@@ -5319,7 +6119,12 @@
           {
             "id": "da-nang",
             "name": {
-              "en": "Da Nang"
+              "en": "Da Nang",
+              "de": "Da Nang",
+              "it": "Da Nang",
+              "es": "Da Nang",
+              "fr": "Da Nang",
+              "pt": "Da Nang"
             },
             "lat": 16.0544,
             "lng": 108.2022
@@ -5327,7 +6132,12 @@
           {
             "id": "hoi-an",
             "name": {
-              "en": "Hội An"
+              "en": "Hội An",
+              "de": "Hội An",
+              "it": "Hội An",
+              "es": "Hội An",
+              "fr": "Hội An",
+              "pt": "Hội An"
             },
             "lat": 15.8801,
             "lng": 108.338
@@ -5335,7 +6145,12 @@
           {
             "id": "nha-trang",
             "name": {
-              "en": "Nha Trang"
+              "en": "Nha Trang",
+              "de": "Nha Trang",
+              "it": "Nha Trang",
+              "es": "Nha Trang",
+              "fr": "Nha Trang",
+              "pt": "Nha Trang"
             },
             "lat": 12.2388,
             "lng": 109.1967
@@ -5343,7 +6158,12 @@
           {
             "id": "ho-chi-minh",
             "name": {
-              "en": "Ho Chi Minh City"
+              "en": "Ho Chi Minh City",
+              "de": "Ho-Chi-Minh-Stadt",
+              "it": "Città di Ho Chi Minh",
+              "es": "Ciudad Ho Chi Minh",
+              "fr": "Hô Chi Minh-Ville",
+              "pt": "Cidade de Ho Chi Minh"
             },
             "lat": 10.8231,
             "lng": 106.6297
@@ -5353,10 +6173,20 @@
           {
             "id": "vietnam-north-south-leg-01",
             "fromName": {
-              "en": "Hanoi"
+              "en": "Hanoi",
+              "de": "Hanoi",
+              "it": "Hanoi",
+              "es": "Hanoi",
+              "fr": "Hanoi",
+              "pt": "Hanoi"
             },
             "toName": {
-              "en": "Huế"
+              "en": "Huế",
+              "de": "Huế",
+              "it": "Huế",
+              "es": "Huế",
+              "fr": "Huế",
+              "pt": "Huế"
             },
             "start": {
               "lat": 21.0278,
@@ -5370,10 +6200,20 @@
           {
             "id": "vietnam-north-south-leg-02",
             "fromName": {
-              "en": "Huế"
+              "en": "Huế",
+              "de": "Huế",
+              "it": "Huế",
+              "es": "Huế",
+              "fr": "Huế",
+              "pt": "Huế"
             },
             "toName": {
-              "en": "Da Nang"
+              "en": "Da Nang",
+              "de": "Da Nang",
+              "it": "Da Nang",
+              "es": "Da Nang",
+              "fr": "Da Nang",
+              "pt": "Da Nang"
             },
             "start": {
               "lat": 16.4637,
@@ -5387,10 +6227,20 @@
           {
             "id": "vietnam-north-south-leg-03",
             "fromName": {
-              "en": "Da Nang"
+              "en": "Da Nang",
+              "de": "Da Nang",
+              "it": "Da Nang",
+              "es": "Da Nang",
+              "fr": "Da Nang",
+              "pt": "Da Nang"
             },
             "toName": {
-              "en": "Hội An"
+              "en": "Hội An",
+              "de": "Hội An",
+              "it": "Hội An",
+              "es": "Hội An",
+              "fr": "Hội An",
+              "pt": "Hội An"
             },
             "start": {
               "lat": 16.0544,
@@ -5404,10 +6254,20 @@
           {
             "id": "vietnam-north-south-leg-04",
             "fromName": {
-              "en": "Hội An"
+              "en": "Hội An",
+              "de": "Hội An",
+              "it": "Hội An",
+              "es": "Hội An",
+              "fr": "Hội An",
+              "pt": "Hội An"
             },
             "toName": {
-              "en": "Nha Trang"
+              "en": "Nha Trang",
+              "de": "Nha Trang",
+              "it": "Nha Trang",
+              "es": "Nha Trang",
+              "fr": "Nha Trang",
+              "pt": "Nha Trang"
             },
             "start": {
               "lat": 15.8801,
@@ -5421,10 +6281,20 @@
           {
             "id": "vietnam-north-south-leg-05",
             "fromName": {
-              "en": "Nha Trang"
+              "en": "Nha Trang",
+              "de": "Nha Trang",
+              "it": "Nha Trang",
+              "es": "Nha Trang",
+              "fr": "Nha Trang",
+              "pt": "Nha Trang"
             },
             "toName": {
-              "en": "Ho Chi Minh City"
+              "en": "Ho Chi Minh City",
+              "de": "Ho-Chi-Minh-Stadt",
+              "it": "Città di Ho Chi Minh",
+              "es": "Ciudad Ho Chi Minh",
+              "fr": "Hô Chi Minh-Ville",
+              "pt": "Cidade de Ho Chi Minh"
             },
             "start": {
               "lat": 12.2388,
@@ -5544,7 +6414,12 @@
           "dayEnd": 2,
           "nights": 2,
           "name": {
-            "en": "San José"
+            "en": "San José",
+            "de": "San José",
+            "it": "San José",
+            "es": "San José",
+            "fr": "San José",
+            "pt": "San José"
           },
           "countryCode": "CR",
           "type": "place"
@@ -5556,7 +6431,12 @@
           "dayEnd": 5,
           "nights": 3,
           "name": {
-            "en": "Arenal"
+            "en": "Arenal",
+            "de": "Arenal",
+            "it": "Arenal",
+            "es": "Arenal",
+            "fr": "Arenal",
+            "pt": "Arenal"
           },
           "countryCode": "CR",
           "type": "place"
@@ -5568,7 +6448,12 @@
           "dayEnd": 8,
           "nights": 3,
           "name": {
-            "en": "Monteverde"
+            "en": "Monteverde",
+            "de": "Monteverde",
+            "it": "Monteverde",
+            "es": "Monteverde",
+            "fr": "Monteverde",
+            "pt": "Monteverde"
           },
           "countryCode": "CR",
           "type": "place"
@@ -5580,7 +6465,12 @@
           "dayEnd": 11,
           "nights": 3,
           "name": {
-            "en": "Manuel Antonio"
+            "en": "Manuel Antonio",
+            "de": "Manuel Antonio",
+            "it": "Manuel Antonio",
+            "es": "Manuel Antonio",
+            "fr": "Manuel Antonio",
+            "pt": "Manuel Antonio"
           },
           "countryCode": "CR",
           "type": "place"
@@ -5592,7 +6482,12 @@
           "dayEnd": 14,
           "nights": 3,
           "name": {
-            "en": "Uvita"
+            "en": "Uvita",
+            "de": "Uvita",
+            "it": "Uvita",
+            "es": "Uvita",
+            "fr": "Uvita",
+            "pt": "Uvita"
           },
           "countryCode": "CR",
           "type": "place"
@@ -5603,7 +6498,12 @@
           {
             "id": "san-jose",
             "name": {
-              "en": "San José"
+              "en": "San José",
+              "de": "San José",
+              "it": "San José",
+              "es": "San José",
+              "fr": "San José",
+              "pt": "San José"
             },
             "lat": 9.9281,
             "lng": -84.0907
@@ -5611,7 +6511,12 @@
           {
             "id": "arenal",
             "name": {
-              "en": "Arenal"
+              "en": "Arenal",
+              "de": "Arenal",
+              "it": "Arenal",
+              "es": "Arenal",
+              "fr": "Arenal",
+              "pt": "Arenal"
             },
             "lat": 10.4626,
             "lng": -84.7033
@@ -5619,7 +6524,12 @@
           {
             "id": "monteverde",
             "name": {
-              "en": "Monteverde"
+              "en": "Monteverde",
+              "de": "Monteverde",
+              "it": "Monteverde",
+              "es": "Monteverde",
+              "fr": "Monteverde",
+              "pt": "Monteverde"
             },
             "lat": 10.3009,
             "lng": -84.8255
@@ -5627,7 +6537,12 @@
           {
             "id": "manuel-antonio",
             "name": {
-              "en": "Manuel Antonio"
+              "en": "Manuel Antonio",
+              "de": "Manuel Antonio",
+              "it": "Manuel Antonio",
+              "es": "Manuel Antonio",
+              "fr": "Manuel Antonio",
+              "pt": "Manuel Antonio"
             },
             "lat": 9.3923,
             "lng": -84.1367
@@ -5635,7 +6550,12 @@
           {
             "id": "uvita",
             "name": {
-              "en": "Uvita"
+              "en": "Uvita",
+              "de": "Uvita",
+              "it": "Uvita",
+              "es": "Uvita",
+              "fr": "Uvita",
+              "pt": "Uvita"
             },
             "lat": 9.167,
             "lng": -83.738
@@ -5645,10 +6565,20 @@
           {
             "id": "costa-rica-nature-loop-leg-01",
             "fromName": {
-              "en": "San José"
+              "en": "San José",
+              "de": "San José",
+              "it": "San José",
+              "es": "San José",
+              "fr": "San José",
+              "pt": "San José"
             },
             "toName": {
-              "en": "Arenal"
+              "en": "Arenal",
+              "de": "Arenal",
+              "it": "Arenal",
+              "es": "Arenal",
+              "fr": "Arenal",
+              "pt": "Arenal"
             },
             "start": {
               "lat": 9.9281,
@@ -5662,10 +6592,20 @@
           {
             "id": "costa-rica-nature-loop-leg-02",
             "fromName": {
-              "en": "Arenal"
+              "en": "Arenal",
+              "de": "Arenal",
+              "it": "Arenal",
+              "es": "Arenal",
+              "fr": "Arenal",
+              "pt": "Arenal"
             },
             "toName": {
-              "en": "Monteverde"
+              "en": "Monteverde",
+              "de": "Monteverde",
+              "it": "Monteverde",
+              "es": "Monteverde",
+              "fr": "Monteverde",
+              "pt": "Monteverde"
             },
             "start": {
               "lat": 10.4626,
@@ -5679,10 +6619,20 @@
           {
             "id": "costa-rica-nature-loop-leg-03",
             "fromName": {
-              "en": "Monteverde"
+              "en": "Monteverde",
+              "de": "Monteverde",
+              "it": "Monteverde",
+              "es": "Monteverde",
+              "fr": "Monteverde",
+              "pt": "Monteverde"
             },
             "toName": {
-              "en": "Manuel Antonio"
+              "en": "Manuel Antonio",
+              "de": "Manuel Antonio",
+              "it": "Manuel Antonio",
+              "es": "Manuel Antonio",
+              "fr": "Manuel Antonio",
+              "pt": "Manuel Antonio"
             },
             "start": {
               "lat": 10.3009,
@@ -5696,10 +6646,20 @@
           {
             "id": "costa-rica-nature-loop-leg-04",
             "fromName": {
-              "en": "Manuel Antonio"
+              "en": "Manuel Antonio",
+              "de": "Manuel Antonio",
+              "it": "Manuel Antonio",
+              "es": "Manuel Antonio",
+              "fr": "Manuel Antonio",
+              "pt": "Manuel Antonio"
             },
             "toName": {
-              "en": "Uvita"
+              "en": "Uvita",
+              "de": "Uvita",
+              "it": "Uvita",
+              "es": "Uvita",
+              "fr": "Uvita",
+              "pt": "Uvita"
             },
             "start": {
               "lat": 9.3923,
@@ -5812,7 +6772,12 @@
           "dayEnd": 1,
           "nights": 1,
           "name": {
-            "en": "Reykjavík"
+            "en": "Reykjavík",
+            "de": "Reykjavík",
+            "it": "Reykjavík",
+            "es": "Reykjavík",
+            "fr": "Reykjavík",
+            "pt": "Reykjavík"
           },
           "countryCode": "IS",
           "type": "place"
@@ -5824,7 +6789,12 @@
           "dayEnd": 3,
           "nights": 2,
           "name": {
-            "en": "Vík"
+            "en": "Vík",
+            "de": "Vík",
+            "it": "Vík",
+            "es": "Vík",
+            "fr": "Vík",
+            "pt": "Vík"
           },
           "countryCode": "IS",
           "type": "place"
@@ -5836,7 +6806,12 @@
           "dayEnd": 5,
           "nights": 2,
           "name": {
-            "en": "Jökulsárlón"
+            "en": "Jökulsárlón",
+            "de": "Jökulsárlón",
+            "it": "Jökulsárlón",
+            "es": "Jökulsárlón",
+            "fr": "Jökulsárlón",
+            "pt": "Jökulsárlón"
           },
           "countryCode": "IS",
           "type": "place"
@@ -5848,7 +6823,12 @@
           "dayEnd": 6,
           "nights": 1,
           "name": {
-            "en": "Egilsstaðir"
+            "en": "Egilsstaðir",
+            "de": "Egilsstaðir",
+            "it": "Egilsstaðir",
+            "es": "Egilsstaðir",
+            "fr": "Egilsstaðir",
+            "pt": "Egilsstaðir"
           },
           "countryCode": "IS",
           "type": "place"
@@ -5860,7 +6840,12 @@
           "dayEnd": 8,
           "nights": 2,
           "name": {
-            "en": "Akureyri"
+            "en": "Akureyri",
+            "de": "Akureyri",
+            "it": "Akureyri",
+            "es": "Akureyri",
+            "fr": "Akureyri",
+            "pt": "Akureyri"
           },
           "countryCode": "IS",
           "type": "place"
@@ -5872,7 +6857,12 @@
           "dayEnd": 10,
           "nights": 2,
           "name": {
-            "en": "Snæfellsnes"
+            "en": "Snæfellsnes",
+            "de": "Snæfellsnes",
+            "it": "Snæfellsnes",
+            "es": "Snæfellsnes",
+            "fr": "Snæfellsnes",
+            "pt": "Snæfellsnes"
           },
           "countryCode": "IS",
           "type": "place"
@@ -5883,7 +6873,12 @@
           {
             "id": "reykjavik",
             "name": {
-              "en": "Reykjavík"
+              "en": "Reykjavík",
+              "de": "Reykjavík",
+              "it": "Reykjavík",
+              "es": "Reykjavík",
+              "fr": "Reykjavík",
+              "pt": "Reykjavík"
             },
             "lat": 64.1466,
             "lng": -21.9426
@@ -5891,7 +6886,12 @@
           {
             "id": "vik",
             "name": {
-              "en": "Vík"
+              "en": "Vík",
+              "de": "Vík",
+              "it": "Vík",
+              "es": "Vík",
+              "fr": "Vík",
+              "pt": "Vík"
             },
             "lat": 63.4194,
             "lng": -19.009
@@ -5899,7 +6899,12 @@
           {
             "id": "jokulsarlon",
             "name": {
-              "en": "Jökulsárlón"
+              "en": "Jökulsárlón",
+              "de": "Jökulsárlón",
+              "it": "Jökulsárlón",
+              "es": "Jökulsárlón",
+              "fr": "Jökulsárlón",
+              "pt": "Jökulsárlón"
             },
             "lat": 64.0489,
             "lng": -16.1794
@@ -5907,7 +6912,12 @@
           {
             "id": "egilsstadir",
             "name": {
-              "en": "Egilsstaðir"
+              "en": "Egilsstaðir",
+              "de": "Egilsstaðir",
+              "it": "Egilsstaðir",
+              "es": "Egilsstaðir",
+              "fr": "Egilsstaðir",
+              "pt": "Egilsstaðir"
             },
             "lat": 65.2669,
             "lng": -14.3948
@@ -5915,7 +6925,12 @@
           {
             "id": "akureyri",
             "name": {
-              "en": "Akureyri"
+              "en": "Akureyri",
+              "de": "Akureyri",
+              "it": "Akureyri",
+              "es": "Akureyri",
+              "fr": "Akureyri",
+              "pt": "Akureyri"
             },
             "lat": 65.6885,
             "lng": -18.1262
@@ -5923,7 +6938,12 @@
           {
             "id": "snaefellsnes",
             "name": {
-              "en": "Snæfellsnes"
+              "en": "Snæfellsnes",
+              "de": "Snæfellsnes",
+              "it": "Snæfellsnes",
+              "es": "Snæfellsnes",
+              "fr": "Snæfellsnes",
+              "pt": "Snæfellsnes"
             },
             "lat": 64.799,
             "lng": -23.773
@@ -5933,10 +6953,20 @@
           {
             "id": "iceland-ring-road-leg-01",
             "fromName": {
-              "en": "Reykjavík"
+              "en": "Reykjavík",
+              "de": "Reykjavík",
+              "it": "Reykjavík",
+              "es": "Reykjavík",
+              "fr": "Reykjavík",
+              "pt": "Reykjavík"
             },
             "toName": {
-              "en": "Vík"
+              "en": "Vík",
+              "de": "Vík",
+              "it": "Vík",
+              "es": "Vík",
+              "fr": "Vík",
+              "pt": "Vík"
             },
             "start": {
               "lat": 64.1466,
@@ -5950,10 +6980,20 @@
           {
             "id": "iceland-ring-road-leg-02",
             "fromName": {
-              "en": "Vík"
+              "en": "Vík",
+              "de": "Vík",
+              "it": "Vík",
+              "es": "Vík",
+              "fr": "Vík",
+              "pt": "Vík"
             },
             "toName": {
-              "en": "Jökulsárlón"
+              "en": "Jökulsárlón",
+              "de": "Jökulsárlón",
+              "it": "Jökulsárlón",
+              "es": "Jökulsárlón",
+              "fr": "Jökulsárlón",
+              "pt": "Jökulsárlón"
             },
             "start": {
               "lat": 63.4194,
@@ -5967,10 +7007,20 @@
           {
             "id": "iceland-ring-road-leg-03",
             "fromName": {
-              "en": "Jökulsárlón"
+              "en": "Jökulsárlón",
+              "de": "Jökulsárlón",
+              "it": "Jökulsárlón",
+              "es": "Jökulsárlón",
+              "fr": "Jökulsárlón",
+              "pt": "Jökulsárlón"
             },
             "toName": {
-              "en": "Egilsstaðir"
+              "en": "Egilsstaðir",
+              "de": "Egilsstaðir",
+              "it": "Egilsstaðir",
+              "es": "Egilsstaðir",
+              "fr": "Egilsstaðir",
+              "pt": "Egilsstaðir"
             },
             "start": {
               "lat": 64.0489,
@@ -5984,10 +7034,20 @@
           {
             "id": "iceland-ring-road-leg-04",
             "fromName": {
-              "en": "Egilsstaðir"
+              "en": "Egilsstaðir",
+              "de": "Egilsstaðir",
+              "it": "Egilsstaðir",
+              "es": "Egilsstaðir",
+              "fr": "Egilsstaðir",
+              "pt": "Egilsstaðir"
             },
             "toName": {
-              "en": "Akureyri"
+              "en": "Akureyri",
+              "de": "Akureyri",
+              "it": "Akureyri",
+              "es": "Akureyri",
+              "fr": "Akureyri",
+              "pt": "Akureyri"
             },
             "start": {
               "lat": 65.2669,
@@ -6001,10 +7061,20 @@
           {
             "id": "iceland-ring-road-leg-05",
             "fromName": {
-              "en": "Akureyri"
+              "en": "Akureyri",
+              "de": "Akureyri",
+              "it": "Akureyri",
+              "es": "Akureyri",
+              "fr": "Akureyri",
+              "pt": "Akureyri"
             },
             "toName": {
-              "en": "Snæfellsnes"
+              "en": "Snæfellsnes",
+              "de": "Snæfellsnes",
+              "it": "Snæfellsnes",
+              "es": "Snæfellsnes",
+              "fr": "Snæfellsnes",
+              "pt": "Snæfellsnes"
             },
             "start": {
               "lat": 65.6885,
@@ -6125,7 +7195,12 @@
           "dayEnd": 2,
           "nights": 2,
           "name": {
-            "en": "Lima"
+            "en": "Lima",
+            "de": "Lima",
+            "it": "Lima",
+            "es": "Lima",
+            "fr": "Lima",
+            "pt": "Lima"
           },
           "countryCode": "PE",
           "type": "place"
@@ -6137,7 +7212,12 @@
           "dayEnd": 5,
           "nights": 3,
           "name": {
-            "en": "Cusco"
+            "en": "Cusco",
+            "de": "Cusco",
+            "it": "Cusco",
+            "es": "Cusco",
+            "fr": "Cusco",
+            "pt": "Cusco"
           },
           "countryCode": "PE",
           "type": "place"
@@ -6149,7 +7229,12 @@
           "dayEnd": 7,
           "nights": 2,
           "name": {
-            "en": "Sacred Valley"
+            "en": "Sacred Valley",
+            "de": "Heiliges Tal",
+            "it": "Valle Sacra",
+            "es": "Valle Sagrado",
+            "fr": "Vallée sacrée",
+            "pt": "Vale Sagrado"
           },
           "countryCode": "PE",
           "type": "place"
@@ -6161,7 +7246,12 @@
           "dayEnd": 10,
           "nights": 3,
           "name": {
-            "en": "Machu Picchu"
+            "en": "Machu Picchu",
+            "de": "Machu Picchu",
+            "it": "Machu Picchu",
+            "es": "Machu Picchu",
+            "fr": "Machu Picchu",
+            "pt": "Machu Picchu"
           },
           "countryCode": "PE",
           "type": "place"
@@ -6173,7 +7263,12 @@
           "dayEnd": 13,
           "nights": 3,
           "name": {
-            "en": "Puno"
+            "en": "Puno",
+            "de": "Puno",
+            "it": "Puno",
+            "es": "Puno",
+            "fr": "Puno",
+            "pt": "Puno"
           },
           "countryCode": "PE",
           "type": "place"
@@ -6184,7 +7279,12 @@
           {
             "id": "lima",
             "name": {
-              "en": "Lima"
+              "en": "Lima",
+              "de": "Lima",
+              "it": "Lima",
+              "es": "Lima",
+              "fr": "Lima",
+              "pt": "Lima"
             },
             "lat": -12.0464,
             "lng": -77.0428
@@ -6192,7 +7292,12 @@
           {
             "id": "cusco",
             "name": {
-              "en": "Cusco"
+              "en": "Cusco",
+              "de": "Cusco",
+              "it": "Cusco",
+              "es": "Cusco",
+              "fr": "Cusco",
+              "pt": "Cusco"
             },
             "lat": -13.5319,
             "lng": -71.9675
@@ -6200,7 +7305,12 @@
           {
             "id": "sacred-valley",
             "name": {
-              "en": "Sacred Valley"
+              "en": "Sacred Valley",
+              "de": "Heiliges Tal",
+              "it": "Valle Sacra",
+              "es": "Valle Sagrado",
+              "fr": "Vallée sacrée",
+              "pt": "Vale Sagrado"
             },
             "lat": -13.3333,
             "lng": -72.0833
@@ -6208,7 +7318,12 @@
           {
             "id": "machu-picchu",
             "name": {
-              "en": "Machu Picchu"
+              "en": "Machu Picchu",
+              "de": "Machu Picchu",
+              "it": "Machu Picchu",
+              "es": "Machu Picchu",
+              "fr": "Machu Picchu",
+              "pt": "Machu Picchu"
             },
             "lat": -13.1631,
             "lng": -72.545
@@ -6216,7 +7331,12 @@
           {
             "id": "puno",
             "name": {
-              "en": "Puno"
+              "en": "Puno",
+              "de": "Puno",
+              "it": "Puno",
+              "es": "Puno",
+              "fr": "Puno",
+              "pt": "Puno"
             },
             "lat": -15.8402,
             "lng": -70.0219
@@ -6226,10 +7346,20 @@
           {
             "id": "peru-andes-journey-leg-01",
             "fromName": {
-              "en": "Lima"
+              "en": "Lima",
+              "de": "Lima",
+              "it": "Lima",
+              "es": "Lima",
+              "fr": "Lima",
+              "pt": "Lima"
             },
             "toName": {
-              "en": "Cusco"
+              "en": "Cusco",
+              "de": "Cusco",
+              "it": "Cusco",
+              "es": "Cusco",
+              "fr": "Cusco",
+              "pt": "Cusco"
             },
             "start": {
               "lat": -12.0464,
@@ -6243,10 +7373,20 @@
           {
             "id": "peru-andes-journey-leg-02",
             "fromName": {
-              "en": "Cusco"
+              "en": "Cusco",
+              "de": "Cusco",
+              "it": "Cusco",
+              "es": "Cusco",
+              "fr": "Cusco",
+              "pt": "Cusco"
             },
             "toName": {
-              "en": "Sacred Valley"
+              "en": "Sacred Valley",
+              "de": "Heiliges Tal",
+              "it": "Valle Sacra",
+              "es": "Valle Sagrado",
+              "fr": "Vallée sacrée",
+              "pt": "Vale Sagrado"
             },
             "start": {
               "lat": -13.5319,
@@ -6260,10 +7400,20 @@
           {
             "id": "peru-andes-journey-leg-03",
             "fromName": {
-              "en": "Sacred Valley"
+              "en": "Sacred Valley",
+              "de": "Heiliges Tal",
+              "it": "Valle Sacra",
+              "es": "Valle Sagrado",
+              "fr": "Vallée sacrée",
+              "pt": "Vale Sagrado"
             },
             "toName": {
-              "en": "Machu Picchu"
+              "en": "Machu Picchu",
+              "de": "Machu Picchu",
+              "it": "Machu Picchu",
+              "es": "Machu Picchu",
+              "fr": "Machu Picchu",
+              "pt": "Machu Picchu"
             },
             "start": {
               "lat": -13.3333,
@@ -6277,10 +7427,20 @@
           {
             "id": "peru-andes-journey-leg-04",
             "fromName": {
-              "en": "Machu Picchu"
+              "en": "Machu Picchu",
+              "de": "Machu Picchu",
+              "it": "Machu Picchu",
+              "es": "Machu Picchu",
+              "fr": "Machu Picchu",
+              "pt": "Machu Picchu"
             },
             "toName": {
-              "en": "Puno"
+              "en": "Puno",
+              "de": "Puno",
+              "it": "Puno",
+              "es": "Puno",
+              "fr": "Puno",
+              "pt": "Puno"
             },
             "start": {
               "lat": -13.1631,
@@ -8125,7 +9285,12 @@
           "dayEnd": 2,
           "nights": 2,
           "name": {
-            "en": "Zürich"
+            "en": "Zürich",
+            "de": "Zürich",
+            "it": "Zurigo",
+            "es": "Zúrich",
+            "fr": "Zurich",
+            "pt": "Zurique"
           },
           "countryCode": "CH",
           "type": "place"
@@ -8137,7 +9302,12 @@
           "dayEnd": 4,
           "nights": 2,
           "name": {
-            "en": "Lucerne"
+            "en": "Lucerne",
+            "de": "Luzern",
+            "it": "Lucerna",
+            "es": "Lucerna",
+            "fr": "Lucerne",
+            "pt": "Lucerna"
           },
           "countryCode": "CH",
           "type": "place"
@@ -8149,7 +9319,12 @@
           "dayEnd": 6,
           "nights": 2,
           "name": {
-            "en": "Interlaken"
+            "en": "Interlaken",
+            "de": "Interlaken",
+            "it": "Interlaken",
+            "es": "Interlaken",
+            "fr": "Interlaken",
+            "pt": "Interlaken"
           },
           "countryCode": "CH",
           "type": "place"
@@ -8161,7 +9336,12 @@
           "dayEnd": 8,
           "nights": 2,
           "name": {
-            "en": "Montreux"
+            "en": "Montreux",
+            "de": "Montreux",
+            "it": "Montreux",
+            "es": "Montreux",
+            "fr": "Montreux",
+            "pt": "Montreux"
           },
           "countryCode": "CH",
           "type": "place"
@@ -8173,7 +9353,12 @@
           "dayEnd": 10,
           "nights": 2,
           "name": {
-            "en": "Zermatt"
+            "en": "Zermatt",
+            "de": "Zermatt",
+            "it": "Zermatt",
+            "es": "Zermatt",
+            "fr": "Zermatt",
+            "pt": "Zermatt"
           },
           "countryCode": "CH",
           "type": "place"
@@ -8185,7 +9370,12 @@
           "dayEnd": 12,
           "nights": 2,
           "name": {
-            "en": "St. Moritz"
+            "en": "St. Moritz",
+            "de": "St. Moritz",
+            "it": "St. Moritz",
+            "es": "Sankt Moritz",
+            "fr": "Saint-Moritz",
+            "pt": "St. Moritz"
           },
           "countryCode": "CH",
           "type": "place"
@@ -8196,7 +9386,12 @@
           {
             "id": "zurich",
             "name": {
-              "en": "Zürich"
+              "en": "Zürich",
+              "de": "Zürich",
+              "it": "Zurigo",
+              "es": "Zúrich",
+              "fr": "Zurich",
+              "pt": "Zurique"
             },
             "lat": 47.3769,
             "lng": 8.5417
@@ -8204,7 +9399,12 @@
           {
             "id": "lucerne",
             "name": {
-              "en": "Lucerne"
+              "en": "Lucerne",
+              "de": "Luzern",
+              "it": "Lucerna",
+              "es": "Lucerna",
+              "fr": "Lucerne",
+              "pt": "Lucerna"
             },
             "lat": 47.0502,
             "lng": 8.3093
@@ -8212,7 +9412,12 @@
           {
             "id": "interlaken",
             "name": {
-              "en": "Interlaken"
+              "en": "Interlaken",
+              "de": "Interlaken",
+              "it": "Interlaken",
+              "es": "Interlaken",
+              "fr": "Interlaken",
+              "pt": "Interlaken"
             },
             "lat": 46.6863,
             "lng": 7.8632
@@ -8220,7 +9425,12 @@
           {
             "id": "montreux",
             "name": {
-              "en": "Montreux"
+              "en": "Montreux",
+              "de": "Montreux",
+              "it": "Montreux",
+              "es": "Montreux",
+              "fr": "Montreux",
+              "pt": "Montreux"
             },
             "lat": 46.4312,
             "lng": 6.9107
@@ -8228,7 +9438,12 @@
           {
             "id": "zermatt",
             "name": {
-              "en": "Zermatt"
+              "en": "Zermatt",
+              "de": "Zermatt",
+              "it": "Zermatt",
+              "es": "Zermatt",
+              "fr": "Zermatt",
+              "pt": "Zermatt"
             },
             "lat": 46.0207,
             "lng": 7.7491
@@ -8236,7 +9451,12 @@
           {
             "id": "st-moritz",
             "name": {
-              "en": "St. Moritz"
+              "en": "St. Moritz",
+              "de": "St. Moritz",
+              "it": "St. Moritz",
+              "es": "Sankt Moritz",
+              "fr": "Saint-Moritz",
+              "pt": "St. Moritz"
             },
             "lat": 46.4908,
             "lng": 9.8355
@@ -8246,10 +9466,20 @@
           {
             "id": "swiss-scenic-rail-journey-leg-01",
             "fromName": {
-              "en": "Zürich"
+              "en": "Zürich",
+              "de": "Zürich",
+              "it": "Zurigo",
+              "es": "Zúrich",
+              "fr": "Zurich",
+              "pt": "Zurique"
             },
             "toName": {
-              "en": "Lucerne"
+              "en": "Lucerne",
+              "de": "Luzern",
+              "it": "Lucerna",
+              "es": "Lucerna",
+              "fr": "Lucerne",
+              "pt": "Lucerna"
             },
             "start": {
               "lat": 47.3769,
@@ -8263,10 +9493,20 @@
           {
             "id": "swiss-scenic-rail-journey-leg-02",
             "fromName": {
-              "en": "Lucerne"
+              "en": "Lucerne",
+              "de": "Luzern",
+              "it": "Lucerna",
+              "es": "Lucerna",
+              "fr": "Lucerne",
+              "pt": "Lucerna"
             },
             "toName": {
-              "en": "Interlaken"
+              "en": "Interlaken",
+              "de": "Interlaken",
+              "it": "Interlaken",
+              "es": "Interlaken",
+              "fr": "Interlaken",
+              "pt": "Interlaken"
             },
             "start": {
               "lat": 47.0502,
@@ -8280,10 +9520,20 @@
           {
             "id": "swiss-scenic-rail-journey-leg-03",
             "fromName": {
-              "en": "Interlaken"
+              "en": "Interlaken",
+              "de": "Interlaken",
+              "it": "Interlaken",
+              "es": "Interlaken",
+              "fr": "Interlaken",
+              "pt": "Interlaken"
             },
             "toName": {
-              "en": "Montreux"
+              "en": "Montreux",
+              "de": "Montreux",
+              "it": "Montreux",
+              "es": "Montreux",
+              "fr": "Montreux",
+              "pt": "Montreux"
             },
             "start": {
               "lat": 46.6863,
@@ -8297,10 +9547,20 @@
           {
             "id": "swiss-scenic-rail-journey-leg-04",
             "fromName": {
-              "en": "Montreux"
+              "en": "Montreux",
+              "de": "Montreux",
+              "it": "Montreux",
+              "es": "Montreux",
+              "fr": "Montreux",
+              "pt": "Montreux"
             },
             "toName": {
-              "en": "Zermatt"
+              "en": "Zermatt",
+              "de": "Zermatt",
+              "it": "Zermatt",
+              "es": "Zermatt",
+              "fr": "Zermatt",
+              "pt": "Zermatt"
             },
             "start": {
               "lat": 46.4312,
@@ -8314,10 +9574,20 @@
           {
             "id": "swiss-scenic-rail-journey-leg-05",
             "fromName": {
-              "en": "Zermatt"
+              "en": "Zermatt",
+              "de": "Zermatt",
+              "it": "Zermatt",
+              "es": "Zermatt",
+              "fr": "Zermatt",
+              "pt": "Zermatt"
             },
             "toName": {
-              "en": "St. Moritz"
+              "en": "St. Moritz",
+              "de": "St. Moritz",
+              "it": "St. Moritz",
+              "es": "Sankt Moritz",
+              "fr": "Saint-Moritz",
+              "pt": "St. Moritz"
             },
             "start": {
               "lat": 46.0207,
@@ -8442,7 +9712,12 @@
           "dayEnd": 2,
           "nights": 2,
           "name": {
-            "en": "Inverness"
+            "en": "Inverness",
+            "de": "Inverness",
+            "it": "Inverness",
+            "es": "Inverness",
+            "fr": "Inverness",
+            "pt": "Inverness"
           },
           "countryCode": "GB",
           "type": "place"
@@ -8454,7 +9729,12 @@
           "dayEnd": 3,
           "nights": 1,
           "name": {
-            "en": "Ullapool"
+            "en": "Ullapool",
+            "de": "Ullapool",
+            "it": "Ullapool",
+            "es": "Ullapool",
+            "fr": "Ullapool",
+            "pt": "Ullapool"
           },
           "countryCode": "GB",
           "type": "place"
@@ -8466,7 +9746,12 @@
           "dayEnd": 5,
           "nights": 2,
           "name": {
-            "en": "Stornoway"
+            "en": "Stornoway",
+            "de": "Stornoway",
+            "it": "Stornoway",
+            "es": "Stornoway",
+            "fr": "Stornoway",
+            "pt": "Stornoway"
           },
           "countryCode": "GB",
           "type": "place"
@@ -8478,7 +9763,12 @@
           "dayEnd": 6,
           "nights": 1,
           "name": {
-            "en": "Tarbert, Harris"
+            "en": "Tarbert, Harris",
+            "de": "Tarbert, Harris",
+            "it": "Tarbert, Harris",
+            "es": "Tarbert, Harris",
+            "fr": "Tarbert, Harris",
+            "pt": "Tarbert, Harris"
           },
           "countryCode": "GB",
           "type": "place"
@@ -8490,7 +9780,12 @@
           "dayEnd": 9,
           "nights": 3,
           "name": {
-            "en": "Portree"
+            "en": "Portree",
+            "de": "Portree",
+            "it": "Portree",
+            "es": "Portree",
+            "fr": "Portree",
+            "pt": "Portree"
           },
           "countryCode": "GB",
           "type": "place"
@@ -8502,7 +9797,12 @@
           "dayEnd": 12,
           "nights": 3,
           "name": {
-            "en": "Fort William"
+            "en": "Fort William",
+            "de": "Fort William",
+            "it": "Fort William",
+            "es": "Fort William",
+            "fr": "Fort William",
+            "pt": "Fort William"
           },
           "countryCode": "GB",
           "type": "place"
@@ -8513,7 +9813,12 @@
           {
             "id": "inverness",
             "name": {
-              "en": "Inverness"
+              "en": "Inverness",
+              "de": "Inverness",
+              "it": "Inverness",
+              "es": "Inverness",
+              "fr": "Inverness",
+              "pt": "Inverness"
             },
             "lat": 57.4778,
             "lng": -4.2247
@@ -8521,7 +9826,12 @@
           {
             "id": "ullapool",
             "name": {
-              "en": "Ullapool"
+              "en": "Ullapool",
+              "de": "Ullapool",
+              "it": "Ullapool",
+              "es": "Ullapool",
+              "fr": "Ullapool",
+              "pt": "Ullapool"
             },
             "lat": 57.8954,
             "lng": -5.1601
@@ -8529,7 +9839,12 @@
           {
             "id": "stornoway",
             "name": {
-              "en": "Stornoway"
+              "en": "Stornoway",
+              "de": "Stornoway",
+              "it": "Stornoway",
+              "es": "Stornoway",
+              "fr": "Stornoway",
+              "pt": "Stornoway"
             },
             "lat": 58.2093,
             "lng": -6.3865
@@ -8537,7 +9852,12 @@
           {
             "id": "tarbert-harris",
             "name": {
-              "en": "Tarbert, Harris"
+              "en": "Tarbert, Harris",
+              "de": "Tarbert, Harris",
+              "it": "Tarbert, Harris",
+              "es": "Tarbert, Harris",
+              "fr": "Tarbert, Harris",
+              "pt": "Tarbert, Harris"
             },
             "lat": 57.8977,
             "lng": -6.798
@@ -8545,7 +9865,12 @@
           {
             "id": "portree",
             "name": {
-              "en": "Portree"
+              "en": "Portree",
+              "de": "Portree",
+              "it": "Portree",
+              "es": "Portree",
+              "fr": "Portree",
+              "pt": "Portree"
             },
             "lat": 57.4125,
             "lng": -6.194
@@ -8553,7 +9878,12 @@
           {
             "id": "fort-william",
             "name": {
-              "en": "Fort William"
+              "en": "Fort William",
+              "de": "Fort William",
+              "it": "Fort William",
+              "es": "Fort William",
+              "fr": "Fort William",
+              "pt": "Fort William"
             },
             "lat": 56.8198,
             "lng": -5.1052
@@ -8563,10 +9893,20 @@
           {
             "id": "scotland-highlands-hebrides-leg-01",
             "fromName": {
-              "en": "Inverness"
+              "en": "Inverness",
+              "de": "Inverness",
+              "it": "Inverness",
+              "es": "Inverness",
+              "fr": "Inverness",
+              "pt": "Inverness"
             },
             "toName": {
-              "en": "Ullapool"
+              "en": "Ullapool",
+              "de": "Ullapool",
+              "it": "Ullapool",
+              "es": "Ullapool",
+              "fr": "Ullapool",
+              "pt": "Ullapool"
             },
             "start": {
               "lat": 57.4778,
@@ -8580,10 +9920,20 @@
           {
             "id": "scotland-highlands-hebrides-leg-02",
             "fromName": {
-              "en": "Ullapool"
+              "en": "Ullapool",
+              "de": "Ullapool",
+              "it": "Ullapool",
+              "es": "Ullapool",
+              "fr": "Ullapool",
+              "pt": "Ullapool"
             },
             "toName": {
-              "en": "Stornoway"
+              "en": "Stornoway",
+              "de": "Stornoway",
+              "it": "Stornoway",
+              "es": "Stornoway",
+              "fr": "Stornoway",
+              "pt": "Stornoway"
             },
             "start": {
               "lat": 57.8954,
@@ -8597,10 +9947,20 @@
           {
             "id": "scotland-highlands-hebrides-leg-03",
             "fromName": {
-              "en": "Stornoway"
+              "en": "Stornoway",
+              "de": "Stornoway",
+              "it": "Stornoway",
+              "es": "Stornoway",
+              "fr": "Stornoway",
+              "pt": "Stornoway"
             },
             "toName": {
-              "en": "Tarbert, Harris"
+              "en": "Tarbert, Harris",
+              "de": "Tarbert, Harris",
+              "it": "Tarbert, Harris",
+              "es": "Tarbert, Harris",
+              "fr": "Tarbert, Harris",
+              "pt": "Tarbert, Harris"
             },
             "start": {
               "lat": 58.2093,
@@ -8614,10 +9974,20 @@
           {
             "id": "scotland-highlands-hebrides-leg-04",
             "fromName": {
-              "en": "Tarbert, Harris"
+              "en": "Tarbert, Harris",
+              "de": "Tarbert, Harris",
+              "it": "Tarbert, Harris",
+              "es": "Tarbert, Harris",
+              "fr": "Tarbert, Harris",
+              "pt": "Tarbert, Harris"
             },
             "toName": {
-              "en": "Portree"
+              "en": "Portree",
+              "de": "Portree",
+              "it": "Portree",
+              "es": "Portree",
+              "fr": "Portree",
+              "pt": "Portree"
             },
             "start": {
               "lat": 57.8977,
@@ -8631,10 +10001,20 @@
           {
             "id": "scotland-highlands-hebrides-leg-05",
             "fromName": {
-              "en": "Portree"
+              "en": "Portree",
+              "de": "Portree",
+              "it": "Portree",
+              "es": "Portree",
+              "fr": "Portree",
+              "pt": "Portree"
             },
             "toName": {
-              "en": "Fort William"
+              "en": "Fort William",
+              "de": "Fort William",
+              "it": "Fort William",
+              "es": "Fort William",
+              "fr": "Fort William",
+              "pt": "Fort William"
             },
             "start": {
               "lat": 57.4125,
@@ -8757,7 +10137,12 @@
           "dayEnd": 2,
           "nights": 2,
           "name": {
-            "en": "Colombo"
+            "en": "Colombo",
+            "de": "Colombo",
+            "it": "Colombo",
+            "es": "Colombo",
+            "fr": "Colombo",
+            "pt": "Colombo"
           },
           "countryCode": "LK",
           "type": "place"
@@ -8769,7 +10154,12 @@
           "dayEnd": 4,
           "nights": 2,
           "name": {
-            "en": "Kandy"
+            "en": "Kandy",
+            "de": "Kandy",
+            "it": "Kandy",
+            "es": "Kandy",
+            "fr": "Kandy",
+            "pt": "Kandy"
           },
           "countryCode": "LK",
           "type": "place"
@@ -8781,7 +10171,12 @@
           "dayEnd": 6,
           "nights": 2,
           "name": {
-            "en": "Nuwara Eliya"
+            "en": "Nuwara Eliya",
+            "de": "Nuwara Eliya",
+            "it": "Nuwara Eliya",
+            "es": "Nuwara Eliya",
+            "fr": "Nuwara Eliya",
+            "pt": "Nuwara Eliya"
           },
           "countryCode": "LK",
           "type": "place"
@@ -8793,7 +10188,12 @@
           "dayEnd": 8,
           "nights": 2,
           "name": {
-            "en": "Ella"
+            "en": "Ella",
+            "de": "Ella",
+            "it": "Ella",
+            "es": "Ella",
+            "fr": "Ella",
+            "pt": "Ella"
           },
           "countryCode": "LK",
           "type": "place"
@@ -8805,7 +10205,12 @@
           "dayEnd": 10,
           "nights": 2,
           "name": {
-            "en": "Badulla"
+            "en": "Badulla",
+            "de": "Badulla",
+            "it": "Badulla",
+            "es": "Badulla",
+            "fr": "Badulla",
+            "pt": "Badulla"
           },
           "countryCode": "LK",
           "type": "place"
@@ -8816,7 +10221,12 @@
           {
             "id": "colombo",
             "name": {
-              "en": "Colombo"
+              "en": "Colombo",
+              "de": "Colombo",
+              "it": "Colombo",
+              "es": "Colombo",
+              "fr": "Colombo",
+              "pt": "Colombo"
             },
             "lat": 6.9271,
             "lng": 79.8612
@@ -8824,7 +10234,12 @@
           {
             "id": "kandy",
             "name": {
-              "en": "Kandy"
+              "en": "Kandy",
+              "de": "Kandy",
+              "it": "Kandy",
+              "es": "Kandy",
+              "fr": "Kandy",
+              "pt": "Kandy"
             },
             "lat": 7.2906,
             "lng": 80.6337
@@ -8832,7 +10247,12 @@
           {
             "id": "nuwara-eliya",
             "name": {
-              "en": "Nuwara Eliya"
+              "en": "Nuwara Eliya",
+              "de": "Nuwara Eliya",
+              "it": "Nuwara Eliya",
+              "es": "Nuwara Eliya",
+              "fr": "Nuwara Eliya",
+              "pt": "Nuwara Eliya"
             },
             "lat": 6.9497,
             "lng": 80.7891
@@ -8840,7 +10260,12 @@
           {
             "id": "ella",
             "name": {
-              "en": "Ella"
+              "en": "Ella",
+              "de": "Ella",
+              "it": "Ella",
+              "es": "Ella",
+              "fr": "Ella",
+              "pt": "Ella"
             },
             "lat": 6.8667,
             "lng": 81.0466
@@ -8848,7 +10273,12 @@
           {
             "id": "badulla",
             "name": {
-              "en": "Badulla"
+              "en": "Badulla",
+              "de": "Badulla",
+              "it": "Badulla",
+              "es": "Badulla",
+              "fr": "Badulla",
+              "pt": "Badulla"
             },
             "lat": 6.9934,
             "lng": 81.055
@@ -8858,10 +10288,20 @@
           {
             "id": "sri-lanka-hill-country-rail-leg-01",
             "fromName": {
-              "en": "Colombo"
+              "en": "Colombo",
+              "de": "Colombo",
+              "it": "Colombo",
+              "es": "Colombo",
+              "fr": "Colombo",
+              "pt": "Colombo"
             },
             "toName": {
-              "en": "Kandy"
+              "en": "Kandy",
+              "de": "Kandy",
+              "it": "Kandy",
+              "es": "Kandy",
+              "fr": "Kandy",
+              "pt": "Kandy"
             },
             "start": {
               "lat": 6.9271,
@@ -8875,10 +10315,20 @@
           {
             "id": "sri-lanka-hill-country-rail-leg-02",
             "fromName": {
-              "en": "Kandy"
+              "en": "Kandy",
+              "de": "Kandy",
+              "it": "Kandy",
+              "es": "Kandy",
+              "fr": "Kandy",
+              "pt": "Kandy"
             },
             "toName": {
-              "en": "Nuwara Eliya"
+              "en": "Nuwara Eliya",
+              "de": "Nuwara Eliya",
+              "it": "Nuwara Eliya",
+              "es": "Nuwara Eliya",
+              "fr": "Nuwara Eliya",
+              "pt": "Nuwara Eliya"
             },
             "start": {
               "lat": 7.2906,
@@ -8892,10 +10342,20 @@
           {
             "id": "sri-lanka-hill-country-rail-leg-03",
             "fromName": {
-              "en": "Nuwara Eliya"
+              "en": "Nuwara Eliya",
+              "de": "Nuwara Eliya",
+              "it": "Nuwara Eliya",
+              "es": "Nuwara Eliya",
+              "fr": "Nuwara Eliya",
+              "pt": "Nuwara Eliya"
             },
             "toName": {
-              "en": "Ella"
+              "en": "Ella",
+              "de": "Ella",
+              "it": "Ella",
+              "es": "Ella",
+              "fr": "Ella",
+              "pt": "Ella"
             },
             "start": {
               "lat": 6.9497,
@@ -8909,10 +10369,20 @@
           {
             "id": "sri-lanka-hill-country-rail-leg-04",
             "fromName": {
-              "en": "Ella"
+              "en": "Ella",
+              "de": "Ella",
+              "it": "Ella",
+              "es": "Ella",
+              "fr": "Ella",
+              "pt": "Ella"
             },
             "toName": {
-              "en": "Badulla"
+              "en": "Badulla",
+              "de": "Badulla",
+              "it": "Badulla",
+              "es": "Badulla",
+              "fr": "Badulla",
+              "pt": "Badulla"
             },
             "start": {
               "lat": 6.8667,
@@ -9036,7 +10506,12 @@
           "dayEnd": 2,
           "nights": 2,
           "name": {
-            "en": "Taipei"
+            "en": "Taipei",
+            "de": "Taipeh",
+            "it": "Taipei",
+            "es": "Taipéi",
+            "fr": "Taipei",
+            "pt": "Taipé"
           },
           "countryCode": "TW",
           "type": "place"
@@ -9048,7 +10523,12 @@
           "dayEnd": 4,
           "nights": 2,
           "name": {
-            "en": "Hualien"
+            "en": "Hualien",
+            "de": "Hualien",
+            "it": "Hualien",
+            "es": "Hualien",
+            "fr": "Hualien",
+            "pt": "Hualien"
           },
           "countryCode": "TW",
           "type": "place"
@@ -9060,7 +10540,12 @@
           "dayEnd": 6,
           "nights": 2,
           "name": {
-            "en": "Taitung"
+            "en": "Taitung",
+            "de": "Taitung",
+            "it": "Taitung",
+            "es": "Taitung",
+            "fr": "Taitung",
+            "pt": "Taitung"
           },
           "countryCode": "TW",
           "type": "place"
@@ -9072,7 +10557,12 @@
           "dayEnd": 8,
           "nights": 2,
           "name": {
-            "en": "Kaohsiung"
+            "en": "Kaohsiung",
+            "de": "Kaohsiung",
+            "it": "Kaohsiung",
+            "es": "Kaohsiung",
+            "fr": "Kaohsiung",
+            "pt": "Kaohsiung"
           },
           "countryCode": "TW",
           "type": "place"
@@ -9084,7 +10574,12 @@
           "dayEnd": 9,
           "nights": 1,
           "name": {
-            "en": "Tainan"
+            "en": "Tainan",
+            "de": "Tainan",
+            "it": "Tainan",
+            "es": "Tainan",
+            "fr": "Tainan",
+            "pt": "Tainan"
           },
           "countryCode": "TW",
           "type": "place"
@@ -9096,7 +10591,12 @@
           "dayEnd": 11,
           "nights": 2,
           "name": {
-            "en": "Taichung"
+            "en": "Taichung",
+            "de": "Taichung",
+            "it": "Taichung",
+            "es": "Taichung",
+            "fr": "Taichung",
+            "pt": "Taichung"
           },
           "countryCode": "TW",
           "type": "place"
@@ -9108,7 +10608,12 @@
           "dayEnd": 12,
           "nights": 1,
           "name": {
-            "en": "Taipei"
+            "en": "Taipei",
+            "de": "Taipeh",
+            "it": "Taipei",
+            "es": "Taipéi",
+            "fr": "Taipei",
+            "pt": "Taipé"
           },
           "countryCode": "TW",
           "type": "place"
@@ -9119,7 +10624,12 @@
           {
             "id": "taipei",
             "name": {
-              "en": "Taipei"
+              "en": "Taipei",
+              "de": "Taipeh",
+              "it": "Taipei",
+              "es": "Taipéi",
+              "fr": "Taipei",
+              "pt": "Taipé"
             },
             "lat": 25.033,
             "lng": 121.5654
@@ -9127,7 +10637,12 @@
           {
             "id": "hualien",
             "name": {
-              "en": "Hualien"
+              "en": "Hualien",
+              "de": "Hualien",
+              "it": "Hualien",
+              "es": "Hualien",
+              "fr": "Hualien",
+              "pt": "Hualien"
             },
             "lat": 23.9911,
             "lng": 121.6112
@@ -9135,7 +10650,12 @@
           {
             "id": "taitung",
             "name": {
-              "en": "Taitung"
+              "en": "Taitung",
+              "de": "Taitung",
+              "it": "Taitung",
+              "es": "Taitung",
+              "fr": "Taitung",
+              "pt": "Taitung"
             },
             "lat": 22.7554,
             "lng": 121.15
@@ -9143,7 +10663,12 @@
           {
             "id": "kaohsiung",
             "name": {
-              "en": "Kaohsiung"
+              "en": "Kaohsiung",
+              "de": "Kaohsiung",
+              "it": "Kaohsiung",
+              "es": "Kaohsiung",
+              "fr": "Kaohsiung",
+              "pt": "Kaohsiung"
             },
             "lat": 22.6273,
             "lng": 120.3014
@@ -9151,7 +10676,12 @@
           {
             "id": "tainan",
             "name": {
-              "en": "Tainan"
+              "en": "Tainan",
+              "de": "Tainan",
+              "it": "Tainan",
+              "es": "Tainan",
+              "fr": "Tainan",
+              "pt": "Tainan"
             },
             "lat": 22.9999,
             "lng": 120.2269
@@ -9159,7 +10689,12 @@
           {
             "id": "taichung",
             "name": {
-              "en": "Taichung"
+              "en": "Taichung",
+              "de": "Taichung",
+              "it": "Taichung",
+              "es": "Taichung",
+              "fr": "Taichung",
+              "pt": "Taichung"
             },
             "lat": 24.1477,
             "lng": 120.6736
@@ -9167,7 +10702,12 @@
           {
             "id": "taipei-return",
             "name": {
-              "en": "Taipei"
+              "en": "Taipei",
+              "de": "Taipeh",
+              "it": "Taipei",
+              "es": "Taipéi",
+              "fr": "Taipei",
+              "pt": "Taipé"
             },
             "lat": 25.033,
             "lng": 121.5654
@@ -9177,10 +10717,20 @@
           {
             "id": "taiwan-rail-coast-loop-leg-01",
             "fromName": {
-              "en": "Taipei"
+              "en": "Taipei",
+              "de": "Taipeh",
+              "it": "Taipei",
+              "es": "Taipéi",
+              "fr": "Taipei",
+              "pt": "Taipé"
             },
             "toName": {
-              "en": "Hualien"
+              "en": "Hualien",
+              "de": "Hualien",
+              "it": "Hualien",
+              "es": "Hualien",
+              "fr": "Hualien",
+              "pt": "Hualien"
             },
             "start": {
               "lat": 25.033,
@@ -9194,10 +10744,20 @@
           {
             "id": "taiwan-rail-coast-loop-leg-02",
             "fromName": {
-              "en": "Hualien"
+              "en": "Hualien",
+              "de": "Hualien",
+              "it": "Hualien",
+              "es": "Hualien",
+              "fr": "Hualien",
+              "pt": "Hualien"
             },
             "toName": {
-              "en": "Taitung"
+              "en": "Taitung",
+              "de": "Taitung",
+              "it": "Taitung",
+              "es": "Taitung",
+              "fr": "Taitung",
+              "pt": "Taitung"
             },
             "start": {
               "lat": 23.9911,
@@ -9211,10 +10771,20 @@
           {
             "id": "taiwan-rail-coast-loop-leg-03",
             "fromName": {
-              "en": "Taitung"
+              "en": "Taitung",
+              "de": "Taitung",
+              "it": "Taitung",
+              "es": "Taitung",
+              "fr": "Taitung",
+              "pt": "Taitung"
             },
             "toName": {
-              "en": "Kaohsiung"
+              "en": "Kaohsiung",
+              "de": "Kaohsiung",
+              "it": "Kaohsiung",
+              "es": "Kaohsiung",
+              "fr": "Kaohsiung",
+              "pt": "Kaohsiung"
             },
             "start": {
               "lat": 22.7554,
@@ -9228,10 +10798,20 @@
           {
             "id": "taiwan-rail-coast-loop-leg-04",
             "fromName": {
-              "en": "Kaohsiung"
+              "en": "Kaohsiung",
+              "de": "Kaohsiung",
+              "it": "Kaohsiung",
+              "es": "Kaohsiung",
+              "fr": "Kaohsiung",
+              "pt": "Kaohsiung"
             },
             "toName": {
-              "en": "Tainan"
+              "en": "Tainan",
+              "de": "Tainan",
+              "it": "Tainan",
+              "es": "Tainan",
+              "fr": "Tainan",
+              "pt": "Tainan"
             },
             "start": {
               "lat": 22.6273,
@@ -9245,10 +10825,20 @@
           {
             "id": "taiwan-rail-coast-loop-leg-05",
             "fromName": {
-              "en": "Tainan"
+              "en": "Tainan",
+              "de": "Tainan",
+              "it": "Tainan",
+              "es": "Tainan",
+              "fr": "Tainan",
+              "pt": "Tainan"
             },
             "toName": {
-              "en": "Taichung"
+              "en": "Taichung",
+              "de": "Taichung",
+              "it": "Taichung",
+              "es": "Taichung",
+              "fr": "Taichung",
+              "pt": "Taichung"
             },
             "start": {
               "lat": 22.9999,
@@ -9262,10 +10852,20 @@
           {
             "id": "taiwan-rail-coast-loop-leg-06",
             "fromName": {
-              "en": "Taichung"
+              "en": "Taichung",
+              "de": "Taichung",
+              "it": "Taichung",
+              "es": "Taichung",
+              "fr": "Taichung",
+              "pt": "Taichung"
             },
             "toName": {
-              "en": "Taipei"
+              "en": "Taipei",
+              "de": "Taipeh",
+              "it": "Taipei",
+              "es": "Taipéi",
+              "fr": "Taipei",
+              "pt": "Taipé"
             },
             "start": {
               "lat": 24.1477,
@@ -9388,7 +10988,12 @@
           "dayEnd": 2,
           "nights": 2,
           "name": {
-            "en": "Jakarta"
+            "en": "Jakarta",
+            "de": "Jakarta",
+            "it": "Jakarta",
+            "es": "Jakarta",
+            "fr": "Jakarta",
+            "pt": "Jakarta"
           },
           "countryCode": "ID",
           "type": "place"
@@ -9400,7 +11005,12 @@
           "dayEnd": 4,
           "nights": 2,
           "name": {
-            "en": "Bandung"
+            "en": "Bandung",
+            "de": "Bandung",
+            "it": "Bandung",
+            "es": "Bandung",
+            "fr": "Bandung",
+            "pt": "Bandung"
           },
           "countryCode": "ID",
           "type": "place"
@@ -9412,7 +11022,12 @@
           "dayEnd": 7,
           "nights": 3,
           "name": {
-            "en": "Yogyakarta"
+            "en": "Yogyakarta",
+            "de": "Yogyakarta",
+            "it": "Yogyakarta",
+            "es": "Yogyakarta",
+            "fr": "Yogyakarta",
+            "pt": "Yogyakarta"
           },
           "countryCode": "ID",
           "type": "place"
@@ -9424,7 +11039,12 @@
           "dayEnd": 8,
           "nights": 1,
           "name": {
-            "en": "Surakarta (Solo)"
+            "en": "Surakarta (Solo)",
+            "de": "Surakarta (Solo)",
+            "it": "Surakarta (Solo)",
+            "es": "Surakarta (Solo)",
+            "fr": "Surakarta (Solo)",
+            "pt": "Surakarta (Solo)"
           },
           "countryCode": "ID",
           "type": "place"
@@ -9436,7 +11056,12 @@
           "dayEnd": 10,
           "nights": 2,
           "name": {
-            "en": "Surabaya"
+            "en": "Surabaya",
+            "de": "Surabaya",
+            "it": "Surabaya",
+            "es": "Surabaya",
+            "fr": "Surabaya",
+            "pt": "Surabaya"
           },
           "countryCode": "ID",
           "type": "place"
@@ -9448,7 +11073,12 @@
           "dayEnd": 12,
           "nights": 2,
           "name": {
-            "en": "Malang"
+            "en": "Malang",
+            "de": "Malang",
+            "it": "Malang",
+            "es": "Malang",
+            "fr": "Malang",
+            "pt": "Malang"
           },
           "countryCode": "ID",
           "type": "place"
@@ -9459,7 +11089,12 @@
           {
             "id": "jakarta",
             "name": {
-              "en": "Jakarta"
+              "en": "Jakarta",
+              "de": "Jakarta",
+              "it": "Jakarta",
+              "es": "Jakarta",
+              "fr": "Jakarta",
+              "pt": "Jakarta"
             },
             "lat": -6.2088,
             "lng": 106.8456
@@ -9467,7 +11102,12 @@
           {
             "id": "bandung",
             "name": {
-              "en": "Bandung"
+              "en": "Bandung",
+              "de": "Bandung",
+              "it": "Bandung",
+              "es": "Bandung",
+              "fr": "Bandung",
+              "pt": "Bandung"
             },
             "lat": -6.9175,
             "lng": 107.6191
@@ -9475,7 +11115,12 @@
           {
             "id": "yogyakarta",
             "name": {
-              "en": "Yogyakarta"
+              "en": "Yogyakarta",
+              "de": "Yogyakarta",
+              "it": "Yogyakarta",
+              "es": "Yogyakarta",
+              "fr": "Yogyakarta",
+              "pt": "Yogyakarta"
             },
             "lat": -7.7956,
             "lng": 110.3695
@@ -9483,7 +11128,12 @@
           {
             "id": "solo",
             "name": {
-              "en": "Surakarta (Solo)"
+              "en": "Surakarta (Solo)",
+              "de": "Surakarta (Solo)",
+              "it": "Surakarta (Solo)",
+              "es": "Surakarta (Solo)",
+              "fr": "Surakarta (Solo)",
+              "pt": "Surakarta (Solo)"
             },
             "lat": -7.5755,
             "lng": 110.8243
@@ -9491,7 +11141,12 @@
           {
             "id": "surabaya",
             "name": {
-              "en": "Surabaya"
+              "en": "Surabaya",
+              "de": "Surabaya",
+              "it": "Surabaya",
+              "es": "Surabaya",
+              "fr": "Surabaya",
+              "pt": "Surabaya"
             },
             "lat": -7.2575,
             "lng": 112.7521
@@ -9499,7 +11154,12 @@
           {
             "id": "malang",
             "name": {
-              "en": "Malang"
+              "en": "Malang",
+              "de": "Malang",
+              "it": "Malang",
+              "es": "Malang",
+              "fr": "Malang",
+              "pt": "Malang"
             },
             "lat": -7.9666,
             "lng": 112.6326
@@ -9509,10 +11169,20 @@
           {
             "id": "java-rail-volcano-journey-leg-01",
             "fromName": {
-              "en": "Jakarta"
+              "en": "Jakarta",
+              "de": "Jakarta",
+              "it": "Jakarta",
+              "es": "Jakarta",
+              "fr": "Jakarta",
+              "pt": "Jakarta"
             },
             "toName": {
-              "en": "Bandung"
+              "en": "Bandung",
+              "de": "Bandung",
+              "it": "Bandung",
+              "es": "Bandung",
+              "fr": "Bandung",
+              "pt": "Bandung"
             },
             "start": {
               "lat": -6.2088,
@@ -9526,10 +11196,20 @@
           {
             "id": "java-rail-volcano-journey-leg-02",
             "fromName": {
-              "en": "Bandung"
+              "en": "Bandung",
+              "de": "Bandung",
+              "it": "Bandung",
+              "es": "Bandung",
+              "fr": "Bandung",
+              "pt": "Bandung"
             },
             "toName": {
-              "en": "Yogyakarta"
+              "en": "Yogyakarta",
+              "de": "Yogyakarta",
+              "it": "Yogyakarta",
+              "es": "Yogyakarta",
+              "fr": "Yogyakarta",
+              "pt": "Yogyakarta"
             },
             "start": {
               "lat": -6.9175,
@@ -9543,10 +11223,20 @@
           {
             "id": "java-rail-volcano-journey-leg-03",
             "fromName": {
-              "en": "Yogyakarta"
+              "en": "Yogyakarta",
+              "de": "Yogyakarta",
+              "it": "Yogyakarta",
+              "es": "Yogyakarta",
+              "fr": "Yogyakarta",
+              "pt": "Yogyakarta"
             },
             "toName": {
-              "en": "Surakarta (Solo)"
+              "en": "Surakarta (Solo)",
+              "de": "Surakarta (Solo)",
+              "it": "Surakarta (Solo)",
+              "es": "Surakarta (Solo)",
+              "fr": "Surakarta (Solo)",
+              "pt": "Surakarta (Solo)"
             },
             "start": {
               "lat": -7.7956,
@@ -9560,10 +11250,20 @@
           {
             "id": "java-rail-volcano-journey-leg-04",
             "fromName": {
-              "en": "Surakarta (Solo)"
+              "en": "Surakarta (Solo)",
+              "de": "Surakarta (Solo)",
+              "it": "Surakarta (Solo)",
+              "es": "Surakarta (Solo)",
+              "fr": "Surakarta (Solo)",
+              "pt": "Surakarta (Solo)"
             },
             "toName": {
-              "en": "Surabaya"
+              "en": "Surabaya",
+              "de": "Surabaya",
+              "it": "Surabaya",
+              "es": "Surabaya",
+              "fr": "Surabaya",
+              "pt": "Surabaya"
             },
             "start": {
               "lat": -7.5755,
@@ -9577,10 +11277,20 @@
           {
             "id": "java-rail-volcano-journey-leg-05",
             "fromName": {
-              "en": "Surabaya"
+              "en": "Surabaya",
+              "de": "Surabaya",
+              "it": "Surabaya",
+              "es": "Surabaya",
+              "fr": "Surabaya",
+              "pt": "Surabaya"
             },
             "toName": {
-              "en": "Malang"
+              "en": "Malang",
+              "de": "Malang",
+              "it": "Malang",
+              "es": "Malang",
+              "fr": "Malang",
+              "pt": "Malang"
             },
             "start": {
               "lat": -7.2575,
@@ -9703,7 +11413,12 @@
           "dayEnd": 1,
           "nights": 1,
           "name": {
-            "en": "Windhoek"
+            "en": "Windhoek",
+            "de": "Windhoek",
+            "it": "Windhoek",
+            "es": "Windhoek",
+            "fr": "Windhoek",
+            "pt": "Windhoek"
           },
           "countryCode": "NA",
           "type": "place"
@@ -9715,7 +11430,12 @@
           "dayEnd": 4,
           "nights": 3,
           "name": {
-            "en": "Sossusvlei"
+            "en": "Sossusvlei",
+            "de": "Sossusvlei",
+            "it": "Sossusvlei",
+            "es": "Sossusvlei",
+            "fr": "Sossusvlei",
+            "pt": "Sossusvlei"
           },
           "countryCode": "NA",
           "type": "place"
@@ -9727,7 +11447,12 @@
           "dayEnd": 6,
           "nights": 2,
           "name": {
-            "en": "Swakopmund"
+            "en": "Swakopmund",
+            "de": "Swakopmund",
+            "it": "Swakopmund",
+            "es": "Swakopmund",
+            "fr": "Swakopmund",
+            "pt": "Swakopmund"
           },
           "countryCode": "NA",
           "type": "place"
@@ -9739,7 +11464,12 @@
           "dayEnd": 7,
           "nights": 1,
           "name": {
-            "en": "Spitzkoppe"
+            "en": "Spitzkoppe",
+            "de": "Spitzkoppe",
+            "it": "Spitzkoppe",
+            "es": "Spitzkoppe",
+            "fr": "Spitzkoppe",
+            "pt": "Spitzkoppe"
           },
           "countryCode": "NA",
           "type": "place"
@@ -9751,7 +11481,12 @@
           "dayEnd": 9,
           "nights": 2,
           "name": {
-            "en": "Twyfelfontein"
+            "en": "Twyfelfontein",
+            "de": "Twyfelfontein",
+            "it": "Twyfelfontein",
+            "es": "Twyfelfontein",
+            "fr": "Twyfelfontein",
+            "pt": "Twyfelfontein"
           },
           "countryCode": "NA",
           "type": "place"
@@ -9763,7 +11498,12 @@
           "dayEnd": 12,
           "nights": 3,
           "name": {
-            "en": "Etosha National Park"
+            "en": "Etosha National Park",
+            "de": "Etosha-Nationalpark",
+            "it": "Parco nazionale di Etosha",
+            "es": "Parque nacional de Etosha",
+            "fr": "Parc national d’Etosha",
+            "pt": "Parque Nacional de Etosha"
           },
           "countryCode": "NA",
           "type": "place"
@@ -9775,7 +11515,12 @@
           "dayEnd": 14,
           "nights": 2,
           "name": {
-            "en": "Windhoek"
+            "en": "Windhoek",
+            "de": "Windhoek",
+            "it": "Windhoek",
+            "es": "Windhoek",
+            "fr": "Windhoek",
+            "pt": "Windhoek"
           },
           "countryCode": "NA",
           "type": "place"
@@ -9786,7 +11531,12 @@
           {
             "id": "windhoek",
             "name": {
-              "en": "Windhoek"
+              "en": "Windhoek",
+              "de": "Windhoek",
+              "it": "Windhoek",
+              "es": "Windhoek",
+              "fr": "Windhoek",
+              "pt": "Windhoek"
             },
             "lat": -22.5609,
             "lng": 17.0658
@@ -9794,7 +11544,12 @@
           {
             "id": "sossusvlei",
             "name": {
-              "en": "Sossusvlei"
+              "en": "Sossusvlei",
+              "de": "Sossusvlei",
+              "it": "Sossusvlei",
+              "es": "Sossusvlei",
+              "fr": "Sossusvlei",
+              "pt": "Sossusvlei"
             },
             "lat": -24.7286,
             "lng": 15.3428
@@ -9802,7 +11557,12 @@
           {
             "id": "swakopmund",
             "name": {
-              "en": "Swakopmund"
+              "en": "Swakopmund",
+              "de": "Swakopmund",
+              "it": "Swakopmund",
+              "es": "Swakopmund",
+              "fr": "Swakopmund",
+              "pt": "Swakopmund"
             },
             "lat": -22.6784,
             "lng": 14.5266
@@ -9810,7 +11570,12 @@
           {
             "id": "spitzkoppe",
             "name": {
-              "en": "Spitzkoppe"
+              "en": "Spitzkoppe",
+              "de": "Spitzkoppe",
+              "it": "Spitzkoppe",
+              "es": "Spitzkoppe",
+              "fr": "Spitzkoppe",
+              "pt": "Spitzkoppe"
             },
             "lat": -21.825,
             "lng": 15.1833
@@ -9818,7 +11583,12 @@
           {
             "id": "twyfelfontein",
             "name": {
-              "en": "Twyfelfontein"
+              "en": "Twyfelfontein",
+              "de": "Twyfelfontein",
+              "it": "Twyfelfontein",
+              "es": "Twyfelfontein",
+              "fr": "Twyfelfontein",
+              "pt": "Twyfelfontein"
             },
             "lat": -20.595,
             "lng": 14.372
@@ -9826,7 +11596,12 @@
           {
             "id": "etosha",
             "name": {
-              "en": "Etosha National Park"
+              "en": "Etosha National Park",
+              "de": "Etosha-Nationalpark",
+              "it": "Parco nazionale di Etosha",
+              "es": "Parque nacional de Etosha",
+              "fr": "Parc national d’Etosha",
+              "pt": "Parque Nacional de Etosha"
             },
             "lat": -18.8556,
             "lng": 16.3293
@@ -9834,7 +11609,12 @@
           {
             "id": "windhoek-return",
             "name": {
-              "en": "Windhoek"
+              "en": "Windhoek",
+              "de": "Windhoek",
+              "it": "Windhoek",
+              "es": "Windhoek",
+              "fr": "Windhoek",
+              "pt": "Windhoek"
             },
             "lat": -22.5609,
             "lng": 17.0658
@@ -9844,10 +11624,20 @@
           {
             "id": "namibia-desert-wildlife-road-trip-leg-01",
             "fromName": {
-              "en": "Windhoek"
+              "en": "Windhoek",
+              "de": "Windhoek",
+              "it": "Windhoek",
+              "es": "Windhoek",
+              "fr": "Windhoek",
+              "pt": "Windhoek"
             },
             "toName": {
-              "en": "Sossusvlei"
+              "en": "Sossusvlei",
+              "de": "Sossusvlei",
+              "it": "Sossusvlei",
+              "es": "Sossusvlei",
+              "fr": "Sossusvlei",
+              "pt": "Sossusvlei"
             },
             "start": {
               "lat": -22.5609,
@@ -9861,10 +11651,20 @@
           {
             "id": "namibia-desert-wildlife-road-trip-leg-02",
             "fromName": {
-              "en": "Sossusvlei"
+              "en": "Sossusvlei",
+              "de": "Sossusvlei",
+              "it": "Sossusvlei",
+              "es": "Sossusvlei",
+              "fr": "Sossusvlei",
+              "pt": "Sossusvlei"
             },
             "toName": {
-              "en": "Swakopmund"
+              "en": "Swakopmund",
+              "de": "Swakopmund",
+              "it": "Swakopmund",
+              "es": "Swakopmund",
+              "fr": "Swakopmund",
+              "pt": "Swakopmund"
             },
             "start": {
               "lat": -24.7286,
@@ -9878,10 +11678,20 @@
           {
             "id": "namibia-desert-wildlife-road-trip-leg-03",
             "fromName": {
-              "en": "Swakopmund"
+              "en": "Swakopmund",
+              "de": "Swakopmund",
+              "it": "Swakopmund",
+              "es": "Swakopmund",
+              "fr": "Swakopmund",
+              "pt": "Swakopmund"
             },
             "toName": {
-              "en": "Spitzkoppe"
+              "en": "Spitzkoppe",
+              "de": "Spitzkoppe",
+              "it": "Spitzkoppe",
+              "es": "Spitzkoppe",
+              "fr": "Spitzkoppe",
+              "pt": "Spitzkoppe"
             },
             "start": {
               "lat": -22.6784,
@@ -9895,10 +11705,20 @@
           {
             "id": "namibia-desert-wildlife-road-trip-leg-04",
             "fromName": {
-              "en": "Spitzkoppe"
+              "en": "Spitzkoppe",
+              "de": "Spitzkoppe",
+              "it": "Spitzkoppe",
+              "es": "Spitzkoppe",
+              "fr": "Spitzkoppe",
+              "pt": "Spitzkoppe"
             },
             "toName": {
-              "en": "Twyfelfontein"
+              "en": "Twyfelfontein",
+              "de": "Twyfelfontein",
+              "it": "Twyfelfontein",
+              "es": "Twyfelfontein",
+              "fr": "Twyfelfontein",
+              "pt": "Twyfelfontein"
             },
             "start": {
               "lat": -21.825,
@@ -9912,10 +11732,20 @@
           {
             "id": "namibia-desert-wildlife-road-trip-leg-05",
             "fromName": {
-              "en": "Twyfelfontein"
+              "en": "Twyfelfontein",
+              "de": "Twyfelfontein",
+              "it": "Twyfelfontein",
+              "es": "Twyfelfontein",
+              "fr": "Twyfelfontein",
+              "pt": "Twyfelfontein"
             },
             "toName": {
-              "en": "Etosha National Park"
+              "en": "Etosha National Park",
+              "de": "Etosha-Nationalpark",
+              "it": "Parco nazionale di Etosha",
+              "es": "Parque nacional de Etosha",
+              "fr": "Parc national d’Etosha",
+              "pt": "Parque Nacional de Etosha"
             },
             "start": {
               "lat": -20.595,
@@ -9929,10 +11759,20 @@
           {
             "id": "namibia-desert-wildlife-road-trip-leg-06",
             "fromName": {
-              "en": "Etosha National Park"
+              "en": "Etosha National Park",
+              "de": "Etosha-Nationalpark",
+              "it": "Parco nazionale di Etosha",
+              "es": "Parque nacional de Etosha",
+              "fr": "Parc national d’Etosha",
+              "pt": "Parque Nacional de Etosha"
             },
             "toName": {
-              "en": "Windhoek"
+              "en": "Windhoek",
+              "de": "Windhoek",
+              "it": "Windhoek",
+              "es": "Windhoek",
+              "fr": "Windhoek",
+              "pt": "Windhoek"
             },
             "start": {
               "lat": -18.8556,
@@ -10056,7 +11896,12 @@
           "dayEnd": 2,
           "nights": 2,
           "name": {
-            "en": "Ketchikan"
+            "en": "Ketchikan",
+            "de": "Ketchikan",
+            "it": "Ketchikan",
+            "es": "Ketchikan",
+            "fr": "Ketchikan",
+            "pt": "Ketchikan"
           },
           "countryCode": "US",
           "type": "place"
@@ -10068,7 +11913,12 @@
           "dayEnd": 4,
           "nights": 2,
           "name": {
-            "en": "Wrangell"
+            "en": "Wrangell",
+            "de": "Wrangell",
+            "it": "Wrangell",
+            "es": "Wrangell",
+            "fr": "Wrangell",
+            "pt": "Wrangell"
           },
           "countryCode": "US",
           "type": "place"
@@ -10080,7 +11930,12 @@
           "dayEnd": 5,
           "nights": 1,
           "name": {
-            "en": "Petersburg"
+            "en": "Petersburg",
+            "de": "Petersburg",
+            "it": "Petersburg",
+            "es": "Petersburg",
+            "fr": "Petersburg",
+            "pt": "Petersburg"
           },
           "countryCode": "US",
           "type": "place"
@@ -10092,7 +11947,12 @@
           "dayEnd": 8,
           "nights": 3,
           "name": {
-            "en": "Juneau"
+            "en": "Juneau",
+            "de": "Juneau",
+            "it": "Juneau",
+            "es": "Juneau",
+            "fr": "Juneau",
+            "pt": "Juneau"
           },
           "countryCode": "US",
           "type": "place"
@@ -10104,7 +11964,12 @@
           "dayEnd": 10,
           "nights": 2,
           "name": {
-            "en": "Haines"
+            "en": "Haines",
+            "de": "Haines",
+            "it": "Haines",
+            "es": "Haines",
+            "fr": "Haines",
+            "pt": "Haines"
           },
           "countryCode": "US",
           "type": "place"
@@ -10116,7 +11981,12 @@
           "dayEnd": 12,
           "nights": 2,
           "name": {
-            "en": "Skagway"
+            "en": "Skagway",
+            "de": "Skagway",
+            "it": "Skagway",
+            "es": "Skagway",
+            "fr": "Skagway",
+            "pt": "Skagway"
           },
           "countryCode": "US",
           "type": "place"
@@ -10127,7 +11997,12 @@
           {
             "id": "ketchikan",
             "name": {
-              "en": "Ketchikan"
+              "en": "Ketchikan",
+              "de": "Ketchikan",
+              "it": "Ketchikan",
+              "es": "Ketchikan",
+              "fr": "Ketchikan",
+              "pt": "Ketchikan"
             },
             "lat": 55.3422,
             "lng": -131.6461
@@ -10135,7 +12010,12 @@
           {
             "id": "wrangell",
             "name": {
-              "en": "Wrangell"
+              "en": "Wrangell",
+              "de": "Wrangell",
+              "it": "Wrangell",
+              "es": "Wrangell",
+              "fr": "Wrangell",
+              "pt": "Wrangell"
             },
             "lat": 56.4708,
             "lng": -132.3767
@@ -10143,7 +12023,12 @@
           {
             "id": "petersburg",
             "name": {
-              "en": "Petersburg"
+              "en": "Petersburg",
+              "de": "Petersburg",
+              "it": "Petersburg",
+              "es": "Petersburg",
+              "fr": "Petersburg",
+              "pt": "Petersburg"
             },
             "lat": 56.8125,
             "lng": -132.9556
@@ -10151,7 +12036,12 @@
           {
             "id": "juneau",
             "name": {
-              "en": "Juneau"
+              "en": "Juneau",
+              "de": "Juneau",
+              "it": "Juneau",
+              "es": "Juneau",
+              "fr": "Juneau",
+              "pt": "Juneau"
             },
             "lat": 58.3019,
             "lng": -134.4197
@@ -10159,7 +12049,12 @@
           {
             "id": "haines",
             "name": {
-              "en": "Haines"
+              "en": "Haines",
+              "de": "Haines",
+              "it": "Haines",
+              "es": "Haines",
+              "fr": "Haines",
+              "pt": "Haines"
             },
             "lat": 59.2358,
             "lng": -135.445
@@ -10167,7 +12062,12 @@
           {
             "id": "skagway",
             "name": {
-              "en": "Skagway"
+              "en": "Skagway",
+              "de": "Skagway",
+              "it": "Skagway",
+              "es": "Skagway",
+              "fr": "Skagway",
+              "pt": "Skagway"
             },
             "lat": 59.4583,
             "lng": -135.3139
@@ -10177,10 +12077,20 @@
           {
             "id": "alaska-inside-passage-ferry-leg-01",
             "fromName": {
-              "en": "Ketchikan"
+              "en": "Ketchikan",
+              "de": "Ketchikan",
+              "it": "Ketchikan",
+              "es": "Ketchikan",
+              "fr": "Ketchikan",
+              "pt": "Ketchikan"
             },
             "toName": {
-              "en": "Wrangell"
+              "en": "Wrangell",
+              "de": "Wrangell",
+              "it": "Wrangell",
+              "es": "Wrangell",
+              "fr": "Wrangell",
+              "pt": "Wrangell"
             },
             "start": {
               "lat": 55.3422,
@@ -10194,10 +12104,20 @@
           {
             "id": "alaska-inside-passage-ferry-leg-02",
             "fromName": {
-              "en": "Wrangell"
+              "en": "Wrangell",
+              "de": "Wrangell",
+              "it": "Wrangell",
+              "es": "Wrangell",
+              "fr": "Wrangell",
+              "pt": "Wrangell"
             },
             "toName": {
-              "en": "Petersburg"
+              "en": "Petersburg",
+              "de": "Petersburg",
+              "it": "Petersburg",
+              "es": "Petersburg",
+              "fr": "Petersburg",
+              "pt": "Petersburg"
             },
             "start": {
               "lat": 56.4708,
@@ -10211,10 +12131,20 @@
           {
             "id": "alaska-inside-passage-ferry-leg-03",
             "fromName": {
-              "en": "Petersburg"
+              "en": "Petersburg",
+              "de": "Petersburg",
+              "it": "Petersburg",
+              "es": "Petersburg",
+              "fr": "Petersburg",
+              "pt": "Petersburg"
             },
             "toName": {
-              "en": "Juneau"
+              "en": "Juneau",
+              "de": "Juneau",
+              "it": "Juneau",
+              "es": "Juneau",
+              "fr": "Juneau",
+              "pt": "Juneau"
             },
             "start": {
               "lat": 56.8125,
@@ -10228,10 +12158,20 @@
           {
             "id": "alaska-inside-passage-ferry-leg-04",
             "fromName": {
-              "en": "Juneau"
+              "en": "Juneau",
+              "de": "Juneau",
+              "it": "Juneau",
+              "es": "Juneau",
+              "fr": "Juneau",
+              "pt": "Juneau"
             },
             "toName": {
-              "en": "Haines"
+              "en": "Haines",
+              "de": "Haines",
+              "it": "Haines",
+              "es": "Haines",
+              "fr": "Haines",
+              "pt": "Haines"
             },
             "start": {
               "lat": 58.3019,
@@ -10245,10 +12185,20 @@
           {
             "id": "alaska-inside-passage-ferry-leg-05",
             "fromName": {
-              "en": "Haines"
+              "en": "Haines",
+              "de": "Haines",
+              "it": "Haines",
+              "es": "Haines",
+              "fr": "Haines",
+              "pt": "Haines"
             },
             "toName": {
-              "en": "Skagway"
+              "en": "Skagway",
+              "de": "Skagway",
+              "it": "Skagway",
+              "es": "Skagway",
+              "fr": "Skagway",
+              "pt": "Skagway"
             },
             "start": {
               "lat": 59.2358,
@@ -10372,7 +12322,12 @@
           "dayEnd": 2,
           "nights": 2,
           "name": {
-            "en": "Hobart"
+            "en": "Hobart",
+            "de": "Hobart",
+            "it": "Hobart",
+            "es": "Hobart",
+            "fr": "Hobart",
+            "pt": "Hobart"
           },
           "countryCode": "AU",
           "type": "place"
@@ -10384,7 +12339,12 @@
           "dayEnd": 4,
           "nights": 2,
           "name": {
-            "en": "Freycinet"
+            "en": "Freycinet",
+            "de": "Freycinet",
+            "it": "Freycinet",
+            "es": "Freycinet",
+            "fr": "Freycinet",
+            "pt": "Freycinet"
           },
           "countryCode": "AU",
           "type": "place"
@@ -10396,7 +12356,12 @@
           "dayEnd": 5,
           "nights": 1,
           "name": {
-            "en": "Bay of Fires"
+            "en": "Bay of Fires",
+            "de": "Bay of Fires",
+            "it": "Bay of Fires",
+            "es": "Bay of Fires",
+            "fr": "Bay of Fires",
+            "pt": "Bay of Fires"
           },
           "countryCode": "AU",
           "type": "place"
@@ -10408,7 +12373,12 @@
           "dayEnd": 7,
           "nights": 2,
           "name": {
-            "en": "Launceston"
+            "en": "Launceston",
+            "de": "Launceston",
+            "it": "Launceston",
+            "es": "Launceston",
+            "fr": "Launceston",
+            "pt": "Launceston"
           },
           "countryCode": "AU",
           "type": "place"
@@ -10420,7 +12390,12 @@
           "dayEnd": 9,
           "nights": 2,
           "name": {
-            "en": "Cradle Mountain"
+            "en": "Cradle Mountain",
+            "de": "Cradle Mountain",
+            "it": "Cradle Mountain",
+            "es": "Cradle Mountain",
+            "fr": "Cradle Mountain",
+            "pt": "Cradle Mountain"
           },
           "countryCode": "AU",
           "type": "place"
@@ -10432,7 +12407,12 @@
           "dayEnd": 11,
           "nights": 2,
           "name": {
-            "en": "Strahan"
+            "en": "Strahan",
+            "de": "Strahan",
+            "it": "Strahan",
+            "es": "Strahan",
+            "fr": "Strahan",
+            "pt": "Strahan"
           },
           "countryCode": "AU",
           "type": "place"
@@ -10444,7 +12424,12 @@
           "dayEnd": 12,
           "nights": 1,
           "name": {
-            "en": "Lake St Clair"
+            "en": "Lake St Clair",
+            "de": "Lake St Clair",
+            "it": "Lago St Clair",
+            "es": "Lago St Clair",
+            "fr": "Lac St Clair",
+            "pt": "Lago St Clair"
           },
           "countryCode": "AU",
           "type": "place"
@@ -10456,7 +12441,12 @@
           "dayEnd": 14,
           "nights": 2,
           "name": {
-            "en": "Hobart"
+            "en": "Hobart",
+            "de": "Hobart",
+            "it": "Hobart",
+            "es": "Hobart",
+            "fr": "Hobart",
+            "pt": "Hobart"
           },
           "countryCode": "AU",
           "type": "place"
@@ -10467,7 +12457,12 @@
           {
             "id": "hobart",
             "name": {
-              "en": "Hobart"
+              "en": "Hobart",
+              "de": "Hobart",
+              "it": "Hobart",
+              "es": "Hobart",
+              "fr": "Hobart",
+              "pt": "Hobart"
             },
             "lat": -42.8821,
             "lng": 147.3272
@@ -10475,7 +12470,12 @@
           {
             "id": "freycinet",
             "name": {
-              "en": "Freycinet"
+              "en": "Freycinet",
+              "de": "Freycinet",
+              "it": "Freycinet",
+              "es": "Freycinet",
+              "fr": "Freycinet",
+              "pt": "Freycinet"
             },
             "lat": -42.12,
             "lng": 148.3
@@ -10483,7 +12483,12 @@
           {
             "id": "bay-of-fires",
             "name": {
-              "en": "Bay of Fires"
+              "en": "Bay of Fires",
+              "de": "Bay of Fires",
+              "it": "Bay of Fires",
+              "es": "Bay of Fires",
+              "fr": "Bay of Fires",
+              "pt": "Bay of Fires"
             },
             "lat": -41.25,
             "lng": 148.3
@@ -10491,7 +12496,12 @@
           {
             "id": "launceston",
             "name": {
-              "en": "Launceston"
+              "en": "Launceston",
+              "de": "Launceston",
+              "it": "Launceston",
+              "es": "Launceston",
+              "fr": "Launceston",
+              "pt": "Launceston"
             },
             "lat": -41.4332,
             "lng": 147.1441
@@ -10499,7 +12509,12 @@
           {
             "id": "cradle-mountain",
             "name": {
-              "en": "Cradle Mountain"
+              "en": "Cradle Mountain",
+              "de": "Cradle Mountain",
+              "it": "Cradle Mountain",
+              "es": "Cradle Mountain",
+              "fr": "Cradle Mountain",
+              "pt": "Cradle Mountain"
             },
             "lat": -41.685,
             "lng": 145.951
@@ -10507,7 +12522,12 @@
           {
             "id": "strahan",
             "name": {
-              "en": "Strahan"
+              "en": "Strahan",
+              "de": "Strahan",
+              "it": "Strahan",
+              "es": "Strahan",
+              "fr": "Strahan",
+              "pt": "Strahan"
             },
             "lat": -42.151,
             "lng": 145.329
@@ -10515,7 +12535,12 @@
           {
             "id": "lake-st-clair",
             "name": {
-              "en": "Lake St Clair"
+              "en": "Lake St Clair",
+              "de": "Lake St Clair",
+              "it": "Lago St Clair",
+              "es": "Lago St Clair",
+              "fr": "Lac St Clair",
+              "pt": "Lago St Clair"
             },
             "lat": -42.112,
             "lng": 146.167
@@ -10523,7 +12548,12 @@
           {
             "id": "hobart-return",
             "name": {
-              "en": "Hobart"
+              "en": "Hobart",
+              "de": "Hobart",
+              "it": "Hobart",
+              "es": "Hobart",
+              "fr": "Hobart",
+              "pt": "Hobart"
             },
             "lat": -42.8821,
             "lng": 147.3272
@@ -10533,10 +12563,20 @@
           {
             "id": "tasmania-wild-coast-road-loop-leg-01",
             "fromName": {
-              "en": "Hobart"
+              "en": "Hobart",
+              "de": "Hobart",
+              "it": "Hobart",
+              "es": "Hobart",
+              "fr": "Hobart",
+              "pt": "Hobart"
             },
             "toName": {
-              "en": "Freycinet"
+              "en": "Freycinet",
+              "de": "Freycinet",
+              "it": "Freycinet",
+              "es": "Freycinet",
+              "fr": "Freycinet",
+              "pt": "Freycinet"
             },
             "start": {
               "lat": -42.8821,
@@ -10550,10 +12590,20 @@
           {
             "id": "tasmania-wild-coast-road-loop-leg-02",
             "fromName": {
-              "en": "Freycinet"
+              "en": "Freycinet",
+              "de": "Freycinet",
+              "it": "Freycinet",
+              "es": "Freycinet",
+              "fr": "Freycinet",
+              "pt": "Freycinet"
             },
             "toName": {
-              "en": "Bay of Fires"
+              "en": "Bay of Fires",
+              "de": "Bay of Fires",
+              "it": "Bay of Fires",
+              "es": "Bay of Fires",
+              "fr": "Bay of Fires",
+              "pt": "Bay of Fires"
             },
             "start": {
               "lat": -42.12,
@@ -10567,10 +12617,20 @@
           {
             "id": "tasmania-wild-coast-road-loop-leg-03",
             "fromName": {
-              "en": "Bay of Fires"
+              "en": "Bay of Fires",
+              "de": "Bay of Fires",
+              "it": "Bay of Fires",
+              "es": "Bay of Fires",
+              "fr": "Bay of Fires",
+              "pt": "Bay of Fires"
             },
             "toName": {
-              "en": "Launceston"
+              "en": "Launceston",
+              "de": "Launceston",
+              "it": "Launceston",
+              "es": "Launceston",
+              "fr": "Launceston",
+              "pt": "Launceston"
             },
             "start": {
               "lat": -41.25,
@@ -10584,10 +12644,20 @@
           {
             "id": "tasmania-wild-coast-road-loop-leg-04",
             "fromName": {
-              "en": "Launceston"
+              "en": "Launceston",
+              "de": "Launceston",
+              "it": "Launceston",
+              "es": "Launceston",
+              "fr": "Launceston",
+              "pt": "Launceston"
             },
             "toName": {
-              "en": "Cradle Mountain"
+              "en": "Cradle Mountain",
+              "de": "Cradle Mountain",
+              "it": "Cradle Mountain",
+              "es": "Cradle Mountain",
+              "fr": "Cradle Mountain",
+              "pt": "Cradle Mountain"
             },
             "start": {
               "lat": -41.4332,
@@ -10601,10 +12671,20 @@
           {
             "id": "tasmania-wild-coast-road-loop-leg-05",
             "fromName": {
-              "en": "Cradle Mountain"
+              "en": "Cradle Mountain",
+              "de": "Cradle Mountain",
+              "it": "Cradle Mountain",
+              "es": "Cradle Mountain",
+              "fr": "Cradle Mountain",
+              "pt": "Cradle Mountain"
             },
             "toName": {
-              "en": "Strahan"
+              "en": "Strahan",
+              "de": "Strahan",
+              "it": "Strahan",
+              "es": "Strahan",
+              "fr": "Strahan",
+              "pt": "Strahan"
             },
             "start": {
               "lat": -41.685,
@@ -10618,10 +12698,20 @@
           {
             "id": "tasmania-wild-coast-road-loop-leg-06",
             "fromName": {
-              "en": "Strahan"
+              "en": "Strahan",
+              "de": "Strahan",
+              "it": "Strahan",
+              "es": "Strahan",
+              "fr": "Strahan",
+              "pt": "Strahan"
             },
             "toName": {
-              "en": "Lake St Clair"
+              "en": "Lake St Clair",
+              "de": "Lake St Clair",
+              "it": "Lago St Clair",
+              "es": "Lago St Clair",
+              "fr": "Lac St Clair",
+              "pt": "Lago St Clair"
             },
             "start": {
               "lat": -42.151,
@@ -10635,10 +12725,20 @@
           {
             "id": "tasmania-wild-coast-road-loop-leg-07",
             "fromName": {
-              "en": "Lake St Clair"
+              "en": "Lake St Clair",
+              "de": "Lake St Clair",
+              "it": "Lago St Clair",
+              "es": "Lago St Clair",
+              "fr": "Lac St Clair",
+              "pt": "Lago St Clair"
             },
             "toName": {
-              "en": "Hobart"
+              "en": "Hobart",
+              "de": "Hobart",
+              "it": "Hobart",
+              "es": "Hobart",
+              "fr": "Hobart",
+              "pt": "Hobart"
             },
             "start": {
               "lat": -42.112,

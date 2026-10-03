@@ -72,7 +72,12 @@
       "type": "place",
       "countryCode": "LK",
       "name": {
-        "en": "Colombo"
+        "en": "Colombo",
+        "de": "Colombo",
+        "it": "Colombo",
+        "es": "Colombo",
+        "fr": "Colombo",
+        "pt": "Colombo"
       },
       "coordinates": {
         "lat": 6.9271,
@@ -84,7 +89,12 @@
       "type": "place",
       "countryCode": "LK",
       "name": {
-        "en": "Kandy"
+        "en": "Kandy",
+        "de": "Kandy",
+        "it": "Kandy",
+        "es": "Kandy",
+        "fr": "Kandy",
+        "pt": "Kandy"
       },
       "coordinates": {
         "lat": 7.2906,
@@ -96,7 +106,12 @@
       "type": "place",
       "countryCode": "LK",
       "name": {
-        "en": "Nuwara Eliya"
+        "en": "Nuwara Eliya",
+        "de": "Nuwara Eliya",
+        "it": "Nuwara Eliya",
+        "es": "Nuwara Eliya",
+        "fr": "Nuwara Eliya",
+        "pt": "Nuwara Eliya"
       },
       "coordinates": {
         "lat": 6.9497,
@@ -108,7 +123,12 @@
       "type": "place",
       "countryCode": "LK",
       "name": {
-        "en": "Ella"
+        "en": "Ella",
+        "de": "Ella",
+        "it": "Ella",
+        "es": "Ella",
+        "fr": "Ella",
+        "pt": "Ella"
       },
       "coordinates": {
         "lat": 6.8667,
@@ -120,7 +140,12 @@
       "type": "place",
       "countryCode": "LK",
       "name": {
-        "en": "Badulla"
+        "en": "Badulla",
+        "de": "Badulla",
+        "it": "Badulla",
+        "es": "Badulla",
+        "fr": "Badulla",
+        "pt": "Badulla"
       },
       "coordinates": {
         "lat": 6.9934,

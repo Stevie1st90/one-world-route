@@ -72,7 +72,12 @@
       "type": "place",
       "countryCode": "ZA",
       "name": {
-        "en": "Cape Town"
+        "en": "Cape Town",
+        "de": "Kapstadt",
+        "it": "Città del Capo",
+        "es": "Ciudad del Cabo",
+        "fr": "Le Cap",
+        "pt": "Cidade do Cabo"
       },
       "coordinates": {
         "lat": -33.9249,
@@ -85,7 +90,12 @@
       "type": "place",
       "countryCode": "ZA",
       "name": {
-        "en": "Hermanus"
+        "en": "Hermanus",
+        "de": "Hermanus",
+        "it": "Hermanus",
+        "es": "Hermanus",
+        "fr": "Hermanus",
+        "pt": "Hermanus"
       },
       "coordinates": {
         "lat": -34.4187,
@@ -98,7 +108,12 @@
       "type": "place",
       "countryCode": "ZA",
       "name": {
-        "en": "Knysna"
+        "en": "Knysna",
+        "de": "Knysna",
+        "it": "Knysna",
+        "es": "Knysna",
+        "fr": "Knysna",
+        "pt": "Knysna"
       },
       "coordinates": {
         "lat": -34.0351,
@@ -111,7 +126,12 @@
       "type": "place",
       "countryCode": "ZA",
       "name": {
-        "en": "Tsitsikamma"
+        "en": "Tsitsikamma",
+        "de": "Tsitsikamma",
+        "it": "Tsitsikamma",
+        "es": "Tsitsikamma",
+        "fr": "Tsitsikamma",
+        "pt": "Tsitsikamma"
       },
       "coordinates": {
         "lat": -34.0318,
@@ -124,7 +144,12 @@
       "type": "place",
       "countryCode": "ZA",
       "name": {
-        "en": "Addo Elephant National Park"
+        "en": "Addo Elephant National Park",
+        "de": "Addo-Elephant-Nationalpark",
+        "it": "Parco nazionale Addo Elephant",
+        "es": "Parque nacional de elefantes de Addo",
+        "fr": "Parc national des éléphants d’Addo",
+        "pt": "Parque Nacional dos Elefantes de Addo"
       },
       "coordinates": {
         "lat": -33.483,

@@ -8,11 +8,12 @@
     const parsed=Number(value);
     return Number.isFinite(parsed)?Math.min(max,Math.max(min,parsed)):0;
   };
-  function defaults(){return {savedTrips:[],recentTrips:[],budgets:{},startDates:{},seasons:{},routeStarts:{},variants:{},planningChecks:{}}}
+  function defaults(){return {savedTrips:[],boards:[],recentTrips:[],budgets:{},startDates:{},seasons:{},routeStarts:{},variants:{},planningChecks:{}}}
   function load(storage){
     try{
       const raw=JSON.parse(storage.getItem(KEY)||'{}');
       return {
+        boards:normalizeBoards(raw.boards),
         savedTrips:Array.isArray(raw.savedTrips)?[...new Set(raw.savedTrips.filter(v=>typeof v==='string'))]:[],
         recentTrips:Array.isArray(raw.recentTrips)?[...new Set(raw.recentTrips.filter(v=>typeof v==='string'))].slice(0,12):[],
         budgets:raw.budgets&&typeof raw.budgets==='object'?raw.budgets:{},
@@ -23,6 +24,37 @@
         planningChecks:raw.planningChecks&&typeof raw.planningChecks==='object'?raw.planningChecks:{}
       };
     }catch{return defaults()}
+  }
+  function normalizeBoards(input,validId=()=>true){
+    const seen=new Set();
+    return (Array.isArray(input)?input:[]).slice(0,50).flatMap(board=>{
+      const id=String(board?.id||'').trim(),name=String(board?.name||'').trim().slice(0,80);
+      if(!/^[a-zA-Z0-9_-]{1,80}$/.test(id)||!name||seen.has(id))return [];
+      seen.add(id);
+      const tripIds=[...new Set((Array.isArray(board.tripIds)?board.tripIds:[]).filter(value=>typeof value==='string'&&validId(value)))];
+      return [{id,name,tripIds}];
+    });
+  }
+  function createBoard(storage,name){
+    const state=load(storage),clean=String(name||'').trim().slice(0,80);
+    if(!clean||state.boards.length>=50)return null;
+    const id='board-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10);
+    const board={id,name:clean,tripIds:[]};state.boards.push(board);persist(storage,state);notify(null);return board;
+  }
+  function renameBoard(storage,id,name){
+    const state=load(storage),board=state.boards.find(item=>item.id===id),clean=String(name||'').trim().slice(0,80);
+    if(!board||!clean)return false;
+    board.name=clean;persist(storage,state);notify(null);return true;
+  }
+  function deleteBoard(storage,id){
+    const state=load(storage);state.boards=state.boards.filter(board=>board.id!==id);persist(storage,state);notify(null);
+  }
+  function setBoardTrip(storage,boardId,tripId,included){
+    const state=load(storage),board=state.boards.find(item=>item.id===boardId);
+    if(!board||typeof tripId!=='string'||!tripId)return false;
+    board.tripIds=board.tripIds.filter(id=>id!==tripId);
+    if(included){board.tripIds.push(tripId);if(!state.savedTrips.includes(tripId))state.savedTrips.push(tripId)}
+    persist(storage,state);notify(tripId);return true;
   }
   function workspaceUpdatedAt(storage){
     const raw=String(storage.getItem(META_KEY)||'').trim();
@@ -48,7 +80,7 @@
   }
   function toggleSaved(storage,tripId){
     const state=load(storage),saved=new Set(state.savedTrips);
-    if(saved.has(tripId))saved.delete(tripId);else saved.add(tripId);
+    if(saved.has(tripId)){saved.delete(tripId);for(const board of state.boards)board.tripIds=board.tripIds.filter(id=>id!==tripId)}else saved.add(tripId);
     state.savedTrips=[...saved];persist(storage,state);notify(tripId);return saved.has(tripId);
   }
   function normalizeBudget(input={}){
@@ -214,6 +246,7 @@
       return out;
     };
     return {
+      boards:normalizeBoards(source.boards,validId),
       savedTrips:[...new Set((Array.isArray(source.savedTrips)?source.savedTrips:[]).filter(validId))],
       recentTrips:[...new Set((Array.isArray(source.recentTrips)?source.recentTrips:[]).filter(validId))].slice(0,12),
       budgets:pickMap(source.budgets,normalizeBudget),
@@ -298,12 +331,14 @@
       ?((Number.isFinite(Number(entrySuggestion.distanceKm))?'≈ '+Math.round(Number(entrySuggestion.distanceKm))+' km · ':'')+t('entryApproximation'))
       :'';
     const suggestionMarkup=entrySuggestion?.available&&suggestedName?'<div class="platform-origin-summary platform-entry-suggestion" data-entry-suggestion><span>'+esc(t('entrySuggestion'))+'</span><b>'+esc((origin||entrySuggestion.originCountry||t('originPoint'))+' → '+suggestedName)+'</b><small>'+esc(suggestionDetail)+'</small><button type="button" '+(suggestionSelected?'disabled':'data-trip-entry-suggest')+'>'+esc(suggestionSelected?t('entrySuggestionApplied'):t('useSuggestedEntry'))+'</button></div>':'';
+    const alternatives=(entrySuggestion?.alternatives||[]).filter(item=>item.stopId!==suggestedStop?.id&&eligible.some(stop=>stop.id===item.stopId));
+    const alternativesMarkup=alternatives.length?'<details class="platform-detail-disclosure"><summary>'+esc(t('alternativeEntries'))+'</summary><p>'+esc(t('entryApproximation'))+'</p><div class="platform-tool-actions">'+alternatives.map(item=>'<button type="button" data-trip-entry-alternative="'+esc(item.stopId)+'" '+(item.stopId===selectedStart?'disabled':'')+'>'+esc(local(places.get(item.placeId)?.name))+' · ≈ '+esc(String(item.distanceKm))+' km</button>').join('')+'</div></details>':'';
     const accessMarkup='<div class="platform-route-access platform-route-access-grid">'+
       '<div class="platform-route-access-step"><span>1 · '+esc(t('routeAccess'))+'</span><strong>'+esc(origin||t('originPoint'))+' → '+esc(coreStartName)+'</strong><small>'+esc(origin?t('currentCheck'):t('personalizeJourneyLead'))+'</small></div>'+
-      '<div class="platform-route-access-step"><span>2 · '+esc(t('overview'))+'</span><strong>'+esc(coreStartName)+' → '+esc(coreEndName)+'</strong><small>'+esc(t('routeAccessLead'))+'</small></div>'+
+      '<div class="platform-route-access-step"><span>2 · '+esc(t('coreRoute'))+'</span><strong>'+esc(coreStartName)+' → '+esc(coreEndName)+'</strong><small>'+esc(t('routeAccessLead'))+'</small></div>'+
       '<div class="platform-route-access-step"><span>3 · '+esc(t('routeAccess'))+'</span><strong>'+esc(coreEndName)+' → '+esc(origin||t('originPoint'))+'</strong><small>'+esc(origin?t('currentCheck'):t('personalizeJourneyLead'))+'</small></div>'+
     '</div>';
-    const personalization='<section class="platform-journey-personalize"><div class="platform-personalize-head"><span>'+esc(t('personalizeJourney'))+'</span><h3>'+esc(t('personalizeJourneyTitle'))+'</h3></div><p>'+esc(t('personalizeJourneyLead'))+'</p>'+variantMarkup+originMarkup+suggestionMarkup+accessMarkup+'<div class="platform-route-start-control">'+routeStartSelect+'</div></section>';
+    const personalization='<section class="platform-journey-personalize"><div class="platform-personalize-head"><span>'+esc(t('personalizeJourney'))+'</span><h3>'+esc(t('personalizeJourneyTitle'))+'</h3></div><p>'+esc(t('personalizeJourneyLead'))+'</p>'+variantMarkup+originMarkup+suggestionMarkup+alternativesMarkup+accessMarkup+'<div class="platform-route-start-control">'+routeStartSelect+'</div></section>';
     const breakdown='<div class="platform-budget-breakdown">'+
       '<span>'+esc(t('transportMinimum'))+'<b>'+esc(money(e.transport,currency,locale))+'</b></span>'+
       '<span>'+esc(t('lodging'))+'<b>'+esc(money(e.lodging,currency,locale))+'</b></span>'+
@@ -380,6 +415,11 @@
       toast?.(t('routeStartUpdated'));
       onRouteVariantChange?.();
     });
+    host.querySelectorAll('[data-trip-entry-alternative]').forEach(button=>button.addEventListener('click',()=>{
+      const start=button.dataset.tripEntryAlternative;
+      if(!eligible.some(stop=>stop.id===start))return;
+      setRouteStart(storage,id,start);toast?.(t('routeStartUpdated'));onRouteVariantChange?.();
+    }));
     host.querySelector('[data-trip-variant]')?.addEventListener('change',event=>{
       const variantId=setVariant(storage,id,event.currentTarget.value);
       setRouteStart(storage,id,'');
@@ -414,5 +454,5 @@
       toast?.(t('estimateUpdated'));refreshPlanning();
     };
   }
-  root.tripTools={load,isSaved,getRecent,markViewed,toggleSaved,normalizeBudget,getBudget,setBudget,getStartDate,setStartDate,getSeason,setSeason,getRouteStart,setRouteStart,getVariant,setVariant,normalizePlanningChecks,getPlanningChecks,setAccessChecked,hasBudgetAssumptions,planningStatus,estimate,itineraryRows,csv,calendar,jsonPack,workspaceUpdatedAt,workspacePayload,workspaceJson,normalizeWorkspace,importWorkspace,download,render,bind};
+  root.tripTools={load,normalizeBoards,createBoard,renameBoard,deleteBoard,setBoardTrip,isSaved,getRecent,markViewed,toggleSaved,normalizeBudget,getBudget,setBudget,getStartDate,setStartDate,getSeason,setSeason,getRouteStart,setRouteStart,getVariant,setVariant,normalizePlanningChecks,getPlanningChecks,setAccessChecked,hasBudgetAssumptions,planningStatus,estimate,itineraryRows,csv,calendar,jsonPack,workspaceUpdatedAt,workspacePayload,workspaceJson,normalizeWorkspace,importWorkspace,download,render,bind};
 })();

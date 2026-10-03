@@ -2230,6 +2230,12 @@
   const productText={"en": {"exploreDestinations": "Explore destinations", "downloadStory": "Download story image", "storyExportFailed": "The story image could not be saved. Please try again.", "sourceReviewDue": "Review recommended", "sourceChecked": "Source checked", "sourceReviewOn": "Review by", "coreRoute": "Core route", "countryOriginEstimate": "Country-based estimate"}, "de": {"exploreDestinations": "Reiseziele entdecken", "downloadStory": "Story-Bild herunterladen", "storyExportFailed": "Das Story-Bild konnte nicht gespeichert werden. Bitte versuche es erneut.", "sourceReviewDue": "Erneute Prüfung empfohlen", "sourceChecked": "Quelle geprüft", "sourceReviewOn": "Prüfen bis", "coreRoute": "Kernroute", "countryOriginEstimate": "Schätzung anhand des Startlandes"}, "it": {"exploreDestinations": "Scopri le destinazioni", "downloadStory": "Scarica immagine della storia", "storyExportFailed": "Impossibile salvare l’immagine. Riprova.", "sourceReviewDue": "Verifica consigliata", "sourceChecked": "Fonte verificata", "sourceReviewOn": "Verificare entro", "coreRoute": "Itinerario principale", "countryOriginEstimate": "Stima dal paese di partenza"}, "es": {"exploreDestinations": "Descubre destinos", "downloadStory": "Descargar imagen de la historia", "storyExportFailed": "No se pudo guardar la imagen. Inténtalo de nuevo.", "sourceReviewDue": "Revisión recomendada", "sourceChecked": "Fuente revisada", "sourceReviewOn": "Revisar antes del", "coreRoute": "Ruta principal", "countryOriginEstimate": "Estimación desde el país de origen"}, "fr": {"exploreDestinations": "Découvrir les destinations", "downloadStory": "Télécharger l’image de la story", "storyExportFailed": "Impossible d’enregistrer l’image. Réessayez.", "sourceReviewDue": "Vérification recommandée", "sourceChecked": "Source vérifiée", "sourceReviewOn": "À vérifier avant le", "coreRoute": "Itinéraire principal", "countryOriginEstimate": "Estimation depuis le pays de départ"}, "pt": {"exploreDestinations": "Descobrir destinos", "downloadStory": "Baixar imagem da história", "storyExportFailed": "Não foi possível salvar a imagem. Tente novamente.", "sourceReviewDue": "Revisão recomendada", "sourceChecked": "Fonte verificada", "sourceReviewOn": "Rever até", "coreRoute": "Rota principal", "countryOriginEstimate": "Estimativa pelo país de partida"}};
   for(const lang of SUPPORTED_LOCALES)Object.assign(I18N[lang],productText[lang]);
 
+  const boardText={"en": {"boards": "Boards", "boardName": "Board name", "createBoard": "Create board", "renameBoard": "Rename board", "deleteBoard": "Delete board", "deleteBoardLead": "Your saved journeys stay saved.", "boardEmpty": "This board is empty"}, "de": {"boards": "Boards", "boardName": "Board-Name", "createBoard": "Board erstellen", "renameBoard": "Board umbenennen", "deleteBoard": "Board löschen", "deleteBoardLead": "Deine gespeicherten Reisen bleiben gespeichert.", "boardEmpty": "Dieses Board ist leer"}, "it": {"boards": "Bacheche", "boardName": "Nome della bacheca", "createBoard": "Crea bacheca", "renameBoard": "Rinomina bacheca", "deleteBoard": "Elimina bacheca", "deleteBoardLead": "I viaggi salvati restano salvati.", "boardEmpty": "Questa bacheca è vuota"}, "es": {"boards": "Tableros", "boardName": "Nombre del tablero", "createBoard": "Crear tablero", "renameBoard": "Renombrar tablero", "deleteBoard": "Eliminar tablero", "deleteBoardLead": "Tus viajes guardados siguen guardados.", "boardEmpty": "Este tablero está vacío"}, "fr": {"boards": "Tableaux", "boardName": "Nom du tableau", "createBoard": "Créer un tableau", "renameBoard": "Renommer le tableau", "deleteBoard": "Supprimer le tableau", "deleteBoardLead": "Vos voyages enregistrés restent enregistrés.", "boardEmpty": "Ce tableau est vide"}, "pt": {"boards": "Quadros", "boardName": "Nome do quadro", "createBoard": "Criar quadro", "renameBoard": "Renomear quadro", "deleteBoard": "Excluir quadro", "deleteBoardLead": "Suas viagens salvas continuam salvas.", "boardEmpty": "Este quadro está vazio"}};
+  for(const lang of SUPPORTED_LOCALES)Object.assign(I18N[lang],boardText[lang]);
+
+  const alternativeEntries={"en": "Alternative entries", "de": "Alternative Einstiege", "it": "Ingressi alternativi", "es": "Entradas alternativas", "fr": "Points de départ alternatifs", "pt": "Entradas alternativas"};
+  for(const lang of SUPPORTED_LOCALES)I18N[lang].alternativeEntries=alternativeEntries[lang];
+
   root.i18n={
     supportedLocales:[...SUPPORTED_LOCALES],
     messages:I18N,
@@ -3147,11 +3153,12 @@
     const parsed=Number(value);
     return Number.isFinite(parsed)?Math.min(max,Math.max(min,parsed)):0;
   };
-  function defaults(){return {savedTrips:[],recentTrips:[],budgets:{},startDates:{},seasons:{},routeStarts:{},variants:{},planningChecks:{}}}
+  function defaults(){return {savedTrips:[],boards:[],recentTrips:[],budgets:{},startDates:{},seasons:{},routeStarts:{},variants:{},planningChecks:{}}}
   function load(storage){
     try{
       const raw=JSON.parse(storage.getItem(KEY)||'{}');
       return {
+        boards:normalizeBoards(raw.boards),
         savedTrips:Array.isArray(raw.savedTrips)?[...new Set(raw.savedTrips.filter(v=>typeof v==='string'))]:[],
         recentTrips:Array.isArray(raw.recentTrips)?[...new Set(raw.recentTrips.filter(v=>typeof v==='string'))].slice(0,12):[],
         budgets:raw.budgets&&typeof raw.budgets==='object'?raw.budgets:{},
@@ -3162,6 +3169,37 @@
         planningChecks:raw.planningChecks&&typeof raw.planningChecks==='object'?raw.planningChecks:{}
       };
     }catch{return defaults()}
+  }
+  function normalizeBoards(input,validId=()=>true){
+    const seen=new Set();
+    return (Array.isArray(input)?input:[]).slice(0,50).flatMap(board=>{
+      const id=String(board?.id||'').trim(),name=String(board?.name||'').trim().slice(0,80);
+      if(!/^[a-zA-Z0-9_-]{1,80}$/.test(id)||!name||seen.has(id))return [];
+      seen.add(id);
+      const tripIds=[...new Set((Array.isArray(board.tripIds)?board.tripIds:[]).filter(value=>typeof value==='string'&&validId(value)))];
+      return [{id,name,tripIds}];
+    });
+  }
+  function createBoard(storage,name){
+    const state=load(storage),clean=String(name||'').trim().slice(0,80);
+    if(!clean||state.boards.length>=50)return null;
+    const id='board-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10);
+    const board={id,name:clean,tripIds:[]};state.boards.push(board);persist(storage,state);notify(null);return board;
+  }
+  function renameBoard(storage,id,name){
+    const state=load(storage),board=state.boards.find(item=>item.id===id),clean=String(name||'').trim().slice(0,80);
+    if(!board||!clean)return false;
+    board.name=clean;persist(storage,state);notify(null);return true;
+  }
+  function deleteBoard(storage,id){
+    const state=load(storage);state.boards=state.boards.filter(board=>board.id!==id);persist(storage,state);notify(null);
+  }
+  function setBoardTrip(storage,boardId,tripId,included){
+    const state=load(storage),board=state.boards.find(item=>item.id===boardId);
+    if(!board||typeof tripId!=='string'||!tripId)return false;
+    board.tripIds=board.tripIds.filter(id=>id!==tripId);
+    if(included){board.tripIds.push(tripId);if(!state.savedTrips.includes(tripId))state.savedTrips.push(tripId)}
+    persist(storage,state);notify(tripId);return true;
   }
   function workspaceUpdatedAt(storage){
     const raw=String(storage.getItem(META_KEY)||'').trim();
@@ -3187,7 +3225,7 @@
   }
   function toggleSaved(storage,tripId){
     const state=load(storage),saved=new Set(state.savedTrips);
-    if(saved.has(tripId))saved.delete(tripId);else saved.add(tripId);
+    if(saved.has(tripId)){saved.delete(tripId);for(const board of state.boards)board.tripIds=board.tripIds.filter(id=>id!==tripId)}else saved.add(tripId);
     state.savedTrips=[...saved];persist(storage,state);notify(tripId);return saved.has(tripId);
   }
   function normalizeBudget(input={}){
@@ -3353,6 +3391,7 @@
       return out;
     };
     return {
+      boards:normalizeBoards(source.boards,validId),
       savedTrips:[...new Set((Array.isArray(source.savedTrips)?source.savedTrips:[]).filter(validId))],
       recentTrips:[...new Set((Array.isArray(source.recentTrips)?source.recentTrips:[]).filter(validId))].slice(0,12),
       budgets:pickMap(source.budgets,normalizeBudget),
@@ -3437,12 +3476,14 @@
       ?((Number.isFinite(Number(entrySuggestion.distanceKm))?'≈ '+Math.round(Number(entrySuggestion.distanceKm))+' km · ':'')+t('entryApproximation'))
       :'';
     const suggestionMarkup=entrySuggestion?.available&&suggestedName?'<div class="platform-origin-summary platform-entry-suggestion" data-entry-suggestion><span>'+esc(t('entrySuggestion'))+'</span><b>'+esc((origin||entrySuggestion.originCountry||t('originPoint'))+' → '+suggestedName)+'</b><small>'+esc(suggestionDetail)+'</small><button type="button" '+(suggestionSelected?'disabled':'data-trip-entry-suggest')+'>'+esc(suggestionSelected?t('entrySuggestionApplied'):t('useSuggestedEntry'))+'</button></div>':'';
+    const alternatives=(entrySuggestion?.alternatives||[]).filter(item=>item.stopId!==suggestedStop?.id&&eligible.some(stop=>stop.id===item.stopId));
+    const alternativesMarkup=alternatives.length?'<details class="platform-detail-disclosure"><summary>'+esc(t('alternativeEntries'))+'</summary><p>'+esc(t('entryApproximation'))+'</p><div class="platform-tool-actions">'+alternatives.map(item=>'<button type="button" data-trip-entry-alternative="'+esc(item.stopId)+'" '+(item.stopId===selectedStart?'disabled':'')+'>'+esc(local(places.get(item.placeId)?.name))+' · ≈ '+esc(String(item.distanceKm))+' km</button>').join('')+'</div></details>':'';
     const accessMarkup='<div class="platform-route-access platform-route-access-grid">'+
       '<div class="platform-route-access-step"><span>1 · '+esc(t('routeAccess'))+'</span><strong>'+esc(origin||t('originPoint'))+' → '+esc(coreStartName)+'</strong><small>'+esc(origin?t('currentCheck'):t('personalizeJourneyLead'))+'</small></div>'+
-      '<div class="platform-route-access-step"><span>2 · '+esc(t('overview'))+'</span><strong>'+esc(coreStartName)+' → '+esc(coreEndName)+'</strong><small>'+esc(t('routeAccessLead'))+'</small></div>'+
+      '<div class="platform-route-access-step"><span>2 · '+esc(t('coreRoute'))+'</span><strong>'+esc(coreStartName)+' → '+esc(coreEndName)+'</strong><small>'+esc(t('routeAccessLead'))+'</small></div>'+
       '<div class="platform-route-access-step"><span>3 · '+esc(t('routeAccess'))+'</span><strong>'+esc(coreEndName)+' → '+esc(origin||t('originPoint'))+'</strong><small>'+esc(origin?t('currentCheck'):t('personalizeJourneyLead'))+'</small></div>'+
     '</div>';
-    const personalization='<section class="platform-journey-personalize"><div class="platform-personalize-head"><span>'+esc(t('personalizeJourney'))+'</span><h3>'+esc(t('personalizeJourneyTitle'))+'</h3></div><p>'+esc(t('personalizeJourneyLead'))+'</p>'+variantMarkup+originMarkup+suggestionMarkup+accessMarkup+'<div class="platform-route-start-control">'+routeStartSelect+'</div></section>';
+    const personalization='<section class="platform-journey-personalize"><div class="platform-personalize-head"><span>'+esc(t('personalizeJourney'))+'</span><h3>'+esc(t('personalizeJourneyTitle'))+'</h3></div><p>'+esc(t('personalizeJourneyLead'))+'</p>'+variantMarkup+originMarkup+suggestionMarkup+alternativesMarkup+accessMarkup+'<div class="platform-route-start-control">'+routeStartSelect+'</div></section>';
     const breakdown='<div class="platform-budget-breakdown">'+
       '<span>'+esc(t('transportMinimum'))+'<b>'+esc(money(e.transport,currency,locale))+'</b></span>'+
       '<span>'+esc(t('lodging'))+'<b>'+esc(money(e.lodging,currency,locale))+'</b></span>'+
@@ -3519,6 +3560,11 @@
       toast?.(t('routeStartUpdated'));
       onRouteVariantChange?.();
     });
+    host.querySelectorAll('[data-trip-entry-alternative]').forEach(button=>button.addEventListener('click',()=>{
+      const start=button.dataset.tripEntryAlternative;
+      if(!eligible.some(stop=>stop.id===start))return;
+      setRouteStart(storage,id,start);toast?.(t('routeStartUpdated'));onRouteVariantChange?.();
+    }));
     host.querySelector('[data-trip-variant]')?.addEventListener('change',event=>{
       const variantId=setVariant(storage,id,event.currentTarget.value);
       setRouteStart(storage,id,'');
@@ -3553,7 +3599,7 @@
       toast?.(t('estimateUpdated'));refreshPlanning();
     };
   }
-  root.tripTools={load,isSaved,getRecent,markViewed,toggleSaved,normalizeBudget,getBudget,setBudget,getStartDate,setStartDate,getSeason,setSeason,getRouteStart,setRouteStart,getVariant,setVariant,normalizePlanningChecks,getPlanningChecks,setAccessChecked,hasBudgetAssumptions,planningStatus,estimate,itineraryRows,csv,calendar,jsonPack,workspaceUpdatedAt,workspacePayload,workspaceJson,normalizeWorkspace,importWorkspace,download,render,bind};
+  root.tripTools={load,normalizeBoards,createBoard,renameBoard,deleteBoard,setBoardTrip,isSaved,getRecent,markViewed,toggleSaved,normalizeBudget,getBudget,setBudget,getStartDate,setStartDate,getSeason,setSeason,getRouteStart,setRouteStart,getVariant,setVariant,normalizePlanningChecks,getPlanningChecks,setAccessChecked,hasBudgetAssumptions,planningStatus,estimate,itineraryRows,csv,calendar,jsonPack,workspaceUpdatedAt,workspacePayload,workspaceJson,normalizeWorkspace,importWorkspace,download,render,bind};
 })();
 
 
@@ -4772,7 +4818,7 @@
 (() => {
   'use strict';
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
-  let deps=null;
+  let deps=null,activeBoard='',visibleCount=24,renderVersion=0;
   const $=(s,r=document)=>r.querySelector(s);
 
   function configure(next){deps=next;return api}
@@ -4878,6 +4924,7 @@
       '<p>'+d.esc(d.local((trip?._variant?.id&&trip._variant.id!=='base')?trip.summary:meta.subtitle))+'</p>'+
       '<div class="platform-mytrip-setup">'+setup+'</div>'+
       planningMarkup({meta,trip,profile,budget,currency,start})+
+      boardMembership(id)+
       '<div class="platform-mytrip-fit">'+fitMarkup(meta,profile)+'</div>'+
       '<div class="platform-mytrip-actions"><button type="button" data-mytrip-offline="'+d.esc(id)+'">'+d.esc(d.t('saveOffline'))+'</button><button type="button" data-mytrip-open="'+d.esc(id)+'">'+d.esc(d.t('continuePlanning'))+' →</button></div>'+
     '</article>';
@@ -4891,9 +4938,22 @@
     '</article>';
   }
 
+  function boardMembership(id){
+    const d=context(),boards=d.TripTools.load(d.storage).boards;
+    return boards.length?'<details class="platform-mytrip-status"><summary>'+d.esc(d.t('boards'))+'</summary><div class="platform-board-membership">'+boards.map(board=>'<label><input type="checkbox" data-board-member="'+d.esc(board.id)+'" data-trip-id="'+d.esc(id)+'" '+(board.tripIds.includes(id)?'checked':'')+'><span>'+d.esc(board.name)+'</span></label>').join('')+'</div></details>':'';
+  }
+  function boardControls(modal,state){
+    const d=context(),board=state.boards.find(item=>item.id===activeBoard);
+    if(!board)activeBoard='';
+    $('[data-mytrips-boards]',modal).innerHTML='<label><span>'+d.esc(d.t('boards'))+'</span><select data-board-select><option value="">'+d.esc(d.t('savedJourneys'))+'</option>'+state.boards.map(item=>'<option value="'+d.esc(item.id)+'" '+(item.id===activeBoard?'selected':'')+'>'+d.esc(item.name)+' ('+item.tripIds.length+')</option>').join('')+'</select></label>'+
+      '<form data-board-form><label><span>'+d.esc(d.t('boardName'))+'</span><input data-board-name maxlength="80" required value="'+d.esc(board?.name||'')+'"></label><button type="submit">'+d.esc(d.t(board?'renameBoard':'createBoard'))+'</button></form>'+
+      (board?'<button type="button" data-board-compare '+(board.tripIds.length<2?'disabled':'')+'>'+d.esc(d.t('compareSelected').replace('{count}',String(Math.min(3,board.tripIds.length))))+'</button><button type="button" data-board-delete>'+d.esc(d.t('deleteBoard'))+'</button><small>'+d.esc(d.t('deleteBoardLead'))+'</small>':'');
+  }
   async function render(modal){
-    const d=context(),profile=d.loadProfile(),state=d.TripTools.load(d.storage),saved=state.savedTrips,recent=d.TripTools.getRecent(d.storage);
-    const metas=(d.catalog.trips||[]).filter(meta=>saved.includes(meta.id)).sort((a,b)=>{
+    const version=++renderVersion,d=context(),profile=d.loadProfile(),state=d.TripTools.load(d.storage),saved=state.savedTrips,recent=d.TripTools.getRecent(d.storage);
+    boardControls(modal,state);
+    const selectedBoard=state.boards.find(item=>item.id===activeBoard),selectedIds=selectedBoard?selectedBoard.tripIds:saved;
+    const metas=(d.catalog.trips||[]).filter(meta=>selectedIds.includes(meta.id)).sort((a,b)=>{
       const aDate=d.TripTools.getStartDate(d.storage,a.id)||'9999-12-31';
       const bDate=d.TripTools.getStartDate(d.storage,b.id)||'9999-12-31';
       return aDate.localeCompare(bDate)||d.local(a.title).localeCompare(d.local(b.title));
@@ -4903,13 +4963,14 @@
     const count=$('[data-mytrips-count]',modal);
     if(count)count.textContent=String(metas.length);
     if(!metas.length&&!recentMetas.length){
-      body.innerHTML='<div class="platform-mytrips-empty"><b>'+d.esc(d.t('myTripsEmptyTitle'))+'</b><span>'+d.esc(d.t('myTripsEmptyLead'))+'</span></div>';
+      body.innerHTML='<div class="platform-mytrips-empty"><b>'+d.esc(d.t(selectedBoard?'boardEmpty':'myTripsEmptyTitle'))+'</b><span>'+d.esc(d.t('myTripsEmptyLead'))+'</span></div>';
       return;
     }
     body.innerHTML='<div class="platform-mytrips-loading">'+d.esc(d.t('loading'))+'</div>';
-    const savedMarkup=metas.length?'<section class="platform-mytrips-group"><h3>'+d.esc(d.t('savedJourneys'))+'</h3>'+(await Promise.all(metas.map(meta=>buildCard(meta,profile)))).join('')+'</section>':'';
+    const savedMarkup=metas.length?'<section class="platform-mytrips-group"><h3>'+d.esc(d.t('savedJourneys'))+'</h3>'+(await Promise.all(metas.slice(0,visibleCount).map(meta=>buildCard(meta,profile)))).join('')+'</section>':(selectedBoard?'<p class="platform-mytrips-empty">'+d.esc(d.t('boardEmpty'))+'</p>':'');
     const recentMarkup=recentMetas.length?'<section class="platform-mytrips-group platform-mytrips-recent-group"><h3>'+d.esc(d.t('recentlyViewed'))+'</h3>'+recentMetas.map(recentCard).join('')+'</section>':'';
-    body.innerHTML=savedMarkup+recentMarkup;
+    if(version!==renderVersion)return;
+    body.innerHTML=savedMarkup+(metas.length>visibleCount?'<button type="button" data-mytrips-more>'+d.esc(d.t('loadMoreJourneys').replace('{count}',String(Math.min(24,metas.length-visibleCount))))+'</button>':'')+recentMarkup;
   }
 
   async function openCloudSync(parentModal){
@@ -4973,10 +5034,10 @@
   }
 
   async function open(){
-    const d=context(),modal=d.ensureDialog('platformMyTripsModal');
+    const d=context(),modal=d.ensureDialog('platformMyTripsModal');activeBoard='';visibleCount=24;
     modal.innerHTML='<div class="platform-modal-card platform-mytrips-card glass"><button class="platform-x" type="button" aria-label="'+d.esc(d.t('close'))+'">×</button>'+
       '<div class="platform-eyebrow">'+d.esc(d.t('myTrips'))+'</div><div class="platform-mytrips-title"><h2>'+d.esc(d.t('myTrips'))+' <span data-mytrips-count></span></h2><div class="platform-mytrips-portability"><button type="button" data-mytrips-cloud hidden>'+d.esc(d.t('cloudSync'))+'</button><button type="button" data-mytrips-install hidden>'+d.esc(d.t('installApp'))+'</button><button type="button" data-mytrips-import>'+d.esc(d.t('importWorkspace'))+'</button><button type="button" data-mytrips-export>'+d.esc(d.t('exportWorkspace'))+'</button><input type="file" accept="application/json,.json" data-mytrips-import-file hidden></div></div><p class="platform-lead">'+d.esc(d.t('myTripsLead'))+'</p>'+
-      '<div data-mytrips-body></div></div>';
+      '<section class="platform-board-controls" data-mytrips-boards></section><div data-mytrips-body aria-live="polite"></div></div>';
     modal.classList.remove('hidden');
     const installBtn=$('[data-mytrips-install]',modal);
     const refreshInstall=state=>{
@@ -5006,7 +5067,23 @@
       d.toast(result.ok?d.t('workspaceImported'):d.t('workspaceImportFailed'));
       if(result.ok)await render(modal);
     };
+    modal.onchange=async event=>{
+      const select=event.target.closest('[data-board-select]');
+      if(select){activeBoard=select.value;visibleCount=24;await render(modal);return}
+      const member=event.target.closest('[data-board-member]');
+      if(member){d.TripTools.setBoardTrip(d.storage,member.dataset.boardMember,member.dataset.tripId,member.checked);if(activeBoard)await render(modal);else boardControls(modal,d.TripTools.load(d.storage))}
+    };
+    modal.onsubmit=async event=>{
+      if(!event.target.matches('[data-board-form]'))return;
+      event.preventDefault();const name=$('[data-board-name]',modal).value;
+      if(activeBoard)d.TripTools.renameBoard(d.storage,activeBoard,name);
+      else {const board=d.TripTools.createBoard(d.storage,name);if(board)activeBoard=board.id}
+      visibleCount=24;await render(modal);
+    };
     modal.onclick=async event=>{
+      if(event.target.closest('[data-board-compare]')){const board=d.TripTools.load(d.storage).boards.find(item=>item.id===activeBoard);d.TripCompare.open({catalog:d.catalog,selectedIds:(board?.tripIds||[]).slice(0,3),profile:d.loadProfile(),ensureDialog:d.ensureDialog,t:d.t,esc:d.esc,local:d.local,facetLabel:d.facetLabel,statusLabel:d.statusLabel,onOpenTrip:d.onOpenTrip});return}
+      if(event.target.closest('[data-board-delete]')){d.TripTools.deleteBoard(d.storage,activeBoard);activeBoard='';visibleCount=24;await render(modal);return}
+      if(event.target.closest('[data-mytrips-more]')){visibleCount+=24;await render(modal);return}
       const cloudTarget=event.target.closest('[data-mytrips-cloud]');
       if(cloudTarget){await openCloudSync(modal);return}
       const installTarget=event.target.closest('[data-mytrips-install]');
@@ -7487,6 +7564,7 @@
       const explicitLang=new URLSearchParams(location.search).get('lang');
       if(!SUPPORTED_LOCALES.includes(String(explicitLang||'').toLowerCase())&&profile.language&&SUPPORTED_LOCALES.includes(profile.language))locale=profile.language;
       MyTrips.configure({
+        TripCompare,
         catalog,
         TripTools,
         TripPlanning,

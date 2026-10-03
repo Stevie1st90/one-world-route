@@ -72,7 +72,12 @@
       "type": "place",
       "countryCode": "GR",
       "name": {
-        "en": "Athens"
+        "en": "Athens",
+        "de": "Athen",
+        "it": "Atene",
+        "es": "Atenas",
+        "fr": "Athènes",
+        "pt": "Atenas"
       },
       "coordinates": {
         "lat": 37.9838,
@@ -85,7 +90,12 @@
       "type": "place",
       "countryCode": "GR",
       "name": {
-        "en": "Mykonos"
+        "en": "Mykonos",
+        "de": "Mykonos",
+        "it": "Mykonos",
+        "es": "Miconos",
+        "fr": "Mykonos",
+        "pt": "Míconos"
       },
       "coordinates": {
         "lat": 37.4467,
@@ -98,7 +108,12 @@
       "type": "place",
       "countryCode": "GR",
       "name": {
-        "en": "Naxos"
+        "en": "Naxos",
+        "de": "Naxos",
+        "it": "Naxos",
+        "es": "Naxos",
+        "fr": "Naxos",
+        "pt": "Naxos"
       },
       "coordinates": {
         "lat": 37.1036,
@@ -111,7 +126,12 @@
       "type": "place",
       "countryCode": "GR",
       "name": {
-        "en": "Paros"
+        "en": "Paros",
+        "de": "Paros",
+        "it": "Paros",
+        "es": "Paros",
+        "fr": "Paros",
+        "pt": "Paros"
       },
       "coordinates": {
         "lat": 37.0853,
@@ -124,7 +144,12 @@
       "type": "place",
       "countryCode": "GR",
       "name": {
-        "en": "Santorini"
+        "en": "Santorini",
+        "de": "Santorin",
+        "it": "Santorini",
+        "es": "Santorini",
+        "fr": "Santorin",
+        "pt": "Santorini"
       },
       "coordinates": {
         "lat": 36.3932,

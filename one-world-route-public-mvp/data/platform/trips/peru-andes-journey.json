@@ -72,7 +72,12 @@
       "type": "place",
       "countryCode": "PE",
       "name": {
-        "en": "Lima"
+        "en": "Lima",
+        "de": "Lima",
+        "it": "Lima",
+        "es": "Lima",
+        "fr": "Lima",
+        "pt": "Lima"
       },
       "coordinates": {
         "lat": -12.0464,
@@ -85,7 +90,12 @@
       "type": "place",
       "countryCode": "PE",
       "name": {
-        "en": "Cusco"
+        "en": "Cusco",
+        "de": "Cusco",
+        "it": "Cusco",
+        "es": "Cusco",
+        "fr": "Cusco",
+        "pt": "Cusco"
       },
       "coordinates": {
         "lat": -13.5319,
@@ -98,7 +108,12 @@
       "type": "place",
       "countryCode": "PE",
       "name": {
-        "en": "Sacred Valley"
+        "en": "Sacred Valley",
+        "de": "Heiliges Tal",
+        "it": "Valle Sacra",
+        "es": "Valle Sagrado",
+        "fr": "Vallée sacrée",
+        "pt": "Vale Sagrado"
       },
       "coordinates": {
         "lat": -13.3333,
@@ -111,7 +126,12 @@
       "type": "place",
       "countryCode": "PE",
       "name": {
-        "en": "Machu Picchu"
+        "en": "Machu Picchu",
+        "de": "Machu Picchu",
+        "it": "Machu Picchu",
+        "es": "Machu Picchu",
+        "fr": "Machu Picchu",
+        "pt": "Machu Picchu"
       },
       "coordinates": {
         "lat": -13.1631,
@@ -124,7 +144,12 @@
       "type": "place",
       "countryCode": "PE",
       "name": {
-        "en": "Puno"
+        "en": "Puno",
+        "de": "Puno",
+        "it": "Puno",
+        "es": "Puno",
+        "fr": "Puno",
+        "pt": "Puno"
       },
       "coordinates": {
         "lat": -15.8402,

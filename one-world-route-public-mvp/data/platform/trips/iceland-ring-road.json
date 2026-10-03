@@ -72,7 +72,12 @@
       "type": "place",
       "countryCode": "IS",
       "name": {
-        "en": "Reykjavík"
+        "en": "Reykjavík",
+        "de": "Reykjavík",
+        "it": "Reykjavík",
+        "es": "Reykjavík",
+        "fr": "Reykjavík",
+        "pt": "Reykjavík"
       },
       "coordinates": {
         "lat": 64.1466,
@@ -85,7 +90,12 @@
       "type": "place",
       "countryCode": "IS",
       "name": {
-        "en": "Vík"
+        "en": "Vík",
+        "de": "Vík",
+        "it": "Vík",
+        "es": "Vík",
+        "fr": "Vík",
+        "pt": "Vík"
       },
       "coordinates": {
         "lat": 63.4194,
@@ -98,7 +108,12 @@
       "type": "place",
       "countryCode": "IS",
       "name": {
-        "en": "Jökulsárlón"
+        "en": "Jökulsárlón",
+        "de": "Jökulsárlón",
+        "it": "Jökulsárlón",
+        "es": "Jökulsárlón",
+        "fr": "Jökulsárlón",
+        "pt": "Jökulsárlón"
       },
       "coordinates": {
         "lat": 64.0489,
@@ -111,7 +126,12 @@
       "type": "place",
       "countryCode": "IS",
       "name": {
-        "en": "Egilsstaðir"
+        "en": "Egilsstaðir",
+        "de": "Egilsstaðir",
+        "it": "Egilsstaðir",
+        "es": "Egilsstaðir",
+        "fr": "Egilsstaðir",
+        "pt": "Egilsstaðir"
       },
       "coordinates": {
         "lat": 65.2669,
@@ -124,7 +144,12 @@
       "type": "place",
       "countryCode": "IS",
       "name": {
-        "en": "Akureyri"
+        "en": "Akureyri",
+        "de": "Akureyri",
+        "it": "Akureyri",
+        "es": "Akureyri",
+        "fr": "Akureyri",
+        "pt": "Akureyri"
       },
       "coordinates": {
         "lat": 65.6885,
@@ -137,7 +162,12 @@
       "type": "place",
       "countryCode": "IS",
       "name": {
-        "en": "Snæfellsnes"
+        "en": "Snæfellsnes",
+        "de": "Snæfellsnes",
+        "it": "Snæfellsnes",
+        "es": "Snæfellsnes",
+        "fr": "Snæfellsnes",
+        "pt": "Snæfellsnes"
       },
       "coordinates": {
         "lat": 64.799,

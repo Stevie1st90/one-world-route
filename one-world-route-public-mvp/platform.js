@@ -454,6 +454,7 @@
       const explicitLang=new URLSearchParams(location.search).get('lang');
       if(!SUPPORTED_LOCALES.includes(String(explicitLang||'').toLowerCase())&&profile.language&&SUPPORTED_LOCALES.includes(profile.language))locale=profile.language;
       MyTrips.configure({
+        TripCompare,
         catalog,
         TripTools,
         TripPlanning,

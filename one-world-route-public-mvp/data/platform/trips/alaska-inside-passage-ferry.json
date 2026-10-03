@@ -72,7 +72,12 @@
       "type": "place",
       "countryCode": "US",
       "name": {
-        "en": "Ketchikan"
+        "en": "Ketchikan",
+        "de": "Ketchikan",
+        "it": "Ketchikan",
+        "es": "Ketchikan",
+        "fr": "Ketchikan",
+        "pt": "Ketchikan"
       },
       "coordinates": {
         "lat": 55.3422,
@@ -84,7 +89,12 @@
       "type": "place",
       "countryCode": "US",
       "name": {
-        "en": "Wrangell"
+        "en": "Wrangell",
+        "de": "Wrangell",
+        "it": "Wrangell",
+        "es": "Wrangell",
+        "fr": "Wrangell",
+        "pt": "Wrangell"
       },
       "coordinates": {
         "lat": 56.4708,
@@ -96,7 +106,12 @@
       "type": "place",
       "countryCode": "US",
       "name": {
-        "en": "Petersburg"
+        "en": "Petersburg",
+        "de": "Petersburg",
+        "it": "Petersburg",
+        "es": "Petersburg",
+        "fr": "Petersburg",
+        "pt": "Petersburg"
       },
       "coordinates": {
         "lat": 56.8125,
@@ -108,7 +123,12 @@
       "type": "place",
       "countryCode": "US",
       "name": {
-        "en": "Juneau"
+        "en": "Juneau",
+        "de": "Juneau",
+        "it": "Juneau",
+        "es": "Juneau",
+        "fr": "Juneau",
+        "pt": "Juneau"
       },
       "coordinates": {
         "lat": 58.3019,
@@ -120,7 +140,12 @@
       "type": "place",
       "countryCode": "US",
       "name": {
-        "en": "Haines"
+        "en": "Haines",
+        "de": "Haines",
+        "it": "Haines",
+        "es": "Haines",
+        "fr": "Haines",
+        "pt": "Haines"
       },
       "coordinates": {
         "lat": 59.2358,
@@ -132,7 +157,12 @@
       "type": "place",
       "countryCode": "US",
       "name": {
-        "en": "Skagway"
+        "en": "Skagway",
+        "de": "Skagway",
+        "it": "Skagway",
+        "es": "Skagway",
+        "fr": "Skagway",
+        "pt": "Skagway"
       },
       "coordinates": {
         "lat": 59.4583,

@@ -72,7 +72,12 @@
       "type": "place",
       "countryCode": "AU",
       "name": {
-        "en": "Hobart"
+        "en": "Hobart",
+        "de": "Hobart",
+        "it": "Hobart",
+        "es": "Hobart",
+        "fr": "Hobart",
+        "pt": "Hobart"
       },
       "coordinates": {
         "lat": -42.8821,
@@ -84,7 +89,12 @@
       "type": "place",
       "countryCode": "AU",
       "name": {
-        "en": "Freycinet"
+        "en": "Freycinet",
+        "de": "Freycinet",
+        "it": "Freycinet",
+        "es": "Freycinet",
+        "fr": "Freycinet",
+        "pt": "Freycinet"
       },
       "coordinates": {
         "lat": -42.12,
@@ -96,7 +106,12 @@
       "type": "place",
       "countryCode": "AU",
       "name": {
-        "en": "Bay of Fires"
+        "en": "Bay of Fires",
+        "de": "Bay of Fires",
+        "it": "Bay of Fires",
+        "es": "Bay of Fires",
+        "fr": "Bay of Fires",
+        "pt": "Bay of Fires"
       },
       "coordinates": {
         "lat": -41.25,
@@ -108,7 +123,12 @@
       "type": "place",
       "countryCode": "AU",
       "name": {
-        "en": "Launceston"
+        "en": "Launceston",
+        "de": "Launceston",
+        "it": "Launceston",
+        "es": "Launceston",
+        "fr": "Launceston",
+        "pt": "Launceston"
       },
       "coordinates": {
         "lat": -41.4332,
@@ -120,7 +140,12 @@
       "type": "place",
       "countryCode": "AU",
       "name": {
-        "en": "Cradle Mountain"
+        "en": "Cradle Mountain",
+        "de": "Cradle Mountain",
+        "it": "Cradle Mountain",
+        "es": "Cradle Mountain",
+        "fr": "Cradle Mountain",
+        "pt": "Cradle Mountain"
       },
       "coordinates": {
         "lat": -41.685,
@@ -132,7 +157,12 @@
       "type": "place",
       "countryCode": "AU",
       "name": {
-        "en": "Strahan"
+        "en": "Strahan",
+        "de": "Strahan",
+        "it": "Strahan",
+        "es": "Strahan",
+        "fr": "Strahan",
+        "pt": "Strahan"
       },
       "coordinates": {
         "lat": -42.151,
@@ -144,7 +174,12 @@
       "type": "place",
       "countryCode": "AU",
       "name": {
-        "en": "Lake St Clair"
+        "en": "Lake St Clair",
+        "de": "Lake St Clair",
+        "it": "Lago St Clair",
+        "es": "Lago St Clair",
+        "fr": "Lac St Clair",
+        "pt": "Lago St Clair"
       },
       "coordinates": {
         "lat": -42.112,
@@ -156,7 +191,12 @@
       "type": "place",
       "countryCode": "AU",
       "name": {
-        "en": "Hobart"
+        "en": "Hobart",
+        "de": "Hobart",
+        "it": "Hobart",
+        "es": "Hobart",
+        "fr": "Hobart",
+        "pt": "Hobart"
       },
       "coordinates": {
         "lat": -42.8821,

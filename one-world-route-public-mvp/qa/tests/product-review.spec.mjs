@@ -3,16 +3,21 @@ import {readFile} from 'node:fs/promises';
 
 // Fixed shared-surface coverage. Catalog size does not add browser cases.
 test('@product-review consumer discovery, personal workspace, journey and sharing',async({page,isMobile},info)=>{
-  test.setTimeout(180000);
+  test.setTimeout(360000);
+  page.setDefaultTimeout(12000);
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
-  const shot=async name=>{await page.screenshot({path:info.outputPath(name+'.png')});};
+  const shot=async name=>{
+    await page.evaluate(()=>window.__ONE_WORLD_ROUTE_GLOBE__?.pauseAnimation?.());
+    try{await page.screenshot({path:info.outputPath(name+'.png'),animations:'disabled',timeout:60000});}
+    finally{await page.evaluate(()=>window.__ONE_WORLD_ROUTE_GLOBE__?.resumeAnimation?.());}
+  };
   const fit=async()=>{expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);};
   const closeModal=async id=>{await page.locator('#'+id+' .platform-x').click();await expect(page.locator('#'+id)).toHaveClass(/hidden/);};
   await page.goto('/?lang=de');
   await expect(page.locator('#platformHome')).toBeVisible();
   await expect(page.locator('body')).not.toHaveClass(/platform-booting/);
   await shot('homepage');await fit();
-  await page.locator('.platform-home-overflow summary').click();await shot('home-menu');
+  if(isMobile)await page.locator('.platform-home-overflow summary').click();await shot('home-menu');
   await page.locator('#platformHomeFeatured').scrollIntoViewIfNeeded();await shot('featured-cards');
   await page.locator('.platform-home-collections').scrollIntoViewIfNeeded();await shot('collections');
   await page.locator('.platform-home-destinations summary').click();await page.locator('.platform-home-destinations').scrollIntoViewIfNeeded();await shot('destinations-navigation');
@@ -29,8 +34,13 @@ test('@product-review consumer discovery, personal workspace, journey and sharin
   await page.locator('#platformHomeResults [data-home-compare-trip]').nth(1).click();
   await page.locator('[data-home-compare-open]').click();await shot('compare');
   await page.locator('.platform-modal:not(.hidden) .platform-x').click();
-  await page.locator('[data-home-mytrips]').click();await expect(page.locator('#platformMyTripsModal')).toBeVisible();await shot('saved-boards');await closeModal('platformMyTripsModal');
-  await page.locator('[data-home-traveller]').click();await shot('traveller-context');await closeModal('platformTravellerModal');
+  await page.locator('[data-home-mytrips]').click();await expect(page.locator('#platformMyTripsModal')).toBeVisible();await shot('saved-boards');
+  await page.locator('[data-board-name]').fill('Sommerreisen');await page.locator('[data-board-form] button').click();
+  await expect(page.locator('[data-board-select]')).toContainText('Sommerreisen');await shot('named-board');
+  await page.locator('[data-board-select]').selectOption('');await page.locator('[data-board-member]').first().check();
+  await page.locator('[data-board-select]').selectOption({label:'Sommerreisen (1)'});await expect(page.locator('[data-mytrip]')).toHaveCount(1);
+  await shot('board-with-journey');await closeModal('platformMyTripsModal');
+  await page.locator('[data-home-traveller]').first().click();await shot('traveller-context');await closeModal('platformTravellerModal');
   await page.goto('/?trip=japan-by-rail&lang=de');
   await expect(page.locator('body')).toHaveClass(/platform-regional-trip/);
   await expect(page.locator('body')).not.toHaveClass(/platform-booting/);
