@@ -1,0 +1,161 @@
+name: World showcase release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/world-showcase-release.yml'
+      - 'one-world-route-public-mvp/scripts/world-showcase-renderer.mjs'
+      - 'one-world-route-public-mvp/scripts/compose-world-showcase-cover.mjs'
+      - 'one-world-route-public-mvp/scripts/build-world-showcase-visual-spec.mjs'
+      - 'one-world-route-public-mvp/data/platform/world-showcase-visual.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: world-showcase-release
+  cancel-in-progress: false
+
+env:
+  RELEASE_BRANCH: world-195-full-bleed-release-v1
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: one-world-route-public-mvp
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+
+      - name: Determine whether a release is needed
+        id: preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          status="$(node -e "const s=require('./data/platform/world-showcase-visual.json');process.stdout.write(String(s.status||''))")"
+          if [[ "$status" == "render-ready" ]]; then
+            echo "release=true" >> "$GITHUB_OUTPUT"
+            echo "world-195 is render-ready"
+          else
+            echo "release=false" >> "$GITHUB_OUTPUT"
+            echo "world-195 status is '$status'; no release branch needed"
+          fi
+
+      - name: Verify target branch is unused
+        if: steps.preflight.outputs.release == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin
+          if git ls-remote --exit-code --heads origin "refs/heads/$RELEASE_BRANCH" >/dev/null 2>&1; then
+            echo "Remote release branch already exists: $RELEASE_BRANCH" >&2
+            exit 1
+          fi
+          git switch -c "$RELEASE_BRANCH"
+
+      - name: Install pinned renderer
+        if: steps.preflight.outputs.release == 'true'
+        run: npm ci
+
+      - name: Render and publish world-195
+        if: steps.preflight.outputs.release == 'true'
+        run: node scripts/compose-world-showcase-cover.mjs --publish=true --approved=true
+
+      - name: Release build
+        if: steps.preflight.outputs.release == 'true'
+        run: node scripts/release-build.mjs
+
+      - name: Targeted validation
+        if: steps.preflight.outputs.release == 'true'
+        run: |
+          node scripts/validate-platform-data.mjs
+          node scripts/validate-public-data.mjs
+          node scripts/audit-platform-media.mjs
+          node --test scripts/test-world-showcase-visual.mjs scripts/test-world-showcase-compositor.mjs scripts/test-platform-media.mjs
+
+      - name: Stage and verify deterministic release
+        if: steps.preflight.outputs.release == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd ..
+
+          paths=(
+            'one-world-route-public-mvp/assets/media/journeys/world-195/cover/v001'
+            'one-world-route-public-mvp/data/public-route.json'
+            'one-world-route-public-mvp/data/platform/generated-media.json'
+            'one-world-route-public-mvp/data/platform/world-showcase-visual.json'
+            'one-world-route-public-mvp/data/platform/trip-index.json'
+            'one-world-route-public-mvp/data/platform/visual-briefs.json'
+            'one-world-route-public-mvp/data/platform/visual-coverage.json'
+            'one-world-route-public-mvp/data/platform/graphics-backlog.json'
+            'one-world-route-public-mvp/data/platform/media-manifest.json'
+            'one-world-route-public-mvp/GRAPHICS_NEEDED.md'
+            'one-world-route-public-mvp/sitemap.xml'
+          )
+
+          for path in "${paths[@]}"; do
+            if [[ -e "$path" ]]; then
+              git add -- "$path"
+            fi
+          done
+
+          git diff --cached --check
+
+          for required in \
+            'one-world-route-public-mvp/data/public-route.json' \
+            'one-world-route-public-mvp/data/platform/generated-media.json' \
+            'one-world-route-public-mvp/data/platform/world-showcase-visual.json'; do
+            git diff --cached --name-only | grep -Fx "$required" >/dev/null || {
+              echo "Required release file was not staged: $required" >&2
+              exit 1
+            }
+          done
+
+          webp_count="$(git diff --cached --name-only | grep -E '^one-world-route-public-mvp/assets/media/journeys/world-195/cover/v001/.*\.webp$' | wc -l | tr -d ' ')"
+          if [[ "$webp_count" != "4" ]]; then
+            echo "Expected exactly four world-195 cover WebPs; staged $webp_count" >&2
+            exit 1
+          fi
+
+          for drift in \
+            one-world-route-public-mvp/features.bundle.js \
+            one-world-route-public-mvp/features.bundle.css \
+            one-world-route-public-mvp/core.bundle.js \
+            one-world-route-public-mvp/core.bundle.css; do
+            git restore --worktree -- "$drift" 2>/dev/null || true
+          done
+
+          unexpected="$(git status --porcelain --untracked-files=all | grep -v '^' || true)"
+          # At this point expected task files are staged. Any unstaged tracked/untracked
+          # residue means the deterministic release allowlist is incomplete.
+          residue="$(git diff --name-only; git ls-files --others --exclude-standard)"
+          if [[ -n "$residue" ]]; then
+            echo "Unexpected unstaged release residue:" >&2
+            echo "$residue" >&2
+            exit 1
+          fi
+
+      - name: Commit and push release branch
+        if: steps.preflight.outputs.release == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd ..
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Publish full-bleed world-195 Journey cover'
+          git push origin "HEAD:refs/heads/$RELEASE_BRANCH"
+          echo "REMOTE_BRANCH=$RELEASE_BRANCH"
+          echo "COMMIT=$(git rev-parse HEAD)"
+          echo 'JOURNEY=world-195'
+          echo 'COVER=journey--world-195--cover--16x9--v001'

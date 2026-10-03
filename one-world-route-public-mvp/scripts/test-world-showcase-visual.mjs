@@ -6,12 +6,13 @@ import {buildVisualBrief} from './visual-brief-model.mjs';
 const ROOT=new URL('../',import.meta.url);
 const read=async p=>JSON.parse(await readFile(new URL(p,ROOT),'utf8'));
 
-const [catalog,publicRoute,routeVisuals,spec,applyRunner]=await Promise.all([
+const [catalog,publicRoute,routeVisuals,spec,applyRunner,releaseWorkflow]=await Promise.all([
   read('data/platform/trips.json'),
   read('data/public-route.json'),
   read('data/platform/route-visuals.json'),
   read('data/platform/world-showcase-visual.json'),
-  readFile(new URL('scripts/apply-world-showcase.ps1',ROOT),'utf8')
+  readFile(new URL('scripts/apply-world-showcase.ps1',ROOT),'utf8'),
+  readFile(new URL('../.github/workflows/world-showcase-release.yml',ROOT),'utf8')
 ]);
 
 const meta=catalog.trips.find(t=>t.id==='world-195');
@@ -57,4 +58,13 @@ test('world showcase release runner is isolated and publishes exactly four respo
   assert.match(applyRunner,/Expected exactly four world-195 cover WebPs/);
   assert.match(applyRunner,/HEAD:refs\/heads\//);
   assert.doesNotMatch(applyRunner,/--base=/);
+});
+
+test('GitHub world showcase release automation is deterministic and branch-scoped',()=>{
+  assert.match(releaseWorkflow,/status.*render-ready/s);
+  assert.match(releaseWorkflow,/compose-world-showcase-cover\.mjs --publish=true --approved=true/);
+  assert.match(releaseWorkflow,/Expected exactly four world-195 cover WebPs/);
+  assert.match(releaseWorkflow,/world-195-full-bleed-release-v1/);
+  assert.match(releaseWorkflow,/permissions:\s*\n\s*contents: write/);
+  assert.doesNotMatch(releaseWorkflow,/--base=/);
 });
