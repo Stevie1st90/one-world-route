@@ -5,6 +5,26 @@ import {tmpdir} from 'node:os';
 import {join,resolve} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import sharp from 'sharp';
+import {WORLD_SHOWCASE_STYLE} from './world-showcase-renderer.mjs';
+
+test('world showcase v5 tuning contract remains fixed',()=>{
+  assert.deepEqual(WORLD_SHOWCASE_STYLE,{
+    version:'premium-flat-world-v5',
+    projection:'robinson-like-compromise-v5',
+    mapWidthFraction:.84,
+    mapHeightFraction:.62,
+    mapOpacity:.64,
+    edgeFadeStart:.96,
+    polarFadeStart:.93,
+    antarcticFadeStart:-60,
+    antarcticFadeEnd:-82,
+    routeDetailedOpacity:.90,
+    routeSchematicOpacity:.65,
+    routeGlowOpacity:.11,
+    seamPixelJumpFraction:.30,
+    seamLongitudeJumpDegrees:170
+  });
+});
 
 test('world showcase compositor produces four deterministic preview variants without publishing',async()=>{
   const temp=await mkdtemp(join(tmpdir(),'owr-world-showcase-'));

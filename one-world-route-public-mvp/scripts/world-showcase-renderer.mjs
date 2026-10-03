@@ -5,6 +5,23 @@ const require=createRequire(import.meta.url);
 const DEG=Math.PI/180;
 const CENTRAL_MERIDIAN=12;
 
+export const WORLD_SHOWCASE_STYLE=Object.freeze({
+  version:'premium-flat-world-v5',
+  projection:'robinson-like-compromise-v5',
+  mapWidthFraction:.84,
+  mapHeightFraction:.62,
+  mapOpacity:.64,
+  edgeFadeStart:.96,
+  polarFadeStart:.93,
+  antarcticFadeStart:-60,
+  antarcticFadeEnd:-82,
+  routeDetailedOpacity:.90,
+  routeSchematicOpacity:.65,
+  routeGlowOpacity:.11,
+  seamPixelJumpFraction:.30,
+  seamLongitudeJumpDegrees:170
+});
+
 const routePalette={
   '#67c9ef':'#75d0e7',
   '#bca0ed':'#9eb4d9',
@@ -79,9 +96,12 @@ const envelopeAlpha=(x,y,layout)=>{
   const edge=Math.abs(xNorm)/width;
   if(edge>=1)return 0;
 
-  const side=1-smoothstep(.91,1,edge);
-  const polar=1-smoothstep(.88,1,Math.abs(yNorm));
-  const antarctic=lat<-63?1-smoothstep(-63,-86,lat):1;
+  // Narrow fade: the world reads as a map silhouette, not a glowing capsule.
+  const side=1-smoothstep(WORLD_SHOWCASE_STYLE.edgeFadeStart,1,edge);
+  const polar=1-smoothstep(WORLD_SHOWCASE_STYLE.polarFadeStart,1,Math.abs(yNorm));
+  const antarctic=lat<WORLD_SHOWCASE_STYLE.antarcticFadeStart
+    ?1-smoothstep(WORLD_SHOWCASE_STYLE.antarcticFadeStart,WORLD_SHOWCASE_STYLE.antarcticFadeEnd,lat)
+    :1;
   return clamp01(side*polar*antarctic);
 };
 
@@ -103,8 +123,8 @@ export async function renderPremiumWorldOverlay({sourcePath,route,width,height})
   const layout={
     cx:width*.5,
     cy:height*.515,
-    mapW:width*.92,
-    mapH:height*.69
+    mapW:width*WORLD_SHOWCASE_STYLE.mapWidthFraction,
+    mapH:height*WORLD_SHOWCASE_STYLE.mapHeightFraction
   };
 
   const {data:source,info}=await sharp(sourcePath)
@@ -156,7 +176,7 @@ export async function renderPremiumWorldOverlay({sourcePath,route,width,height})
       pixels[at]=Math.round((desat[0]*.72+15)*polarShade);
       pixels[at+1]=Math.round((desat[1]*.77+27)*polarShade);
       pixels[at+2]=Math.round((desat[2]*.83+38)*polarShade);
-      pixels[at+3]=Math.round(255*.77*alpha);
+      pixels[at+3]=Math.round(255*WORLD_SHOWCASE_STYLE.mapOpacity*alpha);
 
       mask[at]=255;
       mask[at+1]=255;
@@ -166,12 +186,12 @@ export async function renderPremiumWorldOverlay({sourcePath,route,width,height})
   }
 
   const defs=[
-    '<filter id="routeGlow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="'+fmt(Math.max(.75,width/1900))+'"/></filter>'
+    '<filter id="routeGlow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="'+fmt(Math.max(.65,width/2200))+'"/></filter>'
   ];
   const paths=[];
   let id=0;
   const core=Math.max(1.15,width/900);
-  const glow=Math.max(2.6,width/470);
+  const glow=Math.max(2.2,width/560);
 
   const draw=(coords,line)=>{
     if(coords.length<2)return;
@@ -180,9 +200,9 @@ export async function renderPremiumWorldOverlay({sourcePath,route,width,height})
     const c1=mix(safeColor(line.color),'#d7eef2',.09);
     const c2=mix(safeColor(line.endColor),'#d7eef2',.09);
     defs.push('<linearGradient id="'+gid+'" gradientUnits="userSpaceOnUse" x1="'+fmt(coords[0][0])+'" y1="'+fmt(coords[0][1])+'" x2="'+fmt(coords.at(-1)[0])+'" y2="'+fmt(coords.at(-1)[1])+'"><stop stop-color="'+c1+'"/><stop offset="1" stop-color="'+c2+'"/></linearGradient>');
-    const opacity=line.schematic?.57:.82;
+    const opacity=line.schematic?WORLD_SHOWCASE_STYLE.routeSchematicOpacity:WORLD_SHOWCASE_STYLE.routeDetailedOpacity;
     paths.push(
-      '<path d="'+d+'" fill="none" stroke="url(#'+gid+')" stroke-opacity=".17" stroke-width="'+fmt(glow)+'" filter="url(#routeGlow)"/>',
+      '<path d="'+d+'" fill="none" stroke="url(#'+gid+')" stroke-opacity="'+WORLD_SHOWCASE_STYLE.routeGlowOpacity+'" stroke-width="'+fmt(glow)+'" filter="url(#routeGlow)"/>',
       '<path d="'+d+'" fill="none" stroke="url(#'+gid+')" stroke-opacity="'+opacity+'" stroke-width="'+fmt(core)+'"/>'
     );
   };
@@ -191,15 +211,21 @@ export async function renderPremiumWorldOverlay({sourcePath,route,width,height})
     const points=dense(line.coordinates);
     let run=[];
     let previous=null;
+    let previousLon=null;
     for(const p of points){
       const q=project(p,layout);
       const xy=[q[0],q[1]];
-      if(previous&&Math.abs(xy[0]-previous[0])>layout.mapW*.42){
+      const seamJump=previous&&(
+        Math.abs(xy[0]-previous[0])>layout.mapW*WORLD_SHOWCASE_STYLE.seamPixelJumpFraction||
+        (previousLon!==null&&Math.abs(q[2].lon-previousLon)>WORLD_SHOWCASE_STYLE.seamLongitudeJumpDegrees)
+      );
+      if(seamJump){
         draw(run,line);
         run=[];
       }
       run.push(xy);
       previous=xy;
+      previousLon=q[2].lon;
     }
     draw(run,line);
   }
@@ -232,7 +258,7 @@ export async function renderPremiumWorldOverlay({sourcePath,route,width,height})
 
   const atmosphere=Buffer.from(
     '<svg xmlns="http://www.w3.org/2000/svg" width="'+width+'" height="'+height+'">'+
-      '<defs><radialGradient id="a" cx=".5" cy=".52" r=".56"><stop offset=".45" stop-color="#79d7ea" stop-opacity=".045"/><stop offset=".82" stop-color="#4ba2bc" stop-opacity=".018"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>'+
+      '<defs><radialGradient id="a" cx=".5" cy=".52" r=".56"><stop offset=".45" stop-color="#79d7ea" stop-opacity=".03"/><stop offset=".82" stop-color="#4ba2bc" stop-opacity=".012"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>'+
       '<ellipse cx="'+fmt(layout.cx)+'" cy="'+fmt(layout.cy)+'" rx="'+fmt(layout.mapW*.49)+'" ry="'+fmt(layout.mapH*.54)+'" fill="url(#a)"/>'+
     '</svg>'
   );
