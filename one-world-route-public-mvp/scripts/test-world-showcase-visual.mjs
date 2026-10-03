@@ -24,25 +24,23 @@ test('world showcase preserves the 195/194 public invariants',()=>{
   assert.equal(spec.invariants.internationalLegs,194);
 });
 
-test('world showcase AI prompt is compact and route-free',()=>{
-  assert.equal(brief.productionStrategy,'hybrid-space-base-plus-factual-flat-world');
+test('world showcase no longer depends on image generation',()=>{
+  assert.equal(brief.productionStrategy,'deterministic-full-bleed-world-route');
   assert.equal(brief.routeOverlayRequired,true);
   assert.equal(brief.routeOverlayAssetId,'auto-route-world-195');
-  assert.ok(brief.imagePrompt.length<1200);
-  assert.doesNotMatch(brief.imagePrompt,/Geography context:/);
-  assert.doesNotMatch(brief.imagePrompt,/\bDE,\s*LU,\s*BE\b/);
-  assert.match(brief.imagePrompt,/do not draw a standalone Earth globe/i);
-  assert.match(brief.imagePrompt,/flat world map/i);
-  assert.match(brief.imagePrompt,/factual 195-country journey route/i);
+  assert.equal(brief.imagePrompt,'');
+  assert.equal(spec.status,'render-ready');
+  assert.equal(spec.baseImage,undefined);
 });
 
-test('world showcase uses the verified route-render layer',()=>{
+test('world showcase uses the verified full-bleed factual renderer',()=>{
   assert.equal(spec.factualLayer.assetId,'auto-route-world-195');
   assert.equal(spec.factualLayer.geometrySource,'data/public-route.json');
   assert.equal(spec.factualLayer.basemapSource,'data/visual-sources/natural-earth-relief.webp');
-  assert.equal(spec.factualLayer.renderStyle,'premium-flat-world-v5');
-  assert.equal(spec.factualLayer.projection,'robinson-like-compromise-v5');
-  assert.equal(spec.factualLayer.edgeBlend,'soft-envelope');
+  assert.equal(spec.factualLayer.renderStyle,'premium-full-bleed-world-v1');
+  assert.equal(spec.factualLayer.projection,'equirectangular-full-bleed');
+  assert.equal(spec.factualLayer.fullBleed,true);
+  assert.equal(spec.factualLayer.spaceBackground,false);
   assert.equal(spec.factualLayer.visibleContainer,false);
   assert.equal(spec.factualLayer.routeVisualReferenceOnly,true);
   assert.equal(spec.factualLayer.asset,route.media.asset);
