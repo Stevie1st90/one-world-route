@@ -3,10 +3,16 @@
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
   const $=(s,r=document)=>r.querySelector(s);
   const dialogStack=[];
+  let dialogGlobe=null;
   function syncDialogStack(){
     const top=dialogStack.at(-1);
     for(const modal of document.querySelectorAll('[data-platform-dialog]'))modal.inert=Boolean(top&&modal!==top);
     const app=$('#app');if(app)app.inert=Boolean(top);
+    // The full-screen dialog obscures the globe. Keep nested dialogs paused
+    // until the final dialog closes, leaving rendering time for their controls.
+    const globe=window.__ONE_WORLD_ROUTE_GLOBE__;
+    if(top&&globe!==dialogGlobe){dialogGlobe?.resumeAnimation?.();globe?.pauseAnimation?.();dialogGlobe=globe||null}
+    else if(!top&&dialogGlobe){dialogGlobe.resumeAnimation?.();dialogGlobe=null}
   }
 
   function ensureDialog(id,cls='platform-modal'){

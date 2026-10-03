@@ -13,7 +13,8 @@
   const caption=(meta,d)=>d.local(meta.title)+'\n'+facts(meta,d.t)+'\n'+d.t('exploreFullJourney')+' — ONE WORLD ROUTE\n'+d.url(meta);
   async function exportScene({meta,scene,media,index,d}){
     const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1920;
-    const ctx=canvas.getContext('2d');if(!ctx)throw Error('Canvas unavailable');
+    // PNG readback should not compete with the WebGL globe on the GPU.
+    const ctx=canvas.getContext('2d',{willReadFrequently:true});if(!ctx)throw Error('Canvas unavailable');
     ctx.fillStyle='#081923';ctx.fillRect(0,0,1080,1920);
     if(media.type==='image'){
       const img=new Image();img.src=media.asset;await img.decode();

@@ -2666,10 +2666,16 @@
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
   const $=(s,r=document)=>r.querySelector(s);
   const dialogStack=[];
+  let dialogGlobe=null;
   function syncDialogStack(){
     const top=dialogStack.at(-1);
     for(const modal of document.querySelectorAll('[data-platform-dialog]'))modal.inert=Boolean(top&&modal!==top);
     const app=$('#app');if(app)app.inert=Boolean(top);
+    // The full-screen dialog obscures the globe. Keep nested dialogs paused
+    // until the final dialog closes, leaving rendering time for their controls.
+    const globe=window.__ONE_WORLD_ROUTE_GLOBE__;
+    if(top&&globe!==dialogGlobe){dialogGlobe?.resumeAnimation?.();globe?.pauseAnimation?.();dialogGlobe=globe||null}
+    else if(!top&&dialogGlobe){dialogGlobe.resumeAnimation?.();dialogGlobe=null}
   }
 
   function ensureDialog(id,cls='platform-modal'){
@@ -4359,7 +4365,8 @@
   const caption=(meta,d)=>d.local(meta.title)+'\n'+facts(meta,d.t)+'\n'+d.t('exploreFullJourney')+' — ONE WORLD ROUTE\n'+d.url(meta);
   async function exportScene({meta,scene,media,index,d}){
     const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1920;
-    const ctx=canvas.getContext('2d');if(!ctx)throw Error('Canvas unavailable');
+    // PNG readback should not compete with the WebGL globe on the GPU.
+    const ctx=canvas.getContext('2d',{willReadFrequently:true});if(!ctx)throw Error('Canvas unavailable');
     ctx.fillStyle='#081923';ctx.fillRect(0,0,1080,1920);
     if(media.type==='image'){
       const img=new Image();img.src=media.asset;await img.decode();

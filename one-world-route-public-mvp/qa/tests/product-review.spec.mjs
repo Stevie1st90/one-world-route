@@ -7,9 +7,15 @@ test('@product-review consumer discovery, personal workspace, journey and sharin
   page.setDefaultTimeout(12000);await page.emulateMedia({reducedMotion:'reduce'});
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   const shot=async name=>{
+    await page.evaluate(()=>{
+      for(const img of document.images){const r=img.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight&&r.right>0&&r.left<innerWidth)img.loading='eager'}
+    });
+    await expect.poll(()=>page.evaluate(()=>[...document.images].every(img=>{
+      const r=img.getBoundingClientRect();return r.bottom<=0||r.top>=innerHeight||r.right<=0||r.left>=innerWidth||img.complete&&img.naturalWidth>0;
+    }))).toBe(true);
     await page.evaluate(()=>window.__ONE_WORLD_ROUTE_GLOBE__?.pauseAnimation?.());
     try{await page.screenshot({path:info.outputPath(name+'.png'),animations:'disabled',timeout:60000});}
-    finally{await page.evaluate(()=>window.__ONE_WORLD_ROUTE_GLOBE__?.resumeAnimation?.());}
+    finally{await page.evaluate(()=>{if(!document.querySelector('#app')?.inert)window.__ONE_WORLD_ROUTE_GLOBE__?.resumeAnimation?.()});}
   };
   const fit=async()=>{expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);};
   const closeModal=async id=>{await page.locator('#'+id+' .platform-x').click();await expect(page.locator('#'+id)).toHaveClass(/hidden/);};
@@ -50,7 +56,7 @@ test('@product-review consumer discovery, personal workspace, journey and sharin
   await shot('share-menu');
   await page.locator('[data-share-story]').click();await expect(page.locator('.social-story-stage')).toBeVisible();
   for(let i=0;i<5;i++){await shot('social-story-'+(i+1));if(i<4)await page.locator('[data-social-next]').click();}
-  const downloadPromise=page.waitForEvent('download');await page.locator('[data-social-download]').click();
+  const downloadPromise=page.waitForEvent('download',{timeout:30000});await page.locator('[data-social-download]').click();
   const download=await downloadPromise;await download.saveAs(info.outputPath('exported-story.png'));
   const png=await readFile(info.outputPath('exported-story.png'));expect(png.readUInt32BE(16)).toBe(1080);expect(png.readUInt32BE(20)).toBe(1920);
   await closeModal('platformSocialStory');await closeModal('platformShareMenu');
@@ -58,7 +64,7 @@ test('@product-review consumer discovery, personal workspace, journey and sharin
   if(isMobile)await page.locator('#closeDetails').click();
   await page.locator('[data-journey-mode="story"]').click();await shot('story-mode');
   await page.locator('#platformStoryExit').click();
-  await page.locator('[data-journey-mode="terrain"]').click();await expect(page.locator('#terrainMap canvas')).toBeVisible();await expect.poll(()=>page.evaluate(()=>window.ONE_WORLD_PLATFORM_MODULES.terrain.isReady()),{timeout:45000}).toBe(true);await shot('terrain');
+  await page.locator('[data-journey-mode="terrain"]').click();await expect.poll(()=>page.evaluate(()=>window.ONE_WORLD_PLATFORM_MODULES.terrain.isReady()),{timeout:45000}).toBe(true);await expect(page.locator('#terrainMap canvas')).toBeVisible();await shot('terrain');
   expect(errors).toEqual([]);
 });
 
