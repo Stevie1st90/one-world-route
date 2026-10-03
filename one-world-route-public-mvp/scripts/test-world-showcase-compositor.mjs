@@ -23,8 +23,8 @@ test('world showcase compositor produces four deterministic preview variants wit
     assert.equal(report.tripId,'world-195');
     assert.equal(report.invariants.countries,195);
     assert.equal(report.invariants.internationalLegs,194);
-    assert.equal(report.renderStyle,'premium-flat-world-v4');
-    assert.equal(report.projection,'robinson-like-compromise-v4');
+    assert.equal(report.renderStyle,'premium-flat-world-v5');
+    assert.equal(report.projection,'robinson-like-compromise-v5');
     assert.deepEqual(report.variants.map(v=>v.width),[480,800,1200,1600]);
     for(const variant of report.variants){
       const meta=await sharp(variant.asset).metadata();
