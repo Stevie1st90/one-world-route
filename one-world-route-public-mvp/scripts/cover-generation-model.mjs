@@ -67,7 +67,7 @@ export function buildCoverBatch({
 
   let candidates=(briefs||[]).filter(brief=>
     !published.has(brief.tripId)&&
-    (includeSpecial||!special.has(brief.tripId))&&
+    !special.has(brief.tripId)&&
     brief.productionStrategy!=='deterministic-full-bleed-world-route'
   );
   if(family)candidates=candidates.filter(brief=>brief.visualFamily===family);
@@ -136,47 +136,62 @@ export function buildCoverBatch({
     requested:max,
     generated:items.length,
     distinctPromptFingerprints:new Set(items.map(x=>x.promptSha256)).size,
-    includeSpecial,
-    excludedSpecial:[...special].filter(id=>!includeSpecial&&!published.has(id)),
+    includeSpecialRequested:Boolean(includeSpecial),
+    specialJourneysAlwaysExcluded:true,
+    excludedSpecial:[...special].filter(id=>!published.has(id)),
     items
   };
 
-  const operatorPrompt=[
-    '# ONE WORLD ROUTE — COVER BATCH EXECUTION',
-    '',
-    `Batch: ${resolvedBatchId}`,
-    `Journeys: ${items.length}`,
-    `System: ${COVER_SYSTEM_VERSION}`,
-    '',
-    '## NON-NEGOTIABLE DISPATCH CONTRACT',
-    '',
-    `Execute exactly ${items.length} SEPARATE image-generation tool calls from this single operator instruction.`,
-    'Each tool call must generate exactly ONE image.',
-    `Do NOT make one image-generation call with n=${items.length}.`,
-    'Every call must receive its own explicit prompt below; never infer later calls from the first prompt.',
-    'Before every new call, reset subject, geography, transport, composition and landmarks. Only the shared premium ONE WORLD ROUTE house style may carry across calls.',
-    'Do NOT reuse the first Journey prompt, source image or scene for later calls.',
-    'After each successful call, advance automatically. Do not ask for approval between items.',
-    `Stop immediately after call ${items.length}.`,
-    '',
-    `The batch is valid only if the call sequence is 1→2→…→${items.length}, every call uses its matching prompt, and all ${items.length} prompt fingerprints are distinct.`,
-    '',
-    ...items.flatMap(item=>[
-      `## CALL ${String(item.sequence).padStart(2,'0')} / ${String(items.length).padStart(2,'0')} — ${item.title}`,
-      `tripId: \`${item.tripId}\``,
-      `promptSha256: \`${item.promptSha256}\``,
-      `expected source filename: \`${item.sourceFilename}\``,
+  const operatorPrompt=items.length===0
+    ?[
+      '# ONE WORLD ROUTE — COVER BATCH EXECUTION',
       '',
-      item.prompt,
+      `Batch: ${resolvedBatchId}`,
+      'Journeys: 0',
+      `System: ${COVER_SYSTEM_VERSION}`,
       '',
-      `After this ONE image is generated, mark CALL ${String(item.sequence).padStart(2,'0')} complete${item.sequence===items.length?' and STOP — no further generation.':` and continue to CALL ${String(item.sequence+1).padStart(2,'0')}.`}`,
-      ''
-    ]),
-    '## COMPLETION CHECK',
-    '',
-    `A successful run contains exactly ${items.length} images from exactly ${items.length} independent calls, one per distinct tripId.`,
-    'If any later output repeats the subject/geography of an earlier Journey, treat that item as invalid and regenerate only that item with its own explicit prompt.'
-  ].join('\n');
+      '## NO GENERATION REQUIRED',
+      '',
+      'There are no eligible unpublished normal Journey covers in this queue.',
+      'Published approved covers and deterministic special Journeys are excluded automatically.',
+      'Do not call the image generator.'
+    ].join('\n')
+    :[
+      '# ONE WORLD ROUTE — COVER BATCH EXECUTION',
+      '',
+      `Batch: ${resolvedBatchId}`,
+      `Journeys: ${items.length}`,
+      `System: ${COVER_SYSTEM_VERSION}`,
+      '',
+      '## NON-NEGOTIABLE DISPATCH CONTRACT',
+      '',
+      `Execute exactly ${items.length} SEPARATE image-generation tool calls from this single operator instruction.`,
+      'Each tool call must generate exactly ONE image.',
+      `Do NOT make one image-generation call with n=${items.length}.`,
+      'Every call must receive its own explicit prompt below; never infer later calls from the first prompt.',
+      'Before every new call, reset subject, geography, transport, composition and landmarks. Only the shared premium ONE WORLD ROUTE house style may carry across calls.',
+      'Do NOT reuse the first Journey prompt, source image or scene for later calls.',
+      'After each successful call, advance automatically. Do not ask for approval between items.',
+      `Stop immediately after call ${items.length}.`,
+      '',
+      `The batch is valid only if the call sequence is 1→2→…→${items.length}, every call uses its matching prompt, and all ${items.length} prompt fingerprints are distinct.`,
+      '',
+      ...items.flatMap(item=>[
+        `## CALL ${String(item.sequence).padStart(2,'0')} / ${String(items.length).padStart(2,'0')} — ${item.title}`,
+        `tripId: \`${item.tripId}\``,
+        `promptSha256: \`${item.promptSha256}\``,
+        `expected source filename: \`${item.sourceFilename}\``,
+        '',
+        item.prompt,
+        '',
+        `After this ONE image is generated, mark CALL ${String(item.sequence).padStart(2,'0')} complete${item.sequence===items.length?' and STOP — no further generation.':` and continue to CALL ${String(item.sequence+1).padStart(2,'0')}.`}`,
+        ''
+      ]),
+      '## COMPLETION CHECK',
+      '',
+      `A successful run contains exactly ${items.length} images from exactly ${items.length} independent calls, one per distinct tripId.`,
+      'If any later output repeats the subject/geography of an earlier Journey, treat that item as invalid and regenerate only that item with its own explicit prompt.'
+    ].join('\n');
 
   return {report,operatorPrompt};
 }
