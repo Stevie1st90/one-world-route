@@ -4,6 +4,9 @@ import {buildVisualBrief} from './visual-brief-model.mjs';
 const ROOT=new URL('../',import.meta.url);
 const read=async p=>JSON.parse(await readFile(new URL(p,ROOT),'utf8'));
 const check=process.argv.includes('--check');
+const EXPECTED_RENDER_STYLE='premium-full-bleed-world-v2';
+const EXPECTED_STATIC_ROUTE_COLOR_MODE='single-color';
+const EXPECTED_STATIC_ROUTE_COLOR='#FF5A52';
 
 const [catalog,publicRoute,routeVisuals,registry]=await Promise.all([
   read('data/platform/trips.json'),
@@ -28,11 +31,20 @@ if(brief.productionStrategy!=='deterministic-full-bleed-world-route'||!brief.rou
 }
 if(brief.imagePrompt!=='')throw Error('world-195 must not require an AI image prompt');
 
-const published=(registry.assets||[]).find(a=>a.assetId==='journey--world-195--cover--16x9--v001'&&a.tripId==='world-195'&&a.mediaKind==='journey-cover'&&a.status==='published'&&a.rightsStatus==='approved');
+const published=(registry.assets||[]).find(a=>
+  a.assetId==='journey--world-195--cover--16x9--v001'&&
+  a.tripId==='world-195'&&
+  a.mediaKind==='journey-cover'&&
+  a.status==='published'&&
+  a.rightsStatus==='approved'&&
+  a.factualRouteLayer?.renderStyle===EXPECTED_RENDER_STYLE&&
+  a.factualRouteLayer?.staticRouteColorMode===EXPECTED_STATIC_ROUTE_COLOR_MODE&&
+  a.factualRouteLayer?.staticRouteColor===EXPECTED_STATIC_ROUTE_COLOR
+);
 
 const report={
   schemaVersion:1,
-  policyVersion:'world-showcase-full-bleed-v1',
+  policyVersion:'world-showcase-full-bleed-v2',
   tripId:'world-195',
   strategy:'deterministic-full-bleed-world-route',
   status:published?'published':'render-ready',
@@ -54,11 +66,16 @@ const report={
     geometryBasis:route.media.geometryBasis,
     geometrySource:'data/public-route.json',
     basemapSource:'data/visual-sources/natural-earth-relief.webp',
-    renderStyle:'premium-full-bleed-world-v1',
+    renderStyle:EXPECTED_RENDER_STYLE,
     projection:'equirectangular-full-bleed',
     fullBleed:true,
     spaceBackground:false,
     visibleContainer:false,
+    staticGraphicRouteStyle:'single-coral-red',
+    staticRouteColorMode:EXPECTED_STATIC_ROUTE_COLOR_MODE,
+    staticRouteColor:EXPECTED_STATIC_ROUTE_COLOR,
+    interactiveRouteStyle:'continent-colors',
+    interactiveGlobeUnchanged:true,
     routeVisualReferenceOnly:true,
     countries:route.countries.length,
     routeLines:route.geometry.lines
