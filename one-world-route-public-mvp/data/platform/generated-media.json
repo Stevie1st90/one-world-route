@@ -1680,6 +1680,81 @@
           }
         ]
       }
+    },
+    {
+      "assetId": "journey--world-195--cover--16x9--v001",
+      "tripId": "world-195",
+      "type": "image",
+      "sourceType": "generated",
+      "mediaKind": "journey-cover",
+      "theme": "ocean",
+      "generator": "ONE WORLD ROUTE deterministic full-bleed world renderer",
+      "promptVersion": "world-showcase-full-bleed-v1",
+      "createdAt": "2026-10-03",
+      "rightsStatus": "approved",
+      "status": "published",
+      "aspectRatio": "16:9",
+      "alt": {
+        "en": "One World Journey · full-bleed world route map with verified journey geometry",
+        "de": "Eine Reise um die Welt · full-bleed world route map with verified journey geometry",
+        "it": "Un viaggio intorno al mondo · full-bleed world route map with verified journey geometry",
+        "es": "Un viaje por el mundo · full-bleed world route map with verified journey geometry",
+        "fr": "Un voyage autour du monde · full-bleed world route map with verified journey geometry",
+        "pt": "Uma viagem pelo mundo · full-bleed world route map with verified journey geometry"
+      },
+      "attribution": "Made with Natural Earth · ONE WORLD ROUTE",
+      "attributionRequired": false,
+      "license": "Natural Earth public domain; original route presentation",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "asset": "./assets/media/journeys/world-195/cover/v001/journey--world-195--cover--16x9--v001--w1600.webp",
+      "srcset": "./assets/media/journeys/world-195/cover/v001/journey--world-195--cover--16x9--v001--w480.webp 480w, ./assets/media/journeys/world-195/cover/v001/journey--world-195--cover--16x9--v001--w800.webp 800w, ./assets/media/journeys/world-195/cover/v001/journey--world-195--cover--16x9--v001--w1200.webp 1200w, ./assets/media/journeys/world-195/cover/v001/journey--world-195--cover--16x9--v001--w1600.webp 1600w",
+      "sourceMaster": {
+        "originalFilename": "natural-earth-relief.webp",
+        "sha256": "8c3fdbc04fe71342b12ddc1d5e3c066115f614e25667849d501fca0831a22583",
+        "width": 10800,
+        "height": 5400,
+        "bytes": 5069252,
+        "retainedOutsideDeliveryRepo": false
+      },
+      "factualRouteLayer": {
+        "assetId": "auto-route-world-195",
+        "sha256": "d408246e1109267f8adc79d752b081ed708ff21e55d3345a511383d4d61a4d0e",
+        "renderStyle": "premium-full-bleed-world-v1",
+        "projection": "equirectangular-full-bleed",
+        "provider": "local-natural-earth",
+        "countries": 195,
+        "internationalLegs": 194,
+        "routeLines": 253
+      },
+      "delivery": {
+        "format": "webp",
+        "quality": 86,
+        "variants": [
+          {
+            "width": 480,
+            "height": 270,
+            "asset": "./assets/media/journeys/world-195/cover/v001/journey--world-195--cover--16x9--v001--w480.webp"
+          },
+          {
+            "width": 800,
+            "height": 450,
+            "asset": "./assets/media/journeys/world-195/cover/v001/journey--world-195--cover--16x9--v001--w800.webp"
+          },
+          {
+            "width": 1200,
+            "height": 675,
+            "asset": "./assets/media/journeys/world-195/cover/v001/journey--world-195--cover--16x9--v001--w1200.webp"
+          },
+          {
+            "width": 1600,
+            "height": 900,
+            "asset": "./assets/media/journeys/world-195/cover/v001/journey--world-195--cover--16x9--v001--w1600.webp"
+          }
+        ]
+      }
     }
   ]
 }

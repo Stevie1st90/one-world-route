@@ -4,7 +4,7 @@
     "journeys": 29,
     "auto": 29,
     "destination": 0,
-    "bespoke": 28,
+    "bespoke": 29,
     "vertical": 29
   },
   "journeys": [
@@ -377,12 +377,12 @@
       "title": "One World Journey",
       "autoRouteVisual": true,
       "destinationVisual": false,
-      "journeyCover": false,
-      "portrait": true,
+      "journeyCover": true,
+      "portrait": false,
       "vertical": true,
       "rightsApproved": true,
-      "currentResolvedVisual": "auto",
-      "coverageLevel": "AUTO",
+      "currentResolvedVisual": "bespoke",
+      "coverageLevel": "JOURNEY-BESPOKE",
       "scope": "GLOBAL"
     }
   ],

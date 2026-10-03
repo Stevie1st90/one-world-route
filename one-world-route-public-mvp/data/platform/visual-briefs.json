@@ -3,7 +3,7 @@
   "policyVersion": "journey-visual-experience-v2",
   "summary": {
     "journeys": 29,
-    "briefReady": 1,
+    "briefReady": 0,
     "imagesGenerated": 0
   },
   "journeys": [
@@ -61,6 +61,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Patagonia Road Trip”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by El Chaltén (AR); confirm specific scene details before generation. Geography context: AR, CL. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 101,
       "priority": "P1",
       "landscapePriority": "first-batch",
@@ -124,6 +127,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “New Zealand Camper Loop”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Lake Tekapo (NZ); confirm specific scene details before generation. Geography context: NZ. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 91,
       "priority": "P1",
       "landscapePriority": "first-batch",
@@ -187,6 +193,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Alaska Inside Passage by Ferry”. Visual family: coastal-editorial. Show a single coherent coastal travel scene; no collage of ports or islands inspired by Juneau (US); confirm specific scene details before generation. Geography context: US. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 90,
       "priority": "P1",
       "landscapePriority": "first-batch",
@@ -250,6 +259,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Greek Island Hopping”. Visual family: coastal-editorial. Show a single coherent coastal travel scene; no collage of ports or islands inspired by Mykonos (GR); confirm specific scene details before generation. Geography context: GR. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 90,
       "priority": "P1",
       "landscapePriority": "first-batch",
@@ -313,6 +325,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Namibia Desert & Wildlife Road Trip”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Sossusvlei (NA); confirm specific scene details before generation. Geography context: NA. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 90,
       "priority": "P1",
       "landscapePriority": "first-batch",
@@ -377,6 +392,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Norway Arctic Road Trip”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Andøya (NO); confirm specific scene details before generation. Geography context: NO. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 90,
       "priority": "P1",
       "landscapePriority": "first-batch",
@@ -440,6 +458,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Morocco Atlas & Desert”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Dadès Valley (MA); confirm specific scene details before generation. Geography context: MA. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 89,
       "priority": "P1",
       "landscapePriority": "first-batch",
@@ -503,6 +524,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Sri Lanka Hill Country by Rail”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Colombo (LK); confirm specific scene details before generation. Geography context: LK. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 89,
       "priority": "P1",
       "landscapePriority": "first-batch",
@@ -566,6 +590,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Swiss Scenic Rail Journey”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Zürich (CH); confirm specific scene details before generation. Geography context: CH. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 89,
       "priority": "P1",
       "landscapePriority": "first-batch",
@@ -629,6 +656,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Tasmania Wild Coast Road Loop”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Hobart (AU); confirm specific scene details before generation. Geography context: AU. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 89,
       "priority": "P1",
       "landscapePriority": "first-batch",
@@ -693,6 +723,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Scottish Highlands & Hebrides Journey”. Visual family: coastal-editorial. Show a single coherent coastal travel scene; no collage of ports or islands inspired by Portree (GB); confirm specific scene details before generation. Geography context: GB. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 88,
       "priority": "P1",
       "landscapePriority": "first-batch",
@@ -756,6 +789,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Taiwan Rail & Coast Loop”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Taipei (TW); confirm specific scene details before generation. Geography context: TW. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 88,
       "priority": "P1",
       "landscapePriority": "first-batch",
@@ -819,6 +855,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Java Rail & Volcano Journey”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Yogyakarta (ID); confirm specific scene details before generation. Geography context: ID. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 87,
       "priority": "P1",
       "landscapePriority": "first-batch",
@@ -882,6 +921,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Costa Rica Nature Loop”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Arenal (CR); confirm specific scene details before generation. Geography context: CR. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 86,
       "priority": "P1",
       "landscapePriority": "first-batch",
@@ -945,6 +987,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Vietnam North to South”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Hanoi (VN); confirm specific scene details before generation. Geography context: VN. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 86,
       "priority": "P1",
       "landscapePriority": "first-batch",
@@ -1009,6 +1054,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “India Golden Triangle by Rail”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Jaipur (IN); confirm specific scene details before generation. Geography context: IN. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 73,
       "priority": "P1",
       "landscapePriority": "first-batch",
@@ -1070,6 +1118,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Jordan Heritage & Desert Drive”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Amman (JO); confirm specific scene details before generation. Geography context: JO. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 73,
       "priority": "P1",
       "landscapePriority": "first-batch",
@@ -1134,6 +1185,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Utah National Parks Road Trip”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Zion National Park (US); confirm specific scene details before generation. Geography context: US. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 73,
       "priority": "P1",
       "landscapePriority": "first-batch",
@@ -1198,6 +1252,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Victoria Great Ocean & Highlands Road Trip”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Ballarat (AU); confirm specific scene details before generation. Geography context: AU. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 73,
       "priority": "P1",
       "landscapePriority": "first-batch",
@@ -1421,10 +1478,10 @@
       "routeCharacter": "195 countries. One connected journey. Choose when to begin.",
       "highlights": [],
       "suggestedAnchor": null,
-      "anchorStatus": "unresolved",
-      "motif": "a cinematic deep-space atmosphere designed to receive the verified flat world map and route overlay inspired by global",
-      "mood": "restrained cinematic travel editorial",
-      "lighting": "atmospheric directional light; season only if verified",
+      "anchorStatus": "not-required",
+      "motif": "a premium full-bleed Natural Earth world map with the verified 195-country route rendered directly from platform geometry",
+      "mood": "premium subdued cartographic editorial",
+      "lighting": "deterministic cartographic relief",
       "safeZones": {
         "principalSubject": "central 55%",
         "quietTop": "15%",
@@ -1443,19 +1500,19 @@
         "landmark collage",
         "documentary-photo claims"
       ],
-      "imagePrompt": "Create exactly one original premium cinematic 16:9 deep-space atmosphere background for “One World Journey”. Use restrained dark space, subtle blue orbital glow, faint atmospheric haze and enough quiet negative space for interface overlays. Do not draw a standalone Earth globe, route, pins, labels, borders, text, numbers or logos. The recognizable flat world map and factual 195-country journey route will be composited separately from verified ONE WORLD ROUTE geometry.",
+      "imagePrompt": "",
+      "productionStrategy": "deterministic-full-bleed-world-route",
+      "routeOverlayRequired": true,
+      "routeOverlayAssetId": "auto-route-world-195",
       "priorityScore": 70,
       "priority": "P1",
       "landscapePriority": "first-batch",
       "separateVerticalRecommended": true,
       "socialPriority": "high",
       "fallbackQuality": "Complete global geography; route density limits emotional thumbnail identity",
-      "status": "brief-ready",
+      "status": "published",
       "reason": "Differentiate a dense planetary route; Strong travel-mode social identity",
-      "rank": 20,
-      "productionStrategy": "hybrid-space-base-plus-factual-flat-world",
-      "routeOverlayRequired": true,
-      "routeOverlayAssetId": "auto-route-world-195"
+      "rank": 20
     },
     {
       "tripId": "italy-grand-tour",
@@ -1511,6 +1568,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Italy Grand Tour”. Visual family: nature-atmospheric. Show a single atmospheric natural landscape grounded in the listed destination inspired by Rome (IT); confirm specific scene details before generation. Geography context: IT. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 66,
       "priority": "P2",
       "landscapePriority": "later",
@@ -1574,6 +1634,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Japan by Rail”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Kanazawa (JP); confirm specific scene details before generation. Geography context: JP. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 65,
       "priority": "P2",
       "landscapePriority": "later",
@@ -1638,6 +1701,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Canadian Rockies Rail & Road”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Kamloops (CA); confirm specific scene details before generation. Geography context: CA. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 58,
       "priority": "P2",
       "landscapePriority": "later",
@@ -1701,6 +1767,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Iceland Ring Road”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Vík (IS); confirm specific scene details before generation. Geography context: IS. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 57,
       "priority": "P2",
       "landscapePriority": "later",
@@ -1764,6 +1833,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “South Africa Garden Route & Safari”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Addo Elephant National Park (ZA); confirm specific scene details before generation. Geography context: ZA. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 57,
       "priority": "P2",
       "landscapePriority": "later",
@@ -1829,6 +1901,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Central Europe Rail Journey”. Visual family: rail-cinematic. Show a single unbranded rail-travel scene with geographically credible surroundings inspired by Berlin (DE); confirm specific scene details before generation. Geography context: FR, BE, NL, DE, AT, HU, CZ. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 51,
       "priority": "P2",
       "landscapePriority": "later",
@@ -1892,6 +1967,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Southern Europe Road Trip”. Visual family: road-cinematic. Show a single scenic road-travel scene with locally credible terrain and no invented route alignment inspired by Rome (IT); confirm specific scene details before generation. Geography context: PT, ES, FR, IT. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 51,
       "priority": "P2",
       "landscapePriority": "later",
@@ -1954,6 +2032,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Western Mediterranean Cruise Loop”. Visual family: coastal-editorial. Show a single coherent coastal travel scene; no collage of ports or islands inspired by Barcelona (ES); confirm specific scene details before generation. Geography context: ES, FR, IT, TN. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 51,
       "priority": "P2",
       "landscapePriority": "later",
@@ -2018,6 +2099,9 @@
         "documentary-photo claims"
       ],
       "imagePrompt": "Create an original cinematic editorial travel illustration for “Peru Andes Journey”. Visual family: nature-atmospheric. Show a single atmospheric natural landscape grounded in the listed destination inspired by Cusco (PE); confirm specific scene details before generation. Geography context: PE. One coherent real-world inspired scene, not a literal depiction of all route stops. Restrained natural palette, atmospheric directional light, credible depth, medium detail readable at thumbnail size. Landscape 16:9 master; principal subject in central 55%, top 15% and bottom 20% quiet for HTML overlays. No text, numbers, labels, logos, copied photo, brand livery or named living artist imitation. Do not invent route facts; do not imply documentary photography. Anchor is a proposal: validate the scene against source data before generation.",
+      "productionStrategy": "single-generated-cover",
+      "routeOverlayRequired": false,
+      "routeOverlayAssetId": null,
       "priorityScore": 48,
       "priority": "P3",
       "landscapePriority": "later",
