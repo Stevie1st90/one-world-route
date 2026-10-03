@@ -5,6 +5,8 @@
     "build": "node scripts/release-build.mjs",
     "visuals": "node scripts/build-route-visuals.mjs",
     "visuals:check": "node scripts/build-route-visuals.mjs --check",
+    "covers:system": "node scripts/build-visual-system-contract.mjs",
+    "covers:system:check": "node scripts/build-visual-system-contract.mjs --check",
     "covers:queue": "node scripts/build-cover-generation-queue.mjs",
     "covers:review": "node scripts/build-cover-review-sheet.mjs",
     "covers:ingest": "node scripts/ingest-journey-covers.mjs",
