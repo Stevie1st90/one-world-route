@@ -19,7 +19,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  RELEASE_BRANCH: world-195-full-bleed-release-v1
+  RELEASE_BRANCH: world-195-full-bleed-red-route-v2
 
 jobs:
   release:
@@ -153,7 +153,7 @@ jobs:
           cd ..
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'Publish full-bleed world-195 Journey cover'
+          git commit -m 'Publish full-bleed world-195 red-route cover'
           git push origin "HEAD:refs/heads/$RELEASE_BRANCH"
           echo "REMOTE_BRANCH=$RELEASE_BRANCH"
           echo "COMMIT=$(git rev-parse HEAD)"
