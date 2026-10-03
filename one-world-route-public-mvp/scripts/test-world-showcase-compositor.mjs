@@ -9,17 +9,20 @@ import {WORLD_SHOWCASE_STYLE} from './world-showcase-renderer.mjs';
 
 test('world showcase full-bleed tuning contract remains fixed',()=>{
   assert.deepEqual(WORLD_SHOWCASE_STYLE,{
-    version:'premium-full-bleed-world-v1',
+    version:'premium-full-bleed-world-v2',
     projection:'equirectangular-full-bleed',
     fullBleed:true,
     spaceBackground:false,
     visibleContainer:false,
+    staticRouteColorMode:'single-color',
+    staticRouteColor:'#FF5A52',
+    staticRouteHaloColor:'#431519',
     basemapBrightness:.84,
     basemapSaturation:.68,
-    routeDetailedOpacity:.84,
-    routeSchematicOpacity:.58,
-    routeDenseRegionMultiplier:.72,
-    routeGlowOpacity:.05,
+    routeDetailedOpacity:.92,
+    routeSchematicOpacity:.74,
+    routeDenseRegionMultiplier:.78,
+    routeHaloOpacity:.16,
     seamPixelJumpFraction:.42,
     seamLongitudeJumpDegrees:170,
     antarcticShadeOpacity:.22
@@ -40,10 +43,13 @@ test('world showcase compositor produces four deterministic preview variants wit
     assert.equal(report.tripId,'world-195');
     assert.equal(report.invariants.countries,195);
     assert.equal(report.invariants.internationalLegs,194);
-    assert.equal(report.renderStyle,'premium-full-bleed-world-v1');
+    assert.equal(report.renderStyle,'premium-full-bleed-world-v2');
     assert.equal(report.projection,'equirectangular-full-bleed');
     assert.equal(report.fullBleed,true);
     assert.equal(report.spaceBackground,false);
+    assert.equal(report.staticRouteColorMode,'single-color');
+    assert.equal(report.staticRouteColor,'#FF5A52');
+    assert.equal(report.interactiveRouteStyle,'continent-colors');
     assert.ok(report.mapSourceSha256);
     assert.deepEqual(report.variants.map(v=>v.width),[480,800,1200,1600]);
     for(const variant of report.variants){
