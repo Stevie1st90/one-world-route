@@ -34,5 +34,9 @@ test('published catalog has one visual brief per journey, six unique region came
  assert.equal(briefs.journeys.length,catalog.trips.length);assert.equal(briefs.summary.journeys,catalog.trips.length);assert.equal(briefs.destinationRecommendations.length,20);assert.equal(briefs.summary.imagesGenerated,0);
  assert.equal(new Set(regions.assets.map(a=>a.outputHash)).size,6);
  assert.equal(source.countries,195);
- for(const b of briefs.journeys)assert.ok(b.imagePrompt&&b.visualFamily&&b.status);
+ for(const b of briefs.journeys){
+  assert.ok(b.visualFamily&&b.status);
+  if(b.productionStrategy==='deterministic-full-bleed-world-route')assert.equal(b.imagePrompt,'');
+  else assert.ok(b.imagePrompt);
+ }
 });
