@@ -108,9 +108,9 @@ export function visualFamily(meta={},trip={}){
   const themes=meta.discovery?.themes||[];
   if(kind==='world')return 'planetary';
   if(/rail/.test(kind)||(modes.includes('rail')&&!modes.includes('road')))return 'rail-cinematic';
-  if(/cruise|island/.test(kind)||modes.includes('cruise'))return 'coastal-editorial';
-  if(/road|camper|motorcycle/.test(kind)||modes.includes('road'))return 'road-cinematic';
-  if(themes.some(t=>/nature|wildlife|mountain|hiking|outdoor|adventure/.test(String(t))))return 'nature-atmospheric';
+  if(/cruise|island/.test(kind))return 'coastal-editorial';
+  if(/road|camper|motorcycle/.test(kind))return 'road-cinematic';
+  if(themes.some(t=>/nature|wildlife|mountain/.test(String(t))))return 'nature-atmospheric';
   return 'culture-editorial';
 }
 
