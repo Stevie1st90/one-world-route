@@ -3,7 +3,7 @@
   "policyVersion": "world-showcase-full-bleed-v1",
   "tripId": "world-195",
   "strategy": "deterministic-full-bleed-world-route",
-  "status": "render-ready",
+  "status": "published",
   "invariants": {
     "sovereignCountries": 195,
     "internationalLegs": 194,
@@ -46,5 +46,7 @@
       "data/platform/generated-media.json",
       "data/public-route.json#media.heroAssetId"
     ]
-  }
+  },
+  "publishedAssetId": "journey--world-195--cover--16x9--v001",
+  "factualLayerSha256": "d408246e1109267f8adc79d752b081ed708ff21e55d3345a511383d4d61a4d0e"
 }

@@ -308,25 +308,19 @@ Create an original cinematic editorial travel illustration for “Victoria Great
 
 ## 20. One World Journey — P1
 
-Family: `planetary` · status: `brief-ready` · 16:9: first-batch · separate 9:16: recommended
+Family: `planetary` · status: `published` · 16:9: first-batch · separate 9:16: recommended
 
 Reason: Differentiate a dense planetary route; Strong travel-mode social identity
 
 Fallback: Complete global geography; route density limits emotional thumbnail identity
 
-Production strategy: `hybrid-space-base-plus-factual-flat-world`
+Production strategy: `deterministic-full-bleed-world-route`
 
 Factual route layer: `auto-route-world-195` · 195 countries / 194 international legs
 
-Projection: `robinson-like-compromise-v4`
+Motif: a premium full-bleed Natural Earth world map with the verified 195-country route rendered directly from platform geometry
 
-Motif: a cinematic deep-space atmosphere designed to receive the verified flat world map and route overlay inspired by global
-
-Base-image prompt:
-
-Create exactly one original premium cinematic 16:9 deep-space atmosphere background for “One World Journey”. Use restrained dark space, subtle blue orbital glow, faint atmospheric haze and enough quiet negative space for interface overlays. Do not draw a standalone Earth globe, route, pins, labels, borders, text, numbers or logos. The recognizable flat world map and factual 195-country journey route will be composited separately from verified ONE WORLD ROUTE geometry.
-
-The image model creates only the cinematic atmosphere base. A container-free Robinson-like flat world relief and the route are rendered from verified ONE WORLD ROUTE geometry with soft map-edge fading; the model must never invent the 195-country route.
+No image generation is required. The final cover is rendered full-bleed from the approved Natural Earth relief source plus verified ONE WORLD ROUTE geometry.
 
 ## 21. Italy Grand Tour — P2
 
