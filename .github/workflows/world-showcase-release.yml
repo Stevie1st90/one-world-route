@@ -112,7 +112,6 @@ jobs:
           git diff --cached --check
 
           for required in \
-            'one-world-route-public-mvp/data/public-route.json' \
             'one-world-route-public-mvp/data/platform/generated-media.json' \
             'one-world-route-public-mvp/data/platform/world-showcase-visual.json'; do
             git diff --cached --name-only | grep -Fx "$required" >/dev/null || {
@@ -120,6 +119,8 @@ jobs:
               exit 1
             }
           done
+
+          node -e "const r=require('./one-world-route-public-mvp/data/public-route.json'); if(r.media?.heroAssetId!=='journey--world-195--cover--16x9--v001') throw Error('world-195 heroAssetId is not canonical')"
 
           webp_count="$(git diff --cached --name-only | grep -E '^one-world-route-public-mvp/assets/media/journeys/world-195/cover/v001/.*\.webp$' | wc -l | tr -d ' ')"
           if [[ "$webp_count" != "4" ]]; then
