@@ -50,6 +50,8 @@ const factualHash=hash(JSON.stringify({
   routeLines:route.lines,
   renderer:WORLD_SHOWCASE_STYLE.version,
   projection:WORLD_SHOWCASE_STYLE.projection,
+  staticRouteColorMode:WORLD_SHOWCASE_STYLE.staticRouteColorMode,
+  staticRouteColor:WORLD_SHOWCASE_STYLE.staticRouteColor,
   sourceSha256:source.sha256
 }));
 
@@ -81,6 +83,9 @@ const report={
   projection:WORLD_SHOWCASE_STYLE.projection,
   fullBleed:WORLD_SHOWCASE_STYLE.fullBleed,
   spaceBackground:WORLD_SHOWCASE_STYLE.spaceBackground,
+  staticRouteColorMode:WORLD_SHOWCASE_STYLE.staticRouteColorMode,
+  staticRouteColor:WORLD_SHOWCASE_STYLE.staticRouteColor,
+  interactiveRouteStyle:'continent-colors',
   invariants:{countries:195,internationalLegs:194},
   variants
 };
@@ -104,7 +109,7 @@ const entry={
   mediaKind:'journey-cover',
   theme:meta.visual?.theme||'ocean',
   generator:'ONE WORLD ROUTE deterministic full-bleed world renderer',
-  promptVersion:'world-showcase-full-bleed-v1',
+  promptVersion:'world-showcase-full-bleed-v2',
   createdAt:new Date().toISOString().slice(0,10),
   rightsStatus:'approved',
   status:'published',
@@ -129,6 +134,9 @@ const entry={
     sha256:factualHash,
     renderStyle:WORLD_SHOWCASE_STYLE.version,
     projection:WORLD_SHOWCASE_STYLE.projection,
+    staticRouteColorMode:WORLD_SHOWCASE_STYLE.staticRouteColorMode,
+    staticRouteColor:WORLD_SHOWCASE_STYLE.staticRouteColor,
+    interactiveRouteStyle:'continent-colors',
     provider:spec.factualLayer.provider,
     countries:195,
     internationalLegs:194,
