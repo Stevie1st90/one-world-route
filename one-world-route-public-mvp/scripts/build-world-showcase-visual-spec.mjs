@@ -23,21 +23,19 @@ if(route.countries?.length!==195)throw Error('world-195 route visual must cover 
 if(route.media.assetId!=='auto-route-world-195')throw Error('world-195 route visual identity changed unexpectedly');
 
 const brief=buildVisualBrief(meta,publicRoute,route);
-if(brief.productionStrategy!=='hybrid-space-base-plus-factual-flat-world'||!brief.routeOverlayRequired){
-  throw Error('world-195 must use the hybrid showcase strategy');
+if(brief.productionStrategy!=='deterministic-full-bleed-world-route'||!brief.routeOverlayRequired){
+  throw Error('world-195 must use the deterministic full-bleed strategy');
 }
-if(/\bDE,\s*LU,\s*BE\b/.test(brief.imagePrompt)||brief.imagePrompt.length>1200){
-  throw Error('world-195 base prompt is overloaded; keep it compact and route-free');
-}
+if(brief.imagePrompt!=='')throw Error('world-195 must not require an AI image prompt');
 
 const published=(registry.assets||[]).find(a=>a.assetId==='journey--world-195--cover--16x9--v001'&&a.tripId==='world-195'&&a.mediaKind==='journey-cover'&&a.status==='published'&&a.rightsStatus==='approved');
 
 const report={
   schemaVersion:1,
-  policyVersion:'world-showcase-flat-v5',
+  policyVersion:'world-showcase-full-bleed-v1',
   tripId:'world-195',
-  strategy:'cinematic-atmosphere-plus-premium-flat-world-route',
-  status:published?'published':'base-image-needed',
+  strategy:'deterministic-full-bleed-world-route',
+  status:published?'published':'render-ready',
   invariants:{
     sovereignCountries:195,
     internationalLegs:194,
@@ -45,19 +43,6 @@ const report={
     routeLines:route.geometry.lines,
     detailedRouteLines:route.geometry.detailed,
     schematicRouteLines:route.geometry.schematic
-  },
-  baseImage:{
-    sourceFilename:'source--journey--world-195--space-base--16x9--v001.png',
-    aspectRatio:'16:9',
-    promptVersion:'world-showcase-flat-v5',
-    prompt:brief.imagePrompt,
-    rules:[
-      'one cinematic background only',
-      'no standalone Earth globe',
-      'no route lines, pins, borders or labels',
-      'no text, numbers or logos',
-      'quiet central and edge zones for deterministic flat-world route compositing'
-    ]
   },
   factualLayer:{
     assetId:route.media.assetId,
@@ -69,9 +54,10 @@ const report={
     geometryBasis:route.media.geometryBasis,
     geometrySource:'data/public-route.json',
     basemapSource:'data/visual-sources/natural-earth-relief.webp',
-    renderStyle:'premium-flat-world-v5',
-    projection:'robinson-like-compromise-v5',
-    edgeBlend:'soft-envelope',
+    renderStyle:'premium-full-bleed-world-v1',
+    projection:'equirectangular-full-bleed',
+    fullBleed:true,
+    spaceBackground:false,
     visibleContainer:false,
     routeVisualReferenceOnly:true,
     countries:route.countries.length,
@@ -88,7 +74,7 @@ const report={
       'data/public-route.json#media.heroAssetId'
     ]
   },
-  ...(published?{publishedAssetId:published.assetId,baseImageSha256:published.sourceMaster?.sha256||null,factualLayerSha256:published.factualRouteLayer?.sha256||null}:{})
+  ...(published?{publishedAssetId:published.assetId,factualLayerSha256:published.factualRouteLayer?.sha256||null}:{})
 };
 
 const target=new URL('data/platform/world-showcase-visual.json',ROOT);
