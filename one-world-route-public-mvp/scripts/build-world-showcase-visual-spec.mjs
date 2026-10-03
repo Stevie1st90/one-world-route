@@ -34,7 +34,7 @@ const published=(registry.assets||[]).find(a=>a.assetId==='journey--world-195--c
 
 const report={
   schemaVersion:1,
-  policyVersion:'world-showcase-flat-v4',
+  policyVersion:'world-showcase-flat-v5',
   tripId:'world-195',
   strategy:'cinematic-atmosphere-plus-premium-flat-world-route',
   status:published?'published':'base-image-needed',
@@ -49,7 +49,7 @@ const report={
   baseImage:{
     sourceFilename:'source--journey--world-195--space-base--16x9--v001.png',
     aspectRatio:'16:9',
-    promptVersion:'world-showcase-flat-v4',
+    promptVersion:'world-showcase-flat-v5',
     prompt:brief.imagePrompt,
     rules:[
       'one cinematic background only',
@@ -69,8 +69,8 @@ const report={
     geometryBasis:route.media.geometryBasis,
     geometrySource:'data/public-route.json',
     basemapSource:'data/visual-sources/natural-earth-relief.webp',
-    renderStyle:'premium-flat-world-v4',
-    projection:'robinson-like-compromise-v4',
+    renderStyle:'premium-flat-world-v5',
+    projection:'robinson-like-compromise-v5',
     edgeBlend:'soft-envelope',
     visibleContainer:false,
     routeVisualReferenceOnly:true,

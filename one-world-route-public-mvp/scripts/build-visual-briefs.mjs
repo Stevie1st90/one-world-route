@@ -24,7 +24,7 @@ await writeFile(new URL('data/platform/visual-briefs.json',ROOT),JSON.stringify(
 for(const asset of backlog.assets||[]){
  const brief=briefs.find(b=>b.tripId===asset.tripId);if(!brief)continue;
  const hybrid=brief.productionStrategy==='hybrid-space-base-plus-factual-flat-world';
- Object.assign(asset,{visualFamily:brief.visualFamily,motif:brief.motif,prompt:brief.imagePrompt,promptVersion:hybrid?'world-showcase-flat-v4':'journey-visual-experience-v2',priority:brief.priority,coverGenerationStatus:brief.status,strategy:hybrid?brief.productionStrategy:(brief.rank<=8?'bespoke-recommended':'bespoke-optional'),reason:brief.reason,fallbackQuality:brief.fallbackQuality,derivatives:brief.separateVerticalRecommended?['9:16']:[],briefRef:'./data/platform/visual-briefs.json#'+brief.tripId});
+ Object.assign(asset,{visualFamily:brief.visualFamily,motif:brief.motif,prompt:brief.imagePrompt,promptVersion:hybrid?'world-showcase-flat-v5':'journey-visual-experience-v2',priority:brief.priority,coverGenerationStatus:brief.status,strategy:hybrid?brief.productionStrategy:(brief.rank<=8?'bespoke-recommended':'bespoke-optional'),reason:brief.reason,fallbackQuality:brief.fallbackQuality,derivatives:brief.separateVerticalRecommended?['9:16']:[],briefRef:'./data/platform/visual-briefs.json#'+brief.tripId});
 }
 backlog.policyVersion='journey-visual-experience-v2';
 await writeFile(new URL('data/platform/graphics-backlog.json',ROOT),JSON.stringify(backlog,null,2)+'\n');
