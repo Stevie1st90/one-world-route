@@ -354,6 +354,8 @@ test('@regional journey detail guides the essential planning flow without duplic
 
 test('@regional saved journeys expose actionable planning workspace status',async({page,isMobile},testInfo)=>{
   test.setTimeout(90000);
+  // Public commands must remain safe while optional deployment config loads.
+  await page.route('**/data/platform/sync-config.json',async route=>{await new Promise(resolve=>setTimeout(resolve,750));await route.continue()});
   await page.addInitScript(()=>{
     localStorage.setItem('one-world-route:traveller-context:v1',JSON.stringify({
       language:'en',currency:'EUR',origin:'Seoul / ICN',originCountry:'KR',originRegion:'asia',

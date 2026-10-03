@@ -7239,6 +7239,8 @@
   let currentTrip = null;
   let currentTripMeta = null;
   let countryCentroidsPromise = null;
+  let resolveMyTripsReady;
+  const myTripsReady=new Promise(resolve=>{resolveMyTripsReady=resolve});
 
   function loadProfile(){return Traveller.load(localStorage,PROFILE_KEY,locale)}
   function loadCountryCentroids(){
@@ -7279,7 +7281,7 @@
     location.assign(`/${p.toString()?`?${p.toString()}`:''}`);
   }
 
-  function openMyTrips(){return MyTrips.open()}
+  function openMyTrips(){return myTripsReady.then(error=>{if(error)throw error;return MyTrips.open()})}
 
   function openRouteLibrary(){
     return RouteLibrary.open({
@@ -7612,6 +7614,7 @@
         cloudSync:CloudSync,
         toast:Ui.toast
       });
+      resolveMyTripsReady();
       Ui.ensureGlobalActions({t,esc,onHome:goHome,onRoutes:openRouteLibrary,onMyTrips:openMyTrips,onTraveller:openTraveller});
       const socialDeps={t,esc,local,facetLabel,locale:()=>locale,ensureDialog:Ui.ensureDialog,toast:Ui.toast,url:meta=>meta.id===currentTripMeta?.id?location.href:location.origin+buildTripUrl(meta.id),onOpen:setQueryTrip};
       PLATFORM_MODULES.socialStory?.configure(socialDeps);
@@ -7673,6 +7676,7 @@
         if(p.get('view')==='terrain')setTimeout(()=>{const toggle=$('#terrainView');if(toggle&&!toggle.checked){toggle.checked=true;toggle.dispatchEvent(new Event('change',{bubbles:true}))}},650);
       }
     }catch(e){
+      resolveMyTripsReady(e);
       console.warn('ONE WORLD ROUTE platform layer unavailable',e);
     }finally{
       document.body.classList.remove('platform-booting');
