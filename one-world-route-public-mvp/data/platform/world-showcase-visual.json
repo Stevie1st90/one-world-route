@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "policyVersion": "world-showcase-full-bleed-v1",
+  "policyVersion": "world-showcase-full-bleed-v2",
   "tripId": "world-195",
   "strategy": "deterministic-full-bleed-world-route",
-  "status": "published",
+  "status": "render-ready",
   "invariants": {
     "sovereignCountries": 195,
     "internationalLegs": 194,
@@ -22,11 +22,16 @@
     "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
     "geometrySource": "data/public-route.json",
     "basemapSource": "data/visual-sources/natural-earth-relief.webp",
-    "renderStyle": "premium-full-bleed-world-v1",
+    "renderStyle": "premium-full-bleed-world-v2",
     "projection": "equirectangular-full-bleed",
     "fullBleed": true,
     "spaceBackground": false,
     "visibleContainer": false,
+    "staticGraphicRouteStyle": "single-coral-red",
+    "staticRouteColorMode": "single-color",
+    "staticRouteColor": "#FF5A52",
+    "interactiveRouteStyle": "continent-colors",
+    "interactiveGlobeUnchanged": true,
     "routeVisualReferenceOnly": true,
     "countries": 195,
     "routeLines": 253
@@ -46,7 +51,5 @@
       "data/platform/generated-media.json",
       "data/public-route.json#media.heroAssetId"
     ]
-  },
-  "publishedAssetId": "journey--world-195--cover--16x9--v001",
-  "factualLayerSha256": "d408246e1109267f8adc79d752b081ed708ff21e55d3345a511383d4d61a4d0e"
+  }
 }
