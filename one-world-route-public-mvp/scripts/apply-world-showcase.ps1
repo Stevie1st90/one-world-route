@@ -84,12 +84,16 @@ try {
     if ($staged.Count -eq 0) { throw "No world showcase release changes were staged." }
 
     $required = @(
-        "one-world-route-public-mvp/data/public-route.json",
         "one-world-route-public-mvp/data/platform/generated-media.json",
         "one-world-route-public-mvp/data/platform/world-showcase-visual.json"
     )
     foreach ($p in $required) {
         if ($staged -notcontains $p) { throw "Required release file was not staged: $p" }
+    }
+
+    $publicRoute = Get-Content -LiteralPath (Join-Path $worktree "one-world-route-public-mvp/data/public-route.json") -Raw | ConvertFrom-Json
+    if ($publicRoute.media.heroAssetId -ne "journey--world-195--cover--16x9--v001") {
+        throw "world-195 heroAssetId is not canonical."
     }
 
     $webps = @($staged | Where-Object { $_ -like "one-world-route-public-mvp/assets/media/journeys/world-195/cover/v001/*.webp" })
