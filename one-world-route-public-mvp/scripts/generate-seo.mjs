@@ -3,7 +3,9 @@ const route=JSON.parse(await readFile(new URL('../data/public-route.json',import
 const geo=JSON.parse(await readFile(new URL('../data/country-centroids.json',import.meta.url),'utf8'));
 const platform=JSON.parse(await readFile(new URL('../data/platform/trips.json',import.meta.url),'utf8'));
 const collections=JSON.parse(await readFile(new URL('../data/platform/collections.json',import.meta.url),'utf8'));
-const TAXONOMY_REGIONS=new Set(['europe','asia','africa','north-america','south-america','oceania','central-america']);
+const TAXONOMY_REGIONS=new Set(platform.trips.flatMap(t=>(t.discovery?.regions||[]).filter(r=>r!=='global')));
+const index=JSON.parse(await readFile(new URL('../data/platform/trip-index.json',import.meta.url),'utf8'));
+const destinationCodes=[...new Set(index.trips.flatMap(t=>t.itinerary.map(stop=>stop.countryCode).filter(Boolean)))].sort();
 const taxonomyPages=()=>{
   const trips=(platform.trips||[]);
   const pages=[];
@@ -12,6 +14,7 @@ const taxonomyPages=()=>{
   for(const [value,count] of counts(trips.map(t=>t.kind).filter(Boolean)))push('kind',value,count);
   for(const [value,count] of counts(trips.flatMap(t=>(t.discovery?.regions||[]).filter(v=>TAXONOMY_REGIONS.has(v)))))push('region',value,count);
   for(const [value,count] of counts(trips.map(t=>t.discovery?.durationBand).filter(Boolean)))push('duration',value,count);
+  for(const facet of ['theme','mode'])for(const [value,count] of counts(trips.flatMap(t=>t.discovery?.[facet==='theme'?'themes':'modes']||[])))push(facet,value,count);
   return pages.sort((a,b)=>a.facet.localeCompare(b.facet)||a.value.localeCompare(b.value));
 };
 const langs=Array.isArray(platform.supportedLocales)&&platform.supportedLocales.length?platform.supportedLocales:['en'];
@@ -44,10 +47,11 @@ const taxonomyGroup=item=>{
   const entries=[base+'/discover/'+item.facet+'/'+item.value,...langs.map(lang=>base+'/'+lang+'/discover/'+item.facet+'/'+item.value)];
   return entries.map(url=>'  <url><loc>'+xmlEsc(url)+'</loc>'+alternates.map(a=>'<xhtml:link rel="alternate" hreflang="'+a.lang+'" href="'+xmlEsc(a.url)+'"/>').join('')+'</url>').join('\n');
 };
+const destinationXml=destinationCodes.map(code=>{const path='/destination/'+code.toLowerCase();const entries=[base+path,...langs.map(lang=>base+'/'+lang+path)];return entries.map(url=>'  <url><loc>'+xmlEsc(url)+'</loc>'+langs.map(lang=>'<xhtml:link rel="alternate" hreflang="'+lang+'" href="'+base+'/'+lang+path+'"/>').join('')+'<xhtml:link rel="alternate" hreflang="x-default" href="'+base+path+'"/></url>').join('\n');}).join('\n');
 const normalXml=[...new Set(normal)].map(u=>'  <url><loc>'+xmlEsc(u)+'</loc></url>').join('\n');
 const tripXml=platform.trips.map(tripGroup).join('\n');
 const collectionXml=(collections.collections||[]).map(collectionGroup).join('\n');
 const taxonomyXml=taxonomy.map(taxonomyGroup).join('\n');
-const xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'+normalXml+'\n'+tripXml+'\n'+collectionXml+'\n'+taxonomyXml+'\n</urlset>\n';
+const xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'+normalXml+'\n'+tripXml+'\n'+collectionXml+'\n'+taxonomyXml+'\n'+destinationXml+'\n</urlset>\n';
 await writeFile(new URL('../sitemap.xml',import.meta.url),xml);
 console.log('Generated',new Set([...normal,...tripUrls,...collectionUrls,...taxonomyUrls]).size,'SEO URLs in',langs.length,'trip languages,',(collections.collections||[]).length,'collections and',taxonomy.length,'taxonomy pages');

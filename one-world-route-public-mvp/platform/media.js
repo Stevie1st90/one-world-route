@@ -3,13 +3,14 @@
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
   const SAFE_ASSET=/^\.\/assets\/[a-z0-9_./-]+$/i;
   let visualManifest={journeys:[],destinationAssets:[]},manifestPromise;
-  function setManifest(manifest){visualManifest=manifest||{journeys:[]};}
+  let journeyById=new Map();
+  function setManifest(manifest){visualManifest=manifest||{journeys:[]};journeyById=new Map((visualManifest.journeys||[]).map(j=>[j.id,j]));}
   function resolveJourneyVisual(meta,context={}){
-    const record=(visualManifest.journeys||[]).find(j=>j.id===meta.id)||{};
+    const record=journeyById.get(meta.id)||{};
     return root.visualPolicy.resolveJourneyVisual({...meta,visualAnchor:meta.visualAnchor||record.visualAnchor},{journeyCover:record.journeyCover,destinationAssets:visualManifest.destinationAssets||[],autoRouteVisual:record.autoRouteVisual,countries:record.countries||[],...context});
   }
   async function loadManifest(){
-    manifestPromise=manifestPromise||fetch('./data/platform/media-manifest.json').then(r=>{if(!r.ok)throw Error('Media manifest unavailable');return r.json()}).then(m=>{setManifest(m);return m}).catch(()=>visualManifest);
+    manifestPromise=manifestPromise||fetch('./data/platform/media-delivery.json').then(r=>{if(!r.ok)throw Error('Media manifest unavailable');return r.json()}).then(m=>{setManifest(m);return m}).catch(()=>visualManifest);
     return manifestPromise;
   }
 
@@ -72,7 +73,7 @@
   }
   function resolveDestinationVisual(anchor){return root.visualPolicy.destinationCandidate({visualAnchor:anchor},visualManifest.destinationAssets||[],[]);}
   function resolveRegionVisual(id){return (visualManifest.regionAssets||[]).find(a=>a.regionId===id&&root.visualPolicy.usable(a))||null;}
-  function journeyCountries(meta){return (visualManifest.journeys||[]).find(j=>j.id===meta?.id)?.countries||[];}
+  function journeyCountries(meta){return journeyById.get(meta?.id)?.countries||[];}
   function contextualCredit(entry,esc){return entry?.attributionRequired===false?'':credit(entry,esc);}
   function imageMarkup(entry,esc,local=value=>value?.en||value||'',{lazy=true,ratio='landscape'}={}){
     const d=descriptor(entry,'ocean',ratio);if(d.type!=='image')return '';

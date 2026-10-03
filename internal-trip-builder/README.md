@@ -57,3 +57,9 @@ The server binds only to \`127.0.0.1\`. It is intentionally outside the Vercel R
 ## Production verification
 
 The public runtime has a separate post-deploy smoke workflow in `.github/workflows/production-smoke.yml`. After every push to `main`, it waits for the Vercel commit status to report a successful production deployment and then checks the live Flagship, Cruise and Rail routes on desktop and mobile. This catches deployment-only regressions such as stale bundles, regional tooltip leakage and mobile shell drift.
+
+## Publication checklist
+
+Validate shows a derived workflow stage, canonical visual family and six checks (route, sources, translation, validation, visual, public status). Stages such as `needs-sources`, `needs-translation`, `needs-visual` and `ready-for-review` describe work remaining; they do not change the selected public editorial status. Automatic route visuals remain the scalable fallback.
+
+The catalog publication transaction also restores the compact Discovery and media delivery indexes on failure.

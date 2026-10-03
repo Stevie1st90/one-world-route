@@ -128,6 +128,14 @@
   ],
   "rewrites": [
     {
+      "source": "/:lang/destination/:code",
+      "destination": "/api/share?type=destination&lang=:lang&code=:code"
+    },
+    {
+      "source": "/destination/:code",
+      "destination": "/api/share?type=destination&code=:code"
+    },
+    {
       "source": "/route/:id",
       "destination": "/api/share?type=route&id=:id"
     },

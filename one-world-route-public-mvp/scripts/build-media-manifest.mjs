@@ -18,3 +18,12 @@ for(const meta of catalog.trips){
 const report={schemaVersion:3,updatedAt:catalog.updatedAt||null,summary:{journeys:journeys.length,artDirected:journeys.filter(j=>j.status==='art-directed').length,licensedLocal:journeys.filter(j=>j.status==='licensed-local').length,missing:journeys.filter(j=>!j.hero).length},destinationAssets,regionAssets:regions.assets,journeys:journeys.sort((a,b)=>a.id.localeCompare(b.id))};
 await writeFile(new URL('data/platform/media-manifest.json',ROOT),JSON.stringify(report,null,2)+'\n');
 console.log('Built media manifest:',report.summary);
+
+// Browser delivery excludes editorial provenance and duplicated resolved hero records.
+const deliveryKeys=['assetId','type','sourceType','mediaKind','theme','rightsStatus','status','aspectRatio','alt','attribution','attributionRequired','license','focalPoint','asset','srcset','derivatives','scope','destination'];
+const deliveryAsset=asset=>asset?Object.fromEntries(deliveryKeys.filter(k=>k in asset).map(k=>[k,asset[k]])):null;
+const delivery={schemaVersion:1,updatedAt:report.updatedAt,destinationAssets:destinationAssets.map(deliveryAsset),regionAssets:regions.assets.map(deliveryAsset),journeys:journeys.map(j=>({id:j.id,countries:j.countries,visualAnchor:j.visualAnchor,journeyCover:deliveryAsset(j.journeyCover),autoRouteVisual:deliveryAsset(j.autoRouteVisual)}))};
+const deliveryText=JSON.stringify(delivery)+'\n';
+if(process.argv.includes('--check')){
+  if(await readFile(new URL('data/platform/media-delivery.json',ROOT),'utf8').catch(()=>null)!==deliveryText)throw Error('Media delivery index is stale');
+}else await writeFile(new URL('data/platform/media-delivery.json',ROOT),deliveryText);

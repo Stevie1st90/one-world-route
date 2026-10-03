@@ -3,6 +3,14 @@ const geo=require('../data/country-centroids.json');
 const platform=require('../data/platform/trips.json');
 const collections=require('../data/platform/collections.json');
 const tripIndex=require('../data/platform/trip-index.json');
+const Discovery=require('../platform/discovery.js');
+const {messages}=require('../platform/i18n.js');
+const mediaManifest=require('../data/platform/media-delivery.json');
+const mediaById=new Map((mediaManifest.journeys||[]).map(j=>[j.id,j]));
+const indexById=new Map(tripIndex.trips.map(t=>[t.id,t]));
+const facetLabel=(value,lang)=>messages[lang]?.['facet_'+String(value).replaceAll('-','_')]||humanize(value);
+const coverFor=trip=>{const m=mediaById.get(trip.id);return m?.journeyCover||m?.autoRouteVisual;};
+const coverMarkup=(trip,lang,hero=false)=>{const cover=coverFor(trip);const asset=cover?.asset;if(!asset||!/^\.\/assets\/[a-z0-9_./-]+$/i.test(asset)||asset.split('/').includes('..'))return '';return '<img class="'+(hero?'journey-cover':'collection-cover')+'" src="/'+esc(asset.slice(2))+'"'+(cover.srcset?' srcset="'+esc(cover.srcset.replaceAll('./assets/','/assets/'))+'" sizes="'+(hero?'(max-width:1040px) 96vw, 1040px':'(max-width:720px) 96vw, 510px')+'"':'')+' alt="'+esc(localized(cover.alt,lang)||localized(trip.title,lang))+'" loading="'+(hero?'eager':'lazy')+'" width="1600" height="900">';};
 const readiness=require('../data/flagship-readiness.json');
 
 const SUPPORTED_LANGS=Array.isArray(platform.supportedLocales)&&platform.supportedLocales.length?platform.supportedLocales:['en'];
@@ -34,29 +42,17 @@ const collectionAlternateLinks=(origin,collection)=>[
   ...SUPPORTED_LANGS.map(lang=>'<link rel="alternate" hreflang="'+lang+'" href="'+esc(origin+'/'+lang+'/journeys/'+collection.id)+'">'),
   '<link rel="alternate" hreflang="x-default" href="'+esc(origin+'/journeys/'+collection.id)+'">'
 ].join('');
-const collectionMatches=(trip,collection)=>{
-  const filters=collection?.filters||{},discovery=trip?.discovery||{};
-  const fit=discovery.fit||{};
-  if(filters.kind&&trip.kind!==filters.kind)return false;
-  if(filters.mode&&!(discovery.modes||[]).includes(filters.mode))return false;
-  if(filters.modeAny?.length&&!filters.modeAny.some(value=>(discovery.modes||[]).includes(value)))return false;
-  if(filters.theme&&!(discovery.themes||[]).includes(filters.theme))return false;
-  if(filters.region&&!(discovery.regions||[]).includes(filters.region))return false;
-  if(filters.duration&&discovery.durationBand!==filters.duration)return false;
-  if(filters.themeAny?.length&&!filters.themeAny.some(value=>(discovery.themes||[]).includes(value)))return false;
-  if(filters.pace&&fit.pace!==filters.pace)return false;
-  if(filters.party&&!(fit.party||[]).includes(filters.party))return false;
-  if(filters.accessibility&&fit.accessibility!==filters.accessibility)return false;
-  return Boolean(trip);
-};
+const collectionMatches=Discovery.collectionMatches;
 
-const TAXONOMY_REGIONS=new Set(['europe','asia','africa','north-america','south-america','oceania','central-america']);
-const TAXONOMY_FACETS=new Set(['kind','region','duration']);
+const TAXONOMY_REGIONS=new Set(platform.trips.flatMap(t=>(t.discovery?.regions||[]).filter(r=>r!=='global')));
+const TAXONOMY_FACETS=new Set(['kind','region','duration','theme','mode']);
 const taxonomyMatches=(trip,facet,value)=>{
   if(!trip)return false;
   if(facet==='kind')return trip.kind===value;
   if(facet==='region')return TAXONOMY_REGIONS.has(value)&&(trip.discovery?.regions||[]).includes(value);
   if(facet==='duration')return trip.discovery?.durationBand===value;
+  if(facet==='theme')return (trip.discovery?.themes||[]).includes(value);
+  if(facet==='mode')return (trip.discovery?.modes||[]).includes(value);
   return false;
 };
 const taxonomyTrips=(facet,value)=>platform.trips.filter(trip=>taxonomyMatches(trip,facet,value));
@@ -71,14 +67,15 @@ const TAXONOMY_LABELS={
 };
 const taxonomyLabel=(facet,value,lang='en')=>{
   const dict=TAXONOMY_LABELS[lang]||TAXONOMY_LABELS.en;
-  const label=dict.values[value]||humanize(value);
-  return String(dict[facet]||'{value}').replace('{value}',label);
+  const label=dict.values[value]||facetLabel(value,lang);
+  return String(dict[facet]||dict.kind||'{value}').replace('{value}',label);
 };
 const taxonomyTarget=(facet,value,lang)=>{
   const p=new URLSearchParams();
   if(facet==='kind')p.set('kind',value);
   if(facet==='region')p.set('region',value);
   if(facet==='duration')p.set('duration',value);
+  if(facet==='theme'||facet==='mode')p.set(facet,value);
   p.set('lang',lang);
   return '/?'+p.toString();
 };
@@ -145,9 +142,9 @@ function richTaxonomyBody({facet,value,trips,lang,target}){
     const metrics=[
       trip.metrics?.days?trip.metrics.days+' '+tx.days:null,
       trip.metrics?.countries?trip.metrics.countries+' '+tx.countries:null,
-      (trip.discovery?.modes||[]).slice(0,2).map(humanize).join(' · ')
+      (trip.discovery?.modes||[]).slice(0,2).map(v=>facetLabel(v,lang)).join(' · ')
     ].filter(Boolean).join(' · ');
-    return '<article class="collection-card"><div><span>'+esc(humanize(trip.kind))+'</span><h2>'+esc(localized(trip.title,lang))+'</h2><p>'+esc(localized(trip.subtitle,lang))+'</p><small>'+esc(metrics)+'</small></div><a href="/'+esc(lang)+'/trip/'+esc(trip.slug)+'">'+esc(tx.open)+' →</a></article>';
+    return '<article class="collection-card">'+coverMarkup(trip,lang)+'<div><span>'+esc(facetLabel(trip.kind,lang))+'</span><h2>'+esc(localized(trip.title,lang))+'</h2><p>'+esc(localized(trip.subtitle,lang))+'</p><small>'+esc(metrics)+'</small></div><a href="/'+esc(lang)+'/trip/'+esc(trip.slug)+'">'+esc(tx.open)+' →</a></article>';
   }).join('');
   return '<main class="trip-page collection-page"><header><a class="brand" href="/">ONE WORLD ROUTE</a><div class="eyebrow">'+esc(tx.overview)+'</div><h1>'+esc(heading)+'</h1><p class="lead">'+esc(String(trips.length))+' '+esc(tx.journeys)+' · '+esc(tx.interactiveLead)+'</p><div class="cta"><a href="'+esc(target)+'">'+esc(tx.open)+' →</a></div></header><section><div class="collection-list">'+cards+'</div></section><footer><a href="'+esc(target)+'">'+esc(tx.open)+' →</a><span>ONE WORLD ROUTE</span></footer></main>';
 }
@@ -158,9 +155,9 @@ function richCollectionBody({collection,trips,lang,target}){
     const metrics=[
       trip.metrics?.days?trip.metrics.days+' '+tx.days:null,
       trip.metrics?.countries?trip.metrics.countries+' '+tx.countries:null,
-      (trip.discovery?.modes||[]).slice(0,2).map(humanize).join(' · ')
+      (trip.discovery?.modes||[]).slice(0,2).map(v=>facetLabel(v,lang)).join(' · ')
     ].filter(Boolean).join(' · ');
-    return '<article class="collection-card"><div><span>'+esc(humanize(trip.kind))+'</span><h2>'+esc(localized(trip.title,lang))+'</h2><p>'+esc(localized(trip.subtitle,lang))+'</p><small>'+esc(metrics)+'</small></div><a href="/'+esc(lang)+'/trip/'+esc(trip.slug)+'">'+esc(tx.open)+' →</a></article>';
+    return '<article class="collection-card">'+coverMarkup(trip,lang)+'<div><span>'+esc(facetLabel(trip.kind,lang))+'</span><h2>'+esc(localized(trip.title,lang))+'</h2><p>'+esc(localized(trip.subtitle,lang))+'</p><small>'+esc(metrics)+'</small></div><a href="/'+esc(lang)+'/trip/'+esc(trip.slug)+'">'+esc(tx.open)+' →</a></article>';
   }).join('');
   return '<main class="trip-page collection-page"><header><a class="brand" href="/">ONE WORLD ROUTE</a><div class="eyebrow">'+esc(tx.overview)+'</div><h1>'+esc(localized(collection.title,lang))+'</h1><p class="lead">'+esc(localized(collection.description,lang))+'</p><div class="cta"><a href="'+esc(target)+'">'+esc(tx.open)+' →</a><span>'+esc(String(trips.length))+' '+esc(tx.journeys||'journeys')+'</span></div></header><section><div class="collection-list">'+cards+'</div></section><footer><a href="'+esc(target)+'">'+esc(tx.open)+' →</a><span>ONE WORLD ROUTE</span></footer></main>';
 }
@@ -168,8 +165,8 @@ function richCollectionBody({collection,trips,lang,target}){
 function richTripBody({trip,index,lang,target}){
   const tx=PAGE_TEXT[lang]||PAGE_TEXT.en;
   const fit=trip.discovery?.fit||{};
-  const modes=(trip.discovery?.modes||[]).map(humanize).join(' · ')||'—';
-  const seasons=(fit.seasons||[]).map(humanize).join(' · ')||'—';
+  const modes=(trip.discovery?.modes||[]).map(v=>facetLabel(v,lang)).join(' · ')||'—';
+  const seasons=(fit.seasons||[]).map(v=>facetLabel(v,lang)).join(' · ')||'—';
   const itinerary=(index?.itinerary||[]).map(stop=>{
     const day=stop.dayStart===stop.dayEnd?String(stop.dayStart):String(stop.dayStart)+'–'+String(stop.dayEnd);
     return '<li><span>'+esc(tx.days)+' '+esc(day)+'</span><div><b>'+esc(localized(stop.name,lang))+'</b><small>'+esc(stop.nights??0)+' '+esc(tx.nights)+'</small></div></li>';
@@ -180,10 +177,10 @@ function richTripBody({trip,index,lang,target}){
     '<a href="'+esc(source.url)+'" rel="noopener noreferrer"><b>'+esc(source.issuer||source.title||source.id)+'</b><span>'+esc(source.title||'')+'</span><small>'+esc(source.checkedAt||'—')+'</small></a>'
   ).join('');
   const readinessBlock=trip.defaultPlanningScenario&&trip.id===readiness.scope?.tripId?'<details class="readiness"><summary>'+esc(tx.readiness)+'</summary><section><div class="eyebrow">'+esc(tx.readiness)+'</div><h2>'+esc(tx.readiness)+'</h2><p>'+esc(tx.readinessLead)+'</p><div class="readiness-meta"><span>'+esc(tx.dataAsOf)+': <b>'+esc(readiness.dataAsOf||'—')+'</b></span><span>195 / 194: <b>'+esc(readiness.structural?.invariantOk?'OK':'CHECK')+'</b></span></div><h3>'+esc(tx.workQueue)+'</h3><div class="queue">'+(readiness.workQueue||[]).slice(0,6).map(item=>'<span><b>'+esc(item.priority)+'</b> '+esc(item.id.replaceAll('-',' '))+' · '+esc(item.count)+'</span>').join('')+'</div></section></details>':'';
-  return '<main class="trip-page"><header><a class="brand" href="/">ONE WORLD ROUTE</a><div class="eyebrow">'+esc(humanize(trip.kind))+'</div><h1>'+esc(localized(trip.title,lang))+'</h1><p class="lead">'+esc(localized(index?.summary||trip.subtitle,lang))+'</p><div class="cta"><a href="'+esc(target)+'">'+esc(tx.open)+' →</a><span>'+esc(tx.interactiveLead)+'</span></div></header>'+
+  return '<main class="trip-page">'+coverMarkup(trip,lang,true)+'<header><a class="brand" href="/">ONE WORLD ROUTE</a><div class="eyebrow">'+esc(facetLabel(trip.kind,lang))+'</div><h1>'+esc(localized(trip.title,lang))+'</h1><p class="lead">'+esc(localized(index?.summary||trip.subtitle,lang))+'</p><div class="cta"><a href="'+esc(target)+'">'+esc(tx.open)+' →</a><span>'+esc(tx.interactiveLead)+'</span></div></header>'+
     '<section><div class="eyebrow">'+esc(tx.overview)+'</div><h2>'+esc(tx.overview)+'</h2><div class="metrics">'+
       metric(trip.metrics?.days,tx.days)+metric(trip.metrics?.countries,tx.countries)+metric(trip.metrics?.stops??trip.metrics?.internationalLegs,trip.metrics?.stops?tx.stops:tx.legs)+
-      metric(modes,tx.modes)+metric(humanize(fit.pace||index?.planning?.pace||'—'),tx.pace)+metric(seasons,tx.seasons)+
+      metric(modes,tx.modes)+metric(facetLabel(fit.pace||index?.planning?.pace||'—',lang),tx.pace)+metric(seasons,tx.seasons)+
     '</div></section>'+
     (index?.itinerary?.length?'<section><div class="eyebrow">'+esc(tx.itinerary)+'</div><h2>'+esc(tx.itinerary)+'</h2><ol class="itinerary">'+itinerary+'</ol></section>':'')+
     '<section><div class="eyebrow">'+esc(tx.planning)+'</div><h2>'+esc(tx.planning)+'</h2><div class="planning-grid"><article><span>'+esc(tx.knownTransport)+'</span><b>'+esc(knownMinimum||tx.unknown)+'</b><small>'+esc(localized(index?.planning?.knownPublishedMinimumScope,lang)||'—')+'</small></article><article><span>'+esc(tx.latestCheck)+'</span><b>'+esc(evidence.latestEvidenceCheck||'—')+'</b><small>'+esc(evidence.sourcedSegments||0)+'/'+esc(evidence.segments||0)+' '+esc(tx.sourced)+' · '+esc(evidence.verifiedSegments||0)+' '+esc(tx.verified)+'</small></article></div></section>'+
@@ -196,6 +193,8 @@ const style='<style>'+
   ':root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#05070d;color:#e8f0f7;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:inherit}.trip-page{width:min(1040px,calc(100% - 32px));margin:0 auto;padding:34px 0 60px}.trip-page header{padding:50px 0 56px;border-bottom:1px solid #172232}.brand{display:inline-block;margin-bottom:42px;color:#7fe9ff;text-decoration:none;font-size:11px;font-weight:800;letter-spacing:.16em}.eyebrow{color:#67dfff;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.trip-page h1{max-width:820px;margin:8px 0 14px;font-size:clamp(38px,7vw,74px);line-height:.96;letter-spacing:-.045em}.trip-page h2{margin:6px 0 18px;font-size:26px;letter-spacing:-.03em}.lead{max-width:720px;color:#9aabbd;font-size:17px;line-height:1.6}.cta{display:flex;align-items:center;gap:18px;margin-top:26px}.cta a,footer a{padding:12px 16px;border:1px solid #26687a;border-radius:10px;background:#0d2430;color:#dffaff;text-decoration:none;font-size:12px;font-weight:800}.cta span{max-width:470px;color:#73869a;font-size:11px;line-height:1.45}.trip-page section{padding:42px 0;border-bottom:1px solid #141f2d}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.metrics article,.planning-grid article{padding:16px;border:1px solid #172738;border-radius:14px;background:#08131e}.metrics b,.metrics span,.planning-grid span,.planning-grid b,.planning-grid small{display:block}.metrics b{font-size:17px}.metrics span,.planning-grid span{margin-top:5px;color:#75899e;font-size:9px;text-transform:uppercase;letter-spacing:.08em}.itinerary{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:0;list-style:none}.itinerary li{display:flex;gap:14px;padding:14px;border:1px solid #172738;border-radius:12px;background:#08131e}.itinerary li>span{flex:0 0 70px;color:#6bdff8;font-size:9px;text-transform:uppercase}.itinerary b,.itinerary small{display:block}.itinerary small{margin-top:4px;color:#74879a;font-size:9px}.planning-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.planning-grid b{margin:8px 0 5px;font-size:18px}.planning-grid small{color:#74879a;line-height:1.45}.sources{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.sources a{display:grid;gap:4px;padding:13px;border:1px solid #172738;border-radius:12px;background:#08131e;text-decoration:none}.sources span,.sources small{color:#74879a;font-size:9px}.readiness p{max-width:720px;color:#92a4b7;line-height:1.55}.readiness-meta,.queue{display:flex;flex-wrap:wrap;gap:8px}.readiness-meta span,.queue span{padding:8px 10px;border-radius:9px;background:#0a1825;color:#8fa2b5;font-size:9px}.readiness h3{margin:22px 0 8px;font-size:13px}.collection-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.collection-card{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;padding:18px;border:1px solid #172738;border-radius:14px;background:#08131e}.collection-card span,.collection-card small{color:#75899e;font-size:9px}.collection-card span{text-transform:uppercase;letter-spacing:.08em}.collection-card h2{margin:5px 0 7px;font-size:20px}.collection-card p{max-width:560px;margin:0 0 10px;color:#8da0b3;font-size:11px;line-height:1.5}.collection-card>a{flex:0 0 auto;padding:9px 11px;border:1px solid #26687a;border-radius:9px;background:#0d2430;color:#dffaff;text-decoration:none;font-size:10px;font-weight:800}footer{display:flex;justify-content:space-between;align-items:center;padding-top:34px;color:#63778d;font-size:9px;letter-spacing:.08em}@media(max-width:720px){.trip-page{width:min(100% - 24px,1040px)}.metrics{grid-template-columns:1fr 1fr}.itinerary,.planning-grid,.sources,.collection-list{grid-template-columns:1fr}.collection-card{align-items:flex-start;flex-direction:column}.cta{align-items:flex-start;flex-direction:column}.trip-page header{padding-top:28px}.brand{margin-bottom:30px}}'+
 '</style>';
 
+const consumerStyle='<style>.journey-cover{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:18px;margin-top:12px}.collection-card{display:block;overflow:hidden;padding:0}.collection-cover{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}.collection-card>div{padding:20px}.collection-card>a{display:inline-block;margin:0 20px 20px;min-height:44px;line-height:24px}.collection-card p{font-size:14px}.collection-card small,.sources span,.sources small{font-size:12px;line-height:1.5}.sources a{overflow-wrap:anywhere}a:focus-visible,summary:focus-visible{outline:3px solid #7fe9ff;outline-offset:4px}.trip-page header{padding:28px 0 40px}.brand{margin-bottom:24px}footer{flex-wrap:wrap;gap:16px}.itinerary small{font-size:12px}.collection-card>a,.cta a{font-size:13px}.metrics span{font-size:11px}</style>';
+
 module.exports=(req,res)=>{
   const type=String(req.query.type||''),origin='https://one-world-route.vercel.app';
   const requestedLang=String(req.query.lang||'').toLowerCase(),lang=safeLang(requestedLang);
@@ -207,11 +206,24 @@ module.exports=(req,res)=>{
     const wanted=slug(req.query.slug||'');
     const c=route.countries.find(x=>slug(en(x.name))===wanted||slug(x.name)===wanted);
     if(c){const name=en(c.name);title=name+' — ONE WORLD ROUTE';desc='Country '+c.number+' of 195 on the One World Journey. Explore arrival, onward route and public planning context.';target='/?trip='+encodeURIComponent(platform.defaultTripId)+'&country='+encodeURIComponent(c.name);canonical=origin+'/country/'+slug(name);}
+  }else if(type==='destination'){
+    const code=String(req.query.code||'').toUpperCase(),country=geo.find(c=>c.cca2===code);
+    if(country){
+      const name=new Intl.DisplayNames([lang],{type:'region'}).of(code);
+      const trips=platform.trips.filter(t=>t.renderer!=='legacy-world'&&indexById.get(t.id)?.itinerary.some(stop=>stop.countryCode===code));
+      htmlLang=lang;title=name+' — ONE WORLD ROUTE';desc=name+' · '+trips.length+' '+PAGE_TEXT[lang].journeys;
+      target='/?destination='+code+'&lang='+lang;
+      canonical=origin+(SUPPORTED_LANGS.includes(requestedLang)?'/'+lang:'')+'/destination/'+code.toLowerCase();
+      alternates=SUPPORTED_LANGS.map(l=>'<link rel="alternate" hreflang="'+l+'" href="'+origin+'/'+l+'/destination/'+code.toLowerCase()+'">').join('')+'<link rel="alternate" hreflang="x-default" href="'+origin+'/destination/'+code.toLowerCase()+'">';
+      body=richCollectionBody({collection:{title:{[lang]:name},description:{[lang]:desc}},trips,lang,target});
+      jsonLd='<script type="application/ld+json">'+collectionJsonLd({title:{[lang]:name}},trips,lang,canonical)+'</script>';
+      autoRedirect=false;
+    }
   }else if(type==='trip'){
     const wanted=slug(req.query.slug||req.query.id||'');
     const trip=platform.trips.find(x=>slug(x.slug)===wanted||slug(x.id)===wanted);
     if(trip){
-      const index=tripIndex.trips.find(item=>item.id===trip.id);
+      const index=indexById.get(trip.id);
       htmlLang=lang;
       const name=localized(trip.title,lang),sub=localized(index?.summary||trip.subtitle,lang);
       title=name+' — ONE WORLD ROUTE';
@@ -254,9 +266,14 @@ module.exports=(req,res)=>{
       autoRedirect=false;
     }
   }
+  const found=Boolean(body)||canonical!==origin+'/';
+  if(!found){res.statusCode=404;autoRedirect=false;}
+  const activeTrip=type==='trip'?platform.trips.find(t=>t.slug===slug(req.query.slug||'')):null;
+  const ogCover=activeTrip?coverFor(activeTrip):null;
+  const ogImage=ogCover?.asset&&/^\.\/assets\/[a-z0-9_./-]+$/i.test(ogCover.asset)&&!ogCover.asset.split('/').includes('..')?origin+'/'+ogCover.asset.slice(2):null;
   if(!body)body='<main style="max-width:720px;margin:0 auto;padding:48px 24px"><p>ONE WORLD ROUTE</p><h1>'+esc(title)+'</h1><p>'+esc(desc)+'</p><p><a style="color:#8fe9ff" href="'+esc(target)+'">Open interactive route →</a></p></main>';
   res.setHeader('Content-Type','text/html; charset=utf-8');
   res.setHeader('Content-Language',htmlLang);
   res.setHeader('Cache-Control','public, max-age=300, s-maxage=86400');
-  res.end('<!doctype html><html lang="'+esc(htmlLang)+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(title)+'</title><meta name="description" content="'+esc(desc)+'"><meta property="og:title" content="'+esc(title)+'"><meta property="og:description" content="'+esc(desc)+'"><meta property="og:type" content="website"><meta property="og:url" content="'+esc(canonical)+'"><meta property="og:locale" content="'+esc(htmlLang)+'"><meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="'+esc(canonical)+'">'+alternates+jsonLd+style+'</head><body>'+body+(autoRedirect?'<script>location.replace('+JSON.stringify(target)+')</script>':'')+'<noscript><p style="max-width:720px;margin:20px auto;padding:0 24px"><a href="'+esc(target)+'">Open interactive route</a></p></noscript></body></html>');
+  res.end('<!doctype html><html lang="'+esc(htmlLang)+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(title)+'</title><meta name="description" content="'+esc(desc)+'"><meta property="og:title" content="'+esc(title)+'"><meta property="og:description" content="'+esc(desc)+'"><meta property="og:type" content="website"><meta property="og:url" content="'+esc(canonical)+'"><meta property="og:locale" content="'+esc(htmlLang)+'"><meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="'+esc(canonical)+'">'+(ogImage?'<meta property="og:image" content="'+esc(ogImage)+'"><meta name="twitter:image" content="'+esc(ogImage)+'">':'')+(!found?'<meta name="robots" content="noindex">':'')+alternates+jsonLd+style+consumerStyle+'</head><body>'+body+(autoRedirect?'<script>location.replace('+JSON.stringify(target)+')</script>':'')+'<noscript><p style="max-width:720px;margin:20px auto;padding:0 24px"><a href="'+esc(target)+'">Open interactive route</a></p></noscript></body></html>');
 };

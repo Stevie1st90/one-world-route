@@ -37,3 +37,28 @@ test('all published regional journeys expose practical planning',async()=>{
     assert.ok(trip.capabilities.includes('trip-planning'),trip.id+' must expose practical planning');
   }
 });
+
+import {buildDiscoveryIndex,GLOBE_SAMPLE_LIMIT} from './discovery-index-model.mjs';
+import {createRequire} from 'node:module';
+const require=createRequire(import.meta.url);
+const Discovery=require('../platform/discovery.js');
+
+test('1000-journey discovery payload bounds globe work and excludes itinerary/evidence duplication',async()=>{
+  const base=await readJson(new URL('data/platform/trip-index.json',root));
+  const example=base.trips.find(t=>t.preview);
+  const trips=Array.from({length:1000},(_,i)=>({...example,id:'journey-'+i}));
+  const compact=buildDiscoveryIndex({...base,trips});
+  assert.equal(compact.trips.length,1000);
+  assert.equal(compact.trips.filter(t=>t.preview).length,GLOBE_SAMPLE_LIMIT);
+  assert.ok(!compact.trips.some(t=>'itinerary' in t||'sources' in t||'evidence' in t));
+  assert.ok(JSON.stringify(compact).length<JSON.stringify({...base,trips}).length*.25);
+  assert.ok(compact.trips.every(t=>t.countries.length>0&&t.searchPlaces.length>0));
+});
+
+test('search supports accented multilingual places and word order; collection membership is shared',()=>{
+  const trip={kind:'rail',discovery:{regions:['europe'],modes:['rail'],themes:['culture'],fit:{pace:'relaxed'}}};
+  assert.equal(Discovery.matches(trip,{q:'zurich rail'},'Rail Zürich Europe'),true);
+  assert.equal(Discovery.matches(trip,{q:'rail tokyo'},'Rail Zürich Europe'),false);
+  assert.equal(Discovery.collectionMatches(trip,{filters:{modeAny:['rail','ferry'],theme:'culture',pace:'relaxed'}}),true);
+  assert.equal(Discovery.collectionMatches(trip,{filters:{themeAny:['nature']}}),false);
+});

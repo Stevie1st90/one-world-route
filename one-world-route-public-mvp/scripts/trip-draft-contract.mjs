@@ -3,6 +3,7 @@ import {deriveDiscoveryRegions,derivePrimaryRegion} from './country-region-model
 import {journeyArchetype,journeyArchetypes} from './journey-archetype-registry.mjs';
 export {journeyArchetype,journeyArchetypes} from './journey-archetype-registry.mjs';
 
+const calendarDate=value=>typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)&&Number.isFinite(Date.parse(value+'T00:00:00Z'))&&new Date(value+'T00:00:00Z').toISOString().slice(0,10)===value;
 const slugPattern=/^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const allowedModes=new Set(['walk','bicycle','road','car','motorcycle','bus','coach','rail','metro','tram','ground-transfer','rideshare','taxi','ferry','cruise','flight','helicopter','rail+ground','multimodal','other']);
 const verificationStates=new Set(['current-check-required','verified','draft','illustrative']);
@@ -118,7 +119,7 @@ export function attachEvidenceSource({trip={},catalogEntry={},source={},segments
   };
   if(!normalizedSource.title||!normalizedSource.issuer||!normalizedSource.issuerType)throw new Error('Evidence source title, issuer and issuerType are required');
   if(!/^https:\/\//.test(normalizedSource.url))throw new Error('Evidence source requires an https URL');
-  if(!/^\d{4}-\d{2}-\d{2}$/.test(normalizedSource.checkedAt))throw new Error('Evidence source requires checkedAt as YYYY-MM-DD');
+  if(!calendarDate(normalizedSource.checkedAt))throw new Error('Evidence source requires checkedAt as YYYY-MM-DD');
   const verificationStatus=String(status||'draft').trim();
   if(!verificationStates.has(verificationStatus))throw new Error('Unsupported verification status '+verificationStatus);
   const ordered=[...(nextTrip.segments||[])].sort((a,b)=>Number(a.sequence)-Number(b.sequence));
@@ -240,7 +241,7 @@ export function validateTripDraft({trip,catalogEntry,catalog}){
   for(const src of sources){
     if(!src.id||sourceIds.has(src.id))fail('source IDs must be present and unique: '+src.id); else sourceIds.add(src.id);
     if(!/^https:\/\//.test(String(src.url||'')))fail('source '+src.id+' requires https URL');
-    if(!/^\d{4}-\d{2}-\d{2}$/.test(String(src.checkedAt||'')))fail('source '+src.id+' requires checkedAt date');
+    if(!calendarDate(src.checkedAt))fail('source '+src.id+' requires checkedAt date');
   }
 
   const places=Array.isArray(trip.places)?trip.places:[];

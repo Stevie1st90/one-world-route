@@ -29,7 +29,8 @@ function collect(){
  e.discovery.fit={pace:$('#pace').value,seasons:csv($('#seasons').value),party:csv($('#party').value),startRegion:$('#startRegion').value.trim(),accessibility:$('#accessibility').value};
  return{trip:t,catalogEntry:e};
 }
-function gate(r){const n=$('#gate'),checks=r.qualityChecks?.length?' · '+r.qualityChecks.length+' quality checks passed':'';n.className='gate '+(r.valid?'ok':'bad');n.innerHTML=r.valid?'✓ Publish gate passed'+checks+(r.warnings?.length?' · '+r.warnings.length+' warnings':''):'✕ '+r.errors.length+' blocking issue(s)<br>'+r.errors.map(esc).join('<br>')}
+function gate(r){
+ if(r.pipeline){const p=r.pipeline;$('#pipeline').innerHTML='<strong>'+esc(p.stage.replaceAll('-',' '))+'</strong><span>'+esc(p.visualFamily)+' · '+esc(p.coverStatus.replaceAll('-',' '))+'</span><div>'+p.checks.map(c=>'<span class="'+(c.ready?'ready':'pending')+'">'+(c.ready?'✓ ':'○ ')+esc(c.id.replaceAll('-',' '))+'</span>').join('')+'</div>';}const n=$('#gate'),checks=r.qualityChecks?.length?' · '+r.qualityChecks.length+' quality checks passed':'';n.className='gate '+(r.valid?'ok':'bad');n.innerHTML=r.valid?'✓ Publish gate passed'+checks+(r.warnings?.length?' · '+r.warnings.length+' warnings':''):'✕ '+r.errors.length+' blocking issue(s)<br>'+r.errors.map(esc).join('<br>')}
 function renderCoverage(coverage){
  const s=coverage.summary||{},summary=$('#coverageSummary');
  summary.innerHTML=[

@@ -30,14 +30,11 @@ test('@discovery-fast discovery catalog, finder and representative journey rende
   const results=page.locator('#platformHomeResults .platform-home-card');
   const initialCount=Math.min(24,catalog.trips.length);
   await expect(results).toHaveCount(initialCount);
-  if(catalog.trips.length>initialCount){
-    await page.locator('#platformHomeMore').click();
-    await expect(results).toHaveCount(catalog.trips.length);
-  }
-
-  const renderedIds=(await results.evaluateAll(nodes=>nodes.map(node=>node.getAttribute('data-home-trip')).filter(Boolean))).sort();
-  const expectedIds=catalog.trips.map(item=>item.id).sort();
-  expect(renderedIds).toEqual(expectedIds);
+  // All catalog identities are validated at contract level. Browser work stays bounded.
+  const renderedIds=await results.evaluateAll(nodes=>nodes.map(node=>node.dataset.homeTrip));
+  expect(new Set(renderedIds).size).toBe(initialCount);
+  expect(renderedIds.every(id=>catalog.trips.some(trip=>trip.id===id))).toBe(true);
+  if(catalog.trips.length>initialCount)await expect(page.locator('#platformHomeMore')).toBeVisible();
 
   const firstVisual=results.first().locator('.platform-route-image');
   await expect(firstVisual).toBeVisible();

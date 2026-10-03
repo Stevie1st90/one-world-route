@@ -359,3 +359,15 @@ A product block is done only when:
 - the canonical runbook is updated for any new recurring failure mode.
 
 This runbook takes precedence over one-off handoff scripts when they conflict.
+
+## 14. Discovery and consumer product review
+
+`build-trip-index.mjs` creates the full server/editorial index and a separate compact `discovery-index.json`. The homepage loads the compact index, searchable localized places/country codes, and at most 12 representative globe previews. `build-media-manifest.mjs` additionally produces `media-delivery.json`, which contains the controlled display asset fields without source masters or duplicated hero records. Editorial provenance remains in the canonical registries.
+
+Both delivery indexes are deterministic release outputs. Include them in any catalog/media publication and transaction rollback. Do not replace them with fetching every journey dataset on the homepage.
+
+The Builder derives workflow stage with `scripts/authoring-pipeline-model.mjs`; it does not overload or replace existing public editorial statuses. A workflow stage is advisory until the existing publication gate and generated visual checks pass.
+
+For a substantial shared consumer UI change, run `Product visual review` to capture 1440/1920/390/430px screenshots and the actual 1080×1920 story PNG export. Review the screenshot artifact before merge. The workflow runs automatically when its bounded review contract changes and is otherwise manual; adding catalog content never adds browser cases.
+
+Country destination landing pages use `/[locale]/destination/[ISO alpha-2]`. Legacy `/country/...` links retain their world-route deep-link meaning. Collection and taxonomy memberships reuse the same Discovery contract as the browser. Unknown landing routes return 404/noindex, rather than redirecting to an unrelated route.

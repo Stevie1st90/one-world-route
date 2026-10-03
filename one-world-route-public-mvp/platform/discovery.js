@@ -1,7 +1,9 @@
 (() => {
   'use strict';
-  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  const host=typeof window==='undefined'?globalThis:window;
+  const root=host.ONE_WORLD_PLATFORM_MODULES=host.ONE_WORLD_PLATFORM_MODULES||{};
   const unique=values=>[...new Set(values.filter(Boolean))].sort();
+  const normalize=value=>String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase();
   function facets(catalog){
     const trips=catalog?.trips||[];
     return {
@@ -17,8 +19,8 @@
     };
   }
   function matches(trip,filters={},searchText=''){
-    const d=trip?.discovery||{},fit=d.fit||{},q=String(filters.q||'').trim().toLowerCase();
-    return (!q||String(searchText).toLowerCase().includes(q))
+    const d=trip?.discovery||{},fit=d.fit||{},q=normalize(filters.q).trim();
+    return (!q||q.split(/\s+/).every(word=>normalize(searchText).includes(word)))
       &&(!filters.kind||trip.kind===filters.kind)
       &&(!filters.region||(d.regions||[]).includes(filters.region))
       &&(!filters.duration||d.durationBand===filters.duration)
@@ -30,8 +32,14 @@
       &&(!filters.start||fit.startRegion===filters.start)
       &&(!filters.accessibility||fit.accessibility===filters.accessibility);
   }
+  function collectionMatches(trip,definition){
+    const f=definition?.filters||{},d=trip?.discovery||{};
+    return matches(trip,f)&&(!f.modeAny?.length||f.modeAny.some(v=>(d.modes||[]).includes(v)))
+      &&(!f.themeAny?.length||f.themeAny.some(v=>(d.themes||[]).includes(v)));
+  }
   function filter(catalog,filters={},searchTextFor=()=> ''){
     return (catalog?.trips||[]).filter(trip=>matches(trip,filters,searchTextFor(trip)));
   }
-  root.discovery={facets,matches,filter};
+  root.discovery={facets,matches,filter,collectionMatches,normalize};
+  if(typeof module!=='undefined')module.exports=root.discovery;
 })();

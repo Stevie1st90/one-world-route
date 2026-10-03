@@ -18,7 +18,11 @@ const mime={
 };
 
 function shareQuery(pathname){
-  let m=pathname.match(/^\/(en|de|it|es|fr|pt)\/trip\/([^/]+)$/);
+  let m=pathname.match(/^\/(en|de|it|es|fr|pt)\/(discover|journeys|destination)\/([^/]+)(?:\/([^/]+))?$/);
+  if(m)return m[2]==='discover'?{type:'taxonomy',lang:m[1],facet:m[3],value:m[4]}:m[2]==='journeys'?{type:'collection',lang:m[1],slug:m[3]}:{type:'destination',lang:m[1],code:m[3]};
+  m=pathname.match(/^\/(discover|journeys|destination)\/([^/]+)(?:\/([^/]+))?$/);
+  if(m)return m[1]==='discover'?{type:'taxonomy',facet:m[2],value:m[3]}:m[1]==='journeys'?{type:'collection',slug:m[2]}:{type:'destination',code:m[2]};
+  m=pathname.match(/^\/(en|de|it|es|fr|pt)\/trip\/([^/]+)$/);
   if(m)return {type:'trip',lang:m[1],slug:decodeURIComponent(m[2])};
   m=pathname.match(/^\/trip\/([^/]+)$/);
   if(m)return {type:'trip',slug:decodeURIComponent(m[1])};

@@ -92,7 +92,12 @@
   const verificationLabel = s => s?.verification?.status==='verified'?t('verified'):(s?.verification?.status==='illustrative'?t('illustrative'):t('currentCheck'));
   const sourceLinks = ids => {
     const map=sourceMap(),seen=new Set();
-    return (ids||[]).filter(id=>!seen.has(id)&&seen.add(id)).map(id=>map.get(id)).filter(Boolean).map(src=>`<a href="${esc(src.url)}" target="_blank" rel="noopener noreferrer"><b>${esc(src.issuer||src.title)}</b><span>${esc(src.title)}</span><small>${esc(t('lastChecked'))}: ${esc(src.checkedAt||'—')}</small></a>`).join('');
+    return (ids||[]).filter(id=>!seen.has(id)&&seen.add(id)).map(id=>map.get(id)).filter(Boolean).map(src=>{
+      const checked=new Date(src.checkedAt+'T00:00:00Z'),days=Number(src.reviewDays||currentTrip?.maintenance?.sourceReviewDays||180);
+      const review=Number.isFinite(checked.getTime())?new Date(checked.getTime()+days*86400000).toISOString().slice(0,10):null;
+      const stale=!review||review<new Date().toISOString().slice(0,10)||(src.validUntil&&src.validUntil<new Date().toISOString().slice(0,10));
+      return `<a href="${esc(src.url)}" target="_blank" rel="noopener noreferrer"><b>${esc(src.issuer||src.title)}</b><span>${esc(src.title)}</span><small>${esc(t('lastChecked'))}: ${esc(src.checkedAt||'—')}</small><small class="${stale?'review-due':''}">${esc(stale?t('sourceReviewDue'):t('sourceReviewOn'))}${review?': '+esc(review):''}</small></a>`;
+    }).join('');
   };
 
   let catalog = null;

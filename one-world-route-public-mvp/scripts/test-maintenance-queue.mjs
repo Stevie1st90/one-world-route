@@ -55,3 +55,8 @@ test('includes reusable place-experience review dates in the same operations que
   assert.equal(item.state,'overdue');
   assert.equal(queue.summary.placeExperienceProfiles,1);
 });
+
+test('journeys without evidence cannot appear healthy',()=>{
+  const queue=buildMaintenanceQueue({catalog:{trips:[{id:'empty',renderer:'regional-globe'}]},datasets:new Map([['empty',{segments:[],sources:[]}]]),now:new Date('2026-10-03')});
+  assert.equal(queue.journeyHealth[0].state,'source-stale');
+});

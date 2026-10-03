@@ -7,6 +7,7 @@ import {spawnSync} from 'node:child_process';
 import {attachEvidenceSource,buildRouteSkeleton,validateTripDraft,normalizeCatalogEntry,normalizeDraftMetadata,validatePublicationReadiness,scaffoldTripDraft,journeyArchetypes} from '../one-world-route-public-mvp/scripts/trip-draft-contract.mjs';
 import {buildExperienceCoverage} from '../one-world-route-public-mvp/scripts/experience-coverage-model.mjs';
 import {buildMaintenanceQueue} from '../one-world-route-public-mvp/scripts/maintenance-queue-model.mjs';
+import {authoringPipeline} from '../one-world-route-public-mvp/scripts/authoring-pipeline-model.mjs';
 
 const here=resolve(fileURLToPath(new URL('.',import.meta.url)));
 const publicRoot=resolve(here,'../one-world-route-public-mvp');
@@ -158,6 +159,8 @@ async function syncPublishedSource(input){
   const snapshots=new Map();
   for(const item of updates)snapshots.set(item.target,await readFile(item.target));
   snapshots.set(tripIndexPath,await readFile(tripIndexPath).catch(()=>null));
+  const discoveryPath=join(publicRoot,"data/platform/discovery-index.json");
+  snapshots.set(discoveryPath,await readFile(discoveryPath).catch(()=>null));
   const restore=async()=>{
     for(const [filePath,value] of snapshots){
       if(value===null)await rm(filePath,{force:true});else await writeFile(filePath,value);
@@ -255,7 +258,10 @@ async function applyEvidenceSource(slug,input){
   return saveDraft(slug,evidence);
 }
 async function validateSlug(slug){
-  const d=normalizeDraftMetadata(await loadDraft(slug)),catalog=await json(catalogPath);return validateTripDraft({...d,catalog});
+  const d=normalizeDraftMetadata(await loadDraft(slug)),catalog=await json(catalogPath);
+  const manifest=await json(join(publicRoot,'data/platform/media-manifest.json'));
+  const media=manifest.journeys?.find(item=>item.id===slug);
+  return {...validateTripDraft({...d,catalog}),pipeline:authoringPipeline({...d,catalog,media})};
 }
 async function publish(slug){
   slug=safeSlug(slug);
@@ -273,7 +279,7 @@ async function publish(slug){
   const next={...catalog,updatedAt:new Date().toISOString().slice(0,10),trips};
   const target=join(tripsDir,slug+'.json');
   const snapshots=new Map();
-  for(const filePath of [catalogPath,target,tripIndexPath,sitemapPath,join(publicRoot,"GRAPHICS_NEEDED.md"),...["route-visuals.json","region-visuals.json","media-manifest.json","visual-coverage.json","visual-briefs.json","graphics-backlog.json"].map(name=>join(publicRoot,"data/platform",name))]){
+  for(const filePath of [catalogPath,target,tripIndexPath,join(publicRoot,"data/platform/discovery-index.json"),sitemapPath,join(publicRoot,"GRAPHICS_NEEDED.md"),...["route-visuals.json","region-visuals.json","media-manifest.json","media-delivery.json","visual-coverage.json","visual-briefs.json","graphics-backlog.json"].map(name=>join(publicRoot,"data/platform",name))]){
     snapshots.set(filePath,await readFile(filePath).catch(()=>null));
   }
   const restore=async()=>{
