@@ -545,7 +545,7 @@
     }catch(error){console.warn('Journey discovery support data unavailable',error);collections=[];tripIndex=[]}
     indexById=new Map(tripIndex.map(item=>[item.id,item]));
     const countryNames=new Intl.DisplayNames([d.locale()],{type:'region'});
-    searchById=new Map(d.catalog.trips.map(trip=>[trip.id,[d.local(trip.title),d.local(trip.subtitle),d.facetLabel(trip.kind),...(trip.discovery?.regions||[]).map(d.facetLabel),...(trip.discovery?.themes||[]).map(d.facetLabel),...(trip.discovery?.modes||[]).map(d.facetLabel),...(indexById.get(trip.id)?.searchPlaces||[]).map(d.local),...(indexById.get(trip.id)?.countries||[]).map(code=>countryNames.of(code))].join(' ')]));
+    searchById=new Map(d.catalog.trips.map(trip=>[trip.id,[d.Discovery.localizedSearch(trip.title),d.Discovery.localizedSearch(trip.subtitle),d.facetLabel(trip.kind),...(trip.discovery?.regions||[]).map(d.facetLabel),...(trip.discovery?.themes||[]).map(d.facetLabel),...(trip.discovery?.modes||[]).map(d.facetLabel),...(indexById.get(trip.id)?.searchPlaces||[]).map(d.Discovery.localizedSearch),...(indexById.get(trip.id)?.countries||[]).map(code=>countryNames.of(code))].join(' ')]));
     const requestedCollection=new URLSearchParams(location.search).get('collection');
     activeCollection=collections.some(item=>item.id===requestedCollection)?requestedCollection:null;
     document.body.classList.add('platform-home');
@@ -556,9 +556,9 @@
     host.id='platformHome';
     host.className='platform-home-shell';
     host.innerHTML=
-      '<header class="platform-home-nav"><button class="platform-home-brand" data-home-top type="button"><span class="brand-orbit"><i></i></span><span><strong>ONE WORLD ROUTE</strong><small>'+d.esc(d.t('homeNavSub'))+'</small></span></button><nav><button data-home-explore type="button">'+d.esc(d.t('routes'))+'</button><button data-home-mytrips type="button">'+d.esc(d.t('myTrips'))+'</button><button data-home-traveller type="button">'+d.esc(d.t('traveller'))+'</button><details class="platform-home-overflow"'+(matchMedia('(min-width:821px)').matches?' open':'')+'><summary>'+d.esc(d.t('more'))+'</summary><div><button data-home-method type="button">'+d.esc(d.t('methodology'))+'</button></div></details></nav></header>'+
+      '<header class="platform-home-nav"><button class="platform-home-brand" data-home-top type="button"><span class="brand-orbit"><i></i></span><span><strong>ONE WORLD ROUTE</strong><small>'+d.esc(d.t('homeNavSub'))+'</small></span></button><nav><button data-home-explore type="button">'+d.esc(d.t('routes'))+'</button><button data-home-mytrips type="button">'+d.esc(d.t('myTrips'))+'</button><button data-home-traveller type="button">'+d.esc(d.t('traveller'))+'</button><details class="platform-home-overflow"'+(matchMedia('(min-width:821px)').matches?' open':'')+'><summary>'+d.esc(d.t('more'))+'</summary><div><button data-home-method type="button">'+d.esc(d.t('methodology'))+'</button><label class="platform-home-language"><span>'+d.esc(d.t('language'))+'</span><select data-home-language>'+d.catalog.supportedLocales.map(lang=>'<option value="'+lang+'" '+(lang===d.locale()?'selected':'')+'>'+new Intl.DisplayNames([lang],{type:'language'}).of(lang)+'</option>').join('')+'</select></label></div></details></nav></header>'+
       '<main>'+
-        '<section class="platform-home-hero"><div class="platform-home-hero-copy"><div class="platform-home-kicker">ONE WORLD ROUTE · '+d.esc(d.t('homeEyebrow'))+'</div><h1>'+d.esc(d.t('homeTitle'))+'</h1><p>'+d.esc(d.t('homeLead'))+'</p><div class="platform-home-hero-actions"><button class="primary" data-home-inspire type="button">'+d.esc(d.t('inspireMe'))+'</button><button data-home-find type="button">'+d.esc(d.t('findJourneyTitle'))+'</button></div></div><div class="platform-home-globe-caption"><span>'+d.esc(d.t('homeGlobeLabel'))+'</span><b>'+d.esc(d.t('homeGlobeHint'))+'</b></div><div id="platformHomeGlobePreview" class="platform-home-globe-preview" aria-live="polite" hidden></div></section>'+
+        '<section class="platform-home-hero"><div class="platform-home-hero-copy"><div class="platform-home-kicker">ONE WORLD ROUTE · '+d.esc(d.t('homeEyebrow'))+'</div><h1>'+d.esc(d.t('homeTitle'))+'</h1><p>'+d.esc(d.t('homeLead'))+'</p><div class="platform-home-hero-actions"><button class="primary" data-home-inspire type="button">'+d.esc(d.t('inspireMe'))+'</button><button data-home-find type="button">'+d.esc(d.t('findJourneyTitle'))+'</button></div></div><div class="platform-home-globe-caption"><span>'+d.esc(d.t('homeGlobeLabel'))+'</span><b>'+d.esc(d.t('homeGlobeHint'))+'</b></div><p id="platformHomeMapStatus" role="status"></p><div id="platformHomeGlobePreview" class="platform-home-globe-preview" aria-live="polite" hidden></div></section>'+
         finderMarkup()+inspirationMarkup()+
         '<section class="platform-home-featured"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('journeyDiscovery'))+'</div><h2>'+d.esc(d.profileConfigured?.()?d.t('recommendedForYou'):d.t('featuredJourneys'))+'</h2><p>'+d.esc(d.profileConfigured?.()?d.t('recommendationContextLead'):d.t('featuredLead'))+'</p></div></div><div class="platform-home-featured-grid" id="platformHomeFeatured"></div>'+platformProofMarkup()+'</section>'+
         collectionsMarkup()+
@@ -574,6 +574,9 @@
       if(field&&value&&(field.tagName!=='SELECT'||[...field.options].some(o=>o.value===value)))field.value=value;
     }
     bind();
+    const menu=host.querySelector('.platform-home-overflow');
+    document.addEventListener('pointerdown',event=>{if(matchMedia('(max-width:820px)').matches&&!menu.contains(event.target))menu.open=false});
+    menu.addEventListener('keydown',event=>{if(event.key==='Escape'){menu.open=false;menu.querySelector('summary').focus();event.stopPropagation()}});
     window.addEventListener('one-world-route:trip-tools-changed',()=>{renderFeatured();renderCards()});
     const nav=host.querySelector('.platform-home-nav');
     const observer=new ResizeObserver(()=>host.style.setProperty('--home-header-height',nav.getBoundingClientRect().height+'px'));
@@ -586,6 +589,7 @@
     renderCards();
     if(location.hash==='#platformHomeExplore')requestAnimationFrame(()=>$('#platformHomeExplore')?.scrollIntoView({block:'start'}));
     if(activeCollection||['kind','region','theme','mode','duration','destination','q'].some(key=>params.has(key)))requestAnimationFrame(()=>$('#platformHomeExplore')?.scrollIntoView({block:'start'}));
+    const syncMapStatus=()=>{const status=$('#platformHomeMapStatus');if(!status)return;status.hidden=document.body.classList.contains('globe-ready');status.textContent=d.t(document.body.classList.contains('globe-failed')?'homeMapUnavailable':'homeMapLoading')};syncMapStatus();window.addEventListener('one-world-route:globe-ready',syncMapStatus);window.addEventListener('one-world-route:globe-failed',syncMapStatus);
     await renderGlobe();
   }
 

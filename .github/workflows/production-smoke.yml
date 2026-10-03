@@ -44,6 +44,8 @@ jobs:
           done
           echo "Timed out waiting for Vercel production deployment" >&2
           exit 1
+      - name: Wait for current Production assets
+        run: node scripts/wait-production-assets.mjs
       - name: Install browser QA dependencies
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'

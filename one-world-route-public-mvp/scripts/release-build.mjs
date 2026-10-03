@@ -32,7 +32,7 @@ for (const script of [
   const result = spawnSync(
     process.execPath,
     [scriptPath],
-    { stdio: 'inherit' }
+    { stdio: 'inherit', cwd: fileURLToPath(new URL('../',import.meta.url)) }
   );
 
   if (result.status !== 0) {

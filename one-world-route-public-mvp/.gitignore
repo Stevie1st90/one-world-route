@@ -13,3 +13,7 @@ data/platform/cover-generation-queue.json
 data/platform/cover-generation-operator-prompt.md
 data/platform/staged-cover-masters/
 data/platform/staged-world-showcase/
+
+qa/recovery-product-results/
+qa/product-review-results/
+qa/production-review-results/

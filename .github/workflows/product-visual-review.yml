@@ -3,6 +3,10 @@ on:
   pull_request:
     paths:
       - 'one-world-route-public-mvp/qa/tests/product-review.spec.mjs'
+      - 'one-world-route-public-mvp/platform/**'
+      - 'one-world-route-public-mvp/*.js'
+      - 'one-world-route-public-mvp/*.css'
+      - 'one-world-route-public-mvp/api/share.js'
       - '.github/workflows/product-visual-review.yml'
   workflow_dispatch:
 permissions:

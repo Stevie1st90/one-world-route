@@ -392,7 +392,7 @@ jobs:
       - name: Media renderer tests
         run: node --test scripts/test-platform-media.mjs
       - name: Platform locale tests
-        run: node --test scripts/test-platform-i18n.mjs
+        run: node --test scripts/test-platform-i18n.mjs scripts/test-product-recovery.mjs
       - name: Sharing controller tests
         run: node --test scripts/test-platform-share.mjs
       - name: Partner link safeguards

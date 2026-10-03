@@ -34,7 +34,7 @@
     });
     modal.innerHTML='<div class="platform-modal-card platform-compare-card glass"><button class="platform-x" type="button" aria-label="'+esc(t('close'))+'">×</button>'+
       '<div class="platform-eyebrow">'+esc(t('compareTrips'))+'</div><h2>'+esc(t('compareTrips'))+'</h2><p class="platform-lead">'+esc(t('compareLead'))+'</p>'+
-      '<div class="platform-compare-grid" style="--compare-columns:'+selected.length+'"><div class="platform-compare-head-spacer"></div>'+columns+
+      '<p class="platform-compare-hint">'+esc(t('compareSwipeHint'))+'</p><div class="platform-compare-grid" tabindex="0" role="region" aria-label="'+esc(t('compareTrips'))+'" style="--compare-columns:'+selected.length+'"><div class="platform-compare-head-spacer"></div>'+columns+
       row(t('duration'),values(trip=>trip.metrics?.days?trip.metrics.days+' '+t('days'):'—'),esc)+
       row(t('countriesUnit'),values(trip=>String(trip.metrics?.countries??'—')),esc)+
       row(t('stops'),values(trip=>String(trip.metrics?.stops??trip.metrics?.internationalLegs??'—')),esc)+
@@ -61,6 +61,7 @@
         catch{return String(budget.amount)+' '+String(budget.currency||'EUR')}
       }),esc)+
       '</div></div>';
+    const grid=modal.querySelector('.platform-compare-grid');grid.addEventListener('keydown',event=>{if(event.target===grid&&['ArrowLeft','ArrowRight'].includes(event.key)){event.preventDefault();grid.scrollBy({left:event.key==='ArrowRight'?190:-190,behavior:'instant'})}});
     modal.classList.remove('hidden');
     modal.querySelector('.platform-x').onclick=()=>modal.classList.add('hidden');
     modal.querySelectorAll('[data-compare-open]').forEach(button=>button.onclick=()=>onOpenTrip(button.dataset.compareOpen));

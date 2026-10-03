@@ -14,7 +14,7 @@ function render(query){
     end(v){body=String(v)}
   };
   handler(req,res);
-  return {headers,body};
+  return {headers,body,statusCode:res.statusCode||200};
 }
 
 test('localized trip share page emits German metadata canonical and hreflang',()=>{
@@ -120,8 +120,11 @@ test('metadata-driven taxonomy page is crawlable and localized',()=>{
 });
 
 test('taxonomy pages reject thin or unsupported facets',()=>{
-  const unsupported=render({type:'taxonomy',facet:'region',value:'antarctica',lang:'en'}).body;
-  assert.match(unsupported,/ONE WORLD ROUTE — routes without borders/);
+  const response=render({type:'taxonomy',facet:'region',value:'antarctica',lang:'en'});
+  const unsupported=response.body;
+  assert.equal(response.statusCode,404);
+  assert.match(unsupported,/Journey not found — ONE WORLD ROUTE/);
+  assert.match(unsupported,/name="robots" content="noindex"/);
   assert.doesNotMatch(unsupported,/\/discover\/region\/antarctica/);
 });
 

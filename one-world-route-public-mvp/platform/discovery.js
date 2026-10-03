@@ -18,9 +18,10 @@
       accessibilities:unique(trips.map(r=>r.discovery?.fit?.accessibility))
     };
   }
+  const localizedSearch=value=>typeof value==='string'?value:Array.isArray(value)?value.map(localizedSearch).join(' '):value&&typeof value==='object'?Object.values(value).map(localizedSearch).join(' '):'';
   function matches(trip,filters={},searchText=''){
     const d=trip?.discovery||{},fit=d.fit||{},q=normalize(filters.q).trim();
-    return (!q||q.split(/\s+/).every(word=>normalize(searchText).includes(word)))
+    return (!q||q.split(/\s+/).every(word=>normalize(localizedSearch(searchText)).includes(word)))
       &&(!filters.kind||trip.kind===filters.kind)
       &&(!filters.region||(d.regions||[]).includes(filters.region))
       &&(!filters.duration||d.durationBand===filters.duration)
@@ -40,6 +41,6 @@
   function filter(catalog,filters={},searchTextFor=()=> ''){
     return (catalog?.trips||[]).filter(trip=>matches(trip,filters,searchTextFor(trip)));
   }
-  root.discovery={facets,matches,filter,collectionMatches,normalize};
+  root.discovery={facets,matches,filter,collectionMatches,normalize,localizedSearch};
   if(typeof module!=='undefined')module.exports=root.discovery;
 })();

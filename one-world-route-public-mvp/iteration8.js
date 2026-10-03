@@ -1,8 +1,8 @@
 (() => {
   'use strict';
 
-  const DETAIL_EARTH = 'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg';
-  const STANDARD_EARTH = 'https://unpkg.com/three-globe/example/img/earth-dark.jpg';
+  const DETAIL_EARTH = './assets/globe/earth-blue-marble.webp';
+  const STANDARD_EARTH = './assets/globe/earth-standard.webp';
   const runtime = { applied:false, retries:0, highDetail:true, preload:null };
 
   const $=(s,r=document)=>r.querySelector(s);

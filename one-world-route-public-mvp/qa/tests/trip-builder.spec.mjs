@@ -1,14 +1,15 @@
 import {test,expect} from '@playwright/test';
 import {rm} from 'node:fs/promises';
 import {resolve} from 'node:path';
+import {fileURLToPath} from 'node:url';
 
 test('internal builder authors a draft and previews it with the regional engine',async({page,isMobile},testInfo)=>{
   test.setTimeout(90000);
   const slug=('ci-builder-ui-'+testInfo.project.name).toLowerCase().replace(/[^a-z0-9]+/g,'-');
   const cloneSlug=(slug+'-clone').slice(0,80);
-  const pageErrors=[];
+  const pageErrors=[],alerts=[];page.on('dialog',async dialog=>{if(dialog.type()==='alert'){alerts.push(dialog.message());await dialog.dismiss()}else await dialog.accept()});
   page.on('pageerror',error=>pageErrors.push(error.message));
-  const root=resolve(process.cwd(),'..');
+  const root=fileURLToPath(new URL('../../',import.meta.url));
   const draftBase=resolve(root,'data/platform/drafts',slug);
   const cloneDraftBase=resolve(root,'data/platform/drafts',cloneSlug);
   try{
@@ -56,6 +57,21 @@ test('internal builder authors a draft and previews it with the regional engine'
     await expect(page.locator('#cloneDialog')).not.toBeVisible();
     await expect(page.locator('#slug')).toHaveValue(cloneSlug);
     await expect(page.locator('#status')).toHaveValue('draft');
+    await page.locator('#skeletonBtn').click();
+    await page.locator('#skeletonMode').fill('rail');
+    await page.locator('#skeletonText').fill('Rome | IT | 41.9028 | 12.4964 | 2\nFlorence | IT | 43.7696 | 11.2558 | 2\nVenice | IT | 45.4408 | 12.3155 | 2');
+    await page.locator('#skeletonForm button.primary').click();
+    await expect(page.locator('#skeletonDialog')).not.toBeVisible();
+    await page.locator('#evidenceBtn').click();
+    const form=page.locator('#evidenceForm');
+    for(const [name,value] of Object.entries({id:'ci-browser-source',title:'CI browser source',issuer:'CI Operator',issuerType:'official-operator',url:'https://example.com/ci-browser-source',checkedAt:'2026-10-03',segments:'1-2',claims:'Browser form persistence proof'}))await form.locator('[name="'+name+'"]').fill(value);
+    await form.locator('button.primary').click();
+    await expect(page.locator('#evidenceDialog')).not.toBeVisible();
+    const recovered=await page.request.get('/__builder/api/draft/'+cloneSlug).then(response=>response.json());
+    expect(recovered.trip.stops).toHaveLength(3);expect(recovered.trip.segments).toHaveLength(2);
+    expect(recovered.trip.sources.some(source=>source.id==='ci-browser-source')).toBe(true);
+    expect(recovered.trip.segments.every(segment=>segment.verification.sourceIds.includes('ci-browser-source'))).toBe(true);
+
 
     if(isMobile)await page.locator('#mobileNewBtn').click();else await page.locator('#newBtn').click();
     await expect(page.locator('#newDialog')).toBeVisible();
@@ -76,7 +92,7 @@ test('internal builder authors a draft and previews it with the regional engine'
     await page.locator('#localizationBtn').click();
     await expect(page.locator('#localizationDialog')).toBeVisible();
     await expect(page.locator('#localizationGrid .localization-card')).toHaveCount(6);
-    await expect(page.locator('#localizationProgress')).toContainText('locales complete');
+    await expect(page.locator('#localizationProgress')).toContainText('0 / 6');
     await page.locator('#localizationDialog [data-close="localizationDialog"]').click();
     await expect(page.locator('#localizationDialog')).not.toBeVisible();
     await page.locator('#evidenceBtn').click();
@@ -102,7 +118,7 @@ test('internal builder authors a draft and previews it with the regional engine'
     await expect(preview.locator('body')).toHaveClass(/platform-regional-trip/,{timeout:30000});
     await expect(preview.locator('#platformRouteBtn')).toBeVisible();
     await preview.close();
-    expect(pageErrors,'trip builder runtime page errors').toEqual([]);
+    expect(pageErrors,'trip builder runtime page errors').toEqual([]);expect(alerts,'builder has no unexpected form submission alerts').toEqual([]);
   }finally{
     await rm(draftBase+'.trip.json',{force:true});
     await rm(draftBase+'.catalog.json',{force:true});

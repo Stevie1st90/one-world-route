@@ -4,7 +4,7 @@ import {readFile} from 'node:fs/promises';
 // Fixed shared-surface coverage. Catalog size does not add browser cases.
 test('@product-review consumer discovery, personal workspace, journey and sharing',async({page,isMobile},info)=>{
   test.setTimeout(360000);
-  page.setDefaultTimeout(12000);
+  page.setDefaultTimeout(12000);await page.emulateMedia({reducedMotion:'reduce'});
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   const shot=async name=>{
     await page.evaluate(()=>window.__ONE_WORLD_ROUTE_GLOBE__?.pauseAnimation?.());
@@ -23,7 +23,7 @@ test('@product-review consumer discovery, personal workspace, journey and sharin
   await page.locator('.platform-home-destinations summary').click();await page.locator('.platform-home-destinations').scrollIntoViewIfNeeded();await shot('destinations-navigation');
   await page.locator('[data-home-inspire]').first().click();await shot('inspire-me');
   await page.locator('#homeRouteSearch').fill('tokyo');
-  await expect(page.locator('#platformHomeResults')).toContainText('Japan');
+  await expect(page.locator('#platformHomeResults .platform-home-card')).toHaveCount(1);await expect(page.locator('#platformHomeResults')).toContainText('Japan');
   await shot('search-results');
   await page.locator('#homeRouteSearch').fill('zzzz-no-journey');
   await expect(page.locator('.platform-home-empty')).toBeVisible();await shot('empty-search');
@@ -37,7 +37,7 @@ test('@product-review consumer discovery, personal workspace, journey and sharin
   await page.locator('[data-home-mytrips]').click();await expect(page.locator('#platformMyTripsModal')).toBeVisible();await shot('saved-boards');
   await page.locator('[data-board-name]').fill('Sommerreisen');await page.locator('[data-board-form] button').click();
   await expect(page.locator('[data-board-select]')).toContainText('Sommerreisen');await shot('named-board');
-  await page.locator('[data-board-select]').selectOption('');await page.locator('[data-board-member]').first().check();
+  await page.locator('[data-board-select]').selectOption('');await page.locator('[data-mytrip] details').filter({has:page.locator('[data-board-member]')}).first().locator('summary').click();await page.locator('[data-board-member]').first().check();
   await page.locator('[data-board-select]').selectOption({label:'Sommerreisen (1)'});await expect(page.locator('[data-mytrip]')).toHaveCount(1);
   await shot('board-with-journey');await closeModal('platformMyTripsModal');
   await page.locator('[data-home-traveller]').first().click();await shot('traveller-context');await closeModal('platformTravellerModal');
@@ -57,8 +57,8 @@ test('@product-review consumer discovery, personal workspace, journey and sharin
   await page.locator('[data-journey-mode="plan"]').click();await shot('planning-startpoint');
   if(isMobile)await page.locator('#closeDetails').click();
   await page.locator('[data-journey-mode="story"]').click();await shot('story-mode');
-  await page.locator('[data-journey-mode="explore"]').click();
-  await page.locator('[data-journey-mode="terrain"]').click();await expect(page.locator('#terrainMap')).toBeVisible();await shot('terrain');
+  await page.locator('#platformStoryExit').click();
+  await page.locator('[data-journey-mode="terrain"]').click();await expect(page.locator('#terrainMap canvas')).toBeVisible();await expect.poll(()=>page.evaluate(()=>window.ONE_WORLD_PLATFORM_MODULES.terrain.isReady()),{timeout:45000}).toBe(true);await shot('terrain');
   expect(errors).toEqual([]);
 });
 
@@ -68,7 +68,7 @@ test('@product-review localized static destination, collection, taxonomy and jou
     for(const [name,path] of [['destination','destination/it'],['collection','journeys/great-rail-journeys'],['theme','discover/theme/nature'],['detail','trip/italy-grand-tour']]){
       const response=await page.goto('/'+lang+'/'+path);expect(response.status()).toBe(200);
       await expect(page.locator('h1')).toBeVisible();await expect(page.locator('html')).toHaveAttribute('lang',lang);
-      const images=page.locator('img');if(await images.count())await expect(images.first()).toBeVisible();
+      await page.evaluate(()=>document.querySelectorAll('img').forEach(img=>img.loading='eager'));const images=page.locator('img');if(await images.count())await expect(images.first()).toBeVisible();await expect.poll(()=>page.evaluate(()=>[...document.images].every(img=>img.complete&&img.naturalWidth>0))).toBe(true);
       expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
       if(lang==='de'||lang==='fr')await page.screenshot({path:info.outputPath(name+'-'+lang+'.png')});
     }

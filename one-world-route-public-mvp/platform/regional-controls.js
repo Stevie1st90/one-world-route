@@ -20,7 +20,7 @@
     const modal=$('#infoModal'),card=$('.modal-card',modal);
     if(!modal||!card)return;
     const sourced=trip.segments.filter(segment=>(segment.verification?.sourceIds||[]).length).length;
-    card.innerHTML=`<button class="modal-close" aria-label="Close">×</button><div class="eyebrow">${d.esc(d.t('methodology').toUpperCase())}</div><h2>${d.esc(d.t('routeMethodTitle'))}</h2><p>${d.esc(d.t('routeMethodText'))}</p><div class="method-grid"><article><b>${trip.stops.length}</b><span>${d.esc(d.t('stops'))}</span></article><article><b>${trip.segments.length}</b><span>${d.esc(d.t('segments'))}</span></article><article><b>${trip.planning?.days||'—'}</b><span>${d.esc(d.t('days'))}</span></article><article><b>${sourced}/${trip.segments.length}</b><span>${d.esc(d.t('evidenceCoverage'))}</span></article></div><h3>${d.esc(d.t('editorialStatus'))}</h3><p>${d.esc(d.t('editorial'))}</p>`;
+    card.innerHTML=`<button class="modal-close" aria-label="${d.esc(d.t('close'))}">×</button><div class="eyebrow">${d.esc(d.t('methodology').toUpperCase())}</div><h2>${d.esc(d.t('routeMethodTitle'))}</h2><p>${d.esc(d.t('routeMethodText'))}</p><div class="method-grid"><article><b>${trip.stops.length}</b><span>${d.esc(d.t('stops'))}</span></article><article><b>${trip.segments.length}</b><span>${d.esc(d.t('segments'))}</span></article><article><b>${trip.planning?.days||'—'}</b><span>${d.esc(d.t('days'))}</span></article><article><b>${sourced}/${trip.segments.length}</b><span>${d.esc(d.t('evidenceCoverage'))}</span></article></div><h3>${d.esc(d.t('editorialStatus'))}</h3><p>${d.esc(d.t('editorial'))}</p>`;
     $('.modal-close',card)?.addEventListener('click',()=>modal.classList.add('hidden'));
   }
 

@@ -375,3 +375,12 @@ Country destination landing pages use `/[locale]/destination/[ISO alpha-2]`. Leg
 ### Screenshot evidence delivery
 
 The fixed product review pauses globe animation only during each screenshot, then resumes it. Screens remain browser-rendered and actions use real UI controls. Upload screenshots by viewport; keep each artifact independently downloadable and omit retained failure traces from the screenshot bundle. Failure logs and traces remain available from the Actions run. Locale coverage uses the catalog summary for the legacy world dataset because that dataset contains countries/legs, not the generic journey summary field. Names that remain identical in several locales are intentional proper names; use conventional localized names where appropriate.
+
+
+### Shared product surfaces and release checks
+
+Globe textures are local, and atlas loading ends only after texture readiness. A bounded failure state leaves discovery usable. Dialogs, journey modes, comparison scrolling, mobile menus and six-language error pages share the same accessibility behavior. Builder form data must be captured before asynchronous saves; clone reset retains its form reference. Builder smoke restores compact delivery indexes as well as the existing generated registries.
+
+Product review covers shared consumer surfaces at 1440/1920/390/430. Every published catalog facet and literal UI translation key is validated for all six supported languages. The 1000-journey contract bounds globe preview work to twelve datasets. After a green PR merge, Production smoke waits for both Vercel status and matching runtime/data/texture assets. Review screenshots from the deployed commit before declaring release complete.
+
+Recovery on 2026-10-03: the unpushed objects eab7633 and 6c3053b were unavailable after the execution environment reset. Their documented corrections were reconstructed on remote PR head a7de7d4, with new commit hashes and fresh validation. Earlier screenshot evidence is historical; the new release requires its own remote checks and production review.
