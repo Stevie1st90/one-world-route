@@ -977,3 +977,5 @@ body.platform-story-mode .globe-stage>.platform-journey-modes,body.story-mode .g
 @media(max-width:820px){.platform-home-hero h1{font-size:clamp(32px,8.5vw,44px);max-width:100%;overflow-wrap:anywhere;hyphens:auto}.platform-home-overflow{position:static}.platform-home-overflow>div{left:12px;right:12px;top:100%;min-width:0}.platform-home-nav{position:relative}}
 
 #platformHomeMapStatus{position:absolute;right:24px;top:32px;font-size:12px;color:#b8cedd;max-width:280px;padding:10px;background:#071624dd;border-radius:10px}
+
+#platformHome{background:none}#platformHome main{position:relative}#platformHome main::before{content:"";position:absolute;inset:var(--home-hero-height,660px) 0 0;background:#07111d;pointer-events:none}

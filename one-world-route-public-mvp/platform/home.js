@@ -579,8 +579,8 @@
     menu.addEventListener('keydown',event=>{if(event.key==='Escape'){menu.open=false;menu.querySelector('summary').focus();event.stopPropagation()}});
     window.addEventListener('one-world-route:trip-tools-changed',()=>{renderFeatured();renderCards()});
     const nav=host.querySelector('.platform-home-nav');
-    const observer=new ResizeObserver(()=>host.style.setProperty('--home-header-height',nav.getBoundingClientRect().height+'px'));
-    observer.observe(nav);
+    const observer=new ResizeObserver(()=>{host.style.setProperty('--home-header-height',nav.getBoundingClientRect().height+'px');host.style.setProperty('--home-hero-height',host.querySelector('.platform-home-hero').getBoundingClientRect().height+'px')});
+    observer.observe(nav);observer.observe(host.querySelector('.platform-home-hero'));
     host.querySelectorAll('main>section').forEach(section=>section.classList.add('platform-scroll-target'));
 
     renderFeatured();
