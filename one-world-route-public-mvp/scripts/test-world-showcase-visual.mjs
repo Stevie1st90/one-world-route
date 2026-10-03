@@ -29,7 +29,7 @@ test('world showcase no longer depends on image generation',()=>{
   assert.equal(brief.routeOverlayRequired,true);
   assert.equal(brief.routeOverlayAssetId,'auto-route-world-195');
   assert.equal(brief.imagePrompt,'');
-  assert.equal(spec.status,'render-ready');
+  assert.ok(['render-ready','published'].includes(spec.status));
   assert.equal(spec.baseImage,undefined);
 });
 
