@@ -35,11 +35,20 @@ test('world showcase no longer depends on image generation',()=>{
   assert.equal(spec.baseImage,undefined);
 });
 
+test('world showcase uses red only for static graphics and leaves interactive globe semantics unchanged',()=>{
+  assert.equal(spec.factualLayer.renderStyle,'premium-full-bleed-world-v2');
+  assert.equal(spec.factualLayer.staticGraphicRouteStyle,'single-coral-red');
+  assert.equal(spec.factualLayer.staticRouteColorMode,'single-color');
+  assert.equal(spec.factualLayer.staticRouteColor,'#FF5A52');
+  assert.equal(spec.factualLayer.interactiveRouteStyle,'continent-colors');
+  assert.equal(spec.factualLayer.interactiveGlobeUnchanged,true);
+});
+
 test('world showcase uses the verified full-bleed factual renderer',()=>{
   assert.equal(spec.factualLayer.assetId,'auto-route-world-195');
   assert.equal(spec.factualLayer.geometrySource,'data/public-route.json');
   assert.equal(spec.factualLayer.basemapSource,'data/visual-sources/natural-earth-relief.webp');
-  assert.equal(spec.factualLayer.renderStyle,'premium-full-bleed-world-v1');
+  assert.equal(spec.factualLayer.renderStyle,'premium-full-bleed-world-v2');
   assert.equal(spec.factualLayer.projection,'equirectangular-full-bleed');
   assert.equal(spec.factualLayer.fullBleed,true);
   assert.equal(spec.factualLayer.spaceBackground,false);
@@ -57,6 +66,7 @@ test('world showcase release runner is isolated and publishes exactly four respo
   assert.match(applyRunner,/compose-world-showcase-cover\.mjs --publish=true --approved=true/);
   assert.match(applyRunner,/Expected exactly four world-195 cover WebPs/);
   assert.match(applyRunner,/HEAD:refs\/heads\//);
+  assert.match(applyRunner,/world-195-full-bleed-red-route-v2/);
   assert.doesNotMatch(applyRunner,/--base=/);
 });
 
@@ -64,7 +74,7 @@ test('GitHub world showcase release automation is deterministic and branch-scope
   assert.match(releaseWorkflow,/status.*render-ready/s);
   assert.match(releaseWorkflow,/compose-world-showcase-cover\.mjs --publish=true --approved=true/);
   assert.match(releaseWorkflow,/Expected exactly four world-195 cover WebPs/);
-  assert.match(releaseWorkflow,/world-195-full-bleed-release-v1/);
+  assert.match(releaseWorkflow,/world-195-full-bleed-red-route-v2/);
   assert.match(releaseWorkflow,/permissions:\s*\n\s*contents: write/);
   assert.doesNotMatch(releaseWorkflow,/--base=/);
 });
