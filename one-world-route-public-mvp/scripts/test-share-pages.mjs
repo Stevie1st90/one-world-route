@@ -14,7 +14,7 @@ function render(query){
     end(v){body=String(v)}
   };
   handler(req,res);
-  return {headers,body};
+  return {headers,body,statusCode:res.statusCode||200};
 }
 
 test('localized trip share page emits German metadata canonical and hreflang',()=>{
@@ -120,8 +120,11 @@ test('metadata-driven taxonomy page is crawlable and localized',()=>{
 });
 
 test('taxonomy pages reject thin or unsupported facets',()=>{
-  const unsupported=render({type:'taxonomy',facet:'region',value:'antarctica',lang:'en'}).body;
-  assert.match(unsupported,/ONE WORLD ROUTE — routes without borders/);
+  const response=render({type:'taxonomy',facet:'region',value:'antarctica',lang:'en'});
+  const unsupported=response.body;
+  assert.equal(response.statusCode,404);
+  assert.match(unsupported,/Journey not found — ONE WORLD ROUTE/);
+  assert.match(unsupported,/name="robots" content="noindex"/);
   assert.doesNotMatch(unsupported,/\/discover\/region\/antarctica/);
 });
 
@@ -135,3 +138,30 @@ test('combined collection filters stay factual and crawlable',()=>{
   assert.doesNotMatch(body,/location\.replace/);
 });
 
+
+test('country destinations list regional journeys in all six languages without changing world deep links',()=>{
+  for(const lang of ['en','de','it','es','fr','pt']){
+    const {body}=render({type:'destination',code:'it',lang});
+    assert.match(body,new RegExp('hreflang="'+lang+'"'));
+    assert.match(body,/destination\/it/);
+    assert.match(body,/italy-grand-tour/);
+    assert.match(body,/class="collection-cover"/);
+    assert.doesNotMatch(body,/location\.replace/);
+    assert.doesNotMatch(body,/\/trip\/japan-by-rail/);
+  }
+});
+
+test('static journey pages have responsive licensed covers and actual OG images',()=>{
+  const {body}=render({type:'trip',slug:'italy-grand-tour',lang:'de'});
+  assert.match(body,/property="og:image"/);
+  assert.match(body,/class="journey-cover"/);
+  assert.match(body,/srcset="\/assets\//);
+  assert.match(body,/Bahn/);
+  assert.doesNotMatch(body,/>Rail<|>Balanced<|>Spring</);
+});
+
+test('unknown journeys return noindex without redirecting to an unrelated homepage',()=>{
+  const {body}=render({type:'trip',slug:'unknown'});
+  assert.match(body,/name="robots" content="noindex"/);
+  assert.doesNotMatch(body,/location\.replace/);
+});

@@ -72,7 +72,12 @@
       "type": "place",
       "countryCode": "NA",
       "name": {
-        "en": "Windhoek"
+        "en": "Windhoek",
+        "de": "Windhoek",
+        "it": "Windhoek",
+        "es": "Windhoek",
+        "fr": "Windhoek",
+        "pt": "Windhoek"
       },
       "coordinates": {
         "lat": -22.5609,
@@ -84,7 +89,12 @@
       "type": "place",
       "countryCode": "NA",
       "name": {
-        "en": "Sossusvlei"
+        "en": "Sossusvlei",
+        "de": "Sossusvlei",
+        "it": "Sossusvlei",
+        "es": "Sossusvlei",
+        "fr": "Sossusvlei",
+        "pt": "Sossusvlei"
       },
       "coordinates": {
         "lat": -24.7286,
@@ -96,7 +106,12 @@
       "type": "place",
       "countryCode": "NA",
       "name": {
-        "en": "Swakopmund"
+        "en": "Swakopmund",
+        "de": "Swakopmund",
+        "it": "Swakopmund",
+        "es": "Swakopmund",
+        "fr": "Swakopmund",
+        "pt": "Swakopmund"
       },
       "coordinates": {
         "lat": -22.6784,
@@ -108,7 +123,12 @@
       "type": "place",
       "countryCode": "NA",
       "name": {
-        "en": "Spitzkoppe"
+        "en": "Spitzkoppe",
+        "de": "Spitzkoppe",
+        "it": "Spitzkoppe",
+        "es": "Spitzkoppe",
+        "fr": "Spitzkoppe",
+        "pt": "Spitzkoppe"
       },
       "coordinates": {
         "lat": -21.825,
@@ -120,7 +140,12 @@
       "type": "place",
       "countryCode": "NA",
       "name": {
-        "en": "Twyfelfontein"
+        "en": "Twyfelfontein",
+        "de": "Twyfelfontein",
+        "it": "Twyfelfontein",
+        "es": "Twyfelfontein",
+        "fr": "Twyfelfontein",
+        "pt": "Twyfelfontein"
       },
       "coordinates": {
         "lat": -20.595,
@@ -132,7 +157,12 @@
       "type": "place",
       "countryCode": "NA",
       "name": {
-        "en": "Etosha National Park"
+        "en": "Etosha National Park",
+        "de": "Etosha-Nationalpark",
+        "it": "Parco nazionale di Etosha",
+        "es": "Parque nacional de Etosha",
+        "fr": "Parc national d’Etosha",
+        "pt": "Parque Nacional de Etosha"
       },
       "coordinates": {
         "lat": -18.8556,
@@ -144,7 +174,12 @@
       "type": "place",
       "countryCode": "NA",
       "name": {
-        "en": "Windhoek"
+        "en": "Windhoek",
+        "de": "Windhoek",
+        "it": "Windhoek",
+        "es": "Windhoek",
+        "fr": "Windhoek",
+        "pt": "Windhoek"
       },
       "coordinates": {
         "lat": -22.5609,

@@ -72,7 +72,12 @@
       "type": "place",
       "countryCode": "GB",
       "name": {
-        "en": "Inverness"
+        "en": "Inverness",
+        "de": "Inverness",
+        "it": "Inverness",
+        "es": "Inverness",
+        "fr": "Inverness",
+        "pt": "Inverness"
       },
       "coordinates": {
         "lat": 57.4778,
@@ -84,7 +89,12 @@
       "type": "place",
       "countryCode": "GB",
       "name": {
-        "en": "Ullapool"
+        "en": "Ullapool",
+        "de": "Ullapool",
+        "it": "Ullapool",
+        "es": "Ullapool",
+        "fr": "Ullapool",
+        "pt": "Ullapool"
       },
       "coordinates": {
         "lat": 57.8954,
@@ -96,7 +106,12 @@
       "type": "place",
       "countryCode": "GB",
       "name": {
-        "en": "Stornoway"
+        "en": "Stornoway",
+        "de": "Stornoway",
+        "it": "Stornoway",
+        "es": "Stornoway",
+        "fr": "Stornoway",
+        "pt": "Stornoway"
       },
       "coordinates": {
         "lat": 58.2093,
@@ -108,7 +123,12 @@
       "type": "place",
       "countryCode": "GB",
       "name": {
-        "en": "Tarbert, Harris"
+        "en": "Tarbert, Harris",
+        "de": "Tarbert, Harris",
+        "it": "Tarbert, Harris",
+        "es": "Tarbert, Harris",
+        "fr": "Tarbert, Harris",
+        "pt": "Tarbert, Harris"
       },
       "coordinates": {
         "lat": 57.8977,
@@ -120,7 +140,12 @@
       "type": "place",
       "countryCode": "GB",
       "name": {
-        "en": "Portree"
+        "en": "Portree",
+        "de": "Portree",
+        "it": "Portree",
+        "es": "Portree",
+        "fr": "Portree",
+        "pt": "Portree"
       },
       "coordinates": {
         "lat": 57.4125,
@@ -132,7 +157,12 @@
       "type": "place",
       "countryCode": "GB",
       "name": {
-        "en": "Fort William"
+        "en": "Fort William",
+        "de": "Fort William",
+        "it": "Fort William",
+        "es": "Fort William",
+        "fr": "Fort William",
+        "pt": "Fort William"
       },
       "coordinates": {
         "lat": 56.8198,

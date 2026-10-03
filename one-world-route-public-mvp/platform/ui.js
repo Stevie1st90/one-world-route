@@ -3,22 +3,29 @@
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
   const $=(s,r=document)=>r.querySelector(s);
   const dialogStack=[];
+  let pausedGlobe=null;
+  function syncGlobeAnimation(){
+    const globe=window.__ONE_WORLD_ROUTE_GLOBE__;
+    const obscured=dialogStack.length>0||document.body.classList.contains('terrain-loading')||document.body.classList.contains('terrain-view');
+    if(obscured&&globe!==pausedGlobe){pausedGlobe?.resumeAnimation?.();globe?.pauseAnimation?.();pausedGlobe=globe||null}
+    else if(!obscured&&pausedGlobe){pausedGlobe.resumeAnimation?.();pausedGlobe=null}
+  }
   function syncDialogStack(){
     const top=dialogStack.at(-1);
-    for(const modal of document.querySelectorAll('.platform-modal'))modal.inert=Boolean(top&&modal!==top);
+    for(const modal of document.querySelectorAll('[data-platform-dialog]'))modal.inert=Boolean(top&&modal!==top);
     const app=$('#app');if(app)app.inert=Boolean(top);
+    syncGlobeAnimation();
   }
 
   function ensureDialog(id,cls='platform-modal'){
     let modal=$('#'+id);
-    if(modal)return modal;
-    modal=document.createElement('div');
-    modal.id=id;
-    modal.className=`${cls} hidden`;
+    if(modal?.dataset.platformDialog)return modal;
+    if(!modal){modal=document.createElement('div');modal.id=id;modal.className=`${cls} hidden`;document.body.appendChild(modal)}
+    modal.dataset.platformDialog='1';
+    if(modal.closest('#app'))document.body.appendChild(modal);
     modal.setAttribute('role','dialog');
     modal.setAttribute('aria-modal','true');
-    modal.addEventListener('click',e=>{if(e.target===modal){modal.querySelector('.platform-x')?.click();modal.classList.add('hidden')}});
-    document.body.appendChild(modal);
+    modal.addEventListener('click',e=>{if(e.target===modal){modal.querySelector('.platform-x,.modal-close')?.click();modal.classList.add('hidden')}});
     modal.tabIndex=-1;
     let returnFocus=null,wasOpen=false;
     const focusables=()=>[...modal.querySelectorAll('button,input,select,textarea,a[href],summary,[tabindex="0"]')].filter(node=>!node.disabled&&node.getClientRects().length);
@@ -35,7 +42,7 @@
     });
     observer.observe(modal,{attributes:true,attributeFilter:['class']});
     modal.addEventListener('keydown',event=>{
-      if(event.key==='Escape'){event.preventDefault();event.stopPropagation();modal.querySelector('.platform-x')?.click();modal.classList.add('hidden')}
+      if(event.key==='Escape'){event.preventDefault();event.stopPropagation();modal.querySelector('.platform-x,.modal-close')?.click();modal.classList.add('hidden')}
       if(event.key==='Tab'){
         const nodes=focusables(),first=nodes[0],last=nodes.at(-1);
         if(!first){event.preventDefault();modal.focus();return}
@@ -79,5 +86,10 @@
     };
   }
 
+  if($('#infoModal'))ensureDialog('infoModal');
+  // Dialogs and terrain share the same globe visibility policy. This also
+  // handles switching views while a dialog is open or the atlas is loading.
+  if(document.body&&typeof MutationObserver==='function')new MutationObserver(syncGlobeAnimation).observe(document.body,{attributes:true,attributeFilter:['class']});
+  window.addEventListener?.('one-world-route:globe-ready',syncGlobeAnimation);
   root.ui={ensureDialog,ensureGlobalActions,toast,regionalSettings};
 })();

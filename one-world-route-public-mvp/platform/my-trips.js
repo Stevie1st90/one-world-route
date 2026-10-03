@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
-  let deps=null;
+  let deps=null,activeBoard='',visibleCount=24,renderVersion=0;
   const $=(s,r=document)=>r.querySelector(s);
 
   function configure(next){deps=next;return api}
@@ -107,6 +107,7 @@
       '<p>'+d.esc(d.local((trip?._variant?.id&&trip._variant.id!=='base')?trip.summary:meta.subtitle))+'</p>'+
       '<div class="platform-mytrip-setup">'+setup+'</div>'+
       planningMarkup({meta,trip,profile,budget,currency,start})+
+      boardMembership(id)+
       '<div class="platform-mytrip-fit">'+fitMarkup(meta,profile)+'</div>'+
       '<div class="platform-mytrip-actions"><button type="button" data-mytrip-offline="'+d.esc(id)+'">'+d.esc(d.t('saveOffline'))+'</button><button type="button" data-mytrip-open="'+d.esc(id)+'">'+d.esc(d.t('continuePlanning'))+' →</button></div>'+
     '</article>';
@@ -120,9 +121,22 @@
     '</article>';
   }
 
+  function boardMembership(id){
+    const d=context(),boards=d.TripTools.load(d.storage).boards;
+    return boards.length?'<details class="platform-mytrip-status"><summary>'+d.esc(d.t('boards'))+'</summary><div class="platform-board-membership">'+boards.map(board=>'<label><input type="checkbox" data-board-member="'+d.esc(board.id)+'" data-trip-id="'+d.esc(id)+'" '+(board.tripIds.includes(id)?'checked':'')+'><span>'+d.esc(board.name)+'</span></label>').join('')+'</div></details>':'';
+  }
+  function boardControls(modal,state){
+    const d=context(),board=state.boards.find(item=>item.id===activeBoard);
+    if(!board)activeBoard='';
+    $('[data-mytrips-boards]',modal).innerHTML='<label><span>'+d.esc(d.t('boards'))+'</span><select data-board-select><option value="">'+d.esc(d.t('savedJourneys'))+'</option>'+state.boards.map(item=>'<option value="'+d.esc(item.id)+'" '+(item.id===activeBoard?'selected':'')+'>'+d.esc(item.name)+' ('+item.tripIds.length+')</option>').join('')+'</select></label>'+
+      '<form data-board-form><label><span>'+d.esc(d.t('boardName'))+'</span><input data-board-name maxlength="80" required value="'+d.esc(board?.name||'')+'"></label><button type="submit">'+d.esc(d.t(board?'renameBoard':'createBoard'))+'</button></form>'+
+      (board?'<button type="button" data-board-compare '+(board.tripIds.length<2?'disabled':'')+'>'+d.esc(d.t('compareSelected').replace('{count}',String(Math.min(3,board.tripIds.length))))+'</button><button type="button" data-board-delete>'+d.esc(d.t('deleteBoard'))+'</button><small>'+d.esc(d.t('deleteBoardLead'))+'</small>':'');
+  }
   async function render(modal){
-    const d=context(),profile=d.loadProfile(),state=d.TripTools.load(d.storage),saved=state.savedTrips,recent=d.TripTools.getRecent(d.storage);
-    const metas=(d.catalog.trips||[]).filter(meta=>saved.includes(meta.id)).sort((a,b)=>{
+    const version=++renderVersion,d=context(),profile=d.loadProfile(),state=d.TripTools.load(d.storage),saved=state.savedTrips,recent=d.TripTools.getRecent(d.storage);
+    boardControls(modal,state);
+    const selectedBoard=state.boards.find(item=>item.id===activeBoard),selectedIds=selectedBoard?selectedBoard.tripIds:saved;
+    const metas=(d.catalog.trips||[]).filter(meta=>selectedIds.includes(meta.id)).sort((a,b)=>{
       const aDate=d.TripTools.getStartDate(d.storage,a.id)||'9999-12-31';
       const bDate=d.TripTools.getStartDate(d.storage,b.id)||'9999-12-31';
       return aDate.localeCompare(bDate)||d.local(a.title).localeCompare(d.local(b.title));
@@ -132,13 +146,14 @@
     const count=$('[data-mytrips-count]',modal);
     if(count)count.textContent=String(metas.length);
     if(!metas.length&&!recentMetas.length){
-      body.innerHTML='<div class="platform-mytrips-empty"><b>'+d.esc(d.t('myTripsEmptyTitle'))+'</b><span>'+d.esc(d.t('myTripsEmptyLead'))+'</span></div>';
+      body.innerHTML='<div class="platform-mytrips-empty"><b>'+d.esc(d.t(selectedBoard?'boardEmpty':'myTripsEmptyTitle'))+'</b><span>'+d.esc(d.t('myTripsEmptyLead'))+'</span></div>';
       return;
     }
     body.innerHTML='<div class="platform-mytrips-loading">'+d.esc(d.t('loading'))+'</div>';
-    const savedMarkup=metas.length?'<section class="platform-mytrips-group"><h3>'+d.esc(d.t('savedJourneys'))+'</h3>'+(await Promise.all(metas.map(meta=>buildCard(meta,profile)))).join('')+'</section>':'';
+    const savedMarkup=metas.length?'<section class="platform-mytrips-group"><h3>'+d.esc(d.t('savedJourneys'))+'</h3>'+(await Promise.all(metas.slice(0,visibleCount).map(meta=>buildCard(meta,profile)))).join('')+'</section>':(selectedBoard?'<p class="platform-mytrips-empty">'+d.esc(d.t('boardEmpty'))+'</p>':'');
     const recentMarkup=recentMetas.length?'<section class="platform-mytrips-group platform-mytrips-recent-group"><h3>'+d.esc(d.t('recentlyViewed'))+'</h3>'+recentMetas.map(recentCard).join('')+'</section>':'';
-    body.innerHTML=savedMarkup+recentMarkup;
+    if(version!==renderVersion)return;
+    body.innerHTML=savedMarkup+(metas.length>visibleCount?'<button type="button" data-mytrips-more>'+d.esc(d.t('loadMoreJourneys').replace('{count}',String(Math.min(24,metas.length-visibleCount))))+'</button>':'')+recentMarkup;
   }
 
   async function openCloudSync(parentModal){
@@ -202,10 +217,10 @@
   }
 
   async function open(){
-    const d=context(),modal=d.ensureDialog('platformMyTripsModal');
+    const d=context(),modal=d.ensureDialog('platformMyTripsModal');activeBoard='';visibleCount=24;
     modal.innerHTML='<div class="platform-modal-card platform-mytrips-card glass"><button class="platform-x" type="button" aria-label="'+d.esc(d.t('close'))+'">×</button>'+
       '<div class="platform-eyebrow">'+d.esc(d.t('myTrips'))+'</div><div class="platform-mytrips-title"><h2>'+d.esc(d.t('myTrips'))+' <span data-mytrips-count></span></h2><div class="platform-mytrips-portability"><button type="button" data-mytrips-cloud hidden>'+d.esc(d.t('cloudSync'))+'</button><button type="button" data-mytrips-install hidden>'+d.esc(d.t('installApp'))+'</button><button type="button" data-mytrips-import>'+d.esc(d.t('importWorkspace'))+'</button><button type="button" data-mytrips-export>'+d.esc(d.t('exportWorkspace'))+'</button><input type="file" accept="application/json,.json" data-mytrips-import-file hidden></div></div><p class="platform-lead">'+d.esc(d.t('myTripsLead'))+'</p>'+
-      '<div data-mytrips-body></div></div>';
+      '<section class="platform-board-controls" data-mytrips-boards></section><div data-mytrips-body aria-live="polite"></div></div>';
     modal.classList.remove('hidden');
     const installBtn=$('[data-mytrips-install]',modal);
     const refreshInstall=state=>{
@@ -235,7 +250,23 @@
       d.toast(result.ok?d.t('workspaceImported'):d.t('workspaceImportFailed'));
       if(result.ok)await render(modal);
     };
+    modal.onchange=async event=>{
+      const select=event.target.closest('[data-board-select]');
+      if(select){activeBoard=select.value;visibleCount=24;await render(modal);return}
+      const member=event.target.closest('[data-board-member]');
+      if(member){d.TripTools.setBoardTrip(d.storage,member.dataset.boardMember,member.dataset.tripId,member.checked);if(activeBoard)await render(modal);else boardControls(modal,d.TripTools.load(d.storage))}
+    };
+    modal.onsubmit=async event=>{
+      if(!event.target.matches('[data-board-form]'))return;
+      event.preventDefault();const name=$('[data-board-name]',modal).value;
+      if(activeBoard)d.TripTools.renameBoard(d.storage,activeBoard,name);
+      else {const board=d.TripTools.createBoard(d.storage,name);if(board)activeBoard=board.id}
+      visibleCount=24;await render(modal);
+    };
     modal.onclick=async event=>{
+      if(event.target.closest('[data-board-compare]')){const board=d.TripTools.load(d.storage).boards.find(item=>item.id===activeBoard);d.TripCompare.open({catalog:d.catalog,selectedIds:(board?.tripIds||[]).slice(0,3),profile:d.loadProfile(),ensureDialog:d.ensureDialog,t:d.t,esc:d.esc,local:d.local,facetLabel:d.facetLabel,statusLabel:d.statusLabel,onOpenTrip:d.onOpenTrip});return}
+      if(event.target.closest('[data-board-delete]')){d.TripTools.deleteBoard(d.storage,activeBoard);activeBoard='';visibleCount=24;await render(modal);return}
+      if(event.target.closest('[data-mytrips-more]')){visibleCount+=24;await render(modal);return}
       const cloudTarget=event.target.closest('[data-mytrips-cloud]');
       if(cloudTarget){await openCloudSync(modal);return}
       const installTarget=event.target.closest('[data-mytrips-install]');

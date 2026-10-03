@@ -72,7 +72,12 @@
       "type": "place",
       "countryCode": "VN",
       "name": {
-        "en": "Hanoi"
+        "en": "Hanoi",
+        "de": "Hanoi",
+        "it": "Hanoi",
+        "es": "Hanoi",
+        "fr": "Hanoi",
+        "pt": "Hanoi"
       },
       "coordinates": {
         "lat": 21.0278,
@@ -85,7 +90,12 @@
       "type": "place",
       "countryCode": "VN",
       "name": {
-        "en": "Huế"
+        "en": "Huế",
+        "de": "Huế",
+        "it": "Huế",
+        "es": "Huế",
+        "fr": "Huế",
+        "pt": "Huế"
       },
       "coordinates": {
         "lat": 16.4637,
@@ -98,7 +108,12 @@
       "type": "place",
       "countryCode": "VN",
       "name": {
-        "en": "Da Nang"
+        "en": "Da Nang",
+        "de": "Da Nang",
+        "it": "Da Nang",
+        "es": "Da Nang",
+        "fr": "Da Nang",
+        "pt": "Da Nang"
       },
       "coordinates": {
         "lat": 16.0544,
@@ -111,7 +126,12 @@
       "type": "place",
       "countryCode": "VN",
       "name": {
-        "en": "Hội An"
+        "en": "Hội An",
+        "de": "Hội An",
+        "it": "Hội An",
+        "es": "Hội An",
+        "fr": "Hội An",
+        "pt": "Hội An"
       },
       "coordinates": {
         "lat": 15.8801,
@@ -124,7 +144,12 @@
       "type": "place",
       "countryCode": "VN",
       "name": {
-        "en": "Nha Trang"
+        "en": "Nha Trang",
+        "de": "Nha Trang",
+        "it": "Nha Trang",
+        "es": "Nha Trang",
+        "fr": "Nha Trang",
+        "pt": "Nha Trang"
       },
       "coordinates": {
         "lat": 12.2388,
@@ -137,7 +162,12 @@
       "type": "place",
       "countryCode": "VN",
       "name": {
-        "en": "Ho Chi Minh City"
+        "en": "Ho Chi Minh City",
+        "de": "Ho-Chi-Minh-Stadt",
+        "it": "Città di Ho Chi Minh",
+        "es": "Ciudad Ho Chi Minh",
+        "fr": "Hô Chi Minh-Ville",
+        "pt": "Cidade de Ho Chi Minh"
       },
       "coordinates": {
         "lat": 10.8231,

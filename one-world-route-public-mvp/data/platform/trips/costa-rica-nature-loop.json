@@ -72,7 +72,12 @@
       "type": "place",
       "countryCode": "CR",
       "name": {
-        "en": "San José"
+        "en": "San José",
+        "de": "San José",
+        "it": "San José",
+        "es": "San José",
+        "fr": "San José",
+        "pt": "San José"
       },
       "coordinates": {
         "lat": 9.9281,
@@ -85,7 +90,12 @@
       "type": "place",
       "countryCode": "CR",
       "name": {
-        "en": "Arenal"
+        "en": "Arenal",
+        "de": "Arenal",
+        "it": "Arenal",
+        "es": "Arenal",
+        "fr": "Arenal",
+        "pt": "Arenal"
       },
       "coordinates": {
         "lat": 10.4626,
@@ -98,7 +108,12 @@
       "type": "place",
       "countryCode": "CR",
       "name": {
-        "en": "Monteverde"
+        "en": "Monteverde",
+        "de": "Monteverde",
+        "it": "Monteverde",
+        "es": "Monteverde",
+        "fr": "Monteverde",
+        "pt": "Monteverde"
       },
       "coordinates": {
         "lat": 10.3009,
@@ -111,7 +126,12 @@
       "type": "place",
       "countryCode": "CR",
       "name": {
-        "en": "Manuel Antonio"
+        "en": "Manuel Antonio",
+        "de": "Manuel Antonio",
+        "it": "Manuel Antonio",
+        "es": "Manuel Antonio",
+        "fr": "Manuel Antonio",
+        "pt": "Manuel Antonio"
       },
       "coordinates": {
         "lat": 9.3923,
@@ -124,7 +144,12 @@
       "type": "place",
       "countryCode": "CR",
       "name": {
-        "en": "Uvita"
+        "en": "Uvita",
+        "de": "Uvita",
+        "it": "Uvita",
+        "es": "Uvita",
+        "fr": "Uvita",
+        "pt": "Uvita"
       },
       "coordinates": {
         "lat": 9.167,

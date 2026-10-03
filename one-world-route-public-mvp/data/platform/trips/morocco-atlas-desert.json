@@ -72,7 +72,12 @@
       "type": "place",
       "countryCode": "MA",
       "name": {
-        "en": "Marrakech"
+        "en": "Marrakech",
+        "de": "Marrakesch",
+        "it": "Marrakech",
+        "es": "Marrakech",
+        "fr": "Marrakech",
+        "pt": "Marraquexe"
       },
       "coordinates": {
         "lat": 31.6295,
@@ -85,7 +90,12 @@
       "type": "place",
       "countryCode": "MA",
       "name": {
-        "en": "Aït Benhaddou"
+        "en": "Aït Benhaddou",
+        "de": "Aït Benhaddou",
+        "it": "Aït Benhaddou",
+        "es": "Aït Benhaddou",
+        "fr": "Aït Benhaddou",
+        "pt": "Aït Benhaddou"
       },
       "coordinates": {
         "lat": 31.047,
@@ -98,7 +108,12 @@
       "type": "place",
       "countryCode": "MA",
       "name": {
-        "en": "Dadès Valley"
+        "en": "Dadès Valley",
+        "de": "Dadès-Tal",
+        "it": "Valle del Dadès",
+        "es": "Valle del Dadès",
+        "fr": "Vallée du Dadès",
+        "pt": "Vale do Dadès"
       },
       "coordinates": {
         "lat": 31.3707,
@@ -111,7 +126,12 @@
       "type": "place",
       "countryCode": "MA",
       "name": {
-        "en": "Merzouga"
+        "en": "Merzouga",
+        "de": "Merzouga",
+        "it": "Merzouga",
+        "es": "Merzouga",
+        "fr": "Merzouga",
+        "pt": "Merzouga"
       },
       "coordinates": {
         "lat": 31.0802,
@@ -124,7 +144,12 @@
       "type": "place",
       "countryCode": "MA",
       "name": {
-        "en": "Essaouira"
+        "en": "Essaouira",
+        "de": "Essaouira",
+        "it": "Essaouira",
+        "es": "Essaouira",
+        "fr": "Essaouira",
+        "pt": "Essaouira"
       },
       "coordinates": {
         "lat": 31.5085,

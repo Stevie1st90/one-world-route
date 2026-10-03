@@ -247,11 +247,14 @@
     if(typeof window.Globe!=='function'){ $('#globeLoader').classList.add('hidden'); $('#globeFallback').classList.remove('hidden'); return; }
     const el=$('#globe');
     try{
-      const globe = new Globe(el)
+      const ready=()=>{clearTimeout(readinessTimer);document.body.classList.remove('globe-failed');document.body.classList.add('globe-ready');$('#globeLoader').classList.add('hidden');$('#globeFallback').classList.add('hidden');window.dispatchEvent(new Event('one-world-route:globe-ready'))};
+      const failed=()=>{document.body.classList.add('globe-failed');$('#globeLoader').classList.add('hidden');$('#globeFallback').classList.remove('hidden');window.dispatchEvent(new Event('one-world-route:globe-failed'))};
+      const readinessTimer=setTimeout(failed,20000);
+      const globe = new Globe(el,{animateIn:false}).onGlobeReady(ready)
         .width(el.clientWidth).height(el.clientHeight)
         .backgroundColor('rgba(0,0,0,0)')
-        .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
-        .bumpImageUrl('https://unpkg.com/three-globe/example/img/earth-topology.png')
+        .globeImageUrl('./assets/globe/earth-blue-marble.webp')
+        .bumpImageUrl('./assets/globe/earth-topology.png')
         .showAtmosphere(true).atmosphereColor('#72c7ff').atmosphereAltitude(.15)
         .showGraticules(false)
         .arcStartLat('startLat').arcStartLng('startLng').arcEndLat('endLat').arcEndLng('endLng')
@@ -279,7 +282,7 @@
       updateGlobe();
       loadPolygons().then(features=>{state.polygons=features;updateGlobe()});
       globe.pointOfView({lat:20,lng:12,altitude:2.25},0);
-      setTimeout(()=>$('#globeLoader').classList.add('hidden'),550);
+      // The texture readiness callback controls the loading state.
       window.addEventListener('resize',()=>globe.width(el.clientWidth).height(el.clientHeight));
     }catch(e){console.error(e); $('#globeLoader').classList.add('hidden'); $('#globeFallback').classList.remove('hidden');}
   }

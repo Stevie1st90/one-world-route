@@ -833,7 +833,10 @@
       "title": {
         "en": "Rome & the South",
         "de": "Rom & Süditalien",
-        "it": "Roma e il Sud"
+        "it": "Roma e il Sud",
+        "es": "Roma y el sur",
+        "fr": "Rome et le Sud",
+        "pt": "Roma e o sul"
       },
       "stopIds": [
         "it-stop-01",
@@ -848,7 +851,10 @@
       "title": {
         "en": "North & Dolomites",
         "de": "Norden & Dolomiten",
-        "it": "Nord e Dolomiti"
+        "it": "Nord e Dolomiti",
+        "es": "El norte y los Dolomitas",
+        "fr": "Le Nord et les Dolomites",
+        "pt": "O norte e as Dolomitas"
       },
       "stopIds": [
         "it-stop-06",
@@ -861,7 +867,10 @@
       "title": {
         "en": "Tuscany & return",
         "de": "Toskana & Rückkehr",
-        "it": "Toscana e rientro"
+        "it": "Toscana e rientro",
+        "es": "Toscana y regreso",
+        "fr": "Toscane et retour",
+        "pt": "Toscana e regresso"
       },
       "stopIds": [
         "it-stop-09",

@@ -5,7 +5,7 @@ test('@discovery @mobile-critical approved cover uses discovery and identity slo
  const asset='./assets/trips/qa-cover-fixture.svg',vertical='./assets/trips/qa-cover-vertical-fixture.svg';
  const svg=(w,h)=>'<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'"><rect width="100%" height="100%" fill="#284c63"/><circle cx="'+w*.6+'" cy="'+h*.4+'" r="'+w*.2+'" fill="#f1bc83"/></svg>';
  await page.route('**/assets/trips/qa-cover*',r=>r.fulfill({contentType:'image/svg+xml',body:svg(r.request().url().includes('vertical')?900:1200,r.request().url().includes('vertical')?1600:675)}));
- await page.route('**/data/platform/media-manifest.json',async route=>{
+ await page.route('**/data/platform/media-delivery.json',async route=>{
   const response=await route.fetch(),m=await response.json(),j=m.journeys.find(j=>j.id==='japan-by-rail');
   j.journeyCover={type:'image',sourceType:'generated',mediaKind:'cover',tripId:j.id,asset,aspectRatio:'16:9',status:'published',rightsStatus:'approved',license:'test-fixture',attribution:'QA fixture',attributionRequired:true,focalPoint:{x:.6,y:.4},alt:{en:'Abstract illustration fixture'},derivatives:{vertical:{asset:vertical,focalPoint:{x:.5,y:.4}}}};
   await route.fulfill({response,json:m});

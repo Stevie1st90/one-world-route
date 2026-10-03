@@ -1,0 +1,81 @@
+name: Product visual review
+on:
+  pull_request:
+    paths:
+      - 'one-world-route-public-mvp/qa/tests/product-review.spec.mjs'
+      - 'one-world-route-public-mvp/platform/**'
+      - 'one-world-route-public-mvp/*.js'
+      - 'one-world-route-public-mvp/*.css'
+      - 'one-world-route-public-mvp/api/share.js'
+      - '.github/workflows/product-visual-review.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: product-visual-review-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  visual:
+    name: Desktop and mobile product review
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: one-world-route-public-mvp
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: one-world-route-public-mvp/qa/package-lock.json
+      - name: Install browser tests
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+        run: npm ci --prefix qa
+      - name: Review shared consumer surfaces at four widths
+        env:
+          OWR_QA_NO_VIDEO: '1'
+          BASE_URL: http://127.0.0.1:4173
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          test -n "$CHROME_BIN"
+          node scripts/serve-local.mjs > /tmp/owr-product-review.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID 2>/dev/null || true' EXIT
+          for attempt in {1..20}; do
+            if curl -sf http://127.0.0.1:4173/ > /dev/null; then break; fi
+            sleep 1
+          done
+          # Large Globe + MapLibre views share the runner's software GPU.
+          # Review every viewport sequentially so each gets full rendering capacity.
+          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/node_modules/@playwright/test/cli.js test --config=qa/playwright.config.mjs tests/product-review.spec.mjs --project=desktop-1440 --project=desktop-1920 --project=mobile-390 --project=mobile-430 --workers=1 --output=qa/product-review-results
+      - name: Publish desktop-1440 screenshots
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: product-review-desktop-1440-${{ github.run_id }}
+          path: one-world-route-public-mvp/qa/product-review-results/*desktop-1440/*.png
+          retention-days: 7
+      - name: Publish desktop-1920 screenshots
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: product-review-desktop-1920-${{ github.run_id }}
+          path: one-world-route-public-mvp/qa/product-review-results/*desktop-1920/*.png
+          retention-days: 7
+      - name: Publish mobile-390 screenshots
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: product-review-mobile-390-${{ github.run_id }}
+          path: one-world-route-public-mvp/qa/product-review-results/*mobile-390/*.png
+          retention-days: 7
+      - name: Publish mobile-430 screenshots
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: product-review-mobile-430-${{ github.run_id }}
+          path: one-world-route-public-mvp/qa/product-review-results/*mobile-430/*.png
+          retention-days: 7

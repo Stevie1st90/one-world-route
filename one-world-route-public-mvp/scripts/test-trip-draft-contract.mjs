@@ -255,3 +255,21 @@ test('maps Americas countries into the primary discovery taxonomy',()=>{
   assert.deepEqual(deriveDiscoveryRegions(['CR']),['north-america','central-america']);
   assert.deepEqual(deriveDiscoveryRegions(['AR','CL']),['south-america']);
 });
+
+import {authoringPipeline} from './authoring-pipeline-model.mjs';
+
+test('authoring stages are derived without overwriting public status',async()=>{
+  const fs=await import('node:fs/promises');
+  const catalog=JSON.parse(await fs.readFile(new URL('../data/platform/trips.json',import.meta.url)));
+  const trip=JSON.parse(await fs.readFile(new URL('../data/platform/trips/italy-grand-tour.json',import.meta.url)));
+  const meta=catalog.trips.find(t=>t.id===trip.id);
+  const args={trip,catalogEntry:meta,catalog,media:{journeyCover:{}},now:new Date('2026-10-03')};
+  const ready=authoringPipeline(args);
+  assert.equal(ready.stage,'ready-for-review');
+  assert.equal(ready.visualFamily,'nature-atmospheric');
+  assert.equal(meta.status,'sourced-beta');
+  assert.equal(authoringPipeline({...args,trip:{...trip,sources:[]}}).stage,'needs-sources');
+  assert.equal(authoringPipeline({...args,trip:{...trip,summary:{en:trip.summary.en}}}).stage,'needs-translation');
+  assert.equal(authoringPipeline({...args,media:null}).stage,'needs-visual');
+  assert.equal(authoringPipeline({...args,published:true,now:new Date('2030-01-01')}).stage,'needs-reverification');
+});

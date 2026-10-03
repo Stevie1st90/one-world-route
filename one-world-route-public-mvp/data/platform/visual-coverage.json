@@ -1166,7 +1166,12 @@
         "id": "AR"
       },
       "name": {
-        "en": "El Calafate"
+        "en": "El Calafate",
+        "de": "El Calafate",
+        "it": "El Calafate",
+        "es": "El Calafate",
+        "fr": "El Calafate",
+        "pt": "El Calafate"
       },
       "countryCode": "AR",
       "journeys": [
@@ -1183,7 +1188,12 @@
         "id": "AR"
       },
       "name": {
-        "en": "El Chaltén"
+        "en": "El Chaltén",
+        "de": "El Chaltén",
+        "it": "El Chaltén",
+        "es": "El Chaltén",
+        "fr": "El Chaltén",
+        "pt": "El Chaltén"
       },
       "countryCode": "AR",
       "journeys": [
@@ -1398,7 +1408,12 @@
         "id": "LK"
       },
       "name": {
-        "en": "Badulla"
+        "en": "Badulla",
+        "de": "Badulla",
+        "it": "Badulla",
+        "es": "Badulla",
+        "fr": "Badulla",
+        "pt": "Badulla"
       },
       "countryCode": "LK",
       "journeys": [
@@ -1415,7 +1430,12 @@
         "id": "ID"
       },
       "name": {
-        "en": "Bandung"
+        "en": "Bandung",
+        "de": "Bandung",
+        "it": "Bandung",
+        "es": "Bandung",
+        "fr": "Bandung",
+        "pt": "Bandung"
       },
       "countryCode": "ID",
       "journeys": [
@@ -1432,7 +1452,12 @@
         "id": "AU"
       },
       "name": {
-        "en": "Bay of Fires"
+        "en": "Bay of Fires",
+        "de": "Bay of Fires",
+        "it": "Bay of Fires",
+        "es": "Bay of Fires",
+        "fr": "Bay of Fires",
+        "pt": "Bay of Fires"
       },
       "countryCode": "AU",
       "journeys": [
@@ -1471,7 +1496,12 @@
         "id": "CA"
       },
       "name": {
-        "en": "Banff"
+        "en": "Banff",
+        "de": "Banff",
+        "it": "Banff",
+        "es": "Banff",
+        "fr": "Banff",
+        "pt": "Banff"
       },
       "countryCode": "CA",
       "journeys": [
@@ -1488,7 +1518,12 @@
         "id": "CA"
       },
       "name": {
-        "en": "Calgary"
+        "en": "Calgary",
+        "de": "Calgary",
+        "it": "Calgary",
+        "es": "Calgary",
+        "fr": "Calgary",
+        "pt": "Calgary"
       },
       "countryCode": "CA",
       "journeys": [
@@ -1505,7 +1540,12 @@
         "id": "CA"
       },
       "name": {
-        "en": "Jasper"
+        "en": "Jasper",
+        "de": "Jasper",
+        "it": "Jasper",
+        "es": "Jasper",
+        "fr": "Jasper",
+        "pt": "Jasper"
       },
       "countryCode": "CA",
       "journeys": [
@@ -1522,7 +1562,12 @@
         "id": "CA"
       },
       "name": {
-        "en": "Kamloops"
+        "en": "Kamloops",
+        "de": "Kamloops",
+        "it": "Kamloops",
+        "es": "Kamloops",
+        "fr": "Kamloops",
+        "pt": "Kamloops"
       },
       "countryCode": "CA",
       "journeys": [
@@ -1539,7 +1584,12 @@
         "id": "CA"
       },
       "name": {
-        "en": "Vancouver"
+        "en": "Vancouver",
+        "de": "Vancouver",
+        "it": "Vancouver",
+        "es": "Vancouver",
+        "fr": "Vancouver",
+        "pt": "Vancouver"
       },
       "countryCode": "CA",
       "journeys": [
@@ -1556,7 +1606,12 @@
         "id": "CL"
       },
       "name": {
-        "en": "Puerto Natales"
+        "en": "Puerto Natales",
+        "de": "Puerto Natales",
+        "it": "Puerto Natales",
+        "es": "Puerto Natales",
+        "fr": "Puerto Natales",
+        "pt": "Puerto Natales"
       },
       "countryCode": "CL",
       "journeys": [
@@ -1573,7 +1628,12 @@
         "id": "CL"
       },
       "name": {
-        "en": "Punta Arenas"
+        "en": "Punta Arenas",
+        "de": "Punta Arenas",
+        "it": "Punta Arenas",
+        "es": "Punta Arenas",
+        "fr": "Punta Arenas",
+        "pt": "Punta Arenas"
       },
       "countryCode": "CL",
       "journeys": [
@@ -1590,7 +1650,12 @@
         "id": "CL"
       },
       "name": {
-        "en": "Torres del Paine"
+        "en": "Torres del Paine",
+        "de": "Torres del Paine",
+        "it": "Torres del Paine",
+        "es": "Torres del Paine",
+        "fr": "Torres del Paine",
+        "pt": "Torres del Paine"
       },
       "countryCode": "CL",
       "journeys": [
@@ -1607,7 +1672,12 @@
         "id": "LK"
       },
       "name": {
-        "en": "Colombo"
+        "en": "Colombo",
+        "de": "Colombo",
+        "it": "Colombo",
+        "es": "Colombo",
+        "fr": "Colombo",
+        "pt": "Colombo"
       },
       "countryCode": "LK",
       "journeys": [
@@ -1624,7 +1694,12 @@
         "id": "CR"
       },
       "name": {
-        "en": "Arenal"
+        "en": "Arenal",
+        "de": "Arenal",
+        "it": "Arenal",
+        "es": "Arenal",
+        "fr": "Arenal",
+        "pt": "Arenal"
       },
       "countryCode": "CR",
       "journeys": [
@@ -1641,7 +1716,12 @@
         "id": "CR"
       },
       "name": {
-        "en": "Manuel Antonio"
+        "en": "Manuel Antonio",
+        "de": "Manuel Antonio",
+        "it": "Manuel Antonio",
+        "es": "Manuel Antonio",
+        "fr": "Manuel Antonio",
+        "pt": "Manuel Antonio"
       },
       "countryCode": "CR",
       "journeys": [
@@ -1658,7 +1738,12 @@
         "id": "CR"
       },
       "name": {
-        "en": "Monteverde"
+        "en": "Monteverde",
+        "de": "Monteverde",
+        "it": "Monteverde",
+        "es": "Monteverde",
+        "fr": "Monteverde",
+        "pt": "Monteverde"
       },
       "countryCode": "CR",
       "journeys": [
@@ -1675,7 +1760,12 @@
         "id": "CR"
       },
       "name": {
-        "en": "San José"
+        "en": "San José",
+        "de": "San José",
+        "it": "San José",
+        "es": "San José",
+        "fr": "San José",
+        "pt": "San José"
       },
       "countryCode": "CR",
       "journeys": [
@@ -1692,7 +1782,12 @@
         "id": "CR"
       },
       "name": {
-        "en": "Uvita"
+        "en": "Uvita",
+        "de": "Uvita",
+        "it": "Uvita",
+        "es": "Uvita",
+        "fr": "Uvita",
+        "pt": "Uvita"
       },
       "countryCode": "CR",
       "journeys": [
@@ -1709,7 +1804,12 @@
         "id": "AU"
       },
       "name": {
-        "en": "Cradle Mountain"
+        "en": "Cradle Mountain",
+        "de": "Cradle Mountain",
+        "it": "Cradle Mountain",
+        "es": "Cradle Mountain",
+        "fr": "Cradle Mountain",
+        "pt": "Cradle Mountain"
       },
       "countryCode": "AU",
       "journeys": [
@@ -1836,7 +1936,12 @@
         "id": "LK"
       },
       "name": {
-        "en": "Ella"
+        "en": "Ella",
+        "de": "Ella",
+        "it": "Ella",
+        "es": "Ella",
+        "fr": "Ella",
+        "pt": "Ella"
       },
       "countryCode": "LK",
       "journeys": [
@@ -1941,7 +2046,12 @@
         "id": "NA"
       },
       "name": {
-        "en": "Etosha National Park"
+        "en": "Etosha National Park",
+        "de": "Etosha-Nationalpark",
+        "it": "Parco nazionale di Etosha",
+        "es": "Parque nacional de Etosha",
+        "fr": "Parc national d’Etosha",
+        "pt": "Parque Nacional de Etosha"
       },
       "countryCode": "NA",
       "journeys": [
@@ -1958,7 +2068,12 @@
         "id": "GB"
       },
       "name": {
-        "en": "Fort William"
+        "en": "Fort William",
+        "de": "Fort William",
+        "it": "Fort William",
+        "es": "Fort William",
+        "fr": "Fort William",
+        "pt": "Fort William"
       },
       "countryCode": "GB",
       "journeys": [
@@ -2041,7 +2156,12 @@
         "id": "AU"
       },
       "name": {
-        "en": "Freycinet"
+        "en": "Freycinet",
+        "de": "Freycinet",
+        "it": "Freycinet",
+        "es": "Freycinet",
+        "fr": "Freycinet",
+        "pt": "Freycinet"
       },
       "countryCode": "AU",
       "journeys": [
@@ -2058,7 +2178,12 @@
         "id": "GR"
       },
       "name": {
-        "en": "Athens"
+        "en": "Athens",
+        "de": "Athen",
+        "it": "Atene",
+        "es": "Atenas",
+        "fr": "Athènes",
+        "pt": "Atenas"
       },
       "countryCode": "GR",
       "journeys": [
@@ -2075,7 +2200,12 @@
         "id": "GR"
       },
       "name": {
-        "en": "Mykonos"
+        "en": "Mykonos",
+        "de": "Mykonos",
+        "it": "Mykonos",
+        "es": "Miconos",
+        "fr": "Mykonos",
+        "pt": "Míconos"
       },
       "countryCode": "GR",
       "journeys": [
@@ -2092,7 +2222,12 @@
         "id": "GR"
       },
       "name": {
-        "en": "Naxos"
+        "en": "Naxos",
+        "de": "Naxos",
+        "it": "Naxos",
+        "es": "Naxos",
+        "fr": "Naxos",
+        "pt": "Naxos"
       },
       "countryCode": "GR",
       "journeys": [
@@ -2109,7 +2244,12 @@
         "id": "GR"
       },
       "name": {
-        "en": "Paros"
+        "en": "Paros",
+        "de": "Paros",
+        "it": "Paros",
+        "es": "Paros",
+        "fr": "Paros",
+        "pt": "Paros"
       },
       "countryCode": "GR",
       "journeys": [
@@ -2126,7 +2266,12 @@
         "id": "GR"
       },
       "name": {
-        "en": "Santorini"
+        "en": "Santorini",
+        "de": "Santorin",
+        "it": "Santorini",
+        "es": "Santorini",
+        "fr": "Santorin",
+        "pt": "Santorini"
       },
       "countryCode": "GR",
       "journeys": [
@@ -2143,7 +2288,12 @@
         "id": "US"
       },
       "name": {
-        "en": "Haines"
+        "en": "Haines",
+        "de": "Haines",
+        "it": "Haines",
+        "es": "Haines",
+        "fr": "Haines",
+        "pt": "Haines"
       },
       "countryCode": "US",
       "journeys": [
@@ -2160,7 +2310,12 @@
         "id": "AU"
       },
       "name": {
-        "en": "Hobart"
+        "en": "Hobart",
+        "de": "Hobart",
+        "it": "Hobart",
+        "es": "Hobart",
+        "fr": "Hobart",
+        "pt": "Hobart"
       },
       "countryCode": "AU",
       "journeys": [
@@ -2177,7 +2332,12 @@
         "id": "AU"
       },
       "name": {
-        "en": "Hobart"
+        "en": "Hobart",
+        "de": "Hobart",
+        "it": "Hobart",
+        "es": "Hobart",
+        "fr": "Hobart",
+        "pt": "Hobart"
       },
       "countryCode": "AU",
       "journeys": [
@@ -2216,7 +2376,12 @@
         "id": "TW"
       },
       "name": {
-        "en": "Hualien"
+        "en": "Hualien",
+        "de": "Hualien",
+        "it": "Hualien",
+        "es": "Hualien",
+        "fr": "Hualien",
+        "pt": "Hualien"
       },
       "countryCode": "TW",
       "journeys": [
@@ -2299,7 +2464,12 @@
         "id": "CH"
       },
       "name": {
-        "en": "Interlaken"
+        "en": "Interlaken",
+        "de": "Interlaken",
+        "it": "Interlaken",
+        "es": "Interlaken",
+        "fr": "Interlaken",
+        "pt": "Interlaken"
       },
       "countryCode": "CH",
       "journeys": [
@@ -2316,7 +2486,12 @@
         "id": "GB"
       },
       "name": {
-        "en": "Inverness"
+        "en": "Inverness",
+        "de": "Inverness",
+        "it": "Inverness",
+        "es": "Inverness",
+        "fr": "Inverness",
+        "pt": "Inverness"
       },
       "countryCode": "GB",
       "journeys": [
@@ -2333,7 +2508,12 @@
         "id": "IS"
       },
       "name": {
-        "en": "Akureyri"
+        "en": "Akureyri",
+        "de": "Akureyri",
+        "it": "Akureyri",
+        "es": "Akureyri",
+        "fr": "Akureyri",
+        "pt": "Akureyri"
       },
       "countryCode": "IS",
       "journeys": [
@@ -2350,7 +2530,12 @@
         "id": "IS"
       },
       "name": {
-        "en": "Egilsstaðir"
+        "en": "Egilsstaðir",
+        "de": "Egilsstaðir",
+        "it": "Egilsstaðir",
+        "es": "Egilsstaðir",
+        "fr": "Egilsstaðir",
+        "pt": "Egilsstaðir"
       },
       "countryCode": "IS",
       "journeys": [
@@ -2367,7 +2552,12 @@
         "id": "IS"
       },
       "name": {
-        "en": "Jökulsárlón"
+        "en": "Jökulsárlón",
+        "de": "Jökulsárlón",
+        "it": "Jökulsárlón",
+        "es": "Jökulsárlón",
+        "fr": "Jökulsárlón",
+        "pt": "Jökulsárlón"
       },
       "countryCode": "IS",
       "journeys": [
@@ -2384,7 +2574,12 @@
         "id": "IS"
       },
       "name": {
-        "en": "Reykjavík"
+        "en": "Reykjavík",
+        "de": "Reykjavík",
+        "it": "Reykjavík",
+        "es": "Reykjavík",
+        "fr": "Reykjavík",
+        "pt": "Reykjavík"
       },
       "countryCode": "IS",
       "journeys": [
@@ -2401,7 +2596,12 @@
         "id": "IS"
       },
       "name": {
-        "en": "Snæfellsnes"
+        "en": "Snæfellsnes",
+        "de": "Snæfellsnes",
+        "it": "Snæfellsnes",
+        "es": "Snæfellsnes",
+        "fr": "Snæfellsnes",
+        "pt": "Snæfellsnes"
       },
       "countryCode": "IS",
       "journeys": [
@@ -2418,7 +2618,12 @@
         "id": "IS"
       },
       "name": {
-        "en": "Vík"
+        "en": "Vík",
+        "de": "Vík",
+        "it": "Vík",
+        "es": "Vík",
+        "fr": "Vík",
+        "pt": "Vík"
       },
       "countryCode": "IS",
       "journeys": [
@@ -2633,7 +2838,12 @@
         "id": "ID"
       },
       "name": {
-        "en": "Jakarta"
+        "en": "Jakarta",
+        "de": "Jakarta",
+        "it": "Jakarta",
+        "es": "Jakarta",
+        "fr": "Jakarta",
+        "pt": "Jakarta"
       },
       "countryCode": "ID",
       "journeys": [
@@ -2782,7 +2992,12 @@
         "id": "JP"
       },
       "name": {
-        "en": "Hiroshima"
+        "en": "Hiroshima",
+        "de": "Hiroshima",
+        "it": "Hiroshima",
+        "es": "Hiroshima",
+        "fr": "Hiroshima",
+        "pt": "Hiroshima"
       },
       "countryCode": "JP",
       "journeys": [
@@ -2799,7 +3014,12 @@
         "id": "JP"
       },
       "name": {
-        "en": "Kanazawa"
+        "en": "Kanazawa",
+        "de": "Kanazawa",
+        "it": "Kanazawa",
+        "es": "Kanazawa",
+        "fr": "Kanazawa",
+        "pt": "Kanazawa"
       },
       "countryCode": "JP",
       "journeys": [
@@ -2816,7 +3036,12 @@
         "id": "JP"
       },
       "name": {
-        "en": "Kyoto"
+        "en": "Kyoto",
+        "de": "Kyoto",
+        "it": "Kyoto",
+        "es": "Kioto",
+        "fr": "Kyoto",
+        "pt": "Quioto"
       },
       "countryCode": "JP",
       "journeys": [
@@ -2833,7 +3058,12 @@
         "id": "JP"
       },
       "name": {
-        "en": "Matsumoto"
+        "en": "Matsumoto",
+        "de": "Matsumoto",
+        "it": "Matsumoto",
+        "es": "Matsumoto",
+        "fr": "Matsumoto",
+        "pt": "Matsumoto"
       },
       "countryCode": "JP",
       "journeys": [
@@ -2850,7 +3080,12 @@
         "id": "JP"
       },
       "name": {
-        "en": "Osaka"
+        "en": "Osaka",
+        "de": "Osaka",
+        "it": "Osaka",
+        "es": "Osaka",
+        "fr": "Osaka",
+        "pt": "Osaka"
       },
       "countryCode": "JP",
       "journeys": [
@@ -2867,7 +3102,12 @@
         "id": "JP"
       },
       "name": {
-        "en": "Tokyo"
+        "en": "Tokyo",
+        "de": "Tokio",
+        "it": "Tokyo",
+        "es": "Tokio",
+        "fr": "Tokyo",
+        "pt": "Tóquio"
       },
       "countryCode": "JP",
       "journeys": [
@@ -2884,7 +3124,12 @@
         "id": "US"
       },
       "name": {
-        "en": "Juneau"
+        "en": "Juneau",
+        "de": "Juneau",
+        "it": "Juneau",
+        "es": "Juneau",
+        "fr": "Juneau",
+        "pt": "Juneau"
       },
       "countryCode": "US",
       "journeys": [
@@ -2901,7 +3146,12 @@
         "id": "LK"
       },
       "name": {
-        "en": "Kandy"
+        "en": "Kandy",
+        "de": "Kandy",
+        "it": "Kandy",
+        "es": "Kandy",
+        "fr": "Kandy",
+        "pt": "Kandy"
       },
       "countryCode": "LK",
       "journeys": [
@@ -2918,7 +3168,12 @@
         "id": "TW"
       },
       "name": {
-        "en": "Kaohsiung"
+        "en": "Kaohsiung",
+        "de": "Kaohsiung",
+        "it": "Kaohsiung",
+        "es": "Kaohsiung",
+        "fr": "Kaohsiung",
+        "pt": "Kaohsiung"
       },
       "countryCode": "TW",
       "journeys": [
@@ -2935,7 +3190,12 @@
         "id": "US"
       },
       "name": {
-        "en": "Ketchikan"
+        "en": "Ketchikan",
+        "de": "Ketchikan",
+        "it": "Ketchikan",
+        "es": "Ketchikan",
+        "fr": "Ketchikan",
+        "pt": "Ketchikan"
       },
       "countryCode": "US",
       "journeys": [
@@ -2952,7 +3212,12 @@
         "id": "AU"
       },
       "name": {
-        "en": "Lake St Clair"
+        "en": "Lake St Clair",
+        "de": "Lake St Clair",
+        "it": "Lago St Clair",
+        "es": "Lago St Clair",
+        "fr": "Lac St Clair",
+        "pt": "Lago St Clair"
       },
       "countryCode": "AU",
       "journeys": [
@@ -2969,7 +3234,12 @@
         "id": "AU"
       },
       "name": {
-        "en": "Launceston"
+        "en": "Launceston",
+        "de": "Launceston",
+        "it": "Launceston",
+        "es": "Launceston",
+        "fr": "Launceston",
+        "pt": "Launceston"
       },
       "countryCode": "AU",
       "journeys": [
@@ -2986,7 +3256,12 @@
         "id": "CH"
       },
       "name": {
-        "en": "Lucerne"
+        "en": "Lucerne",
+        "de": "Luzern",
+        "it": "Lucerna",
+        "es": "Lucerna",
+        "fr": "Lucerne",
+        "pt": "Lucerna"
       },
       "countryCode": "CH",
       "journeys": [
@@ -3003,7 +3278,12 @@
         "id": "MA"
       },
       "name": {
-        "en": "Aït Benhaddou"
+        "en": "Aït Benhaddou",
+        "de": "Aït Benhaddou",
+        "it": "Aït Benhaddou",
+        "es": "Aït Benhaddou",
+        "fr": "Aït Benhaddou",
+        "pt": "Aït Benhaddou"
       },
       "countryCode": "MA",
       "journeys": [
@@ -3020,7 +3300,12 @@
         "id": "MA"
       },
       "name": {
-        "en": "Dadès Valley"
+        "en": "Dadès Valley",
+        "de": "Dadès-Tal",
+        "it": "Valle del Dadès",
+        "es": "Valle del Dadès",
+        "fr": "Vallée du Dadès",
+        "pt": "Vale do Dadès"
       },
       "countryCode": "MA",
       "journeys": [
@@ -3037,7 +3322,12 @@
         "id": "MA"
       },
       "name": {
-        "en": "Essaouira"
+        "en": "Essaouira",
+        "de": "Essaouira",
+        "it": "Essaouira",
+        "es": "Essaouira",
+        "fr": "Essaouira",
+        "pt": "Essaouira"
       },
       "countryCode": "MA",
       "journeys": [
@@ -3054,7 +3344,12 @@
         "id": "MA"
       },
       "name": {
-        "en": "Marrakech"
+        "en": "Marrakech",
+        "de": "Marrakesch",
+        "it": "Marrakech",
+        "es": "Marrakech",
+        "fr": "Marrakech",
+        "pt": "Marraquexe"
       },
       "countryCode": "MA",
       "journeys": [
@@ -3071,7 +3366,12 @@
         "id": "MA"
       },
       "name": {
-        "en": "Merzouga"
+        "en": "Merzouga",
+        "de": "Merzouga",
+        "it": "Merzouga",
+        "es": "Merzouga",
+        "fr": "Merzouga",
+        "pt": "Merzouga"
       },
       "countryCode": "MA",
       "journeys": [
@@ -3088,7 +3388,12 @@
         "id": "ID"
       },
       "name": {
-        "en": "Malang"
+        "en": "Malang",
+        "de": "Malang",
+        "it": "Malang",
+        "es": "Malang",
+        "fr": "Malang",
+        "pt": "Malang"
       },
       "countryCode": "ID",
       "journeys": [
@@ -3105,7 +3410,12 @@
         "id": "CH"
       },
       "name": {
-        "en": "Montreux"
+        "en": "Montreux",
+        "de": "Montreux",
+        "it": "Montreux",
+        "es": "Montreux",
+        "fr": "Montreux",
+        "pt": "Montreux"
       },
       "countryCode": "CH",
       "journeys": [
@@ -3144,7 +3454,12 @@
         "id": "NO"
       },
       "name": {
-        "en": "Andøya"
+        "en": "Andøya",
+        "de": "Andøya",
+        "it": "Andøya",
+        "es": "Andøya",
+        "fr": "Andøya",
+        "pt": "Andøya"
       },
       "countryCode": "NO",
       "journeys": [
@@ -3161,7 +3476,12 @@
         "id": "NO"
       },
       "name": {
-        "en": "Reine"
+        "en": "Reine",
+        "de": "Reine",
+        "it": "Reine",
+        "es": "Reine",
+        "fr": "Reine",
+        "pt": "Reine"
       },
       "countryCode": "NO",
       "journeys": [
@@ -3178,7 +3498,12 @@
         "id": "NO"
       },
       "name": {
-        "en": "Senja"
+        "en": "Senja",
+        "de": "Senja",
+        "it": "Senja",
+        "es": "Senja",
+        "fr": "Senja",
+        "pt": "Senja"
       },
       "countryCode": "NO",
       "journeys": [
@@ -3195,7 +3520,12 @@
         "id": "NO"
       },
       "name": {
-        "en": "Svolvær"
+        "en": "Svolvær",
+        "de": "Svolvær",
+        "it": "Svolvær",
+        "es": "Svolvær",
+        "fr": "Svolvær",
+        "pt": "Svolvær"
       },
       "countryCode": "NO",
       "journeys": [
@@ -3212,7 +3542,12 @@
         "id": "NO"
       },
       "name": {
-        "en": "Tromsø"
+        "en": "Tromsø",
+        "de": "Tromsø",
+        "it": "Tromsø",
+        "es": "Tromsø",
+        "fr": "Tromsø",
+        "pt": "Tromsø"
       },
       "countryCode": "NO",
       "journeys": [
@@ -3229,7 +3564,12 @@
         "id": "LK"
       },
       "name": {
-        "en": "Nuwara Eliya"
+        "en": "Nuwara Eliya",
+        "de": "Nuwara Eliya",
+        "it": "Nuwara Eliya",
+        "es": "Nuwara Eliya",
+        "fr": "Nuwara Eliya",
+        "pt": "Nuwara Eliya"
       },
       "countryCode": "LK",
       "journeys": [
@@ -3246,7 +3586,12 @@
         "id": "NZ"
       },
       "name": {
-        "en": "Christchurch"
+        "en": "Christchurch",
+        "de": "Christchurch",
+        "it": "Christchurch",
+        "es": "Christchurch",
+        "fr": "Christchurch",
+        "pt": "Christchurch"
       },
       "countryCode": "NZ",
       "journeys": [
@@ -3263,7 +3608,12 @@
         "id": "NZ"
       },
       "name": {
-        "en": "Franz Josef"
+        "en": "Franz Josef",
+        "de": "Franz Josef",
+        "it": "Franz Josef",
+        "es": "Franz Josef",
+        "fr": "Franz Josef",
+        "pt": "Franz Josef"
       },
       "countryCode": "NZ",
       "journeys": [
@@ -3280,7 +3630,12 @@
         "id": "NZ"
       },
       "name": {
-        "en": "Lake Tekapo"
+        "en": "Lake Tekapo",
+        "de": "Lake Tekapo",
+        "it": "Lago Tekapo",
+        "es": "Lago Tekapo",
+        "fr": "Lac Tekapo",
+        "pt": "Lago Tekapo"
       },
       "countryCode": "NZ",
       "journeys": [
@@ -3297,7 +3652,12 @@
         "id": "NZ"
       },
       "name": {
-        "en": "Milford Sound"
+        "en": "Milford Sound",
+        "de": "Milford Sound",
+        "it": "Milford Sound",
+        "es": "Milford Sound",
+        "fr": "Milford Sound",
+        "pt": "Milford Sound"
       },
       "countryCode": "NZ",
       "journeys": [
@@ -3314,7 +3674,12 @@
         "id": "NZ"
       },
       "name": {
-        "en": "Queenstown"
+        "en": "Queenstown",
+        "de": "Queenstown",
+        "it": "Queenstown",
+        "es": "Queenstown",
+        "fr": "Queenstown",
+        "pt": "Queenstown"
       },
       "countryCode": "NZ",
       "journeys": [
@@ -3331,7 +3696,12 @@
         "id": "NZ"
       },
       "name": {
-        "en": "Wānaka"
+        "en": "Wānaka",
+        "de": "Wānaka",
+        "it": "Wānaka",
+        "es": "Wānaka",
+        "fr": "Wānaka",
+        "pt": "Wānaka"
       },
       "countryCode": "NZ",
       "journeys": [
@@ -3348,7 +3718,12 @@
         "id": "PE"
       },
       "name": {
-        "en": "Cusco"
+        "en": "Cusco",
+        "de": "Cusco",
+        "it": "Cusco",
+        "es": "Cusco",
+        "fr": "Cusco",
+        "pt": "Cusco"
       },
       "countryCode": "PE",
       "journeys": [
@@ -3365,7 +3740,12 @@
         "id": "PE"
       },
       "name": {
-        "en": "Lima"
+        "en": "Lima",
+        "de": "Lima",
+        "it": "Lima",
+        "es": "Lima",
+        "fr": "Lima",
+        "pt": "Lima"
       },
       "countryCode": "PE",
       "journeys": [
@@ -3382,7 +3762,12 @@
         "id": "PE"
       },
       "name": {
-        "en": "Machu Picchu"
+        "en": "Machu Picchu",
+        "de": "Machu Picchu",
+        "it": "Machu Picchu",
+        "es": "Machu Picchu",
+        "fr": "Machu Picchu",
+        "pt": "Machu Picchu"
       },
       "countryCode": "PE",
       "journeys": [
@@ -3399,7 +3784,12 @@
         "id": "PE"
       },
       "name": {
-        "en": "Puno"
+        "en": "Puno",
+        "de": "Puno",
+        "it": "Puno",
+        "es": "Puno",
+        "fr": "Puno",
+        "pt": "Puno"
       },
       "countryCode": "PE",
       "journeys": [
@@ -3416,7 +3806,12 @@
         "id": "PE"
       },
       "name": {
-        "en": "Sacred Valley"
+        "en": "Sacred Valley",
+        "de": "Heiliges Tal",
+        "it": "Valle Sacra",
+        "es": "Valle Sagrado",
+        "fr": "Vallée sacrée",
+        "pt": "Vale Sagrado"
       },
       "countryCode": "PE",
       "journeys": [
@@ -3433,7 +3828,12 @@
         "id": "US"
       },
       "name": {
-        "en": "Petersburg"
+        "en": "Petersburg",
+        "de": "Petersburg",
+        "it": "Petersburg",
+        "es": "Petersburg",
+        "fr": "Petersburg",
+        "pt": "Petersburg"
       },
       "countryCode": "US",
       "journeys": [
@@ -3450,7 +3850,12 @@
         "id": "GB"
       },
       "name": {
-        "en": "Portree"
+        "en": "Portree",
+        "de": "Portree",
+        "it": "Portree",
+        "es": "Portree",
+        "fr": "Portree",
+        "pt": "Portree"
       },
       "countryCode": "GB",
       "journeys": [
@@ -3489,7 +3894,12 @@
         "id": "US"
       },
       "name": {
-        "en": "Skagway"
+        "en": "Skagway",
+        "de": "Skagway",
+        "it": "Skagway",
+        "es": "Skagway",
+        "fr": "Skagway",
+        "pt": "Skagway"
       },
       "countryCode": "US",
       "journeys": [
@@ -3506,7 +3916,12 @@
         "id": "ID"
       },
       "name": {
-        "en": "Surakarta (Solo)"
+        "en": "Surakarta (Solo)",
+        "de": "Surakarta (Solo)",
+        "it": "Surakarta (Solo)",
+        "es": "Surakarta (Solo)",
+        "fr": "Surakarta (Solo)",
+        "pt": "Surakarta (Solo)"
       },
       "countryCode": "ID",
       "journeys": [
@@ -3523,7 +3938,12 @@
         "id": "NA"
       },
       "name": {
-        "en": "Sossusvlei"
+        "en": "Sossusvlei",
+        "de": "Sossusvlei",
+        "it": "Sossusvlei",
+        "es": "Sossusvlei",
+        "fr": "Sossusvlei",
+        "pt": "Sossusvlei"
       },
       "countryCode": "NA",
       "journeys": [
@@ -3540,7 +3960,12 @@
         "id": "NA"
       },
       "name": {
-        "en": "Spitzkoppe"
+        "en": "Spitzkoppe",
+        "de": "Spitzkoppe",
+        "it": "Spitzkoppe",
+        "es": "Spitzkoppe",
+        "fr": "Spitzkoppe",
+        "pt": "Spitzkoppe"
       },
       "countryCode": "NA",
       "journeys": [
@@ -3557,7 +3982,12 @@
         "id": "CH"
       },
       "name": {
-        "en": "St. Moritz"
+        "en": "St. Moritz",
+        "de": "St. Moritz",
+        "it": "St. Moritz",
+        "es": "Sankt Moritz",
+        "fr": "Saint-Moritz",
+        "pt": "St. Moritz"
       },
       "countryCode": "CH",
       "journeys": [
@@ -3574,7 +4004,12 @@
         "id": "GB"
       },
       "name": {
-        "en": "Stornoway"
+        "en": "Stornoway",
+        "de": "Stornoway",
+        "it": "Stornoway",
+        "es": "Stornoway",
+        "fr": "Stornoway",
+        "pt": "Stornoway"
       },
       "countryCode": "GB",
       "journeys": [
@@ -3591,7 +4026,12 @@
         "id": "AU"
       },
       "name": {
-        "en": "Strahan"
+        "en": "Strahan",
+        "de": "Strahan",
+        "it": "Strahan",
+        "es": "Strahan",
+        "fr": "Strahan",
+        "pt": "Strahan"
       },
       "countryCode": "AU",
       "journeys": [
@@ -3608,7 +4048,12 @@
         "id": "ID"
       },
       "name": {
-        "en": "Surabaya"
+        "en": "Surabaya",
+        "de": "Surabaya",
+        "it": "Surabaya",
+        "es": "Surabaya",
+        "fr": "Surabaya",
+        "pt": "Surabaya"
       },
       "countryCode": "ID",
       "journeys": [
@@ -3625,7 +4070,12 @@
         "id": "NA"
       },
       "name": {
-        "en": "Swakopmund"
+        "en": "Swakopmund",
+        "de": "Swakopmund",
+        "it": "Swakopmund",
+        "es": "Swakopmund",
+        "fr": "Swakopmund",
+        "pt": "Swakopmund"
       },
       "countryCode": "NA",
       "journeys": [
@@ -3642,7 +4092,12 @@
         "id": "TW"
       },
       "name": {
-        "en": "Taichung"
+        "en": "Taichung",
+        "de": "Taichung",
+        "it": "Taichung",
+        "es": "Taichung",
+        "fr": "Taichung",
+        "pt": "Taichung"
       },
       "countryCode": "TW",
       "journeys": [
@@ -3659,7 +4114,12 @@
         "id": "TW"
       },
       "name": {
-        "en": "Tainan"
+        "en": "Tainan",
+        "de": "Tainan",
+        "it": "Tainan",
+        "es": "Tainan",
+        "fr": "Tainan",
+        "pt": "Tainan"
       },
       "countryCode": "TW",
       "journeys": [
@@ -3676,7 +4136,12 @@
         "id": "TW"
       },
       "name": {
-        "en": "Taipei"
+        "en": "Taipei",
+        "de": "Taipeh",
+        "it": "Taipei",
+        "es": "Taipéi",
+        "fr": "Taipei",
+        "pt": "Taipé"
       },
       "countryCode": "TW",
       "journeys": [
@@ -3693,7 +4158,12 @@
         "id": "TW"
       },
       "name": {
-        "en": "Taipei"
+        "en": "Taipei",
+        "de": "Taipeh",
+        "it": "Taipei",
+        "es": "Taipéi",
+        "fr": "Taipei",
+        "pt": "Taipé"
       },
       "countryCode": "TW",
       "journeys": [
@@ -3710,7 +4180,12 @@
         "id": "TW"
       },
       "name": {
-        "en": "Taitung"
+        "en": "Taitung",
+        "de": "Taitung",
+        "it": "Taitung",
+        "es": "Taitung",
+        "fr": "Taitung",
+        "pt": "Taitung"
       },
       "countryCode": "TW",
       "journeys": [
@@ -3727,7 +4202,12 @@
         "id": "GB"
       },
       "name": {
-        "en": "Tarbert, Harris"
+        "en": "Tarbert, Harris",
+        "de": "Tarbert, Harris",
+        "it": "Tarbert, Harris",
+        "es": "Tarbert, Harris",
+        "fr": "Tarbert, Harris",
+        "pt": "Tarbert, Harris"
       },
       "countryCode": "GB",
       "journeys": [
@@ -3766,7 +4246,12 @@
         "id": "NA"
       },
       "name": {
-        "en": "Twyfelfontein"
+        "en": "Twyfelfontein",
+        "de": "Twyfelfontein",
+        "it": "Twyfelfontein",
+        "es": "Twyfelfontein",
+        "fr": "Twyfelfontein",
+        "pt": "Twyfelfontein"
       },
       "countryCode": "NA",
       "journeys": [
@@ -3783,7 +4268,12 @@
         "id": "GB"
       },
       "name": {
-        "en": "Ullapool"
+        "en": "Ullapool",
+        "de": "Ullapool",
+        "it": "Ullapool",
+        "es": "Ullapool",
+        "fr": "Ullapool",
+        "pt": "Ullapool"
       },
       "countryCode": "GB",
       "journeys": [
@@ -3910,7 +4400,12 @@
         "id": "VN"
       },
       "name": {
-        "en": "Da Nang"
+        "en": "Da Nang",
+        "de": "Da Nang",
+        "it": "Da Nang",
+        "es": "Da Nang",
+        "fr": "Da Nang",
+        "pt": "Da Nang"
       },
       "countryCode": "VN",
       "journeys": [
@@ -3927,7 +4422,12 @@
         "id": "VN"
       },
       "name": {
-        "en": "Hanoi"
+        "en": "Hanoi",
+        "de": "Hanoi",
+        "it": "Hanoi",
+        "es": "Hanoi",
+        "fr": "Hanoi",
+        "pt": "Hanoi"
       },
       "countryCode": "VN",
       "journeys": [
@@ -3944,7 +4444,12 @@
         "id": "VN"
       },
       "name": {
-        "en": "Ho Chi Minh City"
+        "en": "Ho Chi Minh City",
+        "de": "Ho-Chi-Minh-Stadt",
+        "it": "Città di Ho Chi Minh",
+        "es": "Ciudad Ho Chi Minh",
+        "fr": "Hô Chi Minh-Ville",
+        "pt": "Cidade de Ho Chi Minh"
       },
       "countryCode": "VN",
       "journeys": [
@@ -3961,7 +4466,12 @@
         "id": "VN"
       },
       "name": {
-        "en": "Hội An"
+        "en": "Hội An",
+        "de": "Hội An",
+        "it": "Hội An",
+        "es": "Hội An",
+        "fr": "Hội An",
+        "pt": "Hội An"
       },
       "countryCode": "VN",
       "journeys": [
@@ -3978,7 +4488,12 @@
         "id": "VN"
       },
       "name": {
-        "en": "Huế"
+        "en": "Huế",
+        "de": "Huế",
+        "it": "Huế",
+        "es": "Huế",
+        "fr": "Huế",
+        "pt": "Huế"
       },
       "countryCode": "VN",
       "journeys": [
@@ -3995,7 +4510,12 @@
         "id": "VN"
       },
       "name": {
-        "en": "Nha Trang"
+        "en": "Nha Trang",
+        "de": "Nha Trang",
+        "it": "Nha Trang",
+        "es": "Nha Trang",
+        "fr": "Nha Trang",
+        "pt": "Nha Trang"
       },
       "countryCode": "VN",
       "journeys": [
@@ -4012,7 +4532,12 @@
         "id": "NA"
       },
       "name": {
-        "en": "Windhoek"
+        "en": "Windhoek",
+        "de": "Windhoek",
+        "it": "Windhoek",
+        "es": "Windhoek",
+        "fr": "Windhoek",
+        "pt": "Windhoek"
       },
       "countryCode": "NA",
       "journeys": [
@@ -4029,7 +4554,12 @@
         "id": "NA"
       },
       "name": {
-        "en": "Windhoek"
+        "en": "Windhoek",
+        "de": "Windhoek",
+        "it": "Windhoek",
+        "es": "Windhoek",
+        "fr": "Windhoek",
+        "pt": "Windhoek"
       },
       "countryCode": "NA",
       "journeys": [
@@ -4046,7 +4576,12 @@
         "id": "US"
       },
       "name": {
-        "en": "Wrangell"
+        "en": "Wrangell",
+        "de": "Wrangell",
+        "it": "Wrangell",
+        "es": "Wrangell",
+        "fr": "Wrangell",
+        "pt": "Wrangell"
       },
       "countryCode": "US",
       "journeys": [
@@ -4063,7 +4598,12 @@
         "id": "ID"
       },
       "name": {
-        "en": "Yogyakarta"
+        "en": "Yogyakarta",
+        "de": "Yogyakarta",
+        "it": "Yogyakarta",
+        "es": "Yogyakarta",
+        "fr": "Yogyakarta",
+        "pt": "Yogyakarta"
       },
       "countryCode": "ID",
       "journeys": [
@@ -4080,7 +4620,12 @@
         "id": "ZA"
       },
       "name": {
-        "en": "Addo Elephant National Park"
+        "en": "Addo Elephant National Park",
+        "de": "Addo-Elephant-Nationalpark",
+        "it": "Parco nazionale Addo Elephant",
+        "es": "Parque nacional de elefantes de Addo",
+        "fr": "Parc national des éléphants d’Addo",
+        "pt": "Parque Nacional dos Elefantes de Addo"
       },
       "countryCode": "ZA",
       "journeys": [
@@ -4097,7 +4642,12 @@
         "id": "ZA"
       },
       "name": {
-        "en": "Cape Town"
+        "en": "Cape Town",
+        "de": "Kapstadt",
+        "it": "Città del Capo",
+        "es": "Ciudad del Cabo",
+        "fr": "Le Cap",
+        "pt": "Cidade do Cabo"
       },
       "countryCode": "ZA",
       "journeys": [
@@ -4114,7 +4664,12 @@
         "id": "ZA"
       },
       "name": {
-        "en": "Hermanus"
+        "en": "Hermanus",
+        "de": "Hermanus",
+        "it": "Hermanus",
+        "es": "Hermanus",
+        "fr": "Hermanus",
+        "pt": "Hermanus"
       },
       "countryCode": "ZA",
       "journeys": [
@@ -4131,7 +4686,12 @@
         "id": "ZA"
       },
       "name": {
-        "en": "Knysna"
+        "en": "Knysna",
+        "de": "Knysna",
+        "it": "Knysna",
+        "es": "Knysna",
+        "fr": "Knysna",
+        "pt": "Knysna"
       },
       "countryCode": "ZA",
       "journeys": [
@@ -4148,7 +4708,12 @@
         "id": "ZA"
       },
       "name": {
-        "en": "Tsitsikamma"
+        "en": "Tsitsikamma",
+        "de": "Tsitsikamma",
+        "it": "Tsitsikamma",
+        "es": "Tsitsikamma",
+        "fr": "Tsitsikamma",
+        "pt": "Tsitsikamma"
       },
       "countryCode": "ZA",
       "journeys": [
@@ -4165,7 +4730,12 @@
         "id": "CH"
       },
       "name": {
-        "en": "Zermatt"
+        "en": "Zermatt",
+        "de": "Zermatt",
+        "it": "Zermatt",
+        "es": "Zermatt",
+        "fr": "Zermatt",
+        "pt": "Zermatt"
       },
       "countryCode": "CH",
       "journeys": [
@@ -4182,7 +4752,12 @@
         "id": "CH"
       },
       "name": {
-        "en": "Zürich"
+        "en": "Zürich",
+        "de": "Zürich",
+        "it": "Zurigo",
+        "es": "Zúrich",
+        "fr": "Zurich",
+        "pt": "Zurique"
       },
       "countryCode": "CH",
       "journeys": [

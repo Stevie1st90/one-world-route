@@ -103,7 +103,7 @@
       storage:next.storage||localStorage,
       TripTools:next.TripTools,
       catalog:next.catalog,
-      fetcher:next.fetcher||fetch
+      fetcher:next.fetcher||fetch.bind(window)
     };
     try{
       const response=await deps.fetcher(CONFIG_URL,{cache:'no-cache'});

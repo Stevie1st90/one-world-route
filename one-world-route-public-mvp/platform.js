@@ -92,13 +92,20 @@
   const verificationLabel = s => s?.verification?.status==='verified'?t('verified'):(s?.verification?.status==='illustrative'?t('illustrative'):t('currentCheck'));
   const sourceLinks = ids => {
     const map=sourceMap(),seen=new Set();
-    return (ids||[]).filter(id=>!seen.has(id)&&seen.add(id)).map(id=>map.get(id)).filter(Boolean).map(src=>`<a href="${esc(src.url)}" target="_blank" rel="noopener noreferrer"><b>${esc(src.issuer||src.title)}</b><span>${esc(src.title)}</span><small>${esc(t('lastChecked'))}: ${esc(src.checkedAt||'—')}</small></a>`).join('');
+    return (ids||[]).filter(id=>!seen.has(id)&&seen.add(id)).map(id=>map.get(id)).filter(Boolean).map(src=>{
+      const checked=new Date(src.checkedAt+'T00:00:00Z'),days=Number(src.reviewDays||currentTrip?.maintenance?.sourceReviewDays||180);
+      const review=Number.isFinite(checked.getTime())?new Date(checked.getTime()+days*86400000).toISOString().slice(0,10):null;
+      const stale=!review||review<new Date().toISOString().slice(0,10)||(src.validUntil&&src.validUntil<new Date().toISOString().slice(0,10));
+      return `<a href="${esc(src.url)}" target="_blank" rel="noopener noreferrer"><b>${esc(src.issuer||src.title)}</b><span>${esc(src.title)}</span><small>${esc(t('lastChecked'))}: ${esc(src.checkedAt||'—')}</small><small class="${stale?'review-due':''}">${esc(stale?t('sourceReviewDue'):t('sourceReviewOn'))}${review?': '+esc(review):''}</small></a>`;
+    }).join('');
   };
 
   let catalog = null;
   let currentTrip = null;
   let currentTripMeta = null;
   let countryCentroidsPromise = null;
+  let resolveMyTripsReady;
+  const myTripsReady=new Promise(resolve=>{resolveMyTripsReady=resolve});
 
   function loadProfile(){return Traveller.load(localStorage,PROFILE_KEY,locale)}
   function loadCountryCentroids(){
@@ -139,7 +146,7 @@
     location.assign(`/${p.toString()?`?${p.toString()}`:''}`);
   }
 
-  function openMyTrips(){return MyTrips.open()}
+  function openMyTrips(){return myTripsReady.then(error=>{if(error)throw error;return MyTrips.open()})}
 
   function openRouteLibrary(){
     return RouteLibrary.open({
@@ -449,6 +456,7 @@
       const explicitLang=new URLSearchParams(location.search).get('lang');
       if(!SUPPORTED_LOCALES.includes(String(explicitLang||'').toLowerCase())&&profile.language&&SUPPORTED_LOCALES.includes(profile.language))locale=profile.language;
       MyTrips.configure({
+        TripCompare,
         catalog,
         TripTools,
         TripPlanning,
@@ -471,6 +479,7 @@
         cloudSync:CloudSync,
         toast:Ui.toast
       });
+      resolveMyTripsReady();
       Ui.ensureGlobalActions({t,esc,onHome:goHome,onRoutes:openRouteLibrary,onMyTrips:openMyTrips,onTraveller:openTraveller});
       const socialDeps={t,esc,local,facetLabel,locale:()=>locale,ensureDialog:Ui.ensureDialog,toast:Ui.toast,url:meta=>meta.id===currentTripMeta?.id?location.href:location.origin+buildTripUrl(meta.id),onOpen:setQueryTrip};
       PLATFORM_MODULES.socialStory?.configure(socialDeps);
@@ -532,6 +541,7 @@
         if(p.get('view')==='terrain')setTimeout(()=>{const toggle=$('#terrainView');if(toggle&&!toggle.checked){toggle.checked=true;toggle.dispatchEvent(new Event('change',{bubbles:true}))}},650);
       }
     }catch(e){
+      resolveMyTripsReady(e);
       console.warn('ONE WORLD ROUTE platform layer unavailable',e);
     }finally{
       document.body.classList.remove('platform-booting');

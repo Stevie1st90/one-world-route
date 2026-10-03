@@ -1,5 +1,6 @@
 import {readFile,writeFile} from 'node:fs/promises';
 import {buildTripIndex} from './trip-index-model.mjs';
+import {buildDiscoveryIndex} from './discovery-index-model.mjs';
 
 const root=new URL('../',import.meta.url);
 const readJson=async url=>JSON.parse(await readFile(url,'utf8'));
@@ -26,3 +27,10 @@ if(process.argv.includes('--check')){
   await writeFile(target,output,'utf8');
 }
 console.log('Trip index',index.trips.length,'journeys · catalog',index.catalogUpdatedAt||'unknown');
+const discoveryTarget=new URL('data/platform/discovery-index.json',root);
+const discoveryOutput=JSON.stringify(buildDiscoveryIndex(index))+'\n';
+if(process.argv.includes('--check')){
+  if(await readFile(discoveryTarget,'utf8').catch(()=>null)!==discoveryOutput){
+    console.error('DISCOVERY INDEX: generated index is stale');process.exitCode=1;
+  }
+}else await writeFile(discoveryTarget,discoveryOutput);

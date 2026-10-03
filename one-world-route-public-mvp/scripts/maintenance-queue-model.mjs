@@ -106,11 +106,17 @@ export function buildMaintenanceQueue({catalog,datasets=new Map(),shared={items:
   });
 
   const items=[...sourceItems,...profileItems].sort((a,b)=>b.priority-a.priority||String(a.nextReviewAt||'9999').localeCompare(String(b.nextReviewAt||'9999'))||a.id.localeCompare(b.id));
+  const sourcesByJourney=new Map();
+  for(const item of sourceItems)for(const dep of item.dependents){
+    if(dep.kind!=='journey')continue;
+    if(!sourcesByJourney.has(dep.tripId))sourcesByJourney.set(dep.tripId,new Set());
+    sourcesByJourney.get(dep.tripId).add(item);
+  }
   const journeyHealth=(catalog?.trips||[]).filter(meta=>meta.renderer!=='legacy-world').map(meta=>{
-    const trip=datasets instanceof Map?datasets.get(meta.id):datasets?.[meta.id],related=sourceItems.filter(item=>item.dependents.some(dep=>dep.kind==='journey'&&dep.tripId===meta.id));
+    const trip=datasets instanceof Map?datasets.get(meta.id):datasets?.[meta.id],related=[...(sourcesByJourney.get(meta.id)||[])];
     const sourceStates=related.map(item=>item.state),currentChecks=(trip?.segments||[]).filter(segment=>segment.verification?.status!=='verified').length;
     const stale=sourceStates.filter(state=>['expired','overdue','unknown'].includes(state)).length,dueSoon=sourceStates.filter(state=>state==='due-soon').length;
-    const state=stale?'source-stale':dueSoon?'review-soon':currentChecks?'current-check-required':'healthy';
+    const state=stale||!related.length?'source-stale':dueSoon?'review-soon':currentChecks?'current-check-required':'healthy';
     return {tripId:meta.id,title:meta.title?.en||meta.id,state,currentChecks,staleSources:stale,dueSoonSources:dueSoon,totalSources:related.length};
   }).sort((a,b)=>{
     const weight={'source-stale':4,'review-soon':3,'current-check-required':2,healthy:1};

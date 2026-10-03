@@ -563,7 +563,7 @@ test('homepage is catalog-driven and reuses shared Discovery and Route Fit',()=>
   assert.match(home,/Discovery\.filter\(d\.catalog/);
   assert.match(home,/tripIndex/);
   assert.match(home,/entry\.preview\.arcs/);
-  assert.match(home,/trip-index\.json/);
+  assert.match(home,/discovery-index\.json/);
   assert.match(home,/found\.slice\(0,resultLimit\)/);
   assert.doesNotMatch(home,/Promise\.all\(metas\.map/);
   assert.match(home,/item\.showcase/);

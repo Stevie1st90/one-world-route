@@ -237,3 +237,19 @@ test('cloud restore can preserve the remote workspace revision timestamp',()=>{
   assert.equal(tools.workspaceUpdatedAt(s),stamp);
   assert.deepEqual(Array.from(tools.load(s).savedTrips),['italy-grand-tour']);
 });
+
+test('named boards persist membership and names through backup while deleting a board preserves saves',()=>{
+  const tools=load(),s=storage(),board=tools.createBoard(s,'  Summer  ');
+  assert.equal(board.name,'Summer');
+  tools.setBoardTrip(s,board.id,'trip-a',true);tools.setBoardTrip(s,board.id,'trip-b',true);
+  assert.equal(tools.isSaved(s,'trip-a'),true);
+  tools.renameBoard(s,board.id,'Autumn');
+  const restored=storage();assert.equal(tools.importWorkspace(restored,tools.workspaceJson(s),['trip-a']).ok,true);
+  const state=tools.load(restored);assert.equal(state.boards[0].name,'Autumn');assert.deepEqual(Array.from(state.boards[0].tripIds),['trip-a']);
+  tools.toggleSaved(restored,'trip-a');assert.equal(tools.load(restored).boards[0].tripIds.length,0);
+  tools.deleteBoard(s,board.id);assert.equal(tools.load(s).boards.length,0);assert.equal(tools.isSaved(s,'trip-b'),true);
+});
+test('board import bounds names, rejects invalid identifiers and drops arbitrary metadata',()=>{
+  const tools=load(),boards=tools.normalizeBoards([{id:'__unsafe/path',name:'bad'},{id:'safe',name:'A'.repeat(100),tripIds:['known','other'],passport:'private'},{id:'safe',name:'duplicate'}],id=>id==='known');
+  assert.equal(boards.length,1);assert.equal(boards[0].name.length,80);assert.deepEqual(Object.keys(boards[0]),['id','name','tripIds']);assert.deepEqual(Array.from(boards[0].tripIds),['known']);
+});

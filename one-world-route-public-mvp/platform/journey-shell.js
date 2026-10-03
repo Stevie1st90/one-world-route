@@ -11,12 +11,13 @@
   function mount({meta,trip,t,esc,onPlan,onStory,onTerrain,onExplore,onOperations}){
     const modes=capabilities(meta,trip),legacy=meta.renderer==='legacy-world';
     const panel=document.querySelector('#leftPanel');if(!panel)return;
-    panel.querySelector('.platform-journey-modes')?.remove();
+    document.querySelectorAll('.platform-journey-modes').forEach(node=>node.remove());
     const nav=document.createElement('nav');nav.className='platform-journey-modes';nav.setAttribute('aria-label',t('journeyModes'));
     nav.innerHTML=modes.map(mode=>'<button type="button" data-journey-mode="'+mode+'" aria-pressed="'+(mode==='explore')+'">'+esc(t({explore:'exploreMode',plan:'planMode',story:'story',terrain:'terrain',operations:'operationsMode'}[mode]))+'</button>').join('');
     panel.querySelector('.hero-copy')?.after(nav);
+    const isStory=()=>document.body.classList.contains('story-mode')||document.body.classList.contains('platform-story-mode');
     const mobile=matchMedia('(max-width:820px)');
-    const position=()=>{if(mobile.matches||document.body.classList.contains('story-mode'))document.querySelector('.globe-stage')?.appendChild(nav);else panel.querySelector('.hero-copy')?.after(nav)};
+    const position=()=>{if(mobile.matches||isStory())document.querySelector('.globe-stage')?.appendChild(nav);else panel.querySelector('.hero-copy')?.after(nav)};
     position();mobile.addEventListener('change',position);
     nav.addEventListener('click',event=>{
       const button=event.target.closest('[data-journey-mode]');if(!button)return;
@@ -33,7 +34,7 @@
       if(appMode)return appMode;
       return panel.querySelector('.mode-switch [data-mode].active')?.dataset.mode||'explore';
     };
-    const update=()=>{position();sync(document.body.classList.contains('story-mode')?'story':document.body.classList.contains('terrain-view')?'terrain':legacy?legacyMode():'explore')};
+    const update=()=>{position();sync(isStory()?'story':document.body.classList.contains('terrain-view')?'terrain':legacy?legacyMode():'explore')};
     const observer=new MutationObserver(update);
     observer.observe(document.body,{attributes:true,attributeFilter:['class']});
     let legacyObserver=null;
@@ -47,7 +48,7 @@
       }
     }
     update();
-    return {modes,sync,dispose:()=>{observer.disconnect();legacyObserver?.disconnect();mobile.removeEventListener('change',position)}};
+    return {modes,sync,dispose:()=>{observer.disconnect();legacyObserver?.disconnect();mobile.removeEventListener('change',position);nav.remove()}};
   }
   root.journeyShell={capabilities,mount};
 })();

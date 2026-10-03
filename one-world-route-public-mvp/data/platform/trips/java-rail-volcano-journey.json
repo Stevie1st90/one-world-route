@@ -72,7 +72,12 @@
       "type": "place",
       "countryCode": "ID",
       "name": {
-        "en": "Jakarta"
+        "en": "Jakarta",
+        "de": "Jakarta",
+        "it": "Jakarta",
+        "es": "Jakarta",
+        "fr": "Jakarta",
+        "pt": "Jakarta"
       },
       "coordinates": {
         "lat": -6.2088,
@@ -84,7 +89,12 @@
       "type": "place",
       "countryCode": "ID",
       "name": {
-        "en": "Bandung"
+        "en": "Bandung",
+        "de": "Bandung",
+        "it": "Bandung",
+        "es": "Bandung",
+        "fr": "Bandung",
+        "pt": "Bandung"
       },
       "coordinates": {
         "lat": -6.9175,
@@ -96,7 +106,12 @@
       "type": "place",
       "countryCode": "ID",
       "name": {
-        "en": "Yogyakarta"
+        "en": "Yogyakarta",
+        "de": "Yogyakarta",
+        "it": "Yogyakarta",
+        "es": "Yogyakarta",
+        "fr": "Yogyakarta",
+        "pt": "Yogyakarta"
       },
       "coordinates": {
         "lat": -7.7956,
@@ -108,7 +123,12 @@
       "type": "place",
       "countryCode": "ID",
       "name": {
-        "en": "Surakarta (Solo)"
+        "en": "Surakarta (Solo)",
+        "de": "Surakarta (Solo)",
+        "it": "Surakarta (Solo)",
+        "es": "Surakarta (Solo)",
+        "fr": "Surakarta (Solo)",
+        "pt": "Surakarta (Solo)"
       },
       "coordinates": {
         "lat": -7.5755,
@@ -120,7 +140,12 @@
       "type": "place",
       "countryCode": "ID",
       "name": {
-        "en": "Surabaya"
+        "en": "Surabaya",
+        "de": "Surabaya",
+        "it": "Surabaya",
+        "es": "Surabaya",
+        "fr": "Surabaya",
+        "pt": "Surabaya"
       },
       "coordinates": {
         "lat": -7.2575,
@@ -132,7 +157,12 @@
       "type": "place",
       "countryCode": "ID",
       "name": {
-        "en": "Malang"
+        "en": "Malang",
+        "de": "Malang",
+        "it": "Malang",
+        "es": "Malang",
+        "fr": "Malang",
+        "pt": "Malang"
       },
       "coordinates": {
         "lat": -7.9666,

@@ -20,7 +20,7 @@ const originalCatalog=await readFile(catalogPath,'utf8');
 const originalTripIndex=await readFile(tripIndexPath,'utf8');
 const originalSitemap=await readFile(sitemapPath,'utf8');
 const originalGraphics=await readFile(join(root,'GRAPHICS_NEEDED.md'));
-const visualPaths=['route-visuals.json','region-visuals.json','media-manifest.json','visual-coverage.json','visual-briefs.json','graphics-backlog.json'].map(name=>join(root,'data/platform',name));
+const visualPaths=['discovery-index.json','media-delivery.json','route-visuals.json','region-visuals.json','media-manifest.json','visual-coverage.json','visual-briefs.json','graphics-backlog.json'].map(name=>join(root,'data/platform',name));
 const originalVisuals=await Promise.all(visualPaths.map(path=>readFile(path)));
 const server=spawn(process.execPath,[join(here,'server.mjs')],{stdio:['ignore','pipe','pipe']});
 const base='http://127.0.0.1:'+(process.env.OWR_BUILDER_PORT||4175);

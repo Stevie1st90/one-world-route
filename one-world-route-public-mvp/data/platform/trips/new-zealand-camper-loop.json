@@ -72,7 +72,12 @@
       "type": "place",
       "countryCode": "NZ",
       "name": {
-        "en": "Christchurch"
+        "en": "Christchurch",
+        "de": "Christchurch",
+        "it": "Christchurch",
+        "es": "Christchurch",
+        "fr": "Christchurch",
+        "pt": "Christchurch"
       },
       "coordinates": {
         "lat": -43.5321,
@@ -85,7 +90,12 @@
       "type": "place",
       "countryCode": "NZ",
       "name": {
-        "en": "Lake Tekapo"
+        "en": "Lake Tekapo",
+        "de": "Lake Tekapo",
+        "it": "Lago Tekapo",
+        "es": "Lago Tekapo",
+        "fr": "Lac Tekapo",
+        "pt": "Lago Tekapo"
       },
       "coordinates": {
         "lat": -44.0047,
@@ -98,7 +108,12 @@
       "type": "place",
       "countryCode": "NZ",
       "name": {
-        "en": "Queenstown"
+        "en": "Queenstown",
+        "de": "Queenstown",
+        "it": "Queenstown",
+        "es": "Queenstown",
+        "fr": "Queenstown",
+        "pt": "Queenstown"
       },
       "coordinates": {
         "lat": -45.0312,
@@ -111,7 +126,12 @@
       "type": "place",
       "countryCode": "NZ",
       "name": {
-        "en": "Milford Sound"
+        "en": "Milford Sound",
+        "de": "Milford Sound",
+        "it": "Milford Sound",
+        "es": "Milford Sound",
+        "fr": "Milford Sound",
+        "pt": "Milford Sound"
       },
       "coordinates": {
         "lat": -44.6717,
@@ -124,7 +144,12 @@
       "type": "place",
       "countryCode": "NZ",
       "name": {
-        "en": "Wānaka"
+        "en": "Wānaka",
+        "de": "Wānaka",
+        "it": "Wānaka",
+        "es": "Wānaka",
+        "fr": "Wānaka",
+        "pt": "Wānaka"
       },
       "coordinates": {
         "lat": -44.694,
@@ -137,7 +162,12 @@
       "type": "place",
       "countryCode": "NZ",
       "name": {
-        "en": "Franz Josef"
+        "en": "Franz Josef",
+        "de": "Franz Josef",
+        "it": "Franz Josef",
+        "es": "Franz Josef",
+        "fr": "Franz Josef",
+        "pt": "Franz Josef"
       },
       "coordinates": {
         "lat": -43.3896,

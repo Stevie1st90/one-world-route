@@ -72,7 +72,12 @@
       "type": "place",
       "countryCode": "CA",
       "name": {
-        "en": "Vancouver"
+        "en": "Vancouver",
+        "de": "Vancouver",
+        "it": "Vancouver",
+        "es": "Vancouver",
+        "fr": "Vancouver",
+        "pt": "Vancouver"
       },
       "coordinates": {
         "lat": 49.2827,
@@ -85,7 +90,12 @@
       "type": "place",
       "countryCode": "CA",
       "name": {
-        "en": "Kamloops"
+        "en": "Kamloops",
+        "de": "Kamloops",
+        "it": "Kamloops",
+        "es": "Kamloops",
+        "fr": "Kamloops",
+        "pt": "Kamloops"
       },
       "coordinates": {
         "lat": 50.6745,
@@ -98,7 +108,12 @@
       "type": "place",
       "countryCode": "CA",
       "name": {
-        "en": "Jasper"
+        "en": "Jasper",
+        "de": "Jasper",
+        "it": "Jasper",
+        "es": "Jasper",
+        "fr": "Jasper",
+        "pt": "Jasper"
       },
       "coordinates": {
         "lat": 52.8737,
@@ -111,7 +126,12 @@
       "type": "place",
       "countryCode": "CA",
       "name": {
-        "en": "Banff"
+        "en": "Banff",
+        "de": "Banff",
+        "it": "Banff",
+        "es": "Banff",
+        "fr": "Banff",
+        "pt": "Banff"
       },
       "coordinates": {
         "lat": 51.1784,
@@ -124,7 +144,12 @@
       "type": "place",
       "countryCode": "CA",
       "name": {
-        "en": "Calgary"
+        "en": "Calgary",
+        "de": "Calgary",
+        "it": "Calgary",
+        "es": "Calgary",
+        "fr": "Calgary",
+        "pt": "Calgary"
       },
       "coordinates": {
         "lat": 51.0447,

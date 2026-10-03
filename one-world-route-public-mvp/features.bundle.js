@@ -399,8 +399,8 @@
 (() => {
   'use strict';
 
-  const DETAIL_EARTH = 'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg';
-  const STANDARD_EARTH = 'https://unpkg.com/three-globe/example/img/earth-dark.jpg';
+  const DETAIL_EARTH = './assets/globe/earth-blue-marble.webp';
+  const STANDARD_EARTH = './assets/globe/earth-standard.webp';
   const runtime = { applied:false, retries:0, highDetail:true, preload:null };
 
   const $=(s,r=document)=>r.querySelector(s);
@@ -1600,7 +1600,8 @@
 /* ===== platform/i18n.js ===== */
 (() => {
   'use strict';
-  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  const host=typeof window==='undefined'?globalThis:window;
+  const root=host.ONE_WORLD_PLATFORM_MODULES=host.ONE_WORLD_PLATFORM_MODULES||{};
   const SUPPORTED_LOCALES=['en','de','it','es','fr','pt'];
   const I18N = {
     en:{routes:'Routes',traveller:'Traveller',flagship:'Flagship',template:'Template',open:'Open route',days:'days',stops:'stops',segments:'segments',global:'Global perspective',contextTitle:'Traveller context',contextLead:'Used to adapt entry rules, language, currency and departure assumptions. Stored only on this device.',passports:'Passport country',secondPassport:'Second passport (optional)',residence:'Residence',language:'Language',currency:'Currency',originRegion:"Start region (derived)",originCountry:'Starting country',recommendedForYou:"Recommended for you",recommendationContextLead:"Ordered using your traveller context, starting country and journey fit. No hidden ranking model and no invented live transport.",origin:'Starting city / airport',adults:'Adults',children:'Children',mobility:'Reduced mobility',save:'Save context',clear:'Clear',close:'Close',notSet:'Not set',currentCheck:'Current check required',routeLibrary:'Explore routes',routeLibraryLead:'One platform for world journeys, round trips, road trips, rail, cruises and more.',editorial:'Editorial template — verify transport, prices and entry requirements for your dates.',overview:'Route overview',day:'Day',nights:'nights',transport:'Transport',verification:'Verification',backWorld:'World route',private:'Private on this device. Passport numbers, booking references and payment details are never requested.',sourcedBeta:'Sourced beta',sources:'Sources',lastChecked:'Last checked',publishedFrom:'from',verified:'Verified',routeEvidence:'Route evidence',entryGuidance:'Entry guidance',officialCheck:'Official check',connectionRequired:'connection required',minimumTravel:'minimum travel',cruiseTemplate:'Cruise template',onboardNights:'onboard nights',seaDays:'sea days',portCall:'Port call',embarkation:'Embarkation',disembarkation:'Disembarkation',border:'Border context',schengenExit:'Schengen exit',schengenEntry:'Schengen re-entry',sailingNeeded:'Select a real sailing for ship, operator, times, berth and price.',illustrative:'Illustrative',searchRoutes:'Search routes',filters:"Filters",hideFilters:"Hide filters",filterType:'Travel type',filterRegion:'Region',filterDuration:'Duration',all:'All',loadMoreJourneys:"Show {count} more journeys",showingJourneys:"Showing {shown} of {total} journeys",routeAccess:"Access to the route",routeAccessLead:"Your origin is separate from the curated core route. We adapt the route only where the itinerary safely supports it.",noRoutes:'No routes match these filters.',vehicleSection:'Vehicle context (optional)',vehicleType:'Vehicle',registrationCountry:'Registration country',fuelType:'Fuel / powertrain',euroClass:'Euro emissions class',rentalCrossBorder:'Rental approved for cross-border travel',privateCar:'Private car',rentalCar:'Rental car',camper:'Camper',motorcycle:'Motorcycle',otherVehicle:'Other',petrol:'Petrol',diesel:'Diesel',hybrid:'Hybrid',pluginHybrid:'Plug-in hybrid',electric:'Electric',hydrogen:'Hydrogen',unknown:'Unknown',roadRules:'Road context',crossBorder:'Cross-border',urbanAccess:'Urban access checks',vehicleNeeded:'Vehicle context required for toll, LEZ and access checks.',facet_world:'World',facet_round_trip:'Round trip',facet_road_trip:'Road trip',facet_cruise:'Cruise',facet_global:'Global',facet_europe:'Europe',facet_southern_europe:'Southern Europe',facet_italy:'Italy',facet_mediterranean:'Mediterranean',facet_north_africa:'North Africa',filterMode:'Transport',filterTheme:'Theme',results:'routes found',resetFilters:'Reset',details:'Details',start:'Start',finish:'Finish',previous:'Previous',next:'Next',type:'Type',country:'Country',duration:'Duration',cost:'Cost',segment:'Segment',stop:'Stop',currency:'Currency',facet_rail:'Rail',facet_bus:'Bus',facet_car:'Car',facet_ferry:'Ferry',facet_multimodal:'Multimodal',facet_road:'Road',facet_coach:'Coach',facet_ground_transfer:'Ground transfer',story:'Story',storyPlay:'Play story',storyExit:'Exit story',storyComplete:'Route complete',chapter:'Chapter',settings:'Settings',methodology:'Methodology',share:'Share',shareCopied:"Share link copied",shareCopyFallback:"Copy the URL from your browser",autoRotate:'Auto rotate',highDetail:'High detail globe',terrain:'Real 3D globe terrain',showPoints:'Stop points',routeGlow:'Route glow',arcThickness:'Route thickness',reducedMotion:'Reduced motion',terrainLoading:'Loading 3D terrain…',terrainUnavailable:'3D terrain unavailable',terrainHint:'Drag to rotate · scroll to zoom · real elevation appears as you move closer',routeMethodTitle:'Route methodology',routeMethodText:'This curated route uses publication-safe trip data and source-backed evidence where available. Volatile schedules, prices and traveller-specific rules remain explicitly unresolved until dates and context are known.',evidenceCoverage:'Evidence coverage',editorialStatus:'Editorial status',storyRoute:'Route story',routeFit:'Route Fit',showFit:'More fit filters',hideFit:'Hide fit filters',fitPace:'Pace',fitSeason:'Season',fitParty:'Travelling as',fitStart:'Route starts in',facet_relaxed:'Relaxed',facet_balanced:'Balanced',facet_active:'Active',facet_spring:'Spring',facet_summer:'Summer',facet_autumn:'Autumn',facet_winter:'Winter',facet_multi_season:'Multi-season',facet_solo:'Solo',facet_couples:'Couple',facet_friends:'Friends',facet_families:'Family',resultOne:'route found',countryUnit:'country',countriesUnit:'countries',facet_city:'City',facet_cruise_port:'Cruise port',facet_port:'Port',facet_rail_station:'Rail station',facet_airport:'Airport',facet_island:'Island',facet_park:'Park',facet_camper:"Camper",facet_island_hopping:"Island hopping",facet_asia:"Asia",facet_east_asia:"East Asia",facet_japan:"Japan",facet_south_america:"South America",facet_patagonia:"Patagonia",facet_argentina:"Argentina",facet_chile:"Chile",facet_northern_europe:"Northern Europe",facet_norway:"Norway",facet_oceania:"Oceania",facet_new_zealand:"New Zealand",facet_greece:"Greece",facet_africa:"Africa",facet_morocco:"Morocco",facet_southern_africa:"Southern Africa",facet_south_africa:"South Africa",facet_north_america:"North America",facet_canada:"Canada",facet_south_east_asia:"Southeast Asia",facet_vietnam:"Vietnam",facet_central_america:"Central America",facet_costa_rica:"Costa Rica",facet_iceland:"Iceland",facet_peru:"Peru",facet_andes:"Andes",facet_culture:"Culture",facet_food:"Food",facet_cities:"Cities",facet_mountains:"Mountains",facet_nature:"Nature",facet_adventure:"Adventure",facet_coast:"Coast",facet_arctic:"Arctic",facet_islands:"Islands",facet_desert:"Desert",facet_wildlife:"Wildlife",facet_tropical:"Tropical",facet_volcanic:"Volcanic",facet_history:"History",status_editorial_preview:"Editorial preview",status_planned:'Planned',status_sourced_beta:'Sourced beta',status_illustrative_template:'Illustrative template',status_draft:'Draft',home:'Home',homeNavSub:'Journeys on one world map',homeEyebrow:'Journey discovery',homeTitle:'One world. Many ways to travel.',homeLead:'Discover rail journeys, road trips, island escapes, cruises and longer adventures — then adapt them to your starting point, pace and plans.',exploreJourneys:'Explore journeys',openFlagship:'Open flagship journey',homeGlobeLabel:'Live route atlas',homeGlobeHint:'Select a line or stop to open its journey.',flagshipJourney:'Flagship journey',homeStates:'sovereign states',homeLegs:'international legs',homePlannedDays:'planned days',homeStart:'start',homeBaseModel:'base model',curatedCollections:"Curated collections",collectionsLead:"Browse by travel idea instead of starting with a long filter form.",journeyDiscovery:'Journey discovery',journeyDiscoveryLead:'Filter the published catalog by region, transport, theme, duration and Route Fit.',featuredJourneys:'Featured journeys',findJourneyEyebrow:'Start simple',findJourneyTitle:'Find your next journey',findJourneyLead:'Choose where, how and how long you want to travel. You can refine the details later.',whereTravel:'Where',howTravel:'Journey type',howLong:'How long',anywhere:'Anywhere',anyStyle:'Any journey type',anyDuration:'Any duration',showJourneys:'Show journeys',personalizeRecommendations:'Personalize recommendations',personalizeLead:'Add your starting country and travel preferences for more relevant suggestions.',tunePreferences:'Adjust preferences',recommendationsActive:'Recommendations use your saved traveller context on this device.',curatedJourneys:'curated journeys',worldRegions:'world regions',journeyTypes:'journey types',localPlanning:'planning stays local',moreFilters:'More filters',fewerFilters:'Fewer filters',filterAccessibility:'Accessibility',homeMethodTitle:'Data first. Uncertainty stays visible.',homeMethodText:'Every normal journey uses the same place → stop → segment model. Published routes stay source-aware and date-sensitive facts are not filled in by guesswork.',homeSourceRuleTitle:'Source-backed',homeSourceRule:'Evidence stays attached to the route data where available.',homeUnknownRuleTitle:'Unknown stays unknown',homeUnknownRule:'Schedules, fares and traveller-specific rules remain unresolved until they can be checked.',homeDeepLinkRuleTitle:'Direct by design',homeDeepLinkRule:'Every journey remains directly linkable and shareable.',exploreByRegion:"Explore by region",featuredLead:"Rail, road, islands, nature, cities and once-in-a-lifetime routes — curated as visual journeys before they become planning spreadsheets.",allJourneys:"All journeys",inspirationMethodTitle:"Inspiration first. Planning when it matters.",inspirationMethodText:"Journey pages lead with route, place and experience. Evidence, live schedules, prices and traveller-specific rules stay available as a deeper planning layer instead of defining the product.",globalDesignTitle:"Global by design",globalDesignText:"One reusable journey model supports rail, road, islands, cruises, camper routes and future trip types across the world.",homeFooter:'A public journey discovery platform.',partnerOptions:"Partner options",partnerDisclosure:"Partner links are clearly marked. If you use one, it may support ONE WORLD ROUTE at no extra cost to you.",facet_standard_check:'Standard check',facet_operator_dependent:'Operator dependent',facet_vehicle_dependent:'Vehicle dependent',facet_complex_planning:'Complex planning',journeyUpdates:"Journey updates",journeyUpdatesLead:"Shared planning guidance is maintained once and reused across every relevant journey.",checkBeforeTravel:"Check before travel",contextDependent:"Depends on your context",personalizeJourney:"Personalize",personalizeJourneyTitle:"Make this journey yours",personalizeJourneyLead:"Set your home starting point once and choose an alternative route entry when this itinerary supports it.",originPoint:"Your starting point",routeStart:"Start this route at",routeStartFlexibleLead:"This route can be reversed. Transport, fares and access are rechecked for the chosen direction.",routeStartFixedLead:"This itinerary uses a fixed route start. Your personal origin is still used for arrival planning.",routeStartUpdated:"Route start updated",entrySuggestion:"Suggested route entry · country-level",entrySuggestionApplied:"Applied",useSuggestedEntry:"Use suggestion",change:"Change",whatToExpect:'What to expect',experienceRoleStart:'Route opening',experienceRoleAnchor:'Longer stay',experienceRoleChapter:'Journey chapter',experienceRoleFinale:'Route finale',journeyGuide:'Journey guide',guideDataDriven:'From this route',journeyGuideLead:'See how the trip uses its time and what still needs checking before you book.',averageStay:'Average stay',routeMovements:'Route movements',timeFocus:'Where you spend more time',beforeBooking:'Before you book',guideReviewSegments:'{count} of {total} route movements still need a current-date check.',guideFareCoverage:'Published transport pricing exists for {known} of {total} route movements.',guideEntryContext:'Entry guidance depends on your Traveller Context.',guideVehicleContext:'Vehicle details can change toll, access or cross-border checks.',guideOriginAccess:'Travel from your origin to the curated route is planned separately.',guideEvidenceReady:'All route movements currently carry verified evidence.',planningGuide:'Practical planning',planThisTrip:'Plan this trip',planningLead:'A practical view of the published itinerary, known transport costs and evidence coverage.',knownTransportMinimum:'Known transport minimum',fareCoverage:'Fare coverage',transportModes:'Transport modes',lastEvidenceCheck:'Latest evidence check',dayByDay:'Day-by-day itinerary',planningBudgetScope:'Known published fares only — not a complete trip budget.',planningStartHere:'Start here',planningOrigin:'Your origin',saved:'Saved',saveTrip:'Save trip',removeSaved:'Remove saved',removedSaved:'Removed from saved trips',savedLocally:'Saved on this device',tripTools:'Trip tools',exportJson:'Export JSON',exportCsv:'Export CSV',budgetEstimate:'Budget estimate',budgetLead:'Use your own daily assumptions. Only published transport minimums are prefilled.',lodgingNight:'Lodging / night',foodPersonDay:'Food / person / day',localPersonDay:'Local travel / person / day',extras:'Extra fixed costs',contingency:'Contingency %',updateEstimate:'Update estimate',estimatedTripTotal:'Estimated trip total',budgetEstimateScope:'Personal estimate, not a quote.',travellers:'travellers',estimateUpdated:'Estimate updated',compare:'Compare',compareTrips:'Compare journeys',compareSelected:'Compare ({count})',compareLimit:'Compare up to three journeys at a time.',compareLead:'Side-by-side planning facts only — no ranking or winner.',savedOnly:'Saved only',travellerParty:'Traveller context',listedForContext:'listed for this party',contextCheckNeeded:'check suitability',mobilityCheck:'Mobility check',startDate:'Start date',exportCalendar:'Export calendar',calendarNeedsStartDate:'Choose a start date first.',transportMinimum:'Known transport',lodging:'Lodging',food:'Food',localTravel:'Local travel',transportMultiplier:'Transport fare multiplier',transportAssumption:'Published minimum fares are multiplied by this explicit traveller count; adjust it for child discounts, passes or non-per-person pricing.',myTrips:'My Trips',myTripsLead:'Your saved journeys and planning setup on this device.',myTripsEmptyTitle:'No saved journeys yet',myTripsEmptyLead:'Save a journey from discovery or a route page to build your personal planning workspace.',loading:'Loading…',planningSeason:'Planning season',planningSeasonLead:'A local planning preference only. It does not change published schedules or fares.',planningSeasonSaved:'Planning season saved',travellerFit:'Traveller fit context',vehicleContextMissing:'Vehicle context not set',transportUnknownBudget:'Published transport pricing is incomplete; this estimate currently treats unknown transport as zero.',exportWorkspace:'Export planning backup',importWorkspace:'Import planning backup',workspaceImported:'Planning backup restored',workspaceImportFailed:'Planning backup could not be restored',planningStatus:'Planning status',nextPlanningStep:'Next planning step',planningCoreRecorded:'Core planning setup recorded',recordCurrentCheck:'Record current check',markForRecheck:'Mark for recheck',manualCheckRecorded:'Manual check recorded',continuePlanning:'Continue planning',saveOffline:'Save planning offline',offlineSaving:'Saving offline…',offlineReady:'Trip data saved for offline planning',offlineUnavailable:'Offline save is unavailable right now',installApp:"Install app",installingApp:"Opening install…",installAppDone:"App installation started",installAppUnavailable:"App installation is unavailable in this browser right now",cloudSync:"Cloud sync",cloudSyncLead:"Optionally keep your planning workspace in sync across devices. Traveller Context stays on this device.",cloudEmail:"Email",cloudCode:"Email code",cloudSendCode:"Send code",cloudVerifyCode:"Sign in",cloudSignedInAs:"Signed in as",cloudSyncNow:"Sync now",cloudSignOut:"Sign out",cloudCodeSent:"Check your email for the sign-in code",cloudSignedIn:"Cloud sync signed in",cloudSyncUploaded:"Local planning uploaded",cloudSyncDownloaded:"Newer cloud planning restored",cloudSyncCurrent:"Planning is already in sync",cloudSyncFailed:"Cloud sync failed",cloudUnavailable:"Cloud sync is not configured",cloudLastSync:"Last sync",cloudPrivacy:"Only your planning workspace is synced. Traveller Context and passport/residence details stay local.",cloudInvalidEmail:"Enter a valid email address",cloudSignedOut:"Signed out of cloud sync",planningAccessCheck:'Route access check',planningStatusLead:'Built from your saved setup. Manual checks are recorded here, not verified by ONE WORLD ROUTE.',planningWorkspaceLead:'Work through the essential setup in one place. Live access remains a manual current check.',howFast:"Pace",whatTheme:"Interests",whoTravels:"Travelling as",sortBy:"Sort",sortRecommended:"Recommended",sortFeatured:"Featured",sortShortest:"Shortest first",sortLongest:"Longest first",sortAlphabetical:"A–Z",fitMatches:"{matched}/{total} preferences match · {checks} checks",entryApproximation:"Approximation from your starting country to eligible route entries; not a live transport recommendation.",journeyVariant:"Journey variant",fullJourney:"Full journey",variantLead:"Choose a curated version of this journey without duplicating the underlying trip data.",variantUpdated:"Journey variant updated",savedJourneys:"Saved journeys",recentlyViewed:"Recently viewed",planningComplexity:"Planning complexity",vehicleRequirement:"Vehicle context",yes:"Yes",no:"No",currentChecks:"Current checks needed"},
@@ -2220,11 +2221,25 @@
   const routeVisualText={"en": "Geographic illustration · schematic connections, not navigation", "de": "Geografische Darstellung · schematische Verbindungen, keine Navigation", "it": "Illustrazione geografica · collegamenti schematici, non navigazione", "es": "Ilustración geográfica · conexiones esquemáticas, no navegación", "fr": "Illustration géographique · liaisons schématiques, pas de navigation", "pt": "Ilustração geográfica · conexões esquemáticas, não navegação"};
   for(const lang of SUPPORTED_LOCALES)I18N[lang].routeVisualNote=routeVisualText[lang];
 
-  const visualExperienceText={"en": {"journeyModes": "Journey modes", "exploreMode": "Explore", "planMode": "Plan", "operationsMode": "Operations", "whyThisJourney": "Why this journey?"}, "de": {"journeyModes": "Reisemodi", "exploreMode": "Entdecken", "planMode": "Planen", "operationsMode": "Operations", "whyThisJourney": "Warum diese Reise?"}, "it": {"journeyModes": "Modalità di viaggio", "exploreMode": "Esplora", "planMode": "Pianifica", "operationsMode": "Operazioni", "whyThisJourney": "Perché questo viaggio?"}, "es": {"journeyModes": "Modos de viaje", "exploreMode": "Explorar", "planMode": "Planificar", "operationsMode": "Operaciones", "whyThisJourney": "¿Por qué este viaje?"}, "fr": {"journeyModes": "Modes de voyage", "exploreMode": "Explorer", "planMode": "Planifier", "operationsMode": "Opérations", "whyThisJourney": "Pourquoi ce voyage ?"}, "pt": {"journeyModes": "Modos de viagem", "exploreMode": "Explorar", "planMode": "Planejar", "operationsMode": "Operações", "whyThisJourney": "Por que esta viagem?"}};
+  const visualExperienceText={"en": {"journeyModes": "Journey modes", "exploreMode": "Explore", "planMode": "Plan", "operationsMode": "Operations", "whyThisJourney": "Why this journey?"}, "de": {"journeyModes": "Reisemodi", "exploreMode": "Entdecken", "planMode": "Planen", "operationsMode": "Betrieb", "whyThisJourney": "Warum diese Reise?"}, "it": {"journeyModes": "Modalità di viaggio", "exploreMode": "Esplora", "planMode": "Pianifica", "operationsMode": "Operazioni", "whyThisJourney": "Perché questo viaggio?"}, "es": {"journeyModes": "Modos de viaje", "exploreMode": "Explorar", "planMode": "Planificar", "operationsMode": "Operaciones", "whyThisJourney": "¿Por qué este viaje?"}, "fr": {"journeyModes": "Modes de voyage", "exploreMode": "Explorer", "planMode": "Planifier", "operationsMode": "Opérations", "whyThisJourney": "Pourquoi ce voyage ?"}, "pt": {"journeyModes": "Modos de viagem", "exploreMode": "Explorar", "planMode": "Planejar", "operationsMode": "Operações", "whyThisJourney": "Por que esta viagem?"}};
   for(const lang of SUPPORTED_LOCALES)Object.assign(I18N[lang],visualExperienceText[lang]);
 
   const visualSourcesText={en:"Visual sources",de:"Bildquellen",it:"Fonti visive",es:"Fuentes visuales",fr:"Sources visuelles",pt:"Fontes visuais"};
   for(const lang of SUPPORTED_LOCALES)I18N[lang].visualSources=visualSourcesText[lang];
+
+  const productText={"en": {"exploreDestinations": "Explore destinations", "downloadStory": "Download story image", "storyExportFailed": "The story image could not be saved. Please try again.", "sourceReviewDue": "Review recommended", "sourceChecked": "Source checked", "sourceReviewOn": "Review by", "coreRoute": "Core route", "countryOriginEstimate": "Country-based estimate"}, "de": {"exploreDestinations": "Reiseziele entdecken", "downloadStory": "Story-Bild herunterladen", "storyExportFailed": "Das Story-Bild konnte nicht gespeichert werden. Bitte versuche es erneut.", "sourceReviewDue": "Erneute Prüfung empfohlen", "sourceChecked": "Quelle geprüft", "sourceReviewOn": "Prüfen bis", "coreRoute": "Kernroute", "countryOriginEstimate": "Schätzung anhand des Startlandes"}, "it": {"exploreDestinations": "Scopri le destinazioni", "downloadStory": "Scarica immagine della storia", "storyExportFailed": "Impossibile salvare l’immagine. Riprova.", "sourceReviewDue": "Verifica consigliata", "sourceChecked": "Fonte verificata", "sourceReviewOn": "Verificare entro", "coreRoute": "Itinerario principale", "countryOriginEstimate": "Stima dal paese di partenza"}, "es": {"exploreDestinations": "Descubre destinos", "downloadStory": "Descargar imagen de la historia", "storyExportFailed": "No se pudo guardar la imagen. Inténtalo de nuevo.", "sourceReviewDue": "Revisión recomendada", "sourceChecked": "Fuente revisada", "sourceReviewOn": "Revisar antes del", "coreRoute": "Ruta principal", "countryOriginEstimate": "Estimación desde el país de origen"}, "fr": {"exploreDestinations": "Découvrir les destinations", "downloadStory": "Télécharger l’image de la story", "storyExportFailed": "Impossible d’enregistrer l’image. Réessayez.", "sourceReviewDue": "Vérification recommandée", "sourceChecked": "Source vérifiée", "sourceReviewOn": "À vérifier avant le", "coreRoute": "Itinéraire principal", "countryOriginEstimate": "Estimation depuis le pays de départ"}, "pt": {"exploreDestinations": "Descobrir destinos", "downloadStory": "Baixar imagem da história", "storyExportFailed": "Não foi possível salvar a imagem. Tente novamente.", "sourceReviewDue": "Revisão recomendada", "sourceChecked": "Fonte verificada", "sourceReviewOn": "Rever até", "coreRoute": "Rota principal", "countryOriginEstimate": "Estimativa pelo país de partida"}};
+  for(const lang of SUPPORTED_LOCALES)Object.assign(I18N[lang],productText[lang]);
+
+  const boardText={"en": {"boards": "Boards", "boardName": "Board name", "createBoard": "Create board", "renameBoard": "Rename board", "deleteBoard": "Delete board", "deleteBoardLead": "Your saved journeys stay saved.", "boardEmpty": "This board is empty"}, "de": {"boards": "Boards", "boardName": "Board-Name", "createBoard": "Board erstellen", "renameBoard": "Board umbenennen", "deleteBoard": "Board löschen", "deleteBoardLead": "Deine gespeicherten Reisen bleiben gespeichert.", "boardEmpty": "Dieses Board ist leer"}, "it": {"boards": "Bacheche", "boardName": "Nome della bacheca", "createBoard": "Crea bacheca", "renameBoard": "Rinomina bacheca", "deleteBoard": "Elimina bacheca", "deleteBoardLead": "I viaggi salvati restano salvati.", "boardEmpty": "Questa bacheca è vuota"}, "es": {"boards": "Tableros", "boardName": "Nombre del tablero", "createBoard": "Crear tablero", "renameBoard": "Renombrar tablero", "deleteBoard": "Eliminar tablero", "deleteBoardLead": "Tus viajes guardados siguen guardados.", "boardEmpty": "Este tablero está vacío"}, "fr": {"boards": "Tableaux", "boardName": "Nom du tableau", "createBoard": "Créer un tableau", "renameBoard": "Renommer le tableau", "deleteBoard": "Supprimer le tableau", "deleteBoardLead": "Vos voyages enregistrés restent enregistrés.", "boardEmpty": "Ce tableau est vide"}, "pt": {"boards": "Quadros", "boardName": "Nome do quadro", "createBoard": "Criar quadro", "renameBoard": "Renomear quadro", "deleteBoard": "Excluir quadro", "deleteBoardLead": "Suas viagens salvas continuam salvas.", "boardEmpty": "Este quadro está vazio"}};
+  for(const lang of SUPPORTED_LOCALES)Object.assign(I18N[lang],boardText[lang]);
+
+  const alternativeEntries={"en": "Alternative entries", "de": "Alternative Einstiege", "it": "Ingressi alternativi", "es": "Entradas alternativas", "fr": "Points de départ alternatifs", "pt": "Entradas alternativas"};
+  for(const lang of SUPPORTED_LOCALES)I18N[lang].alternativeEntries=alternativeEntries[lang];
+
+
+  const reviewLabels={"en": {"facet_alaska": "Alaska", "facet_utah": "Utah", "facet_victoria": "Victoria", "facet_tasmania": "Tasmania", "facet_scotland": "Scotland", "facet_central_europe": "Central Europe", "facet_south_asia": "South Asia", "facet_west_asia": "West Asia", "facet_expedition": "Expedition", "facet_fjords": "Fjords", "facet_lakes": "Lakes", "facet_long_term": "Long-term travel", "facet_national_parks": "National parks", "facet_ports": "Ports", "facet_tea": "Tea", "listedForContext": "Listed for your context", "compareSwipeHint": "Swipe or use the arrow keys to compare all journeys.", "homeMapLoading": "Loading the atlas…", "homeMapUnavailable": "The atlas is unavailable. Explore the journeys below."}, "de": {"facet_alaska": "Alaska", "facet_utah": "Utah", "facet_victoria": "Victoria", "facet_tasmania": "Tasmanien", "facet_scotland": "Schottland", "facet_central_europe": "Mitteleuropa", "facet_south_asia": "Südasien", "facet_west_asia": "Westasien", "facet_expedition": "Expedition", "facet_fjords": "Fjorde", "facet_lakes": "Seen", "facet_long_term": "Langzeitreise", "facet_national_parks": "Nationalparks", "facet_ports": "Häfen", "facet_tea": "Tee", "listedForContext": "Für deinen Kontext aufgeführt", "compareSwipeHint": "Wische oder nutze die Pfeiltasten, um alle Reisen zu vergleichen.", "homeMapLoading": "Atlas wird geladen…", "homeMapUnavailable": "Der Atlas ist nicht verfügbar. Entdecke die Reisen unten."}, "it": {"facet_alaska": "Alaska", "facet_utah": "Utah", "facet_victoria": "Victoria", "facet_tasmania": "Tasmania", "facet_scotland": "Scozia", "facet_central_europe": "Europa centrale", "facet_south_asia": "Asia meridionale", "facet_west_asia": "Asia occidentale", "facet_expedition": "Spedizione", "facet_fjords": "Fiordi", "facet_lakes": "Laghi", "facet_long_term": "Viaggio a lungo termine", "facet_national_parks": "Parchi nazionali", "facet_ports": "Porti", "facet_tea": "Tè", "listedForContext": "Indicato per il tuo contesto", "compareSwipeHint": "Scorri o usa le frecce per confrontare tutti i viaggi.", "homeMapLoading": "Caricamento dell’atlante…", "homeMapUnavailable": "L’atlante non è disponibile. Scopri i viaggi qui sotto."}, "es": {"facet_alaska": "Alaska", "facet_utah": "Utah", "facet_victoria": "Victoria", "facet_tasmania": "Tasmania", "facet_scotland": "Escocia", "facet_central_europe": "Europa central", "facet_south_asia": "Asia del Sur", "facet_west_asia": "Asia occidental", "facet_expedition": "Expedición", "facet_fjords": "Fiordos", "facet_lakes": "Lagos", "facet_long_term": "Viaje de larga duración", "facet_national_parks": "Parques nacionales", "facet_ports": "Puertos", "facet_tea": "Té", "listedForContext": "Indicado para tu contexto", "compareSwipeHint": "Desliza o usa las flechas para comparar todos los viajes.", "homeMapLoading": "Cargando el atlas…", "homeMapUnavailable": "El atlas no está disponible. Descubre los viajes abajo."}, "fr": {"facet_alaska": "Alaska", "facet_utah": "Utah", "facet_victoria": "Victoria", "facet_tasmania": "Tasmanie", "facet_scotland": "Écosse", "facet_central_europe": "Europe centrale", "facet_south_asia": "Asie du Sud", "facet_west_asia": "Asie occidentale", "facet_expedition": "Expédition", "facet_fjords": "Fjords", "facet_lakes": "Lacs", "facet_long_term": "Voyage de longue durée", "facet_national_parks": "Parcs nationaux", "facet_ports": "Ports", "facet_tea": "Thé", "listedForContext": "Indiqué pour votre contexte", "compareSwipeHint": "Balayez ou utilisez les flèches pour comparer tous les voyages.", "homeMapLoading": "Chargement de l’atlas…", "homeMapUnavailable": "L’atlas est indisponible. Découvrez les voyages ci-dessous."}, "pt": {"facet_alaska": "Alaska", "facet_utah": "Utah", "facet_victoria": "Victoria", "facet_tasmania": "Tasmânia", "facet_scotland": "Escócia", "facet_central_europe": "Europa Central", "facet_south_asia": "Sul da Ásia", "facet_west_asia": "Ásia Ocidental", "facet_expedition": "Expedição", "facet_fjords": "Fiordes", "facet_lakes": "Lagos", "facet_long_term": "Viagem de longa duração", "facet_national_parks": "Parques nacionais", "facet_ports": "Portos", "facet_tea": "Chá", "listedForContext": "Indicado para seu contexto", "compareSwipeHint": "Deslize ou use as setas para comparar todas as viagens.", "homeMapLoading": "Carregando o atlas…", "homeMapUnavailable": "O atlas está indisponível. Explore as viagens abaixo."}};
+  const facetCountries={australia:"AU",india:"IN",indonesia:"ID",jordan:"JO",namibia:"NA",sri_lanka:"LK",switzerland:"CH",taiwan:"TW",united_states:"US"};
+  for(const lang of SUPPORTED_LOCALES){Object.assign(I18N[lang],reviewLabels[lang]);I18N[lang].contextListed=reviewLabels[lang].listedForContext;const names=new Intl.DisplayNames([lang],{type:"region"});for(const [key,code] of Object.entries(facetCountries))I18N[lang]["facet_"+key]=names.of(code);}
 
   root.i18n={
     supportedLocales:[...SUPPORTED_LOCALES],
@@ -2236,6 +2251,7 @@
     regionName,
     plural
   };
+  if(typeof module!=='undefined')module.exports=root.i18n;
 })();
 
 
@@ -2650,22 +2666,29 @@
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
   const $=(s,r=document)=>r.querySelector(s);
   const dialogStack=[];
+  let pausedGlobe=null;
+  function syncGlobeAnimation(){
+    const globe=window.__ONE_WORLD_ROUTE_GLOBE__;
+    const obscured=dialogStack.length>0||document.body.classList.contains('terrain-loading')||document.body.classList.contains('terrain-view');
+    if(obscured&&globe!==pausedGlobe){pausedGlobe?.resumeAnimation?.();globe?.pauseAnimation?.();pausedGlobe=globe||null}
+    else if(!obscured&&pausedGlobe){pausedGlobe.resumeAnimation?.();pausedGlobe=null}
+  }
   function syncDialogStack(){
     const top=dialogStack.at(-1);
-    for(const modal of document.querySelectorAll('.platform-modal'))modal.inert=Boolean(top&&modal!==top);
+    for(const modal of document.querySelectorAll('[data-platform-dialog]'))modal.inert=Boolean(top&&modal!==top);
     const app=$('#app');if(app)app.inert=Boolean(top);
+    syncGlobeAnimation();
   }
 
   function ensureDialog(id,cls='platform-modal'){
     let modal=$('#'+id);
-    if(modal)return modal;
-    modal=document.createElement('div');
-    modal.id=id;
-    modal.className=`${cls} hidden`;
+    if(modal?.dataset.platformDialog)return modal;
+    if(!modal){modal=document.createElement('div');modal.id=id;modal.className=`${cls} hidden`;document.body.appendChild(modal)}
+    modal.dataset.platformDialog='1';
+    if(modal.closest('#app'))document.body.appendChild(modal);
     modal.setAttribute('role','dialog');
     modal.setAttribute('aria-modal','true');
-    modal.addEventListener('click',e=>{if(e.target===modal){modal.querySelector('.platform-x')?.click();modal.classList.add('hidden')}});
-    document.body.appendChild(modal);
+    modal.addEventListener('click',e=>{if(e.target===modal){modal.querySelector('.platform-x,.modal-close')?.click();modal.classList.add('hidden')}});
     modal.tabIndex=-1;
     let returnFocus=null,wasOpen=false;
     const focusables=()=>[...modal.querySelectorAll('button,input,select,textarea,a[href],summary,[tabindex="0"]')].filter(node=>!node.disabled&&node.getClientRects().length);
@@ -2682,7 +2705,7 @@
     });
     observer.observe(modal,{attributes:true,attributeFilter:['class']});
     modal.addEventListener('keydown',event=>{
-      if(event.key==='Escape'){event.preventDefault();event.stopPropagation();modal.querySelector('.platform-x')?.click();modal.classList.add('hidden')}
+      if(event.key==='Escape'){event.preventDefault();event.stopPropagation();modal.querySelector('.platform-x,.modal-close')?.click();modal.classList.add('hidden')}
       if(event.key==='Tab'){
         const nodes=focusables(),first=nodes[0],last=nodes.at(-1);
         if(!first){event.preventDefault();modal.focus();return}
@@ -2726,6 +2749,11 @@
     };
   }
 
+  if($('#infoModal'))ensureDialog('infoModal');
+  // Dialogs and terrain share the same globe visibility policy. This also
+  // handles switching views while a dialog is open or the atlas is loading.
+  if(document.body&&typeof MutationObserver==='function')new MutationObserver(syncGlobeAnimation).observe(document.body,{attributes:true,attributeFilter:['class']});
+  window.addEventListener?.('one-world-route:globe-ready',syncGlobeAnimation);
   root.ui={ensureDialog,ensureGlobalActions,toast,regionalSettings};
 })();
 
@@ -2763,8 +2791,10 @@
 /* ===== platform/discovery.js ===== */
 (() => {
   'use strict';
-  const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
+  const host=typeof window==='undefined'?globalThis:window;
+  const root=host.ONE_WORLD_PLATFORM_MODULES=host.ONE_WORLD_PLATFORM_MODULES||{};
   const unique=values=>[...new Set(values.filter(Boolean))].sort();
+  const normalize=value=>String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase();
   function facets(catalog){
     const trips=catalog?.trips||[];
     return {
@@ -2779,9 +2809,10 @@
       accessibilities:unique(trips.map(r=>r.discovery?.fit?.accessibility))
     };
   }
+  const localizedSearch=value=>typeof value==='string'?value:Array.isArray(value)?value.map(localizedSearch).join(' '):value&&typeof value==='object'?Object.values(value).map(localizedSearch).join(' '):'';
   function matches(trip,filters={},searchText=''){
-    const d=trip?.discovery||{},fit=d.fit||{},q=String(filters.q||'').trim().toLowerCase();
-    return (!q||String(searchText).toLowerCase().includes(q))
+    const d=trip?.discovery||{},fit=d.fit||{},q=normalize(filters.q).trim();
+    return (!q||q.split(/\s+/).every(word=>normalize(localizedSearch(searchText)).includes(word)))
       &&(!filters.kind||trip.kind===filters.kind)
       &&(!filters.region||(d.regions||[]).includes(filters.region))
       &&(!filters.duration||d.durationBand===filters.duration)
@@ -2793,10 +2824,16 @@
       &&(!filters.start||fit.startRegion===filters.start)
       &&(!filters.accessibility||fit.accessibility===filters.accessibility);
   }
+  function collectionMatches(trip,definition){
+    const f=definition?.filters||{},d=trip?.discovery||{};
+    return matches(trip,f)&&(!f.modeAny?.length||f.modeAny.some(v=>(d.modes||[]).includes(v)))
+      &&(!f.themeAny?.length||f.themeAny.some(v=>(d.themes||[]).includes(v)));
+  }
   function filter(catalog,filters={},searchTextFor=()=> ''){
     return (catalog?.trips||[]).filter(trip=>matches(trip,filters,searchTextFor(trip)));
   }
-  root.discovery={facets,matches,filter};
+  root.discovery={facets,matches,filter,collectionMatches,normalize,localizedSearch};
+  if(typeof module!=='undefined')module.exports=root.discovery;
 })();
 
 
@@ -3134,11 +3171,12 @@
     const parsed=Number(value);
     return Number.isFinite(parsed)?Math.min(max,Math.max(min,parsed)):0;
   };
-  function defaults(){return {savedTrips:[],recentTrips:[],budgets:{},startDates:{},seasons:{},routeStarts:{},variants:{},planningChecks:{}}}
+  function defaults(){return {savedTrips:[],boards:[],recentTrips:[],budgets:{},startDates:{},seasons:{},routeStarts:{},variants:{},planningChecks:{}}}
   function load(storage){
     try{
       const raw=JSON.parse(storage.getItem(KEY)||'{}');
       return {
+        boards:normalizeBoards(raw.boards),
         savedTrips:Array.isArray(raw.savedTrips)?[...new Set(raw.savedTrips.filter(v=>typeof v==='string'))]:[],
         recentTrips:Array.isArray(raw.recentTrips)?[...new Set(raw.recentTrips.filter(v=>typeof v==='string'))].slice(0,12):[],
         budgets:raw.budgets&&typeof raw.budgets==='object'?raw.budgets:{},
@@ -3149,6 +3187,37 @@
         planningChecks:raw.planningChecks&&typeof raw.planningChecks==='object'?raw.planningChecks:{}
       };
     }catch{return defaults()}
+  }
+  function normalizeBoards(input,validId=()=>true){
+    const seen=new Set();
+    return (Array.isArray(input)?input:[]).slice(0,50).flatMap(board=>{
+      const id=String(board?.id||'').trim(),name=String(board?.name||'').trim().slice(0,80);
+      if(!/^[a-zA-Z0-9_-]{1,80}$/.test(id)||!name||seen.has(id))return [];
+      seen.add(id);
+      const tripIds=[...new Set((Array.isArray(board.tripIds)?board.tripIds:[]).filter(value=>typeof value==='string'&&validId(value)))];
+      return [{id,name,tripIds}];
+    });
+  }
+  function createBoard(storage,name){
+    const state=load(storage),clean=String(name||'').trim().slice(0,80);
+    if(!clean||state.boards.length>=50)return null;
+    const id='board-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10);
+    const board={id,name:clean,tripIds:[]};state.boards.push(board);persist(storage,state);notify(null);return board;
+  }
+  function renameBoard(storage,id,name){
+    const state=load(storage),board=state.boards.find(item=>item.id===id),clean=String(name||'').trim().slice(0,80);
+    if(!board||!clean)return false;
+    board.name=clean;persist(storage,state);notify(null);return true;
+  }
+  function deleteBoard(storage,id){
+    const state=load(storage);state.boards=state.boards.filter(board=>board.id!==id);persist(storage,state);notify(null);
+  }
+  function setBoardTrip(storage,boardId,tripId,included){
+    const state=load(storage),board=state.boards.find(item=>item.id===boardId);
+    if(!board||typeof tripId!=='string'||!tripId)return false;
+    board.tripIds=board.tripIds.filter(id=>id!==tripId);
+    if(included){board.tripIds.push(tripId);if(!state.savedTrips.includes(tripId))state.savedTrips.push(tripId)}
+    persist(storage,state);notify(tripId);return true;
   }
   function workspaceUpdatedAt(storage){
     const raw=String(storage.getItem(META_KEY)||'').trim();
@@ -3174,7 +3243,7 @@
   }
   function toggleSaved(storage,tripId){
     const state=load(storage),saved=new Set(state.savedTrips);
-    if(saved.has(tripId))saved.delete(tripId);else saved.add(tripId);
+    if(saved.has(tripId)){saved.delete(tripId);for(const board of state.boards)board.tripIds=board.tripIds.filter(id=>id!==tripId)}else saved.add(tripId);
     state.savedTrips=[...saved];persist(storage,state);notify(tripId);return saved.has(tripId);
   }
   function normalizeBudget(input={}){
@@ -3340,6 +3409,7 @@
       return out;
     };
     return {
+      boards:normalizeBoards(source.boards,validId),
       savedTrips:[...new Set((Array.isArray(source.savedTrips)?source.savedTrips:[]).filter(validId))],
       recentTrips:[...new Set((Array.isArray(source.recentTrips)?source.recentTrips:[]).filter(validId))].slice(0,12),
       budgets:pickMap(source.budgets,normalizeBudget),
@@ -3424,12 +3494,14 @@
       ?((Number.isFinite(Number(entrySuggestion.distanceKm))?'≈ '+Math.round(Number(entrySuggestion.distanceKm))+' km · ':'')+t('entryApproximation'))
       :'';
     const suggestionMarkup=entrySuggestion?.available&&suggestedName?'<div class="platform-origin-summary platform-entry-suggestion" data-entry-suggestion><span>'+esc(t('entrySuggestion'))+'</span><b>'+esc((origin||entrySuggestion.originCountry||t('originPoint'))+' → '+suggestedName)+'</b><small>'+esc(suggestionDetail)+'</small><button type="button" '+(suggestionSelected?'disabled':'data-trip-entry-suggest')+'>'+esc(suggestionSelected?t('entrySuggestionApplied'):t('useSuggestedEntry'))+'</button></div>':'';
+    const alternatives=(entrySuggestion?.alternatives||[]).filter(item=>item.stopId!==suggestedStop?.id&&eligible.some(stop=>stop.id===item.stopId));
+    const alternativesMarkup=alternatives.length?'<details class="platform-detail-disclosure"><summary>'+esc(t('alternativeEntries'))+'</summary><p>'+esc(t('entryApproximation'))+'</p><div class="platform-tool-actions">'+alternatives.map(item=>'<button type="button" data-trip-entry-alternative="'+esc(item.stopId)+'" '+(item.stopId===selectedStart?'disabled':'')+'>'+esc(local(places.get(item.placeId)?.name))+' · ≈ '+esc(String(item.distanceKm))+' km</button>').join('')+'</div></details>':'';
     const accessMarkup='<div class="platform-route-access platform-route-access-grid">'+
       '<div class="platform-route-access-step"><span>1 · '+esc(t('routeAccess'))+'</span><strong>'+esc(origin||t('originPoint'))+' → '+esc(coreStartName)+'</strong><small>'+esc(origin?t('currentCheck'):t('personalizeJourneyLead'))+'</small></div>'+
-      '<div class="platform-route-access-step"><span>2 · '+esc(t('overview'))+'</span><strong>'+esc(coreStartName)+' → '+esc(coreEndName)+'</strong><small>'+esc(t('routeAccessLead'))+'</small></div>'+
+      '<div class="platform-route-access-step"><span>2 · '+esc(t('coreRoute'))+'</span><strong>'+esc(coreStartName)+' → '+esc(coreEndName)+'</strong><small>'+esc(t('routeAccessLead'))+'</small></div>'+
       '<div class="platform-route-access-step"><span>3 · '+esc(t('routeAccess'))+'</span><strong>'+esc(coreEndName)+' → '+esc(origin||t('originPoint'))+'</strong><small>'+esc(origin?t('currentCheck'):t('personalizeJourneyLead'))+'</small></div>'+
     '</div>';
-    const personalization='<section class="platform-journey-personalize"><div class="platform-personalize-head"><span>'+esc(t('personalizeJourney'))+'</span><h3>'+esc(t('personalizeJourneyTitle'))+'</h3></div><p>'+esc(t('personalizeJourneyLead'))+'</p>'+variantMarkup+originMarkup+suggestionMarkup+accessMarkup+'<div class="platform-route-start-control">'+routeStartSelect+'</div></section>';
+    const personalization='<section class="platform-journey-personalize"><div class="platform-personalize-head"><span>'+esc(t('personalizeJourney'))+'</span><h3>'+esc(t('personalizeJourneyTitle'))+'</h3></div><p>'+esc(t('personalizeJourneyLead'))+'</p>'+variantMarkup+originMarkup+suggestionMarkup+alternativesMarkup+accessMarkup+'<div class="platform-route-start-control">'+routeStartSelect+'</div></section>';
     const breakdown='<div class="platform-budget-breakdown">'+
       '<span>'+esc(t('transportMinimum'))+'<b>'+esc(money(e.transport,currency,locale))+'</b></span>'+
       '<span>'+esc(t('lodging'))+'<b>'+esc(money(e.lodging,currency,locale))+'</b></span>'+
@@ -3506,6 +3578,11 @@
       toast?.(t('routeStartUpdated'));
       onRouteVariantChange?.();
     });
+    host.querySelectorAll('[data-trip-entry-alternative]').forEach(button=>button.addEventListener('click',()=>{
+      const start=button.dataset.tripEntryAlternative;
+      if(!eligible.some(stop=>stop.id===start))return;
+      setRouteStart(storage,id,start);toast?.(t('routeStartUpdated'));onRouteVariantChange?.();
+    }));
     host.querySelector('[data-trip-variant]')?.addEventListener('change',event=>{
       const variantId=setVariant(storage,id,event.currentTarget.value);
       setRouteStart(storage,id,'');
@@ -3540,7 +3617,7 @@
       toast?.(t('estimateUpdated'));refreshPlanning();
     };
   }
-  root.tripTools={load,isSaved,getRecent,markViewed,toggleSaved,normalizeBudget,getBudget,setBudget,getStartDate,setStartDate,getSeason,setSeason,getRouteStart,setRouteStart,getVariant,setVariant,normalizePlanningChecks,getPlanningChecks,setAccessChecked,hasBudgetAssumptions,planningStatus,estimate,itineraryRows,csv,calendar,jsonPack,workspaceUpdatedAt,workspacePayload,workspaceJson,normalizeWorkspace,importWorkspace,download,render,bind};
+  root.tripTools={load,normalizeBoards,createBoard,renameBoard,deleteBoard,setBoardTrip,isSaved,getRecent,markViewed,toggleSaved,normalizeBudget,getBudget,setBudget,getStartDate,setStartDate,getSeason,setSeason,getRouteStart,setRouteStart,getVariant,setVariant,normalizePlanningChecks,getPlanningChecks,setAccessChecked,hasBudgetAssumptions,planningStatus,estimate,itineraryRows,csv,calendar,jsonPack,workspaceUpdatedAt,workspacePayload,workspaceJson,normalizeWorkspace,importWorkspace,download,render,bind};
 })();
 
 
@@ -3713,7 +3790,7 @@
     });
     modal.innerHTML='<div class="platform-modal-card platform-compare-card glass"><button class="platform-x" type="button" aria-label="'+esc(t('close'))+'">×</button>'+
       '<div class="platform-eyebrow">'+esc(t('compareTrips'))+'</div><h2>'+esc(t('compareTrips'))+'</h2><p class="platform-lead">'+esc(t('compareLead'))+'</p>'+
-      '<div class="platform-compare-grid" style="--compare-columns:'+selected.length+'"><div class="platform-compare-head-spacer"></div>'+columns+
+      '<p class="platform-compare-hint">'+esc(t('compareSwipeHint'))+'</p><div class="platform-compare-grid" tabindex="0" role="region" aria-label="'+esc(t('compareTrips'))+'" style="--compare-columns:'+selected.length+'"><div class="platform-compare-head-spacer"></div>'+columns+
       row(t('duration'),values(trip=>trip.metrics?.days?trip.metrics.days+' '+t('days'):'—'),esc)+
       row(t('countriesUnit'),values(trip=>String(trip.metrics?.countries??'—')),esc)+
       row(t('stops'),values(trip=>String(trip.metrics?.stops??trip.metrics?.internationalLegs??'—')),esc)+
@@ -3740,6 +3817,7 @@
         catch{return String(budget.amount)+' '+String(budget.currency||'EUR')}
       }),esc)+
       '</div></div>';
+    const grid=modal.querySelector('.platform-compare-grid');grid.addEventListener('keydown',event=>{if(event.target===grid&&['ArrowLeft','ArrowRight'].includes(event.key)){event.preventDefault();grid.scrollBy({left:event.key==='ArrowRight'?190:-190,behavior:'instant'})}});
     modal.classList.remove('hidden');
     modal.querySelector('.platform-x').onclick=()=>modal.classList.add('hidden');
     modal.querySelectorAll('[data-compare-open]').forEach(button=>button.onclick=()=>onOpenTrip(button.dataset.compareOpen));
@@ -3974,13 +4052,14 @@
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
   const SAFE_ASSET=/^\.\/assets\/[a-z0-9_./-]+$/i;
   let visualManifest={journeys:[],destinationAssets:[]},manifestPromise;
-  function setManifest(manifest){visualManifest=manifest||{journeys:[]};}
+  let journeyById=new Map();
+  function setManifest(manifest){visualManifest=manifest||{journeys:[]};journeyById=new Map((visualManifest.journeys||[]).map(j=>[j.id,j]));}
   function resolveJourneyVisual(meta,context={}){
-    const record=(visualManifest.journeys||[]).find(j=>j.id===meta.id)||{};
+    const record=journeyById.get(meta.id)||{};
     return root.visualPolicy.resolveJourneyVisual({...meta,visualAnchor:meta.visualAnchor||record.visualAnchor},{journeyCover:record.journeyCover,destinationAssets:visualManifest.destinationAssets||[],autoRouteVisual:record.autoRouteVisual,countries:record.countries||[],...context});
   }
   async function loadManifest(){
-    manifestPromise=manifestPromise||fetch('./data/platform/media-manifest.json').then(r=>{if(!r.ok)throw Error('Media manifest unavailable');return r.json()}).then(m=>{setManifest(m);return m}).catch(()=>visualManifest);
+    manifestPromise=manifestPromise||fetch('./data/platform/media-delivery.json').then(r=>{if(!r.ok)throw Error('Media manifest unavailable');return r.json()}).then(m=>{setManifest(m);return m}).catch(()=>visualManifest);
     return manifestPromise;
   }
 
@@ -4043,7 +4122,7 @@
   }
   function resolveDestinationVisual(anchor){return root.visualPolicy.destinationCandidate({visualAnchor:anchor},visualManifest.destinationAssets||[],[]);}
   function resolveRegionVisual(id){return (visualManifest.regionAssets||[]).find(a=>a.regionId===id&&root.visualPolicy.usable(a))||null;}
-  function journeyCountries(meta){return (visualManifest.journeys||[]).find(j=>j.id===meta?.id)?.countries||[];}
+  function journeyCountries(meta){return journeyById.get(meta?.id)?.countries||[];}
   function contextualCredit(entry,esc){return entry?.attributionRequired===false?'':credit(entry,esc);}
   function imageMarkup(entry,esc,local=value=>value?.en||value||'',{lazy=true,ratio='landscape'}={}){
     const d=descriptor(entry,'ocean',ratio);if(d.type!=='image')return '';
@@ -4091,12 +4170,13 @@
   function mount({meta,trip,t,esc,onPlan,onStory,onTerrain,onExplore,onOperations}){
     const modes=capabilities(meta,trip),legacy=meta.renderer==='legacy-world';
     const panel=document.querySelector('#leftPanel');if(!panel)return;
-    panel.querySelector('.platform-journey-modes')?.remove();
+    document.querySelectorAll('.platform-journey-modes').forEach(node=>node.remove());
     const nav=document.createElement('nav');nav.className='platform-journey-modes';nav.setAttribute('aria-label',t('journeyModes'));
     nav.innerHTML=modes.map(mode=>'<button type="button" data-journey-mode="'+mode+'" aria-pressed="'+(mode==='explore')+'">'+esc(t({explore:'exploreMode',plan:'planMode',story:'story',terrain:'terrain',operations:'operationsMode'}[mode]))+'</button>').join('');
     panel.querySelector('.hero-copy')?.after(nav);
+    const isStory=()=>document.body.classList.contains('story-mode')||document.body.classList.contains('platform-story-mode');
     const mobile=matchMedia('(max-width:820px)');
-    const position=()=>{if(mobile.matches||document.body.classList.contains('story-mode'))document.querySelector('.globe-stage')?.appendChild(nav);else panel.querySelector('.hero-copy')?.after(nav)};
+    const position=()=>{if(mobile.matches||isStory())document.querySelector('.globe-stage')?.appendChild(nav);else panel.querySelector('.hero-copy')?.after(nav)};
     position();mobile.addEventListener('change',position);
     nav.addEventListener('click',event=>{
       const button=event.target.closest('[data-journey-mode]');if(!button)return;
@@ -4113,7 +4193,7 @@
       if(appMode)return appMode;
       return panel.querySelector('.mode-switch [data-mode].active')?.dataset.mode||'explore';
     };
-    const update=()=>{position();sync(document.body.classList.contains('story-mode')?'story':document.body.classList.contains('terrain-view')?'terrain':legacy?legacyMode():'explore')};
+    const update=()=>{position();sync(isStory()?'story':document.body.classList.contains('terrain-view')?'terrain':legacy?legacyMode():'explore')};
     const observer=new MutationObserver(update);
     observer.observe(document.body,{attributes:true,attributeFilter:['class']});
     let legacyObserver=null;
@@ -4127,7 +4207,7 @@
       }
     }
     update();
-    return {modes,sync,dispose:()=>{observer.disconnect();legacyObserver?.disconnect();mobile.removeEventListener('change',position)}};
+    return {modes,sync,dispose:()=>{observer.disconnect();legacyObserver?.disconnect();mobile.removeEventListener('change',position);nav.remove()}};
   }
   root.journeyShell={capabilities,mount};
 })();
@@ -4289,6 +4369,32 @@
     return parts.join(' · ');
   }
   const caption=(meta,d)=>d.local(meta.title)+'\n'+facts(meta,d.t)+'\n'+d.t('exploreFullJourney')+' — ONE WORLD ROUTE\n'+d.url(meta);
+  async function exportScene({meta,scene,media,index,d}){
+    const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1920;
+    // PNG readback should not compete with the WebGL globe on the GPU.
+    const ctx=canvas.getContext('2d',{willReadFrequently:true});if(!ctx)throw Error('Canvas unavailable');
+    ctx.fillStyle='#081923';ctx.fillRect(0,0,1080,1920);
+    if(media.type==='image'){
+      const img=new Image();img.src=media.asset;await img.decode();
+      const scale=Math.max(1080/img.width,1920/img.height),w=img.width*scale,h=img.height*scale;
+      ctx.drawImage(img,(1080-w)*media.focalPoint.x,(1920-h)*media.focalPoint.y,w,h);
+    }
+    const gradient=ctx.createLinearGradient(0,320,0,1920);gradient.addColorStop(0,'rgba(4,12,20,.18)');gradient.addColorStop(.55,'rgba(4,12,20,.76)');gradient.addColorStop(1,'rgba(4,12,20,.98)');ctx.fillStyle=gradient;ctx.fillRect(0,0,1080,1920);
+    ctx.fillStyle='#fff';ctx.font='600 28px sans-serif';ctx.fillText('ONE WORLD ROUTE',72,118);
+    const lines=(text,font,maxWidth)=>{ctx.font=font;const out=[];let line='';for(const word of String(text||'').split(/\s+/)){const next=line?line+' '+word:word;if(ctx.measureText(next).width>maxWidth&&line){out.push(line);line=word}else line=next;}if(line)out.push(line);return out;};
+    // Fit all real copy instead of silently clipping long translations.
+    let size=84,title=lines(scene.title,'700 '+84+'px sans-serif',936);
+    while(title.length>6&&size>36){size-=4;title=lines(scene.title,'700 '+size+'px sans-serif',936);}
+    const body=lines(scene.body,'400 36px sans-serif',936);
+    let y=Math.max(500,1560-title.length*size*1.12-body.length*48-130);
+    ctx.font='600 26px sans-serif';ctx.fillStyle='#93e3dc';ctx.fillText(scene.label,72,y);y+=70;
+    ctx.fillStyle='#fff';ctx.font='700 '+size+'px sans-serif';for(const line of title){ctx.fillText(line,72,y);y+=size*1.12;}
+    y+=32;ctx.font='400 36px sans-serif';ctx.fillStyle='#dce9f2';for(const line of body){ctx.fillText(line,72,y);y+=48;}
+    ctx.font='500 26px sans-serif';ctx.fillStyle='#a8becb';ctx.fillText('one-world-route.vercel.app',72,1788);ctx.fillText(String(index+1)+' / 5',918,1788);
+    ctx.font='400 22px sans-serif';const note=d.t(media.sourceType==='route-render'?'routeVisualNote':'illustratedRoute');for(const [i,line] of lines(note,'400 22px sans-serif',936).entries())ctx.fillText(line,72,1848+i*28);
+    const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));if(!blob)throw Error('Image export failed');
+    const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='one-world-route--'+meta.id+'--story-'+(index+1)+'--'+d.locale()+'.png';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  }
   async function open(meta,trip){
     const d=deps;if(!d||!meta)return;
     if(!trip)trip=await fetch(meta.dataset).then(r=>{if(!r.ok)throw Error('Journey unavailable');return r.json()});
@@ -4309,25 +4415,26 @@
     const scenes=[
       {label:d.t('discoverJourney'),title:d.local(meta.title),body:facts(meta,d.t),art:visual},
       {label:d.t('theRoute'),title:d.local(meta.title),body:mode,art:visual},
-      {label:d.t('keyStops'),title:d.t('keyStops'),body:stops.slice(0,6).join(' → '),art:''},
+      {label:d.t('keyStops'),title:d.local(meta.title),body:stops.slice(0,6).join(' → '),art:visual},
       {label:d.t('understandJourney'),title:facts(meta,d.t),body:d.local(meta.subtitle),art:''},
       {label:d.t('exploreFullJourney'),title:d.local(meta.title),body:d.t('socialStoryLead'),art:visual}
     ];
     let index=0;
     const render=()=>{
-      const scene=scenes[index],e=d.esc,media=index===1?route:index===2||index===3?root.media.descriptor(null,meta.visual?.theme):cover;
-      modal.innerHTML='<div class="platform-modal-card social-story-card"><button type="button" class="platform-x" aria-label="'+e(d.t('close'))+'">×</button><h2 id="platformSocialStoryTitle" class="social-story-heading">'+e(d.t('socialStory'))+'</h2><div data-social-scene="'+index+'" data-visual-role="'+(index===1?'routeOverview':'social')+'" class="social-story-stage '+e(media.className)+'"'+(media.style?' style="'+e(media.style)+'"':'')+'><span class="social-story-brand">ONE WORLD ROUTE</span><div class="social-story-route" style="--journey-color:'+identity.color+'">'+(media.type==='image'?'':scene.art)+'</div><div class="social-story-copy" aria-live="polite"><span>'+e(scene.label)+'</span><h3>'+e(scene.title)+'</h3><p>'+e(scene.body)+'</p>'+(index===scenes.length-1?'<button class="primary" type="button" data-social-open>'+e(d.t('openJourney'))+' →</button>':'')+'</div><small>'+e(d.t(media.sourceType==='route-render'?'routeVisualNote':'illustratedRoute'))+'</small></div><div class="social-story-controls"><button type="button" data-social-prev aria-label="'+e(d.t('previous'))+'" '+(index===0?'disabled':'')+'>←</button><span>'+String(index+1)+' / '+scenes.length+'</span><button type="button" data-social-next aria-label="'+e(d.t('next'))+'" '+(index===scenes.length-1?'disabled':'')+'>→</button><button type="button" data-social-copy>'+e(d.t('copyCaption'))+'</button></div></div>';
+      const scene=scenes[index],e=d.esc,media=index===1||index===2?route:cover;
+      modal.innerHTML='<div class="platform-modal-card social-story-card"><button type="button" class="platform-x" aria-label="'+e(d.t('close'))+'">×</button><h2 id="platformSocialStoryTitle" class="social-story-heading">'+e(d.t('socialStory'))+'</h2><div data-social-scene="'+index+'" data-visual-role="'+(index===1?'routeOverview':'social')+'" class="social-story-stage '+e(media.className)+'"'+(media.style?' style="'+e(media.style)+'"':'')+'><span class="social-story-brand">ONE WORLD ROUTE</span><div class="social-story-route" style="--journey-color:'+identity.color+'">'+(media.type==='image'?'':scene.art)+'</div><div class="social-story-copy" aria-live="polite"><span>'+e(scene.label)+'</span><h3>'+e(scene.title)+'</h3><p>'+e(scene.body)+'</p>'+(index===scenes.length-1?'<button class="primary" type="button" data-social-open>'+e(d.t('openJourney'))+' →</button>':'')+'</div><small>'+e(d.t(media.sourceType==='route-render'?'routeVisualNote':'illustratedRoute'))+'</small></div><div class="social-story-controls"><button type="button" data-social-prev aria-label="'+e(d.t('previous'))+'" '+(index===0?'disabled':'')+'>←</button><span>'+String(index+1)+' / '+scenes.length+'</span><button type="button" data-social-next aria-label="'+e(d.t('next'))+'" '+(index===scenes.length-1?'disabled':'')+'>→</button><button type="button" data-social-copy>'+e(d.t('copyCaption'))+'</button><button type="button" data-social-download>'+e(d.t('downloadStory'))+'</button></div></div>';
       modal.querySelector('.platform-x').onclick=()=>modal.classList.add('hidden');
       modal.querySelector('[data-social-prev]').onclick=()=>move(-1);
       modal.querySelector('[data-social-next]').onclick=()=>move(1);
       modal.querySelector('[data-social-open]')?.addEventListener('click',()=>d.onOpen(meta.id));
+      modal.querySelector('[data-social-download]').onclick=async event=>{const button=event.currentTarget;button.disabled=true;try{await exportScene({meta,scene,media,index,d})}catch{d.toast(d.t('storyExportFailed'))}finally{button.disabled=false}};
       modal.querySelector('[data-social-copy]').onclick=async()=>{try{await navigator.clipboard.writeText(caption(meta,d));d.toast(d.t('captionCopied'))}catch{d.toast(d.t('shareCopyFallback'))}};
     };
     const move=delta=>{index=Math.max(0,Math.min(scenes.length-1,index+delta));render();modal.querySelector(delta>0?'[data-social-prev]':'[data-social-next]')?.focus()};
     render();modal.classList.remove('hidden');
     modal.onkeydown=event=>{if(event.key==='ArrowRight'||event.key==='ArrowLeft'){event.preventDefault();move(event.key==='ArrowRight'?1:-1)}};
   }
-  root.socialStory={configure:d=>{deps=d},open,facts,caption};
+  root.socialStory={configure:d=>{deps=d},open,facts,caption,exportScene};
 })();
 
 
@@ -4545,7 +4652,7 @@
       storage:next.storage||localStorage,
       TripTools:next.TripTools,
       catalog:next.catalog,
-      fetcher:next.fetcher||fetch
+      fetcher:next.fetcher||fetch.bind(window)
     };
     try{
       const response=await deps.fetcher(CONFIG_URL,{cache:'no-cache'});
@@ -4732,7 +4839,7 @@
 (() => {
   'use strict';
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
-  let deps=null;
+  let deps=null,activeBoard='',visibleCount=24,renderVersion=0;
   const $=(s,r=document)=>r.querySelector(s);
 
   function configure(next){deps=next;return api}
@@ -4838,6 +4945,7 @@
       '<p>'+d.esc(d.local((trip?._variant?.id&&trip._variant.id!=='base')?trip.summary:meta.subtitle))+'</p>'+
       '<div class="platform-mytrip-setup">'+setup+'</div>'+
       planningMarkup({meta,trip,profile,budget,currency,start})+
+      boardMembership(id)+
       '<div class="platform-mytrip-fit">'+fitMarkup(meta,profile)+'</div>'+
       '<div class="platform-mytrip-actions"><button type="button" data-mytrip-offline="'+d.esc(id)+'">'+d.esc(d.t('saveOffline'))+'</button><button type="button" data-mytrip-open="'+d.esc(id)+'">'+d.esc(d.t('continuePlanning'))+' →</button></div>'+
     '</article>';
@@ -4851,9 +4959,22 @@
     '</article>';
   }
 
+  function boardMembership(id){
+    const d=context(),boards=d.TripTools.load(d.storage).boards;
+    return boards.length?'<details class="platform-mytrip-status"><summary>'+d.esc(d.t('boards'))+'</summary><div class="platform-board-membership">'+boards.map(board=>'<label><input type="checkbox" data-board-member="'+d.esc(board.id)+'" data-trip-id="'+d.esc(id)+'" '+(board.tripIds.includes(id)?'checked':'')+'><span>'+d.esc(board.name)+'</span></label>').join('')+'</div></details>':'';
+  }
+  function boardControls(modal,state){
+    const d=context(),board=state.boards.find(item=>item.id===activeBoard);
+    if(!board)activeBoard='';
+    $('[data-mytrips-boards]',modal).innerHTML='<label><span>'+d.esc(d.t('boards'))+'</span><select data-board-select><option value="">'+d.esc(d.t('savedJourneys'))+'</option>'+state.boards.map(item=>'<option value="'+d.esc(item.id)+'" '+(item.id===activeBoard?'selected':'')+'>'+d.esc(item.name)+' ('+item.tripIds.length+')</option>').join('')+'</select></label>'+
+      '<form data-board-form><label><span>'+d.esc(d.t('boardName'))+'</span><input data-board-name maxlength="80" required value="'+d.esc(board?.name||'')+'"></label><button type="submit">'+d.esc(d.t(board?'renameBoard':'createBoard'))+'</button></form>'+
+      (board?'<button type="button" data-board-compare '+(board.tripIds.length<2?'disabled':'')+'>'+d.esc(d.t('compareSelected').replace('{count}',String(Math.min(3,board.tripIds.length))))+'</button><button type="button" data-board-delete>'+d.esc(d.t('deleteBoard'))+'</button><small>'+d.esc(d.t('deleteBoardLead'))+'</small>':'');
+  }
   async function render(modal){
-    const d=context(),profile=d.loadProfile(),state=d.TripTools.load(d.storage),saved=state.savedTrips,recent=d.TripTools.getRecent(d.storage);
-    const metas=(d.catalog.trips||[]).filter(meta=>saved.includes(meta.id)).sort((a,b)=>{
+    const version=++renderVersion,d=context(),profile=d.loadProfile(),state=d.TripTools.load(d.storage),saved=state.savedTrips,recent=d.TripTools.getRecent(d.storage);
+    boardControls(modal,state);
+    const selectedBoard=state.boards.find(item=>item.id===activeBoard),selectedIds=selectedBoard?selectedBoard.tripIds:saved;
+    const metas=(d.catalog.trips||[]).filter(meta=>selectedIds.includes(meta.id)).sort((a,b)=>{
       const aDate=d.TripTools.getStartDate(d.storage,a.id)||'9999-12-31';
       const bDate=d.TripTools.getStartDate(d.storage,b.id)||'9999-12-31';
       return aDate.localeCompare(bDate)||d.local(a.title).localeCompare(d.local(b.title));
@@ -4863,13 +4984,14 @@
     const count=$('[data-mytrips-count]',modal);
     if(count)count.textContent=String(metas.length);
     if(!metas.length&&!recentMetas.length){
-      body.innerHTML='<div class="platform-mytrips-empty"><b>'+d.esc(d.t('myTripsEmptyTitle'))+'</b><span>'+d.esc(d.t('myTripsEmptyLead'))+'</span></div>';
+      body.innerHTML='<div class="platform-mytrips-empty"><b>'+d.esc(d.t(selectedBoard?'boardEmpty':'myTripsEmptyTitle'))+'</b><span>'+d.esc(d.t('myTripsEmptyLead'))+'</span></div>';
       return;
     }
     body.innerHTML='<div class="platform-mytrips-loading">'+d.esc(d.t('loading'))+'</div>';
-    const savedMarkup=metas.length?'<section class="platform-mytrips-group"><h3>'+d.esc(d.t('savedJourneys'))+'</h3>'+(await Promise.all(metas.map(meta=>buildCard(meta,profile)))).join('')+'</section>':'';
+    const savedMarkup=metas.length?'<section class="platform-mytrips-group"><h3>'+d.esc(d.t('savedJourneys'))+'</h3>'+(await Promise.all(metas.slice(0,visibleCount).map(meta=>buildCard(meta,profile)))).join('')+'</section>':(selectedBoard?'<p class="platform-mytrips-empty">'+d.esc(d.t('boardEmpty'))+'</p>':'');
     const recentMarkup=recentMetas.length?'<section class="platform-mytrips-group platform-mytrips-recent-group"><h3>'+d.esc(d.t('recentlyViewed'))+'</h3>'+recentMetas.map(recentCard).join('')+'</section>':'';
-    body.innerHTML=savedMarkup+recentMarkup;
+    if(version!==renderVersion)return;
+    body.innerHTML=savedMarkup+(metas.length>visibleCount?'<button type="button" data-mytrips-more>'+d.esc(d.t('loadMoreJourneys').replace('{count}',String(Math.min(24,metas.length-visibleCount))))+'</button>':'')+recentMarkup;
   }
 
   async function openCloudSync(parentModal){
@@ -4933,10 +5055,10 @@
   }
 
   async function open(){
-    const d=context(),modal=d.ensureDialog('platformMyTripsModal');
+    const d=context(),modal=d.ensureDialog('platformMyTripsModal');activeBoard='';visibleCount=24;
     modal.innerHTML='<div class="platform-modal-card platform-mytrips-card glass"><button class="platform-x" type="button" aria-label="'+d.esc(d.t('close'))+'">×</button>'+
       '<div class="platform-eyebrow">'+d.esc(d.t('myTrips'))+'</div><div class="platform-mytrips-title"><h2>'+d.esc(d.t('myTrips'))+' <span data-mytrips-count></span></h2><div class="platform-mytrips-portability"><button type="button" data-mytrips-cloud hidden>'+d.esc(d.t('cloudSync'))+'</button><button type="button" data-mytrips-install hidden>'+d.esc(d.t('installApp'))+'</button><button type="button" data-mytrips-import>'+d.esc(d.t('importWorkspace'))+'</button><button type="button" data-mytrips-export>'+d.esc(d.t('exportWorkspace'))+'</button><input type="file" accept="application/json,.json" data-mytrips-import-file hidden></div></div><p class="platform-lead">'+d.esc(d.t('myTripsLead'))+'</p>'+
-      '<div data-mytrips-body></div></div>';
+      '<section class="platform-board-controls" data-mytrips-boards></section><div data-mytrips-body aria-live="polite"></div></div>';
     modal.classList.remove('hidden');
     const installBtn=$('[data-mytrips-install]',modal);
     const refreshInstall=state=>{
@@ -4966,7 +5088,23 @@
       d.toast(result.ok?d.t('workspaceImported'):d.t('workspaceImportFailed'));
       if(result.ok)await render(modal);
     };
+    modal.onchange=async event=>{
+      const select=event.target.closest('[data-board-select]');
+      if(select){activeBoard=select.value;visibleCount=24;await render(modal);return}
+      const member=event.target.closest('[data-board-member]');
+      if(member){d.TripTools.setBoardTrip(d.storage,member.dataset.boardMember,member.dataset.tripId,member.checked);if(activeBoard)await render(modal);else boardControls(modal,d.TripTools.load(d.storage))}
+    };
+    modal.onsubmit=async event=>{
+      if(!event.target.matches('[data-board-form]'))return;
+      event.preventDefault();const name=$('[data-board-name]',modal).value;
+      if(activeBoard)d.TripTools.renameBoard(d.storage,activeBoard,name);
+      else {const board=d.TripTools.createBoard(d.storage,name);if(board)activeBoard=board.id}
+      visibleCount=24;await render(modal);
+    };
     modal.onclick=async event=>{
+      if(event.target.closest('[data-board-compare]')){const board=d.TripTools.load(d.storage).boards.find(item=>item.id===activeBoard);d.TripCompare.open({catalog:d.catalog,selectedIds:(board?.tripIds||[]).slice(0,3),profile:d.loadProfile(),ensureDialog:d.ensureDialog,t:d.t,esc:d.esc,local:d.local,facetLabel:d.facetLabel,statusLabel:d.statusLabel,onOpenTrip:d.onOpenTrip});return}
+      if(event.target.closest('[data-board-delete]')){d.TripTools.deleteBoard(d.storage,activeBoard);activeBoard='';visibleCount=24;await render(modal);return}
+      if(event.target.closest('[data-mytrips-more]')){visibleCount+=24;await render(modal);return}
       const cloudTarget=event.target.closest('[data-mytrips-cloud]');
       if(cloudTarget){await openCloudSync(modal);return}
       const installTarget=event.target.closest('[data-mytrips-install]');
@@ -5044,6 +5182,8 @@
   let collections=[];
   let tripIndex=[];
   let mediaManifest=[];
+  let indexById=new Map(),searchById=new Map();
+  let searchTimer;
   let activeCollection=null;
   const PAGE_SIZE=24;
   const PRIMARY_REGIONS=['europe','asia','africa','north-america','south-america','oceania'];
@@ -5161,7 +5301,7 @@
   function visualMarkup(trip){
     const d=context(),result=root.media.resolveJourneyVisual(trip,{purpose:'discoveryCard'}),entry=result.entry;
     const media=root.media.descriptor(entry,visualTheme(trip));
-    const preview=tripIndex.find(item=>item.id===trip.id)?.preview;
+    const preview=indexById.get(trip.id)?.preview;
     const art=media.type==='image'?root.media.imageMarkup(entry,d.esc,d.local):root.media.routeArt(preview);
     const credit=root.media.contextualCredit(entry,d.esc);
     return '<div class="platform-home-card-visual '+d.esc(media.className)+'" data-media-type="'+media.type+'" data-visual-kind="'+result.kind+'" style="--journey-color:'+root.visualIdentity.identity(trip).color+';'+d.esc(media.type==='image'?'':media.style||'')+'"><div class="platform-home-card-visual-top"><span>'+d.esc(d.facetLabel(primaryRegion(trip)))+'</span><b>'+d.esc(d.facetLabel(trip.kind))+'</b></div>'+art+credit+'</div>';
@@ -5247,6 +5387,12 @@
     }).join('')+'</div>';
   }
 
+  function destinationsMarkup(){
+    const d=context(),counts=new Map(),names=new Intl.DisplayNames([d.locale()],{type:'region'});
+    for(const meta of d.catalog.trips){if(meta.renderer==='legacy-world')continue;for(const code of indexById.get(meta.id)?.countries||[])counts.set(code,(counts.get(code)||0)+1);}
+    return '<details class="platform-home-destinations"><summary>'+d.esc(d.t('exploreDestinations'))+'</summary><div>'+[...counts].sort((a,b)=>names.of(a[0]).localeCompare(names.of(b[0]),d.locale())).map(([code,count])=>'<a href="/'+d.locale()+'/destination/'+code.toLowerCase()+'">'+d.esc(names.of(code))+' <span>'+count+'</span></a>').join('')+'</div></details>';
+  }
+
   function renderFeatured(){
     const d=context(),host=$('#platformHomeFeatured');
     if(!host)return;
@@ -5258,21 +5404,7 @@
     host.innerHTML=trips.map(trip=>card(trip,{featured:true})).join('');
   }
 
-  function collectionMatches(trip,definition){
-    const filters=definition?.filters||{};
-    const discovery=trip.discovery||{},fit=discovery.fit||{};
-    if(filters.kind&&trip.kind!==filters.kind)return false;
-    if(filters.mode&&!(discovery.modes||[]).includes(filters.mode))return false;
-    if(filters.modeAny?.length&&!filters.modeAny.some(value=>(discovery.modes||[]).includes(value)))return false;
-    if(filters.theme&&!(discovery.themes||[]).includes(filters.theme))return false;
-    if(filters.region&&!(discovery.regions||[]).includes(filters.region))return false;
-    if(filters.duration&&discovery.durationBand!==filters.duration)return false;
-    if(filters.themeAny?.length&&!filters.themeAny.some(value=>(discovery.themes||[]).includes(value)))return false;
-    if(filters.pace&&fit.pace!==filters.pace)return false;
-    if(filters.party&&!(fit.party||[]).includes(filters.party))return false;
-    if(filters.accessibility&&fit.accessibility!==filters.accessibility)return false;
-    return true;
-  }
+  const collectionMatches=(trip,definition)=>context().Discovery.collectionMatches(trip,definition);
 
   function collectionsMarkup(){
     const d=context();
@@ -5334,10 +5466,9 @@
       start:$('#homeRouteStart')?.value||'',
       accessibility:$('#homeRouteAccessibility')?.value||''
     };
-    let found=d.Discovery.filter(d.catalog,filters,trip=>[
-      d.local(trip.title),d.local(trip.subtitle),trip.kind,
-      ...(trip.discovery?.regions||[]),...(trip.discovery?.themes||[]),...(trip.discovery?.modes||[])
-    ].join(' '));
+    let found=d.Discovery.filter(d.catalog,filters,trip=>searchById.get(trip.id)||'');
+    const country=new URLSearchParams(location.search).get('destination');
+    if(country)found=found.filter(trip=>(indexById.get(trip.id)?.countries||[]).includes(country.toUpperCase()));
     if(activeCollection){
       const definition=collections.find(item=>item.id===activeCollection);
       if(definition)found=found.filter(trip=>collectionMatches(trip,definition));
@@ -5351,7 +5482,7 @@
     else found=[...found].sort((a,b)=>Number(b.visual?.featurePriority||0)-Number(a.visual?.featurePriority||0)||d.local(a.title).localeCompare(d.local(b.title)));
     const visible=found.slice(0,resultLimit);
     renderCollectionContext();
-    host.innerHTML=found.length?visible.map(card).join(''):'<div class="platform-home-empty">'+d.esc(d.t('noRoutes'))+'</div>';
+    host.innerHTML=found.length?visible.map(card).join(''):'<div class="platform-home-empty"><p>'+d.esc(d.t('noRoutes'))+'</p><button type="button" data-home-reset>'+d.esc(d.t('resetFilters'))+'</button></div>';
     const more=$('#platformHomeMore');
     if(more){
       more.hidden=visible.length>=found.length;
@@ -5489,6 +5620,7 @@
 
   function bind(){
     const d=context(),host=$('#platformHome');
+    host?.querySelector('[data-home-language]')?.addEventListener('change',event=>{const url=new URL(location.href);url.searchParams.set('lang',event.target.value);location.assign(url)});
     host?.addEventListener('click',event=>{
       const open=event.target.closest('[data-open-home-trip]');
       if(open){d.onOpenTrip(open.dataset.openHomeTrip);return}
@@ -5552,6 +5684,9 @@
       }
       if(event.target.closest('[data-home-reset]')){
         activeCollection=null;
+        const clean=new URL(location.href);
+        for(const key of ['q','kind','region','mode','theme','duration','pace','season','party','start','accessibility','destination','collection'])clean.searchParams.delete(key);
+        history.replaceState(null,'',clean);
         for(const id of ['homeRouteSearch','homeRouteKind','homeRouteRegion','homeRouteMode','homeRouteTheme','homeRouteDuration','homeRoutePace','homeRouteSeason','homeRouteParty','homeRouteStart','homeRouteAccessibility']){
           const node=$('#'+id);if(node)node.value='';
         }
@@ -5562,7 +5697,11 @@
       }
     });
     for(const id of ['homeRouteSearch','homeRouteKind','homeRouteRegion','homeRouteMode','homeRouteTheme','homeRouteDuration','homeRoutePace','homeRouteSeason','homeRouteParty','homeRouteStart','homeRouteAccessibility','homeRouteSavedOnly','homeRouteSort']){
-      $('#'+id)?.addEventListener(id==='homeRouteSearch'?'input':'change',()=>renderCards({preserveLimit:false}));
+      $('#'+id)?.addEventListener(id==='homeRouteSearch'?'input':'change',()=>{
+        clearTimeout(searchTimer);
+        if(id==='homeRouteSearch')searchTimer=setTimeout(()=>renderCards({preserveLimit:false}),150);
+        else renderCards({preserveLimit:false});
+      });
     }
   }
 
@@ -5572,14 +5711,17 @@
     try{
       const [collectionResponse,indexResponse,mediaResponse]=await Promise.all([
         fetch('./data/platform/collections.json',{cache:'no-cache'}),
-        fetch('./data/platform/trip-index.json',{cache:'force-cache'}),
-        fetch('./data/platform/media-manifest.json',{cache:'force-cache'})
+        fetch('./data/platform/discovery-index.json',{cache:'no-cache'}),
+        fetch('./data/platform/media-delivery.json',{cache:'force-cache'})
       ]);
       collections=collectionResponse.ok?(await collectionResponse.json()).collections||[]:[];
       tripIndex=indexResponse.ok?(await indexResponse.json()).trips||[]:[];
       const manifest=mediaResponse.ok?await mediaResponse.json():{journeys:[]};
       mediaManifest=manifest.journeys||[];root.media.setManifest(manifest);
     }catch(error){console.warn('Journey discovery support data unavailable',error);collections=[];tripIndex=[]}
+    indexById=new Map(tripIndex.map(item=>[item.id,item]));
+    const countryNames=new Intl.DisplayNames([d.locale()],{type:'region'});
+    searchById=new Map(d.catalog.trips.map(trip=>[trip.id,[d.Discovery.localizedSearch(trip.title),d.Discovery.localizedSearch(trip.subtitle),d.facetLabel(trip.kind),...(trip.discovery?.regions||[]).map(d.facetLabel),...(trip.discovery?.themes||[]).map(d.facetLabel),...(trip.discovery?.modes||[]).map(d.facetLabel),...(indexById.get(trip.id)?.searchPlaces||[]).map(d.Discovery.localizedSearch),...(indexById.get(trip.id)?.countries||[]).map(code=>countryNames.of(code))].join(' ')]));
     const requestedCollection=new URLSearchParams(location.search).get('collection');
     activeCollection=collections.some(item=>item.id===requestedCollection)?requestedCollection:null;
     document.body.classList.add('platform-home');
@@ -5590,23 +5732,31 @@
     host.id='platformHome';
     host.className='platform-home-shell';
     host.innerHTML=
-      '<header class="platform-home-nav"><button class="platform-home-brand" data-home-top type="button"><span class="brand-orbit"><i></i></span><span><strong>ONE WORLD ROUTE</strong><small>'+d.esc(d.t('homeNavSub'))+'</small></span></button><nav><button data-home-explore type="button">'+d.esc(d.t('routes'))+'</button><button data-home-mytrips type="button">'+d.esc(d.t('myTrips'))+'</button><button data-home-traveller type="button">'+d.esc(d.t('traveller'))+'</button><details class="platform-home-overflow"'+(matchMedia('(min-width:821px)').matches?' open':'')+'><summary>'+d.esc(d.t('more'))+'</summary><div><button data-home-method type="button">'+d.esc(d.t('methodology'))+'</button></div></details></nav></header>'+
+      '<header class="platform-home-nav"><button class="platform-home-brand" data-home-top type="button"><span class="brand-orbit"><i></i></span><span><strong>ONE WORLD ROUTE</strong><small>'+d.esc(d.t('homeNavSub'))+'</small></span></button><nav><button data-home-explore type="button">'+d.esc(d.t('routes'))+'</button><button data-home-mytrips type="button">'+d.esc(d.t('myTrips'))+'</button><button data-home-traveller type="button">'+d.esc(d.t('traveller'))+'</button><details class="platform-home-overflow"'+(matchMedia('(min-width:821px)').matches?' open':'')+'><summary>'+d.esc(d.t('more'))+'</summary><div><button data-home-method type="button">'+d.esc(d.t('methodology'))+'</button><label class="platform-home-language"><span>'+d.esc(d.t('language'))+'</span><select data-home-language>'+d.catalog.supportedLocales.map(lang=>'<option value="'+lang+'" '+(lang===d.locale()?'selected':'')+'>'+new Intl.DisplayNames([lang],{type:'language'}).of(lang)+'</option>').join('')+'</select></label></div></details></nav></header>'+
       '<main>'+
-        '<section class="platform-home-hero"><div class="platform-home-hero-copy"><div class="platform-home-kicker">ONE WORLD ROUTE · '+d.esc(d.t('homeEyebrow'))+'</div><h1>'+d.esc(d.t('homeTitle'))+'</h1><p>'+d.esc(d.t('homeLead'))+'</p><div class="platform-home-hero-actions"><button class="primary" data-home-inspire type="button">'+d.esc(d.t('inspireMe'))+'</button><button data-home-find type="button">'+d.esc(d.t('findJourneyTitle'))+'</button></div></div><div class="platform-home-globe-caption"><span>'+d.esc(d.t('homeGlobeLabel'))+'</span><b>'+d.esc(d.t('homeGlobeHint'))+'</b></div><div id="platformHomeGlobePreview" class="platform-home-globe-preview" aria-live="polite" hidden></div></section>'+
+        '<section class="platform-home-hero"><div class="platform-home-hero-copy"><div class="platform-home-kicker">ONE WORLD ROUTE · '+d.esc(d.t('homeEyebrow'))+'</div><h1>'+d.esc(d.t('homeTitle'))+'</h1><p>'+d.esc(d.t('homeLead'))+'</p><div class="platform-home-hero-actions"><button class="primary" data-home-inspire type="button">'+d.esc(d.t('inspireMe'))+'</button><button data-home-find type="button">'+d.esc(d.t('findJourneyTitle'))+'</button></div></div><div class="platform-home-globe-caption"><span>'+d.esc(d.t('homeGlobeLabel'))+'</span><b>'+d.esc(d.t('homeGlobeHint'))+'</b></div><p id="platformHomeMapStatus" role="status"></p><div id="platformHomeGlobePreview" class="platform-home-globe-preview" aria-live="polite" hidden></div></section>'+
         finderMarkup()+inspirationMarkup()+
         '<section class="platform-home-featured"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('journeyDiscovery'))+'</div><h2>'+d.esc(d.profileConfigured?.()?d.t('recommendedForYou'):d.t('featuredJourneys'))+'</h2><p>'+d.esc(d.profileConfigured?.()?d.t('recommendationContextLead'):d.t('featuredLead'))+'</p></div></div><div class="platform-home-featured-grid" id="platformHomeFeatured"></div>'+platformProofMarkup()+'</section>'+
         collectionsMarkup()+
-        '<section class="platform-home-regions"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('filterRegion'))+'</div><h2>'+d.esc(d.t('exploreByRegion'))+'</h2></div></div>'+regionCollectionsMarkup()+'</section>'+
+        '<section class="platform-home-regions"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('filterRegion'))+'</div><h2>'+d.esc(d.t('exploreByRegion'))+'</h2></div></div>'+regionCollectionsMarkup()+destinationsMarkup()+'</section>'+
         '<section class="platform-home-flagship"><div><div class="platform-home-section-kicker">'+d.esc(d.t('showcaseJourney'))+'</div><h2>'+d.esc(d.local(flagship.title))+'</h2><p>'+d.esc(d.local(flagship.subtitle))+'</p><button type="button" data-open-home-trip="'+d.esc(flagship.id)+'">'+d.esc(d.t('openJourney'))+' →</button></div><div class="platform-home-flagship-metrics"><article><b>'+d.esc(flagship.metrics?.countries??'—')+'</b><span>'+d.esc(d.t('homeStates'))+'</span></article><article><b>'+d.esc(flagship.metrics?.internationalLegs??'—')+'</b><span>'+d.esc(d.t('homeLegs'))+'</span></article><article><b>'+d.esc(flagship.metrics?.days??'—')+'</b><span>'+d.esc(d.t('homePlannedDays'))+'</span></article><article><b>'+d.esc(d.t('chooseStartDate'))+'</b><span>'+d.esc(d.t('planningContext'))+'</span></article><article><b>'+d.esc(formatBudget(flagship.metrics?.budget))+'</b><span>'+d.esc(d.t('homeBaseModel'))+'</span></article></div></section>'+
-        '<section class="platform-home-explore" id="platformHomeExplore"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('journeyDiscovery'))+'</div><h2>'+d.esc(d.t('allJourneys'))+'</h2><p>'+d.esc(d.t('journeyDiscoveryLead'))+'</p></div><div class="platform-home-resultbar"><span id="platformHomeCount"></span><label class="platform-home-sort"><span>'+d.esc(d.t('sortBy'))+'</span><select id="homeRouteSort"><option value="recommended">'+d.esc(d.t('sortRecommended'))+'</option><option value="featured">'+d.esc(d.t('sortFeatured'))+'</option><option value="shortest">'+d.esc(d.t('sortShortest'))+'</option><option value="longest">'+d.esc(d.t('sortLongest'))+'</option><option value="alphabetical">'+d.esc(d.t('sortAlphabetical'))+'</option></select></label><button id="platformHomeCompare" data-home-compare-open type="button" disabled>'+d.esc(d.t('compareSelected').replace('{count}','0'))+'</button><button data-home-reset type="button">'+d.esc(d.t('resetFilters'))+'</button></div></div>'+quickExploreMarkup()+'<div id="platformHomeCollectionContext" class="platform-home-collection-context" hidden></div>'+filtersMarkup()+'<div class="platform-home-grid" id="platformHomeResults"></div><button class="platform-home-more" id="platformHomeMore" data-home-load-more type="button" hidden>'+d.esc(d.t('loadMoreJourneys').replace('{count}',String(PAGE_SIZE)))+'</button></section>'+
+        '<section class="platform-home-explore" id="platformHomeExplore"><div class="platform-home-section-head"><div><div class="platform-home-section-kicker">'+d.esc(d.t('journeyDiscovery'))+'</div><h2>'+d.esc(d.t('allJourneys'))+'</h2><p>'+d.esc(d.t('journeyDiscoveryLead'))+'</p></div><div class="platform-home-resultbar"><span id="platformHomeCount" role="status" aria-live="polite"></span><label class="platform-home-sort"><span>'+d.esc(d.t('sortBy'))+'</span><select id="homeRouteSort"><option value="recommended">'+d.esc(d.t('sortRecommended'))+'</option><option value="featured">'+d.esc(d.t('sortFeatured'))+'</option><option value="shortest">'+d.esc(d.t('sortShortest'))+'</option><option value="longest">'+d.esc(d.t('sortLongest'))+'</option><option value="alphabetical">'+d.esc(d.t('sortAlphabetical'))+'</option></select></label><button id="platformHomeCompare" data-home-compare-open type="button" disabled>'+d.esc(d.t('compareSelected').replace('{count}','0'))+'</button><button data-home-reset type="button">'+d.esc(d.t('resetFilters'))+'</button></div></div>'+quickExploreMarkup()+'<div id="platformHomeCollectionContext" class="platform-home-collection-context" hidden></div>'+filtersMarkup()+'<div class="platform-home-grid" id="platformHomeResults"></div><button class="platform-home-more" id="platformHomeMore" data-home-load-more type="button" hidden>'+d.esc(d.t('loadMoreJourneys').replace('{count}',String(PAGE_SIZE)))+'</button></section>'+
         '<section class="platform-home-method" id="platformHomeMethodology"><div class="platform-home-section-kicker">'+d.esc(d.t('methodology'))+'</div><h2>'+d.esc(d.t('inspirationMethodTitle'))+'</h2><p>'+d.esc(d.t('inspirationMethodText'))+'</p><div><article><b>'+d.esc(d.t('homeSourceRuleTitle'))+'</b><span>'+d.esc(d.t('homeSourceRule'))+'</span></article><article><b>'+d.esc(d.t('homeUnknownRuleTitle'))+'</b><span>'+d.esc(d.t('homeUnknownRule'))+'</span></article><article><b>'+d.esc(d.t('globalDesignTitle'))+'</b><span>'+d.esc(d.t('globalDesignText'))+'</span></article></div></section>'+
       '</main><footer class="platform-home-footer"><strong>ONE WORLD ROUTE</strong><span>'+d.esc(d.t('homeFooter'))+'</span></footer>';
     document.querySelector('#app')?.appendChild(host);
+    const params=new URLSearchParams(location.search);
+    for(const [key,id] of Object.entries({q:'Search',kind:'Kind',region:'Region',mode:'Mode',theme:'Theme',duration:'Duration',pace:'Pace',season:'Season',party:'Party',start:'Start',accessibility:'Accessibility'})){
+      const field=$('#homeRoute'+id),value=params.get(key);
+      if(field&&value&&(field.tagName!=='SELECT'||[...field.options].some(o=>o.value===value)))field.value=value;
+    }
     bind();
+    const menu=host.querySelector('.platform-home-overflow');
+    document.addEventListener('pointerdown',event=>{if(matchMedia('(max-width:820px)').matches&&!menu.contains(event.target))menu.open=false});
+    menu.addEventListener('keydown',event=>{if(event.key==='Escape'){menu.open=false;menu.querySelector('summary').focus();event.stopPropagation()}});
     window.addEventListener('one-world-route:trip-tools-changed',()=>{renderFeatured();renderCards()});
     const nav=host.querySelector('.platform-home-nav');
-    const observer=new ResizeObserver(()=>host.style.setProperty('--home-header-height',nav.getBoundingClientRect().height+'px'));
-    observer.observe(nav);
+    const observer=new ResizeObserver(()=>{host.style.setProperty('--home-header-height',nav.getBoundingClientRect().height+'px');host.style.setProperty('--home-hero-height',host.querySelector('.platform-home-hero').getBoundingClientRect().height+'px')});
+    observer.observe(nav);observer.observe(host.querySelector('.platform-home-hero'));
     host.querySelectorAll('main>section').forEach(section=>section.classList.add('platform-scroll-target'));
 
     renderFeatured();
@@ -5614,7 +5764,8 @@
     if(methodology&&!methodology.querySelector('.platform-visual-sources'))methodology.insertAdjacentHTML('beforeend','<details class="platform-visual-sources"><summary>'+d.esc(d.t('visualSources'))+'</summary><p>'+d.esc(d.t('routeVisualNote'))+'</p><p><a href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noopener noreferrer">Natural Earth</a> · ONE WORLD ROUTE</p><p><a href="./assets/flags/LICENSE.txt" target="_blank" rel="noopener noreferrer">flag-icons 7.5.0 · MIT</a></p></details>');
     renderCards();
     if(location.hash==='#platformHomeExplore')requestAnimationFrame(()=>$('#platformHomeExplore')?.scrollIntoView({block:'start'}));
-    if(activeCollection)requestAnimationFrame(()=>$('#platformHomeExplore')?.scrollIntoView({block:'start'}));
+    if(activeCollection||['kind','region','theme','mode','duration','destination','q'].some(key=>params.has(key)))requestAnimationFrame(()=>$('#platformHomeExplore')?.scrollIntoView({block:'start'}));
+    const syncMapStatus=()=>{const status=$('#platformHomeMapStatus');if(!status)return;status.hidden=document.body.classList.contains('globe-ready');status.textContent=d.t(document.body.classList.contains('globe-failed')?'homeMapUnavailable':'homeMapLoading')};syncMapStatus();window.addEventListener('one-world-route:globe-ready',syncMapStatus);window.addEventListener('one-world-route:globe-failed',syncMapStatus);
     await renderGlobe();
   }
 
@@ -5902,7 +6053,7 @@
 
     const disclosure=(key,body)=>body?'<details class="platform-detail-disclosure"><summary>'+d.esc(d.t(key))+'</summary><div>'+body+'</div></details>':'';
     const countries=Number(meta?.metrics?.countries||new Set((trip.places||[]).map(place=>place.countryCode).filter(Boolean)).size)||0;
-    content.innerHTML=`<div class="platform-journey-overview-intro"><div class="overview-number platform-duration-number">${trip.planning?.days||'—'}<small>${d.esc(d.t('days'))}</small></div><p class="detail-copy">${d.esc(d.local(trip.summary))}</p>${highlightMarkup}${(trip.editorial?.whyThisJourney||[]).length?`<section class="platform-why-journey"><h3>${d.esc(d.t('whyThisJourney'))}</h3><ul>${trip.editorial.whyThisJourney.slice(0,4).map(point=>`<li>${d.esc(d.local(point))}</li>`).join('')}</ul></section>`:''}<div class="platform-overview-metrics"><div><span>${d.esc(d.t('stops'))}</span><b>${trip.stops.length}</b></div><div><span>${d.esc(d.pluralLabel?d.pluralLabel(countries,'countryUnit','countriesUnit'):d.t('country'))}</span><b>${countries||'—'}</b></div><div><span>${d.esc(d.t('currency'))}</span><b>${d.esc(trip.planning?.currency||'—')}</b></div></div></div>${journeyFlowMarkup(trip)}${tools}${guide}${disclosure('routeFit',journeyFitMarkup(meta))}${disclosure('evidenceDetails',editorialStatusMarkup(meta,sourced,verified,trip.segments.length)+(extension.cards?`<div class="data-grid platform-extension-cards">${extension.cards}</div>`:'')+extension.notices)}${disclosure('planningDetails',planning)}${sharedGuidance}${disclosure('partnerOptions',partnerLinks)}${entry?`<details class="platform-detail-disclosure"><summary>${d.esc(d.t('entryGuidance'))}</summary><div class="platform-entry"><b>${d.esc(d.t('entryGuidance'))}</b><p>${d.esc(d.local(entry.message))}</p>${entrySource?`<a href="${d.esc(entrySource.url)}" target="_blank" rel="noopener noreferrer">${d.esc(d.t('officialCheck'))} →</a>`:''}</div></details>`:''}<button class="platform-context-inline" id="regionalTravellerBtn" type="button">${d.esc(d.t('traveller'))} →</button>`;
+    content.innerHTML=`<div class="platform-journey-overview-intro"><div class="overview-number platform-duration-number">${trip.planning?.days||'—'}<small>${d.esc(d.t('days'))}</small></div><p class="detail-copy">${d.esc(d.local(trip.summary))}</p>${highlightMarkup}${(trip.editorial?.whyThisJourney||[]).length?`<section class="platform-why-journey"><h3>${d.esc(d.t('whyThisJourney'))}</h3><ul>${trip.editorial.whyThisJourney.slice(0,4).map(point=>`<li>${d.esc(d.local(point))}</li>`).join('')}</ul></section>`:''}<div class="platform-overview-metrics"><div><span>${d.esc(d.t('stops'))}</span><b>${trip.stops.length}</b></div><div><span>${d.esc(d.pluralLabel?d.pluralLabel(countries,'countryUnit','countriesUnit'):d.t('country'))}</span><b>${countries||'—'}</b></div><div><span>${d.esc(d.t('currency'))}</span><b>${d.esc(trip.planning?.currency||'—')}</b></div></div></div>${journeyFlowMarkup(trip)}${tools}${guide}${disclosure('routeFit',journeyFitMarkup(meta))}${disclosure('evidenceDetails',editorialStatusMarkup(meta,sourced,verified,trip.segments.length)+'<div class="platform-evidence platform-source-freshness">'+d.sourceLinks((trip.sources||[]).map(src=>src.id))+'</div>'+(extension.cards?`<div class="data-grid platform-extension-cards">${extension.cards}</div>`:'')+extension.notices)}${disclosure('planningDetails',planning)}${sharedGuidance}${disclosure('partnerOptions',partnerLinks)}${entry?`<details class="platform-detail-disclosure"><summary>${d.esc(d.t('entryGuidance'))}</summary><div class="platform-entry"><b>${d.esc(d.t('entryGuidance'))}</b><p>${d.esc(d.local(entry.message))}</p>${entrySource?`<a href="${d.esc(entrySource.url)}" target="_blank" rel="noopener noreferrer">${d.esc(d.t('officialCheck'))} →</a>`:''}</div></details>`:''}<button class="platform-context-inline" id="regionalTravellerBtn" type="button">${d.esc(d.t('traveller'))} →</button>`;
     $('#regionalTravellerBtn')?.addEventListener('click',d.openTraveller);
     content.querySelectorAll('[data-journey-stop-index]').forEach(button=>button.addEventListener('click',()=>d.selectStop(Number(button.dataset.journeyStopIndex),true)));
     const requestedStep=new URLSearchParams(location.search).get('planStep');
@@ -6288,7 +6439,7 @@
     const modal=$('#infoModal'),card=$('.modal-card',modal);
     if(!modal||!card)return;
     const sourced=trip.segments.filter(segment=>(segment.verification?.sourceIds||[]).length).length;
-    card.innerHTML=`<button class="modal-close" aria-label="Close">×</button><div class="eyebrow">${d.esc(d.t('methodology').toUpperCase())}</div><h2>${d.esc(d.t('routeMethodTitle'))}</h2><p>${d.esc(d.t('routeMethodText'))}</p><div class="method-grid"><article><b>${trip.stops.length}</b><span>${d.esc(d.t('stops'))}</span></article><article><b>${trip.segments.length}</b><span>${d.esc(d.t('segments'))}</span></article><article><b>${trip.planning?.days||'—'}</b><span>${d.esc(d.t('days'))}</span></article><article><b>${sourced}/${trip.segments.length}</b><span>${d.esc(d.t('evidenceCoverage'))}</span></article></div><h3>${d.esc(d.t('editorialStatus'))}</h3><p>${d.esc(d.t('editorial'))}</p>`;
+    card.innerHTML=`<button class="modal-close" aria-label="${d.esc(d.t('close'))}">×</button><div class="eyebrow">${d.esc(d.t('methodology').toUpperCase())}</div><h2>${d.esc(d.t('routeMethodTitle'))}</h2><p>${d.esc(d.t('routeMethodText'))}</p><div class="method-grid"><article><b>${trip.stops.length}</b><span>${d.esc(d.t('stops'))}</span></article><article><b>${trip.segments.length}</b><span>${d.esc(d.t('segments'))}</span></article><article><b>${trip.planning?.days||'—'}</b><span>${d.esc(d.t('days'))}</span></article><article><b>${sourced}/${trip.segments.length}</b><span>${d.esc(d.t('evidenceCoverage'))}</span></article></div><h3>${d.esc(d.t('editorialStatus'))}</h3><p>${d.esc(d.t('editorial'))}</p>`;
     $('.modal-close',card)?.addEventListener('click',()=>modal.classList.add('hidden'));
   }
 
@@ -7076,13 +7227,20 @@
   const verificationLabel = s => s?.verification?.status==='verified'?t('verified'):(s?.verification?.status==='illustrative'?t('illustrative'):t('currentCheck'));
   const sourceLinks = ids => {
     const map=sourceMap(),seen=new Set();
-    return (ids||[]).filter(id=>!seen.has(id)&&seen.add(id)).map(id=>map.get(id)).filter(Boolean).map(src=>`<a href="${esc(src.url)}" target="_blank" rel="noopener noreferrer"><b>${esc(src.issuer||src.title)}</b><span>${esc(src.title)}</span><small>${esc(t('lastChecked'))}: ${esc(src.checkedAt||'—')}</small></a>`).join('');
+    return (ids||[]).filter(id=>!seen.has(id)&&seen.add(id)).map(id=>map.get(id)).filter(Boolean).map(src=>{
+      const checked=new Date(src.checkedAt+'T00:00:00Z'),days=Number(src.reviewDays||currentTrip?.maintenance?.sourceReviewDays||180);
+      const review=Number.isFinite(checked.getTime())?new Date(checked.getTime()+days*86400000).toISOString().slice(0,10):null;
+      const stale=!review||review<new Date().toISOString().slice(0,10)||(src.validUntil&&src.validUntil<new Date().toISOString().slice(0,10));
+      return `<a href="${esc(src.url)}" target="_blank" rel="noopener noreferrer"><b>${esc(src.issuer||src.title)}</b><span>${esc(src.title)}</span><small>${esc(t('lastChecked'))}: ${esc(src.checkedAt||'—')}</small><small class="${stale?'review-due':''}">${esc(stale?t('sourceReviewDue'):t('sourceReviewOn'))}${review?': '+esc(review):''}</small></a>`;
+    }).join('');
   };
 
   let catalog = null;
   let currentTrip = null;
   let currentTripMeta = null;
   let countryCentroidsPromise = null;
+  let resolveMyTripsReady;
+  const myTripsReady=new Promise(resolve=>{resolveMyTripsReady=resolve});
 
   function loadProfile(){return Traveller.load(localStorage,PROFILE_KEY,locale)}
   function loadCountryCentroids(){
@@ -7123,7 +7281,7 @@
     location.assign(`/${p.toString()?`?${p.toString()}`:''}`);
   }
 
-  function openMyTrips(){return MyTrips.open()}
+  function openMyTrips(){return myTripsReady.then(error=>{if(error)throw error;return MyTrips.open()})}
 
   function openRouteLibrary(){
     return RouteLibrary.open({
@@ -7433,6 +7591,7 @@
       const explicitLang=new URLSearchParams(location.search).get('lang');
       if(!SUPPORTED_LOCALES.includes(String(explicitLang||'').toLowerCase())&&profile.language&&SUPPORTED_LOCALES.includes(profile.language))locale=profile.language;
       MyTrips.configure({
+        TripCompare,
         catalog,
         TripTools,
         TripPlanning,
@@ -7455,6 +7614,7 @@
         cloudSync:CloudSync,
         toast:Ui.toast
       });
+      resolveMyTripsReady();
       Ui.ensureGlobalActions({t,esc,onHome:goHome,onRoutes:openRouteLibrary,onMyTrips:openMyTrips,onTraveller:openTraveller});
       const socialDeps={t,esc,local,facetLabel,locale:()=>locale,ensureDialog:Ui.ensureDialog,toast:Ui.toast,url:meta=>meta.id===currentTripMeta?.id?location.href:location.origin+buildTripUrl(meta.id),onOpen:setQueryTrip};
       PLATFORM_MODULES.socialStory?.configure(socialDeps);
@@ -7516,6 +7676,7 @@
         if(p.get('view')==='terrain')setTimeout(()=>{const toggle=$('#terrainView');if(toggle&&!toggle.checked){toggle.checked=true;toggle.dispatchEvent(new Event('change',{bubbles:true}))}},650);
       }
     }catch(e){
+      resolveMyTripsReady(e);
       console.warn('ONE WORLD ROUTE platform layer unavailable',e);
     }finally{
       document.body.classList.remove('platform-booting');

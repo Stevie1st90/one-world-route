@@ -72,7 +72,12 @@
       "type": "place",
       "countryCode": "NO",
       "name": {
-        "en": "Tromsø"
+        "en": "Tromsø",
+        "de": "Tromsø",
+        "it": "Tromsø",
+        "es": "Tromsø",
+        "fr": "Tromsø",
+        "pt": "Tromsø"
       },
       "coordinates": {
         "lat": 69.6492,
@@ -85,7 +90,12 @@
       "type": "place",
       "countryCode": "NO",
       "name": {
-        "en": "Senja"
+        "en": "Senja",
+        "de": "Senja",
+        "it": "Senja",
+        "es": "Senja",
+        "fr": "Senja",
+        "pt": "Senja"
       },
       "coordinates": {
         "lat": 69.2748,
@@ -98,7 +108,12 @@
       "type": "place",
       "countryCode": "NO",
       "name": {
-        "en": "Andøya"
+        "en": "Andøya",
+        "de": "Andøya",
+        "it": "Andøya",
+        "es": "Andøya",
+        "fr": "Andøya",
+        "pt": "Andøya"
       },
       "coordinates": {
         "lat": 69.3142,
@@ -111,7 +126,12 @@
       "type": "place",
       "countryCode": "NO",
       "name": {
-        "en": "Svolvær"
+        "en": "Svolvær",
+        "de": "Svolvær",
+        "it": "Svolvær",
+        "es": "Svolvær",
+        "fr": "Svolvær",
+        "pt": "Svolvær"
       },
       "coordinates": {
         "lat": 68.2343,
@@ -124,7 +144,12 @@
       "type": "place",
       "countryCode": "NO",
       "name": {
-        "en": "Reine"
+        "en": "Reine",
+        "de": "Reine",
+        "it": "Reine",
+        "es": "Reine",
+        "fr": "Reine",
+        "pt": "Reine"
       },
       "coordinates": {
         "lat": 67.9325,

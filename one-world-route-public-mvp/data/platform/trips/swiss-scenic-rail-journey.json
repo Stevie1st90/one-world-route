@@ -72,7 +72,12 @@
       "type": "place",
       "countryCode": "CH",
       "name": {
-        "en": "Zürich"
+        "en": "Zürich",
+        "de": "Zürich",
+        "it": "Zurigo",
+        "es": "Zúrich",
+        "fr": "Zurich",
+        "pt": "Zurique"
       },
       "coordinates": {
         "lat": 47.3769,
@@ -84,7 +89,12 @@
       "type": "place",
       "countryCode": "CH",
       "name": {
-        "en": "Lucerne"
+        "en": "Lucerne",
+        "de": "Luzern",
+        "it": "Lucerna",
+        "es": "Lucerna",
+        "fr": "Lucerne",
+        "pt": "Lucerna"
       },
       "coordinates": {
         "lat": 47.0502,
@@ -96,7 +106,12 @@
       "type": "place",
       "countryCode": "CH",
       "name": {
-        "en": "Interlaken"
+        "en": "Interlaken",
+        "de": "Interlaken",
+        "it": "Interlaken",
+        "es": "Interlaken",
+        "fr": "Interlaken",
+        "pt": "Interlaken"
       },
       "coordinates": {
         "lat": 46.6863,
@@ -108,7 +123,12 @@
       "type": "place",
       "countryCode": "CH",
       "name": {
-        "en": "Montreux"
+        "en": "Montreux",
+        "de": "Montreux",
+        "it": "Montreux",
+        "es": "Montreux",
+        "fr": "Montreux",
+        "pt": "Montreux"
       },
       "coordinates": {
         "lat": 46.4312,
@@ -120,7 +140,12 @@
       "type": "place",
       "countryCode": "CH",
       "name": {
-        "en": "Zermatt"
+        "en": "Zermatt",
+        "de": "Zermatt",
+        "it": "Zermatt",
+        "es": "Zermatt",
+        "fr": "Zermatt",
+        "pt": "Zermatt"
       },
       "coordinates": {
         "lat": 46.0207,
@@ -132,7 +157,12 @@
       "type": "place",
       "countryCode": "CH",
       "name": {
-        "en": "St. Moritz"
+        "en": "St. Moritz",
+        "de": "St. Moritz",
+        "it": "St. Moritz",
+        "es": "Sankt Moritz",
+        "fr": "Saint-Moritz",
+        "pt": "St. Moritz"
       },
       "coordinates": {
         "lat": 46.4908,
