@@ -11,6 +11,7 @@ for (const script of [
   'audit-platform-media.mjs',
   'build-media-manifest.mjs',
   'build-visual-coverage.mjs',
+  'build-visual-system-contract.mjs',
   'build-visual-briefs.mjs',
   'build-world-showcase-visual-spec.mjs',
   'audit-platform-maintenance.mjs',

@@ -36,6 +36,7 @@ Commit deterministic product outputs when they change, including:
 - `assets/media/journeys/<trip-id>/...`
 - `data/platform/route-visuals.json`
 - `data/platform/trip-index.json`
+- `data/platform/visual-system.json`
 - `data/platform/visual-briefs.json`
 - `data/platform/visual-coverage.json`
 - `data/platform/graphics-backlog.json`
@@ -74,11 +75,39 @@ For catalog growth:
 14. merge only after targeted CI is green,
 15. verify Vercel + production smoke when a deploy is available.
 
-## 5. Journey covers — normal batches
+## 5. Journey covers — canonical visual system and normal batches
+
+The reusable source of truth is:
+
+- `scripts/visual-system.mjs` — executable classification/prompt policy,
+- `data/platform/visual-system.json` — machine-readable generated contract,
+- `scripts/cover-generation-model.mjs` — deterministic batch construction,
+- `scripts/visual-brief-model.mjs` — per-Journey brief construction.
+
+Check the contract with:
+
+```powershell
+npm run covers:system:check
+```
+
+Do not invent a new cover workflow for a Journey unless it genuinely requires a deterministic special renderer. New ordinary Journeys are classified from catalog metadata into an existing reusable family.
+
+### Canonical families
+
+- `rail-cinematic` → rail
+- `road-cinematic` → road / camper / motorcycle
+- `coastal-editorial` → cruise / ferry / island/coastal travel
+- `nature-atmospheric` → scenic / nature / wildlife / mountain / outdoor
+- `culture-editorial` → urban / cultural fallback
+- `planetary` → deterministic global special path (`world-195`)
+
+An explicit valid `visual.visualFamily` override wins. Otherwise classification is deterministic from `kind`, `discovery.modes` and `discovery.themes`.
+
+The family controls the scene grammar, composition pool, social priority and production strategy. The Journey supplies geography, route character and approved anchor context. This prevents per-Journey prompt design from becoming an operating requirement at 1000+ Journeys.
+
+### Normal 10-Journey dispatch contract
 
 Normal production batches contain **up to 10 Journeys**.
-
-### Dispatch contract
 
 The operator sends **one batch instruction**, but the image system executes **one independent image-generation call per Journey**.
 
@@ -88,11 +117,17 @@ For a 10-Journey batch:
 - ten unique queue items,
 - ten separate image-generation calls,
 - exactly one image per call,
+- every call receives its own explicit prompt,
+- every prompt has a unique SHA-256 fingerprint,
+- subject/geography/transport/composition/landmarks reset before every call,
+- only the shared ONE WORLD ROUTE house style may carry across calls,
 - fixed queue order,
 - no approval pause between calls,
 - stop after call 10.
 
 Never use one call with `n=10` for different Journeys. That failure mode produced multiple variants of the first Journey (the observed “10× Alaska” problem).
+
+Never let later image calls infer their subject from call 1. The queue explicitly transports the complete matching prompt for every call. If a later output repeats the subject/geography of an earlier Journey, regenerate only that item.
 
 Generate the queue with:
 
@@ -100,9 +135,9 @@ Generate the queue with:
 npm run covers:batch
 ```
 
-The queue/prompt artifacts are local operator artifacts. Each item locks sequence, `callId`, `tripId`, filename and prompt. Duplicate trip IDs/call IDs/filenames are rejected.
+The queue/prompt artifacts are local operator artifacts. Each item locks sequence, `callId`, `tripId`, filename, prompt, prompt SHA-256, visual family, composition and lighting. Duplicate trip IDs/call IDs/filenames/prompt fingerprints are rejected.
 
-Already-published approved covers are excluded from later queues.
+Already-published approved covers and deterministic special Journeys are excluded from normal queues.
 
 ### Stage downloaded results
 
@@ -160,11 +195,13 @@ The canonical `world-195` hero is:
 - approved Natural Earth relief as the basemap,
 - verified ONE WORLD ROUTE geometry as the route layer,
 - **195 countries / 194 international legs** unchanged,
-- thin restrained continent-family route colors,
+- static cover/share route rendered in one coral-red color `#FF5A52`,
+- subtle dark halo only for static-route readability,
 - no intermediate white nodes,
 - Antarctica visually de-emphasized,
 - Europe/West-Asia dense routes slightly reduced in opacity,
-- antimeridian crossings split instead of drawing false long lines across the map.
+- antimeridian crossings split instead of drawing false long lines across the map,
+- the **interactive globe remains unchanged** and keeps its semantic continent colors.
 
 The renderer contract is machine-readable in:
 
@@ -175,8 +212,12 @@ The renderer contract is machine-readable in:
 
 Current canonical renderer identifiers:
 
-- render style: `premium-full-bleed-world-v1`
+- policy version: `world-showcase-full-bleed-v2`
+- render style: `premium-full-bleed-world-v2`
 - projection: `equirectangular-full-bleed`
+- static route mode: `single-color`
+- static route color: `#FF5A52`
+- interactive route style: `continent-colors`
 - production strategy: `deterministic-full-bleed-world-route`.
 
 There is **no image-generation prompt** and no source-space-image dependency.
@@ -196,12 +237,8 @@ No `--base` argument is required:
 npm run world:visual:preview -- --out-dir="<preview-folder>"
 ```
 
-Preview must produce responsive 480/800/1200/1600 WebPs plus `world-showcase-preview.json` containing:
+Preview must produce responsive 480/800/1200/1600 WebPs plus `world-showcase-preview.json` containing the canonical render/projection identifiers and the invariants:
 
-- `renderStyle= premium-full-bleed-world-v1`
-- `projection= equirectangular-full-bleed`
-- `fullBleed=true`
-- `spaceBackground=false`
 - `countries=195`
 - `internationalLegs=194`.
 
@@ -220,7 +257,7 @@ Publishing:
 1. creates the four delivery WebPs,
 2. registers `journey--world-195--cover--16x9--v001`,
 3. records Natural Earth + route provenance,
-4. updates `data/public-route.json#media.heroAssetId`,
+4. keeps `data/public-route.json#media.heroAssetId` on the canonical asset,
 5. leaves the verified route data unchanged.
 
 Then run the normal release build/validation and commit all deterministic generated outputs.
@@ -245,7 +282,9 @@ Scale by batches and deterministic generators, not operator messages.
 
 For 1,000 Journeys, the target is roughly 100 unattended 10-Journey dispatches plus deterministic special renderers where appropriate—not 1,000 manually written prompts.
 
-The queue contract is provider-independent so a future image API/worker can consume the same queue without changing Journey IDs, filenames, QA states or ingestion.
+The queue contract is provider-independent. A future Work/image-API worker consumes the same explicit per-call queue and must preserve Journey IDs, filenames, prompt fingerprints, QA states and ingestion semantics.
+
+Adding more Journeys must **not** add new browser tests per Journey or require a new visual workflow. Add a new visual family only when an existing family genuinely cannot represent a recurring class of Journeys.
 
 ## 9. Windows / PowerShell rules
 

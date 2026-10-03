@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "policyVersion": "journey-cover-system-v1",
+  "objective": "Scale Journey visuals to 1000+ Journeys without per-Journey workflow design.",
+  "normalCoverStrategy": "one generated 16:9 master per Journey; responsive WebPs are deterministic derivatives",
+  "batch": {
+    "maxJourneys": 10,
+    "operatorPromptsPerBatch": 1,
+    "imageCallsPerJourney": 1,
+    "imagesPerToolCall": 1,
+    "singleCallMultiJourneyForbidden": true,
+    "promptTransport": "explicit-per-call",
+    "carryoverPolicy": "shared house style only; subject, geography, transport and composition must reset for every Journey",
+    "reviewMode": "review whole batch once; regenerate only outliers",
+    "releaseMode": "approved masters -> deterministic responsive derivatives -> registry/hero IDs -> validation"
+  },
+  "specialJourneys": [
+    {
+      "tripId": "world-195",
+      "strategy": "deterministic-full-bleed-world-route"
+    }
+  ],
+  "families": {
+    "road-cinematic": {
+      "archetype": "road",
+      "generation": "image",
+      "scene": "a single scenic road-travel scene with locally credible terrain and no invented route alignment",
+      "socialPriority": "high",
+      "productionStrategy": "single-generated-cover",
+      "compositions": [
+        "wide environmental journey",
+        "elevated route overview",
+        "three-quarter travel-mode scene",
+        "low-horizon landscape",
+        "journey element small in a large landscape"
+      ]
+    },
+    "rail-cinematic": {
+      "archetype": "rail",
+      "generation": "image",
+      "scene": "a single unbranded rail-travel scene with geographically credible surroundings",
+      "socialPriority": "high",
+      "productionStrategy": "single-generated-cover",
+      "compositions": [
+        "wide rail-in-landscape",
+        "three-quarter train passage",
+        "elevated rail corridor",
+        "train small in a large landscape",
+        "layered environmental rail scene"
+      ]
+    },
+    "nature-atmospheric": {
+      "archetype": "scenic-adventure",
+      "generation": "image",
+      "scene": "a single atmospheric natural landscape grounded in the listed destination",
+      "socialPriority": "medium",
+      "productionStrategy": "single-generated-cover",
+      "compositions": [
+        "immersive environmental overlook",
+        "trail-led landscape",
+        "layered atmospheric landscape",
+        "wide natural panorama",
+        "foreground nature framing"
+      ]
+    },
+    "coastal-editorial": {
+      "archetype": "cruise-coastal",
+      "generation": "image",
+      "scene": "a single coherent coastal travel scene; no collage of ports or islands",
+      "socialPriority": "high",
+      "productionStrategy": "single-generated-cover",
+      "compositions": [
+        "island-chain passage",
+        "ferry-in-open-water",
+        "elevated coastal overview",
+        "harbor-to-horizon passage",
+        "wide sea-and-islands scene"
+      ]
+    },
+    "culture-editorial": {
+      "archetype": "urban-culture",
+      "generation": "image",
+      "scene": "a single street-level cultural travel scene; no collage of landmarks",
+      "socialPriority": "medium",
+      "productionStrategy": "single-generated-cover",
+      "compositions": [
+        "human-scale street scene",
+        "architectural arrival",
+        "layered neighborhood view",
+        "public-space travel scene",
+        "city-and-landscape relationship"
+      ]
+    },
+    "planetary": {
+      "archetype": "global",
+      "generation": "deterministic",
+      "scene": "a premium full-bleed Natural Earth world map with the verified 195-country route rendered directly from platform geometry",
+      "socialPriority": "high",
+      "productionStrategy": "deterministic-full-bleed-world-route",
+      "compositions": [
+        "full-bleed verified world route"
+      ]
+    }
+  },
+  "lightingProfiles": [
+    "soft morning light",
+    "clear daylight",
+    "diffuse overcast light",
+    "late directional light",
+    "blue-hour transition",
+    "misty directional light"
+  ],
+  "qa": [
+    "one coherent scene",
+    "journey mode/character readable at thumbnail size",
+    "no visible text or logos",
+    "no invented map or route overlay",
+    "geography plausible for approved anchor",
+    "not visually repetitive with adjacent batch items"
+  ]
+}
