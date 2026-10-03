@@ -4,40 +4,26 @@ import {wrap} from './route-visual-model.mjs';
 const require=createRequire(import.meta.url);
 
 export const WORLD_SHOWCASE_STYLE=Object.freeze({
-  version:'premium-full-bleed-world-v1',
+  version:'premium-full-bleed-world-v2',
   projection:'equirectangular-full-bleed',
   fullBleed:true,
   spaceBackground:false,
   visibleContainer:false,
+  staticRouteColorMode:'single-color',
+  staticRouteColor:'#FF5A52',
+  staticRouteHaloColor:'#431519',
   basemapBrightness:.84,
   basemapSaturation:.68,
-  routeDetailedOpacity:.84,
-  routeSchematicOpacity:.58,
-  routeDenseRegionMultiplier:.72,
-  routeGlowOpacity:.05,
+  routeDetailedOpacity:.92,
+  routeSchematicOpacity:.74,
+  routeDenseRegionMultiplier:.78,
+  routeHaloOpacity:.16,
   seamPixelJumpFraction:.42,
   seamLongitudeJumpDegrees:170,
   antarcticShadeOpacity:.22
 });
 
-const routePalette={
-  '#67c9ef':'#72cfe5',
-  '#bca0ed':'#9fb6d8',
-  '#e7b46a':'#d5ac70',
-  '#79adc9':'#7eb9ca',
-  '#7bc6a1':'#7bc0a2',
-  '#72d2cf':'#76c7c7',
-  '#c1def1':'#abcbd7',
-  '#bdd0e1':'#9ab8c4'
-};
-
-const safeColor=value=>routePalette[String(value||'').toLowerCase()]||'#86cad9';
 const fmt=n=>Number(n.toFixed(2));
-const mix=(a,b,t)=>{
-  const parse=x=>[1,3,5].map(i=>parseInt(x.slice(i,i+2),16));
-  const A=parse(a),B=parse(b);
-  return '#'+A.map((v,i)=>Math.round(v+(B[i]-v)*t).toString(16).padStart(2,'0')).join('');
-};
 
 const project=(point,width,height)=>{
   const lon=wrap(point[0]);
@@ -87,26 +73,21 @@ export async function renderPremiumWorldOverlay({sourcePath,route,width,height})
     .toBuffer();
 
   const defs=[
-    '<filter id="routeGlow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="'+fmt(Math.max(.45,width/2800))+'"/></filter>'
+    '<filter id="routeHalo" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="'+fmt(Math.max(.35,width/3200))+'"/></filter>'
   ];
   const paths=[];
-  let id=0;
   const core=Math.max(.9,width/1180);
-  const glow=Math.max(1.7,width/820);
+  const halo=Math.max(2.0,width/720);
 
   const draw=(coords,line)=>{
     if(coords.length<2)return;
-    const gid='r'+id++;
     const d=coords.map((p,i)=>(i?'L':'M')+fmt(p[0])+','+fmt(p[1])).join(' ');
-    const c1=mix(safeColor(line.color),'#dceff3',.08);
-    const c2=mix(safeColor(line.endColor),'#dceff3',.08);
-    defs.push('<linearGradient id="'+gid+'" gradientUnits="userSpaceOnUse" x1="'+fmt(coords[0][0])+'" y1="'+fmt(coords[0][1])+'" x2="'+fmt(coords.at(-1)[0])+'" y2="'+fmt(coords.at(-1)[1])+'"><stop stop-color="'+c1+'"/><stop offset="1" stop-color="'+c2+'"/></linearGradient>');
     const density=denseRegionFactor(line);
     const baseOpacity=line.schematic?WORLD_SHOWCASE_STYLE.routeSchematicOpacity:WORLD_SHOWCASE_STYLE.routeDetailedOpacity;
     const opacity=baseOpacity*density;
     paths.push(
-      '<path d="'+d+'" fill="none" stroke="url(#'+gid+')" stroke-opacity="'+fmt(WORLD_SHOWCASE_STYLE.routeGlowOpacity*density)+'" stroke-width="'+fmt(glow)+'" filter="url(#routeGlow)"/>',
-      '<path d="'+d+'" fill="none" stroke="url(#'+gid+')" stroke-opacity="'+fmt(opacity)+'" stroke-width="'+fmt(core)+'"/>'
+      '<path d="'+d+'" fill="none" stroke="'+WORLD_SHOWCASE_STYLE.staticRouteHaloColor+'" stroke-opacity="'+fmt(WORLD_SHOWCASE_STYLE.routeHaloOpacity*density)+'" stroke-width="'+fmt(halo)+'" filter="url(#routeHalo)"/>',
+      '<path d="'+d+'" fill="none" stroke="'+WORLD_SHOWCASE_STYLE.staticRouteColor+'" stroke-opacity="'+fmt(opacity)+'" stroke-width="'+fmt(core)+'"/>'
     );
   };
 
