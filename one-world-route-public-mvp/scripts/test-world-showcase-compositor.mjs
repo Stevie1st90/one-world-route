@@ -7,34 +7,31 @@ import {spawnSync} from 'node:child_process';
 import sharp from 'sharp';
 import {WORLD_SHOWCASE_STYLE} from './world-showcase-renderer.mjs';
 
-test('world showcase v5 tuning contract remains fixed',()=>{
+test('world showcase full-bleed tuning contract remains fixed',()=>{
   assert.deepEqual(WORLD_SHOWCASE_STYLE,{
-    version:'premium-flat-world-v5',
-    projection:'robinson-like-compromise-v5',
-    mapWidthFraction:.84,
-    mapHeightFraction:.62,
-    mapOpacity:.64,
-    edgeFadeStart:.96,
-    polarFadeStart:.93,
-    antarcticFadeStart:-60,
-    antarcticFadeEnd:-82,
-    routeDetailedOpacity:.90,
-    routeSchematicOpacity:.65,
-    routeGlowOpacity:.11,
-    seamPixelJumpFraction:.30,
-    seamLongitudeJumpDegrees:170
+    version:'premium-full-bleed-world-v1',
+    projection:'equirectangular-full-bleed',
+    fullBleed:true,
+    spaceBackground:false,
+    visibleContainer:false,
+    basemapBrightness:.84,
+    basemapSaturation:.68,
+    routeDetailedOpacity:.84,
+    routeSchematicOpacity:.58,
+    routeDenseRegionMultiplier:.72,
+    routeGlowOpacity:.05,
+    seamPixelJumpFraction:.42,
+    seamLongitudeJumpDegrees:170,
+    antarcticShadeOpacity:.22
   });
 });
 
-test('world showcase compositor produces four deterministic preview variants without publishing',async()=>{
+test('world showcase compositor produces four deterministic preview variants without an AI base image',async()=>{
   const temp=await mkdtemp(join(tmpdir(),'owr-world-showcase-'));
   try{
-    const base=join(temp,'base.png');
     const out=join(temp,'out');
-    await sharp({create:{width:1600,height:900,channels:3,background:{r:8,g:20,b:38}}}).png().toFile(base);
     const r=spawnSync(process.execPath,[
       resolve('scripts/compose-world-showcase-cover.mjs'),
-      '--base='+base,
       '--out-dir='+out
     ],{cwd:process.cwd(),encoding:'utf8'});
     assert.equal(r.status,0,r.stderr||r.stdout);
@@ -43,8 +40,11 @@ test('world showcase compositor produces four deterministic preview variants wit
     assert.equal(report.tripId,'world-195');
     assert.equal(report.invariants.countries,195);
     assert.equal(report.invariants.internationalLegs,194);
-    assert.equal(report.renderStyle,'premium-flat-world-v5');
-    assert.equal(report.projection,'robinson-like-compromise-v5');
+    assert.equal(report.renderStyle,'premium-full-bleed-world-v1');
+    assert.equal(report.projection,'equirectangular-full-bleed');
+    assert.equal(report.fullBleed,true);
+    assert.equal(report.spaceBackground,false);
+    assert.ok(report.mapSourceSha256);
     assert.deepEqual(report.variants.map(v=>v.width),[480,800,1200,1600]);
     for(const variant of report.variants){
       const meta=await sharp(variant.asset).metadata();

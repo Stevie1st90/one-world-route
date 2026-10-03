@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "policyVersion": "world-showcase-flat-v5",
+  "policyVersion": "world-showcase-full-bleed-v1",
   "tripId": "world-195",
-  "strategy": "cinematic-atmosphere-plus-premium-flat-world-route",
-  "status": "base-image-needed",
+  "strategy": "deterministic-full-bleed-world-route",
+  "status": "render-ready",
   "invariants": {
     "sovereignCountries": 195,
     "internationalLegs": 194,
@@ -11,19 +11,6 @@
     "routeLines": 253,
     "detailedRouteLines": 62,
     "schematicRouteLines": 132
-  },
-  "baseImage": {
-    "sourceFilename": "source--journey--world-195--space-base--16x9--v001.png",
-    "aspectRatio": "16:9",
-    "promptVersion": "world-showcase-flat-v5",
-    "prompt": "Create exactly one original premium cinematic 16:9 deep-space atmosphere background for “One World Journey”. Use restrained dark space, subtle blue orbital glow, faint atmospheric haze and enough quiet negative space for interface overlays. Do not draw a standalone Earth globe, route, pins, labels, borders, text, numbers or logos. The recognizable flat world map and factual 195-country journey route will be composited separately from verified ONE WORLD ROUTE geometry.",
-    "rules": [
-      "one cinematic background only",
-      "no standalone Earth globe",
-      "no route lines, pins, borders or labels",
-      "no text, numbers or logos",
-      "quiet central and edge zones for deterministic flat-world route compositing"
-    ]
   },
   "factualLayer": {
     "assetId": "auto-route-world-195",
@@ -35,9 +22,10 @@
     "geometryBasis": "Includes schematic coordinate connectors; not navigation geometry",
     "geometrySource": "data/public-route.json",
     "basemapSource": "data/visual-sources/natural-earth-relief.webp",
-    "renderStyle": "premium-flat-world-v5",
-    "projection": "robinson-like-compromise-v5",
-    "edgeBlend": "soft-envelope",
+    "renderStyle": "premium-full-bleed-world-v1",
+    "projection": "equirectangular-full-bleed",
+    "fullBleed": true,
+    "spaceBackground": false,
     "visibleContainer": false,
     "routeVisualReferenceOnly": true,
     "countries": 195,

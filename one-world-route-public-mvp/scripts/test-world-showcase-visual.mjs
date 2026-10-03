@@ -6,11 +6,12 @@ import {buildVisualBrief} from './visual-brief-model.mjs';
 const ROOT=new URL('../',import.meta.url);
 const read=async p=>JSON.parse(await readFile(new URL(p,ROOT),'utf8'));
 
-const [catalog,publicRoute,routeVisuals,spec]=await Promise.all([
+const [catalog,publicRoute,routeVisuals,spec,applyRunner]=await Promise.all([
   read('data/platform/trips.json'),
   read('data/public-route.json'),
   read('data/platform/route-visuals.json'),
-  read('data/platform/world-showcase-visual.json')
+  read('data/platform/world-showcase-visual.json'),
+  readFile(new URL('scripts/apply-world-showcase.ps1',ROOT),'utf8')
 ]);
 
 const meta=catalog.trips.find(t=>t.id==='world-195');
@@ -24,25 +25,23 @@ test('world showcase preserves the 195/194 public invariants',()=>{
   assert.equal(spec.invariants.internationalLegs,194);
 });
 
-test('world showcase AI prompt is compact and route-free',()=>{
-  assert.equal(brief.productionStrategy,'hybrid-space-base-plus-factual-flat-world');
+test('world showcase no longer depends on image generation',()=>{
+  assert.equal(brief.productionStrategy,'deterministic-full-bleed-world-route');
   assert.equal(brief.routeOverlayRequired,true);
   assert.equal(brief.routeOverlayAssetId,'auto-route-world-195');
-  assert.ok(brief.imagePrompt.length<1200);
-  assert.doesNotMatch(brief.imagePrompt,/Geography context:/);
-  assert.doesNotMatch(brief.imagePrompt,/\bDE,\s*LU,\s*BE\b/);
-  assert.match(brief.imagePrompt,/do not draw a standalone Earth globe/i);
-  assert.match(brief.imagePrompt,/flat world map/i);
-  assert.match(brief.imagePrompt,/factual 195-country journey route/i);
+  assert.equal(brief.imagePrompt,'');
+  assert.ok(['render-ready','published'].includes(spec.status));
+  assert.equal(spec.baseImage,undefined);
 });
 
-test('world showcase uses the verified route-render layer',()=>{
+test('world showcase uses the verified full-bleed factual renderer',()=>{
   assert.equal(spec.factualLayer.assetId,'auto-route-world-195');
   assert.equal(spec.factualLayer.geometrySource,'data/public-route.json');
   assert.equal(spec.factualLayer.basemapSource,'data/visual-sources/natural-earth-relief.webp');
-  assert.equal(spec.factualLayer.renderStyle,'premium-flat-world-v5');
-  assert.equal(spec.factualLayer.projection,'robinson-like-compromise-v5');
-  assert.equal(spec.factualLayer.edgeBlend,'soft-envelope');
+  assert.equal(spec.factualLayer.renderStyle,'premium-full-bleed-world-v1');
+  assert.equal(spec.factualLayer.projection,'equirectangular-full-bleed');
+  assert.equal(spec.factualLayer.fullBleed,true);
+  assert.equal(spec.factualLayer.spaceBackground,false);
   assert.equal(spec.factualLayer.visibleContainer,false);
   assert.equal(spec.factualLayer.routeVisualReferenceOnly,true);
   assert.equal(spec.factualLayer.asset,route.media.asset);
@@ -50,4 +49,12 @@ test('world showcase uses the verified route-render layer',()=>{
   assert.equal(spec.factualLayer.countries,195);
   assert.equal(spec.factualLayer.routeLines,route.geometry.lines);
   assert.equal(spec.finalCover.approvalRequired,true);
+});
+
+test('world showcase release runner is isolated and publishes exactly four responsive variants',()=>{
+  assert.match(applyRunner,/worktree add --detach/);
+  assert.match(applyRunner,/compose-world-showcase-cover\.mjs --publish=true --approved=true/);
+  assert.match(applyRunner,/Expected exactly four world-195 cover WebPs/);
+  assert.match(applyRunner,/HEAD:refs\/heads\//);
+  assert.doesNotMatch(applyRunner,/--base=/);
 });
