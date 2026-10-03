@@ -6,11 +6,12 @@ import {buildVisualBrief} from './visual-brief-model.mjs';
 const ROOT=new URL('../',import.meta.url);
 const read=async p=>JSON.parse(await readFile(new URL(p,ROOT),'utf8'));
 
-const [catalog,publicRoute,routeVisuals,spec]=await Promise.all([
+const [catalog,publicRoute,routeVisuals,spec,applyRunner]=await Promise.all([
   read('data/platform/trips.json'),
   read('data/public-route.json'),
   read('data/platform/route-visuals.json'),
-  read('data/platform/world-showcase-visual.json')
+  read('data/platform/world-showcase-visual.json'),
+  readFile(new URL('scripts/apply-world-showcase.ps1',ROOT),'utf8')
 ]);
 
 const meta=catalog.trips.find(t=>t.id==='world-195');
@@ -48,4 +49,12 @@ test('world showcase uses the verified full-bleed factual renderer',()=>{
   assert.equal(spec.factualLayer.countries,195);
   assert.equal(spec.factualLayer.routeLines,route.geometry.lines);
   assert.equal(spec.finalCover.approvalRequired,true);
+});
+
+test('world showcase release runner is isolated and publishes exactly four responsive variants',()=>{
+  assert.match(applyRunner,/worktree add --detach/);
+  assert.match(applyRunner,/compose-world-showcase-cover\.mjs --publish=true --approved=true/);
+  assert.match(applyRunner,/Expected exactly four world-195 cover WebPs/);
+  assert.match(applyRunner,/HEAD:refs\/heads\//);
+  assert.doesNotMatch(applyRunner,/--base=/);
 });
