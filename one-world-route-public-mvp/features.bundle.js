@@ -2666,16 +2666,18 @@
   const root=window.ONE_WORLD_PLATFORM_MODULES=window.ONE_WORLD_PLATFORM_MODULES||{};
   const $=(s,r=document)=>r.querySelector(s);
   const dialogStack=[];
-  let dialogGlobe=null;
+  let pausedGlobe=null;
+  function syncGlobeAnimation(){
+    const globe=window.__ONE_WORLD_ROUTE_GLOBE__;
+    const obscured=dialogStack.length>0||document.body.classList.contains('terrain-loading')||document.body.classList.contains('terrain-view');
+    if(obscured&&globe!==pausedGlobe){pausedGlobe?.resumeAnimation?.();globe?.pauseAnimation?.();pausedGlobe=globe||null}
+    else if(!obscured&&pausedGlobe){pausedGlobe.resumeAnimation?.();pausedGlobe=null}
+  }
   function syncDialogStack(){
     const top=dialogStack.at(-1);
     for(const modal of document.querySelectorAll('[data-platform-dialog]'))modal.inert=Boolean(top&&modal!==top);
     const app=$('#app');if(app)app.inert=Boolean(top);
-    // The full-screen dialog obscures the globe. Keep nested dialogs paused
-    // until the final dialog closes, leaving rendering time for their controls.
-    const globe=window.__ONE_WORLD_ROUTE_GLOBE__;
-    if(top&&globe!==dialogGlobe){dialogGlobe?.resumeAnimation?.();globe?.pauseAnimation?.();dialogGlobe=globe||null}
-    else if(!top&&dialogGlobe){dialogGlobe.resumeAnimation?.();dialogGlobe=null}
+    syncGlobeAnimation();
   }
 
   function ensureDialog(id,cls='platform-modal'){
@@ -2748,6 +2750,10 @@
   }
 
   if($('#infoModal'))ensureDialog('infoModal');
+  // Dialogs and terrain share the same globe visibility policy. This also
+  // handles switching views while a dialog is open or the atlas is loading.
+  if(document.body&&typeof MutationObserver==='function')new MutationObserver(syncGlobeAnimation).observe(document.body,{attributes:true,attributeFilter:['class']});
+  window.addEventListener?.('one-world-route:globe-ready',syncGlobeAnimation);
   root.ui={ensureDialog,ensureGlobalActions,toast,regionalSettings};
 })();
 
@@ -4646,7 +4652,7 @@
       storage:next.storage||localStorage,
       TripTools:next.TripTools,
       catalog:next.catalog,
-      fetcher:next.fetcher||fetch
+      fetcher:next.fetcher||fetch.bind(window)
     };
     try{
       const response=await deps.fetcher(CONFIG_URL,{cache:'no-cache'});

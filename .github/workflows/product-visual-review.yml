@@ -48,7 +48,9 @@ jobs:
             if curl -sf http://127.0.0.1:4173/ > /dev/null; then break; fi
             sleep 1
           done
-          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/node_modules/@playwright/test/cli.js test --config=qa/playwright.config.mjs tests/product-review.spec.mjs --project=desktop-1440 --project=desktop-1920 --project=mobile-390 --project=mobile-430 --workers=2 --output=qa/product-review-results
+          # Large Globe + MapLibre views share the runner's software GPU.
+          # Review every viewport sequentially so each gets full rendering capacity.
+          OWR_CHROMIUM_PATH="$CHROME_BIN" node qa/node_modules/@playwright/test/cli.js test --config=qa/playwright.config.mjs tests/product-review.spec.mjs --project=desktop-1440 --project=desktop-1920 --project=mobile-390 --project=mobile-430 --workers=1 --output=qa/product-review-results
       - name: Publish desktop-1440 screenshots
         if: always()
         uses: actions/upload-artifact@v7

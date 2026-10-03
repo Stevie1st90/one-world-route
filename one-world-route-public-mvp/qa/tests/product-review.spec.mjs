@@ -5,7 +5,9 @@ import {readFile} from 'node:fs/promises';
 test('@product-review consumer discovery, personal workspace, journey and sharing',async({page,isMobile},info)=>{
   test.setTimeout(360000);
   page.setDefaultTimeout(12000);await page.emulateMedia({reducedMotion:'reduce'});
-  const errors=[];page.on('pageerror',e=>errors.push(e.message));
+  const errors=[],diagnostics=[];page.on('pageerror',e=>errors.push(e.message));
+  page.on('console',message=>{if(['error','warning'].includes(message.type()))diagnostics.push({type:message.type(),text:message.text()})});
+  page.on('requestfailed',request=>diagnostics.push({type:'requestfailed',url:request.url(),error:request.failure()?.errorText}));
   const shot=async name=>{
     await page.evaluate(()=>{
       for(const img of document.images){const r=img.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight&&r.right>0&&r.left<innerWidth)img.loading='eager'}
@@ -15,7 +17,7 @@ test('@product-review consumer discovery, personal workspace, journey and sharin
     }))).toBe(true);
     await page.evaluate(()=>window.__ONE_WORLD_ROUTE_GLOBE__?.pauseAnimation?.());
     try{await page.screenshot({path:info.outputPath(name+'.png'),animations:'disabled',timeout:60000});}
-    finally{await page.evaluate(()=>{if(!document.querySelector('#app')?.inert)window.__ONE_WORLD_ROUTE_GLOBE__?.resumeAnimation?.()});}
+    finally{await page.evaluate(()=>{if(!document.querySelector('#app')?.inert&&!document.body.matches('.terrain-loading,.terrain-view'))window.__ONE_WORLD_ROUTE_GLOBE__?.resumeAnimation?.()});}
   };
   const fit=async()=>{expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);};
   const closeModal=async id=>{await page.locator('#'+id+' .platform-x').click();await expect(page.locator('#'+id)).toHaveClass(/hidden/);};
@@ -64,7 +66,10 @@ test('@product-review consumer discovery, personal workspace, journey and sharin
   if(isMobile)await page.locator('#closeDetails').click();
   await page.locator('[data-journey-mode="story"]').click();await shot('story-mode');
   await page.locator('#platformStoryExit').click();
-  await page.locator('[data-journey-mode="terrain"]').click();await expect.poll(()=>page.evaluate(()=>window.ONE_WORLD_PLATFORM_MODULES.terrain.isReady()),{timeout:45000}).toBe(true);await expect(page.locator('#terrainMap canvas')).toBeVisible();await shot('terrain');
+  await page.locator('[data-journey-mode="terrain"]').click();
+  try{await expect.poll(()=>page.evaluate(()=>window.ONE_WORLD_PLATFORM_MODULES.terrain.isReady()),{timeout:45000}).toBe(true)}
+  catch(error){console.log('Terrain diagnostics:',JSON.stringify({errors,diagnostics,state:await page.evaluate(()=>({body:document.body.className,canvas:!!document.querySelector('#terrainMap canvas')}))}));throw error}
+  await expect(page.locator('#terrainMap canvas')).toBeVisible();await shot('terrain');
   expect(errors).toEqual([]);
 });
 

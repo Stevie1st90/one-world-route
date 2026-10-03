@@ -17,13 +17,21 @@ function response(payload,{ok=true,status=200}={}){
   const text=payload===null||payload===undefined?'':JSON.stringify(payload);
   return {ok,status,text:async()=>text,json:async()=>payload};
 }
-function load(){
+function load(nativeFetch=null){
   const window={ONE_WORLD_PLATFORM_MODULES:{}};
   const context={window,console,Date,setTimeout,clearTimeout};
+  if(nativeFetch)context.fetch=function(...args){assert.equal(this,window,'Browser fetch requires its Window receiver');return nativeFetch(...args)};
   vm.createContext(context);
   vm.runInContext(source,context);
   return window.ONE_WORLD_PLATFORM_MODULES.cloudSync;
 }
+
+test('default browser fetch reads deployment config with the Window receiver',async()=>{
+  let calls=0;
+  const sync=load(async url=>{calls++;assert.equal(url,'./data/platform/sync-config.json');return response({schemaVersion:1,provider:'supabase',enabled:false})});
+  const state=await sync.init({storage:storage(),TripTools:{},catalog:{trips:[]}});
+  assert.equal(calls,1);assert.equal(state.available,false);
+});
 
 test('cloud sync stays unavailable when deployment config is disabled',async()=>{
   const sync=load(),s=storage();
